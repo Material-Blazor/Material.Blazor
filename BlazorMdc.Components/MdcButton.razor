@@ -5,7 +5,7 @@
 <button @ref="elementReference" class="mdc-button @mainDivClass" @onclick="@OnClick" disabled="@Disabled" data-mdc-dialog-action="@DialogAction" type="@Type">
     <div class="mdc-button__ripple"></div>
     @LeadingIconMarkup
-    <span class="mdc-button__label @labelClass">@Label</span>
+    <span class="mdc-button__label">@Label</span>
     @TrailingIconMarkup
 </button>
 
@@ -17,7 +17,6 @@
 
 
     [Parameter] public MdcButtonStyle? ButtonStyle { get; set; }
-    [Parameter] public MdcTextAlign? TextAlign { get; set; }
     [Parameter] public string Type { get; set; } = "button";
     [Parameter] public string Label { get; set; }
     [Parameter] public string? LeadingIcon { get; set; }
@@ -28,11 +27,9 @@
 
     private ElementReference elementReference;
     private MdcButtonStyle myButtonStyle;
-    private MdcTextAlign myTextAlign;
     private MarkupString LeadingIconMarkup => (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"material-icons mdc-button__icon\" aria-hidden=\"true\">{LeadingIcon}</i>");
     private MarkupString TrailingIconMarkup => (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"material-icons mdc-button__icon\" aria-hidden=\"true\">{TrailingIcon}</i>");
     private string mainDivClass => classLookup.Where(c => c.Key == myButtonStyle).FirstOrDefault().Value;
-    private string labelClass => Utilities.GetTextAlignClass(myTextAlign);
 
 
     private KeyValuePair<MdcButtonStyle, string>[] classLookup =
@@ -63,7 +60,6 @@
     private void Setup()
     {
         myButtonStyle = (ButtonStyle is null) ? myCascadingDefaults.ButtonStyle : (MdcButtonStyle)ButtonStyle;
-        myTextAlign = (TextAlign is null) ? myCascadingDefaults.TextAlign : (MdcTextAlign)TextAlign;
     }
 
 
