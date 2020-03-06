@@ -13,7 +13,7 @@ BlazorMdc isn't the only Blazor component library for Material Theme and we enco
 
 Please note that BlazorMdc is in the early stages of development.
 
-## Attrbution
+## Attribution
 
 BlazorMdc is forked from [Steve Sanderson's](https://blog.stevensanderson.com/) experimental [RazorComponents.MaterialDesign](https://github.com/SteveSandersonMS/RazorComponents.MaterialDesign) experiment. That project struck the balance we sought of giving easy to use, performant Blazor components in a lightweight, native Material Theme setting. At the present time we have revisited only a limited selection of components from RazorComponents.MaterialDesign - we are still under development.
 
