@@ -6,7 +6,7 @@ See <code>Dialog.razor</code> for sources.
 
 Note that the user can also press 'escape' to dismiss the dialog, and this produces a different result string.
 
-<p><MdcButton OnClick="@ShowDialog">Show dialog</MdcButton></p>
+<p><MdcButton Label="Show dialog" OnClick="@ShowDialog"></MdcButton></p>
 
 @if (result != null)
 {
@@ -18,8 +18,8 @@ Note that the user can also press 'escape' to dismiss the dialog, and this produ
         Please choose a fruit.
     </Body>
     <Buttons>
-        <MdcButton DialogAction="orange">Orange</MdcButton>
-        <MdcButton DialogAction="other" ButtonStyle="@MdcButtonStyle.Text">Other</MdcButton>
+        <MdcButton Label="Orange" DialogAction="orange"></MdcButton>
+        <MdcButton Label="Other" DialogAction="other" ButtonStyle="@MdcButtonStyle.Text"></MdcButton>
     </Buttons>
 </MdcDialog>
 

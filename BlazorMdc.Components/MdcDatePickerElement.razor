@@ -1,22 +1,22 @@
 ﻿@if (disabled)
 {
-    <span class="mdc-theme--text-disabled-on-background dmdc-dp-day-pad__element-disabled">@day</span>
+    <span class="mdc-theme--text-disabled-on-background bmdc-dp-day-pad__element-disabled">@day</span>
 }
 else if (DisplayDate == CurrentDate)
 {
-    <div class="dmdc-dp-day-pad__element-container">
-        <div class="dmdc-dp-day-pad__element-overlay" style="color: red;">@day</div>
-        <li class="mdc-list-item mdc-list-item--selected dmdc-dp-day-pad__element" data-value="@text" aria-selected="true" role="option" @onclick="@OnClickAsync">
-            <span class="mdc-list-item__text dmdc-dp-day-pad__element-span">@text</span>
+    <div class="bmdc-dp-day-pad__element-container">
+        <div class="bmdc-dp-day-pad__element-overlay" style="color: red;">@day</div>
+        <li class="mdc-list-item mdc-list-item--selected bmdc-dp-day-pad__element" data-value="@text" aria-selected="true" role="option" @onclick="@OnClickAsync">
+            <span class="mdc-list-item__text bmdc-dp-day-pad__element-span">@text</span>
         </li>
     </div>
 }
 else
 {
-    <div class="dmdc-dp-day-pad__element-container">
-        <div class="dmdc-dp-day-pad__element-overlay">@day</div>
-        <li class="mdc-list-item dmdc-dp-day-pad__element" data-value="@text" aria-selected="false" role="option" @onclick=@OnClickAsync>
-            <span class="mdc-list-item__text dmdc-dp-day-pad__element-span">@text</span>
+    <div class="bmdc-dp-day-pad__element-container">
+        <div class="bmdc-dp-day-pad__element-overlay">@day</div>
+        <li class="mdc-list-item bmdc-dp-day-pad__element" data-value="@text" aria-selected="false" role="option" @onclick=@OnClickAsync>
+            <span class="mdc-list-item__text bmdc-dp-day-pad__element-span">@text</span>
         </li>
     </div>
 }

@@ -27,7 +27,7 @@ namespace BlazorMdc.Components
         /// <summary>
         /// Gets a value for the component's 'id' attribute.
         /// </summary>
-        [Parameter] public string Id { get; set; }
+        [Parameter] public string Id { get; set; } = Utilities.GenerateCssElementSelector();
 
         /// <summary>
         /// Gets a value for the component's 'class' attribute.

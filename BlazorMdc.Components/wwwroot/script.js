@@ -5,6 +5,18 @@ window.BlazorMdc = {
         }
     },
 
+    checkBox: {
+        setChecked: function (elem, formFieldElem, isChecked, isFormField) {
+            const checkbox = mdc.checkbox.MDCCheckbox.attachTo(elem);
+            checkbox.checked = isChecked;
+
+            if (isFormField) {
+                const formField = mdc.formField.MDCFormField.attachTo(formFieldElem);
+                formField.input = checkbox;
+            }
+        }
+    },
+
     dialog: {
         show: function (elem) {
             elem._dialog = elem._dialog || mdc.dialog.MDCDialog.attachTo(elem);

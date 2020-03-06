@@ -13,7 +13,7 @@ namespace BlazorMdc.Components
 
         public static string GenerateCssElementSelector()
         {
-            return "dmdc_" + Guid.NewGuid().ToString();
+            return "bmdc_" + Guid.NewGuid().ToString();
         }
 
         public static string GetTextAlignClass(MdcTextAlign textaAlign)
@@ -21,13 +21,13 @@ namespace BlazorMdc.Components
             switch (textaAlign)
             {
                 case MdcTextAlign.Left:
-                    return " dmdc-align-left";
+                    return " bmdc-align-left";
 
                 case MdcTextAlign.Center:
-                    return " dmdc-align-center";
+                    return " bmdc-align-center";
 
                 case MdcTextAlign.Right:
-                    return " dmdc-align-right";
+                    return " bmdc-align-right";
             }
 
             return "";

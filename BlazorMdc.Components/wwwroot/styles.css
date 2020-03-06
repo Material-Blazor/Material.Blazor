@@ -1,12 +1,12 @@
 ﻿@import 'https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp';
 
 
-div.dmdc-disabled-container {
+div.bmdc-disabled-container {
     background: rgba(0, 0, 0, 0);
     position: relative;
 }
 
-div.dmdc-disabled-overlay {
+div.bmdc-disabled-overlay {
     background: rgba(0, 0, 0, 0);
     background-repeat: no-repeat;
     background-position: center center;
@@ -21,19 +21,19 @@ div.dmdc-disabled-overlay {
     pointer-events: auto;
 }
 
-.dmdc-align-left {
+.bmdc-align-left {
     text-align: left;
 }
 
-.dmdc-align-center {
+.bmdc-align-center {
     text-align: center;
 }
 
-.dmdc-align-right {
+.bmdc-align-right {
     text-align: right;
 }
 
-.dmdc-dp-menu {
+.bmdc-dp-menu {
     box-sizing: content-box;
     padding: 16px 8px 12px 24px;
     height: 24px;
@@ -44,16 +44,16 @@ div.dmdc-disabled-overlay {
     overflow: visible !important;
 }
 
-.dmdc-dp-menu__surface-adjust {
+.bmdc-dp-menu__surface-adjust {
     overflow: visible !important;
     display: inline-block;
 }
 
-.dmdc-dp-menu__container {
+.bmdc-dp-menu__container {
     position: relative;
 }
 
-.dmdc-dp-menu__overlay {
+.bmdc-dp-menu__overlay {
     display: inline-block;
     top: 0;
     left: 0;
@@ -62,7 +62,7 @@ div.dmdc-disabled-overlay {
     pointer-events: auto;
 }
 
-.dmdc-dp-menu--icon-button {
+.bmdc-dp-menu--icon-button {
     height: 24px !important;
     width: 24px !important;
     width: 224px;
@@ -70,24 +70,24 @@ div.dmdc-disabled-overlay {
     pointer-events: aut=o !important;
 }
 
-.dmdc-dp-menu__float-left {
+.bmdc-dp-menu__float-left {
     float: left;
     height: 24px;
     line-height: 24px;
     margin-right: 4px;
 }
 
-.dmdc-dp-menu__float-right {
+.bmdc-dp-menu__float-right {
     float: right;
     height: 24px;
     line-height: 24px;
 }
 
-.dmdc-dp-menu__float-right-spaced {
+.bmdc-dp-menu__float-right-spaced {
     margin-left: 24px;
 }
 
-.dmdc-dp-day-pad {
+.bmdc-dp-day-pad {
     box-sizing: content-box;
     padding: 0 16px 8px 16px;
     user-select: none;
@@ -95,20 +95,20 @@ div.dmdc-disabled-overlay {
     width: 224px;
 }
 
-.dmdc-dp-day-pad__weekdays-line {
+.bmdc-dp-day-pad__weekdays-line {
     box-sizing: content-box;
     margin-bottom: 12px;
     padding: 0;
     overflow: visible;
 }
 
-.dmdc-dp-day-pad__days-line {
+.bmdc-dp-day-pad__days-line {
     box-sizing: content-box;
     padding: 0;
     overflow: visible;
 }
 
-.dmdc-dp-day-pad__element-disabled {
+.bmdc-dp-day-pad__element-disabled {
     float: left;
     text-align: center;
     height: 32px;
@@ -118,7 +118,7 @@ div.dmdc-disabled-overlay {
     padding: 0;
 }
 
-.dmdc-dp-day-pad__element-container {
+.bmdc-dp-day-pad__element-container {
     float: left;
     height: 32px;
     width: 32px;
@@ -127,7 +127,7 @@ div.dmdc-disabled-overlay {
     position: relative;
 }
 
-.dmdc-dp-day-pad__element-overlay {
+.bmdc-dp-day-pad__element-overlay {
     text-align: center;
     height: 32px;
     line-height: 32px;
@@ -139,7 +139,7 @@ div.dmdc-disabled-overlay {
     position: absolute;
 }
 
-.dmdc-dp-day-pad__element {
+.bmdc-dp-day-pad__element {
     float: left;
     text-align: center;
     height: 32px !important;
@@ -152,13 +152,13 @@ div.dmdc-disabled-overlay {
     /*position: absolute;*/
 }
 
-.dmdc-dp-day-pad__element-span {
+.bmdc-dp-day-pad__element-span {
     margin: auto !important;
     padding: 0;
     visibility: hidden;
 }
 
-.dmdc-dp-year-pad-container {
+.bmdc-dp-year-pad-container {
     padding: 4px 20px 8px 12px;
     height: 228px;
     position: relative

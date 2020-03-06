@@ -7,38 +7,38 @@
 
 
 <div class="mdc-typography--body2">
-    <div class="dmdc-dp-menu">
-        <div class="dmdc-dp-menu__container">
-            <div class="dmdc-dp-menu__float-left">
+    <div class="bmdc-dp-menu">
+        <div class="bmdc-dp-menu__container">
+            <div class="bmdc-dp-menu__float-left">
                 @monthText
             </div>
-            <div class="dmdc-dp-menu__float-left">
-                <button @ref="yearToggleReference" @onclick="@OnYearToggleClick" class="mdc-icon-button dmdc-dp-menu--icon-button" aria-pressed="false">
-                    <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on dmdc-dp-menu--icon-button">arrow_drop_up</i>
-                    <i class="material-icons mdc-icon-button__icon dmdc-dp-menu--icon-button">arrow_drop_down</i>
+            <div class="bmdc-dp-menu__float-left">
+                <button @ref="yearToggleReference" @onclick="@OnYearToggleClick" class="mdc-icon-button bmdc-dp-menu--icon-button" aria-pressed="false">
+                    <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on bmdc-dp-menu--icon-button">arrow_drop_up</i>
+                    <i class="material-icons mdc-icon-button__icon bmdc-dp-menu--icon-button">arrow_drop_down</i>
                 </button>
             </div>
 
             @if (!showYearPad)
             {
-                <div class="dmdc-dp-menu__float-right dmdc-dp-menu__float-right-spaced">
-                    <button @ref="nextMonthReference" class="mdc-icon-button material-icons dmdc-dp-menu--icon-button" @onclick="OnNextMonthClick">chevron_right</button>
+                <div class="bmdc-dp-menu__float-right bmdc-dp-menu__float-right-spaced">
+                    <button @ref="nextMonthReference" class="mdc-icon-button material-icons bmdc-dp-menu--icon-button" @onclick="OnNextMonthClick">chevron_right</button>
                 </div>
-                <div class="dmdc-dp-menu__float-right">
-                    <button @ref="previousMonthReference" class="mdc-icon-button material-icons dmdc-dp-menu--icon-button" @onclick="OnPreviousMonthClick">chevron_left</button>
+                <div class="bmdc-dp-menu__float-right">
+                    <button @ref="previousMonthReference" class="mdc-icon-button material-icons bmdc-dp-menu--icon-button" @onclick="OnPreviousMonthClick">chevron_left</button>
                 </div>
             }
         </div>
     </div>
 
-    <div class="dmdc-dp-day-pad">
-        <div class="dmdc-dp-day-pad__weekdays-line">
+    <div class="bmdc-dp-day-pad">
+        <div class="bmdc-dp-day-pad__weekdays-line">
             @foreach (var d in daysOfWeek)
             {
-                <span class="mdc-theme--text-disabled-on-background dmdc-dp-day-pad__element-disabled">@d</span>
+                <span class="mdc-theme--text-disabled-on-background bmdc-dp-day-pad__element-disabled">@d</span>
             }
         </div>
-        <ul class="mdc-list dmdc-dp-day-pad__days-line">
+        <ul class="mdc-list bmdc-dp-day-pad__days-line">
             @foreach (var date in dates)
             {
                 <MdcDatePickerElement @key="date" DateSelectionCriteria="DateSelectionCriteria" CurrentDate="initialDate" DisplayDate="date" StartOfDisplayMonth="startOfDisplayMonth" OnItemClickAsync="OnItemClickAsync" />
