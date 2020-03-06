@@ -1,0 +1,149 @@
+﻿@inherits MdcInputComponentBase<DateTime>
+
+@using System.Globalization 
+
+@inject IJSRuntime jsRuntime
+
+
+
+<div class="mdc-typography--body2">
+    <div class="dmdc-dp-menu">
+        <div class="dmdc-dp-menu__container">
+            <div class="dmdc-dp-menu__float-left">
+                @monthText
+            </div>
+            <div class="dmdc-dp-menu__float-left">
+                <button @ref="yearToggleReference" @onclick="@OnYearToggleClick" class="mdc-icon-button dmdc-dp-menu--icon-button" aria-pressed="false">
+                    <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on dmdc-dp-menu--icon-button">arrow_drop_up</i>
+                    <i class="material-icons mdc-icon-button__icon dmdc-dp-menu--icon-button">arrow_drop_down</i>
+                </button>
+            </div>
+
+            @if (!showYearPad)
+            {
+                <div class="dmdc-dp-menu__float-right dmdc-dp-menu__float-right-spaced">
+                    <button @ref="nextMonthReference" class="mdc-icon-button material-icons dmdc-dp-menu--icon-button" @onclick="OnNextMonthClick">chevron_right</button>
+                </div>
+                <div class="dmdc-dp-menu__float-right">
+                    <button @ref="previousMonthReference" class="mdc-icon-button material-icons dmdc-dp-menu--icon-button" @onclick="OnPreviousMonthClick">chevron_left</button>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="dmdc-dp-day-pad">
+        <div class="dmdc-dp-day-pad__weekdays-line">
+            @foreach (var d in daysOfWeek)
+            {
+                <span class="mdc-theme--text-disabled-on-background dmdc-dp-day-pad__element-disabled">@d</span>
+            }
+        </div>
+        <ul class="mdc-list dmdc-dp-day-pad__days-line">
+            @foreach (var date in dates)
+            {
+                <MdcDatePickerElement @key="date" DateSelectionCriteria="DateSelectionCriteria" CurrentDate="initialDate" DisplayDate="date" StartOfDisplayMonth="startOfDisplayMonth" OnItemClickAsync="OnItemClickAsync" />
+            }
+        </ul>
+    </div>
+</div>
+
+
+
+@code {
+    [Parameter]
+    public MdcDateSelectionCriteria? DateSelectionCriteria { get; set; }
+
+    private string[] daysOfWeek;
+
+    private ElementReference yearToggleReference;
+    private ElementReference previousMonthReference;
+    private ElementReference nextMonthReference;
+    private bool requiresInitialization = false;
+    private bool showYearPad;
+
+
+    private LinkedList<DateTime> dates { get; set; } = new LinkedList<DateTime>();
+    private DateTime initialDate;
+    private DateTime cachedCurrentValue;
+    private int monthsOffset = 0;
+    private DateTime startOfDisplayMonth;
+    private string monthText => startOfDisplayMonth.ToString("MMMM yyyy");
+    private int year => startOfDisplayMonth.Year;
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        SetParameters();
+
+        daysOfWeek = (new DateTimeFormatInfo()).DayNames.Select(d => d.Substring(0, 1)).ToArray();
+    }
+
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        SetParameters();
+    }
+
+
+    private void SetParameters(bool forceSetup = false)
+    {
+        initialDate = Value;
+        cachedCurrentValue = Value;
+
+        var start = startOfDisplayMonth = new DateTime(Value.Year, Value.Month, 1).AddMonths(monthsOffset);
+        var end = start.AddMonths(1).AddDays(-1);
+
+        start = start.AddDays(-Convert.ToInt32(start.DayOfWeek));
+        end = end.AddDays(-Convert.ToInt32(end.DayOfWeek) + 7);
+
+        dates = new LinkedList<DateTime>();
+
+        for (var date = start; date < end; date = date.AddDays(1))
+        {
+            dates.AddLast(date);
+        }
+
+        StateHasChanged();
+    }
+
+
+    private async Task OnItemClickAsync(DateTime dateTime)
+    {
+        Value = dateTime;
+        cachedCurrentValue = Value;
+        monthsOffset = 0;
+        SetParameters();
+        await ValueChanged.InvokeAsync(Value);
+    }
+
+    private void OnYearToggleClick()
+    {
+        showYearPad = !showYearPad;
+    }
+
+    private void OnPreviousMonthClick()
+    {
+        monthsOffset--;
+        SetParameters();
+    }
+
+    private void OnNextMonthClick()
+    {
+        monthsOffset++;
+        SetParameters();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender || requiresInitialization)
+        {
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.init", yearToggleReference);
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButton.init", previousMonthReference);
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButton.init", nextMonthReference);
+        }
+    }
+}

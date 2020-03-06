@@ -1,0 +1,21 @@
+﻿@page "/checkbox"
+
+<h1 class="@MdcTypography.H4">Checkbox samples</h1>
+
+See <code>Checkbox.razor</code> for sources.
+
+<p>
+    <div class="mdc-form-field">
+        <MdcCheckbox Id="checkbox-a" @bind-Value="@checkedA" />
+        <label for="checkbox-a">Your label here</label>
+    </div>
+</p>
+
+@if (checkedA)
+{
+    <p>The box is checked</p>
+}
+
+@code {
+    bool checkedA;
+}

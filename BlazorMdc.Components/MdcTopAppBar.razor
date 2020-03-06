@@ -1,0 +1,38 @@
+﻿@inherits MdcComponentBase
+@inject IJSRuntime jsRuntime
+
+
+
+<header @ref="headerElem" class="@CssClass" id="app-bar">
+    <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+            <button class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="@NavAriaLabel" @onclick="OnNavClicked">@NavIcon</button>
+            <span class="mdc-top-app-bar__title">@Title</span>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" style="padding-right: 20px;">
+            @ChildContent
+        </section>
+    </div>
+</header>
+
+
+
+@code {
+    [Parameter] public string Title { get; set; }
+    [Parameter] public string NavIcon { get; set; }
+    [Parameter] public string NavAriaLabel { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public EventCallback OnNavClicked { get; set; }
+    [Parameter] public string ScrollTarget { get; set; }
+    [Parameter] public string Type { get; set; } = "fixed";
+    [Parameter] public string CssClassExtra { get; set; } = "";
+
+    string CssClass
+        => $"mdc-top-app-bar {( string.IsNullOrEmpty(Type) ? "" : $"mdc-top-app-bar--{Type.ToLower()}")} app-bar {CssClassExtra}";
+
+    ElementReference headerElem;
+
+    protected async override Task OnAfterFirstRenderAsync()
+        => await jsRuntime.InvokeAsync<object>(
+                "BlazorMdc.topAppBar.init", headerElem, ScrollTarget);
+}

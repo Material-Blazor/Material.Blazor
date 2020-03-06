@@ -1,0 +1,105 @@
+﻿@inherits MdcComponentBase
+@inject IJSRuntime jsRuntime
+
+<div @ref="elementReference" class="mdc-tab-bar" role="tablist">
+    <div class="mdc-tab-scroller">
+        <div class="mdc-tab-scroller__scroll-area">
+            <div class="mdc-tab-scroller__scroll-content">
+                @{ int i = 0; }
+                @foreach (var item in TabItems)
+                {
+                    int index = i++;
+                    bool selected = (index == initialTabIndex);
+                    string buttonActive = selected ?  "mdc-tab--active" : "";
+                    string indicatorActive = selected ? "mdc-tab-indicator--active" : "";
+
+                    <button class="mdc-tab @stackClass @buttonActive" role="tab" aria-selected="@selected" tabindex="-1" @onclick="(_ => OnTabClickAsync(index))">
+                        <span class="mdc-tab__content">
+                            @if (!(item.Icon is null))
+                            {
+                                <span class="mdc-tab__icon material-icons" aria-hidden="true">@item.Icon</span>
+                            }
+                            
+                            <span class="mdc-tab__text-label">@item.Title</span>
+                        </span>
+                        <span class="mdc-tab-indicator @indicatorActive">
+                            <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                        </span>
+                        <span class="mdc-tab__ripple"></span>
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    public class TabItem
+    {
+        public string Title { get; set; }
+        public string? Icon { get; set; }
+    }
+
+    [CascadingParameter(Name = "MdcCascadingDefaults")]
+    private MdcCascadingDefaults MdcCascadingDefaults { get; set; } = new MdcCascadingDefaults();
+    private MdcCascadingDefaults myCascadingDefaults => (MdcCascadingDefaults is null) ? new MdcCascadingDefaults() : MdcCascadingDefaults;
+
+    [Parameter] public int TabIndex { get; set; }
+    [Parameter] public IEnumerable<TabItem> TabItems { get; set; }
+    [Parameter] public EventCallback<int> TabIndexChanged { get; set; }
+    [Parameter] public bool StackIcons { get; set; }
+
+    private int initialTabIndex;
+    private int cachedTabIndex;
+    private string stackClass => StackIcons ? "mdc-tab--stacked" : "";
+    private ElementReference elementReference;
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        SetParameters();
+    }
+
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        SetParameters();
+    }
+
+
+    private void SetParameters()
+    {
+        // Don't re-render unless the TabIndex has changed - probably not needed for tabs. Does cause issues if you
+        // change stacked parameter or the tabs themselves - something you shouldn't do. Fix this in due course.
+        if (TabIndex != cachedTabIndex)
+        {
+            initialTabIndex = TabIndex;
+            cachedTabIndex = TabIndex;
+        }
+    }
+
+
+    private async Task OnTabClickAsync(int selectedIndex)
+    {
+        if (selectedIndex != cachedTabIndex)
+        {
+            cachedTabIndex = selectedIndex;
+            TabIndex = selectedIndex;
+            await TabIndexChanged.InvokeAsync(TabIndex);
+        }
+    }
+
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        @if (firstRender)
+        {
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.tabBar.init", elementReference);
+        }
+    }
+}

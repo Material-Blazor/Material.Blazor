@@ -1,0 +1,34 @@
+﻿@page "/list"
+
+<h1 class="@MdcTypography.H4">List samples</h1>
+
+<p>See <code>List.razor</code> for sources.</p>
+
+<MdcList Items="@displayedProducts" Context="product">
+    <Icon>shop</Icon>
+    <Title>@product.DisplayName</Title>
+    <Subtitle>@product.Description</Subtitle>
+    <Actions>
+        <div style="width: 10rem">
+            <MdcSwitch @bind-Checked="@product.IsInStock"
+                       Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
+        </div>
+    </Actions>
+</MdcList>
+
+@code {
+    IEnumerable<Product> displayedProducts = new List<Product>
+    {
+        new Product { ProductId = 1, DisplayName = "Curly-wurly straw", Description = "Amaze your friends with this cheap plastic tube", IsInStock = true },
+            new Product { ProductId = 2, DisplayName = "Pepsi Connoisseur (12mo subscription)", Description = "Covers all developments in the world of Pepsi™", IsInStock = false },
+            new Product { ProductId = 3, DisplayName = "Recarbonator Pro", Description = "Revitalize your old beverages in just hours", IsInStock = true },
+    };
+
+    public class Product
+    {
+        public int ProductId { get; set; }
+        public string DisplayName { get; set; }
+        public string Description { get; set; }
+        public bool IsInStock { get; set; }
+    }
+}

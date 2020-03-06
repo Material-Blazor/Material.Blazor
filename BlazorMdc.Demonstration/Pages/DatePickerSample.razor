@@ -1,0 +1,26 @@
+﻿@page "/datepicker"
+
+
+
+<h1 class="@MdcTypography.H4">Select samples</h1>
+
+<p>See <code>DatePickerSample.razor</code> for sources.</p>
+
+<div style="box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important; display: inline-block;">
+    <MdcDatePicker @bind-Value="@inline"></MdcDatePicker>
+</div>
+<p style="margin-bottom: 4em;">Selected: '<strong>@inline.ToString()</strong>'</p>
+
+<MdcDatePickerSelect Label="Filled" @bind-Value="@filled" InputStyle="MdcInputStyle.Filled"></MdcDatePickerSelect>
+<p style="margin-bottom: 4em;">Selected: '<strong>@filled.ToString()</strong>'</p>
+
+<MdcDatePickerSelect Label="Weekdays Outlined" @bind-Value="@outlined" InputStyle="MdcInputStyle.Outlined" DateSelectionCriteria="MdcDateSelectionCriteria.WeekdaysOnly"></MdcDatePickerSelect>
+<p style="margin-bottom: 4em;">Selected: '<strong>@outlined.ToString()</strong>'</p>
+
+
+
+@code {
+    DateTime inline = DateTime.Today.AddMonths(1);
+    DateTime filled = DateTime.Today.AddMonths(1);
+    DateTime outlined = DateTime.Today.AddMonths(1);
+}

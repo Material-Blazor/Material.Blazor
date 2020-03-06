@@ -1,0 +1,157 @@
+﻿@inherits MdcComponentBase
+@inject IJSRuntime jsRuntime
+
+
+
+<div @ref="elementReference" class="mdc-select @mainDivClass">
+    <div class="mdc-select__anchor">
+        <i class="mdc-select__dropdown-icon"></i>
+        <div class="mdc-select__selected-text @alignClass" role="button" aria-haspopup="listbox" aria-labelledby="@labelId" aria-disabled="Disabled">@selectedText</div>
+
+        @if (myInputStyle == MdcInputStyle.Filled)
+        {
+            <span id="@labelId" class="mdc-floating-label @floatingLabelClass">@Label</span>
+            <div class="mdc-line-ripple"></div>
+        }
+        else
+        {
+            <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                    <span id="@labelId" class="mdc-floating-label @floatingLabelClass">@Label</span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
+            </span>
+        }
+    </div>
+
+    <div class="mdc-select__menu mdc-menu mdc-menu-surface">
+        <ul class="mdc-list">
+            @foreach (var item in Items)
+            {
+                var dv = item.DataValue;
+
+                if (item.DataValue == initialValue)
+                {
+                    <li class="mdc-list-item mdc-list-item--selected @alignClass" data-value="@item.DataValue" aria-selected="true" role="option" @onclick="@(_ => OnItemClickAsync(dv))"><span class="mdc-list-item__text">@item.Text</span></li>
+                }
+                else
+                {
+                    <li class="mdc-list-item @alignClass" data-value="@item.DataValue" aria-selected="false" role="option" @onclick=@(_ => OnItemClickAsync(dv))><span class="mdc-list-item__text">@item.Text</span></li>
+                }
+            }
+        </ul>
+    </div>
+</div>
+
+
+
+@code {
+    public class Item
+    {
+        public string DataValue { get; set; }
+        public string Text { get; set; }
+    }
+
+
+    [CascadingParameter(Name = "MdcCascadingDefaults")]
+    private MdcCascadingDefaults MdcCascadingDefaults { get; set; }
+    private MdcCascadingDefaults myCascadingDefaults => (MdcCascadingDefaults is null) ? new MdcCascadingDefaults() : MdcCascadingDefaults;
+
+
+    [Parameter] public MdcInputStyle? InputStyle { get; set; }
+    [Parameter] public MdcTextAlign? TextAlign { get; set; }
+    [Parameter] public string Label { get; set; }
+    [Parameter] public IEnumerable<Item> Items { get; set; }
+    [Parameter] public string Value { get; set; }
+    [Parameter] public EventCallback<string> ValueChanged { get; set; }
+
+
+    private ElementReference elementReference;
+    private MdcInputStyle myInputStyle;
+    private MdcTextAlign myTextAlign;
+    private string labelId = Utilities.GenerateCssElementSelector();
+    private string mainDivClass = "";
+    private string selectedText = "";
+    private string floatingLabelClass = "";
+    private string alignClass = "";
+    private string initialValue = null;
+    private string cachedCurrentValue = null;
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        SetParameters(true);
+    }
+
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        SetParameters();
+    }
+
+
+    private void SetParameters(bool initialize = false)
+    {
+        // All values that are bound to HTML are set once at initialization and then left unchanged
+        // because allowing Blazor to re-render conflicts with the Material Theme js rendering. This
+        // results in the floating label jumping to the wrong place.
+        if (initialize || Value != cachedCurrentValue)
+        {
+            myInputStyle = (InputStyle is null) ? myCascadingDefaults.InputStyle : (MdcInputStyle)InputStyle;
+            myTextAlign = (TextAlign is null) ? myCascadingDefaults.TextAlign : (MdcTextAlign)TextAlign;
+            initialValue = Value;
+            cachedCurrentValue = Value;
+            selectedText = Items.Where(i => i.DataValue == (Value ?? "")).FirstOrDefault().Text;
+            mainDivClass = ((myInputStyle == MdcInputStyle.Outlined) ? " mdc-select--outlined" : "") +
+                            (Disabled ? " mdc-select--disabled" : "");
+            alignClass = Utilities.GetTextAlignClass(myTextAlign);
+
+            if (!string.IsNullOrEmpty(Value))
+            {
+                floatingLabelClass = "mdc-floating-label--float-above";
+            }
+
+            if (string.IsNullOrEmpty(Value))
+            {
+                Value = Items.FirstOrDefault().DataValue;
+            }
+            else if (Items.Where(i => i.DataValue == Value).Count() == 0)
+            {
+                string itemList = "{ ";
+                string prepend = "";
+
+                foreach (var item in Items)
+                {
+                    itemList += $"{prepend} '{item.DataValue}'";
+                    prepend = ",";
+                }
+
+                itemList += " }";
+
+                throw new ArgumentException($"MdcSelect cannot select item with data value of '{Value}' from {itemList}");
+            }
+        }
+    }
+
+
+    private async Task OnItemClickAsync(string dataValue)
+    {
+        Value = dataValue;
+        cachedCurrentValue = Value;
+        await ValueChanged.InvokeAsync(Value);
+    }
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.select.init", elementReference);
+        }
+    }
+}

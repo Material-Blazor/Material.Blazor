@@ -1,0 +1,61 @@
+﻿@page "/menu"
+
+<h1 class="@MdcTypography.H4">Menu samples</h1>
+
+<p>See <code>MenuSample.razor</code> for sources.</p>
+
+<div>
+    <MdcButton Label="Open Menu" OnClick="OpenMenuAsync" />
+    
+    <div class="mdc-menu-surface--anchor">
+        <MdcMenu @ref="menu">
+            <MdcMenuListItem Text="One" LeadingIcon="home" OnClick="OnOneClick" />
+            <MdcMenuListItem Text="Two" LeadingIcon="" OnClick="OnTwoClick" />
+            <MdcMenuListDivider />
+            <MdcMenuListSelectionGroup>
+                <MdcMenuListItem Text="Four" LeadingIcon="done" OnClick="OnFourClick" />
+                <MdcMenuListItem Text="Five" LeadingIcon="done" OnClick="OnFiveClick" />
+            </MdcMenuListSelectionGroup>
+            <MdcMenuListDivider />
+            <MdcMenuListItem Text="Three" Disabled="true" OnClick="OnThreeClick" />
+        </MdcMenu>
+    </div>
+</div>
+
+<p>Clicked: @clickResult</p>
+
+
+@code {
+    private MdcMenu menu;
+    private string clickResult = "";
+
+    private async Task OpenMenuAsync()
+    {
+        await menu.ToggleAsync();
+    }
+
+    private void OnOneClick()
+    {
+        clickResult = "One";
+    }
+
+    private void OnTwoClick()
+    {
+        clickResult = "Two";
+    }
+
+    private void OnThreeClick()
+    {
+        clickResult = "Three";
+    }
+
+    private void OnFourClick()
+    {
+        clickResult = "Four";
+    }
+
+    private void OnFiveClick()
+    {
+        clickResult = "Five";
+    }
+}

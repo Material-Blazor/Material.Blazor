@@ -1,0 +1,13 @@
+﻿@page "/switch"
+
+<h1 class="@MdcTypography.H4">Switch samples</h1>
+
+<p>See <code>Switch.razor</code> for sources.</p>
+
+<MdcSwitch Label="Your label here" @bind-Checked="@isChecked" />
+
+<p>State: <strong>@isChecked</strong></p>
+
+@code {
+    bool isChecked;
+}

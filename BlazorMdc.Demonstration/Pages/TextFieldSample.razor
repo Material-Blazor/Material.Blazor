@@ -1,0 +1,49 @@
+﻿@page "/textfield"
+
+@inject IJSRuntime jsRuntime
+
+<h1 class="@MdcTypography.H4">Text field samples</h1>
+
+<p>See <code>TextFieldSample.razor</code> for sources.</p>
+
+<p><MdcTextField Label="Type in some text" @bind-Value="@currentValueFilled" InputStyle="MdcInputStyle.Filled" /></p>
+<p>You typed: <strong>'@(currentValueFilled ?? "")'</strong></p>
+
+<p><MdcTextField Label="Type in some text" @bind-Value="@currentValueOutlined" InputStyle="MdcInputStyle.Outlined" /></p>
+<p>You typed: <strong>'@(currentValueOutlined ?? "")'</strong></p>
+
+<p><MdcTextField Label="Right aligned" @bind-Value="@currentValueRight" InputStyle="MdcInputStyle.Outlined" TextAlign="MdcTextAlign.Right" /></p>
+<p>You typed: <strong>'@(currentValueRight ?? "")'</strong></p>
+
+<p><MdcNumericDoubleField Label="Double 2dp" @bind-Value="@currentDouble" NumericFormat="N2" DecimalPlaces="2" InputStyle="MdcInputStyle.Outlined" /></p>
+<p>You typed: <strong>'@currentDouble'</strong></p>
+
+<p><MdcNumericDoubleField Label="Money" @bind-Value="@currentMoney" NumericFormat="C2" DecimalPlaces="2" InputStyle="MdcInputStyle.Outlined" /></p>
+<p>You typed: <strong>'@currentMoney'</strong></p>
+
+<p><MdcNumericIntField Label="Integer" @bind-Value="@currentInteger" NumericFormat="N0" InputStyle="MdcInputStyle.Outlined" /></p>
+<p>You typed: <strong>'@currentInteger'</strong></p>
+
+<p><MdcNumericDoubleField Label="Percent" @bind-Value="@currentPercent" NumericFormat="P2" DecimalPlaces="2" InputStyle="MdcInputStyle.Outlined" Magnitude="MdcNumericInputMagnitude.Percent" /></p>
+<p>You typed: <strong>'@currentPercent'</strong></p>
+
+<p><MdcNumericDoubleField Label="Basis Points" @bind-Value="@CurrentBasisPoints" NumericFormat="#,### bp;-#,### bp" InputStyle="MdcInputStyle.Outlined" Magnitude="MdcNumericInputMagnitude.BasisPoints" /></p>
+<p>You typed: <strong>'@CurrentBasisPoints / @CurrentBasisPoints.ToString("#,##0 bp")'</strong> - need to work on how to format basis points</p>
+
+<p><MdcNumericIntField Label="Months" @bind-Value="@currentMonths" NumericFormat="#,##0 months;-#,##0 months" NumericSingularFormat="#,##0 month;-#,##0 month" InputStyle="MdcInputStyle.Outlined" /></p>
+<p>You typed: <strong>'@currentMonths'</strong></p>
+
+
+
+@code {
+    string currentValueFilled = "a";
+    string currentValueOutlined;
+    string currentValueRight;
+
+    double currentDouble = 0;
+    double currentMoney = 0;
+    int currentInteger = 0;
+    double currentPercent = 0;
+    double CurrentBasisPoints = 0;
+    int currentMonths = 0;
+}

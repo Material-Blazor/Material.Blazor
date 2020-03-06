@@ -1,0 +1,34 @@
+﻿@page "/dialog"
+
+<h1 class="@MdcTypography.H4">Dialog samples</h1>
+
+See <code>Dialog.razor</code> for sources.
+
+Note that the user can also press 'escape' to dismiss the dialog, and this produces a different result string.
+
+<p><MdcButton OnClick="@ShowDialog">Show dialog</MdcButton></p>
+
+@if (result != null)
+{
+    <p>Result: <strong>@result</strong></p>
+}
+
+<MdcDialog @ref="@myDialog" Title="My dialog title">
+    <Body>
+        Please choose a fruit.
+    </Body>
+    <Buttons>
+        <MdcButton DialogAction="orange">Orange</MdcButton>
+        <MdcButton DialogAction="other" ButtonStyle="@MdcButtonStyle.Text">Other</MdcButton>
+    </Buttons>
+</MdcDialog>
+
+@code {
+    MdcDialog myDialog;
+    string result;
+
+    async Task ShowDialog()
+    {
+        result = await myDialog.ShowAsync();
+    }
+}

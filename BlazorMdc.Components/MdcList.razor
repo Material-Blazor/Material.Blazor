@@ -1,0 +1,29 @@
+﻿@typeparam TItem
+<ul class="mdc-list demo-list mdc-list--two-line mdc-list--avatar-list mdc-elevation--z1" aria-orientation="vertical">
+    @{ var firstItem = true; }
+    @foreach (var item in Items)
+    {
+        @if (!firstItem) { <li role="separator" class="mdc-list-divider"></li> }
+        <li class="mdc-list-item">
+            <span class="mdc-list-item__graphic material-icons" aria-hidden="true">
+                @Icon(item)
+            </span>
+            <span class="mdc-list-item__text">
+                <span class="mdc-list-item__primary-text">@Title(item)</span>
+                <span class="mdc-list-item__secondary-text">@Subtitle(item)</span>
+            </span>
+            <span class="mdc-list-item__meta" aria-hidden="true">
+                @Actions(item)
+            </span>
+        </li>
+        firstItem = false;
+    }
+</ul>
+
+@code {
+    [Parameter] public IEnumerable<TItem> Items { get; set; }
+    [Parameter] public RenderFragment<TItem> Icon { get; set; }
+    [Parameter] public RenderFragment<TItem> Title { get; set; }
+    [Parameter] public RenderFragment<TItem> Subtitle { get; set; }
+    [Parameter] public RenderFragment<TItem> Actions { get; set; }
+}

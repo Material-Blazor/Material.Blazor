@@ -1,0 +1,77 @@
+﻿@inherits MdcComponentBase
+@inject IJSRuntime jsRuntime
+
+
+<button @ref="elementReference" class="mdc-button @mainDivClass" @onclick="@OnClick" disabled="@Disabled" data-mdc-dialog-action="@DialogAction" type="@Type">
+    <div class="mdc-button__ripple"></div>
+    @LeadingIconMarkup
+    <span class="mdc-button__label @labelClass">@Label</span>
+    @TrailingIconMarkup
+</button>
+
+
+@code {
+    [CascadingParameter(Name = "MdcCascadingDefaults")]
+    private MdcCascadingDefaults MdcCascadingDefaults { get; set; } = new MdcCascadingDefaults();
+    private MdcCascadingDefaults myCascadingDefaults => (MdcCascadingDefaults is null) ? new MdcCascadingDefaults() : MdcCascadingDefaults;
+
+
+    [Parameter] public MdcButtonStyle? ButtonStyle { get; set; }
+    [Parameter] public MdcTextAlign? TextAlign { get; set; }
+    [Parameter] public string Type { get; set; } = "button";
+    [Parameter] public string Label { get; set; }
+    [Parameter] public string? LeadingIcon { get; set; }
+    [Parameter] public string? TrailingIcon { get; set; }
+    [Parameter] public EventCallback OnClick { get; set; }
+    [Parameter] public string DialogAction { get; set; }
+
+
+    private ElementReference elementReference;
+    private MdcButtonStyle myButtonStyle;
+    private MdcTextAlign myTextAlign;
+    private MarkupString LeadingIconMarkup => (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"material-icons mdc-button__icon\" aria-hidden=\"true\">{LeadingIcon}</i>");
+    private MarkupString TrailingIconMarkup => (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"material-icons mdc-button__icon\" aria-hidden=\"true\">{TrailingIcon}</i>");
+    private string mainDivClass => classLookup.Where(c => c.Key == myButtonStyle).FirstOrDefault().Value;
+    private string labelClass => Utilities.GetTextAlignClass(myTextAlign);
+
+
+    private KeyValuePair<MdcButtonStyle, string>[] classLookup =
+{
+        new KeyValuePair<MdcButtonStyle, string>(MdcButtonStyle.ContainedRaised, "mdc-button--raised"),
+        new KeyValuePair<MdcButtonStyle, string>(MdcButtonStyle.ContainedUnelevated, "mdc-button--unelevated"),
+        new KeyValuePair<MdcButtonStyle, string>(MdcButtonStyle.Outlined, "mdc-button--outlined"),
+        new KeyValuePair<MdcButtonStyle, string>(MdcButtonStyle.Text, ""),
+    };
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        Setup();
+    }
+
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        Setup();
+    }
+
+
+    private void Setup()
+    {
+        myButtonStyle = (ButtonStyle is null) ? myCascadingDefaults.ButtonStyle : (MdcButtonStyle)ButtonStyle;
+        myTextAlign = (TextAlign is null) ? myCascadingDefaults.TextAlign : (MdcTextAlign)TextAlign;
+    }
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.button.init", elementReference);
+        }
+    }
+}

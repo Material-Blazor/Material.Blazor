@@ -1,0 +1,21 @@
+﻿@page "/textarea"
+
+@inject IJSRuntime jsRuntime
+
+<h1 class="@MdcTypography.H4">Text area samples</h1>
+
+<p>See <code>TextAreaSample.razor</code> for sources.</p>
+
+<p><MdcTextArea Label="Type in some text" @bind-Value="@currentValueFilled" Rows="8" InputStyle="MdcInputStyle.Filled" /></p>
+<p>You typed: <strong>'@(currentValueFilled ?? "")'</strong></p>
+
+<p><MdcTextArea Label="Type in some text" @bind-Value="@currentValueOutlined" Rows="8" InputStyle="MdcInputStyle.Outlined" /></p>
+<p>You typed: <strong>'@(currentValueOutlined ?? "")'</strong></p>
+
+
+
+
+@code {
+    string currentValueFilled = "a";
+    string currentValueOutlined;
+}

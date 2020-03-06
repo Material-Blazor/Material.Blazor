@@ -1,0 +1,23 @@
+﻿@inherits MdcComponentBase
+@inject IJSRuntime jsRuntime
+
+
+<button @ref="elementReference" class="mdc-icon-button material-icons" @onclick="OnClick" disabled="@Disabled">@Icon</button>
+
+
+@code {
+    [Parameter] public string Icon { get; set; }
+    [Parameter] public EventCallback OnClick { get; set; }
+
+
+    private ElementReference elementReference;
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButton.init", elementReference);
+        }
+    }
+}

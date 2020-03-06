@@ -1,0 +1,106 @@
+﻿@inherits MdcInputComponentBase<string>
+@inject IJSRuntime jsRuntime
+
+
+<div @ref="elementReference" class="mdc-text-field mdc-text-field--textarea @mainDivClass">
+    <textarea type="@Type"
+           id="@id"
+           class="mdc-text-field__input @alignClass @FieldClass"
+           @bind="@CurrentValue"
+           aria-labelledby="@labelId"
+           rows="@Rows"
+           cols="@Cols"
+           disabled="@Disabled"
+           @oninput="OnInput"
+           @onmouseover="OnMouseOver"
+           @onmouseout="OnMouseOut"
+           @onfocus="OnFocus"
+           @onfocusin="OnFocusIn"
+           @onfocusout="OnFocusOut"></textarea>
+
+    @if (myInputStyle == MdcInputStyle.Filled)
+    {
+        <label class="mdc-floating-label @floatingLabelClass" for="@id" id="@labelId">@Label</label>
+        <div class="mdc-line-ripple"></div>
+    }
+    else
+    {
+        <div class="mdc-notched-outline">
+            <div class="mdc-notched-outline__leading"></div>
+            <div class="mdc-notched-outline__notch">
+                <label class="mdc-floating-label @floatingLabelClass" for="@id" id="@labelId">@Label</label>
+            </div>
+            <div class="mdc-notched-outline__trailing"></div>
+        </div>
+    }
+</div>
+
+@code {
+    [CascadingParameter(Name = "MdcCascadingDefaults")]
+    private MdcCascadingDefaults MdcCascadingDefaults { get; set; } = new MdcCascadingDefaults();
+    private MdcCascadingDefaults myCascadingDefaults => (MdcCascadingDefaults is null) ? new MdcCascadingDefaults() : MdcCascadingDefaults;
+
+
+    [Parameter] public MdcInputStyle? InputStyle { get; set; }
+    [Parameter] public MdcTextAlign? TextAlign { get; set; }
+    [Parameter] public string Type { get; set; } = "text";
+    [Parameter] public string Label { get; set; } = "";
+    [Parameter] public bool NoLabel { get; set; } = false;
+    [Parameter] public int Rows { get; set; }
+    [Parameter] public int Cols { get; set; }
+    [Parameter] public EventCallback<ChangeEventArgs> OnInput { get; set; }
+    [Parameter] public EventCallback<MouseEventArgs> OnMouseOver { get; set; }
+    [Parameter] public EventCallback<MouseEventArgs> OnMouseOut { get; set; }
+    [Parameter] public EventCallback<FocusEventArgs> OnFocusIn { get; set; }
+    [Parameter] public EventCallback<FocusEventArgs> OnFocusOut { get; set; }
+    [Parameter] public EventCallback<FocusEventArgs> OnFocus { get; set; }
+
+
+    private string id = Guid.NewGuid().ToString();
+    private ElementReference elementReference;
+    private MdcInputStyle myInputStyle;
+    private MdcTextAlign myTextAlign;
+    private string labelId = Guid.NewGuid().ToString();
+    private string mainDivClass;
+    private string alignClass;
+    private string floatingLabelClass;
+    public MarkupString LeadingIconMarkup;
+    public MarkupString TrailingIconMarkup;
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        Setup();
+    }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        Setup();
+    }
+
+    private void Setup()
+    {
+        myInputStyle = (InputStyle is null) ? myCascadingDefaults.InputStyle : (MdcInputStyle)InputStyle;
+        myTextAlign = (TextAlign is null) ? myCascadingDefaults.TextAlign : (MdcTextAlign)TextAlign;
+
+        floatingLabelClass = string.IsNullOrEmpty(CurrentValue) ? "" : "mdc-floating-label--float-above";
+
+        mainDivClass = ((myInputStyle == MdcInputStyle.Outlined) ? " mdc-text-field--outlined" : "") +
+                    (NoLabel ? " mdc-text-field--no-label" : "") +
+                    (Disabled ? " mdc-text-field--disabled" : "");
+
+        alignClass = Utilities.GetTextAlignClass(myTextAlign);
+    }
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.textField.init", elementReference);
+        }
+    }
+}

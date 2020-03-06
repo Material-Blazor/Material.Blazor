@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNetCore.Components.Routing
+
+<div @onclick="@HandleClick">
+    <NavLink href=@Href class="mdc-list-item" Match=@Match ActiveClass="mdc-list-item--activated">
+        <i class="material-icons mdc-list-item__graphic" aria-hidden="true">@Icon</i>
+        <span class="mdc-list-item__text">@Text</span>
+    </NavLink>
+</div>
+
+@code {
+    [CascadingParameter] MdcDrawer Drawer { get; set; }
+    [Parameter] public NavLinkMatch Match { get; set; } = NavLinkMatch.Prefix;
+    [Parameter] public string Icon { get; set; }
+    [Parameter] public string Text { get; set; }
+    [Parameter] public string Href { get; set; }
+
+    void HandleClick()
+    {
+        // If we're nested inside a drawer, auto-close it when navigating
+        Drawer?.NotifyNavigation();
+    }
+}

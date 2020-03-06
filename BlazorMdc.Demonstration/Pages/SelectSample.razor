@@ -1,0 +1,32 @@
+﻿@page "/select"
+
+
+
+<h1 class="@MdcTypography.H4">Select samples</h1>
+
+<p>See <code>SelectSample.razor</code> for sources.</p>
+
+<MdcSelect Label="Filled" @bind-Value="@kittenBreed1" Items="items" InputStyle="MdcInputStyle.Filled"></MdcSelect>
+<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed1 ?? "")</strong>'</p>
+
+<MdcSelect Label="Outlined" @bind-Value="@kittenBreed2" Items="items" InputStyle="MdcInputStyle.Outlined"></MdcSelect>
+<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed2 ?? "")</strong>'</p>
+
+<MdcSelect Label="Right Aligned" @bind-Value="@kittenBreed3" Items="items" InputStyle="MdcInputStyle.Outlined" TextAlign="MdcTextAlign.Right"></MdcSelect>
+<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed3 ?? "")</strong>'</p>
+
+
+
+@code {
+    string kittenBreed1;
+    string kittenBreed2;
+    string kittenBreed3;
+
+    MdcSelect.Item[] items = new MdcSelect.Item[]
+    {
+        new MdcSelect.Item { DataValue = "", Text = "" },
+        new MdcSelect.Item { DataValue = "brit-short", Text = "British Shorthair" },
+        new MdcSelect.Item { DataValue = "russ-blue", Text = "Russian Blue" },
+        new MdcSelect.Item { DataValue = "ice-invis", Text = "Icelandic Invisible" }
+    };
+}

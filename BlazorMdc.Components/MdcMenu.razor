@@ -1,0 +1,57 @@
+﻿@inherits MdcComponentBase
+@inject IJSRuntime jsRuntime
+
+
+<div @ref="elementReference" class="mdc-menu mdc-menu-surface" id="demo-menu">
+    <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
+        @ChildContent
+    </ul>
+</div>
+
+
+@code {
+    [CascadingParameter(Name = "MdcCascadingDefaults")]
+    private MdcCascadingDefaults MdcCascadingDefaults { get; set; } = new MdcCascadingDefaults();
+    private MdcCascadingDefaults myCascadingDefaults => (MdcCascadingDefaults is null) ? new MdcCascadingDefaults() : MdcCascadingDefaults;
+
+    [Parameter] public RenderFragment ChildContent { get; set; }
+
+    private DotNetObjectReference<MdcMenu> objectReference;
+    private ElementReference elementReference;
+    private bool isOpen { get; set; } = false;
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        objectReference = DotNetObjectReference.Create(this);
+    }
+
+
+    public void Dispose()
+    {
+        GC.SuppressFinalize(this);
+        objectReference?.Dispose();
+    }
+
+
+    [JSInvokable("NotifyClosedAsync")]
+    public async Task NotifyClosedAsync()
+    {
+        isOpen = false;
+    }
+
+
+    public async Task<string> ToggleAsync()
+    {
+        if (isOpen ^= true)
+        {
+            return await jsRuntime.InvokeAsync<string>("BlazorMdc.menu.show", elementReference, objectReference);
+        }
+        else
+        {
+            return await jsRuntime.InvokeAsync<string>("BlazorMdc.menu.hide", elementReference);
+        }
+    }
+}
