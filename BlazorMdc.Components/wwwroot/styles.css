@@ -1,6 +1,4 @@
-﻿/*@import 'lib/icon.css';*/
-/*@import 'lib/material-components-web.min.css';*/
-@import 'https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp';
+﻿@import 'https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp';
 
 
 div.dmdc-disabled-container {
@@ -36,11 +34,19 @@ div.dmdc-disabled-overlay {
 }
 
 .dmdc-dp-menu {
+    box-sizing: content-box;
     padding: 16px 8px 12px 24px;
     height: 24px;
     font-weight: bold;
     user-select: none;
     width: 224px;
+    min-width: 224px;
+    overflow: visible !important;
+}
+
+.dmdc-dp-menu__surface-adjust {
+    overflow: visible !important;
+    display: inline-block;
 }
 
 .dmdc-dp-menu__container {
@@ -82,21 +88,24 @@ div.dmdc-disabled-overlay {
 }
 
 .dmdc-dp-day-pad {
+    box-sizing: content-box;
     padding: 0 16px 8px 16px;
     user-select: none;
-    overflow: auto;
+    overflow: visible;
     width: 224px;
 }
 
 .dmdc-dp-day-pad__weekdays-line {
+    box-sizing: content-box;
     margin-bottom: 12px;
     padding: 0;
-    overflow: auto;
+    overflow: visible;
 }
 
 .dmdc-dp-day-pad__days-line {
+    box-sizing: content-box;
     padding: 0;
-    overflow: auto;
+    overflow: visible;
 }
 
 .dmdc-dp-day-pad__element-disabled {
@@ -133,11 +142,11 @@ div.dmdc-disabled-overlay {
 .dmdc-dp-day-pad__element {
     float: left;
     text-align: center;
-    height: 32px;
+    height: 32px !important;
     line-height: 32px;
     width: 32px;
-    margin: auto;
-    padding: 0;
+    margin: auto !important;
+    padding: 0 !important;
     top: 0;
     left: 0;
     /*position: absolute;*/

@@ -15,8 +15,11 @@
 <p><MdcTextField Label="Right aligned" @bind-Value="@currentValueRight" InputStyle="MdcInputStyle.Outlined" TextAlign="MdcTextAlign.Right" /></p>
 <p>You typed: <strong>'@(currentValueRight ?? "")'</strong></p>
 
-<p><MdcNumericDoubleField Label="Double 2dp" @bind-Value="@currentDouble" NumericFormat="N2" DecimalPlaces="2" InputStyle="MdcInputStyle.Outlined" /></p>
-<p>You typed: <strong>'@currentDouble'</strong></p>
+<EditForm Model="currentDouble">
+    <p><MdcNumericDoubleField Label="Double 2dp" @bind-Value="@currentDouble.aDouble" NumericFormat="N2" DecimalPlaces="2" InputStyle="MdcInputStyle.Outlined" /></p>
+    <p>You typed: <strong>'@currentDouble.aDouble'</strong></p>
+    <ValidationMessage For="(() => currentDouble.aDouble)" />
+</EditForm>
 
 <p><MdcNumericDoubleField Label="Money" @bind-Value="@currentMoney" NumericFormat="C2" DecimalPlaces="2" InputStyle="MdcInputStyle.Outlined" /></p>
 <p>You typed: <strong>'@currentMoney'</strong></p>
@@ -36,11 +39,16 @@
 
 
 @code {
+    class MyModel
+    {
+        public double aDouble = 0;
+    }
+
     string currentValueFilled = "a";
     string currentValueOutlined;
     string currentValueRight;
 
-    double currentDouble = 0;
+    MyModel currentDouble = new MyModel();
     double currentMoney = 0;
     int currentInteger = 0;
     double currentPercent = 0;

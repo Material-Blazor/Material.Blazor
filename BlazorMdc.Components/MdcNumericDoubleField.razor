@@ -13,7 +13,10 @@
               TextAlign="@MdcTextAlign.Right"
               OnFocusIn="@OnFocusIn"
               OnFocusOut="@OnFocusOut"
-              Disabled=@Disabled />
+              Disabled=@Disabled
+              FormNoValidate="@myFormNoValidate"
+              @oninvalid="@Zig"
+              @onerror="@Zig"/>
 
 
 
@@ -23,6 +26,7 @@
     [Parameter] public bool NoLabel { get; set; } = false;
     [Parameter] public string? LeadingIcon { get; set; }
     [Parameter] public string? TrailingIcon { get; set; }
+    [Parameter] public bool FormNoValidate { get; set; } = false;
     [Parameter] public string NumericFormat { get; set; }
     [Parameter] public string? NumericSingularFormat { get; set; }
     [Parameter] public MdcNumericInputMagnitude Magnitude { get; set; } = MdcNumericInputMagnitude.Normal;
@@ -43,6 +47,7 @@
     private int myDecimalPlaces { get; set; } = 0;
     private Regex regex { get; set; }
     private string type => hasFocus ? "number" : "text";
+    private bool myFormNoValidate = true;// => hasFocus ? true : FormNoValidate;
 
 
     private string strVal
@@ -149,5 +154,10 @@
     private string StringValue(double? value)
     {
         return (Convert.ToDouble(value) * appliedMult).ToString(appliedFormat);
+    }
+
+    private void Zig(EventArgs args)
+    {
+        _ = args;
     }
 }
