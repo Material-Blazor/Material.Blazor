@@ -33,6 +33,10 @@ div.bmdc-disabled-overlay {
     text-align: right;
 }
 
+.bmdc-dp-container {
+    display: inline-block;
+}
+
 .bmdc-dp-menu {
     box-sizing: content-box;
     padding: 16px 8px 12px 24px;
@@ -67,7 +71,7 @@ div.bmdc-disabled-overlay {
     width: 24px !important;
     width: 224px;
     padding: 0 !important;
-    pointer-events: aut=o !important;
+    /*pointer-events: auto !important;*/
 }
 
 .bmdc-dp-menu__float-left {
@@ -88,23 +92,26 @@ div.bmdc-disabled-overlay {
 }
 
 .bmdc-dp-day-pad {
+    display: inline-block;
     box-sizing: content-box;
-    padding: 0 16px 8px 16px;
+    padding: 0 16px 4px 16px; /* Want bottom padding of 8px, but inline-block adds 4px of whitespace already */
     user-select: none;
     overflow: visible;
     width: 224px;
 }
 
 .bmdc-dp-day-pad__weekdays-line {
+    display: inline-block;
     box-sizing: content-box;
-    margin-bottom: 12px;
-    padding: 0;
+    margin-bottom: 8px; /* Want a margin of 12px, but inline-block adds 4px of whitespace already */
+    padding: 0 !important;
     overflow: visible;
 }
 
 .bmdc-dp-day-pad__days-line {
+    display: inline-block;
     box-sizing: content-box;
-    padding: 0;
+    padding: 0 !important;
     overflow: visible;
 }
 
@@ -149,7 +156,6 @@ div.bmdc-disabled-overlay {
     padding: 0 !important;
     top: 0;
     left: 0;
-    /*position: absolute;*/
 }
 
 .bmdc-dp-day-pad__element-span {
@@ -159,7 +165,23 @@ div.bmdc-disabled-overlay {
 }
 
 .bmdc-dp-year-pad-container {
-    padding: 4px 20px 8px 12px;
-    height: 228px;
-    position: relative
+    display: inline-block;
+    box-sizing: content-box;
+    padding: 4px 20px 4px 12px; /* Want bottom padding of 8px, but inline-block adds 4px of whitespace already */
+    user-select: none;
+    overflow: visible;
+    height: 216px;
+    width: 224px;
+}
+
+.bmdc-dp-year-pad__element {
+    float: left;
+    text-align: center;
+    height: 32px !important;
+    line-height: 32px;
+    width: 56px;
+    margin: auto !important;
+    padding: 0 !important;
+    top: 0;
+    left: 0;
 }

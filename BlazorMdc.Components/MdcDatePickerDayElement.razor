@@ -26,23 +26,22 @@ else
     [CascadingParameter(Name = "MdcCascadingDefaults")]
     private MdcCascadingDefaults MdcCascadingDefaults { get; set; } = new MdcCascadingDefaults();
     private MdcCascadingDefaults myCascadingDefaults => (MdcCascadingDefaults is null) ? new MdcCascadingDefaults() : MdcCascadingDefaults;
-    
-    
+
+
     [Parameter] public DateTime CurrentDate { get; set; }
     [Parameter] public DateTime DisplayDate { get; set; }
     [Parameter] public DateTime StartOfDisplayMonth { get; set; }
     [Parameter] public EventCallback<DateTime> OnItemClickAsync { get; set; }
     [Parameter] public MdcDateSelectionCriteria? DateSelectionCriteria { get; set; }
+    [Parameter] public DateTime MinDate { get; set; }
+    [Parameter] public DateTime MaxDate { get; set; }
 
 
     private MdcDateSelectionCriteria myCriteria => (DateSelectionCriteria is null) ? myCascadingDefaults.DateSelectionCriteria : (MdcDateSelectionCriteria)DateSelectionCriteria;
-
-
-
-
     private string text => Utilities.DateToString(DisplayDate);
-
     private int day => DisplayDate.Day;
+
+
     private bool disabled
     {
         get
@@ -55,16 +54,23 @@ else
             switch (myCriteria)
             {
                 case MdcDateSelectionCriteria.WeekendsOnly:
-                    return (DisplayDate.DayOfWeek != DayOfWeek.Sunday) && (DisplayDate.DayOfWeek != DayOfWeek.Saturday);
+                    if ((DisplayDate.DayOfWeek != DayOfWeek.Sunday) && (DisplayDate.DayOfWeek != DayOfWeek.Saturday))
+                    {
+                        return true;
+                    }
+                    break;
 
                 case MdcDateSelectionCriteria.WeekdaysOnly:
-                    return (DisplayDate.DayOfWeek == DayOfWeek.Sunday) || (DisplayDate.DayOfWeek == DayOfWeek.Saturday);
+                    if ((DisplayDate.DayOfWeek == DayOfWeek.Sunday) || (DisplayDate.DayOfWeek == DayOfWeek.Saturday))
+                    {
+                        return true;
+                    }
+                    break;
             }
 
-            return false;
+            return (DisplayDate < MinDate || DisplayDate > MaxDate);
         }
     }
-
 
 
     private async Task OnClickAsync()

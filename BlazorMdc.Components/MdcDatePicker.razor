@@ -1,83 +1,68 @@
 ﻿@inherits MdcInputComponentBase<DateTime>
-
-@using System.Globalization 
-
 @inject IJSRuntime jsRuntime
 
 
 
-<div class="mdc-typography--body2">
-    <div class="bmdc-dp-menu">
-        <div class="bmdc-dp-menu__container">
-            <div class="bmdc-dp-menu__float-left">
-                @monthText
-            </div>
-            <div class="bmdc-dp-menu__float-left">
-                <button @ref="yearToggleReference" @onclick="@OnYearToggleClick" class="mdc-icon-button bmdc-dp-menu--icon-button" aria-pressed="false">
-                    <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on bmdc-dp-menu--icon-button">arrow_drop_up</i>
-                    <i class="material-icons mdc-icon-button__icon bmdc-dp-menu--icon-button">arrow_drop_down</i>
-                </button>
-            </div>
+<div @ref="elementReference" class="mdc-select @mainDivClass">
+    <div class="mdc-select__anchor">
+        <i class="mdc-select__dropdown-icon"></i>
+        <div class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="@labelId" aria-disabled="Disabled">@initialText</div>
 
-            @if (!showYearPad)
-            {
-                <div class="bmdc-dp-menu__float-right bmdc-dp-menu__float-right-spaced">
-                    <button @ref="nextMonthReference" class="mdc-icon-button material-icons bmdc-dp-menu--icon-button" @onclick="OnNextMonthClick">chevron_right</button>
-                </div>
-                <div class="bmdc-dp-menu__float-right">
-                    <button @ref="previousMonthReference" class="mdc-icon-button material-icons bmdc-dp-menu--icon-button" @onclick="OnPreviousMonthClick">chevron_left</button>
-                </div>
-            }
-        </div>
+        @if (myInputStyle == MdcInputStyle.Filled)
+        {
+            <span id="@labelId" class="mdc-floating-label mdc-floating-label--float-above">@Label</span>
+            <div class="mdc-line-ripple"></div>
+        }
+        else
+        {
+            <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                <span class="mdc-notched-outline__notch">
+                    <span id="@labelId" class="mdc-floating-label mdc-floating-label--float-above">@Label</span>
+                </span>
+                <span class="mdc-notched-outline__trailing"></span>
+            </span>
+        }
     </div>
 
-    <div class="bmdc-dp-day-pad">
-        <div class="bmdc-dp-day-pad__weekdays-line">
-            @foreach (var d in daysOfWeek)
-            {
-                <span class="mdc-theme--text-disabled-on-background bmdc-dp-day-pad__element-disabled">@d</span>
-            }
-        </div>
-        <ul class="mdc-list bmdc-dp-day-pad__days-line">
-            @foreach (var date in dates)
-            {
-                <MdcDatePickerElement @key="date" DateSelectionCriteria="DateSelectionCriteria" CurrentDate="initialDate" DisplayDate="date" StartOfDisplayMonth="startOfDisplayMonth" OnItemClickAsync="OnItemClickAsync" />
-            }
-        </ul>
+    <div class="mdc-select__menu mdc-menu mdc-menu-surface bmdc-dp-menu__surface-adjust">
+        <MdcDatePickerPanel @bind-Value="@CurrentValue" DateSelectionCriteria="@DateSelectionCriteria" MinDate="@MinDate" MaxDate="@MaxDate" />
     </div>
 </div>
 
 
 
 @code {
-    [Parameter]
-    public MdcDateSelectionCriteria? DateSelectionCriteria { get; set; }
-
-    private string[] daysOfWeek;
-
-    private ElementReference yearToggleReference;
-    private ElementReference previousMonthReference;
-    private ElementReference nextMonthReference;
-    private bool requiresInitialization = false;
-    private bool showYearPad;
+    [CascadingParameter(Name = "MdcCascadingDefaults")]
+    private MdcCascadingDefaults MdcCascadingDefaults { get; set; }
+    private MdcCascadingDefaults myCascadingDefaults => (MdcCascadingDefaults is null) ? new MdcCascadingDefaults() : MdcCascadingDefaults;
 
 
-    private LinkedList<DateTime> dates { get; set; } = new LinkedList<DateTime>();
-    private DateTime initialDate;
+    [Parameter] public MdcInputStyle? InputStyle { get; set; }
+    [Parameter] public string Label { get; set; }
+    [Parameter] public MdcDateSelectionCriteria? DateSelectionCriteria { get; set; }
+    [Parameter] public DateTime MinDate { get; set; }
+    [Parameter] public DateTime MaxDate { get; set; }
+
+
+    private ElementReference elementReference;
+    private DotNetObjectReference<MdcDatePicker> objectReference;
+    private MdcInputStyle myInputStyle;
+    private string labelId = Utilities.GenerateCssElementSelector();
+    private string mainDivClass = "";
+    private string initialText = "";
+    private DateTime initialValue;
     private DateTime cachedCurrentValue;
-    private int monthsOffset = 0;
-    private DateTime startOfDisplayMonth;
-    private string monthText => startOfDisplayMonth.ToString("MMMM yyyy");
-    private int year => startOfDisplayMonth.Year;
+    private bool isOpen { get; set; } = false;
 
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
 
-        SetParameters();
+        objectReference = DotNetObjectReference.Create(this);
 
-        daysOfWeek = (new DateTimeFormatInfo()).DayNames.Select(d => d.Substring(0, 1)).ToArray();
+        SetParameters(true);
     }
 
 
@@ -89,61 +74,35 @@
     }
 
 
-    private void SetParameters(bool forceSetup = false)
+    private void SetParameters(bool initialize = false)
     {
-        initialDate = Value;
-        cachedCurrentValue = Value;
-
-        var start = startOfDisplayMonth = new DateTime(Value.Year, Value.Month, 1).AddMonths(monthsOffset);
-        var end = start.AddMonths(1).AddDays(-1);
-
-        start = start.AddDays(-Convert.ToInt32(start.DayOfWeek));
-        end = end.AddDays(-Convert.ToInt32(end.DayOfWeek) + 7);
-
-        dates = new LinkedList<DateTime>();
-
-        for (var date = start; date < end; date = date.AddDays(1))
+        // All values that are bound to HTML are set once at initialization and then left unchanged
+        // because allowing Blazor to re-render conflicts with the Material Theme js rendering. This
+        // results in the floating label jumping to the wrong place.
+        if (initialize || Value != cachedCurrentValue)
         {
-            dates.AddLast(date);
+            myInputStyle = (InputStyle is null) ? myCascadingDefaults.InputStyle : (MdcInputStyle)InputStyle;
+            initialValue = Value;
+            cachedCurrentValue = Value;
+            initialText = Utilities.DateToString(Value);
+            mainDivClass = ((myInputStyle == MdcInputStyle.Outlined) ? " mdc-select--outlined" : "") +
+                            (Disabled ? " mdc-select--disabled" : "");
         }
-
-        StateHasChanged();
     }
 
 
-    private async Task OnItemClickAsync(DateTime dateTime)
+    [JSInvokable("NotifyClosedAsync")]
+    public async Task NotifyClosedAsync()
     {
-        Value = dateTime;
-        cachedCurrentValue = Value;
-        monthsOffset = 0;
-        SetParameters();
-        await ValueChanged.InvokeAsync(Value);
+        SetParameters(true);
     }
 
-    private void OnYearToggleClick()
-    {
-        showYearPad = !showYearPad;
-    }
-
-    private void OnPreviousMonthClick()
-    {
-        monthsOffset--;
-        SetParameters();
-    }
-
-    private void OnNextMonthClick()
-    {
-        monthsOffset++;
-        SetParameters();
-    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender || requiresInitialization)
+        if (firstRender)
         {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.init", yearToggleReference);
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButton.init", previousMonthReference);
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButton.init", nextMonthReference);
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.init", elementReference, objectReference);
         }
     }
 }

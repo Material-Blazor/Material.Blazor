@@ -6,16 +6,14 @@
 
 <p>See <code>DatePickerSample.razor</code> for sources.</p>
 
-<MdcDatePickerSelect Label="Filled" @bind-Value="@filled" InputStyle="MdcInputStyle.Filled"></MdcDatePickerSelect>
+<MdcDatePicker Label="Filled" @bind-Value="@filled" InputStyle="MdcInputStyle.Filled" MinDate="min" MaxDate="max"></MdcDatePicker>
 <p style="margin-bottom: 4em;">Selected: '<strong>@filled.ToString()</strong>'</p>
 
-<MdcDatePickerSelect Label="Weekdays Outlined" @bind-Value="@outlined" InputStyle="MdcInputStyle.Outlined" DateSelectionCriteria="MdcDateSelectionCriteria.WeekdaysOnly"></MdcDatePickerSelect>
+<MdcDatePicker Label="Weekdays Outlined" @bind-Value="@outlined" InputStyle="MdcInputStyle.Outlined" DateSelectionCriteria="MdcDateSelectionCriteria.WeekdaysOnly" MinDate="min" MaxDate="max"></MdcDatePicker>
 <p style="margin-bottom: 20em;">Selected: '<strong>@outlined.ToString()</strong>'</p>
 
 <p>Inline date picker purely for test purposes - in production please use <code>MatDatePickerSelect</code></p>
-<div style="box-shadow:0 10px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19) !important; display: inline-block;">
-    <MdcDatePicker @bind-Value="@inline"></MdcDatePicker>
-</div>
+<MdcDatePickerPanel @bind-Value="@inline" Class="mdc-elevation--z3" MinDate="min" MaxDate="max"></MdcDatePickerPanel>
 <p style="margin-bottom: 4em;">Selected: '<strong>@inline.ToString()</strong>'</p>
 
 
@@ -24,4 +22,7 @@
     DateTime inline = DateTime.Today.AddMonths(1);
     DateTime filled = DateTime.Today.AddMonths(1);
     DateTime outlined = DateTime.Today.AddMonths(1);
+
+    DateTime min = new DateTime(2019, 12, 14);
+    DateTime max = new DateTime(2021, 6, 14);
 }

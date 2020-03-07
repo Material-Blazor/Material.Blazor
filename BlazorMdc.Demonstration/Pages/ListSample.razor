@@ -2,7 +2,7 @@
 
 <h1 class="@MdcTypography.H4">List samples</h1>
 
-<p>See <code>List.razor</code> for sources.</p>
+<p>See <code>ListSample.razor</code> for sources.</p>
 
 <MdcList Items="@displayedProducts" Context="product">
     <Icon>shop</Icon>
@@ -10,7 +10,7 @@
     <Subtitle>@product.Description</Subtitle>
     <Actions>
         <div style="width: 10rem">
-            <MdcSwitch @bind-Checked="@product.IsInStock"
+            <MdcSwitch @bind-Value="@product.IsInStock"
                        Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
         </div>
     </Actions>

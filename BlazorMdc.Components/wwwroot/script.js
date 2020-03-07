@@ -17,6 +17,22 @@ window.BlazorMdc = {
         }
     },
 
+    datePicker: {
+        init: function (elem, dotNetObject) {
+            elem._picker = mdc.select.MDCSelect.attachTo(elem);
+            return new Promise(resolve => {
+                const picker = elem._picker;
+                const callback = event => {
+                    picker.unlisten('MDCSelectAdapter:closeMenu', callback);
+                    resolve(event.detail.action);
+                    dotNetObject.invokeMethodAsync('NotifyClosedAsync');
+                };
+                picker.listen('MDCSelectAdapter:closeMenu', callback);
+                picker.open = true;
+            });
+        }
+    },
+
     dialog: {
         show: function (elem) {
             elem._dialog = elem._dialog || mdc.dialog.MDCDialog.attachTo(elem);
