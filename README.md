@@ -60,3 +60,4 @@ The following is a list of components, but lacks documentation on how they are u
 | :-------- | :---- |
 | `MdcNumericDoubleField` | When focus is lost for non-integer input, there's a flash of unstyled content ("FOUC") where the field indicates that validation has failed with a red underline/outline for the filled/outlined styles respectively. |
 | `MdcTopAppBar` | Styling for the short variety of top app bar is wrong when a drawer is opened. |
+| `MdcTextField` | Floating labels do not float when data is inserted automatically by the browser. Probably also affects `MdcTextArea` and will definitely affect `MdcNumericDoubleField` and `MdcNumericIntField` which are derived from `MdcTextField` |
