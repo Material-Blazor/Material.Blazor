@@ -11,7 +11,7 @@ BlazorMdc isn't the only Blazor component library for Material Theme and we enco
 - A balanced approach (or at least what we think is balanced) to component customization: enough to be functional but keeping things to the point and maintainable,
 - A native Material Theme HTML/CSS experience where a developer wants and expects to use Material Theme's HTML Markup and CSS - BlazorMdc keeps out of a developer's way when she wants to follow Material Theme's guidance rigorously and take full advantage of its theming capability. So if you are less interested in that control but want to deliver something that looks good fast, this is where you should consider other libraries.
 
-Please note that BlazorMdc is in the early stages of development, so there are likely to be **frequent breaking changes** until we reach version 1.
+Please note that BlazorMdc is in the early stages of development, so there are likely to be **frequent breaking changes** until we reach version 1. This project is owned by [Dioptra](https://dioptra.tech) and is licensed under the terms of the MIT license.
 
 ## Attribution
 
