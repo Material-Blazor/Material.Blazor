@@ -1,25 +1,12 @@
-﻿@if (disabled)
-{
-    <span class="mdc-theme--text-disabled-on-background bmdc-dp-day-pad__element-disabled">@day</span>
-}
-else if (DisplayDate == CurrentDate)
-{
-    <div class="bmdc-dp-day-pad__element-container">
-        <div class="bmdc-dp-day-pad__element-overlay" style="color: red;">@day</div>
-        <li class="mdc-list-item mdc-list-item--selected bmdc-dp-day-pad__element" data-value="@text" aria-selected="true" role="option" @onclick="@OnClickAsync">
-            <span class="mdc-list-item__text bmdc-dp-day-pad__element-span">@text</span>
-        </li>
-    </div>
-}
-else
-{
-    <div class="bmdc-dp-day-pad__element-container">
-        <div class="bmdc-dp-day-pad__element-overlay">@day</div>
-        <li class="mdc-list-item bmdc-dp-day-pad__element" data-value="@text" aria-selected="false" role="option" @onclick=@OnClickAsync>
-            <span class="mdc-list-item__text bmdc-dp-day-pad__element-span">@text</span>
-        </li>
-    </div>
-}
+﻿@inject IJSRuntime jsRuntime
+
+
+<div class="bmdc-dp-day-pad__button-container">
+    <button @ref="elementReference" class="mdc-button bmdc-dp-day-pad__button @buttonStyleClass" @onclick="@OnClickAsync" disabled="@disabled" type="button">
+        <div class="mdc-button__ripple bmdc-dp-day-pad__button__ripple"></div>
+        <span class="mdc-button__label">@day</span>
+    </button>
+</div>
 
 
 @code {
@@ -37,9 +24,11 @@ else
     [Parameter] public DateTime MaxDate { get; set; }
 
 
+    private ElementReference elementReference;
     private MdcDateSelectionCriteria myCriteria => (DateSelectionCriteria is null) ? myCascadingDefaults.DateSelectionCriteria : (MdcDateSelectionCriteria)DateSelectionCriteria;
     private string text => Utilities.DateToString(DisplayDate);
     private int day => DisplayDate.Day;
+    private string buttonStyleClass => (DisplayDate == CurrentDate) ? "mdc-button--unelevated" : "";
 
 
     private bool disabled
@@ -76,5 +65,14 @@ else
     private async Task OnClickAsync()
     {
         await OnItemClickAsync.InvokeAsync(DisplayDate);
+    }
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.button.init", elementReference);
+        }
     }
 }

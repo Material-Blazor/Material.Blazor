@@ -30,6 +30,10 @@ window.BlazorMdc = {
                 picker.listen('MDCSelectAdapter:closeMenu', callback);
                 picker.open = true;
             });
+        },
+
+        listItemClick: function (elem) {
+            elem.click();
         }
     },
 

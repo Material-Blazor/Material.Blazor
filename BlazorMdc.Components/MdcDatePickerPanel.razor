@@ -7,6 +7,12 @@
 
 
 <div class="mdc-typography--body2 bmdc-dp-container @Class">
+    <ul class="mdc-list bmdc-dp-list">
+        <li @ref="@listItem" class="mdc-list-item mdc-list-item--selected bmdc-dp-list-item" data-value="@cachedCurrentValueText" aria-selected="true" role="option">
+            <span class="mdc-list-item__text bmdc-dp-list-item__text">@cachedCurrentValueText</span>
+        </li>
+    </ul>
+
     <div class="bmdc-dp-menu">
         <div class="bmdc-dp-menu__container">
             <div class="bmdc-dp-menu__float-left">
@@ -54,15 +60,15 @@
             <div class="bmdc-dp-day-pad__weekdays-line">
                 @foreach (var d in daysOfWeek)
                 {
-                    <span class="mdc-theme--text-disabled-on-background bmdc-dp-day-pad__element-disabled">@d</span>
+                    <span class="mdc-theme--text-disabled-on-background bmdc-dp-day-pad__weekday">@d</span>
                 }
             </div>
-            <ul class="mdc-list bmdc-dp-day-pad__days-line">
+            <div class="mdc-list bmdc-dp-day-pad__days-line">
                 @foreach (var date in dates)
                 {
-                    <MdcDatePickerDayElement @key="@date" DateSelectionCriteria="@DateSelectionCriteria" CurrentDate="@initialDate" DisplayDate="@date" StartOfDisplayMonth="@startOfDisplayMonth" OnItemClickAsync="@OnItemClickAsync" MinDate="@MinDate" MaxDate="@MaxDate" />
+                    <MdcDatePickerDayButton @key="@date" DateSelectionCriteria="@DateSelectionCriteria" CurrentDate="@initialDate" DisplayDate="@date" StartOfDisplayMonth="@startOfDisplayMonth" OnItemClickAsync="@OnItemClickAsync" MinDate="@MinDate" MaxDate="@MaxDate" />
                 }
-            </ul>
+            </div>
         </div>
     }
 </div>
@@ -76,6 +82,7 @@
 
     private string[] daysOfWeek;
 
+    private ElementReference listItem;
     private ElementReference yearToggleReference;
     private ElementReference previousMonthReference;
     private ElementReference nextMonthReference;
@@ -87,6 +94,7 @@
     private LinkedList<DateTime> dates { get; set; } = new LinkedList<DateTime>();
     private DateTime initialDate;
     private DateTime cachedCurrentValue;
+    private string cachedCurrentValueText => Utilities.DateToString(cachedCurrentValue);
     private int monthsOffset = 0;
     private DateTime startOfDisplayMonth;
     private string monthText => startOfDisplayMonth.ToString("MMMM yyyy");
@@ -137,6 +145,7 @@
 
     private async Task OnItemClickAsync(DateTime dateTime)
     {
+        await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", listItem);
         Value = dateTime;
         cachedCurrentValue = Value;
         monthsOffset = 0;

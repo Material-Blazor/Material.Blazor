@@ -37,6 +37,19 @@ div.bmdc-disabled-overlay {
     display: inline-block;
 }
 
+.bmdc-dp-list {
+    height: 0 !important;
+    width: 0;
+    padding: 0 !important;
+    visibility: hidden;
+}
+
+.bmdc-dp-list-itemx {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
 .bmdc-dp-menu {
     box-sizing: content-box;
     padding: 16px 8px 12px 24px;
@@ -57,21 +70,11 @@ div.bmdc-disabled-overlay {
     position: relative;
 }
 
-.bmdc-dp-menu__overlay {
-    display: inline-block;
-    top: 0;
-    left: 0;
-    width: 224px;
-    position: absolute;
-    pointer-events: auto;
-}
-
 .bmdc-dp-menu--icon-button {
     height: 24px !important;
     width: 24px !important;
     width: 224px;
     padding: 0 !important;
-    /*pointer-events: auto !important;*/
 }
 
 .bmdc-dp-menu__float-left {
@@ -108,14 +111,7 @@ div.bmdc-disabled-overlay {
     overflow: visible;
 }
 
-.bmdc-dp-day-pad__days-line {
-    display: inline-block;
-    box-sizing: content-box;
-    padding: 0 !important;
-    overflow: visible;
-}
-
-.bmdc-dp-day-pad__element-disabled {
+.bmdc-dp-day-pad__weekday {
     float: left;
     text-align: center;
     height: 32px;
@@ -125,7 +121,14 @@ div.bmdc-disabled-overlay {
     padding: 0;
 }
 
-.bmdc-dp-day-pad__element-container {
+.bmdc-dp-day-pad__days-line {
+    display: inline-block;
+    box-sizing: content-box;
+    padding: 0 !important;
+    overflow: visible;
+}
+
+.bmdc-dp-day-pad__button-container {
     float: left;
     height: 32px;
     width: 32px;
@@ -134,34 +137,23 @@ div.bmdc-disabled-overlay {
     position: relative;
 }
 
-.bmdc-dp-day-pad__element-overlay {
-    text-align: center;
-    height: 32px;
-    line-height: 32px;
-    width: 32px;
-    margin: auto;
-    padding: 0;
-    top: 0;
-    left: 0;
-    position: absolute;
-}
-
-.bmdc-dp-day-pad__element {
+.bmdc-dp-day-pad__button {
     float: left;
     text-align: center;
-    height: 32px !important;
-    line-height: 32px;
-    width: 32px;
-    margin: auto !important;
+    height: 28px !important;
+    line-height: 28px;
+    width: 28px !important;
+    min-width: 28px !important;
+    max-width: 28px;
+    border-radius: 14px !important;
+    margin: 2 !important;
     padding: 0 !important;
     top: 0;
     left: 0;
 }
 
-.bmdc-dp-day-pad__element-span {
-    margin: auto !important;
-    padding: 0;
-    visibility: hidden;
+.bmdc-dp-day-pad__button__ripple {
+    border-radius: 14px !important;
 }
 
 .bmdc-dp-year-pad-container {
@@ -174,7 +166,7 @@ div.bmdc-disabled-overlay {
     width: 224px;
 }
 
-.bmdc-dp-year-pad__element {
+.bmdc-dp-year-pad__button {
     float: left;
     text-align: center;
     height: 32px !important;
