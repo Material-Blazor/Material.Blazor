@@ -2,11 +2,12 @@
 @inject IJSRuntime jsRuntime
 
 
-<button @ref="elementReference" class="mdc-icon-button material-icons" @onclick="OnClick" disabled="@Disabled">@Icon</button>
+<button @ref="elementReference" class="mdc-icon-button material-icons" @onclick="OnClick" disabled="@Disabled" type="@Type">@Icon</button>
 
 
 @code {
     [Parameter] public string Icon { get; set; }
+    [Parameter] public string Type { get; set; } = "button";
     [Parameter] public EventCallback OnClick { get; set; }
 
 

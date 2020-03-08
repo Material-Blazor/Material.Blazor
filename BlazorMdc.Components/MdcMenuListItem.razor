@@ -4,7 +4,7 @@
         <div class="bmdc-disabled-overlay"></div>
     }
 
-    <li class="mdc-list-item @disabledClass" role="menuitem" @onclick="myClick" disabled="@Disabled">
+    <li class="mdc-list-item @disabledClass" role="menuitem" @onclick="OnClick" disabled="@Disabled">
         @if (!(LeadingIcon is null))
         {
             <span class="mdc-list-item__graphic mdc-menu__selection-group-icon">
@@ -20,8 +20,8 @@
     [Parameter] public string? LeadingIcon { get; set; }
     [Parameter] public bool Disabled { get; set; }
     [Parameter] public bool IsSelectionItem { get; set; }
-    [Parameter] public Action OnClick { get; set; }
+    [Parameter] public EventCallback OnClick { get; set; }
 
     private string disabledClass => Disabled ? " mdc-list-item--disabled" : "";
-    private Action myClick => Disabled ? null : OnClick;
+    //private EventCallback myClick => Disabled ? null : OnClick;
 }
