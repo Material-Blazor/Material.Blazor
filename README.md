@@ -19,4 +19,43 @@ BlazorMdc is forked from [Steve Sanderson's](https://blog.stevensanderson.com/) 
 
 ## Demonstration website
 
-_In the future!_
+_TBD_
+
+## Components
+
+The following is a list of components, but lacks documentation on how they are used. Since forking from [RazorComponents.MaterialDesign](https://github.com/SteveSandersonMS/RazorComponents.MaterialDesign), some components await review - these are highlighed.
+
+| Component | Notes |
+| :-------- | :---- |
+| `MdcButton` | A [Material Button](https://material.io/develop/web/components/buttons/). |
+| `MdcCheckbox` | A [Material Checkbox](https://material.io/develop/web/components/input-controls/checkboxes/). Implements a two state on/off checkbox, but not yet an indeterminate variety. |
+| `MdcDatePicker` | An implementation of the [Material date picker specification](https://material.io/components/pickers/#specs) for the desktop. Does not implement date ranges. Date pickers are only implemented in Material Theme for Android, so we interpreted as closely as possible the specification with our own CSS. This is the only instance where we have created CSS for a component, because our goal is to use standard Material Theme styling throughout. The result seems a bit too dense and is within a couple of pixels of unstyled overflow content on the month selection menu for long month names in English; this is likely to overflow for languages with longer month names. We are therefore likely to relax the component's density, which should improve usability. We have deviated from the specification by adding an "undo" button to return to the current selected date. There is no "today" button, which is not in the Material Theme specifcation. |
+| `MdcDialog` | A [Material Dialog](https://material.io/develop/web/components/dialogs/). _Awaits review_. |
+| `MdcDrawer` | A [Material Drawer](https://material.io/develop/web/components/drawers/). _Awaits review_. |
+| `MdcIconButton` | A [Material Icon Button](https://material.io/develop/web/components/buttons/icon-buttons/). Toggle icon buttons are not implemented. |
+| `MdcLinearProgress` | A [Material Linear Progress bar](https://material.io/develop/web/components/linear-progress/). Only implements an indeterminate progress point |
+| `MdcList` | A [Material List](https://material.io/develop/web/components/lists/). _Awaits review_. |
+| `MdcMenu` | A [Material Menu](https://material.io/develop/web/components/menus/). Does not implement sub menus. May redesign parameterization. |
+| `MdcNavLink` | A [Material List Item](https://material.io/develop/web/components/menus/) wrapping a Blazor `NavLink`. _Awaits review_. |
+| `MdcNumericDoubleField` | Wraps `MdcTextField` to format numeric entry of a `double`. The format is applied when the component lacks focus, at which point the field is a text field holding the formatted number as text. When the field gains focus it switches to a number field. Allows for percentages to be entered as a whole number, e.g. typing "12" will yield a `double` equal to '0.12' and displaying '12%' when lacking focus. We intend to find a similar way to handle [basis points](https://en.wikipedia.org/wiki/Basis_point). |
+| `MdcNumericIntField` | A wrapper for `MdcNumericDoubleField` for `int` variables. |
+| `MdcSelect` | A [Material Select Menu](https://material.io/develop/web/components/input-controls/select-menus/). |
+| `MdcSwitch` | A [Material Switch](https://material.io/develop/web/components/input-controls/switches/). |
+| `MdcTabBar` | A [Material Tab Bar](https://material.io/develop/web/components/tabs/tab-bar/). Does not implement displaying tab content; this is under review. |
+| `MdcTextArea` | A [Material Text Field](https://material.io/develop/web/components/input-controls/text-field/) expressed as a text area. Does not implement the full width variety. |
+| `MdcTextField` | A [Material Text Field](https://material.io/develop/web/components/input-controls/text-field/). Does not implement the full width variety. |
+| `MdcTopAppBar` | A [Material Top App Bar](https://material.io/develop/web/components/top-app-bar/). _Partially reviewed_. |
+
+ ## Utilities
+ 
+| Utility | Notes |
+| :-------- | :---- |
+| `MdcCascadingDefaults` | Allows you to set up defaults such as button style (filled, outlined etc), text area style (filled or outlined) |
+| `MdcTypography` | Constants for standard Material Theme typography. _Awaits Review_. |
+
+## Known Issues
+
+| Component | Issue |
+| :-------- | :---- |
+| `MdcNumericDoubleField` | When focus is lost for non-integer input, there's a flash of unstyled content ("FOUC") where the field indicates that validation has failed with a red underline/outline for the filled/outlined styles respectively. |
+| `MdcTopAppBar` | Styling for the short variety of top app bar is wrong when a drawer is opened. |
