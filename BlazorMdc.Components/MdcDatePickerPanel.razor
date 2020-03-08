@@ -30,6 +30,9 @@
                 <div class="bmdc-dp-menu__float-right bmdc-dp-menu__float-right-spaced">
                     <button @ref="@nextMonthReference" class="mdc-icon-button material-icons bmdc-dp-menu--icon-button" @onclick="@OnNextMonthClick" disabled="@nextMonthDisabled">chevron_right</button>
                 </div>
+                <div class="bmdc-dp-menu__float-right bmdc-dp-menu__float-right-spaced">
+                    <button @ref="@currentDateReference" class="mdc-icon-button material-icons bmdc-dp-menu--icon-button" @onclick="@OnShowCurrentDateClick" disabled="@nextMonthDisabled">undo</button>
+                </div>
                 <div class="bmdc-dp-menu__float-right">
                     <button @ref="@previousMonthReference" class="mdc-icon-button material-icons bmdc-dp-menu--icon-button" @onclick="@OnPreviousMonthClick" disabled="@previousMonthDisabled">chevron_left</button>
                 </div>
@@ -40,18 +43,12 @@
     @if (showYearPad)
     {
         <div class="bmdc-dp-year-pad">
-            @*<div class="bmdc-dp-day-pad__weekdays-line">
-                @foreach (var d in daysOfWeek)
+            <div class="mdc-list bmdc-dp-year-pad__years-line">
+                @foreach (var year in years)
                 {
-                    <span class="mdc-theme--text-disabled-on-background bmdc-dp-day-pad__element-disabled">@d</span>
+                    <MdcDatePickerYearButton @key="@year" CurrentYear="@startOfDisplayMonth.Year" DisplayYear="@year" OnItemClickAsync="@OnYearItemClick" MinDate="@MinDate" MaxDate="@MaxDate" />
                 }
             </div>
-            <ul class="mdc-list bmdc-dp-day-pad__days-line">
-                @foreach (var date in dates)
-                {
-                    <MdcDatePickerElement @key="date" DateSelectionCriteria="DateSelectionCriteria" CurrentDate="initialDate" DisplayDate="date" StartOfDisplayMonth="startOfDisplayMonth" OnItemClickAsync="OnItemClickAsync" />
-                }
-            </ul>*@
         </div>
     }
     else
@@ -66,7 +63,7 @@
             <div class="mdc-list bmdc-dp-day-pad__days-line">
                 @foreach (var date in dates)
                 {
-                    <MdcDatePickerDayButton @key="@date" DateSelectionCriteria="@DateSelectionCriteria" CurrentDate="@initialDate" DisplayDate="@date" StartOfDisplayMonth="@startOfDisplayMonth" OnItemClickAsync="@OnItemClickAsync" MinDate="@MinDate" MaxDate="@MaxDate" />
+                    <MdcDatePickerDayButton @key="@date" DateSelectionCriteria="@DateSelectionCriteria" CurrentDate="@initialDate" DisplayDate="@date" StartOfDisplayMonth="@startOfDisplayMonth" OnItemClickAsync="@OnDayItemClickAsync" MinDate="@MinDate" MaxDate="@MaxDate" />
                 }
             </div>
         </div>
@@ -84,6 +81,7 @@
 
     private ElementReference listItem;
     private ElementReference yearToggleReference;
+    private ElementReference currentDateReference;
     private ElementReference previousMonthReference;
     private ElementReference nextMonthReference;
     private bool previousMonthDisabled => (startOfDisplayMonth <= MinDate);
@@ -92,6 +90,7 @@
 
 
     private LinkedList<DateTime> dates { get; set; } = new LinkedList<DateTime>();
+    private LinkedList<int> years { get; set; } = new LinkedList<int>();
     private DateTime initialDate;
     private DateTime cachedCurrentValue;
     private string cachedCurrentValueText => Utilities.DateToString(cachedCurrentValue);
@@ -124,17 +123,27 @@
         initialDate = Value;
         cachedCurrentValue = Value;
 
-        var start = startOfDisplayMonth = new DateTime(Value.Year, Value.Month, 1).AddMonths(monthsOffset);
-        var end = start.AddMonths(1).AddDays(-1);
+        var startDate = startOfDisplayMonth = new DateTime(Value.Year, Value.Month, 1).AddMonths(monthsOffset);
+        var endDate = startDate.AddMonths(1).AddDays(-1);
 
-        start = start.AddDays(-Convert.ToInt32(start.DayOfWeek));
-        end = end.AddDays(-Convert.ToInt32(end.DayOfWeek) + 7);
+        startDate = startDate.AddDays(-Convert.ToInt32(startDate.DayOfWeek));
+        endDate = endDate.AddDays(-Convert.ToInt32(endDate.DayOfWeek) + 7);
 
         dates = new LinkedList<DateTime>();
 
-        for (var date = start; date < end; date = date.AddDays(1))
+        for (var date = startDate; date < endDate; date = date.AddDays(1))
         {
             dates.AddLast(date);
+        }
+
+        var startYear = ((MinDate.Year - 1) / 4) * 4 + 1;
+        var endYear = ((MaxDate.Year + 3) / 4) * 4 + 1;
+
+        years = new LinkedList<int>();
+
+        for (var year = startYear; year < endYear; year++)
+        {
+            years.AddLast(year);
         }
 
         showYearPad = false;
@@ -143,7 +152,7 @@
     }
 
 
-    private async Task OnItemClickAsync(DateTime dateTime)
+    private async Task OnDayItemClickAsync(DateTime dateTime)
     {
         await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", listItem);
         Value = dateTime;
@@ -151,6 +160,13 @@
         monthsOffset = 0;
         SetParameters();
         await ValueChanged.InvokeAsync(Value);
+    }
+
+    private void OnYearItemClick(int year)
+    {
+        monthsOffset += (year - startOfDisplayMonth.Year) * 12;
+        showYearPad = false;
+        SetParameters();
     }
 
     private void OnYearToggleClick()
@@ -161,6 +177,12 @@
     private void OnPreviousMonthClick()
     {
         monthsOffset--;
+        SetParameters();
+    }
+
+    private void OnShowCurrentDateClick()
+    {
+        monthsOffset = 0;
         SetParameters();
     }
 
@@ -176,6 +198,7 @@
         {
             await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.init", yearToggleReference);
             await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButton.init", previousMonthReference);
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButton.init", currentDateReference);
             await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButton.init", nextMonthReference);
         }
     }

@@ -91,7 +91,7 @@ div.bmdc-disabled-overlay {
 }
 
 .bmdc-dp-menu__float-right-spaced {
-    margin-left: 24px;
+    margin-left: 4px;
 }
 
 .bmdc-dp-day-pad {
@@ -146,7 +146,7 @@ div.bmdc-disabled-overlay {
     min-width: 28px !important;
     max-width: 28px;
     border-radius: 14px !important;
-    margin: 2 !important;
+    margin: 2px !important;
     padding: 0 !important;
     top: 0;
     left: 0;
@@ -156,24 +156,48 @@ div.bmdc-disabled-overlay {
     border-radius: 14px !important;
 }
 
-.bmdc-dp-year-pad-container {
+.bmdc-dp-year-pad {
     display: inline-block;
     box-sizing: content-box;
-    padding: 4px 20px 4px 12px; /* Want bottom padding of 8px, but inline-block adds 4px of whitespace already */
+    padding: 4px 0 4px 12px; /* Want bottom padding of 8px, but inline-block adds 4px of whitespace already */
     user-select: none;
     overflow: visible;
-    height: 216px;
-    width: 224px;
+    max-height: 228px;
+    width: 256px;
+}
+
+.bmdc-dp-year-pad__years-line {
+    display: inline-block;
+    box-sizing: content-box;
+    padding: 0 !important;
+    overflow: auto;
+    max-height: 228px;
+}
+
+.bmdc-dp-year-pad__button-container {
+    float: left;
+    height: 32px;
+    width: 56px;
+    margin: auto;
+    padding: 0;
+    position: relative;
 }
 
 .bmdc-dp-year-pad__button {
     float: left;
     text-align: center;
-    height: 32px !important;
-    line-height: 32px;
-    width: 56px;
-    margin: auto !important;
+    height: 28px !important;
+    line-height: 28px;
+    width: 52px !important;
+    min-width: 52px !important;
+    max-width: 52px;
+    border-radius: 14px !important;
+    margin: 2px !important;
     padding: 0 !important;
     top: 0;
     left: 0;
+}
+
+.bmdc-dp-year-pad__button__ripple {
+    border-radius: 14px !important;
 }

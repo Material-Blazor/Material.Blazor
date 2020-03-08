@@ -1,0 +1,56 @@
+﻿@inject IJSRuntime jsRuntime
+
+
+<div class="bmdc-dp-year-pad__button-container">
+    <button @ref="elementReference" class="mdc-button bmdc-dp-year-pad__button @buttonStyleClass" @onclick="@OnClickAsync" disabled="@disabled" type="button">
+        <div class="mdc-button__ripple bmdc-dp-day-pad__button__ripple"></div>
+        <span class="mdc-button__label">@DisplayYear</span>
+    </button>
+</div>
+
+
+@code {
+    [Parameter] public int CurrentYear { get; set; }
+    [Parameter] public int DisplayYear { get; set; }
+    [Parameter] public EventCallback<int> OnItemClickAsync { get; set; }
+    [Parameter] public DateTime MinDate { get; set; }
+    [Parameter] public DateTime MaxDate { get; set; }
+
+
+    private ElementReference elementReference;
+    private string buttonStyleClass => (DisplayYear == CurrentYear) ? "mdc-button--unelevated" : "";
+
+
+    private bool disabled
+    {
+        get
+        {
+            if (MaxDate < new DateTime(DisplayYear, 1, 1))
+            {
+                return true;
+            }
+
+            if (MinDate > new DateTime(DisplayYear, 12, 31))
+            {
+                return true;
+            }
+
+            return false;
+        }
+    }
+
+
+    private async Task OnClickAsync()
+    {
+        await OnItemClickAsync.InvokeAsync(DisplayYear);
+    }
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.button.init", elementReference);
+        }
+    }
+}
