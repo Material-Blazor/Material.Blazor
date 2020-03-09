@@ -8,12 +8,7 @@
         <i class="mdc-select__dropdown-icon"></i>
         <div class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="@labelId" aria-disabled="Disabled">@initialText</div>
 
-        @if (myInputStyle == MdcInputStyle.Filled)
-        {
-            <span id="@labelId" class="mdc-floating-label mdc-floating-label--float-above">@Label</span>
-            <div class="mdc-line-ripple"></div>
-        }
-        else
+        @if (myInputStyle == MdcSelectInputStyle.Outlined)
         {
             <span class="mdc-notched-outline">
                 <span class="mdc-notched-outline__leading"></span>
@@ -22,6 +17,11 @@
                 </span>
                 <span class="mdc-notched-outline__trailing"></span>
             </span>
+        }
+        else
+        {
+            <span id="@labelId" class="mdc-floating-label mdc-floating-label--float-above">@Label</span>
+            <div class="mdc-line-ripple"></div>
         }
     </div>
 
@@ -38,7 +38,7 @@
     private MdcCascadingDefaults myCascadingDefaults => (MdcCascadingDefaults is null) ? new MdcCascadingDefaults() : MdcCascadingDefaults;
 
 
-    [Parameter] public MdcInputStyle? InputStyle { get; set; }
+    [Parameter] public MdcSelectInputStyle? InputStyle { get; set; }
     [Parameter] public string Label { get; set; }
     [Parameter] public MdcDateSelectionCriteria? DateSelectionCriteria { get; set; }
     [Parameter] public DateTime MinDate { get; set; }
@@ -47,7 +47,7 @@
 
     private ElementReference elementReference;
     private DotNetObjectReference<MdcDatePicker> objectReference;
-    private MdcInputStyle myInputStyle;
+    private MdcSelectInputStyle myInputStyle;
     private string labelId = Utilities.GenerateCssElementSelector();
     private string mainDivClass = "";
     private string initialText = "";
@@ -81,11 +81,11 @@
         // results in the floating label jumping to the wrong place.
         if (initialize || Value != cachedCurrentValue)
         {
-            myInputStyle = (InputStyle is null) ? myCascadingDefaults.InputStyle : (MdcInputStyle)InputStyle;
+            myInputStyle = (InputStyle is null) ? myCascadingDefaults.SelectInputStyle : (MdcSelectInputStyle)InputStyle;
             initialValue = Value;
             cachedCurrentValue = Value;
             initialText = Utilities.DateToString(Value);
-            mainDivClass = ((myInputStyle == MdcInputStyle.Outlined) ? " mdc-select--outlined" : "") +
+            mainDivClass = ((myInputStyle == MdcSelectInputStyle.Outlined) ? " mdc-select--outlined" : "") +
                             (Disabled ? " mdc-select--disabled" : "");
         }
     }

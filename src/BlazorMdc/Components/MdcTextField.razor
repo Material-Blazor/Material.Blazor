@@ -21,12 +21,7 @@
            @onerror="Zig">
     @TrailingIconMarkup
 
-    @if (myInputStyle == MdcInputStyle.Filled)
-    {
-        <label class="mdc-floating-label @floatingLabelClass" for="@id" id="@labelId">@Label</label>
-        <div class="mdc-line-ripple"></div>
-    }
-    else
+    @if (myInputStyle == MdcTextInputStyle.Outlined)
     {
         <div class="mdc-notched-outline">
             <div class="mdc-notched-outline__leading"></div>
@@ -36,6 +31,11 @@
             <div class="mdc-notched-outline__trailing"></div>
         </div>
     }
+    else
+    {
+        <label class="mdc-floating-label @floatingLabelClass" for="@id" id="@labelId">@Label</label>
+        <div class="mdc-line-ripple"></div>
+    }
 </div>
 
 @code {
@@ -44,7 +44,7 @@
     private MdcCascadingDefaults myCascadingDefaults => (MdcCascadingDefaults is null) ? new MdcCascadingDefaults() : MdcCascadingDefaults;
 
 
-    [Parameter] public MdcInputStyle? InputStyle { get; set; }
+    [Parameter] public MdcTextInputStyle? InputStyle { get; set; }
     [Parameter] public MdcTextAlign? TextAlign { get; set; }
     [Parameter] public string Type { get; set; } = "text";
     [Parameter] public string Label { get; set; } = "";
@@ -62,7 +62,7 @@
 
     private string id = Guid.NewGuid().ToString();
     private ElementReference elementReference;
-    private MdcInputStyle myInputStyle;
+    private MdcTextInputStyle myInputStyle;
     private MdcTextAlign myTextAlign;
     private string labelId = Guid.NewGuid().ToString();
     private string mainDivClass;
@@ -88,16 +88,17 @@
 
     private void Setup()
     {
-        myInputStyle = (InputStyle is null) ? myCascadingDefaults.InputStyle : (MdcInputStyle)InputStyle;
+        myInputStyle = (InputStyle is null) ? myCascadingDefaults.TextInputStyle : (MdcTextInputStyle)InputStyle;
         myTextAlign = (TextAlign is null) ? myCascadingDefaults.TextAlign : (MdcTextAlign)TextAlign;
 
         floatingLabelClass = string.IsNullOrEmpty(CurrentValue) ? "" : "mdc-floating-label--float-above";
 
-        mainDivClass = ((myInputStyle == MdcInputStyle.Outlined) ? " mdc-text-field--outlined" : "") +
+        mainDivClass = ((myInputStyle == MdcTextInputStyle.Outlined) ? " mdc-text-field--outlined" : "") +
+                    ((myInputStyle == MdcTextInputStyle.FullWidth) ? " mdc-text-field--fullwidth" : "") +
                     (NoLabel ? " mdc-text-field--no-label" : "") +
                     (Disabled ? " mdc-text-field--disabled" : "") +
                     ((LeadingIcon is null) ? "" : " mdc-text-field--with-leading-icon") +
-                    ((TrailingIcon is null) ? "" : " mdc-text-field--with-trailing-icon");
+                    ((TrailingIcon is null) ? "" : " mdc-text-field--with-trailing-icon") + " " + CssClass;
 
         alignClass = Utilities.GetTextAlignClass(myTextAlign);
 

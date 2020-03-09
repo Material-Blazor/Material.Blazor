@@ -8,12 +8,7 @@
         <i class="mdc-select__dropdown-icon"></i>
         <div class="mdc-select__selected-text @alignClass" role="button" aria-haspopup="listbox" aria-labelledby="@labelId" aria-disabled="Disabled">@selectedText</div>
 
-        @if (myInputStyle == MdcInputStyle.Filled)
-        {
-            <span id="@labelId" class="mdc-floating-label @floatingLabelClass">@Label</span>
-            <div class="mdc-line-ripple"></div>
-        }
-        else
+        @if (myInputStyle == MdcSelectInputStyle.Outlined)
         {
             <span class="mdc-notched-outline">
                 <span class="mdc-notched-outline__leading"></span>
@@ -22,6 +17,11 @@
                 </span>
                 <span class="mdc-notched-outline__trailing"></span>
             </span>
+        }
+        else
+        {
+            <span id="@labelId" class="mdc-floating-label @floatingLabelClass">@Label</span>
+            <div class="mdc-line-ripple"></div>
         }
     </div>
 
@@ -59,7 +59,7 @@
     private MdcCascadingDefaults myCascadingDefaults => (MdcCascadingDefaults is null) ? new MdcCascadingDefaults() : MdcCascadingDefaults;
 
 
-    [Parameter] public MdcInputStyle? InputStyle { get; set; }
+    [Parameter] public MdcSelectInputStyle? InputStyle { get; set; }
     [Parameter] public MdcTextAlign? TextAlign { get; set; }
     [Parameter] public string Label { get; set; }
     [Parameter] public IEnumerable<Item> Items { get; set; }
@@ -68,7 +68,7 @@
 
 
     private ElementReference elementReference;
-    private MdcInputStyle myInputStyle;
+    private MdcSelectInputStyle myInputStyle;
     private MdcTextAlign myTextAlign;
     private string labelId = Utilities.GenerateCssElementSelector();
     private string mainDivClass = "";
@@ -102,12 +102,12 @@
         // results in the floating label jumping to the wrong place.
         if (initialize || Value != cachedCurrentValue)
         {
-            myInputStyle = (InputStyle is null) ? myCascadingDefaults.InputStyle : (MdcInputStyle)InputStyle;
+            myInputStyle = (InputStyle is null) ? myCascadingDefaults.SelectInputStyle : (MdcSelectInputStyle)InputStyle;
             myTextAlign = (TextAlign is null) ? myCascadingDefaults.TextAlign : (MdcTextAlign)TextAlign;
             initialValue = Value;
             cachedCurrentValue = Value;
             selectedText = Items.Where(i => i.DataValue == (Value ?? "")).FirstOrDefault().Text;
-            mainDivClass = ((myInputStyle == MdcInputStyle.Outlined) ? " mdc-select--outlined" : "") +
+            mainDivClass =  ((myInputStyle == MdcSelectInputStyle.Outlined) ? " mdc-select--outlined" : "") +
                             (Disabled ? " mdc-select--disabled" : "");
             alignClass = Utilities.GetTextAlignClass(myTextAlign);
 

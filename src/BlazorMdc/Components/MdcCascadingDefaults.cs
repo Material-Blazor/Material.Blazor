@@ -13,7 +13,13 @@ namespace BlazorMdc.Components
     /// <summary>
     /// The style of MDC input: note that FullWidth is mutually exclusive with Outlined
     /// </summary>
-    public enum MdcInputStyle { Filled, Outlined }
+    public enum MdcTextInputStyle { Filled, Outlined, FullWidth }
+
+
+    /// <summary>
+    /// The style of MDC select
+    /// </summary>
+    public enum MdcSelectInputStyle { Filled, Outlined }
 
 
     /// <summary>
@@ -37,7 +43,8 @@ namespace BlazorMdc.Components
     public class MdcCascadingDefaults
     {
         public MdcTextAlign TextAlign { get; set; } = MdcTextAlign.Default;
-        public MdcInputStyle InputStyle { get; set; } = MdcInputStyle.Filled;
+        public MdcTextInputStyle TextInputStyle { get; set; } = MdcTextInputStyle.Filled;
+        public MdcSelectInputStyle SelectInputStyle { get; set; } = MdcSelectInputStyle.Filled;
         public MdcButtonStyle ButtonStyle { get; set; } = MdcButtonStyle.Outlined;
         public MdcDateSelectionCriteria DateSelectionCriteria { get; set; } = MdcDateSelectionCriteria.AllowAll;
     }
