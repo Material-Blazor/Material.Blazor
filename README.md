@@ -59,6 +59,7 @@ The following is a list of components, but lacks documentation on how they are u
 | Component | Issue |
 | :-------- | :---- |
 | `MdcNumericDoubleField` | When focus is lost for non-integer input, there's a flash of unstyled content ("FOUC") where the field indicates that validation has failed with a red underline/outline for the filled/outlined styles respectively. |
+| `MdcNumericDoubleField` | Empty field input correctly defaults to zero value but loses floating label. This is another FOUC. |
 | `MdcTopAppBar` | Styling for the short variety of top app bar is wrong when a drawer is opened. |
 | `MdcTextField` | Floating labels do not float when data is inserted automatically by the browser. Probably also affects `MdcTextArea` and will definitely affect `MdcNumericDoubleField` and `MdcNumericIntField` which are derived from `MdcTextField` |
 | `MdcDatePicker`| As a stylistic issue, when the year pad is being shown, if the current year is more than 7 lines down (28+ years into the year list), it doesn't show because the year list is scrolled to the top. The list should initialize to a scrolled position showing the current year. |
@@ -68,3 +69,5 @@ The following is a list of components, but lacks documentation on how they are u
 - Add remaining Material Theme components.
 - Add [density subsystem](https://material.io/develop/web/components/density/).
 - Complete implementation of current components, in particular those points noted above as not being implemented.
+- Target best practice (per notes in introduction) and perform quality audit.
+- Build nullable numeric input in addition to current non nullables.
