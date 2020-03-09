@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29827.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMdc", "BlazorMdc.Components\BlazorMdc.csproj", "{18F89AD9-B647-4928-9C88-6FE17D96355A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMdc", "src\BlazorMdc\BlazorMdc.csproj", "{18F89AD9-B647-4928-9C88-6FE17D96355A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demonstration", "BlazorMdc.Demonstration\Demonstration.csproj", "{E3256AE1-339B-4365-9E2C-66D71C22BDD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demonstration", "samples\Demonstration\Demonstration.csproj", "{E3256AE1-339B-4365-9E2C-66D71C22BDD6}"
 	ProjectSection(ProjectDependencies) = postProject
 		{18F89AD9-B647-4928-9C88-6FE17D96355A} = {18F89AD9-B647-4928-9C88-6FE17D96355A}
 	EndProjectSection
