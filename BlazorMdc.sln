@@ -3,12 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29827.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMdc.Components", "BlazorMdc.Components\BlazorMdc.Components.csproj", "{18F89AD9-B647-4928-9C88-6FE17D96355A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMdc", "BlazorMdc.Components\BlazorMdc.csproj", "{18F89AD9-B647-4928-9C88-6FE17D96355A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMdc.Demonstration", "BlazorMdc.Demonstration\BlazorMdc.Demonstration.csproj", "{E3256AE1-339B-4365-9E2C-66D71C22BDD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Demonstration", "BlazorMdc.Demonstration\Demonstration.csproj", "{E3256AE1-339B-4365-9E2C-66D71C22BDD6}"
 	ProjectSection(ProjectDependencies) = postProject
 		{18F89AD9-B647-4928-9C88-6FE17D96355A} = {18F89AD9-B647-4928-9C88-6FE17D96355A}
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{510C6FFC-D13D-431C-B5B5-897B7BDA3C29}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{24CEE271-A626-4366-893B-90942D79D569}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +31,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{18F89AD9-B647-4928-9C88-6FE17D96355A} = {510C6FFC-D13D-431C-B5B5-897B7BDA3C29}
+		{E3256AE1-339B-4365-9E2C-66D71C22BDD6} = {24CEE271-A626-4366-893B-90942D79D569}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6EFB30DD-ABFD-4A38-96E1-D309BB538E62}
