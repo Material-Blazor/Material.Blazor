@@ -28,6 +28,7 @@ The following is a list of components, but lacks documentation on how they are u
 
 | Component | Notes |
 | :-------- | :---- |
+| `MdcAutocomplete` | A [Material Text Field](https://material.io/develop/web/components/input-controls/text-field/) that drops a [menu](https://material.io/develop/web/components/menus/) for auto completion. Has parameters to allow blank results and for whitespace to be ignored in searches. Might consider forking and adapting [Blazored.Typeahead](https://github.com/Blazored/Typeahead) with MT styling. |
 | `MdcButton` | A [Material Button](https://material.io/develop/web/components/buttons/). |
 | `MdcCheckbox` | A [Material Checkbox](https://material.io/develop/web/components/input-controls/checkboxes/). Implements a two state on/off checkbox, but not yet an indeterminate variety. |
 | `MdcDatePicker` | An implementation of the [Material date picker specification](https://material.io/components/pickers/#specs) for the desktop. Does not implement date ranges. Date pickers are only implemented in Material Theme for Android, so we interpreted as closely as possible the specification with our own CSS. This is the only instance where we have created CSS for a component, because our goal is to use standard Material Theme styling throughout. The result seems a bit too dense and is within a couple of pixels of unstyled overflow content on the month selection menu for long month names in English; this is likely to overflow for languages with longer month names. We are therefore likely to relax the component's density, which should improve usability. We have deviated from the specification by adding an "undo" button to return to the current selected date. There is no "today" button, which is not in the Material Theme specifcation. |
@@ -58,7 +59,8 @@ The following is a list of components, but lacks documentation on how they are u
 
 | Component | Issue |
 | :-------- | :---- |
-| `MdcNumericDoubleField` | When focus is lost for non-integer input, there's a flash of unstyled content ("FOUC") where the field indicates that validation has failed with a red underline/outline for the filled/outlined styles respectively. |
+| `MdcAutocomplete` | Shows a flash of unstyled content ("FOUC") when a field that disallows blanks is cleared and then loses focus. The floating label stops floating and superimposes over the selected text. |
+| `MdcNumericDoubleField` | When focus is lost for non-integer input, there's a FOUC where the field indicates that validation has failed with a red underline/outline for the filled/outlined styles respectively. |
 | `MdcNumericDoubleField` | Empty field input correctly defaults to zero value but loses floating label. This is another FOUC. |
 | `MdcTopAppBar` | Styling for the short variety of top app bar is wrong when a drawer is opened. |
 | `MdcTextField` | Floating labels do not float when data is inserted automatically by the browser. Probably also affects `MdcTextArea` and will definitely affect `MdcNumericDoubleField` and `MdcNumericIntField` which are derived from `MdcTextField` |
