@@ -1,4 +1,42 @@
 window.BlazorMdc = {
+    autoComplete: {
+        init: function (textElem) {
+            const text = mdc.textField.MDCTextField.attachTo(textElem);
+            textElem._text = text;
+        },
+
+        open: function (menuElem, textElem, dotNetObject) {
+            menuElem._menu = menuElem._menu || mdc.menu.MDCMenu.attachTo(menuElem);
+            menuElem._menu.foundation_.setDefaultFocusState(0);
+
+            return new Promise(resolve => {
+                const menu = menuElem._menu;
+
+                const openedCallback = event => {
+                    menu.unlisten('MDCMenuSurface:opened', openedCallback);
+                    menu.foundation_.setDefaultFocusState(1);
+                    resolve(event.detail.action);
+                };
+
+                const closedCallback = event => {
+                    menu.unlisten('MDCMenuSurface:closed', closedCallback);
+                    resolve(event.detail.action);
+                    dotNetObject.invokeMethodAsync('NotifyClosedAsync');
+                };
+
+                menu.listen('MDCMenuSurface:opened', openedCallback);
+                menu.listen('MDCMenuSurface:closed', closedCallback);
+                menu.open = true;
+            });
+        },
+
+        close: function (menuElem, textElem) {
+            if (menuElem._menu) {
+                menuElem._menu.open = false;
+            }
+        }
+    },
+
     button: {
         init: function (elem) {
             mdc.ripple.MDCRipple.attachTo(elem);

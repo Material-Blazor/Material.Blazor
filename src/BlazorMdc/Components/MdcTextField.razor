@@ -5,7 +5,7 @@
 <div @ref="elementReference" class="mdc-text-field @mainDivClass">
     @LeadingIconMarkup
     <input type="@Type"
-           id="@id" 
+           id="@Id" 
            class="mdc-text-field__input @alignClass @FieldClass" 
            @bind="@CurrentValue" 
            aria-labelledby="@labelId" 
@@ -16,9 +16,7 @@
            @onmouseout="OnMouseOut"
            @onfocus="OnFocus"
            @onfocusin="OnFocusIn"
-           @onfocusout="OnFocusOut"
-           @oninvalid="Zig"
-           @onerror="Zig">
+           @onfocusout="OnFocusOut">
     @TrailingIconMarkup
 
     @if (myInputStyle == MdcTextInputStyle.Outlined)
@@ -26,14 +24,14 @@
         <div class="mdc-notched-outline">
             <div class="mdc-notched-outline__leading"></div>
             <div class="mdc-notched-outline__notch">
-                <label class="mdc-floating-label @floatingLabelClass" for="@id" id="@labelId">@Label</label>
+                <label class="mdc-floating-label @floatingLabelClass" for="@Id" id="@labelId">@Label</label>
             </div>
             <div class="mdc-notched-outline__trailing"></div>
         </div>
     }
     else
     {
-        <label class="mdc-floating-label @floatingLabelClass" for="@id" id="@labelId">@Label</label>
+        <label class="mdc-floating-label @floatingLabelClass" for="@Id" id="@labelId">@Label</label>
         <div class="mdc-line-ripple"></div>
     }
 </div>
@@ -60,7 +58,6 @@
     [Parameter] public EventCallback<FocusEventArgs> OnFocus { get; set; }
 
 
-    private string id = Guid.NewGuid().ToString();
     private ElementReference elementReference;
     private MdcTextInputStyle myInputStyle;
     private MdcTextAlign myTextAlign;
@@ -68,8 +65,8 @@
     private string mainDivClass;
     private string alignClass;
     private string floatingLabelClass;
-    public MarkupString LeadingIconMarkup;
-    public MarkupString TrailingIconMarkup;
+    private MarkupString LeadingIconMarkup;
+    private MarkupString TrailingIconMarkup;
 
 
     protected override void OnInitialized()
@@ -112,10 +109,5 @@
         {
             await jsRuntime.InvokeAsync<object>("BlazorMdc.textField.init", elementReference);
         }
-    }
-
-    private void Zig(EventArgs args)
-    {
-        _ = args;
     }
 }
