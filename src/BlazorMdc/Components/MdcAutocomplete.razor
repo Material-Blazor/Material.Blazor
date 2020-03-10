@@ -117,13 +117,6 @@
 
         objectReference = DotNetObjectReference.Create(this);
 
-        mySelectItems = from i in SelectItems
-                        select new SelectItem
-                        { 
-                            Item = i,
-                            IgnoreWhitespace = IgnoreWhitespace
-                        };
-
         SetParameters(true);
     }
 
@@ -145,6 +138,18 @@
 
     private void SetParameters(bool initialize = false)
     {
+        mySelectItems = from i in SelectItems
+                        select new SelectItem
+                        {
+                            Item = i,
+                            IgnoreWhitespace = IgnoreWhitespace
+                        };
+
+        if (!string.IsNullOrEmpty(Value))
+        {
+            floatingLabelClass = "mdc-floating-label--float-above";
+        }
+
         // All values that are bound to HTML are set once at initialization and then left unchanged
         // because allowing Blazor to re-render conflicts with the Material Theme js rendering. This
         // results in the floating label jumping to the wrong place.
@@ -159,18 +164,13 @@
                             ((TrailingIcon is null) ? "" : " mdc-text-field--with-trailing-icon") + " " + CssClass;
             alignClass = Utilities.GetTextAlignClass(myTextAlign);
 
-            if (!string.IsNullOrEmpty(Value))
-            {
-                floatingLabelClass = "mdc-floating-label--float-above";
-            }
-
             LeadingIconMarkup = (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--leading\" tabindex=\"0\" role=\"button\">{LeadingIcon}</i>");
             TrailingIconMarkup = (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--trailing\" tabindex=\"0\" role=\"button\">{TrailingIcon}</i>");
 
             selectInfo = BuildSelectList(CurrentValue);
-
-            StateHasChanged();
         }
+
+        StateHasChanged();
     }
 
 
