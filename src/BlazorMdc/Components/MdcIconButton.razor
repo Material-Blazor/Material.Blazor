@@ -3,7 +3,7 @@
 
 
 <button @ref="elementReference" 
-        class="mdc-icon-button material-icons" 
+        class="mdc-icon-button material-icons @Class" 
         @onclick="OnClick" 
         @onmousedown="OnClick" 
         @onkeydown="OnMouseDown" 
@@ -18,6 +18,7 @@
 @code {
     [Parameter] public string Icon { get; set; }
     [Parameter] public string Type { get; set; } = "button";
+    [Parameter] public string Class { get; set; }
     [Parameter] public EventCallback OnClick { get; set; }
     [Parameter] public EventCallback OnMouseDown { get; set; }
     [Parameter] public EventCallback OnKeyDown { get; set; }
