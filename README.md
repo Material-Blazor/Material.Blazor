@@ -32,7 +32,7 @@ The following is a list of components, but lacks documentation on how they are u
 | `MdcButton` | A [Material Button](https://material.io/develop/web/components/buttons/). |
 | `MdcCheckbox` | A [Material Checkbox](https://material.io/develop/web/components/input-controls/checkboxes/). Implements a two state on/off checkbox, but not yet an indeterminate variety. |
 | `MdcDatePicker` | An implementation of the [Material date picker specification](https://material.io/components/pickers/#specs) for the desktop. Does not implement date ranges. Date pickers are only implemented in Material Theme for Android, so we interpreted as closely as possible the specification with our own CSS. This is the only instance where we have created CSS for a component, because our goal is to use standard Material Theme styling throughout. The result seems a bit too dense and is within a couple of pixels of unstyled overflow content on the month selection menu for long month names in English; this is likely to overflow for languages with longer month names. We are therefore likely to relax the component's density, which should improve usability. We have deviated from the specification by adding an "undo" button to return to the current selected date. There is no "today" button, which is not in the Material Theme specifcation. |
-| `MdcDialog` | A [Material Dialog](https://material.io/develop/web/components/dialogs/). _Awaits review_. |
+| `MdcDialog` | A [Material Dialog](https://material.io/develop/web/components/dialogs/). |
 | `MdcDrawer` | A [Material Drawer](https://material.io/develop/web/components/drawers/). _Awaits review_. |
 | `MdcIconButton` | A [Material Icon Button](https://material.io/develop/web/components/buttons/icon-buttons/). Toggle icon buttons are not implemented. |
 | `MdcLinearProgress` | A [Material Linear Progress bar](https://material.io/develop/web/components/linear-progress/). Only implements an indeterminate progress point |
@@ -53,7 +53,7 @@ The following is a list of components, but lacks documentation on how they are u
 | Utility | Notes |
 | :-------- | :---- |
 | `MdcCascadingDefaults` | Allows you to set up defaults such as button style (filled, outlined etc), text area style (filled or outlined) |
-| `MdcTypography` | Constants for standard Material Theme typography. _Awaits Review_. |
+| `MdcTypography` | Constants for standard Material Theme typography. |
 
 ## Known Issues
 
