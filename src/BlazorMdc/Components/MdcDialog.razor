@@ -1,17 +1,18 @@
 ﻿@inject IJSRuntime jsRuntime
 
 <div @ref="dialogElem" class="mdc-dialog">
-  <div class="mdc-dialog__container">
-    <div class="mdc-dialog__surface">
-      <h2 class="mdc-dialog__title">@Title</h2>
-      <div class="mdc-dialog__content">@Body</div>
-      <footer class="mdc-dialog__actions">
-          @Buttons
-      </footer>
+    <div class="mdc-dialog__container">
+        <div class="mdc-dialog__surface">
+            <h2 class="mdc-dialog__title">@Title</h2>
+            <div class="mdc-dialog__content">@Body</div>
+            <footer class="mdc-dialog__actions">
+                @Buttons
+            </footer>
+        </div>
     </div>
-  </div>
-  <div class="mdc-dialog__scrim"></div>
+    <div class="mdc-dialog__scrim"></div>
 </div>
+
 
 @code {
     [Parameter] public string Title { get; set; }
