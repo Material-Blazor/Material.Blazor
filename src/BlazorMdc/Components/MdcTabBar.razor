@@ -1,26 +1,30 @@
 ﻿@inherits MdcComponentBase
+
+@using System.Threading.Tasks
+ 
 @inject IJSRuntime jsRuntime
 
-<div @ref="elementReference" class="mdc-tab-bar" role="tablist">
+
+<div @ref="elementReference" class="mdc-tab-bar bmdc-tab-bar" role="tablist">
     <div class="mdc-tab-scroller">
         <div class="mdc-tab-scroller__scroll-area">
             <div class="mdc-tab-scroller__scroll-content">
                 @{ int i = 0; }
-                @foreach (var item in TabItems)
+                @foreach (var content in tabContents)
                 {
                     int index = i++;
                     bool selected = (index == initialTabIndex);
                     string buttonActive = selected ?  "mdc-tab--active" : "";
                     string indicatorActive = selected ? "mdc-tab-indicator--active" : "";
 
-                    <button class="mdc-tab @stackClass @buttonActive" role="tab" aria-selected="@selected" tabindex="-1" @onclick="(_ => OnTabClickAsync(index))">
+                    <button class="mdc-tab @stackClass @buttonActive" role="tab" aria-selected="@selected" tabindex="-1" @onclick="(_ => OnTabClickAsync(content, index))">
                         <span class="mdc-tab__content">
-                            @if (!(item.Icon is null))
+                            @if (!(content.TabIcon is null))
                             {
-                                <span class="mdc-tab__icon material-icons" aria-hidden="true">@item.Icon</span>
+                                <span class="mdc-tab__icon material-icons" aria-hidden="true">@content.TabIcon</span>
                             }
                             
-                            <span class="mdc-tab__text-label">@item.Title</span>
+                            <span class="mdc-tab__text-label">@content.TabText</span>
                         </span>
                         <span class="mdc-tab-indicator @indicatorActive">
                             <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
@@ -33,22 +37,19 @@
     </div>
 </div>
 
+<CascadingValue Value="this">
+    @ChildContent
+</CascadingValue>
+
 
 @code {
-    public class TabItem
-    {
-        public string Title { get; set; }
-        public string? Icon { get; set; }
-    }
-
     [CascadingParameter]
     private MdcCascadingDefaults MdcCascadingDefaults { get; set; } = new MdcCascadingDefaults();
     private MdcCascadingDefaults myCascadingDefaults => (MdcCascadingDefaults is null) ? new MdcCascadingDefaults() : MdcCascadingDefaults;
 
     [Parameter] public int TabIndex { get; set; }
-    [Parameter] public IEnumerable<TabItem> TabItems { get; set; }
-    [Parameter] public EventCallback<int> TabIndexChanged { get; set; }
     [Parameter] public bool StackIcons { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
 
     private int initialTabIndex;
     private int cachedTabIndex;
@@ -84,13 +85,29 @@
     }
 
 
-    private async Task OnTabClickAsync(int selectedIndex)
+    private async Task OnTabClickAsync(MdcTabContent content, int index)
     {
-        if (selectedIndex != cachedTabIndex)
+        if (index != cachedTabIndex)
         {
-            cachedTabIndex = selectedIndex;
-            TabIndex = selectedIndex;
-            await TabIndexChanged.InvokeAsync(TabIndex);
+            string nextClass = "";
+
+            if (index < cachedTabIndex)
+            {
+                nextClass = InFromLeft;
+                ActiveTabContent.TabContentClass = OutToRight;
+            }
+            else
+            {
+                nextClass = InFromRight;
+                ActiveTabContent.TabContentClass = OutToLeft;
+            }
+
+            await Task.Delay(100);
+
+            content.TabContentClass = nextClass;
+            ActiveTabContent = content;
+
+            cachedTabIndex = index;
         }
     }
 
@@ -101,5 +118,27 @@
         {
             await jsRuntime.InvokeAsync<object>("BlazorMdc.tabBar.init", elementReference);
         }
+    }
+
+
+    private const string InFromLeft = "bmdc-slide-in-from-left";
+    private const string InFromRight = "bmdc-slide-in-from-right";
+    private const string OutToLeft = "bmdc-slide-out-to-left";
+    private const string OutToRight = "bmdc-slide-out-to-right";
+
+
+    internal MdcTabContent ActiveTabContent { get; set; }
+    private List<MdcTabContent> tabContents = new List<MdcTabContent>();
+
+    internal void AddTabContent(MdcTabContent tabContent)
+    {
+        tabContents.Add(tabContent);
+
+        if (tabContents.Count == 1)
+        {
+            ActiveTabContent = tabContent;
+        }
+
+        StateHasChanged();
     }
 }

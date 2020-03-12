@@ -1,0 +1,31 @@
+﻿@if (Parent.ActiveTabContent == this)
+{ 
+    <div class="@TabContentClass">
+        @ChildContent
+    </div>
+}
+
+
+@code {
+    [CascadingParameter]
+    private MdcTabBar Parent { get; set; }
+
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public string TabText { get; set; }
+    [Parameter] public string TabIcon { get; set; }
+
+    public string TabContentClass { get; set; } = "";
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        if (Parent == null)
+        {
+            throw new ArgumentNullException(nameof(Parent), "MdcTabContent must exist within a MdcTabBar");
+        }
+
+        Parent.AddTabContent(this);
+    }
+}

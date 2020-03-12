@@ -201,3 +201,164 @@ div.bmdc-disabled-overlay {
 .bmdc-dp-year-pad__button__ripple {
     border-radius: 14px !important;
 }
+
+.bmdc-tab-bar {
+    margin-bottom: 12px;
+}
+
+
+
+
+
+/*
+ *
+ * Animations 
+ *
+ */
+
+.bmdc-slide-in-from-left {
+    animation: slideInFromLeft ease 200ms;
+    -webkit-animation: slideInFromLeft ease 200ms;
+    overflow: hidden;
+}
+
+@-webkit-keyframes slideInFromLeft {
+    0% {
+        margin-left: -5%;
+        margin-right: 5%;
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromLeft {
+    0% {
+        margin-left: -5%;
+        margin-right: 5%;
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.bmdc-slide-in-from-right {
+    animation: slideInFromRight ease 200ms;
+    -webkit-animation: slideInFromRight ease 200ms;
+    overflow: hidden;
+}
+
+@-webkit-keyframes slideInFromRight {
+    0% {
+        margin-left: 5%;
+        margin-right: -5%;
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromRight {
+    0% {
+        margin-left: 5%;
+        margin-right: -5%;
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+.bmdc-slide-out-to-left {
+    animation: slideOutToLeft ease-out 200ms;
+    -webkit-animation: slideOutToLeft ease-out 200ms;
+    overflow: hidden;
+}
+
+@-webkit-keyframes slideOutToLeft {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        margin-left: -5%;
+        margin-right: 5%;
+        opacity: 0;
+    }
+
+    100% {
+        margin-left: -5%;
+        margin-right: 5%;
+        opacity: 0;
+    }
+}
+
+@keyframes slideOutToLeft {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        margin-left: -5%;
+        margin-right: 5%;
+        opacity: 0;
+    }
+
+    100% {
+        margin-left: -5%;
+        margin-right: 5%;
+        opacity: 0;
+    }
+}
+
+
+.bmdc-slide-out-to-right {
+    animation: slideOutToRight ease-out 200ms;
+    -webkit-animation: slideOutToRight ease-out 200ms;
+    overflow: hidden;
+}
+
+@-webkit-keyframes slideOutToRight {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        margin-left: 5%;
+        margin-right: -5%;
+        opacity: 0;
+    }
+
+    100% {
+        margin-left: 5%;
+        margin-right: -5%;
+        opacity: 0;
+    }
+}
+
+@keyframes slideOutToRight {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        margin-left: 5%;
+        margin-right: -5%;
+        opacity: 0;
+    }
+
+    100% {
+        margin-left: 5%;
+        margin-right: -5%;
+        opacity: 0;
+    }
+}
