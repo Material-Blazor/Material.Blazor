@@ -2,12 +2,12 @@
 @inject IJSRuntime jsRuntime
 
 
-<button @ref="elementReference" 
+<button @ref="@elementReference" 
         class="mdc-button @mainDivClass"
         @onclick="@OnClick"
-        @onmousedown="OnClick" 
-        @onkeydown="OnMouseDown" 
-        @ontouchstart="OnTouchStart" 
+        @onmousedown="@OnMouseDown" 
+        @onkeydown="@OnKeyDown" 
+        @ontouchstart="@OnTouchStart" 
         disabled="@Disabled"
         data-mdc-dialog-action="@DialogAction" 
         type="@Type">
