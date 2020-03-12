@@ -116,6 +116,18 @@ window.BlazorMdc = {
         }
     },
 
+    list: {
+        init: function (elem, keyboardInteractions, ripple) {
+            if (keyboardInteractions == true) {
+                const list = mdc.list.MDCList.attachTo(elem);
+
+                if (ripple == true) {
+                    list.listElements.map((elem) => mdc.ripple.MDCRipple.attachTo(elem));
+                }
+            }
+        }
+    },
+
     menu: {
         show: function (elem, dotNetObject) {
             elem._menu = elem._menu || mdc.menu.MDCMenu.attachTo(elem);

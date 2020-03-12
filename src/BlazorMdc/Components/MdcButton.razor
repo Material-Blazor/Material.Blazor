@@ -2,7 +2,16 @@
 @inject IJSRuntime jsRuntime
 
 
-<button @ref="elementReference" class="mdc-button @mainDivClass" @onclick="@OnClick" disabled="@Disabled" data-mdc-dialog-action="@DialogAction" type="@Type">
+<button @ref="@elementReference" 
+        class="mdc-button @mainDivClass"
+        @onclick="@OnClick"
+        @onmousedown="@OnMouseDown" 
+        @onkeydown="@OnKeyDown" 
+        @ontouchstart="@OnTouchStart" 
+        disabled="@Disabled"
+        data-mdc-dialog-action="@DialogAction" 
+        type="@Type">
+
     <div class="mdc-button__ripple"></div>
     @LeadingIconMarkup
     <span class="mdc-button__label">@Label</span>
@@ -11,7 +20,7 @@
 
 
 @code {
-    [CascadingParameter(Name = "MdcCascadingDefaults")]
+    [CascadingParameter]
     private MdcCascadingDefaults MdcCascadingDefaults { get; set; } = new MdcCascadingDefaults();
     private MdcCascadingDefaults myCascadingDefaults => (MdcCascadingDefaults is null) ? new MdcCascadingDefaults() : MdcCascadingDefaults;
 
@@ -19,9 +28,13 @@
     [Parameter] public MdcButtonStyle? ButtonStyle { get; set; }
     [Parameter] public string Type { get; set; } = "button";
     [Parameter] public string Label { get; set; }
+    [Parameter] public string Class { get; set; }
     [Parameter] public string? LeadingIcon { get; set; }
     [Parameter] public string? TrailingIcon { get; set; }
     [Parameter] public EventCallback OnClick { get; set; }
+    [Parameter] public EventCallback OnMouseDown { get; set; }
+    [Parameter] public EventCallback OnKeyDown { get; set; }
+    [Parameter] public EventCallback OnTouchStart { get; set; }
     [Parameter] public string DialogAction { get; set; }
 
 
@@ -29,7 +42,7 @@
     private MdcButtonStyle myButtonStyle;
     private MarkupString LeadingIconMarkup => (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"material-icons mdc-button__icon\" aria-hidden=\"true\">{LeadingIcon}</i>");
     private MarkupString TrailingIconMarkup => (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"material-icons mdc-button__icon\" aria-hidden=\"true\">{TrailingIcon}</i>");
-    private string mainDivClass => classLookup.Where(c => c.Key == myButtonStyle).FirstOrDefault().Value;
+    private string mainDivClass => classLookup.Where(c => c.Key == myButtonStyle).FirstOrDefault().Value + " " + Class;
 
 
     private KeyValuePair<MdcButtonStyle, string>[] classLookup =

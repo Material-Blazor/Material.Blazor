@@ -1,10 +1,19 @@
 ﻿@page "/list"
 
-<h1 class="@MdcTypography.H4">List samples</h1>
+<h1 class="@MdcTypography.Heading4">List samples</h1>
 
 <p>See <code>ListSample.razor</code> for sources.</p>
 
-<MdcList Items="@displayedProducts" Context="product">
+<MdcList Items="@displayedProducts"
+         Context="product"
+         ShowSeparators="true"
+         ShowIcons="true" 
+         KeyboardInteractions="true" 
+         Ripple="true"
+         AvatarList="true"
+         OnClick="OnClick"
+         Class="mdc-elevation--z3">
+
     <Icon>shop</Icon>
     <Title>@product.DisplayName</Title>
     <Subtitle>@product.Description</Subtitle>
@@ -16,12 +25,14 @@
     </Actions>
 </MdcList>
 
+<p>Clicked index: '@clickedIndex'</p>
+
 @code {
     IEnumerable<Product> displayedProducts = new List<Product>
     {
         new Product { ProductId = 1, DisplayName = "Curly-wurly straw", Description = "Amaze your friends with this cheap plastic tube", IsInStock = true },
-            new Product { ProductId = 2, DisplayName = "Pepsi Connoisseur (12mo subscription)", Description = "Covers all developments in the world of Pepsi™", IsInStock = false },
-            new Product { ProductId = 3, DisplayName = "Recarbonator Pro", Description = "Revitalize your old beverages in just hours", IsInStock = true },
+        new Product { ProductId = 2, DisplayName = "Pepsi Connoisseur (12mo subscription)", Description = "Covers all developments in the world of Pepsi™", IsInStock = false },
+        new Product { ProductId = 3, DisplayName = "Recarbonator Pro", Description = "Revitalize your old beverages in just hours", IsInStock = true },
     };
 
     public class Product
@@ -30,5 +41,12 @@
         public string DisplayName { get; set; }
         public string Description { get; set; }
         public bool IsInStock { get; set; }
+    }
+
+    private int clickedIndex;
+
+    private void OnClick(int index)
+    {
+        clickedIndex = index;
     }
 }

@@ -45,7 +45,7 @@ namespace BlazorMdc.Components
         public MdcTextAlign TextAlign { get; set; } = MdcTextAlign.Default;
         public MdcTextInputStyle TextInputStyle { get; set; } = MdcTextInputStyle.Filled;
         public MdcSelectInputStyle SelectInputStyle { get; set; } = MdcSelectInputStyle.Filled;
-        public MdcButtonStyle ButtonStyle { get; set; } = MdcButtonStyle.Outlined;
+        public MdcButtonStyle ButtonStyle { get; set; } = MdcButtonStyle.Text;
         public MdcDateSelectionCriteria DateSelectionCriteria { get; set; } = MdcDateSelectionCriteria.AllowAll;
     }
 }

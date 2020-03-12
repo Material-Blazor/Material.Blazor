@@ -75,7 +75,7 @@
     }
 
 
-    [CascadingParameter(Name = "MdcCascadingDefaults")]
+    [CascadingParameter]
     private MdcCascadingDefaults MdcCascadingDefaults { get; set; }
     private MdcCascadingDefaults myCascadingDefaults => (MdcCascadingDefaults is null) ? new MdcCascadingDefaults() : MdcCascadingDefaults;
 

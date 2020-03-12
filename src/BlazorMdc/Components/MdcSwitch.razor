@@ -7,7 +7,7 @@
     <div class="mdc-switch__track"></div>
     <div class="mdc-switch__thumb-underlay">
         <div class="mdc-switch__thumb">
-            <input type="checkbox" id="@Id" checked="@CurrentValue" @onchange=@OnChange class="mdc-switch__native-control" role="switch" disabled="@Disabled" />
+            <input type="checkbox" id="@Id" @bind="@CurrentValue" class="mdc-switch__native-control" role="switch" disabled="@Disabled" />
         </div>
     </div>
 </div>
@@ -16,8 +16,7 @@
 
 @code {
     [Parameter] public string Label { get; set; } = "On/off";
-    [Parameter] public EventCallback OnChange { get; set; }
-
+    
 
     private string switchClass => (Disabled ? " mdc-switch--disabled" : "") + (CurrentValue ? " mdc-switch--checked" : "");
     ElementReference elementReference;
