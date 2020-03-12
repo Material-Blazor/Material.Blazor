@@ -23,7 +23,6 @@
 
 
 @code {
-    private IEnumerable<MdcTabBar.TabItem> items;
     private bool stacked = false;
     private string[] icons = { "home", "alarm", "book", "copyright", "eco", "label", "lock", "restore", "work", "album", "mic", "speed", "dialpad", "flag", "cloud", "laptop", "colorize", "nature", "layers", "map" };
     private string[] paragraphs = 
@@ -53,12 +52,5 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-
-        items = from i in icons
-                select new MdcTabBar.TabItem
-                {
-                    Icon = i,
-                    Title = i
-                };
     }
 }
