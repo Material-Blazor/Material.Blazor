@@ -217,7 +217,6 @@ div.bmdc-disabled-overlay {
  */
 
 .bmdc-tab-content-container {
-    overflow: hidden;
     position: relative;
 }
 
