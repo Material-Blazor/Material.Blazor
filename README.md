@@ -43,7 +43,7 @@ The following is a list of components, but lacks documentation on how they are u
 | `MdcNumericIntField` | A wrapper for `MdcNumericDoubleField` for `int` variables. |
 | `MdcSelect` | A [Material Select Menu](https://material.io/develop/web/components/input-controls/select-menus/). |
 | `MdcSwitch` | A [Material Switch](https://material.io/develop/web/components/input-controls/switches/). |
-| `MdcTabBar` | A [Material Tab Bar](https://material.io/develop/web/components/tabs/tab-bar/). Displays tab contents as a 'RenderFragment`, with mild 300ms fade animation with 12px left/right motion. |
+| `MdcTabBar` | A [Material Tab Bar](https://material.io/develop/web/components/tabs/tab-bar/). Displays tab contents as a `RenderFragment`, with mild 300ms fade animation with 12px left/right motion. |
 | `MdcTextArea` | A [Material Text Field](https://material.io/develop/web/components/input-controls/text-field/) expressed as a text area. Implements the full width variety, but still needs to disable floating labels in this instance to follow MT guidelines - indeed full width fields with a floating label render poorly. |
 | `MdcTextField` | A [Material Text Field](https://material.io/develop/web/components/input-controls/text-field/). Does not implement the full width variety. |
 | `MdcTopAppBar` | A [Material Top App Bar](https://material.io/develop/web/components/top-app-bar/). _Partially reviewed_. |
