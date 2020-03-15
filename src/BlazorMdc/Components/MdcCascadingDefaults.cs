@@ -35,6 +35,12 @@ namespace BlazorMdc.Components
 
 
     /// <summary>
+    /// MDC list styling
+    /// </summary>
+    public enum MdcListStyle { None, Outlined }
+
+
+    /// <summary>
     /// MDC card styling
     /// </summary>
     public enum MdcCardStyle { Default, Outlined }
@@ -53,6 +59,7 @@ namespace BlazorMdc.Components
         public MdcSelectInputStyle SelectInputStyle { get; set; } = MdcSelectInputStyle.Filled;
         public MdcButtonStyle ButtonStyle { get; set; } = MdcButtonStyle.Text;
         public MdcCardStyle CardStyle { get; set; } = MdcCardStyle.Default;
+        public MdcListStyle ListStyle { get; set; } = MdcListStyle.None;
         public MdcButtonStyle CardActionButtonStyle { get; set; } = MdcButtonStyle.Text;
         public MdcDateSelectionCriteria DateSelectionCriteria { get; set; } = MdcDateSelectionCriteria.AllowAll;
     }
