@@ -415,3 +415,7 @@ div.bmdc-disabled-overlay {
     -ms-flex-direction: row;
     flex-direction: row
 }
+
+.bmdc-top-app-bar__title-right {
+    padding: 0 20px 0 0 !important;
+}

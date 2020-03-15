@@ -35,7 +35,7 @@ namespace BlazorMdc.Components
 
 
     /// <summary>
-    /// MDC button styling
+    /// MDC card styling
     /// </summary>
     public enum MdcCardStyle { Default, Outlined }
 
@@ -51,8 +51,9 @@ namespace BlazorMdc.Components
         public MdcTextAlign TextAlign { get; set; } = MdcTextAlign.Default;
         public MdcTextInputStyle TextInputStyle { get; set; } = MdcTextInputStyle.Filled;
         public MdcSelectInputStyle SelectInputStyle { get; set; } = MdcSelectInputStyle.Filled;
-        public MdcCardStyle CardStyle { get; set; } = MdcCardStyle.Default;
         public MdcButtonStyle ButtonStyle { get; set; } = MdcButtonStyle.Text;
+        public MdcCardStyle CardStyle { get; set; } = MdcCardStyle.Default;
+        public MdcButtonStyle CardActionButtonStyle { get; set; } = MdcButtonStyle.Text;
         public MdcDateSelectionCriteria DateSelectionCriteria { get; set; } = MdcDateSelectionCriteria.AllowAll;
     }
 }
