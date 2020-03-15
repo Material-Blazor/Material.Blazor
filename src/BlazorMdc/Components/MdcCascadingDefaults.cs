@@ -35,6 +35,12 @@ namespace BlazorMdc.Components
 
 
     /// <summary>
+    /// MDC button styling
+    /// </summary>
+    public enum MdcCardStyle { Default, Outlined }
+
+
+    /// <summary>
     /// Date Picker selection criteria
     /// </summary>
     public enum MdcDateSelectionCriteria { AllowAll, WeekendsOnly, WeekdaysOnly }
@@ -45,6 +51,7 @@ namespace BlazorMdc.Components
         public MdcTextAlign TextAlign { get; set; } = MdcTextAlign.Default;
         public MdcTextInputStyle TextInputStyle { get; set; } = MdcTextInputStyle.Filled;
         public MdcSelectInputStyle SelectInputStyle { get; set; } = MdcSelectInputStyle.Filled;
+        public MdcCardStyle CardStyle { get; set; } = MdcCardStyle.Default;
         public MdcButtonStyle ButtonStyle { get; set; } = MdcButtonStyle.Text;
         public MdcDateSelectionCriteria DateSelectionCriteria { get; set; } = MdcDateSelectionCriteria.AllowAll;
     }

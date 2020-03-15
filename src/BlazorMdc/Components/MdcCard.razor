@@ -1,0 +1,42 @@
+﻿<div class="mdc-card @Class @cardStyleClass">
+    <CascadingValue Value="this">
+        @ChildContent
+    </CascadingValue>
+</div>
+
+
+@code {
+    [CascadingParameter]
+    private MdcCascadingDefaults MdcCascadingDefaults { get; set; } = new MdcCascadingDefaults();
+    private MdcCascadingDefaults myCascadingDefaults => (MdcCascadingDefaults is null) ? new MdcCascadingDefaults() : MdcCascadingDefaults;
+
+    [Parameter] public MdcCardStyle? CardStyle { get; set; }
+    [Parameter] public string Class { get; set; }
+    [Parameter] public bool AutoStyled { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+
+    private MdcCardStyle myCardStyle;
+    private string cardStyleClass => (myCardStyle == MdcCardStyle.Outlined) ? "mdc-card--outlined" : "";
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        Setup();
+    }
+
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        Setup();
+    }
+
+
+    private void Setup()
+    {
+        myCardStyle = (CardStyle is null) ? myCascadingDefaults.CardStyle : (MdcCardStyle)CardStyle;
+    }
+}
