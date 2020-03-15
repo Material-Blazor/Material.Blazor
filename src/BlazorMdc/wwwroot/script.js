@@ -43,6 +43,17 @@ window.BlazorMdc = {
         }
     },
 
+    card: {
+        init: function (elem) {
+            const selector = '.mdc-button, .mdc-icon-button, .mdc-card__primary-action';
+
+            //[].map.call(document.querySelectorAll(selector), function (elem) {
+            //    return new MDCRipple(elem);
+            //});
+            //mdc.ripple.MDCRipple.attachTo(elem);
+        }
+    },
+
     checkBox: {
         setChecked: function (elem, formFieldElem, isChecked, isFormField) {
             const checkbox = mdc.checkbox.MDCCheckbox.attachTo(elem);

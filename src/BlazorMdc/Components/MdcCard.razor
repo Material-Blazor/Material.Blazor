@@ -1,4 +1,7 @@
-﻿<div class="mdc-card @Class @cardStyleClass">
+﻿@inject IJSRuntime jsRuntime
+
+
+<div class="mdc-card @Class @cardStyleClass">
     <CascadingValue Value="this">
         @ChildContent
     </CascadingValue>
@@ -10,33 +13,23 @@
     private MdcCascadingDefaults MdcCascadingDefaults { get; set; } = new MdcCascadingDefaults();
     private MdcCascadingDefaults myCascadingDefaults => (MdcCascadingDefaults is null) ? new MdcCascadingDefaults() : MdcCascadingDefaults;
 
+
     [Parameter] public MdcCardStyle? CardStyle { get; set; }
     [Parameter] public string Class { get; set; }
     [Parameter] public bool AutoStyled { get; set; }
     [Parameter] public RenderFragment ChildContent { get; set; }
 
-    private MdcCardStyle myCardStyle;
+
+    private ElementReference elementReference;
+    private MdcCardStyle myCardStyle => (CardStyle is null) ? myCascadingDefaults.CardStyle : (MdcCardStyle)CardStyle;
     private string cardStyleClass => (myCardStyle == MdcCardStyle.Outlined) ? "mdc-card--outlined" : "";
 
 
-    protected override void OnInitialized()
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        base.OnInitialized();
-
-        Setup();
-    }
-
-
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
-
-        Setup();
-    }
-
-
-    private void Setup()
-    {
-        myCardStyle = (CardStyle is null) ? myCascadingDefaults.CardStyle : (MdcCardStyle)CardStyle;
+        if (firstRender)
+        {
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.card.init", elementReference);
+        }
     }
 }
