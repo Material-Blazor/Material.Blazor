@@ -419,3 +419,7 @@ div.bmdc-disabled-overlay {
 .bmdc-top-app-bar__title-right {
     padding: 0 20px 0 0 !important;
 }
+
+.bmdc-full-width {
+    width: 100%;
+}
