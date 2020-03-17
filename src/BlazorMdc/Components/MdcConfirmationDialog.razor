@@ -1,0 +1,90 @@
+﻿<MdcDialog @ref="@dialog" Title="@Title">
+    <Body>
+        @Body
+        <p>Please type <strong>@ConfirmationText</strong> to @ActionName.</p>
+        <p><MdcTextField @bind-Value="@enteredText" OnInput="@OnInput" InputStyle="@MdcTextInputStyle.FullWidth" /></p>
+    </Body>
+    <Buttons>
+        @if (ConfirmedButtons is null || UnconfirmedButtons is null)
+        { 
+            <MdcButton Label="OK" LeadingIcon="check" DialogAction="@Confirm" Disabled="@(!confirmed)" ButtonStyle="MdcButtonStyle.ContainedUnelevated" />
+            <MdcButton Label="Cancel" LeadingIcon="cancel" DialogAction="@Cancel" ButtonStyle="MdcButtonStyle.Text" />
+        }
+        else
+        {
+            if (confirmed)
+            {
+                @ConfirmedButtons
+            }
+            else
+            {
+                @UnconfirmedButtons
+            }
+        }
+    </Buttons>
+</MdcDialog>
+
+
+@code {
+    public const string Confirm = "confirm";
+    public const string Cancel = "cancel";
+
+    [Parameter] public string Title { get; set; }
+    [Parameter] public string ConfirmationText { get; set; } = RandomDigits();
+    [Parameter] public string ActionName { get; set; } = "confirm";
+    [Parameter] public RenderFragment Body { get; set; }
+    [Parameter] public RenderFragment UnconfirmedButtons { get; set; }
+    [Parameter] public RenderFragment ConfirmedButtons { get; set; }
+
+
+    private MdcDialog dialog;
+    private string enteredText = "";
+    private bool confirmed = false;
+
+
+    private void OnInput(ChangeEventArgs args)
+    {
+        if (args.Value.ToString() == ConfirmationText)
+        {
+            confirmed = true;
+        }
+        else
+        {
+            confirmed = false;
+        }
+    }
+
+
+    public async Task<string> ShowAsync()
+    {
+        enteredText = "";
+        confirmed = false;
+        return await dialog.ShowAsync();
+    }
+
+
+    public async Task HideAsync()
+    {
+        enteredText = "";
+        confirmed = false;
+        await dialog.HideAsync();
+    }
+
+
+    private static string RandomDigits()
+    {
+        var rand = new Random();
+
+        var digits = new int[] { rand.Next(0, 10), rand.Next(0, 9), rand.Next(0, 9), rand.Next(0, 9), rand.Next(0, 9), rand.Next(0, 9) };
+
+        var result = digits[0].ToString();
+
+        for (int i = 1; i < digits.Length; i++)
+        {
+            digits[i] += (digits[i] >= digits[i - 1]) ? 1 : 0;
+            result += digits[i].ToString();
+        }
+
+        return result;
+    }
+}
