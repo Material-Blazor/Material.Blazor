@@ -72,8 +72,6 @@
     [Parameter] public RenderFragment<TItem> Icon { get; set; }
     [Parameter] public RenderFragment<TItem> Content { get; set; }
 
-    //[Parameter] public RenderFragment ChildContent { get; set; }
-
     private int initialTabIndex;
     private int cachedTabIndex;
     private string contentClass = "";
@@ -85,31 +83,11 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-
-        SetParameters();
+        initialTabIndex = TabIndex;
+        cachedTabIndex = TabIndex;
     }
-
-
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
-
-        SetParameters();
-    }
-
-
-    private void SetParameters()
-    {
-        // Don't re-render unless the TabIndex has changed - probably not needed for tabs. Does cause issues if you
-        // change stacked parameter or the tabs themselves - something you shouldn't do. Fix this in due course.
-        if (TabIndex != cachedTabIndex)
-        {
-            initialTabIndex = TabIndex;
-            cachedTabIndex = TabIndex;
-        }
-    }
-
-
+    
+    
     private async Task OnTabClickAsync(int index)
     {
         if (index != cachedTabIndex)
