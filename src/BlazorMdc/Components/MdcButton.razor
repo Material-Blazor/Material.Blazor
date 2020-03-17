@@ -9,6 +9,7 @@
         @onkeydown="@OnKeyDown" 
         @ontouchstart="@OnTouchStart" 
         disabled="@Disabled"
+        tabindex="@TabIndex"
         data-mdc-dialog-action="@DialogAction" 
         type="@Type">
 
@@ -28,6 +29,7 @@
     [Parameter] public MdcButtonStyle? ButtonStyle { get; set; }
     [Parameter] public string Type { get; set; } = "button";
     [Parameter] public string Label { get; set; }
+    [Parameter] public string TabIndex { get; set; } = "0";
     [Parameter] public string Class { get; set; }
     [Parameter] public string? LeadingIcon { get; set; }
     [Parameter] public string? TrailingIcon { get; set; }

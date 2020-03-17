@@ -1,10 +1,15 @@
 ﻿@page "/dialog"
 
-<h1 class="@MdcTypography.Heading4">Dialog samples</h1>
 
-See <code>DialogSample.razor</code> for sources.
+@if (!HideHeading)
+{ 
+    <h1 class="@MdcTypography.Heading4">Dialog samples</h1>
 
-Note that the user can also press 'escape' to dismiss the dialog, and this produces a different result string.
+    <p>See <code>DialogSample.razor</code> for sources.</p>
+
+    <p>Note that the user can also press 'escape' to dismiss the dialog, and this produces a different result string.</p>
+}
+
 
 <p><MdcButton Label="Show dialog" OnClick="@ShowDialog"></MdcButton></p>
 
@@ -24,6 +29,8 @@ Note that the user can also press 'escape' to dismiss the dialog, and this produ
 </MdcDialog>
 
 @code {
+    [Parameter] public bool HideHeading { get; set; }
+
     MdcDialog myDialog;
     string result;
 

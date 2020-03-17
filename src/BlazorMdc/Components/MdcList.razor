@@ -8,11 +8,15 @@
     @foreach (var item in Items)
     {
         var tabIndex = "";
-        var clickIndex = index;
-        @if (index++ > 0 && ShowSeparators)
+        var clickIndex = index++;
+
+        @if (clickIndex == 0)
+        {
+            tabIndex = "0";
+        }
+        else if (ShowSeparators)
         {
             <li role="separator" class="mdc-list-divider"></li>
-            tabIndex = "0";
         }
 
         <li class="mdc-list-item"

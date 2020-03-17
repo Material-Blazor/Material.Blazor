@@ -89,12 +89,15 @@ window.BlazorMdc = {
     dialog: {
         show: function (elem) {
             elem._dialog = elem._dialog || mdc.dialog.MDCDialog.attachTo(elem);
+
             return new Promise(resolve => {
                 const dialog = elem._dialog;
+
                 const callback = event => {
                     dialog.unlisten('MDCDialog:closing', callback);
                     resolve(event.detail.action);
                 };
+
                 dialog.listen('MDCDialog:closing', callback);
                 dialog.open();
             });

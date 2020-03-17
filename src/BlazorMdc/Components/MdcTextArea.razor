@@ -92,7 +92,7 @@
         mainDivClass = ((myInputStyle == MdcTextInputStyle.Outlined) ? " mdc-text-field--outlined" : "") +
                     ((myInputStyle == MdcTextInputStyle.FullWidth) ? " mdc-text-field--fullwidth" : "") +
                     (NoLabel ? " mdc-text-field--no-label" : "") +
-                    (Disabled ? " mdc-text-field--disabled" : "");
+                    (Disabled ? " mdc-text-field--disabled" : "") + " " + CssClass;
 
         alignClass = Utilities.GetTextAlignClass(myTextAlign);
     }

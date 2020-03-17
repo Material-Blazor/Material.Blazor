@@ -1,7 +1,9 @@
-﻿@inherits MdcComponentBase
+﻿@typeparam TItem
+
+@inherits MdcComponentBase
 
 @using System.Threading.Tasks
- 
+
 @inject IJSRuntime jsRuntime
 
 
@@ -10,21 +12,21 @@
         <div class="mdc-tab-scroller__scroll-area">
             <div class="mdc-tab-scroller__scroll-content">
                 @{ int i = 0; }
-                @foreach (var content in tabContents)
+                @foreach (var item in Items)
                 {
                     int index = i++;
                     bool selected = (index == initialTabIndex);
-                    string buttonActive = selected ?  "mdc-tab--active" : "";
+                    string buttonActive = selected ? "mdc-tab--active" : "";
                     string indicatorActive = selected ? "mdc-tab-indicator--active" : "";
 
-                    <button class="mdc-tab @stackClass @buttonActive" role="tab" aria-selected="@selected" tabindex="-1" @onclick="(_ => OnTabClickAsync(content, index))">
+                    <button class="mdc-tab @stackClass @buttonActive" role="tab" aria-selected="@selected" tabindex="-1" @onclick="(_ => OnTabClickAsync(index))">
                         <span class="mdc-tab__content">
-                            @if (!(content.TabIcon is null))
+                            @if (!(Icon is null))
                             {
-                                <span class="mdc-tab__icon material-icons" aria-hidden="true">@content.TabIcon</span>
+                                <span class="mdc-tab__icon material-icons" aria-hidden="true">@Icon(item)</span>
                             }
-                            
-                            <span class="mdc-tab__text-label">@content.TabText</span>
+
+                            <span class="mdc-tab__text-label">@Label(item)</span>
                         </span>
                         <span class="mdc-tab-indicator @indicatorActive">
                             <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
@@ -38,7 +40,22 @@
 </div>
 
 <CascadingValue Value="this">
-    @ChildContent
+    @if (!hideContent)
+    { 
+        int i = 0;
+
+        @foreach (var item in Items)
+        {
+            if (i++ == cachedTabIndex)
+            {
+                <div class="bmdc-tab-content-container">
+                    <div class="@contentClass">
+                        @Content(item)
+                    </div>
+                </div>
+            }
+        }
+    }
 </CascadingValue>
 
 
@@ -49,10 +66,18 @@
 
     [Parameter] public int TabIndex { get; set; }
     [Parameter] public bool StackIcons { get; set; }
-    [Parameter] public RenderFragment ChildContent { get; set; }
+
+    [Parameter] public IEnumerable<TItem> Items { get; set; }
+    [Parameter] public RenderFragment<TItem> Label { get; set; }
+    [Parameter] public RenderFragment<TItem> Icon { get; set; }
+    [Parameter] public RenderFragment<TItem> Content { get; set; }
+
+    //[Parameter] public RenderFragment ChildContent { get; set; }
 
     private int initialTabIndex;
     private int cachedTabIndex;
+    private string contentClass = "";
+    private bool hideContent = false;
     private string stackClass => StackIcons ? "mdc-tab--stacked" : "";
     private ElementReference elementReference;
 
@@ -85,7 +110,7 @@
     }
 
 
-    private async Task OnTabClickAsync(MdcTabContent content, int index)
+    private async Task OnTabClickAsync(int index)
     {
         if (index != cachedTabIndex)
         {
@@ -94,20 +119,22 @@
             if (index < cachedTabIndex)
             {
                 nextClass = InFromLeft;
-                ActiveTabContent.TabContentClass = OutToRight;
+                contentClass = OutToRight;
             }
             else
             {
                 nextClass = InFromRight;
-                ActiveTabContent.TabContentClass = OutToLeft;
+                contentClass = OutToLeft;
             }
 
             await Task.Delay(100);
 
-            content.TabContentClass = nextClass;
-            ActiveTabContent = content;
-
+            hideContent = true;
+            contentClass = nextClass;
             cachedTabIndex = index;
+            hideContent = false;
+
+            StateHasChanged();
         }
     }
 
@@ -127,18 +154,18 @@
     private const string OutToRight = "bmdc-slide-out-to-right";
 
 
-    internal MdcTabContent ActiveTabContent { get; set; }
-    private List<MdcTabContent> tabContents = new List<MdcTabContent>();
+    //internal MdcTabContent ActiveTabContent { get; set; }
+    //private List<MdcTabContent> tabContents = new List<MdcTabContent>();
 
-    internal void AddTabContent(MdcTabContent tabContent)
-    {
-        tabContents.Add(tabContent);
+    //internal void AddTabContent(MdcTabContent tabContent)
+    //{
+    //    tabContents.Add(tabContent);
 
-        if (tabContents.Count == 1)
-        {
-            ActiveTabContent = tabContent;
-        }
+    //    if (tabContents.Count == 1)
+    //    {
+    //        ActiveTabContent = tabContent;
+    //    }
 
-        StateHasChanged();
-    }
+    //    StateHasChanged();
+    //}
 }
