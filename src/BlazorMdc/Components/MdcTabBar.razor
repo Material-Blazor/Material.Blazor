@@ -66,11 +66,13 @@
 
     [Parameter] public int TabIndex { get; set; }
     [Parameter] public bool StackIcons { get; set; }
+    [Parameter] public EventCallback<int> OnTabClick { get; set; }
 
     [Parameter] public IEnumerable<TItem> Items { get; set; }
     [Parameter] public RenderFragment<TItem> Label { get; set; }
     [Parameter] public RenderFragment<TItem> Icon { get; set; }
     [Parameter] public RenderFragment<TItem> Content { get; set; }
+
 
     private int initialTabIndex;
     private int cachedTabIndex;
@@ -80,14 +82,26 @@
     private ElementReference elementReference;
 
 
+    private const string InFromLeft = "bmdc-slide-in-from-left";
+    private const string InFromRight = "bmdc-slide-in-from-right";
+    private const string OutToLeft = "bmdc-slide-out-to-left";
+    private const string OutToRight = "bmdc-slide-out-to-right";
+
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
         initialTabIndex = TabIndex;
         cachedTabIndex = TabIndex;
     }
-    
-    
+
+
+    public async Task SetTabIndexAsync(int index)
+    {
+        await jsRuntime.InvokeAsync<object>("BlazorMdc.tabBar.setTab", elementReference, index);
+    }
+
+
     private async Task OnTabClickAsync(int index)
     {
         if (index != cachedTabIndex)
@@ -113,6 +127,8 @@
             hideContent = false;
 
             StateHasChanged();
+
+            await OnTabClick.InvokeAsync(index);
         }
     }
 
@@ -124,26 +140,4 @@
             await jsRuntime.InvokeAsync<object>("BlazorMdc.tabBar.init", elementReference);
         }
     }
-
-
-    private const string InFromLeft = "bmdc-slide-in-from-left";
-    private const string InFromRight = "bmdc-slide-in-from-right";
-    private const string OutToLeft = "bmdc-slide-out-to-left";
-    private const string OutToRight = "bmdc-slide-out-to-right";
-
-
-    //internal MdcTabContent ActiveTabContent { get; set; }
-    //private List<MdcTabContent> tabContents = new List<MdcTabContent>();
-
-    //internal void AddTabContent(MdcTabContent tabContent)
-    //{
-    //    tabContents.Add(tabContent);
-
-    //    if (tabContents.Count == 1)
-    //    {
-    //        ActiveTabContent = tabContent;
-    //    }
-
-    //    StateHasChanged();
-    //}
 }

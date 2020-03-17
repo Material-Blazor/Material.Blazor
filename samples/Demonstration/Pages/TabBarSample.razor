@@ -4,31 +4,35 @@
 
 <p>See <code>TabBarSample.razor</code> for sources.</p>
 
-<MdcSwitch @bind-Value="@stacked" Label="Stack Icons" />
+<p><MdcSwitch @bind-Value="@stacked" Label="Stack Icons" /></p>
+
+<p><MdcButton Label="Got to Alarm" OnClick="@ButtonClickAsync" /></p>
 
 <p style="margin-bottom: 2em;">&nbsp;</p>
 
-<MdcTabBar Items="@tabItems"
+<MdcTabBar @ref="tabBar"
+           Items="@tabItems"
            Context="item"
            TabIndex="5"
            StackIcons="@stacked">
 
-        <Label>@item.Icon</Label>
-        <Icon>@item.Icon</Icon>
-        <Content>
-            <h3 class="@MdcTypography.Heading6">@item.Icon.ToUpper()</h3>
-            <p class="@MdcTypography.Typography">@item.Text</p>
+    <Label>@item.Icon</Label>
+    <Icon>@item.Icon</Icon>
+    <Content>
+        <h3 class="@MdcTypography.Heading6">@item.Icon.ToUpper()</h3>
+        <p class="@MdcTypography.Typography">@item.Text</p>
 
-            @if (item.Icon == "home")
-            {
-                <DialogSample HideHeading="true" />
-            }
-        </Content>
+        @if (item.Icon == "home")
+        {
+            <DialogSample HideHeading="true" />
+        }
+    </Content>
 </MdcTabBar>
 
 
 @code {
     private bool stacked = false;
+    private MdcTabBar<TabItem> tabBar;
 
     private TabItem[] tabItems =
         {
@@ -63,5 +67,10 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
+    }
+
+    private async Task ButtonClickAsync()
+    {
+        await tabBar.SetTabIndexAsync(1);
     }
 }

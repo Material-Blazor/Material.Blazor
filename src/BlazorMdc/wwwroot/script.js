@@ -185,7 +185,15 @@ window.BlazorMdc = {
 
     tabBar: {
         init: function (elem) {
-            mdc.tabBar.MDCTabBar.attachTo(elem);
+            elem._tabBar = mdc.tabBar.MDCTabBar.attachTo(elem);
+        },
+
+        setTab: function (elem, index) {
+            if (elem._tabBar) {
+                let tl = elem._tabBar.tabList_[index];
+                //elem._tabBar.tabList_[index].handleClick_();
+                tl.root_.click();
+            }
         }
     },
 
