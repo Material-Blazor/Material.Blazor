@@ -1,13 +1,13 @@
 ﻿<MdcDialog @ref="@dialog" Title="@Title">
     <Body>
         @Body
-        <p>Please type <strong>@ConfirmationText</strong> to @ActionName.</p>
+        <p>Please type <strong>@myInputText</strong> @ActionText.</p>
         <p><MdcTextField @bind-Value="@enteredText" OnInput="@OnInput" InputStyle="@MdcTextInputStyle.FullWidth" /></p>
     </Body>
     <Buttons>
         @if (ConfirmedButtons is null || UnconfirmedButtons is null)
         { 
-            <MdcButton Label="OK" LeadingIcon="check" DialogAction="@Confirm" Disabled="@(!confirmed)" ButtonStyle="MdcButtonStyle.ContainedUnelevated" />
+            <MdcButton Label="OK" LeadingIcon="check" DialogAction="@Confirm" Disabled="@(!confirmed)" />
             <MdcButton Label="Cancel" LeadingIcon="cancel" DialogAction="@Cancel" ButtonStyle="MdcButtonStyle.Text" />
         }
         else
@@ -30,8 +30,8 @@
     public const string Cancel = "cancel";
 
     [Parameter] public string Title { get; set; }
-    [Parameter] public string ConfirmationText { get; set; } = RandomDigits();
-    [Parameter] public string ActionName { get; set; } = "confirm";
+    [Parameter] public string InputText { get; set; }
+    [Parameter] public string ActionText { get; set; } = "to confirm";
     [Parameter] public RenderFragment Body { get; set; }
     [Parameter] public RenderFragment UnconfirmedButtons { get; set; }
     [Parameter] public RenderFragment ConfirmedButtons { get; set; }
@@ -40,11 +40,13 @@
     private MdcDialog dialog;
     private string enteredText = "";
     private bool confirmed = false;
+    private string digitText = "";
+    private string myInputText => string.IsNullOrWhiteSpace(InputText) ? digitText : InputText;
 
 
     private void OnInput(ChangeEventArgs args)
     {
-        if (args.Value.ToString() == ConfirmationText)
+        if (args.Value.ToString() == myInputText)
         {
             confirmed = true;
         }
@@ -59,6 +61,8 @@
     {
         enteredText = "";
         confirmed = false;
+        digitText = RandomDigits();
+        StateHasChanged();
         return await dialog.ShowAsync();
     }
 

@@ -15,45 +15,47 @@
 
 <p>Result: <strong>'@(result1 ?? "")'</strong></p>
 
-<MdcDialog @ref="@dialog1" Title="My dialog title">
+<MdcDialog @ref="@dialog1" Title="General dialog">
     <Body>
         <p>Please choose a fruit.</p>
+        <p><MdcCheckbox @bind-Value="@checkMe" Label="Check me" /></p>
     </Body>
     <Buttons>
         <MdcButton Label="Orange" DialogAction="orange"></MdcButton>
-        <MdcButton Label="Other" DialogAction="other" ButtonStyle="@MdcButtonStyle.Text"></MdcButton>
+        <MdcButton Label="Apple" DialogAction="apple" ButtonStyle="@MdcButtonStyle.Text"></MdcButton>
     </Buttons>
 </MdcDialog>
 
 
 
-<p><MdcButton Label="Show default confirmation dialog" OnClick="@ShowDialog2"></MdcButton></p>
+<p style="margin-top: 3rem;"><MdcButton Label="Show default confirmation dialog" OnClick="@ShowDialog2"></MdcButton></p>
 
 <p>Result: <strong>'@(result2 ?? "")'</strong></p>
 
-<MdcConfirmationDialog @ref="@dialog2" Title="My dialog title">
+<MdcConfirmationDialog @ref="@dialog2" Title="Default confirmation dialog">
 
 </MdcConfirmationDialog>
 
 
 
-<p><MdcButton Label="Show tailored confirmation dialog" OnClick="@ShowDialog3"></MdcButton></p>
+<p style="margin-top: 3rem;"><MdcButton Label="Show tailored confirmation dialog" OnClick="@ShowDialog3"></MdcButton></p>
 
 <p>Result: <strong>'@(result3 ?? "")'</strong></p>
 
-<MdcConfirmationDialog @ref="@dialog3" Title="My dialog title" ConfirmationText="bish bash bosh">
+<MdcConfirmationDialog @ref="@dialog3" Title="Tailored confirmation dialog" InputText="overridden confirmation" ActionText="to play handball">
     <Body>
-        Some markup before the confirmation message and input.
+        <p>Some markup before the confirmation message and input.</p>
+        <p><MdcCheckbox @bind-Value="@checkMe" Label="Check me" /></p>
     </Body>
     <UnconfirmedButtons>
         <MdcButton Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
         <MdcButton Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
-        <MdcButton Label="Bosh" LeadingIcon="sports_handball" Disabled="true" DialogAction="bosh" />
+        <MdcButton Label="Bosh" LeadingIcon="sports_handball" Disabled="true" DialogAction="bosh" ButtonStyle="MdcButtonStyle.ContainedRaised" />
     </UnconfirmedButtons>
     <ConfirmedButtons>
         <MdcButton Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
         <MdcButton Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
-        <MdcButton Label="Bosh" LeadingIcon="sports_handball" DialogAction="bosh" />
+        <MdcButton Label="Bosh" LeadingIcon="sports_handball" DialogAction="bosh" ButtonStyle="MdcButtonStyle.ContainedRaised" />
     </ConfirmedButtons>
 </MdcConfirmationDialog>
 
@@ -64,6 +66,7 @@
 
     MdcDialog dialog1;
     string result1;
+    bool checkMe;
 
     async Task ShowDialog1()
     {
