@@ -1,6 +1,8 @@
-﻿@inherits MdcComponentBase
-@inject IJSRuntime jsRuntime
+﻿@typeparam TItem
 
+@inherits MdcComponentBase
+
+@inject IJSRuntime jsRuntime
 
 
 <div @ref="elementReference" class="mdc-select @mainDivClass">
@@ -31,7 +33,7 @@
             {
                 var dv = item.DataValue;
 
-                if (item.DataValue == initialValue)
+                if (object.Equals(item.DataValue, initialValue))
                 {
                     <li class="mdc-list-item mdc-list-item--selected @alignClass" data-value="@item.DataValue" aria-selected="true" role="option" @onclick="@(_ => OnItemClickAsync(dv))"><span class="mdc-list-item__text">@item.Text</span></li>
                 }
@@ -47,9 +49,9 @@
 
 
 @code {
-    public class Item
+    public class Item<T>
     {
-        public string DataValue { get; set; }
+        public T DataValue { get; set; }
         public string Text { get; set; }
     }
 
@@ -62,9 +64,9 @@
     [Parameter] public MdcSelectInputStyle? InputStyle { get; set; }
     [Parameter] public MdcTextAlign? TextAlign { get; set; }
     [Parameter] public string Label { get; set; }
-    [Parameter] public IEnumerable<Item> Items { get; set; }
-    [Parameter] public string Value { get; set; }
-    [Parameter] public EventCallback<string> ValueChanged { get; set; }
+    [Parameter] public IEnumerable<Item<TItem>> Items { get; set; }
+    [Parameter] public TItem Value { get; set; } = default;
+    [Parameter] public EventCallback<TItem> ValueChanged { get; set; }
 
 
     private ElementReference elementReference;
@@ -75,14 +77,16 @@
     private string selectedText = "";
     private string floatingLabelClass = "";
     private string alignClass = "";
-    private string initialValue = null;
-    private string cachedCurrentValue = null;
+    private TItem initialValue;
+    private TItem cachedCurrentValue;
 
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
 
+        initialValue = (Value is null) ? Items.FirstOrDefault().DataValue : Value;
+        
         SetParameters(true);
     }
 
@@ -100,27 +104,26 @@
         // All values that are bound to HTML are set once at initialization and then left unchanged
         // because allowing Blazor to re-render conflicts with the Material Theme js rendering. This
         // results in the floating label jumping to the wrong place.
-        if (initialize || Value != cachedCurrentValue)
+        if (initialize || !object.Equals(Value, cachedCurrentValue))
         {
             myInputStyle = (InputStyle is null) ? myCascadingDefaults.SelectInputStyle : (MdcSelectInputStyle)InputStyle;
             myTextAlign = (TextAlign is null) ? myCascadingDefaults.TextAlign : (MdcTextAlign)TextAlign;
-            initialValue = Value;
-            cachedCurrentValue = Value;
-            selectedText = Items.Where(i => i.DataValue == (Value ?? "")).FirstOrDefault().Text;
+            cachedCurrentValue = (Value is null) ? Items.FirstOrDefault().DataValue : Value;
+            selectedText = Items.Where(i => object.Equals(i.DataValue, cachedCurrentValue)).FirstOrDefault().Text;
             mainDivClass =  ((myInputStyle == MdcSelectInputStyle.Outlined) ? " mdc-select--outlined" : "") +
                             (Disabled ? " mdc-select--disabled" : "");
             alignClass = Utilities.GetTextAlignClass(myTextAlign);
 
-            if (!string.IsNullOrEmpty(Value))
+            if (Value != null && !string.IsNullOrEmpty(Value.ToString()))
             {
                 floatingLabelClass = "mdc-floating-label--float-above";
             }
 
-            if (string.IsNullOrEmpty(Value))
+            if (Value is null || string.IsNullOrEmpty(Value.ToString()))
             {
                 Value = Items.FirstOrDefault().DataValue;
             }
-            else if (Items.Where(i => i.DataValue == Value).Count() == 0)
+            else if (Items.Where(i => object.Equals(i.DataValue, Value)).Count() == 0)
             {
                 string itemList = "{ ";
                 string prepend = "";
@@ -133,13 +136,13 @@
 
                 itemList += " }";
 
-                throw new ArgumentException($"MdcSelect cannot select item with data value of '{Value}' from {itemList}");
+                throw new ArgumentException($"MdcSelect cannot select item with data value of '{Value?.ToString()}' from {itemList}");
             }
         }
     }
 
 
-    private async Task OnItemClickAsync(string dataValue)
+    private async Task OnItemClickAsync(TItem dataValue)
     {
         Value = dataValue;
         cachedCurrentValue = Value;
