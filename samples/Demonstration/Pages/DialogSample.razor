@@ -42,10 +42,10 @@
 
 <p>Result: <strong>'@(result3 ?? "")'</strong></p>
 
-<MdcConfirmationDialog @ref="@dialog3" Title="Tailored confirmation dialog" InputText="overridden confirmation" ActionText="to play handball">
+<MdcConfirmationDialog @ref="@dialog3" Title="Tailored confirmation dialog" InputText="overridden confirmation" ActionText="to play handball" InputDisabled="@disableInput">
     <Body>
         <p>Some markup before the confirmation message and input.</p>
-        <p><MdcCheckbox @bind-Value="@checkMe" Label="Check me" /></p>
+        <p><MdcCheckbox @bind-Value="@disableInput" Label="Disable confirmation input field" /></p>
     </Body>
     <UnconfirmedButtons>
         <MdcButton Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
@@ -67,6 +67,7 @@
     MdcDialog dialog1;
     string result1;
     bool checkMe;
+    bool disableInput;
 
     async Task ShowDialog1()
     {

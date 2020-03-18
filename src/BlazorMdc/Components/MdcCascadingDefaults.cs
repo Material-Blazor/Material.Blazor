@@ -61,6 +61,7 @@ namespace BlazorMdc.Components
         public MdcCardStyle CardStyle { get; set; } = MdcCardStyle.Default;
         public MdcListStyle ListStyle { get; set; } = MdcListStyle.None;
         public MdcButtonStyle CardActionButtonStyle { get; set; } = MdcButtonStyle.Text;
+        public MdcButtonStyle DialogActionButtonStyle { get; set; } = MdcButtonStyle.Text;
         public MdcDateSelectionCriteria DateSelectionCriteria { get; set; } = MdcDateSelectionCriteria.AllowAll;
     }
 }

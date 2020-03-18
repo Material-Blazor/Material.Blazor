@@ -2,7 +2,7 @@
     <Body>
         @Body
         <p>Please type <strong>@myInputText</strong> @ActionText.</p>
-        <p><MdcTextField @bind-Value="@enteredText" OnInput="@OnInput" InputStyle="@MdcTextInputStyle.FullWidth" /></p>
+        <p><MdcTextField @bind-Value="@enteredText" OnInput="@OnInput" InputStyle="@MdcTextInputStyle.FullWidth" Disabled="InputDisabled" /></p>
     </Body>
     <Buttons>
         @if (ConfirmedButtons is null || UnconfirmedButtons is null)
@@ -32,6 +32,7 @@
     [Parameter] public string Title { get; set; }
     [Parameter] public string InputText { get; set; }
     [Parameter] public string ActionText { get; set; } = "to confirm";
+    [Parameter] public bool InputDisabled { get; set; }
     [Parameter] public RenderFragment Body { get; set; }
     [Parameter] public RenderFragment UnconfirmedButtons { get; set; }
     [Parameter] public RenderFragment ConfirmedButtons { get; set; }
