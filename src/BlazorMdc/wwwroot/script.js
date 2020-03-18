@@ -47,6 +47,7 @@ window.BlazorMdc = {
         init: function (elem) {
             const selector = '.mdc-button, .mdc-icon-button, .mdc-card__primary-action';
 
+            //Do not know how to get this job done, so cards don't yet have ripple
             //[].map.call(document.querySelectorAll(selector), function (elem) {
             //    return new MDCRipple(elem);
             //});
@@ -160,6 +161,21 @@ window.BlazorMdc = {
         hide: function (elem) {
             if (elem._menu) {
                 elem._menu.open = false;
+            }
+        }
+    },
+
+    radioButtons: {
+        init: function (formFieldElem, radioButtons) {
+            const formField = mdc.formField.MDCFormField.attachTo(formFieldElem);
+
+            for (let i = 0; i < radioButtons.length; i++) {
+                let radio = mdc.radio.MDCRadio.attachTo(radioButtons[i].elementReference);
+
+                //Not sure if this is the right thing to do, so requires review
+                if (radio.checked == true) {
+                    formField.input = radio;
+                }
             }
         }
     },

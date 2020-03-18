@@ -14,6 +14,7 @@
         <MdcNavLink Href="menu" Icon="menu" Text="Menu" />
         <MdcNavLink Href="numericfield" Icon="money" Text="Numeric Field" />
         <MdcNavLink Href="progress" Icon="access_time" Text="Progress" />
+        <MdcNavLink Href="radiobuttons" Icon="radio_button_checked" Text="Radio Buttons" />
         <MdcNavLink Href="select" Icon="arrow_drop_down" Text="Select" />
         <MdcNavLink Href="switch" Icon="toggle_on" Text="Switch" />
         <MdcNavLink Href="textarea" Icon="assignment" Text="Text Area" />
@@ -32,7 +33,13 @@
     <main class="main-content" id="main-content">
         <div class="mdc-top-app-bar--fixed-adjust">
             <div class="mdc-card main-content-card">
-                @Body
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12">
+                            @Body
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
