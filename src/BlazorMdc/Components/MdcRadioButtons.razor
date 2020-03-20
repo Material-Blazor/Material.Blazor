@@ -19,7 +19,15 @@
             }
 
             <div @ref="@w.ElementReference" class="mdc-radio mdc-radio--touch @w.Item.ButtonContainerClass">
-                <input class="mdc-radio__native-control @disabledClass" type="radio" id="@w.RadioId" name="@radioName" checked="@object.Equals(w.Item.DataValue, initialValue)" disabled="@w.Item.Disabled" @onclick="@(_ => OnItemClickAsync(dv))">
+                @if (object.Equals(w.Item.DataValue, initialValue))
+                {
+                    <input class="mdc-radio__native-control @disabledClass" type="radio" id="@w.RadioId" name="@radioName" checked disabled="@w.Item.Disabled" @onclick="@(_ => OnItemClickAsync(dv))">
+                }
+                else
+                {
+                    <input class="mdc-radio__native-control @disabledClass" type="radio" id="@w.RadioId" name="@radioName" disabled="@w.Item.Disabled" @onclick="@(_ => OnItemClickAsync(dv))">
+                }
+                
                 <div class="mdc-radio__background">
                     <div class="mdc-radio__outer-circle"></div>
                     <div class="mdc-radio__inner-circle"></div>
@@ -44,6 +52,7 @@
     private class ItemWrapper<T>
     {
         public Item<T> Item { get; set; }
+        public bool Checked { get; set; }
         public readonly string RadioId = Utilities.GenerateCssElementSelector();
         public ElementReference ElementReference { get; set; }
     }
@@ -89,7 +98,6 @@
         if (initialize || !object.Equals(Value, cachedCurrentValue))
         {
             cachedCurrentValue = (Value is null) ? Items.FirstOrDefault().DataValue : Value;
-            //selectedText = Items.Where(i => object.Equals(i.DataValue, cachedCurrentValue)).FirstOrDefault().Label;
 
             if (Value is null || string.IsNullOrEmpty(Value.ToString()))
             {
@@ -108,13 +116,14 @@
 
                 itemList += " }";
 
-                throw new ArgumentException($"MdcSelect cannot select item with data value of '{Value?.ToString()}' from {itemList}");
+                throw new ArgumentException($"MdcRadioButtons cannot select item with data value of '{Value?.ToString()}' from {itemList}");
             }
 
             wrappers = (from i in Items
                         select new ItemWrapper<TItem>
                         {
-                            Item = i
+                            Item = i,
+                            Checked = object.Equals(i.DataValue, initialValue)
                         }).ToArray();
         }
     }

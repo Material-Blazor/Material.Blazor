@@ -173,7 +173,7 @@ window.BlazorMdc = {
                 let radio = mdc.radio.MDCRadio.attachTo(radioButtons[i].elementReference);
 
                 //Not sure if this is the right thing to do, so requires review
-                if (radio.checked == true) {
+                if (radioButtons[i].checked == true) {
                     formField.input = radio;
                 }
             }
