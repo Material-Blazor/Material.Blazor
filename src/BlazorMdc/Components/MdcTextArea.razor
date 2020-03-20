@@ -36,11 +36,6 @@
 </div>
 
 @code {
-    [CascadingParameter]
-    private MdcCascadingDefaults MdcCascadingDefaults { get; set; } = new MdcCascadingDefaults();
-    private MdcCascadingDefaults myCascadingDefaults => (MdcCascadingDefaults is null) ? new MdcCascadingDefaults() : MdcCascadingDefaults;
-
-
     [Parameter] public MdcTextInputStyle? InputStyle { get; set; }
     [Parameter] public MdcTextAlign? TextAlign { get; set; }
     [Parameter] public string Type { get; set; } = "text";
@@ -84,15 +79,16 @@
 
     private void Setup()
     {
-        myInputStyle = (InputStyle is null) ? myCascadingDefaults.TextInputStyle : (MdcTextInputStyle)InputStyle;
-        myTextAlign = (TextAlign is null) ? myCascadingDefaults.TextAlign : (MdcTextAlign)TextAlign;
+        myInputStyle = AppliedDefaults.AppliedTextInputStyle(InputStyle);
+        myTextAlign = AppliedDefaults.AppliedTextAlign(TextAlign);
 
         floatingLabelClass = string.IsNullOrEmpty(CurrentValue) ? "" : "mdc-floating-label--float-above";
 
         mainDivClass = ((myInputStyle == MdcTextInputStyle.Outlined) ? " mdc-text-field--outlined" : "") +
                     ((myInputStyle == MdcTextInputStyle.FullWidth) ? " mdc-text-field--fullwidth" : "") +
                     (NoLabel ? " mdc-text-field--no-label" : "") +
-                    (Disabled ? " mdc-text-field--disabled" : "");
+                    (Disabled ? " mdc-text-field--disabled" : "") + 
+                    $" {CssClass} {AppliedDefaults.TextFieldCssClass}";
 
         alignClass = Utilities.GetTextAlignClass(myTextAlign);
     }

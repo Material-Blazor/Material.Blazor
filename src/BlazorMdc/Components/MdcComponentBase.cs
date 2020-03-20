@@ -8,6 +8,11 @@ namespace BlazorMdc.Components
 {
     public abstract class MdcComponentBase : ComponentBase
     {
+        [CascadingParameter]
+        private MdcCascadingDefaults CascadingDefaults { get; set; }
+
+        protected MdcCascadingDefaults AppliedDefaults => (CascadingDefaults == null) ? new MdcCascadingDefaults() : CascadingDefaults;
+
         /// <summary>
         /// Gets whether the component is disabled.
         /// </summary>

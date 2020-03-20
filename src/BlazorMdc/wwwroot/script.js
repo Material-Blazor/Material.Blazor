@@ -43,6 +43,18 @@ window.BlazorMdc = {
         }
     },
 
+    card: {
+        init: function (elem) {
+            const selector = '.mdc-button, .mdc-icon-button, .mdc-card__primary-action';
+
+            //Do not know how to get this job done, so cards don't yet have ripple
+            //[].map.call(document.querySelectorAll(selector), function (elem) {
+            //    return new MDCRipple(elem);
+            //});
+            //mdc.ripple.MDCRipple.attachTo(elem);
+        }
+    },
+
     checkBox: {
         setChecked: function (elem, formFieldElem, isChecked, isFormField) {
             const checkbox = mdc.checkbox.MDCCheckbox.attachTo(elem);
@@ -78,12 +90,15 @@ window.BlazorMdc = {
     dialog: {
         show: function (elem) {
             elem._dialog = elem._dialog || mdc.dialog.MDCDialog.attachTo(elem);
+
             return new Promise(resolve => {
                 const dialog = elem._dialog;
+
                 const callback = event => {
                     dialog.unlisten('MDCDialog:closing', callback);
                     resolve(event.detail.action);
                 };
+
                 dialog.listen('MDCDialog:closing', callback);
                 dialog.open();
             });
@@ -150,6 +165,21 @@ window.BlazorMdc = {
         }
     },
 
+    radioButtons: {
+        init: function (formFieldElem, radioButtons) {
+            const formField = mdc.formField.MDCFormField.attachTo(formFieldElem);
+
+            for (let i = 0; i < radioButtons.length; i++) {
+                let radio = mdc.radio.MDCRadio.attachTo(radioButtons[i].elementReference);
+
+                //Not sure if this is the right thing to do, so requires review
+                if (radioButtons[i].checked == true) {
+                    formField.input = radio;
+                }
+            }
+        }
+    },
+
     select: {
         init: function (elem) {
             mdc.select.MDCSelect.attachTo(elem);
@@ -171,7 +201,15 @@ window.BlazorMdc = {
 
     tabBar: {
         init: function (elem) {
-            mdc.tabBar.MDCTabBar.attachTo(elem);
+            elem._tabBar = mdc.tabBar.MDCTabBar.attachTo(elem);
+        },
+
+        setTab: function (elem, index) {
+            if (elem._tabBar) {
+                let tl = elem._tabBar.tabList_[index];
+                //elem._tabBar.tabList_[index].handleClick_();
+                tl.root_.click();
+            }
         }
     },
 

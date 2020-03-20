@@ -1,0 +1,10 @@
+﻿<div class="mdc-card__action-icons">
+    @ChildContent
+</div>
+
+@code {
+    [CascadingParameter]
+    private MdcCard Parent { get; set; }
+
+    [Parameter] public RenderFragment ChildContent { get; set; }
+}

@@ -1,5 +1,7 @@
 ﻿@typeparam TItem
 
+@inherits MdcComponentBase
+
 @inject IJSRuntime jsRuntime
 
 
@@ -8,11 +10,15 @@
     @foreach (var item in Items)
     {
         var tabIndex = "";
-        var clickIndex = index;
-        @if (index++ > 0 && ShowSeparators)
+        var clickIndex = index++;
+
+        @if (clickIndex == 0)
+        {
+            tabIndex = "0";
+        }
+        else if (ShowSeparators)
         {
             <li role="separator" class="mdc-list-divider"></li>
-            tabIndex = "0";
         }
 
         <li class="mdc-list-item"
@@ -22,17 +28,17 @@
             @onkeydown="@(() => OnItemKeyDownAsync(clickIndex))"
             @ontouchstart="@(() => OnItemTouchStartAsync(clickIndex))">
             
-            @if (ShowIcons)
+            @if (!SuppressIcons && Icon != null)
             {
                 <span class="mdc-list-item__graphic material-icons" aria-hidden="true">@Icon(item)</span>
             }
 
-            <span class="mdc-list-item__text">
+            <span class="mdc-list-item__text bmdc-full-width">
                 <span class="mdc-list-item__primary-text">@Title(item)</span>
 
                 @if (Subtitle != null)
                 {
-                    <span class="mdc-list-item__secondary-text">@Subtitle(item)</span>
+                    <span class="mdc-list-item__secondary-text bmdc-full-width">@Subtitle(item)</span>
                 }
             </span>
 
@@ -46,6 +52,7 @@
 
 
 @code {
+    [Parameter] public MdcListStyle? ListStyle { get; set; }
     [Parameter] public IEnumerable<TItem> Items { get; set; }
     [Parameter] public RenderFragment<TItem> Icon { get; set; }
     [Parameter] public RenderFragment<TItem> Title { get; set; }
@@ -58,21 +65,23 @@
     [Parameter] public EventCallback<int> OnKeyDown { get; set; }
     [Parameter] public EventCallback<int> OnTouchStart { get; set; }
     [Parameter] public bool ShowSeparators { get; set; }
-    [Parameter] public bool ShowIcons { get; set; }
     [Parameter] public bool KeyboardInteractions { get; set; }
     [Parameter] public bool Ripple { get; set; }
     [Parameter] public bool NonInteractive { get; set; }
+    [Parameter] public bool SuppressIcons { get; set; }
     [Parameter] public bool Dense { get; set; }
     [Parameter] public bool AvatarList { get; set; }
     [Parameter] public string Class { get; set; }
 
 
     private ElementReference elementReference;
-    private string listClass => ((Subtitle != null) ? " mdc-list--two-line" : "") +
-                                (NonInteractive ? " mdc-list--non-interactive" : "") +
-                                (Dense ? " mdc-list--dense" : "") +
-                                (AvatarList ? " mdc-list--avatar-list" : "") +
-                                " " + Class;
+    private MdcListStyle myListStyle => AppliedDefaults.AppliedListStyle(ListStyle);
+    private string listClass => ((myListStyle == MdcListStyle.Outlined) ? " mdc-card--outlined" : "") +
+                            ((Subtitle != null) ? " mdc-list--two-line" : "") +
+                            (NonInteractive ? " mdc-list--non-interactive" : "") +
+                            (Dense ? " mdc-list--dense" : "") +
+                            (AvatarList ? " mdc-list--avatar-list" : "") +
+                            " " + Class;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

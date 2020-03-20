@@ -1,34 +1,92 @@
 ﻿@page "/dialog"
 
-<h1 class="@MdcTypography.Heading4">Dialog samples</h1>
 
-See <code>DialogSample.razor</code> for sources.
-
-Note that the user can also press 'escape' to dismiss the dialog, and this produces a different result string.
-
-<p><MdcButton Label="Show dialog" OnClick="@ShowDialog"></MdcButton></p>
-
-@if (result != null)
+@if (!HideHeading)
 {
-    <p>Result: <strong>@result</strong></p>
+    <h1 class="@MdcTypography.Heading4">Dialog samples</h1>
+
+    <p>See <code>DialogSample.razor</code> for sources.</p>
+
+    <p>Note that the user can also press 'escape' to dismiss the dialog, and this produces a different result string.</p>
 }
 
-<MdcDialog @ref="@myDialog" Title="My dialog title">
+
+<p><MdcButton Label="Show regular dialog" OnClick="@ShowDialog1"></MdcButton></p>
+
+<p>Result: <strong>'@(result1 ?? "")'</strong></p>
+
+<MdcDialog @ref="@dialog1" Title="General dialog">
     <Body>
-        Please choose a fruit.
+        <p>Please choose a fruit.</p>
+        <p><MdcCheckbox @bind-Value="@checkMe" Label="Check me" /></p>
     </Body>
     <Buttons>
         <MdcButton Label="Orange" DialogAction="orange"></MdcButton>
-        <MdcButton Label="Other" DialogAction="other" ButtonStyle="@MdcButtonStyle.Text"></MdcButton>
+        <MdcButton Label="Apple" DialogAction="apple" ButtonStyle="@MdcButtonStyle.Text"></MdcButton>
     </Buttons>
 </MdcDialog>
 
-@code {
-    MdcDialog myDialog;
-    string result;
 
-    async Task ShowDialog()
+
+<p style="margin-top: 3rem;"><MdcButton Label="Show default confirmation dialog" OnClick="@ShowDialog2"></MdcButton></p>
+
+<p>Result: <strong>'@(result2 ?? "")'</strong></p>
+
+<MdcConfirmationDialog @ref="@dialog2" Title="Default confirmation dialog">
+
+</MdcConfirmationDialog>
+
+
+
+<p style="margin-top: 3rem;"><MdcButton Label="Show tailored confirmation dialog" OnClick="@ShowDialog3"></MdcButton></p>
+
+<p>Result: <strong>'@(result3 ?? "")'</strong></p>
+
+<MdcConfirmationDialog @ref="@dialog3" Title="Tailored confirmation dialog" InputText="overridden confirmation" ActionText="to play handball" InputDisabled="@disableInput">
+    <Body>
+        <p>Some markup before the confirmation message and input.</p>
+        <p><MdcCheckbox @bind-Value="@disableInput" Label="Disable confirmation input field" /></p>
+    </Body>
+    <UnconfirmedButtons>
+        <MdcButton Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
+        <MdcButton Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
+        <MdcButton Label="Bosh" LeadingIcon="sports_handball" Disabled="true" DialogAction="bosh" ButtonStyle="MdcButtonStyle.ContainedRaised" />
+    </UnconfirmedButtons>
+    <ConfirmedButtons>
+        <MdcButton Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
+        <MdcButton Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
+        <MdcButton Label="Bosh" LeadingIcon="sports_handball" DialogAction="bosh" ButtonStyle="MdcButtonStyle.ContainedRaised" />
+    </ConfirmedButtons>
+</MdcConfirmationDialog>
+
+
+
+@code {
+    [Parameter] public bool HideHeading { get; set; }
+
+    MdcDialog dialog1;
+    string result1;
+    bool checkMe;
+    bool disableInput;
+
+    async Task ShowDialog1()
     {
-        result = await myDialog.ShowAsync();
+        result1 = await dialog1.ShowAsync();
+    }
+
+    MdcConfirmationDialog dialog2;
+    string result2;
+
+    async Task ShowDialog2()
+    {
+        result2 = await dialog2.ShowAsync();
+    }
+
+    MdcConfirmationDialog dialog3;
+    string result3;
+
+    async Task ShowDialog3()
+    {
+        result3 = await dialog3.ShowAsync();
     }
 }
