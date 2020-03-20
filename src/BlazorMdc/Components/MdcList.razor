@@ -28,7 +28,7 @@
             @onkeydown="@(() => OnItemKeyDownAsync(clickIndex))"
             @ontouchstart="@(() => OnItemTouchStartAsync(clickIndex))">
             
-            @if (Icon != null)
+            @if (!SuppressIcons && Icon != null)
             {
                 <span class="mdc-list-item__graphic material-icons" aria-hidden="true">@Icon(item)</span>
             }
@@ -68,6 +68,7 @@
     [Parameter] public bool KeyboardInteractions { get; set; }
     [Parameter] public bool Ripple { get; set; }
     [Parameter] public bool NonInteractive { get; set; }
+    [Parameter] public bool SuppressIcons { get; set; }
     [Parameter] public bool Dense { get; set; }
     [Parameter] public bool AvatarList { get; set; }
     [Parameter] public string Class { get; set; }
