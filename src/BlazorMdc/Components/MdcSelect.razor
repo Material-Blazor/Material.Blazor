@@ -56,11 +56,6 @@
     }
 
 
-    [CascadingParameter]
-    private MdcCascadingDefaults MdcCascadingDefaults { get; set; }
-    private MdcCascadingDefaults myCascadingDefaults => (MdcCascadingDefaults is null) ? new MdcCascadingDefaults() : MdcCascadingDefaults;
-
-
     [Parameter] public MdcSelectInputStyle? InputStyle { get; set; }
     [Parameter] public MdcTextAlign? TextAlign { get; set; }
     [Parameter] public string Label { get; set; }
@@ -106,8 +101,8 @@
         // results in the floating label jumping to the wrong place.
         if (initialize || !object.Equals(Value, cachedCurrentValue))
         {
-            myInputStyle = (InputStyle is null) ? myCascadingDefaults.SelectInputStyle : (MdcSelectInputStyle)InputStyle;
-            myTextAlign = (TextAlign is null) ? myCascadingDefaults.TextAlign : (MdcTextAlign)TextAlign;
+            myInputStyle = AppliedDefaults.AppliedSelectInputStyle(InputStyle);
+            myTextAlign = AppliedDefaults.AppliedTextAlign(TextAlign);
             cachedCurrentValue = (Value is null) ? Items.FirstOrDefault().DataValue : Value;
             selectedText = Items.Where(i => object.Equals(i.DataValue, cachedCurrentValue)).FirstOrDefault().Text;
             mainDivClass =  ((myInputStyle == MdcSelectInputStyle.Outlined) ? " mdc-select--outlined" : "") +

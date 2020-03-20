@@ -1,4 +1,6 @@
-﻿@inject IJSRuntime jsRuntime
+﻿@inherits MdcComponentBase
+
+@inject IJSRuntime jsRuntime
 
 
 <div class="bmdc-dp-day-pad__button-container">
@@ -10,11 +12,6 @@
 
 
 @code {
-    [CascadingParameter]
-    private MdcCascadingDefaults MdcCascadingDefaults { get; set; } = new MdcCascadingDefaults();
-    private MdcCascadingDefaults myCascadingDefaults => (MdcCascadingDefaults is null) ? new MdcCascadingDefaults() : MdcCascadingDefaults;
-
-
     [Parameter] public DateTime CurrentDate { get; set; }
     [Parameter] public DateTime DisplayDate { get; set; }
     [Parameter] public DateTime StartOfDisplayMonth { get; set; }
@@ -25,7 +22,7 @@
 
 
     private ElementReference elementReference;
-    private MdcDateSelectionCriteria myCriteria => (DateSelectionCriteria is null) ? myCascadingDefaults.DateSelectionCriteria : (MdcDateSelectionCriteria)DateSelectionCriteria;
+    private MdcDateSelectionCriteria myCriteria => AppliedDefaults.AppliedDateSelectionCriteria(DateSelectionCriteria);
     private string text => Utilities.DateToString(DisplayDate);
     private int day => DisplayDate.Day;
     private string buttonStyleClass => (DisplayDate == CurrentDate) ? "mdc-button--unelevated" : "";

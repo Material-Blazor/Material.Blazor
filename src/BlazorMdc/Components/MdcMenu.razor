@@ -10,10 +10,6 @@
 
 
 @code {
-    [CascadingParameter]
-    private MdcCascadingDefaults MdcCascadingDefaults { get; set; } = new MdcCascadingDefaults();
-    private MdcCascadingDefaults myCascadingDefaults => (MdcCascadingDefaults is null) ? new MdcCascadingDefaults() : MdcCascadingDefaults;
-
     [Parameter] public RenderFragment ChildContent { get; set; }
 
     private DotNetObjectReference<MdcMenu> objectReference;

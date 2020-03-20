@@ -33,11 +33,6 @@
 
 
 @code {
-    [CascadingParameter]
-    private MdcCascadingDefaults MdcCascadingDefaults { get; set; }
-    private MdcCascadingDefaults myCascadingDefaults => (MdcCascadingDefaults is null) ? new MdcCascadingDefaults() : MdcCascadingDefaults;
-
-
     [Parameter] public MdcSelectInputStyle? InputStyle { get; set; }
     [Parameter] public string Label { get; set; }
     [Parameter] public MdcDateSelectionCriteria? DateSelectionCriteria { get; set; }
@@ -81,7 +76,7 @@
         // results in the floating label jumping to the wrong place.
         if (initialize || Value != cachedCurrentValue)
         {
-            myInputStyle = (InputStyle is null) ? myCascadingDefaults.SelectInputStyle : (MdcSelectInputStyle)InputStyle;
+            myInputStyle = AppliedDefaults.AppliedSelectInputStyle(InputStyle);
             initialValue = Value;
             cachedCurrentValue = Value;
             initialText = Utilities.DateToString(Value);

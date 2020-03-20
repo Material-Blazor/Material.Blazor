@@ -1,5 +1,7 @@
 ﻿@typeparam TItem
 
+@inherits MdcComponentBase
+
 @inject IJSRuntime jsRuntime
 
 
@@ -50,11 +52,6 @@
 
 
 @code {
-    [CascadingParameter]
-    private MdcCascadingDefaults MdcCascadingDefaults { get; set; } = new MdcCascadingDefaults();
-    private MdcCascadingDefaults myCascadingDefaults => (MdcCascadingDefaults is null) ? new MdcCascadingDefaults() : MdcCascadingDefaults;
-
-
     [Parameter] public MdcListStyle? ListStyle { get; set; }
     [Parameter] public IEnumerable<TItem> Items { get; set; }
     [Parameter] public RenderFragment<TItem> Icon { get; set; }
@@ -77,7 +74,7 @@
 
 
     private ElementReference elementReference;
-    private MdcListStyle myListStyle => (ListStyle is null) ? myCascadingDefaults.ListStyle : (MdcListStyle)ListStyle;
+    private MdcListStyle myListStyle => AppliedDefaults.AppliedListStyle(ListStyle);
     private string listClass => ((myListStyle == MdcListStyle.Outlined) ? " mdc-card--outlined" : "") +
                             ((Subtitle != null) ? " mdc-list--two-line" : "") +
                             (NonInteractive ? " mdc-list--non-interactive" : "") +

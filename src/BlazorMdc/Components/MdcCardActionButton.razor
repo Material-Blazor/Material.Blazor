@@ -1,4 +1,6 @@
-﻿<MdcButton ButtonStyle="@myButtonStyle" 
+﻿@inherits MdcComponentBase
+
+<MdcButton ButtonStyle="@myButtonStyle" 
            Type="@Type" 
            Label="@Label"
            Class="@myClass"
@@ -12,11 +14,6 @@
 
 
 @code {
-    [CascadingParameter]
-    private MdcCascadingDefaults MdcCascadingDefaults { get; set; } = new MdcCascadingDefaults();
-    private MdcCascadingDefaults myCascadingDefaults => (MdcCascadingDefaults is null) ? new MdcCascadingDefaults() : MdcCascadingDefaults;
-
-
     [Parameter] public MdcButtonStyle? ButtonStyle { get; set; }
     [Parameter] public string Type { get; set; } = "button";
     [Parameter] public string Label { get; set; }
@@ -30,5 +27,5 @@
 
 
     private string myClass => $"{Class} mdc-card__action mdc-card__action--button";
-    private MdcButtonStyle myButtonStyle => (ButtonStyle is null) ? myCascadingDefaults.CardActionButtonStyle : (MdcButtonStyle) ButtonStyle;
+    private MdcButtonStyle myButtonStyle => AppliedDefaults.AppliedCardActionButtonStyle(ButtonStyle);
 }

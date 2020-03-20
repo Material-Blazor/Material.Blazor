@@ -21,11 +21,6 @@
 
 
 @code {
-    [CascadingParameter]
-    private MdcCascadingDefaults MdcCascadingDefaults { get; set; } = new MdcCascadingDefaults();
-    private MdcCascadingDefaults myCascadingDefaults => (MdcCascadingDefaults is null) ? new MdcCascadingDefaults() : MdcCascadingDefaults;
-
-
     [Parameter] public MdcButtonStyle? ButtonStyle { get; set; }
     [Parameter] public string Type { get; set; } = "button";
     [Parameter] public string Label { get; set; }
@@ -74,7 +69,7 @@
 
     private void Setup()
     {
-        myButtonStyle = (ButtonStyle is null) ? myCascadingDefaults.ButtonStyle : (MdcButtonStyle)ButtonStyle;
+        myButtonStyle = AppliedDefaults.AppliedButtonStyle(ButtonStyle);
     }
 
 
