@@ -68,6 +68,7 @@ The following is a list of components, but lacks documentation on how they are u
 | `MdcTopAppBar` | Styling for the short variety of top app bar is wrong when a drawer is opened. |
 | `MdcTextField` | Floating labels do not float when data is inserted automatically by the browser. Probably also affects `MdcTextArea` and will definitely affect `MdcNumericDoubleField` and `MdcNumericIntField` which are derived from `MdcTextField` |
 | `MdcDatePicker`| As a stylistic issue, when the year pad is being shown, if the current year is more than 7 lines down (28+ years into the year list), it doesn't show because the year list is scrolled to the top. The list should initialize to a scrolled position showing the current year. |
+| `MdcDialog` | When using check boxes or radio buttons in a dialog, sometimes the initial rendering of the ripple/selection area is smaller than it should be, and located to the upper left (so probably smaller than it should be but still anchored to the top left). |
 
 ## Future Development
 
