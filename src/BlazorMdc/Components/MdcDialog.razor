@@ -29,16 +29,9 @@
     private ElementReference dialogElem;
 
     public async Task<string> ShowAsync()
-        => await jsRuntime.InvokeAsync<string>("BlazorMdc.dialog.show", dialogElem);
+        => await jsRuntime.InvokeAsync<string>("BlazorMdc.dialog.show", dialogElem, EscapeKeyAction, ScrimClickAction);
 
     public async Task HideAsync()
         => await jsRuntime.InvokeAsync<string>("BlazorMdc.dialog.hide", dialogElem);
 
-    protected override async Task OnAfterRenderAsync(bool isFirst)
-    {
-        await base.OnAfterRenderAsync(isFirst);
-
-        await jsRuntime.InvokeAsync<string>("BlazorMdc.dialog.setScrimClickAction", dialogElem, ScrimClickAction);
-        await jsRuntime.InvokeAsync<string>("BlazorMdc.dialog.setEscapeKeyAction", dialogElem, EscapeKeyAction);
-    }
 }

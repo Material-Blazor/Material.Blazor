@@ -88,7 +88,7 @@ window.BlazorMdc = {
     },
 
     dialog: {
-        show: function (elem) {
+        show: function (elem, newEscapeKeyAction, newScrimClickAction) {
             elem._dialog = elem._dialog || mdc.dialog.MDCDialog.attachTo(elem);
 
             return new Promise(resolve => {
@@ -100,6 +100,8 @@ window.BlazorMdc = {
                 };
 
                 dialog.listen('MDCDialog:closing', callback);
+                dialog.escapeKeyAction = newEscapeKeyAction;
+                dialog.scrimClickAction = newScrimClickAction;
                 dialog.open();
             });
         },
@@ -110,17 +112,6 @@ window.BlazorMdc = {
             }
         },
 
-        setEscapeKeyAction(elem, newAction) {
-            if (elem._dialog) {
-                elem._dialog.escapeKeyAction = newAction;
-            }
-        },
-
-        setScrimClickAction(elem, newAction) {
-            if (elem._dialog) {
-                elem._dialog.scrimClickAction = newAction;
-            }
-        },
     },
 
     drawer: {
