@@ -108,7 +108,19 @@ window.BlazorMdc = {
             if (elem._dialog) {
                 elem._dialog.close(dialogAction || 'dismissed');
             }
-        }
+        },
+
+        setEscapeKeyAction(elem, newAction) {
+            if (elem._dialog) {
+                elem._dialog.escapeKeyAction = newAction;
+            }
+        },
+
+        setScrimClickAction(elem, newAction) {
+            if (elem._dialog) {
+                elem._dialog.scrimClickAction = newAction;
+            }
+        },
     },
 
     drawer: {

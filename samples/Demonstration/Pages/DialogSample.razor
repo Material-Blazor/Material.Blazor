@@ -7,11 +7,11 @@
 
     <p>See <code>DialogSample.razor</code> for sources.</p>
 
-    <p>Note that the user can also press 'escape' to dismiss the dialog, and this produces a different result string.</p>
+    <p>Note that the user can also press 'escape' or click in the scrim to dismiss the dialog (unless those actions are disabled, see example 4 below), and this produces a different result string.</p>
 }
 
 
-<p><MdcButton Label="Show regular dialog" OnClick="@ShowDialog1"></MdcButton></p>
+<p><MdcButton Label="1 - Show regular dialog" OnClick="@ShowDialog1"></MdcButton></p>
 
 <p>Result: <strong>'@(result1 ?? "")'</strong></p>
 
@@ -28,7 +28,7 @@
 
 
 
-<p style="margin-top: 3rem;"><MdcButton Label="Show default confirmation dialog" OnClick="@ShowDialog2"></MdcButton></p>
+<p style="margin-top: 3rem;"><MdcButton Label="2 - Show default confirmation dialog" OnClick="@ShowDialog2"></MdcButton></p>
 
 <p>Result: <strong>'@(result2 ?? "")'</strong></p>
 
@@ -38,7 +38,7 @@
 
 
 
-<p style="margin-top: 3rem;"><MdcButton Label="Show tailored confirmation dialog" OnClick="@ShowDialog3"></MdcButton></p>
+<p style="margin-top: 3rem;"><MdcButton Label="3 - Show tailored confirmation dialog" OnClick="@ShowDialog3"></MdcButton></p>
 
 <p>Result: <strong>'@(result3 ?? "")'</strong></p>
 
@@ -58,6 +58,26 @@
         <MdcButton Label="Bosh" LeadingIcon="sports_handball" DialogAction="bosh" ButtonStyle="MdcButtonStyle.ContainedRaised" />
     </ConfirmedButtons>
 </MdcConfirmationDialog>
+
+
+<p style="margin-top: 3rem;"><MdcButton Label="Show dialog with scrim and escape disabled" OnClick="@ShowDialog4"></MdcButton></p>
+
+<p>Result: <strong>'@(result4 ?? "")'</strong></p>
+
+<MdcDialog @ref="@dialog4" Title="4 - General dialog with scrim and escape diabled"
+           ScrimClickAction=""
+           EscapeKeyAction="">
+    <Body>
+        <p>Please choose a fruit.</p>
+        <p><MdcCheckbox @bind-Value="@checkMe" Label="Check me" /></p>
+    </Body>
+    <Buttons>
+        <MdcButton Label="Orange" DialogAction="orange"></MdcButton>
+        <MdcButton Label="Apple" DialogAction="apple" ButtonStyle="@MdcButtonStyle.Text"></MdcButton>
+    </Buttons>
+</MdcDialog>
+
+
 
 
 
@@ -89,4 +109,13 @@
     {
         result3 = await dialog3.ShowAsync();
     }
+
+    MdcDialog dialog4;
+    string result4;
+
+    async Task ShowDialog4()
+    {
+        result4 = await dialog4.ShowAsync();
+    }
+
 }
