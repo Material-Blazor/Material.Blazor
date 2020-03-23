@@ -1,22 +1,14 @@
 ﻿@page "/"
-@using System.Runtime.InteropServices
-
 
 <h1 class="@MdcTypography.Heading3">Hello, world!</h1>
 
 <p>This sample demonstrates the use of RazorComponents.MaterialDesign components.</p>
 
-<p>Currently executing on <strong>@runtime</strong>.</p>
+<p>Currently executing on <strong>@runtime</strong> built in <strong>@mode</strong> mode.</p>
 
 
 
 @for (int i = 0; i < 10; i++)
 {
     <p style="margin-top: 5em;">A spacing paragraph to test scrolling and the top menu's scroll behaviour.</p>
-}
-
-@code {
-    string runtime = RuntimeInformation.IsOSPlatform(OSPlatform.Create("WEBASSEMBLY"))
-        ? "Mono WebAssembly"
-        : ".NET Core";
 }
