@@ -69,7 +69,7 @@ window.BlazorMdc = {
 
     dataTable: {
         init: function (elem) {
-            mdc.MDCDataTable.attachTo(elem);
+            //mdc.dataTable.MDCDataTable.attachTo(elem);
         }
     },
 

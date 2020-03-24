@@ -1,4 +1,6 @@
-﻿<MdcIconButton Icon="@Icon"
+﻿@inherits MdcComponentBase
+
+<MdcIconButton Icon="@Icon"
                Type="@Type"
                Class="@myClass"
                OnClick="@OnClick"
@@ -11,7 +13,6 @@
 @code {
     [Parameter] public string Icon { get; set; }
     [Parameter] public string Type { get; set; } = "button";
-    [Parameter] public string Class { get; set; }
     [Parameter] public EventCallback OnClick { get; set; }
     [Parameter] public EventCallback OnMouseDown { get; set; }
     [Parameter] public EventCallback OnKeyDown { get; set; }

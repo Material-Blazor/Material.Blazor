@@ -1,6 +1,6 @@
 ﻿@inherits MdcComponentBase
-@inject IJSRuntime jsRuntime
 
+@inject IJSRuntime jsRuntime
 
 <button @ref="@elementReference" 
         class="mdc-button @mainDivClass"
@@ -12,7 +12,6 @@
         tabindex="@TabIndex"
         data-mdc-dialog-action="@DialogAction" 
         type="@Type">
-
     <div class="mdc-button__ripple"></div>
     @LeadingIconMarkup
     <span class="mdc-button__label">@Label</span>
@@ -25,7 +24,6 @@
     [Parameter] public string Type { get; set; } = "button";
     [Parameter] public string Label { get; set; }
     [Parameter] public string TabIndex { get; set; } = "0";
-    [Parameter] public string Class { get; set; }
     [Parameter] public string? LeadingIcon { get; set; }
     [Parameter] public string? TrailingIcon { get; set; }
     [Parameter] public EventCallback OnClick { get; set; }
