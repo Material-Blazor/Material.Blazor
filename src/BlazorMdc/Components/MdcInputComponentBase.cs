@@ -30,11 +30,6 @@ namespace BlazorMdc.Components
         [Parameter] public string Id { get; set; } = Utilities.GenerateCssElementSelector();
 
         /// <summary>
-        /// Gets a value for the component's 'class' attribute.
-        /// </summary>
-        [Parameter] public string Class { get; set; }
-
-        /// <summary>
         /// Gets or sets the value of the input. This should be used with two-way binding.
         /// </summary>
         /// <example>

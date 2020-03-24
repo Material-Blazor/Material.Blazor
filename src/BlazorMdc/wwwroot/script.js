@@ -67,6 +67,12 @@ window.BlazorMdc = {
         }
     },
 
+    dataTable: {
+        init: function (elem) {
+            mdc.MDCDataTable.attachTo(elem);
+        }
+    },
+
     datePicker: {
         init: function (elem, dotNetObject) {
             elem._picker = mdc.select.MDCSelect.attachTo(elem);

@@ -14,6 +14,11 @@ namespace BlazorMdc.Components
         protected MdcCascadingDefaults AppliedDefaults => (CascadingDefaults == null) ? new MdcCascadingDefaults() : CascadingDefaults;
 
         /// <summary>
+        /// Gets a value for the component's 'class' attribute.
+        /// </summary>
+        [Parameter] public string Class { get; set; }
+
+        /// <summary>
         /// Gets whether the component is disabled.
         /// </summary>
         [Parameter] public bool Disabled { get; set; } = false;

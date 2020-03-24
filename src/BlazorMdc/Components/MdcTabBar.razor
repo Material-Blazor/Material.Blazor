@@ -39,24 +39,23 @@
     </div>
 </div>
 
-<CascadingValue Value="this">
-    @if (!hideContent)
-    { 
-        int i = 0;
 
-        @foreach (var item in Items)
+@if (!hideContent)
+{ 
+    int tabNum = 0;
+
+    @foreach (var item in Items)
+    {
+        if (tabNum++ == cachedTabIndex)
         {
-            if (i++ == cachedTabIndex)
-            {
-                <div class="bmdc-tab-content-container">
-                    <div class="@contentClass">
-                        @Content(item)
-                    </div>
+            <div class="bmdc-tab-content-container">
+                <div class="@contentClass">
+                    @Content(item)
                 </div>
-            }
+            </div>
         }
     }
-</CascadingValue>
+}
 
 
 @code {
