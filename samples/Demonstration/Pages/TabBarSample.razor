@@ -6,6 +6,8 @@
 
 <p><MdcSwitch @bind-Value="@stacked" Label="Stack Icons" /></p>
 
+<p>Current tab index: @tabIndex</p>
+
 <p><MdcButton Label="Got to Alarm" OnClick="@ButtonClickAsync" /></p>
 
 <p style="margin-bottom: 2em;">&nbsp;</p>
@@ -13,7 +15,7 @@
 <MdcTabBar @ref="tabBar"
            Items="@tabItems"
            Context="item"
-           TabIndex="5"
+           @bind-TabIndex="@tabIndex"
            StackIcons="@stacked">
 
     <Label>@item.Icon</Label>
@@ -33,6 +35,7 @@
 @code {
     private bool stacked = false;
     private MdcTabBar<TabItem> tabBar;
+    private int tabIndex = 5;
 
     private TabItem[] tabItems =
         {
@@ -71,6 +74,7 @@
 
     private async Task ButtonClickAsync()
     {
-        await tabBar.SetTabIndexAsync(1);
+        //await tabBar.SetTabIndexAsync(1);
+        tabIndex = 1;
     }
 }

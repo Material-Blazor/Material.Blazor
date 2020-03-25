@@ -46,7 +46,7 @@
 
     @foreach (var item in Items)
     {
-        if (tabNum++ == cachedTabIndex)
+        if (tabNum++ == TabIndex)
         {
             <div class="bmdc-tab-content-container">
                 <div class="@contentClass">
@@ -59,7 +59,25 @@
 
 
 @code {
-    [Parameter] public int TabIndex { get; set; }
+    private int _tabIndex;
+    [Parameter] public int TabIndex
+    {
+        get => _tabIndex;
+
+        set
+        {
+            if (value != _tabIndex)
+            {
+                _tabIndex = value;
+                SetTabIndexAsync(_tabIndex);
+                _ = TabIndexChanged.InvokeAsync(value);
+            }
+        }
+    }
+
+    [Parameter] public EventCallback<int> TabIndexChanged { get; set; }
+
+
     [Parameter] public bool StackIcons { get; set; }
     [Parameter] public EventCallback<int> OnTabClick { get; set; }
 
@@ -70,7 +88,6 @@
 
 
     private int initialTabIndex;
-    private int cachedTabIndex;
     private string contentClass = "";
     private bool hideContent = false;
     private string stackClass => StackIcons ? "mdc-tab--stacked" : "";
@@ -87,11 +104,10 @@
     {
         base.OnInitialized();
         initialTabIndex = TabIndex;
-        cachedTabIndex = TabIndex;
     }
 
 
-    public async Task SetTabIndexAsync(int index)
+    private async Task SetTabIndexAsync(int index)
     {
         await jsRuntime.InvokeAsync<object>("BlazorMdc.tabBar.setTab", elementReference, index);
     }
@@ -99,11 +115,11 @@
 
     private async Task OnTabClickAsync(int index)
     {
-        if (index != cachedTabIndex)
+        if (index != TabIndex)
         {
             string nextClass = "";
 
-            if (index < cachedTabIndex)
+            if (index < TabIndex)
             {
                 nextClass = InFromLeft;
                 contentClass = OutToRight;
@@ -118,7 +134,7 @@
 
             hideContent = true;
             contentClass = nextClass;
-            cachedTabIndex = index;
+            TabIndex = index;
             hideContent = false;
 
             StateHasChanged();
