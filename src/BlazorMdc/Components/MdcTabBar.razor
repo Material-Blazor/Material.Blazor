@@ -15,7 +15,7 @@
                 @foreach (var item in Items)
                 {
                     int index = i++;
-                    bool selected = (index == initialTabIndex);
+                    bool selected = (index == TabIndex);
                     string buttonActive = selected ? "mdc-tab--active" : "";
                     string indicatorActive = selected ? "mdc-tab-indicator--active" : "";
 
@@ -66,11 +66,9 @@
 
         set
         {
-            if (value != _tabIndex)
+            if (!suppressTwoWayBinding && value != _tabIndex)
             {
-                _tabIndex = value;
-                SetTabIndexAsync(_tabIndex);
-                _ = TabIndexChanged.InvokeAsync(value);
+                _ = SetTabIndexAsync(value);
             }
         }
     }
@@ -87,9 +85,9 @@
     [Parameter] public RenderFragment<TItem> Content { get; set; }
 
 
-    private int initialTabIndex;
     private string contentClass = "";
     private bool hideContent = false;
+    private bool suppressTwoWayBinding = false;
     private string stackClass => StackIcons ? "mdc-tab--stacked" : "";
     private ElementReference elementReference;
 
@@ -100,14 +98,7 @@
     private const string OutToRight = "bmdc-slide-out-to-right";
 
 
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-        initialTabIndex = TabIndex;
-    }
-
-
-    private async Task SetTabIndexAsync(int index)
+    public async Task SetTabIndexAsync(int index)
     {
         await jsRuntime.InvokeAsync<object>("BlazorMdc.tabBar.setTab", elementReference, index);
     }
@@ -117,6 +108,7 @@
     {
         if (index != TabIndex)
         {
+            suppressTwoWayBinding = true;
             string nextClass = "";
 
             if (index < TabIndex)
@@ -134,12 +126,14 @@
 
             hideContent = true;
             contentClass = nextClass;
-            TabIndex = index;
+            _tabIndex = index;
+            await TabIndexChanged.InvokeAsync(_tabIndex);
             hideContent = false;
 
             StateHasChanged();
 
             await OnTabClick.InvokeAsync(index);
+            suppressTwoWayBinding = false;
         }
     }
 
