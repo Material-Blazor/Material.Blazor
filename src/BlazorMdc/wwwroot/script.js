@@ -216,7 +216,6 @@ window.BlazorMdc = {
         setTab: function (elem, index) {
             if (elem._tabBar) {
                 let tl = elem._tabBar.tabList_[index];
-                //elem._tabBar.tabList_[index].handleClick_();
                 tl.root_.click();
             }
         }
