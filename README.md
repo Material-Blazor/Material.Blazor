@@ -33,7 +33,7 @@ There are four implemented solution configurations:
 |`Debug_SSB`|Also a debug build, defines DEBUG abd ServerSideBlazor. It executes in the context of the web server and the the client being displayed by RPC|
 |`Release_xSB`|These two (x=C or S) configurations are the same as the debug versions but are built as release and the DEBUG constant is replaced by RELEASE.|
 
-The home page of the demonstation application shows the execution environment.
+The home page of the demonstration application shows the execution environment.
 
 ## Components
 
