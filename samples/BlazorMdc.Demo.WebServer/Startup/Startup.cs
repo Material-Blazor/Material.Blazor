@@ -10,7 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace Demonstration
+namespace BlazorMdc.Demo.WebServer
 {
     public class Startup
     {
@@ -35,6 +35,9 @@ namespace Demonstration
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+#if ClientSideBlazor
+                app.UseWebAssemblyDebugging();
+#endif
             }
             else
             {
@@ -46,12 +49,20 @@ namespace Demonstration
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
+#if ClientSideBlazor
+            app.UseBlazorFrameworkFiles();
+#endif
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
+#if ClientSideBlazor
+                endpoints.MapFallbackToPage("/index_csb");
+#else
                 endpoints.MapBlazorHub();
-                endpoints.MapFallbackToPage("/_Host");
+                endpoints.MapFallbackToPage("/index_ssb");
+#endif
             });
         }
     }

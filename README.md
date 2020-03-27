@@ -22,6 +22,19 @@ BlazorMdc is forked from [Steve Sanderson's](https://blog.stevensanderson.com/) 
 
 _TBD_
 
+## Demonstration from local build
+If you have cloned the repository and are building from source there is a project under 'samples' that should be selected as the startup project. That project is BlazorMDC.Demo.WebServer.
+
+There are four implemented solution configurations:
+
+| Configuration | Notes |
+| :------------ | :---- |
+| `Debug_CSB` | This is a debug build. It defines two constants, DEBUG, and ClientSideBlazor. It executes using WASM. |
+|`Debug_SSB`|Also a debug build, defines DEBUG abd ServerSideBlazor. It executes in the context of the web server and the the client being displayed by RPC|
+|`Release_xSB`|These two (x=C or S) configurations are the same as the debug versions but are built as release and the DEBUG constant is replaced by RELEASE.|
+
+The home page of the demonstration application shows the execution environment as well as the build mode.
+
 ## Components
 
 The following is a list of components, but lacks documentation on how they are used. Since forking from [RazorComponents.MaterialDesign](https://github.com/SteveSandersonMS/RazorComponents.MaterialDesign), some components await review - these are highlighed.
