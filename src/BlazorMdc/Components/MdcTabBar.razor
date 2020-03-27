@@ -74,6 +74,11 @@
             {
                 _ = SetTabIndexAsync(value);
             }
+
+            if (!hasRendered)
+            {
+                _tabIndex = value;
+            }
         }
     }
 
@@ -94,6 +99,7 @@
     private bool suppressTwoWayBinding = false;
     private string stackClass => StackIcons ? "mdc-tab--stacked" : "";
     private ElementReference elementReference;
+    private bool hasRendered = false;
 
 
     private const string InFromLeft = "bmdc-slide-in-from-left";
@@ -155,6 +161,7 @@
         @if (firstRender)
         {
             await jsRuntime.InvokeAsync<object>("BlazorMdc.tabBar.init", elementReference);
+            hasRendered = true;
         }
     }
 }
