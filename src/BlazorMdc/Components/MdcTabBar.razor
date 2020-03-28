@@ -46,8 +46,10 @@
 
     @foreach (var item in Items)
     {
+        System.Diagnostics.Debug.WriteLine($"tab num: {tabNum}");
         if (tabNum++ == TabIndex)
         {
+            System.Diagnostics.Debug.WriteLine($"selected content");
             <div class="bmdc-tab-content-container">
                 <div class="@contentClass">
                     @Content(item)
