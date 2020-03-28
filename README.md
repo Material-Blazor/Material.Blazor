@@ -41,7 +41,7 @@ The following is a list of components, but lacks documentation on how they are u
 
 | Component | Notes |
 | :-------- | :---- |
-| `MdcAutocomplete` | A [Material Text Field](https://material.io/develop/web/components/input-controls/text-field/) that drops a [menu](https://material.io/develop/web/components/menus/) for auto completion. Has parameters to allow blank results and for whitespace to be ignored in searches. Might consider forking and adapting [Blazored.Typeahead](https://github.com/Blazored/Typeahead) with MT styling. |
+| `MdcpAutocomplete` | A [Material Text Field](https://material.io/develop/web/components/input-controls/text-field/) that drops a [menu](https://material.io/develop/web/components/menus/) for auto completion. Has parameters to allow blank results and for whitespace to be ignored in searches. Might consider forking and adapting [Blazored.Typeahead](https://github.com/Blazored/Typeahead) with MT styling. |
 | `MdcButton` | A [Material Button](https://material.io/develop/web/components/buttons/). |
 | `MdcCard` | A [Material Card](https://material.io/develop/web/components/cards/). _Requires ripple effect._ |
 | `MdcCheckbox` | A [Material Checkbox](https://material.io/develop/web/components/input-controls/checkboxes/). Implements a two state on/off checkbox, but not yet an indeterminate variety. |
@@ -55,8 +55,8 @@ The following is a list of components, but lacks documentation on how they are u
 | `MdcList` | A [Material List](https://material.io/develop/web/components/lists/). |
 | `MdcMenu` | A [Material Menu](https://material.io/develop/web/components/menus/). Does not implement sub menus. May redesign parameterization. |
 | `MdcNavLink` | A [Material List Item](https://material.io/develop/web/components/menus/) wrapping a Blazor `NavLink`. _Awaits review_. |
-| `MdcNumericDoubleField` | Wraps `MdcTextField` to format numeric entry of a `double`. The format is applied when the component lacks focus, at which point the field is a text field holding the formatted number as text. When the field gains focus it switches to a number field. Allows for percentages to be entered as a whole number, e.g. typing "12" will yield a `double` equal to '0.12' and displaying '12%' when lacking focus. We intend to find a similar way to handle [basis points](https://en.wikipedia.org/wiki/Basis_point). |
-| `MdcNumericIntField` | A wrapper for `MdcNumericDoubleField` for `int` variables. |
+| `MdcpNumericDoubleField` | Wraps `MdcTextField` to format numeric entry of a `double`. The format is applied when the component lacks focus, at which point the field is a text field holding the formatted number as text. When the field gains focus it switches to a number field. Allows for percentages to be entered as a whole number, e.g. typing "12" will yield a `double` equal to '0.12' and displaying '12%' when lacking focus. We intend to find a similar way to handle [basis points](https://en.wikipedia.org/wiki/Basis_point). |
+| `MdcpNumericIntField` | A wrapper for `MdcpNumericDoubleField` for `int` variables. |
 | `MdcRadioButtons` | A group of [Material Radio Buttons](https://material.io/develop/web/components/input-controls/radio-buttons/) with modification to list buttons vertically as well as the default inline. |
 | `MdcSelect` | A [Material Select Menu](https://material.io/develop/web/components/input-controls/select-menus/). |
 | `MdcSwitch` | A [Material Switch](https://material.io/develop/web/components/input-controls/switches/). |
@@ -69,18 +69,18 @@ The following is a list of components, but lacks documentation on how they are u
  
 | Utility | Notes |
 | :-------- | :---- |
-| `MdcCascadingDefaults` | Allows you to set up defaults such as button style (filled, outlined etc), text area style (filled or outlined) |
+| `MdcpCascadingDefaults` | Allows you to set up defaults such as button style (filled, outlined etc), text area style (filled or outlined) |
 | `MdcTypography` | Constants for standard Material Theme typography. |
 
 ## Known Issues
 
 | Component | Issue |
 | :-------- | :---- |
-| `MdcAutocomplete` | Shows a flash of unstyled content ("FOUC") when a field that disallows blanks is cleared and then loses focus. The floating label stops floating and superimposes over the selected text. |
-| `MdcNumericDoubleField` | When focus is lost for non-integer input, there's a FOUC where the field indicates that validation has failed with a red underline/outline for the filled/outlined styles respectively. |
-| `MdcNumericDoubleField` | Empty field input correctly defaults to zero value but loses floating label. This is another FOUC. |
+| `MdcpAutocomplete` | Shows a flash of unstyled content ("FOUC") when a field that disallows blanks is cleared and then loses focus. The floating label stops floating and superimposes over the selected text. |
+| `MdcpNumericDoubleField` | When focus is lost for non-integer input, there's a FOUC where the field indicates that validation has failed with a red underline/outline for the filled/outlined styles respectively. |
+| `MdcpNumericDoubleField` | Empty field input correctly defaults to zero value but loses floating label. This is another FOUC. |
 | `MdcTopAppBar` | Styling for the short variety of top app bar is wrong when a drawer is opened. |
-| `MdcTextField` | Floating labels do not float when data is inserted automatically by the browser. Probably also affects `MdcTextArea` and will definitely affect `MdcNumericDoubleField` and `MdcNumericIntField` which are derived from `MdcTextField` |
+| `MdcTextField` | Floating labels do not float when data is inserted automatically by the browser. Probably also affects `MdcTextArea` and will definitely affect `MdcpNumericDoubleField` and `MdcpNumericIntField` which are derived from `MdcTextField` |
 | `MdcDatePicker`| As a stylistic issue, when the year pad is being shown, if the current year is more than 7 lines down (28+ years into the year list), it doesn't show because the year list is scrolled to the top. The list should initialize to a scrolled position showing the current year. |
 | `MdcDialog` | When using check boxes or radio buttons in a dialog, sometimes the initial rendering of the ripple/selection area is smaller than it should be, and located to the upper left (so probably smaller than it should be but still anchored to the top left). |
 

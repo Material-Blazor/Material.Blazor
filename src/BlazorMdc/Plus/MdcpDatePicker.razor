@@ -26,7 +26,7 @@
     </div>
 
     <div class="mdc-select__menu mdc-menu mdc-menu-surface bmdc-dp-menu__surface-adjust">
-        <MdcDatePickerPanel @bind-Value="@CurrentValue" DateSelectionCriteria="@DateSelectionCriteria" MinDate="@MinDate" MaxDate="@MaxDate" />
+        <MdcpDatePickerPanel @bind-Value="@CurrentValue" DateSelectionCriteria="@DateSelectionCriteria" MinDate="@MinDate" MaxDate="@MaxDate" />
     </div>
 </div>
 
@@ -41,7 +41,7 @@
 
 
     private ElementReference elementReference;
-    private DotNetObjectReference<MdcDatePicker> objectReference;
+    private DotNetObjectReference<MdcpDatePicker> objectReference;
     private MdcSelectInputStyle myInputStyle;
     private string labelId = Utilities.GenerateCssElementSelector();
     private string mainDivClass = "";

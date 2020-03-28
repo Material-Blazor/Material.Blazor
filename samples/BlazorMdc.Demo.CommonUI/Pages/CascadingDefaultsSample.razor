@@ -4,12 +4,12 @@
 
 <h1 class="@MdcTypography.Heading4">Cascading defaults samples</h1>
 
-<p>Shows how MdcCascadingDefaults can be used as a cascading value to set default component styles.</p>
+<p>Shows how MdcpCascadingDefaults can be used as a cascading value to set default component styles.</p>
 <p>See <code>CascadingDefaultsSample.razor</code> for sources.</p>
 
 <h3 class="@MdcTypography.Heading5" style="margin-top: 4rem;">BlazorMdc default styles</h3>
 <p><MdcSelect Label="Select" @bind-Value="@selectDefault" Items="items" /></p>
-<p><MdcDatePicker Label="Date" @bind-Value="dateDefault" MinDate="min" MaxDate="max" /></p>
+<p><MdcpDatePicker Label="Date" @bind-Value="dateDefault" MinDate="min" MaxDate="max" /></p>
 <p><MdcTextField Label="Text Field" @bind-Value="textFieldDefault" /></p>
 <p><MdcTextArea Label="Text Area" Rows="2" @bind-Value="textAreaDefault" /></p>
 <p><MdcButton Label="Button" /></p>
@@ -17,7 +17,7 @@
 <CascadingValue Value="defaults1">
     <h3 class="@MdcTypography.Heading5" style="margin-top: 4rem;">Variant 1</h3>
     <p><MdcSelect Label="Select" @bind-Value="@selectVariant1" Items="items" /></p>
-    <p><MdcDatePicker Label="Date" @bind-Value="dateVariant1" MinDate="min" MaxDate="max" /></p>
+    <p><MdcpDatePicker Label="Date" @bind-Value="dateVariant1" MinDate="min" MaxDate="max" /></p>
     <p><MdcTextField Label="Text Field" @bind-Value="textFieldVariant1" /></p>
     <p><MdcTextArea Label="Text Area" Rows="2" @bind-Value="textAreaVariant1" /></p>
     <p><MdcButton Label="Button" /></p>
@@ -26,7 +26,7 @@
 <CascadingValue Value="defaults2">
     <h3 class="@MdcTypography.Heading5" style="margin-top: 4rem;">Variant 2</h3>
     <p><MdcSelect Label="Select" @bind-Value="@selectVariant2" Items="items" /></p>
-    <p><MdcDatePicker Label="Date" @bind-Value="dateVariant2" MinDate="min" MaxDate="max" /></p>
+    <p><MdcpDatePicker Label="Date" @bind-Value="dateVariant2" MinDate="min" MaxDate="max" /></p>
     <p><MdcTextField Label="Text Field" @bind-Value="textFieldVariant2" /></p>
     <p><MdcTextArea Label="Text Area" Rows="2" @bind-Value="textAreaVariant2" /></p>
     <p><MdcButton Label="Button" /></p>
@@ -35,7 +35,7 @@
 <CascadingValue Value="defaults3">
     <h3 class="@MdcTypography.Heading5" style="margin-top: 4rem;">Variant 3</h3>
     <p><MdcSelect Label="Select" @bind-Value="@selectVariant3" Items="items" /></p>
-    <p><MdcDatePicker Label="Date" @bind-Value="dateVariant3" MinDate="min" MaxDate="max" /></p>
+    <p><MdcpDatePicker Label="Date" @bind-Value="dateVariant3" MinDate="min" MaxDate="max" /></p>
     <p><MdcTextField Label="Text Field" @bind-Value="textFieldVariant3" /></p>
     <p><MdcTextArea Label="Text Area" Rows="2" @bind-Value="textAreaVariant3" /></p>
     <p><MdcButton Label="Button" /></p>
@@ -52,7 +52,7 @@
     DateTime max = new DateTime(2038, 12, 31);
 
 
-    MdcCascadingDefaults defaults1 = new MdcCascadingDefaults()
+    MdcpCascadingDefaults defaults1 = new MdcpCascadingDefaults()
     {
         SelectInputStyle = MdcSelectInputStyle.Outlined,
         TextInputStyle = MdcTextInputStyle.Outlined,
@@ -65,7 +65,7 @@
     DateTime dateVariant1 = new DateTime(2020, 2, 29);
 
 
-    MdcCascadingDefaults defaults2 = new MdcCascadingDefaults()
+    MdcpCascadingDefaults defaults2 = new MdcpCascadingDefaults()
     {
         SelectInputStyle = MdcSelectInputStyle.Filled,
         TextInputStyle = MdcTextInputStyle.FullWidth,
@@ -78,7 +78,7 @@
     DateTime dateVariant2 = new DateTime(2020, 2, 29);
 
 
-    MdcCascadingDefaults defaults3 = new MdcCascadingDefaults()
+    MdcpCascadingDefaults defaults3 = new MdcpCascadingDefaults()
     {
         SelectInputStyle = MdcSelectInputStyle.Filled,
         TextInputStyle = MdcTextInputStyle.Filled,
