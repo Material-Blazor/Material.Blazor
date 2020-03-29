@@ -40,7 +40,7 @@
 </div>
 
 
-@if (!hideContent)
+@*@if (!hideContent)
 { 
     int tabNum = 0;
 
@@ -57,7 +57,16 @@
             </div>
         }
     }
-}
+}*@
+
+<MdcpSlidingContent @ref="slidingContent"
+                    Items="@((IEnumerable<TItem>)Items)"
+                    Context="item"
+                    @bind-ItemIndex="@_requestedTabIndex">
+    <Content>
+        @Content(item)
+    </Content>
+</MdcpSlidingContent>
 
 
 @code {
@@ -96,6 +105,7 @@
     [Parameter] public RenderFragment<TItem> Content { get; set; }
 
 
+    private MdcpSlidingContent<TItem> slidingContent;
     private string contentClass = "";
     private bool hideContent = false;
     private bool suppressTwoWayBinding = false;
@@ -123,28 +133,31 @@
         if (index != TabIndex)
         {
             suppressTwoWayBinding = true;
-            string nextClass = "";
+            //string nextClass = "";
 
-            if (index < TabIndex)
-            {
-                nextClass = InFromLeft;
-                contentClass = OutToRight;
-            }
-            else
-            {
-                nextClass = InFromRight;
-                contentClass = OutToLeft;
-            }
+            //if (index < TabIndex)
+            //{
+            //    nextClass = InFromLeft;
+            //    contentClass = OutToRight;
+            //}
+            //else
+            //{
+            //    nextClass = InFromRight;
+            //    contentClass = OutToLeft;
+            //}
 
-            await Task.Delay(100);
+            //await Task.Delay(100);
 
-            hideContent = true;
-            contentClass = nextClass;
+            //hideContent = true;
+            //contentClass = nextClass;
+            //MdcpSlideDirection direction = (index < TabIndex) ? MdcpSlideDirection.Backwards : MdcpSlideDirection.Forwards;
+            //await slidingContent.SlideToItem(Items.ElementAt(index), direction).ConfigureAwait(false);
+
             _tabIndex = index;
             await TabIndexChanged.InvokeAsync(_tabIndex);
-            hideContent = false;
+            //hideContent = false;
 
-            StateHasChanged();
+            //StateHasChanged();
 
             await OnTabClick.InvokeAsync(index);
             suppressTwoWayBinding = false;

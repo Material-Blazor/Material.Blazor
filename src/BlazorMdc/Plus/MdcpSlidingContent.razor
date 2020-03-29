@@ -26,7 +26,10 @@
 
                 MdcpSlideDirection direction = (value > _itemIndex) ? MdcpSlideDirection.Forwards : MdcpSlideDirection.Backwards;
 
-                SlideToItem(value, direction);
+                if (hasRendered)
+                {
+                    SlideToItem(value, direction);
+                }
 
                 _itemIndex = value;
             }
@@ -43,6 +46,7 @@
     private string contentClass = "";
     private bool hideContent = false;
     private TItem currentItem;
+    private bool hasRendered = false;
 
 
     private const string InFromLeft = "bmdc-slide-in-from-left";
@@ -84,6 +88,15 @@
             hideContent = false;
 
             StateHasChanged();
+        }
+    }
+
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        @if (firstRender)
+        {
+            hasRendered = true;
         }
     }
 }
