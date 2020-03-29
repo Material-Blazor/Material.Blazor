@@ -9,9 +9,9 @@ namespace BlazorMdc.Components
     public abstract class MdcComponentBase : ComponentBase
     {
         [CascadingParameter]
-        private MdcCascadingDefaults CascadingDefaults { get; set; }
+        private MdcpCascadingDefaults CascadingDefaults { get; set; }
 
-        protected MdcCascadingDefaults AppliedDefaults => (CascadingDefaults == null) ? new MdcCascadingDefaults() : CascadingDefaults;
+        protected MdcpCascadingDefaults AppliedDefaults => (CascadingDefaults == null) ? new MdcpCascadingDefaults() : CascadingDefaults;
 
         /// <summary>
         /// Gets a value for the component's 'class' attribute.

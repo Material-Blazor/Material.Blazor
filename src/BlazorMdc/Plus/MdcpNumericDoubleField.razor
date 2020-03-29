@@ -4,7 +4,7 @@
 
 
 <MdcTextField Type="@type"
-              @bind-Value="strVal"
+              @bind-Value="@strVal"
               Label="@Label"
               NoLabel="@NoLabel"
               LeadingIcon="@LeadingIcon"
@@ -14,9 +14,7 @@
               OnFocusIn="@OnFocusIn"
               OnFocusOut="@OnFocusOut"
               Disabled=@Disabled
-              FormNoValidate="@myFormNoValidate"
-              @oninvalid="@Zig"
-              @onerror="@Zig"/>
+              FormNoValidate="@myFormNoValidate"/>
 
 
 
@@ -78,8 +76,6 @@
     }
 
 
-
-
     protected override void OnInitialized()
     {
         bool allowSign = !(Min != null && Min >= 0);
@@ -112,15 +108,8 @@
     }
 
 
-
-
-
     private void OnFocusIn() => hasFocus = true;
-
     private void OnFocusOut() => hasFocus = false;
-
-
-
 
 
     private double NumericValue(string displayText)
@@ -151,13 +140,9 @@
         return amount;
     }
 
+
     private string StringValue(double? value)
     {
         return (Convert.ToDouble(value) * appliedMult).ToString(appliedFormat);
-    }
-
-    private void Zig(EventArgs args)
-    {
-        _ = args;
     }
 }

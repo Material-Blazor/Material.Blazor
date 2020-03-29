@@ -52,7 +52,7 @@ namespace BlazorMdc.Components
     public enum MdcDateSelectionCriteria { AllowAll, WeekendsOnly, WeekdaysOnly }
 
 
-    public class MdcCascadingDefaults
+    public class MdcpCascadingDefaults
     {
         public MdcTextAlign TextAlign { get; set; } = MdcTextAlign.Default;
         public MdcTextInputStyle TextInputStyle { get; set; } = MdcTextInputStyle.Filled;

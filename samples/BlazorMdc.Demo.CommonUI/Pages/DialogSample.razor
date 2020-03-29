@@ -32,9 +32,7 @@
 
 <p>Result: <strong>'@(result2 ?? "")'</strong></p>
 
-<MdcConfirmationDialog @ref="@dialog2" Title="Default confirmation dialog">
-
-</MdcConfirmationDialog>
+<MdcpConfirmationDialog @ref="@dialog2" Title="Default confirmation dialog"></MdcpConfirmationDialog>
 
 
 
@@ -42,7 +40,7 @@
 
 <p>Result: <strong>'@(result3 ?? "")'</strong></p>
 
-<MdcConfirmationDialog @ref="@dialog3" Title="Tailored confirmation dialog" InputText="overridden confirmation" ActionText="to play handball" InputDisabled="@disableInput">
+<MdcpConfirmationDialog @ref="@dialog3" Title="Tailored confirmation dialog" InputText="overridden confirmation" ActionText="to play handball" InputDisabled="@disableInput">
     <Body>
         <p>Some markup before the confirmation message and input.</p>
         <p><MdcCheckbox @bind-Value="@disableInput" Label="Disable confirmation input field" /></p>
@@ -57,7 +55,7 @@
         <MdcButton Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
         <MdcButton Label="Bosh" LeadingIcon="sports_handball" DialogAction="bosh" ButtonStyle="MdcButtonStyle.ContainedRaised" />
     </ConfirmedButtons>
-</MdcConfirmationDialog>
+</MdcpConfirmationDialog>
 
 
 <p style="margin-top: 3rem;"><MdcButton Label="Show dialog with scrim and escape disabled" OnClick="@ShowDialog4"></MdcButton></p>
@@ -94,7 +92,7 @@
         result1 = await dialog1.ShowAsync();
     }
 
-    MdcConfirmationDialog dialog2;
+    MdcpConfirmationDialog dialog2;
     string result2;
 
     async Task ShowDialog2()
@@ -102,7 +100,7 @@
         result2 = await dialog2.ShowAsync();
     }
 
-    MdcConfirmationDialog dialog3;
+    MdcpConfirmationDialog dialog3;
     string result3;
 
     async Task ShowDialog3()
