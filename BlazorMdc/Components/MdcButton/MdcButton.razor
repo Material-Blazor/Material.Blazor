@@ -1,9 +1,12 @@
-﻿@inherits MdcComponentBase
+﻿@namespace BlazorMdc
+
+@inherits MdcComponentBase
 
 @inject IJSRuntime jsRuntime
 
 <button @ref="@elementReference" 
-        class="mdc-button @mainDivClass"
+        class="@ClassMapper.AsString()"
+        style="@StyleMapper.AsString()" 
         @onclick="@OnClick"
         @onmousedown="@OnMouseDown" 
         @onkeydown="@OnKeyDown" 
@@ -20,7 +23,11 @@
 
 
 @code {
-    [Parameter] public MdcButtonStyle? ButtonStyle { get; set; }
+    //
+    //  2020-03-31  Mark Stega
+    //              Changed to use class & style mappers
+    //
+    [Parameter] public MdcButtonStyle ButtonStyle { get; set; } = MdcButtonStyle.Text;
     [Parameter] public string Type { get; set; } = "button";
     [Parameter] public string Label { get; set; }
     [Parameter] public string TabIndex { get; set; } = "0";
@@ -37,16 +44,6 @@
     private MdcButtonStyle myButtonStyle;
     private MarkupString LeadingIconMarkup => (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"material-icons mdc-button__icon\" aria-hidden=\"true\">{LeadingIcon}</i>");
     private MarkupString TrailingIconMarkup => (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"material-icons mdc-button__icon\" aria-hidden=\"true\">{TrailingIcon}</i>");
-    private string mainDivClass => classLookup.Where(c => c.Key == myButtonStyle).FirstOrDefault().Value + " " + Class;
-
-
-    private KeyValuePair<MdcButtonStyle, string>[] classLookup =
-{
-        new KeyValuePair<MdcButtonStyle, string>(MdcButtonStyle.ContainedRaised, "mdc-button--raised"),
-        new KeyValuePair<MdcButtonStyle, string>(MdcButtonStyle.ContainedUnelevated, "mdc-button--unelevated"),
-        new KeyValuePair<MdcButtonStyle, string>(MdcButtonStyle.Outlined, "mdc-button--outlined"),
-        new KeyValuePair<MdcButtonStyle, string>(MdcButtonStyle.Text, ""),
-    };
 
 
     protected override void OnInitialized()
@@ -67,7 +64,12 @@
 
     private void Setup()
     {
-        myButtonStyle = AppliedDefaults.AppliedButtonStyle(ButtonStyle);
+        //        myButtonStyle = AppliedDefaults.AppliedButtonStyle(ButtonStyle);
+        ClassMapper
+            .Add("mdc-button")
+            .If("mdc-button--raised", () => (ButtonStyle == MdcButtonStyle.ContainedRaised))
+            .If("mdc-button--unelevated", () => (ButtonStyle == MdcButtonStyle.ContainedUnelevated))
+            .If("mdc-button--outlined", () => (ButtonStyle == MdcButtonStyle.Outlined));
     }
 
 

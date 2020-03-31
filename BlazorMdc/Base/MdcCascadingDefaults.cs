@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BlazorMdc.Components
+namespace BlazorMdc
 {
     /// <summary>
     /// The style of MDC input: note that FullWidth is mutually exclusive with Outlined
@@ -52,7 +52,7 @@ namespace BlazorMdc.Components
     public enum MdcDateSelectionCriteria { AllowAll, WeekendsOnly, WeekdaysOnly }
 
 
-    public class MdcpCascadingDefaults
+    public class MdcCascadingDefaults
     {
         public MdcTextAlign TextAlign { get; set; } = MdcTextAlign.Default;
         public MdcTextInputStyle TextInputStyle { get; set; } = MdcTextInputStyle.Filled;

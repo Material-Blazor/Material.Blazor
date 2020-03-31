@@ -1,4 +1,4 @@
-﻿namespace BlazorMdc.Components
+﻿namespace BlazorMdc
 {
     public static class MdcTypography
     {

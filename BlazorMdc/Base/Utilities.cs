@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BlazorMdc.Components
+namespace BlazorMdc
 {
     internal static class Utilities
     {

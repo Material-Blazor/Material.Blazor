@@ -1,4 +1,6 @@
-﻿@page "/button"
+﻿@namespace BlazorMdc
+
+@page "/button"
 
 <h1 class="@MdcTypography.Heading4">Button samples</h1>
 
@@ -34,6 +36,13 @@ See <code>ButtonSample.razor</code> for sources.
 
 <p>
     <MdcButton Label="Trailing icon" TrailingIcon="speed" OnClick="@LogMessage" />
+</p>
+
+<p>
+    <MdcButton Label="Trailing icon with style of 'padding-left: 5em;'"
+               TrailingIcon="speed"
+               OnClick="@LogMessage"
+               Style="padding-left: 5em;"/>
 </p>
 
 <ul>

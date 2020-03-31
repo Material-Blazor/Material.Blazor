@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace BlazorMdc.Components
+namespace BlazorMdc
 {
     // This is like InputBase from Microsoft.AspNetCore.Components.Forms, except that it treats
     // [CascadingParameter] EditContext as optional.
