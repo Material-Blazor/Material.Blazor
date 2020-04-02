@@ -26,7 +26,7 @@ We also want to acknowledge the work of [Vladimir Samoilenko (@SamProf on github
 _TBD_
 
 ## Demonstration from local build
-If you have cloned the repository and are building from source there is a project under 'samples' that should be selected as the startup project. That project is BlazorMDC.Demo.WebServer.
+If you have cloned the repository and are building from source there is a project 'BlazorMDC.Demo.WebServer' that should be selected as the startup project.
 
 There are four implemented solution configurations:
 

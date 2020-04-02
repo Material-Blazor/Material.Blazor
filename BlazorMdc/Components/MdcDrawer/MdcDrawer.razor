@@ -26,8 +26,8 @@
     bool isOpen;
 
     [Parameter] public RenderFragment ChildContent { get; set; }
-    [Parameter] public bool StartOpen { get; set; }
-    [Parameter] public bool IsDismissible { get; set; }
+    [Parameter] public bool StartOpen { get; set; } = false;
+    [Parameter] public bool IsDismissible { get; set; } = true;
     [Parameter] public bool CloseOnNavigate { get; set; } = true;
 
     protected override void OnInitialized()

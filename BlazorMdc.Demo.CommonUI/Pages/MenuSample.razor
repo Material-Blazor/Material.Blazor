@@ -9,15 +9,15 @@
     
     <div class="mdc-menu-surface--anchor">
         <MdcMenu @ref="menu">
-            <MdcListItem Text="One" Icon="home" NavRef="One" OnClick="OnClickHandler" />
-            <MdcListItem Text="Two" Icon="" NavRef="Two" OnClick="OnClickHandler" />
+            <MdcListItem Text="One" Icon="home" NavigationReference="One" OnClick="OnClickHandler" />
+            <MdcListItem Text="Two" Icon="" NavigationReference="Two" OnClick="OnClickHandler" />
             <MdcListDivider />
             <MdcMenuSelectionGroup>
-                <MdcListItem Text="Four" Icon="done" NavRef="Four" OnClick="OnClickHandler" />
-                <MdcListItem Text="Five" Icon="done" NavRef="Five" OnClick="OnClickHandler" />
+                <MdcListItem Text="Four" Icon="done" NavigationReference="Four" OnClick="OnClickHandler" />
+                <MdcListItem Text="Five" Icon="done" NavigationReference="Five" OnClick="OnClickHandler" />
             </MdcMenuSelectionGroup>
             <MdcListDivider />
-            <MdcListItem Text="Three" Disabled="true" NavRef="Three" OnClick="OnClickHandler" />
+            <MdcListItem Text="Three" Disabled="true" NavigationReference="Three" OnClick="OnClickHandler" />
         </MdcMenu>
     </div>
 </div>
@@ -34,9 +34,9 @@
         await menu.ToggleAsync();
     }
 
-    protected void OnClickHandler(string navRef)
+    protected void OnClickHandler(string NavigationReference)
     {
-        clickResult = navRef;
+        clickResult = NavigationReference;
     }
 
 }
