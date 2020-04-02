@@ -9,15 +9,15 @@
     
     <div class="mdc-menu-surface--anchor">
         <MdcMenu @ref="menu">
-            <MdcMenuListItem Text="One" LeadingIcon="home" OnClick="OnOneClick" />
-            <MdcMenuListItem Text="Two" LeadingIcon="" OnClick="OnTwoClick" />
-            <MdcMenuListDivider />
-            <MdcMenuListSelectionGroup>
-                <MdcMenuListItem Text="Four" LeadingIcon="done" OnClick="OnFourClick" />
-                <MdcMenuListItem Text="Five" LeadingIcon="done" OnClick="OnFiveClick" />
-            </MdcMenuListSelectionGroup>
-            <MdcMenuListDivider />
-            <MdcMenuListItem Text="Three" Disabled="true" OnClick="OnThreeClick" />
+            <MdcListItem Text="One" Icon="home" NavRef="One" OnClick="OnClickHandler" />
+            <MdcListItem Text="Two" Icon="" NavRef="Two" OnClick="OnClickHandler" />
+            <MdcListDivider />
+            <MdcMenuSelectionGroup>
+                <MdcListItem Text="Four" Icon="done" NavRef="Four" OnClick="OnClickHandler" />
+                <MdcListItem Text="Five" Icon="done" NavRef="Five" OnClick="OnClickHandler" />
+            </MdcMenuSelectionGroup>
+            <MdcListDivider />
+            <MdcListItem Text="Three" Disabled="true" NavRef="Three" OnClick="OnClickHandler" />
         </MdcMenu>
     </div>
 </div>
@@ -34,28 +34,9 @@
         await menu.ToggleAsync();
     }
 
-    private void OnOneClick()
+    protected void OnClickHandler(string navRef)
     {
-        clickResult = "One";
+        clickResult = navRef;
     }
 
-    private void OnTwoClick()
-    {
-        clickResult = "Two";
-    }
-
-    private void OnThreeClick()
-    {
-        clickResult = "Three";
-    }
-
-    private void OnFourClick()
-    {
-        clickResult = "Four";
-    }
-
-    private void OnFiveClick()
-    {
-        clickResult = "Five";
-    }
 }

@@ -8,7 +8,7 @@
     <MdcRadioButtons @bind-Value="@index" Items="radioButtonItems" />
 </p>
 
-<MdcpSlidingContent @ref="@slidingContent"
+<PMdcSlidingContent @ref="@slidingContent"
                     Items="@items"
                     @bind-ItemIndex="@index"
                     Context="item">
@@ -17,7 +17,7 @@
         <h3 class="@MdcTypography.Heading6">@item.Title</h3>
         <p>@item.Text</p>
     </Content>
-</MdcpSlidingContent>
+</PMdcSlidingContent>
 
 <p>
     <MdcButton Label="Previous" LeadingIcon="chevron_left" OnClick="@(() => index--)" ButtonStyle="MdcButtonStyle.ContainedRaised" Disabled="@disablePrevious" />
@@ -25,7 +25,7 @@
 </p>
 
 @code {
-    private MdcpSlidingContent<Item> slidingContent;
+    private PMdcSlidingContent<Item> slidingContent;
     private bool disablePrevious => index == 0;
     private bool disableNext => index == items.Length - 1;
 

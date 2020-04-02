@@ -1,0 +1,70 @@
+﻿@namespace BlazorMdc
+
+@inherits MdcComponentBase
+
+@inject IJSRuntime jsRuntime
+
+<aside @ref="drawerElem"
+       class="@ClassMapper.AsString()"
+       style="@StyleMapper.AsString()" 
+       id="app-drawer">
+
+    <div class="mdc-drawer__content">
+        <CascadingValue Value="@this">
+            @ChildContent
+        </CascadingValue>
+    </div>
+
+</aside>
+
+@code {
+    //
+    //  2020-04-01  Mark Stega
+    //              Changed to use class & style mappers
+    //
+    ElementReference drawerElem;
+    bool isOpen;
+
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public bool StartOpen { get; set; }
+    [Parameter] public bool IsDismissible { get; set; }
+    [Parameter] public bool CloseOnNavigate { get; set; } = true;
+
+    protected override void OnInitialized()
+    {
+        isOpen = StartOpen;
+    }
+
+    public void Toggle()
+        => Toggle(!isOpen);
+
+    public void Toggle(bool open)
+    {
+        isOpen = open;
+        StateHasChanged();
+    }
+
+    public void NotifyNavigation()
+    {
+        if (CloseOnNavigate)
+        {
+            Toggle(false);
+        }
+    }
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+        => await jsRuntime.InvokeAsync<object>(
+            "BlazorMdc.drawer.toggle",
+            drawerElem,
+            isOpen);
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        ClassMapper
+            .Add("mdc-drawer")
+            .If("mdc-drawer--dismissible", () => IsDismissible)
+            .If("mdc-drawer--open", () => StartOpen);
+    }
+}

@@ -1,0 +1,53 @@
+﻿@namespace BlazorMdc
+
+@inherits MdcInputComponentBase<bool>
+
+@inject IJSRuntime jsRuntime
+
+
+<div @ref="@elementReference"
+     class="@ClassMapper.AsString()"
+     style="@StyleMapper.AsString()">
+
+        <div class="mdc-switch__track"></div>
+        <div class="mdc-switch__thumb-underlay">
+            <div class="mdc-switch__thumb">
+                <input type="checkbox" id="@Id" @bind="@CurrentValue" class="mdc-switch__native-control" role="switch" disabled="@Disabled" />
+            </div>
+        </div>
+    </div>
+<label for="@Id" style="margin-left: 1rem;">@Label</label>
+
+
+@code {
+    //
+    //  2020-04-02  Mark Stega
+    //              Changed to use class & style mappers
+    //
+    [Parameter] public string Label { get; set; } = "On/off";
+
+    ElementReference elementReference;
+
+    bool IsFirstParameterSet = true;
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        if (IsFirstParameterSet)
+        {
+            ClassMapper
+                .Add("mdc-switch")
+                .If("mdc-switch--disabled", () => Disabled)
+                .If("mdc-switch--checked", () => CurrentValue);
+        }
+    }
+
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.switch.setChecked", elementReference, CurrentValue);
+        }
+    }
+}

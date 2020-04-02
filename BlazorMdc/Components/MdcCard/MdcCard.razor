@@ -1,0 +1,43 @@
+﻿@namespace BlazorMdc
+
+@inherits MdcComponentBase
+
+@inject IJSRuntime jsRuntime
+
+
+<div class="@ClassMapper.AsString()"
+     style="@StyleMapper.AsString()">
+    <CascadingValue Value="this">
+        @ChildContent
+    </CascadingValue>
+</div>
+
+
+@code {
+    [Parameter] public MdcCardStyle? CardStyle { get; set; }
+    [Parameter] public bool AutoStyled { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+
+
+    private ElementReference elementReference;
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.card.init", elementReference);
+        }
+    }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        var myCardStyle = AppliedDefaults.AppliedCardStyle(CardStyle);
+
+        ClassMapper
+            .Add("mdc-card")
+            .If("mdc-card--outlined", () => (myCardStyle == MdcCardStyle.Outlined));
+    }
+}

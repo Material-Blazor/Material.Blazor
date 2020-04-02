@@ -19,6 +19,8 @@ Please note that BlazorMdc is in the early stages of development, so there are l
 
 BlazorMdc is forked from [Steve Sanderson's](https://blog.stevensanderson.com/) experimental [RazorComponents.MaterialDesign](https://github.com/SteveSandersonMS/RazorComponents.MaterialDesign) experiment. That project struck the balance we sought of giving easy to use, performant Blazor components in a lightweight, native Material Theme setting. At the present time we have revisited only a limited selection of components from RazorComponents.MaterialDesign - we are still under development.
 
+We also want to acknowledge the work of [Vladimir Samoilenko (@SamProf on github)](https://github.com/SamProf) for his work on [MatBlazor](https://www.matblazor.com/). MatBlazor code was referenced and some small parts of the code were copied to be part of BlazorMdc (ClassMapper and StyleMapper).
+
 ## Demonstration website
 
 _TBD_
@@ -67,12 +69,12 @@ The following extra components are in the `BlazorMdc.Plus` namespace.
 
 | Component | Notes |
 | :-------- | :---- |
-| `MdcpAutocomplete` | A [Material Text Field](https://material.io/develop/web/components/input-controls/text-field/) that drops a [menu](https://material.io/develop/web/components/menus/) for auto completion. Has parameters to allow blank results and for whitespace to be ignored in searches. Might consider forking and adapting [Blazored.Typeahead](https://github.com/Blazored/Typeahead) with MT styling. |
-| `MdcpConfirmationDialog` | A special purpose wrapper around `MdcDialog` that makes the user type some text correctly in order to enable a button for a specific purpose. Modelled after the GitHub confirmation forms. |
-| `MdcpDatePicker` | An implementation of the [Material date picker specification](https://material.io/components/pickers/#specs) for the desktop. Does not implement date ranges. Date pickers are only implemented in Material Theme for Android, so we interpreted as closely as possible the specification with our own CSS. This is the only instance where we have created CSS for a component, because our goal is to use standard Material Theme styling throughout. The result seems a bit too dense and is within a couple of pixels of unstyled overflow content on the month selection menu for long month names in English; this is likely to overflow for languages with longer month names. We are therefore likely to relax the component's density, which should improve usability. We have deviated from the specification by adding an "undo" button to return to the current selected date. There is no "today" button, which is not in the Material Theme specifcation. |
-| `MdcpDivider` | Implements a list divider by wrapping `hr` and gives the option of inset and padded. This uses the mdc-list-divider styles. | 
-|`MdcpNumericDoubleField` | Wraps `MdcTextField` to format numeric entry of a `double`. The format is applied when the component lacks focus, at which point the field is a text field holding the formatted number as text. When the field gains focus it switches to a number field. Allows for percentages to be entered as a whole number, e.g. typing "12" will yield a `double` equal to '0.12' and displaying '12%' when lacking focus. We intend to find a similar way to handle [basis points](https://en.wikipedia.org/wiki/Basis_point). |
-| `MdcpNumericIntField` | A wrapper for `MdcpNumericDoubleField` for `int` variables. |
+| `PMdcAutocomplete` | A [Material Text Field](https://material.io/develop/web/components/input-controls/text-field/) that drops a [menu](https://material.io/develop/web/components/menus/) for auto completion. Has parameters to allow blank results and for whitespace to be ignored in searches. Might consider forking and adapting [Blazored.Typeahead](https://github.com/Blazored/Typeahead) with MT styling. |
+| `PMdcConfirmationDialog` | A special purpose wrapper around `MdcDialog` that makes the user type some text correctly in order to enable a button for a specific purpose. Modelled after the GitHub confirmation forms. |
+| `PMdcDatePicker` | An implementation of the [Material date picker specification](https://material.io/components/pickers/#specs) for the desktop. Does not implement date ranges. Date pickers are only implemented in Material Theme for Android, so we interpreted as closely as possible the specification with our own CSS. This is the only instance where we have created CSS for a component, because our goal is to use standard Material Theme styling throughout. The result seems a bit too dense and is within a couple of pixels of unstyled overflow content on the month selection menu for long month names in English; this is likely to overflow for languages with longer month names. We are therefore likely to relax the component's density, which should improve usability. We have deviated from the specification by adding an "undo" button to return to the current selected date. There is no "today" button, which is not in the Material Theme specification. |
+| `PMdcDivider` | Implements a list divider by wrapping `hr` and gives the option of inset and padded. This uses the mdc-list-divider styles. | 
+|`PMdcNumericDoubleField` | Wraps `MdcTextField` to format numeric entry of a `double`. The format is applied when the component lacks focus, at which point the field is a text field holding the formatted number as text. When the field gains focus it switches to a number field. Allows for percentages to be entered as a whole number, e.g. typing "12" will yield a `double` equal to '0.12' and displaying '12%' when lacking focus. We intend to find a similar way to handle [basis points](https://en.wikipedia.org/wiki/Basis_point). |
+| `PMdcNumericIntField` | A wrapper for `MdcpNumericDoubleField` for `int` variables. |
 
 ## Utilities
  
@@ -85,14 +87,14 @@ The following extra components are in the `BlazorMdc.Plus` namespace.
 
 | Component | Issue |
 | :-------- | :---- |
-| `MdcpAutocomplete` | Shows a flash of unstyled content ("FOUC") when a field that disallows blanks is cleared and then loses focus. The floating label stops floating and superimposes over the selected text. |
-| `MdcpNumericDoubleField` | When focus is lost for non-integer input, there's a FOUC where the field indicates that validation has failed with a red underline/outline for the filled/outlined styles respectively. |
-| `MdcpNumericDoubleField` | Empty field input correctly defaults to zero value but loses floating label. This is another FOUC. |
 | `MdcTabBar` | Setting `TabIndex` after first render throws a JavaScript exception for Blazor WASM. |
 | `MdcTopAppBar` | Styling for the short variety of top app bar is wrong when a drawer is opened. |
 | `MdcTextField` | Floating labels do not float when data is inserted automatically by the browser. Probably also affects `MdcTextArea` and will definitely affect `MdcpNumericDoubleField` and `MdcpNumericIntField` which are derived from `MdcTextField` |
-| `MdcDatePicker`| As a stylistic issue, when the year pad is being shown, if the current year is more than 7 lines down (28+ years into the year list), it doesn't show because the year list is scrolled to the top. The list should initialize to a scrolled position showing the current year. |
 | `MdcDialog` | When using check boxes or radio buttons in a dialog, sometimes the initial rendering of the ripple/selection area is smaller than it should be, and located to the upper left (so probably smaller than it should be but still anchored to the top left). |
+| `PMdcAutocomplete` | Shows a flash of unstyled content ("FOUC") when a field that disallows blanks is cleared and then loses focus. The floating label stops floating and superimposes over the selected text. |
+| `PMdcNumericDoubleField` | When focus is lost for non-integer input, there's a FOUC where the field indicates that validation has failed with a red underline/outline for the filled/outlined styles respectively. |
+| `PMdcNumericDoubleField` | Empty field input correctly defaults to zero value but loses floating label. This is another FOUC. |
+| `PMdcDatePicker`| As a stylistic issue, when the year pad is being shown, if the current year is more than 7 lines down (28+ years into the year list), it doesn't show because the year list is scrolled to the top. The list should initialize to a scrolled position showing the current year. |
 
 ## Future Development
 

@@ -1,0 +1,161 @@
+﻿@namespace BlazorMdc
+
+@typeparam TItem
+
+@inherits MdcComponentBase
+
+@inject IJSRuntime jsRuntime
+
+
+<div class="@ClassMapper.AsString()"
+     style="@StyleMapper.AsString()">
+
+    <div @ref="@elementReference" class="mdc-form-field bmdc-form-field @Class">
+        @{int index = 0; }
+        @foreach (var w in wrappers)
+        {
+            var dv = w.Item.DataValue;
+            var disabledClass = w.Item.Disabled ? "mdc-radio--disabled" : "";
+
+            @if (Vertical && index++ > 0)
+            {
+                <div class="bmdc-mdc-radio-break"></div>
+            }
+
+            <div @ref="@w.ElementReference" class="mdc-radio mdc-radio--touch @w.Item.ButtonContainerClass">
+                @if (object.Equals(w.Item.DataValue, initialValue))
+                {
+                    <input class="mdc-radio__native-control @disabledClass" type="radio" id="@w.RadioId" name="@radioName" checked disabled="@w.Item.Disabled" @onclick="@(_ => OnItemClickAsync(dv))">
+                }
+                else
+                {
+                    <input class="mdc-radio__native-control @disabledClass" type="radio" id="@w.RadioId" name="@radioName" disabled="@w.Item.Disabled" @onclick="@(_ => OnItemClickAsync(dv))">
+                }
+
+                <div class="mdc-radio__background">
+                    <div class="mdc-radio__outer-circle"></div>
+                    <div class="mdc-radio__inner-circle"></div>
+                </div>
+                <div class="mdc-radio__ripple"></div>
+            </div>
+            <label for="@w.RadioId">@w.Item.Label</label>
+        }
+    </div>
+
+</div>
+
+@code {
+    //
+    //  2020-04-02  Mark Stega
+    //              Changed to use class & style mappers
+    //
+    public class Item<T>
+    {
+        public T DataValue { get; set; }
+        public string Label { get; set; }
+        public string ButtonContainerClass { get; set; }
+        public bool Disabled { get; set; } = false;
+    }
+
+    private class ItemWrapper<T>
+    {
+        public Item<T> Item { get; set; }
+        public bool Checked { get; set; }
+        public readonly string RadioId = Utilities.GenerateCssElementSelector();
+        public ElementReference ElementReference { get; set; }
+    }
+
+
+    [Parameter] public IEnumerable<Item<TItem>> Items { get; set; }
+    [Parameter] public TItem Value { get; set; } = default;
+    [Parameter] public bool Vertical { get; set; } = false;
+    [Parameter] public EventCallback<TItem> ValueChanged { get; set; }
+
+
+    private ElementReference elementReference;
+    private ItemWrapper<TItem>[] wrappers;
+    private string radioName = Utilities.GenerateCssElementSelector();
+    private TItem initialValue;
+    private TItem cachedCurrentValue;
+
+
+    public MdcRadioButtons()
+    {
+        ClassMapper
+            .Add("mdc-touch-target-wrapper");
+    }
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        initialValue = (Value is null) ? Items.FirstOrDefault().DataValue : Value;
+    }
+
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        SetParameters();
+    }
+
+    private bool isFirstParameterSet = true;
+    private void SetParameters()
+    {
+        // All values that are bound to HTML are set once at initialization and then left unchanged
+        // because allowing Blazor to re-render conflicts with the Material Theme js rendering. This
+        // results in the floating label jumping to the wrong place.
+        if (isFirstParameterSet || !object.Equals(Value, cachedCurrentValue))
+        {
+            isFirstParameterSet = false;
+
+            cachedCurrentValue = (Value is null) ? Items.FirstOrDefault().DataValue : Value;
+
+            if (Value is null || string.IsNullOrEmpty(Value.ToString()))
+            {
+                Value = Items.FirstOrDefault().DataValue;
+            }
+            else if (Items.Where(i => object.Equals(i.DataValue, Value)).Count() == 0)
+            {
+                string itemList = "{ ";
+                string prepend = "";
+
+                foreach (var item in Items)
+                {
+                    itemList += $"{prepend} '{item.DataValue}'";
+                    prepend = ",";
+                }
+
+                itemList += " }";
+
+                throw new ArgumentException($"MdcRadioButtons cannot select item with data value of '{Value?.ToString()}' from {itemList}");
+            }
+
+            wrappers = (from i in Items
+                        select new ItemWrapper<TItem>
+                        {
+                            Item = i,
+                            Checked = object.Equals(i.DataValue, initialValue)
+                        }).ToArray();
+        }
+    }
+
+
+    private async Task OnItemClickAsync(TItem dataValue)
+    {
+        Value = dataValue;
+        cachedCurrentValue = Value;
+        await ValueChanged.InvokeAsync(Value);
+    }
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButtons.init", elementReference, wrappers);
+        }
+    }
+}

@@ -1,0 +1,150 @@
+﻿@namespace BlazorMdc
+
+@inherits MdcInputComponentBase<double>
+
+@using System.Text.RegularExpressions
+
+
+<MdcTextField Type="@type"
+              @bind-Value="@strVal"
+              Label="@Label"
+              NoLabel="@NoLabel"
+              LeadingIcon="@LeadingIcon"
+              TrailingIcon="@TrailingIcon"
+              InputStyle="@InputStyle"
+              TextAlign="@MdcTextAlign.Right"
+              OnFocusIn="@OnFocusIn"
+              OnFocusOut="@OnFocusOut"
+              Disabled=@Disabled
+              FormNoValidate="@myFormNoValidate"/>
+
+
+
+@code {
+    [Parameter] public MdcTextInputStyle? InputStyle { get; set; }
+    [Parameter] public string Label { get; set; }
+    [Parameter] public bool NoLabel { get; set; } = false;
+    [Parameter] public string? LeadingIcon { get; set; }
+    [Parameter] public string? TrailingIcon { get; set; }
+    [Parameter] public bool FormNoValidate { get; set; } = false;
+    [Parameter] public string NumericFormat { get; set; }
+    [Parameter] public string? NumericSingularFormat { get; set; }
+    [Parameter] public MdcNumericInputMagnitude Magnitude { get; set; } = MdcNumericInputMagnitude.Normal;
+    [Parameter] public double? Min { get; set; }
+    [Parameter] public double? Max { get; set; }
+    [Parameter] public int DecimalPlaces { get; set; } = 2;
+
+
+    private const string DoublePattern = @"^[-+]?[0-9]*\.?[0-9]+$";
+    private const string PositiveDoublePattern = @"[0-9]*\.?[0-9]+$";
+    private const string IntegerPattern = @"^(\+|-)?\d+$";
+    private const string PositiveIntegerPattern = @"^\d+$";
+
+
+    private bool hasFocus { get; set; } = false;
+    private double mult { get; set; } = 1;
+    private double appliedMult => hasFocus ? mult : 1;
+    private int myDecimalPlaces { get; set; } = 0;
+    private Regex regex { get; set; }
+    private string type => hasFocus ? "number" : "text";
+    private bool myFormNoValidate = true;// => hasFocus ? true : FormNoValidate;
+
+
+    private string strVal
+    {
+        get
+        {
+            return hasFocus ? Math.Round(Convert.ToDouble(CurrentValue) * mult, DecimalPlaces).ToString() : StringValue(CurrentValue);
+        }
+
+        set
+        {
+            var enteredVal = hasFocus ? Convert.ToDouble(Convert.ToDouble(string.IsNullOrWhiteSpace(value) ? "0" : value.Trim()) / mult) : NumericValue(value);
+            CurrentValue = Math.Max(Min ?? enteredVal, Math.Min(enteredVal, Max ?? enteredVal));
+        }
+    }
+
+
+    private string appliedFormat
+    {
+        get
+        {
+            if (hasFocus) return "";
+
+            if (!(NumericSingularFormat is null) && Utilities.DoubleEqual(Math.Abs(CurrentValue), 1)) return NumericSingularFormat;
+
+            return NumericFormat;
+        }
+    }
+
+
+    protected override void OnInitialized()
+    {
+        bool allowSign = !(Min != null && Min >= 0);
+
+        switch (Magnitude)
+        {
+            case MdcNumericInputMagnitude.Normal:
+                mult = 1;
+                break;
+
+            case MdcNumericInputMagnitude.Percent:
+                mult = 1e2;
+                break;
+
+            case MdcNumericInputMagnitude.BasisPoints:
+                mult = 1e4;
+                break;
+        }
+
+        if (DecimalPlaces <= 0)
+        {
+            myDecimalPlaces = 0;
+            regex = new Regex(allowSign ? IntegerPattern : PositiveIntegerPattern);
+        }
+        else
+        {
+            myDecimalPlaces = DecimalPlaces;
+            regex = new Regex(allowSign ? DoublePattern : PositiveDoublePattern);
+        }
+    }
+
+
+    private void OnFocusIn() => hasFocus = true;
+    private void OnFocusOut() => hasFocus = false;
+
+
+    private double NumericValue(string displayText)
+    {
+        int myRounding = myDecimalPlaces + Convert.ToInt32(Math.Log(appliedMult));
+
+        if (!regex.IsMatch(displayText))
+        {
+            return CurrentValue;
+        }
+
+        double amount = 0;
+
+        try
+        {
+            amount = Convert.ToDouble(Math.Round(Convert.ToDouble(displayText) / appliedMult, myRounding));
+        }
+        catch
+        {
+            return CurrentValue;
+        }
+
+        if ((Min != null && amount < Min) || (Max != null && amount > Max))
+        {
+            return CurrentValue;
+        }
+
+        return amount;
+    }
+
+
+    private string StringValue(double? value)
+    {
+        return (Convert.ToDouble(value) * appliedMult).ToString(appliedFormat);
+    }
+}

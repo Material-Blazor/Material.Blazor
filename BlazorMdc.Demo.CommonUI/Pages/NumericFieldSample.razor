@@ -7,27 +7,27 @@
 <p>See <code>NumericFieldSample.razor</code> for sources.</p>
 
 <p style="margin-top: 3rem;">A double</p>
-<p><MdcpNumericDoubleField Label="Double 2dp" @bind-Value="@currentDouble" NumericFormat="N2" DecimalPlaces="2" InputStyle="MdcTextInputStyle.Outlined" /></p>
+<p><PMdcNumericDoubleField Label="Double 2dp" @bind-Value="@currentDouble" NumericFormat="N2" DecimalPlaces="2" InputStyle="MdcTextInputStyle.Outlined" /></p>
 <p>You typed: <strong>'@currentDouble'</strong></p>
 
 <p style="margin-top: 3rem;">A money formatted double</p>
-<p><MdcpNumericDoubleField Label="Money" @bind-Value="@currentMoney" NumericFormat="C2" DecimalPlaces="2" InputStyle="MdcTextInputStyle.Outlined" /></p>
+<p><PMdcNumericDoubleField Label="Money" @bind-Value="@currentMoney" NumericFormat="C2" DecimalPlaces="2" InputStyle="MdcTextInputStyle.Outlined" /></p>
 <p>You typed: <strong>'@currentMoney'</strong></p>
 
 <p style="margin-top: 3rem;">An integer</p>
-<p><MdcpNumericIntField Label="Integer" @bind-Value="@currentInteger" NumericFormat="N0" InputStyle="MdcTextInputStyle.Outlined" /></p>
+<p><PMdcNumericIntField Label="Integer" @bind-Value="@currentInteger" NumericFormat="N0" InputStyle="MdcTextInputStyle.Outlined" /></p>
 <p>You typed: <strong>'@currentInteger'</strong></p>
 
 <p style="margin-top: 3rem;">A percentage</p>
-<p><MdcpNumericDoubleField Label="Percent" @bind-Value="@currentPercent" NumericFormat="P2" DecimalPlaces="2" InputStyle="MdcTextInputStyle.Outlined" Magnitude="MdcNumericInputMagnitude.Percent" /></p>
+<p><PMdcNumericDoubleField Label="Percent" @bind-Value="@currentPercent" NumericFormat="P2" DecimalPlaces="2" InputStyle="MdcTextInputStyle.Outlined" Magnitude="MdcNumericInputMagnitude.Percent" /></p>
 <p>You typed: <strong>'@currentPercent'</strong></p>
 
 <p style="margin-top: 3rem;">Basis points (not working yet)</p>
-<p><MdcpNumericDoubleField Label="Basis Points" @bind-Value="@CurrentBasisPoints" NumericFormat="#,### bp;-#,### bp" InputStyle="MdcTextInputStyle.Outlined" Magnitude="MdcNumericInputMagnitude.BasisPoints" /></p>
+<p><PMdcNumericDoubleField Label="Basis Points" @bind-Value="@CurrentBasisPoints" NumericFormat="#,### bp;-#,### bp" InputStyle="MdcTextInputStyle.Outlined" Magnitude="MdcNumericInputMagnitude.BasisPoints" /></p>
 <p>You typed: <strong>'@CurrentBasisPoints / @CurrentBasisPoints.ToString("#,##0 bp")'</strong> - need to work on how to format basis points</p>
 
 <p style="margin-top: 3rem;">Field showing different format for singular values ('month' versus 'months')</p>
-<p><MdcpNumericIntField Label="Months" @bind-Value="@currentMonths" NumericFormat="#,##0 months;-#,##0 months" NumericSingularFormat="#,##0 month;-#,##0 month" InputStyle="MdcTextInputStyle.Outlined" /></p>
+<p><PMdcNumericIntField Label="Months" @bind-Value="@currentMonths" NumericFormat="#,##0 months;-#,##0 months" NumericSingularFormat="#,##0 month;-#,##0 month" InputStyle="MdcTextInputStyle.Outlined" /></p>
 <p>You typed: <strong>'@currentMonths'</strong></p>
 
 

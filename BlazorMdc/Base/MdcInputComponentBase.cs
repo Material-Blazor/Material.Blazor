@@ -153,16 +153,6 @@ namespace BlazorMdc
         protected string FieldClass
             => EditContext?.FieldCssClass(FieldIdentifier) ?? string.Empty;
 
-        /// <summary>
-        /// Gets a CSS class string that combines the <see cref="Class"/> and <see cref="FieldClass"/>
-        /// properties. Derived components should typically use this value for the primary HTML element's
-        /// 'class' attribute.
-        /// </summary>
-        protected string CssClass
-            => string.IsNullOrEmpty(Class)
-            ? FieldClass // Never null or empty
-            : $"{Class} {FieldClass}";
-
         /// <inheritdoc />
         public override Task SetParametersAsync(ParameterView parameters)
         {

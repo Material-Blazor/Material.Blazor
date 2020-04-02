@@ -27,6 +27,9 @@
     //  2020-03-31  Mark Stega
     //              Changed to use class & style mappers
     //
+    //  2020-04-01  Mark Stega
+    //              Changed to re-enable AppliedButtonStyle
+    //
     [Parameter] public MdcButtonStyle ButtonStyle { get; set; } = MdcButtonStyle.Text;
     [Parameter] public string Type { get; set; } = "button";
     [Parameter] public string Label { get; set; }
@@ -41,7 +44,6 @@
 
 
     private ElementReference elementReference;
-    private MdcButtonStyle myButtonStyle;
     private MarkupString LeadingIconMarkup => (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"material-icons mdc-button__icon\" aria-hidden=\"true\">{LeadingIcon}</i>");
     private MarkupString TrailingIconMarkup => (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"material-icons mdc-button__icon\" aria-hidden=\"true\">{TrailingIcon}</i>");
 
@@ -49,8 +51,6 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-
-        Setup();
     }
 
 
@@ -58,18 +58,12 @@
     {
         base.OnParametersSet();
 
-        Setup();
-    }
-
-
-    private void Setup()
-    {
-        //        myButtonStyle = AppliedDefaults.AppliedButtonStyle(ButtonStyle);
+        var myButtonStyle = AppliedDefaults.AppliedButtonStyle(ButtonStyle);
         ClassMapper
             .Add("mdc-button")
-            .If("mdc-button--raised", () => (ButtonStyle == MdcButtonStyle.ContainedRaised))
-            .If("mdc-button--unelevated", () => (ButtonStyle == MdcButtonStyle.ContainedUnelevated))
-            .If("mdc-button--outlined", () => (ButtonStyle == MdcButtonStyle.Outlined));
+            .If("mdc-button--raised", () => (myButtonStyle == MdcButtonStyle.ContainedRaised))
+            .If("mdc-button--unelevated", () => (myButtonStyle == MdcButtonStyle.ContainedUnelevated))
+            .If("mdc-button--outlined", () => (myButtonStyle == MdcButtonStyle.Outlined));
     }
 
 

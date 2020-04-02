@@ -1,0 +1,54 @@
+﻿@namespace BlazorMdc
+
+@inherits MdcComponentBase
+
+@inject IJSRuntime jsRuntime
+
+
+
+<header @ref="headerElem"
+        id="app-bar"
+        class="@ClassMapper.AsString()"
+        style="@StyleMapper.AsString()">
+
+    <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+            <button class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="@NavAriaLabel" @onclick="OnNavClicked">@NavIcon</button>
+            <span class="mdc-top-app-bar__title">@Title</span>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" style="padding-right: 20px;">
+            @ChildContent
+        </section>
+    </div>
+</header>
+
+
+
+@code {
+    //
+    //  2020-04-02  Mark Stega
+    //              Changed to use class & style mappers
+    //
+    [Parameter] public string Title { get; set; }
+    [Parameter] public string NavIcon { get; set; }
+    [Parameter] public string NavAriaLabel { get; set; }
+    [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public EventCallback OnNavClicked { get; set; }
+    [Parameter] public string ScrollTarget { get; set; }
+    [Parameter] public string AppBarType { get; set; } = "fixed";
+
+    ElementReference headerElem;
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        ClassMapper
+            .Add("app-bar mdc-top-app-bar")
+            .If($"mdc-top-app-bar--{AppBarType.ToLower()}", () => !(string.IsNullOrEmpty(AppBarType)));
+    }
+
+    protected async override Task OnAfterFirstRenderAsync()
+    => await jsRuntime.InvokeAsync<object>(
+            "BlazorMdc.topAppBar.init", headerElem, ScrollTarget);
+}

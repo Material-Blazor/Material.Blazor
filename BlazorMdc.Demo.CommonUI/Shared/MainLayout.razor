@@ -1,33 +1,41 @@
 ﻿@inherits LayoutComponentBase
 
-<MdcDrawer @ref="@sidebar">
+@inject NavigationManager navigationManager
+
+<MdcDrawer @ref="@sidebar"
+           IsDismissible="true">
     <div class="mdc-list">
-        <MdcNavLink Href="" Icon="home" Text="Home" Match=NavLinkMatch.All />
-        <MdcNavLink Href="cascadingdefaults" Icon="web" Text="Cascading Defaults" />
-        <MdcNavLink Href="autocomplete" Icon="keyboard" Text="Autocomplete" />
-        <MdcNavLink Href="button" Icon="touch_app" Text="Button" />
-        <MdcNavLink Href="card" Icon="dashboard" Text="Card" />
-        <MdcNavLink Href="checkbox" Icon="check_box" Text="Checkbox" />
-        <MdcNavLink Href="datatable" Icon="table_chart" Text="Data Table" />
-        <MdcNavLink Href="datepicker" Icon="date_range" Text="Date Picker" />
-        <MdcNavLink Href="dialog" Icon="picture_in_picture" Text="Dialog" />
-        <MdcNavLink Href="list" Icon="list" Text="List" />
-        <MdcNavLink Href="menu" Icon="menu" Text="Menu" />
-        <MdcNavLink Href="numericfield" Icon="money" Text="Numeric Field" />
-        <MdcNavLink Href="progress" Icon="access_time" Text="Progress" />
-        <MdcNavLink Href="radiobuttons" Icon="radio_button_checked" Text="Radio Buttons" />
-        <MdcNavLink Href="select" Icon="arrow_drop_down" Text="Select" />
-        <MdcNavLink Href="slidingcontent" Icon="compare_arrows" Text="Sliding Content" />
-        <MdcNavLink Href="switch" Icon="toggle_on" Text="Switch" />
-        <MdcNavLink Href="textarea" Icon="assignment" Text="Text Area" />
-        <MdcNavLink Href="textfield" Icon="text_format" Text="Text Field" />
-        <MdcNavLink Href="tabbar" Icon="tab" Text="Tab Bar" />
-        <MdcNavLink Href="tabbar" Icon="tab" Text="Tab Bar" Disabled="true"/>
+        <MdcListItem NavRef="" Icon="home" Text="Home" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavRef="cascadingdefaults" Icon="web" Text="CascadingDefaults" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavRef="autocomplete" Icon="keyboard" Text="Autocomplete" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavRef="button" Icon="touch_app" Text="Button" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavRef="card" Icon="dashboard" Text="Card" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavRef="checkbox" Icon="check_box" Text="Checkbox" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavRef="datatable" Icon="table_chart" Text="Data Table" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavRef="datepicker" Icon="date_range" Text="Date Picker" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavRef="dialog" Icon="picture_in_picture" Text="Dialog" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavRef="list" Icon="list" Text="List" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavRef="menu" Icon="menu" Text="Menu" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavRef="numericfield" Icon="money" Text="Numeric Field" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavRef="progress" Icon="access_time" Text="Progress" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavRef="radiobuttons" Icon="radio_button_checked" Text="Radio Buttons" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavRef="select" Icon="arrow_drop_down" Text="Select" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavRef="slidingcontent" Icon="compare_arrows" Text="Sliding Content" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavRef="switch" Icon="toggle_on" Text="Switch" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavRef="textarea" Icon="assignment" Text="Text Area" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavRef="textfield" Icon="text_format" Text="Text Field" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavRef="tabbar" Icon="tab" Text="Tab Bar" OnClick="@ListItemClickHandler" />
     </div>
 </MdcDrawer>
 
 <div class="mdc-drawer-app-content">
-    <MdcTopAppBar Title="BlazorMdc - Material Theme components for Blazor" OnNavClicked="@(() => sidebar.Toggle())" NavIcon="menu" NavAriaLabel="Menu" ScrollTarget="#main-content" Type="short" CssClassExtra="mdc-top-app-bar--short-has-action-item">
+    <MdcTopAppBar Title="BlazorMdc - Material Theme components for Blazor"
+                  OnNavClicked="@(() => sidebar.Toggle())"
+                  NavIcon="menu"
+                  NavAriaLabel="Menu"
+                  ScrollTarget="#main-content"
+                  AppBarType="short"
+                  Class="mdc-top-app-bar--short-has-action-item">
         <div id="account-target">
             <button class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Account">person</button>
         </div>
@@ -50,4 +58,9 @@
 
 @code {
     MdcDrawer sidebar;
+
+    protected void ListItemClickHandler(string navRef)
+    {
+        navigationManager.NavigateTo(navRef);
+    }
 }
