@@ -26,6 +26,7 @@ We also want to acknowledge the work of [Vladimir Samoilenko (@SamProf on github
 _TBD_
 
 ## Demonstration from local build
+
 If you have cloned the repository and are building from source there is a project 'BlazorMDC.Demo.WebServer' that should be selected as the startup project.
 
 There are four implemented solution configurations:
@@ -33,8 +34,8 @@ There are four implemented solution configurations:
 | Configuration | Notes |
 | :------------ | :---- |
 | `Debug_CSB` | This is a debug build. It defines two constants, DEBUG, and ClientSideBlazor. It executes using WASM. |
-|`Debug_SSB`|Also a debug build, defines DEBUG abd ServerSideBlazor. It executes in the context of the web server and the the client being displayed by RPC|
-|`Release_xSB`|These two (x=C or S) configurations are the same as the debug versions but are built as release and the DEBUG constant is replaced by RELEASE.|
+| `Debug_SSB` | Also a debug build, defines DEBUG and ServerSideBlazor. It executes in the context of the web server and the the client being displayed through a SignalR connection. |
+| `Release_xSB` | These two (x=C or S) configurations are the same as the debug versions but are built as release and the DEBUG constant is replaced by RELEASE. |
 
 The home page of the demonstration application shows the execution environment as well as the build mode.
 
@@ -73,7 +74,7 @@ The following extra components are in the `BlazorMdc.Plus` namespace.
 | `PMdcConfirmationDialog` | A special purpose wrapper around `MdcDialog` that makes the user type some text correctly in order to enable a button for a specific purpose. Modelled after the GitHub confirmation forms. |
 | `PMdcDatePicker` | An implementation of the [Material date picker specification](https://material.io/components/pickers/#specs) for the desktop. Does not implement date ranges. Date pickers are only implemented in Material Theme for Android, so we interpreted as closely as possible the specification with our own CSS. This is the only instance where we have created CSS for a component, because our goal is to use standard Material Theme styling throughout. The result seems a bit too dense and is within a couple of pixels of unstyled overflow content on the month selection menu for long month names in English; this is likely to overflow for languages with longer month names. We are therefore likely to relax the component's density, which should improve usability. We have deviated from the specification by adding an "undo" button to return to the current selected date. There is no "today" button, which is not in the Material Theme specification. |
 | `PMdcDivider` | Implements a list divider by wrapping `hr` and gives the option of inset and padded. This uses the mdc-list-divider styles. | 
-|`PMdcNumericDoubleField` | Wraps `MdcTextField` to format numeric entry of a `double`. The format is applied when the component lacks focus, at which point the field is a text field holding the formatted number as text. When the field gains focus it switches to a number field. Allows for percentages to be entered as a whole number, e.g. typing "12" will yield a `double` equal to '0.12' and displaying '12%' when lacking focus. We intend to find a similar way to handle [basis points](https://en.wikipedia.org/wiki/Basis_point). |
+| `PMdcNumericDoubleField` | Wraps `MdcTextField` to format numeric entry of a `double`. The format is applied when the component lacks focus, at which point the field is a text field holding the formatted number as text. When the field gains focus it switches to a number field. Allows for percentages to be entered as a whole number, e.g. typing "12" will yield a `double` equal to '0.12' and displaying '12%' when lacking focus. We intend to find a similar way to handle [basis points](https://en.wikipedia.org/wiki/Basis_point). |
 | `PMdcNumericIntField` | A wrapper for `MdcpNumericDoubleField` for `int` variables. |
 
 ## Utilities
