@@ -3,17 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29827.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMdc", "src\BlazorMdc\BlazorMdc.csproj", "{18F89AD9-B647-4928-9C88-6FE17D96355A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMdc", "BlazorMdc\BlazorMdc.csproj", "{18F89AD9-B647-4928-9C88-6FE17D96355A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{510C6FFC-D13D-431C-B5B5-897B7BDA3C29}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMdc.Demo.Blazor", "BlazorMdc.Demo.Blazor\BlazorMdc.Demo.Blazor.csproj", "{E6356325-F767-4C25-BDCA-005C45144C80}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{24CEE271-A626-4366-893B-90942D79D569}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMdc.Demo.CommonUI", "BlazorMdc.Demo.CommonUI\BlazorMdc.Demo.CommonUI.csproj", "{E19D106A-7368-46CB-B8FB-08465F927A79}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMdc.Demo.Blazor", "samples\BlazorMdc.Demo.Blazor\BlazorMdc.Demo.Blazor.csproj", "{E6356325-F767-4C25-BDCA-005C45144C80}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMdc.Demo.CommonUI", "samples\BlazorMdc.Demo.CommonUI\BlazorMdc.Demo.CommonUI.csproj", "{E19D106A-7368-46CB-B8FB-08465F927A79}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMdc.Demo.WebServer", "samples\BlazorMdc.Demo.WebServer\BlazorMdc.Demo.WebServer.csproj", "{538DF864-828F-470C-AE74-7345272F5EEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMdc.Demo.WebServer", "BlazorMdc.Demo.WebServer\BlazorMdc.Demo.WebServer.csproj", "{538DF864-828F-470C-AE74-7345272F5EEF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solutionitems", "solutionitems", "{9BF202BD-226D-4058-92D9-B9D0B23F96E6}"
 	ProjectSection(SolutionItems) = preProject
@@ -65,12 +61,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{18F89AD9-B647-4928-9C88-6FE17D96355A} = {510C6FFC-D13D-431C-B5B5-897B7BDA3C29}
-		{E6356325-F767-4C25-BDCA-005C45144C80} = {24CEE271-A626-4366-893B-90942D79D569}
-		{E19D106A-7368-46CB-B8FB-08465F927A79} = {24CEE271-A626-4366-893B-90942D79D569}
-		{538DF864-828F-470C-AE74-7345272F5EEF} = {24CEE271-A626-4366-893B-90942D79D569}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6EFB30DD-ABFD-4A38-96E1-D309BB538E62}

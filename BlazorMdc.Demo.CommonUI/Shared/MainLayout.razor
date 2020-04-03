@@ -1,0 +1,66 @@
+﻿@inherits LayoutComponentBase
+
+@inject NavigationManager navigationManager
+
+<MdcDrawer @ref="@sidebar"
+           IsDismissible="true">
+    <div class="mdc-list">
+        <MdcListItem NavigationReference="" Icon="home" Text="Home" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavigationReference="cascadingdefaults" Icon="web" Text="CascadingDefaults" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavigationReference="autocomplete" Icon="keyboard" Text="Autocomplete" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavigationReference="button" Icon="touch_app" Text="Button" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavigationReference="card" Icon="dashboard" Text="Card" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavigationReference="checkbox" Icon="check_box" Text="Checkbox" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavigationReference="datatable" Icon="table_chart" Text="Data Table" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavigationReference="datepicker" Icon="date_range" Text="Date Picker" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavigationReference="dialog" Icon="picture_in_picture" Text="Dialog" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavigationReference="list" Icon="list" Text="List" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavigationReference="menu" Icon="menu" Text="Menu" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavigationReference="numericfield" Icon="money" Text="Numeric Field" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavigationReference="progress" Icon="access_time" Text="Progress" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavigationReference="radiobuttons" Icon="radio_button_checked" Text="Radio Buttons" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavigationReference="select" Icon="arrow_drop_down" Text="Select" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavigationReference="slidingcontent" Icon="compare_arrows" Text="Sliding Content" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavigationReference="switch" Icon="toggle_on" Text="Switch" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavigationReference="textarea" Icon="assignment" Text="Text Area" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavigationReference="textfield" Icon="text_format" Text="Text Field" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavigationReference="tabbar" Icon="tab" Text="Tab Bar" OnClick="@ListItemClickHandler" />
+    </div>
+</MdcDrawer>
+
+<div class="mdc-drawer-app-content">
+    <MdcTopAppBar Title="BlazorMdc - Material Theme components for Blazor"
+                  OnNavClicked="@(() => sidebar.Toggle())"
+                  NavIcon="menu"
+                  NavAriaLabel="Menu"
+                  ScrollTarget="#main-content"
+                  AppBarType="short"
+                  Class="mdc-top-app-bar--short-has-action-item">
+        <div id="account-target">
+            <button class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Account">person</button>
+        </div>
+    </MdcTopAppBar>
+
+    <main class="main-content" id="main-content">
+        <div class="mdc-top-app-bar--fixed-adjust">
+            <div class="mdc-card main-content-card">
+                <div class="mdc-layout-grid">
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12">
+                            @Body
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+@code {
+    MdcDrawer sidebar;
+
+    protected void ListItemClickHandler(string NavigationReference)
+    {
+        navigationManager.NavigateTo(NavigationReference);
+    }
+}

@@ -1,0 +1,32 @@
+﻿@namespace BlazorMdc
+
+@inherits MdcComponentBase
+
+<MdcButton ButtonStyle="@myButtonStyle"
+           Type="@Type"
+           Label="@Label"
+           Class="@myClass"
+           LeadingIcon="@LeadingIcon"
+           TrailingIcon="@TrailingIcon"
+           OnClick="@OnClick"
+           OnMouseDown="@OnMouseDown"
+           OnKeyDown="@OnKeyDown"
+           OnTouchStart="@OnTouchStart">
+</MdcButton>
+
+
+@code {
+    [Parameter] public MdcButtonStyle? ButtonStyle { get; set; }
+    [Parameter] public string Type { get; set; } = "button";
+    [Parameter] public string Label { get; set; }
+    [Parameter] public string? LeadingIcon { get; set; }
+    [Parameter] public string? TrailingIcon { get; set; }
+    [Parameter] public EventCallback OnClick { get; set; }
+    [Parameter] public EventCallback OnMouseDown { get; set; }
+    [Parameter] public EventCallback OnKeyDown { get; set; }
+    [Parameter] public EventCallback OnTouchStart { get; set; }
+
+
+    private string myClass => $"{Class} mdc-card__action mdc-card__action--button";
+    private MdcButtonStyle myButtonStyle => AppliedDefaults.AppliedCardActionButtonStyle(ButtonStyle);
+}

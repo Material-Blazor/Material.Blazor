@@ -1,0 +1,32 @@
+﻿@namespace BlazorMdc
+
+@inherits MdcComponentBase
+
+<div role="progressbar"
+     class="@ClassMapper.AsString()"
+     style="@StyleMapper.AsString()">
+
+    <div class="mdc-linear-progress__buffering-dots"></div>
+    <div class="mdc-linear-progress__buffer"></div>
+    <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+        <span class="mdc-linear-progress__bar-inner"></span>
+    </div>
+    <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+        <span class="mdc-linear-progress__bar-inner"></span>
+    </div>
+</div>
+
+@code {
+    //
+    //  2020-04-02  Mark Stega
+    //              Changed to use class & style mappers
+    //
+    [Parameter] public bool Indeterminant { get; set; } = true;
+
+    public MdcLinearProgress()
+    {
+        ClassMapper
+            .Add("mdc-linear-progress")
+            .If("mdc-linear-progress--indeterminate", () => Indeterminant);
+    }
+}

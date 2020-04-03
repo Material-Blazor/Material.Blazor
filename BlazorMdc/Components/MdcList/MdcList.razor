@@ -1,0 +1,130 @@
+﻿@namespace BlazorMdc
+
+@typeparam TItem
+
+@inherits MdcComponentBase
+
+@inject IJSRuntime jsRuntime
+
+
+<ul @ref="@elementReference"
+    class="@ClassMapper.AsString()"
+    style="@StyleMapper.AsString()"
+    aria-orientation="vertical">
+
+    @{ var index = 0; }
+    @foreach (var item in Items)
+    {
+        var tabIndex = "";
+        var clickIndex = index++;
+
+        @if (clickIndex == 0)
+        {
+            tabIndex = "0";
+        }
+        else if (ShowSeparators)
+        {
+            <li role="separator" class="mdc-list-divider"></li>
+        }
+
+        <li class="mdc-list-item"
+            tabindex="@tabIndex" 
+            @onclick="@(() => OnItemClickAsync(clickIndex))"
+            @onmousedown="@(() => OnItemMouseDownAsync(clickIndex))"
+            @onkeydown="@(() => OnItemKeyDownAsync(clickIndex))"
+            @ontouchstart="@(() => OnItemTouchStartAsync(clickIndex))">
+            
+            @if (!SuppressIcons && Icon != null)
+            {
+                <span class="mdc-list-item__graphic material-icons" aria-hidden="true">@Icon(item)</span>
+            }
+
+            <span class="mdc-list-item__text bmdc-full-width">
+                <span class="mdc-list-item__primary-text">@Title(item)</span>
+
+                @if (Subtitle != null)
+                {
+                    <span class="mdc-list-item__secondary-text bmdc-full-width">@Subtitle(item)</span>
+                }
+            </span>
+
+            @if (Actions != null)
+            {
+                <span class="mdc-list-item__meta" aria-hidden="true">@Actions(item)</span>
+            }
+        </li>
+    }
+</ul>
+
+
+@code {
+        //
+        //  2020-04-02  Mark Stega
+        //              Changed to use class & style mappers
+        //
+        [Parameter] public MdcListStyle? ListStyle { get; set; }
+        [Parameter] public IEnumerable<TItem> Items { get; set; }
+        [Parameter] public RenderFragment<TItem> Icon { get; set; }
+        [Parameter] public RenderFragment<TItem> Title { get; set; }
+        [Parameter] public RenderFragment<TItem> Subtitle { get; set; }
+        [Parameter] public RenderFragment<TItem> Actions { get; set; }
+        [Parameter] public RenderFragment<TItem> ContextMenu { get; set; }
+
+        [Parameter] public EventCallback<int> OnClick { get; set; }
+        [Parameter] public EventCallback<int> OnMouseDown { get; set; }
+        [Parameter] public EventCallback<int> OnKeyDown { get; set; }
+        [Parameter] public EventCallback<int> OnTouchStart { get; set; }
+        [Parameter] public bool ShowSeparators { get; set; }
+        [Parameter] public bool KeyboardInteractions { get; set; }
+        [Parameter] public bool Ripple { get; set; }
+        [Parameter] public bool NonInteractive { get; set; }
+        [Parameter] public bool SuppressIcons { get; set; }
+        [Parameter] public bool Dense { get; set; } = false;
+        [Parameter] public bool AvatarList { get; set; }
+
+
+    private ElementReference elementReference;
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        var myListStyle = AppliedDefaults.AppliedListStyle(ListStyle);
+
+        ClassMapper
+            .Add("mdc-list")
+            .If("mdc-card--outlined", () => (myListStyle == MdcListStyle.Outlined))
+            .If("mdc-list--two-line", () => (Subtitle != null))
+            .If("mdc-list--non-interactive", () => NonInteractive)
+            .If("mdc-list--dense", () => Dense)
+            .If("mdc-list--avatar-list", () => AvatarList);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.list.init", elementReference, KeyboardInteractions, Ripple);
+        }
+    }
+
+    private async Task OnItemClickAsync(int index)
+    {
+        await OnClick.InvokeAsync(index);
+    }
+
+    private async Task OnItemMouseDownAsync(int index)
+    {
+        await OnMouseDown.InvokeAsync(index);
+    }
+
+    private async Task OnItemKeyDownAsync(int index)
+    {
+        await OnKeyDown.InvokeAsync(index);
+    }
+
+    private async Task OnItemTouchStartAsync(int index)
+    {
+        await OnTouchStart.InvokeAsync(index);
+    }
+}

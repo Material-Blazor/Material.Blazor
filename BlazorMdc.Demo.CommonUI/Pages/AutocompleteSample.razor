@@ -1,0 +1,28 @@
+﻿@page "/autocomplete"
+
+
+
+<h1 class="@MdcTypography.Heading4">Autocomplete samples</h1>
+
+<p>See <code>AutocompleteSample.razor</code> for sources.</p>
+
+<p>Selection disallowing blanks: '<strong>@(selection1 ?? "")</strong>'</p>
+
+<PMdcAutocomplete @bind-Value="@selection1" Label="Blanks disallowed" InputStyle="MdcTextInputStyle.Filled" SelectItems="@fruits" />
+
+<p style="margin-top: 4em;">Selection dallowing blanks: '<strong>@(selection2 ?? "")</strong>'</p>
+
+<PMdcAutocomplete @bind-Value="@selection2" Label="Blanks allowed" InputStyle="MdcTextInputStyle.Outlined" SelectItems="@fruits" AllowBlankResult="true" />
+
+<p style="margin-top: 4em;">Selection ignoring whitespace for comparison: '<strong>@(selection3 ?? "")</strong>'</p>
+
+<PMdcAutocomplete @bind-Value="@selection3" Label="Whitespace ignored" InputStyle="MdcTextInputStyle.FullWidth" SelectItems="@fruits" IgnoreWhitespace="true" />
+
+
+
+@code {
+    string[] fruits = { "Avocado", "Banana", "Blackberry", "Blueberry", "Cantaloupe", "Cherry", "Clementine", "Dragonfruit", "Fig", "Grape", "Guava", "Honeydew", "Huckleberry", "Jujube", "Kiwi", "Kumquat", "Lime", "Nectarine", "Orange", "Papaya", "Passion Fruit", "Pineapple", "Plum", "Pomegranate", "Raspberry", "Satsuma", "Strawberry", "Tangerine", "Tomato", "Watermelon" };
+    string selection1;
+    string selection2;
+    string selection3;
+}
