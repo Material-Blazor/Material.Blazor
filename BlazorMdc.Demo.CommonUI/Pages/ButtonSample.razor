@@ -45,6 +45,10 @@ See <code>ButtonSample.razor</code> for sources.
                Style="padding-left: 5em;"/>
 </p>
 
+<p>
+    An icon button -> <MdcIconButton Icon="@MdcIcons.Icon__access_alarms" OnClick="@LogMessage" />
+</p>
+
 <ul>
     @foreach (var logEntry in log)
     {
