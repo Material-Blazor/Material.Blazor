@@ -6,6 +6,7 @@
            IsDismissible="true">
     <div class="mdc-list">
         <MdcListItem NavigationReference="" LeadingIcon="home" Text="Home" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavigationReference="" LeadingIcon="home" Text="Home (Disabled)" OnClick="@ListItemClickHandler" Disabled="true" />
         <MdcListItem NavigationReference="cascadingdefaults" LeadingIcon="web" Text="CascadingDefaults" OnClick="@ListItemClickHandler" />
         <MdcListItem NavigationReference="autocomplete" LeadingIcon="keyboard" Text="Autocomplete" OnClick="@ListItemClickHandler" />
         <MdcListItem NavigationReference="button" LeadingIcon="touch_app" Text="Button" OnClick="@ListItemClickHandler" />
@@ -62,6 +63,7 @@
 
     protected void ListItemClickHandler(string NavigationReference)
     {
+        sidebar.NotifyNavigation();
         navigationManager.NavigateTo(NavigationReference);
     }
 }
