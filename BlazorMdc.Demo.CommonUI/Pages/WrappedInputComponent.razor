@@ -1,6 +1,6 @@
-﻿<MdcTextField Value="@InternalStringValue"
-              ValueChanged="InternalStringValueChangedEventHandler"
-              ValueExpression="@( () => InternalStringValue )"
+﻿<MdcTextField Value="@StringValue"
+              ValueChanged="@StringValueChanged"
+              ValueExpression="@( () => StringValue )"
               Label="@Label"
               LeadingIcon="@LeadingIcon"
               OnFocus="@OnFocus"
@@ -13,26 +13,8 @@
     [Parameter] public EventCallback<FocusEventArgs> OnFocus { get; set; }
     [Parameter] public string? TrailingIcon { get; set; }
     [Parameter] public string Type { get; set; } = "text";
+    [Parameter] public string StringValue { get; set; }
     [Parameter] public EventCallback<string> StringValueChanged { get; set; }
-    [Parameter]
-    public string StringValue
-    {
-        get
-        {
-            return InternalStringValue;
-        }
-        set
-        {
-            InternalStringValue = value;
-            StringValueChanged.InvokeAsync(InternalStringValue);
-        }
-    }
-
-    protected string InternalStringValue { get; set; }
-
-    public void InternalStringValueChangedEventHandler(string s)
-    {
-        StringValue = s;
-    }
+    [Parameter] public Expression<Func<string>> pStringValueExpression { get; set; }
 
 }
