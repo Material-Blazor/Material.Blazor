@@ -1,21 +1,20 @@
 ﻿@namespace BlazorMdc
 
-<div class="bmdc-disabled-container">
-    @if (Disabled)
-    {
-        <div class="bmdc-disabled-overlay"></div>
-    }
+@inherits MdcComponentBase
 
-    <li class="mdc-list-item @disabledClass" role="menuitem" @onclick="InternalClickHandler" disabled="@Disabled">
-        @if (!(LeadingIcon is null))
-        {
-            <span class="mdc-list-item__graphic mdc-menu__selection-group-icon">
-                <i class="material-icons">@LeadingIcon </i>
-            </span>
-        }
-        <span class="mdc-list-item__text">@Text</span>
-    </li>
-</div>
+<li role="menuitem"
+    @onclick="InternalClickHandler"
+    class="@ClassMapper.AsString()"
+    style="@StyleMapper.AsString()">
+
+    @if (!(LeadingIcon is null))
+    {
+        <span class="mdc-list-item__graphic mdc-menu__selection-group-icon">
+            <i class="material-icons">@LeadingIcon </i>
+        </span>
+    }
+    <span class="mdc-list-item__text">@Text</span>
+</li>
 
 @code {
     //
@@ -23,20 +22,37 @@
     //              Renamed from MdcMenuListItem
     //              Added NavRef parameter
     //
-    [CascadingParameter] MdcDrawer Drawer { get; set; }
+    //  2020-04-04  Mark Stega
+    //              Use ClassMapper
+    //              Refined disabled handling
+    //              Removed Drawer actions, this really did not belong in this class
+    //
     [Parameter] public string Text { get; set; }
     [Parameter] public string NavigationReference { get; set; } = "";
     [Parameter] public string? LeadingIcon { get; set; }
-    [Parameter] public bool Disabled { get; set; }
     [Parameter] public bool IsSelectionItem { get; set; }
     [Parameter] public EventCallback<string> OnClick { get; set; }
 
-    private string disabledClass => Disabled ? " mdc-list-item--disabled" : "";
+    private bool IsFirstParametersSet = true;
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        if (IsFirstParametersSet)
+        {
+            IsFirstParametersSet = false;
+
+            ClassMapper
+                .Add("mdc-list-item")
+                .If("mdc-list-item--disabled", () => Disabled);
+        }
+    }
 
     protected void InternalClickHandler()
     {
-        // If we're nested inside a drawer, auto-close it when navigating
-        Drawer?.NotifyNavigation();
-        OnClick.InvokeAsync(NavigationReference);
+        if (!Disabled)
+        {
+            OnClick.InvokeAsync(NavigationReference);
+        }
     }
 }
