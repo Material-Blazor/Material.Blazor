@@ -1,5 +1,7 @@
 ﻿@inherits LayoutComponentBase
 
+@namespace BlazorMdc.Demo
+
 @inject NavigationManager navigationManager
 
 <MdcDrawer @ref="@sidebar"
@@ -27,6 +29,8 @@
         <MdcListItem NavigationReference="textfield" LeadingIcon="text_format" Text="Text Field" OnClick="@ListItemClickHandler" />
         <MdcListItem NavigationReference="tabbar" LeadingIcon="tab" Text="Tab Bar" OnClick="@ListItemClickHandler" />
         <MdcListItem NavigationReference="typography" LeadingIcon="@MdcIcons.Icon__text_format" Text="Typography" OnClick="@ListItemClickHandler" />
+        <MdcListDivider />
+        <MdcListItem NavigationReference="wrappedinput" LeadingIcon="menu" Text="Wrapped input component" OnClick="@ListItemClickHandler" />
     </div>
 </MdcDrawer>
 

@@ -1,0 +1,90 @@
+﻿@page "/wrappedinput"
+@namespace BlazorMdc.Demo
+
+<h1 class="@MdcTypography.Heading4">Wrapped input component</h1>
+
+<p>See </p>
+<p><code>WrappedInputComponent.razor</code></p>
+<p><code>WrappedInputComponentDTO.razor</code></p>
+<p><code>WrappedInputComponentSample.razor</code></p>
+<p>
+    for sources. Since binding does not cascade one has to use Value, ValueChanged, and ValueExpression when
+    wrapping an input component.
+</p>
+
+<div>
+    <p>
+        <MdcButton Label="Open dialog with wrapped input components"
+                   OnClick="@OpenDialogAsync"
+                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+    </p>
+
+    <p>PIN 1: <strong>'@(LogonDTO.pPIN1 ?? "")'</strong></p>
+    <p>PIN 2: <strong>'@(LogonDTO.pPIN2 ?? "")'</strong></p>
+
+    <MdcDialog Title="Create a new PIN"
+               @ref="DialogReference">
+        <Body>
+
+            <h6>Your PIN has never been set.</h6>
+            <h6>Pick a PIN, enter it, and verify the entry.</h6>
+            <PMdcDivider Padded="true" />
+            <EditForm Model="@LogonDTO" OnValidSubmit="@SubmitLogon">
+                <DataAnnotationsValidator />
+
+                <div class="form-group">
+                    <WrappedInputComponent @bind-StringValue="@LogonDTO.pPIN1"
+                                           Type="password" />
+                    <ValidationMessage For=@( () => LogonDTO.pPIN1 ) />
+                </div>
+
+                <div class="form-group"
+                    <WrappedInputComponent @bind-StringValue="@LogonDTO.pPIN2"
+                                           Type="password" />
+                    <ValidationMessage For=@( () => LogonDTO.pPIN2 ) />
+                </div>
+
+                <div class="form-group">
+                    <div style="display:flex; flex-direction: row; justify-content: center;">
+                        <MdcButton Style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                   Type="submit"
+                                   Label="PIN entry complete"
+                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+
+                        <MdcButton OnClick="@CancelClick"
+                                   Style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                   Label="Cancel"
+                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                    </div>
+                </div>
+            </EditForm>
+        </Body>
+        <Buttons>
+        </Buttons>
+
+    </MdcDialog>
+</div>
+
+
+@code {
+    private MdcDialog DialogReference;
+
+    protected LogonDTO LogonDTO = new LogonDTO();
+
+    private async Task SubmitLogon()
+    {
+        // In real life, validate PIN equality, store, etc.
+        await DialogReference.HideAsync();
+    }
+
+    private async Task OpenDialogAsync()
+    {
+        await DialogReference.ShowAsync();
+    }
+
+    protected async Task CancelClick()
+    {
+        await DialogReference.HideAsync();
+    }
+
+}

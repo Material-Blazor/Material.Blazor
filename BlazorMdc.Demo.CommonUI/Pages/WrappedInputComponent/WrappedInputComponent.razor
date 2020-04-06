@@ -1,0 +1,22 @@
+﻿@namespace BlazorMdc.Demo
+
+<MdcTextField Value="@StringValue"
+              ValueChanged="@StringValueChanged"
+              ValueExpression="@( () => StringValue )"
+              Label="@Label"
+              LeadingIcon="@LeadingIcon"
+              OnFocus="@OnFocus"
+              TrailingIcon="@TrailingIcon"
+              Type="@Type" />
+
+@code{
+    [Parameter] public string Label { get; set; } = "";
+    [Parameter] public string? LeadingIcon { get; set; }
+    [Parameter] public EventCallback<FocusEventArgs> OnFocus { get; set; }
+    [Parameter] public string? TrailingIcon { get; set; }
+    [Parameter] public string Type { get; set; } = "text";
+    [Parameter] public string StringValue { get; set; }
+    [Parameter] public EventCallback<string> StringValueChanged { get; set; }
+    [Parameter] public Expression<Func<string>> pStringValueExpression { get; set; }
+
+}
