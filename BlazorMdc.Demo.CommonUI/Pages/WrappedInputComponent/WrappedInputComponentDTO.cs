@@ -4,7 +4,7 @@
 //
 
 using System.ComponentModel.DataAnnotations;
-namespace BlazorMdc.Demo.CommonUI.Pages
+namespace BlazorMdc.Demo
 {
     public class LogonDTO
     {
