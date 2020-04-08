@@ -88,7 +88,8 @@ window.BlazorMdc = {
             });
         },
 
-        listItemClick: function (elem) {
+        listItemClick: function (elem, elemText) {
+            elem.innerText = elemText;
             elem.click();
         }
     },

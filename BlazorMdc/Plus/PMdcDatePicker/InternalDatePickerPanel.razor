@@ -179,11 +179,11 @@
 
     private async Task OnDayItemClickAsync(DateTime dateTime)
     {
-        await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", listItem);
         Value = dateTime;
         cachedCurrentValue = Value;
         monthsOffset = 0;
         SetParameters(true);
+        await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", listItem, cachedCurrentValueText);
         await ValueChanged.InvokeAsync(Value);
     }
 
