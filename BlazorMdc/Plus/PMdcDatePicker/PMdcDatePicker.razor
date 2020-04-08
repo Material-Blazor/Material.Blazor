@@ -11,7 +11,7 @@
 
     <div class="mdc-select__anchor">
         <i class="mdc-select__dropdown-icon"></i>
-        <div class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="@labelId" aria-disabled="Disabled">@initialText</div>
+        <div @key="cachedCurrentValue" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="@labelId" aria-disabled="Disabled">@initialText</div>
 
         @if (myInputStyle == MdcSelectInputStyle.Outlined)
         {

@@ -24,12 +24,6 @@
     visibility: hidden;
 }
 
-.bmdc-dp-list-itemx {
-    height: 0;
-    width: 0;
-    visibility: hidden;
-}
-
 .bmdc-dp-menu {
     box-sizing: content-box;
     padding: 16px 8px 12px 24px;
