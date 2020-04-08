@@ -13,7 +13,9 @@ BlazorMdc isn't the only Blazor component library for Material Theme and we enco
 - Some added value components derived from core material theme components but that are not strictly material theme themselves. These include an autocomplete box, a confimration dialog, a date picker (following the material theme date picker specification quite closely) and formatted numeric input fields. These are in the `BlazorMdc.Plus` namespace, and
 - We aim for BlazorMdc to employ best practice for Blazor development. As a starting point this should be considered as being defined per [this video from NDC London, January 2020](https://www.youtube.com/watch?v=QnBYmTpugz0). We have plenty to do to arrive at that position.
 
-Please note that BlazorMdc is in the early stages of development, so there are likely to be **frequent breaking changes** until we reach version 1. This project is owned by [Dioptra](https://dioptra.tech) and is licensed under the terms of the MIT license.
+Note that BlazorMdc is in the early stages of development, so there are likely to be **frequent breaking changes** until we reach version 1. This project is owned by [Dioptra](https://dioptra.tech) and is licensed under the terms of the MIT license.
+
+Lastly if you want to contribute please note our [code of conduct](https://github.com/BlazorMdc/BlazorMdc/blob/master/CODE_OF_CONDUCT.md).
 
 ## Attribution
 
