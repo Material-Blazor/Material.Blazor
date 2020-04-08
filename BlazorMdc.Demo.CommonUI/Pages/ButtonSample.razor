@@ -58,6 +58,12 @@ See <code>ButtonSample.razor</code> for sources.
 </ul>
 
 @code {
+    //
+    //  2020-04-07  Mark Stega
+    //              Changed sample with 'padding-left: 5em' to 'margin-left: 5em' and added 'raised' style (which
+    //              also implies 'contained'). Visually both are identical with a 'text' style but adding 
+    //              'raised' shows that the intended indent of the button is occurring.
+    //
     List<string> log = new List<string>();
 
     void LogMessage()
