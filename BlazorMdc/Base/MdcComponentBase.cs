@@ -16,12 +16,18 @@ namespace BlazorMdc
 
         protected MdcCascadingDefaults AppliedDefaults => (CascadingDefaults == null) ? new MdcCascadingDefaults() : CascadingDefaults;
 
+        protected ClassMapper ClassMapper { get; } = new ClassMapper();
+
+        protected StyleMapper StyleMapper { get; } = new StyleMapper();
+
+        internal AttributeMapper AttributeMapper { get; } = new AttributeMapper();
+
         /// <summary>
         /// Gets whether the component is disabled.
         /// </summary>
         [Parameter] public bool Disabled { get; set; } = false;
 
-
+        
         protected override Task OnAfterRenderAsync(bool isFirstRender)
         {
             if (isFirstRender)
@@ -37,12 +43,7 @@ namespace BlazorMdc
         protected virtual Task OnAfterFirstRenderAsync()
             => Task.CompletedTask;
 
-//        [CascadingParameter]
-//        public MatTheme Theme { get; set; }
-
-        protected ClassMapper ClassMapper { get; } = new ClassMapper();
-
-
+        
         protected MdcComponentBase()
         {
             ClassMapper
@@ -72,10 +73,7 @@ namespace BlazorMdc
         }
 
 
-        protected StyleMapper StyleMapper = new StyleMapper();
-
         private string _class;
         private string _style;
     }
-
 }

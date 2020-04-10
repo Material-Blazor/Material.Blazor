@@ -5,7 +5,8 @@
 @using System.Text.RegularExpressions
 
 
-<MdcTextField Type="@type"
+<MdcTextField @ref="textField"
+              Type="@type"
               @bind-Value="@strVal"
               Label="@Label"
               NoLabel="@NoLabel"
@@ -41,6 +42,7 @@
     private const string PositiveIntegerPattern = @"^\d+$";
 
 
+    private MdcTextField textField;
     private bool hasFocus { get; set; } = false;
     private double mult { get; set; } = 1;
     private double appliedMult => hasFocus ? mult : 1;
@@ -106,6 +108,21 @@
         {
             myDecimalPlaces = DecimalPlaces;
             regex = new Regex(allowSign ? DoublePattern : PositiveDoublePattern);
+        }
+
+
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if (firstRender)
+        {
+            textField.AttributeMapper
+                        .Add("step", Math.Pow(10, -DecimalPlaces).ToString());
+                        //.If("min", Min?.ToString(), () => Min != null)
+                        //.If("max", Max?.ToString(), () => Max != null);
         }
     }
 
