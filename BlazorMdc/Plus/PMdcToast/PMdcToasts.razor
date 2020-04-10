@@ -1,0 +1,13 @@
+﻿@namespace BlazorMdc
+
+@if (ToastList.Any())
+{
+    <div class="blazored-toast-container @PositionClass">
+        <CascadingValue Value=this>
+            @foreach (var toast in ToastList.OrderBy(x => x.TimeStamp))
+            {
+                <PMdcToast ToastSettings="toast.ToastSettings" ToastId="toast.Id" />
+            }
+        </CascadingValue>
+    </div>
+}
