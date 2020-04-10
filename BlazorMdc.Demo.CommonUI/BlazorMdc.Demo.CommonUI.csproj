@@ -29,6 +29,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Styles\styles.scss" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Styles\styles.scss">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BuildWebCompiler" Version="1.12.405" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\BlazorMdc\BlazorMdc.csproj" />
   </ItemGroup>
 

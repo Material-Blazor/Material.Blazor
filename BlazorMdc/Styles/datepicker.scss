@@ -1,0 +1,162 @@
+﻿.bmdc-dp-container {
+    display: inline-block;
+}
+
+.bmdc-dp-list {
+    height: 0 !important;
+    width: 0;
+    padding: 0 !important;
+    visibility: hidden;
+}
+
+.bmdc-dp-menu {
+    box-sizing: content-box;
+    padding: 16px 8px 12px 24px;
+    height: 24px;
+    font-weight: bold;
+    user-select: none;
+    width: 224px;
+    min-width: 224px;
+    overflow: visible !important;
+}
+
+.bmdc-dp-menu__surface-adjust {
+    overflow: visible !important;
+    display: inline-block;
+}
+
+.bmdc-dp-menu__container {
+    position: relative;
+}
+
+.bmdc-dp-menu--icon-button {
+    height: 24px !important;
+    width: 24px !important;
+    width: 224px;
+    padding: 0 !important;
+}
+
+.bmdc-dp-menu__float-left {
+    float: left;
+    height: 24px;
+    line-height: 24px;
+    margin-right: 4px;
+}
+
+.bmdc-dp-menu__float-right {
+    float: right;
+    height: 24px;
+    line-height: 24px;
+}
+
+.bmdc-dp-menu__float-right-spaced {
+    margin-left: 4px;
+}
+
+.bmdc-dp-day-pad {
+    display: inline-block;
+    box-sizing: content-box;
+    padding: 0 16px 4px 16px; /* Want bottom padding of 8px, but inline-block adds 4px of whitespace already */
+    user-select: none;
+    overflow: visible;
+    width: 224px;
+}
+
+.bmdc-dp-day-pad__weekdays-line {
+    display: inline-block;
+    box-sizing: content-box;
+    margin-bottom: 8px; /* Want a margin of 12px, but inline-block adds 4px of whitespace already */
+    padding: 0 !important;
+    overflow: visible;
+}
+
+.bmdc-dp-day-pad__weekday {
+    float: left;
+    text-align: center;
+    height: 32px;
+    line-height: 32px;
+    width: 32px;
+    margin: auto;
+    padding: 0;
+}
+
+.bmdc-dp-day-pad__days-line {
+    display: inline-block;
+    box-sizing: content-box;
+    padding: 0 !important;
+    overflow: visible;
+}
+
+.bmdc-dp-day-pad__button-container {
+    float: left;
+    height: 32px;
+    width: 32px;
+    margin: auto;
+    padding: 0;
+    position: relative;
+}
+
+.bmdc-dp-day-pad__button {
+    float: left;
+    text-align: center;
+    height: 28px !important;
+    line-height: 28px;
+    width: 28px !important;
+    min-width: 28px !important;
+    max-width: 28px;
+    border-radius: 14px !important;
+    margin: 2px !important;
+    padding: 0 !important;
+    top: 0;
+    left: 0;
+}
+
+.bmdc-dp-day-pad__button__ripple {
+    border-radius: 14px !important;
+}
+
+.bmdc-dp-year-pad {
+    display: inline-block;
+    box-sizing: content-box;
+    padding: 4px 0 4px 12px; /* Want bottom padding of 8px, but inline-block adds 4px of whitespace already */
+    user-select: none;
+    overflow: visible;
+    max-height: 228px;
+    width: 256px;
+}
+
+.bmdc-dp-year-pad__years-line {
+    display: inline-block;
+    box-sizing: content-box;
+    padding: 0 !important;
+    overflow: auto;
+    max-height: 228px;
+}
+
+.bmdc-dp-year-pad__button-container {
+    float: left;
+    height: 32px;
+    width: 56px;
+    margin: auto;
+    padding: 0;
+    position: relative;
+}
+
+.bmdc-dp-year-pad__button {
+    float: left;
+    text-align: center;
+    height: 28px !important;
+    line-height: 28px;
+    width: 52px !important;
+    min-width: 52px !important;
+    max-width: 52px;
+    border-radius: 14px !important;
+    margin: 2px !important;
+    padding: 0 !important;
+    top: 0;
+    left: 0;
+}
+
+.bmdc-dp-year-pad__button__ripple {
+    border-radius: 14px !important;
+}
