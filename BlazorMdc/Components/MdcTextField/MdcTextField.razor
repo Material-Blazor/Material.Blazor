@@ -88,9 +88,9 @@
         myInputStyle = AppliedDefaults.AppliedTextInputStyle(InputStyle);
         myTextAlign = AppliedDefaults.AppliedTextAlign(TextAlign);
 
-        LeadingIconMarkup = (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--leading\" tabindex=\"0\" role=\"button\">{LeadingIcon}</i>");
+        LeadingIconMarkup = (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--leading\" tabindex=\"-1\" role=\"button\">{LeadingIcon}</i>");
 
-        TrailingIconMarkup = (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--trailing\" tabindex=\"0\" role=\"button\">{TrailingIcon}</i>");
+        TrailingIconMarkup = (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--trailing\" tabindex=\"-1\" role=\"button\">{TrailingIcon}</i>");
 
         alignClass = Utilities.GetTextAlignClass(myTextAlign);
 
