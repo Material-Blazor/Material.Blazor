@@ -16,6 +16,8 @@ namespace BlazorMdc.Demo.Blazor
 
             builder.Services.AddBaseAddressHttpClient();
 
+            builder.Services.AddPMdcToast();
+
             await builder.Build().RunAsync();
         }
     }
