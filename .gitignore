@@ -338,3 +338,7 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+
+#Generated CSS files
+**/BlazorMdc/wwwroot/css/*.css
+**/BlazorMdc.Demo.CommonUI/wwwroot/css/*.css

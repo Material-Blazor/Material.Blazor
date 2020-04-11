@@ -1,0 +1,39 @@
+﻿@page "/toast"
+
+@inject IToastService toastService
+
+<h1 class="@MdcTypography.Heading4">Toast samples</h1>
+
+<p>See <code>ToastSample.razor</code> for sources.</p>
+    
+<p>
+   Note the addition of AddPMdcToast() in startup.cs (SSB) and program.cs (CSB) as well as the component PMdcToasts
+    in mainlayout.razor.
+</p>
+
+<MdcButton Style="background-color: darkcyan;"
+           OnClick="InfoClick"
+           Label="Info Toast"
+           ButtonStyle="MdcButtonStyle.ContainedRaised"/>
+
+<MdcButton Style="background-color: green;"
+           OnClick="@(() => toastService.ShowSuccess("I'm a SUCCESS message with a custom heading", "Congratulations!"))"
+           Label="Success Toast"
+           ButtonStyle="MdcButtonStyle.ContainedRaised"/>
+
+<MdcButton Style="background-color: orange; color: black;"
+           OnClick="@(() => toastService.ShowWarning("I'm a WARNING message"))"
+           Label="Warning Toast"
+           ButtonStyle="MdcButtonStyle.ContainedRaised"/>
+
+<MdcButton Style="background-color: red;"
+           OnClick="@(() => toastService.ShowError("I'm an ERROR message"))"
+           Label="Error Toast"
+           ButtonStyle="MdcButtonStyle.ContainedRaised"/>
+
+@code{
+    protected void InfoClick()
+    {
+        toastService.ShowInfo("I'm an INFO message");
+    }
+}
