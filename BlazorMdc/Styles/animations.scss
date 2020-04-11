@@ -65,8 +65,8 @@
 
 
 .bmdc-slide-out-to-left {
-    animation: slideOutToLeft ease-out 200ms;
-    -webkit-animation: slideOutToLeft ease-out 200ms;
+    animation: slideOutToLeft ease-out 1000ms;
+    -webkit-animation: slideOutToLeft ease-out 1000ms;
 }
 
 @-webkit-keyframes slideOutToLeft {
@@ -74,7 +74,7 @@
         opacity: 1;
     }
 
-    12px {
+    10% {
         margin-left: -12px;
         margin-right: 12px;
         opacity: 0;
@@ -92,7 +92,7 @@
         opacity: 1;
     }
 
-    12px {
+    10% {
         margin-left: -12px;
         margin-right: 12px;
         opacity: 0;
@@ -107,8 +107,8 @@
 
 
 .bmdc-slide-out-to-right {
-    animation: slideOutToRight ease-out 200ms;
-    -webkit-animation: slideOutToRight ease-out 200ms;
+    animation: slideOutToRight ease-out 1000ms;
+    -webkit-animation: slideOutToRight ease-out 1000ms;
 }
 
 @-webkit-keyframes slideOutToRight {
@@ -116,7 +116,7 @@
         opacity: 1;
     }
 
-    12px {
+    10% {
         margin-left: 12px;
         margin-right: -12px;
         opacity: 0;
@@ -134,7 +134,7 @@
         opacity: 1;
     }
 
-    12px {
+    10% {
         margin-left: 12px;
         margin-right: -12px;
         opacity: 0;
