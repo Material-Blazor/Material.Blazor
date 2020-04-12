@@ -16,6 +16,12 @@ namespace BlazorMdc
 
     public static class BaseMapperExtensions
     {
+        public static T Clear<T>(this T m) where T : BaseMapper
+        {
+            m.Items.Clear();
+            return m;
+        }
+        
         public static T Add<T>(this T m, string name) where T : BaseMapper
         {
             m.Items.Add(() => name);
