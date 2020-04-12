@@ -17,6 +17,12 @@ namespace BlazorMdc
 
     public static class AttributeMapperExtensions
     {
+        public static T Clear<T>(this T m) where T : AttributeMapper
+        {
+            m.Items.Clear();
+            return m;
+        }
+
         public static T Add<T>(this T m, string name, object value) where T : AttributeMapper
         {
             m.Items.Add(() => new KeyValuePair<string, object>(name, value));

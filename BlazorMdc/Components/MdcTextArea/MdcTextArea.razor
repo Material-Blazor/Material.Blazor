@@ -88,6 +88,7 @@
         floatingLabelClass = string.IsNullOrEmpty(CurrentValue) ? "" : "mdc-floating-label--float-above";
 
         ClassMapper
+            .Clear()
             .Add($"mdc-text-field mdc-text-field--textarea {FieldClass} {AppliedDefaults.TextFieldCssClass}")
             .If("mdc-text-field--outlined", () => (myInputStyle == MdcTextInputStyle.Outlined))
             .If("mdc-text-field--fullwidth", () => (myInputStyle == MdcTextInputStyle.FullWidth))

@@ -206,6 +206,16 @@ window.BlazorMdc = {
     textField: {
         init: function (elem) {
             mdc.textField.MDCTextField.attachTo(elem);
+        },
+
+        select: function (elem) {
+            for (i = 0; i < elem.children.length; i++) {
+                if (elem.children[i].tagName == "INPUT") {
+                    let input = elem.children[i];
+                    input.focus();
+                    input.select();
+                }
+            }
         }
     },
 

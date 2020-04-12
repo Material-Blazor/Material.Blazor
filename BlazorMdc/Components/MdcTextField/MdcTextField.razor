@@ -97,6 +97,7 @@
         floatingLabelClass = string.IsNullOrEmpty(CurrentValue) ? "" : "mdc-floating-label--float-above";
 
         ClassMapper
+            .Clear()
             .Add($"mdc-text-field {FieldClass} {AppliedDefaults.TextFieldCssClass}")
             .If("mdc-text-field--outlined", () => (myInputStyle == MdcTextInputStyle.Outlined))
             .If("mdc-text-field--fullwidth", () => (myInputStyle == MdcTextInputStyle.FullWidth))
@@ -112,5 +113,10 @@
         {
             await jsRuntime.InvokeAsync<object>("BlazorMdc.textField.init", elementReference);
         }
+    }
+
+    internal async Task Select()
+    {
+        await jsRuntime.InvokeAsync<object>("BlazorMdc.textField.select", elementReference);
     }
 }
