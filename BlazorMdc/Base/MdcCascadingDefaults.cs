@@ -25,7 +25,7 @@ namespace BlazorMdc
     /// <summary>
     /// The style of MDC input: note that FullWidth is mutually exclusive with Outlined
     /// </summary>
-    public enum MdcNumericInputMagnitude { Normal, Percent, BasisPoints }
+    public enum MdcNumericInputMagnitude { Normal = 0, Percent = 2, BasisPoints = 4 }
 
 
     /// <summary>
