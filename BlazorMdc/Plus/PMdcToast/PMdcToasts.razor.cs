@@ -1,4 +1,9 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿//
+//  2020-04-10  Mark Stega
+//              Created from github.com/ChrisSainty/Blazored.Toast by Chris Sainty
+//
+
+using Microsoft.AspNetCore.Components;
 
 using System;
 using System.Collections.Generic;
