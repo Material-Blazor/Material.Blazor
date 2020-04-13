@@ -1,6 +1,6 @@
 ﻿using System.Runtime.InteropServices;
 
-namespace BlazorMdc.Demo.CommonUI.Pages
+namespace BlazorMdc.Demo
 {
     public partial class Index
     {
