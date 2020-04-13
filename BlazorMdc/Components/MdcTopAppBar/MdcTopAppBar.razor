@@ -29,6 +29,9 @@
     //  2020-04-02  Mark Stega
     //              Changed to use class & style mappers
     //
+    //  2020-04-13  Mark Stega
+    //              Moved ClassMapper to constructor
+    //
     [Parameter] public string Title { get; set; }
     [Parameter] public string NavIcon { get; set; }
     [Parameter] public string NavAriaLabel { get; set; }
@@ -39,10 +42,8 @@
 
     ElementReference headerElem;
 
-    protected override void OnParametersSet()
+    public MdcTopAppBar()
     {
-        base.OnParametersSet();
-
         ClassMapper
             .Add("app-bar mdc-top-app-bar")
             .If($"mdc-top-app-bar--{AppBarType.ToLower()}", () => !(string.IsNullOrEmpty(AppBarType)));

@@ -24,22 +24,19 @@
     //  2020-04-02  Mark Stega
     //              Changed to use class & style mappers
     //
+    //  2020-04-13  Mark Stega
+    //              Moved ClassMapper to constructor
+    //
     [Parameter] public string Label { get; set; } = "On/off";
 
     ElementReference elementReference;
 
-    bool IsFirstParameterSet = true;
-    protected override void OnParametersSet()
+    public MdcSwitch()
     {
-        base.OnParametersSet();
-
-        if (IsFirstParameterSet)
-        {
-            ClassMapper
-                .Add("mdc-switch")
-                .If("mdc-switch--disabled", () => Disabled)
-                .If("mdc-switch--checked", () => CurrentValue);
-        }
+        ClassMapper
+            .Add("mdc-switch")
+            .If("mdc-switch--disabled", () => Disabled)
+            .If("mdc-switch--checked", () => CurrentValue);
     }
 
 

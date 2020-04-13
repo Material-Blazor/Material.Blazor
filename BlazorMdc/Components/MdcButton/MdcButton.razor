@@ -60,26 +60,6 @@
             .If("mdc-button--outlined", () => (CascadingDefaults.AppliedButtonStyle(ButtonStyle) == MdcButtonStyle.Outlined));
     }
 
-
-    bool needsMapping = false;
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
-
-        if (needsMapping)
-        {
-            needsMapping = false;
-
-            var myButtonStyle = CascadingDefaults.AppliedButtonStyle(ButtonStyle);
-            ClassMapper
-                .Add("mdc-button")
-                .If("mdc-button--raised", () => (myButtonStyle == MdcButtonStyle.ContainedRaised))
-                .If("mdc-button--unelevated", () => (myButtonStyle == MdcButtonStyle.ContainedUnelevated))
-                .If("mdc-button--outlined", () => (myButtonStyle == MdcButtonStyle.Outlined));
-        }
-    }
-
-
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)

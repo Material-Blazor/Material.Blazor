@@ -46,6 +46,9 @@
     //  2020-04-02  Mark Stega
     //              Changed to use class & style mappers
     //
+    //  2020-04-13  Mark Stega
+    //              Moved ClassMapper to constructor
+    //
     [Parameter] public MdcTextInputStyle? InputStyle { get; set; }
     [Parameter] public MdcTextAlign? TextAlign { get; set; }
     [Parameter] public string Type { get; set; } = "text";
@@ -71,29 +74,23 @@
     public MarkupString TrailingIconMarkup;
 
 
-    protected override void OnParametersSet()
+    public MdcTextArea()
     {
-        base.OnParametersSet();
-
-        Setup();
+        ClassMapper
+            .Clear()
+            .Add($"mdc-text-field mdc-text-field--textarea {FieldClass} {CascadingDefaults.TextFieldCssClass}")
+            .If("mdc-text-field--outlined", () => (CascadingDefaults.AppliedTextInputStyle(InputStyle) == MdcTextInputStyle.Outlined))
+            .If("mdc-text-field--fullwidth", () => (CascadingDefaults.AppliedTextInputStyle(InputStyle) == MdcTextInputStyle.FullWidth))
+            .If("mdc-text-field--no-label", () => NoLabel)
+            .If("mdc-text-field--disabled", () => Disabled);
     }
 
-    private void Setup()
+    protected override void OnParametersSet()
     {
-        myInputStyle = CascadingDefaults.AppliedTextInputStyle(InputStyle);
-
         var myTextAlign = CascadingDefaults.AppliedTextAlign(TextAlign);
         alignClass = Utilities.GetTextAlignClass(myTextAlign);
 
         floatingLabelClass = string.IsNullOrEmpty(CurrentValue) ? "" : "mdc-floating-label--float-above";
-
-        ClassMapper
-            .Clear()
-            .Add($"mdc-text-field mdc-text-field--textarea {FieldClass} {CascadingDefaults.TextFieldCssClass}")
-            .If("mdc-text-field--outlined", () => (myInputStyle == MdcTextInputStyle.Outlined))
-            .If("mdc-text-field--fullwidth", () => (myInputStyle == MdcTextInputStyle.FullWidth))
-            .If("mdc-text-field--no-label", () => NoLabel)
-            .If("mdc-text-field--disabled", () => Disabled);
     }
 
     protected async override Task OnAfterRenderAsync(bool firstRender)

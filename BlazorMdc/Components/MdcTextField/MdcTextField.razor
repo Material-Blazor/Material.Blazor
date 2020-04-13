@@ -49,6 +49,9 @@
     //  2020-04-02  Mark Stega
     //              Changed to use class & style mappers
     //
+    //  2020-04-13  Mark Stega
+    //              Moved ClassMapper to constructor
+    //
     [Parameter] public MdcTextInputStyle? InputStyle { get; set; }
     [Parameter] public MdcTextAlign? TextAlign { get; set; }
     [Parameter] public string Type { get; set; } = "text";
@@ -76,16 +79,22 @@
     private MarkupString TrailingIconMarkup;
 
 
+    public MdcTextField()
+    {
+        ClassMapper
+            .Add($"mdc-text-field {FieldClass} {CascadingDefaults.TextFieldCssClass}")
+            .If("mdc-text-field--outlined", () => (CascadingDefaults.AppliedTextInputStyle(InputStyle) == MdcTextInputStyle.Outlined))
+            .If("mdc-text-field--fullwidth", () => (CascadingDefaults.AppliedTextInputStyle(InputStyle) == MdcTextInputStyle.FullWidth))
+            .If("mdc-text-field--no-label", () => NoLabel)
+            .If("mdc-text-field--disabled", () => Disabled)
+            .If("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
+            .If("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
+    }
+
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
 
-        Setup();
-    }
-
-    private void Setup()
-    {
-        myInputStyle = CascadingDefaults.AppliedTextInputStyle(InputStyle);
         myTextAlign = CascadingDefaults.AppliedTextAlign(TextAlign);
 
         LeadingIconMarkup = (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--leading\" tabindex=\"-1\" role=\"button\">{LeadingIcon}</i>");
@@ -95,16 +104,6 @@
         alignClass = Utilities.GetTextAlignClass(myTextAlign);
 
         floatingLabelClass = string.IsNullOrEmpty(CurrentValue) ? "" : "mdc-floating-label--float-above";
-
-        ClassMapper
-            .Clear()
-            .Add($"mdc-text-field {FieldClass} {CascadingDefaults.TextFieldCssClass}")
-            .If("mdc-text-field--outlined", () => (myInputStyle == MdcTextInputStyle.Outlined))
-            .If("mdc-text-field--fullwidth", () => (myInputStyle == MdcTextInputStyle.FullWidth))
-            .If("mdc-text-field--no-label", () => NoLabel)
-            .If("mdc-text-field--disabled", () => Disabled)
-            .If("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
-            .If("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
     }
 
     protected async override Task OnAfterRenderAsync(bool firstRender)
