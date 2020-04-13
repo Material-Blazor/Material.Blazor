@@ -12,9 +12,7 @@ namespace BlazorMdc
     public abstract class MdcComponentBase : ComponentBase
     {
         [CascadingParameter]
-        private MdcCascadingDefaults CascadingDefaults { get; set; }
-
-        protected MdcCascadingDefaults AppliedDefaults => (CascadingDefaults == null) ? new MdcCascadingDefaults() : CascadingDefaults;
+        protected MdcCascadingDefaults CascadingDefaults { get; set; } = new MdcCascadingDefaults();
 
         protected ClassMapper ClassMapper { get; } = new ClassMapper();
 

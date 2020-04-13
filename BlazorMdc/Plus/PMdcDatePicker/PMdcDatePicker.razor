@@ -87,7 +87,7 @@
         // results in the floating label jumping to the wrong place.
         if (doInitialize || Value != cachedCurrentValue)
         {
-            myInputStyle = AppliedDefaults.AppliedSelectInputStyle(InputStyle);
+            myInputStyle = CascadingDefaults.AppliedSelectInputStyle(InputStyle);
             initialValue = Value;
             cachedCurrentValue = Value;
             initialText = Utilities.DateToString(Value);

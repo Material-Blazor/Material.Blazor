@@ -22,6 +22,9 @@
     //  2020-04-01  Mark Stega
     //              Changed to use class & style mappers
     //
+    //  2020-04-13  Mark Stega
+    //              Moved ClassMapper to constructor
+    //
     ElementReference drawerElem;
     bool isOpen;
 
@@ -29,6 +32,14 @@
     [Parameter] public bool StartOpen { get; set; } = false;
     [Parameter] public bool IsDismissible { get; set; } = true;
     [Parameter] public bool CloseOnNavigate { get; set; } = true;
+
+    public MdcDrawer()
+    {
+        ClassMapper
+            .Add("mdc-drawer")
+            .If("mdc-drawer--dismissible", () => IsDismissible)
+            .If("mdc-drawer--open", () => StartOpen);
+    }
 
     protected override void OnInitialized()
     {
@@ -58,13 +69,4 @@
             drawerElem,
             isOpen);
 
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
-
-        ClassMapper
-            .Add("mdc-drawer")
-            .If("mdc-drawer--dismissible", () => IsDismissible)
-            .If("mdc-drawer--open", () => StartOpen);
-    }
 }

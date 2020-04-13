@@ -58,6 +58,9 @@
     //  2020-04-02  Mark Stega
     //              Changed to use class & style mappers
     //
+    //  2020-04-13  Mark Stega
+    //              Moved ClassMapper to constructor
+    //
     public class Item<T>
     {
         public T DataValue { get; set; }
@@ -84,6 +87,14 @@
     private TItem cachedCurrentValue;
 
 
+    public MdcSelect()
+    {
+        ClassMapper
+            .Add("mdc-select")
+            .If("mdc-select--outlined", () => (CascadingDefaults.AppliedSelectInputStyle(InputStyle) == MdcSelectInputStyle.Outlined))
+            .If("mdc-select--disabled", () => Disabled);
+    }
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
@@ -96,28 +107,13 @@
     {
         base.OnParametersSet();
 
-        SetParameters();
-    }
-
-    private bool isFirstParameterSet = true;
-
-    private void SetParameters()
-    {
         // All values that are bound to HTML are set once at initialization and then left unchanged
         // because allowing Blazor to re-render conflicts with the Material Theme js rendering. This
         // results in the floating label jumping to the wrong place.
-        if (isFirstParameterSet || !object.Equals(Value, cachedCurrentValue))
+        if (!object.Equals(Value, cachedCurrentValue))
         {
-            isFirstParameterSet = false;
-
             // Styles
-            myInputStyle = AppliedDefaults.AppliedSelectInputStyle(InputStyle);
-            ClassMapper
-                .Add("mdc-select")
-                .If("mdc-select--outlined", () => (myInputStyle == MdcSelectInputStyle.Outlined))
-                .If("mdc-select--disabled", () => Disabled);
-
-            myTextAlign = AppliedDefaults.AppliedTextAlign(TextAlign);
+            myTextAlign = CascadingDefaults.AppliedTextAlign(TextAlign);
             alignClass = Utilities.GetTextAlignClass(myTextAlign);
 
             if (Value != null && !string.IsNullOrEmpty(Value.ToString()))
@@ -150,7 +146,6 @@
             }
         }
     }
-
 
     private async Task OnItemClickAsync(TItem dataValue)
     {

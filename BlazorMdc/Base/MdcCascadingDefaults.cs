@@ -58,7 +58,7 @@ namespace BlazorMdc
         public MdcTextInputStyle TextInputStyle { get; set; } = MdcTextInputStyle.Filled;
         public string TextFieldCssClass { get; set; } = "";
         public MdcSelectInputStyle SelectInputStyle { get; set; } = MdcSelectInputStyle.Filled;
-        public MdcButtonStyle ButtonStyle { get; set; } = MdcButtonStyle.Text;
+        public MdcButtonStyle ButtonStyleCV { get; set; } = MdcButtonStyle.Text;
         public MdcCardStyle CardStyle { get; set; } = MdcCardStyle.Default;
         public MdcListStyle ListStyle { get; set; } = MdcListStyle.None;
         public MdcButtonStyle CardActionButtonStyle { get; set; } = MdcButtonStyle.Text;
@@ -72,7 +72,7 @@ namespace BlazorMdc
 
         internal MdcSelectInputStyle AppliedSelectInputStyle(MdcSelectInputStyle? style = null) => (style is null) ? SelectInputStyle : (MdcSelectInputStyle)style;
 
-        internal MdcButtonStyle AppliedButtonStyle(MdcButtonStyle? style = null) => (style is null) ? ButtonStyle : (MdcButtonStyle)style;
+        internal MdcButtonStyle AppliedButtonStyle(MdcButtonStyle? style = null) => (style is null) ? ButtonStyleCV : (MdcButtonStyle)style;
 
         internal MdcCardStyle AppliedCardStyle(MdcCardStyle? style = null) => (style is null) ? CardStyle : (MdcCardStyle)style;
 

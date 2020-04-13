@@ -58,42 +58,41 @@
 
 
 @code {
-        //
-        //  2020-04-02  Mark Stega
-        //              Changed to use class & style mappers
-        //
-        [Parameter] public MdcListStyle? ListStyle { get; set; }
-        [Parameter] public IEnumerable<TItem> Items { get; set; }
-        [Parameter] public RenderFragment<TItem> Icon { get; set; }
-        [Parameter] public RenderFragment<TItem> Title { get; set; }
-        [Parameter] public RenderFragment<TItem> Subtitle { get; set; }
-        [Parameter] public RenderFragment<TItem> Actions { get; set; }
-        [Parameter] public RenderFragment<TItem> ContextMenu { get; set; }
+    //
+    //  2020-04-02  Mark Stega
+    //              Changed to use class & style mappers
+    //
+    //  2020-04-13  Mark Stega
+    //              Moved ClassMapper to constructor
+    //
+    [Parameter] public MdcListStyle? ListStyle { get; set; }
+    [Parameter] public IEnumerable<TItem> Items { get; set; }
+    [Parameter] public RenderFragment<TItem> Icon { get; set; }
+    [Parameter] public RenderFragment<TItem> Title { get; set; }
+    [Parameter] public RenderFragment<TItem> Subtitle { get; set; }
+    [Parameter] public RenderFragment<TItem> Actions { get; set; }
+    [Parameter] public RenderFragment<TItem> ContextMenu { get; set; }
 
-        [Parameter] public EventCallback<int> OnClick { get; set; }
-        [Parameter] public EventCallback<int> OnMouseDown { get; set; }
-        [Parameter] public EventCallback<int> OnKeyDown { get; set; }
-        [Parameter] public EventCallback<int> OnTouchStart { get; set; }
-        [Parameter] public bool ShowSeparators { get; set; }
-        [Parameter] public bool KeyboardInteractions { get; set; }
-        [Parameter] public bool Ripple { get; set; }
-        [Parameter] public bool NonInteractive { get; set; }
-        [Parameter] public bool SuppressIcons { get; set; }
-        [Parameter] public bool Dense { get; set; } = false;
-        [Parameter] public bool AvatarList { get; set; }
+    [Parameter] public EventCallback<int> OnClick { get; set; }
+    [Parameter] public EventCallback<int> OnMouseDown { get; set; }
+    [Parameter] public EventCallback<int> OnKeyDown { get; set; }
+    [Parameter] public EventCallback<int> OnTouchStart { get; set; }
+    [Parameter] public bool ShowSeparators { get; set; }
+    [Parameter] public bool KeyboardInteractions { get; set; }
+    [Parameter] public bool Ripple { get; set; }
+    [Parameter] public bool NonInteractive { get; set; }
+    [Parameter] public bool SuppressIcons { get; set; }
+    [Parameter] public bool Dense { get; set; } = false;
+    [Parameter] public bool AvatarList { get; set; }
 
 
     private ElementReference elementReference;
 
-    protected override void OnParametersSet()
+    public MdcList()
     {
-        base.OnParametersSet();
-
-        var myListStyle = AppliedDefaults.AppliedListStyle(ListStyle);
-
         ClassMapper
             .Add("mdc-list")
-            .If("mdc-card--outlined", () => (myListStyle == MdcListStyle.Outlined))
+            .If("mdc-card--outlined", () => (CascadingDefaults.AppliedListStyle(ListStyle) == MdcListStyle.Outlined))
             .If("mdc-list--two-line", () => (Subtitle != null))
             .If("mdc-list--non-interactive", () => NonInteractive)
             .If("mdc-list--dense", () => Dense)

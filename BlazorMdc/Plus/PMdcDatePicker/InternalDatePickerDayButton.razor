@@ -30,7 +30,7 @@
 
 
     private ElementReference elementReference;
-    private MdcDateSelectionCriteria myCriteria => AppliedDefaults.AppliedDateSelectionCriteria(DateSelectionCriteria);
+    private MdcDateSelectionCriteria myCriteria => CascadingDefaults.AppliedDateSelectionCriteria(DateSelectionCriteria);
     private string text => Utilities.DateToString(DisplayDate);
     private int day => DisplayDate.Day;
     private string buttonStyleClass => (DisplayDate == CurrentDate) ? "mdc-button--unelevated" : "";

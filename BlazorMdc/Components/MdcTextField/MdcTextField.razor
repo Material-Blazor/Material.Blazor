@@ -85,8 +85,8 @@
 
     private void Setup()
     {
-        myInputStyle = AppliedDefaults.AppliedTextInputStyle(InputStyle);
-        myTextAlign = AppliedDefaults.AppliedTextAlign(TextAlign);
+        myInputStyle = CascadingDefaults.AppliedTextInputStyle(InputStyle);
+        myTextAlign = CascadingDefaults.AppliedTextAlign(TextAlign);
 
         LeadingIconMarkup = (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--leading\" tabindex=\"-1\" role=\"button\">{LeadingIcon}</i>");
 
@@ -98,7 +98,7 @@
 
         ClassMapper
             .Clear()
-            .Add($"mdc-text-field {FieldClass} {AppliedDefaults.TextFieldCssClass}")
+            .Add($"mdc-text-field {FieldClass} {CascadingDefaults.TextFieldCssClass}")
             .If("mdc-text-field--outlined", () => (myInputStyle == MdcTextInputStyle.Outlined))
             .If("mdc-text-field--fullwidth", () => (myInputStyle == MdcTextInputStyle.FullWidth))
             .If("mdc-text-field--no-label", () => NoLabel)

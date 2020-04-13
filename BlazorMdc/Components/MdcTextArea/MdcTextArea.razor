@@ -80,16 +80,16 @@
 
     private void Setup()
     {
-        myInputStyle = AppliedDefaults.AppliedTextInputStyle(InputStyle);
+        myInputStyle = CascadingDefaults.AppliedTextInputStyle(InputStyle);
 
-        var myTextAlign = AppliedDefaults.AppliedTextAlign(TextAlign);
+        var myTextAlign = CascadingDefaults.AppliedTextAlign(TextAlign);
         alignClass = Utilities.GetTextAlignClass(myTextAlign);
 
         floatingLabelClass = string.IsNullOrEmpty(CurrentValue) ? "" : "mdc-floating-label--float-above";
 
         ClassMapper
             .Clear()
-            .Add($"mdc-text-field mdc-text-field--textarea {FieldClass} {AppliedDefaults.TextFieldCssClass}")
+            .Add($"mdc-text-field mdc-text-field--textarea {FieldClass} {CascadingDefaults.TextFieldCssClass}")
             .If("mdc-text-field--outlined", () => (myInputStyle == MdcTextInputStyle.Outlined))
             .If("mdc-text-field--fullwidth", () => (myInputStyle == MdcTextInputStyle.FullWidth))
             .If("mdc-text-field--no-label", () => NoLabel)

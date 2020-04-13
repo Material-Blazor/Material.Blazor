@@ -152,13 +152,13 @@
         // results in the floating label jumping to the wrong place.
         if (doInitialize || (Value is null) || Value.ToLower() != selectInfo.SelectedText.ToLower())
         {
-            var myTextAlign = AppliedDefaults.AppliedTextAlign(TextAlign);
+            var myTextAlign = CascadingDefaults.AppliedTextAlign(TextAlign);
             alignClass = Utilities.GetTextAlignClass(myTextAlign);
 
             LeadingIconMarkup = (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--leading\" tabindex=\"0\" role=\"button\">{LeadingIcon}</i>");
             TrailingIconMarkup = (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--trailing\" tabindex=\"0\" role=\"button\">{TrailingIcon}</i>");
 
-            myInputStyle = AppliedDefaults.AppliedTextInputStyle(InputStyle);
+            myInputStyle = CascadingDefaults.AppliedTextInputStyle(InputStyle);
 
             ClassMapper
                 .Add("mdc-text-field mdc-text-field--textarea")

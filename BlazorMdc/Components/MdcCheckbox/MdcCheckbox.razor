@@ -35,6 +35,9 @@
     //  2020-04-01  Mark Stega
     //              Changed to use class & style mappers
     //
+    //  2020-04-13  Mark Stega
+    //              Moved ClassMapper to constructor
+    //
     [Parameter] public string Label { get; set; }
     [Parameter] public EventCallback OnChange { get; set; }
     [Parameter] public bool IsFormField { get; set; }
@@ -45,6 +48,12 @@
     private ElementReference formReference;
 
 
+    public MdcCheckbox()
+    {
+        ClassMapper.Add("")
+            .If("mdc-form-field", () => (IsFormField || !(string.IsNullOrWhiteSpace(Label))));
+    }
+
     protected async override Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -53,11 +62,4 @@
         }
     }
 
-        protected override void OnParametersSet()
-        {
-            base.OnParametersSet();
-
-        ClassMapper.Add("")
-            .If("mdc-form-field", () => (IsFormField || !(string.IsNullOrWhiteSpace(Label))));
-        }
 }
