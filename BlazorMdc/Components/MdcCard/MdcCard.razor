@@ -33,7 +33,7 @@
     {
         ClassMapper
             .Add("mdc-card")
-            .If("mdc-card--outlined", () => (CascadingDefaults.AppliedCardStyle(CardStyle) == MdcCardStyle.Outlined));
+            .If("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(CardStyle) == MdcCardStyle.Outlined));
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

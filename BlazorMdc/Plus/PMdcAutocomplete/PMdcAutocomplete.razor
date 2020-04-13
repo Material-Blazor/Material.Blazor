@@ -26,7 +26,7 @@
 
         @TrailingIconMarkup
 
-        @if (myInputStyle == MdcTextInputStyle.Outlined)
+        @if (myTextInputStyle == MdcTextInputStyle.Outlined)
         {
             <div class="mdc-notched-outline">
                 <div class="mdc-notched-outline__leading"></div>
@@ -68,6 +68,9 @@
     //  2020-04-02  Mark Stega
     //              Changed to use class & style mappers
     //
+    //  2020-04-13  Mark Stega
+    //              Moved ClassMapper to constructor
+    //
     private class SelectInfo
     {
         public string SelectedText;
@@ -84,8 +87,8 @@
     }
 
 
-    [Parameter] public MdcTextInputStyle? InputStyle { get; set; }
-    [Parameter] public MdcTextAlign? TextAlign { get; set; }
+    [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
+    [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
     [Parameter] public string Label { get; set; } = "";
     [Parameter] public bool NoLabel { get; set; } = false;
     [Parameter] public string? LeadingIcon { get; set; }
@@ -96,10 +99,10 @@
     [Parameter] public IEnumerable<string> SelectItems { get; set; }
 
 
+    private MdcTextInputStyle myTextInputStyle { get; set; }
     private DotNetObjectReference<PMdcAutocomplete> objectReference;
     private ElementReference textReference;
     private ElementReference menuReference;
-    private MdcTextInputStyle myInputStyle;
     private string labelId = Utilities.GenerateCssElementSelector();
     private string floatingLabelClass = "";
     private string alignClass = "";
@@ -113,6 +116,17 @@
     private bool menuHasFocus = false;
 
 
+    public PMdcAutocomplete()
+    {
+        ClassMapper
+            .Add("mdc-text-field mdc-text-field--textarea")
+            .If("mdc-text--outlined", () => (myTextInputStyle == MdcTextInputStyle.Outlined))
+            .If("mdc-text--fullwidth", () => (myTextInputStyle == MdcTextInputStyle.FullWidth))
+            .If("mdc-select--disabled", () => Disabled)
+            .If("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
+            .If("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
+    }
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
@@ -120,20 +134,14 @@
         objectReference = DotNetObjectReference.Create(this);
     }
 
-    bool IsFirstParametersSet = true;
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
 
-        if (IsFirstParametersSet)
-        {
-            IsFirstParametersSet = false;
-            SetParameters(true);
-        }
+        SetParameters();
     }
 
-
-    public void SetParameters(bool doInitialize)
+    protected void SetParameters()
     {
         mySelectItems = from i in SelectItems
                         select new SelectItem
@@ -150,27 +158,15 @@
         // All values that are bound to HTML are set once at initialization and then left unchanged
         // because allowing Blazor to re-render conflicts with the Material Theme js rendering. This
         // results in the floating label jumping to the wrong place.
-        if (doInitialize || (Value is null) || Value.ToLower() != selectInfo.SelectedText.ToLower())
-        {
-            var myTextAlign = CascadingDefaults.AppliedTextAlign(TextAlign);
-            alignClass = Utilities.GetTextAlignClass(myTextAlign);
+        myTextInputStyle = CascadingDefaults.AppliedStyle(TextInputStyle);
 
-            LeadingIconMarkup = (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--leading\" tabindex=\"0\" role=\"button\">{LeadingIcon}</i>");
-            TrailingIconMarkup = (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--trailing\" tabindex=\"0\" role=\"button\">{TrailingIcon}</i>");
+        var myTextAlign = CascadingDefaults.AppliedStyle(TextAlignStyle);
+        alignClass = Utilities.GetTextAlignClass(myTextAlign);
 
-            myInputStyle = CascadingDefaults.AppliedTextInputStyle(InputStyle);
+        LeadingIconMarkup = (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--leading\" tabindex=\"0\" role=\"button\">{LeadingIcon}</i>");
+        TrailingIconMarkup = (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--trailing\" tabindex=\"0\" role=\"button\">{TrailingIcon}</i>");
 
-            ClassMapper
-                .Add("mdc-text-field mdc-text-field--textarea")
-                .If("mdc-text--outlined", () => (myInputStyle == MdcTextInputStyle.Outlined))
-                .If("mdc-text--fullwidth", () => (myInputStyle == MdcTextInputStyle.FullWidth))
-                .If("mdc-select--disabled", () => Disabled)
-                .If("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
-                .If("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
-
-            selectInfo = BuildSelectList(CurrentValue);
-
-        }
+        selectInfo = BuildSelectList(CurrentValue);
 
         StateHasChanged();
     }
@@ -222,7 +218,7 @@
             await CloseMenuAsync();
             Value = selectInfo.SelectedText.Trim();
             await ValueChanged.InvokeAsync(Value);
-            SetParameters(true);
+            SetParameters();
         }
 
         await OpenMenuAsync();
@@ -243,7 +239,7 @@
             }
 
             await ValueChanged.InvokeAsync(Value);
-            SetParameters(true);
+            SetParameters();
         }
     }
 
@@ -266,7 +262,7 @@
         selectInfo = BuildSelectList(menuValue);
         Value = menuValue.Trim();
         await ValueChanged.InvokeAsync(Value);
-        SetParameters(true);
+        SetParameters();
     }
 
 
@@ -274,6 +270,7 @@
     public async Task NotifyClosedAsync()
     {
         isOpen = false;
+        await Task.CompletedTask;
     }
 
 
@@ -282,8 +279,7 @@
         if (!isOpen || forceOpen)
         {
             isOpen = true;
-            await jsRuntime.InvokeAsync<string>
-    ("BlazorMdc.autoComplete.open", menuReference, textReference, objectReference);
+            await jsRuntime.InvokeAsync<string>("BlazorMdc.autoComplete.open", menuReference, textReference, objectReference);
         }
     }
 
@@ -293,8 +289,7 @@
         if (isOpen || forceClose)
         {
             isOpen = false;
-            await jsRuntime.InvokeAsync<string>
-                ("BlazorMdc.autoComplete.close", menuReference, textReference, objectReference);
+            await jsRuntime.InvokeAsync<string>("BlazorMdc.autoComplete.close", menuReference, textReference, objectReference);
         }
     }
 
@@ -303,8 +298,7 @@
     {
         if (firstRender)
         {
-            await jsRuntime.InvokeAsync<object>
-                ("BlazorMdc.autoComplete.init", textReference);
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.autoComplete.init", textReference);
         }
     }
 }

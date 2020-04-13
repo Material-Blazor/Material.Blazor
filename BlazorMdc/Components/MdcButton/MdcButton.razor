@@ -55,9 +55,9 @@
     {
         ClassMapper
             .Add("mdc-button")
-            .If("mdc-button--raised", () => (CascadingDefaults.AppliedButtonStyle(ButtonStyle) == MdcButtonStyle.ContainedRaised))
-            .If("mdc-button--unelevated", () => (CascadingDefaults.AppliedButtonStyle(ButtonStyle) == MdcButtonStyle.ContainedUnelevated))
-            .If("mdc-button--outlined", () => (CascadingDefaults.AppliedButtonStyle(ButtonStyle) == MdcButtonStyle.Outlined));
+            .If("mdc-button--raised", () => (CascadingDefaults.AppliedStyle(ButtonStyle) == MdcButtonStyle.ContainedRaised))
+            .If("mdc-button--unelevated", () => (CascadingDefaults.AppliedStyle(ButtonStyle) == MdcButtonStyle.ContainedUnelevated))
+            .If("mdc-button--outlined", () => (CascadingDefaults.AppliedStyle(ButtonStyle) == MdcButtonStyle.Outlined));
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

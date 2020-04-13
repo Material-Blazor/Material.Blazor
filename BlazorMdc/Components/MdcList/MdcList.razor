@@ -92,7 +92,7 @@
     {
         ClassMapper
             .Add("mdc-list")
-            .If("mdc-card--outlined", () => (CascadingDefaults.AppliedListStyle(ListStyle) == MdcListStyle.Outlined))
+            .If("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(ListStyle) == MdcListStyle.Outlined))
             .If("mdc-list--two-line", () => (Subtitle != null))
             .If("mdc-list--non-interactive", () => NonInteractive)
             .If("mdc-list--dense", () => Dense)

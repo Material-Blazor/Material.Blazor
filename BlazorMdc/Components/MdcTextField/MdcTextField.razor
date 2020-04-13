@@ -27,7 +27,7 @@
            @onfocusout="OnFocusOut">
     @TrailingIconMarkup
 
-    @if (myInputStyle == MdcTextInputStyle.Outlined)
+    @if (myTextInputStyle == MdcTextInputStyle.Outlined)
     {
         <div class="mdc-notched-outline">
             <div class="mdc-notched-outline__leading"></div>
@@ -52,8 +52,8 @@
     //  2020-04-13  Mark Stega
     //              Moved ClassMapper to constructor
     //
-    [Parameter] public MdcTextInputStyle? InputStyle { get; set; }
-    [Parameter] public MdcTextAlign? TextAlign { get; set; }
+    [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
+    [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
     [Parameter] public string Type { get; set; } = "text";
     [Parameter] public string Label { get; set; } = "";
     [Parameter] public string TabIndex { get; set; } = "";
@@ -70,8 +70,8 @@
 
 
     private ElementReference elementReference;
-    private MdcTextInputStyle myInputStyle;
-    private MdcTextAlign myTextAlign;
+    private MdcTextInputStyle myTextInputStyle;
+    private MdcTextAlignStyle myTextAlignStyle;
     private string labelId = Guid.NewGuid().ToString();
     private string alignClass;
     private string floatingLabelClass;
@@ -83,8 +83,8 @@
     {
         ClassMapper
             .Add($"mdc-text-field {FieldClass} {CascadingDefaults.TextFieldCssClass}")
-            .If("mdc-text-field--outlined", () => (CascadingDefaults.AppliedTextInputStyle(InputStyle) == MdcTextInputStyle.Outlined))
-            .If("mdc-text-field--fullwidth", () => (CascadingDefaults.AppliedTextInputStyle(InputStyle) == MdcTextInputStyle.FullWidth))
+            .If("mdc-text-field--outlined", () => (myTextInputStyle == MdcTextInputStyle.Outlined))
+            .If("mdc-text-field--fullwidth", () => (myTextInputStyle == MdcTextInputStyle.FullWidth))
             .If("mdc-text-field--no-label", () => NoLabel)
             .If("mdc-text-field--disabled", () => Disabled)
             .If("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
@@ -95,13 +95,15 @@
     {
         base.OnParametersSet();
 
-        myTextAlign = CascadingDefaults.AppliedTextAlign(TextAlign);
+        myTextInputStyle = CascadingDefaults.AppliedStyle(TextInputStyle);
+
+        myTextAlignStyle = CascadingDefaults.AppliedStyle(TextAlignStyle);
 
         LeadingIconMarkup = (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--leading\" tabindex=\"-1\" role=\"button\">{LeadingIcon}</i>");
 
         TrailingIconMarkup = (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--trailing\" tabindex=\"-1\" role=\"button\">{TrailingIcon}</i>");
 
-        alignClass = Utilities.GetTextAlignClass(myTextAlign);
+        alignClass = Utilities.GetTextAlignClass(myTextAlignStyle);
 
         floatingLabelClass = string.IsNullOrEmpty(CurrentValue) ? "" : "mdc-floating-label--float-above";
     }

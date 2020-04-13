@@ -24,7 +24,7 @@
            @onfocusin="OnFocusIn"
            @onfocusout="OnFocusOut"></textarea>
 
-    @if (myInputStyle == MdcTextInputStyle.Outlined)
+    @if (myTextInputStyle == MdcTextInputStyle.Outlined)
     {
         <div class="mdc-notched-outline">
             <div class="mdc-notched-outline__leading"></div>
@@ -49,8 +49,8 @@
     //  2020-04-13  Mark Stega
     //              Moved ClassMapper to constructor
     //
-    [Parameter] public MdcTextInputStyle? InputStyle { get; set; }
-    [Parameter] public MdcTextAlign? TextAlign { get; set; }
+    [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
+    [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
     [Parameter] public string Type { get; set; } = "text";
     [Parameter] public string Label { get; set; } = "";
     [Parameter] public bool NoLabel { get; set; } = false;
@@ -66,7 +66,7 @@
 
     private string id = Guid.NewGuid().ToString();
     private ElementReference elementReference;
-    private MdcTextInputStyle myInputStyle;
+    private MdcTextInputStyle myTextInputStyle;
     private string labelId = Guid.NewGuid().ToString();
     private string alignClass;
     private string floatingLabelClass;
@@ -79,15 +79,16 @@
         ClassMapper
             .Clear()
             .Add($"mdc-text-field mdc-text-field--textarea {FieldClass} {CascadingDefaults.TextFieldCssClass}")
-            .If("mdc-text-field--outlined", () => (CascadingDefaults.AppliedTextInputStyle(InputStyle) == MdcTextInputStyle.Outlined))
-            .If("mdc-text-field--fullwidth", () => (CascadingDefaults.AppliedTextInputStyle(InputStyle) == MdcTextInputStyle.FullWidth))
+            .If("mdc-text-field--outlined", () => (myTextInputStyle == MdcTextInputStyle.Outlined))
+            .If("mdc-text-field--fullwidth", () => (myTextInputStyle == MdcTextInputStyle.FullWidth))
             .If("mdc-text-field--no-label", () => NoLabel)
             .If("mdc-text-field--disabled", () => Disabled);
     }
 
     protected override void OnParametersSet()
     {
-        var myTextAlign = CascadingDefaults.AppliedTextAlign(TextAlign);
+        myTextInputStyle = CascadingDefaults.AppliedStyle(TextInputStyle);
+        var myTextAlign = CascadingDefaults.AppliedStyle(TextAlignStyle);
         alignClass = Utilities.GetTextAlignClass(myTextAlign);
 
         floatingLabelClass = string.IsNullOrEmpty(CurrentValue) ? "" : "mdc-floating-label--float-above";

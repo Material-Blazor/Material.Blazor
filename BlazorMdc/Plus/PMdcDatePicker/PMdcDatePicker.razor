@@ -42,6 +42,9 @@
     //  2020-04-02  Mark Stega
     //              Changed to use class & style mappers
     //
+    //  2020-04-13  Mark Stega
+    //              Moved ClassMapper to constructor
+    //
     [Parameter] public MdcSelectInputStyle? InputStyle { get; set; }
     [Parameter] public string Label { get; set; }
     [Parameter] public MdcDateSelectionCriteria? DateSelectionCriteria { get; set; }
@@ -59,6 +62,14 @@
     private bool isOpen { get; set; } = false;
 
 
+    public PMdcDatePicker()
+    {
+        ClassMapper
+            .Add("mdc-select")
+            .If("mdc-select--outlined", () => (myInputStyle == MdcSelectInputStyle.Outlined))
+            .If("mdc-select--disabled", () => Disabled);
+    }
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
@@ -67,43 +78,30 @@
     }
 
 
-    private bool IsFirstParametersSet = true;
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
 
-        if (IsFirstParametersSet)
-        {
-            IsFirstParametersSet = false;
-            SetParameters(true);
-        }
+        SetParameters();
     }
 
 
-    private void SetParameters(bool doInitialize)
+    private void SetParameters()
     {
         // All values that are bound to HTML are set once at initialization and then left unchanged
         // because allowing Blazor to re-render conflicts with the Material Theme js rendering. This
         // results in the floating label jumping to the wrong place.
-        if (doInitialize || Value != cachedCurrentValue)
-        {
-            myInputStyle = CascadingDefaults.AppliedSelectInputStyle(InputStyle);
-            initialValue = Value;
-            cachedCurrentValue = Value;
-            initialText = Utilities.DateToString(Value);
-
-            ClassMapper
-                .Add("mdc-select")
-                .If("mdc-select--outlined", () => (myInputStyle == MdcSelectInputStyle.Outlined))
-                .If("mdc-select--disabled", () => Disabled);
-        }
+        myInputStyle = CascadingDefaults.AppliedStyle(InputStyle);
+        initialValue = Value;
+        cachedCurrentValue = Value;
+        initialText = Utilities.DateToString(Value);
     }
 
 
     [JSInvokable("NotifyClosedAsync")]
     public async Task NotifyClosedAsync()
     {
-        SetParameters(true);
+        SetParameters();
         await Task.CompletedTask;
     }
 

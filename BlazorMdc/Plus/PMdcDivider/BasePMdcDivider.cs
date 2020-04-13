@@ -12,11 +12,9 @@ namespace BlazorMdc
     /// </summary>
     public class BasePMdcDivider : MdcComponentBase
     {
-        [Parameter]
-        public bool Inset { get; set; }
+        [Parameter] public bool Inset { get; set; }
 
-        [Parameter]
-        public bool Padded { get; set; }
+        [Parameter] public bool Padded { get; set; }
 
 
         public BasePMdcDivider()

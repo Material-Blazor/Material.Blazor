@@ -1,0 +1,42 @@
+﻿@namespace BlazorMdc.Demo
+
+@page "/radiobuttons"
+
+
+
+<h1 class="@MdcTypography.Heading4">Radio button samples</h1>
+
+<p>See <code>RadioButtonsSample.razor</code> for sources.</p>
+
+<MdcRadioButtons @bind-Value="@kittenBreed" Items="stringItems" />
+
+<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed ?? "")</strong>'</p>
+
+
+<MdcRadioButtons @bind-Value="@colour" Items="colourItems" Vertical="true"></MdcRadioButtons>
+
+<p style="margin-bottom: 4em;">Selected: '<strong>@(colour.ToString())</strong>'</p>
+
+
+
+@code {
+    string kittenBreed;
+    Colour colour;
+
+    MdcRadioButtons<string>.Item<string>[] stringItems = new MdcRadioButtons<string>.Item<string>[]
+    {
+        new MdcRadioButtons<string>.Item<string> { DataValue = "brit-short", Label = "British Shorthair" },
+        new MdcRadioButtons<string>.Item<string> { DataValue = "russ-blue", Label = "Russian Blue" },
+        new MdcRadioButtons<string>.Item<string> { DataValue = "ice-invis", Label = "Icelandic Invisible" }
+        };
+
+    enum Colour { Red, Orange, Yellow, Green, Blue, Indigo, Violet };
+
+    IEnumerable<MdcRadioButtons<Colour>.Item<Colour>> colourItems => from c in (Colour[])Enum.GetValues(typeof(Colour))
+                                                                     select new MdcRadioButtons<Colour>.Item<Colour>
+                                                                     {
+                                                                         DataValue = c,
+                                                                         Label = c.ToString() + ((c == Colour.Blue) ? " (disabled)" : ""),
+                                                                         Disabled = c == Colour.Blue
+                                                                     };
+}
