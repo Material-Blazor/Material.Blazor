@@ -5,11 +5,13 @@
     <RazorLangVersion>3.0</RazorLangVersion>
     <Configurations>Debug_CSB;Debug_SSB;Release_CSB;Release_SSB</Configurations>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.12.0</Version>
+    <Version>0.13.0</Version>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <Authors />
     <Company>Dioptra</Company>
-    <Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io</Description>
+    <Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io
+
+WARNING: Under development, expect API changes, breaking changes, and general mayhem.</Description>
     <RepositoryUrl>https://github.com/simonziegler/BlazorMdc</RepositoryUrl>
   </PropertyGroup>
 
