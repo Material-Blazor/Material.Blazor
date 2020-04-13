@@ -9,7 +9,9 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <Authors />
     <Company>Dioptra</Company>
-    <Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io</Description>
+    <Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io
+
+WARNING: Under development, expect API changes, breaking changes, and general mayhem.</Description>
     <RepositoryUrl>https://github.com/simonziegler/BlazorMdc</RepositoryUrl>
   </PropertyGroup>
 
