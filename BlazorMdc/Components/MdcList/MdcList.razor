@@ -88,8 +88,10 @@
 
     private ElementReference elementReference;
 
-    public MdcList()
+    protected override void OnInitialized()
     {
+        base.OnInitialized();
+
         ClassMapper
             .Add("mdc-list")
             .If("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(ListStyle) == MdcListStyle.Outlined))

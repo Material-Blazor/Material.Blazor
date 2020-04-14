@@ -51,8 +51,10 @@
     private MarkupString LeadingIconMarkup => (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"material-icons mdc-button__icon\" aria-hidden=\"true\">{LeadingIcon}</i>");
     private MarkupString TrailingIconMarkup => (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"material-icons mdc-button__icon\" aria-hidden=\"true\">{TrailingIcon}</i>");
 
-    public MdcButton()
+    protected override void OnInitialized()
     {
+        base.OnInitialized();
+
         ClassMapper
             .Add("mdc-button")
             .If("mdc-button--raised", () => (CascadingDefaults.AppliedStyle(ButtonStyle) == MdcButtonStyle.ContainedRaised))

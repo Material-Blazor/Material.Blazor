@@ -79,16 +79,12 @@
     private TItem cachedCurrentValue;
 
 
-    public MdcRadioButtons()
-    {
-        ClassMapper
-            .Add("mdc-touch-target-wrapper");
-    }
-
-
     protected override void OnInitialized()
     {
         base.OnInitialized();
+
+        ClassMapper
+            .Add("mdc-touch-target-wrapper");
 
         initialValue = (Value is null) ? Items.FirstOrDefault().DataValue : Value;
     }

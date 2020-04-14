@@ -48,8 +48,10 @@
     private ElementReference formReference;
 
 
-    public MdcCheckbox()
+    protected override void OnInitialized()
     {
+        base.OnInitialized();
+
         ClassMapper.Add("")
             .If("mdc-form-field", () => (IsFormField || !(string.IsNullOrWhiteSpace(Label))));
     }
