@@ -70,10 +70,9 @@
 
 
     private ElementReference elementReference;
-    private MdcTextInputStyle myTextInputStyle;
-    private MdcTextAlignStyle myTextAlignStyle;
+    private MdcTextInputStyle myTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
     private string labelId = Guid.NewGuid().ToString();
-    private string alignClass;
+    private string alignClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
     private string floatingLabelClass;
     private MarkupString LeadingIconMarkup;
     private MarkupString TrailingIconMarkup;
@@ -95,15 +94,9 @@
     {
         base.OnParametersSet();
 
-        myTextInputStyle = CascadingDefaults.AppliedStyle(TextInputStyle);
-
-        myTextAlignStyle = CascadingDefaults.AppliedStyle(TextAlignStyle);
-
         LeadingIconMarkup = (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--leading\" tabindex=\"-1\" role=\"button\">{LeadingIcon}</i>");
 
         TrailingIconMarkup = (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--trailing\" tabindex=\"-1\" role=\"button\">{TrailingIcon}</i>");
-
-        alignClass = Utilities.GetTextAlignClass(myTextAlignStyle);
 
         floatingLabelClass = string.IsNullOrEmpty(CurrentValue) ? "" : "mdc-floating-label--float-above";
     }

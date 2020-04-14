@@ -24,7 +24,7 @@
            @onfocusin="OnFocusIn"
            @onfocusout="OnFocusOut"></textarea>
 
-    @if (myTextInputStyle == MdcTextInputStyle.Outlined)
+    @if (appliedInputStyle == MdcTextInputStyle.Outlined)
     {
         <div class="mdc-notched-outline">
             <div class="mdc-notched-outline__leading"></div>
@@ -66,9 +66,9 @@
 
     private string id = Guid.NewGuid().ToString();
     private ElementReference elementReference;
-    private MdcTextInputStyle myTextInputStyle;
+    private MdcTextInputStyle appliedInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
     private string labelId = Guid.NewGuid().ToString();
-    private string alignClass;
+    private string alignClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
     private string floatingLabelClass;
     public MarkupString LeadingIconMarkup;
     public MarkupString TrailingIconMarkup;
@@ -79,20 +79,18 @@
         ClassMapper
             .Clear()
             .Add($"mdc-text-field mdc-text-field--textarea {FieldClass} {CascadingDefaults.TextFieldCssClass}")
-            .If("mdc-text-field--outlined", () => (myTextInputStyle == MdcTextInputStyle.Outlined))
-            .If("mdc-text-field--fullwidth", () => (myTextInputStyle == MdcTextInputStyle.FullWidth))
+            .If("mdc-text-field--outlined", () => (appliedInputStyle == MdcTextInputStyle.Outlined))
+            .If("mdc-text-field--fullwidth", () => (appliedInputStyle == MdcTextInputStyle.FullWidth))
             .If("mdc-text-field--no-label", () => NoLabel)
             .If("mdc-text-field--disabled", () => Disabled);
     }
 
+
     protected override void OnParametersSet()
     {
-        myTextInputStyle = CascadingDefaults.AppliedStyle(TextInputStyle);
-        var myTextAlign = CascadingDefaults.AppliedStyle(TextAlignStyle);
-        alignClass = Utilities.GetTextAlignClass(myTextAlign);
-
         floatingLabelClass = string.IsNullOrEmpty(CurrentValue) ? "" : "mdc-floating-label--float-above";
     }
+
 
     protected async override Task OnAfterRenderAsync(bool firstRender)
     {

@@ -8,13 +8,13 @@
 
 <p>See <code>SelectSample.razor</code> for sources.</p>
 
-<MdcSelect Label="Filled" @bind-Value="@kittenBreed1" Items="stringItems" InputStyle="MdcSelectInputStyle.Filled"></MdcSelect>
+<MdcSelect Label="Filled" @bind-Value="@kittenBreed1" Items="stringItems" SelectInputStyle="MdcSelectInputStyle.Filled"></MdcSelect>
 <p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed1 ?? "")</strong>'</p>
 
-<MdcSelect Label="Outlined" @bind-Value="@kittenBreed2" Items="stringItems" InputStyle="MdcSelectInputStyle.Outlined"></MdcSelect>
+<MdcSelect Label="Outlined" @bind-Value="@kittenBreed2" Items="stringItems" SelectInputStyle="MdcSelectInputStyle.Outlined"></MdcSelect>
 <p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed2 ?? "")</strong>'</p>
 
-<MdcSelect Label="Right Aligned" @bind-Value="@kittenBreed3" Items="stringItems" InputStyle="MdcSelectInputStyle.Outlined" TextAlign="MdcTextAlignStyle.Right"></MdcSelect>
+<MdcSelect Label="Right Aligned" @bind-Value="@kittenBreed3" Items="stringItems" SelectInputStyle="MdcSelectInputStyle.Outlined" TextAlignStyle="MdcTextAlignStyle.Right"></MdcSelect>
 <p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed3 ?? "")</strong>'</p>
 
 <MdcSelect Label="Colour Enumeration" @bind-Value="@colour" Items="colourItems"></MdcSelect>

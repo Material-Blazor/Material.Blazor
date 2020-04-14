@@ -15,7 +15,7 @@
         <i class="mdc-select__dropdown-icon"></i>
         <div class="mdc-select__selected-text @alignClass" role="button" aria-haspopup="listbox" aria-labelledby="@labelId" aria-disabled="Disabled">@selectedText</div>
 
-        @if (myInputStyle == MdcSelectInputStyle.Outlined)
+        @if (appliedInputStyle == MdcSelectInputStyle.Outlined)
         {
             <span class="mdc-notched-outline">
                 <span class="mdc-notched-outline__leading"></span>
@@ -68,8 +68,8 @@
     }
 
 
-    [Parameter] public MdcSelectInputStyle? InputStyle { get; set; }
-    [Parameter] public MdcTextAlignStyle? TextAlign { get; set; }
+    [Parameter] public MdcSelectInputStyle? SelectInputStyle { get; set; }
+    [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
     [Parameter] public string Label { get; set; }
     [Parameter] public IEnumerable<Item<TItem>> Items { get; set; }
     [Parameter] public TItem Value { get; set; } = default;
@@ -77,12 +77,11 @@
 
 
     private ElementReference elementReference;
-    private MdcSelectInputStyle myInputStyle;
-    private MdcTextAlignStyle myTextAlign;
+    private MdcSelectInputStyle appliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
     private string labelId = Utilities.GenerateCssElementSelector();
     private string selectedText = "";
     private string floatingLabelClass = "";
-    private string alignClass = "";
+    private string alignClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
     private TItem initialValue;
     private TItem cachedCurrentValue;
 
@@ -91,7 +90,7 @@
     {
         ClassMapper
             .Add("mdc-select")
-            .If("mdc-select--outlined", () => (myInputStyle == MdcSelectInputStyle.Outlined))
+            .If("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
             .If("mdc-select--disabled", () => Disabled);
     }
 
@@ -110,11 +109,6 @@
         // All values that are bound to HTML are set once at initialization and then left unchanged
         // because allowing Blazor to re-render conflicts with the Material Theme js rendering. This
         // results in the floating label jumping to the wrong place.
-
-        // Styles
-        myInputStyle = CascadingDefaults.AppliedStyle(InputStyle);
-        myTextAlign = CascadingDefaults.AppliedStyle(TextAlign);
-        alignClass = Utilities.GetTextAlignClass(myTextAlign);
 
         if (Value != null && !string.IsNullOrEmpty(Value.ToString()))
         {
