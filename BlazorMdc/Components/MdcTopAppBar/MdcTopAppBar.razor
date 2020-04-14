@@ -48,7 +48,7 @@
         base.OnInitialized();
 
         ClassMapper
-            .Add("app-bar mdc-top-app-bar")
+            .Add("mdc-top-app-bar")
             .If($"mdc-top-app-bar--{TopAppBarType.ToString().ToLower()}", () => TopAppBarType != MdcTopAppBarType.Standard && TopAppBarType != MdcTopAppBarType.ShortCollapsed)
             .If($"mdc-top-app-bar--short mdc-top-app-bar--short-collapsed", () => TopAppBarType == MdcTopAppBarType.ShortCollapsed);
     }
