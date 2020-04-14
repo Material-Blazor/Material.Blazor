@@ -11,7 +11,7 @@
 
     <textarea type="@Type"
            id="@id"
-           class="mdc-text-field__input @alignClass @FieldClass"
+           class="mdc-text-field__input @appliedTextInputStyleClass @FieldClass"
            @bind="@CurrentValue"
            aria-labelledby="@labelId"
            rows="@Rows"
@@ -24,7 +24,7 @@
            @onfocusin="OnFocusIn"
            @onfocusout="OnFocusOut"></textarea>
 
-    @if (appliedInputStyle == MdcTextInputStyle.Outlined)
+    @if (appliedTextInputStyle == MdcTextInputStyle.Outlined)
     {
         <div class="mdc-notched-outline">
             <div class="mdc-notched-outline__leading"></div>
@@ -66,9 +66,9 @@
 
     private string id = Guid.NewGuid().ToString();
     private ElementReference elementReference;
-    private MdcTextInputStyle appliedInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
+    private MdcTextInputStyle appliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
     private string labelId = Guid.NewGuid().ToString();
-    private string alignClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
+    private string appliedTextInputStyleClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
     private string floatingLabelClass;
     public MarkupString LeadingIconMarkup;
     public MarkupString TrailingIconMarkup;
@@ -79,8 +79,8 @@
         ClassMapper
             .Clear()
             .Add($"mdc-text-field mdc-text-field--textarea {FieldClass} {CascadingDefaults.TextFieldCssClass}")
-            .If("mdc-text-field--outlined", () => (appliedInputStyle == MdcTextInputStyle.Outlined))
-            .If("mdc-text-field--fullwidth", () => (appliedInputStyle == MdcTextInputStyle.FullWidth))
+            .If("mdc-text-field--outlined", () => (appliedTextInputStyle == MdcTextInputStyle.Outlined))
+            .If("mdc-text-field--fullwidth", () => (appliedTextInputStyle == MdcTextInputStyle.FullWidth))
             .If("mdc-text-field--no-label", () => NoLabel)
             .If("mdc-text-field--disabled", () => Disabled);
     }
