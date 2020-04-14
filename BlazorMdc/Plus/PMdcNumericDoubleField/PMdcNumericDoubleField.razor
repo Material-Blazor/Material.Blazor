@@ -12,8 +12,8 @@
               NoLabel="@NoLabel"
               LeadingIcon="@LeadingIcon"
               TrailingIcon="@TrailingIcon"
-              InputStyle="@InputStyle"
-              TextAlign="@MdcTextAlignStyle.Right"
+              TextInputStyle="@TextInputStyle"
+              TextAlignStyle="@MdcTextAlignStyle.Right"
               OnFocusIn="@OnFocusIn"
               OnFocusOut="@OnFocusOut"
               Disabled=@Disabled
@@ -22,7 +22,7 @@
 
 
 @code {
-    [Parameter] public MdcTextInputStyle? InputStyle { get; set; }
+    [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
     [Parameter] public string Label { get; set; }
     [Parameter] public bool NoLabel { get; set; } = false;
     [Parameter] public string? LeadingIcon { get; set; }
@@ -102,9 +102,9 @@
     }
 
 
-    protected override void OnAfterRender(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        base.OnAfterRender(firstRender);
+        await base.OnAfterRenderAsync(firstRender);
 
         if (firstRender)
         {
@@ -116,7 +116,7 @@
 
         if (hasFocus == true && prevHasFocus == false)
         {
-            textField.Select();
+            await textField.Select();
         }
 
         prevHasFocus = hasFocus;
