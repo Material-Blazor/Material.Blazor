@@ -49,9 +49,9 @@
     public async Task HideAsync()
         => await jsRuntime.InvokeAsync<string>("BlazorMdc.dialog.hide", dialogElem);
 
-    public MdcDialog()
+    protected override void OnInitialized()
     {
         ClassMapper
-            .Add("mdc-dialog");
+        .Add("mdc-dialog");
     }
 }

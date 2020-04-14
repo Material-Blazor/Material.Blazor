@@ -42,10 +42,10 @@
     private ElementReference elementReference;
 
 
-    public MdcDataTable()
+    protected override void OnInitialized()
     {
         ClassMapper
-            .Add("mdc-data-table");
+        .Add("mdc-data-table");
     }
 
     protected async override Task OnAfterRenderAsync(bool firstRender)

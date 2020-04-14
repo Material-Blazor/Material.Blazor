@@ -33,16 +33,13 @@
     [Parameter] public bool IsDismissible { get; set; } = true;
     [Parameter] public bool CloseOnNavigate { get; set; } = true;
 
-    public MdcDrawer()
-    {
-        ClassMapper
-            .Add("mdc-drawer")
-            .If("mdc-drawer--dismissible", () => IsDismissible)
-            .If("mdc-drawer--open", () => StartOpen);
-    }
-
     protected override void OnInitialized()
     {
+        ClassMapper
+        .Add("mdc-drawer")
+        .If("mdc-drawer--dismissible", () => IsDismissible)
+        .If("mdc-drawer--open", () => StartOpen);
+
         isOpen = StartOpen;
     }
 

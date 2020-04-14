@@ -74,10 +74,9 @@
     public MarkupString TrailingIconMarkup;
 
 
-    public MdcTextArea()
+    protected override void OnInitialized()
     {
         ClassMapper
-            .Clear()
             .Add($"mdc-text-field mdc-text-field--textarea {FieldClass} {CascadingDefaults.TextFieldCssClass}")
             .If("mdc-text-field--outlined", () => (appliedTextInputStyle == MdcTextInputStyle.Outlined))
             .If("mdc-text-field--fullwidth", () => (appliedTextInputStyle == MdcTextInputStyle.FullWidth))

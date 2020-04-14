@@ -28,16 +28,12 @@
     private bool isOpen { get; set; } = false;
 
 
-    public MdcMenu()
-    {
-        ClassMapper
-            .Add("mdc-menu mdc-menu-surface");
-    }
-
-
     protected override void OnInitialized()
     {
         base.OnInitialized();
+
+        ClassMapper
+        .Add("mdc-menu mdc-menu-surface");
 
         objectReference = DotNetObjectReference.Create(this);
     }

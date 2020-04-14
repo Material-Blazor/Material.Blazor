@@ -36,11 +36,11 @@
     [Parameter] public bool IsSelectionItem { get; set; }
     [Parameter] public EventCallback<string> OnClick { get; set; }
 
-    public MdcListItem()
+    protected override void OnInitialized()
     {
         ClassMapper
-            .Add("mdc-list-item")
-            .If("mdc-list-item--disabled", () => Disabled);
+        .Add("mdc-list-item")
+        .If("mdc-list-item--disabled", () => Disabled);
     }
 
     protected void InternalClickHandler()

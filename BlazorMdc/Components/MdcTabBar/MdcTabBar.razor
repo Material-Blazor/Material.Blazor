@@ -119,16 +119,12 @@
     private const string OutToRight = "bmdc-slide-out-to-right";
 
 
-    public MdcTabBar()
-    {
-        ClassMapper
-            .Add("mdc-tab-bar bmdc-tab-bar");
-    }
-
-
     protected override void OnInitialized()
     {
         base.OnInitialized();
+
+        ClassMapper
+        .Add("mdc-tab-bar bmdc-tab-bar");
 
         initialTabIndex = _requestedTabIndex;
     }

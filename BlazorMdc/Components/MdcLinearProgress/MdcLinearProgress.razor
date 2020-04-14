@@ -23,10 +23,10 @@
     //
     [Parameter] public bool Indeterminant { get; set; } = true;
 
-    public MdcLinearProgress()
+    protected override void OnInitialized()
     {
         ClassMapper
-            .Add("mdc-linear-progress")
-            .If("mdc-linear-progress--indeterminate", () => Indeterminant);
+        .Add("mdc-linear-progress")
+        .If("mdc-linear-progress--indeterminate", () => Indeterminant);
     }
 }
