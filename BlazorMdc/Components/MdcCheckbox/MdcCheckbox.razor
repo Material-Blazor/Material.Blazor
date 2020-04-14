@@ -50,8 +50,10 @@
 
     protected override void OnInitialized()
     {
+        base.OnInitialized();
+
         ClassMapper.Add("")
-        .If("mdc-form-field", () => (IsFormField || !(string.IsNullOrWhiteSpace(Label))));
+            .If("mdc-form-field", () => (IsFormField || !(string.IsNullOrWhiteSpace(Label))));
     }
 
     protected async override Task OnAfterRenderAsync(bool firstRender)

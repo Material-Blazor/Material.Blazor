@@ -53,11 +53,13 @@
 
     protected override void OnInitialized()
     {
+        base.OnInitialized();
+
         ClassMapper
-        .Add("mdc-button")
-        .If("mdc-button--raised", () => (CascadingDefaults.AppliedStyle(ButtonStyle) == MdcButtonStyle.ContainedRaised))
-        .If("mdc-button--unelevated", () => (CascadingDefaults.AppliedStyle(ButtonStyle) == MdcButtonStyle.ContainedUnelevated))
-        .If("mdc-button--outlined", () => (CascadingDefaults.AppliedStyle(ButtonStyle) == MdcButtonStyle.Outlined));
+            .Add("mdc-button")
+            .If("mdc-button--raised", () => (CascadingDefaults.AppliedStyle(ButtonStyle) == MdcButtonStyle.ContainedRaised))
+            .If("mdc-button--unelevated", () => (CascadingDefaults.AppliedStyle(ButtonStyle) == MdcButtonStyle.ContainedUnelevated))
+            .If("mdc-button--outlined", () => (CascadingDefaults.AppliedStyle(ButtonStyle) == MdcButtonStyle.Outlined));
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

@@ -38,9 +38,11 @@
 
     protected override void OnInitialized()
     {
+        base.OnInitialized();
+
         ClassMapper
-        .Add("mdc-list-item")
-        .If("mdc-list-item--disabled", () => Disabled);
+            .Add("mdc-list-item")
+            .If("mdc-list-item--disabled", () => Disabled);
     }
 
     protected void InternalClickHandler()

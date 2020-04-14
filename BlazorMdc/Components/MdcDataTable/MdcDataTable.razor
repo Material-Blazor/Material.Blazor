@@ -44,8 +44,10 @@
 
     protected override void OnInitialized()
     {
+        base.OnInitialized();
+
         ClassMapper
-        .Add("mdc-data-table");
+            .Add("mdc-data-table");
     }
 
     protected async override Task OnAfterRenderAsync(bool firstRender)

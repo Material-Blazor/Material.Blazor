@@ -79,6 +79,8 @@
 
     protected override void OnInitialized()
     {
+        base.OnInitialized();
+
         ClassMapper
             .Add($"mdc-text-field {FieldClass} {CascadingDefaults.TextFieldCssClass}")
             .If("mdc-text-field--outlined", () => appliedTextInputStyle == MdcTextInputStyle.Outlined)

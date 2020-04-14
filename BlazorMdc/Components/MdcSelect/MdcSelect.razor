@@ -91,9 +91,9 @@
         base.OnInitialized();
 
         ClassMapper
-        .Add("mdc-select")
-        .If("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
-        .If("mdc-select--disabled", () => Disabled);
+            .Add("mdc-select")
+            .If("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
+            .If("mdc-select--disabled", () => Disabled);
 
         initialValue = (Value is null) ? Items.FirstOrDefault().DataValue : Value;
     }

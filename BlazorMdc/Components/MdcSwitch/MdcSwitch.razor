@@ -33,10 +33,12 @@
 
     protected override void OnInitialized()
     {
+        base.OnInitialized();
+
         ClassMapper
-        .Add("mdc-switch")
-        .If("mdc-switch--disabled", () => Disabled)
-        .If("mdc-switch--checked", () => CurrentValue);
+            .Add("mdc-switch")
+            .If("mdc-switch--disabled", () => Disabled)
+            .If("mdc-switch--checked", () => CurrentValue);
     }
 
 

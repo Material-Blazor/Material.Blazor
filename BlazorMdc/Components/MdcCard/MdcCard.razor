@@ -31,9 +31,11 @@
 
     protected override void OnInitialized()
     {
+        base.OnInitialized();
+
         ClassMapper
-        .Add("mdc-card")
-        .If("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(CardStyle) == MdcCardStyle.Outlined));
+            .Add("mdc-card")
+            .If("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(CardStyle) == MdcCardStyle.Outlined));
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

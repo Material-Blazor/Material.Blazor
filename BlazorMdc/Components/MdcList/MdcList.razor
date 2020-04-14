@@ -90,13 +90,15 @@
 
     protected override void OnInitialized()
     {
+        base.OnInitialized();
+
         ClassMapper
-        .Add("mdc-list")
-        .If("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(ListStyle) == MdcListStyle.Outlined))
-        .If("mdc-list--two-line", () => (Subtitle != null))
-        .If("mdc-list--non-interactive", () => NonInteractive)
-        .If("mdc-list--dense", () => Dense)
-        .If("mdc-list--avatar-list", () => AvatarList);
+            .Add("mdc-list")
+            .If("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(ListStyle) == MdcListStyle.Outlined))
+            .If("mdc-list--two-line", () => (Subtitle != null))
+            .If("mdc-list--non-interactive", () => NonInteractive)
+            .If("mdc-list--dense", () => Dense)
+            .If("mdc-list--avatar-list", () => AvatarList);
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

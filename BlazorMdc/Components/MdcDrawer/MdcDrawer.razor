@@ -6,7 +6,7 @@
 
 <aside @ref="drawerElem"
        class="@ClassMapper.AsString()"
-       style="@StyleMapper.AsString()" 
+       style="@StyleMapper.AsString()"
        id="app-drawer">
 
     <div class="mdc-drawer__content">
@@ -35,10 +35,12 @@
 
     protected override void OnInitialized()
     {
+        base.OnInitialized();
+
         ClassMapper
-        .Add("mdc-drawer")
-        .If("mdc-drawer--dismissible", () => IsDismissible)
-        .If("mdc-drawer--open", () => StartOpen);
+            .Add("mdc-drawer")
+            .If("mdc-drawer--dismissible", () => IsDismissible)
+            .If("mdc-drawer--open", () => StartOpen);
 
         isOpen = StartOpen;
     }
