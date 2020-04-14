@@ -17,8 +17,10 @@ namespace BlazorMdc
         [Parameter] public bool Padded { get; set; }
 
 
-        public BasePMdcDivider()
+        protected override void OnInitialized()
         {
+            base.OnInitialized();
+
             ClassMapper
                 .Add("mdc-list-divider")
                 .If("mdc-list-divider--inset", () => Inset)

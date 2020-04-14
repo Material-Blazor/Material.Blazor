@@ -116,20 +116,16 @@
     private bool menuHasFocus = false;
 
 
-    public PMdcAutocomplete()
-    {
-        ClassMapper
-            .Add("mdc-text-field mdc-text-field--textarea")
-            .If("mdc-text--outlined", () => (appliedInputStyle == MdcTextInputStyle.Outlined))
-            .If("mdc-text--fullwidth", () => (appliedInputStyle == MdcTextInputStyle.FullWidth))
-            .If("mdc-select--disabled", () => Disabled)
-            .If("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
-            .If("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
-    }
-
     protected override void OnInitialized()
     {
         base.OnInitialized();
+
+        ClassMapper
+            .Add("mdc-text-field mdc-text-field--textarea")
+            .If($"mdc-text--{appliedInputStyle.ToString().ToLower()}", () => (appliedInputStyle != MdcTextInputStyle.Outlined))
+            .If("mdc-select--disabled", () => Disabled)
+            .If("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
+            .If("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
 
         objectReference = DotNetObjectReference.Create(this);
     }

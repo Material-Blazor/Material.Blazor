@@ -38,18 +38,27 @@
     [Parameter] public RenderFragment ChildContent { get; set; }
     [Parameter] public EventCallback OnNavClicked { get; set; }
     [Parameter] public string ScrollTarget { get; set; }
-    [Parameter] public string AppBarType { get; set; } = "fixed";
+    [Parameter] public MdcTopAppBarType TopAppBarType { get; set; } = MdcTopAppBarType.Standard;
 
     ElementReference headerElem;
 
-    public MdcTopAppBar()
+
+    protected override void OnInitialized()
     {
+        base.OnInitialized();
+
         ClassMapper
             .Add("app-bar mdc-top-app-bar")
-            .If($"mdc-top-app-bar--{AppBarType.ToLower()}", () => !(string.IsNullOrEmpty(AppBarType)));
+            .If($"mdc-top-app-bar--{TopAppBarType.ToString().ToLower()}", () => TopAppBarType != MdcTopAppBarType.Standard && TopAppBarType != MdcTopAppBarType.ShortCollapsed)
+            .If($"mdc-top-app-bar--short mdc-top-app-bar--short-collapsed", () => TopAppBarType == MdcTopAppBarType.ShortCollapsed);
     }
 
-    protected async override Task OnAfterFirstRenderAsync()
-    => await jsRuntime.InvokeAsync<object>(
-            "BlazorMdc.topAppBar.init", headerElem, ScrollTarget);
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.topAppBar.init", headerElem, ScrollTarget);
+        }
+    }
 }

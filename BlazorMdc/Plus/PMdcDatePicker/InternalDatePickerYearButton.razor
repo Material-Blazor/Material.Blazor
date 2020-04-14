@@ -50,8 +50,10 @@
     }
 
 
-    public InternalDatePickerYearButton()
+    protected override void OnInitialized()
     {
+        base.OnInitialized();
+
         ClassMapper
             .Add("bmdc-dp-year-pad__button-container");
     }

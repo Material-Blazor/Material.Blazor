@@ -5,6 +5,12 @@ using System.Text;
 namespace BlazorMdc
 {
     /// <summary>
+    /// The MDC Top App Bar type: all items are mutually exclusive
+    /// </summary>
+    public enum MdcTopAppBarType { Standard, Fixed, Dense, Prominent, Short, ShortCollapsed }
+
+
+    /// <summary>
     /// The style of MDC input: note that FullWidth is mutually exclusive with Outlined
     /// </summary>
     public enum MdcTextAlignStyle { Default, Left, Center, Right }

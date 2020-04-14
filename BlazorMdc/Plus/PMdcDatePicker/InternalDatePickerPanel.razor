@@ -110,17 +110,13 @@
     private int year => startOfDisplayMonth.Year;
 
 
-    public InternalDatePickerPanel()
-    {
-        ClassMapper
-            .Add("mdc-typography--body2 bmdc-dp-container");
-    }
-
-
     protected override void OnInitialized()
     {
         base.OnInitialized();
 
+        ClassMapper
+            .Add("mdc-typography--body2 bmdc-dp-container");
+    
         daysOfWeek = (new DateTimeFormatInfo()).DayNames.Select(d => d.Substring(0, 1)).ToArray();
     }
 

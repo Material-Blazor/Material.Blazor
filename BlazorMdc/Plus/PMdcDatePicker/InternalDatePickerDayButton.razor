@@ -67,8 +67,10 @@
     }
 
 
-    public InternalDatePickerDayButton()
+    protected override void OnInitialized()
     {
+        base.OnInitialized();
+
         ClassMapper
             .Add("bmdc-dp-day-pad__button-container");
     }

@@ -61,18 +61,14 @@
     private bool isOpen { get; set; } = false;
 
 
-    public PMdcDatePicker()
+    protected override void OnInitialized()
     {
+        base.OnInitialized();
+
         ClassMapper
             .Add("mdc-select")
             .If("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
             .If("mdc-select--disabled", () => Disabled);
-    }
-
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
 
         initialValue = Value;
         initialText = Utilities.DateToString(Value);
