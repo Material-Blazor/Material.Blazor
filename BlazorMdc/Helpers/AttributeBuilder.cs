@@ -11,7 +11,7 @@ namespace BlazorMdc
             return new AttributeBuilder<T>();
         }
 
-        public AttributeBuilder<T> If(string name, object value, Func<T, bool> func)
+        public AttributeBuilder<T> AddIf(string name, object value, Func<T, bool> func)
         {
             Rules.Add(new AttributeBuilderRuleIf<T>(name, value, func));
             return this;

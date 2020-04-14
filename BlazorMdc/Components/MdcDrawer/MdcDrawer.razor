@@ -5,8 +5,8 @@
 @inject IJSRuntime jsRuntime
 
 <aside @ref="drawerElem"
-       class="@ClassMapper.AsString()"
-       style="@StyleMapper.AsString()"
+       class="@ClassMapper.ToString()"
+       style="@StyleMapper.ToString()"
        id="app-drawer">
 
     <div class="mdc-drawer__content">
@@ -39,8 +39,8 @@
 
         ClassMapper
             .Add("mdc-drawer")
-            .If("mdc-drawer--dismissible", () => IsDismissible)
-            .If("mdc-drawer--open", () => StartOpen);
+            .AddIf("mdc-drawer--dismissible", () => IsDismissible)
+            .AddIf("mdc-drawer--open", () => StartOpen);
 
         isOpen = StartOpen;
     }

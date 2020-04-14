@@ -8,8 +8,8 @@
 
 
 <div @ref="elementReference"
-     class="@ClassMapper.AsString()"
-     style="@StyleMapper.AsString()">
+     class="@ClassMapper.ToString()"
+     style="@StyleMapper.ToString()">
 
     <div class="mdc-select__anchor">
         <i class="mdc-select__dropdown-icon"></i>
@@ -92,8 +92,8 @@
 
         ClassMapper
             .Add("mdc-select")
-            .If("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
-            .If("mdc-select--disabled", () => Disabled);
+            .AddIf("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
+            .AddIf("mdc-select--disabled", () => Disabled);
 
         initialValue = (Value is null) ? Items.FirstOrDefault().DataValue : Value;
     }

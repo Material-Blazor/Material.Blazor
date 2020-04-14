@@ -29,6 +29,12 @@ namespace BlazorMdc
             return m;
         }
 
+        public static T AddIf<T>(this T m, string name, object value, Func<bool> func) where T : AttributeMapper
+        {
+            m.Items.Add(() => func() ? new KeyValuePair<string, object>(name, value) : new KeyValuePair<string, object>(null, null));
+            return m;
+        }
+
 
         public static T Get<T>(this T m, Func<KeyValuePair<string, object>> funcName) where T : AttributeMapper
         {
@@ -39,12 +45,6 @@ namespace BlazorMdc
         public static T GetIf<T>(this T m, Func<KeyValuePair<string, object>> funcName, Func<bool> func) where T : AttributeMapper
         {
             m.Items.Add(() => func() ? funcName() : new KeyValuePair<string, object>(null, null));
-            return m;
-        }
-
-        public static T If<T>(this T m, string name, object value, Func<bool> func) where T : AttributeMapper
-        {
-            m.Items.Add(() => func() ? new KeyValuePair<string, object>(name, value) : new KeyValuePair<string, object>(null, null));
             return m;
         }
     }

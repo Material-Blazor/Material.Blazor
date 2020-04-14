@@ -9,8 +9,8 @@
 
 <div>
     <div @ref="textReference"
-         class="@ClassMapper.AsString()"
-         style="@StyleMapper.AsString()">
+         class="@ClassMapper.ToString()"
+         style="@StyleMapper.ToString()">
 
         @LeadingIconMarkup
 
@@ -122,10 +122,10 @@
 
         ClassMapper
             .Add("mdc-text-field mdc-text-field--textarea")
-            .If($"mdc-text--{appliedInputStyle.ToString().ToLower()}", () => (appliedInputStyle != MdcTextInputStyle.Outlined))
-            .If("mdc-select--disabled", () => Disabled)
-            .If("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
-            .If("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
+            .AddIf($"mdc-text--{appliedInputStyle.ToString().ToLower()}", () => (appliedInputStyle != MdcTextInputStyle.Outlined))
+            .AddIf("mdc-select--disabled", () => Disabled)
+            .AddIf("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
+            .AddIf("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
 
         objectReference = DotNetObjectReference.Create(this);
     }

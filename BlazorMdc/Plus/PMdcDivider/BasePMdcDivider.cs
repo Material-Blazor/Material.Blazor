@@ -23,8 +23,8 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-list-divider")
-                .If("mdc-list-divider--inset", () => Inset)
-                .If("mdc-list-divider--padded", () => Padded);
+                .AddIf("mdc-list-divider--inset", () => Inset)
+                .AddIf("mdc-list-divider--padded", () => Padded);
         }
     }
 }

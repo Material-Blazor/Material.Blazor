@@ -6,8 +6,8 @@
 
 
 <div @ref="@formReference"
-        class="@ClassMapper.AsString()"
-        style="@StyleMapper.AsString()">
+        class="@ClassMapper.ToString()"
+        style="@StyleMapper.ToString()">
 
     <div @ref="@elementReference" class="mdc-checkbox @disabledClass">
         <input @bind="@CurrentValue"
@@ -53,7 +53,7 @@
         base.OnInitialized();
 
         ClassMapper.Add("")
-            .If("mdc-form-field", () => (IsFormField || !(string.IsNullOrWhiteSpace(Label))));
+            .AddIf("mdc-form-field", () => (IsFormField || !(string.IsNullOrWhiteSpace(Label))));
     }
 
     protected async override Task OnAfterRenderAsync(bool firstRender)

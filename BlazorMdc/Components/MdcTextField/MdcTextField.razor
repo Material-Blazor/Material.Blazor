@@ -6,8 +6,8 @@
 
 
 <div @ref="elementReference"
-     class="@ClassMapper.AsString()"
-     style="@StyleMapper.AsString()">
+     class="@ClassMapper.ToString()"
+     style="@StyleMapper.ToString()">
 
     @LeadingIconMarkup
     <input type="@Type"
@@ -83,12 +83,12 @@
 
         ClassMapper
             .Add($"mdc-text-field {FieldClass} {CascadingDefaults.TextFieldCssClass}")
-            .If("mdc-text-field--outlined", () => appliedTextInputStyle == MdcTextInputStyle.Outlined)
-            .If("mdc-text-field--fullwidth", () => appliedTextInputStyle == MdcTextInputStyle.FullWidth)
-            .If("mdc-text-field--no-label", () => NoLabel)
-            .If("mdc-text-field--disabled", () => Disabled)
-            .If("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
-            .If("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
+            .AddIf("mdc-text-field--outlined", () => appliedTextInputStyle == MdcTextInputStyle.Outlined)
+            .AddIf("mdc-text-field--fullwidth", () => appliedTextInputStyle == MdcTextInputStyle.FullWidth)
+            .AddIf("mdc-text-field--no-label", () => NoLabel)
+            .AddIf("mdc-text-field--disabled", () => Disabled)
+            .AddIf("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
+            .AddIf("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
     }
 
     protected override void OnParametersSet()

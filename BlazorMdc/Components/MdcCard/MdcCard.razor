@@ -5,8 +5,8 @@
 @inject IJSRuntime jsRuntime
 
 
-<div class="@ClassMapper.AsString()"
-     style="@StyleMapper.AsString()">
+<div class="@ClassMapper.ToString()"
+     style="@StyleMapper.ToString()">
     <CascadingValue Value="this">
         @ChildContent
     </CascadingValue>
@@ -35,7 +35,7 @@
 
         ClassMapper
             .Add("mdc-card")
-            .If("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(CardStyle) == MdcCardStyle.Outlined));
+            .AddIf("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(CardStyle) == MdcCardStyle.Outlined));
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

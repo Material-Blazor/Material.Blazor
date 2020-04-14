@@ -6,8 +6,8 @@
 
 
 <div @ref="@elementReference"
-     class="@ClassMapper.AsString()"
-     style="@StyleMapper.AsString()">
+     class="@ClassMapper.ToString()"
+     style="@StyleMapper.ToString()">
 
         <div class="mdc-switch__track"></div>
         <div class="mdc-switch__thumb-underlay">
@@ -37,8 +37,8 @@
 
         ClassMapper
             .Add("mdc-switch")
-            .If("mdc-switch--disabled", () => Disabled)
-            .If("mdc-switch--checked", () => CurrentValue);
+            .AddIf("mdc-switch--disabled", () => Disabled)
+            .AddIf("mdc-switch--checked", () => CurrentValue);
     }
 
 

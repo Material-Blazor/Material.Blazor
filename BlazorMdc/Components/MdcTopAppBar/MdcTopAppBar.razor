@@ -8,8 +8,8 @@
 
 <header @ref="headerElem"
         id="app-bar"
-        class="@ClassMapper.AsString()"
-        style="@StyleMapper.AsString()">
+        class="@ClassMapper.ToString()"
+        style="@StyleMapper.ToString()">
 
     <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
@@ -49,8 +49,8 @@
 
         ClassMapper
             .Add("mdc-top-app-bar")
-            .If($"mdc-top-app-bar--{TopAppBarType.ToString().ToLower()}", () => TopAppBarType != MdcTopAppBarType.Standard && TopAppBarType != MdcTopAppBarType.ShortCollapsed)
-            .If($"mdc-top-app-bar--short mdc-top-app-bar--short-collapsed", () => TopAppBarType == MdcTopAppBarType.ShortCollapsed);
+            .AddIf($"mdc-top-app-bar--{TopAppBarType.ToString().ToLower()}", () => TopAppBarType != MdcTopAppBarType.Standard && TopAppBarType != MdcTopAppBarType.ShortCollapsed)
+            .AddIf($"mdc-top-app-bar--short mdc-top-app-bar--short-collapsed", () => TopAppBarType == MdcTopAppBarType.ShortCollapsed);
     }
 
 

@@ -110,8 +110,8 @@
         {
             textField.AttributeMapper
                         .Add("step", Math.Pow(10, -myDecimalPlaces).ToString())
-                        .If("min", Min?.ToString(), () => Min != null)
-                        .If("max", Max?.ToString(), () => Max != null);
+                        .AddIf("min", Min?.ToString(), () => Min != null)
+                        .AddIf("max", Max?.ToString(), () => Max != null);
         }
 
         if (hasFocus == true && prevHasFocus == false)

@@ -3,8 +3,8 @@
 @inherits MdcComponentBase
 
 <div role="progressbar"
-     class="@ClassMapper.AsString()"
-     style="@StyleMapper.AsString()">
+     class="@ClassMapper.ToString()"
+     style="@StyleMapper.ToString()">
 
     <div class="mdc-linear-progress__buffering-dots"></div>
     <div class="mdc-linear-progress__buffer"></div>
@@ -29,6 +29,6 @@
 
         ClassMapper
             .Add("mdc-linear-progress")
-            .If("mdc-linear-progress--indeterminate", () => Indeterminant);
+            .AddIf("mdc-linear-progress--indeterminate", () => Indeterminant);
     }
 }

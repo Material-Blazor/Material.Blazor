@@ -4,8 +4,8 @@
 
 <li role="menuitem"
     @onclick="InternalClickHandler"
-    class="@ClassMapper.AsString()"
-    style="@StyleMapper.AsString()">
+    class="@ClassMapper.ToString()"
+    style="@StyleMapper.ToString()">
 
     @if (!(LeadingIcon is null))
     {
@@ -42,7 +42,7 @@
 
         ClassMapper
             .Add("mdc-list-item")
-            .If("mdc-list-item--disabled", () => Disabled);
+            .AddIf("mdc-list-item--disabled", () => Disabled);
     }
 
     protected void InternalClickHandler()
