@@ -12,7 +12,7 @@
     @LeadingIconMarkup
     <input type="@Type"
            id="@Id"
-           class="mdc-text-field__input @alignClass @FieldClass"
+           class="mdc-text-field__input @Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle)) @FieldClass"
            @bind="@CurrentValue"
            aria-labelledby="@labelId"
            disabled="@Disabled"
@@ -27,7 +27,7 @@
            @onfocusout="OnFocusOut">
     @TrailingIconMarkup
 
-    @if (myTextInputStyle == MdcTextInputStyle.Outlined)
+    @if (CascadingDefaults.AppliedStyle(TextInputStyle) == MdcTextInputStyle.Outlined)
     {
         <div class="mdc-notched-outline">
             <div class="mdc-notched-outline__leading"></div>
@@ -70,9 +70,7 @@
 
 
     private ElementReference elementReference;
-    private MdcTextInputStyle myTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
     private string labelId = Guid.NewGuid().ToString();
-    private string alignClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
     private string floatingLabelClass;
     private MarkupString LeadingIconMarkup;
     private MarkupString TrailingIconMarkup;
@@ -82,8 +80,8 @@
     {
         ClassMapper
             .Add($"mdc-text-field {FieldClass} {CascadingDefaults.TextFieldCssClass}")
-            .If("mdc-text-field--outlined", () => (myTextInputStyle == MdcTextInputStyle.Outlined))
-            .If("mdc-text-field--fullwidth", () => (myTextInputStyle == MdcTextInputStyle.FullWidth))
+            .If("mdc-text-field--outlined", () => (CascadingDefaults.AppliedStyle(TextInputStyle) == MdcTextInputStyle.Outlined))
+            .If("mdc-text-field--fullwidth", () => (CascadingDefaults.AppliedStyle(TextInputStyle) == MdcTextInputStyle.FullWidth))
             .If("mdc-text-field--no-label", () => NoLabel)
             .If("mdc-text-field--disabled", () => Disabled)
             .If("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
