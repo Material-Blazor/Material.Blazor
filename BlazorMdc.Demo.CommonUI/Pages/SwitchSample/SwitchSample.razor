@@ -1,0 +1,29 @@
+﻿@namespace BlazorMdc.Demo
+
+@page "/switch"
+
+<h1 class="@MdcTypography.Heading4">Switch samples</h1>
+
+<p>See <code>SwitchSample.razor</code> for sources.</p>
+
+<p>
+    <MdcSwitch Label="@labelA" @bind-Value="@isCheckedA" />
+</p>
+
+<p>
+    <MdcSwitch Label="@labelB" @bind-Value="@isCheckedB" />
+</p>
+
+<p>
+    <MdcSwitch Label="Disabled" @bind-Value="@isCheckedC" Disabled="true" />
+</p>
+
+@code {
+    bool isCheckedA;
+    string labelA => "This switch is " + (isCheckedA ? "set" : "unset");
+
+    bool isCheckedB = true;
+    string labelB => "This switch is " + (isCheckedB ? "set" : "unset");
+
+    bool isCheckedC;
+}

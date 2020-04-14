@@ -1,6 +1,6 @@
-﻿@inherits LayoutComponentBase
+﻿@namespace BlazorMdc.Demo
 
-@namespace BlazorMdc.Demo
+@inherits LayoutComponentBase
 
 @inject NavigationManager navigationManager
 
@@ -17,10 +17,10 @@
     <div class="mdc-list">
         <MdcListItem NavigationReference="" LeadingIcon="home" Text="Home" OnClick="@ListItemClickHandler" />
         <MdcListItem NavigationReference="" LeadingIcon="home" Text="Home (Disabled)" OnClick="@ListItemClickHandler" Disabled="true" />
-        <MdcListItem NavigationReference="cascadingdefaults" LeadingIcon="web" Text="CascadingDefaults" OnClick="@ListItemClickHandler" />
         <MdcListItem NavigationReference="autocomplete" LeadingIcon="keyboard" Text="Autocomplete" OnClick="@ListItemClickHandler" />
         <MdcListItem NavigationReference="button" LeadingIcon="touch_app" Text="Button" OnClick="@ListItemClickHandler" />
         <MdcListItem NavigationReference="card" LeadingIcon="dashboard" Text="Card" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavigationReference="cascadingdefaults" LeadingIcon="web" Text="CascadingDefaults" OnClick="@ListItemClickHandler" />
         <MdcListItem NavigationReference="checkbox" LeadingIcon="check_box" Text="Checkbox" OnClick="@ListItemClickHandler" />
         <MdcListItem NavigationReference="datatable" LeadingIcon="table_chart" Text="Data Table" OnClick="@ListItemClickHandler" />
         <MdcListItem NavigationReference="datepicker" LeadingIcon="date_range" Text="Date Picker" OnClick="@ListItemClickHandler" />
@@ -49,7 +49,7 @@
                   NavIcon="menu"
                   NavAriaLabel="Menu"
                   ScrollTarget="#main-content"
-                  AppBarType="short"
+                  TopAppBarType="MdcTopAppBarType.Short"
                   Class="mdc-top-app-bar--short-has-action-item">
         <div id="account-target">
             <button class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Account">person</button>

@@ -6,8 +6,8 @@
 
 
 <div @ref="elementReference"
-     class="@ClassMapper.AsString()"
-     style="@StyleMapper.AsString()">
+     class="@ClassMapper.ToString()"
+     style="@StyleMapper.ToString()">
     
     <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
         @ChildContent
@@ -28,16 +28,12 @@
     private bool isOpen { get; set; } = false;
 
 
-    public MdcMenu()
-    {
-        ClassMapper
-            .Add("mdc-menu mdc-menu-surface");
-    }
-
-
     protected override void OnInitialized()
     {
         base.OnInitialized();
+
+        ClassMapper
+            .Add("mdc-menu mdc-menu-surface");
 
         objectReference = DotNetObjectReference.Create(this);
     }

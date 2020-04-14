@@ -2,7 +2,8 @@
 //  2020-03-31  Mark Stega
 //              Added ClassMapper/Class & StyleMapper/Style
 //
-
+//  2020-04-13  Mark Stega
+//              Reworked 
 using Microsoft.AspNetCore.Components;
 
 using System.Threading.Tasks;
@@ -12,9 +13,7 @@ namespace BlazorMdc
     public abstract class MdcComponentBase : ComponentBase
     {
         [CascadingParameter]
-        private MdcCascadingDefaults CascadingDefaults { get; set; }
-
-        protected MdcCascadingDefaults AppliedDefaults => (CascadingDefaults == null) ? new MdcCascadingDefaults() : CascadingDefaults;
+        protected MdcCascadingDefaults CascadingDefaults { get; set; } = new MdcCascadingDefaults();
 
         protected ClassMapper ClassMapper { get; } = new ClassMapper();
 

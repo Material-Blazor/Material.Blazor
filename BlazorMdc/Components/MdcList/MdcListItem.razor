@@ -4,8 +4,8 @@
 
 <li role="menuitem"
     @onclick="InternalClickHandler"
-    class="@ClassMapper.AsString()"
-    style="@StyleMapper.AsString()">
+    class="@ClassMapper.ToString()"
+    style="@StyleMapper.ToString()">
 
     @if (!(LeadingIcon is null))
     {
@@ -27,25 +27,22 @@
     //              Refined disabled handling
     //              Removed Drawer actions, this really did not belong in this class
     //
+    //  2020-04-13  Mark Stega
+    //              Moved ClassMapper to constructor
+    //
     [Parameter] public string Text { get; set; }
     [Parameter] public string NavigationReference { get; set; } = "";
     [Parameter] public string? LeadingIcon { get; set; }
     [Parameter] public bool IsSelectionItem { get; set; }
     [Parameter] public EventCallback<string> OnClick { get; set; }
 
-    private bool IsFirstParametersSet = true;
-    protected override void OnParametersSet()
+    protected override void OnInitialized()
     {
-        base.OnParametersSet();
+        base.OnInitialized();
 
-        if (IsFirstParametersSet)
-        {
-            IsFirstParametersSet = false;
-
-            ClassMapper
-                .Add("mdc-list-item")
-                .If("mdc-list-item--disabled", () => Disabled);
-        }
+        ClassMapper
+            .Add("mdc-list-item")
+            .AddIf("mdc-list-item--disabled", () => Disabled);
     }
 
     protected void InternalClickHandler()

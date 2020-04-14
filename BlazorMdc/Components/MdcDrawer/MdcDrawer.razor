@@ -5,8 +5,8 @@
 @inject IJSRuntime jsRuntime
 
 <aside @ref="drawerElem"
-       class="@ClassMapper.AsString()"
-       style="@StyleMapper.AsString()" 
+       class="@ClassMapper.ToString()"
+       style="@StyleMapper.ToString()"
        id="app-drawer">
 
     <div class="mdc-drawer__content">
@@ -22,6 +22,9 @@
     //  2020-04-01  Mark Stega
     //              Changed to use class & style mappers
     //
+    //  2020-04-13  Mark Stega
+    //              Moved ClassMapper to constructor
+    //
     ElementReference drawerElem;
     bool isOpen;
 
@@ -32,6 +35,13 @@
 
     protected override void OnInitialized()
     {
+        base.OnInitialized();
+
+        ClassMapper
+            .Add("mdc-drawer")
+            .AddIf("mdc-drawer--dismissible", () => IsDismissible)
+            .AddIf("mdc-drawer--open", () => StartOpen);
+
         isOpen = StartOpen;
     }
 
@@ -58,13 +68,4 @@
             drawerElem,
             isOpen);
 
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
-
-        ClassMapper
-            .Add("mdc-drawer")
-            .If("mdc-drawer--dismissible", () => IsDismissible)
-            .If("mdc-drawer--open", () => StartOpen);
-    }
 }

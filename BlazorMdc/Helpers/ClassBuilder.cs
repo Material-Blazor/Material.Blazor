@@ -16,7 +16,7 @@ namespace BlazorMdc
             return new ClassBuilder<T>();
         }
 
-        public ClassBuilder<T> If(string className, Func<T, bool> func)
+        public ClassBuilder<T> AddIf(string className, Func<T, bool> func)
         {
             Rules.Add(new ClassBuilderRuleIf<T>(className, func));
             return this;

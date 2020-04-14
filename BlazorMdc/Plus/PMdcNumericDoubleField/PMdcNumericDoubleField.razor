@@ -12,8 +12,8 @@
               NoLabel="@NoLabel"
               LeadingIcon="@LeadingIcon"
               TrailingIcon="@TrailingIcon"
-              InputStyle="@InputStyle"
-              TextAlign="@MdcTextAlign.Right"
+              TextInputStyle="@TextInputStyle"
+              TextAlignStyle="@MdcTextAlignStyle.Right"
               OnFocusIn="@OnFocusIn"
               OnFocusOut="@OnFocusOut"
               Disabled=@Disabled
@@ -22,7 +22,7 @@
 
 
 @code {
-    [Parameter] public MdcTextInputStyle? InputStyle { get; set; }
+    [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
     [Parameter] public string Label { get; set; }
     [Parameter] public bool NoLabel { get; set; } = false;
     [Parameter] public string? LeadingIcon { get; set; }
@@ -102,21 +102,21 @@
     }
 
 
-    protected override void OnAfterRender(bool firstRender)
+    protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        base.OnAfterRender(firstRender);
+        await base.OnAfterRenderAsync(firstRender);
 
         if (firstRender)
         {
             textField.AttributeMapper
                         .Add("step", Math.Pow(10, -myDecimalPlaces).ToString())
-                        .If("min", Min?.ToString(), () => Min != null)
-                        .If("max", Max?.ToString(), () => Max != null);
+                        .AddIf("min", Min?.ToString(), () => Min != null)
+                        .AddIf("max", Max?.ToString(), () => Max != null);
         }
 
         if (hasFocus == true && prevHasFocus == false)
         {
-            textField.Select();
+            await textField.Select();
         }
 
         prevHasFocus = hasFocus;

@@ -1,0 +1,44 @@
+﻿@namespace BlazorMdc.Demo
+
+@page "/menu"
+
+<h1 class="@MdcTypography.Heading4">Menu samples</h1>
+
+<p>See <code>MenuSample.razor</code> for sources.</p>
+
+<div>
+    <MdcButton Label="Open Menu" OnClick="OpenMenuAsync" />
+
+    <div class="mdc-menu-surface--anchor">
+        <MdcMenu @ref="menu">
+            <MdcListItem Text="One" LeadingIcon="home" NavigationReference="One" OnClick="OnClickHandler" />
+            <MdcListItem Text="Two" LeadingIcon="" NavigationReference="Two" OnClick="OnClickHandler" />
+            <MdcListDivider />
+            <MdcMenuSelectionGroup>
+                <MdcListItem Text="Four" LeadingIcon="done" NavigationReference="Four" OnClick="OnClickHandler" />
+                <MdcListItem Text="Five" LeadingIcon="done" NavigationReference="Five" OnClick="OnClickHandler" />
+            </MdcMenuSelectionGroup>
+            <MdcListDivider />
+            <MdcListItem Text="Three" Disabled="true" NavigationReference="Three" OnClick="OnClickHandler" />
+        </MdcMenu>
+    </div>
+</div>
+
+<p>Clicked: @clickResult</p>
+
+
+@code {
+    private MdcMenu menu;
+    private string clickResult = "";
+
+    private async Task OpenMenuAsync()
+    {
+        await menu.ToggleAsync();
+    }
+
+    protected void OnClickHandler(string NavigationReference)
+    {
+        clickResult = NavigationReference;
+    }
+
+}

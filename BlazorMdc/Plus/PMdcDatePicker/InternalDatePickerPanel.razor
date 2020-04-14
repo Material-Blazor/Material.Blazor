@@ -8,8 +8,8 @@
 
 
 
-<div class="@ClassMapper.AsString()"
-     style="@StyleMapper.AsString()">
+<div class="@ClassMapper.ToString()"
+     style="@StyleMapper.ToString()">
 
     <ul class="mdc-list bmdc-dp-list">
         <li @ref="@listItem" class="mdc-list-item mdc-list-item--selected bmdc-dp-list-item" data-value="@cachedCurrentValueText" aria-selected="true" role="option">
@@ -110,17 +110,13 @@
     private int year => startOfDisplayMonth.Year;
 
 
-    public InternalDatePickerPanel()
-    {
-        ClassMapper
-            .Add("mdc-typography--body2 bmdc-dp-container");
-    }
-
-
     protected override void OnInitialized()
     {
         base.OnInitialized();
 
+        ClassMapper
+            .Add("mdc-typography--body2 bmdc-dp-container");
+    
         daysOfWeek = (new DateTimeFormatInfo()).DayNames.Select(d => d.Substring(0, 1)).ToArray();
     }
 

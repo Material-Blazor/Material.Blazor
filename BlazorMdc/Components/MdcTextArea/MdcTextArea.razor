@@ -6,12 +6,12 @@
 
 
 <div @ref="elementReference"
-     class="@ClassMapper.AsString()"
-     style="@StyleMapper.AsString()">
+     class="@ClassMapper.ToString()"
+     style="@StyleMapper.ToString()">
 
     <textarea type="@Type"
            id="@id"
-           class="mdc-text-field__input @alignClass @FieldClass"
+           class="mdc-text-field__input @appliedTextInputStyleClass @FieldClass"
            @bind="@CurrentValue"
            aria-labelledby="@labelId"
            rows="@Rows"
@@ -24,7 +24,7 @@
            @onfocusin="OnFocusIn"
            @onfocusout="OnFocusOut"></textarea>
 
-    @if (myInputStyle == MdcTextInputStyle.Outlined)
+    @if (appliedTextInputStyle == MdcTextInputStyle.Outlined)
     {
         <div class="mdc-notched-outline">
             <div class="mdc-notched-outline__leading"></div>
@@ -46,8 +46,11 @@
     //  2020-04-02  Mark Stega
     //              Changed to use class & style mappers
     //
-    [Parameter] public MdcTextInputStyle? InputStyle { get; set; }
-    [Parameter] public MdcTextAlign? TextAlign { get; set; }
+    //  2020-04-13  Mark Stega
+    //              Moved ClassMapper to constructor
+    //
+    [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
+    [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
     [Parameter] public string Type { get; set; } = "text";
     [Parameter] public string Label { get; set; } = "";
     [Parameter] public bool NoLabel { get; set; } = false;
@@ -63,38 +66,32 @@
 
     private string id = Guid.NewGuid().ToString();
     private ElementReference elementReference;
-    private MdcTextInputStyle myInputStyle;
+    private MdcTextInputStyle appliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
     private string labelId = Guid.NewGuid().ToString();
-    private string alignClass;
+    private string appliedTextInputStyleClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
     private string floatingLabelClass;
     public MarkupString LeadingIconMarkup;
     public MarkupString TrailingIconMarkup;
 
 
-    protected override void OnParametersSet()
+    protected override void OnInitialized()
     {
-        base.OnParametersSet();
-
-        Setup();
-    }
-
-    private void Setup()
-    {
-        myInputStyle = AppliedDefaults.AppliedTextInputStyle(InputStyle);
-
-        var myTextAlign = AppliedDefaults.AppliedTextAlign(TextAlign);
-        alignClass = Utilities.GetTextAlignClass(myTextAlign);
-
-        floatingLabelClass = string.IsNullOrEmpty(CurrentValue) ? "" : "mdc-floating-label--float-above";
+        base.OnInitialized();
 
         ClassMapper
-            .Clear()
-            .Add($"mdc-text-field mdc-text-field--textarea {FieldClass} {AppliedDefaults.TextFieldCssClass}")
-            .If("mdc-text-field--outlined", () => (myInputStyle == MdcTextInputStyle.Outlined))
-            .If("mdc-text-field--fullwidth", () => (myInputStyle == MdcTextInputStyle.FullWidth))
-            .If("mdc-text-field--no-label", () => NoLabel)
-            .If("mdc-text-field--disabled", () => Disabled);
+            .Add($"mdc-text-field mdc-text-field--textarea {FieldClass} {CascadingDefaults.TextFieldCssClass}")
+            .AddIf("mdc-text-field--outlined", () => (appliedTextInputStyle == MdcTextInputStyle.Outlined))
+            .AddIf("mdc-text-field--fullwidth", () => (appliedTextInputStyle == MdcTextInputStyle.FullWidth))
+            .AddIf("mdc-text-field--no-label", () => NoLabel)
+            .AddIf("mdc-text-field--disabled", () => Disabled);
     }
+
+
+    protected override void OnParametersSet()
+    {
+        floatingLabelClass = string.IsNullOrEmpty(CurrentValue) ? "" : "mdc-floating-label--float-above";
+    }
+
 
     protected async override Task OnAfterRenderAsync(bool firstRender)
     {

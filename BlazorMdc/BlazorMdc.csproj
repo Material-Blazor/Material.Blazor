@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
     <Configurations>Debug_CSB;Debug_SSB;Release_CSB;Release_SSB</Configurations>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.13.0</Version>
+    <Version>0.14.0</Version>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <Authors />
     <Company>Dioptra</Company>
@@ -30,46 +30,6 @@ WARNING: Under development, expect API changes, breaking changes, and general ma
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_SSB|AnyCPU'">
     <DefineConstants>ServerSideBlazor;RELEASE</DefineConstants>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Styles\animations.scss" />
-    <None Remove="Styles\colors.scss" />
-    <None Remove="Styles\datepicker.scss" />
-    <None Remove="Styles\icons.scss" />
-    <None Remove="Styles\styles.scss" />
-    <None Remove="Styles\tabbar.scss" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Styles\colors.scss">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Styles\icons.scss">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Styles\datepicker.scss">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Styles\animations.scss">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Styles\tabbar.scss">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Styles\styles.scss">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
 
 
   <ItemGroup>

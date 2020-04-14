@@ -16,17 +16,17 @@ namespace BlazorMdc
             return "bmdc_" + Guid.NewGuid().ToString();
         }
 
-        public static string GetTextAlignClass(MdcTextAlign textaAlign)
+        public static string GetTextAlignClass(MdcTextAlignStyle textaAlign)
         {
             switch (textaAlign)
             {
-                case MdcTextAlign.Left:
+                case MdcTextAlignStyle.Left:
                     return " bmdc-align-left";
 
-                case MdcTextAlign.Center:
+                case MdcTextAlignStyle.Center:
                     return " bmdc-align-center";
 
-                case MdcTextAlign.Right:
+                case MdcTextAlignStyle.Right:
                     return " bmdc-align-right";
             }
 

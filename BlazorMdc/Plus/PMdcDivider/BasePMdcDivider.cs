@@ -12,19 +12,19 @@ namespace BlazorMdc
     /// </summary>
     public class BasePMdcDivider : MdcComponentBase
     {
-        [Parameter]
-        public bool Inset { get; set; }
+        [Parameter] public bool Inset { get; set; }
 
-        [Parameter]
-        public bool Padded { get; set; }
+        [Parameter] public bool Padded { get; set; }
 
 
-        public BasePMdcDivider()
+        protected override void OnInitialized()
         {
+            base.OnInitialized();
+
             ClassMapper
                 .Add("mdc-list-divider")
-                .If("mdc-list-divider--inset", () => Inset)
-                .If("mdc-list-divider--padded", () => Padded);
+                .AddIf("mdc-list-divider--inset", () => Inset)
+                .AddIf("mdc-list-divider--padded", () => Padded);
         }
     }
 }

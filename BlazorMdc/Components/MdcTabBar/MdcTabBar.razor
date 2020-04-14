@@ -9,8 +9,8 @@
 
 <div @ref="elementReference"
      role="tablist"
-     class="@ClassMapper.AsString()"
-     style="@StyleMapper.AsString()">
+     class="@ClassMapper.ToString()"
+     style="@StyleMapper.ToString()">
 
     <div class="mdc-tab-scroller">
         <div class="mdc-tab-scroller__scroll-area">
@@ -119,16 +119,12 @@
     private const string OutToRight = "bmdc-slide-out-to-right";
 
 
-    public MdcTabBar()
-    {
-        ClassMapper
-            .Add("mdc-tab-bar bmdc-tab-bar");
-    }
-
-
     protected override void OnInitialized()
     {
         base.OnInitialized();
+
+        ClassMapper
+            .Add("mdc-tab-bar bmdc-tab-bar");
 
         initialTabIndex = _requestedTabIndex;
     }

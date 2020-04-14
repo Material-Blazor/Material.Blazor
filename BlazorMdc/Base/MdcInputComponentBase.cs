@@ -80,7 +80,7 @@ namespace BlazorMdc
         /// </summary>
         protected string CurrentValueAsString
         {
-            get => FormatValueAsString(CurrentValue);
+            get => FormatValueToString(CurrentValue);
             set
             {
                 _parsingValidationMessages?.Clear();
@@ -132,7 +132,7 @@ namespace BlazorMdc
         /// </summary>
         /// <param name="value">The value to format.</param>
         /// <returns>A string representation of the value.</returns>
-        protected virtual string FormatValueAsString(T value)
+        protected virtual string FormatValueToString(T value)
             => value?.ToString();
 
         /// <summary>

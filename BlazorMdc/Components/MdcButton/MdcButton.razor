@@ -4,16 +4,16 @@
 
 @inject IJSRuntime jsRuntime
 
-<button @ref="@elementReference" 
-        class="@ClassMapper.AsString()"
-        style="@StyleMapper.AsString()" 
+<button @ref="@elementReference"
+        class="@ClassMapper.ToString()"
+        style="@StyleMapper.ToString()"
         @onclick="@OnClick"
-        @onmousedown="@OnMouseDown" 
-        @onkeydown="@OnKeyDown" 
-        @ontouchstart="@OnTouchStart" 
+        @onmousedown="@OnMouseDown"
+        @onkeydown="@OnKeyDown"
+        @ontouchstart="@OnTouchStart"
         disabled="@Disabled"
         tabindex="@TabIndex"
-        data-mdc-dialog-action="@DialogAction" 
+        data-mdc-dialog-action="@DialogAction"
         type="@Type">
     <div class="mdc-button__ripple"></div>
     @LeadingIconMarkup
@@ -30,7 +30,11 @@
     //  2020-04-01  Mark Stega
     //              Changed to re-enable AppliedButtonStyle
     //
-    [Parameter] public MdcButtonStyle ButtonStyle { get; set; } = MdcButtonStyle.Text;
+    //  2020-04-13  Mark Stega
+    //              Made ButtonStyle nullable
+    //              Moved ClassMapper to constructor
+    //
+    [Parameter] public MdcButtonStyle? ButtonStyle { get; set; }
     [Parameter] public string Type { get; set; } = "button";
     [Parameter] public string Label { get; set; }
     [Parameter] public string TabIndex { get; set; } = "0";
@@ -47,25 +51,16 @@
     private MarkupString LeadingIconMarkup => (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"material-icons mdc-button__icon\" aria-hidden=\"true\">{LeadingIcon}</i>");
     private MarkupString TrailingIconMarkup => (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"material-icons mdc-button__icon\" aria-hidden=\"true\">{TrailingIcon}</i>");
 
-
     protected override void OnInitialized()
     {
         base.OnInitialized();
-    }
 
-
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
-
-        var myButtonStyle = AppliedDefaults.AppliedButtonStyle(ButtonStyle);
         ClassMapper
             .Add("mdc-button")
-            .If("mdc-button--raised", () => (myButtonStyle == MdcButtonStyle.ContainedRaised))
-            .If("mdc-button--unelevated", () => (myButtonStyle == MdcButtonStyle.ContainedUnelevated))
-            .If("mdc-button--outlined", () => (myButtonStyle == MdcButtonStyle.Outlined));
+            .AddIf("mdc-button--raised", () => (CascadingDefaults.AppliedStyle(ButtonStyle) == MdcButtonStyle.ContainedRaised))
+            .AddIf("mdc-button--unelevated", () => (CascadingDefaults.AppliedStyle(ButtonStyle) == MdcButtonStyle.ContainedUnelevated))
+            .AddIf("mdc-button--outlined", () => (CascadingDefaults.AppliedStyle(ButtonStyle) == MdcButtonStyle.Outlined));
     }
-
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

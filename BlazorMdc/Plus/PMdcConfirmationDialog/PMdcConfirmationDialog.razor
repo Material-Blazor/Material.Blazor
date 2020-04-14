@@ -4,7 +4,7 @@
     <Body>
         @Body
         <p>Please type <strong>@myInputText</strong> @ActionText.</p>
-        <p><MdcTextField @bind-Value="@enteredText" OnInput="@OnInput" InputStyle="@MdcTextInputStyle.FullWidth" Disabled="InputDisabled" /></p>
+        <p><MdcTextField @bind-Value="@enteredText" OnInput="@OnInput" TextInputStyle="@MdcTextInputStyle.FullWidth" Disabled="InputDisabled" /></p>
     </Body>
     <Buttons>
         @if (ConfirmedButtons is null || UnconfirmedButtons is null)

@@ -4,7 +4,7 @@
 
 
 <PMdcNumericDoubleField  @bind-Value="@dblVal"
-                         InputStyle="InputStyle"
+                         TextInputStyle="TextInputStyle"
                          Label="@Label"
                          NoLabel="@NoLabel"
                          LeadingIcon="@LeadingIcon"
@@ -19,7 +19,7 @@
 
 
 @code {
-    [Parameter] public MdcTextInputStyle? InputStyle { get; set; }
+    [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
     [Parameter] public string Label { get; set; }
     [Parameter] public bool NoLabel { get; set; } = false;
     [Parameter] public string? LeadingIcon { get; set; }

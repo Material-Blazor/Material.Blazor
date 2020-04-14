@@ -8,8 +8,8 @@
 
 
 <div @ref="@elementReference" 
-     class="@ClassMapper.AsString()"
-     style="@StyleMapper.AsString()" >
+     class="@ClassMapper.ToString()"
+     style="@StyleMapper.ToString()" >
 
     <table class="mdc-data-table__table">
         <thead>
@@ -42,8 +42,10 @@
     private ElementReference elementReference;
 
 
-    public MdcDataTable()
+    protected override void OnInitialized()
     {
+        base.OnInitialized();
+
         ClassMapper
             .Add("mdc-data-table");
     }

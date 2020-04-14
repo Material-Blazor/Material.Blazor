@@ -1,0 +1,37 @@
+﻿@namespace BlazorMdc.Demo
+
+@page "/textfield"
+
+@inject IJSRuntime jsRuntime
+
+<h1 class="@MdcTypography.Heading4">Text field samples</h1>
+
+<p>See <code>TextFieldSample.razor</code> for sources.</p>
+
+<p style="margin-top: 3rem;">Filled style</p>
+<p><MdcTextField Label="Filled" @bind-Value="@currentValueFilled" TextInputStyle="MdcTextInputStyle.Filled" TrailingIcon="@MdcIcons.Icon__account_balance_wallet" /></p>
+<p>You typed: <strong>'@(currentValueFilled ?? "")'</strong></p>
+
+<p style="margin-top: 3rem;">Outlined style</p>
+<p><MdcTextField Label="Outlined" @bind-Value="@currentValueOutlined" TextInputStyle="MdcTextInputStyle.Outlined" LeadingIcon="@MdcIcons.Icon__account_balance_wallet" /></p>
+<p>You typed: <strong>'@(currentValueOutlined ?? "")'</strong></p>
+
+<p style="margin-top: 3rem;">Full Width style (need to disable floating labels for full width to adhere to MT style guidelines)</p>
+<p><MdcTextField Label="Full Width" @bind-Value="@currentValueFullWidth" TextInputStyle="MdcTextInputStyle.FullWidth" /></p>
+<p>You typed: <strong>'@(currentValueFullWidth ?? "")'</strong></p>
+
+<p style="margin-top: 3rem;">Right aligned</p>
+<p><MdcTextField Label="Right aligned" @bind-Value="@currentValueRight" TextInputStyle="MdcTextInputStyle.Outlined" TextAlignStyle="MdcTextAlignStyle.Right" /></p>
+<p>You typed: <strong>'@(currentValueRight ?? "")'</strong></p>
+
+<p style="margin-top: 3rem;">Password</p>
+<p><MdcTextField Label="Password" @bind-Value="@currentValueRight" TextInputStyle="MdcTextInputStyle.Outlined" Type="password" /></p>
+<p>You typed: <strong>'@(currentValueRight ?? "")'</strong></p>
+
+
+@code {
+    string currentValueFilled;
+    string currentValueOutlined;
+    string currentValueFullWidth;
+    string currentValueRight;
+}

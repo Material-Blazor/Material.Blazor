@@ -5,8 +5,8 @@
 @inject IJSRuntime jsRuntime
 
 
-<div class="@ClassMapper.AsString()"
-     style="@StyleMapper.AsString()">
+<div class="@ClassMapper.ToString()"
+     style="@StyleMapper.ToString()">
 
     <button @ref="elementReference" class="mdc-button bmdc-dp-year-pad__button @buttonStyleClass" @onclick="@OnClickAsync" disabled="@disabled" type="button">
         <div class="mdc-button__ripple bmdc-dp-day-pad__button__ripple"></div>
@@ -50,8 +50,10 @@
     }
 
 
-    public InternalDatePickerYearButton()
+    protected override void OnInitialized()
     {
+        base.OnInitialized();
+
         ClassMapper
             .Add("bmdc-dp-year-pad__button-container");
     }

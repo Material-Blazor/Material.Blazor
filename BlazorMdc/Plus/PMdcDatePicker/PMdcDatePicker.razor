@@ -6,14 +6,14 @@
 
 
 <div @ref="elementReference"
-     class="@ClassMapper.AsString()"
-     style="@StyleMapper.AsString()">
+     class="@ClassMapper.ToString()"
+     style="@StyleMapper.ToString()">
 
     <div class="mdc-select__anchor">
         <i class="mdc-select__dropdown-icon"></i>
-        <div @key="cachedCurrentValue" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="@labelId" aria-disabled="Disabled">@initialText</div>
+        <div class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="@labelId" aria-disabled="Disabled">@initialText</div>
 
-        @if (myInputStyle == MdcSelectInputStyle.Outlined)
+        @if (appliedInputStyle == MdcSelectInputStyle.Outlined)
         {
             <span class="mdc-notched-outline">
                 <span class="mdc-notched-outline__leading"></span>
@@ -42,7 +42,10 @@
     //  2020-04-02  Mark Stega
     //              Changed to use class & style mappers
     //
-    [Parameter] public MdcSelectInputStyle? InputStyle { get; set; }
+    //  2020-04-13  Mark Stega
+    //              Moved ClassMapper to constructor
+    //
+    [Parameter] public MdcSelectInputStyle? SelectInputStyle { get; set; }
     [Parameter] public string Label { get; set; }
     [Parameter] public MdcDateSelectionCriteria? DateSelectionCriteria { get; set; }
     [Parameter] public DateTime MinDate { get; set; }
@@ -50,12 +53,11 @@
 
 
     private ElementReference elementReference;
-    private DotNetObjectReference<PMdcDatePicker> objectReference;
-    private MdcSelectInputStyle myInputStyle;
+    private MdcSelectInputStyle appliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
+    private string key = Utilities.GenerateCssElementSelector();
     private string labelId = Utilities.GenerateCssElementSelector();
     private string initialText = "";
     private DateTime initialValue;
-    private DateTime cachedCurrentValue;
     private bool isOpen { get; set; } = false;
 
 
@@ -63,48 +65,13 @@
     {
         base.OnInitialized();
 
-        objectReference = DotNetObjectReference.Create(this);
-    }
+        ClassMapper
+            .Add("mdc-select")
+            .AddIf("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
+            .AddIf("mdc-select--disabled", () => Disabled);
 
-
-    private bool IsFirstParametersSet = true;
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
-
-        if (IsFirstParametersSet)
-        {
-            IsFirstParametersSet = false;
-            SetParameters(true);
-        }
-    }
-
-
-    private void SetParameters(bool doInitialize)
-    {
-        // All values that are bound to HTML are set once at initialization and then left unchanged
-        // because allowing Blazor to re-render conflicts with the Material Theme js rendering. This
-        // results in the floating label jumping to the wrong place.
-        if (doInitialize || Value != cachedCurrentValue)
-        {
-            myInputStyle = AppliedDefaults.AppliedSelectInputStyle(InputStyle);
-            initialValue = Value;
-            cachedCurrentValue = Value;
-            initialText = Utilities.DateToString(Value);
-
-            ClassMapper
-                .Add("mdc-select")
-                .If("mdc-select--outlined", () => (myInputStyle == MdcSelectInputStyle.Outlined))
-                .If("mdc-select--disabled", () => Disabled);
-        }
-    }
-
-
-    [JSInvokable("NotifyClosedAsync")]
-    public async Task NotifyClosedAsync()
-    {
-        SetParameters(true);
-        await Task.CompletedTask;
+        initialValue = Value;
+        initialText = Utilities.DateToString(Value);
     }
 
 
@@ -112,7 +79,7 @@
     {
         if (firstRender)
         {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.init", elementReference, objectReference);
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.init", elementReference);
         }
     }
 }

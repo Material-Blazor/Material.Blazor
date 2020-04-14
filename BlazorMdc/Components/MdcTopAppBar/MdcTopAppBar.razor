@@ -8,8 +8,8 @@
 
 <header @ref="headerElem"
         id="app-bar"
-        class="@ClassMapper.AsString()"
-        style="@StyleMapper.AsString()">
+        class="@ClassMapper.ToString()"
+        style="@StyleMapper.ToString()">
 
     <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
@@ -29,26 +29,36 @@
     //  2020-04-02  Mark Stega
     //              Changed to use class & style mappers
     //
+    //  2020-04-13  Mark Stega
+    //              Moved ClassMapper to constructor
+    //
     [Parameter] public string Title { get; set; }
     [Parameter] public string NavIcon { get; set; }
     [Parameter] public string NavAriaLabel { get; set; }
     [Parameter] public RenderFragment ChildContent { get; set; }
     [Parameter] public EventCallback OnNavClicked { get; set; }
     [Parameter] public string ScrollTarget { get; set; }
-    [Parameter] public string AppBarType { get; set; } = "fixed";
+    [Parameter] public MdcTopAppBarType TopAppBarType { get; set; } = MdcTopAppBarType.Standard;
 
     ElementReference headerElem;
 
-    protected override void OnParametersSet()
+
+    protected override void OnInitialized()
     {
-        base.OnParametersSet();
+        base.OnInitialized();
 
         ClassMapper
-            .Add("app-bar mdc-top-app-bar")
-            .If($"mdc-top-app-bar--{AppBarType.ToLower()}", () => !(string.IsNullOrEmpty(AppBarType)));
+            .Add("mdc-top-app-bar")
+            .AddIf($"mdc-top-app-bar--{TopAppBarType.ToString().ToLower()}", () => TopAppBarType != MdcTopAppBarType.Standard && TopAppBarType != MdcTopAppBarType.ShortCollapsed)
+            .AddIf($"mdc-top-app-bar--short mdc-top-app-bar--short-collapsed", () => TopAppBarType == MdcTopAppBarType.ShortCollapsed);
     }
 
-    protected async override Task OnAfterFirstRenderAsync()
-    => await jsRuntime.InvokeAsync<object>(
-            "BlazorMdc.topAppBar.init", headerElem, ScrollTarget);
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.topAppBar.init", headerElem, ScrollTarget);
+        }
+    }
 }

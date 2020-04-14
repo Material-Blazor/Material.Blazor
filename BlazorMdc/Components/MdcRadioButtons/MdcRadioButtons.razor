@@ -7,8 +7,8 @@
 @inject IJSRuntime jsRuntime
 
 
-<div class="@ClassMapper.AsString()"
-     style="@StyleMapper.AsString()">
+<div class="@ClassMapper.ToString()"
+     style="@StyleMapper.ToString()">
 
     <div @ref="@elementReference" class="mdc-form-field bmdc-form-field @Class">
         @{int index = 0; }
@@ -79,16 +79,12 @@
     private TItem cachedCurrentValue;
 
 
-    public MdcRadioButtons()
-    {
-        ClassMapper
-            .Add("mdc-touch-target-wrapper");
-    }
-
-
     protected override void OnInitialized()
     {
         base.OnInitialized();
+
+        ClassMapper
+            .Add("mdc-touch-target-wrapper");
 
         initialValue = (Value is null) ? Items.FirstOrDefault().DataValue : Value;
     }

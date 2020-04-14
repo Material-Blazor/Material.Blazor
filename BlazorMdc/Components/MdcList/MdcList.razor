@@ -8,8 +8,8 @@
 
 
 <ul @ref="@elementReference"
-    class="@ClassMapper.AsString()"
-    style="@StyleMapper.AsString()"
+    class="@ClassMapper.ToString()"
+    style="@StyleMapper.ToString()"
     aria-orientation="vertical">
 
     @{ var index = 0; }
@@ -58,46 +58,47 @@
 
 
 @code {
-        //
-        //  2020-04-02  Mark Stega
-        //              Changed to use class & style mappers
-        //
-        [Parameter] public MdcListStyle? ListStyle { get; set; }
-        [Parameter] public IEnumerable<TItem> Items { get; set; }
-        [Parameter] public RenderFragment<TItem> Icon { get; set; }
-        [Parameter] public RenderFragment<TItem> Title { get; set; }
-        [Parameter] public RenderFragment<TItem> Subtitle { get; set; }
-        [Parameter] public RenderFragment<TItem> Actions { get; set; }
-        [Parameter] public RenderFragment<TItem> ContextMenu { get; set; }
+    //
+    //  2020-04-02  Mark Stega
+    //              Changed to use class & style mappers
+    //
+    //  2020-04-13  Mark Stega
+    //              Moved ClassMapper to constructor
+    //
+    [Parameter] public MdcListStyle? ListStyle { get; set; }
+    [Parameter] public IEnumerable<TItem> Items { get; set; }
+    [Parameter] public RenderFragment<TItem> Icon { get; set; }
+    [Parameter] public RenderFragment<TItem> Title { get; set; }
+    [Parameter] public RenderFragment<TItem> Subtitle { get; set; }
+    [Parameter] public RenderFragment<TItem> Actions { get; set; }
+    [Parameter] public RenderFragment<TItem> ContextMenu { get; set; }
 
-        [Parameter] public EventCallback<int> OnClick { get; set; }
-        [Parameter] public EventCallback<int> OnMouseDown { get; set; }
-        [Parameter] public EventCallback<int> OnKeyDown { get; set; }
-        [Parameter] public EventCallback<int> OnTouchStart { get; set; }
-        [Parameter] public bool ShowSeparators { get; set; }
-        [Parameter] public bool KeyboardInteractions { get; set; }
-        [Parameter] public bool Ripple { get; set; }
-        [Parameter] public bool NonInteractive { get; set; }
-        [Parameter] public bool SuppressIcons { get; set; }
-        [Parameter] public bool Dense { get; set; } = false;
-        [Parameter] public bool AvatarList { get; set; }
+    [Parameter] public EventCallback<int> OnClick { get; set; }
+    [Parameter] public EventCallback<int> OnMouseDown { get; set; }
+    [Parameter] public EventCallback<int> OnKeyDown { get; set; }
+    [Parameter] public EventCallback<int> OnTouchStart { get; set; }
+    [Parameter] public bool ShowSeparators { get; set; }
+    [Parameter] public bool KeyboardInteractions { get; set; }
+    [Parameter] public bool Ripple { get; set; }
+    [Parameter] public bool NonInteractive { get; set; }
+    [Parameter] public bool SuppressIcons { get; set; }
+    [Parameter] public bool Dense { get; set; } = false;
+    [Parameter] public bool AvatarList { get; set; }
 
 
     private ElementReference elementReference;
 
-    protected override void OnParametersSet()
+    protected override void OnInitialized()
     {
-        base.OnParametersSet();
-
-        var myListStyle = AppliedDefaults.AppliedListStyle(ListStyle);
+        base.OnInitialized();
 
         ClassMapper
             .Add("mdc-list")
-            .If("mdc-card--outlined", () => (myListStyle == MdcListStyle.Outlined))
-            .If("mdc-list--two-line", () => (Subtitle != null))
-            .If("mdc-list--non-interactive", () => NonInteractive)
-            .If("mdc-list--dense", () => Dense)
-            .If("mdc-list--avatar-list", () => AvatarList);
+            .AddIf("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(ListStyle) == MdcListStyle.Outlined))
+            .AddIf("mdc-list--two-line", () => (Subtitle != null))
+            .AddIf("mdc-list--non-interactive", () => NonInteractive)
+            .AddIf("mdc-list--dense", () => Dense)
+            .AddIf("mdc-list--avatar-list", () => AvatarList);
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

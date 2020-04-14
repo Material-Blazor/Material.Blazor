@@ -8,14 +8,14 @@
 
 
 <div @ref="elementReference"
-     class="@ClassMapper.AsString()"
-     style="@StyleMapper.AsString()">
+     class="@ClassMapper.ToString()"
+     style="@StyleMapper.ToString()">
 
     <div class="mdc-select__anchor">
         <i class="mdc-select__dropdown-icon"></i>
         <div class="mdc-select__selected-text @alignClass" role="button" aria-haspopup="listbox" aria-labelledby="@labelId" aria-disabled="Disabled">@selectedText</div>
 
-        @if (myInputStyle == MdcSelectInputStyle.Outlined)
+        @if (appliedInputStyle == MdcSelectInputStyle.Outlined)
         {
             <span class="mdc-notched-outline">
                 <span class="mdc-notched-outline__leading"></span>
@@ -58,6 +58,9 @@
     //  2020-04-02  Mark Stega
     //              Changed to use class & style mappers
     //
+    //  2020-04-13  Mark Stega
+    //              Moved ClassMapper to constructor
+    //
     public class Item<T>
     {
         public T DataValue { get; set; }
@@ -65,8 +68,8 @@
     }
 
 
-    [Parameter] public MdcSelectInputStyle? InputStyle { get; set; }
-    [Parameter] public MdcTextAlign? TextAlign { get; set; }
+    [Parameter] public MdcSelectInputStyle? SelectInputStyle { get; set; }
+    [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
     [Parameter] public string Label { get; set; }
     [Parameter] public IEnumerable<Item<TItem>> Items { get; set; }
     [Parameter] public TItem Value { get; set; } = default;
@@ -74,12 +77,11 @@
 
 
     private ElementReference elementReference;
-    private MdcSelectInputStyle myInputStyle;
-    private MdcTextAlign myTextAlign;
+    private MdcSelectInputStyle appliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
     private string labelId = Utilities.GenerateCssElementSelector();
     private string selectedText = "";
     private string floatingLabelClass = "";
-    private string alignClass = "";
+    private string alignClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
     private TItem initialValue;
     private TItem cachedCurrentValue;
 
@@ -88,69 +90,51 @@
     {
         base.OnInitialized();
 
+        ClassMapper
+            .Add("mdc-select")
+            .AddIf("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
+            .AddIf("mdc-select--disabled", () => Disabled);
+
         initialValue = (Value is null) ? Items.FirstOrDefault().DataValue : Value;
     }
-
 
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
 
-        SetParameters();
-    }
-
-    private bool isFirstParameterSet = true;
-
-    private void SetParameters()
-    {
         // All values that are bound to HTML are set once at initialization and then left unchanged
         // because allowing Blazor to re-render conflicts with the Material Theme js rendering. This
         // results in the floating label jumping to the wrong place.
-        if (isFirstParameterSet || !object.Equals(Value, cachedCurrentValue))
+
+        if (Value != null && !string.IsNullOrEmpty(Value.ToString()))
         {
-            isFirstParameterSet = false;
+            floatingLabelClass = "mdc-floating-label--float-above";
+        }
 
-            // Styles
-            myInputStyle = AppliedDefaults.AppliedSelectInputStyle(InputStyle);
-            ClassMapper
-                .Add("mdc-select")
-                .If("mdc-select--outlined", () => (myInputStyle == MdcSelectInputStyle.Outlined))
-                .If("mdc-select--disabled", () => Disabled);
+        // Values
+        cachedCurrentValue = (Value is null) ? Items.FirstOrDefault().DataValue : Value;
+        selectedText = Items.Where(i => object.Equals(i.DataValue, cachedCurrentValue)).FirstOrDefault().Text;
 
-            myTextAlign = AppliedDefaults.AppliedTextAlign(TextAlign);
-            alignClass = Utilities.GetTextAlignClass(myTextAlign);
+        if (Value is null || string.IsNullOrEmpty(Value.ToString()))
+        {
+            Value = Items.FirstOrDefault().DataValue;
+        }
+        else if (Items.Where(i => object.Equals(i.DataValue, Value)).Count() == 0)
+        {
+            string itemList = "{ ";
+            string prepend = "";
 
-            if (Value != null && !string.IsNullOrEmpty(Value.ToString()))
+            foreach (var item in Items)
             {
-                floatingLabelClass = "mdc-floating-label--float-above";
+                itemList += $"{prepend} '{item.DataValue}'";
+                prepend = ",";
             }
 
-            // Values
-            cachedCurrentValue = (Value is null) ? Items.FirstOrDefault().DataValue : Value;
-            selectedText = Items.Where(i => object.Equals(i.DataValue, cachedCurrentValue)).FirstOrDefault().Text;
+            itemList += " }";
 
-            if (Value is null || string.IsNullOrEmpty(Value.ToString()))
-            {
-                Value = Items.FirstOrDefault().DataValue;
-            }
-            else if (Items.Where(i => object.Equals(i.DataValue, Value)).Count() == 0)
-            {
-                string itemList = "{ ";
-                string prepend = "";
-
-                foreach (var item in Items)
-                {
-                    itemList += $"{prepend} '{item.DataValue}'";
-                    prepend = ",";
-                }
-
-                itemList += " }";
-
-                throw new ArgumentException($"MdcSelect cannot select item with data value of '{Value?.ToString()}' from {itemList}");
-            }
+            throw new ArgumentException($"MdcSelect cannot select item with data value of '{Value?.ToString()}' from {itemList}");
         }
     }
-
 
     private async Task OnItemClickAsync(TItem dataValue)
     {
