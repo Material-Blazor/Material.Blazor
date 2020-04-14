@@ -14,7 +14,7 @@
 <PMdcDatePicker Label="Weekdays Outlined" @bind-Value="@outlined" SelectInputStyle="MdcSelectInputStyle.Outlined" DateSelectionCriteria="MdcDateSelectionCriteria.WeekdaysOnly" MinDate="min" MaxDate="max"></PMdcDatePicker>
 <p style="margin-bottom: 20em;">Selected: '<strong>@outlined.ToString()</strong>'</p>
 
-<p>Inline date picker purely for test purposes - in production please use <code>MatDatePickerSelect</code></p>
+<p>Inline date picker purely for test purposes - in production please use <code>PMdcDatePicker</code></p>
 <InternalDatePickerPanel @bind-Value="@inline" Class="mdc-elevation--z3" MinDate="min" MaxDate="max"></InternalDatePickerPanel>
 <p style="margin-bottom: 4em;">Selected: '<strong>@inline.ToString()</strong>'</p>
 

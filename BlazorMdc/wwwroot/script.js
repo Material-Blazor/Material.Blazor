@@ -74,18 +74,8 @@ window.BlazorMdc = {
     },
 
     datePicker: {
-        init: function (elem, dotNetObject) {
-            elem._picker = mdc.select.MDCSelect.attachTo(elem);
-            return new Promise(resolve => {
-                const picker = elem._picker;
-                const callback = event => {
-                    picker.unlisten('MDCSelectAdapter:closeMenu', callback);
-                    resolve(event.detail.action);
-                    dotNetObject.invokeMethodAsync('NotifyClosedAsync');
-                };
-                picker.listen('MDCSelectAdapter:closeMenu', callback);
-                picker.open = true;
-            });
+        init: function (elem) {
+            mdc.select.MDCSelect.attachTo(elem);
         },
 
         listItemClick: function (elem, elemText) {

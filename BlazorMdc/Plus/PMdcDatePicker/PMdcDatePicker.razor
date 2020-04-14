@@ -11,7 +11,7 @@
 
     <div class="mdc-select__anchor">
         <i class="mdc-select__dropdown-icon"></i>
-        <div @key="cachedCurrentValue" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="@labelId" aria-disabled="Disabled">@initialText</div>
+        <div @key="@key" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="@labelId" aria-disabled="Disabled">@initialText</div>
 
         @if (appliedInputStyle == MdcSelectInputStyle.Outlined)
         {
@@ -53,12 +53,11 @@
 
 
     private ElementReference elementReference;
-    private DotNetObjectReference<PMdcDatePicker> objectReference;
     private MdcSelectInputStyle appliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
+    private string key = Utilities.GenerateCssElementSelector();
     private string labelId = Utilities.GenerateCssElementSelector();
     private string initialText = "";
     private DateTime initialValue;
-    private DateTime cachedCurrentValue;
     private bool isOpen { get; set; } = false;
 
 
@@ -70,38 +69,13 @@
             .If("mdc-select--disabled", () => Disabled);
     }
 
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
 
-        objectReference = DotNetObjectReference.Create(this);
-    }
-
-
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
-
-        SetParameters();
-    }
-
-
-    private void SetParameters()
-    {
-        // All values that are bound to HTML are set once at initialization and then left unchanged
-        // because allowing Blazor to re-render conflicts with the Material Theme js rendering. This
-        // results in the floating label jumping to the wrong place.
         initialValue = Value;
-        cachedCurrentValue = Value;
         initialText = Utilities.DateToString(Value);
-    }
-
-
-    [JSInvokable("NotifyClosedAsync")]
-    public async Task NotifyClosedAsync()
-    {
-        SetParameters();
-        await Task.CompletedTask;
     }
 
 
@@ -109,7 +83,7 @@
     {
         if (firstRender)
         {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.init", elementReference, objectReference);
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.init", elementReference);
         }
     }
 }
