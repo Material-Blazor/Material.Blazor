@@ -48,8 +48,8 @@
     private ElementReference dialogElem;
     private bool show = false;
     private bool afterRenderShowAction = false;
-    private bool afterRenderHideAction = false;
     private string key = "";
+    TaskCompletionSource<string> tcs;
 
 
     protected override void OnInitialized()
@@ -65,8 +65,10 @@
     {
         key = Utilities.GenerateCssElementSelector();
         show = true;
+        afterRenderShowAction = true;
         StateHasChanged();
-        return await jsRuntime.InvokeAsync<string>("BlazorMdc.dialog.show", dialogElem, EscapeKeyAction, ScrimClickAction);
+        tcs = new TaskCompletionSource<string>();
+        return await tcs.Task;
     }
 
 
@@ -75,5 +77,17 @@
         await jsRuntime.InvokeAsync<string>("BlazorMdc.dialog.hide", dialogElem);
         show = false;
         StateHasChanged();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        if (afterRenderShowAction)
+        {
+            afterRenderShowAction = false;
+
+            tcs.SetResult(await jsRuntime.InvokeAsync<string>("BlazorMdc.dialog.show", dialogElem, EscapeKeyAction, ScrimClickAction));
+        }
     }
 }
