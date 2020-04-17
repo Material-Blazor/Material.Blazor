@@ -88,6 +88,10 @@
             afterRenderShowAction = false;
 
             tcs.SetResult(await jsRuntime.InvokeAsync<string>("BlazorMdc.dialog.show", dialogElem, EscapeKeyAction, ScrimClickAction));
+
+            show = false;
+
+            StateHasChanged();
         }
     }
 }
