@@ -74,9 +74,13 @@
 
     public async Task HideAsync()
     {
-        await jsRuntime.InvokeAsync<string>("BlazorMdc.dialog.hide", dialogElem);
-        show = false;
-        StateHasChanged();
+        if (show)
+        {
+            await jsRuntime.InvokeAsync<string>("BlazorMdc.dialog.hide", dialogElem);
+            tcs?.SetCanceled();
+            show = false;
+            StateHasChanged();
+        }
     }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -85,13 +89,17 @@
 
         if (afterRenderShowAction)
         {
-            afterRenderShowAction = false;
-
-            tcs.SetResult(await jsRuntime.InvokeAsync<string>("BlazorMdc.dialog.show", dialogElem, EscapeKeyAction, ScrimClickAction));
-
-            show = false;
-
-            StateHasChanged();
+            try
+            {
+                afterRenderShowAction = false;
+                tcs.SetResult(await jsRuntime.InvokeAsync<string>("BlazorMdc.dialog.show", dialogElem, EscapeKeyAction, ScrimClickAction));
+                show = false;
+                StateHasChanged();
+            }
+            catch
+            {
+                tcs.SetCanceled();
+            }
         }
     }
 }
