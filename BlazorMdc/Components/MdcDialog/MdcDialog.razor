@@ -4,7 +4,7 @@
 
 @inject IJSRuntime jsRuntime
 
-@if (show)
+@if (isOpen)
 {
     <div @key="@key"
          @ref="dialogElem"
@@ -14,9 +14,9 @@
             aria-describedby="@descId">
 
         <div class="mdc-dialog__container">
-            <div class="mdc-dialog__surface">
+            <div class="mdc-dialog__surface @overflowClass">
                 <h2 id="@titleId" class="mdc-dialog__title">@Title</h2>
-                <div id="@descId" class="mdc-dialog__content">@Body</div>
+                <div id="@descId" class="mdc-dialog__content @overflowClass">@Body</div>
                 @if (Buttons != null)
                 {
                     <footer class="mdc-dialog__actions">
@@ -41,13 +41,15 @@
     [Parameter] public RenderFragment Buttons { get; set; }
     [Parameter] public string ScrimClickAction { get; set; } = "close";
     [Parameter] public string EscapeKeyAction { get; set; } = "close";
+    [Parameter] public bool OverflowVisible { get; set; } = false;
 
 
     private string titleId = Utilities.GenerateCssElementSelector();
     private string descId = Utilities.GenerateCssElementSelector();
     private ElementReference dialogElem;
-    private bool show = false;
+    private bool isOpen = false;
     private bool afterRenderShowAction = false;
+    private string overflowClass => OverflowVisible ? "bmdc-dialog-overflow-visible" : "";
     private string key = "";
     TaskCompletionSource<string> tcs;
 
@@ -63,25 +65,37 @@
 
     public async Task<string> ShowAsync()
     {
-        key = Utilities.GenerateCssElementSelector();
-        show = true;
-        afterRenderShowAction = true;
-        StateHasChanged();
-        tcs = new TaskCompletionSource<string>();
-        return await tcs.Task;
+        if (isOpen)
+        {
+            throw new InvalidOperationException("Cannot show MdcDialog that is already open");
+        }
+        else
+        {
+            key = Utilities.GenerateCssElementSelector();
+            isOpen = true;
+            afterRenderShowAction = true;
+            StateHasChanged();
+            tcs = new TaskCompletionSource<string>();
+            return await tcs.Task;
+        }
     }
 
 
     public async Task HideAsync()
     {
-        if (show)
+        if (isOpen)
         {
             await jsRuntime.InvokeAsync<string>("BlazorMdc.dialog.hide", dialogElem);
             tcs?.SetCanceled();
-            show = false;
+            isOpen = false;
             StateHasChanged();
         }
+        else
+        {
+            throw new InvalidOperationException("Cannot hide MdcDialog that is not already open");
+        }
     }
+
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
@@ -93,7 +107,7 @@
             {
                 afterRenderShowAction = false;
                 tcs.SetResult(await jsRuntime.InvokeAsync<string>("BlazorMdc.dialog.show", dialogElem, EscapeKeyAction, ScrimClickAction));
-                show = false;
+                isOpen = false;
                 StateHasChanged();
             }
             catch
