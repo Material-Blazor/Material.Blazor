@@ -26,9 +26,6 @@
     [Parameter] public RenderFragment ChildContent { get; set; }
 
 
-    private ElementReference elementReference;
-
-
     protected override void OnInitialized()
     {
         base.OnInitialized();
@@ -37,13 +34,4 @@
             .Add("mdc-card")
             .AddIf("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(CardStyle) == MdcCardStyle.Outlined));
     }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.card.init", elementReference);
-        }
-    }
-
 }

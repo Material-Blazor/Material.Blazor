@@ -1,10 +1,13 @@
 ﻿@namespace BlazorMdc
 
-<div class="mdc-card__primary-action @myClass" 
+@inject IJSRuntime jsRuntime
+
+<div @ref="@elementReference"
+     class="mdc-card__primary-action @myClass"
      tabindex="0"
      @onclick="@OnClick"
-     @onmousedown="@OnMouseDown" 
-     @onkeydown="@OnKeyDown" 
+     @onmousedown="@OnMouseDown"
+     @onkeydown="@OnKeyDown"
      @ontouchstart="@OnTouchStart">
     @ChildContent
 </div>
@@ -19,5 +22,16 @@
     [Parameter] public EventCallback OnTouchStart { get; set; }
     [Parameter] public RenderFragment ChildContent { get; set; }
 
+
     private string myClass => Parent.AutoStyled ? "bmdc-card__primary-action" : "";
+    private ElementReference elementReference;
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.cardPrimaryAction.init", elementReference);
+        }
+    }
 }

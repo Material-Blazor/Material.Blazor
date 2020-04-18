@@ -43,15 +43,9 @@ window.BlazorMdc = {
         }
     },
 
-    card: {
+    cardPrimaryAction: {
         init: function (elem) {
-            const selector = '.mdc-button, .mdc-icon-button, .mdc-card__primary-action';
-
-            //Do not know how to get this job done, so cards don't yet have ripple
-            //[].map.call(document.querySelectorAll(selector), function (elem) {
-            //    return new MDCRipple(elem);
-            //});
-            //mdc.ripple.MDCRipple.attachTo(elem);
+            mdc.ripple.MDCRipple.attachTo(elem);
         }
     },
 
@@ -91,12 +85,36 @@ window.BlazorMdc = {
             return new Promise(resolve => {
                 const dialog = elem._dialog;
 
-                const callback = event => {
-                    dialog.unlisten('MDCDialog:closing', callback);
+                //const openedCallback = event => {
+                //    dialog.unlisten('MDCDialog:opened', openedCallback);
+                //    resolve(event.detail.action);
+
+                //    for (let i = 0; i < dialog.container_.children.length; i++) {
+                //        if (dialog.container_.children[i].classList[0] == "mdc-dialog__surface") {
+                //            let cChildren = dialog.container_.children[i].children;
+
+                //            for (let j = 0; j < dialog.container_.children[i].children.length; j++) {
+                //                if (dialog.container_.children[i].children[j].classList[0] == "mdc-dialog__content") {
+                //                    let content = dialog.container_.children[i].children[j];
+
+                //                    for (let k = 0; k < content.children.length; k++) {
+                //                        if (content.children[k].classList.length > 0 && content.children[k].classList[0].substring(0, 3) == "mdc") {
+                //                            content.children[k].layout();
+                //                        }
+                //                    }
+                //                }
+                //            }
+                //        }
+                //    }
+                //};
+
+                const closingCallback = event => {
+                    dialog.unlisten('MDCDialog:closing', closingCallback);
                     resolve(event.detail.action);
                 };
 
-                dialog.listen('MDCDialog:closing', callback);
+                //dialog.listen('MDCDialog:opened', openedCallback);
+                dialog.listen('MDCDialog:closing', closingCallback);
                 dialog.escapeKeyAction = newEscapeKeyAction;
                 dialog.scrimClickAction = newScrimClickAction;
                 dialog.open();
