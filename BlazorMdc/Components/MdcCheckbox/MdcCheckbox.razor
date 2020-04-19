@@ -2,6 +2,8 @@
 
 @inherits MdcInputComponentBase<bool>
 
+@implements IMdcDialogChild
+
 @inject IJSRuntime jsRuntime
 
 
@@ -34,6 +36,7 @@
 
 
 @code {
+    [CascadingParameter] private IMdcDialog Dialog { get; set; }
     //
     //  2020-04-01  Mark Stega
     //              Changed to use class & style mappers
@@ -46,6 +49,7 @@
     [Parameter] public bool IsFormField { get; set; }
 
 
+    private bool instantiate = false;
     private string formFieldClass => (IsFormField || !(string.IsNullOrWhiteSpace(Label))) ? "mdc-form-field" : "";
     private ElementReference elementReference;
     private ElementReference formReference;
@@ -57,15 +61,26 @@
 
         ClassMapper.Add("mdc-checkbox mdc-checkbox--touch")
             .AddIf("mdc-checkbox--disabled", () => Disabled);
-            //.AddIf("mdc-form-field", () => (IsFormField || !(string.IsNullOrWhiteSpace(Label))));
-    }
 
-    protected async override Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
+        if (Dialog != null)
         {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.checkBox.setChecked", elementReference, formReference, CurrentValue, IsFormField);
+            Dialog.RegisterLayoutAction(this);
         }
     }
 
+
+    public void RequestInstantiation()
+    {
+        instantiate = true;
+    }
+
+
+    protected async override Task OnAfterRenderAsync(bool firstRender)
+    {
+        if ((firstRender && Dialog is null) || instantiate)
+        {
+            instantiate = false;
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.checkBox.setChecked", elementReference, formReference, CurrentValue, IsFormField);
+        }
+    }
 }

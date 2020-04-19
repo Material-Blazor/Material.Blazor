@@ -1,6 +1,9 @@
 ﻿@namespace BlazorMdc
 
 @inherits MdcComponentBase
+@implements IMdcDialog
+
+@using System.Collections.Generic
 
 @inject IJSRuntime jsRuntime
 
@@ -13,18 +16,20 @@
             aria-labelledby="@titleId"
             aria-describedby="@descId">
 
-        <div class="mdc-dialog__container">
-            <div class="mdc-dialog__surface @overflowClass">
-                <h2 id="@titleId" class="mdc-dialog__title">@Title</h2>
-                <div id="@descId" class="mdc-dialog__content @overflowClass">@Body</div>
-                @if (Buttons != null)
-                {
-                    <footer class="mdc-dialog__actions">
-                        @Buttons
-                    </footer>
-                }
+        <CascadingValue Value="this">
+            <div class="mdc-dialog__container">
+                <div class="mdc-dialog__surface @overflowClass">
+                    <h2 id="@titleId" class="mdc-dialog__title">@Title</h2>
+                    <div id="@descId" class="mdc-dialog__content @overflowClass">@Body</div>
+                    @if (Buttons != null)
+                    {
+                        <footer class="mdc-dialog__actions">
+                            @Buttons
+                        </footer>
+                    }
+                </div>
             </div>
-        </div>
+        </CascadingValue>
 
         <div class="mdc-dialog__scrim"></div>
     </div>
@@ -44,11 +49,14 @@
     [Parameter] public bool OverflowVisible { get; set; } = false;
 
 
+    private List<IMdcDialogChild> layoutChildren = new List<IMdcDialogChild>();
     private string titleId = Utilities.GenerateCssElementSelector();
     private string descId = Utilities.GenerateCssElementSelector();
+    private DotNetObjectReference<MdcDialog> objectReference;
     private ElementReference dialogElem;
     private bool isOpen = false;
     private bool afterRenderShowAction = false;
+    private bool afterDialogInitialization = false;
     private string overflowClass => OverflowVisible ? "bmdc-dialog-overflow-visible" : "";
     private string key = "";
     TaskCompletionSource<string> tcs;
@@ -60,6 +68,14 @@
 
         ClassMapper
             .Add("mdc-dialog");
+
+        objectReference = DotNetObjectReference.Create(this);
+    }
+
+
+    public void RegisterLayoutAction(IMdcDialogChild child)
+    {
+        layoutChildren.Add(child);
     }
 
 
@@ -71,6 +87,7 @@
         }
         else
         {
+            layoutChildren.Clear();
             key = Utilities.GenerateCssElementSelector();
             isOpen = true;
             afterRenderShowAction = true;
@@ -97,6 +114,15 @@
     }
 
 
+    [JSInvokable("NotifyOpenedAsync")]
+    public async Task NotifyOpenedAsync()
+    {
+        afterDialogInitialization = true;
+        StateHasChanged();
+        await Task.CompletedTask;
+    }
+
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         base.OnAfterRender(firstRender);
@@ -106,7 +132,8 @@
             try
             {
                 afterRenderShowAction = false;
-                tcs.SetResult(await jsRuntime.InvokeAsync<string>("BlazorMdc.dialog.show", dialogElem, EscapeKeyAction, ScrimClickAction));
+                //afterDialogInitialization = true;
+                tcs.SetResult(await jsRuntime.InvokeAsync<string>("BlazorMdc.dialog.show", dialogElem, objectReference, EscapeKeyAction, ScrimClickAction));
                 isOpen = false;
                 StateHasChanged();
             }
@@ -114,6 +141,17 @@
             {
                 tcs.SetCanceled();
             }
+        }
+        else if (afterDialogInitialization)
+        {
+            afterDialogInitialization = false;
+
+            foreach (var child in layoutChildren)
+            {
+                child.RequestInstantiation();
+            }
+
+            StateHasChanged();
         }
     }
 }
