@@ -4,6 +4,8 @@
 
 @inherits MdcComponentBase
 
+@implements IMdcDialogChild
+
 @inject IJSRuntime jsRuntime
 
 
@@ -66,12 +68,16 @@
     }
 
 
+    [CascadingParameter] private IMdcDialog Dialog { get; set; }
+
+
     [Parameter] public IEnumerable<Item<TItem>> Items { get; set; }
     [Parameter] public TItem Value { get; set; } = default;
     [Parameter] public bool Vertical { get; set; } = false;
     [Parameter] public EventCallback<TItem> ValueChanged { get; set; }
 
 
+    private bool instantiate = false;
     private ElementReference elementReference;
     private ItemWrapper<TItem>[] wrappers;
     private string radioName = Utilities.GenerateCssElementSelector();
@@ -87,6 +93,11 @@
             .Add("mdc-touch-target-wrapper");
 
         initialValue = (Value is null) ? Items.FirstOrDefault().DataValue : Value;
+
+        if (Dialog != null)
+        {
+            Dialog.RegisterLayoutAction(this);
+        }
     }
 
 
@@ -96,6 +107,7 @@
 
         SetParameters();
     }
+
 
     private bool isFirstParameterSet = true;
     private void SetParameters()
@@ -147,10 +159,17 @@
     }
 
 
+    public void RequestInstantiation()
+    {
+        instantiate = true;
+    }
+
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
-        if (firstRender)
+        if ((firstRender && Dialog is null) || instantiate)
         {
+            instantiate = false;
             await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButtons.init", elementReference, wrappers);
         }
     }

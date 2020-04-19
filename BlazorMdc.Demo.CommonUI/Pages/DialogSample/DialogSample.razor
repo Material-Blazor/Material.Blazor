@@ -21,6 +21,7 @@
     <Body>
         <p>Please choose a fruit.</p>
         <MdcCheckbox @bind-Value="@checkMe" Label="Check me" />
+        <MdcRadioButtons Items="stringItems" Vertical="true" />
     </Body>
     <Buttons>
         <MdcButton Label="Orange" DialogAction="orange"></MdcButton>
@@ -95,7 +96,7 @@
 </MdcDialog>
 
 
-<p style="margin-top: 3rem;"><MdcButton Label="Confirmation Dialog with Date Picerk & OverflowVisible" OnClick="@ShowDialog6"></MdcButton></p>
+<p style="margin-top: 3rem;"><MdcButton Label="Confirmation Dialog with Date Picker & OverflowVisible" OnClick="@ShowDialog6"></MdcButton></p>
 
 <p>Result: <strong>'@(date6.ToString("d") ?? "")'</strong></p>
 
@@ -123,6 +124,13 @@
     {
         result1 = await dialog1.ShowAsync();
     }
+
+    MdcRadioButtons<string>.Item<string>[] stringItems = new MdcRadioButtons<string>.Item<string>[]
+    {
+        new MdcRadioButtons<string>.Item<string> { DataValue = "brit-short", Label = "British Shorthair" },
+        new MdcRadioButtons<string>.Item<string> { DataValue = "russ-blue", Label = "Russian Blue" },
+        new MdcRadioButtons<string>.Item<string> { DataValue = "ice-invis", Label = "Icelandic Invisible" }
+    };
 
     PMdcConfirmationDialog dialog2;
     string result2;
