@@ -61,11 +61,12 @@
 </PMdcConfirmationDialog>
 
 
-<p style="margin-top: 3rem;"><MdcButton Label="Show general dialog with scrim and escape disabled" OnClick="@ShowDialog4"></MdcButton></p>
+<p style="margin-top: 3rem;"><MdcButton Label="Show general dialog with scrim and escape disabled (using HideAsync)" OnClick="@ShowDialog4"></MdcButton></p>
 
-<p>Result: <strong>'@(result4 ?? "")'</strong></p>
+<p>Logical result: <strong>'@(result4 ?? "")'</strong></p>
+<p>Dialog result: <strong>'@(dialogResult4 ?? "")'</strong></p>
 
-<MdcDialog @ref="@dialog4" Title="General dialog with scrim and escape disabled"
+<MdcDialog @ref="@dialog4" Title="General dialog with scrim and escape disabled (using HideAsync)"
            ScrimClickAction=""
            EscapeKeyAction="">
     <Body>
@@ -73,8 +74,8 @@
         <p><MdcCheckbox @bind-Value="@checkMe" Label="Check me" /></p>
     </Body>
     <Buttons>
-        <MdcButton Label="Orange" DialogAction="orange"></MdcButton>
-        <MdcButton Label="Apple" DialogAction="apple" ButtonStyle="@MdcButtonStyle.Text"></MdcButton>
+        <MdcButton Label="Orange" OnClick="orangeClick"></MdcButton>
+        <MdcButton Label="Apple" OnClick="appleClick" ButtonStyle="@MdcButtonStyle.Text"></MdcButton>
     </Buttons>
 </MdcDialog>
 
@@ -130,7 +131,7 @@
         new MdcRadioButtons<string>.Item<string> { DataValue = "brit-short", Label = "British Shorthair" },
         new MdcRadioButtons<string>.Item<string> { DataValue = "russ-blue", Label = "Russian Blue" },
         new MdcRadioButtons<string>.Item<string> { DataValue = "ice-invis", Label = "Icelandic Invisible" }
-    };
+            };
 
     PMdcConfirmationDialog dialog2;
     string result2;
@@ -149,11 +150,24 @@
     }
 
     MdcDialog dialog4;
+    string dialogResult4;
     string result4;
 
     async Task ShowDialog4()
     {
-        result4 = await dialog4.ShowAsync();
+        dialogResult4 = await dialog4.ShowAsync();
+    }
+
+    async Task appleClick()
+    {
+        await dialog4.HideAsync();
+        result4 = "apple (via OnClick)";
+    }
+
+    async Task orangeClick()
+    {
+        await dialog4.HideAsync();
+        result4 = "orange (via OnClick)";
     }
 
     MdcDialog dialog5;

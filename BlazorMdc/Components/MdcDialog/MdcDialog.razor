@@ -93,7 +93,8 @@
             afterRenderShowAction = true;
             StateHasChanged();
             tcs = new TaskCompletionSource<string>();
-            return await tcs.Task;
+            var ret = await tcs.Task;
+            return ret;
         }
     }
 
@@ -103,7 +104,6 @@
         if (isOpen)
         {
             await jsRuntime.InvokeAsync<string>("BlazorMdc.dialog.hide", dialogElem);
-            tcs?.SetCanceled();
             isOpen = false;
             StateHasChanged();
         }
@@ -139,7 +139,7 @@
             }
             catch
             {
-                tcs.SetCanceled();
+                tcs?.SetCanceled();
             }
         }
         else if (afterDialogInitialization)
