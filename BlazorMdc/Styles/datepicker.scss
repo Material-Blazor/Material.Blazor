@@ -64,9 +64,8 @@
 
 .bmdc-dp-day-pad__weekdays-line {
     box-sizing: content-box;
-    margin-bottom: 8px; /* Want a margin of 12px, but inline-block adds 4px of whitespace already */
-    padding: 0 !important;
-    overflow: visible;
+    padding: 0 0 12px 0!important;
+    overflow: hidden;
 }
 
 .bmdc-dp-day-pad__weekday {
@@ -82,7 +81,7 @@
 .bmdc-dp-day-pad__days-line {
     box-sizing: content-box;
     padding: 0 !important;
-    overflow: visible;
+    overflow: hidden;
 }
 
 .bmdc-dp-day-pad__button-container {
@@ -124,7 +123,6 @@
 }
 
 .bmdc-dp-year-pad__years-line {
-    display: inline-block;
     box-sizing: content-box;
     padding: 0 !important;
     overflow: auto;

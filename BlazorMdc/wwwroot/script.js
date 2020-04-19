@@ -79,44 +79,27 @@ window.BlazorMdc = {
     },
 
     dialog: {
-        show: function (elem, newEscapeKeyAction, newScrimClickAction) {
+        show: function (elem, dotNetObject, escapeKeyAction, scrimClickAction) {
             elem._dialog = elem._dialog || mdc.dialog.MDCDialog.attachTo(elem);
+            elem._dotNetObject = dotNetObject;
 
             return new Promise(resolve => {
                 const dialog = elem._dialog;
 
-                //const openedCallback = event => {
-                //    dialog.unlisten('MDCDialog:opened', openedCallback);
-                //    resolve(event.detail.action);
-
-                //    for (let i = 0; i < dialog.container_.children.length; i++) {
-                //        if (dialog.container_.children[i].classList[0] == "mdc-dialog__surface") {
-                //            let cChildren = dialog.container_.children[i].children;
-
-                //            for (let j = 0; j < dialog.container_.children[i].children.length; j++) {
-                //                if (dialog.container_.children[i].children[j].classList[0] == "mdc-dialog__content") {
-                //                    let content = dialog.container_.children[i].children[j];
-
-                //                    for (let k = 0; k < content.children.length; k++) {
-                //                        if (content.children[k].classList.length > 0 && content.children[k].classList[0].substring(0, 3) == "mdc") {
-                //                            content.children[k].layout();
-                //                        }
-                //                    }
-                //                }
-                //            }
-                //        }
-                //    }
-                //};
+                const openedCallback = event => {
+                    dialog.unlisten('MDCDialog:opened', openedCallback);
+                    dotNetObject.invokeMethodAsync('NotifyOpenedAsync');
+                };
 
                 const closingCallback = event => {
                     dialog.unlisten('MDCDialog:closing', closingCallback);
                     resolve(event.detail.action);
                 };
 
-                //dialog.listen('MDCDialog:opened', openedCallback);
+                dialog.listen('MDCDialog:opened', openedCallback);
                 dialog.listen('MDCDialog:closing', closingCallback);
-                dialog.escapeKeyAction = newEscapeKeyAction;
-                dialog.scrimClickAction = newScrimClickAction;
+                dialog.escapeKeyAction = escapeKeyAction;
+                dialog.scrimClickAction = scrimClickAction;
                 dialog.open();
             });
         },
