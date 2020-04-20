@@ -1,0 +1,22 @@
+﻿@namespace BlazorMdc
+
+@inherits MdcComponentBase
+
+@inject IJSRuntime jsRuntime
+
+
+<div class="@ClassMapper.ToString()"
+        style="@StyleMapper.ToString()">
+
+    <div class="bmdc-paginator">
+        <div class="bmdc-dp-menu__container">
+            <div class="bmdc-dp-menu__float-left">
+                A
+            </div>
+
+            <div class="bmdc-dp-menu__float-left">
+                <button class="mdc-icon-button material-icons bmdc-dp-menu--icon-button" type="button">chevron_right</button>
+            </div>
+        </div>
+    </div>
+</div>

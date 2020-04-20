@@ -1,0 +1,27 @@
+﻿.bmdc-paginator {
+    box-sizing: content-box;
+    padding: 16px 8px 12px 24px;
+    height: 24px;
+    font-weight: bold;
+    user-select: none;
+    width: 224px;
+    min-width: 224px;
+    overflow: visible !important;
+}
+
+.bmdc-paginator__float-left {
+    float: left;
+    height: 24px;
+    line-height: 24px;
+    margin-right: 4px;
+}
+
+.bmdc-paginator__float-right {
+    float: right;
+    height: 24px;
+    line-height: 24px;
+}
+
+.bmdc-paginator__float-right-spaced {
+    margin-left: 4px;
+}
