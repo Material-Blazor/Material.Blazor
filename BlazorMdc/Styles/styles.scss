@@ -3,16 +3,16 @@
 @import 'colors.scss';
 @import 'icons.scss';
 
-@import '../Components/MdcCard/card.scss';
-@import '../Components/MdcDialog/dialog.scss';
-@import '../Components/MdcRadioButtons/radiobuttons.scss';
-@import '../Components/MdcTabBar/tabbar.scss';
-@import '../Components/MdcTopAppBar/topappbar.scss';
+@import '../Components/MdcCard/MdcCard.scss';
+@import '../Components/MdcDialog/MdcDialog.scss';
+@import '../Components/MdcRadioButtons/MdcRadioButtons.scss';
+@import '../Components/MdcTabBar/MdcTabBar.scss';
+@import '../Components/MdcTopAppBar/MdcTopAppBar.scss';
 
-@import '../Plus/PMdcDatePicker/datepicker.scss';
-@import '../Plus/PMdcPaginator/paginator.scss';
-@import '../Plus/PMdcSlidingContent/slidingcontent.scss';
-@import '../Plus/PMdcToast/toast.scss';
+@import '../Plus/PMdcDatePicker/PMdcDatePicker.scss';
+@import '../Plus/PMdcPaginator/PMdcPaginator.scss';
+@import '../Plus/PMdcSlidingContent/PMdcSlidingContent.scss';
+@import '../Plus/PMdcToast/PMdcToast.scss';
 
 
 .bmdc-align-left {

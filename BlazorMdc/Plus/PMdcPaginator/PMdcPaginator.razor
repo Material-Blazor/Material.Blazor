@@ -2,21 +2,104 @@
 
 @inherits MdcComponentBase
 
+@using System.Linq
+
 @inject IJSRuntime jsRuntime
 
 
 <div class="@ClassMapper.ToString()"
-        style="@StyleMapper.ToString()">
+     style="@StyleMapper.ToString()">
 
     <div class="bmdc-paginator">
-        <div class="bmdc-dp-menu__container">
-            <div class="bmdc-dp-menu__float-left">
-                A
+        <div class="bmdc-paginator__container">
+            <div class="bmdc-paginator__float-left">
+                Rows per page:
             </div>
 
-            <div class="bmdc-dp-menu__float-left">
+            <div class="bmdc-paginator__float-left">
+                <MdcSelect @bind-Value="@RowsPerPage" Items="@rowsPerPageItems" SelectInputStyle="@MdcSelectInputStyle.Filled" />
+            </div>
+
+            <div class="bmdc-paginator__float-left">
                 <button class="mdc-icon-button material-icons bmdc-dp-menu--icon-button" type="button">chevron_right</button>
             </div>
         </div>
     </div>
 </div>
+
+
+@code {
+    [Parameter] public IEnumerable<int> RowsPerPageSelection { get; set; }
+    [Parameter] public int ItemCount { get; set; }
+
+    private int _rowsPerPage = 0;
+    [Parameter] public int RowsPerPage
+    {
+        get => _rowsPerPage;
+        set
+        {
+            if (value != _rowsPerPage)
+            {
+                _rowsPerPage = value;
+                _ = RowsPerPageChanged.InvokeAsync(value);
+                PageNumber = _pageNumber; // Forces a clamp
+            }
+        }
+    }
+
+    [Parameter] public EventCallback<int> RowsPerPageChanged { get; set; }
+
+    private int _pageNumber = 0;
+    [Parameter]
+    public int PageNumber
+    {
+        get => _pageNumber;
+        set
+        {
+            if (RowsPerPage == 0)
+            {
+                _pageNumber = value;
+                _ = PageNumberChanged.InvokeAsync(value);
+            }
+            else
+            {
+                var clampedValue = Math.Clamp(value, 0, maxPageNumber);
+
+                if (clampedValue != _pageNumber)
+                {
+                    _pageNumber = clampedValue;
+                    _ = PageNumberChanged.InvokeAsync(value);
+                }
+            }
+        }
+    }
+
+    [Parameter] public EventCallback<int> PageNumberChanged { get; set; }
+
+
+    private IEnumerable<MdcSelect<int>.Item<int>> rowsPerPageItems;
+    private int maxPageNumber => Convert.ToInt32(Math.Ceiling((double)ItemCount / RowsPerPage));
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        if (RowsPerPage == 0)
+        {
+            RowsPerPage = RowsPerPageSelection.FirstOrDefault();
+        }
+
+        if (!RowsPerPageSelection.Contains(RowsPerPage))
+        {
+            throw new ArgumentException($"PMdcPaginator: Cannot set RowsPerPage to {RowsPerPage} from selection of {{ {RowsPerPageSelection.Select(r => r).ToString()} }}");
+        }
+
+        rowsPerPageItems = from r in RowsPerPageSelection
+                           select new MdcSelect<int>.Item<int>
+                           {
+                               DataValue = r,
+                               Text = r.ToString()
+                           };
+    }
+}

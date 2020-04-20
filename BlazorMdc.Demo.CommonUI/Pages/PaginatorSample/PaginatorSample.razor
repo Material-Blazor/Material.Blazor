@@ -8,5 +8,20 @@
 
 <p>See <code>Paginator.razor</code> for sources.</p>
 
-<PMdcPaginator></PMdcPaginator>
+<PMdcPaginator @bind-RowsPerPage="@rowsPerPage" RowsPerPageSelection="@rowsPerPageSelection" PageNumber="@pageNumber"></PMdcPaginator>
+
+@foreach (var item in selection)
+{
+    <p>@item</p>
+}
+
+
+@code {
+    private string[] items = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty" };
+    private int[] rowsPerPageSelection = { 2, 4, 6 };
+    private int rowsPerPage = 6;
+    private int pageNumber = 0;
+
+    private IEnumerable<string> selection => items.Skip(rowsPerPage * pageNumber).Take(rowsPerPage);
+}
 
