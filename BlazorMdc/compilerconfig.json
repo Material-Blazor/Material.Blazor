@@ -1,6 +1,10 @@
 ﻿[
   {
-    "outputFile": "wwwroot/css/styles.css",
+    "outputFile": "wwwroot/blazormdc.css",
     "inputFile": "Styles/styles.scss"
+  },
+  {
+    "outputFile": "wwwroot/blazormdc.js",
+    "inputFile": "Scripts/scripts.js"
   }
 ]
