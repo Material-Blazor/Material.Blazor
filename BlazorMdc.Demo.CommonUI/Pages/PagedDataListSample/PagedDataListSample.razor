@@ -2,23 +2,59 @@
 
 @page "/pageddatalist"
 
+<style>
+    .my-container {
+        display: inline-block;
+        width: 100%;
+    }
 
+    .my-float-right {
+        float: right;
+    }
+
+    .my-full-width {
+        width: 100%;
+    }
+
+    .my-header-bold {
+        font-weight: bold;
+    }
+
+    .my-half-list {
+        width: 50%;
+        padding: 0 0.3rem 0 0.3rem;
+        float: left;
+        box-sizing: border-box;
+    }
+</style>
 
 <h1 class="@MdcTypography.Heading4">Paged Data List samples</h1>
 
 <p>See <code>PaginatorSamples.razor</code> for sources.</p>
 
-<h2 class="@MdcTypography.Heading6" style="margin-bottom: 1rem;">No templates</h2>
+<h2 class="@MdcTypography.Heading6" style="margin-bottom: 1rem;">No templates - not much use!</h2>
 
-<PMdcPagedDataList @bind-ItemsPerPage="@itemsPerPage1" @bind-PageNumber="@pageNumber1" ItemsPerPageSelection="@itemsPerPageSelection" Data=@People>
+<PMdcPagedDataList Class="my-container"
+                   PaginatorClass="my-float-right"
+                   @bind-ItemsPerPage="@itemsPerPage1"
+                   @bind-PageNumber="@pageNumber1"
+                   ItemsPerPageSelection="@itemsPerPageSelection"
+                   Data=@People>
 </PMdcPagedDataList>
+
 
 
 <hr style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="@MdcTypography.Heading6" style="margin-bottom: 1rem;">ItemTemplate only</h2>
 
-<PMdcPagedDataList  @bind-ItemsPerPage="@itemsPerPage2" @bind-PageNumber="@pageNumber2" ItemsPerPageSelection="@itemsPerPageSelection" Data=@People>
+<PMdcPagedDataList Class="my-container"
+                   PaginatorClass="my-float-right"
+                   @bind-ItemsPerPage="@itemsPerPage2"
+                   @bind-PageNumber="@pageNumber2"
+                   ItemsPerPageSelection="@itemsPerPageSelection"
+                   Data=@People>
+
     <ItemTemplate Context="person">
         <li @key=@person>
             @person.Salutation @person.FamilyName, @person.GivenName
@@ -27,11 +63,18 @@
 </PMdcPagedDataList>
 
 
+
 <hr style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="@MdcTypography.Heading6" style="margin-bottom: 1rem;">ListTemplate and ItemTemplate</h2>
 
-<PMdcPagedDataList  @bind-ItemsPerPage="@itemsPerPage3" @bind-PageNumber="@pageNumber3" ItemsPerPageSelection="@itemsPerPageSelection" Data=@People>
+<PMdcPagedDataList Class="my-container"
+                   PaginatorClass="my-float-right"
+                   @bind-ItemsPerPage="@itemsPerPage3"
+                   @bind-PageNumber="@pageNumber3"
+                   ItemsPerPageSelection="@itemsPerPageSelection"
+                   Data=@People>
+
     <ListTemplate Context="listOfPeople">
         <table border=1 cellpadding=4>
             <thead>
@@ -57,6 +100,118 @@
 
 
 
+<hr style="margin: 2rem 0 1rem 0;" />
+
+<h2 class="@MdcTypography.Heading6" style="margin-bottom: 1rem;">ListTemplate and MdcDataTable</h2>
+
+<PMdcPagedDataList @ref="dataList4"
+                   Class="my-container"
+                   PaginatorClass="my-float-right"
+                   @bind-ItemsPerPage="@itemsPerPage4"
+                   @bind-PageNumber="@pageNumber4"
+                   ItemsPerPageSelection="@itemsPerPageSelection"
+                   Data=@People>
+
+    <ListTemplate Context="listOfPeople">
+        <MdcDataTable Items="@dataList4.CurrentPage"
+                      Context="person"
+                      Class="my-full-width">
+            <Header>
+                <th class="mdc-data-table__header-cell my-header-bold" role="columnheader" scope="col">Salutation</th>
+                <th class="mdc-data-table__header-cell my-header-bold" role="columnheader" scope="col">Given Name</th>
+                <th class="mdc-data-table__header-cell my-header-bold" role="columnheader" scope="col">Family Name</th>
+            </Header>
+            <Row>
+                <td class="mdc-data-table__cell">@person.Salutation</td>
+                <td class="mdc-data-table__cell">@person.GivenName</td>
+                <td class="mdc-data-table__cell">@person.FamilyName</td>
+            </Row>
+        </MdcDataTable>
+    </ListTemplate>
+</PMdcPagedDataList>
+
+
+
+<hr style="margin: 2rem 0 1rem 0;" />
+
+<h2 class="@MdcTypography.Heading6" style="margin-bottom: 1rem;">ListTemplate and MdcList</h2>
+
+<PMdcPagedDataList @ref="dataList5"
+                   Class="my-container"
+                   PaginatorClass="my-float-right"
+                   @bind-ItemsPerPage="@itemsPerPage5"
+                   @bind-PageNumber="@pageNumber5"
+                   ItemsPerPageSelection="@itemsPerPageSelection"
+                   Data=@People>
+
+    <ListTemplate Context="listOfPeople">
+        <MdcList Items="@dataList5.CurrentPage"
+                 Context="person"
+                 ShowSeparators="true"
+                 AvatarList="true"
+                 ListStyle="@MdcListStyle.Outlined">
+
+            <Icon>shop</Icon>
+            <Title>@person.FamilyName</Title>
+            <Subtitle>@person.Salutation @person.FamilyName, @person.GivenName</Subtitle>
+        </MdcList>
+    </ListTemplate>
+</PMdcPagedDataList>
+
+
+
+<hr style="margin: 2rem 0 1rem 0;" />
+
+<h2 class="@MdcTypography.Heading6" style="margin-bottom: 1rem;">ListTemplate and Two x MdcList</h2>
+
+<PMdcPagedDataList @ref="dataList6"
+                   Class="my-container"
+                   ListTemplateClass="my-container"
+                   PaginatorClass="my-float-right"
+                   @bind-ItemsPerPage="@itemsPerPage6"
+                   @bind-PageNumber="@pageNumber6"
+                   ItemsPerPageSelection="@itemsPerPageSelection"
+                   Data=@People>
+
+    <ListTemplate Context="listOfPeople">
+        @{
+            var half = dataList6.CurrentPage.Count() / 2;
+            var leftList = dataList6.CurrentPage.Skip(0).Take(half);
+            var rightList = dataList6.CurrentPage.Skip(half).Take(half);
+        }
+
+        <div class="my-half-list">
+            <MdcList Items="@leftList"
+                     Context="person"
+                     ShowSeparators="true"
+                     AvatarList="true"
+                     ListStyle="@MdcListStyle.Outlined">
+
+                <Icon>shop</Icon>
+                <Title>@person.FamilyName</Title>
+                <Subtitle>@person.Salutation @person.FamilyName, @person.GivenName</Subtitle>
+            </MdcList>
+        </div>
+
+        <div class="my-half-list">
+            <MdcList Items="@rightList"
+                     Context="person"
+                     ShowSeparators="true"
+                     AvatarList="true"
+                     ListStyle="@MdcListStyle.Outlined">
+
+                <Icon>shop</Icon>
+                <Title>@person.FamilyName</Title>
+                <Subtitle>@person.Salutation @person.FamilyName, @person.GivenName</Subtitle>
+            </MdcList>
+        </div>
+    </ListTemplate>
+</PMdcPagedDataList>
+
+
+
+
+
 @code {
     public class Person
     {
@@ -73,9 +228,19 @@
     private int itemsPerPage1 = 6;
     private int itemsPerPage2 = 6;
     private int itemsPerPage3 = 6;
+    private int itemsPerPage4 = 6;
+    private int itemsPerPage5 = 6;
+    private int itemsPerPage6 = 6;
     private int pageNumber1 = 0;
     private int pageNumber2 = 0;
     private int pageNumber3 = 0;
+    private int pageNumber4 = 0;
+    private int pageNumber5 = 0;
+    private int pageNumber6 = 0;
+
+    private PMdcPagedDataList<Person> dataList4;
+    private PMdcPagedDataList<Person> dataList5;
+    private PMdcPagedDataList<Person> dataList6;
 
     protected override void OnInitialized()
     {
