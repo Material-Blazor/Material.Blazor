@@ -14,7 +14,8 @@
 
 <p style="margin-bottom: 2em;">&nbsp;</p>
 
-<MdcTabBar @ref="tabBar"
+<MdcTabBar @key="@stacked"
+           @ref="tabBar"
            Items="@tabItems"
            Context="item"
            @bind-TabIndex="@tabIndex"
@@ -76,7 +77,7 @@
 
     private async Task ButtonClickAsync()
     {
-        //await tabBar.SetTabIndexAsync(1);
         tabIndex = 1;
+        await Task.CompletedTask;
     }
 }

@@ -1,0 +1,172 @@
+﻿@namespace BlazorMdc
+
+@inherits MdcComponentBase
+
+@using System.Linq
+
+@inject IJSRuntime jsRuntime
+
+
+<div class="@ClassMapper.ToString()"
+     style="@StyleMapper.ToString()">
+
+    <div class="bmdc-paginator">
+        <div class="bmdc-paginator__container">
+            <div class="bmdc-paginator__float-left">
+                <div class="bmdc-paginator__float-left">
+                    @itemsText
+                </div>
+
+                <div class="bmdc-dp-menu__float-left">
+                    <MdcIconButtonToggle @ref="@iconButtonToggle" @bind-Value="@toggleOn" OnClick="@OnMenuToggleAsync" IconOn="@MdcIcons.Icon__arrow_drop_up" IconOff="@MdcIcons.Icon__arrow_drop_down" />
+                    <div class="mdc-menu-surface--anchor">
+                        <MdcMenu @ref="menu">
+                            @foreach (var items in ItemsPerPageSelection)
+                            {
+                                <MdcListItem Text="@items.ToString("G0")" OnClick="@(_ => OnMenuItemClick(items))" />
+                            }
+                        </MdcMenu>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bmdc-paginator__float-left">
+                <div class="bmdc-paginator__float-left bmdc-paginator__spaced">
+                    <div class="bmdc-paginator__position-hidden">
+                        @maxPositionText
+                    </div>
+                    <div>
+                        @positionText
+                    </div>
+                </div>
+
+                <div class="bmdc-paginator__float-left">
+                    <MdcIconButton Icon="@MdcIcons.Icon__chevron_left" OnClick="@OnPreviousClick" Disabled="@previousDisabled" />
+                </div>
+                <div class="bmdc-paginator__float-left">
+                    <MdcIconButton Icon="@MdcIcons.Icon__chevron_right" OnClick="@OnNextClick" Disabled="@nextDisabled" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    [Parameter] public IEnumerable<int> ItemsPerPageSelection { get; set; }
+    [Parameter] public int ItemCount { get; set; }
+
+    private int _itemsPerPage = 0;
+    [Parameter] public int ItemsPerPage
+    {
+        get => _itemsPerPage;
+        set
+        {
+            if (value != _itemsPerPage)
+            {
+                _itemsPerPage = value;
+                _ = ItemsPerPageChanged.InvokeAsync(value);
+                PageNumber = _pageNumber; // Forces a clamp
+            }
+        }
+    }
+
+    [Parameter] public EventCallback<int> ItemsPerPageChanged { get; set; }
+
+    private int _pageNumber = 0;
+    [Parameter]
+    public int PageNumber
+    {
+        get => _pageNumber;
+        set
+        {
+            if (ItemsPerPage == 0)
+            {
+                _pageNumber = value;
+                _ = PageNumberChanged.InvokeAsync(value);
+            }
+            else
+            {
+                var clampedValue = Math.Clamp(value, 0, maxPageNumber);
+
+                if (clampedValue != _pageNumber)
+                {
+                    _pageNumber = clampedValue;
+                    _ = PageNumberChanged.InvokeAsync(value);
+                }
+            }
+        }
+    }
+
+    [Parameter] public EventCallback<int> PageNumberChanged { get; set; }
+
+
+    private MdcMenu menu;
+    private MdcIconButtonToggle iconButtonToggle;
+    private bool toggleOn;
+    private IEnumerable<MdcSelect<int>.Item<int>> itemsPerPageItems;
+    private int maxPageNumber => Convert.ToInt32(Math.Ceiling((double)ItemCount / ItemsPerPage)) - 1;
+    private string itemsText => $"{ItemsPerPage.ToString("G0")} items per page";
+    private string positionText => PositionTextString(PageNumber);
+    private string maxPositionText => PositionTextString(maxPageNumber);
+    private bool previousDisabled => PageNumber <= 0;
+    private bool nextDisabled => PageNumber >= maxPageNumber;
+
+    private string PositionTextString(int pageNumber) => $"{(pageNumber * ItemsPerPage + 1).ToString("G0")}-{(Math.Min(ItemCount, (pageNumber + 1) * ItemsPerPage)).ToString("G0")} of {ItemCount.ToString("G0")}";
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        if (ItemsPerPage == 0)
+        {
+            ItemsPerPage = ItemsPerPageSelection.FirstOrDefault();
+        }
+
+        if (!ItemsPerPageSelection.Contains(ItemsPerPage))
+        {
+            throw new ArgumentException($"PMdcPaginator: Cannot set ItemsPerPage to {ItemsPerPage} from selection of {{ {ItemsPerPageSelection.Select(r => r).ToString()} }}");
+        }
+
+        itemsPerPageItems = from r in ItemsPerPageSelection
+                           select new MdcSelect<int>.Item<int>
+                           {
+                               DataValue = r,
+                               Text = r.ToString()
+                           };
+    }
+
+
+    private async Task OnMenuToggleAsync()
+    {
+        if (toggleOn)
+        {
+            var x = await menu.ToggleAsync();
+            await iconButtonToggle.TurnOffAsync();
+            StateHasChanged();
+        }
+    }
+
+
+    private void OnMenuItemClick(int itemsPerPage)
+    {
+        double ratio = (double)ItemsPerPage / (double)itemsPerPage;
+        ItemsPerPage = itemsPerPage;
+        PageNumber = Convert.ToInt32(PageNumber * ratio);
+    }
+
+
+    private void OnPreviousClick()
+    {
+        PageNumber = Math.Max(PageNumber - 1, 0);
+        StateHasChanged();
+    }
+
+
+    private void OnNextClick()
+    {
+        PageNumber = Math.Min(PageNumber + 1, maxPageNumber);
+        StateHasChanged();
+    }
+}

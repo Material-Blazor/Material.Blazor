@@ -5,7 +5,7 @@ window.BlazorMdc = {
             textElem._text = text;
         },
 
-        open: function (menuElem, textElem, dotNetObject) {
+        open: function (menuElem, dotNetObject) {
             menuElem._menu = menuElem._menu || mdc.menu.MDCMenu.attachTo(menuElem);
             menuElem._menu.foundation_.setDefaultFocusState(0);
 
@@ -30,7 +30,7 @@ window.BlazorMdc = {
             });
         },
 
-        close: function (menuElem, textElem) {
+        close: function (menuElem) {
             if (menuElem._menu) {
                 menuElem._menu.open = false;
             }
@@ -127,8 +127,34 @@ window.BlazorMdc = {
     },
 
     iconButtonToggle: {
-        init: function (elem) {
-            mdc.iconButton.MDCIconButtonToggle.attachTo(elem);
+        init: function (elem, dotNetObject) {
+            elem._iconToggleButton = mdc.iconButton.MDCIconButtonToggle.attachTo(elem);
+            elem._dotNetObject = dotNetObject;
+
+            return new Promise(resolve => {
+                const callback = event => {
+                    resolve(event.detail.action);
+                    elem._dotNetObject.invokeMethodAsync('NotifyOnAsync', elem._iconToggleButton.on);
+                };
+
+                elem._iconToggleButton.listen('MDCIconButtonToggle:change', callback);
+            });
+        },
+
+        turnOn: function (elem) {
+            if (elem) {
+                if (elem._iconToggleButton.on != true) {
+                    elem.click();
+                }
+            }
+        },
+
+        turnOff: function (elem) {
+            if (elem) {
+                if (elem._iconToggleButton.on == true) {
+                    elem.click();
+                }
+            }
         }
     },
 
@@ -147,6 +173,7 @@ window.BlazorMdc = {
     menu: {
         show: function (elem, dotNetObject) {
             elem._menu = elem._menu || mdc.menu.MDCMenu.attachTo(elem);
+
             return new Promise(resolve => {
                 const menu = elem._menu;
                 const callback = event => {

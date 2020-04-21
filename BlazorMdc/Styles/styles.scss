@@ -1,12 +1,19 @@
 ﻿@import 'https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp';
 
-@import 'animations.scss';
 @import 'colors.scss';
-@import 'datepicker.scss';
-@import 'dialog.scss';
 @import 'icons.scss';
-@import 'tabbar.scss';
-@import 'toast.scss';
+
+@import '../Components/MdcCard/MdcCard.scss';
+@import '../Components/MdcDialog/MdcDialog.scss';
+@import '../Components/MdcRadioButtons/MdcRadioButtons.scss';
+@import '../Components/MdcTabBar/MdcTabBar.scss';
+@import '../Components/MdcTopAppBar/MdcTopAppBar.scss';
+
+@import '../Plus/PMdcDatePicker/PMdcDatePicker.scss';
+@import '../Plus/PMdcPaginator/PMdcPaginator.scss';
+@import '../Plus/PMdcSlidingContent/PMdcSlidingContent.scss';
+@import '../Plus/PMdcToast/PMdcToast.scss';
+
 
 .bmdc-align-left {
     text-align: left;
@@ -19,3 +26,17 @@
 .bmdc-align-right {
     text-align: right;
 }
+
+.bmdc-full-width {
+    width: 100%;
+}
+
+.bmdc-form-field {
+    flex-wrap: wrap;
+}
+
+
+
+
+
+

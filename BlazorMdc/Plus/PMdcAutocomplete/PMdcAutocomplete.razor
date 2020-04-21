@@ -271,7 +271,7 @@
         if (!isOpen || forceOpen)
         {
             isOpen = true;
-            await jsRuntime.InvokeAsync<string>("BlazorMdc.autoComplete.open", menuReference, textReference, objectReference);
+            await jsRuntime.InvokeAsync<string>("BlazorMdc.autoComplete.open", menuReference, objectReference);
         }
     }
 
@@ -281,7 +281,7 @@
         if (isOpen || forceClose)
         {
             isOpen = false;
-            await jsRuntime.InvokeAsync<string>("BlazorMdc.autoComplete.close", menuReference, textReference, objectReference);
+            await jsRuntime.InvokeAsync<string>("BlazorMdc.autoComplete.close", menuReference, objectReference);
         }
     }
 

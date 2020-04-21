@@ -1,0 +1,69 @@
+﻿@typeparam TItem
+
+@namespace BlazorMdc
+
+@inherits MdcComponentBase
+
+@using System.Linq
+
+@inject IJSRuntime jsRuntime
+
+
+<div class="@ClassMapper.ToString()"
+     style="@StyleMapper.ToString()">
+
+	<div class="@ListTemplateClass">
+		@ListTemplate(@:@{
+			foreach(TItem item in CurrentPage)
+			{
+				@ItemTemplate(item)
+			}}
+		)
+	</div>
+
+    <div class="@PaginatorClass">
+        <PMdcPaginator @bind-ItemsPerPage="@ItemsPerPage" @bind-PageNumber="@PageNumber" ItemsPerPageSelection="@ItemsPerPageSelection" ItemCount="@Data.Count()"></PMdcPaginator>
+    </div>
+</div>
+
+
+@code
+{
+    [Parameter] public int PageNumber { get; set; }
+    [Parameter] public EventCallback<int> PageNumberChanged { get; set; }
+    [Parameter] public int ItemsPerPage { get; set; }
+    [Parameter] public string ListTemplateClass { get; set; } = "";
+    [Parameter] public string PaginatorClass { get; set; } = "";
+    [Parameter] public EventCallback<int> ItemsPerPageChanged { get; set; }
+    [Parameter] public IEnumerable<int> ItemsPerPageSelection { get; set; }
+    [Parameter] public IEnumerable<TItem> Data { get; set; }
+    [Parameter] public RenderFragment<TItem> ItemTemplate { get; set; }
+    [Parameter] public RenderFragment<RenderFragment> ListTemplate { get; set; }
+
+
+    private IEnumerable<TItem> CheckedData => Data ?? Array.Empty<TItem>();
+    public IEnumerable<TItem> CurrentPage => CheckedData.Skip(PageNumber * ItemsPerPage).Take(ItemsPerPage);
+
+
+    protected override void OnParametersSet()
+    {
+        if (ItemTemplate == null)
+        {
+            ItemTemplate = (item) => @:@{ 
+				<li @key=item>@item.ToString()</li>}
+			;
+		}
+
+		if (ListTemplate == null)
+		{
+			ListTemplate = _ => @:@{ 
+				<ul>
+					@foreach(TItem item in CurrentPage)
+					{
+						@ItemTemplate(item)
+					}
+				</ul>}
+			;
+        }
+    }
+}

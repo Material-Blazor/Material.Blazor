@@ -1,0 +1,34 @@
+﻿.bmdc-paginator {
+    display: inline-block;
+    box-sizing: content-box;
+    font-weight: bold;
+    user-select: none;
+}
+
+.bmdc-paginator__container {
+    height: 48px;
+    position: relative;
+}
+
+.bmdc-paginator__float-left {
+    float: left;
+    height: 48px;
+    line-height: 48px;
+    margin-right: 4px;
+}
+
+.bmdc-paginator__float-right {
+    float: right;
+    height: 48px;
+    line-height: 48px;
+}
+
+.bmdc-paginator__spaced {
+    padding: 0 0.3rem 0 0.3rem;
+    text-align: center;
+}
+
+.bmdc-paginator__position-hidden {
+    height: 0;
+    overflow: hidden;
+}
