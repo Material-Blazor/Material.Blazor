@@ -193,18 +193,11 @@ window.BlazorMdc = {
         }
     },
 
-    radioButtons: {
-        init: function (formFieldElem, radioButtons) {
-            const formField = mdc.formField.MDCFormField.attachTo(formFieldElem);
-
-            for (let i = 0; i < radioButtons.length; i++) {
-                let radio = mdc.radio.MDCRadio.attachTo(radioButtons[i].elementReference);
-
-                //Not sure if this is the right thing to do, so requires review
-                if (radioButtons[i].checked == true) {
-                    formField.input = radio;
-                }
-            }
+    radioButton: {
+        init: function (radioButton, formField) {
+            radio = mdc.radio.MDCRadio.attachTo(radioButton);
+            formField = mdc.formField.MDCFormField.attachTo(formField);
+            formField.input = radio;
         }
     },
 
