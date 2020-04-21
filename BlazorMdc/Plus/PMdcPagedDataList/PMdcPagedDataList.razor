@@ -1,0 +1,96 @@
+﻿@typeparam TItem
+
+@namespace BlazorMdc
+
+@inherits MdcComponentBase
+
+@using System.Linq
+
+@inject IJSRuntime jsRuntime
+
+
+<div class="paged-data-list">
+	<div class="paged-data-list_header">
+		<button type="button" disabled=@(!CanGoToPreviousPage) @onclick=GoToPreviousPageAsync>Prev</button>
+		<button type="button" disabled=@(!CanGoToNextPage) @onclick=GoToNextPageAsync>Next</button>
+		Page number @(Page + 1)
+	</div>
+	<div class="paged-data-list_body">
+		@ListTemplate(@:@{
+			foreach(TItem item in CurrentPage)
+			{
+				@ItemTemplate(item)
+			}}
+		)
+	</div>
+	<div class="paged-data-list_footer">
+		@CheckedData.Count() Item(s)
+	</div>
+</div>
+
+
+@code
+{
+	[Parameter] public int Page { get; set; }
+	[Parameter] public EventCallback<int> PageChanged { get; set; }
+	[Parameter] public int ItemsPerPage { get; set; }
+	[Parameter] public IEnumerable<TItem> Data { get; set; }
+	[Parameter] public RenderFragment<TItem> ItemTemplate { get; set; }
+	[Parameter] public RenderFragment<RenderFragment> ListTemplate { get; set; }
+
+	public bool CanGoToPreviousPage => Page > 0;
+	public bool CanGoToNextPage => Page < LastPageIndex;
+
+	private IEnumerable<TItem> CheckedData => Data ?? Array.Empty<TItem>();
+	private int LastPageIndex => CheckedData.Count() / ItemsPerPage;
+
+	private IEnumerable<TItem> CurrentPage =>
+		CheckedData.Skip(Page * ItemsPerPage).Take(ItemsPerPage);
+
+	protected override void OnParametersSet()
+	{
+		if (ItemsPerPage < 1)
+			ItemsPerPage = 5;
+
+		if (Page < 0)
+			Page = 0;
+
+		if (Page > LastPageIndex)
+			Page = LastPageIndex;
+
+		if (ItemTemplate == null)
+		{
+			ItemTemplate = (item) => @:@{ 
+				<li @key=item>@item.ToString()</li>}
+			;
+		}
+
+		if (ListTemplate == null)
+		{
+			ListTemplate = _ => @:@{ 
+				<ul>
+					@foreach(TItem item in CurrentPage)
+					{
+						@ItemTemplate(item)
+					}
+				</ul>}
+			;
+		}
+	}
+
+	public Task GoToPreviousPageAsync()
+	{
+		if (!CanGoToPreviousPage)
+			throw new InvalidOperationException();
+		Page--;
+		return PageChanged.InvokeAsync(Page);
+	}
+
+	public Task GoToNextPageAsync()
+	{
+		if (!CanGoToNextPage)
+			throw new InvalidOperationException();
+		Page++;
+		return PageChanged.InvokeAsync(Page);
+	}
+}

@@ -1,0 +1,79 @@
+﻿@namespace BlazorMdc.Demo
+
+@page "/pageddatalist"
+
+
+
+<h1 class="@MdcTypography.Heading4">Paged Data List samples</h1>
+
+<p>See <code>PaginatorSamples.razor</code> for sources.</p>
+
+<h2>No templates</h2>
+<PMdcPagedDataList Data=@People>
+</PMdcPagedDataList>
+
+<hr />
+<h2>ItemTemplate only</h2>
+<PMdcPagedDataList Data=@People>
+    <ItemTemplate Context="person">
+        <li @key=@person>
+            @person.Salutation @person.FamilyName, @person.GivenName
+        </li>
+    </ItemTemplate>
+</PMdcPagedDataList>
+
+<hr />
+<h2>ListTemplate and ItemTemplate</h2>
+<PMdcPagedDataList Data=@People>
+    <ListTemplate Context="listOfPeople">
+        <table border=1 cellpadding=4>
+            <thead>
+                <tr>
+                    <th>Salutation</th>
+                    <th>Given name</th>
+                    <th>Family name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @listOfPeople
+            </tbody>
+        </table>
+    </ListTemplate>
+    <ItemTemplate Context="person">
+        <tr @key=@person>
+            <td>@person.Salutation</td>
+            <td>@person.GivenName</td>
+            <td>@person.FamilyName</td>
+        </tr>
+    </ItemTemplate>
+</PMdcPagedDataList>
+
+<hr style="margin: 1rem 0 1rem 0;" />
+
+
+@code {
+    public class Person
+    {
+        public string Salutation { get; set; }
+        public string GivenName { get; set; }
+        public string FamilyName { get; set; }
+    }
+
+    private List<Person> People;
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        People = new List<Person>();
+        foreach (int index in Enumerable.Range(1, 16))
+        {
+            var person = new Person
+            {
+                Salutation = "Salutation:" + index,
+                GivenName = "Given name: " + index,
+                FamilyName = "Family name: " + index
+            };
+            People.Add(person);
+        }
+    }
+}
+
