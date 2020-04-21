@@ -34,7 +34,9 @@
     [Parameter] public EventCallback OnTouchStart { get; set; }
 
 
+    private DotNetObjectReference<MdcIconButtonToggle> objectReference;
     private ElementReference elementReference;
+    private bool cachedIsOpen;
 
 
     protected override void OnInitialized()
@@ -43,6 +45,37 @@
 
         ClassMapper
             .Add("mdc-icon-button");
+
+        objectReference = DotNetObjectReference.Create(this);
+
+        cachedIsOpen = CurrentValue;
+    }
+
+
+    public void Dispose()
+    {
+        objectReference?.Dispose();
+    }
+
+
+    [JSInvokable("NotifyOnAsync")]
+    public async Task NotifyOnAsync(bool on)
+    {
+        cachedIsOpen = on;
+        CurrentValue = on;
+        await Task.CompletedTask;
+    }
+
+
+    public async Task TurnOnAsync()
+    {
+        await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.turnOn", elementReference);
+    }
+
+
+    public async Task TurnOffAsync()
+    {
+        await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.turnOff", elementReference);
     }
 
 
@@ -50,7 +83,7 @@
     {
         if (firstRender)
         {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.init", elementReference);
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.init", elementReference, objectReference);
         }
     }
 }

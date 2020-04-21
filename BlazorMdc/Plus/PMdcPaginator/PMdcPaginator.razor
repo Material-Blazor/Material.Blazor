@@ -18,12 +18,12 @@
                 </div>
 
                 <div class="bmdc-dp-menu__float-left">
-                    <MdcIconButtonToggle @bind-Value="@menuOpen" OnClick="@OnMenuToggleAsync" IconOn="@MdcIcons.Icon__arrow_drop_up" IconOff="@MdcIcons.Icon__arrow_drop_down" />
+                    <MdcIconButtonToggle @ref="@iconButtonToggle" @bind-Value="@toggleOn" OnClick="@OnMenuToggleAsync" IconOn="@MdcIcons.Icon__arrow_drop_up" IconOff="@MdcIcons.Icon__arrow_drop_down" />
                     <div class="mdc-menu-surface--anchor">
                         <MdcMenu @ref="menu">
                             @foreach (var rows in RowsPerPageSelection)
                             {
-                                <MdcListItem Text="@rows.ToString("G0")" />
+                                <MdcListItem Text="@rows.ToString("G0")" OnClick="@(_ => OnMenuItemClick(rows))" />
                             }
                         </MdcMenu>
                     </div>
@@ -102,7 +102,8 @@
 
 
     private MdcMenu menu;
-    private bool menuOpen;
+    private MdcIconButtonToggle iconButtonToggle;
+    private bool toggleOn;
     private IEnumerable<MdcSelect<int>.Item<int>> rowsPerPageItems;
     private int maxPageNumber => Convert.ToInt32(Math.Ceiling((double)ItemCount / RowsPerPage)) - 1;
     private string rowsText => $"{RowsPerPage.ToString("G0")} rows per page";
@@ -139,8 +140,20 @@
 
     private async Task OnMenuToggleAsync()
     {
-        await menu.ToggleAsync();
-        StateHasChanged();
+        if (toggleOn)
+        {
+            var x = await menu.ToggleAsync();
+            await iconButtonToggle.TurnOffAsync();
+            StateHasChanged();
+        }
+    }
+
+
+    private void OnMenuItemClick(int rowsPerPage)
+    {
+        double ratio = (double)RowsPerPage / (double)rowsPerPage;
+        RowsPerPage = rowsPerPage;
+        PageNumber = Convert.ToInt32(PageNumber * ratio);
     }
 
 
