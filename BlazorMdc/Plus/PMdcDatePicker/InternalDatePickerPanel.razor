@@ -23,22 +23,22 @@
                 @monthText
             </div>
             <div class="bmdc-dp-menu__float-left">
-                <button @ref="@yearToggleReference" @onclick="@OnYearToggleClick" class="mdc-icon-button bmdc-dp-menu--icon-button" aria-pressed="false" type="button">
-                    <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on bmdc-dp-menu--icon-button">arrow_drop_up</i>
-                    <i class="material-icons mdc-icon-button__icon bmdc-dp-menu--icon-button">arrow_drop_down</i>
+                <button @ref="@yearToggleReference" @onclick="@OnYearToggleClick" class="mdc-icon-button bmdc-dp-menu__icon-button" aria-pressed="false" type="button">
+                    <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on bmdc-dp-menu__icon-button">arrow_drop_up</i>
+                    <i class="material-icons mdc-icon-button__icon bmdc-dp-menu__icon-button">arrow_drop_down</i>
                 </button>
             </div>
 
             @if (!showYearPad)
             {
                 <div class="bmdc-dp-menu__float-right bmdc-dp-menu__float-right-spaced">
-                    <button @ref="@nextMonthReference" class="mdc-icon-button material-icons bmdc-dp-menu--icon-button" @onclick="@OnNextMonthClick" disabled="@nextMonthDisabled" type="button">chevron_right</button>
+                    <button @ref="@nextMonthReference" class="mdc-icon-button material-icons bmdc-dp-menu__icon-button" @onclick="@OnNextMonthClick" disabled="@nextMonthDisabled" type="button">chevron_right</button>
                 </div>
                 <div class="bmdc-dp-menu__float-right bmdc-dp-menu__float-right-spaced">
-                    <button @ref="@currentDateReference" class="mdc-icon-button material-icons bmdc-dp-menu--icon-button" @onclick="@OnShowCurrentDateClick" type="button">undo</button>
+                    <button @ref="@currentDateReference" class="mdc-icon-button material-icons bmdc-dp-menu__icon-button" @onclick="@OnShowCurrentDateClick" type="button">undo</button>
                 </div>
                 <div class="bmdc-dp-menu__float-right">
-                    <button @ref="@previousMonthReference" class="mdc-icon-button material-icons bmdc-dp-menu--icon-button" @onclick="@OnPreviousMonthClick" disabled="@previousMonthDisabled" type="button">chevron_left</button>
+                    <button @ref="@previousMonthReference" class="mdc-icon-button material-icons bmdc-dp-menu__icon-button" @onclick="@OnPreviousMonthClick" disabled="@previousMonthDisabled" type="button">chevron_left</button>
                 </div>
             }
         </div>

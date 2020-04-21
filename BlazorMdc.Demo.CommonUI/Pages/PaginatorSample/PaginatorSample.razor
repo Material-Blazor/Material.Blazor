@@ -6,14 +6,20 @@
 
 <h1 class="@MdcTypography.Heading4">Paginator samples</h1>
 
-<p>See <code>Paginator.razor</code> for sources.</p>
+<p>See <code>PaginatorSamples.razor</code> for sources.</p>
 
-<PMdcPaginator @bind-RowsPerPage="@rowsPerPage" RowsPerPageSelection="@rowsPerPageSelection" PageNumber="@pageNumber"></PMdcPaginator>
+<hr style="margin: 1rem 0 1rem 0;" />
+
+<h2 class="@MdcTypography.Heading6">Plain PMdcPaginator</h2>
+
+<PMdcPaginator @bind-RowsPerPage="@rowsPerPage" @bind-PageNumber="@pageNumber" RowsPerPageSelection="@rowsPerPageSelection" ItemCount="@items.Length"></PMdcPaginator>
 
 @foreach (var item in selection)
 {
     <p>@item</p>
 }
+
+<hr style="margin: 1rem 0 1rem 0;" />
 
 
 @code {

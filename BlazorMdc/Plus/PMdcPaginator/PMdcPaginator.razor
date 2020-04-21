@@ -13,15 +13,31 @@
     <div class="bmdc-paginator">
         <div class="bmdc-paginator__container">
             <div class="bmdc-paginator__float-left">
-                Rows per page:
+                <div class="bmdc-paginator__float-left">
+                    @rowsText
+                </div>
+
+                <div class="bmdc-dp-menu__float-left">
+                    <MdcIconButtonToggle IconOn="@MdcIcons.Icon__arrow_drop_up" IconOff="@MdcIcons.Icon__arrow_drop_down" />
+                </div>
             </div>
 
             <div class="bmdc-paginator__float-left">
-                <MdcSelect @bind-Value="@RowsPerPage" Items="@rowsPerPageItems" SelectInputStyle="@MdcSelectInputStyle.Filled" />
-            </div>
+                <div class="bmdc-paginator__float-left bmdc-paginator__spaced">
+                    <div class="bmdc-paginator__position-hidden">
+                        @maxPositionText
+                    </div>
+                    <div>
+                        @positionText
+                    </div>
+                </div>
 
-            <div class="bmdc-paginator__float-left">
-                <button class="mdc-icon-button material-icons bmdc-dp-menu--icon-button" type="button">chevron_right</button>
+                <div class="bmdc-paginator__float-left">
+                    <MdcIconButton Icon="@MdcIcons.Icon__chevron_left" OnClick="@OnPreviousClick" Disabled="@previousDisabled" />
+                </div>
+                <div class="bmdc-paginator__float-left">
+                    <MdcIconButton Icon="@MdcIcons.Icon__chevron_right" OnClick="@OnNextClick" Disabled="@nextDisabled" />
+                </div>
             </div>
         </div>
     </div>
@@ -78,7 +94,14 @@
 
 
     private IEnumerable<MdcSelect<int>.Item<int>> rowsPerPageItems;
-    private int maxPageNumber => Convert.ToInt32(Math.Ceiling((double)ItemCount / RowsPerPage));
+    private int maxPageNumber => Convert.ToInt32(Math.Ceiling((double)ItemCount / RowsPerPage)) - 1;
+    private string rowsText => $"{RowsPerPage.ToString("G0")} rows per page";
+    private string positionText => PositionTextString(PageNumber);
+    private string maxPositionText => PositionTextString(maxPageNumber);
+    private bool previousDisabled => PageNumber <= 0;
+    private bool nextDisabled => PageNumber >= maxPageNumber;
+
+    private string PositionTextString(int pageNumber) => $"{(pageNumber * RowsPerPage + 1).ToString("G0")}-{(Math.Min(ItemCount, (pageNumber + 1) * RowsPerPage)).ToString("G0")} of {ItemCount.ToString("G0")}";
 
 
     protected override void OnInitialized()
@@ -101,5 +124,25 @@
                                DataValue = r,
                                Text = r.ToString()
                            };
+    }
+
+
+    private void OnRowsToggleClick()
+    {
+        //showYearPad = !showYearPad;
+    }
+
+
+    private void OnPreviousClick()
+    {
+        PageNumber = Math.Max(PageNumber - 1, 0);
+        StateHasChanged();
+    }
+
+
+    private void OnNextClick()
+    {
+        PageNumber = Math.Min(PageNumber + 1, maxPageNumber);
+        StateHasChanged();
     }
 }
