@@ -12,7 +12,7 @@
 
 <h2 class="@MdcTypography.Heading6">Plain PMdcPaginator</h2>
 
-<PMdcPaginator @bind-RowsPerPage="@rowsPerPage" @bind-PageNumber="@pageNumber" RowsPerPageSelection="@rowsPerPageSelection" ItemCount="@items.Length"></PMdcPaginator>
+<PMdcPaginator @bind-ItemsPerPage="@itemsPerPage" @bind-PageNumber="@pageNumber" ItemsPerPageSelection="@itemsPerPageSelection" ItemCount="@items.Length"></PMdcPaginator>
 
 @foreach (var item in selection)
 {
@@ -24,10 +24,10 @@
 
 @code {
     private string[] items = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty" };
-    private int[] rowsPerPageSelection = { 2, 4, 6 };
-    private int rowsPerPage = 6;
+    private int[] itemsPerPageSelection = { 2, 4, 6 };
+    private int itemsPerPage = 6;
     private int pageNumber = 0;
 
-    private IEnumerable<string> selection => items.Skip(rowsPerPage * pageNumber).Take(rowsPerPage);
+    private IEnumerable<string> selection => items.Skip(itemsPerPage * pageNumber).Take(itemsPerPage);
 }
 

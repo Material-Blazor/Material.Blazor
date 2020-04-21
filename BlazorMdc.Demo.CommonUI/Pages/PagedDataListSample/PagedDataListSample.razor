@@ -8,13 +8,17 @@
 
 <p>See <code>PaginatorSamples.razor</code> for sources.</p>
 
-<h2>No templates</h2>
-<PMdcPagedDataList Data=@People>
+<h2 class="@MdcTypography.Heading6" style="margin-bottom: 1rem;">No templates</h2>
+
+<PMdcPagedDataList @bind-ItemsPerPage="@itemsPerPage1" @bind-PageNumber="@pageNumber1" ItemsPerPageSelection="@itemsPerPageSelection" Data=@People>
 </PMdcPagedDataList>
 
-<hr />
-<h2>ItemTemplate only</h2>
-<PMdcPagedDataList Data=@People>
+
+<hr style="margin: 2rem 0 1rem 0;" />
+
+<h2 class="@MdcTypography.Heading6" style="margin-bottom: 1rem;">ItemTemplate only</h2>
+
+<PMdcPagedDataList  @bind-ItemsPerPage="@itemsPerPage2" @bind-PageNumber="@pageNumber2" ItemsPerPageSelection="@itemsPerPageSelection" Data=@People>
     <ItemTemplate Context="person">
         <li @key=@person>
             @person.Salutation @person.FamilyName, @person.GivenName
@@ -22,9 +26,12 @@
     </ItemTemplate>
 </PMdcPagedDataList>
 
-<hr />
-<h2>ListTemplate and ItemTemplate</h2>
-<PMdcPagedDataList Data=@People>
+
+<hr style="margin: 2rem 0 1rem 0;" />
+
+<h2 class="@MdcTypography.Heading6" style="margin-bottom: 1rem;">ListTemplate and ItemTemplate</h2>
+
+<PMdcPagedDataList  @bind-ItemsPerPage="@itemsPerPage3" @bind-PageNumber="@pageNumber3" ItemsPerPageSelection="@itemsPerPageSelection" Data=@People>
     <ListTemplate Context="listOfPeople">
         <table border=1 cellpadding=4>
             <thead>
@@ -48,7 +55,6 @@
     </ItemTemplate>
 </PMdcPagedDataList>
 
-<hr style="margin: 1rem 0 1rem 0;" />
 
 
 @code {
@@ -59,21 +65,40 @@
         public string FamilyName { get; set; }
     }
 
-    private List<Person> People;
+    private string[] numbers = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty" };
+
+    private IEnumerable<Person> People;
+    private int[] itemsPerPageSelection = { 2, 4, 6 };
+
+    private int itemsPerPage1 = 6;
+    private int itemsPerPage2 = 6;
+    private int itemsPerPage3 = 6;
+    private int pageNumber1 = 0;
+    private int pageNumber2 = 0;
+    private int pageNumber3 = 0;
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
         People = new List<Person>();
-        foreach (int index in Enumerable.Range(1, 16))
-        {
-            var person = new Person
-            {
-                Salutation = "Salutation:" + index,
-                GivenName = "Given name: " + index,
-                FamilyName = "Family name: " + index
-            };
-            People.Add(person);
-        }
+
+        People = from n in numbers
+                 select new Person
+                 {
+                     Salutation = "Salutation: " + n,
+                     GivenName = "Given name: " + n,
+                     FamilyName = "Family name: " + n
+                 };
+        //foreach (int index in Enumerable.Range(1, 16))
+        //{
+        //    var person = new Person
+        //    {
+        //        Salutation = "Salutation:" + index,
+        //        GivenName = "Given name: " + index,
+        //        FamilyName = "Family name: " + index
+        //    };
+        //    People.Add(person);
+        //}
     }
 }
 

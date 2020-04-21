@@ -9,12 +9,14 @@
 @inject IJSRuntime jsRuntime
 
 
-<div class="paged-data-list">
-	<div class="paged-data-list_header">
+<div class="@ClassMapper.ToString()"
+     style="@StyleMapper.ToString()">
+
+	@*<div class="paged-data-list_header">
 		<button type="button" disabled=@(!CanGoToPreviousPage) @onclick=GoToPreviousPageAsync>Prev</button>
 		<button type="button" disabled=@(!CanGoToNextPage) @onclick=GoToNextPageAsync>Next</button>
 		Page number @(Page + 1)
-	</div>
+	</div>*@
 	<div class="paged-data-list_body">
 		@ListTemplate(@:@{
 			foreach(TItem item in CurrentPage)
@@ -23,44 +25,102 @@
 			}}
 		)
 	</div>
-	<div class="paged-data-list_footer">
+
+    <div>
+        <PMdcPaginator @bind-ItemsPerPage="@ItemsPerPage" @bind-PageNumber="@PageNumber" ItemsPerPageSelection="@ItemsPerPageSelection" ItemCount="@Data.Count()"></PMdcPaginator>
+    </div>
+	@*<div class="paged-data-list_footer">
 		@CheckedData.Count() Item(s)
-	</div>
+	</div>*@
 </div>
 
 
 @code
 {
-	[Parameter] public int Page { get; set; }
-	[Parameter] public EventCallback<int> PageChanged { get; set; }
-	[Parameter] public int ItemsPerPage { get; set; }
-	[Parameter] public IEnumerable<TItem> Data { get; set; }
-	[Parameter] public RenderFragment<TItem> ItemTemplate { get; set; }
-	[Parameter] public RenderFragment<RenderFragment> ListTemplate { get; set; }
+    [Parameter] public int PageNumber { get; set; }
+    [Parameter] public EventCallback<int> PageNumberChanged { get; set; }
+    [Parameter] public int ItemsPerPage { get; set; }
+    [Parameter] public EventCallback<int> ItemsPerPageChanged { get; set; }
+    [Parameter] public IEnumerable<int> ItemsPerPageSelection { get; set; }
+    [Parameter] public IEnumerable<TItem> Data { get; set; }
+    [Parameter] public RenderFragment<TItem> ItemTemplate { get; set; }
+    [Parameter] public RenderFragment<RenderFragment> ListTemplate { get; set; }
 
-	public bool CanGoToPreviousPage => Page > 0;
-	public bool CanGoToNextPage => Page < LastPageIndex;
 
-	private IEnumerable<TItem> CheckedData => Data ?? Array.Empty<TItem>();
-	private int LastPageIndex => CheckedData.Count() / ItemsPerPage;
+    //private int _itemsPerPage = 0;
+    //[Parameter]
+    //public int ItemsPerPage
+    //{
+    //    get => _itemsPerPage;
+    //    set
+    //    {
+    //        if (value != _itemsPerPage)
+    //        {
+    //            _itemsPerPage = value;
+    //            _ = ItemsPerPageChanged.InvokeAsync(value);
+    //            PageNumber = _pageNumber; // Forces a clamp
+    //        }
+    //    }
+    //}
 
-	private IEnumerable<TItem> CurrentPage =>
-		CheckedData.Skip(Page * ItemsPerPage).Take(ItemsPerPage);
+    //[Parameter] public EventCallback<int> ItemsPerPageChanged { get; set; }
 
-	protected override void OnParametersSet()
-	{
-		if (ItemsPerPage < 1)
-			ItemsPerPage = 5;
+    //private int _pageNumber = 0;
+    //[Parameter]
+    //public int PageNumber
+    //{
+    //    get => _pageNumber;
+    //    set
+    //    {
+    //        if (ItemsPerPage == 0)
+    //        {
+    //            _pageNumber = value;
+    //            _ = PageNumberChanged.InvokeAsync(value);
+    //        }
+    //        else
+    //        {
+    //            var clampedValue = Math.Clamp(value, 0, maxPageNumber);
 
-		if (Page < 0)
-			Page = 0;
+    //            if (clampedValue != _pageNumber)
+    //            {
+    //                _pageNumber = clampedValue;
+    //                _ = PageNumberChanged.InvokeAsync(value);
+    //            }
+    //        }
+    //    }
+    //}
 
-		if (Page > LastPageIndex)
-			Page = LastPageIndex;
+    //[Parameter] public EventCallback<int> PageNumberChanged { get; set; }
 
-		if (ItemTemplate == null)
-		{
-			ItemTemplate = (item) => @:@{ 
+
+
+    public bool CanGoToPreviousPage => PageNumber > 0;
+    public bool CanGoToNextPage => PageNumber < LastPageIndex;
+
+    private IEnumerable<TItem> CheckedData => Data ?? Array.Empty<TItem>();
+    private int LastPageIndex => CheckedData.Count() / ItemsPerPage;
+
+    private IEnumerable<TItem> CurrentPage =>
+        CheckedData.Skip(PageNumber * ItemsPerPage).Take(ItemsPerPage);
+
+
+
+
+
+    protected override void OnParametersSet()
+    {
+        //if (ItemsPerPage < 1)
+        //    ItemsPerPage = 5;
+
+        //if (PageNumber < 0)
+        //    PageNumber = 0;
+
+        //if (PageNumber > LastPageIndex)
+        //    PageNumber = LastPageIndex;
+
+        if (ItemTemplate == null)
+        {
+            ItemTemplate = (item) => @:@{ 
 				<li @key=item>@item.ToString()</li>}
 			;
 		}
@@ -75,22 +135,22 @@
 					}
 				</ul>}
 			;
-		}
-	}
+                    }
+                }
 
-	public Task GoToPreviousPageAsync()
-	{
-		if (!CanGoToPreviousPage)
-			throw new InvalidOperationException();
-		Page--;
-		return PageChanged.InvokeAsync(Page);
-	}
+                public Task GoToPreviousPageAsync()
+                {
+                    if (!CanGoToPreviousPage)
+                        throw new InvalidOperationException();
+                    PageNumber--;
+                    return PageNumberChanged.InvokeAsync(PageNumber);
+                }
 
-	public Task GoToNextPageAsync()
-	{
-		if (!CanGoToNextPage)
-			throw new InvalidOperationException();
-		Page++;
-		return PageChanged.InvokeAsync(Page);
-	}
+                public Task GoToNextPageAsync()
+                {
+                    if (!CanGoToNextPage)
+                        throw new InvalidOperationException();
+                    PageNumber++;
+                    return PageNumberChanged.InvokeAsync(PageNumber);
+                }
 }
