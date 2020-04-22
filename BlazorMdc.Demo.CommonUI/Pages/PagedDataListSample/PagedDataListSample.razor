@@ -28,11 +28,14 @@
     }
 </style>
 
+
 <h1 class="@MdcTypography.Heading4">Paged Data List samples</h1>
 
 <p>See <code>PaginatorSamples.razor</code> for sources.</p>
 
-<h2 class="@MdcTypography.Heading6" style="margin-bottom: 1rem;">No templates - not much use!</h2>
+
+
+<h2 class="@MdcTypography.Heading6" style="margin-bottom: 1rem;">No templates</h2>
 
 <PMdcPagedDataList Class="my-container"
                    PaginatorClass="my-float-right"
@@ -44,7 +47,7 @@
 
 
 
-<hr style="margin: 2rem 0 1rem 0;" />
+<PMdcDivider Style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="@MdcTypography.Heading6" style="margin-bottom: 1rem;">ItemTemplate only</h2>
 
@@ -64,7 +67,7 @@
 
 
 
-<hr style="margin: 2rem 0 1rem 0;" />
+<PMdcDivider Style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="@MdcTypography.Heading6" style="margin-bottom: 1rem;">ListTemplate and ItemTemplate</h2>
 
@@ -100,7 +103,7 @@
 
 
 
-<hr style="margin: 2rem 0 1rem 0;" />
+<PMdcDivider Style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="@MdcTypography.Heading6" style="margin-bottom: 1rem;">ListTemplate and MdcDataTable</h2>
 
@@ -132,7 +135,7 @@
 
 
 
-<hr style="margin: 2rem 0 1rem 0;" />
+<PMdcDivider Style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="@MdcTypography.Heading6" style="margin-bottom: 1rem;">ListTemplate and MdcList</h2>
 
@@ -160,7 +163,7 @@
 
 
 
-<hr style="margin: 2rem 0 1rem 0;" />
+<PMdcDivider Style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="@MdcTypography.Heading6" style="margin-bottom: 1rem;">ListTemplate and Two x MdcList</h2>
 
@@ -210,19 +213,43 @@
 
 
 
-
-
 @code {
-    public class Person
+    private class Person
     {
         public string Salutation { get; set; }
         public string GivenName { get; set; }
         public string FamilyName { get; set; }
+
+        public override string ToString()
+        {
+            return $"ToString(): {Salutation} {GivenName} {FamilyName}";
+        }
     }
 
-    private string[] numbers = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty" };
+    private Person[] People =
+    {
+        new Person() { Salutation = "Prof", GivenName = "Marie", FamilyName = "Curie" },
+        new Person() { Salutation = "Prof", GivenName = "Albert", FamilyName = "Einstein" },
+        new Person() { Salutation = "Prof", GivenName = "Andrew", FamilyName = "Huxley" },
+        new Person() { Salutation = "Mr", GivenName = "Bob", FamilyName = "Dylan" },
+        new Person() { Salutation = "Mr", GivenName = "Barack", FamilyName = "Obama" },
+        new Person() { Salutation = "Ms", GivenName = "Nadine", FamilyName = "Gordimer" },
+        new Person() { Salutation = "Mr", GivenName = "Muhammad", FamilyName = "Yunus" },
+        new Person() { Salutation = "RtHon", GivenName = "Lord", FamilyName = "Rayleigh" },
+        new Person() { Salutation = "Ms", GivenName = "Grazia", FamilyName = "Deledda" },
+        new Person() { Salutation = "Mr", GivenName = "Jean-Paul", FamilyName = "Sartre" },
+        new Person() { Salutation = "Prof", GivenName = "Esther", FamilyName = "Duflo" },
+        new Person() { Salutation = "Prof", GivenName = "Yoshinori", FamilyName = "Ohsumi" },
+        new Person() { Salutation = "Prof", GivenName = "Robert", FamilyName = "Merton" },
+        new Person() { Salutation = "Prof", GivenName = "Barbara", FamilyName = "McClintock" },
+        new Person() { Salutation = "Mr", GivenName = "Boris", FamilyName = "Pasternak" },
+        new Person() { Salutation = "Mr", GivenName = "Willy", FamilyName = "Brandt" },
+        new Person() { Salutation = "Mr", GivenName = "Isaac", FamilyName = "Bashevis Singer" },
+        new Person() { Salutation = "Ms", GivenName = "Olga", FamilyName = "Tokarczuk" },
+        new Person() { Salutation = "Mr", GivenName = "Günter", FamilyName = "Grass" },
+        new Person() { Salutation = "Mr", GivenName = "John", FamilyName = "Hume" },
+    };
 
-    private IEnumerable<Person> People;
     private int[] itemsPerPageSelection = { 2, 4, 6 };
 
     private int itemsPerPage1 = 6;
@@ -241,29 +268,5 @@
     private PMdcPagedDataList<Person> dataList4;
     private PMdcPagedDataList<Person> dataList5;
     private PMdcPagedDataList<Person> dataList6;
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-        People = new List<Person>();
-
-        People = from n in numbers
-                 select new Person
-                 {
-                     Salutation = "Salutation: " + n,
-                     GivenName = "Given name: " + n,
-                     FamilyName = "Family name: " + n
-                 };
-        //foreach (int index in Enumerable.Range(1, 16))
-        //{
-        //    var person = new Person
-        //    {
-        //        Salutation = "Salutation:" + index,
-        //        GivenName = "Given name: " + index,
-        //        FamilyName = "Family name: " + index
-        //    };
-        //    People.Add(person);
-        //}
-    }
 }
 

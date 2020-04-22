@@ -1,5 +1,11 @@
 ﻿# BlazorMdc (pre release)
 
+[![NuGet Downloads](https://img.shields.io/nuget/dt/BlazorMdc?label=NuGet%20Downloads)](https://www.nuget.org/packages/BlazorMdc/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](/LICENSE.md)
+[![GitHub issues](https://img.shields.io/github/issues/BlazorMdc/BlazorMdc)](https://github.com/mariusmuntean/ChartJs.Blazor/issues)
+[![GitHub forks](https://img.shields.io/github/forks/BlazorMdc/BlazorMdc)](https://github.com/mariusmuntean/ChartJs.Blazor/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/BlazorMdc/BlazorMdc)](https://github.com/mariusmuntean/ChartJs.Blazor/stargazers)
+
 ## Lightweight Material Theme razor components for Blazor
 
 BlazorMdc is a lightweight [Material Theme](https://material.io/) [web development platform](https://material.io/develop/web/) component library for [ASP.NET Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor) that is rigorously faithful to the Material Theme's design philosophy, markup and code usage. Material Theme has very specific and detailed guidance showing web designers how to build web apps with HTML, CSS and JavaScript. Since neither Blazor for WebAssembly are directly supported, Blazor developers either need to roll their own components or use a component library such as BlazorMdc. This is available at https://www.nuget.org/packages/BlazorMdc.
