@@ -2,9 +2,9 @@
 
 [![NuGet Downloads](https://img.shields.io/nuget/dt/BlazorMdc?label=NuGet%20Downloads)](https://www.nuget.org/packages/BlazorMdc/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](/LICENSE.md)
-[![GitHub issues](https://img.shields.io/github/issues/BlazorMdc/BlazorMdc)](https://github.com/mariusmuntean/ChartJs.Blazor/issues)
-[![GitHub forks](https://img.shields.io/github/forks/BlazorMdc/BlazorMdc)](https://github.com/mariusmuntean/ChartJs.Blazor/network/members)
-[![GitHub stars](https://img.shields.io/github/stars/BlazorMdc/BlazorMdc)](https://github.com/mariusmuntean/ChartJs.Blazor/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/BlazorMdc/BlazorMdc)](https://github.com/BlazorMdc/BlazorMdc/issues)
+[![GitHub forks](https://img.shields.io/github/forks/BlazorMdc/BlazorMdc)](https://github.com/BlazorMdc/BlazorMdc/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/BlazorMdc/BlazorMdc)](https://github.com/BlazorMdc/BlazorMdc/stargazers)
 
 ## Lightweight Material Theme razor components for Blazor
 
