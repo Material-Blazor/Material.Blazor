@@ -62,7 +62,8 @@ The following is a list of core Material Theme components in the `BlazorMdc.Comp
 | `MdcDataTable` | A [Material Data Table](https://material.io/develop/web/components/data-tables/) without row selection |
 | `MdcDialog` | A [Material Dialog](https://material.io/develop/web/components/dialogs/). Can set scrim and escape button actions. |
 | `MdcDrawer` | A [Material Drawer](https://material.io/develop/web/components/drawers/). _Awaits review_. |
-| `MdcIconButton` | A [Material Icon Button](https://material.io/develop/web/components/buttons/icon-buttons/). Toggle icon buttons are not implemented. |
+| `MdcIconButton` | A [Material Icon Button](https://material.io/develop/web/components/buttons/icon-buttons/). |
+| `MdcIconButtonToggle` | A toggle variant of the [Material Icon Button](https://material.io/develop/web/components/buttons/icon-buttons/). |
 | `MdcLinearProgress` | A [Material Linear Progress bar](https://material.io/develop/web/components/linear-progress/). Only implements an indeterminate progress point |
 | `MdcList` | A [Material List](https://material.io/develop/web/components/lists/). |
 | `MdcMenu` | A [Material Menu](https://material.io/develop/web/components/menus/). Does not implement sub menus. May redesign parameterization. |
@@ -87,6 +88,9 @@ The following extra components are in the `BlazorMdc.Plus` namespace.
 | `PMdcDivider` | Implements a list divider by wrapping `hr` and gives the option of inset and padded. This uses the mdc-list-divider styles. | 
 | `PMdcNumericDoubleField` | Wraps `MdcTextField` to format numeric entry of a `double`. The format is applied when the component lacks focus, at which point the field is a text field holding the formatted number as text. When the field gains focus it switches to a number field. Allows for percentages to be entered as a whole number, e.g. typing "12" will yield a `double` equal to '0.12' and displaying '12%' when lacking focus. We intend to find a similar way to handle [basis points](https://en.wikipedia.org/wiki/Basis_point). |
 | `PMdcNumericIntField` | A wrapper for `MdcpNumericDoubleField` for `int` variables. |
+| `PMdcPagedDataList` | A templated component for paging generic data lists using `PMdcPaginator`. Uses the Wig Pig nested coding pattern and can either render list items one by one or wrap a component such as `MdcList` or `MdcDataTable`. |
+| `PMdcPaginator` | An implementation of the [Material paginator specification](https://material.io/components/data-tables#behavior). |
+| `PMdcToast` | A port of [Blazored/Toast](https://github.com/Blazored/Toast) yet to be styled à la Material Theme. |
 
 ## Utilities
  
