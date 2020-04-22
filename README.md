@@ -61,7 +61,7 @@ The following is a list of core Material Theme components in the `BlazorMdc.Comp
 | `MdcList` | A [Material List](https://material.io/develop/web/components/lists/). |
 | `MdcMenu` | A [Material Menu](https://material.io/develop/web/components/menus/). Does not implement sub menus. May redesign parameterization. |
 | `MdcNavLink` | A [Material List Item](https://material.io/develop/web/components/menus/) wrapping a Blazor `NavLink`. _Awaits review_. |
-| `MdcRadioButtons` | A group of [Material Radio Buttons](https://material.io/develop/web/components/input-controls/radio-buttons/) with modification to list buttons vertically as well as the default inline. |
+| `MdcRadioButton` | A [Material Radio Button](https://material.io/develop/web/components/input-controls/radio-buttons/). |
 | `MdcSelect` | A [Material Select Menu](https://material.io/develop/web/components/input-controls/select-menus/). |
 | `MdcSwitch` | A [Material Switch](https://material.io/develop/web/components/input-controls/switches/). |
 | `MdcTabBar` | A [Material Tab Bar](https://material.io/develop/web/components/tabs/tab-bar/). Displays tab contents as a `RenderFragment`, with mild 300ms fade animation with 12px left/right motion. |
@@ -81,6 +81,7 @@ The following extra components are in the `BlazorMdc.Plus` namespace.
 | `PMdcDivider` | Implements a list divider by wrapping `hr` and gives the option of inset and padded. This uses the mdc-list-divider styles. | 
 | `PMdcNumericDoubleField` | Wraps `MdcTextField` to format numeric entry of a `double`. The format is applied when the component lacks focus, at which point the field is a text field holding the formatted number as text. When the field gains focus it switches to a number field. Allows for percentages to be entered as a whole number, e.g. typing "12" will yield a `double` equal to '0.12' and displaying '12%' when lacking focus. We intend to find a similar way to handle [basis points](https://en.wikipedia.org/wiki/Basis_point). |
 | `PMdcNumericIntField` | A wrapper for `MdcpNumericDoubleField` for `int` variables. |
+| `PMdcRadioButtonGroup` | A group of MdcRadioButtons. |
 
 ## Utilities
  
