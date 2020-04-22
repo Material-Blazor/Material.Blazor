@@ -194,9 +194,9 @@ window.BlazorMdc = {
     },
 
     radioButton: {
-        init: function (radioButton, formField) {
-            radio = mdc.radio.MDCRadio.attachTo(radioButton);
-            formField = mdc.formField.MDCFormField.attachTo(formField);
+        init: function (elem, formFieldElem) {
+            let radio = mdc.radio.MDCRadio.attachTo(elem);
+            let formField = mdc.formField.MDCFormField.attachTo(formFieldElem);
             formField.input = radio;
         }
     },

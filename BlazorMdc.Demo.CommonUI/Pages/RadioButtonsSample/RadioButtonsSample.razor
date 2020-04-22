@@ -2,49 +2,56 @@
 
 @page "/radiobuttons"
 
-
+@using BlazorMdc
 
 <h1 class="@MdcTypography.Heading4">Radio button samples</h1>
 
 <p>See <code>RadioButtonsSample.razor</code> for sources.</p>
 
-<MdcRadioButton @bind-Value="@zebra" CheckedValue="zebra" Label="zebra" />
+<MdcRadioButton @bind-Value="@zebra" CheckedValue=@zebraCheckedValue Label="zebra" />
 <p style="margin-bottom: 4em;">Selected: '<strong>@(zebra ?? "")</strong>'</p>
 
 
-<MdcRadioButton @bind-Value="@dog" CheckedValue="dog" Label="dog" />
+<MdcRadioButton @bind-Value="@dog" CheckedValue=@dogCheckedValue Label="dog" />
 <p style="margin-bottom: 4em;">Selected: '<strong>@(dog ?? "")</strong>'</p>
 
 
-<MdcRadioButtons @bind-Value="@kittenBreed" Items="stringItems" />
+
+<PMdcRadioButtonGroup @bind-Value="@kittenBreed"
+                      Items="stringItems"
+                      ItemValidation="@RadioButtonGroup.MdcRadioButtonGroupItemValidation.DefaultToFirst"/>
 <p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed ?? "")</strong>'</p>
 
 
-<MdcRadioButtons @bind-Value="@colour" Items="colourItems" Vertical="true"></MdcRadioButtons>
+<PMdcRadioButtonGroup @bind-Value="@colour"
+                      Items="colourItems"
+                      Vertical="true"
+                      EnableTouchWrapper="false" />
 <p style="margin-bottom: 4em;">Selected: '<strong>@(colour.ToString())</strong>'</p>
-
 
 
 @code {
     string zebra = "zebra";
+    string zebraCheckedValue = "zebra";
 
 
     string dog = "Not selected";
+    string dogCheckedValue = "dog";
 
 
     string kittenBreed;
-    MdcRadioButtons<string>.Item<string>[] stringItems = new MdcRadioButtons<string>.Item<string>[]
+    PMdcRadioButtonGroup<string>.Item<string>[] stringItems = new PMdcRadioButtonGroup<string>.Item<string>[]
     {
-        new MdcRadioButtons<string>.Item<string> { DataValue = "brit-short", Label = "British Shorthair" },
-        new MdcRadioButtons<string>.Item<string> { DataValue = "russ-blue", Label = "Russian Blue" },
-        new MdcRadioButtons<string>.Item<string> { DataValue = "ice-invis", Label = "Icelandic Invisible" }
+        new PMdcRadioButtonGroup<string>.Item<string> { DataValue = "brit-short", Label = "British Shorthair" },
+        new PMdcRadioButtonGroup<string>.Item<string> { DataValue = "russ-blue", Label = "Russian Blue" },
+        new PMdcRadioButtonGroup<string>.Item<string> { DataValue = "ice-invis", Label = "Icelandic Invisible" }
                     };
 
 
     Colour colour;
     enum Colour { Red, Orange, Yellow, Green, Blue, Indigo, Violet };
-    IEnumerable<MdcRadioButtons<Colour>.Item<Colour>> colourItems => from c in (Colour[])Enum.GetValues(typeof(Colour))
-                                                                     select new MdcRadioButtons<Colour>.Item<Colour>
+    IEnumerable<PMdcRadioButtonGroup<Colour>.Item<Colour>> colourItems => from c in (Colour[])Enum.GetValues(typeof(Colour))
+                                                                     select new PMdcRadioButtonGroup<Colour>.Item<Colour>
                                                                      {
                                                                          DataValue = c,
                                                                          Label = c.ToString() + ((c == Colour.Blue) ? " (disabled)" : ""),
