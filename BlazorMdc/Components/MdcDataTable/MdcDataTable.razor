@@ -19,7 +19,7 @@
         <tbody class="mdc-data-table__content">
             @foreach (var item in Items)
             { 
-                <tr class="mdc-data-table__row">
+                <tr @key="@Row(item)" class="mdc-data-table__row">
                     @Row(item)
                 </tr>
             }
