@@ -29,18 +29,49 @@
 
 @code
 {
-    [Parameter] public int PageNumber { get; set; }
-    [Parameter] public EventCallback<int> PageNumberChanged { get; set; }
-    [Parameter] public int ItemsPerPage { get; set; }
     [Parameter] public string ListTemplateClass { get; set; } = "";
     [Parameter] public string PaginatorClass { get; set; } = "";
-    [Parameter] public EventCallback<int> ItemsPerPageChanged { get; set; }
     [Parameter] public IEnumerable<int> ItemsPerPageSelection { get; set; }
     [Parameter] public IEnumerable<TItem> Data { get; set; }
     [Parameter] public RenderFragment<TItem> ItemTemplate { get; set; }
     [Parameter] public RenderFragment<RenderFragment> ListTemplate { get; set; }
 
 
+    private int _pageNumber;
+    [Parameter] public int PageNumber
+    {
+        get => _pageNumber;
+        set
+        {
+            if (value != _pageNumber)
+            {
+                _pageNumber = value;
+                if (hasRendered)
+                    _ = PageNumberChanged.InvokeAsync(value);
+            }
+        }
+    }
+    [Parameter] public EventCallback<int> PageNumberChanged { get; set; }
+
+
+    private int _itemsPerPage;
+    [Parameter] public int ItemsPerPage
+    {
+        get => _itemsPerPage;
+        set
+        {
+            if (value != _itemsPerPage)
+            {
+                _itemsPerPage = value;
+                if (hasRendered)
+                    _ = ItemsPerPageChanged.InvokeAsync(value);
+            }
+        }
+    }
+    [Parameter] public EventCallback<int> ItemsPerPageChanged { get; set; }
+
+
+    private bool hasRendered = false;
     private IEnumerable<TItem> CheckedData => Data ?? Array.Empty<TItem>();
     public IEnumerable<TItem> CurrentPage => CheckedData.Skip(PageNumber * ItemsPerPage).Take(ItemsPerPage);
 
@@ -65,5 +96,13 @@
 				</ul>}
 			;
         }
+    }
+
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        hasRendered = true;
     }
 }

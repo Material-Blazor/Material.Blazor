@@ -1,6 +1,7 @@
 ﻿@namespace BlazorMdc
 
 @inherits MdcInputComponentBase<string>
+@implements IDisposable
 
 @using System.Text.RegularExpressions
 
@@ -130,12 +131,21 @@
         objectReference = DotNetObjectReference.Create(this);
     }
 
+
+    public void Dispose()
+    {
+        GC.SuppressFinalize(this);
+        objectReference?.Dispose();
+    }
+
+
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
 
         SetParameters();
     }
+
 
     protected void SetParameters()
     {
@@ -160,13 +170,6 @@
         selectInfo = BuildSelectList(CurrentValue);
 
         StateHasChanged();
-    }
-
-
-    public void Dispose()
-    {
-        GC.SuppressFinalize(this);
-        objectReference?.Dispose();
     }
 
 

@@ -1,6 +1,7 @@
 ﻿@namespace BlazorMdc
 
 @inherits MdcComponentBase
+@implements IDisposable
 @implements IMdcDialog
 
 @using System.Collections.Generic
@@ -70,6 +71,12 @@
             .Add("mdc-dialog");
 
         objectReference = DotNetObjectReference.Create(this);
+    }
+
+
+    public void Dispose()
+    {
+        objectReference?.Dispose();
     }
 
 
