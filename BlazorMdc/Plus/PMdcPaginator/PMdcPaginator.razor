@@ -83,7 +83,8 @@
             if (ItemsPerPage == 0)
             {
                 _pageNumber = value;
-                _ = PageNumberChanged.InvokeAsync(value);
+                if (hasRendered)
+                    _ = PageNumberChanged.InvokeAsync(value);
             }
             else
             {
@@ -92,7 +93,8 @@
                 if (clampedValue != _pageNumber)
                 {
                     _pageNumber = clampedValue;
-                    _ = PageNumberChanged.InvokeAsync(value);
+                    if (hasRendered)
+                        _ = PageNumberChanged.InvokeAsync(value);
                 }
             }
         }
@@ -101,6 +103,7 @@
     [Parameter] public EventCallback<int> PageNumberChanged { get; set; }
 
 
+    private bool hasRendered = false;
     private MdcMenu menu;
     private MdcIconButtonToggle iconButtonToggle;
     private bool toggleOn;
@@ -130,11 +133,19 @@
         }
 
         itemsPerPageItems = from r in ItemsPerPageSelection
-                           select new MdcSelect<int>.Item<int>
-                           {
-                               DataValue = r,
-                               Text = r.ToString()
-                           };
+                            select new MdcSelect<int>.Item<int>
+                            {
+                                DataValue = r,
+                                Text = r.ToString()
+                            };
+    }
+
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        hasRendered = true;
     }
 
 

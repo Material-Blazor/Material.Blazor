@@ -37,9 +37,9 @@ We also want to acknowledge the work of
 Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add the following CSS and JS links to your html `<head>` section (there are non-minified blazormdc.* files to reference if you prefer):
 
 ```
-   <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
-   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-   <link href="_content/BlazorMdc/blazormdc.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="_content/BlazorMdc/blazormdc.min.css" rel="stylesheet">
    
     <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.js"></script>
     <script src="_content/BlazorMdc/blazormdc.min.js"></script>
@@ -105,6 +105,7 @@ The following are extra or 'plus' components that extend the strict, core Materi
 | `PMdcNumericIntField` | A wrapper for `MdcpNumericDoubleField` for `int` variables. |
 | `PMdcPagedDataList` | A templated component for paging generic data lists using `PMdcPaginator`. Uses the Wig Pig nested coding pattern and can either render list items one by one or wrap a component such as `MdcList` or `MdcDataTable`. |
 | `PMdcPaginator` | An implementation of the [Material paginator specification](https://material.io/components/data-tables#behavior). |
+| `PMdcSlidingContent` | A templated component to provide previous/next navigation through a series of pages with light left/right and fade in/out animation. |
 | `PMdcToast` | A port of [Blazored/Toast](https://github.com/Blazored/Toast) yet to be styled à la Material Theme. |
 
 ## Utilities
