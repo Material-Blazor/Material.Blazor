@@ -1,0 +1,100 @@
+﻿@namespace BlazorMdc
+
+@typeparam TItem
+
+@inherits MdcInputComponentBase<TItem>
+
+
+<div class="@ClassMapper.ToString()"
+     style="@StyleMapper.ToString()">
+
+    @{int index = 0; }
+    @foreach (var item in Items)
+    {
+        @if (Vertical && index++ > 0)
+        {
+            <div class="bmdc-mdc-radio-break"></div>
+        }
+
+        <MdcRadioButton Value="@Value"
+                        ValueChanged="@ValueChanged"
+                        ValueExpression="@ValueExpression"
+                        ButtonContainerClass="@item.ButtonContainerClass"
+                        Disabled="@item.Disabled"
+                        EnableTouchWrapper="@EnableTouchWrapper"
+                        Label="@item.Label"
+                        CheckedValue="@item.DataValue"
+                        @onclick="@(_ => OnItemClickAsync(item.DataValue))" />
+    }
+
+</div>
+
+@code {
+    //
+    //  2020-04-22  Mark Stega
+    //              Changed to use the newly created MdcRadioButton
+    //
+    public class Item<T>
+    {
+        public T DataValue { get; set; }
+        public string Label { get; set; }
+        public string ButtonContainerClass { get; set; }
+        public bool Disabled { get; set; } = false;
+    }
+
+    [Parameter] public IEnumerable<Item<TItem>> Items { get; set; }
+    [Parameter] public bool Vertical { get; set; } = false;
+    [Parameter] public RadioButtonGroup.MdcRadioButtonGroupItemValidation ItemValidation { get; set; } = RadioButtonGroup.MdcRadioButtonGroupItemValidation.Exception;
+    [Parameter] public bool EnableTouchWrapper { get; set; } = true;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+
+        if (Items.Count() == 0)
+        {
+            throw new ArgumentException("PMdcDialogButtonGroup requires a non-empty Items parameter.");
+        }
+
+        if ((ItemValidation == RadioButtonGroup.MdcRadioButtonGroupItemValidation.DefaultToFirst) && (Value is null || string.IsNullOrEmpty(Value.ToString())))
+        {
+            await OnItemClickAsync(Items.FirstOrDefault().DataValue);
+        }
+
+        if (Items.Where(i => object.Equals(i.DataValue, Value)).Count() == 0)
+        {
+            switch (ItemValidation)
+            {
+                case RadioButtonGroup.MdcRadioButtonGroupItemValidation.DefaultToFirst:
+                    await OnItemClickAsync(Items.FirstOrDefault().DataValue);
+                    break;
+
+                case RadioButtonGroup.MdcRadioButtonGroupItemValidation.Exception:
+                    string itemList = "{ ";
+                    string prepend = "";
+
+                    foreach (var item in Items)
+                    {
+                        itemList += $"{prepend} '{item.DataValue}'";
+                        prepend = ",";
+                    }
+
+                    itemList += " }";
+
+                    throw new ArgumentException($"PMdcRadioButtonGroup cannot select item with data value of '{Value?.ToString()}' from {itemList}");
+
+                case RadioButtonGroup.MdcRadioButtonGroupItemValidation.NoSelection:
+                    break;
+            }
+        }
+    }
+
+    private async Task OnItemClickAsync(TItem dataValue)
+    {
+        Value = dataValue;
+        await ValueChanged.InvokeAsync(Value);
+        StateHasChanged();
+    }
+
+}
