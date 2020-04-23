@@ -14,26 +14,13 @@
      @ref="@formReference">
 
     <div @ref="@radioButtonReference" class="mdc-radio mdc-radio--touch @ButtonContainerClass">
-        @if (Checked)
-        {
-            <input class="mdc-radio__native-control @disabledClass"
-                   type="radio"
-                   id="@radioId"
-                   name="@RadioGroupName"
-                   checked
-                   disabled="@Disabled"
-                   @onclick="@(_ => OnItemClickAsync())">
-        }
-        else
-        {
-            <input class="mdc-radio__native-control @disabledClass"
-                   type="radio"
-                   id="@radioId"
-                   name="@RadioGroupName"
-                   disabled="@Disabled"
-                   @onclick="@(_ => OnItemClickAsync())">
-        }
-
+        <input class="mdc-radio__native-control @disabledClass"
+                type="radio"
+                id="@radioId"
+                name="@RadioGroupName"
+                disabled="@Disabled"
+                @onclick="@(_ => OnItemClickAsync())">
+ 
         <div class="mdc-radio__background">
             <div class="mdc-radio__outer-circle"></div>
             <div class="mdc-radio__inner-circle"></div>
@@ -145,7 +132,7 @@
         if ((firstRender && (Dialog is null)) || instantiate)
         {
             instantiate = false;
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.init", radioButtonReference, formReference);
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.init", radioButtonReference, formReference, Checked);
         }
     }
 }
