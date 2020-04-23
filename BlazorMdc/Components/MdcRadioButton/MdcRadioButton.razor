@@ -114,7 +114,6 @@
             Checked = true;
 
             await ValueChanged.InvokeAsync(Value);
-            StateHasChanged();
         }
     }
 
@@ -133,6 +132,13 @@
             Checked = false;
         }
     }
+
+
+    protected override bool ShouldRender()
+    {
+        return instantiate;
+    }
+
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

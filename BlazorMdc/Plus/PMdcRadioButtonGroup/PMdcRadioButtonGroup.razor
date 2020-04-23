@@ -19,10 +19,10 @@
             }
         }
 
-        //        key = Utilities.GenerateCssElementSelector();
-        var key = item;// radioGroupName + "-" + index.ToString();
+        //var key = Utilities.GenerateCssElementSelector();
+        //var key = item;
 
-        <MdcRadioButton @key="@key"
+        <MdcRadioButton @key="item"
                         Value="@Value"
                         ValueChanged="@ValueChanged"
                         ValueExpression="@ValueExpression"
@@ -50,13 +50,16 @@
         public bool Disabled { get; set; } = false;
     }
 
+
     [Parameter] public IEnumerable<Item<TItem>> Items { get; set; }
     [Parameter] public bool Vertical { get; set; } = false;
     [Parameter] public PMdcRadioButtonGroupItemValidation? ItemValidation { get; set; }
     [Parameter] public bool EnableTouchWrapper { get; set; } = true;
 
+
+    private IEnumerable<TItem> intialItems;
     private string radioGroupName = Utilities.GenerateCssElementSelector();
-    private string key;
+
 
     protected override async Task OnInitializedAsync()
     {
@@ -121,11 +124,16 @@
         }
     }
 
+
     private async Task OnItemClickAsync(TItem CheckedValue)
     {
         Value = CheckedValue;
         await ValueChanged.InvokeAsync(Value);
-        StateHasChanged();
     }
 
+
+    protected override bool ShouldRender()
+    {
+        return false;
+    }
 }
