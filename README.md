@@ -1,5 +1,11 @@
 ﻿# BlazorMdc (pre release)
 
+[![NuGet Downloads](https://img.shields.io/nuget/dt/BlazorMdc?label=NuGet%20Downloads)](https://www.nuget.org/packages/BlazorMdc/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](/LICENSE.md)
+[![GitHub issues](https://img.shields.io/github/issues/BlazorMdc/BlazorMdc)](https://github.com/BlazorMdc/BlazorMdc/issues)
+[![GitHub forks](https://img.shields.io/github/forks/BlazorMdc/BlazorMdc)](https://github.com/BlazorMdc/BlazorMdc/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/BlazorMdc/BlazorMdc)](https://github.com/BlazorMdc/BlazorMdc/stargazers)
+
 ## Lightweight Material Theme razor components for Blazor
 
 BlazorMdc is a lightweight [Material Theme](https://material.io/) [web development platform](https://material.io/develop/web/) component library for [ASP.NET Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor) that is rigorously faithful to the Material Theme's design philosophy, markup and code usage. Material Theme has very specific and detailed guidance showing web designers how to build web apps with HTML, CSS and JavaScript. Since neither Blazor for WebAssembly are directly supported, Blazor developers either need to roll their own components or use a component library such as BlazorMdc. This is available at https://www.nuget.org/packages/BlazorMdc.
@@ -10,7 +16,7 @@ BlazorMdc isn't the only Blazor component library for Material Theme and we enco
 - Native Blazor code to the greatest possible extent, using JavaScript Interop only where absolutely necessary, such as when initializing individual components to apply things like ripple and drop down menu functionality from the Material JavaScript libraries in the same manner as required for any other Material Theme web application,
 - A balanced approach (or at least what we think is balanced) to component customization: enough to be functional but keeping things to the point and maintainable,
 - A native Material Theme HTML/CSS experience where a developer wants and expects to use Material Theme's HTML Markup and CSS - BlazorMdc keeps out of a developer's way when she wants to follow Material Theme's guidance rigorously and take full advantage of its theming capability. So if you are less interested in that control but want to deliver something that looks good fast, this is where you may want to consider other libraries,
-- Some added value components derived from core material theme components but that are not strictly material theme themselves. These include an autocomplete box, a confimration dialog, a date picker (following the material theme date picker specification quite closely) and formatted numeric input fields. These are in the `BlazorMdc.Plus` namespace, and
+- Some added value components derived from core material theme components but that are not strictly material theme themselves. These include an autocomplete box, a confimration dialog, a date picker (following the material theme date picker specification quite closely) and formatted numeric input fields, and
 - We aim for BlazorMdc to employ best practice for Blazor development. As a starting point this should be considered as being defined per [this video from NDC London, January 2020](https://www.youtube.com/watch?v=QnBYmTpugz0). We have plenty to do to arrive at that position.
 
 Note that BlazorMdc is in the early stages of development, so there are likely to be **frequent breaking changes** until we reach version 1. This project is owned by [Dioptra](https://dioptra.tech) and is licensed under the terms of the MIT license.
@@ -24,7 +30,22 @@ BlazorMdc is forked from [Steve Sanderson's](https://blog.stevensanderson.com/) 
 We also want to acknowledge the work of 
 * [Vladimir Samoilenko (@SamProf on Github)](https://github.com/SamProf) for his work on [MatBlazor](https://www.matblazor.com/). MatBlazor code was referenced and some small parts of the code were copied to be part of BlazorMdc (ClassMapper and StyleMapper).
 * [Chris Sainty (@chrissainty on Github)](https://github.com/chrissainty) for his work on [Blazored/Toast](https://github.com/Blazored/Toast) which is the basis for PMdcToast.
-* [ℳisterℳagoo (@mistermag00 on Twitter)](https://github.com/SQL-MisterMagoo/) for the `@:@{` construct used in PMdcPagedDataList and [Peter Morris (@mrpmorris on Github)](https://github.com/mrpmorris) for demonstrating this with code that we forked in [Blazor University](https://blazor-university.com/), christening it the "quiffy pig" - head to Blazor University to see why.
+* [ℳisterℳagoo (@mistermag00 on Twitter)](https://github.com/SQL-MisterMagoo/) for the `@:@{` construct used in PMdcPagedDataList and [Peter Morris (@mrpmorris on Github)](https://github.com/mrpmorris) for demonstrating this with code that we forked in [Blazor University](https://blazor-university.com/), christening it the "wig pig" - head to Blazor University to see why.
+
+## Installation
+
+Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add the following CSS and JS links to your html `<head>` section (there are non-minified blazormdc.* files to reference if you prefer):
+
+```
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="_content/BlazorMdc/blazormdc.min.css" rel="stylesheet">
+   
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.js"></script>
+    <script src="_content/BlazorMdc/blazormdc.min.js"></script>
+```
+
+Then reference the `BlazorMdc` namespace with `@using BlazorMdc` to your `_Imports.razor` file and if you want to use `PMdcToast` add `services.AddPMdcToast();` to your `ConfigureServices` function for Blazor Server or to the `Main()` function for Blazor WASM.
 
 ## Demonstration website
 
@@ -46,7 +67,7 @@ The home page of the demonstration application shows the execution environment a
 
 ## Components
 
-The following is a list of core Material Theme components in the `BlazorMdc.Components` namespace, but lacks documentation on how they are used. Since forking from [RazorComponents.MaterialDesign](https://github.com/SteveSandersonMS/RazorComponents.MaterialDesign), some components await review - these are highlighed.
+The following is a list of core Material Theme components.
 
 | Component | Notes |
 | :-------- | :---- |
@@ -56,7 +77,8 @@ The following is a list of core Material Theme components in the `BlazorMdc.Comp
 | `MdcDataTable` | A [Material Data Table](https://material.io/develop/web/components/data-tables/) without row selection |
 | `MdcDialog` | A [Material Dialog](https://material.io/develop/web/components/dialogs/). Can set scrim and escape button actions. |
 | `MdcDrawer` | A [Material Drawer](https://material.io/develop/web/components/drawers/). _Awaits review_. |
-| `MdcIconButton` | A [Material Icon Button](https://material.io/develop/web/components/buttons/icon-buttons/). Toggle icon buttons are not implemented. |
+| `MdcIconButton` | A [Material Icon Button](https://material.io/develop/web/components/buttons/icon-buttons/). |
+| `MdcIconButtonToggle` | A toggle variant of the [Material Icon Button](https://material.io/develop/web/components/buttons/icon-buttons/). |
 | `MdcLinearProgress` | A [Material Linear Progress bar](https://material.io/develop/web/components/linear-progress/). Only implements an indeterminate progress point |
 | `MdcList` | A [Material List](https://material.io/develop/web/components/lists/). |
 | `MdcMenu` | A [Material Menu](https://material.io/develop/web/components/menus/). Does not implement sub menus. May redesign parameterization. |
@@ -71,7 +93,7 @@ The following is a list of core Material Theme components in the `BlazorMdc.Comp
 
 ## Plus Components
 
-The following extra components are in the `BlazorMdc.Plus` namespace.
+The following are extra or 'plus' components that extend the strict, core Material Theme `MdcXxx` components with either additional functionality or in the case of `PMdcDatePicker` and `PMdcPaginator` implementing a specification that is yet to be implemented in the Material Theme CSS and JavaScript libraries.
 
 | Component | Notes |
 | :-------- | :---- |

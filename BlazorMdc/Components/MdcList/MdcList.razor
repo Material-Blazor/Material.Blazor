@@ -27,7 +27,8 @@
             <li role="separator" class="mdc-list-divider"></li>
         }
 
-        <li class="mdc-list-item"
+        <li @key="@item"
+            class="mdc-list-item"
             tabindex="@tabIndex" 
             @onclick="@(() => OnItemClickAsync(clickIndex))"
             @onmousedown="@(() => OnItemMouseDownAsync(clickIndex))"
