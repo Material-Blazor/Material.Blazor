@@ -55,7 +55,7 @@
         from item in items
         select new PMdcRadioButtonGroup<int>.Item<int>
         {
-            DataValue = Array.IndexOf(items, items.Where(i => i.Title == item.Title).FirstOrDefault()),
+            CheckedValue = Array.IndexOf(items, items.Where(i => i.Title == item.Title).FirstOrDefault()),
             Label = item.Title
         };
 

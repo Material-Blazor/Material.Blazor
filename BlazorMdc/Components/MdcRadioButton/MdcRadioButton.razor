@@ -107,6 +107,7 @@
         {
             Value = CheckedValue;
             Checked = true;
+            
             await ValueChanged.InvokeAsync(Value);
             StateHasChanged();
         }

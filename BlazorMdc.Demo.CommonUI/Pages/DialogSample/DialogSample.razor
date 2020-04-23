@@ -16,12 +16,16 @@
 <p><MdcButton Label="Show general dialog" OnClick="@ShowDialog1"></MdcButton></p>
 
 <p>Result: <strong>'@(result1 ?? "")'</strong></p>
+<p>Button result: <strong>'@(radioButtonResult1 ?? "")'</strong></p>
 
 <MdcDialog @ref="@dialog1" Title="General dialog">
     <Body>
         <p>Please choose a fruit.</p>
         <MdcCheckbox @bind-Value="@checkMe" Label="Check me" />
-        <PMdcRadioButtonGroup Items="stringItems" Vertical="true" />
+        <PMdcRadioButtonGroup @bind-Value="@radioButtonResult1"
+                              Items="stringItems"
+                              Vertical="true"
+                              ItemValidation="@PMdcRadioButtonGroupItemValidation.DefaultToFirst" />
     </Body>
     <Buttons>
         <MdcButton Label="Orange" DialogAction="orange"></MdcButton>
@@ -118,6 +122,7 @@
 
     MdcDialog dialog1;
     string result1;
+    string radioButtonResult1;
     bool checkMe;
     bool disableInput;
 
@@ -128,9 +133,9 @@
 
     PMdcRadioButtonGroup<string>.Item<string>[] stringItems = new PMdcRadioButtonGroup<string>.Item<string>[]
     {
-        new PMdcRadioButtonGroup<string>.Item<string> { DataValue = "brit-short", Label = "British Shorthair" },
-        new PMdcRadioButtonGroup<string>.Item<string> { DataValue = "russ-blue", Label = "Russian Blue" },
-        new PMdcRadioButtonGroup<string>.Item<string> { DataValue = "ice-invis", Label = "Icelandic Invisible" }
+        new PMdcRadioButtonGroup<string>.Item<string> { CheckedValue = "brit-short", Label = "British Shorthair" },
+        new PMdcRadioButtonGroup<string>.Item<string> { CheckedValue = "russ-blue", Label = "Russian Blue" },
+        new PMdcRadioButtonGroup<string>.Item<string> { CheckedValue = "ice-invis", Label = "Icelandic Invisible" }
             };
 
     PMdcConfirmationDialog dialog2;

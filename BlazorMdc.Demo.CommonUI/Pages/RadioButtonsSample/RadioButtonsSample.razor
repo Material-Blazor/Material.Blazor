@@ -19,7 +19,7 @@
 
 <PMdcRadioButtonGroup @bind-Value="@kittenBreed"
                       Items="stringItems"
-                      ItemValidation="@RadioButtonGroup.MdcRadioButtonGroupItemValidation.DefaultToFirst"/>
+                      ItemValidation="@PMdcRadioButtonGroupItemValidation.DefaultToFirst"/>
 <p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed ?? "")</strong>'</p>
 
 
@@ -42,9 +42,9 @@
     string kittenBreed;
     PMdcRadioButtonGroup<string>.Item<string>[] stringItems = new PMdcRadioButtonGroup<string>.Item<string>[]
     {
-        new PMdcRadioButtonGroup<string>.Item<string> { DataValue = "brit-short", Label = "British Shorthair" },
-        new PMdcRadioButtonGroup<string>.Item<string> { DataValue = "russ-blue", Label = "Russian Blue" },
-        new PMdcRadioButtonGroup<string>.Item<string> { DataValue = "ice-invis", Label = "Icelandic Invisible" }
+        new PMdcRadioButtonGroup<string>.Item<string> { CheckedValue = "brit-short", Label = "British Shorthair" },
+        new PMdcRadioButtonGroup<string>.Item<string> { CheckedValue = "russ-blue", Label = "Russian Blue" },
+        new PMdcRadioButtonGroup<string>.Item<string> { CheckedValue = "ice-invis", Label = "Icelandic Invisible" }
                     };
 
 
@@ -53,7 +53,7 @@
     IEnumerable<PMdcRadioButtonGroup<Colour>.Item<Colour>> colourItems => from c in (Colour[])Enum.GetValues(typeof(Colour))
                                                                      select new PMdcRadioButtonGroup<Colour>.Item<Colour>
                                                                      {
-                                                                         DataValue = c,
+                                                                         CheckedValue = c,
                                                                          Label = c.ToString() + ((c == Colour.Blue) ? " (disabled)" : ""),
                                                                          Disabled = c == Colour.Blue
                                                                      };
