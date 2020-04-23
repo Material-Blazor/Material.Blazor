@@ -11,27 +11,27 @@
 
 <div class="@ClassMapper.ToString()"
      style="@StyleMapper.ToString()"
-     @ref="@formReference" >
+     @ref="@formReference">
 
     <div @ref="@radioButtonReference" class="mdc-radio mdc-radio--touch @ButtonContainerClass">
         @if (Checked)
         {
             <input class="mdc-radio__native-control @disabledClass"
-                    type="radio"
-                    id="@radioId"
-                    name="@radioName"
-                    checked
-                    disabled="@Disabled"
-                    @onclick="@(_ => OnItemClickAsync())">
+                   type="radio"
+                   id="@radioId"
+                   name="@RadioGroupName"
+                   checked
+                   disabled="@Disabled"
+                   @onclick="@(_ => OnItemClickAsync())">
         }
         else
         {
             <input class="mdc-radio__native-control @disabledClass"
-                    type="radio"
-                    id="@radioId"
-                    name="@radioName"
-                    disabled="@Disabled"
-                    @onclick="@(_ => OnItemClickAsync())">
+                   type="radio"
+                   id="@radioId"
+                   name="@RadioGroupName"
+                   disabled="@Disabled"
+                   @onclick="@(_ => OnItemClickAsync())">
         }
 
         <div class="mdc-radio__background">
@@ -56,12 +56,12 @@
     [Parameter] public string Label { get; set; }
     [Parameter] public string ButtonContainerClass { get; set; }
     [Parameter] public bool EnableTouchWrapper { get; set; } = true;
+    [Parameter] public string RadioGroupName { get; set; }
 
     private bool instantiate = false;
     private readonly string radioId = Utilities.GenerateCssElementSelector();
     private ElementReference formReference { get; set; }
     private ElementReference radioButtonReference;
-    private string radioName = Utilities.GenerateCssElementSelector();
     private bool Checked;
     private string buttonContainerClass;
     private string disabledClass = "";
@@ -70,6 +70,11 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
+
+        if (string.IsNullOrEmpty(RadioGroupName))
+        {
+            throw new ArgumentException("RadioGroupName is a required parameter in MdcRadioButton.");
+        }
 
         ClassMapper
             .Add("mdc-form-field");
@@ -107,7 +112,7 @@
         {
             Value = CheckedValue;
             Checked = true;
-            
+
             await ValueChanged.InvokeAsync(Value);
             StateHasChanged();
         }

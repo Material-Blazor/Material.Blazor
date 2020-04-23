@@ -8,12 +8,10 @@
 
 <p>See <code>RadioButtonsSample.razor</code> for sources.</p>
 
-<MdcRadioButton @bind-Value="@zebra" CheckedValue=@zebraCheckedValue Label="zebra" />
-<p style="margin-bottom: 4em;">Selected: '<strong>@(zebra ?? "")</strong>'</p>
+<MdcRadioButton @bind-Value="@animal" CheckedValue=@zebraCheckedValue Label="zebra" RadioGroupName="demoGroup" />
 
-
-<MdcRadioButton @bind-Value="@dog" CheckedValue=@dogCheckedValue Label="dog" />
-<p style="margin-bottom: 4em;">Selected: '<strong>@(dog ?? "")</strong>'</p>
+<MdcRadioButton @bind-Value="@animal" CheckedValue=@dogCheckedValue Label="dog" RadioGroupName="demoGroup" />
+<p style="margin-bottom: 4em;">Selected: '<strong>@(animal ?? "")</strong>'</p>
 
 
 
@@ -31,11 +29,8 @@
 
 
 @code {
-    string zebra = "zebra";
+    string animal = "zebra";
     string zebraCheckedValue = "zebra";
-
-
-    string dog = "Not selected";
     string dogCheckedValue = "dog";
 
 
@@ -45,7 +40,7 @@
         new PMdcRadioButtonGroup<string>.Item<string> { CheckedValue = "brit-short", Label = "British Shorthair" },
         new PMdcRadioButtonGroup<string>.Item<string> { CheckedValue = "russ-blue", Label = "Russian Blue" },
         new PMdcRadioButtonGroup<string>.Item<string> { CheckedValue = "ice-invis", Label = "Icelandic Invisible" }
-    };
+            };
 
 
     Colour colour;
