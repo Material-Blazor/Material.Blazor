@@ -19,7 +19,7 @@
 
 <PMdcRadioButtonGroup @bind-Value="@kittenBreed"
                       Items="stringItems"
-                      ItemValidation="@PMdcRadioButtonGroupItemValidation.DefaultToFirst"/>
+                      ItemValidation="@PMdcRadioButtonGroupItemValidation.DefaultToFirst" />
 <p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed ?? "")</strong>'</p>
 
 
@@ -45,16 +45,16 @@
         new PMdcRadioButtonGroup<string>.Item<string> { CheckedValue = "brit-short", Label = "British Shorthair" },
         new PMdcRadioButtonGroup<string>.Item<string> { CheckedValue = "russ-blue", Label = "Russian Blue" },
         new PMdcRadioButtonGroup<string>.Item<string> { CheckedValue = "ice-invis", Label = "Icelandic Invisible" }
-                    };
+    };
 
 
     Colour colour;
     enum Colour { Red, Orange, Yellow, Green, Blue, Indigo, Violet };
     IEnumerable<PMdcRadioButtonGroup<Colour>.Item<Colour>> colourItems => from c in (Colour[])Enum.GetValues(typeof(Colour))
-                                                                     select new PMdcRadioButtonGroup<Colour>.Item<Colour>
-                                                                     {
-                                                                         CheckedValue = c,
-                                                                         Label = c.ToString() + ((c == Colour.Blue) ? " (disabled)" : ""),
-                                                                         Disabled = c == Colour.Blue
-                                                                     };
+                                                                          select new PMdcRadioButtonGroup<Colour>.Item<Colour>
+                                                                          {
+                                                                              CheckedValue = c,
+                                                                              Label = c.ToString() + ((c == Colour.Blue) ? " (disabled)" : ""),
+                                                                              Disabled = c == Colour.Blue
+                                                                          };
 }
