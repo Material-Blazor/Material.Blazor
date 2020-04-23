@@ -24,13 +24,13 @@
     [Parameter] public DateTime DisplayDate { get; set; }
     [Parameter] public DateTime StartOfDisplayMonth { get; set; }
     [Parameter] public EventCallback<DateTime> OnItemClickAsync { get; set; }
-    [Parameter] public MdcDateSelectionCriteria? DateSelectionCriteria { get; set; }
+    [Parameter] public PMdcDateSelectionCriteria? DateSelectionCriteria { get; set; }
     [Parameter] public DateTime MinDate { get; set; }
     [Parameter] public DateTime MaxDate { get; set; }
 
 
     private ElementReference elementReference;
-    private MdcDateSelectionCriteria myCriteria => CascadingDefaults.AppliedDateSelectionCriteria(DateSelectionCriteria);
+    private PMdcDateSelectionCriteria myCriteria => CascadingDefaults.AppliedDateSelectionCriteria(DateSelectionCriteria);
     private string text => Utilities.DateToString(DisplayDate);
     private int day => DisplayDate.Day;
     private string buttonStyleClass => (DisplayDate == CurrentDate) ? "mdc-button--unelevated" : "";
@@ -47,14 +47,14 @@
 
             switch (myCriteria)
             {
-                case MdcDateSelectionCriteria.WeekendsOnly:
+                case PMdcDateSelectionCriteria.WeekendsOnly:
                     if ((DisplayDate.DayOfWeek != DayOfWeek.Sunday) && (DisplayDate.DayOfWeek != DayOfWeek.Saturday))
                     {
                         return true;
                     }
                     break;
 
-                case MdcDateSelectionCriteria.WeekdaysOnly:
+                case PMdcDateSelectionCriteria.WeekdaysOnly:
                     if ((DisplayDate.DayOfWeek == DayOfWeek.Sunday) || (DisplayDate.DayOfWeek == DayOfWeek.Saturday))
                     {
                         return true;

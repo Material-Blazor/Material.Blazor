@@ -1,0 +1,133 @@
+﻿@namespace BlazorMdc
+
+@typeparam TItem
+
+@inherits MdcInputComponentBase<TItem>
+
+
+<div class="@ClassMapper.ToString()"
+     style="@StyleMapper.ToString()">
+
+    @{ int index = 0; }
+    @foreach (var item in Items)
+    {
+        @if ((index++ > 0) && Vertical)
+        {
+            <div class="bmdc-mdc-radio-break"></div>
+        }
+
+        <MdcRadioButton @key="item"
+                        Value="@Value"
+                        ValueChanged="@ValueChanged"
+                        ValueExpression="@ValueExpression"
+                        ButtonContainerClass="@item.ButtonContainerClass"
+                        Disabled="@item.Disabled"
+                        EnableTouchWrapper="@EnableTouchWrapper"
+                        Label="@item.Label"
+                        CheckedValue="@item.CheckedValue"
+                        RadioGroupName="@radioGroupName"
+                        @onclick="@(_ => OnItemClickAsync(item.CheckedValue))" />
+    }
+
+</div>
+
+@code {
+    //
+    //  2020-04-22  Mark Stega
+    //              Changed to use the newly created MdcRadioButton
+    //
+    public class Item<T>
+    {
+        public T CheckedValue { get; set; }
+        public string Label { get; set; }
+        public string ButtonContainerClass { get; set; }
+        public bool Disabled { get; set; } = false;
+    }
+
+
+    [Parameter] public IEnumerable<Item<TItem>> Items { get; set; }
+    [Parameter] public bool Vertical { get; set; } = false;
+    [Parameter] public PMdcRadioButtonGroupItemValidation? ItemValidation { get; set; }
+    [Parameter] public bool EnableTouchWrapper { get; set; } = true;
+
+
+    private IEnumerable<TItem> intialItems;
+    private string radioGroupName = Utilities.GenerateCssElementSelector();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+
+        if (Items.Count() == 0)
+        {
+            throw new ArgumentException("PMdcRadioButtonGroup requires a non-empty Items parameter.");
+        }
+
+        PMdcRadioButtonGroupItemValidation appliedItemValidation = CascadingDefaults.AppliedRadioButtonGroupItemValidation(ItemValidation);
+
+        if ((appliedItemValidation == PMdcRadioButtonGroupItemValidation.DefaultToFirst) && (Value is null || string.IsNullOrEmpty(Value.ToString())))
+        {
+            await OnItemClickAsync(Items.FirstOrDefault().CheckedValue);
+        }
+
+        Item<TItem>[] itemsAsArray = Items.ToArray();
+
+        var multipleEntriesWithSameValue = false;
+        for (int i = 0; i < (Items.Count() - 2); i++)
+        {
+            for (int j = i + 1; j < Items.Count(); j++)
+            {
+                if (itemsAsArray[i].CheckedValue.Equals(itemsAsArray[j].CheckedValue))
+                {
+                    multipleEntriesWithSameValue = true;
+                }
+            }
+        }
+
+        if (multipleEntriesWithSameValue)
+        {
+            throw new ArgumentException("PMdcRadioButtonGroup has multiple enties in the List with the same CheckedValue");
+        }
+
+        if (Items.Where(i => object.Equals(i.CheckedValue, Value)).Count() == 0)
+        {
+            switch (appliedItemValidation)
+            {
+                case PMdcRadioButtonGroupItemValidation.DefaultToFirst:
+                    await OnItemClickAsync(Items.FirstOrDefault().CheckedValue);
+                    break;
+
+                case PMdcRadioButtonGroupItemValidation.Exception:
+                    string itemList = "{ ";
+                    string prepend = "";
+
+                    foreach (var item in Items)
+                    {
+                        itemList += $"{prepend} '{item.CheckedValue}'";
+                        prepend = ",";
+                    }
+
+                    itemList += " }";
+
+                    throw new ArgumentException($"PMdcRadioButtonGroup cannot select item with data value of '{Value?.ToString()}' from {itemList}");
+
+                case PMdcRadioButtonGroupItemValidation.NoSelection:
+                    break;
+            }
+        }
+    }
+
+
+    private async Task OnItemClickAsync(TItem CheckedValue)
+    {
+        Value = CheckedValue;
+        await ValueChanged.InvokeAsync(Value);
+    }
+
+
+    protected override bool ShouldRender()
+    {
+        return false;
+    }
+}

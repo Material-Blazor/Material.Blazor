@@ -83,7 +83,7 @@ The following is a list of core Material Theme components.
 | `MdcList` | A [Material List](https://material.io/develop/web/components/lists/). |
 | `MdcMenu` | A [Material Menu](https://material.io/develop/web/components/menus/). Does not implement sub menus. May redesign parameterization. |
 | `MdcNavLink` | A [Material List Item](https://material.io/develop/web/components/menus/) wrapping a Blazor `NavLink`. _Awaits review_. |
-| `MdcRadioButtons` | A group of [Material Radio Buttons](https://material.io/develop/web/components/input-controls/radio-buttons/) with modification to list buttons vertically as well as the default inline. |
+| `MdcRadioButton` | A [Material Radio Button](https://material.io/develop/web/components/input-controls/radio-buttons/). |
 | `MdcSelect` | A [Material Select Menu](https://material.io/develop/web/components/input-controls/select-menus/). |
 | `MdcSwitch` | A [Material Switch](https://material.io/develop/web/components/input-controls/switches/). |
 | `MdcTabBar` | A [Material Tab Bar](https://material.io/develop/web/components/tabs/tab-bar/). Displays tab contents as a `RenderFragment`, with mild 300ms fade animation with 12px left/right motion. |
@@ -105,6 +105,7 @@ The following are extra or 'plus' components that extend the strict, core Materi
 | `PMdcNumericIntField` | A wrapper for `MdcpNumericDoubleField` for `int` variables. |
 | `PMdcPagedDataList` | A templated component for paging generic data lists using `PMdcPaginator`. Uses the Wig Pig nested coding pattern and can either render list items one by one or wrap a component such as `MdcList` or `MdcDataTable`. |
 | `PMdcPaginator` | An implementation of the [Material paginator specification](https://material.io/components/data-tables#behavior). |
+| `PMdcRadioButtonGroup` | A group of MdcRadioButtons. The ItemValidation parameter has three possible values. Exception is the default value and an exception will be raised if the Value supplied does not match one of the Values in the List parameter data. DefaultToFirst will select the first item in the list if the Value does not match. NoSelection will not pick a radiobutton when the Value is illegal. Several ArgumentExceptions can also be thrown for such things as a missing or empty List, a List that has multiple identical CheckedValues, and missing Value bindings. |
 | `PMdcSlidingContent` | A templated component to provide previous/next navigation through a series of pages with light left/right and fade in/out animation. |
 | `PMdcToast` | A port of [Blazored/Toast](https://github.com/Blazored/Toast) yet to be styled à la Material Theme. |
 
@@ -112,21 +113,8 @@ The following are extra or 'plus' components that extend the strict, core Materi
  
 | Utility | Notes |
 | :-------- | :---- |
-| `MdcpCascadingDefaults` | Allows you to set up defaults such as button style (filled, outlined etc), text area style (filled or outlined) |
+| `MdcCascadingDefaults` | Allows you to set up defaults such as button style (filled, outlined etc), text area style (filled or outlined) |
 | `MdcTypography` | Constants for standard Material Theme typography. |
-
-## Known Issues
-
-| Component | Issue |
-| :-------- | :---- |
-| `MdcTabBar` | Setting `TabIndex` after first render throws a JavaScript exception for Blazor WASM. |
-| `MdcTopAppBar` | Styling for the short variety of top app bar is wrong when a drawer is opened. |
-| `MdcTextField` | Floating labels do not float when data is inserted automatically by the browser. Probably also affects `MdcTextArea` and will definitely affect `MdcpNumericDoubleField` and `MdcpNumericIntField` which are derived from `MdcTextField` |
-| `MdcDialog` | When using check boxes or radio buttons in a dialog, sometimes the initial rendering of the ripple/selection area is smaller than it should be, and located to the upper left (so probably smaller than it should be but still anchored to the top left). |
-| `PMdcAutocomplete` | Shows a flash of unstyled content ("FOUC") when a field that disallows blanks is cleared and then loses focus. The floating label stops floating and superimposes over the selected text. |
-| `PMdcNumericDoubleField` | When focus is lost for non-integer input, there's a FOUC where the field indicates that validation has failed with a red underline/outline for the filled/outlined styles respectively. |
-| `PMdcNumericDoubleField` | Empty field input correctly defaults to zero value but loses floating label. This is another FOUC. |
-| `PMdcDatePicker`| As a stylistic issue, when the year pad is being shown, if the current year is more than 7 lines down (28+ years into the year list), it doesn't show because the year list is scrolled to the top. The list should initialize to a scrolled position showing the current year. |
 
 ## Future Development
 
