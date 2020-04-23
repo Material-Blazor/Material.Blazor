@@ -81,27 +81,18 @@ The following extra components are in the `BlazorMdc.Plus` namespace.
 | `PMdcDivider` | Implements a list divider by wrapping `hr` and gives the option of inset and padded. This uses the mdc-list-divider styles. | 
 | `PMdcNumericDoubleField` | Wraps `MdcTextField` to format numeric entry of a `double`. The format is applied when the component lacks focus, at which point the field is a text field holding the formatted number as text. When the field gains focus it switches to a number field. Allows for percentages to be entered as a whole number, e.g. typing "12" will yield a `double` equal to '0.12' and displaying '12%' when lacking focus. We intend to find a similar way to handle [basis points](https://en.wikipedia.org/wiki/Basis_point). |
 | `PMdcNumericIntField` | A wrapper for `MdcpNumericDoubleField` for `int` variables. |
+| `PMdcPagedDataList` | A templated component for paging generic data lists using `PMdcPaginator`. Uses the Wig Pig nested coding pattern and can either render list items one by one or wrap a component such as `MdcList` or `MdcDataTable`. |
+| `PMdcPaginator` | An implementation of the [Material paginator specification](https://material.io/components/data-tables#behavior). |
 | `PMdcRadioButtonGroup` | A group of MdcRadioButtons. |
+| `PMdcSlidingContent` | A templated component to provide previous/next navigation through a series of pages with light left/right and fade in/out animation. |
+| `PMdcToast` | A port of [Blazored/Toast](https://github.com/Blazored/Toast) yet to be styled à la Material Theme. |
 
 ## Utilities
  
 | Utility | Notes |
 | :-------- | :---- |
-| `MdcpCascadingDefaults` | Allows you to set up defaults such as button style (filled, outlined etc), text area style (filled or outlined) |
+| `MdcCascadingDefaults` | Allows you to set up defaults such as button style (filled, outlined etc), text area style (filled or outlined) |
 | `MdcTypography` | Constants for standard Material Theme typography. |
-
-## Known Issues
-
-| Component | Issue |
-| :-------- | :---- |
-| `MdcTabBar` | Setting `TabIndex` after first render throws a JavaScript exception for Blazor WASM. |
-| `MdcTopAppBar` | Styling for the short variety of top app bar is wrong when a drawer is opened. |
-| `MdcTextField` | Floating labels do not float when data is inserted automatically by the browser. Probably also affects `MdcTextArea` and will definitely affect `MdcpNumericDoubleField` and `MdcpNumericIntField` which are derived from `MdcTextField` |
-| `MdcDialog` | When using check boxes or radio buttons in a dialog, sometimes the initial rendering of the ripple/selection area is smaller than it should be, and located to the upper left (so probably smaller than it should be but still anchored to the top left). |
-| `PMdcAutocomplete` | Shows a flash of unstyled content ("FOUC") when a field that disallows blanks is cleared and then loses focus. The floating label stops floating and superimposes over the selected text. |
-| `PMdcNumericDoubleField` | When focus is lost for non-integer input, there's a FOUC where the field indicates that validation has failed with a red underline/outline for the filled/outlined styles respectively. |
-| `PMdcNumericDoubleField` | Empty field input correctly defaults to zero value but loses floating label. This is another FOUC. |
-| `PMdcDatePicker`| As a stylistic issue, when the year pad is being shown, if the current year is more than 7 lines down (28+ years into the year list), it doesn't show because the year list is scrolled to the top. The list should initialize to a scrolled position showing the current year. |
 
 ## Future Development
 
