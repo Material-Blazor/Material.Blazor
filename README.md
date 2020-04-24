@@ -37,15 +37,17 @@ We also want to acknowledge the work of
 Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add the following CSS and JS links to your html `<head>` section (there are non-minified blazormdc.* files to reference if you prefer):
 
 ```
-    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/material-components-web@5.1.0/dist/material-components-web.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="_content/BlazorMdc/blazormdc.min.css" rel="stylesheet">
    
-    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.js"></script>
+    <script src="https://unpkg.com/material-components-web@5.1.0/dist/material-components-web.js"></script>
     <script src="_content/BlazorMdc/blazormdc.min.js"></script>
 ```
 
 Then reference the `BlazorMdc` namespace with `@using BlazorMdc` to your `_Imports.razor` file and if you want to use `PMdcToast` add `services.AddPMdcToast();` to your `ConfigureServices` function for Blazor Server or to the `Main()` function for Blazor WASM.
+
+**NOTE** - BlazorMdc works with [Material Components v5.1.0](https://github.com/material-components/material-components-web/releases/tag/v5.1.0). Version 6.1.0 released on 23 April 2020 causes dramatic markup failure.
 
 ## Demonstration website
 
