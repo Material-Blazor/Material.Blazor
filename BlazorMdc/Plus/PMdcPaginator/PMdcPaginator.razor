@@ -107,7 +107,7 @@
     private MdcMenu menu;
     private MdcIconButtonToggle iconButtonToggle;
     private bool toggleOn;
-    private IEnumerable<MdcSelect<int>.Item<int>> itemsPerPageItems;
+    private MdcListElement<int>[] itemsPerPageItems;
     private int maxPageNumber => Math.Max(0, Convert.ToInt32(Math.Ceiling((double)ItemCount / ItemsPerPage)) - 1);
     private string itemsText => $"{ItemsPerPage.ToString("G0")} items per page";
     private string positionText => PositionTextString(PageNumber);
@@ -132,12 +132,12 @@
             throw new ArgumentException($"PMdcPaginator: Cannot set ItemsPerPage to {ItemsPerPage} from selection of {{ {ItemsPerPageSelection.Select(r => r).ToString()} }}");
         }
 
-        itemsPerPageItems = from r in ItemsPerPageSelection
-                            select new MdcSelect<int>.Item<int>
+        itemsPerPageItems = (from r in ItemsPerPageSelection
+                            select new MdcListElement<int>
                             {
-                                DataValue = r,
-                                Text = r.ToString()
-                            };
+                                SelectedValue = r,
+                                Label = r.ToString()
+                            }).ToArray();
     }
 
 

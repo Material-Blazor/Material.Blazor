@@ -194,7 +194,7 @@ namespace BlazorMdc
         // This method was added in the interest of DRY and is used by MdcSelect & PMdcRadioButtonGroup
         public async Task ValidateItemListAsync(
             string componentName,
-            ListElement<T>[] items,
+            MdcListElement<T>[] items,
             MdcItemValidation appliedItemValidation,
             Func<T, Task> onItemClickAsync)
         {
@@ -205,7 +205,7 @@ namespace BlazorMdc
 
             if ((appliedItemValidation == MdcItemValidation.DefaultToFirst) && (Value is null || string.IsNullOrEmpty(Value.ToString())))
             {
-                await onItemClickAsync(items.FirstOrDefault().CheckedValue);
+                await onItemClickAsync(items.FirstOrDefault().SelectedValue);
             }
 
             var multipleEntriesWithSameValue = false;
@@ -213,7 +213,7 @@ namespace BlazorMdc
             {
                 for (int j = i + 1; j < items.Count(); j++)
                 {
-                    if (items[i].CheckedValue.Equals(items[j].CheckedValue))
+                    if (items[i].SelectedValue.Equals(items[j].SelectedValue))
                     {
                         multipleEntriesWithSameValue = true;
                     }
@@ -222,15 +222,15 @@ namespace BlazorMdc
 
             if (multipleEntriesWithSameValue)
             {
-                throw new ArgumentException(componentName + "  has multiple enties in the List with the same CheckedValue");
+                throw new ArgumentException(componentName + "  has multiple enties in the List with the same SelectedValue");
             }
 
-            if (items.Where(i => object.Equals(i.CheckedValue, Value)).Count() == 0)
+            if (items.Where(i => object.Equals(i.SelectedValue, Value)).Count() == 0)
             {
                 switch (appliedItemValidation)
                 {
                     case MdcItemValidation.DefaultToFirst:
-                        await onItemClickAsync(items.FirstOrDefault().CheckedValue);
+                        await onItemClickAsync(items.FirstOrDefault().SelectedValue);
                         break;
 
                     case MdcItemValidation.Exception:
@@ -239,7 +239,7 @@ namespace BlazorMdc
 
                         foreach (var item in items)
                         {
-                            itemList += $"{prepend} '{item.CheckedValue}'";
+                            itemList += $"{prepend} '{item.SelectedValue}'";
                             prepend = ",";
                         }
 

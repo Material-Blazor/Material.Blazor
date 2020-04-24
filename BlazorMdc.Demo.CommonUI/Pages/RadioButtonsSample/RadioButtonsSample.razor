@@ -8,9 +8,15 @@
 
 <p>See <code>RadioButtonsSample.razor</code> for sources.</p>
 
-<MdcRadioButton @bind-Value="@animal" CheckedValue=@zebraCheckedValue Label="zebra" RadioGroupName="demoGroup" />
+<MdcRadioButton @bind-Value="@animal"
+                CheckedValue=@zebraCheckedValue
+                Label="zebra"
+                RadioGroupName="demoGroup" />
 
-<MdcRadioButton @bind-Value="@animal" CheckedValue=@dogCheckedValue Label="dog" RadioGroupName="demoGroup" />
+<MdcRadioButton @bind-Value="@animal"
+                CheckedValue=@dogCheckedValue
+                Label="dog"
+                RadioGroupName="demoGroup" />
 <p style="margin-bottom: 4em;">Selected: '<strong>@(animal ?? "")</strong>'</p>
 
 
@@ -35,21 +41,21 @@
 
 
     string kittenBreed;
-    ListElement<string>[] stringItems = new ListElement<string>[]
-    {
-        new ListElement<string> { CheckedValue = "brit-short", Label = "British Shorthair" },
-        new ListElement<string> { CheckedValue = "russ-blue", Label = "Russian Blue" },
-        new ListElement<string> { CheckedValue = "ice-invis", Label = "Icelandic Invisible" }
-    };
+    MdcListElement<string>[] stringItems = new MdcListElement<string>[]
+{
+        new MdcListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new MdcListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new MdcListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+};
 
 
     Colour colour;
     enum Colour { Red, Orange, Yellow, Green, Blue, Indigo, Violet };
-    ListElement<Colour>[] colourItems => (from c in (Colour[])Enum.GetValues(typeof(Colour))
-                                                                          select new ListElement<Colour>
-                                                                          {
-                                                                              CheckedValue = c,
-                                                                              Label = c.ToString() + ((c == Colour.Blue) ? " (disabled)" : ""),
-                                                                              Disabled = c == Colour.Blue
-                                                                          }).ToArray();
+    MdcListElement<Colour>[] colourItems => (from c in (Colour[])Enum.GetValues(typeof(Colour))
+                                             select new MdcListElement<Colour>
+                                             {
+                                                 SelectedValue = c,
+                                                 Label = c.ToString() + ((c == Colour.Blue) ? " (disabled)" : ""),
+                                                 Disabled = c == Colour.Blue
+                                             }).ToArray();
 }

@@ -131,11 +131,11 @@
         result1 = await dialog1.ShowAsync();
     }
 
-    ListElement<string>[] stringItems = new ListElement<string>[]
+    MdcListElement<string>[] stringItems = new MdcListElement<string>[]
 {
-        new ListElement<string> { CheckedValue = "brit-short", Label = "British Shorthair" },
-        new ListElement<string> { CheckedValue = "russ-blue", Label = "Russian Blue" },
-        new ListElement<string> { CheckedValue = "ice-invis", Label = "Icelandic Invisible" }
+        new MdcListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new MdcListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new MdcListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
  };
 
     PMdcConfirmationDialog dialog2;
