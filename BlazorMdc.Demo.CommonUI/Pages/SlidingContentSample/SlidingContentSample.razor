@@ -51,13 +51,13 @@
         new Item() { Title="Paragraph 5", Text = "Etiam nec erat a augue pulvinar luctus eu eu elit. Aliquam vehicula tellus arcu, sit amet efficitur sapien interdum viverra. In hac habitasse platea dictumst. Vestibulum eget odio nec orci semper condimentum. Aliquam congue ante quis sodales egestas. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam velit leo, porta a rutrum nec, pulvinar a neque. Maecenas egestas eleifend purus, id porttitor est. Duis eu lobortis erat. Sed semper tempus turpis, id scelerisque lorem. Quisque auctor mi enim. Aenean in ultrices dui." },
     };
 
-    private IEnumerable<PMdcRadioButtonGroup<int>.Item<int>> radioButtonItems =>
-        from item in items
-        select new PMdcRadioButtonGroup<int>.Item<int>
+    private ListElement<int>[] radioButtonItems =>
+        (from item in items
+        select new ListElement<int>
         {
             CheckedValue = Array.IndexOf(items, items.Where(i => i.Title == item.Title).FirstOrDefault()),
             Label = item.Title
-        };
+        }).ToArray();
 
     public class Item
     {

@@ -2,7 +2,7 @@
 
 @typeparam TItem
 
-@inherits MdcComponentBase
+@inherits MdcInputComponentBase<TItem>
 
 @inject IJSRuntime jsRuntime
 
@@ -54,13 +54,6 @@
 
 
 @code {
-    //
-    //  2020-04-02  Mark Stega
-    //              Changed to use class & style mappers
-    //
-    //  2020-04-13  Mark Stega
-    //              Moved ClassMapper to constructor
-    //
     public class Item<T>
     {
         public T DataValue { get; set; }
@@ -72,8 +65,6 @@
     [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
     [Parameter] public string Label { get; set; }
     [Parameter] public IEnumerable<Item<TItem>> Items { get; set; }
-    [Parameter] public TItem Value { get; set; } = default;
-    [Parameter] public EventCallback<TItem> ValueChanged { get; set; }
 
 
     private ElementReference elementReference;

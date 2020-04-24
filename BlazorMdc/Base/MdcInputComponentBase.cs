@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -188,5 +189,69 @@ namespace BlazorMdc
             // For derived components, retain the usual lifecycle with OnInit/OnParametersSet/etc.
             return base.SetParametersAsync(ParameterView.Empty);
         }
+
+
+        // This method was added in the interest of DRY and is used by MdcSelect & PMdcRadioButtonGroup
+        public async Task ValidateItemListAsync(
+            string componentName,
+            ListElement<T>[] items,
+            MdcItemValidation appliedItemValidation,
+            Func<T, Task> onItemClickAsync)
+        {
+            if (items.Count() == 0)
+            {
+                throw new ArgumentException(componentName + " requires a non-empty Items parameter.");
+            }
+
+            if ((appliedItemValidation == MdcItemValidation.DefaultToFirst) && (Value is null || string.IsNullOrEmpty(Value.ToString())))
+            {
+                await onItemClickAsync(items.FirstOrDefault().CheckedValue);
+            }
+
+            var multipleEntriesWithSameValue = false;
+            for (int i = 0; i < (items.Count() - 2); i++)
+            {
+                for (int j = i + 1; j < items.Count(); j++)
+                {
+                    if (items[i].CheckedValue.Equals(items[j].CheckedValue))
+                    {
+                        multipleEntriesWithSameValue = true;
+                    }
+                }
+            }
+
+            if (multipleEntriesWithSameValue)
+            {
+                throw new ArgumentException(componentName + "  has multiple enties in the List with the same CheckedValue");
+            }
+
+            if (items.Where(i => object.Equals(i.CheckedValue, Value)).Count() == 0)
+            {
+                switch (appliedItemValidation)
+                {
+                    case MdcItemValidation.DefaultToFirst:
+                        await onItemClickAsync(items.FirstOrDefault().CheckedValue);
+                        break;
+
+                    case MdcItemValidation.Exception:
+                        string itemList = "{ ";
+                        string prepend = "";
+
+                        foreach (var item in items)
+                        {
+                            itemList += $"{prepend} '{item.CheckedValue}'";
+                            prepend = ",";
+                        }
+
+                        itemList += " }";
+
+                        throw new ArgumentException(componentName + $" cannot select item with data value of '{Value?.ToString()}' from {itemList}");
+
+                    case MdcItemValidation.NoSelection:
+                        break;
+                }
+            }
+        }
     }
+
 }

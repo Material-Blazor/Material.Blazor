@@ -17,7 +17,7 @@
 
 <PMdcRadioButtonGroup @bind-Value="@kittenBreed"
                       Items="stringItems"
-                      ItemValidation="@PMdcRadioButtonGroupItemValidation.DefaultToFirst" />
+                      ItemValidation="@MdcItemValidation.DefaultToFirst" />
 <p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed ?? "")</strong>'</p>
 
 
@@ -35,21 +35,21 @@
 
 
     string kittenBreed;
-    PMdcRadioButtonGroup<string>.Item<string>[] stringItems = new PMdcRadioButtonGroup<string>.Item<string>[]
+    ListElement<string>[] stringItems = new ListElement<string>[]
     {
-        new PMdcRadioButtonGroup<string>.Item<string> { CheckedValue = "brit-short", Label = "British Shorthair" },
-        new PMdcRadioButtonGroup<string>.Item<string> { CheckedValue = "russ-blue", Label = "Russian Blue" },
-        new PMdcRadioButtonGroup<string>.Item<string> { CheckedValue = "ice-invis", Label = "Icelandic Invisible" }
-            };
+        new ListElement<string> { CheckedValue = "brit-short", Label = "British Shorthair" },
+        new ListElement<string> { CheckedValue = "russ-blue", Label = "Russian Blue" },
+        new ListElement<string> { CheckedValue = "ice-invis", Label = "Icelandic Invisible" }
+    };
 
 
     Colour colour;
     enum Colour { Red, Orange, Yellow, Green, Blue, Indigo, Violet };
-    IEnumerable<PMdcRadioButtonGroup<Colour>.Item<Colour>> colourItems => from c in (Colour[])Enum.GetValues(typeof(Colour))
-                                                                          select new PMdcRadioButtonGroup<Colour>.Item<Colour>
+    ListElement<Colour>[] colourItems => (from c in (Colour[])Enum.GetValues(typeof(Colour))
+                                                                          select new ListElement<Colour>
                                                                           {
                                                                               CheckedValue = c,
                                                                               Label = c.ToString() + ((c == Colour.Blue) ? " (disabled)" : ""),
                                                                               Disabled = c == Colour.Blue
-                                                                          };
+                                                                          }).ToArray();
 }
