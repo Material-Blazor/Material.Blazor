@@ -25,8 +25,8 @@
 <p>You typed: <strong>'@(currentValueRight ?? "")'</strong></p>
 
 <p style="margin-top: 3rem;">Password</p>
-<p><MdcTextField Label="Password" @bind-Value="@currentValueRight" TextInputStyle="MdcTextInputStyle.Outlined" Type="password" /></p>
-<p>You typed: <strong>'@(currentValueRight ?? "")'</strong></p>
+<p><MdcTextField Label="Password" @bind-Value="@currentValuePassword" TextInputStyle="MdcTextInputStyle.Outlined" Type="password" /></p>
+<p>You typed: <strong>'@(currentValuePassword ?? "")'</strong></p>
 
 
 @code {
@@ -34,4 +34,5 @@
     string currentValueOutlined;
     string currentValueFullWidth;
     string currentValueRight;
+    string currentValuePassword;
 }
