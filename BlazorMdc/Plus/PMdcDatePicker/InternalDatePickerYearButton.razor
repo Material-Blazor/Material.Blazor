@@ -1,12 +1,7 @@
 ﻿@namespace BlazorMdc
 
-@*@inherits MdcComponentBase
-
-@inject IJSRuntime jsRuntime*@
-
 
 <MdcButton OnClick="@OnClickAsync" Label="@DisplayYear.ToString()" Class="@buttonStyleClass" Disabled="@disabled" />
-
 
 
 @code {
@@ -42,15 +37,6 @@
             return false;
         }
     }
-
-
-    //protected override void OnInitialized()
-    //{
-    //    base.OnInitialized();
-
-    //    ClassMapper
-    //        .Add("bmdc-dp-year-pad__button-container");
-    //}
 
 
     private async Task OnClickAsync()

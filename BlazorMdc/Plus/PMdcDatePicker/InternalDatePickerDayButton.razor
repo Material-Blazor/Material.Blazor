@@ -2,8 +2,6 @@
 
 @inherits MdcComponentBase
 
-@inject IJSRuntime jsRuntime
-
 
 <MdcButton OnClick="@OnClickAsync" Label="@day" Class="@buttonStyleClass" Disabled="@disabled" />
 
@@ -30,7 +28,7 @@
             {
                 return true;
             }
-
+            
             var criteria = CascadingDefaults.AppliedDateSelectionCriteria(DateSelectionCriteria);
 
             switch (criteria)
