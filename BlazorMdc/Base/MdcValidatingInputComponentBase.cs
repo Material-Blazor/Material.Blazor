@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BlazorMdc
@@ -8,11 +10,12 @@ namespace BlazorMdc
     {
         // This method was added in the interest of DRY and is used by MdcSelect & PMdcRadioButtonGroup
         public async Task ValidateItemListAsync(
-            string componentName,
-            MdcListElement<T>[] items,
+            IEnumerable<MdcListElement<T>> items,
             MdcItemValidation appliedItemValidation,
             Func<T, Task> onItemClickAsync)
         {
+            var componentName = (new Regex("^[a-z,A-Z]*")).Match(GetType().Name).ToString();
+            
             if (items.Count() == 0)
             {
                 throw new ArgumentException(componentName + " requires a non-empty Items parameter.");
@@ -23,21 +26,9 @@ namespace BlazorMdc
                 await onItemClickAsync(items.FirstOrDefault().SelectedValue);
             }
 
-            var multipleEntriesWithSameValue = false;
-            for (int i = 0; i < (items.Count() - 2); i++)
+            if (items.GroupBy(i => i.SelectedValue).Where(g => g.Count() > 1).Count() > 0)
             {
-                for (int j = i + 1; j < items.Count(); j++)
-                {
-                    if (items[i].SelectedValue.Equals(items[j].SelectedValue))
-                    {
-                        multipleEntriesWithSameValue = true;
-                    }
-                }
-            }
-
-            if (multipleEntriesWithSameValue)
-            {
-                throw new ArgumentException(componentName + "  has multiple enties in the List with the same SelectedValue");
+                throw new ArgumentException(componentName + " has multiple enties in the List with the same SelectedValue");
             }
 
             if (items.Where(i => object.Equals(i.SelectedValue, Value)).Count() == 0)

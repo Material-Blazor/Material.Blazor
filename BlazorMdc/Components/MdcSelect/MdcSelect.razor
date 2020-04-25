@@ -61,7 +61,7 @@
 
     [Parameter] public MdcItemValidation? ItemValidation { get; set; }
     [Parameter] public string Label { get; set; }
-    [Parameter] public MdcListElement<TItem>[] Items { get; set; }
+    [Parameter] public IEnumerable<MdcListElement<TItem>> Items { get; set; }
     [Parameter] public MdcSelectInputStyle? SelectInputStyle { get; set; }
     [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
 
@@ -90,14 +90,16 @@
         }
     }
 
+
     protected override async Task OnParametersSetAsync()
     {
         await base.OnParametersSetAsync();
 
         MdcItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidationSelect(ItemValidation);
 
-        await ValidateItemListAsync("MdcSelect", Items, appliedItemValidation, OnItemClickAsync);
+        await ValidateItemListAsync(Items, appliedItemValidation, OnItemClickAsync);
     }
+
 
     private async Task OnItemClickAsync(TItem dataValue)
     {

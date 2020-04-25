@@ -41,21 +41,21 @@
 
 
     string kittenBreed;
-    MdcListElement<string>[] stringItems = new MdcListElement<string>[]
-{
+    IEnumerable<MdcListElement<string>> stringItems = new MdcListElement<string>[]
+    {
         new MdcListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MdcListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
         new MdcListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
-};
+    };
 
 
     Colour colour;
     enum Colour { Red, Orange, Yellow, Green, Blue, Indigo, Violet };
-    MdcListElement<Colour>[] colourItems => (from c in (Colour[])Enum.GetValues(typeof(Colour))
-                                             select new MdcListElement<Colour>
-                                             {
-                                                 SelectedValue = c,
-                                                 Label = c.ToString() + ((c == Colour.Blue) ? " (disabled)" : ""),
-                                                 Disabled = c == Colour.Blue
-                                             }).ToArray();
+    IEnumerable<MdcListElement<Colour>> colourItems => from c in (Colour[])Enum.GetValues(typeof(Colour))
+                                                       select new MdcListElement<Colour>
+                                                       {
+                                                           SelectedValue = c,
+                                                           Label = c.ToString() + ((c == Colour.Blue) ? " (disabled)" : ""),
+                                                           Disabled = c == Colour.Blue
+                                                       };
 }

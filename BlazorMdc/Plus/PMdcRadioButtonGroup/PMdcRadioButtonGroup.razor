@@ -36,7 +36,7 @@
     //  2020-04-22  Mark Stega
     //              Changed to use the newly created MdcRadioButton
     //
-    [Parameter] public MdcListElement<TItem>[] Items { get; set; }
+    [Parameter] public IEnumerable<MdcListElement<TItem>> Items { get; set; }
     [Parameter] public bool Vertical { get; set; } = false;
     [Parameter] public MdcItemValidation? ItemValidation { get; set; }
     [Parameter] public bool EnableTouchWrapper { get; set; } = true;
@@ -51,11 +51,11 @@
 
         MdcItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidationRadioButtonGroup(ItemValidation);
 
-        await ValidateItemListAsync("PMdcRadioButtonGroup", Items, appliedItemValidation, OnItemClickAsync);
+        await ValidateItemListAsync(Items, appliedItemValidation, OnItemClickAsync);
     }
 
 
-    public async Task OnItemClickAsync(TItem SelectedValue)
+    private async Task OnItemClickAsync(TItem SelectedValue)
     {
         Value = SelectedValue;
         await ValueChanged.InvokeAsync(Value);

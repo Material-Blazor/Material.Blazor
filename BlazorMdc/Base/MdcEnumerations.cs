@@ -5,7 +5,6 @@
 namespace BlazorMdc
 {
     // Mdc components
-
     public enum MdcButtonStyle { ContainedRaised, ContainedUnelevated, Outlined, Text }
 
     public enum MdcCardStyle { Default, Outlined }
@@ -23,10 +22,10 @@ namespace BlazorMdc
     
     // The style of MDC input: note that FullWidth is mutually exclusive with Outlined
     public enum MdcTextInputStyle { Filled, Outlined, FullWidth }
+
     public enum MdcSelectInputStyle { Filled, Outlined }
 
 
     // PMdc components
-
     public enum PMdcDateSelectionCriteria { AllowAll, WeekendsOnly, WeekdaysOnly }
 }
