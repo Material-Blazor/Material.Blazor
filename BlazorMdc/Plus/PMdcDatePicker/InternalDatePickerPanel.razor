@@ -23,22 +23,19 @@
                 @monthText
             </div>
             <div class="bmdc-dp-menu__float-left">
-                <button @ref="@yearToggleReference" @onclick="@OnYearToggleClick" class="mdc-icon-button bmdc-dp-menu__icon-button" aria-pressed="false" type="button">
-                    <i class="material-icons mdc-icon-button__icon mdc-icon-button__icon--on bmdc-dp-menu__icon-button">arrow_drop_up</i>
-                    <i class="material-icons mdc-icon-button__icon bmdc-dp-menu__icon-button">arrow_drop_down</i>
-                </button>
+               <MdcIconButtonToggle @bind-Value="@showYearPad" Class="bmdc-dp-menu__icon-button" IconOn="@MdcIcons.Icon__arrow_drop_up" IconOff="@MdcIcons.Icon__arrow_drop_down" />
             </div>
 
             @if (!showYearPad)
             {
                 <div class="bmdc-dp-menu__float-right bmdc-dp-menu__float-right-spaced">
-                    <button @ref="@nextMonthReference" class="mdc-icon-button material-icons bmdc-dp-menu__icon-button" @onclick="@OnNextMonthClick" disabled="@nextMonthDisabled" type="button">chevron_right</button>
+                    <MdcIconButton OnClick="OnNextMonthClick" Class="bmdc-dp-menu__icon-button" Icon="@MdcIcons.Icon__chevron_right" Disabled="@nextMonthDisabled" />
                 </div>
                 <div class="bmdc-dp-menu__float-right bmdc-dp-menu__float-right-spaced">
-                    <button @ref="@currentDateReference" class="mdc-icon-button material-icons bmdc-dp-menu__icon-button" @onclick="@OnShowCurrentDateClick" type="button">undo</button>
+                    <MdcIconButton OnClick="OnShowCurrentDateClick" Class="bmdc-dp-menu__icon-button" Icon="@MdcIcons.Icon__undo" />
                 </div>
                 <div class="bmdc-dp-menu__float-right">
-                    <button @ref="@previousMonthReference" class="mdc-icon-button material-icons bmdc-dp-menu__icon-button" @onclick="@OnPreviousMonthClick" disabled="@previousMonthDisabled" type="button">chevron_left</button>
+                    <MdcIconButton OnClick="OnPreviousMonthClick" Class="bmdc-dp-menu__icon-button" Icon="@MdcIcons.Icon__chevron_left" Disabled="@previousMonthDisabled" />
                 </div>
             }
         </div>
@@ -88,11 +85,7 @@
     private string[] daysOfWeek;
 
     private ElementReference listItem;
-    private ElementReference yearToggleReference;
-    private ElementReference currentDateReference;
-    private ElementReference previousMonthReference;
-    private ElementReference nextMonthReference;
-    private bool previousMonthDisabled => (startOfDisplayMonth <= MinDate);
+   private bool previousMonthDisabled => (startOfDisplayMonth <= MinDate);
     private bool nextMonthDisabled => (startOfDisplayMonth.AddMonths(1) >= MaxDate);
     private bool showYearPad;
 
@@ -116,7 +109,7 @@
 
         ClassMapper
             .Add("mdc-typography--body2 bmdc-dp-container");
-    
+
         daysOfWeek = (new DateTimeFormatInfo()).DayNames.Select(d => d.Substring(0, 1)).ToArray();
     }
 
@@ -168,7 +161,6 @@
 
             showYearPad = false;
 
-            //StateHasChanged();
         }
     }
 
@@ -183,6 +175,7 @@
         await ValueChanged.InvokeAsync(Value);
     }
 
+
     private void OnYearItemClick(int year)
     {
         monthsOffset += (year - startOfDisplayMonth.Year) * 12;
@@ -190,10 +183,6 @@
         SetParameters(true);
     }
 
-    private void OnYearToggleClick()
-    {
-        showYearPad = !showYearPad;
-    }
 
     private void OnPreviousMonthClick()
     {
@@ -201,26 +190,17 @@
         SetParameters(true);
     }
 
+
     private void OnShowCurrentDateClick()
     {
         monthsOffset = 0;
         SetParameters(true);
     }
 
+
     private void OnNextMonthClick()
     {
         monthsOffset++;
         SetParameters(true);
-    }
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.init", yearToggleReference);
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButton.init", previousMonthReference);
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButton.init", currentDateReference);
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButton.init", nextMonthReference);
-        }
     }
 }

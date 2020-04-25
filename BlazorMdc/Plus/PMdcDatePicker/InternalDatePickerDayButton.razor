@@ -5,21 +5,10 @@
 @inject IJSRuntime jsRuntime
 
 
-<div class="@ClassMapper.ToString()"
-     style="@StyleMapper.ToString()">
-
-    <button @ref="elementReference" class="mdc-button bmdc-dp-day-pad__button @buttonStyleClass" @onclick="@OnClickAsync" disabled="@disabled" type="button">
-        <div class="mdc-button__ripple bmdc-dp-day-pad__button__ripple"></div>
-        <span class="mdc-button__label">@day</span>
-    </button>
-</div>
+<MdcButton OnClick="@OnClickAsync" Label="@day" Class="@buttonStyleClass" Disabled="@disabled" />
 
 
 @code {
-    //
-    //  2020-04-02  Mark Stega
-    //              Changed to use class & style mappers
-    //
     [Parameter] public DateTime CurrentDate { get; set; }
     [Parameter] public DateTime DisplayDate { get; set; }
     [Parameter] public DateTime StartOfDisplayMonth { get; set; }
@@ -29,11 +18,8 @@
     [Parameter] public DateTime MaxDate { get; set; }
 
 
-    private ElementReference elementReference;
-    private PMdcDateSelectionCriteria myCriteria => CascadingDefaults.AppliedDateSelectionCriteria(DateSelectionCriteria);
-    private string text => Utilities.DateToString(DisplayDate);
-    private int day => DisplayDate.Day;
-    private string buttonStyleClass => (DisplayDate == CurrentDate) ? "mdc-button--unelevated" : "";
+    private string day => DisplayDate.Day.ToString();
+    private string buttonStyleClass => $"bmdc-dp-day-pad__button {((DisplayDate == CurrentDate) ? " mdc-button--unelevated" : "")}";
 
 
     private bool disabled
@@ -45,7 +31,9 @@
                 return true;
             }
 
-            switch (myCriteria)
+            var criteria = CascadingDefaults.AppliedDateSelectionCriteria(DateSelectionCriteria);
+
+            switch (criteria)
             {
                 case PMdcDateSelectionCriteria.WeekendsOnly:
                     if ((DisplayDate.DayOfWeek != DayOfWeek.Sunday) && (DisplayDate.DayOfWeek != DayOfWeek.Saturday))
@@ -67,26 +55,8 @@
     }
 
 
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        ClassMapper
-            .Add("bmdc-dp-day-pad__button-container");
-    }
-
-
     private async Task OnClickAsync()
     {
         await OnItemClickAsync.InvokeAsync(DisplayDate);
-    }
-
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.button.init", elementReference);
-        }
     }
 }
