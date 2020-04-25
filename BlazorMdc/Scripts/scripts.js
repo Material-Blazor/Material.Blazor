@@ -195,10 +195,16 @@ window.BlazorMdc = {
 
     radioButton: {
         init: function (elem, formFieldElem, isChecked) {
-            let radio = mdc.radio.MDCRadio.attachTo(elem);
-            radio.checked = isChecked;
+            elem._radio = mdc.radio.MDCRadio.attachTo(elem);
+            elem._radio.checked = isChecked;
             let formField = mdc.formField.MDCFormField.attachTo(formFieldElem);
-            formField.input = radio;
+            formField.input = elem._radio;
+        },
+
+        click: function (elem) {
+            if (elem && elem._radio) {
+                elem._radio.click();
+            }
         }
     },
 
@@ -215,6 +221,19 @@ window.BlazorMdc = {
         }
     },
 
+    tabBar: {
+        init: function (elem) {
+            elem._tabBar = mdc.tabBar.MDCTabBar.attachTo(elem);
+        },
+
+        setTab: function (elem, index) {
+            if (elem._tabBar) {
+                let tl = elem._tabBar.tabList_[index];
+                tl.root_.click();
+            }
+        }
+    },
+
     textField: {
         init: function (elem) {
             mdc.textField.MDCTextField.attachTo(elem);
@@ -227,19 +246,6 @@ window.BlazorMdc = {
                     input.focus();
                     input.select();
                 }
-            }
-        }
-    },
-
-    tabBar: {
-        init: function (elem) {
-            elem._tabBar = mdc.tabBar.MDCTabBar.attachTo(elem);
-        },
-
-        setTab: function (elem, index) {
-            if (elem._tabBar) {
-                let tl = elem._tabBar.tabList_[index];
-                tl.root_.click();
             }
         }
     },

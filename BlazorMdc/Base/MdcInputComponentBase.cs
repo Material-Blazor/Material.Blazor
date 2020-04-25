@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -17,6 +18,8 @@ namespace BlazorMdc
         private ValidationMessageStore _parsingValidationMessages;
         private Type _nullableUnderlyingType;
         private bool _hasSetInitialParameters;
+        private T _value;
+        private bool hasRendered = false;
 
         [CascadingParameter] EditContext CascadedEditContext { get; set; }
 
@@ -36,7 +39,30 @@ namespace BlazorMdc
         /// <example>
         /// @bind-Value="@model.PropertyName"
         /// </example>
-        [Parameter] public T Value { get; set; }
+        [Parameter] public T Value
+        {
+            get => _value;
+            set
+            {
+                //if (hasRendered)
+                //{
+                //    ValueSetterAsync(value).Wait();
+                //}
+                //else
+                {
+                    _value = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Determines how to handle the consumer setting the Value parameter - can be overridden by Mdc and PMdc components
+        /// </summary>
+        protected virtual async Task ValueSetterAsync(T value)
+        {
+            await Task.CompletedTask;
+            _value = value;
+        }
 
         /// <summary>
         /// Gets or sets a callback that updates the bound value.
@@ -63,13 +89,13 @@ namespace BlazorMdc
         /// </summary>
         protected T CurrentValue
         {
-            get => Value;
+            get => _value;
             set
             {
-                var hasChanged = !EqualityComparer<T>.Default.Equals(value, Value);
+                var hasChanged = !EqualityComparer<T>.Default.Equals(value, _value);
                 if (hasChanged)
                 {
-                    Value = value;
+                    _value = value;
                     _ = ValueChanged.InvokeAsync(value);
                     EditContext?.NotifyFieldChanged(FieldIdentifier);
                 }
@@ -188,6 +214,22 @@ namespace BlazorMdc
 
             // For derived components, retain the usual lifecycle with OnInit/OnParametersSet/etc.
             return base.SetParametersAsync(ParameterView.Empty);
+        }
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            //if ((firstRender && (Dialog is null)) || instantiate)
+            //{
+            //    instantiate = false;
+            //    await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.init", radioButtonReference, formReference, Checked);
+            //}
+
+            if (firstRender)
+            {
+                hasRendered = true;
+            }
+
+            await base.OnAfterRenderAsync(firstRender);
         }
     }
 }

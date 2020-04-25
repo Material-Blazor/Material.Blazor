@@ -134,5 +134,14 @@
             instantiate = false;
             await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.init", radioButtonReference, formReference, Checked);
         }
+
+        await base.OnAfterRenderAsync(firstRender);
     }
+
+
+    //protected override async Task ValueSetterAsync(TItem value)
+    //{
+    //    await base.ValueSetterAsync(value);
+    //    //await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.click", radioButtonReference);
+    //}
 }
