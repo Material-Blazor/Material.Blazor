@@ -83,15 +83,6 @@
     overflow: hidden;
 }
 
-.bmdc-dp-day-pad__button-container {
-    float: left;
-    height: 32px;
-    width: 32px;
-    margin: auto;
-    padding: 0;
-    position: relative;
-}
-
 .bmdc-dp-day-pad__button {
     float: left;
     text-align: center;
@@ -126,15 +117,6 @@
     padding: 0 !important;
     overflow: auto;
     max-height: 228px;
-}
-
-.bmdc-dp-year-pad__button-container {
-    float: left;
-    height: 32px;
-    width: 56px;
-    margin: auto;
-    padding: 0;
-    position: relative;
 }
 
 .bmdc-dp-year-pad__button {

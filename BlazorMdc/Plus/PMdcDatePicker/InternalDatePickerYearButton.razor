@@ -1,18 +1,7 @@
 ﻿@namespace BlazorMdc
 
-@inherits MdcComponentBase
 
-@inject IJSRuntime jsRuntime
-
-
-<div class="@ClassMapper.ToString()"
-     style="@StyleMapper.ToString()">
-
-    <button @ref="elementReference" class="mdc-button bmdc-dp-year-pad__button @buttonStyleClass" @onclick="@OnClickAsync" disabled="@disabled" type="button">
-        <div class="mdc-button__ripple bmdc-dp-day-pad__button__ripple"></div>
-        <span class="mdc-button__label">@DisplayYear</span>
-    </button>
-</div>
+<MdcButton OnClick="@OnClickAsync" Label="@DisplayYear.ToString()" Class="@buttonStyleClass" Disabled="@disabled" />
 
 
 @code {
@@ -27,8 +16,8 @@
     [Parameter] public DateTime MaxDate { get; set; }
 
 
-    private ElementReference elementReference;
-    private string buttonStyleClass => (DisplayYear == CurrentYear) ? "mdc-button--unelevated" : "";
+    //private ElementReference elementReference;
+    private string buttonStyleClass => $"bmdc-dp-year-pad__button {((DisplayYear == CurrentYear) ? "mdc-button--unelevated" : "")}";
 
 
     private bool disabled
@@ -50,26 +39,8 @@
     }
 
 
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        ClassMapper
-            .Add("bmdc-dp-year-pad__button-container");
-    }
-
-
     private async Task OnClickAsync()
     {
         await OnItemClickAsync.InvokeAsync(DisplayYear);
-    }
-
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.button.init", elementReference);
-        }
     }
 }

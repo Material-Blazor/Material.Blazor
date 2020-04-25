@@ -25,7 +25,7 @@
         <PMdcRadioButtonGroup @bind-Value="@radioButtonResult1"
                               Items="stringItems"
                               Vertical="true"
-                              ItemValidation="@PMdcRadioButtonGroupItemValidation.DefaultToFirst" />
+                              ItemValidation="@MdcItemValidation.DefaultToFirst" />
     </Body>
     <Buttons>
         <MdcButton Label="Orange" DialogAction="orange"></MdcButton>
@@ -131,12 +131,12 @@
         result1 = await dialog1.ShowAsync();
     }
 
-    PMdcRadioButtonGroup<string>.Item<string>[] stringItems = new PMdcRadioButtonGroup<string>.Item<string>[]
-    {
-        new PMdcRadioButtonGroup<string>.Item<string> { CheckedValue = "brit-short", Label = "British Shorthair" },
-        new PMdcRadioButtonGroup<string>.Item<string> { CheckedValue = "russ-blue", Label = "Russian Blue" },
-        new PMdcRadioButtonGroup<string>.Item<string> { CheckedValue = "ice-invis", Label = "Icelandic Invisible" }
-            };
+    MdcListElement<string>[] stringItems = new MdcListElement<string>[]
+{
+        new MdcListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new MdcListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new MdcListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+ };
 
     PMdcConfirmationDialog dialog2;
     string result2;

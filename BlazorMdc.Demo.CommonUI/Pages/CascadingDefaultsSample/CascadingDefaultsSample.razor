@@ -9,7 +9,7 @@
 <p>See <code>CascadingDefaultsSample.razor</code> for sources.</p>
 
 <h3 class="@MdcTypography.Heading5" style="margin-top: 4rem;">BlazorMdc default styles</h3>
-<p><MdcSelect Label="Select" @bind-Value="@selectDefault" Items="items" /></p>
+<p><MdcSelect Label="Select" @bind-Value="@selectDefault" Items="items" ItemValidation="@MdcItemValidation.NoSelection" /></p>
 <p><PMdcDatePicker Label="Date" @bind-Value="dateDefault" MinDate="min" MaxDate="max" /></p>
 <p><MdcTextField Label="Text Field" @bind-Value="textFieldDefault" /></p>
 <p><MdcTextArea Label="Text Area" Rows="2" @bind-Value="textAreaDefault" /></p>
@@ -58,7 +58,8 @@
         SelectInputStyle = MdcSelectInputStyle.Outlined,
         TextInputStyle = MdcTextInputStyle.Outlined,
         ButtonStyle = MdcButtonStyle.Outlined,
-        DateSelectionCriteria = PMdcDateSelectionCriteria.WeekdaysOnly
+        DateSelectionCriteria = PMdcDateSelectionCriteria.WeekdaysOnly,
+        ItemValidation = MdcItemValidation.NoSelection
     };
     string selectVariant1;
     string textFieldVariant1;
@@ -71,7 +72,8 @@
         SelectInputStyle = MdcSelectInputStyle.Filled,
         TextInputStyle = MdcTextInputStyle.FullWidth,
         ButtonStyle = MdcButtonStyle.ContainedUnelevated,
-        DateSelectionCriteria = PMdcDateSelectionCriteria.WeekendsOnly
+        DateSelectionCriteria = PMdcDateSelectionCriteria.WeekendsOnly,
+        ItemValidation = MdcItemValidation.NoSelection
     };
     string selectVariant2;
     string textFieldVariant2;
@@ -84,7 +86,8 @@
         SelectInputStyle = MdcSelectInputStyle.Outlined,
         TextInputStyle = MdcTextInputStyle.Filled,
         ButtonStyle = MdcButtonStyle.ContainedRaised,
-        DateSelectionCriteria = PMdcDateSelectionCriteria.AllowAll
+        DateSelectionCriteria = PMdcDateSelectionCriteria.AllowAll,
+        ItemValidation = MdcItemValidation.NoSelection
     };
     string selectVariant3;
     string textFieldVariant3;
@@ -93,11 +96,11 @@
 
 
 
-    MdcSelect<string>.Item<string>[] items = new MdcSelect<string>.Item<string>[]
+    MdcListElement<string>[] items = new MdcListElement<string>[]
     {
-        new MdcSelect<string>.Item<string> { DataValue = "", Text = "" },
-        new MdcSelect<string>.Item<string> { DataValue = "brit-short", Text = "British Shorthair" },
-        new MdcSelect<string>.Item<string> { DataValue = "russ-blue", Text = "Russian Blue" },
-        new MdcSelect<string>.Item<string> { DataValue = "ice-invis", Text = "Icelandic Invisible" }
+        new MdcListElement<string> { SelectedValue = "", Label = "" },
+        new MdcListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new MdcListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new MdcListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
     };
 }
