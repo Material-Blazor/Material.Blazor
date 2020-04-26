@@ -55,7 +55,7 @@
 
 
     private string radioGroupName = Utilities.GenerateCssElementSelector();
-    private IEnumerable<Wrapper<TItem>> wrappers;
+    private Wrapper<TItem>[] wrappers;
 
 
     protected override async Task OnInitializedAsync()
@@ -65,18 +65,12 @@
         MdcItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidationRadioButtonGroup(ItemValidation);
 
         await ValidateItemListAsync(Items, appliedItemValidation, OnItemClickAsync);
-    }
 
-
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
-
-        wrappers = from i in Items
-                   select new Wrapper<TItem>
-                   {
-                       ListElement = i
-                   };
+        wrappers = (from i in Items
+                    select new Wrapper<TItem>
+                    {
+                        ListElement = i
+                    }).ToArray();
     }
 
 
@@ -84,7 +78,6 @@
     {
         CurrentValue = SelectedValue;
         await Task.CompletedTask;
-        //await ValueChanged.InvokeAsync(Value);
     }
 
 
@@ -96,12 +89,8 @@
 
     internal override async Task ValueSetterAsync(TItem value)
     {
-        //await base.ValueSetterAsync(value);
-        //await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.click", radioButtonReference);
         var w = wrappers.Where(w => EqualityComparer<TItem>.Default.Equals(w.ListElement.SelectedValue, value)).FirstOrDefault();
 
-        w.RadioButton.SetValue(true);
-
-        await base.ValueSetterAsync(value);
+        await w.RadioButton.ClickAsync();
     }
 }

@@ -50,7 +50,7 @@ namespace BlazorMdc
                 {
                     if (hasRendered)
                     {
-                        ValueSetterAsync(value).Wait();
+                        Task.Run(async () => await ValueSetterAsync(value));
                     }
                     else
                     {
@@ -65,8 +65,8 @@ namespace BlazorMdc
         /// </summary>
         internal virtual async Task ValueSetterAsync(T value)
         {
-            await Task.CompletedTask;
             _value = value;
+            await Task.CompletedTask;
         }
         
         internal T SetValue(T value)

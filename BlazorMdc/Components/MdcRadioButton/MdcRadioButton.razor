@@ -116,9 +116,5 @@
     }
 
 
-    internal override async Task ValueSetterAsync(bool value)
-    {
-        //await base.ValueSetterAsync(value);
-        await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.click", radioButtonReference);
-    }
+    internal async Task ClickAsync() => await jsRuntime.InvokeVoidAsync("BlazorMdc.radioButton.click", radioButtonReference);
 }
