@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
@@ -44,13 +45,17 @@ namespace BlazorMdc
             get => _value;
             set
             {
-                //if (hasRendered)
-                //{
-                //    ValueSetterAsync(value).Wait();
-                //}
-                //else
+                var hasChanged = !EqualityComparer<T>.Default.Equals(value, _value);
+                if (hasChanged)
                 {
-                    _value = value;
+                    if (hasRendered)
+                    {
+                        ValueSetterAsync(value).Wait();
+                    }
+                    else
+                    {
+                        _value = value;
+                    }
                 }
             }
         }
@@ -58,10 +63,15 @@ namespace BlazorMdc
         /// <summary>
         /// Determines how to handle the consumer setting the Value parameter - can be overridden by Mdc and PMdc components
         /// </summary>
-        protected virtual async Task ValueSetterAsync(T value)
+        internal virtual async Task ValueSetterAsync(T value)
         {
             await Task.CompletedTask;
             _value = value;
+        }
+        
+        internal T SetValue(T value)
+        {
+            return Value = value;
         }
 
         /// <summary>
@@ -181,7 +191,7 @@ namespace BlazorMdc
             => EditContext?.FieldCssClass(FieldIdentifier) ?? string.Empty;
 
         /// <inheritdoc />
-        public override Task SetParametersAsync(ParameterView parameters)
+        public override async Task SetParametersAsync(ParameterView parameters)
         {
             parameters.SetParameterProperties(this);
 
@@ -190,14 +200,12 @@ namespace BlazorMdc
                 // This is the first run
                 // Could put this logic in OnInit, but its nice to avoid forcing people who override OnInit to call base.OnInit()
 
-                if (ValueExpression == null)
+                if (ValueExpression != null)
                 {
-                    throw new InvalidOperationException($"{GetType()} requires a value for the 'ValueExpression' " +
-                        $"parameter. Normally this is provided automatically when using 'bind-Value'.");
+                    FieldIdentifier = FieldIdentifier.Create(ValueExpression);
                 }
 
                 EditContext = CascadedEditContext;
-                FieldIdentifier = FieldIdentifier.Create(ValueExpression);
                 _nullableUnderlyingType = Nullable.GetUnderlyingType(typeof(T));
                 _hasSetInitialParameters = true;
             }
@@ -213,7 +221,7 @@ namespace BlazorMdc
             }
 
             // For derived components, retain the usual lifecycle with OnInit/OnParametersSet/etc.
-            return base.SetParametersAsync(ParameterView.Empty);
+            await base.SetParametersAsync(ParameterView.Empty);
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)

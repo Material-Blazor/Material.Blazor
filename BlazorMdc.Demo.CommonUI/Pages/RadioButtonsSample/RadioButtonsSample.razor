@@ -8,15 +8,16 @@
 
 <p>See <code>RadioButtonsSample.razor</code> for sources.</p>
 
-<MdcRadioButton @bind-Value="@animal"
-                CheckedValue=@zebraCheckedValue
+<MdcRadioButton CheckedValue=@zebraCheckedValue
+                @bind-Value="@zebraChecked"
                 Label="zebra"
-                RadioGroupName="demoGroup" />
+                RadioGroupName="demoGroup"
+                OnClick="@(() => animal = "zebra")" />
 
-<MdcRadioButton @bind-Value="@animal"
-                CheckedValue=@dogCheckedValue
+<MdcRadioButton CheckedValue=@dogCheckedValue
                 Label="dog"
-                RadioGroupName="demoGroup" />
+                RadioGroupName="demoGroup" 
+                OnClick="@(() => animal = "dog")"/>
 <p style="margin-bottom: 4em;">Selected: '<strong>@(animal ?? "")</strong>'</p>
 
 
@@ -38,6 +39,7 @@
     string animal = "zebra";
     string zebraCheckedValue = "zebra";
     string dogCheckedValue = "dog";
+    bool zebraChecked = true;
 
 
     string kittenBreed;
