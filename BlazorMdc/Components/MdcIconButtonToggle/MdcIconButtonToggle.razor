@@ -49,7 +49,7 @@
 
         objectReference = DotNetObjectReference.Create(this);
 
-        cachedIsOpen = CurrentValue;
+        cachedIsOpen = NativeComponentBoundValue;
     }
 
 
@@ -63,7 +63,7 @@
     public async Task NotifyOnAsync(bool on)
     {
         cachedIsOpen = on;
-        CurrentValue = on;
+        NativeComponentBoundValue = on;
         await Task.CompletedTask;
     }
 
@@ -80,11 +80,5 @@
     }
 
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.init", elementReference, objectReference);
-        }
-    }
+    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.init", elementReference, objectReference);
 }

@@ -56,9 +56,6 @@
 
 
 @code {
-
-    [CascadingParameter] private IMdcDialog Dialog { get; set; }
-
     [Parameter] public MdcItemValidation? ItemValidation { get; set; }
     [Parameter] public string Label { get; set; }
     [Parameter] public IEnumerable<MdcListElement<TItem>> Items { get; set; }
@@ -72,7 +69,6 @@
     private string selectedText = "";
     private string floatingLabelClass = "";
     private string alignClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
-    private bool instantiate = false;
 
 
     protected override void OnInitialized()
@@ -83,11 +79,6 @@
             .Add("mdc-select")
             .AddIf("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
             .AddIf("mdc-select--disabled", () => Disabled);
-
-        if (Dialog != null)
-        {
-            Dialog.RegisterLayoutAction(this);
-        }
     }
 
 
@@ -108,24 +99,5 @@
     }
 
 
-    public void RequestInstantiation()
-    {
-        instantiate = true;
-    }
-
-    protected override bool ShouldRender()
-    {
-        return instantiate;
-    }
-
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if ((firstRender && (Dialog is null)) || instantiate)
-        {
-            instantiate = false;
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.select.init", elementReference);
-        }
-    }
-
+    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.select.init", elementReference);
 }

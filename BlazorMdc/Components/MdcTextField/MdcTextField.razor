@@ -13,7 +13,7 @@
     <input type="@Type"
            id="@Id"
            class="mdc-text-field__input @Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle)) @FieldClass"
-           @bind="@CurrentValue"
+           @bind="@NativeComponentBoundValue"
            aria-labelledby="@labelId"
            disabled="@Disabled"
            formnovalidate="@FormNoValidate"
@@ -91,6 +91,7 @@
             .AddIf("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
     }
 
+
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
@@ -99,16 +100,12 @@
 
         TrailingIconMarkup = (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--trailing\" tabindex=\"-1\" role=\"button\">{TrailingIcon}</i>");
 
-        floatingLabelClass = string.IsNullOrEmpty(CurrentValue) ? "" : "mdc-floating-label--float-above";
+        floatingLabelClass = string.IsNullOrEmpty(NativeComponentBoundValue) ? "" : "mdc-floating-label--float-above";
     }
 
-    protected async override Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.textField.init", elementReference);
-        }
-    }
+
+    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.textField.init", elementReference);
+
 
     internal async Task Select()
     {

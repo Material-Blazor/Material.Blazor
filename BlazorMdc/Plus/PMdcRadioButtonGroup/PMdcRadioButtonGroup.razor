@@ -76,14 +76,8 @@
 
     private async Task OnItemClickAsync(TItem SelectedValue)
     {
-        CurrentValue = SelectedValue;
+        NativeComponentBoundValue = SelectedValue;
         await Task.CompletedTask;
-    }
-
-
-    protected override bool ShouldRender()
-    {
-        return false;
     }
 
 

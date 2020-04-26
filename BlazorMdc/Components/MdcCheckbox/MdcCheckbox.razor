@@ -2,8 +2,6 @@
 
 @inherits MdcInputComponentBase<bool>
 
-@implements IMdcDialogChild
-
 @inject IJSRuntime jsRuntime
 
 
@@ -14,7 +12,7 @@
              class="@ClassMapper.ToString()"
              style="@StyleMapper.ToString()">
 
-            <input @bind="@CurrentValue"
+            <input @bind="@NativeComponentBoundValue"
                    type="checkbox"
                    class="mdc-checkbox__native-control @FieldClass"
                    id="@Id"
@@ -36,7 +34,6 @@
 
 
 @code {
-    [CascadingParameter] private IMdcDialog Dialog { get; set; }
     //
     //  2020-04-01  Mark Stega
     //              Changed to use class & style mappers
@@ -49,7 +46,6 @@
     [Parameter] public bool IsFormField { get; set; }
 
 
-    private bool instantiate = false;
     private string formFieldClass => (IsFormField || !(string.IsNullOrWhiteSpace(Label))) ? "mdc-form-field" : "";
     private ElementReference elementReference;
     private ElementReference formReference;
@@ -61,26 +57,8 @@
 
         ClassMapper.Add("mdc-checkbox mdc-checkbox--touch")
             .AddIf("mdc-checkbox--disabled", () => Disabled);
-
-        if (Dialog != null)
-        {
-            Dialog.RegisterLayoutAction(this);
-        }
     }
 
 
-    public void RequestInstantiation()
-    {
-        instantiate = true;
-    }
-
-
-    protected async override Task OnAfterRenderAsync(bool firstRender)
-    {
-        if ((firstRender && Dialog is null) || instantiate)
-        {
-            instantiate = false;
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.checkBox.setChecked", elementReference, formReference, CurrentValue, IsFormField);
-        }
-    }
+    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.checkBox.setChecked", elementReference, formReference, NativeComponentBoundValue, IsFormField);
 }

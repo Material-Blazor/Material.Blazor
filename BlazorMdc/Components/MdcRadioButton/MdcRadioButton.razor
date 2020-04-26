@@ -4,8 +4,6 @@
 
 @inherits MdcInputComponentBase<bool>
 
-@implements IMdcDialogChild
-
 @inject IJSRuntime jsRuntime
 
 
@@ -36,9 +34,6 @@
     //  2020-04-20  Mark Stega
     //              Created (loosely) from MdcRadioButtons
     //
-
-    [CascadingParameter] private IMdcDialog Dialog { get; set; }
-
     [Parameter] public TItem CheckedValue { get; set; }
     [Parameter] public string Label { get; set; }
     [Parameter] public string ButtonContainerClass { get; set; }
@@ -46,7 +41,7 @@
     [Parameter] public string RadioGroupName { get; set; }
     [Parameter] public EventCallback OnClick { get; set; }
 
-    private bool instantiate = false;
+    
     private readonly string radioId = Utilities.GenerateCssElementSelector();
     private ElementReference formReference { get; set; }
     private ElementReference radioButtonReference;
@@ -84,36 +79,10 @@
         {
             disabledClass = " mdc-radio--disabled";
         }
-
-        if (Dialog != null)
-        {
-            Dialog.RegisterLayoutAction(this);
-        }
     }
 
 
-    public void RequestInstantiation()
-    {
-        instantiate = true;
-    }
-
-
-    protected override bool ShouldRender()
-    {
-        return instantiate;
-    }
-
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if ((firstRender && (Dialog is null)) || instantiate)
-        {
-            instantiate = false;
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.init", radioButtonReference, formReference, Value);
-        }
-
-        await base.OnAfterRenderAsync(firstRender);
-    }
+    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.init", radioButtonReference, formReference, Value);
 
 
     internal async Task ClickAsync() => await jsRuntime.InvokeVoidAsync("BlazorMdc.radioButton.click", radioButtonReference);

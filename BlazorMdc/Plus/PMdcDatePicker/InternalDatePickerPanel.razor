@@ -12,8 +12,8 @@
      style="@StyleMapper.ToString()">
 
     <ul class="mdc-list bmdc-dp-list">
-        <li @ref="@listItem" class="mdc-list-item mdc-list-item--selected bmdc-dp-list-item" data-value="@cachedCurrentValueText" aria-selected="true" role="option">
-            <span class="mdc-list-item__text bmdc-dp-list-item__text">@cachedCurrentValueText</span>
+        <li @ref="@listItem" class="mdc-list-item mdc-list-item--selected bmdc-dp-list-item" data-value="@cachedNativeComponentBoundValueText" aria-selected="true" role="option">
+            <span class="mdc-list-item__text bmdc-dp-list-item__text">@cachedNativeComponentBoundValueText</span>
         </li>
     </ul>
 
@@ -93,10 +93,10 @@
     private LinkedList<DateTime> dates { get; set; } = new LinkedList<DateTime>();
     private LinkedList<int> years { get; set; } = new LinkedList<int>();
     private DateTime initialDate;
-    private DateTime cachedCurrentValue;
+    private DateTime cachedNativeComponentBoundValue;
     private DateTime cachedMinDate;
     private DateTime cachedMaxDate;
-    private string cachedCurrentValueText => Utilities.DateToString(cachedCurrentValue);
+    private string cachedNativeComponentBoundValueText => Utilities.DateToString(cachedNativeComponentBoundValue);
     private int monthsOffset = 0;
     private DateTime startOfDisplayMonth;
     private string monthText => startOfDisplayMonth.ToString("MMMM yyyy");
@@ -129,10 +129,10 @@
 
     private void SetParameters(bool forceSetup)
     {
-        if (forceSetup || CurrentValue != cachedCurrentValue || MinDate != cachedMinDate || MaxDate != cachedMaxDate)
+        if (forceSetup || NativeComponentBoundValue != cachedNativeComponentBoundValue || MinDate != cachedMinDate || MaxDate != cachedMaxDate)
         {
             initialDate = Value;
-            cachedCurrentValue = Value;
+            cachedNativeComponentBoundValue = Value;
             cachedMinDate = MinDate;
             cachedMaxDate = MaxDate;
 
@@ -168,10 +168,10 @@
     private async Task OnDayItemClickAsync(DateTime dateTime)
     {
         Value = dateTime;
-        cachedCurrentValue = Value;
+        cachedNativeComponentBoundValue = Value;
         monthsOffset = 0;
         SetParameters(true);
-        await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", listItem, cachedCurrentValueText);
+        await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", listItem, cachedNativeComponentBoundValueText);
         await ValueChanged.InvokeAsync(Value);
     }
 

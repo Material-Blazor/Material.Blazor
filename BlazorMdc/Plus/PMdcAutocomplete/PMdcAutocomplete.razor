@@ -167,7 +167,7 @@
         LeadingIconMarkup = (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--leading\" tabindex=\"-1\" role=\"button\">{LeadingIcon}</i>");
         TrailingIconMarkup = (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--trailing\" tabindex=\"-1\" role=\"button\">{TrailingIcon}</i>");
 
-        selectInfo = BuildSelectList(CurrentValue);
+        selectInfo = BuildSelectList(NativeComponentBoundValue);
 
         StateHasChanged();
     }
@@ -289,11 +289,5 @@
     }
 
 
-    protected async override Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.autoComplete.init", textReference);
-        }
-    }
+    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.autoComplete.init", textReference);
 }
