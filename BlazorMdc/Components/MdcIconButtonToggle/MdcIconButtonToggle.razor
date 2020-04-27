@@ -59,6 +59,24 @@
     }
 
 
+    protected override async Task OnParametersSetAsync()
+    {
+        if (Value != cachedIsOpen)
+        {
+            if (Value)
+            {
+                await TurnOnAsync();
+            }
+            else
+            {
+                await TurnOffAsync();
+            }
+        }
+
+        await base.OnParametersSetAsync();
+    }
+
+
     [JSInvokable("NotifyOnAsync")]
     public async Task NotifyOnAsync(bool on)
     {

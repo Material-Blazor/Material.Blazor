@@ -3,7 +3,7 @@
 @inherits MdcComponentBase
 
 
-<MdcButton OnClick="@OnClickAsync" Label="@day" Class="@buttonStyleClass" Disabled="@disabled" />
+<MdcButton OnClick="@OnClickAsync" Label="@day" Class="bmdc-dp-day-pad__button" ButtonStyle="@buttonStyle" Disabled="@disabled" />
 
 
 @code {
@@ -17,7 +17,7 @@
 
 
     private string day => DisplayDate.Day.ToString();
-    private string buttonStyleClass => $"bmdc-dp-day-pad__button {((DisplayDate == CurrentDate) ? " mdc-button--unelevated" : "")}";
+    private MdcButtonStyle buttonStyle => (DisplayDate == CurrentDate) ? MdcButtonStyle.ContainedUnelevated : MdcButtonStyle.Text;
 
 
     private bool disabled
@@ -48,13 +48,10 @@
                     break;
             }
 
-            return (DisplayDate < MinDate || DisplayDate > MaxDate);
+            return DisplayDate < MinDate || DisplayDate > MaxDate;
         }
     }
 
 
-    private async Task OnClickAsync()
-    {
-        await OnItemClickAsync.InvokeAsync(DisplayDate);
-    }
+    private async Task OnClickAsync() => await OnItemClickAsync.InvokeAsync(DisplayDate);
 }

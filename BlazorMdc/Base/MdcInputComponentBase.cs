@@ -227,7 +227,7 @@ namespace BlazorMdc
         }
 
 
-        protected void AllowNextRender()
+        internal void AllowNextRender()
         {
             _allowNextRender = true;
         }
