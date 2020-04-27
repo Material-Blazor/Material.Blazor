@@ -10,40 +10,31 @@
 <div class="@ClassMapper.ToString()"
      style="@StyleMapper.ToString()">
 
-    @{ int index = 0; }
-    @foreach (var w in wrappers)
+    @{ bool isFirst = true; }
+    @foreach (var item in Items)
     {
-        @if ((index++ > 0) && Vertical)
+        @if (Vertical && !isFirst)
         {
             <div class="bmdc-mdc-radio-break"></div>
         }
 
-        var itemChecked = EqualityComparer<TItem>.Default.Equals(Value, w.ListElement.SelectedValue);
+        isFirst = false;
+        var itemChecked = EqualityComparer<TItem>.Default.Equals(Value, item.SelectedValue);
 
-        <MdcRadioButton @key="@w.ListElement"
-                        @ref="@w.RadioButton"
+        <MdcRadioButton @key="@item"
                         Value="@itemChecked"
-                        ButtonContainerClass="@w.ListElement.ButtonContainerClass"
-                        Disabled="@w.ListElement.Disabled"
+                        ButtonContainerClass="@item.ButtonContainerClass"
+                        Disabled="@item.Disabled"
                         EnableTouchWrapper="@EnableTouchWrapper"
-                        Label="@w.ListElement.Label"
-                        CheckedValue="@w.ListElement.SelectedValue"
+                        Label="@item.Label"
+                        CheckedValue="@item.SelectedValue"
                         RadioGroupName="@radioGroupName"
-                        OnClick="@(_ => OnItemClickAsync(w.ListElement.SelectedValue))" />
-
-        var x = w;
+                        OnClick="@(_ => OnItemClickAsync(item.SelectedValue))" />
     }
 
 </div>
 
 @code {
-    private class Wrapper<T>
-    {
-        public MdcListElement<T> ListElement { get; set; }
-        public MdcRadioButton<T> RadioButton { get; set; }
-    }
-
-
     //
     //  2020-04-22  Mark Stega
     //              Changed to use the newly created MdcRadioButton
@@ -55,7 +46,6 @@
 
 
     private string radioGroupName = Utilities.GenerateCssElementSelector();
-    private Wrapper<TItem>[] wrappers;
 
 
     protected override async Task OnInitializedAsync()
@@ -65,12 +55,6 @@
         MdcItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidationRadioButtonGroup(ItemValidation);
 
         await ValidateItemListAsync(Items, appliedItemValidation, OnItemClickAsync);
-
-        wrappers = (from i in Items
-                    select new Wrapper<TItem>
-                    {
-                        ListElement = i
-                    }).ToArray();
     }
 
 
