@@ -85,7 +85,7 @@
     private string[] daysOfWeek;
 
     private ElementReference listItem;
-   private bool previousMonthDisabled => (startOfDisplayMonth <= MinDate);
+    private bool previousMonthDisabled => (startOfDisplayMonth <= MinDate);
     private bool nextMonthDisabled => (startOfDisplayMonth.AddMonths(1) >= MaxDate);
     private bool showYearPad;
 
@@ -167,12 +167,12 @@
 
     private async Task OnDayItemClickAsync(DateTime dateTime)
     {
-        Value = dateTime;
+        NativeComponentBoundValue = dateTime;
         cachedNativeComponentBoundValue = Value;
         monthsOffset = 0;
         SetParameters(true);
         await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", listItem, cachedNativeComponentBoundValueText);
-        await ValueChanged.InvokeAsync(Value);
+        //await ValueChanged.InvokeAsync(Value);
     }
 
 
@@ -202,5 +202,11 @@
     {
         monthsOffset++;
         SetParameters(true);
+    }
+
+
+    protected override bool ShouldRender()
+    {
+        return true;
     }
 }
