@@ -97,6 +97,7 @@
     [Parameter] public bool FormNoValidate { get; set; } = false;
     [Parameter] public bool IgnoreWhitespace { get; set; } = false;
     [Parameter] public bool AllowBlankResult { get; set; } = false;
+    [Parameter] public bool MatchFromItemStart { get; set; } = false;
     [Parameter] public IEnumerable<string> SelectItems { get; set; }
 
 
@@ -111,7 +112,7 @@
     private MarkupString TrailingIconMarkup;
 
 
-    private IEnumerable<SelectItem> mySelectItems;
+    private SelectItem[] mySelectItems;
     private SelectInfo selectInfo = new SelectInfo();
     private bool isOpen = false;
     private bool menuHasFocus = false;
@@ -149,12 +150,12 @@
 
     protected void SetParameters()
     {
-        mySelectItems = from i in SelectItems
-                        select new SelectItem
-                        {
-                            Item = i,
-                            IgnoreWhitespace = IgnoreWhitespace
-                        };
+        mySelectItems = (from i in SelectItems
+                         select new SelectItem
+                         {
+                             Item = i,
+                             IgnoreWhitespace = IgnoreWhitespace
+                         }).ToArray();
 
         if (!string.IsNullOrEmpty(Value))
         {
@@ -178,9 +179,9 @@
         var regexOptions = RegexOptions.IgnoreCase | (IgnoreWhitespace ? RegexOptions.IgnorePatternWhitespace : 0);
 
         var fullMatchRegex = new Regex($"^{fieldText}$", regexOptions);
-        var fullMatches = from f in mySelectItems
-                          where fullMatchRegex.Matches(f.SearchTarget).Count > 0
-                          select f.Item;
+        var fullMatches = (from f in mySelectItems
+                           where fullMatchRegex.Matches(f.SearchTarget).Count > 0
+                           select f.Item).ToArray();
 
         if (fullMatches.Count() > 0)
         {
@@ -191,10 +192,11 @@
             };
         }
 
-        var partialMatchRegex = new Regex($"^{fieldText}.*", regexOptions);
-        var partialMatches = from f in mySelectItems
-                             where partialMatchRegex.Matches(f.SearchTarget).Count > 0
-                             select f.Item;
+        var startMatch = MatchFromItemStart ? "^" : "";
+        var partialMatchRegex = new Regex($"{startMatch}{fieldText}", regexOptions);
+        var partialMatches = (from f in mySelectItems
+                              where partialMatchRegex.Matches(f.SearchTarget).Count > 0
+                              select f.Item).ToArray();
 
         return new SelectInfo()
         {
@@ -211,8 +213,7 @@
         if (selectInfo.FullMatchFound)
         {
             await CloseMenuAsync();
-            Value = selectInfo.SelectedText.Trim();
-            await ValueChanged.InvokeAsync(Value);
+            NativeComponentBoundValue = selectInfo.SelectedText.Trim();
             SetParameters();
         }
 
@@ -230,10 +231,9 @@
 
             if (selectInfo.FullMatchFound || (AllowBlankResult && string.IsNullOrWhiteSpace(selectInfo.SelectedText)))
             {
-                Value = selectInfo.SelectedText.Trim();
+                NativeComponentBoundValue = selectInfo.SelectedText.Trim();
             }
 
-            await ValueChanged.InvokeAsync(Value);
             SetParameters();
         }
     }
@@ -255,8 +255,7 @@
     {
         await CloseMenuAsync();
         selectInfo = BuildSelectList(menuValue);
-        Value = menuValue.Trim();
-        await ValueChanged.InvokeAsync(Value);
+        NativeComponentBoundValue = menuValue.Trim();
         SetParameters();
     }
 
@@ -286,6 +285,12 @@
             isOpen = false;
             await jsRuntime.InvokeAsync<string>("BlazorMdc.autoComplete.close", menuReference, objectReference);
         }
+    }
+
+
+    protected override bool ShouldRender()
+    {
+        return true;
     }
 
 

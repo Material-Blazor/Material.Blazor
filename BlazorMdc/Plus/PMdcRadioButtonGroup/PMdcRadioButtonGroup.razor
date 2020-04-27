@@ -81,10 +81,10 @@
     }
 
 
-    internal override async Task ValueSetterAsync(TItem value)
+    internal override void ValueSetter(TItem value)
     {
         var w = wrappers.Where(w => EqualityComparer<TItem>.Default.Equals(w.ListElement.SelectedValue, value)).FirstOrDefault();
 
-        await w.RadioButton.ClickAsync();
+        Task.Run(async () => await w.RadioButton.ClickAsync().ConfigureAwait(false));
     }
 }

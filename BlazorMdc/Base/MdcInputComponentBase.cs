@@ -21,7 +21,8 @@ namespace BlazorMdc
         private bool _hasSetInitialParameters;
         private T _value;
         private bool _hasRendered = false;
-        private bool _instantiate = false;
+        protected bool _instantiate = false;
+        protected bool _allowNextRender = false;
 
         [CascadingParameter] EditContext CascadedEditContext { get; set; }
 
@@ -54,7 +55,7 @@ namespace BlazorMdc
                 {
                     if (_hasRendered)
                     {
-                        Task.Run(async () => await ValueSetterAsync(value));
+                        ValueSetter(value);
                     }
                     else
                     {
@@ -67,10 +68,9 @@ namespace BlazorMdc
         /// <summary>
         /// Determines how to handle the consumer setting the Value parameter - can be overridden by Mdc and PMdc components
         /// </summary>
-        internal virtual async Task ValueSetterAsync(T value)
+        internal virtual void ValueSetter(T value)
         {
             _value = value;
-            await Task.CompletedTask;
         }
         
         internal T SetValue(T value)
@@ -220,6 +220,10 @@ namespace BlazorMdc
                 {
                     Dialog.RegisterLayoutAction(this);
                 }
+                else
+                {
+                    _instantiate = true;
+                }
             }
             else if (CascadedEditContext != EditContext)
             {
@@ -240,18 +244,31 @@ namespace BlazorMdc
         public void RequestInstantiation()
         {
             _instantiate = true;
+            _allowNextRender = true;
+        }
+
+
+        protected void AllowNextRender()
+        {
+            _allowNextRender = true;
         }
 
 
         protected override bool ShouldRender()
         {
-            return _instantiate;
+            if (_allowNextRender)
+            {
+                _allowNextRender = false;
+                return true;
+            }
+
+            return false;
         }
 
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            if ((firstRender && (Dialog is null)) || _instantiate)
+            if (_instantiate)
             {
                 _instantiate = false;
                 await InitializeMdcComponent();
