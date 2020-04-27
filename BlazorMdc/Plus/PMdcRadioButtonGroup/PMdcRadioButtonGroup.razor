@@ -79,12 +79,4 @@
         NativeComponentBoundValue = SelectedValue;
         await Task.CompletedTask;
     }
-
-
-    internal override void ValueSetter(TItem value)
-    {
-        var w = wrappers.Where(w => EqualityComparer<TItem>.Default.Equals(w.ListElement.SelectedValue, value)).FirstOrDefault();
-
-        Task.Run(async () => await w.RadioButton.ClickAsync().ConfigureAwait(false));
-    }
 }

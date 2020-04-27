@@ -51,7 +51,7 @@
     };
 
 
-    Colour colour;
+    Colour colour = Colour.Orange;
     enum Colour { Red, Orange, Yellow, Green, Blue, Indigo, Violet };
     IEnumerable<MdcListElement<Colour>> colourItems => from c in (Colour[])Enum.GetValues(typeof(Colour))
                                                        select new MdcListElement<Colour>

@@ -199,25 +199,15 @@ window.BlazorMdc = {
 
             if (isChecked == true) {
                 elem._radio.checked = true;
-                elem._radio.value = "on";
+                //elem._radio.value = "on";
             }
             else {
                 elem._radio.checked = false;
-                elem._radio.value = "off";
+                //elem._radio.value = "off";
             }
             
             let formField = mdc.formField.MDCFormField.attachTo(formFieldElem);
             formField.input = elem._radio;
-
-            for (let i = 0; i < elem._radio.root_.children.length; i++) {
-                if (elem._radio.root_.children[i].tagName == "INPUT") {
-                    elem._input = elem._radio.root_.children[i];
-                }
-            }
-        },
-
-        click: function (elem) {
-            elem._input.click();
         }
     },
 

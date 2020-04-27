@@ -19,7 +19,6 @@ namespace BlazorMdc
         private ValidationMessageStore _parsingValidationMessages;
         private Type _nullableUnderlyingType;
         private bool _hasSetInitialParameters;
-        private T _value;
         private bool _hasRendered = false;
         protected bool _instantiate = false;
         protected bool _allowNextRender = false;
@@ -45,34 +44,8 @@ namespace BlazorMdc
         /// <example>
         /// @bind-Value="@model.PropertyName"
         /// </example>
-        [Parameter] public T Value
-        {
-            get => _value;
-            set
-            {
-                var hasChanged = !EqualityComparer<T>.Default.Equals(value, _value);
-                if (hasChanged)
-                {
-                    if (_hasRendered)
-                    {
-                        ValueSetter(value);
-                    }
-                    else
-                    {
-                        _value = value;
-                    }
-                }
-            }
-        }
+        [Parameter] public T Value { get; set; }
 
-        /// <summary>
-        /// Determines how to handle the consumer setting the Value parameter - can be overridden by Mdc and PMdc components
-        /// </summary>
-        internal virtual void ValueSetter(T value)
-        {
-            _value = value;
-        }
-        
         internal T SetValue(T value)
         {
             return Value = value;
@@ -105,13 +78,13 @@ namespace BlazorMdc
         /// </summary>
         protected T NativeComponentBoundValue
         {
-            get => _value;
+            get => Value;
             set
             {
-                var hasChanged = !EqualityComparer<T>.Default.Equals(value, _value);
+                var hasChanged = !EqualityComparer<T>.Default.Equals(value, Value);
                 if (hasChanged)
                 {
-                    _value = value;
+                    Value = value;
                     _ = ValueChanged.InvokeAsync(value);
                     EditContext?.NotifyFieldChanged(FieldIdentifier);
                 }
@@ -198,6 +171,21 @@ namespace BlazorMdc
 
 
         /// <inheritdoc />
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+        
+            if (Dialog != null)
+            {
+                Dialog.RegisterLayoutAction(this);
+            }
+            else
+            {
+                _instantiate = true;
+            }
+        }
+
+        /// <inheritdoc />
         public override async Task SetParametersAsync(ParameterView parameters)
         {
             parameters.SetParameterProperties(this);
@@ -215,15 +203,6 @@ namespace BlazorMdc
                 EditContext = CascadedEditContext;
                 _nullableUnderlyingType = Nullable.GetUnderlyingType(typeof(T));
                 _hasSetInitialParameters = true;
-
-                if (Dialog != null)
-                {
-                    Dialog.RegisterLayoutAction(this);
-                }
-                else
-                {
-                    _instantiate = true;
-                }
             }
             else if (CascadedEditContext != EditContext)
             {
