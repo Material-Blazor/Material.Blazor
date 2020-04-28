@@ -8,11 +8,52 @@
 
 <p>See <code>DebouncedTextFieldSample.razor</code> for sources.</p>
 
-<p style="margin-top: 3rem;">Outlined style</p>
-<p><PMdcDebouncedTextField Label="Debounced Text" @bind-Value="@currentValue" TextInputStyle="MdcTextInputStyle.Outlined" LeadingIcon="@MdcIcons.Icon__account_balance_wallet" /></p>
-<p>You typed: <strong>'@(currentValue ?? "")'</strong></p>
+<PMdcRadioButtonGroup @bind-Value="@interval"
+                      Items="intervals"
+                      ItemValidation="@MdcItemValidation.DefaultToFirst" />
 
+<p style="margin-top: 3rem;">Outlined style</p>
+<p><PMdcDebouncedTextField Label="Debounced Text" @bind-Value="@currentValue" TextInputStyle="MdcTextInputStyle.Outlined" LeadingIcon="@MdcIcons.Icon__account_balance_wallet" DebounceInterval="interval" /></p>
+
+<ul style="margin-top: 2rem;">
+    @foreach (var logEntry in log)
+    {
+        <li>@logEntry</li>
+    }
+</ul>
 
 @code {
-    string currentValue;
+    private string _currentValue = "";
+    private string currentValue
+    {
+        get => _currentValue;
+        set
+        {
+            _currentValue = value;
+            log.Add(value);
+        }
+    }
+
+
+    private int _interval = 300;
+    private int interval
+    {
+        get => _interval;
+        set
+        {
+            _interval = value;
+            log.Clear();
+        }
+    }
+
+
+    MdcListElement<int>[] intervals = new MdcListElement<int>[]
+    {
+        new MdcListElement<int> { SelectedValue = 300, Label = "300 ms" },
+        new MdcListElement<int> { SelectedValue = 500, Label = "500 ms" },
+        new MdcListElement<int> { SelectedValue = 1000, Label = "1,000 ms" }
+    };
+
+
+    private List<string> log = new List<string>();
 }

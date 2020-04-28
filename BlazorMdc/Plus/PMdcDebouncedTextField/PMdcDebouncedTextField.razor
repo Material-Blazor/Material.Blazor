@@ -27,7 +27,7 @@
     [Parameter] public string? LeadingIcon { get; set; }
     [Parameter] public string? TrailingIcon { get; set; }
     [Parameter] public bool FormNoValidate { get; set; } = false;
-    [Parameter] public int DebounceInterval { get; set; } = 2000;
+    [Parameter] public int DebounceInterval { get; set; } = 300;
 
 
     private Timer timer;
@@ -58,7 +58,6 @@
 
     private void OnTimerComplete(object stateInfo)
     {
-        Value = currentValue;
-        _ = ValueChanged.InvokeAsync(Value);
+        InvokeAsync(() => NativeComponentBoundValue = currentValue);
     }
 }
