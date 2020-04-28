@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -11,14 +13,19 @@ namespace BlazorMdc
     // This is like InputBase from Microsoft.AspNetCore.Components.Forms, except that it treats
     // [CascadingParameter] EditContext as optional.
 
-    public abstract class MdcInputComponentBase<T> : MdcComponentBase
+    public abstract class MdcInputComponentBase<T> : MdcComponentBase, IMdcDialogChild
     {
         private bool _previousParsingAttemptFailed;
         private ValidationMessageStore _parsingValidationMessages;
         private Type _nullableUnderlyingType;
         private bool _hasSetInitialParameters;
+        protected bool _instantiate = false;
+        protected bool _allowNextRender = false;
 
         [CascadingParameter] EditContext CascadedEditContext { get; set; }
+
+        [CascadingParameter] private MdcDialog Dialog { get; set; }
+
 
         /// <summary>
         /// Gets or sets a collection of additional attributes that will be applied to the created element.
@@ -37,6 +44,11 @@ namespace BlazorMdc
         /// @bind-Value="@model.PropertyName"
         /// </example>
         [Parameter] public T Value { get; set; }
+
+        internal T SetValue(T value)
+        {
+            return Value = value;
+        }
 
         /// <summary>
         /// Gets or sets a callback that updates the bound value.
@@ -59,9 +71,11 @@ namespace BlazorMdc
         protected FieldIdentifier FieldIdentifier { get; private set; }
 
         /// <summary>
-        /// Gets or sets the current value of the input.
+        /// Gets or sets the value of the input. To be used by Mdc and PMdc components for binding to native components, or to set the value
+        /// in response to an event arising from the native component. In contrast the <see cref="Value"/> parameter is for use by BlazorMdc's consumers.
+        /// Do not mix these usages up.
         /// </summary>
-        protected T CurrentValue
+        protected T NativeComponentBoundValue
         {
             get => Value;
             set
@@ -79,9 +93,9 @@ namespace BlazorMdc
         /// <summary>
         /// Gets or sets the current value of the input, represented as a string.
         /// </summary>
-        protected string CurrentValueAsString
+        protected string NativeComponentBoundValueAsString
         {
-            get => FormatValueToString(CurrentValue);
+            get => FormatValueToString(NativeComponentBoundValue);
             set
             {
                 _parsingValidationMessages?.Clear();
@@ -94,12 +108,12 @@ namespace BlazorMdc
                     // Then all subclasses get nullable support almost automatically (they just have to
                     // not reject Nullable<T> based on the type itself).
                     parsingFailed = false;
-                    CurrentValue = default;
+                    NativeComponentBoundValue = default;
                 }
                 else if (TryParseValueFromString(value, out var parsedValue, out var validationErrorMessage))
                 {
                     parsingFailed = false;
-                    CurrentValue = parsedValue;
+                    NativeComponentBoundValue = parsedValue;
                 }
                 else
                 {
@@ -114,7 +128,7 @@ namespace BlazorMdc
 
                         _parsingValidationMessages.Add(FieldIdentifier, validationErrorMessage);
 
-                        // Since we're not writing to CurrentValue, we'll need to notify about modification from here
+                        // Since we're not writing to NativeComponentBoundValue, we'll need to notify about modification from here
                         EditContext.NotifyFieldChanged(FieldIdentifier);
                     }
                 }
@@ -129,7 +143,12 @@ namespace BlazorMdc
         }
 
         /// <summary>
-        /// Formats the value as a string. Derived classes can override this to determine the formating used for <see cref="CurrentValueAsString"/>.
+        /// Allows ShouldRender() to return "true" habitually.
+        /// </summary>
+        internal bool AlwaysAllowShouldRender { get; set; } = false;
+
+        /// <summary>
+        /// Formats the value as a string. Derived classes can override this to determine the formating used for <see cref="NativeComponentBoundValueAsString"/>.
         /// </summary>
         /// <param name="value">The value to format.</param>
         /// <returns>A string representation of the value.</returns>
@@ -138,14 +157,14 @@ namespace BlazorMdc
 
         /// <summary>
         /// Parses a string to create an instance of <typeparamref name="T"/>. Derived classes can override this to change how
-        /// <see cref="CurrentValueAsString"/> interprets incoming values.
+        /// <see cref="NativeComponentBoundValueAsString"/> interprets incoming values.
         /// </summary>
         /// <param name="value">The string value to be parsed.</param>
         /// <param name="result">An instance of <typeparamref name="T"/>.</param>
         /// <param name="validationErrorMessage">If the value could not be parsed, provides a validation error message.</param>
         /// <returns>True if the value could be parsed; otherwise false.</returns>
         protected virtual bool TryParseValueFromString(string value, out T result, out string validationErrorMessage)
-            => throw new NotImplementedException($"This component does not parse string inputs. Bind to the '{nameof(CurrentValue)}' property, not '{nameof(CurrentValueAsString)}'.");
+            => throw new NotImplementedException($"This component does not parse string inputs. Bind to the '{nameof(NativeComponentBoundValue)}' property, not '{nameof(NativeComponentBoundValueAsString)}'.");
 
         /// <summary>
         /// Gets a string that indicates the status of the field being edited. This will include
@@ -154,8 +173,24 @@ namespace BlazorMdc
         protected string FieldClass
             => EditContext?.FieldCssClass(FieldIdentifier) ?? string.Empty;
 
+
         /// <inheritdoc />
-        public override Task SetParametersAsync(ParameterView parameters)
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+        
+            if (Dialog != null)
+            {
+                Dialog.RegisterLayoutAction(this);
+            }
+            else
+            {
+                _instantiate = true;
+            }
+        }
+
+        /// <inheritdoc />
+        public override async Task SetParametersAsync(ParameterView parameters)
         {
             parameters.SetParameterProperties(this);
 
@@ -164,14 +199,12 @@ namespace BlazorMdc
                 // This is the first run
                 // Could put this logic in OnInit, but its nice to avoid forcing people who override OnInit to call base.OnInit()
 
-                if (ValueExpression == null)
+                if (ValueExpression != null)
                 {
-                    throw new InvalidOperationException($"{GetType()} requires a value for the 'ValueExpression' " +
-                        $"parameter. Normally this is provided automatically when using 'bind-Value'.");
+                    FieldIdentifier = FieldIdentifier.Create(ValueExpression);
                 }
 
                 EditContext = CascadedEditContext;
-                FieldIdentifier = FieldIdentifier.Create(ValueExpression);
                 _nullableUnderlyingType = Nullable.GetUnderlyingType(typeof(T));
                 _hasSetInitialParameters = true;
             }
@@ -187,7 +220,42 @@ namespace BlazorMdc
             }
 
             // For derived components, retain the usual lifecycle with OnInit/OnParametersSet/etc.
-            return base.SetParametersAsync(ParameterView.Empty);
+            await base.SetParametersAsync(ParameterView.Empty);
+        }
+
+
+        public void RequestInstantiation()
+        {
+            _instantiate = true;
+            _allowNextRender = true;
+        }
+
+
+        internal void AllowNextShouldRender()
+        {
+            _allowNextRender = true;
+        }
+
+
+        protected override bool ShouldRender()
+        {
+            if (AlwaysAllowShouldRender || _allowNextRender)
+            {
+                _allowNextRender = false;
+                return true;
+            }
+
+            return false;
+        }
+
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (_instantiate)
+            {
+                _instantiate = false;
+                await InitializeMdcComponent();
+            }
         }
     }
 }

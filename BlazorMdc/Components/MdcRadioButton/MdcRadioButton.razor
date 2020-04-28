@@ -2,9 +2,7 @@
 
 @typeparam TItem
 
-@inherits MdcInputComponentBase<TItem>
-
-@implements IMdcDialogChild
+@inherits MdcInputComponentBase<bool>
 
 @inject IJSRuntime jsRuntime
 
@@ -19,7 +17,7 @@
                 id="@radioId"
                 name="@RadioGroupName"
                 disabled="@Disabled"
-                @onclick="@(_ => OnItemClickAsync())">
+                @onclick="@OnClick">
  
         <div class="mdc-radio__background">
             <div class="mdc-radio__outer-circle"></div>
@@ -36,20 +34,17 @@
     //  2020-04-20  Mark Stega
     //              Created (loosely) from MdcRadioButtons
     //
-
-    [CascadingParameter] private IMdcDialog Dialog { get; set; }
-
     [Parameter] public TItem CheckedValue { get; set; }
     [Parameter] public string Label { get; set; }
     [Parameter] public string ButtonContainerClass { get; set; }
     [Parameter] public bool EnableTouchWrapper { get; set; } = true;
     [Parameter] public string RadioGroupName { get; set; }
+    [Parameter] public EventCallback OnClick { get; set; }
 
-    private bool instantiate = false;
+    
     private readonly string radioId = Utilities.GenerateCssElementSelector();
     private ElementReference formReference { get; set; }
     private ElementReference radioButtonReference;
-    private bool Checked;
     private string buttonContainerClass;
     private string disabledClass = "";
 
@@ -74,6 +69,7 @@
         {
             buttonContainerClass = "mdc-radio";
         }
+
         if (!string.IsNullOrWhiteSpace(ButtonContainerClass))
         {
             buttonContainerClass += " " + ButtonContainerClass;
@@ -81,58 +77,13 @@
 
         if (Disabled)
         {
-            disabledClass = "  mdc-radio--disabled";
-        }
-
-        Checked = Value.Equals(CheckedValue);
-
-        if (Dialog != null)
-        {
-            Dialog.RegisterLayoutAction(this);
+            disabledClass = " mdc-radio--disabled";
         }
     }
 
 
-    private async Task OnItemClickAsync()
-    {
-        if (!Value.Equals(CheckedValue))
-        {
-            Value = CheckedValue;
-            Checked = true;
-
-            await ValueChanged.InvokeAsync(Value);
-        }
-    }
+    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.init", radioButtonReference, formReference, Value);
 
 
-    public void RequestInstantiation()
-    {
-        instantiate = true;
-    }
-
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
-
-        if (!Value.Equals(CheckedValue))
-        {
-            Checked = false;
-        }
-    }
-
-
-    protected override bool ShouldRender()
-    {
-        return instantiate;
-    }
-
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if ((firstRender && (Dialog is null)) || instantiate)
-        {
-            instantiate = false;
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.init", radioButtonReference, formReference, Checked);
-        }
-    }
+    internal async Task ClickAsync() => await jsRuntime.InvokeVoidAsync("BlazorMdc.radioButton.click", radioButtonReference);
 }

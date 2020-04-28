@@ -47,11 +47,11 @@ Either fork this repo or use the Nuget package linked at the top of this documen
 
 Then reference the `BlazorMdc` namespace with `@using BlazorMdc` to your `_Imports.razor` file and if you want to use `PMdcToast` add `services.AddPMdcToast();` to your `ConfigureServices` function for Blazor Server or to the `Main()` function for Blazor WASM.
 
-**NOTE** - BlazorMdc works with [Material Components v5.1.0](https://github.com/material-components/material-components-web/releases/tag/v5.1.0). Version 6.1.0 released on 23 April 2020 causes dramatic markup failure.
+**NOTE** - BlazorMdc works with [Material Components v5.1.0](https://github.com/material-components/material-components-web/releases/tag/v5.1.0). Version 6.0.0 released on 23 April 2020 causes dramatic markup failure.
 
 ## Demonstration website
 
-_TBD_
+We are not yet hosting a demonstration, but you can fork and download this project yourself. If you so so, set your default project to `BlazorMdc.Demo.WebServer`.
 
 ## Demonstration from local build
 

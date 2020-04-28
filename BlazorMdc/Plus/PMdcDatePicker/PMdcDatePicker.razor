@@ -31,7 +31,7 @@
     </div>
 
     <div class="mdc-select__menu mdc-menu mdc-menu-surface bmdc-dp-menu__surface-adjust">
-        <InternalDatePickerPanel @bind-Value="@CurrentValue" DateSelectionCriteria="@DateSelectionCriteria" MinDate="@MinDate" MaxDate="@MaxDate" />
+        <InternalDatePickerPanel @bind-Value="@NativeComponentBoundValue" DateSelectionCriteria="@DateSelectionCriteria" MinDate="@MinDate" MaxDate="@MaxDate" />
     </div>
 </div>
 
@@ -75,11 +75,5 @@
     }
 
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.init", elementReference);
-        }
-    }
+    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.init", elementReference);
 }

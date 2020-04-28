@@ -12,7 +12,7 @@
     <textarea type="@Type"
            id="@id"
            class="mdc-text-field__input @appliedTextInputStyleClass @FieldClass"
-           @bind="@CurrentValue"
+           @bind="@NativeComponentBoundValue"
            aria-labelledby="@labelId"
            rows="@Rows"
            cols="@Cols"
@@ -84,20 +84,16 @@
             .AddIf("mdc-text-field--fullwidth", () => (appliedTextInputStyle == MdcTextInputStyle.FullWidth))
             .AddIf("mdc-text-field--no-label", () => NoLabel)
             .AddIf("mdc-text-field--disabled", () => Disabled);
+
+        AlwaysAllowShouldRender = true;
     }
 
 
     protected override void OnParametersSet()
     {
-        floatingLabelClass = string.IsNullOrEmpty(CurrentValue) ? "" : "mdc-floating-label--float-above";
+        floatingLabelClass = string.IsNullOrEmpty(NativeComponentBoundValue) ? "" : "mdc-floating-label--float-above";
     }
 
 
-    protected async override Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.textField.init", elementReference);
-        }
-    }
+    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.textField.init", elementReference);
 }

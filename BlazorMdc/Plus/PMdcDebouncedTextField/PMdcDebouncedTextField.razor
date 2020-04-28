@@ -1,0 +1,63 @@
+﻿@namespace BlazorMdc
+
+@implements IDisposable
+
+@inherits MdcInputComponentBase<string>
+
+@using System.Threading
+
+
+<MdcTextField Type="text"
+              Label="@Label"
+              NoLabel="@NoLabel"
+              LeadingIcon="@LeadingIcon"
+              TrailingIcon="@TrailingIcon"
+              TextInputStyle="@TextInputStyle"
+              TextAlignStyle="@TextAlignStyle"
+              OnInput="@OnTextInput"
+              Disabled=@Disabled
+              FormNoValidate="@FormNoValidate" />
+
+
+@code {
+    [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
+    [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
+    [Parameter] public string Label { get; set; }
+    [Parameter] public bool NoLabel { get; set; } = false;
+    [Parameter] public string? LeadingIcon { get; set; }
+    [Parameter] public string? TrailingIcon { get; set; }
+    [Parameter] public bool FormNoValidate { get; set; } = false;
+    [Parameter] public int DebounceInterval { get; set; } = 300;
+
+
+    private Timer timer;
+    private string currentValue = "";
+
+
+    protected override void OnInitialized()
+    {
+        currentValue = Value;
+        base.OnInitialized();
+    }
+
+
+    public void Dispose()
+    {
+        timer?.Dispose();
+    }
+
+
+    private void OnTextInput(ChangeEventArgs eventArgs)
+    {
+        timer?.Dispose();
+        currentValue = eventArgs.Value.ToString();
+        var autoReset = new AutoResetEvent(false);
+        timer = new Timer(OnTimerComplete, autoReset, DebounceInterval, Timeout.Infinite);
+    }
+
+
+    private void OnTimerComplete(object stateInfo)
+    {
+        InvokeAsync(() => NativeComponentBoundValue = currentValue);
+    }
+}

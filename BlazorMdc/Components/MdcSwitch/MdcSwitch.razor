@@ -12,7 +12,7 @@
         <div class="mdc-switch__track"></div>
         <div class="mdc-switch__thumb-underlay">
             <div class="mdc-switch__thumb">
-                <input type="checkbox" id="@Id" @bind="@CurrentValue" class="mdc-switch__native-control" role="switch" disabled="@Disabled" />
+                <input type="checkbox" id="@Id" @bind="@NativeComponentBoundValue" class="mdc-switch__native-control" role="switch" disabled="@Disabled" />
             </div>
         </div>
     </div>
@@ -38,15 +38,9 @@
         ClassMapper
             .Add("mdc-switch")
             .AddIf("mdc-switch--disabled", () => Disabled)
-            .AddIf("mdc-switch--checked", () => CurrentValue);
+            .AddIf("mdc-switch--checked", () => NativeComponentBoundValue);
     }
 
 
-    protected async override Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.switch.setChecked", elementReference, CurrentValue);
-        }
-    }
+    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.switch.setChecked", elementReference, NativeComponentBoundValue);
 }

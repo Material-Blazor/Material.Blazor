@@ -36,7 +36,7 @@
 
     <div class="mdc-select__menu mdc-menu mdc-menu-surface">
         <ul class="mdc-list">
-            @foreach (var item in Items)
+            @foreach (var item in ItemArray)
             {
                 var dv = item.SelectedValue;
 
@@ -56,9 +56,6 @@
 
 
 @code {
-
-    [CascadingParameter] private IMdcDialog Dialog { get; set; }
-
     [Parameter] public MdcItemValidation? ItemValidation { get; set; }
     [Parameter] public string Label { get; set; }
     [Parameter] public IEnumerable<MdcListElement<TItem>> Items { get; set; }
@@ -72,32 +69,22 @@
     private string selectedText = "";
     private string floatingLabelClass = "";
     private string alignClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
-    private bool instantiate = false;
+    private MdcListElement<TItem>[] ItemArray;
 
-
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         base.OnInitialized();
 
-        ClassMapper
-            .Add("mdc-select")
-            .AddIf("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
-            .AddIf("mdc-select--disabled", () => Disabled);
-
-        if (Dialog != null)
-        {
-            Dialog.RegisterLayoutAction(this);
-        }
-    }
-
-
-    protected override async Task OnParametersSetAsync()
-    {
-        await base.OnParametersSetAsync();
+        ItemArray = Items.ToArray();
 
         MdcItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidationSelect(ItemValidation);
 
-        await ValidateItemListAsync(Items, appliedItemValidation, OnItemClickAsync);
+        await ValidateItemListAsync(ItemArray, appliedItemValidation, OnItemClickAsync);
+
+        ClassMapper
+            .Add("mdc-select")
+        .AddIf("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
+        .AddIf("mdc-select--disabled", () => Disabled);
     }
 
 
@@ -108,24 +95,5 @@
     }
 
 
-    public void RequestInstantiation()
-    {
-        instantiate = true;
-    }
-
-    protected override bool ShouldRender()
-    {
-        return instantiate;
-    }
-
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if ((firstRender && (Dialog is null)) || instantiate)
-        {
-            instantiate = false;
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.select.init", elementReference);
-        }
-    }
-
+    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.select.init", elementReference);
 }

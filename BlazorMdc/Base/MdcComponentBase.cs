@@ -26,28 +26,23 @@ namespace BlazorMdc
         /// </summary>
         [Parameter] public bool Disabled { get; set; } = false;
 
-        
-        protected override Task OnAfterRenderAsync(bool isFirstRender)
+
+
+        protected virtual async Task InitializeMdcComponent() => await Task.CompletedTask;
+
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            if (isFirstRender)
+            if (firstRender)
             {
-                return OnAfterFirstRenderAsync();
-            }
-            else
-            {
-                return Task.CompletedTask;
+                await InitializeMdcComponent();
             }
         }
-
-        protected virtual Task OnAfterFirstRenderAsync()
-            => Task.CompletedTask;
 
         
         protected MdcComponentBase()
         {
-            ClassMapper
-                .Get(() => this.Class)
-                ;//.Get(() => this.Theme?.GetClass());
+            ClassMapper.Get(() => Class);
 
             StyleMapper.Get(() => Style);
         }
@@ -55,24 +50,14 @@ namespace BlazorMdc
         /// <summary>
         /// Specifies one or more classnames for an DOM element.
         /// </summary>
-        [Parameter] public string Class
-        {
-            get => _class;
-            set { _class = value; }
-        }
+        [Parameter]
+        public string Class { get; set; }
 
 
         /// <summary>
         /// Specifies an inline style for an DOM element.
         /// </summary>
-        [Parameter] public string Style
-        {
-            get => _style;
-            set { _style = value; }
-        }
-
-
-        private string _class;
-        private string _style;
+        [Parameter]
+        public string Style { get; set; }
     }
 }

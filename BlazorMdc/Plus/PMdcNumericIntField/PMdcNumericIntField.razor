@@ -4,6 +4,8 @@
 
 
 <PMdcNumericDoubleField  @bind-Value="@dblVal"
+                         Class="@Class"
+                         Style="@Style"
                          TextInputStyle="TextInputStyle"
                          Label="@Label"
                          NoLabel="@NoLabel"
@@ -33,7 +35,15 @@
 
     private double dblVal
     {
-        get => (double)CurrentValue;
-        set => CurrentValue = Convert.ToInt32(Math.Round(value, 0));
+        get => (double)NativeComponentBoundValue;
+        set => NativeComponentBoundValue = Convert.ToInt32(Math.Round(value, 0));
+    }
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        AlwaysAllowShouldRender = true;
     }
 }
