@@ -6,6 +6,8 @@
 
 
 <MdcTextField @ref="textField"
+              Class="@Class"
+              Style="@Style"
               Type="text"
               @bind-Value="@formattedValue"
               Label="@Label"
@@ -113,8 +115,6 @@
                         .Add("step", Math.Pow(10, -myDecimalPlaces).ToString())
                         .AddIf("min", Min?.ToString(), () => Min != null)
                         .AddIf("max", Max?.ToString(), () => Max != null);
-
-            textField.AlwaysAllowShouldRender = true;
         }
 
         if (hasFocus == true && prevHasFocus == false)

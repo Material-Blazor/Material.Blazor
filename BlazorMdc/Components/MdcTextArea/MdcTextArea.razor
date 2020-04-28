@@ -84,6 +84,8 @@
             .AddIf("mdc-text-field--fullwidth", () => (appliedTextInputStyle == MdcTextInputStyle.FullWidth))
             .AddIf("mdc-text-field--no-label", () => NoLabel)
             .AddIf("mdc-text-field--disabled", () => Disabled);
+
+        AlwaysAllowShouldRender = true;
     }
 
 

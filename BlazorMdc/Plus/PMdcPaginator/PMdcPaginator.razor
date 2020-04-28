@@ -53,8 +53,23 @@
 
 
 @code {
-    [Parameter] public IEnumerable<int> ItemsPerPageSelection { get; set; }
-    [Parameter] public int ItemCount { get; set; }
+        [Parameter] public IEnumerable<int> ItemsPerPageSelection { get; set; }
+
+
+    private int _itemCount;
+    [Parameter] public int ItemCount
+    {
+        get => _itemCount;
+        set
+        {
+            if (value != _itemCount)
+            {
+                _itemCount = value;
+                PageNumber = 0;
+            }
+        }
+    }
+
 
     private int _itemsPerPage = 0;
     [Parameter] public int ItemsPerPage
@@ -72,6 +87,7 @@
     }
 
     [Parameter] public EventCallback<int> ItemsPerPageChanged { get; set; }
+
 
     private int _pageNumber = 0;
     [Parameter]
@@ -133,11 +149,11 @@
         }
 
         itemsPerPageItems = (from r in ItemsPerPageSelection
-                            select new MdcListElement<int>
-                            {
-                                SelectedValue = r,
-                                Label = r.ToString()
-                            }).ToArray();
+                             select new MdcListElement<int>
+                             {
+                                 SelectedValue = r,
+                                 Label = r.ToString()
+                             }).ToArray();
     }
 
 

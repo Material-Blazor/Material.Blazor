@@ -92,6 +92,8 @@
             .AddIf("mdc-text-field--disabled", () => Disabled)
             .AddIf("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
             .AddIf("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
+
+        AlwaysAllowShouldRender = true;
     }
 
 
