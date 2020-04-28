@@ -11,7 +11,7 @@
      style="@StyleMapper.ToString()">
 
     @{ bool isFirst = true; }
-    @foreach (var item in Items)
+    @foreach (var item in ItemArray)
     {
         @if (Vertical && !isFirst)
         {
@@ -47,14 +47,18 @@
 
     private string radioGroupName = Utilities.GenerateCssElementSelector();
 
+    private MdcListElement<TItem>[] ItemArray;
+
 
     protected override async Task OnInitializedAsync()
     {
         base.OnInitialized();
 
+        ItemArray = Items.ToArray();
+
         MdcItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidationRadioButtonGroup(ItemValidation);
 
-        await ValidateItemListAsync(Items, appliedItemValidation, OnItemClickAsync);
+        await ValidateItemListAsync(ItemArray, appliedItemValidation, OnItemClickAsync);
     }
 
 

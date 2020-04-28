@@ -36,7 +36,7 @@
 
     <div class="mdc-select__menu mdc-menu mdc-menu-surface">
         <ul class="mdc-list">
-            @foreach (var item in Items)
+            @foreach (var item in ItemArray)
             {
                 var dv = item.SelectedValue;
 
@@ -69,26 +69,22 @@
     private string selectedText = "";
     private string floatingLabelClass = "";
     private string alignClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
+    private MdcListElement<TItem>[] ItemArray;
 
-
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         base.OnInitialized();
 
-        ClassMapper
-            .Add("mdc-select")
-            .AddIf("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
-            .AddIf("mdc-select--disabled", () => Disabled);
-    }
-
-
-    protected override async Task OnParametersSetAsync()
-    {
-        await base.OnParametersSetAsync();
+        ItemArray = Items.ToArray();
 
         MdcItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidationSelect(ItemValidation);
 
-        await ValidateItemListAsync(Items, appliedItemValidation, OnItemClickAsync);
+        await ValidateItemListAsync(ItemArray, appliedItemValidation, OnItemClickAsync);
+
+        ClassMapper
+            .Add("mdc-select")
+        .AddIf("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
+        .AddIf("mdc-select--disabled", () => Disabled);
     }
 
 

@@ -10,7 +10,7 @@ namespace BlazorMdc
     {
         // This method was added in the interest of DRY and is used by MdcSelect & PMdcRadioButtonGroup
         public async Task ValidateItemListAsync(
-            IEnumerable<MdcListElement<T>> items,
+            MdcListElement<T>[] items,
             MdcItemValidation appliedItemValidation,
             Func<T, Task> onItemClickAsync)
         {
