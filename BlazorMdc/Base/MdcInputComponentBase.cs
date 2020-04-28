@@ -19,7 +19,6 @@ namespace BlazorMdc
         private ValidationMessageStore _parsingValidationMessages;
         private Type _nullableUnderlyingType;
         private bool _hasSetInitialParameters;
-        private bool _hasRendered = false;
         protected bool _instantiate = false;
         protected bool _allowNextRender = false;
 
@@ -144,6 +143,11 @@ namespace BlazorMdc
         }
 
         /// <summary>
+        /// Allows ShouldRender() to return "true" habitually.
+        /// </summary>
+        internal bool AlwaysAllowShouldRender { get; set; } = false;
+
+        /// <summary>
         /// Formats the value as a string. Derived classes can override this to determine the formating used for <see cref="NativeComponentBoundValueAsString"/>.
         /// </summary>
         /// <param name="value">The value to format.</param>
@@ -227,7 +231,7 @@ namespace BlazorMdc
         }
 
 
-        internal void AllowNextRender()
+        internal void AllowNextShouldRender()
         {
             _allowNextRender = true;
         }
@@ -235,7 +239,7 @@ namespace BlazorMdc
 
         protected override bool ShouldRender()
         {
-            if (_allowNextRender)
+            if (AlwaysAllowShouldRender || _allowNextRender)
             {
                 _allowNextRender = false;
                 return true;
@@ -251,11 +255,6 @@ namespace BlazorMdc
             {
                 _instantiate = false;
                 await InitializeMdcComponent();
-            }
-
-            if (firstRender)
-            {
-                _hasRendered = true;
             }
         }
     }

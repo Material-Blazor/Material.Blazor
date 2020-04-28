@@ -5,12 +5,13 @@
 @inject IJSRuntime jsRuntime
 
 
-<div @ref="elementReference"
+<div @ref="textFieldReference"
      class="@ClassMapper.ToString()"
      style="@StyleMapper.ToString()">
 
     @LeadingIconMarkup
-    <input type="@Type"
+    <input @ref="@inputReference"
+           type="@Type"
            id="@Id"
            class="mdc-text-field__input @Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle)) @FieldClass"
            @bind="@NativeComponentBoundValue"
@@ -70,7 +71,8 @@
 
 
     private MdcTextInputStyle appliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
-    private ElementReference elementReference;
+    private ElementReference textFieldReference;
+    private ElementReference inputReference;
     private string labelId = Guid.NewGuid().ToString();
     private string floatingLabelClass;
     private MarkupString LeadingIconMarkup;
@@ -104,11 +106,11 @@
     }
 
 
-    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.textField.init", elementReference);
+    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.textField.init", textFieldReference);
 
 
     internal async Task Select()
     {
-        await jsRuntime.InvokeAsync<object>("BlazorMdc.textField.select", elementReference);
+        await jsRuntime.InvokeAsync<object>("BlazorMdc.textField.select", inputReference);
     }
 }

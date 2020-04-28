@@ -5,7 +5,7 @@
     <RazorLangVersion>3.0</RazorLangVersion>
     <Configurations>Debug_CSB;Debug_SSB;Release_CSB;Release_SSB</Configurations>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.22.0-Preview2</Version>
+    <Version>0.22.0</Version>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <Authors />
     <Company>Dioptra</Company>

@@ -20,7 +20,6 @@
               FormNoValidate="@myFormNoValidate"/>
 
 
-
 @code {
     [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
     [Parameter] public string Label { get; set; }
@@ -99,6 +98,8 @@
             myDecimalPlaces = DecimalPlaces;
             regex = new Regex(allowSign ? DoublePattern : PositiveDoublePattern);
         }
+
+        AlwaysAllowShouldRender = true;
     }
 
 
@@ -112,6 +113,8 @@
                         .Add("step", Math.Pow(10, -myDecimalPlaces).ToString())
                         .AddIf("min", Min?.ToString(), () => Min != null)
                         .AddIf("max", Max?.ToString(), () => Max != null);
+
+            textField.AlwaysAllowShouldRender = true;
         }
 
         if (hasFocus == true && prevHasFocus == false)
@@ -125,6 +128,7 @@
 
     private void OnFocusIn() => hasFocus = true;
     private void OnFocusOut() => hasFocus = false;
+    private string StringValue(double? value) => (Convert.ToDouble(value) * appliedMult).ToString(appliedFormat);
 
 
     private double NumericValue(string displayText)
@@ -153,11 +157,5 @@
         }
 
         return amount;
-    }
-
-
-    private string StringValue(double? value)
-    {
-        return (Convert.ToDouble(value) * appliedMult).ToString(appliedFormat);
     }
 }
