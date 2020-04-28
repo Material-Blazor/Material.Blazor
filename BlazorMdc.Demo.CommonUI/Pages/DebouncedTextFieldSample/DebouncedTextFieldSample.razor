@@ -1,0 +1,18 @@
+﻿@namespace BlazorMdc.Demo
+
+@page "/debouncedtextfield"
+
+@inject IJSRuntime jsRuntime
+
+<h1 class="@MdcTypography.Heading4">Text field samples</h1>
+
+<p>See <code>DebouncedTextFieldSample.razor</code> for sources.</p>
+
+<p style="margin-top: 3rem;">Outlined style</p>
+<p><PMdcDebouncedTextField Label="Debounced Text" @bind-Value="@currentValue" TextInputStyle="MdcTextInputStyle.Outlined" LeadingIcon="@MdcIcons.Icon__account_balance_wallet" /></p>
+<p>You typed: <strong>'@(currentValue ?? "")'</strong></p>
+
+
+@code {
+    string currentValue;
+}
