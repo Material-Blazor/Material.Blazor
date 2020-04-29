@@ -21,6 +21,7 @@
 
 
 @code {
+#nullable enable annotations
     [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
     [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
     [Parameter] public string Label { get; set; }
@@ -29,6 +30,7 @@
     [Parameter] public string? TrailingIcon { get; set; }
     [Parameter] public bool FormNoValidate { get; set; } = false;
     [Parameter] public int? DebounceInterval { get; set; }
+#nullable restore annotations
 
 
     private Timer timer;

@@ -30,11 +30,15 @@
     //  2020-04-13  Mark Stega
     //              Moved ClassMapper to constructor
     //
+
+#nullable enable annotations
     [Parameter] public string Text { get; set; }
     [Parameter] public string NavigationReference { get; set; } = "";
     [Parameter] public string? LeadingIcon { get; set; }
     [Parameter] public bool IsSelectionItem { get; set; }
     [Parameter] public EventCallback<string> OnClick { get; set; }
+#nullable restore annotations
+
 
     protected override void OnInitialized()
     {
@@ -44,6 +48,7 @@
             .Add("mdc-list-item")
             .AddIf("mdc-list-item--disabled", () => Disabled);
     }
+
 
     protected void InternalClickHandler()
     {

@@ -23,6 +23,7 @@
 
 
 @code {
+#nullable enable annotations
     [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
     [Parameter] public string Label { get; set; }
     [Parameter] public bool NoLabel { get; set; } = false;
@@ -35,6 +36,7 @@
     [Parameter] public double? Min { get; set; }
     [Parameter] public double? Max { get; set; }
     [Parameter] public int DecimalPlaces { get; set; } = 2;
+#nullable restore annotations
 
 
     private const string DoublePattern = @"^[-+]?[0-9]*\.?[0-9]+$";

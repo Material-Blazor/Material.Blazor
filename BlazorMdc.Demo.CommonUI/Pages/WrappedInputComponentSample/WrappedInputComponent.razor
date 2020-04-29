@@ -10,6 +10,8 @@
               Type="@Type" />
 
 @code{
+#nullable enable annotations
+
     [Parameter] public string Label { get; set; } = "";
     [Parameter] public string? LeadingIcon { get; set; }
     [Parameter] public EventCallback<FocusEventArgs> OnFocus { get; set; }
@@ -19,4 +21,5 @@
     [Parameter] public EventCallback<string> StringValueChanged { get; set; }
     [Parameter] public Expression<Func<string>> pStringValueExpression { get; set; }
 
+#nullable restore annotations
 }

@@ -33,11 +33,13 @@ namespace BlazorMdc
             return "";
         }
 
+#nullable enable annotations
         public static string DateToString(DateTime dateTime, string? format = null)
         {
             string myFormat = (format is null) ? "D" : format;
 
             return dateTime.ToString(myFormat);
         }
+#nullable restore annotations
     }
 }

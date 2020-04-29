@@ -88,6 +88,7 @@
     }
 
 
+#nullable enable annotations
     [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
     [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
     [Parameter] public string Label { get; set; } = "";
@@ -99,6 +100,7 @@
     [Parameter] public bool AllowBlankResult { get; set; } = false;
     [Parameter] public bool MatchFromItemStart { get; set; } = false;
     [Parameter] public IEnumerable<string> SelectItems { get; set; }
+#nullable restore annotations
 
 
     private MdcTextInputStyle appliedInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
