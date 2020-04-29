@@ -18,19 +18,13 @@ namespace BlazorMdc
 
         public static string GetTextAlignClass(MdcTextAlignStyle textaAlign)
         {
-            switch (textaAlign)
+            return textaAlign switch
             {
-                case MdcTextAlignStyle.Left:
-                    return " bmdc-align-left";
-
-                case MdcTextAlignStyle.Center:
-                    return " bmdc-align-center";
-
-                case MdcTextAlignStyle.Right:
-                    return " bmdc-align-right";
-            }
-
-            return "";
+                MdcTextAlignStyle.Left => " bmdc-align-left",
+                MdcTextAlignStyle.Center => " bmdc-align-center",
+                MdcTextAlignStyle.Right => " bmdc-align-right",
+                _ => "",
+            };
         }
 
 #nullable enable annotations

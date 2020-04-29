@@ -4,8 +4,8 @@ namespace BlazorMdc.Demo
 {
     public partial class Index
     {
-        string runtime;
-        string mode;
+        readonly string runtime;
+        readonly string mode;
         
         public Index()
         {
