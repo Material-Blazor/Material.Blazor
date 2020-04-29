@@ -54,6 +54,8 @@
     //  2020-04-13  Mark Stega
     //              Moved ClassMapper to constructor
     //
+
+#nullable enable annotations
     [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
     [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
     [Parameter] public string Type { get; set; } = "text";
@@ -69,6 +71,7 @@
     [Parameter] public EventCallback<FocusEventArgs> OnFocusIn { get; set; }
     [Parameter] public EventCallback<FocusEventArgs> OnFocusOut { get; set; }
     [Parameter] public EventCallback<FocusEventArgs> OnFocus { get; set; }
+#nullable restore annotations
 
 
     private MdcTextInputStyle appliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);

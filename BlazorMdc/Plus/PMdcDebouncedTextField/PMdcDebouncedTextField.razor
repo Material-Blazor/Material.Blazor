@@ -8,6 +8,7 @@
 
 
 <MdcTextField Type="text"
+              Value="@Value"
               Label="@Label"
               NoLabel="@NoLabel"
               LeadingIcon="@LeadingIcon"
@@ -20,6 +21,7 @@
 
 
 @code {
+#nullable enable annotations
     [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
     [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
     [Parameter] public string Label { get; set; }
@@ -27,11 +29,13 @@
     [Parameter] public string? LeadingIcon { get; set; }
     [Parameter] public string? TrailingIcon { get; set; }
     [Parameter] public bool FormNoValidate { get; set; } = false;
-    [Parameter] public int DebounceInterval { get; set; } = 300;
+    [Parameter] public int? DebounceInterval { get; set; }
+#nullable restore annotations
 
 
     private Timer timer;
     private string currentValue = "";
+    private int appliedDebounceInterval => CascadingDefaults.AppliedDebounceInterval(DebounceInterval);
 
 
     protected override void OnInitialized()
@@ -52,7 +56,7 @@
         timer?.Dispose();
         currentValue = eventArgs.Value.ToString();
         var autoReset = new AutoResetEvent(false);
-        timer = new Timer(OnTimerComplete, autoReset, DebounceInterval, Timeout.Infinite);
+        timer = new Timer(OnTimerComplete, autoReset, appliedDebounceInterval, Timeout.Infinite);
     }
 
 
