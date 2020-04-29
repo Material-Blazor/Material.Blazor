@@ -12,7 +12,7 @@
                       Items="intervals"
                       ItemValidation="@MdcItemValidation.DefaultToFirst" />
 
-<p style="margin-top: 3rem;">Outlined style</p>
+<p style="margin-top: 3rem;">Debounce Text</p>
 <p><PMdcDebouncedTextField Label="Debounced Text" @bind-Value="@currentValue" TextInputStyle="MdcTextInputStyle.Outlined" LeadingIcon="@MdcIcons.Icon__account_balance_wallet" DebounceInterval="interval" /></p>
 
 <ul style="margin-top: 2rem;">
@@ -23,7 +23,7 @@
 </ul>
 
 @code {
-    private string _currentValue = "";
+    private string _currentValue = "Starting Text";
     private string currentValue
     {
         get => _currentValue;
