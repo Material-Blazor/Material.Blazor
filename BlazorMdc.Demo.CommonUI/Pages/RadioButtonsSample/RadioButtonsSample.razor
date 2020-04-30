@@ -8,17 +8,20 @@
 
 <p>See <code>RadioButtonsSample.razor</code> for sources.</p>
 
-<MdcRadioButton CheckedValue=@zebraCheckedValue
-                @bind-Value="@zebraChecked"
-                Label="zebra"
-                RadioGroupName="demoGroup"
-                OnClick="@(() => animal = "zebra")" />
+<MdcRadioButton @bind-Value="@animal"
+                CheckedValue=@animalEnum.dog
+                Label=@animalEnum.dog.ToString()
+                RadioGroupName="demoGroup" />
+<MdcRadioButton @bind-Value="@animal"
+                CheckedValue=@animalEnum.fish
+                Label=@animalEnum.fish.ToString()
+                RadioGroupName="demoGroup" />
+<MdcRadioButton @bind-Value="@animal"
+                CheckedValue=@animalEnum.zebra
+                Label=@animalEnum.zebra.ToString()
+                RadioGroupName="demoGroup" />
 
-<MdcRadioButton CheckedValue=@dogCheckedValue
-                Label="dog"
-                RadioGroupName="demoGroup" 
-                OnClick="@(() => animal = "dog")"/>
-<p style="margin-bottom: 4em;">Selected: '<strong>@(animal ?? "")</strong>'</p>
+<p style="margin-bottom: 4em;">Selected: '<strong>@animal</strong>'</p>
 
 
 
@@ -36,10 +39,8 @@
 
 
 @code {
-    string animal = "zebra";
-    string zebraCheckedValue = "zebra";
-    string dogCheckedValue = "dog";
-    bool zebraChecked = true;
+    enum animalEnum { dog, fish, zebra };
+    animalEnum animal = animalEnum.fish;
 
 
     string kittenBreed;
@@ -48,7 +49,7 @@
         new MdcListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MdcListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
         new MdcListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
-    };
+        };
 
 
     Colour colour = Colour.Orange;

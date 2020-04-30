@@ -19,17 +19,17 @@
         }
 
         isFirst = false;
-        var itemChecked = EqualityComparer<TItem>.Default.Equals(Value, item.SelectedValue);
 
         <MdcRadioButton @key="@item"
-                        Value="@itemChecked"
+                        @bind-Value="@localValue"
+                        TItem="TItem"
                         ButtonContainerClass="@item.ButtonContainerClass"
                         Disabled="@item.Disabled"
                         EnableTouchWrapper="@EnableTouchWrapper"
                         Label="@item.Label"
                         CheckedValue="@item.SelectedValue"
                         RadioGroupName="@radioGroupName"
-                        OnClick="@(_ => OnItemClickAsync(item.SelectedValue))" />
+                        OnClick="@(OnItemClickAsync)" />
     }
 
 </div>
@@ -49,6 +49,8 @@
 
     private MdcListElement<TItem>[] ItemArray;
 
+    private TItem localValue;
+
 
     protected override async Task OnInitializedAsync()
     {
@@ -58,7 +60,14 @@
 
         MdcItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidationRadioButtonGroup(ItemValidation);
 
-        await ValidateItemListAsync(ItemArray, appliedItemValidation, OnItemClickAsync);
+        await ValidateItemListAsync(ItemArray, appliedItemValidation, SetInitialItem);
+    }
+
+
+    private async Task SetInitialItem(TItem SelectedValue)
+    {
+        localValue = SelectedValue;
+        await OnItemClickAsync(SelectedValue);
     }
 
 

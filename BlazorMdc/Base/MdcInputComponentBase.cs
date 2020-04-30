@@ -224,7 +224,7 @@ namespace BlazorMdc
         }
 
 
-        public void RequestInstantiation()
+        public virtual void RequestInstantiation()
         {
             _instantiate = true;
             _allowNextRender = true;

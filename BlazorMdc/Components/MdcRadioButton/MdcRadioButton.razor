@@ -2,7 +2,7 @@
 
 @typeparam TItem
 
-@inherits MdcInputComponentBase<bool>
+@inherits MdcInputComponentBase<TItem>
 
 @inject IJSRuntime jsRuntime
 
@@ -13,12 +13,12 @@
 
     <div @ref="@radioButtonReference" class="@buttonContainerClass">
         <input class="mdc-radio__native-control @disabledClass"
-                type="radio"
-                id="@radioId"
-                name="@RadioGroupName"
-                disabled="@Disabled"
-                @onclick="@OnClick">
- 
+               type="radio"
+               id="@radioId"
+               name="@RadioGroupName"
+               disabled="@Disabled"
+               @onclick="@(_ => OnInternalItemClickAsync())">
+
         <div class="mdc-radio__background">
             <div class="mdc-radio__outer-circle"></div>
             <div class="mdc-radio__inner-circle"></div>
@@ -30,23 +30,25 @@
 </div>
 
 @code{
-    //
-    //  2020-04-20  Mark Stega
-    //              Created (loosely) from MdcRadioButtons
-    //
-    [Parameter] public TItem CheckedValue { get; set; }
-    [Parameter] public string Label { get; set; }
-    [Parameter] public string ButtonContainerClass { get; set; }
-    [Parameter] public bool EnableTouchWrapper { get; set; } = true;
-    [Parameter] public string RadioGroupName { get; set; }
-    [Parameter] public EventCallback OnClick { get; set; }
+        //
+        //  2020-04-20  Mark Stega
+        //              Created (loosely) from MdcRadioButtons
+        //
+        [Parameter] public TItem CheckedValue { get; set; }
+        [Parameter] public string Label { get; set; }
+        [Parameter] public string ButtonContainerClass { get; set; }
+        [Parameter] public bool EnableTouchWrapper { get; set; } = true;
+        [Parameter] public string RadioGroupName { get; set; }
+        [Parameter] public EventCallback<TItem> OnClick { get; set; }
 
-    
+
     private readonly string radioId = Utilities.GenerateCssElementSelector();
     private ElementReference formReference { get; set; }
     private ElementReference radioButtonReference;
     private string buttonContainerClass;
+    private bool Checked;
     private string disabledClass = "";
+    private bool isSafeToCallJS = false;
 
 
     protected override void OnInitialized()
@@ -79,11 +81,37 @@
         {
             disabledClass = " mdc-radio--disabled";
         }
+
+        Checked = Value.Equals(CheckedValue);
     }
 
 
-    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.init", radioButtonReference, formReference, Value);
+    private async Task OnInternalItemClickAsync()
+    {
+        Checked = true;
+        await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.setCheck", radioButtonReference, Value);
+        NativeComponentBoundValue = CheckedValue;
+        await OnClick.InvokeAsync(CheckedValue);
+    }
 
 
-    internal async Task ClickAsync() => await jsRuntime.InvokeVoidAsync("BlazorMdc.radioButton.click", radioButtonReference);
+    protected override async Task OnParametersSetAsync()
+    {
+        await base.OnParametersSetAsync();
+
+        Checked = Value.Equals(CheckedValue);
+
+        if (isSafeToCallJS)
+        {
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.setCheck", radioButtonReference, Value);
+        }
+    }
+
+
+    protected override async Task InitializeMdcComponent()
+    {
+        isSafeToCallJS=true;
+        await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.init", radioButtonReference, formReference, Value);
+    }
+
 }
