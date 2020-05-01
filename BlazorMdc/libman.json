@@ -10,6 +10,17 @@
         "dist/material-components-web.css",
         "dist/material-components-web.js"
       ]
+    },
+    {
+      "provider": "unpkg",
+      "library": "material-components-web@5.1.0",
+      "destination": "wwwroot/",
+      "files": [
+        "dist/material-components-web.css",
+        "dist/material-components-web.min.css",
+        "dist/material-components-web.js",
+        "dist/material-components-web.min.js"
+      ]
     }
   ]
 }
