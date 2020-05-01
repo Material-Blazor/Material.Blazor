@@ -8,6 +8,7 @@
 
 <p>See <code>RadioButtonsSample.razor</code> for sources.</p>
 
+<hr />
 <MdcRadioButton @bind-Value="@animal"
                 CheckedValue=@animalEnum.dog
                 Label=@animalEnum.dog.ToString()
@@ -50,7 +51,7 @@
         new MdcListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MdcListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
         new MdcListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
-    };
+        };
 
 
     Colour colour = Colour.Orange;

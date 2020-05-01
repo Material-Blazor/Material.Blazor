@@ -39,16 +39,13 @@
     [Parameter] public string ButtonContainerClass { get; set; }
     [Parameter] public bool EnableTouchWrapper { get; set; } = true;
     [Parameter] public string RadioGroupName { get; set; }
-    [Parameter] public EventCallback<TItem> OnClick { get; set; }
 
 
     private readonly string radioId = Utilities.GenerateCssElementSelector();
     private ElementReference formReference { get; set; }
     private ElementReference radioButtonReference;
     private string buttonContainerClass;
-    private bool Checked;
     private string disabledClass = "";
-    private bool isSafeToCallJS = false;
 
 
     protected override void OnInitialized()
@@ -82,41 +79,24 @@
             disabledClass = " mdc-radio--disabled";
         }
 
-        Checked = Value.Equals(CheckedValue);
+        ForceShouldRenderToTrue = true;
     }
 
 
     private async Task OnInternalItemClickAsync()
     {
-        //        Checked = true;
-        //        await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.setCheck", radioButtonReference, Value.Equals(CheckedValue));
         NativeComponentBoundValue = CheckedValue;
-        await OnClick.InvokeAsync(CheckedValue);
-    }
-
-
-    protected override async Task OnParametersSetAsync()
-    {
-        await base.OnParametersSetAsync();
-
-        Checked = Value.Equals(CheckedValue);
-
-        if (isSafeToCallJS)
-        {
-            //            await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.setCheck", radioButtonReference, Checked);
-        }
+        await Task.CompletedTask;
     }
 
 
     protected override async Task InitializeMdcComponent()
     {
-        isSafeToCallJS=true;
-        await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.init", radioButtonReference, formReference, Checked);
-    }
-
-    protected override bool ShouldRender()
-    {
-        return true;
+        await jsRuntime.InvokeAsync<object>(
+            "BlazorMdc.radioButton.init",
+            radioButtonReference,
+            formReference,
+            Value.Equals(CheckedValue));
     }
 
 }
