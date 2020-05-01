@@ -34,20 +34,39 @@ We also want to acknowledge the work of
 
 ## Installation
 
-Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add the following CSS and JS links to your html `<head>` section (there are non-minified blazormdc.* files to reference if you prefer):
+Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add one of the two following methods of linking CSS and JS in your html (there are non-minified blazormdc.* files to reference if you prefer). Note that if you fork this repo, we compile, bundle and minify SASS/CSS and JS. In Visual Studio you will need to install the [Web Compiler](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.WebCompiler) and [Bundler Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) extensions.
 
+Reference the `BlazorMdc` namespace with `@using BlazorMdc` to your `_Imports.razor` file and if you want to use `PMdcToast` add `services.AddPMdcToast();` to your `ConfigureServices` function for Blazor Server or to the `Main()` function for Blazor WASM.
+
+**NOTE** - BlazorMdc works with [Material Components v5.1.0](https://github.com/material-components/material-components-web/releases/tag/v5.1.0). [Version 6.0.0](https://github.com/material-components/material-components-web/releases/tag/v6.0.0) released on 23 April 2020 causes dramatic markup failure. We aim to migrate promptly once we consider the relevant Material Theme documentation to be clear enough to enable this.
+
+#### Option 1 - Using our bundled CSS and JS
+
+We bundle the Material Theme CSS and JS into BlazorMdc for your convenience, and you will need to add three items to your index file. Place this in the the `<head>` tag:
 ```
+    <link href="_content/BlazorMdc/blazormdc-bundled.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+```
+and at the end of `<body>`:
+```
+    <script src="_content/BlazorMdc/blazormdc-bundled.min.js"></script>
+```
+See the [Blazor Server demo index file](BlazorMdc.Demo.WebServer/Pages/index_ssb.cshtml) for an example.
+
+#### Option 2 - Using our unbundled CSS and JS 
+
+If you want to directly reference the Material Theme CSS and JS from the unpkg CDN (or download it for yourself), place this in the `<head>` tag:
+```
+    <link href="_content/BlazorMdc/blazormdc.min.css" rel="stylesheet">
     <link href="https://unpkg.com/material-components-web@5.1.0/dist/material-components-web.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="_content/BlazorMdc/blazormdc.min.css" rel="stylesheet">
-   
+```
+and at the end of `<body>`:
+```
     <script src="https://unpkg.com/material-components-web@5.1.0/dist/material-components-web.js"></script>
     <script src="_content/BlazorMdc/blazormdc.min.js"></script>
 ```
-
-Then reference the `BlazorMdc` namespace with `@using BlazorMdc` to your `_Imports.razor` file and if you want to use `PMdcToast` add `services.AddPMdcToast();` to your `ConfigureServices` function for Blazor Server or to the `Main()` function for Blazor WASM.
-
-**NOTE** - BlazorMdc works with [Material Components v5.1.0](https://github.com/material-components/material-components-web/releases/tag/v5.1.0). Version 6.0.0 released on 23 April 2020 causes dramatic markup failure.
+See the [Blazor WASM demo index file](BlazorMdc.Demo.WebServer/Pages/index_csb.cshtml) for an example.
 
 ## Demonstration website
 

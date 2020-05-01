@@ -5,10 +5,10 @@
     {
       "provider": "unpkg",
       "library": "material-components-web@5.1.0",
-      "destination": "wwwroot/lib/material-components-web/",
+      "destination": "Styles/lib/material-components-web/",
       "files": [
-        "dist/material-components-web.min.css",
-        "dist/material-components-web.min.js"
+        "dist/material-components-web.css",
+        "dist/material-components-web.js"
       ]
     }
   ]
