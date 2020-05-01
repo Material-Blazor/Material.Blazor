@@ -62,13 +62,13 @@
     {
         get
         {
-            return hasFocus ? Math.Round(Convert.ToDouble(NativeComponentBoundValue) * mult, myDecimalPlaces).ToString() : StringValue(NativeComponentBoundValue);
+            return hasFocus ? Math.Round(Convert.ToDouble(ReportingValue) * mult, myDecimalPlaces).ToString() : StringValue(ReportingValue);
         }
 
         set
         {
             var enteredVal = hasFocus ? Convert.ToDouble(Convert.ToDouble(string.IsNullOrWhiteSpace(value) ? "0" : value.Trim()) / mult) : NumericValue(value);
-            NativeComponentBoundValue = Math.Round(Math.Max(Min ?? enteredVal, Math.Min(enteredVal, Max ?? enteredVal)), myDecimalPlaces + (int)Magnitude);
+            ReportingValue = Math.Round(Math.Max(Min ?? enteredVal, Math.Min(enteredVal, Max ?? enteredVal)), myDecimalPlaces + (int)Magnitude);
         }
     }
 
@@ -79,7 +79,7 @@
         {
             if (hasFocus) return "";
 
-            if (!(NumericSingularFormat is null) && Utilities.DoubleEqual(Math.Abs(NativeComponentBoundValue), 1)) return NumericSingularFormat;
+            if (!(NumericSingularFormat is null) && Utilities.DoubleEqual(Math.Abs(ReportingValue), 1)) return NumericSingularFormat;
 
             return NumericFormat;
         }
@@ -139,7 +139,7 @@
 
         if (!regex.IsMatch(displayText))
         {
-            return NativeComponentBoundValue;
+            return ReportingValue;
         }
 
         double amount = 0;
@@ -150,12 +150,12 @@
         }
         catch
         {
-            return NativeComponentBoundValue;
+            return ReportingValue;
         }
 
         if ((Min != null && amount < Min) || (Max != null && amount > Max))
         {
-            return NativeComponentBoundValue;
+            return ReportingValue;
         }
 
         return amount;

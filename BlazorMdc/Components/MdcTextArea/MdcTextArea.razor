@@ -12,7 +12,7 @@
     <textarea type="@Type"
            id="@id"
            class="mdc-text-field__input @appliedTextInputStyleClass @FieldClass"
-           @bind="@NativeComponentBoundValue"
+           @bind="@ReportingValue"
            aria-labelledby="@labelId"
            rows="@Rows"
            cols="@Cols"
@@ -91,7 +91,7 @@
 
     protected override void OnParametersSet()
     {
-        floatingLabelClass = string.IsNullOrEmpty(NativeComponentBoundValue) ? "" : "mdc-floating-label--float-above";
+        floatingLabelClass = string.IsNullOrEmpty(ReportingValue) ? "" : "mdc-floating-label--float-above";
     }
 
 

@@ -49,7 +49,7 @@
 
         objectReference = DotNetObjectReference.Create(this);
 
-        cachedIsOpen = NativeComponentBoundValue;
+        cachedIsOpen = ReportingValue;
     }
 
 
@@ -81,7 +81,7 @@
     public async Task NotifyOnAsync(bool on)
     {
         cachedIsOpen = on;
-        NativeComponentBoundValue = on;
+        ReportingValue = on;
         await Task.CompletedTask;
     }
 

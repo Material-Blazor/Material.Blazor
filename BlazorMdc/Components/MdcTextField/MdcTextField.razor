@@ -14,7 +14,7 @@
            type="@Type"
            id="@Id"
            class="mdc-text-field__input @Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle)) @FieldClass"
-           @bind="@NativeComponentBoundValue"
+           @bind="@ReportingValue"
            aria-labelledby="@labelId"
            disabled="@Disabled"
            formnovalidate="@FormNoValidate"
@@ -108,7 +108,7 @@
 
         TrailingIconMarkup = (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--trailing\" tabindex=\"-1\" role=\"button\">{TrailingIcon}</i>");
 
-        floatingLabelClass = string.IsNullOrEmpty(NativeComponentBoundValue) ? "" : "mdc-floating-label--float-above";
+        floatingLabelClass = string.IsNullOrEmpty(ReportingValue) ? "" : "mdc-floating-label--float-above";
     }
 
 
