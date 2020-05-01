@@ -145,7 +145,7 @@ namespace BlazorMdc
         /// <summary>
         /// Allows ShouldRender() to return "true" habitually.
         /// </summary>
-        internal bool AlwaysAllowShouldRender { get; set; } = false;
+        internal bool ForceShouldRenderToTrue { get; set; } = false;
 
         /// <summary>
         /// Formats the value as a string. Derived classes can override this to determine the formating used for <see cref="NativeComponentBoundValueAsString"/>.
@@ -224,7 +224,7 @@ namespace BlazorMdc
         }
 
 
-        public void RequestInstantiation()
+        public virtual void RequestInstantiation()
         {
             _instantiate = true;
             _allowNextRender = true;
@@ -239,7 +239,7 @@ namespace BlazorMdc
 
         protected override bool ShouldRender()
         {
-            if (AlwaysAllowShouldRender || _allowNextRender)
+            if (ForceShouldRenderToTrue || _allowNextRender)
             {
                 _allowNextRender = false;
                 return true;

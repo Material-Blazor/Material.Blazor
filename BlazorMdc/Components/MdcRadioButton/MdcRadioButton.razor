@@ -2,7 +2,7 @@
 
 @typeparam TItem
 
-@inherits MdcInputComponentBase<bool>
+@inherits MdcInputComponentBase<TItem>
 
 @inject IJSRuntime jsRuntime
 
@@ -13,12 +13,12 @@
 
     <div @ref="@radioButtonReference" class="@buttonContainerClass">
         <input class="mdc-radio__native-control @disabledClass"
-                type="radio"
-                id="@radioId"
-                name="@RadioGroupName"
-                disabled="@Disabled"
-                @onclick="@OnClick">
- 
+               type="radio"
+               id="@radioId"
+               name="@RadioGroupName"
+               disabled="@Disabled"
+               @onclick="@(_ => OnInternalItemClickAsync())">
+
         <div class="mdc-radio__background">
             <div class="mdc-radio__outer-circle"></div>
             <div class="mdc-radio__inner-circle"></div>
@@ -39,9 +39,8 @@
     [Parameter] public string ButtonContainerClass { get; set; }
     [Parameter] public bool EnableTouchWrapper { get; set; } = true;
     [Parameter] public string RadioGroupName { get; set; }
-    [Parameter] public EventCallback OnClick { get; set; }
 
-    
+
     private readonly string radioId = Utilities.GenerateCssElementSelector();
     private ElementReference formReference { get; set; }
     private ElementReference radioButtonReference;
@@ -79,11 +78,25 @@
         {
             disabledClass = " mdc-radio--disabled";
         }
+
+        ForceShouldRenderToTrue = true;
     }
 
 
-    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.init", radioButtonReference, formReference, Value);
+    private async Task OnInternalItemClickAsync()
+    {
+        NativeComponentBoundValue = CheckedValue;
+        await Task.CompletedTask;
+    }
 
 
-    internal async Task ClickAsync() => await jsRuntime.InvokeVoidAsync("BlazorMdc.radioButton.click", radioButtonReference);
+    protected override async Task InitializeMdcComponent()
+    {
+        await jsRuntime.InvokeAsync<object>(
+            "BlazorMdc.radioButton.init",
+            radioButtonReference,
+            formReference,
+            Value.Equals(CheckedValue));
+    }
+
 }
