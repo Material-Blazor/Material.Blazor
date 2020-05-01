@@ -1,34 +1,16 @@
 [
-  {
-    "outputFileName": "wwwroot/blazormdc-bundled.css",
-    "inputFiles": [
-      "wwwroot/blazormdc.css",
-      "Styles/lib/material-components-web/dist/material-components-web.css"
-    ]
-  },
+  
   {
     "outputFileName": "wwwroot/blazormdc-bundled.min.css",
     "inputFiles": [
       "wwwroot/blazormdc.css",
-      "Styles/lib/material-components-web/dist/material-components-web.css"
+      "Styles/lib/material-components-web/dist/material-components-web.min.css"
     ]
-  },
-  {
-    "outputFileName": "wwwroot/blazormdc-bundled.js",
-    "inputFiles": [
-      "Styles/lib/material-components-web/dist/material-components-web.js",
-      "wwwroot/blazormdc.js"
-    ],
-    "minify": {
-      "enabled": true,
-      "renameLocals": true
-    },
-    "sourceMap": false
   },
   {
     "outputFileName": "wwwroot/blazormdc-bundled.min.js",
     "inputFiles": [
-      "Styles/lib/material-components-web/dist/material-components-web.js",
+      "Styles/lib/material-components-web/dist/material-components-web.min.js",
       "wwwroot/blazormdc.js"
     ],
     "minify": {

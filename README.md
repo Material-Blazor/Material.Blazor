@@ -34,7 +34,7 @@ We also want to acknowledge the work of
 
 ## Installation
 
-Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add one of the three following methods of linking CSS and JS in your html (there are non-minified blazormdc.* files to reference if you prefer). Note that if you fork this repo, we compile, bundle and minify SASS/CSS and JS. In Visual Studio you will need to install the [Web Compiler](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.WebCompiler) and [Bundler Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) extensions.
+Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add one of the two following methods of linking CSS and JS in your html (there are non-minified unbundled files to reference if you prefer, but not for the bundled alternatives). Note that if you fork this repo, we compile, bundle and minify SASS/CSS and JS. In Visual Studio you will need to install the [Web Compiler](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.WebCompiler) and [Bundler Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) extensions.
 
 Reference the `BlazorMdc` namespace with `@using BlazorMdc` to your `_Imports.razor` file and if you want to use `PMdcToast` add `services.AddPMdcToast();` to your `ConfigureServices` function for Blazor Server or to the `Main()` function for Blazor WASM.
 
@@ -53,21 +53,7 @@ and at the end of `<body>`:
 ```
 See the [Blazor Server demo index file](BlazorMdc.Demo.WebServer/Pages/index_ssb.cshtml) for an example.
 
-#### Option 2 - Using our unbundled CSS and JS 
-
-If you want to directly reference the Material Theme CSS and JS from the unpkg CDN (or download it for yourself), place this in the `<head>` tag:
-```
-    <link href="_content/BlazorMdc/blazormdc.min.css" rel="stylesheet">
-    <link href="_content/BlazorMdc/dist/material-components-web.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-```
-and at the end of `<body>`:
-```
-    <script src="_content/BlazorMdc/dist/material-components-web.min.js"></script>
-    <script src="_content/BlazorMdc/blazormdc.min.js"></script>
-```
-
-#### Option 3 - Using our unbundled CSS and JS with Material Theme files from CDN 
+#### Option 2 - Using our unbundled CSS and JS with Material Theme files from CDN 
 
 If you want to directly reference the Material Theme CSS and JS from the unpkg CDN (or download it for yourself), place this in the `<head>` tag:
 ```
