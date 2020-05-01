@@ -7,32 +7,35 @@
 @inject IJSRuntime jsRuntime
 
 
-<div class="@ClassMapper.ToString()"
-     style="@StyleMapper.ToString()">
+    <div class="@ClassMapper.ToString()"
+         style="@StyleMapper.ToString()">
 
-    @{ bool isFirst = true; }
-    @foreach (var item in ItemArray)
-    {
-        @if (Vertical && !isFirst)
+        @{ bool isFirst = true; }
+        @foreach (var item in ItemArray)
         {
-            <div class="bmdc-mdc-radio-break"></div>
+            @if (Vertical && !isFirst)
+            {
+                <div class="bmdc-mdc-radio-break"></div>
+            }
+
+            isFirst = false;
+
+            <MdcRadioButton @key="@item"
+                            Value="@localValue"
+                            ValueChanged="@vChanged"
+                            ValueExpression="vExpression"
+                            TItem="TItem"
+                            ButtonContainerClass="@item.ButtonContainerClass"
+                            Disabled="@item.Disabled"
+                            EnableTouchWrapper="@EnableTouchWrapper"
+                            Label="@item.Label"
+                            CheckedValue="@item.SelectedValue"
+                            RadioGroupName="@radioGroupName"
+                            OnClick="@(OnItemClickAsync)" />
         }
+        <hr />
 
-        isFirst = false;
-
-        <MdcRadioButton @key="@item"
-                        @bind-Value="@localValue"
-                        TItem="TItem"
-                        ButtonContainerClass="@item.ButtonContainerClass"
-                        Disabled="@item.Disabled"
-                        EnableTouchWrapper="@EnableTouchWrapper"
-                        Label="@item.Label"
-                        CheckedValue="@item.SelectedValue"
-                        RadioGroupName="@radioGroupName"
-                        OnClick="@(OnItemClickAsync)" />
-    }
-
-</div>
+    </div>
 
 @code {
     //
@@ -60,6 +63,8 @@
 
         MdcItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidationRadioButtonGroup(ItemValidation);
 
+        localValue = Value;
+
         await ValidateItemListAsync(ItemArray, appliedItemValidation, SetInitialItem);
     }
 
@@ -73,7 +78,19 @@
 
     private async Task OnItemClickAsync(TItem SelectedValue)
     {
-        NativeComponentBoundValue = SelectedValue;
+        NativeComponentBoundValue = localValue;
         await Task.CompletedTask;
+    }
+
+    private async Task vChanged(TItem newValue)
+    {
+        localValue = newValue;
+    }
+
+    private System.Linq.Expressions.Expression<System.Func<TItem>> vExpression => (() => localValue);
+
+    protected override bool ShouldRender()
+    {
+        return true;
     }
 }

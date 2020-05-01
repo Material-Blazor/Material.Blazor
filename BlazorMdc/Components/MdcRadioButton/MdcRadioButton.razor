@@ -30,16 +30,16 @@
 </div>
 
 @code{
-        //
-        //  2020-04-20  Mark Stega
-        //              Created (loosely) from MdcRadioButtons
-        //
-        [Parameter] public TItem CheckedValue { get; set; }
-        [Parameter] public string Label { get; set; }
-        [Parameter] public string ButtonContainerClass { get; set; }
-        [Parameter] public bool EnableTouchWrapper { get; set; } = true;
-        [Parameter] public string RadioGroupName { get; set; }
-        [Parameter] public EventCallback<TItem> OnClick { get; set; }
+    //
+    //  2020-04-20  Mark Stega
+    //              Created (loosely) from MdcRadioButtons
+    //
+    [Parameter] public TItem CheckedValue { get; set; }
+    [Parameter] public string Label { get; set; }
+    [Parameter] public string ButtonContainerClass { get; set; }
+    [Parameter] public bool EnableTouchWrapper { get; set; } = true;
+    [Parameter] public string RadioGroupName { get; set; }
+    [Parameter] public EventCallback<TItem> OnClick { get; set; }
 
 
     private readonly string radioId = Utilities.GenerateCssElementSelector();
@@ -88,8 +88,8 @@
 
     private async Task OnInternalItemClickAsync()
     {
-        Checked = true;
-        await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.setCheck", radioButtonReference, Value);
+        //        Checked = true;
+        //        await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.setCheck", radioButtonReference, Value.Equals(CheckedValue));
         NativeComponentBoundValue = CheckedValue;
         await OnClick.InvokeAsync(CheckedValue);
     }
@@ -103,7 +103,7 @@
 
         if (isSafeToCallJS)
         {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.setCheck", radioButtonReference, Value);
+            //            await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.setCheck", radioButtonReference, Checked);
         }
     }
 
@@ -111,7 +111,12 @@
     protected override async Task InitializeMdcComponent()
     {
         isSafeToCallJS=true;
-        await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.init", radioButtonReference, formReference, Value);
+        await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.init", radioButtonReference, formReference, Checked);
+    }
+
+    protected override bool ShouldRender()
+    {
+        return true;
     }
 
 }

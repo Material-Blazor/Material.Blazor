@@ -20,15 +20,15 @@
                 CheckedValue=@animalEnum.zebra
                 Label=@animalEnum.zebra.ToString()
                 RadioGroupName="demoGroup" />
-
-<p style="margin-bottom: 4em;">Selected: '<strong>@animal</strong>'</p>
-
+<p style="margin-bottom: 4em;">Selected animal: '<strong>@animal.ToString()</strong>'</p>
+<hr />
 
 
 <PMdcRadioButtonGroup @bind-Value="@kittenBreed"
                       Items="stringItems"
                       ItemValidation="@MdcItemValidation.DefaultToFirst" />
 <p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed ?? "")</strong>'</p>
+<hr />
 
 
 <PMdcRadioButtonGroup @bind-Value="@colour"
@@ -36,6 +36,7 @@
                       Vertical="true"
                       EnableTouchWrapper="false" />
 <p style="margin-bottom: 4em;">Selected: '<strong>@(colour.ToString())</strong>'</p>
+<hr />
 
 
 @code {
@@ -49,7 +50,7 @@
         new MdcListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MdcListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
         new MdcListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
-        };
+    };
 
 
     Colour colour = Colour.Orange;
