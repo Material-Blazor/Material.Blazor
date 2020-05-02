@@ -5,12 +5,14 @@
 @inject IJSRuntime jsRuntime
 
 
-<div class="@ClassMapper.ToString()"
-     style="@StyleMapper.ToString()">
-    <CascadingValue Value="this">
-        @ChildContent
-    </CascadingValue>
-</div>
+<CascadingValue Value="@this">
+    <div class="@ClassMapper.ToString()"
+            style="@StyleMapper.ToString()">
+        <CascadingValue Value="this">
+            @ChildContent
+        </CascadingValue>
+    </div>
+</CascadingValue>
 
 
 @code {
