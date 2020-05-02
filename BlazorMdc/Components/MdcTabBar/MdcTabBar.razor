@@ -61,6 +61,7 @@
             if (!SuppressTwoWayBinding && value != _tabIndex)
             {
                 _ = SetTabIndexAsync(value);
+                _tabIndex = value;
             }
 
             if (!hasRendered)
@@ -110,6 +111,12 @@
     public async Task SetTabIndexAsync(int index)
     {
         await jsRuntime.InvokeAsync<object>("BlazorMdc.tabBar.setTab", elementReference, index);
+    }
+
+
+    protected override bool ShouldRender()
+    {
+        return false;
     }
 
 

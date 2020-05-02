@@ -16,7 +16,7 @@
 
 
 
-<PMdcDivider Style="margin: 2rem 0 2rem 0;"></PMdcDivider>
+<PMdcDivider Style="margin: 3rem 0 3rem 0;"></PMdcDivider>
 
 <p><MdcSwitch @bind-Value="@stacked" Label="Stack Icons" /></p>
 
@@ -26,7 +26,7 @@
 
 
 <PMdcSlidingTabBar @key="@stacked"
-                       @ref="tabBar"
+                       @ref="slidingTabBar"
                        Items="@slidingTabItems"
                        Context="item"
                        @bind-TabIndex="@slidingTabIndex"
@@ -48,7 +48,7 @@
 
 @code {
     private bool stacked = false;
-    private PMdcSlidingTabBar<SlidingTabItem> tabBar;
+    private PMdcSlidingTabBar<SlidingTabItem> slidingTabBar;
     private int slidingTabIndex = 5;
     private string clickedTab = "Red";
 
