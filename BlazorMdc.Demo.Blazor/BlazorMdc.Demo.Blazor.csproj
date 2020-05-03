@@ -7,23 +7,23 @@
     <LangVersion>7.3</LangVersion>
     <RazorLangVersion>3.0</RazorLangVersion>
 
-    <Configurations>Debug_CSB;Debug_SSB;Release_CSB;Release_SSB</Configurations>
+    <Configurations>Debug_WASM;Debug_Server;Release_WASM;Release_Server</Configurations>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_CSB|AnyCPU'">
-    <DefineConstants>ClientSideBlazor;DEBUG;</DefineConstants>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_WASM|AnyCPU'">
+    <DefineConstants>BlazorWASM;DEBUG;</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_SSB|AnyCPU'">
-    <DefineConstants>ServerSideBlazor;DEBUG;</DefineConstants>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Server|AnyCPU'">
+    <DefineConstants>BlazorServer;DEBUG;</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_CSB|AnyCPU'">
-    <DefineConstants>ClientSideBlazor;RELEASE;</DefineConstants>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_WASM|AnyCPU'">
+    <DefineConstants>BlazorWASM;RELEASE;</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_SSB|AnyCPU'">
-    <DefineConstants>ServerSideBlazor;RELEASE</DefineConstants>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Server|AnyCPU'">
+    <DefineConstants>BlazorServer;RELEASE</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>

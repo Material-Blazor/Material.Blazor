@@ -1,4 +1,12 @@
-﻿.bmdc-slide-in-from-left {
+﻿.bmdc-hidden {
+    visibility: hidden;
+}
+
+.bmdc-visible {
+    visibility: visible;
+}
+
+.bmdc-slide-in-from-left {
     animation: slideInFromLeft ease 200ms;
     -webkit-animation: slideInFromLeft ease 200ms;
 }

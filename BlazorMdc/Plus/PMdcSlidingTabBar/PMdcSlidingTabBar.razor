@@ -1,0 +1,89 @@
+﻿@namespace BlazorMdc
+
+@typeparam TItem
+
+@inherits MdcComponentBase
+
+@inject IJSRuntime jsRuntime
+
+
+@if (Icon is null)
+{
+    <MdcTabBar TabIndex="@TabIndex"
+               Items="@Items"
+               Context="item"
+               StackIcons="@StackIcons"
+               OnTabClick="@OnLocalTabClickAsync">
+
+        <Label>@Label(item)</Label>
+    </MdcTabBar>
+}
+else
+{
+    <MdcTabBar TabIndex="@TabIndex"
+               Items="@Items"
+               Context="item"
+               StackIcons="@StackIcons"
+               OnTabClick="@OnLocalTabClickAsync">
+
+        <Label>@Label(item)</Label>
+        <Icon>@Icon(item)</Icon>
+    </MdcTabBar>
+}
+
+
+<PMdcSlidingContent Items="@Items"
+                    @bind-ItemIndex="@TabIndex"
+                    Context="item">
+
+    <Content>
+        @Content(item)
+    </Content>
+</PMdcSlidingContent>
+
+
+@code {
+    //
+    //  2020-04-02  Mark Stega
+    //              Changed to use class & style mappers
+    //
+    private int initialTabIndex;
+    private int _requestedTabIndex;
+    private int _tabIndex;
+
+    [Parameter]
+    public int TabIndex
+    {
+        get => _tabIndex;
+
+        set
+        {
+            if (value != _tabIndex)
+            {
+                _tabIndex = value;
+                TabIndexChanged.InvokeAsync(value);
+            }
+        }
+    }
+
+    [Parameter] public EventCallback<int> TabIndexChanged { get; set; }
+
+    [Parameter] public bool StackIcons { get; set; }
+    [Parameter] public EventCallback<int> OnTabClick { get; set; }
+
+    [Parameter] public IEnumerable<TItem> Items { get; set; }
+    [Parameter] public RenderFragment<TItem> Label { get; set; }
+    [Parameter] public RenderFragment<TItem> Icon { get; set; }
+    [Parameter] public RenderFragment<TItem> Content { get; set; }
+
+
+    private async Task OnLocalTabClickAsync(int index)
+    {
+        if (index != TabIndex)
+        {
+            TabIndex = index;
+            StateHasChanged();
+            await OnTabClick.InvokeAsync(index);
+        }
+    }
+}

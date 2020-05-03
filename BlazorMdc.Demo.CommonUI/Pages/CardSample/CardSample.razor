@@ -15,32 +15,31 @@
 
 
 
-<MdcCard Class="my-card" AutoStyled="true">
-    <MdcCardPrimaryAction OnClick="@OnClick">
+<MdcCard Class="my-card" AutoStyled="true" OnPrimaryActionClick="@OnClick">
+    <PrimaryAction>
         <div class="mdc-card__media mdc-card__media--16-9 bmdc-card__media" style="background-image: url(&quot;https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg&quot;);"></div>
         <div class="bmdc-card__primary">
             <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">Our Changing Planet</h2>
             <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">by Kurt Wagner</h3>
         </div>
         <div class="bmdc-card__secondary mdc-typography mdc-typography--body2">Visit ten places on our planet that are undergoing the biggest changes today.</div>
-    </MdcCardPrimaryAction>
+    </PrimaryAction>
 
-    <MdcCardActions>
-        <MdcCardActionButtons>
-            <MdcCardActionButton Label="Read" />
-            <MdcCardActionButton Label="Bookmark" />
-        </MdcCardActionButtons>
-        <MdcCardActionIcons>
-            <MdcCardActionIconButton Icon="share" />
-            <MdcCardActionIconButton Icon="more_vert" />
-        </MdcCardActionIcons>
-    </MdcCardActions>
+    <ActionButtons>
+        <MdcButton Label="Read" />
+        <MdcButton Label="Bookmark" />
+    </ActionButtons>
+
+    <ActionIcons>
+        <MdcIconButton Icon="share" />
+        <MdcIconButton Icon="more_vert" />
+    </ActionIcons>
 </MdcCard>
 
 
 
-<MdcCard Class="my-card bmdc-basic-with-text-over-media" AutoStyled="true" CardStyle="MdcCardStyle.Outlined">
-    <MdcCardPrimaryAction>
+<MdcCard Class="my-card bmdc-basic-with-text-over-media" AutoStyled="true" OnPrimaryActionClick="@OnClick">
+    <PrimaryAction>
         <div class="mdc-card__media mdc-card__media--16-9 bmdc-card__media" style="background-image: url(&quot;https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg&quot;);">
             <div class="mdc-card__media-content bmdc-card__media-content">
                 <div class="bmdc-card__primary">
@@ -49,106 +48,89 @@
                 </div>
             </div>
         </div>
-    </MdcCardPrimaryAction>
-
-    <MdcCardActions>
-        <MdcCardActionButtons>
-            <MdcCardActionButton Label="Read" />
-            <MdcCardActionButton Label="Bookmark" />
-        </MdcCardActionButtons>
-        <MdcCardActionIcons>
-            <MdcCardActionIconButton Icon="share" />
-            <MdcCardActionIconButton Icon="more_vert" />
-        </MdcCardActionIcons>
-    </MdcCardActions>
+    </PrimaryAction>
 </MdcCard>
 
 
 
-<MdcCard Class="my-card bmdc-basic-with-header" AutoStyled="true">
-    <MdcCardPrimary>
+<MdcCard Class="my-card bmdc-basic-with-header" AutoStyled="true" OnPrimaryActionClick="@OnClick" CardStyle="MdcCardStyle.Outlined">
+    <Primary>
         <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">Our Changing Planet</h2>
         <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">by Kurt Wagner</h3>
-    </MdcCardPrimary>
+    </Primary>
 
-    <MdcCardPrimaryAction OnClick="@OnClick">
+    <PrimaryAction>
         <div class="mdc-card__media mdc-card__media--16-9 bmdc-card__media" style="background-image: url(&quot;https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg&quot;);"></div>
         <div class="bmdc-card__secondary mdc-typography mdc-typography--body2">Clicked at '@clickTime.ToString()'.</div>
-    </MdcCardPrimaryAction>
+    </PrimaryAction>
 
-    <MdcCardActions>
-        <MdcCardActionButtons>
-            <MdcCardActionButton Label="Read" />
-            <MdcCardActionButton Label="Bookmark" />
-        </MdcCardActionButtons>
-        <MdcCardActionIcons>
-            <MdcCardActionIconButton Icon="share" />
-            <MdcCardActionIconButton Icon="more_vert" />
-        </MdcCardActionIcons>
-    </MdcCardActions>
+    <ActionButtons>
+        <MdcButton Label="Read" />
+        <MdcButton Label="Bookmark" />
+    </ActionButtons>
+
+    <ActionIcons>
+        <MdcIconButton Icon="share" />
+        <MdcIconButton Icon="more_vert" />
+    </ActionIcons>
 </MdcCard>
 
 
 
-<MdcCard Class="my-card" AutoStyled="true">
-    <MdcCardPrimaryAction OnClick="@OnClick">
+<MdcCard Class="my-card" AutoStyled="true" OnPrimaryActionClick="@OnClick">
+    <PrimaryAction>
         <div class="mdc-card__media mdc-card__media--16-9 bmdc-card__media" style="background-image: url(&quot;https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg&quot;);"></div>
         <div class="bmdc-card__primary">
             <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">Our Changing Planet</h2>
             <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">by Kurt Wagner</h3>
         </div>
         <div class="bmdc-card__secondary mdc-typography mdc-typography--body2">Visit ten places on our planet that are undergoing the biggest changes today.</div>
-    </MdcCardPrimaryAction>
+    </PrimaryAction>
 
-    <MdcCardActions>
-        <MdcCardActionButtons>
-            <MdcCardActionButton Label="Read" />
-            <MdcCardActionButton Label="Bookmark" />
-        </MdcCardActionButtons>
-    </MdcCardActions>
+    <ActionButtons>
+        <MdcButton Label="Read" />
+        <MdcButton Label="Bookmark" />
+    </ActionButtons>
 </MdcCard>
 
 
 
-<MdcCard Class="my-card" AutoStyled="true">
-    <MdcCardPrimaryAction OnClick="@OnClick">
+<MdcCard Class="my-card" AutoStyled="true" OnPrimaryActionClick="@OnClick">
+    <PrimaryAction>
         <div class="mdc-card__media mdc-card__media--16-9 bmdc-card__media" style="background-image: url(&quot;https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg&quot;);"></div>
         <div class="bmdc-card__primary">
             <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">Our Changing Planet</h2>
             <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">by Kurt Wagner</h3>
         </div>
         <div class="bmdc-card__secondary mdc-typography mdc-typography--body2">Visit ten places on our planet that are undergoing the biggest changes today.</div>
-    </MdcCardPrimaryAction>
+    </PrimaryAction>
 
-    <MdcCardActions>
-        <MdcCardActionIcons>
-            <MdcCardActionIconButton Icon="share" />
-            <MdcCardActionIconButton Icon="more_vert" />
-        </MdcCardActionIcons>
-    </MdcCardActions>
+    <ActionIcons>
+        <MdcIconButton Icon="share" />
+        <MdcIconButton Icon="more_vert" />
+    </ActionIcons>
 </MdcCard>
 
 
 
-<MdcCard Class="my-card bmdc-ui-control" AutoStyled="true">
-    <MdcCardPrimaryAction OnClick="@OnClick">
+<MdcCard Class="my-card bmdc-ui-control" AutoStyled="true" OnPrimaryActionClick="@OnClick">
+    <PrimaryAction>
         <div class="mdc-card__media mdc-card__media--square bmdc-card__media" style="background-image: url(&quot;https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg&quot;);"></div>
         <div class="bmdc-card__primary">
             <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">Our Changing Planet</h2>
             <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">by Kurt Wagner</h3>
         </div>
-    </MdcCardPrimaryAction>
+    </PrimaryAction>
 
-    <MdcCardActions>
-        <MdcCardActionButtons>
-            <MdcCardActionButton Label="Read" />
-            <MdcCardActionButton Label="Bookmark" />
-        </MdcCardActionButtons>
-        <MdcCardActionIcons>
-            <MdcCardActionIconButton Icon="share" />
-            <MdcCardActionIconButton Icon="more_vert" />
-        </MdcCardActionIcons>
-    </MdcCardActions>
+    <ActionButtons>
+        <MdcButton Label="Read" />
+        <MdcButton Label="Bookmark" />
+    </ActionButtons>
+
+    <ActionIcons>
+        <MdcIconButton Icon="share" />
+        <MdcIconButton Icon="more_vert" />
+    </ActionIcons>
 </MdcCard>
 
 

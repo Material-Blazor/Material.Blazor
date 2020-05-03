@@ -26,6 +26,9 @@
     //  2020-04-01  Mark Stega
     //              Changed to use class & style mappers
     //
+    [CascadingParameter] private MdcCard Card { get; set; }
+
+
     [Parameter] public string IconOn { get; set; }
     [Parameter] public string IconOff { get; set; }
     [Parameter] public string Type { get; set; } = "button";
@@ -45,11 +48,12 @@
         base.OnInitialized();
 
         ClassMapper
-            .Add("mdc-icon-button");
+            .Add("mdc-icon-button")
+            .AddIf("mdc-card__action mdc-card__action--icon", () => (Card != null));
 
         objectReference = DotNetObjectReference.Create(this);
 
-        cachedIsOpen = NativeComponentBoundValue;
+        cachedIsOpen = ReportingValue;
     }
 
 
@@ -81,7 +85,7 @@
     public async Task NotifyOnAsync(bool on)
     {
         cachedIsOpen = on;
-        NativeComponentBoundValue = on;
+        ReportingValue = on;
         await Task.CompletedTask;
     }
 

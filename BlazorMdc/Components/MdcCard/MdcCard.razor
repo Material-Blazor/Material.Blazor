@@ -5,12 +5,51 @@
 @inject IJSRuntime jsRuntime
 
 
-<div class="@ClassMapper.ToString()"
-     style="@StyleMapper.ToString()">
-    <CascadingValue Value="this">
+<CascadingValue Value="@this">
+    <div class="@ClassMapper.ToString()"
+         style="@StyleMapper.ToString()">
         @ChildContent
-    </CascadingValue>
-</div>
+
+        @if (Primary != null)
+        {
+            <div class="@primaryClass">
+                @Primary
+            </div>
+        }
+
+        @if (PrimaryAction != null)
+        {
+            <div @ref="@primaryActionReference"
+                 class="mdc-card__primary-action @primaryActionClass"
+                 tabindex="0"
+                 @onclick="@OnPrimaryActionClick"
+                 @onmousedown="@OnPrimaryActionMouseDown"
+                 @onkeydown="@OnPrimaryActionKeyDown"
+                 @ontouchstart="@OnPrimaryActionTouchStart">
+                @PrimaryAction
+            </div>
+        }
+
+        @if (ActionButtons != null || ActionIcons != null)
+        {
+            <div class="mdc-card__actions">
+                @if (ActionButtons != null)
+                {
+                    <div class="mdc-card__action-buttons">
+                        @ActionButtons
+                    </div>
+                }
+
+                @if (ActionIcons != null)
+                {
+                    <div class="mdc-card__action-icons">
+                        @ActionIcons
+                    </div>
+                }
+            </div>
+        }
+    </div>
+</CascadingValue>
 
 
 @code {
@@ -24,6 +63,20 @@
     [Parameter] public MdcCardStyle? CardStyle { get; set; }
     [Parameter] public bool AutoStyled { get; set; }
     [Parameter] public RenderFragment ChildContent { get; set; }
+    [Parameter] public RenderFragment Primary { get; set; }
+    [Parameter] public RenderFragment PrimaryAction { get; set; }
+    [Parameter] public RenderFragment Actions { get; set; }
+    [Parameter] public RenderFragment ActionButtons { get; set; }
+    [Parameter] public RenderFragment ActionIcons { get; set; }
+    [Parameter] public EventCallback OnPrimaryActionClick { get; set; }
+    [Parameter] public EventCallback OnPrimaryActionMouseDown { get; set; }
+    [Parameter] public EventCallback OnPrimaryActionKeyDown { get; set; }
+    [Parameter] public EventCallback OnPrimaryActionTouchStart { get; set; }
+
+
+    private string primaryClass => AutoStyled ? "bmdc-card__primary" : "";
+    private string primaryActionClass => AutoStyled ? "bmdc-card__primary-action" : "";
+    private ElementReference primaryActionReference;
 
 
     protected override void OnInitialized()
@@ -33,5 +86,14 @@
         ClassMapper
             .Add("mdc-card")
             .AddIf("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(CardStyle) == MdcCardStyle.Outlined));
+    }
+
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && PrimaryAction != null)
+        {
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.cardPrimaryAction.init", primaryActionReference);
+        }
     }
 }

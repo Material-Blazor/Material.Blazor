@@ -12,7 +12,7 @@
              class="@ClassMapper.ToString()"
              style="@StyleMapper.ToString()">
 
-            <input @bind="@NativeComponentBoundValue"
+            <input @bind="@ReportingValue"
                    type="checkbox"
                    class="mdc-checkbox__native-control @FieldClass"
                    id="@Id"
@@ -60,5 +60,5 @@
     }
 
 
-    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.checkBox.setChecked", elementReference, formReference, NativeComponentBoundValue, IsFormField);
+    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.checkBox.setChecked", elementReference, formReference, ReportingValue, IsFormField);
 }

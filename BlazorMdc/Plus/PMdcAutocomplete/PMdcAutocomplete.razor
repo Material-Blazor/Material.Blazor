@@ -46,13 +46,13 @@
 
     <div class="mdc-menu-surface--anchor">
         <div @ref="menuReference" class="mdc-menu mdc-menu-surface" style="visibility:visible; min-height:1rem; min-width: 20rem;" @onfocusin="OnMenuFocusIn" @onfocusout="OnMenuFocusOut">
-            <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
+            <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="0">
                 @if (isOpen)
                 {@foreach (var item in selectInfo.SelectList)
                     {
                         var clickItem = string.Copy(item);
 
-                        <li class="mdc-list-item" role="menuitem" @onclick="@(() => OnItemClickAsync(clickItem))" disabled="@Disabled">
+                        <li @key="@item" class="mdc-list-item" role="menuitem" @onclick="@(() => OnItemClickAsync(clickItem))" tabindex="0" disabled="@Disabled">
                             <span class="mdc-list-item__text">@item</span>
                         </li>
                     }
@@ -170,7 +170,7 @@
         LeadingIconMarkup = (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--leading\" tabindex=\"-1\" role=\"button\">{LeadingIcon}</i>");
         TrailingIconMarkup = (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--trailing\" tabindex=\"-1\" role=\"button\">{TrailingIcon}</i>");
 
-        selectInfo = BuildSelectList(NativeComponentBoundValue);
+        selectInfo = BuildSelectList(ReportingValue);
 
         StateHasChanged();
     }
@@ -215,7 +215,7 @@
         if (selectInfo.FullMatchFound)
         {
             await CloseMenuAsync();
-            NativeComponentBoundValue = selectInfo.SelectedText.Trim();
+            ReportingValue = selectInfo.SelectedText.Trim();
             SetParameters();
         }
 
@@ -233,7 +233,7 @@
 
             if (selectInfo.FullMatchFound || (AllowBlankResult && string.IsNullOrWhiteSpace(selectInfo.SelectedText)))
             {
-                NativeComponentBoundValue = selectInfo.SelectedText.Trim();
+                ReportingValue = selectInfo.SelectedText.Trim();
             }
 
             SetParameters();
@@ -257,7 +257,7 @@
     {
         await CloseMenuAsync();
         selectInfo = BuildSelectList(menuValue);
-        NativeComponentBoundValue = menuValue.Trim();
+        ReportingValue = menuValue.Trim();
         SetParameters();
     }
 

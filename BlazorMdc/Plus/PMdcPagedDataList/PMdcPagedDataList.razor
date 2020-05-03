@@ -9,10 +9,10 @@
 @inject IJSRuntime jsRuntime
 
 
-<div class="@ClassMapper.ToString()"
+<div class="@ClassMapper.ToString() @visibilityClass"
      style="@StyleMapper.ToString()">
 
-	<div class="@ListTemplateClass">
+	<div class="@contentClass @ListTemplateClass">
 		@ListTemplate(@:@{
 			foreach(TItem item in CurrentPage)
 			{
@@ -45,9 +45,14 @@
         {
             if (value != _pageNumber)
             {
-                _pageNumber = value;
                 if (hasRendered)
-                    _ = PageNumberChanged.InvokeAsync(value);
+                {
+                    InvokeAsync(() => OnPageNumberChange(value));
+                }
+                else
+                {
+                    _pageNumber = value;
+                }
             }
         }
     }
@@ -71,9 +76,41 @@
     [Parameter] public EventCallback<int> ItemsPerPageChanged { get; set; }
 
 
+    private string contentClass = "";
+    private bool hideContent = false;
+    private string visibilityClass => hideContent ? PMdcSlidingContent<object>.Hidden : PMdcSlidingContent<object>.Visible;
     private bool hasRendered = false;
     private IEnumerable<TItem> CheckedData => Data ?? Array.Empty<TItem>();
     public IEnumerable<TItem> CurrentPage => CheckedData.Skip(PageNumber * ItemsPerPage).Take(ItemsPerPage);
+
+
+    private async Task OnPageNumberChange(int newPageNumber)
+    {
+        if (newPageNumber != _pageNumber)
+        {
+            string nextClass = "";
+
+            if (newPageNumber < _pageNumber)
+            {
+                nextClass = PMdcSlidingContent<object>.InFromLeft;
+                contentClass = PMdcSlidingContent<object>.OutToRight;
+            }
+            else
+            {
+                nextClass = PMdcSlidingContent<object>.InFromRight;
+                contentClass = PMdcSlidingContent<object>.OutToLeft;
+            }
+
+            await Task.Delay(100);
+
+            hideContent = true;
+            contentClass = nextClass;
+            _pageNumber = newPageNumber;
+            hideContent = false;
+
+            StateHasChanged();
+        }
+    }
 
 
     protected override void OnParametersSet()

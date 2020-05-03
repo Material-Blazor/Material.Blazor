@@ -52,7 +52,7 @@
 
     protected async override Task OnAfterRenderAsync(bool firstRender)
     {
-        @if (firstRender)
+        if (firstRender)
         {
             await jsRuntime.InvokeAsync<object>("BlazorMdc.dataTable.init", elementReference);
         }

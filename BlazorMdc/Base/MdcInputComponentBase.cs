@@ -75,7 +75,7 @@ namespace BlazorMdc
         /// in response to an event arising from the native component. In contrast the <see cref="Value"/> parameter is for use by BlazorMdc's consumers.
         /// Do not mix these usages up.
         /// </summary>
-        protected T NativeComponentBoundValue
+        protected T ReportingValue
         {
             get => Value;
             set
@@ -93,9 +93,9 @@ namespace BlazorMdc
         /// <summary>
         /// Gets or sets the current value of the input, represented as a string.
         /// </summary>
-        protected string NativeComponentBoundValueAsString
+        protected string ReportingValueAsString
         {
-            get => FormatValueToString(NativeComponentBoundValue);
+            get => FormatValueToString(ReportingValue);
             set
             {
                 _parsingValidationMessages?.Clear();
@@ -108,12 +108,12 @@ namespace BlazorMdc
                     // Then all subclasses get nullable support almost automatically (they just have to
                     // not reject Nullable<T> based on the type itself).
                     parsingFailed = false;
-                    NativeComponentBoundValue = default;
+                    ReportingValue = default;
                 }
                 else if (TryParseValueFromString(value, out var parsedValue, out var validationErrorMessage))
                 {
                     parsingFailed = false;
-                    NativeComponentBoundValue = parsedValue;
+                    ReportingValue = parsedValue;
                 }
                 else
                 {
@@ -128,7 +128,7 @@ namespace BlazorMdc
 
                         _parsingValidationMessages.Add(FieldIdentifier, validationErrorMessage);
 
-                        // Since we're not writing to NativeComponentBoundValue, we'll need to notify about modification from here
+                        // Since we're not writing to ReportingValue, we'll need to notify about modification from here
                         EditContext.NotifyFieldChanged(FieldIdentifier);
                     }
                 }
@@ -148,7 +148,7 @@ namespace BlazorMdc
         internal bool ForceShouldRenderToTrue { get; set; } = false;
 
         /// <summary>
-        /// Formats the value as a string. Derived classes can override this to determine the formating used for <see cref="NativeComponentBoundValueAsString"/>.
+        /// Formats the value as a string. Derived classes can override this to determine the formating used for <see cref="ReportingValueAsString"/>.
         /// </summary>
         /// <param name="value">The value to format.</param>
         /// <returns>A string representation of the value.</returns>
@@ -157,14 +157,14 @@ namespace BlazorMdc
 
         /// <summary>
         /// Parses a string to create an instance of <typeparamref name="T"/>. Derived classes can override this to change how
-        /// <see cref="NativeComponentBoundValueAsString"/> interprets incoming values.
+        /// <see cref="ReportingValueAsString"/> interprets incoming values.
         /// </summary>
         /// <param name="value">The string value to be parsed.</param>
         /// <param name="result">An instance of <typeparamref name="T"/>.</param>
         /// <param name="validationErrorMessage">If the value could not be parsed, provides a validation error message.</param>
         /// <returns>True if the value could be parsed; otherwise false.</returns>
         protected virtual bool TryParseValueFromString(string value, out T result, out string validationErrorMessage)
-            => throw new NotImplementedException($"This component does not parse string inputs. Bind to the '{nameof(NativeComponentBoundValue)}' property, not '{nameof(NativeComponentBoundValueAsString)}'.");
+            => throw new NotImplementedException($"This component does not parse string inputs. Bind to the '{nameof(ReportingValue)}' property, not '{nameof(ReportingValueAsString)}'.");
 
         /// <summary>
         /// Gets a string that indicates the status of the field being edited. This will include
