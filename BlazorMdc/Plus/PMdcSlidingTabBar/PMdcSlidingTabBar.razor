@@ -7,15 +7,29 @@
 @inject IJSRuntime jsRuntime
 
 
-<MdcTabBar TabIndex="@TabIndex"
-           Items="@Items"
-           Context="item"
-           StackIcons="@StackIcons"
-           OnTabClick="@OnLocalTabClickAsync">
+@if (Icon is null)
+{
+    <MdcTabBar TabIndex="@TabIndex"
+               Items="@Items"
+               Context="item"
+               StackIcons="@StackIcons"
+               OnTabClick="@OnLocalTabClickAsync">
 
-    <Label>@Label(item)</Label>
-    <Icon>@Icon(item)</Icon>
-</MdcTabBar>
+        <Label>@Label(item)</Label>
+    </MdcTabBar>
+}
+else
+{
+    <MdcTabBar TabIndex="@TabIndex"
+               Items="@Items"
+               Context="item"
+               StackIcons="@StackIcons"
+               OnTabClick="@OnLocalTabClickAsync">
+
+        <Label>@Label(item)</Label>
+        <Icon>@Icon(item)</Icon>
+    </MdcTabBar>
+}
 
 
 <PMdcSlidingContent Items="@Items"
