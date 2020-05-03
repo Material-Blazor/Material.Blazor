@@ -51,7 +51,7 @@ and at the end of `<body>`:
 ```
     <script src="_content/BlazorMdc/blazormdc-bundled.min.js"></script>
 ```
-See the [Blazor Server demo index file](BlazorMdc.Demo.WebServer/Pages/index_ssb.cshtml) for an example.
+See the [Blazor Server demo index file](BlazorMdc.Demo.WebServer/Pages/index_server.cshtml) for an example.
 
 #### Option 2 - Using our unbundled CSS and JS with Material Theme files from CDN 
 
@@ -66,7 +66,7 @@ and at the end of `<body>`:
     <script src="https://unpkg.com/material-components-web@5.1.0/dist/material-components-web.min.js"></script>
     <script src="_content/BlazorMdc/blazormdc.min.js"></script>
 ```
-See the [Blazor WASM demo index file](BlazorMdc.Demo.WebServer/Pages/index_csb.cshtml) for an example.
+See the [Blazor WASM demo index file](BlazorMdc.Demo.WebServer/Pages/index_wasm.cshtml) for an example.
 
 ## Demonstration website
 
@@ -80,8 +80,8 @@ There are four implemented solution configurations:
 
 | Configuration | Notes |
 | :------------ | :---- |
-| `Debug_CSB` | This is a debug build. It defines two constants, DEBUG, and ClientSideBlazor. It executes using WASM. |
-| `Debug_SSB` | Also a debug build, defines DEBUG and ServerSideBlazor. It executes in the context of the web server and the the client being displayed through a SignalR connection. |
+| `Debug_WASM` | This is a debug build. It defines two constants, DEBUG, and ClientSideBlazor. It executes using WASM. |
+| `Debug_Server` | Also a debug build, defines DEBUG and ServerSideBlazor. It executes in the context of the web server and the the client being displayed through a SignalR connection. |
 | `Release_xSB` | These two (x=C or S) configurations are the same as the debug versions but are built as release and the DEBUG constant is replaced by RELEASE. |
 
 The home page of the demonstration application shows the execution environment as well as the build mode.

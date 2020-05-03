@@ -59,10 +59,10 @@ namespace BlazorMdc.Demo.WebServer
             app.UseEndpoints(endpoints =>
             {
 #if ClientSideBlazor
-                endpoints.MapFallbackToPage("/index_csb");
+                endpoints.MapFallbackToPage("/index_wasm");
 #else
                 endpoints.MapBlazorHub();
-                endpoints.MapFallbackToPage("/index_ssb");
+                endpoints.MapFallbackToPage("/index_server");
 #endif
             });
         }
