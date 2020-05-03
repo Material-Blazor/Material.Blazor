@@ -9,7 +9,7 @@ using System;
 
 namespace BlazorMdc
 {
-    public partial class PMdcToast
+    public partial class InternalToast
     {
         [CascadingParameter] private PMdcToasts ToastsContainer { get; set; }
 
