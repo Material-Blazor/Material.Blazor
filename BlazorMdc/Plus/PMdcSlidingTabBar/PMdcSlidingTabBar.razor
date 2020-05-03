@@ -7,46 +7,11 @@
 @inject IJSRuntime jsRuntime
 
 
-@*<div @ref="elementReference"
-     role="tablist"
-     class="@ClassMapper.ToString()"
-     style="@StyleMapper.ToString()">
-
-    <div class="mdc-tab-scroller">
-        <div class="mdc-tab-scroller__scroll-area">
-            <div class="mdc-tab-scroller__scroll-content">
-                @{ int i = 0; }
-                @foreach (var item in Items)
-                {
-                    int index = i++;
-                    bool selected = (index == initialTabIndex);
-                    string buttonActive = selected ? "mdc-tab--active" : "";
-                    string indicatorActive = selected ? "mdc-tab-indicator--active" : "";
-
-                    <button class="mdc-tab @stackClass @buttonActive" role="tab" aria-selected="@selected" tabindex="-1" @onclick="(_ => OnTabClickAsync(index))">
-                        <span class="mdc-tab__content">
-                            @if (!(Icon is null))
-                            {
-                                <span class="mdc-tab__icon material-icons" aria-hidden="true">@Icon(item)</span>
-                            }
-
-                            <span class="mdc-tab__text-label">@Label(item)</span>
-                        </span>
-                        <span class="mdc-tab-indicator @indicatorActive">
-                            <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-                        </span>
-                        <span class="mdc-tab__ripple"></span>
-                    </button>
-                }
-            </div>
-        </div>
-    </div>
-</div>*@
-
 <MdcTabBar @ref="@tabBar"
            TabIndex="@TabIndex"
            Items="@Items"
            Context="item"
+           StackIcons="@StackIcons"
            OnTabClick="@OnTabClickAsync">
 
     <Label>@Label(item)</Label>
@@ -54,16 +19,23 @@
 </MdcTabBar>
 
 
-@if (!hideContent)
+<PMdcSlidingContent Items="@Items"
+                    @bind-ItemIndex="@TabIndex"
+                    Context="item">
+
+    <Content>
+        @Content(item)
+    </Content>
+</PMdcSlidingContent>
+
+@*@if (!hideContent)
 {
     int tabNum = 0;
 
     @foreach (var item in Items)
     {
-        @*System.Diagnostics.Debug.WriteLine($"tab num: {tabNum}");*@
         if (tabNum++ == TabIndex)
         {
-            @*System.Diagnostics.Debug.WriteLine($"selected content");*@
             <div class="bmdc-tab-content-container">
                 <div class="@contentClass">
                     @Content(item)
@@ -71,7 +43,7 @@
             </div>
         }
     }
-}
+}*@
 
 
 @code {
@@ -90,16 +62,21 @@
 
         set
         {
-            _requestedTabIndex = value;
+            //_requestedTabIndex = value;
 
-            if (!suppressTwoWayBinding && value != _tabIndex)
-            {
-                _ = SetTabIndexAsync(value);
-            }
+            //if (!suppressTwoWayBinding && value != _tabIndex)
+            //{
+            //    _ = SetTabIndexAsync(value);
+            //}
 
-            if (!hasRendered)
+            //if (!hasRendered)
+            //{
+            //    _tabIndex = value;
+            //}
+            if (value != _tabIndex)
             {
                 _tabIndex = value;
+                TabIndexChanged.InvokeAsync(value);
             }
         }
     }
@@ -145,34 +122,36 @@
     {
         if (index != TabIndex)
         {
-            suppressTwoWayBinding = true;
-            tabBar.SuppressTwoWayBinding = true;
-            string nextClass = "";
-
-            if (index < TabIndex)
-            {
-                nextClass = InFromLeft;
-                contentClass = OutToRight;
-            }
-            else
-            {
-                nextClass = InFromRight;
-                contentClass = OutToLeft;
-            }
-
-            await Task.Delay(100);
-
-            hideContent = true;
-            contentClass = nextClass;
-            _tabIndex = index;
-            await TabIndexChanged.InvokeAsync(_tabIndex);
-            hideContent = false;
-
+            TabIndex = index;
             StateHasChanged();
+            //suppressTwoWayBinding = true;
+            //tabBar.SuppressTwoWayBinding = true;
+            //string nextClass = "";
 
-            await OnTabClick.InvokeAsync(index);
-            suppressTwoWayBinding = false;
-            tabBar.SuppressTwoWayBinding = false;
+            //if (index < TabIndex)
+            //{
+            //    nextClass = InFromLeft;
+            //    contentClass = OutToRight;
+            //}
+            //else
+            //{
+            //    nextClass = InFromRight;
+            //    contentClass = OutToLeft;
+            //}
+
+            //await Task.Delay(100);
+
+            //hideContent = true;
+            //contentClass = nextClass;
+            //_tabIndex = index;
+            //await TabIndexChanged.InvokeAsync(_tabIndex);
+            //hideContent = false;
+
+            //StateHasChanged();
+
+            //await OnTabClick.InvokeAsync(index);
+            //suppressTwoWayBinding = false;
+            //tabBar.SuppressTwoWayBinding = false;
         }
     }
 

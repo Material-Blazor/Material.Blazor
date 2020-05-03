@@ -92,6 +92,7 @@
     private async Task ButtonClickAsync()
     {
         slidingTabIndex = 1;
+        StateHasChanged();
         await Task.CompletedTask;
     }
 

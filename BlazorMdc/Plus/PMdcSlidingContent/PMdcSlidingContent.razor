@@ -29,7 +29,7 @@
 
                 if (hasRendered)
                 {
-                    SlideToItem(value, direction).Wait();
+                    InvokeAsync(() => SlideToItem(value, direction));
                 }
 
                 _itemIndex = value;
