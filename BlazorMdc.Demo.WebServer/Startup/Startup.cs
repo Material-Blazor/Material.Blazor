@@ -36,7 +36,7 @@ namespace BlazorMdc.Demo.WebServer
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-#if ClientSideBlazor
+#if BlazorWebAssembly
                 app.UseWebAssemblyDebugging();
 #endif
             }
@@ -50,7 +50,7 @@ namespace BlazorMdc.Demo.WebServer
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-#if ClientSideBlazor
+#if BlazorWebAssembly
             app.UseBlazorFrameworkFiles();
 #endif
 
@@ -58,11 +58,11 @@ namespace BlazorMdc.Demo.WebServer
 
             app.UseEndpoints(endpoints =>
             {
-#if ClientSideBlazor
-                endpoints.MapFallbackToPage("/index_csb");
+#if BlazorWebAssembly
+                endpoints.MapFallbackToPage("/index_blazorwebassembly");
 #else
                 endpoints.MapBlazorHub();
-                endpoints.MapFallbackToPage("/index_ssb");
+                endpoints.MapFallbackToPage("/index_blazorserver");
 #endif
             });
         }

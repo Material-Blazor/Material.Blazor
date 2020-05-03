@@ -6,11 +6,18 @@
 
 <p>This sample demonstrates the use of RazorComponents.MaterialDesign components.</p>
 
-<p>Currently executing on <strong>@runtime</strong> built in <strong>@mode</strong> mode.</p>
+<p>Currently executing on <strong>@framework</strong> built in <strong>@mode</strong> mode.</p>
+
+@*
+<p>@osarchitecture;</p>
+<p>@osdescription;</p>
+<p>@processarchitecture;</p>
+<p>@framework;</p>
+*@
 
 
 
 @for (int i = 0; i < 10; i++)
 {
-    <p style="margin-top: 5em;">A spacing paragraph to test scrolling and the top menu's scroll behaviour.</p>
+<p style="margin-top: 5em;">A spacing paragraph to test scrolling and the top menu's scroll behaviour.</p>
 }

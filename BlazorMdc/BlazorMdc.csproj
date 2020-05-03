@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
-    <Configurations>Debug_CSB;Debug_SSB;Release_CSB;Release_SSB</Configurations>
+    <Configurations>Debug_WebAssembly;Debug_Server;Release_WebAssembly;Release_Server</Configurations>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.24.0</Version>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
@@ -13,20 +13,20 @@
     <RepositoryUrl>https://github.com/BlazorMdc/BlazorMdc</RepositoryUrl>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_CSB|AnyCPU'">
-    <DefineConstants>ClientSideBlazor;DEBUG;</DefineConstants>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_WebAssembly|AnyCPU'">
+    <DefineConstants>BlazorWebAssembly;DEBUG;</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_SSB|AnyCPU'">
-    <DefineConstants>ServerSideBlazor;DEBUG;</DefineConstants>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Server|AnyCPU'">
+    <DefineConstants>BlazorServer;DEBUG;</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_CSB|AnyCPU'">
-    <DefineConstants>ClientSideBlazor;RELEASE;</DefineConstants>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_WebAssembly|AnyCPU'">
+    <DefineConstants>BlazorWebAssembly;RELEASE;</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_SSB|AnyCPU'">
-    <DefineConstants>ServerSideBlazor;RELEASE</DefineConstants>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Server|AnyCPU'">
+    <DefineConstants>BlazorServer;RELEASE</DefineConstants>
   </PropertyGroup>
 
 
