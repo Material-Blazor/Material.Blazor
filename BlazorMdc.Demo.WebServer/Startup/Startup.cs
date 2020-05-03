@@ -36,7 +36,7 @@ namespace BlazorMdc.Demo.WebServer
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-#if ClientSideBlazor
+#if BlazorWASM
                 app.UseWebAssemblyDebugging();
 #endif
             }
@@ -50,7 +50,7 @@ namespace BlazorMdc.Demo.WebServer
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-#if ClientSideBlazor
+#if BlazorWASM
             app.UseBlazorFrameworkFiles();
 #endif
 
@@ -58,7 +58,7 @@ namespace BlazorMdc.Demo.WebServer
 
             app.UseEndpoints(endpoints =>
             {
-#if ClientSideBlazor
+#if BlazorWASM
                 endpoints.MapFallbackToPage("/index_wasm");
 #else
                 endpoints.MapBlazorHub();

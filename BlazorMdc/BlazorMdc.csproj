@@ -14,19 +14,19 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_WASM|AnyCPU'">
-    <DefineConstants>ClientSideBlazor;DEBUG;</DefineConstants>
+    <DefineConstants>BlazorWASM;DEBUG;</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Server|AnyCPU'">
-    <DefineConstants>ServerSideBlazor;DEBUG;</DefineConstants>
+    <DefineConstants>BlazorServer;DEBUG;</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_WASM|AnyCPU'">
-    <DefineConstants>ClientSideBlazor;RELEASE;</DefineConstants>
+    <DefineConstants>BlazorWASM;RELEASE;</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Server|AnyCPU'">
-    <DefineConstants>ServerSideBlazor;RELEASE</DefineConstants>
+    <DefineConstants>BlazorServer;RELEASE</DefineConstants>
   </PropertyGroup>
 
 

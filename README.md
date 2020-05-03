@@ -80,9 +80,10 @@ There are four implemented solution configurations:
 
 | Configuration | Notes |
 | :------------ | :---- |
-| `Debug_WASM` | This is a debug build. It defines two constants, DEBUG, and ClientSideBlazor. It executes using WASM. |
-| `Debug_Server` | Also a debug build, defines DEBUG and ServerSideBlazor. It executes in the context of the web server and the the client being displayed through a SignalR connection. |
-| `Release_xSB` | These two (x=C or S) configurations are the same as the debug versions but are built as release and the DEBUG constant is replaced by RELEASE. |
+| `Debug_WASM` | This is a debug build. It defines two constants, DEBUG, and BlazorWASM. It executes using WASM. |
+| `Debug_Server` | Also a debug build, defines DEBUG and BlazorServer. It executes in the context of the web server and the the client being displayed through a SignalR connection. |
+| `Release_WASM` | The same as `Debug_WASM` but built as release and replacing the DEBUG constant with RELEASE. |
+| `Release_Server` | The same as `Debug_Server` but built as release and replacing the DEBUG constant with RELEASE. |
 
 The home page of the demonstration application shows the execution environment as well as the build mode.
 
