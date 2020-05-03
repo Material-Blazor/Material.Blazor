@@ -35,7 +35,8 @@
     //              Moved ClassMapper to constructor
     //
 
-    [CascadingParameter] private MdcCard MdcCard { get; set; }
+    [CascadingParameter] private MdcCard Card { get; set; }
+    [CascadingParameter] private MdcDialog Dialog { get; set; }
 
 
 #nullable enable annotations
@@ -57,17 +58,19 @@
     private MarkupString LeadingIconMarkup => (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"material-icons mdc-button__icon\" aria-hidden=\"true\">{LeadingIcon}</i>");
     private MarkupString TrailingIconMarkup => (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"material-icons mdc-button__icon\" aria-hidden=\"true\">{TrailingIcon}</i>");
 
+
     protected override void OnInitialized()
     {
         base.OnInitialized();
 
         ClassMapper
             .Add("mdc-button")
-            .AddIf("mdc-button--raised", () => (CascadingDefaults.AppliedStyle(ButtonStyle) == MdcButtonStyle.ContainedRaised))
-            .AddIf("mdc-button--unelevated", () => (CascadingDefaults.AppliedStyle(ButtonStyle) == MdcButtonStyle.ContainedUnelevated))
-            .AddIf("mdc-button--outlined", () => (CascadingDefaults.AppliedStyle(ButtonStyle) == MdcButtonStyle.Outlined))
-            .AddIf("mdc-card__action mdc-card__action--button", () => (MdcCard != null));
+            .AddIf("mdc-button--raised", () => (CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MdcButtonStyle.ContainedRaised))
+            .AddIf("mdc-button--unelevated", () => (CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MdcButtonStyle.ContainedUnelevated))
+            .AddIf("mdc-button--outlined", () => (CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MdcButtonStyle.Outlined))
+            .AddIf("mdc-card__action mdc-card__action--button", () => (Card != null));
     }
+
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {

@@ -24,7 +24,7 @@
     //  2020-04-01  Mark Stega
     //              Changed to use class & style mappers
     //
-    [CascadingParameter] private MdcCard MdcCard { get; set; }
+    [CascadingParameter] private MdcCard Card { get; set; }
 
 
     [Parameter] public string Icon { get; set; }
@@ -52,6 +52,6 @@
 
         ClassMapper
             .Add("mdc-icon-button material-icons")
-            .AddIf("mdc-card__action mdc-card__action--icon", () => (MdcCard != null));
+            .AddIf("mdc-card__action mdc-card__action--icon", () => (Card != null));
     }
 }
