@@ -3,25 +3,33 @@
 //              Created from github.com/ChrisSainty/Blazored.Toast by Chris Sainty
 //
 
+using Microsoft.AspNetCore.Components;
+
 namespace BlazorMdc
 {
     public class ToastSettings
     {
-        public ToastSettings(string heading, string message, string baseClass, string additionalClasses, string iconClass, string iconName)
+        public ToastSettings(
+            string heading,
+            RenderFragment message,
+            IconType? iconType,
+            string baseClass,
+            string additionalClasses,
+            string icon)
         {
             Heading = heading;
             Message = message;
+            IconType = iconType;
             BaseClass = baseClass;
             AdditionalClasses = additionalClasses;
-            IconClass = iconClass;
-            IconName = iconName;
+            Icon = icon;
         }
 
         public string Heading { get; set; }
-        public string Message { get; set; }
+        public RenderFragment Message { get; set; }
         public string BaseClass { get; set; }
         public string AdditionalClasses { get; set; }
-        public string IconClass { get; set; }
-        public string IconName { get; set; }
+        public string Icon { get; set; }
+        public IconType? IconType { get; set; }
     }
 }
