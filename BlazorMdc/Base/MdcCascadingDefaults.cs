@@ -12,9 +12,13 @@ namespace BlazorMdc
         public MdcButtonStyle ButtonStyle { get; set; } = MdcButtonStyle.Text;
         public MdcButtonStyle CardActionButtonStyle { get; set; } = MdcButtonStyle.Text;
         public MdcButtonStyle DialogActionButtonStyle { get; set; } = MdcButtonStyle.Text;
-        internal MdcButtonStyle AppliedStyle(MdcButtonStyle? style = null) => (style is null) ? ButtonStyle : (MdcButtonStyle)style;
-        internal MdcButtonStyle AppliedStyle_CardActionButton(MdcButtonStyle? style = null) => (style is null) ? CardActionButtonStyle : (MdcButtonStyle)style;
-        internal MdcButtonStyle AppliedStyle_DialogActionButton(MdcButtonStyle? style = null) => (style is null) ? DialogActionButtonStyle : (MdcButtonStyle)style;
+        internal MdcButtonStyle AppliedStyle(MdcButtonStyle? style, MdcCard card, MdcDialog dialog)
+        {
+            if (style != null) return (MdcButtonStyle)style;
+            if (card != null) return CardActionButtonStyle;
+            if (dialog != null) return DialogActionButtonStyle;
+            return ButtonStyle;
+        }
 
 
         public MdcCardStyle CardStyle { get; set; } = MdcCardStyle.Default;

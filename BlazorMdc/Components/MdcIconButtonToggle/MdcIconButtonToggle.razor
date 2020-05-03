@@ -26,7 +26,7 @@
     //  2020-04-01  Mark Stega
     //              Changed to use class & style mappers
     //
-    [CascadingParameter] private MdcCard MdcCard { get; set; }
+    [CascadingParameter] private MdcCard Card { get; set; }
 
 
     [Parameter] public string IconOn { get; set; }
@@ -49,7 +49,7 @@
 
         ClassMapper
             .Add("mdc-icon-button")
-            .AddIf("mdc-card__action mdc-card__action--icon", () => (MdcCard != null));
+            .AddIf("mdc-card__action mdc-card__action--icon", () => (Card != null));
 
         objectReference = DotNetObjectReference.Create(this);
 
