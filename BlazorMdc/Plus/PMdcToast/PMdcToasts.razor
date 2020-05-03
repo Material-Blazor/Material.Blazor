@@ -6,7 +6,7 @@
         <CascadingValue Value=this>
             @foreach (var toast in ToastList.OrderBy(x => x.TimeStamp))
             {
-                <InternalToast ToastSettings="toast.ToastSettings" ToastId="toast.Id" />
+                <InternalToast @key="@toast" ToastSettings="toast.ToastSettings" ToastId="toast.Id" />
             }
         </CascadingValue>
     </div>

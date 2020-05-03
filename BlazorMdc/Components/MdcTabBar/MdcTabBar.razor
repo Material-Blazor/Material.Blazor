@@ -23,7 +23,7 @@
                     string buttonActive = selected ? "mdc-tab--active" : "";
                     string indicatorActive = selected ? "mdc-tab-indicator--active" : "";
 
-                    <button class="mdc-tab @stackClass @buttonActive" role="tab" aria-selected="@selected" tabindex="-1" @onclick="(_ => OnTabClickAsync(index))">
+                    <button @key="item" class="mdc-tab @stackClass @buttonActive" role="tab" aria-selected="@selected" tabindex="-1" @onclick="(_ => OnTabClickAsync(index))">
                         <span class="mdc-tab__content">
                             @if (!(Icon is null))
                             {

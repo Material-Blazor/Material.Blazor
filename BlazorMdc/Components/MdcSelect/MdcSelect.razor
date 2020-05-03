@@ -42,11 +42,11 @@
 
                 if (object.Equals(item.SelectedValue, Value))
                 {
-                    <li class="mdc-list-item mdc-list-item--selected @alignClass" data-value="@item.SelectedValue" aria-selected="true" role="option" @onclick="@(_ => OnItemClickAsync(dv))"><span class="mdc-list-item__text">@item.SelectedValue</span></li>
+                    <li @key="@item" class="mdc-list-item mdc-list-item--selected @alignClass" data-value="@item.SelectedValue" aria-selected="true" role="option" @onclick="@(_ => OnItemClickAsync(dv))"><span class="mdc-list-item__text">@item.SelectedValue</span></li>
                 }
                 else
                 {
-                    <li class="mdc-list-item @alignClass" data-value="@item.SelectedValue" aria-selected="false" role="option" @onclick=@(_ => OnItemClickAsync(dv))><span class="mdc-list-item__text">@item.SelectedValue</span></li>
+                    <li @key="@item" class="mdc-list-item @alignClass" data-value="@item.SelectedValue" aria-selected="false" role="option" @onclick=@(_ => OnItemClickAsync(dv))><span class="mdc-list-item__text">@item.SelectedValue</span></li>
                 }
             }
         </ul>
