@@ -3,12 +3,11 @@
 @typeparam TItem
 
 
-@if (!hideContent)
-{
+<div class="@visibilityClass">
     <div class="@contentClass">
         @Content(currentItem)
     </div>
-}
+</div>
 
 
 @code {
@@ -44,14 +43,17 @@
 
     private string contentClass = "";
     private bool hideContent = false;
+    private string visibilityClass => hideContent ? Hidden : Visible;
     private TItem currentItem;
     private bool hasRendered = false;
 
 
-    private const string InFromLeft = "bmdc-slide-in-from-left";
-    private const string InFromRight = "bmdc-slide-in-from-right";
-    private const string OutToLeft = "bmdc-slide-out-to-left";
-    private const string OutToRight = "bmdc-slide-out-to-right";
+    internal const string Hidden = "bmdc-visibility-hidden";
+    internal const string Visible = "bmdc-visibility-visible";
+    internal const string InFromLeft = "bmdc-slide-in-from-left";
+    internal const string InFromRight = "bmdc-slide-in-from-right";
+    internal const string OutToLeft = "bmdc-slide-out-to-left";
+    internal const string OutToRight = "bmdc-slide-out-to-right";
 
     public enum SlideDirection { Backwards, Forwards }
 
