@@ -25,6 +25,10 @@ namespace BlazorMdc
 
     public enum MdcSelectInputStyle { Filled, Outlined }
 
+    public enum MdcIconType { FontAwesome, Material };
+
+
+
 
     // PMdc components
     public enum PMdcDateSelectionCriteria { AllowAll, WeekendsOnly, WeekdaysOnly }

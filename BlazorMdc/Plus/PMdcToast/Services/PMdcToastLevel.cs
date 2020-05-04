@@ -5,7 +5,7 @@
 
 namespace BlazorMdc
 {
-    public enum ToastLevel
+    public enum PMdcToastLevel
     {
         Info,
         Success,

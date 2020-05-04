@@ -2,33 +2,32 @@
 
 @page "/toast"
 
-@inject IToastService toastService
+@inject IPmdcToastService toastService
 
 <h1 class="@MdcTypography.Heading4">Toast samples</h1>
 
 <p>See <code>ToastSample.razor</code> for sources.</p>
 
 <p>
-    Note the addition of AddPMdcToast() in startup.cs (Server) and program.cs (WebAssembly) as well as the component PMdcToasts
-    in mainlayout.razor.
+    Note the addition of <code>AddPMdcToast()</code> in Startup.cs (Server) and Program.cs (WASM) as well as the component <code>PMdcToasts</code> in MainLayout.razor.
 </p>
 
-<MdcButton Style="background-color: darkcyan;"
+<MdcButton Style="background-color: var(--bmdc-toast-background-info);"
            OnClick="InfoClick"
            Label="Info Toast"
            ButtonStyle="MdcButtonStyle.ContainedRaised" />
 
-<MdcButton Style="background-color: green;"
+<MdcButton Style="background-color: var(--bmdc-toast-background-success);"
            OnClick="@(() => toastService.ShowSuccess("I'm a SUCCESS message with a custom heading", "Congratulations!"))"
            Label="Success Toast"
            ButtonStyle="MdcButtonStyle.ContainedRaised" />
 
-<MdcButton Style="background-color: orange; color: black;"
+<MdcButton Style="background-color: var(--bmdc-toast-background-warning);"
            OnClick="@(() => toastService.ShowWarning("I'm a WARNING message"))"
            Label="Warning Toast"
            ButtonStyle="MdcButtonStyle.ContainedRaised" />
 
-<MdcButton Style="background-color: red;"
+<MdcButton Style="background-color: var(--bmdc-toast-background-error);"
            OnClick="@(() => toastService.ShowError("I'm an ERROR message"))"
            Label="Error Toast"
            ButtonStyle="MdcButtonStyle.ContainedRaised" />

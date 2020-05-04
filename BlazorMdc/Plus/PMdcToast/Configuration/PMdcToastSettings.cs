@@ -7,15 +7,15 @@ using Microsoft.AspNetCore.Components;
 
 namespace BlazorMdc
 {
-    public class ToastSettings
+    public class PMdcToastSettings
     {
-        public ToastSettings(
-            string heading,
-            RenderFragment message,
-            IconType? iconType,
-            string baseClass,
-            string additionalClasses,
-            string icon)
+        public PMdcToastSettings(
+                    string heading,
+                    RenderFragment message,
+                    MdcIconType? iconType,
+                    string baseClass,
+                    string additionalClasses,
+                    string icon)
         {
             Heading = heading;
             Message = message;
@@ -23,6 +23,7 @@ namespace BlazorMdc
             BaseClass = baseClass;
             AdditionalClasses = additionalClasses;
             Icon = icon;
+            Status = ToastStatus.Show;
         }
 
         public string Heading { get; set; }
@@ -30,6 +31,7 @@ namespace BlazorMdc
         public string BaseClass { get; set; }
         public string AdditionalClasses { get; set; }
         public string Icon { get; set; }
-        public IconType? IconType { get; set; }
+        public MdcIconType? IconType { get; set; }
+        internal ToastStatus Status { get; set; }
     }
 }

@@ -8,17 +8,16 @@ using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Timers;
 
 namespace BlazorMdc
 {
-    public enum IconType { FontAwesome, Material };
-
     public partial class PMdcToasts
     {
-        [Inject] private IToastService ToastService { get; set; }
+        [Inject] private IPmdcToastService ToastService { get; set; }
 
-        [Parameter] public IconType? IconType { get; set; }
+        [Parameter] public MdcIconType? IconType { get; set; }
         [Parameter] public string InfoClass { get; set; }
         [Parameter] public string InfoIcon { get; set; }
         [Parameter] public string SuccessClass { get; set; }
@@ -27,17 +26,22 @@ namespace BlazorMdc
         [Parameter] public string WarningIcon { get; set; }
         [Parameter] public string ErrorClass { get; set; }
         [Parameter] public string ErrorIcon { get; set; }
-        [Parameter] public ToastPosition Position { get; set; } = ToastPosition.TopRight;
+        [Parameter] public PMdcToastPosition Position { get; set; } = PMdcToastPosition.TopRight;
         [Parameter] public int Timeout { get; set; } = 5;
 
-        private string PositionClass { get; set; } = string.Empty;
+
         internal List<ToastInstance> ToastList { get; set; } = new List<ToastInstance>();
+        
+
+        private string positionClass = string.Empty;
+        private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1);
+
 
         protected override void OnInitialized()
         {
             ToastService.OnShow += ShowToast;
 
-            PositionClass = $"position-{Position.ToString().ToLower()}";
+            positionClass = $"bmdc-toast__{Position.ToString().ToLower()}";
 
             if ((!string.IsNullOrEmpty(InfoIcon)
                  || !string.IsNullOrEmpty(SuccessIcon)
@@ -49,59 +53,119 @@ namespace BlazorMdc
             }
         }
 
-        public void RemoveToast(Guid toastId)
+
+        private PMdcToastSettings BuildToastSettings(PMdcToastLevel level, RenderFragment message, string heading)
         {
-            InvokeAsync(() =>
+            return level switch
             {
-                var toastInstance = ToastList.SingleOrDefault(x => x.Id == toastId);
-                ToastList.Remove(toastInstance);
-                StateHasChanged();
-            });
+                PMdcToastLevel.Error => new PMdcToastSettings(string.IsNullOrWhiteSpace(heading) ? "Error" : heading, message, IconType, "bmdc-toast__error", ErrorClass, ErrorIcon),
+                PMdcToastLevel.Info => new PMdcToastSettings(string.IsNullOrWhiteSpace(heading) ? "Info" : heading, message, IconType, "bmdc-toast__info", InfoClass, InfoIcon),
+                PMdcToastLevel.Success => new PMdcToastSettings(string.IsNullOrWhiteSpace(heading) ? "Success" : heading, message, IconType, "bmdc-toast__success", SuccessClass, SuccessIcon),
+                PMdcToastLevel.Warning => new PMdcToastSettings(string.IsNullOrWhiteSpace(heading) ? "Warning" : heading, message, IconType, "bmdc-toast__warning", WarningClass, WarningIcon),
+                _ => throw new InvalidOperationException(),
+            };
         }
 
-        private ToastSettings BuildToastSettings(ToastLevel level, RenderFragment message, string heading)
+
+        private void ShowToast(PMdcToastLevel level, RenderFragment message, string heading)
         {
-            switch (level)
-            {
-                case ToastLevel.Error:
-                    return new ToastSettings(string.IsNullOrWhiteSpace(heading) ? "Error" : heading, message, IconType, "blazored-toast-error", ErrorClass, ErrorIcon);
-
-                case ToastLevel.Info:
-                    return new ToastSettings(string.IsNullOrWhiteSpace(heading) ? "Info" : heading, message, IconType, "blazored-toast-info", InfoClass, InfoIcon);
-
-                case ToastLevel.Success:
-                    return new ToastSettings(string.IsNullOrWhiteSpace(heading) ? "Success" : heading, message, IconType, "blazored-toast-success", SuccessClass, SuccessIcon);
-
-                case ToastLevel.Warning:
-                    return new ToastSettings(string.IsNullOrWhiteSpace(heading) ? "Warning" : heading, message, IconType, "blazored-toast-warning", WarningClass, WarningIcon);
-            }
-
-            throw new InvalidOperationException();
-        }
-
-        private void ShowToast(ToastLevel level, RenderFragment message, string heading)
-        {
-            InvokeAsync(() =>
+            InvokeAsync(async () =>
             {
                 var settings = BuildToastSettings(level, message, heading);
-                var toast = new ToastInstance
+                var toastInstance = new ToastInstance
                 {
                     Id = Guid.NewGuid(),
                     TimeStamp = DateTime.Now,
-                    ToastSettings = settings
+                    Settings = settings
                 };
 
-                ToastList.Add(toast);
+                await semaphoreSlim.WaitAsync();
 
-                var timeout = Timeout * 1000;
-                var toastTimer = new Timer(timeout);
-                toastTimer.Elapsed += (sender, args) => { RemoveToast(toast.Id); };
+                try
+                {
+                    ToastList.Add(toastInstance);
+                }
+                finally
+                {
+                    semaphoreSlim.Release();
+                }
+
+                var timeout = Timeout;
+                var toastTimer = new System.Timers.Timer(timeout);
+                toastTimer.Elapsed += (sender, args) => { CloseToast(toastInstance.Id); };
                 toastTimer.AutoReset = false;
                 toastTimer.Start();
 
                 StateHasChanged();
             });
 
+        }
+
+
+        public void CloseToast(Guid toastId)
+        {
+            InvokeAsync(async () =>
+            {
+                
+                await semaphoreSlim.WaitAsync();
+
+                try
+                {
+                    var toastInstance = ToastList.SingleOrDefault(x => x.Id == toastId);
+
+                    if (toastInstance is null)
+                    {
+                        return;
+                    }
+
+                    toastInstance.Settings.Status = ToastStatus.FadeOut;
+                    StateHasChanged();
+                }
+                finally
+                {
+                    semaphoreSlim.Release();
+                }
+
+                var timeout = Timeout;
+                var toastTimer = new System.Timers.Timer(500);
+                toastTimer.Elapsed += (sender, args) => { RemoveToast(toastId); };
+                toastTimer.AutoReset = false;
+                toastTimer.Start();
+
+                StateHasChanged();
+            });
+        }
+
+
+        public void RemoveToast(Guid toastId)
+        {
+            InvokeAsync(async () =>
+            {
+                await semaphoreSlim.WaitAsync();
+
+                try
+                {
+                    var toastInstance = ToastList.SingleOrDefault(x => x.Id == toastId);
+                    
+                    if (toastInstance is null)
+                    {
+                        return;
+                    }
+
+                    toastInstance.Settings.Status = ToastStatus.Hide;
+
+                    if (ToastList.Where(x => x.Settings.Status == ToastStatus.FadeOut).Count() == 0)
+                    {
+                        ToastList.RemoveAll(x => x.Settings.Status == ToastStatus.Hide);
+                    }
+
+                    StateHasChanged();
+                }
+                finally
+                {
+                    semaphoreSlim.Release();
+                }
+            });
         }
     }
 }

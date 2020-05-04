@@ -5,7 +5,7 @@
 
 namespace BlazorMdc
 {
-    public enum ToastPosition
+    public enum PMdcToastPosition
     {
         TopLeft,
         TopRight,

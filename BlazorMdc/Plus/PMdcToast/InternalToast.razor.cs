@@ -14,11 +14,29 @@ namespace BlazorMdc
         [CascadingParameter] private PMdcToasts ToastsContainer { get; set; }
 
         [Parameter] public Guid ToastId { get; set; }
-        [Parameter] public ToastSettings ToastSettings { get; set; }
+
+        [Parameter] public PMdcToastSettings Settings { get; set; }
+
+
+        private string statusClass = "";
+
+
+        protected override void OnParametersSet()
+        {
+            base.OnParametersSet();
+
+            statusClass = Settings.Status switch
+            {
+                ToastStatus.Show => "fade-in",
+                ToastStatus.FadeOut => "fade-out",
+                ToastStatus.Hide => "hide",
+                _ => throw new InvalidOperationException(),
+            };
+        }
 
         private void Close()
         {
-            ToastsContainer.RemoveToast(ToastId);
+            ToastsContainer.CloseToast(ToastId);
         }
     }
 }
