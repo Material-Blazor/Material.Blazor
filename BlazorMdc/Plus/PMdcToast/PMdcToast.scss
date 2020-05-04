@@ -1,8 +1,19 @@
-﻿:root {
-    --bmdc-toast-background-info: var(--bmdc-color-lightblue-700);
-    --bmdc-toast-background-success: var(--bmdc-color-green-700);
-    --bmdc-toast-background-warning: var(--bmdc-color-amber-800);
-    --bmdc-toast-background-error: var(--bmdc-color-red-700);
+﻿$toast-width: 280px;
+$toast-height: 66px;
+$toast-spacing: 8px;
+$transition-height: $toast-height + $toast-spacing;
+$close-button-offset: -10px;
+
+:root {
+    --bmdc-toast-color-info: white;
+    --bmdc-toast-color-success: white;
+    --bmdc-toast-color-warning: white;
+    --bmdc-toast-color-error: white;
+    --bmdc-toast-background-color-info: var(--bmdc-color-lightblue-700);
+    --bmdc-toast-background-color-success: var(--bmdc-color-green-700);
+    --bmdc-toast-background-color-warning: var(--bmdc-color-amber-800);
+    --bmdc-toast-background-color-error: var(--bmdc-color-red-700);
+    --bmdc-toast-border-radius: 4px;
 }
 
 
@@ -28,22 +39,21 @@
 .bmdc-toast {
     display: flex;
     flex-direction: row;
-    margin-bottom: 8px;
-    padding: 8px;
-    color: #fff;
-    height: 60px;
-    max-height: 60px;
-    width: 280px;
-    border-radius: 4px;
+    margin-top: $toast-spacing;
+    box-sizing: padding-box;
+    height: $toast-height;
+    max-height: $toast-height;
+    width: $toast-width;
+    border-radius: var(--bmdc-toast-border-radius);
     overflow: hidden;
 }
 
     .bmdc-toast.fade-in {
-        animation: bmdcToastFadeIn linear 500ms;
+        animation: bmdcToastFadeIn 300ms;
     }
 
     .bmdc-toast.fade-out {
-        animation: bmdcToastFadeOut linear 5000ms;
+        animation: bmdcToastFadeOut 3000ms;
     }
 
     .bmdc-toast.hide {
@@ -56,16 +66,21 @@
     0% {
         opacity: 0;
         max-height: 0;
+        margin-top: 0;
+        animation-timing-function: ease-in-out;
     }
 
     40% {
         opacity: 0;
-        max-height: 72px;
+        max-height: $toast-height;
+        margin-top: $toast-spacing;
+        animation-timing-function: ease-in-out;
     }
 
 
     100% {
         opacity: 1;
+        animation-timing-function: ease-in-out;
     }
 }
 
@@ -73,15 +88,20 @@
     0% {
         opacity: 0;
         max-height: 0;
+        margin-top: 0;
+        animation-timing-function: ease-in-out;
     }
 
     40% {
         opacity: 0;
-        max-height: 72px;
+        max-height: $toast-height;
+        margin-top: $toast-spacing;
+        animation-timing-function: ease-in-out;
     }
 
     100% {
         opacity: 1;
+        animation-timing-function: ease-in-out;
     }
 }
 
@@ -89,44 +109,58 @@
 @keyframes bmdcToastFadeOut {
     0% {
         opacity: 1;
-        max-height: 72px;
+        max-height: $toast-height;
+        margin-top: $toast-spacing;
+        animation-timing-function: ease-in-out;
     }
 
     6% {
         opacity: 0;
-        max-height: 72px;
+        max-height: $toast-height;
+        margin-top: $toast-spacing;
+        animation-timing-function: ease-in-out;
     }
 
     10% {
         opacity: 0;
         max-height: 0;
+        margin-top: 0;
+        animation-timing-function: ease-in-out;
     }
 
     100% {
         opacity: 0;
-        height: 0;
+        max-height: 0;
+        margin-top: 0;
     }
 }
 
 @-webkit-keyframes bmdcToastFadeOut {
     0% {
         opacity: 1;
-        max-height: 72px;
+        max-height: $toast-height;
+        margin-top: $toast-spacing;
+        animation-timing-function: ease-in-out;
     }
 
     6% {
         opacity: 0;
-        max-height: 72px;
+        max-height: $toast-height;
+        margin-top: $toast-spacing;
+        animation-timing-function: ease-in-out;
     }
 
     10% {
         opacity: 0;
         max-height: 0;
+        margin-top: 0;
+        animation-timing-function: ease-in-out;
     }
 
     100% {
         opacity: 0;
-        height: 0;
+        max-height: 0;
+        margin-top: 0;
     }
 }
 
@@ -134,27 +168,31 @@
 
 
 .bmdc-toast__info {
-    background-color: var(--bmdc-toast-background-info);
+    color: var(--bmdc-toast-color-info);
+    background-color: var(--bmdc-toast-background-color-info);
 }
 
 .bmdc-toast__success {
-    background-color: var(--bmdc-toast-background-success);
+    color: var(--bmdc-toast-color-success);
+    background-color: var(--bmdc-toast-background-color-success);
 }
 
 .bmdc-toast__warning {
-    background-color: var(--bmdc-toast-background-warning);
+    color: var(--bmdc-toast-color-warning);
+    background-color: var(--bmdc-toast-background-color-warning);
 }
 
 .bmdc-toast__error {
-    background-color: var(--bmdc-toast-background-error);
+    color: var(--bmdc-toast-color-error);
+    background-color: var(--bmdc-toast-background-color-error);
 }
 
 .bmdc-toast-icon {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 1rem 0 0;
-    font-size: 2.5rem;
+    padding: 0 12px 0 12px;
+    font-size: 24px;
 }
 
 .bmdc-toast-body {
@@ -169,25 +207,27 @@
         justify-content: space-between;
     }
 
-        .bmdc-toast-body .bmdc-toast-header h5 {
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 1.5rem;
-            margin-bottom: 0;
-            line-height: 32px;
-        }
-
-        .bmdc-toast-body .bmdc-toast-header .bmdc-toast-close {
+        .bmdc-toast-body .bmdc-toast-header {
             background-color: transparent;
             border: 0;
             -webkit-appearance: none;
             color:inherit;
             font-size: 1.25rem;
         }
+
     .bmdc-toast-body p {
         margin-bottom: 0;
         font-size: 1rem;
     }
+
+.bmdc-toast-heading {
+    margin: 8px 0 0 0;
+}
+
+.bmdc-toast-close {
+    margin: $close-button-offset $close-button-offset 0 0;
+}
+
 
 
 @media (min-width: 576px) {
