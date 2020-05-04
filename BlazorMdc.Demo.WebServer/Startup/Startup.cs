@@ -27,7 +27,8 @@ namespace BlazorMdc.Demo.WebServer
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddPMdcToast();
+            services.AddPMdcToastService();
+            services.AddPMdcAnimatedNavigationManager();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

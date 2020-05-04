@@ -19,7 +19,8 @@ namespace BlazorMdc.Demo.Blazor
             builder.Services.AddSingleton(
                 new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            builder.Services.AddPMdcToast();
+            builder.Services.AddPMdcToastService();
+            builder.Services.AddPMdcAnimatedNavigationManager();
 
             await builder.Build().RunAsync();
         }

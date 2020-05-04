@@ -1,0 +1,73 @@
+﻿.bmdc-navigation-fade-in {
+    animation: navFadeIn ease 3000ms;
+    -webkit-animation: navFadeIn ease 3000ms;
+}
+
+.bmdc-navigation-fade-out {
+    animation: navFadeOut ease 2500ms;
+    -webkit-animation: navFadeOut ease 2500ms;
+}
+
+
+
+@-webkit-keyframes navFadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+@keyframes navFadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+@-webkit-keyframes navFadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+
+@keyframes navFadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

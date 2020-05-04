@@ -1,0 +1,57 @@
+﻿@namespace BlazorMdc
+
+@implements IDisposable
+
+@inject IPMdcAnimatedNavigationManager PMdcAnimatedNavigationManager
+
+
+<div class="@pageClass">
+    @ChildContent
+</div>
+
+
+@code {
+    [Parameter] public RenderFragment ChildContent { get; set; }
+
+
+    private const string FadeIn = "bmdc-navigation-fade-in";
+    private const string FadeOut = "bmdc-navigation-fade-out";
+
+
+    private string pageClass = FadeIn;
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        PMdcAnimatedNavigationManager.RegisterNavigationComponent(this);
+    }
+
+
+    public void Dispose()
+    {
+        PMdcAnimatedNavigationManager.DeregisterNavigationComponent(this);
+    }
+
+
+    internal async Task<object> FadePageInAsync()
+    {
+        pageClass = FadeIn;
+        StateHasChanged();
+
+        await Task.CompletedTask;
+
+        return null;
+    }
+
+
+    internal async Task<object> FadePageOutAsync()
+    {
+        pageClass = FadeOut;
+
+        await Task.Delay(250);
+
+        return null;
+    }
+}
