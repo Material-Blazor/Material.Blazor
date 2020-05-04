@@ -2,7 +2,7 @@
 $toast-height: 66px;
 $toast-spacing: 8px;
 $transition-height: $toast-height + $toast-spacing;
-$close-button-offset: -10px;
+$close-button-size: 28px;
 
 :root {
     --bmdc-toast-color-info: white;
@@ -170,21 +170,25 @@ $close-button-offset: -10px;
 .bmdc-toast__info {
     color: var(--bmdc-toast-color-info);
     background-color: var(--bmdc-toast-background-color-info);
+    --mdc-theme-primary: var(--bmdc-toast-color-info);
 }
 
 .bmdc-toast__success {
     color: var(--bmdc-toast-color-success);
     background-color: var(--bmdc-toast-background-color-success);
+    --mdc-theme-primary: var(--bmdc-toast-color-success);
 }
 
 .bmdc-toast__warning {
     color: var(--bmdc-toast-color-warning);
     background-color: var(--bmdc-toast-background-color-warning);
+    --mdc-theme-primary: var(--bmdc-toast-color-warning);
 }
 
 .bmdc-toast__error {
     color: var(--bmdc-toast-color-error);
     background-color: var(--bmdc-toast-background-color-error);
+    --mdc-theme-primary: var(--bmdc-toast-color-error);
 }
 
 .bmdc-toast-icon {
@@ -201,31 +205,40 @@ $close-button-offset: -10px;
     flex: 1;
 }
 
-    .bmdc-toast-body .bmdc-toast-header {
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-    }
-
-        .bmdc-toast-body .bmdc-toast-header {
-            background-color: transparent;
-            border: 0;
-            -webkit-appearance: none;
-            color:inherit;
-            font-size: 1.25rem;
-        }
-
-    .bmdc-toast-body p {
-        margin-bottom: 0;
-        font-size: 1rem;
-    }
-
-.bmdc-toast-heading {
-    margin: 8px 0 0 0;
+.bmdc-toast-body .bmdc-toast-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    background-color: transparent;
+    border: 0;
+    -webkit-appearance: none;
+    color: inherit;
 }
 
-.bmdc-toast-close {
-    margin: $close-button-offset $close-button-offset 0 0;
+.bmdc-toast-body p {
+    margin: 6px 0 0 0 !important;
+}
+
+.bmdc-toast-heading {
+    margin: 8px 0 0 0 !important;
+}
+
+.bmdc-toast-close-button {
+    text-align: center;
+    height: $close-button-size !important;
+    line-height: 28px;
+    width: $close-button-size !important;
+    min-width: $close-button-size !important;
+    max-width: $close-button-size;
+    border-radius: var(---bmdc-toast-border-radius) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    top: 0;
+    left: 0;
+    
+    .mdc-button__icon {
+        margin: 0 !important;
+    }
 }
 
 
