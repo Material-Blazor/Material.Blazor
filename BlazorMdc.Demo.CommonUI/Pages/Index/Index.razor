@@ -1,5 +1,7 @@
 ﻿@namespace BlazorMdc.Demo
 
+@inject IPMdcAnimatedNavigationManager PMdcAnimatedNavigationManager
+
 @page "/"
 
 <h1 class="@MdcTypography.Heading3">Hello, world!</h1>
@@ -8,9 +10,8 @@
 
 <p>Currently executing on <strong>@runtime</strong> built in <strong>@mode</strong> mode.</p>
 
+<p><PMdcNumericIntField @bind-Value="@PMdcAnimatedNavigationManager.AnimationTime" Label="Page animation time (ms)" NumericFormat="N0" Min="50" Max="3000" /></p>
 
+<p><MdcCheckbox @bind-Value="@PMdcAnimatedNavigationManager.ApplyAnimation" Label="Apply animiations to page navigation" /></p>
 
-@for (int i = 0; i < 10; i++)
-{
-    <p style="margin-top: 5em;">A spacing paragraph to test scrolling and the top menu's scroll behaviour.</p>
-}
+<p style="margin-top: 80rem;">&nbsp;</p>

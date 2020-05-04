@@ -9,19 +9,19 @@
     <RazorLangVersion>3.0</RazorLangVersion>
     <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
     
-    <Configurations>Debug_WASM;Debug_Server;Release_WASM;Release_Server</Configurations>
+    <Configurations>Debug_WebAssembly;Debug_Server;Release_WebAssembly;Release_Server</Configurations>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_WASM|AnyCPU'">
-    <DefineConstants>BlazorWASM;DEBUG;</DefineConstants>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_WebAssembly|AnyCPU'">
+    <DefineConstants>BlazorWebAssembly;DEBUG;</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Server|AnyCPU'">
     <DefineConstants>BlazorServer;DEBUG;</DefineConstants>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_WASM|AnyCPU'">
-    <DefineConstants>BlazorWASM;RELEASE;</DefineConstants>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_WebAssembly|AnyCPU'">
+    <DefineConstants>BlazorWebAssembly;RELEASE;</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Server|AnyCPU'">

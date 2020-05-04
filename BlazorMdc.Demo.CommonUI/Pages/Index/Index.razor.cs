@@ -15,8 +15,9 @@ namespace BlazorMdc.Demo
             mode = "release";
 #endif
             runtime = RuntimeInformation.IsOSPlatform(OSPlatform.Create("WEBASSEMBLY"))
-            ? $"Mono WebAssembly {mode}"
-            : $".NET Core - {mode}";
+                ? $"Mono WebAssembly"
+                : $".NET Core";
+            runtime = RuntimeInformation.FrameworkDescription.ToString();
         }
     }
 }

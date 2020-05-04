@@ -27,7 +27,8 @@ namespace BlazorMdc.Demo.WebServer
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddPMdcToast();
+            services.AddPMdcToastService();
+            services.AddPMdcAnimatedNavigationManager();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,7 +37,7 @@ namespace BlazorMdc.Demo.WebServer
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-#if BlazorWASM
+#if BlazorWebAssembly
                 app.UseWebAssemblyDebugging();
 #endif
             }
@@ -50,7 +51,7 @@ namespace BlazorMdc.Demo.WebServer
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-#if BlazorWASM
+#if BlazorWebAssembly
             app.UseBlazorFrameworkFiles();
 #endif
 
@@ -58,8 +59,8 @@ namespace BlazorMdc.Demo.WebServer
 
             app.UseEndpoints(endpoints =>
             {
-#if BlazorWASM
-                endpoints.MapFallbackToPage("/index_wasm");
+#if BlazorWebAssembly
+                endpoints.MapFallbackToPage("/index_webassembly");
 #else
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/index_server");

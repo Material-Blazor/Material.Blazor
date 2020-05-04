@@ -2,7 +2,7 @@
 
 @inherits LayoutComponentBase
 
-@inject NavigationManager navigationManager
+@inject IPMdcAnimatedNavigationManager PMdcAnimatedNavigationManager
 
 <PMdcToasts Position="ToastPosition.BottomRight"
             Timeout="3"
@@ -55,31 +55,33 @@
                   TopAppBarType="MdcTopAppBarType.Short"
                   Class="mdc-top-app-bar--short-has-action-item">
         <div id="account-target">
-            <button class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Account">person</button>
+            <MdcIconButtonToggle @bind-Value="PMdcAnimatedNavigationManager.ApplyAnimation" IconOn="@MdcIcons.Icon__directions_run" IconOff="@MdcIcons.Icon__airline_seat_individual_suite" />
         </div>
     </MdcTopAppBar>
 
     <main class="main-content" id="main-content">
-        <div class="mdc-top-app-bar--fixed-adjust">
-            <div class="mdc-card main-content-card">
-                <div class="mdc-layout-grid">
-                    <div class="mdc-layout-grid__inner">
-                        <div class="mdc-layout-grid__cell--span-12">
-                            @Body
+        <PMdcAnimatedNavigation>
+            <div class="mdc-top-app-bar--fixed-adjust">
+                <div class="mdc-card main-content-card">
+                    <div class="mdc-layout-grid">
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell--span-12">
+                                @Body
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </PMdcAnimatedNavigation>
     </main>
 </div>
 
 @code {
     MdcDrawer sidebar;
 
-    protected void ListItemClickHandler(string NavigationReference)
+    protected async Task ListItemClickHandler(string NavigationReference)
     {
         sidebar.NotifyNavigation();
-        navigationManager.NavigateTo(NavigationReference);
+        await PMdcAnimatedNavigationManager.NavigateToAsync(NavigationReference).ConfigureAwait(false);
     }
 }
