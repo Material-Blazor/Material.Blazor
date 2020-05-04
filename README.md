@@ -36,7 +36,9 @@ We also want to acknowledge the work of
 
 Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add one of the two following methods of linking CSS and JS in your html (there are non-minified unbundled files to reference if you prefer, but not for the bundled alternatives). Note that if you fork this repo, we compile, bundle and minify SASS/CSS and JS. In Visual Studio you will need to install the [Web Compiler](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.WebCompiler) and [Bundler Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) extensions.
 
-Reference the `BlazorMdc` namespace with `@using BlazorMdc` to your `_Imports.razor` file and if you want to use `PMdcToast` add `services.AddPMdcToast();` to your `ConfigureServices` function for Blazor Server or to the `Main()` function for Blazor WASM.
+Reference the `BlazorMdc` namespace with `@using BlazorMdc` to your `_Imports.razor` file. There are two optional services in BlazorMdc:
+- If you want to use `PMdcToast` add `services.AddPMdcToast();` to your `ConfigureServices` function for Blazor Server or to the `Main()` function for Blazor WASM, and
+- If you want animated page navigation using `PMdcAnimationdNavigation` add `services.AddPMdcAnimatedNavigationManager();` to `ConfigureServices`.
 
 **NOTE** - BlazorMdc works with [Material Components v5.1.0](https://github.com/material-components/material-components-web/releases/tag/v5.1.0). [Version 6.0.0](https://github.com/material-components/material-components-web/releases/tag/v6.0.0) released on 23 April 2020 causes dramatic markup failure. We aim to migrate promptly once we consider the relevant Material Theme documentation to be clear enough to enable this.
 
@@ -119,6 +121,7 @@ The following are extra or 'plus' components that extend the strict, core Materi
 
 | Component | Notes |
 | :-------- | :---- |
+| `PMdcAnimatedNavigation` | A component used by the `IPmdcAnimatedNavigationManager` service and place in the main layout surrounding your `@Body`. This is not needed if you don't use BlazorMdc animated navigation. |
 | `PMdcAutocomplete` | A [Material Text Field](https://material.io/develop/web/components/input-controls/text-field/) that drops a [menu](https://material.io/develop/web/components/menus/) for auto completion. Has parameters to allow blank results and for whitespace to be ignored in searches. Might consider forking and adapting [Blazored.Typeahead](https://github.com/Blazored/Typeahead) with MT styling. |
 | `PMdcConfirmationDialog` | A special purpose wrapper around `MdcDialog` that makes the user type some text correctly in order to enable a button for a specific purpose. Modelled after the GitHub confirmation forms. |
 | `PMdcDatePicker` | An implementation of the [Material date picker specification](https://material.io/components/pickers/#specs) for the desktop. Does not implement date ranges. Date pickers are only implemented in Material Theme for Android, so we interpreted as closely as possible the specification with our own CSS. This is the only instance where we have created CSS for a component, because our goal is to use standard Material Theme styling throughout. The result seems a bit too dense and is within a couple of pixels of unstyled overflow content on the month selection menu for long month names in English; this is likely to overflow for languages with longer month names. We are therefore likely to relax the component's density, which should improve usability. We have deviated from the specification by adding an "undo" button to return to the current selected date. There is no "today" button, which is not in the Material Theme specification. |
@@ -133,10 +136,17 @@ The following are extra or 'plus' components that extend the strict, core Materi
 | `PMdcSlidingTabBar` | An `MdcTabBar` augmented with content displayed in a `PMdcSlidingContent` |
 | `PMdcToast` | A port of [Blazored/Toast](https://github.com/Blazored/Toast) yet to be styled à la Material Theme. |
 
+## Services
+ 
+| Service | Notes |
+| :------ | :---- |
+| `IPmdcAnimatedNavigationManager` | Manages fade out/in page navigation, wrapping Blazor's `NavigationManager.NavigateTo()` function. This is purely optional and you can continue to use Blazor's navigtion if you don't want animation. |
+| `IPmdcToast` | Manages toast notification. |
+
 ## Utilities
  
 | Utility | Notes |
-| :-------- | :---- |
+| :------ | :---- |
 | `MdcCascadingDefaults` | Allows you to set up defaults such as button style (filled, outlined etc), text area style (filled or outlined) |
 | `MdcTypography` | Constants for standard Material Theme typography. |
 

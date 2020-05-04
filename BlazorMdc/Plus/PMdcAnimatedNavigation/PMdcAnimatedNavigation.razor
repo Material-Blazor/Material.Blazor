@@ -5,6 +5,19 @@
 @inject IPMdcAnimatedNavigationManager PMdcAnimatedNavigationManager
 
 
+<style>
+    .bmdc-navigation-fade-in {
+        @fadeInAnimation
+        @fadeInAnimationWebkit
+    }
+
+    .bmdc-navigation-fade-out {
+        @fadeOutAnimation
+        @fadeOutAnimationWebkit
+    }
+</style>
+
+
 <div class="@pageClass">
     @ChildContent
 </div>
@@ -16,6 +29,13 @@
 
     private const string FadeIn = "bmdc-navigation-fade-in";
     private const string FadeOut = "bmdc-navigation-fade-out";
+
+
+    private MarkupString fadeInAnimation => (MarkupString)$"animation: bmdcNavFadeIn ease {(PMdcAnimatedNavigationManager.FadeOutTime * 10).ToString("D")}ms;";
+    private MarkupString fadeInAnimationWebkit => (MarkupString)$"-webkit-animation: bmdcNavFadeIn ease {(PMdcAnimatedNavigationManager.FadeOutTime * 10).ToString("D")}ms;";
+
+    private MarkupString fadeOutAnimation => (MarkupString)$"animation: bmdcNavFadeOut ease {(PMdcAnimatedNavigationManager.FadeOutTime * 10).ToString("D")}ms;";
+    private MarkupString fadeOutAnimationWebkit => (MarkupString)$"-webkit-animation: bmdcNavFadeOut ease {(PMdcAnimatedNavigationManager.FadeOutTime * 10).ToString("D")}ms;";
 
 
     private string pageClass = FadeIn;
@@ -49,9 +69,18 @@
     internal async Task<object> FadePageOutAsync()
     {
         pageClass = FadeOut;
+        StateHasChanged();
 
-        await Task.Delay(250);
+        await Task.CompletedTask;
+
+        await Task.Delay(PMdcAnimatedNavigationManager.FadeOutTime);
 
         return null;
+    }
+
+
+    internal void UnanimatePage()
+    {
+        pageClass = "";
     }
 }

@@ -55,7 +55,7 @@
                   TopAppBarType="MdcTopAppBarType.Short"
                   Class="mdc-top-app-bar--short-has-action-item">
         <div id="account-target">
-            <button class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="Account">person</button>
+            <MdcIconButtonToggle @bind-Value="PMdcAnimatedNavigationManager.ApplyAnimation" IconOn="@MdcIcons.Icon__directions_run" IconOff="@MdcIcons.Icon__airline_seat_individual_suite" />
         </div>
     </MdcTopAppBar>
 

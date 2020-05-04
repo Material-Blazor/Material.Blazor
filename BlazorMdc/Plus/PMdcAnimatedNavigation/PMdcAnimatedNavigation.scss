@@ -1,16 +1,4 @@
-﻿.bmdc-navigation-fade-in {
-    animation: navFadeIn ease 3000ms;
-    -webkit-animation: navFadeIn ease 3000ms;
-}
-
-.bmdc-navigation-fade-out {
-    animation: navFadeOut ease 2500ms;
-    -webkit-animation: navFadeOut ease 2500ms;
-}
-
-
-
-@-webkit-keyframes navFadeIn {
+﻿@-webkit-keyframes bmdcNavFadeIn {
     0% {
         opacity: 0;
     }
@@ -26,7 +14,7 @@
 
 
 
-@keyframes navFadeIn {
+@keyframes bmdcNavFadeIn {
     0% {
         opacity: 0;
     }
@@ -42,7 +30,7 @@
 
 
 
-@-webkit-keyframes navFadeOut {
+@-webkit-keyframes bmdcNavFadeOut {
     0% {
         opacity: 1;
     }
@@ -58,7 +46,7 @@
 
 
 
-@keyframes navFadeOut {
+@keyframes bmdcNavFadeOut {
     0% {
         opacity: 1;
     }

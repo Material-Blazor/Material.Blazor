@@ -7,6 +7,38 @@ namespace BlazorMdc
     {
         private readonly NavigationManager NavigationManager;
         private PMdcAnimatedNavigation NavigationComponent { get; set; } = null;
+        
+
+        private bool _applyAnimation = true;
+        /// <summary>
+        /// Determines whether animated navigation will happen (true) or default to standard Blazor non-animated (false).
+        /// </summary>
+        public bool ApplyAnimation
+        {
+            get => _applyAnimation;
+            set 
+            {
+                if (value != _applyAnimation)
+                {
+                    _applyAnimation = value;
+
+                    if (!_applyAnimation)
+                    {
+                        NavigationComponent.UnanimatePage();
+                    }
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Sets the animation sequence time in milliseconds (default 500).
+        /// </summary>
+        public int AnimationTime { get; set; } = 500;
+
+        int IPMdcAnimatedNavigationManager.FadeOutTime => AnimationTime * 4 / 10;
+        int IPMdcAnimatedNavigationManager.FadeInTime => AnimationTime * 6 / 10;
+
 
         public PMdcAnimatedNavigationManager(NavigationManager navigationManager)
         {
@@ -21,23 +53,26 @@ namespace BlazorMdc
         /// <param name="forceLoad">If true, bypasses client-side routing and forces the browser to load the new page from the server, whether or not the URI would normally be handled by the client-side router.</param>
         public async Task NavigateToAsync(string uri, bool forceLoad = false)
         {
-            if (NavigationComponent != null)
+            if (NavigationComponent is null || !ApplyAnimation)
+            {
+                NavigationManager.NavigateTo(uri, forceLoad);
+            }
+            else
             {
                 _ = await NavigationComponent.FadePageOutAsync().ConfigureAwait(false);
-            }
-
-            NavigationManager.NavigateTo(uri, forceLoad);
-
-            if (NavigationComponent != null)
-            {
+                
+                NavigationManager.NavigateTo(uri, forceLoad);
+                
                 _ = await NavigationComponent.FadePageInAsync().ConfigureAwait(false);
             }
         }
+
 
         void IPMdcAnimatedNavigationManager.RegisterNavigationComponent(PMdcAnimatedNavigation navigationComponent)
         {
             NavigationComponent = navigationComponent;
         }
+
 
         void IPMdcAnimatedNavigationManager.DeregisterNavigationComponent(PMdcAnimatedNavigation navigationComponent)
         {

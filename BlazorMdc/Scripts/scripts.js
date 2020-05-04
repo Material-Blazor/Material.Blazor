@@ -127,9 +127,10 @@ window.BlazorMdc = {
     },
 
     iconButtonToggle: {
-        init: function (elem, dotNetObject) {
+        init: function (elem, dotNetObject, isOn) {
             elem._iconToggleButton = mdc.iconButton.MDCIconButtonToggle.attachTo(elem);
             elem._dotNetObject = dotNetObject;
+            elem._iconToggleButton.on = isOn;
 
             return new Promise(resolve => {
                 const callback = event => {
