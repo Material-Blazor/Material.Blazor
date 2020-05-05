@@ -4,6 +4,7 @@
 //
 
 using Microsoft.AspNetCore.Components;
+using System;
 
 namespace BlazorMdc
 {
@@ -18,6 +19,15 @@ namespace BlazorMdc
         public string Icon { get; set; }
         
         internal ToastStatus Status { get; set; }
+
+
+        internal string StatusClass => Status switch
+        {
+            ToastStatus.Show => "fade-in",
+            ToastStatus.FadeOut => "fade-out",
+            ToastStatus.Hide => "hide",
+            _ => throw new InvalidOperationException(),
+        };
 
 
         public PMdcToastSettings(string heading,
