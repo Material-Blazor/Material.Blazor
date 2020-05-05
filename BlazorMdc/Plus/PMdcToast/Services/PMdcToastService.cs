@@ -11,9 +11,20 @@ namespace BlazorMdc
     public class PMdcToastService : IPmdcToastService
     {
         /// <summary>
+        /// Toast service configuration
+        /// </summary>
+        public PMdcToastServiceConfiguration Configuration { get; set; } = new PMdcToastServiceConfiguration();
+
+        /// <summary>
         /// A event that will be invoked when showing a toast
         /// </summary>
         public event Action<PMdcToastLevel, RenderFragment, string> OnShow;
+
+
+        public PMdcToastService(PMdcToastServiceConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
 
         /// <summary>
         /// Shows a information toast 

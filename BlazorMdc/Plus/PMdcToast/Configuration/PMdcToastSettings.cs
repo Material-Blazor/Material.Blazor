@@ -9,6 +9,21 @@ namespace BlazorMdc
 {
     public class PMdcToastSettings
     {
+        public string Heading { get; set; }
+
+        public RenderFragment Message { get; set; }
+
+        public string BaseClass { get; set; }
+        
+        public string AdditionalClasses { get; set; }
+        
+        public string Icon { get; set; }
+        
+        public MdcIconType? IconType { get; set; }
+        
+        internal ToastStatus Status { get; set; }
+
+
         public PMdcToastSettings(
                     string heading,
                     RenderFragment message,
@@ -25,13 +40,5 @@ namespace BlazorMdc
             Icon = icon;
             Status = ToastStatus.Show;
         }
-
-        public string Heading { get; set; }
-        public RenderFragment Message { get; set; }
-        public string BaseClass { get; set; }
-        public string AdditionalClasses { get; set; }
-        public string Icon { get; set; }
-        public MdcIconType? IconType { get; set; }
-        internal ToastStatus Status { get; set; }
     }
 }

@@ -79,9 +79,9 @@
 @code {
     MdcDrawer sidebar;
 
-    protected async Task ListItemClickHandler(string NavigationReference)
+    protected void ListItemClickHandler(string NavigationReference)
     {
         sidebar.NotifyNavigation();
-        await PMdcAnimatedNavigationManager.NavigateToAsync(NavigationReference).ConfigureAwait(false);
+        PMdcAnimatedNavigationManager.NavigateTo(NavigationReference);
     }
 }

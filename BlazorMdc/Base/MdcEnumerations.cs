@@ -32,4 +32,8 @@ namespace BlazorMdc
 
     // PMdc components
     public enum PMdcDateSelectionCriteria { AllowAll, WeekendsOnly, WeekdaysOnly }
+
+    public enum PMdcToastLevel { Info, Success, Warning, Error }
+
+    public enum PMdcToastPosition { TopLeft, TopRight, TopCenter, BottomLeft, BottomRight, BottomCenter }
 }

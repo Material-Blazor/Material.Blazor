@@ -12,27 +12,53 @@
     Note the addition of <code>AddPMdcToast()</code> in Startup.cs (Server) and Program.cs (WASM) as well as the component <code>PMdcToasts</code> in MainLayout.razor.
 </p>
 
-<MdcButton Style="background-color: var(--bmdc-toast-background-color-info);"
-           OnClick="InfoClick"
-           Label="Info Toast"
-           ButtonStyle="MdcButtonStyle.ContainedRaised" />
+@if (overrideColors)
+{
+    <style>
+        :root {
+            --bmdc-toast-color-info: black !important;
+            --bmdc-toast-color-success: black !important;
+            --bmdc-toast-color-warning: black !important;
+            --bmdc-toast-color-error: black !important;
+            --bmdc-toast-background-color-info: var(--bmdc-color-lightblue-200) !important;
+            --bmdc-toast-background-color-success: var(--bmdc-color-green-200) !important;
+            --bmdc-toast-background-color-warning: var(--bmdc-color-amber-200) !important;
+            --bmdc-toast-background-color-error: var(--bmdc-color-red-200) !important;
+            --bmdc-toast-border-radius: 8px !important;
+        }
+    </style>
+}
 
-<MdcButton Style="background-color: var(--bmdc-toast-background-color-success);"
-           OnClick="@(() => toastService.ShowSuccess("I'm a SUCCESS message with a custom heading", "Congratulations!"))"
-           Label="Success Toast"
-           ButtonStyle="MdcButtonStyle.ContainedRaised" />
+<p>
+    <MdcCheckbox @bind-Value="@overrideColors" Label="@label" />
+</p>
 
-<MdcButton Style="background-color: var(--bmdc-toast-background-color-warning);"
-           OnClick="@(() => toastService.ShowWarning("I'm a WARNING message"))"
-           Label="Warning Toast"
-           ButtonStyle="MdcButtonStyle.ContainedRaised" />
+<p>
+    <MdcButton Style="background-color: var(--bmdc-toast-background-color-info);"
+               OnClick="@InfoClick"
+               Label="Info Toast"
+               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
 
-<MdcButton Style="background-color: var(--bmdc-toast-background-color-error);"
-           OnClick="@(() => toastService.ShowError("I'm an ERROR message"))"
-           Label="Error Toast"
-           ButtonStyle="MdcButtonStyle.ContainedRaised" />
+    <MdcButton Style="background-color: var(--bmdc-toast-background-color-success);"
+               OnClick="@(() => toastService.ShowSuccess("I'm a SUCCESS message with a custom heading", "Congratulations!"))"
+               Label="Success Toast"
+               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+
+    <MdcButton Style="background-color: var(--bmdc-toast-background-color-warning);"
+               OnClick="@(() => toastService.ShowWarning("I'm a WARNING message"))"
+               Label="Warning Toast"
+               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+
+    <MdcButton Style="background-color: var(--bmdc-toast-background-color-error);"
+               OnClick="@(() => toastService.ShowError("I'm an ERROR message"))"
+               Label="Error Toast"
+               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+</p>
 
 @code{
+    private bool overrideColors = false;
+    private string label => overrideColors ? "Click to use default toast colors" : "Click to use over-ride toast colors";
+
     protected void InfoClick()
     {
         toastService.ShowInfo("I'm an INFO message");

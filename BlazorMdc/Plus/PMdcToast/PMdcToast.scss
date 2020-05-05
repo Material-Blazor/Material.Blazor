@@ -1,6 +1,9 @@
 ﻿$toast-width: 280px;
 $toast-height: 66px;
 $toast-spacing: 8px;
+$toast-margin: 8px;
+$toast-margin-large: 12px;
+$center-margin-left: -$toast-width / 2;
 $transition-height: $toast-height + $toast-spacing;
 $close-button-size: 28px;
 
@@ -27,19 +30,23 @@ $close-button-size: 28px;
 .bmdc-toast__topleft,
 .bmdc-toast__topright,
 .bmdc-toast__topcenter {
-    top: 0;
+    top: $toast-margin;
+    left: 50%;
+    margin-left: $center-margin-left;
 }
 
 .bmdc-toast__bottomleft,
 .bmdc-toast__bottomright,
 .bmdc-toast__bottomcenter {
-    bottom: 0;
+    bottom: $toast-margin;
+    left: 50%;
+    margin-left: $center-margin-left;
 }
 
 .bmdc-toast {
     display: flex;
     flex-direction: row;
-    margin-top: $toast-spacing;
+    margin: $toast-spacing/2 0;
     box-sizing: padding-box;
     height: $toast-height;
     max-height: $toast-height;
@@ -66,17 +73,16 @@ $close-button-size: 28px;
     0% {
         opacity: 0;
         max-height: 0;
-        margin-top: 0;
+        margin: 0;
         animation-timing-function: ease-in-out;
     }
 
     40% {
         opacity: 0;
         max-height: $toast-height;
-        margin-top: $toast-spacing;
+        margin: $toast-spacing/2 0;
         animation-timing-function: ease-in-out;
     }
-
 
     100% {
         opacity: 1;
@@ -88,14 +94,14 @@ $close-button-size: 28px;
     0% {
         opacity: 0;
         max-height: 0;
-        margin-top: 0;
+        margin: 0;
         animation-timing-function: ease-in-out;
     }
 
     40% {
         opacity: 0;
         max-height: $toast-height;
-        margin-top: $toast-spacing;
+        margin: $toast-spacing/2 0;
         animation-timing-function: ease-in-out;
     }
 
@@ -110,28 +116,28 @@ $close-button-size: 28px;
     0% {
         opacity: 1;
         max-height: $toast-height;
-        margin-top: $toast-spacing;
+        margin: $toast-spacing/2 0;
         animation-timing-function: ease-in-out;
     }
 
     6% {
         opacity: 0;
         max-height: $toast-height;
-        margin-top: $toast-spacing;
+        margin: $toast-spacing/2 0;
         animation-timing-function: ease-in-out;
     }
 
     10% {
         opacity: 0;
         max-height: 0;
-        margin-top: 0;
+        margin: 0;
         animation-timing-function: ease-in-out;
     }
 
     100% {
         opacity: 0;
         max-height: 0;
-        margin-top: 0;
+        margin: 0;
     }
 }
 
@@ -139,28 +145,28 @@ $close-button-size: 28px;
     0% {
         opacity: 1;
         max-height: $toast-height;
-        margin-top: $toast-spacing;
+        margin: $toast-spacing/2 0;
         animation-timing-function: ease-in-out;
     }
 
     6% {
         opacity: 0;
         max-height: $toast-height;
-        margin-top: $toast-spacing;
+        margin: $toast-spacing/2 0;
         animation-timing-function: ease-in-out;
     }
 
     10% {
         opacity: 0;
         max-height: 0;
-        margin-top: 0;
+        margin: 0;
         animation-timing-function: ease-in-out;
     }
 
     100% {
         opacity: 0;
         max-height: 0;
-        margin-top: 0;
+        margin: 0;
     }
 }
 
@@ -203,6 +209,7 @@ $close-button-size: 28px;
     display: flex;
     flex-direction: column;
     flex: 1;
+    white-space: nowrap;
 }
 
 .bmdc-toast-body .bmdc-toast-header {
@@ -219,8 +226,12 @@ $close-button-size: 28px;
     margin: 6px 0 0 0 !important;
 }
 
-.bmdc-toast-heading {
-    margin: 8px 0 0 0 !important;
+/*.bmdc-toast-heading {
+    margin: 6px 0 0 0 !important;
+}*/
+
+.bmdc-toast-body h5 {
+    margin: 6px 0 0 0 !important;
 }
 
 .bmdc-toast-close-button {
@@ -246,34 +257,36 @@ $close-button-size: 28px;
 @media (min-width: 576px) {
 
     .bmdc-toast__topleft {
-        top: 2rem;
-        left: 2rem;
+        top: $toast-margin-large;
+        left: $toast-margin-large;
+        margin-left: 0;
     }
 
     .bmdc-toast__topright {
-        top: 2rem;
-        right: 2rem;
+        top: $toast-margin-large;
+        right: $toast-margin-large;
+        left: initial;
+        margin-left: 0;
     }
 
     .bmdc-toast__topcenter {
-        top: 2rem;
-        left: 50%;
-        margin-left: -15rem;
+        top: $toast-margin-large;
     }
 
     .bmdc-toast__bottomleft {
-        bottom: 2rem;
-        left: 2rem;
+        bottom: $toast-margin-large;
+        left: $toast-margin-large;
+        margin-left: 0;
     }
 
     .bmdc-toast__bottomright {
-        bottom: 2rem;
-        right: 2rem;
+        bottom: $toast-margin-large;
+        right: $toast-margin-large;
+        left: initial;
+        margin-left: 0;
     }
 
     .bmdc-toast__bottomcenter {
-        bottom: 2rem;
-        left: 50%;
-        margin-left: -15rem;
+        bottom: $toast-margin-large;
     }
 }
