@@ -14,7 +14,7 @@ namespace BlazorMdc
         public PMdcToastServiceConfiguration Configuration { get; set; } = new PMdcToastServiceConfiguration();
 
         ///<inheritdoc/>
-        public event Action<PMdcToastServiceConfiguration, PMdcToastLevel, string, string> OnShow;
+        public event Action<PMdcToastServiceConfiguration, PMdcToastLevel, PMdcToastSettings> OnShow;
 
 
         public PMdcToastService(PMdcToastServiceConfiguration configuration)
@@ -23,9 +23,9 @@ namespace BlazorMdc
         }
 
         ///<inheritdoc/>
-        public void ShowToast(PMdcToastLevel level, string message, string heading = "")
+        public void ShowToast(PMdcToastLevel level, PMdcToastSettings settings)
         {
-            OnShow?.Invoke(Configuration, level, message, heading);
+            OnShow?.Invoke(Configuration, level, settings);
         }
     }
 }

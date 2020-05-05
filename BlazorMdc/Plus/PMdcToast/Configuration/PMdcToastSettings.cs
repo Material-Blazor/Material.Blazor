@@ -5,23 +5,74 @@
 
 using Microsoft.AspNetCore.Components;
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 namespace BlazorMdc
 {
     public class PMdcToastSettings
     {
+#nullable enable annotations
         public string Heading { get; set; }
 
         public string Message { get; set; }
 
         public string CssClass { get; set; }
 
-        public bool HasIcon { get; set; }
+        public bool? ShowCloseButton { get; set; }
 
-        public string Icon { get; set; }
+        public bool? ShowIcon { get; set; }
+
+        public string? Icon { get; set; }
+
+        public bool? RequireInteraction { get; set; }
+
+        public int? Timeout { get; set; }
+#nullable restore annotations
+
+
+
+        internal PMdcToastServiceConfiguration Configuration { get; set; }
+
+        internal string AppliedHeading => Heading ?? ConfigHeading;
+
+        internal string AppliedMessage => Message ?? "";
+
+        internal string AppliedCssClass => CssClass ?? "";
+
+        internal bool AppliedShowCloseButton => (ShowCloseButton is null) ? Configuration?.ShowCloseButton ?? PMdcToastServiceConfiguration.DefaultShowCloseButton : (bool)ShowCloseButton;
+
+        internal bool AppliedShowIcon => !string.IsNullOrWhiteSpace(AppliedIcon) && ((ShowIcon is null) ? Configuration?.ShowIcons ?? PMdcToastServiceConfiguration.DefaultShowIcons : (bool)ShowIcon);
+
+        internal string AppliedIcon => (Icon is null) ? ConfigIcon : (string)Icon;
+
+        internal bool AppliedRequireInteraction => (RequireInteraction is null) ? Configuration?.RequireInteraction ?? PMdcToastServiceConfiguration.DefaultRequireInteraction : (bool)RequireInteraction;
+
+        internal int AppliedTimeout => (Timeout is null) ? Configuration?.Timeout ?? PMdcToastServiceConfiguration.DefaultTimeout : (int)Timeout;
+
+
+
+        internal PMdcToastLevel Level { get; set; }
 
         internal ToastStatus Status { get; set; }
 
+
+        internal string ConfigHeading => Level switch
+        {
+            PMdcToastLevel.Error => Configuration?.ErrorDefaultHeading ?? "",
+            PMdcToastLevel.Info => Configuration?.InfoDefaultHeading ?? "",
+            PMdcToastLevel.Success => Configuration?.SuccessDefaultHeading ?? "",
+            PMdcToastLevel.Warning => Configuration?.WarningDefaultHeading ?? "",
+            _ => throw new InvalidOperationException(),
+        };
+
+        internal string ConfigIcon => Level switch
+        {
+            PMdcToastLevel.Error => Configuration?.ErrorIcon ?? PMdcToastServiceConfiguration.DefaultErrorIcon,
+            PMdcToastLevel.Info => Configuration?.InfoIcon ?? PMdcToastServiceConfiguration.DefaultInfoIcon,
+            PMdcToastLevel.Success => Configuration?.SuccessIcon ?? PMdcToastServiceConfiguration.DefaultSuccessIcon,
+            PMdcToastLevel.Warning => Configuration?.WarningIcon ?? PMdcToastServiceConfiguration.DefaultWarningIcon,
+            _ => throw new InvalidOperationException(),
+        };
 
         internal string StatusClass => Status switch
         {
@@ -31,17 +82,8 @@ namespace BlazorMdc
             _ => throw new InvalidOperationException(),
         };
 
+        internal string LevelClass => $"bmdc-toast__{Level.ToString().ToLower()}";
 
-        public PMdcToastSettings(string heading,
-                    string message,
-                    string cssClass,
-                    string icon)
-        {
-            Heading = heading;
-            Message = message;
-            CssClass = cssClass;
-            Icon = icon;
-            Status = ToastStatus.Show;
-        }
+        internal string HasIconClass => AppliedShowIcon ? "icon" : "no-icon";
     }
 }

@@ -4,16 +4,16 @@ namespace BlazorMdc.Demo
 {
     public partial class Index
     {
-        readonly string runtime;
-        readonly string mode;
+#if DEBUG
+        private const string mode = "debug";
+#else
+        private const string mode = "release";
+#endif    
+        
+        private readonly string runtime;
         
         public Index()
         {
-#if DEBUG
-            mode = "debug";
-#else
-            mode = "release";
-#endif
             runtime = RuntimeInformation.IsOSPlatform(OSPlatform.Create("WEBASSEMBLY"))
                 ? $"Mono WebAssembly"
                 : $".NET Core";

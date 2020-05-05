@@ -11,30 +11,28 @@
 @if (ToastList.Any())
 {
     <div class="bmdc-toast-container @positionClass">
-        <CascadingValue Value=this>
-            @foreach (var toast in ToastList.OrderBy(x => x.TimeStamp))
-            {
-                var toastId = toast.Id;
+        @foreach (var toast in ToastList.OrderBy(x => x.TimeStamp))
+        {
+            var toastId = toast.Id;
 
-                <div @key="toast" class="mdc-elevation--z12 bmdc-toast @toast.Settings.StatusClass @toast.Settings.CssClass">
+            <div @key="toast" class="mdc-elevation--z5 bmdc-toast @toast.Settings.LevelClass @toast.Settings.StatusClass @toast.Settings.AppliedCssClass">
 
-                    @if (!string.IsNullOrWhiteSpace(toast.Settings.Icon))
-                    {
-                        <div class="bmdc-toast-icon">
-                            <i class="material-icons" aria-hidden="true">@toast.Settings.Icon</i>
-                        </div>
-                    }
-
-                    <div class="bmdc-toast-body icon">
-                        <div class="bmdc-toast-header">
-                            <h5 class="mdc-typography--subtitle1">@toast.Settings.Heading</h5>
-                            <MdcButton OnClick="@(() => CloseToast(toastId))" LeadingIcon="@MdcIcons.Icon__close" ButtonStyle="@MdcButtonStyle.Text" Class="bmdc-toast-close-button" />
-                        </div>
-                        <p class="mdc-typography--body2">@toast.Settings.Message</p>
+                @if (toast.Settings.AppliedShowIcon)
+                {
+                    <div class="bmdc-toast-icon">
+                        <i class="material-icons" aria-hidden="true">@toast.Settings.AppliedIcon</i>
                     </div>
+                }
+
+                <div class="bmdc-toast-body @toast.Settings.HasIconClass">
+                    <div class="bmdc-toast-header">
+                        <h5 class="mdc-typography--subtitle1">@toast.Settings.AppliedHeading</h5>
+                        <MdcButton OnClick="@(() => CloseToast(toastId))" LeadingIcon="@MdcIcons.Icon__close" ButtonStyle="@MdcButtonStyle.Text" Class="bmdc-toast-close-button" />
+                    </div>
+                    <p class="mdc-typography--body2">@toast.Settings.AppliedMessage</p>
                 </div>
-            }
-        </CascadingValue>
+            </div>
+        }
     </div>
 }
 
@@ -53,24 +51,13 @@
     }
 
 
-    private PMdcToastSettings BuildToastSettings(PMdcToastServiceConfiguration configuration, PMdcToastLevel level, string message, string heading)
-    {
-        return level switch
-        {
-            PMdcToastLevel.Error => new PMdcToastSettings(string.IsNullOrWhiteSpace(heading) ? configuration.ErrorDefaultHeading : heading, message, "bmdc-toast__error", configuration.ErrorIcon),
-            PMdcToastLevel.Info => new PMdcToastSettings(string.IsNullOrWhiteSpace(heading) ? configuration.InfoDefaultHeading : heading, message, "bmdc-toast__info", configuration.InfoIcon),
-            PMdcToastLevel.Success => new PMdcToastSettings(string.IsNullOrWhiteSpace(heading) ? configuration.SuccessDefaultHeading : heading, message, "bmdc-toast__success", configuration.SuccessIcon),
-            PMdcToastLevel.Warning => new PMdcToastSettings(string.IsNullOrWhiteSpace(heading) ? configuration.WarningDefaultHeading : heading, message, "bmdc-toast__warning", configuration.WarningIcon),
-            _ => throw new InvalidOperationException(),
-        };
-    }
-
-
-    private void ShowToast(PMdcToastServiceConfiguration configuration, PMdcToastLevel level, string message, string heading)
+    private void ShowToast(PMdcToastServiceConfiguration configuration, PMdcToastLevel level, PMdcToastSettings settings)
     {
         InvokeAsync(async () =>
         {
-            var settings = BuildToastSettings(configuration, level, message, heading);
+            settings.Configuration = configuration;
+            settings.Level = level;
+
             var toastInstance = new ToastInstance
             {
                 Id = Guid.NewGuid(),
@@ -89,11 +76,14 @@
                 semaphoreSlim.Release();
             }
 
-            var timeout = configuration.Timeout;
-            var toastTimer = new System.Timers.Timer(timeout);
-            toastTimer.Elapsed += (sender, args) => { CloseToast(toastInstance.Id); };
-            toastTimer.AutoReset = false;
-            toastTimer.Start();
+            if (!settings.AppliedRequireInteraction)
+            {
+                var timeout = settings.AppliedTimeout;
+                var toastTimer = new System.Timers.Timer(settings.AppliedTimeout);
+                toastTimer.Elapsed += (sender, args) => { CloseToast(toastInstance.Id); };
+                toastTimer.AutoReset = false;
+                toastTimer.Start();
+            }
 
             StateHasChanged();
         });

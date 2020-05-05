@@ -209,12 +209,13 @@ $header-max-width-icon: $toast-width - $icon-font - 2 * $icon-horizontal-padding
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 12px 0 12px;
-    font-size: 24px;
+    padding: 0 0 0 $icon-horizontal-padding;
+    font-size: $icon-font;
 }
 
 .bmdc-toast-body {
     display: flex;
+    padding: 0 0 0 $icon-horizontal-padding;
     flex-direction: column;
     flex: 1;
     white-space: nowrap;

@@ -18,14 +18,13 @@ namespace BlazorMdc
         /// <summary>
         /// A event that will be invoked when showing a toast
         /// </summary>
-        event Action<PMdcToastServiceConfiguration, PMdcToastLevel, string, string> OnShow;
+        event Action<PMdcToastServiceConfiguration, PMdcToastLevel, PMdcToastSettings> OnShow;
 
         /// <summary>
         /// Shows a toast using the supplied settings
         /// </summary>
         /// <param name="level">Toast level to display</param>
-        /// <param name="message">Text to display on the toast</param>
-        /// <param name="heading">The text to display as the toasts heading</param>
-        void ShowToast(PMdcToastLevel level, string message, string heading = "");
+        /// <param name="settings">Settings including the heading and message</param>
+        void ShowToast(PMdcToastLevel level, PMdcToastSettings settings);
     }
 }
