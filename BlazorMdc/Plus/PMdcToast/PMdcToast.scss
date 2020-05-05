@@ -6,6 +6,10 @@ $toast-margin-large: 12px;
 $center-margin-left: -$toast-width / 2;
 $transition-height: $toast-height + $toast-spacing;
 $close-button-size: 28px;
+$icon-font: 24px;
+$icon-horizontal-padding: 12px;
+$message-max-width: $toast-width - $icon-font - 2 * $icon-horizontal-padding - 4px;
+$header-max-width: $toast-width - $icon-font - 2 * $icon-horizontal-padding - $close-button-size;
 
 :root {
     --bmdc-toast-color-info: white;
@@ -52,7 +56,6 @@ $close-button-size: 28px;
     max-height: $toast-height;
     width: $toast-width;
     border-radius: var(--bmdc-toast-border-radius);
-    overflow: hidden;
 }
 
     .bmdc-toast.fade-in {
@@ -224,14 +227,14 @@ $close-button-size: 28px;
 
 .bmdc-toast-body p {
     margin: 6px 0 0 0 !important;
+    max-width: $message-max-width;
+    overflow: hidden;
 }
-
-/*.bmdc-toast-heading {
-    margin: 6px 0 0 0 !important;
-}*/
 
 .bmdc-toast-body h5 {
     margin: 6px 0 0 0 !important;
+    max-width: $header-max-width;
+    overflow: hidden;
 }
 
 .bmdc-toast-close-button {
