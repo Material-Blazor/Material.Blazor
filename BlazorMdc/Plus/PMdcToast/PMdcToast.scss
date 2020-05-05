@@ -230,7 +230,7 @@ $header-max-width-icon: $toast-width - $icon-font - 2 * $icon-horizontal-padding
     color: inherit;
 }
 
-.bmdc-toast-body h5, p {
+.bmdc-toast-body h5, .bmdc-toast-body p {
     margin: 6px 0 0 0 !important;
     overflow: hidden;
 }
