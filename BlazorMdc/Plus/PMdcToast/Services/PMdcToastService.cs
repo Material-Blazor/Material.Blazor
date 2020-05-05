@@ -22,30 +22,6 @@ namespace BlazorMdc
             Configuration = configuration;
         }
 
-        /////<inheritdoc/>
-        //public void ShowInfo(string message, string heading = "")
-        //{
-        //    ShowToast(PMdcToastLevel.Info, message, heading);
-        //}
-
-        /////<inheritdoc/>
-        //public void ShowSuccess(string message, string heading = "")
-        //{
-        //    ShowToast(PMdcToastLevel.Success, message, heading);
-        //}
-
-        /////<inheritdoc/>
-        //public void ShowWarning(string message, string heading = "")
-        //{
-        //    ShowToast(PMdcToastLevel.Warning, message, heading);
-        //}
-
-        /////<inheritdoc/>
-        //public void ShowError(string message, string heading = "")
-        //{
-        //    ShowToast(PMdcToastLevel.Error, message, heading);
-        //}
-
         ///<inheritdoc/>
         public void ShowToast(PMdcToastLevel level, string message, string heading = "")
         {

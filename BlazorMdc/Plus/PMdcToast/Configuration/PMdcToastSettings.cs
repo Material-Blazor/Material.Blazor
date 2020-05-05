@@ -12,7 +12,7 @@ namespace BlazorMdc
     {
         public string Heading { get; set; }
 
-        public RenderFragment Message { get; set; }
+        public string Message { get; set; }
 
         public string CssClass { get; set; }
 
@@ -33,7 +33,7 @@ namespace BlazorMdc
 
 
         public PMdcToastSettings(string heading,
-                    RenderFragment message,
+                    string message,
                     string cssClass,
                     string icon)
         {
