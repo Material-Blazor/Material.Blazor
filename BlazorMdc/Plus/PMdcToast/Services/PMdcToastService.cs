@@ -14,7 +14,7 @@ namespace BlazorMdc
         public PMdcToastServiceConfiguration Configuration { get; set; } = new PMdcToastServiceConfiguration();
 
         ///<inheritdoc/>
-        public event Action<PMdcToastServiceConfiguration, PMdcToastLevel, RenderFragment, string> OnShow;
+        public event Action<PMdcToastServiceConfiguration, PMdcToastLevel, string, string> OnShow;
 
 
         public PMdcToastService(PMdcToastServiceConfiguration configuration)
@@ -22,63 +22,32 @@ namespace BlazorMdc
             Configuration = configuration;
         }
 
-        ///<inheritdoc/>
-        public void ShowInfo(string message, string heading = "")
-        {
-            ShowToast(PMdcToastLevel.Info, message, heading);
-        }
+        /////<inheritdoc/>
+        //public void ShowInfo(string message, string heading = "")
+        //{
+        //    ShowToast(PMdcToastLevel.Info, message, heading);
+        //}
 
-        ///<inheritdoc/>
-        public void ShowInfo(RenderFragment message, string heading = "")
-        {
-            ShowToast(PMdcToastLevel.Info, message, heading);
-        }
+        /////<inheritdoc/>
+        //public void ShowSuccess(string message, string heading = "")
+        //{
+        //    ShowToast(PMdcToastLevel.Success, message, heading);
+        //}
 
-        ///<inheritdoc/>
-        public void ShowSuccess(string message, string heading = "")
-        {
-            ShowToast(PMdcToastLevel.Success, message, heading);
-        }
+        /////<inheritdoc/>
+        //public void ShowWarning(string message, string heading = "")
+        //{
+        //    ShowToast(PMdcToastLevel.Warning, message, heading);
+        //}
 
-        ///<inheritdoc/>
-        public void ShowSuccess(RenderFragment message, string heading = "")
-        {
-            ShowToast(PMdcToastLevel.Success, message, heading);
-        }
-
-        ///<inheritdoc/>
-        public void ShowWarning(string message, string heading = "")
-        {
-            ShowToast(PMdcToastLevel.Warning, message, heading);
-        }
-
-        ///<inheritdoc/>
-        public void ShowWarning(RenderFragment message, string heading = "")
-        {
-            ShowToast(PMdcToastLevel.Warning, message, heading);
-        }
-
-        ///<inheritdoc/>
-        public void ShowError(string message, string heading = "")
-        {
-            ShowToast(PMdcToastLevel.Error, message, heading);
-        }
-
-        ///<inheritdoc/>
-        public void ShowError(RenderFragment message, string heading = "")
-        {
-            ShowToast(PMdcToastLevel.Error, message, heading);
-        }
+        /////<inheritdoc/>
+        //public void ShowError(string message, string heading = "")
+        //{
+        //    ShowToast(PMdcToastLevel.Error, message, heading);
+        //}
 
         ///<inheritdoc/>
         public void ShowToast(PMdcToastLevel level, string message, string heading = "")
-        {
-            ShowToast(level, builder => builder.AddContent(0, message), heading);
-        }
-
-
-        ///<inheritdoc/>
-        public void ShowToast(PMdcToastLevel level, RenderFragment message, string heading = "")
         {
             OnShow?.Invoke(Configuration, level, message, heading);
         }

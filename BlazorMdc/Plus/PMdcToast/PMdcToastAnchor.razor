@@ -16,7 +16,7 @@
             {
                 var toastId = toast.Id;
 
-                <div class="mdc-elevation--z12 bmdc-toast @toast.Settings.StatusClass @toast.Settings.CssClass">
+                <div @key="toast" class="mdc-elevation--z12 bmdc-toast @toast.Settings.StatusClass @toast.Settings.CssClass">
 
                     @if (!string.IsNullOrWhiteSpace(toast.Settings.Icon))
                     {
@@ -25,9 +25,9 @@
                         </div>
                     }
 
-                    <div class="bmdc-toast-body">
+                    <div class="bmdc-toast-body icon">
                         <div class="bmdc-toast-header">
-                            <h5 class="bmdc-toast-heading mdc-typography--subtitle1">@toast.Settings.Heading</h5>
+                            <h5 class="mdc-typography--subtitle1">@toast.Settings.Heading</h5>
                             <MdcButton OnClick="@(() => CloseToast(toastId))" LeadingIcon="@MdcIcons.Icon__close" ButtonStyle="@MdcButtonStyle.Text" Class="bmdc-toast-close-button" />
                         </div>
                         <p class="mdc-typography--body2">@toast.Settings.Message</p>
@@ -53,7 +53,7 @@
     }
 
 
-    private PMdcToastSettings BuildToastSettings(PMdcToastServiceConfiguration configuration, PMdcToastLevel level, RenderFragment message, string heading)
+    private PMdcToastSettings BuildToastSettings(PMdcToastServiceConfiguration configuration, PMdcToastLevel level, string message, string heading)
     {
         return level switch
         {
@@ -66,7 +66,7 @@
     }
 
 
-    private void ShowToast(PMdcToastServiceConfiguration configuration, PMdcToastLevel level, RenderFragment message, string heading)
+    private void ShowToast(PMdcToastServiceConfiguration configuration, PMdcToastLevel level, string message, string heading)
     {
         InvokeAsync(async () =>
         {

@@ -40,17 +40,17 @@
                ButtonStyle="@MdcButtonStyle.ContainedRaised" />
 
     <MdcButton Style="background-color: var(--bmdc-toast-background-color-success);"
-               OnClick="@(() => toastService.ShowSuccess("I'm a SUCCESS message with a custom heading", "Congratulations with a long heading"))"
+               OnClick="@(() => toastService.ShowToast(PMdcToastLevel.Success, "I'm a SUCCESS message with a custom heading", "Congratulations with a long heading"))"
                Label="Success Toast"
                ButtonStyle="@MdcButtonStyle.ContainedRaised" />
 
     <MdcButton Style="background-color: var(--bmdc-toast-background-color-warning);"
-               OnClick="@(() => toastService.ShowWarning("I'm a WARNING message"))"
+               OnClick="@(() => toastService.ShowToast(PMdcToastLevel.Warning, "I'm a WARNING message"))"
                Label="Warning Toast"
                ButtonStyle="@MdcButtonStyle.ContainedRaised" />
 
     <MdcButton Style="background-color: var(--bmdc-toast-background-color-error);"
-               OnClick="@(() => toastService.ShowError("I'm an ERROR message"))"
+               OnClick="@(() => toastService.ShowToast(PMdcToastLevel.Error, "I'm an ERROR message"))"
                Label="Error Toast"
                ButtonStyle="@MdcButtonStyle.ContainedRaised" />
 </p>
@@ -61,6 +61,6 @@
 
     protected void InfoClick()
     {
-        toastService.ShowInfo("I'm an INFO message");
+        toastService.ShowToast(PMdcToastLevel.Info, "I'm an INFO message");
     }
 }

@@ -8,8 +8,12 @@ $transition-height: $toast-height + $toast-spacing;
 $close-button-size: 28px;
 $icon-font: 24px;
 $icon-horizontal-padding: 12px;
-$message-max-width: $toast-width - $icon-font - 2 * $icon-horizontal-padding - 4px;
-$header-max-width: $toast-width - $icon-font - 2 * $icon-horizontal-padding - $close-button-size;
+$message-max-width-no-icon: $toast-width - $icon-horizontal-padding - 4px;
+$header-max-width-no-icon: $toast-width - $icon-horizontal-padding - $close-button-size;
+$message-max-width-icon: $toast-width - $icon-font - 2 * $icon-horizontal-padding - 4px;
+$header-max-width-icon: $toast-width - $icon-font - 2 * $icon-horizontal-padding - $close-button-size;
+
+
 
 :root {
     --bmdc-toast-color-info: white;
@@ -22,6 +26,7 @@ $header-max-width: $toast-width - $icon-font - 2 * $icon-horizontal-padding - $c
     --bmdc-toast-background-color-error: var(--bmdc-color-red-700);
     --bmdc-toast-border-radius: 4px;
 }
+
 
 
 .bmdc-toast-container {
@@ -225,17 +230,27 @@ $header-max-width: $toast-width - $icon-font - 2 * $icon-horizontal-padding - $c
     color: inherit;
 }
 
-.bmdc-toast-body p {
+.bmdc-toast-body h5, p {
     margin: 6px 0 0 0 !important;
-    max-width: $message-max-width;
     overflow: hidden;
 }
 
-.bmdc-toast-body h5 {
-    margin: 6px 0 0 0 !important;
-    max-width: $header-max-width;
-    overflow: hidden;
+.bmdc-toast-body.no-icon h5 {
+    max-width: $header-max-width-no-icon;
 }
+
+.bmdc-toast-body.icon h5 {
+    max-width: $header-max-width-icon;
+}
+
+.bmdc-toast-body.no-icon p {
+    max-width: $message-max-width-no-icon;
+}
+
+.bmdc-toast-body.icon p {
+    max-width: $message-max-width-icon;
+}
+
 
 .bmdc-toast-close-button {
     text-align: center;
@@ -249,7 +264,7 @@ $header-max-width: $toast-width - $icon-font - 2 * $icon-horizontal-padding - $c
     padding: 0 !important;
     top: 0;
     left: 0;
-    
+
     .mdc-button__icon {
         margin: 0 !important;
     }

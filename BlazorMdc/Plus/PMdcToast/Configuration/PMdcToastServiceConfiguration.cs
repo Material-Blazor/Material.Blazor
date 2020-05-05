@@ -7,6 +7,7 @@ namespace BlazorMdc
         public const PMdcToastPosition DefaultPosition = PMdcToastPosition.BottomRight;
         public const bool DefaultShowCloseButton = true;
         public const string DefaultCloseIcon = MdcIcons.Icon__close;
+        public const bool DefaultShowIcons = true;
         public const bool DefaultRequireInteraction = false;
         public const int DefaultTimeout = 3000; 
         public const string DefaultInfoIcon = MdcIcons.Icon__notifications;
@@ -66,6 +67,24 @@ namespace BlazorMdc
                 if (value != _closeIcon)
                 {
                     _closeIcon = value;
+                    OnUpdate?.Invoke();
+                }
+            }
+        }
+
+
+        private bool _showIcons = DefaultShowIcons;
+        /// <summary>
+        /// Determines whether default toasts show an icon.
+        /// </summary>
+        public bool ShowIcons
+        {
+            get => _showIcons;
+            set
+            {
+                if (value != _showIcons)
+                {
+                    _showIcons = value;
                     OnUpdate?.Invoke();
                 }
             }
