@@ -15,9 +15,11 @@ namespace BlazorMdc
         public RenderFragment Message { get; set; }
 
         public string CssClass { get; set; }
-        
+
+        public bool HasIcon { get; set; }
+
         public string Icon { get; set; }
-        
+
         internal ToastStatus Status { get; set; }
 
 

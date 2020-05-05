@@ -2,8 +2,13 @@
 
 namespace BlazorMdc
 {
-    public class PMdcToastServiceConfiguration : PMdcToastOptions
+    public class PMdcToastServiceConfiguration
     {
+        public const PMdcToastPosition DefaultPosition = PMdcToastPosition.BottomRight;
+        public const bool DefaultShowCloseButton = true;
+        public const string DefaultCloseIcon = MdcIcons.Icon__close;
+        public const bool DefaultRequireInteraction = false;
+        public const int DefaultTimeout = 3000; 
         public const string DefaultInfoIcon = MdcIcons.Icon__notifications;
         public const string DefaultSuccessIcon = MdcIcons.Icon__done;
         public const string DefaultWarningIcon = MdcIcons.Icon__warning;
@@ -14,8 +19,10 @@ namespace BlazorMdc
 
 
         private PMdcToastPosition _position = DefaultPosition;
-        ///<inheritdoc/>
-        public override PMdcToastPosition Position
+        /// <summary>
+        /// Sets the toast's position.
+        /// </summary>
+        public PMdcToastPosition Position
         {
             get => _position;
             set
@@ -30,8 +37,10 @@ namespace BlazorMdc
 
 
         private bool _showCloseButton = DefaultShowCloseButton;
-        ///<inheritdoc/>
-        public override bool ShowCloseButton
+        /// <summary>
+        /// States if the close button has to be used for closing a toast. Defaults to true and overridden to true if <see cref="PMdcToastServiceConfiguration.RequireInteraction"/> is true.
+        /// </summary>
+        public bool ShowCloseButton
         {
             get => _showCloseButton;
             set
@@ -46,8 +55,10 @@ namespace BlazorMdc
 
 
         private string _closeIcon = DefaultCloseIcon;
-        ///<inheritdoc/>
-        public override string CloseIcon
+        /// <summary>
+        /// The close icon. Defaults to <see cref="MdcIcons.Icon__close"/>.
+        /// </summary>
+        public string CloseIcon
         {
             get => _closeIcon;
             set
@@ -62,8 +73,10 @@ namespace BlazorMdc
 
 
         private bool _requireInteraction = DefaultRequireInteraction;
-        ///<inheritdoc/>
-        public override bool RequireInteraction
+        /// <summary>
+        /// Determines whether the toast requires interation to be closed or closes automatically on a timeout. When true overrides <see cref="PMdcToastServiceConfiguration.ShowCloseButton"/> to true and ignores <see cref="PMdcToastServiceConfiguration.Timeout"/>.
+        /// </summary>
+        public bool RequireInteraction
         {
             get => _requireInteraction;
             set
@@ -78,8 +91,10 @@ namespace BlazorMdc
 
 
         private int _timeout = DefaultTimeout;
-        ///<inheritdoc/>
-        public override int Timeout
+        /// <summary>
+        /// Timeout in milliseconds until the toast automatically closes. Defaults to 3000 and ignored if if <see cref="PMdcToastServiceConfiguration.RequireInteraction"/> is true.
+        /// </summary>
+        public int Timeout
         {
             get => _timeout;
             set
