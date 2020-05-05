@@ -25,8 +25,6 @@ namespace BlazorMdc
 
     public enum MdcSelectInputStyle { Filled, Outlined }
 
-    public enum MdcIconType { FontAwesome, Material };
-
 
 
 

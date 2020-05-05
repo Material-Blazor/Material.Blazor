@@ -1,19 +1,12 @@
 ﻿@namespace BlazorMdc
 @using Microsoft.AspNetCore.Components.Web
 
-<div class="bmdc-toast @statusClass mdc-elevation--z12 @Settings.BaseClass @Settings.AdditionalClasses">
+<div class="bmdc-toast @statusClass mdc-elevation--z12 @Settings.CssClass">
 
     @if (!string.IsNullOrWhiteSpace(Settings.Icon))
     {
         <div class="bmdc-toast-icon">
-            @if (Settings.IconType == MdcIconType.FontAwesome)
-            {
-                <i class="@Settings.Icon" aria-hidden="true"></i>
-            }
-            @if (Settings.IconType == MdcIconType.Material)
-            {
-                <i class="material-icons" aria-hidden="true">@Settings.Icon</i>
-            }
+            <i class="material-icons" aria-hidden="true">@Settings.Icon</i>
         </div>
     }
 

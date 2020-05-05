@@ -27,7 +27,17 @@ namespace BlazorMdc.Demo.WebServer
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddPMdcToastService();
+
+            services.AddPMdcToastService(new PMdcToastServiceConfiguration()
+            {
+                InfoDefaultHeading = "Info",
+                SuccessDefaultHeading = "Success",
+                WarningDefaultHeading = "Warning",
+                ErrorDefaultHeading = "Error",
+                Timeout = 5000,
+                MaxToastsShowing = 5
+            });
+            
             services.AddPMdcAnimatedNavigationManager();
         }
 

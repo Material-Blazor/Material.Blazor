@@ -6,10 +6,17 @@ namespace BlazorMdc
 {
     public class PMdcToastOptions
     {
+        public const PMdcToastPosition DefaultPosition = PMdcToastPosition.BottomRight;
         public const bool DefaultShowCloseButton = true;
         public const string DefaultCloseIcon = MdcIcons.Icon__close;
         public const bool DefaultRequireInteraction = false;
         public const int DefaultTimeout = 3000;
+
+
+        /// <summary>
+        /// Sets the toast's position.
+        /// </summary>
+        public virtual PMdcToastPosition Position { get; set; } = DefaultPosition;
 
 
         /// <summary>

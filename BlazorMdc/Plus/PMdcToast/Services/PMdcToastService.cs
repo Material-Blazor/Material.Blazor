@@ -10,15 +10,11 @@ namespace BlazorMdc
 {
     public class PMdcToastService : IPmdcToastService
     {
-        /// <summary>
-        /// Toast service configuration
-        /// </summary>
+        ///<inheritdoc/>
         public PMdcToastServiceConfiguration Configuration { get; set; } = new PMdcToastServiceConfiguration();
 
-        /// <summary>
-        /// A event that will be invoked when showing a toast
-        /// </summary>
-        public event Action<PMdcToastLevel, RenderFragment, string> OnShow;
+        ///<inheritdoc/>
+        public event Action<PMdcToastServiceConfiguration, PMdcToastLevel, RenderFragment, string> OnShow;
 
 
         public PMdcToastService(PMdcToastServiceConfiguration configuration)
@@ -26,107 +22,65 @@ namespace BlazorMdc
             Configuration = configuration;
         }
 
-        /// <summary>
-        /// Shows a information toast 
-        /// </summary>
-        /// <param name="message">Text to display on the toast</param>
-        /// <param name="heading">The text to display as the toasts heading</param>
+        ///<inheritdoc/>
         public void ShowInfo(string message, string heading = "")
         {
             ShowToast(PMdcToastLevel.Info, message, heading);
         }
 
-        /// <summary>
-        /// Shows a information toast 
-        /// </summary>
-        /// <param name="message">RenderFragment to display on the toast</param>
-        /// <param name="heading">The text to display as the toasts heading</param>
+        ///<inheritdoc/>
         public void ShowInfo(RenderFragment message, string heading = "")
         {
             ShowToast(PMdcToastLevel.Info, message, heading);
         }
 
-        /// <summary>
-        /// Shows a success toast 
-        /// </summary>
-        /// <param name="message">Text to display on the toast</param>
-        /// <param name="heading">The text to display as the toasts heading</param>
+        ///<inheritdoc/>
         public void ShowSuccess(string message, string heading = "")
         {
             ShowToast(PMdcToastLevel.Success, message, heading);
         }
 
-        /// <summary>
-        /// Shows a success toast 
-        /// </summary>
-        /// <param name="message">RenderFragment to display on the toast</param>
-        /// <param name="heading">The text to display as the toasts heading</param>
+        ///<inheritdoc/>
         public void ShowSuccess(RenderFragment message, string heading = "")
         {
             ShowToast(PMdcToastLevel.Success, message, heading);
         }
 
-        /// <summary>
-        /// Shows a warning toast 
-        /// </summary>
-        /// <param name="message">Text to display on the toast</param>
-        /// <param name="heading">The text to display as the toasts heading</param>
+        ///<inheritdoc/>
         public void ShowWarning(string message, string heading = "")
         {
             ShowToast(PMdcToastLevel.Warning, message, heading);
         }
 
-        /// <summary>
-        /// Shows a warning toast 
-        /// </summary>
-        /// <param name="message">RenderFragment to display on the toast</param>
-        /// <param name="heading">The text to display as the toasts heading</param>
+        ///<inheritdoc/>
         public void ShowWarning(RenderFragment message, string heading = "")
         {
             ShowToast(PMdcToastLevel.Warning, message, heading);
         }
 
-        /// <summary>
-        /// Shows a error toast 
-        /// </summary>
-        /// <param name="message">Text to display on the toast</param>
-        /// <param name="heading">The text to display as the toasts heading</param>
+        ///<inheritdoc/>
         public void ShowError(string message, string heading = "")
         {
             ShowToast(PMdcToastLevel.Error, message, heading);
         }
 
-        /// <summary>
-        /// Shows a error toast 
-        /// </summary>
-        /// <param name="message">RenderFragment to display on the toast</param>
-        /// <param name="heading">The text to display as the toasts heading</param>
+        ///<inheritdoc/>
         public void ShowError(RenderFragment message, string heading = "")
         {
             ShowToast(PMdcToastLevel.Error, message, heading);
         }
 
-        /// <summary>
-        /// Shows a toast using the supplied settings
-        /// </summary>
-        /// <param name="level">Toast level to display</param>
-        /// <param name="message">Text to display on the toast</param>
-        /// <param name="heading">The text to display as the toasts heading</param>
+        ///<inheritdoc/>
         public void ShowToast(PMdcToastLevel level, string message, string heading = "")
         {
             ShowToast(level, builder => builder.AddContent(0, message), heading);
         }
 
 
-        /// <summary>
-        /// Shows a toast using the supplied settings
-        /// </summary>
-        /// <param name="level">Toast level to display</param>
-        /// <param name="message">RenderFragment to display on the toast</param>
-        /// <param name="heading">The text to display as the toasts heading</param>
+        ///<inheritdoc/>
         public void ShowToast(PMdcToastLevel level, RenderFragment message, string heading = "")
         {
-            OnShow?.Invoke(level, message, heading);
+            OnShow?.Invoke(Configuration, level, message, heading);
         }
     }
 }

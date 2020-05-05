@@ -18,7 +18,7 @@ namespace BlazorMdc
         /// <summary>
         /// A event that will be invoked when showing a toast
         /// </summary>
-        event Action<PMdcToastLevel, RenderFragment, string> OnShow;
+        event Action<PMdcToastServiceConfiguration, PMdcToastLevel, RenderFragment, string> OnShow;
 
         /// <summary>
         /// Shows a information toast 

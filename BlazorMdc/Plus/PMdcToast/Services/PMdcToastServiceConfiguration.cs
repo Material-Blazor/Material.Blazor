@@ -13,10 +13,24 @@ namespace BlazorMdc
         internal event Action OnUpdate;
 
 
+        private PMdcToastPosition _position = DefaultPosition;
+        ///<inheritdoc/>
+        public override PMdcToastPosition Position
+        {
+            get => _position;
+            set
+            {
+                if (value != _position)
+                {
+                    _position = value;
+                    OnUpdate?.Invoke();
+                }
+            }
+        }
+
+
         private bool _showCloseButton = DefaultShowCloseButton;
-        /// <summary>
-        /// States if the close button has to be used for closing a toast. Defaults to true and overridden to true if <see cref="PMdcToastServiceConfiguration.RequireInteraction"/> is true.
-        /// </summary>
+        ///<inheritdoc/>
         public override bool ShowCloseButton
         {
             get => _showCloseButton;
@@ -32,9 +46,7 @@ namespace BlazorMdc
 
 
         private string _closeIcon = DefaultCloseIcon;
-        /// <summary>
-        /// The close icon. Defaults to <see cref="MdcIcons.Icon__close"/>.
-        /// </summary>
+        ///<inheritdoc/>
         public override string CloseIcon
         {
             get => _closeIcon;
@@ -50,9 +62,7 @@ namespace BlazorMdc
 
 
         private bool _requireInteraction = DefaultRequireInteraction;
-        /// <summary>
-        /// Determines whether the toast requires interation to be closed or closes automatically on a timeout. When true overrides <see cref="PMdcToastServiceConfiguration.ShowCloseButton"/> to true and ignores <see cref="PMdcToastServiceConfiguration.Timeout"/>.
-        /// </summary>
+        ///<inheritdoc/>
         public override bool RequireInteraction
         {
             get => _requireInteraction;
@@ -68,9 +78,7 @@ namespace BlazorMdc
 
 
         private int _timeout = DefaultTimeout;
-        /// <summary>
-        /// Timeout in milliseconds until the toast automatically closes. Defaults to 3000 and ignored if if <see cref="PMdcToastServiceConfiguration.RequireInteraction"/> is true.
-        /// </summary>
+        ///<inheritdoc/>
         public override int Timeout
         {
             get => _timeout;
@@ -193,7 +201,7 @@ namespace BlazorMdc
         }
 
 
-        private string _successIcon = "";
+        private string _successIcon = DefaultSuccessIcon;
         /// <summary>
         /// Icon for an Success toast.
         /// </summary>
@@ -211,7 +219,7 @@ namespace BlazorMdc
         }
 
 
-        private string _warningIcon = "";
+        private string _warningIcon = DefaultWarningIcon;
         /// <summary>
         /// Icon for an waWrning toast.
         /// </summary>
@@ -229,7 +237,7 @@ namespace BlazorMdc
         }
 
 
-        private string _errorIcon = "";
+        private string _errorIcon = DefaultErrorIcon;
         /// <summary>
         /// Icon for an Error toast.
         /// </summary>

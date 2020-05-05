@@ -19,7 +19,16 @@ namespace BlazorMdc.Demo.Blazor
             builder.Services.AddSingleton(
                 new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            builder.Services.AddPMdcToastService();
+            builder.Services.AddPMdcToastService(new PMdcToastServiceConfiguration()
+            {
+                InfoDefaultHeading = "Info",
+                SuccessDefaultHeading = "Success",
+                WarningDefaultHeading = "Warning",
+                ErrorDefaultHeading = "Error",
+                Timeout = 5000,
+                MaxToastsShowing = 5
+            });
+
             builder.Services.AddPMdcAnimatedNavigationManager();
 
             await builder.Build().RunAsync();

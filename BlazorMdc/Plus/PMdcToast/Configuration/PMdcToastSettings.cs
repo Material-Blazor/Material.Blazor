@@ -13,30 +13,21 @@ namespace BlazorMdc
 
         public RenderFragment Message { get; set; }
 
-        public string BaseClass { get; set; }
-        
-        public string AdditionalClasses { get; set; }
+        public string CssClass { get; set; }
         
         public string Icon { get; set; }
-        
-        public MdcIconType? IconType { get; set; }
         
         internal ToastStatus Status { get; set; }
 
 
-        public PMdcToastSettings(
-                    string heading,
+        public PMdcToastSettings(string heading,
                     RenderFragment message,
-                    MdcIconType? iconType,
-                    string baseClass,
-                    string additionalClasses,
+                    string cssClass,
                     string icon)
         {
             Heading = heading;
             Message = message;
-            IconType = iconType;
-            BaseClass = baseClass;
-            AdditionalClasses = additionalClasses;
+            CssClass = cssClass;
             Icon = icon;
             Status = ToastStatus.Show;
         }
