@@ -38,18 +38,18 @@ namespace BlazorMdc
             PMdcToastLevel level = PMdcToastLevel.Info,
             string message = "",
             bool? showIcon = null,
-            int timeout = -1)
+            int? timeout = null)
 #nullable restore annotations
         {
             var settings = new PMdcToastSettings();
 
-            settings.CloseMethod = (closeMethod == null) ? Configuration.CloseMethod : closeMethod;
+            settings.CloseMethod = closeMethod;
             settings.CssClass = cssClass;
             settings.Heading = heading;
             settings.Icon = icon;
             settings.Message = message;
-            settings.ShowIcon = (showIcon == null) ? Configuration.ShowIcons : showIcon;
-            settings.Timeout = (timeout <= 0) ? Configuration.Timeout : timeout;
+            settings.ShowIcon = showIcon;
+            settings.Timeout = timeout;
 
             OnAdd?.Invoke(level, settings);
         }
