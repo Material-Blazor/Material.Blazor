@@ -31,25 +31,26 @@ namespace BlazorMdc
         ///<inheritdoc/>
 #nullable enable annotations
         public void ShowToast(
+            PMdcToastLevel level = PMdcToastLevel.Info,
             PMdcToastCloseMethod? closeMethod = null,
             string cssClass = null,
             string heading = null,
             string icon = null,
-            PMdcToastLevel level = PMdcToastLevel.Info,
-            string message = "",
+            string message = null,
             bool? showIcon = null,
-            int? timeout = null)
+            uint? timeout = null)
 #nullable restore annotations
         {
-            var settings = new PMdcToastSettings();
-
-            settings.CloseMethod = closeMethod;
-            settings.CssClass = cssClass;
-            settings.Heading = heading;
-            settings.Icon = icon;
-            settings.Message = message;
-            settings.ShowIcon = showIcon;
-            settings.Timeout = timeout;
+            var settings = new PMdcToastSettings()
+            {
+                CloseMethod = closeMethod,
+                CssClass = cssClass,
+                Heading = heading,
+                Icon = icon,
+                Message = message,
+                ShowIcon = showIcon,
+                Timeout = timeout
+            };
 
             OnAdd?.Invoke(level, settings);
         }

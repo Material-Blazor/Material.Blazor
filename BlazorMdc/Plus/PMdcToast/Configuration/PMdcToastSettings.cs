@@ -24,7 +24,7 @@ namespace BlazorMdc
 
         public PMdcToastCloseMethod? CloseMethod { get; set; }
 
-        public int? Timeout { get; set; }
+        public uint? Timeout { get; set; }
 #nullable restore annotations
 
 
@@ -43,7 +43,7 @@ namespace BlazorMdc
 
         internal PMdcToastCloseMethod AppliedCloseMethod => (CloseMethod is null) ? Configuration?.CloseMethod ?? PMdcToastServiceConfiguration.DefaultCloseMethod : (PMdcToastCloseMethod)CloseMethod;
 
-        internal int AppliedTimeout => (Timeout is null) ? Configuration?.Timeout ?? PMdcToastServiceConfiguration.DefaultTimeout : (int)Timeout;
+        internal uint AppliedTimeout => (Timeout is null) ? Configuration?.Timeout ?? PMdcToastServiceConfiguration.DefaultTimeout : (uint)Timeout;
 
 
 
