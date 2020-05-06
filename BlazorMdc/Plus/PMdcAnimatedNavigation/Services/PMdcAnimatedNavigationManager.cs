@@ -5,43 +5,21 @@ namespace BlazorMdc
     public class PMdcAnimatedNavigationManager : IPMdcAnimatedNavigationManager
     {
         private readonly NavigationManager NavigationManager;
-        private PMdcAnimatedNavigation NavigationComponent { get; set; } = null;
+        internal PMdcAnimatedNavigation NavigationComponent { get; set; } = null;
         
 
-        private bool _applyAnimation = true;
-        /// <summary>
-        /// Determines whether animated navigation will happen (true) or default to standard Blazor non-animated (false).
-        /// </summary>
-        public bool ApplyAnimation
-        {
-            get => _applyAnimation;
-            set 
-            {
-                if (value != _applyAnimation)
-                {
-                    _applyAnimation = value;
-
-                    if (!_applyAnimation)
-                    {
-                        NavigationComponent.UnanimatePage();
-                    }
-                }
-            }
-        }
+        /// <inheritdoc/>
+        public PMdcAnimatedNaviationManagerConfiguration Configuration { get; set; } = new PMdcAnimatedNaviationManagerConfiguration();
 
 
-        /// <summary>
-        /// Sets the animation sequence time in milliseconds (default 500).
-        /// </summary>
-        public int AnimationTime { get; set; } = 500;
-
-        int IPMdcAnimatedNavigationManager.FadeOutTime => AnimationTime * 4 / 10;
-        int IPMdcAnimatedNavigationManager.FadeInTime => AnimationTime * 6 / 10;
+        int IPMdcAnimatedNavigationManager.FadeOutTime => Configuration.AnimationTime * 4 / 10;
+        int IPMdcAnimatedNavigationManager.FadeInTime => Configuration.AnimationTime * 6 / 10;
 
 
-        public PMdcAnimatedNavigationManager(NavigationManager navigationManager)
+        public PMdcAnimatedNavigationManager(NavigationManager navigationManager, PMdcAnimatedNaviationManagerConfiguration configuration)
         {
             NavigationManager = navigationManager;
+            Configuration = configuration;
         }
 
 
@@ -52,7 +30,7 @@ namespace BlazorMdc
         /// <param name="forceLoad">If true, bypasses client-side routing and forces the browser to load the new page from the server, whether or not the URI would normally be handled by the client-side router.</param>
         public void NavigateTo(string uri, bool forceLoad = false)
         {
-            if (NavigationComponent is null || !ApplyAnimation)
+            if (NavigationComponent is null || !Configuration.ApplyAnimation)
             {
                 NavigationManager.NavigateTo(uri, forceLoad);
             }

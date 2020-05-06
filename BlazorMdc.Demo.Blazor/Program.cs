@@ -19,6 +19,7 @@ namespace BlazorMdc.Demo.Blazor
             builder.Services.AddSingleton(
                 new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
+            // The configuration is optional
             builder.Services.AddPMdcToastService(new PMdcToastServiceConfiguration()
             {
                 InfoDefaultHeading = "Info",
@@ -29,7 +30,12 @@ namespace BlazorMdc.Demo.Blazor
                 MaxToastsShowing = 5
             });
 
-            builder.Services.AddPMdcAnimatedNavigationManager();
+            // The configuration is optional
+            builder.Services.AddPMdcAnimatedNavigationManager(new PMdcAnimatedNaviationManagerConfiguration()
+            {
+                ApplyAnimation = true,
+                AnimationTime = 300
+            });
 
             await builder.Build().RunAsync();
         }

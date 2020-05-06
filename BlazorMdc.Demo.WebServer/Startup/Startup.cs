@@ -28,6 +28,7 @@ namespace BlazorMdc.Demo.WebServer
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
+            // The configuration is optional
             services.AddPMdcToastService(new PMdcToastServiceConfiguration()
             {
                 InfoDefaultHeading = "Info",
@@ -37,8 +38,13 @@ namespace BlazorMdc.Demo.WebServer
                 Timeout = 5000,
                 MaxToastsShowing = 5
             });
-            
-            services.AddPMdcAnimatedNavigationManager();
+
+            // The configuration is optional
+            services.AddPMdcAnimatedNavigationManager(new PMdcAnimatedNaviationManagerConfiguration()
+            {
+                ApplyAnimation = true,
+                AnimationTime = 300
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

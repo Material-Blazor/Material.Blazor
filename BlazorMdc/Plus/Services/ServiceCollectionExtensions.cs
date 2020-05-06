@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BlazorMdc
 {
@@ -6,19 +7,22 @@ namespace BlazorMdc
     {
         public static IServiceCollection AddPMdcToastService(this IServiceCollection services, PMdcToastServiceConfiguration configuration = null)
         {
-            //return services.AddScoped<IPmdcToastService, PMdcToastService>(builder => new PMdcToastService();
-
             if (configuration == null)
             {
                 configuration = new PMdcToastServiceConfiguration();
             }
 
-            return services.AddScoped<IPmdcToastService, PMdcToastService>(builder => new PMdcToastService(configuration));
+            return services.AddScoped<IPmdcToastService, PMdcToastService>(serviceProvider => new PMdcToastService(configuration));
         }
 
-        public static IServiceCollection AddPMdcAnimatedNavigationManager(this IServiceCollection services)
+        public static IServiceCollection AddPMdcAnimatedNavigationManager(this IServiceCollection services, PMdcAnimatedNaviationManagerConfiguration configuration = null)
         {
-            return services.AddScoped<IPMdcAnimatedNavigationManager, PMdcAnimatedNavigationManager>();
+            if (configuration == null)
+            {
+                configuration = new PMdcAnimatedNaviationManagerConfiguration();
+            }
+
+            return services.AddScoped<IPMdcAnimatedNavigationManager, PMdcAnimatedNavigationManager>(serviceProvider => new PMdcAnimatedNavigationManager(serviceProvider.GetRequiredService<NavigationManager>(), configuration));
         }
     }
 }

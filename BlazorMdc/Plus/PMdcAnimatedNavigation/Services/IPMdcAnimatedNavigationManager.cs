@@ -5,14 +5,9 @@ namespace BlazorMdc
     public interface IPMdcAnimatedNavigationManager
     {
         /// <summary>
-        /// Determines whether animated navigation will happen (true) or default to standard Blazor non-animated (false).
+        /// Animation Manager configuration.
         /// </summary>
-        public bool ApplyAnimation { get; set; }
-
-        /// <summary>
-        /// Sets the animation sequence time in milliseconds (default 500).
-        /// </summary>
-        public int AnimationTime { get; set; }
+        public PMdcAnimatedNaviationManagerConfiguration Configuration { get; set; }
 
 
         internal int FadeOutTime { get; }
