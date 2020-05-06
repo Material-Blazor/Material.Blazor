@@ -18,13 +18,11 @@ namespace BlazorMdc
 
         public string CssClass { get; set; }
 
-        public bool? ShowCloseButton { get; set; }
-
         public bool? ShowIcon { get; set; }
 
         public string? Icon { get; set; }
 
-        public bool? RequireInteraction { get; set; }
+        public PMdcToastCloseMethod? CloseMethod { get; set; }
 
         public int? Timeout { get; set; }
 #nullable restore annotations
@@ -39,13 +37,11 @@ namespace BlazorMdc
 
         internal string AppliedCssClass => CssClass ?? "";
 
-        internal bool AppliedShowCloseButton => (ShowCloseButton is null) ? Configuration?.ShowCloseButton ?? PMdcToastServiceConfiguration.DefaultShowCloseButton : (bool)ShowCloseButton;
-
         internal bool AppliedShowIcon => !string.IsNullOrWhiteSpace(AppliedIcon) && ((ShowIcon is null) ? Configuration?.ShowIcons ?? PMdcToastServiceConfiguration.DefaultShowIcons : (bool)ShowIcon);
 
         internal string AppliedIcon => (Icon is null) ? ConfigIcon : (string)Icon;
 
-        internal bool AppliedRequireInteraction => (RequireInteraction is null) ? Configuration?.RequireInteraction ?? PMdcToastServiceConfiguration.DefaultRequireInteraction : (bool)RequireInteraction;
+        internal PMdcToastCloseMethod AppliedCloseMethod => (CloseMethod is null) ? Configuration?.CloseMethod ?? PMdcToastServiceConfiguration.DefaultCloseMethod : (PMdcToastCloseMethod)CloseMethod;
 
         internal int AppliedTimeout => (Timeout is null) ? Configuration?.Timeout ?? PMdcToastServiceConfiguration.DefaultTimeout : (int)Timeout;
 

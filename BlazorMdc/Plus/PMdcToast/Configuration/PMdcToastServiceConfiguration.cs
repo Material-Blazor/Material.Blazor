@@ -5,10 +5,9 @@ namespace BlazorMdc
     public class PMdcToastServiceConfiguration
     {
         public const PMdcToastPosition DefaultPosition = PMdcToastPosition.BottomRight;
-        public const bool DefaultShowCloseButton = true;
-        public const string DefaultCloseIcon = MdcIcons.Icon__close;
+        public const string DefaultCloseButtonIcon = MdcIcons.Icon__close;
         public const bool DefaultShowIcons = true;
-        public const bool DefaultRequireInteraction = false;
+        public const PMdcToastCloseMethod DefaultCloseMethod = PMdcToastCloseMethod.TimeoutAndCloseButton;
         public const int DefaultTimeout = 3000; 
         public const string DefaultInfoIcon = MdcIcons.Icon__notifications;
         public const string DefaultSuccessIcon = MdcIcons.Icon__done;
@@ -37,36 +36,18 @@ namespace BlazorMdc
         }
 
 
-        private bool _showCloseButton = DefaultShowCloseButton;
-        /// <summary>
-        /// States if the close button has to be used for closing a toast. Defaults to true and overridden to true if <see cref="PMdcToastServiceConfiguration.RequireInteraction"/> is true.
-        /// </summary>
-        public bool ShowCloseButton
-        {
-            get => _showCloseButton;
-            set
-            {
-                if (value != _showCloseButton)
-                {
-                    _showCloseButton = value;
-                    OnUpdate?.Invoke();
-                }
-            }
-        }
-
-
-        private string _closeIcon = DefaultCloseIcon;
+        private string _closeButtonIcon = DefaultCloseButtonIcon;
         /// <summary>
         /// The close icon. Defaults to <see cref="MdcIcons.Icon__close"/>.
         /// </summary>
-        public string CloseIcon
+        public string CloseButtonIcon
         {
-            get => _closeIcon;
+            get => _closeButtonIcon;
             set
             {
-                if (value != _closeIcon)
+                if (value != _closeButtonIcon)
                 {
-                    _closeIcon = value;
+                    _closeButtonIcon = value;
                     OnUpdate?.Invoke();
                 }
             }
@@ -91,18 +72,18 @@ namespace BlazorMdc
         }
 
 
-        private bool _requireInteraction = DefaultRequireInteraction;
+        private PMdcToastCloseMethod _closeMethod = DefaultCloseMethod;
         /// <summary>
-        /// Determines whether the toast requires interation to be closed or closes automatically on a timeout. When true overrides <see cref="PMdcToastServiceConfiguration.ShowCloseButton"/> to true and ignores <see cref="PMdcToastServiceConfiguration.Timeout"/>.
+        /// Determines how the toast closes. Defaults to <see cref="PMdcToastCloseMethod.TimeoutAndCloseButton"/>.
         /// </summary>
-        public bool RequireInteraction
+        public PMdcToastCloseMethod CloseMethod
         {
-            get => _requireInteraction;
+            get => _closeMethod;
             set
             {
-                if (value != _requireInteraction)
+                if (value != _closeMethod)
                 {
-                    _requireInteraction = value;
+                    _closeMethod = value;
                     OnUpdate?.Invoke();
                 }
             }
@@ -111,7 +92,7 @@ namespace BlazorMdc
 
         private int _timeout = DefaultTimeout;
         /// <summary>
-        /// Timeout in milliseconds until the toast automatically closes. Defaults to 3000 and ignored if if <see cref="PMdcToastServiceConfiguration.RequireInteraction"/> is true.
+        /// Timeout in milliseconds until the toast automatically closes. Defaults to 3000 and ignored if <see cref="PMdcToastServiceConfiguration.CloseMethod"/> is <see cref="PMdcToastCloseMethod.CloseButton"/>.
         /// </summary>
         public int Timeout
         {

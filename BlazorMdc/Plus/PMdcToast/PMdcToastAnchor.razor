@@ -27,8 +27,13 @@
                 <div class="bmdc-toast-body @toast.Settings.HasIconClass">
                     <div class="bmdc-toast-header">
                         <h5 class="mdc-typography--subtitle1">@toast.Settings.AppliedHeading</h5>
-                        <MdcButton OnClick="@(() => CloseToast(toastId))" LeadingIcon="@MdcIcons.Icon__close" ButtonStyle="@MdcButtonStyle.Text" Class="bmdc-toast-close-button" />
+
+                        @if (toast.Settings.CloseMethod != PMdcToastCloseMethod.Timeout)
+                        {
+                            <MdcButton OnClick="@(() => CloseToast(toastId))" LeadingIcon="@MdcIcons.Icon__close" ButtonStyle="@MdcButtonStyle.Text" Class="bmdc-toast-close-button" />
+                        }
                     </div>
+
                     <p class="mdc-typography--body2">@toast.Settings.AppliedMessage</p>
                 </div>
             </div>
@@ -76,7 +81,7 @@
                 semaphoreSlim.Release();
             }
 
-            if (!settings.AppliedRequireInteraction)
+            if (settings.AppliedCloseMethod != PMdcToastCloseMethod.CloseButton)
             {
                 var timeout = settings.AppliedTimeout;
                 var toastTimer = new System.Timers.Timer(settings.AppliedTimeout);

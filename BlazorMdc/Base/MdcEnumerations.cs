@@ -34,4 +34,6 @@ namespace BlazorMdc
     public enum PMdcToastLevel { Info, Success, Warning, Error }
 
     public enum PMdcToastPosition { TopLeft, TopRight, TopCenter, BottomLeft, BottomRight, BottomCenter }
+
+    public enum PMdcToastCloseMethod { TimeoutAndCloseButton, Timeout, CloseButton }
 }

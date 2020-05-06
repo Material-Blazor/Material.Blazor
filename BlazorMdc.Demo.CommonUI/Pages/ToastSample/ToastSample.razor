@@ -18,7 +18,7 @@
     }
 </style>
 
-@if (overrideColors)
+@if (overrideDefaults)
 {
     <style>
         :root {
@@ -36,7 +36,7 @@
 }
 
 <p>
-    <MdcCheckbox @bind-Value="@overrideColors" Label="@label" />
+    <MdcCheckbox @bind-Value="@overrideDefaults" Label="Change colors and border radius from default" />
 </p>
 
 <p>
@@ -70,8 +70,12 @@
                Label="Ten Seconds"
                ButtonStyle="@MdcButtonStyle.ContainedRaised" />
 
-    <MdcButton OnClick="@(() => toastService.ShowToast(PMdcToastLevel.Warning, new PMdcToastSettings() { Heading = "Required Interaction", Message = "Press close to remove", RequireInteraction = true }))"
-               Label="Require Interaction"
+    <MdcButton OnClick="@(() => toastService.ShowToast(PMdcToastLevel.Warning, new PMdcToastSettings() { Heading = "No Close Button", Message = "Press close to remove", CloseMethod = PMdcToastCloseMethod.Timeout }))"
+               Label="No Close Button"
+               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+
+    <MdcButton OnClick="@(() => toastService.ShowToast(PMdcToastLevel.Warning, new PMdcToastSettings() { Heading = "No Timeout", Message = "Press close to remove", CloseMethod = PMdcToastCloseMethod.CloseButton }))"
+               Label="No Timeout"
                ButtonStyle="@MdcButtonStyle.ContainedRaised" />
 
     <MdcButton OnClick="@(() => toastService.ShowToast(PMdcToastLevel.Warning, new PMdcToastSettings() { Heading = "Icon Changed", Icon = MdcIcons.Icon__directions_run }))"
@@ -84,8 +88,7 @@
 </p>
 
 @code{
-    private bool overrideColors = false;
-    private string label => overrideColors ? "Click to use default toast colors" : "Click to use over-ride toast colors";
+    private bool overrideDefaults = false;
 
     protected void InfoClick()
     {
