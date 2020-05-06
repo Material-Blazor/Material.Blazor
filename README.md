@@ -5,6 +5,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/BlazorMdc/BlazorMdc)](https://github.com/BlazorMdc/BlazorMdc/issues)
 [![GitHub forks](https://img.shields.io/github/forks/BlazorMdc/BlazorMdc)](https://github.com/BlazorMdc/BlazorMdc/network/members)
 [![GitHub stars](https://img.shields.io/github/stars/BlazorMdc/BlazorMdc)](https://github.com/BlazorMdc/BlazorMdc/stargazers)
+[![Build Status](https://dev.azure.com/blazormdc/blazormdc/_apis/build/status/BlazorMdc.BlazorMdc?branchName=master)](https://dev.azure.com/blazormdc/blazormdc/_build/latest?definitionId=1&branchName=master)
 
 ## Lightweight Material Theme razor components for Blazor
 
