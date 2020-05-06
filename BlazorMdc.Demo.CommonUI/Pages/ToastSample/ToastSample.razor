@@ -35,9 +35,9 @@
     </style>
 }
 
-<p>
-    <MdcCheckbox @bind-Value="@overrideDefaults" Label="Change colors and border radius from default" />
-</p>
+<p><MdcCheckbox @bind-Value="@overrideDefaults" Label="Change colors and border radius from default" /></p>
+
+<p><PMdcNumericIntField @bind-Value="@toastService.Configuration.MaxToastsShowing" Label="Max Toasts (0-10)" Min="0" Max="10" NumericFormat="N0" /></p>
 
 <p>
     <MdcButton Style="background-color: var(--bmdc-toast-background-color-info);"

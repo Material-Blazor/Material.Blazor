@@ -8,10 +8,10 @@
 @using System.Threading
 
 
-@if (ToastList.Any())
+@if (DisplayedToasts.Any())
 {
     <div class="bmdc-toast-container @positionClass">
-        @foreach (var toast in ToastList.OrderBy(x => x.TimeStamp))
+        @foreach (var toast in DisplayedToasts.OrderBy(x => x.TimeStamp))
         {
             var toastId = toast.Id;
 
@@ -45,24 +45,24 @@
 
 
 @code {
-    internal List<ToastInstance> ToastList { get; set; } = new List<ToastInstance>();
-
-
+    private List<ToastInstance> DisplayedToasts { get; set; } = new List<ToastInstance>();
+    private Queue<ToastInstance> PendingToasts { get; set; } = new Queue<ToastInstance>();
+    private readonly SemaphoreSlim displayedToastsSemaphore = new SemaphoreSlim(1);
+    private readonly SemaphoreSlim pendingToastsSemaphore = new SemaphoreSlim(1);
     private string positionClass => $"bmdc-toast__{ToastService.Configuration.Position.ToString().ToLower()}";
-    private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1);
 
 
     protected override void OnInitialized()
     {
-        ToastService.OnShow += ShowToast;
+        ToastService.OnAdd += AddToast;
     }
 
 
-    private void ShowToast(PMdcToastServiceConfiguration configuration, PMdcToastLevel level, PMdcToastSettings settings)
+    private void AddToast(PMdcToastLevel level, PMdcToastSettings settings)
     {
         InvokeAsync(async () =>
         {
-            settings.Configuration = configuration;
+            settings.Configuration = ToastService.Configuration;
             settings.Level = level;
 
             var toastInstance = new ToastInstance
@@ -72,29 +72,57 @@
                 Settings = settings
             };
 
-            await semaphoreSlim.WaitAsync();
+            await pendingToastsSemaphore.WaitAsync();
 
             try
             {
-                ToastList.Add(toastInstance);
+                PendingToasts.Enqueue(toastInstance);
+
+                await displayedToastsSemaphore.WaitAsync();
+
+                try
+                {
+                    FlushPendingToasts();
+                }
+                finally
+                {
+                    displayedToastsSemaphore.Release();
+                }
             }
             finally
             {
-                semaphoreSlim.Release();
-            }
-
-            if (settings.AppliedCloseMethod != PMdcToastCloseMethod.CloseButton)
-            {
-                var timeout = settings.AppliedTimeout;
-                var toastTimer = new System.Timers.Timer(settings.AppliedTimeout);
-                toastTimer.Elapsed += (sender, args) => { CloseToast(toastInstance.Id); };
-                toastTimer.AutoReset = false;
-                toastTimer.Start();
+                pendingToastsSemaphore.Release();
             }
 
             StateHasChanged();
         });
+    }
 
+
+    private void FlushPendingToasts()
+    {
+        bool FlushNext() => PendingToasts.Count() > 0 && (ToastService.Configuration.MaxToastsShowing <= 0 || DisplayedToasts.Where(t => t.Settings.Status != ToastStatus.Hide).Count() < ToastService.Configuration.MaxToastsShowing);
+
+        while (FlushNext())
+        {
+            var toastInstance = PendingToasts.Dequeue();
+
+            DisplayedToasts.Add(toastInstance);
+
+            if (toastInstance.Settings.AppliedCloseMethod != PMdcToastCloseMethod.CloseButton)
+            {
+                InvokeAsync(() =>
+                {
+                    var timeout = toastInstance.Settings.AppliedTimeout;
+                    var toastTimer = new System.Timers.Timer(toastInstance.Settings.AppliedTimeout);
+                    toastTimer.Elapsed += (sender, args) => { CloseToast(toastInstance.Id); };
+                    toastTimer.AutoReset = false;
+                    toastTimer.Start();
+                });
+            }
+        }
+
+        StateHasChanged();
     }
 
 
@@ -103,11 +131,11 @@
         InvokeAsync(async () =>
         {
 
-            await semaphoreSlim.WaitAsync();
+            await displayedToastsSemaphore.WaitAsync();
 
             try
             {
-                var toastInstance = ToastList.SingleOrDefault(x => x.Id == toastId);
+                var toastInstance = DisplayedToasts.SingleOrDefault(x => x.Id == toastId);
 
                 if (toastInstance is null)
                 {
@@ -119,7 +147,7 @@
             }
             finally
             {
-                semaphoreSlim.Release();
+                displayedToastsSemaphore.Release();
             }
 
             var toastTimer = new System.Timers.Timer(500);
@@ -136,11 +164,11 @@
     {
         InvokeAsync(async () =>
         {
-            await semaphoreSlim.WaitAsync();
+            await displayedToastsSemaphore.WaitAsync();
 
             try
             {
-                var toastInstance = ToastList.SingleOrDefault(x => x.Id == toastId);
+                var toastInstance = DisplayedToasts.SingleOrDefault(x => x.Id == toastId);
 
                 if (toastInstance is null)
                 {
@@ -149,16 +177,18 @@
 
                 toastInstance.Settings.Status = ToastStatus.Hide;
 
-                if (ToastList.Where(x => x.Settings.Status == ToastStatus.FadeOut).Count() == 0)
+                if (DisplayedToasts.Where(x => x.Settings.Status == ToastStatus.FadeOut).Count() == 0)
                 {
-                    ToastList.RemoveAll(x => x.Settings.Status == ToastStatus.Hide);
+                    DisplayedToasts.RemoveAll(x => x.Settings.Status == ToastStatus.Hide);
                 }
 
                 StateHasChanged();
+                
+                FlushPendingToasts();
             }
             finally
             {
-                semaphoreSlim.Release();
+                displayedToastsSemaphore.Release();
             }
         });
     }

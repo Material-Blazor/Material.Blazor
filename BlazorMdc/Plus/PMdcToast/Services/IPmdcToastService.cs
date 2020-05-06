@@ -18,7 +18,7 @@ namespace BlazorMdc
         /// <summary>
         /// A event that will be invoked when showing a toast
         /// </summary>
-        event Action<PMdcToastServiceConfiguration, PMdcToastLevel, PMdcToastSettings> OnShow;
+        internal event Action<PMdcToastLevel, PMdcToastSettings> OnAdd;
 
         /// <summary>
         /// Shows a toast using the supplied settings
