@@ -4,6 +4,7 @@
 //
 
 using System;
+using System.Runtime.InteropServices;
 using Microsoft.AspNetCore.Components;
 
 namespace BlazorMdc
@@ -28,8 +29,68 @@ namespace BlazorMdc
         }
 
         ///<inheritdoc/>
-        public void ShowToast(PMdcToastLevel level, PMdcToastSettings settings)
+#nullable enable annotations
+        public void ShowToast(
+            PMdcToastCloseMethod? closeMethod = null,
+            string cssClass = null,
+            string heading = null,
+            string icon = null,
+            PMdcToastLevel level = PMdcToastLevel.Info,
+            string message = "",
+            bool? showIcon = null,
+            int timeout = -1)
+#nullable restore annotations
         {
+            var settings = new PMdcToastSettings();
+
+            settings.CloseMethod = (closeMethod == null) ? Configuration.CloseMethod : closeMethod;
+            settings.CssClass = cssClass;
+            if (heading == null)
+            {
+                switch (level)
+                {
+                    case PMdcToastLevel.Error:
+                        settings.Heading = Configuration.ErrorDefaultHeading;
+                        break;
+
+                    case PMdcToastLevel.Info:
+                        settings.Heading = Configuration.InfoDefaultHeading;
+                        break;
+
+                    case PMdcToastLevel.Success:
+                        settings.Heading = Configuration.SuccessDefaultHeading;
+                        break;
+
+                    case PMdcToastLevel.Warning:
+                        settings.Heading = Configuration.WarningDefaultHeading;
+                        break;
+                }
+            }
+            if (icon == null)
+            {
+                switch (level)
+                {
+                    case PMdcToastLevel.Error:
+                        settings.Icon = Configuration.ErrorIcon;
+                        break;
+
+                    case PMdcToastLevel.Info:
+                        settings.Icon = Configuration.InfoIcon;
+                        break;
+
+                    case PMdcToastLevel.Success:
+                        settings.Icon = Configuration.SuccessIcon;
+                        break;
+
+                    case PMdcToastLevel.Warning:
+                        settings.Icon = Configuration.WarningIcon;
+                        break;
+                }
+            }
+            settings.Message = message;
+            settings.ShowIcon = (showIcon == null) ? Configuration.ShowIcons : showIcon;
+            settings.Timeout = (timeout <= 0) ? Configuration.Timeout : timeout;
+
             OnAdd?.Invoke(level, settings);
         }
     }

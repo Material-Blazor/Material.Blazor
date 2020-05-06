@@ -23,8 +23,24 @@ namespace BlazorMdc
         /// <summary>
         /// Shows a toast using the supplied settings
         /// </summary>
-        /// <param name="level">Toast level to display</param>
-        /// <param name="settings">Settings including the heading and message</param>
-        void ShowToast(PMdcToastLevel level, PMdcToastSettings settings);
+        /// <param name="closeMethod">close method</param>
+        /// <param name="cssClass">additional css applied to toast</param>
+        /// <param name="heading">Text used in the heading of the toast</param>
+        /// <param name="icon">Icon name</param>
+        /// <param name="level">Severity of the toast (info, error, etc)</param>
+        /// <param name="message">Body text in the toast</param>
+        /// <param name="showIcon">Show or hide icon</param>
+        /// <param name="timeout">Length of time before autodismiss</param>
+#nullable enable annotations
+        void ShowToast(
+            PMdcToastCloseMethod? closeMethod = null,
+            string cssClass = null,
+            string heading = null,
+            string icon = null,
+            PMdcToastLevel level = PMdcToastLevel.Info,
+            string message = null,
+            bool? showIcon = null,
+            int timeout = -1);
+#nullable restore annotations
     }
 }
