@@ -6,22 +6,29 @@
 @inject NavigationManager NavigationManager
 
 
-<style>
-    .bmdc-navigation-fade-in {
-        @fadeInAnimation
-        @fadeInAnimationWebkit
-    }
+@if (PMdcAnimatedNavigationManager.Configuration.ApplyAnimation)
+{
+    <style>
+        .bmdc-navigation-fade-in {
+            @fadeInAnimation
+            @fadeInAnimationWebkit
+        }
 
-    .bmdc-navigation-fade-out {
-        @fadeOutAnimation
-        @fadeOutAnimationWebkit
-    }
-</style>
+        .bmdc-navigation-fade-out {
+            @fadeOutAnimation
+            @fadeOutAnimationWebkit
+        }
+    </style>
 
 
-<div class="@pageClass">
+    <div class="@pageClass">
+        @ChildContent
+    </div>
+}
+else
+{
     @ChildContent
-</div>
+}
 
 
 @code {
