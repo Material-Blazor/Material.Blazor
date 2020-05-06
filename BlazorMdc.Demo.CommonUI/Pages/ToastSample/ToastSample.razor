@@ -20,19 +20,19 @@
 
 @if (overrideDefaults)
 {
-    <style>
-        :root {
-            --bmdc-toast-color-info: black !important;
-            --bmdc-toast-color-success: black !important;
-            --bmdc-toast-color-warning: black !important;
-            --bmdc-toast-color-error: black !important;
-            --bmdc-toast-background-color-info: var(--bmdc-color-lightblue-200) !important;
-            --bmdc-toast-background-color-success: var(--bmdc-color-green-200) !important;
-            --bmdc-toast-background-color-warning: var(--bmdc-color-amber-200) !important;
-            --bmdc-toast-background-color-error: var(--bmdc-color-red-200) !important;
-            --bmdc-toast-border-radius: 16px !important;
-        }
-    </style>
+<style>
+    :root {
+        --bmdc-toast-color-info: black !important;
+        --bmdc-toast-color-success: black !important;
+        --bmdc-toast-color-warning: black !important;
+        --bmdc-toast-color-error: black !important;
+        --bmdc-toast-background-color-info: var(--bmdc-color-lightblue-200) !important;
+        --bmdc-toast-background-color-success: var(--bmdc-color-green-200) !important;
+        --bmdc-toast-background-color-warning: var(--bmdc-color-amber-200) !important;
+        --bmdc-toast-background-color-error: var(--bmdc-color-red-200) !important;
+        --bmdc-toast-border-radius: 16px !important;
+    }
+</style>
 }
 
 <p><MdcCheckbox @bind-Value="@overrideDefaults" Label="Change colors and border radius from default" /></p>
@@ -62,12 +62,16 @@
 
     <MdcButton Style="background-color: var(--bmdc-toast-background-color-error);"
                OnClick="@(() => toastService.ShowToast(
-                              level: PMdcToastLevel.Error, 
+                              level: PMdcToastLevel.Error,
                               message: "I'm an ERROR" ))"
                Label="Error Toast"
                ButtonStyle="@MdcButtonStyle.ContainedRaised" />
 </p>
 
+<p>Try different configuration options</p>
+<MdcButton OnClick="@customiseClick"
+           Label="Toast with selected options"
+           ButtonStyle="@MdcButtonStyle.ContainedRaised" />
 <p>
     <MdcButton OnClick="@(() => toastService.ShowToast(
                               level: PMdcToastLevel.Warning,
@@ -140,7 +144,14 @@
     protected void InfoClick()
     {
         toastService.ShowToast(
-            level: PMdcToastLevel.Info, 
+            level: PMdcToastLevel.Info,
+            message: "I'm an INFO" );
+    }
+
+    protected void customiseClick()
+    {
+        toastService.ShowToast(
+            level: PMdcToastLevel.Info,
             message: "I'm an INFO" );
     }
 }

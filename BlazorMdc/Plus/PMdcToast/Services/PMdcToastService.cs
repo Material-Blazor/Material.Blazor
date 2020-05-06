@@ -45,57 +45,8 @@ namespace BlazorMdc
 
             settings.CloseMethod = (closeMethod == null) ? Configuration.CloseMethod : closeMethod;
             settings.CssClass = cssClass;
-            if (heading == null)
-            {
-                switch (level)
-                {
-                    case PMdcToastLevel.Error:
-                        settings.Heading = Configuration.ErrorDefaultHeading;
-                        break;
-
-                    case PMdcToastLevel.Info:
-                        settings.Heading = Configuration.InfoDefaultHeading;
-                        break;
-
-                    case PMdcToastLevel.Success:
-                        settings.Heading = Configuration.SuccessDefaultHeading;
-                        break;
-
-                    case PMdcToastLevel.Warning:
-                        settings.Heading = Configuration.WarningDefaultHeading;
-                        break;
-                }
-            }
-            else
-            {
-                settings.Heading = heading;
-            }
-
-            if (icon == null)
-            {
-                switch (level)
-                {
-                    case PMdcToastLevel.Error:
-                        settings.Icon = Configuration.ErrorIcon;
-                        break;
-
-                    case PMdcToastLevel.Info:
-                        settings.Icon = Configuration.InfoIcon;
-                        break;
-
-                    case PMdcToastLevel.Success:
-                        settings.Icon = Configuration.SuccessIcon;
-                        break;
-
-                    case PMdcToastLevel.Warning:
-                        settings.Icon = Configuration.WarningIcon;
-                        break;
-                }
-            }
-            else
-            {
-                settings.Icon = icon;
-            }
+            settings.Heading = heading;
+            settings.Icon = icon;
             settings.Message = message;
             settings.ShowIcon = (showIcon == null) ? Configuration.ShowIcons : showIcon;
             settings.Timeout = (timeout <= 0) ? Configuration.Timeout : timeout;
