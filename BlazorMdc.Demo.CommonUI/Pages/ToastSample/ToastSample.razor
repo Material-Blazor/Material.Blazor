@@ -85,6 +85,10 @@
     <MdcButton OnClick="@(() => toastService.ShowToast(PMdcToastLevel.Warning, new PMdcToastSettings() { Heading = "Additional Class", Message = "Italicized font", CssClass = "my-class" }))"
                Label="Additional Class"
                ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+
+    <MdcButton OnClick="@(() => toastService.ShowToast(PMdcToastLevel.Warning, new PMdcToastSettings() { Heading = "With <span style=\"color: var(--bmdc-color-deeppurple-700); \">Markup</span>", Message = "Text <strong>bold</strong> and <u>underlined</u>" }))"
+               Label="With Markup"
+               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
 </p>
 
 @code{

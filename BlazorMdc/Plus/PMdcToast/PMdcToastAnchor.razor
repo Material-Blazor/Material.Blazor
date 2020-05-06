@@ -26,7 +26,7 @@
 
                 <div class="bmdc-toast-body @toast.Settings.HasIconClass">
                     <div class="bmdc-toast-header">
-                        <h5 class="mdc-typography--subtitle1">@toast.Settings.AppliedHeading</h5>
+                        <h5 class="mdc-typography--subtitle1">@((MarkupString)toast.Settings.AppliedHeading)</h5>
 
                         @if (toast.Settings.CloseMethod != PMdcToastCloseMethod.Timeout)
                         {
@@ -34,7 +34,7 @@
                         }
                     </div>
 
-                    <p class="mdc-typography--body2">@toast.Settings.AppliedMessage</p>
+                    <p class="mdc-typography--body2">@((MarkupString)toast.Settings.AppliedMessage)</p>
                 </div>
             </div>
         }
