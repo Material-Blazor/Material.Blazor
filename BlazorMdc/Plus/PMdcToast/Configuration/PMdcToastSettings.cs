@@ -79,7 +79,5 @@ namespace BlazorMdc
         };
 
         internal string LevelClass => $"bmdc-toast__{Level.ToString().ToLower()}";
-
-        internal string HasIconClass => AppliedShowIcon ? "icon" : "no-icon";
     }
 }

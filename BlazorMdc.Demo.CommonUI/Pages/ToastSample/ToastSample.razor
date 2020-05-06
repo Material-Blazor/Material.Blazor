@@ -46,17 +46,17 @@
                ButtonStyle="@MdcButtonStyle.ContainedRaised" />
 
     <MdcButton Style="background-color: var(--bmdc-toast-background-color-success);"
-               OnClick="@(() => toastService.ShowToast(PMdcToastLevel.Success, new PMdcToastSettings() { Heading = "I'm a SUCCESS message with a custom heading", Message = "Congratulations with a long heading" }))"
+               OnClick="@(() => toastService.ShowToast(PMdcToastLevel.Success, new PMdcToastSettings() { Heading = "I'm a SUCCESS", Message = "Congratulations!" }))"
                Label="Success Toast"
                ButtonStyle="@MdcButtonStyle.ContainedRaised" />
 
     <MdcButton Style="background-color: var(--bmdc-toast-background-color-warning);"
-               OnClick="@(() => toastService.ShowToast(PMdcToastLevel.Warning, new PMdcToastSettings() { Message = "I'm a WARNING message" }))"
+               OnClick="@(() => toastService.ShowToast(PMdcToastLevel.Warning, new PMdcToastSettings() { Message = "I'm a WARNING" }))"
                Label="Warning Toast"
                ButtonStyle="@MdcButtonStyle.ContainedRaised" />
 
     <MdcButton Style="background-color: var(--bmdc-toast-background-color-error);"
-               OnClick="@(() => toastService.ShowToast(PMdcToastLevel.Error, new PMdcToastSettings() { Message = "I'm an ERROR message" }))"
+               OnClick="@(() => toastService.ShowToast(PMdcToastLevel.Error, new PMdcToastSettings() { Message = "I'm an ERROR" }))"
                Label="Error Toast"
                ButtonStyle="@MdcButtonStyle.ContainedRaised" />
 </p>
@@ -89,13 +89,18 @@
     <MdcButton OnClick="@(() => toastService.ShowToast(PMdcToastLevel.Warning, new PMdcToastSettings() { Heading = "With <span style=\"color: var(--bmdc-color-deeppurple-700); \">Markup</span>", Message = "Text <strong>bold</strong> and <u>underlined</u>" }))"
                Label="With Markup"
                ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+
+    <MdcButton OnClick="@(() => toastService.ShowToast(PMdcToastLevel.Warning, new PMdcToastSettings() { Heading = "Heading truncated and truncated and truncated and truncated", Message = "Message truncated and truncated and truncated and truncated" }))"
+               Label="Long text truncation"
+               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
 </p>
+
 
 @code{
     private bool overrideDefaults = false;
 
     protected void InfoClick()
     {
-        toastService.ShowToast(PMdcToastLevel.Info, new PMdcToastSettings() { Message = "I'm an INFO message" });
+        toastService.ShowToast(PMdcToastLevel.Info, new PMdcToastSettings() { Message = "I'm an INFO" });
     }
 }

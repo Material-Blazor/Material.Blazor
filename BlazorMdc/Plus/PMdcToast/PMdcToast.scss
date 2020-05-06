@@ -3,16 +3,15 @@ $toast-height: 66px;
 $toast-spacing: 8px;
 $toast-margin: 8px;
 $toast-margin-large: 12px;
+$body-padding-right: 6px;
+$heading-margin-top: 6px;
+$message-margin-top: 6px;
 $center-margin-left: -$toast-width / 2;
 $transition-height: $toast-height + $toast-spacing;
 $close-button-size: 28px;
+$close-button-margin-right: -$body-padding-right;
 $icon-font: 24px;
 $icon-horizontal-padding: 12px;
-$message-max-width-no-icon: $toast-width - $icon-horizontal-padding - 4px;
-$header-max-width-no-icon: $toast-width - $icon-horizontal-padding - $close-button-size;
-$message-max-width-icon: $toast-width - $icon-font - 2 * $icon-horizontal-padding - 4px;
-$header-max-width-icon: $toast-width - $icon-font - 2 * $icon-horizontal-padding - $close-button-size;
-
 
 
 :root {
@@ -54,8 +53,9 @@ $header-max-width-icon: $toast-width - $icon-font - 2 * $icon-horizontal-padding
 
 .bmdc-toast {
     display: flex;
-    flex-direction: row;
+    flex-flow: row nowrap;
     margin: $toast-spacing/2 0;
+    padding: 0 $body-padding-right 0 0;
     box-sizing: padding-box;
     height: $toast-height;
     max-height: $toast-height;
@@ -209,19 +209,26 @@ $header-max-width-icon: $toast-width - $icon-font - 2 * $icon-horizontal-padding
     display: flex;
     flex-direction: column;
     justify-content: center;
+    flex-grow: 0;
+    flex-shrink: 0;
     padding: 0 0 0 $icon-horizontal-padding;
     font-size: $icon-font;
 }
 
 .bmdc-toast-body {
+    flex-grow: 1;
+    flex-shrink: 1;
     display: flex;
     padding: 0 0 0 $icon-horizontal-padding;
     flex-direction: column;
     flex: 1;
     white-space: nowrap;
+    overflow: hidden;
 }
 
 .bmdc-toast-body .bmdc-toast-header {
+    flex-grow: 0;
+    flex-shrink: 0;
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -231,37 +238,35 @@ $header-max-width-icon: $toast-width - $icon-font - 2 * $icon-horizontal-padding
     color: inherit;
 }
 
-.bmdc-toast-body h5, .bmdc-toast-body p {
-    margin: 6px 0 0 0 !important;
+.bmdc-toast-heading-container {
+    flex-grow: 0;
+    flex-shrink: 1;
     overflow: hidden;
 }
 
-.bmdc-toast-body.no-icon h5 {
-    max-width: $header-max-width-no-icon;
+.bmdc-toast-body h5 {
+    flex-grow: 0;
+    flex-shrink: 1;
+    margin: $heading-margin-top 0 0 0 !important;
 }
 
-.bmdc-toast-body.icon h5 {
-    max-width: $header-max-width-icon;
+.bmdc-toast-body p {
+    flex-grow: 0;
+    flex-shrink: 0;
+    margin: $message-margin-top 0 0 0 !important;
 }
-
-.bmdc-toast-body.no-icon p {
-    max-width: $message-max-width-no-icon;
-}
-
-.bmdc-toast-body.icon p {
-    max-width: $message-max-width-icon;
-}
-
 
 .bmdc-toast-close-button {
+    flex-grow: 0;
+    flex-shrink: 0;
     text-align: center;
     height: $close-button-size !important;
-    line-height: 28px;
+    line-height: $close-button-size;
     width: $close-button-size !important;
     min-width: $close-button-size !important;
     max-width: $close-button-size;
     border-radius: var(---bmdc-toast-border-radius) !important;
-    margin: 0 !important;
+    margin: 0 $close-button-margin-right 0 0 !important;
     padding: 0 !important;
     top: 0;
     left: 0;

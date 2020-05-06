@@ -24,9 +24,11 @@
                     </div>
                 }
 
-                <div class="bmdc-toast-body @toast.Settings.HasIconClass">
+                <div class="bmdc-toast-body">
                     <div class="bmdc-toast-header">
-                        <h5 class="mdc-typography--subtitle1">@((MarkupString)toast.Settings.AppliedHeading)</h5>
+                        <div class="bmdc-toast-heading-container">
+                            <h5 class="mdc-typography--subtitle1">@((MarkupString)toast.Settings.AppliedHeading)</h5>
+                        </div>
 
                         @if (toast.Settings.CloseMethod != PMdcToastCloseMethod.Timeout)
                         {
