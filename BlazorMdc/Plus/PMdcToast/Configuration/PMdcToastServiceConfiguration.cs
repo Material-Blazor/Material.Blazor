@@ -90,11 +90,11 @@ namespace BlazorMdc
         }
 
 
-        private int _timeout = DefaultTimeout;
+        private uint _timeout = DefaultTimeout;
         /// <summary>
         /// Timeout in milliseconds until the toast automatically closes. Defaults to 3000 and ignored if <see cref="PMdcToastServiceConfiguration.CloseMethod"/> is <see cref="PMdcToastCloseMethod.CloseButton"/>.
         /// </summary>
-        public int Timeout
+        public uint Timeout
         {
             get => _timeout;
             set
