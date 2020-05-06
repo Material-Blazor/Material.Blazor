@@ -66,6 +66,11 @@ namespace BlazorMdc
                         break;
                 }
             }
+            else
+            {
+                settings.Heading = heading;
+            }
+
             if (icon == null)
             {
                 switch (level)
@@ -86,6 +91,10 @@ namespace BlazorMdc
                         settings.Icon = Configuration.WarningIcon;
                         break;
                 }
+            }
+            else
+            {
+                settings.Icon = icon;
             }
             settings.Message = message;
             settings.ShowIcon = (showIcon == null) ? Configuration.ShowIcons : showIcon;
