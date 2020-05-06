@@ -1,0 +1,195 @@
+﻿@namespace BlazorMdc
+
+@inject IPmdcToastService ToastService
+
+@using System
+@using System.Collections.Generic
+@using System.Linq
+@using System.Threading
+
+
+@if (DisplayedToasts.Any())
+{
+    <div class="bmdc-toast-container @positionClass">
+        @foreach (var toast in DisplayedToasts.OrderBy(x => x.TimeStamp))
+        {
+            var toastId = toast.Id;
+
+            <div @key="toast" class="mdc-elevation--z5 bmdc-toast @toast.Settings.LevelClass @toast.Settings.StatusClass @toast.Settings.AppliedCssClass">
+
+                @if (toast.Settings.AppliedShowIcon)
+                {
+                    <div class="bmdc-toast-icon">
+                        <i class="material-icons" aria-hidden="true">@toast.Settings.AppliedIcon</i>
+                    </div>
+                }
+
+                <div class="bmdc-toast-body">
+                    <div class="bmdc-toast-header">
+                        <div class="bmdc-toast-heading-container">
+                            <h5 class="mdc-typography--subtitle1">@((MarkupString)toast.Settings.AppliedHeading)</h5>
+                        </div>
+
+                        @if (toast.Settings.CloseMethod != PMdcToastCloseMethod.Timeout)
+                        {
+                            <MdcButton OnClick="@(() => CloseToast(toastId))" LeadingIcon="@MdcIcons.Icon__close" ButtonStyle="@MdcButtonStyle.Text" Class="bmdc-toast-close-button" />
+                        }
+                    </div>
+
+                    <p class="mdc-typography--body2">@((MarkupString)toast.Settings.AppliedMessage)</p>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+
+@code {
+    private List<ToastInstance> DisplayedToasts { get; set; } = new List<ToastInstance>();
+    private Queue<ToastInstance> PendingToasts { get; set; } = new Queue<ToastInstance>();
+    private readonly SemaphoreSlim displayedToastsSemaphore = new SemaphoreSlim(1);
+    private readonly SemaphoreSlim pendingToastsSemaphore = new SemaphoreSlim(1);
+    private string positionClass => $"bmdc-toast__{ToastService.Configuration.Position.ToString().ToLower()}";
+
+
+    protected override void OnInitialized()
+    {
+        ToastService.OnAdd += AddToast;
+    }
+
+
+    private void AddToast(PMdcToastLevel level, PMdcToastSettings settings)
+    {
+        InvokeAsync(async () =>
+        {
+            settings.Configuration = ToastService.Configuration;
+            settings.Level = level;
+
+            var toastInstance = new ToastInstance
+            {
+                Id = Guid.NewGuid(),
+                TimeStamp = DateTime.Now,
+                Settings = settings
+            };
+
+            await pendingToastsSemaphore.WaitAsync();
+
+            try
+            {
+                PendingToasts.Enqueue(toastInstance);
+
+                await displayedToastsSemaphore.WaitAsync();
+
+                try
+                {
+                    FlushPendingToasts();
+                }
+                finally
+                {
+                    displayedToastsSemaphore.Release();
+                }
+            }
+            finally
+            {
+                pendingToastsSemaphore.Release();
+            }
+
+            StateHasChanged();
+        });
+    }
+
+
+    private void FlushPendingToasts()
+    {
+        bool FlushNext() => PendingToasts.Count() > 0 && (ToastService.Configuration.MaxToastsShowing <= 0 || DisplayedToasts.Where(t => t.Settings.Status != ToastStatus.Hide).Count() < ToastService.Configuration.MaxToastsShowing);
+
+        while (FlushNext())
+        {
+            var toastInstance = PendingToasts.Dequeue();
+
+            DisplayedToasts.Add(toastInstance);
+
+            if (toastInstance.Settings.AppliedCloseMethod != PMdcToastCloseMethod.CloseButton)
+            {
+                InvokeAsync(() =>
+                {
+                    var timeout = toastInstance.Settings.AppliedTimeout;
+                    var toastTimer = new System.Timers.Timer(toastInstance.Settings.AppliedTimeout);
+                    toastTimer.Elapsed += (sender, args) => { CloseToast(toastInstance.Id); };
+                    toastTimer.AutoReset = false;
+                    toastTimer.Start();
+                });
+            }
+        }
+
+        StateHasChanged();
+    }
+
+
+    public void CloseToast(Guid toastId)
+    {
+        InvokeAsync(async () =>
+        {
+
+            await displayedToastsSemaphore.WaitAsync();
+
+            try
+            {
+                var toastInstance = DisplayedToasts.SingleOrDefault(x => x.Id == toastId);
+
+                if (toastInstance is null)
+                {
+                    return;
+                }
+
+                toastInstance.Settings.Status = ToastStatus.FadeOut;
+                StateHasChanged();
+            }
+            finally
+            {
+                displayedToastsSemaphore.Release();
+            }
+
+            var toastTimer = new System.Timers.Timer(500);
+            toastTimer.Elapsed += (sender, args) => { RemoveToast(toastId); };
+            toastTimer.AutoReset = false;
+            toastTimer.Start();
+
+            StateHasChanged();
+        });
+    }
+
+
+    public void RemoveToast(Guid toastId)
+    {
+        InvokeAsync(async () =>
+        {
+            await displayedToastsSemaphore.WaitAsync();
+
+            try
+            {
+                var toastInstance = DisplayedToasts.SingleOrDefault(x => x.Id == toastId);
+
+                if (toastInstance is null)
+                {
+                    return;
+                }
+
+                toastInstance.Settings.Status = ToastStatus.Hide;
+
+                if (DisplayedToasts.Where(x => x.Settings.Status == ToastStatus.FadeOut).Count() == 0)
+                {
+                    DisplayedToasts.RemoveAll(x => x.Settings.Status == ToastStatus.Hide);
+                }
+
+                StateHasChanged();
+                
+                FlushPendingToasts();
+            }
+            finally
+            {
+                displayedToastsSemaphore.Release();
+            }
+        });
+    }
+}

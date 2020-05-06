@@ -4,13 +4,7 @@
 
 @inject IPMdcAnimatedNavigationManager PMdcAnimatedNavigationManager
 
-<PMdcToasts Position="ToastPosition.BottomRight"
-            Timeout="3"
-            IconType="IconType.Material"
-            ErrorIcon="error_outline"
-            InfoIcon="school"
-            SuccessIcon="done_outline"
-            WarningIcon="warning" />
+<PMdcToastAnchor />
 
 <MdcDrawer @ref="@sidebar"
            IsDismissible="true">
@@ -55,7 +49,7 @@
                   TopAppBarType="MdcTopAppBarType.Short"
                   Class="mdc-top-app-bar--short-has-action-item">
         <div id="account-target">
-            <MdcIconButtonToggle @bind-Value="PMdcAnimatedNavigationManager.ApplyAnimation" IconOn="@MdcIcons.Icon__directions_run" IconOff="@MdcIcons.Icon__airline_seat_individual_suite" />
+            <MdcIconButtonToggle @bind-Value="PMdcAnimatedNavigationManager.Configuration.ApplyAnimation" IconOn="@MdcIcons.Icon__directions_run" IconOff="@MdcIcons.Icon__airline_seat_individual_suite" />
         </div>
     </MdcTopAppBar>
 
@@ -79,9 +73,9 @@
 @code {
     MdcDrawer sidebar;
 
-    protected async Task ListItemClickHandler(string NavigationReference)
+    protected void ListItemClickHandler(string NavigationReference)
     {
         sidebar.NotifyNavigation();
-        await PMdcAnimatedNavigationManager.NavigateToAsync(NavigationReference).ConfigureAwait(false);
+        PMdcAnimatedNavigationManager.NavigateTo(NavigationReference);
     }
 }

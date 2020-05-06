@@ -2,40 +2,156 @@
 
 @page "/toast"
 
-@inject IToastService toastService
+@inject IPmdcToastService toastService
 
 <h1 class="@MdcTypography.Heading4">Toast samples</h1>
 
 <p>See <code>ToastSample.razor</code> for sources.</p>
 
 <p>
-    Note the addition of AddPMdcToast() in startup.cs (Server) and program.cs (WebAssembly) as well as the component PMdcToasts
-    in mainlayout.razor.
+    Note the addition of <code>AddPMdcToast()</code> in Startup.cs (Server) and Program.cs (WASM) as well as the component <code>PMdcToasts</code> in MainLayout.razor.
 </p>
 
-<MdcButton Style="background-color: darkcyan;"
-           OnClick="InfoClick"
-           Label="Info Toast"
-           ButtonStyle="MdcButtonStyle.ContainedRaised" />
+<style>
+    .my-class {
+        font-style: italic;
+    }
+</style>
 
-<MdcButton Style="background-color: green;"
-           OnClick="@(() => toastService.ShowSuccess("I'm a SUCCESS message with a custom heading", "Congratulations!"))"
-           Label="Success Toast"
-           ButtonStyle="MdcButtonStyle.ContainedRaised" />
+@if (overrideDefaults)
+{
+<style>
+    :root {
+        --bmdc-toast-color-info: black !important;
+        --bmdc-toast-color-success: black !important;
+        --bmdc-toast-color-warning: black !important;
+        --bmdc-toast-color-error: black !important;
+        --bmdc-toast-background-color-info: var(--bmdc-color-lightblue-200) !important;
+        --bmdc-toast-background-color-success: var(--bmdc-color-green-200) !important;
+        --bmdc-toast-background-color-warning: var(--bmdc-color-amber-200) !important;
+        --bmdc-toast-background-color-error: var(--bmdc-color-red-200) !important;
+        --bmdc-toast-border-radius: 16px !important;
+    }
+</style>
+}
 
-<MdcButton Style="background-color: orange; color: black;"
-           OnClick="@(() => toastService.ShowWarning("I'm a WARNING message"))"
-           Label="Warning Toast"
-           ButtonStyle="MdcButtonStyle.ContainedRaised" />
+<p><MdcCheckbox @bind-Value="@overrideDefaults" Label="Change colors and border radius from default" /></p>
 
-<MdcButton Style="background-color: red;"
-           OnClick="@(() => toastService.ShowError("I'm an ERROR message"))"
-           Label="Error Toast"
-           ButtonStyle="MdcButtonStyle.ContainedRaised" />
+<p><PMdcNumericIntField @bind-Value="@toastService.Configuration.MaxToastsShowing" Label="Max Toasts (0-10)" Min="0" Max="10" NumericFormat="N0" /></p>
+
+<p>
+    <MdcButton Style="background-color: var(--bmdc-toast-background-color-info);"
+               OnClick="@InfoClick"
+               Label="Info Toast"
+               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+
+    <MdcButton Style="background-color: var(--bmdc-toast-background-color-success);"
+               OnClick="@(() => toastService.ShowToast(
+                              level: PMdcToastLevel.Success,
+                              heading: "I'm a SUCCESS",
+                              message: "Congratulations!" ))"
+               Label="Success Toast"
+               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+
+    <MdcButton Style="background-color: var(--bmdc-toast-background-color-warning);"
+               OnClick="@(() => toastService.ShowToast(
+                              level: PMdcToastLevel.Warning,
+                              message: "I'm a WARNING" ))"
+               Label="Warning Toast"
+               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+
+    <MdcButton Style="background-color: var(--bmdc-toast-background-color-error);"
+               OnClick="@(() => toastService.ShowToast(
+                              level: PMdcToastLevel.Error,
+                              message: "I'm an ERROR" ))"
+               Label="Error Toast"
+               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+</p>
+
+<p>Try different configuration options</p>
+<MdcButton OnClick="@customiseClick"
+           Label="Toast with selected options"
+           ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+<p>
+    <MdcButton OnClick="@(() => toastService.ShowToast(
+                              level: PMdcToastLevel.Warning,
+                              heading: "No Icon",
+                              showIcon: false))"
+               Label="No Icon"
+               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+
+    <MdcButton OnClick="@(() => toastService.ShowToast(
+                              level: PMdcToastLevel.Warning,
+                              heading: "Ten Seconds",
+                              timeout: 10000 ))"
+               Label="Ten Seconds"
+               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+
+    <MdcButton OnClick="@(() => toastService.ShowToast(
+                              level: PMdcToastLevel.Warning,
+                              heading: "No Close Button",
+                              message: "Press close to remove",
+                              closeMethod: PMdcToastCloseMethod.Timeout ))"
+               Label="No Close Button"
+               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+
+    <MdcButton OnClick="@(() => toastService.ShowToast(
+                              level: PMdcToastLevel.Warning,
+                              heading: "No Timeout",
+                              message: "Press close to remove",
+                              closeMethod: PMdcToastCloseMethod.CloseButton ))"
+               Label="No Timeout"
+               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+
+    <MdcButton OnClick="@(() => toastService.ShowToast(
+                              level: PMdcToastLevel.Warning,
+                              heading: "Icon Changed",
+                              icon: MdcIcons.Icon__directions_run ))"
+               Label="Change Icon"
+               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+
+    <MdcButton OnClick="@(() => toastService.ShowToast(
+                              level: PMdcToastLevel.Warning,
+                              heading: "Additional Class",
+                              message: "Italicized font",
+                              cssClass: "my-class" ))"
+               Label="Additional Class"
+               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+
+    <MdcButton OnClick="@(() => toastService.ShowToast(
+                              level: PMdcToastLevel.Warning,
+                              heading: "With <span style=\"color: var(--bmdc-color-deeppurple-700); \">Markup</span>",
+                              message: "Text <strong>bold</strong> and <u>underlined</u>" ))"
+               Label="With Markup"
+               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+
+    <MdcButton OnClick="@(() => toastService.ShowToast(
+                              level: PMdcToastLevel.Warning,
+                              heading: "Heading truncated and truncated and truncated and truncated",
+                              message: "Message truncated and truncated and truncated and truncated" ))"
+               Label="Long text truncation"
+               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+
+    <MdcButton OnClick="@(() => toastService.ShowToast())"
+               Label="No parameters at all"
+               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+</p>
+
 
 @code{
+    private bool overrideDefaults = false;
+
     protected void InfoClick()
     {
-        toastService.ShowInfo("I'm an INFO message");
+        toastService.ShowToast(
+            level: PMdcToastLevel.Info,
+            message: "I'm an INFO" );
+    }
+
+    protected void customiseClick()
+    {
+        toastService.ShowToast(
+            level: PMdcToastLevel.Info,
+            message: "I'm an INFO" );
     }
 }

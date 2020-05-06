@@ -26,6 +26,12 @@ namespace BlazorMdc
     public enum MdcSelectInputStyle { Filled, Outlined }
 
 
+
+
     // PMdc components
     public enum PMdcDateSelectionCriteria { AllowAll, WeekendsOnly, WeekdaysOnly }
+
+    public enum PMdcToastCloseMethod { TimeoutAndCloseButton, Timeout, CloseButton }
+    public enum PMdcToastLevel { Info, Success, Warning, Error }
+    public enum PMdcToastPosition { TopLeft, TopRight, TopCenter, BottomLeft, BottomRight, BottomCenter }
 }

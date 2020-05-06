@@ -3,24 +3,32 @@
 @implements IDisposable
 
 @inject IPMdcAnimatedNavigationManager PMdcAnimatedNavigationManager
+@inject NavigationManager NavigationManager
 
 
-<style>
-    .bmdc-navigation-fade-in {
-        @fadeInAnimation
-        @fadeInAnimationWebkit
-    }
+@if (PMdcAnimatedNavigationManager.Configuration.ApplyAnimation)
+{
+    <style>
+        .bmdc-navigation-fade-in {
+            @fadeInAnimation
+            @fadeInAnimationWebkit
+        }
 
-    .bmdc-navigation-fade-out {
-        @fadeOutAnimation
-        @fadeOutAnimationWebkit
-    }
-</style>
+        .bmdc-navigation-fade-out {
+            @fadeOutAnimation
+            @fadeOutAnimationWebkit
+        }
+    </style>
 
 
-<div class="@pageClass">
+    <div class="@pageClass">
+        @ChildContent
+    </div>
+}
+else
+{
     @ChildContent
-</div>
+}
 
 
 @code {
@@ -55,7 +63,20 @@
     }
 
 
-    internal async Task<object> FadePageInAsync()
+    internal void NavigateTo(string uri, bool forceLoad = false)
+    {
+        InvokeAsync(async () =>
+        {
+            _ = await FadePageOutAsync().ConfigureAwait(false);
+
+            NavigationManager.NavigateTo(uri, forceLoad);
+
+            _ = await FadePageInAsync().ConfigureAwait(false);
+        });
+    }
+
+
+    private async Task<object> FadePageInAsync()
     {
         pageClass = FadeIn;
         StateHasChanged();
@@ -66,7 +87,7 @@
     }
 
 
-    internal async Task<object> FadePageOutAsync()
+    private async Task<object> FadePageOutAsync()
     {
         pageClass = FadeOut;
         StateHasChanged();
