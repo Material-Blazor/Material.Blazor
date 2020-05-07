@@ -21,6 +21,8 @@ namespace BlazorMdc
         private bool _hasSetInitialParameters;
         protected bool _instantiate = false;
         protected bool _allowNextRender = false;
+        private bool _hasRenderValue = false;
+        private T _onRenderValue;
 
         [CascadingParameter] EditContext CascadedEditContext { get; set; }
 
@@ -37,18 +39,42 @@ namespace BlazorMdc
         /// </summary>
         [Parameter] public string Id { get; set; } = Utilities.GenerateCssElementSelector();
 
+
+        private T _value;
         /// <summary>
         /// Gets or sets the value of the input. This should be used with two-way binding.
         /// </summary>
         /// <example>
         /// @bind-Value="@model.PropertyName"
         /// </example>
-        [Parameter] public T Value { get; set; }
-
-        internal T SetValue(T value)
+        [Parameter] public T Value
         {
-            return Value = value;
+            get => _value;
+            set
+            {
+                if (!EqualityComparer<T>.Default.Equals(value, _value))
+                {
+                    _value = value;
+
+                    if (RenderActionAfterValueChange != null)
+                    {
+                        _allowNextRender = true;
+                        _hasRenderValue = true;
+                        _onRenderValue = value;
+                    }
+                }
+            }
         }
+
+        //internal T SetValue(T value)
+        //{
+        //    return Value = value;
+        //}
+
+        /// <summary>
+        /// Derived components use this to get a callback when the caller changes the <see cref="Value"/> parameter
+        /// </summary>
+        protected Func<T, Task<T>> RenderActionAfterValueChange;
 
         /// <summary>
         /// Gets or sets a callback that updates the bound value.
@@ -77,13 +103,13 @@ namespace BlazorMdc
         /// </summary>
         protected T ReportingValue
         {
-            get => Value;
+            get => _value;
             set
             {
-                var hasChanged = !EqualityComparer<T>.Default.Equals(value, Value);
+                var hasChanged = !EqualityComparer<T>.Default.Equals(value, _value);
                 if (hasChanged)
                 {
-                    Value = value;
+                    _value = value;
                     _ = ValueChanged.InvokeAsync(value);
                     EditContext?.NotifyFieldChanged(FieldIdentifier);
                 }
@@ -255,6 +281,12 @@ namespace BlazorMdc
             {
                 _instantiate = false;
                 await InitializeMdcComponent();
+            }
+            else if (_hasRenderValue && RenderActionAfterValueChange != null)
+            {
+                _hasRenderValue = false;
+                RenderActionAfterValueChange.BeginInvoke(_onRenderValue, null, null);
+                RenderActionAfterValueChange.EndInvoke(null);
             }
         }
     }

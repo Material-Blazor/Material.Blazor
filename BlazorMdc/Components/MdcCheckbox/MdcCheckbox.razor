@@ -57,6 +57,15 @@
 
         ClassMapper.Add("mdc-checkbox mdc-checkbox--touch")
             .AddIf("mdc-checkbox--disabled", () => Disabled);
+
+        RenderActionAfterValueChange = ClickCheckbox;
+    }
+
+
+    private async Task<bool> ClickCheckbox(bool value)
+    {
+        await Task.CompletedTask;
+        return value;
     }
 
 
