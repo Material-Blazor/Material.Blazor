@@ -91,7 +91,7 @@
     MdcListElement<string>[] cssClassItems = new MdcListElement<string>[]
         {
             new MdcListElement<string> { SelectedValue = "", Label = "Default" },
-            new MdcListElement<string> { SelectedValue = "MyClass", Label = "Italic" },
+            new MdcListElement<string> { SelectedValue = "my-class", Label = "Italic" },
                     };
 
     PMdcToastCloseMethod closeMethod;
@@ -161,40 +161,18 @@
 
     protected void customiseClick()
     {
-        if (cssClass.Length == 0)
-        {
-            cssClass = null;
-        }
+        string appliedCssClass = (cssClass.Length == 0) ? null : cssClass;
 
-        if (heading.Length == 0)
-        {
-            heading = null;
-        }
+        string appliedHeading = (heading.Length == 0) ? null : heading;
 
-        bool? appliedShowIcon;
-        if (showIcon.Length == 0)
-        {
-            appliedShowIcon = null;
-        }
-        else
-        {
-            appliedShowIcon = Convert.ToBoolean(showIcon);
-        }
+        bool? appliedShowIcon = (showIcon.Length == 0) ? appliedShowIcon = null : appliedShowIcon = Convert.ToBoolean(showIcon);
 
-        uint? appliedTimeout;
-        if (timeout.Length == 0)
-        {
-            appliedTimeout = null;
-        }
-        else
-        {
-            appliedTimeout = Convert.ToUInt32(timeout);
-        }
+        uint? appliedTimeout = (timeout.Length == 0) ? appliedTimeout = null : appliedTimeout = Convert.ToUInt32(timeout);
 
         toastService.ShowToast(
-            cssClass: cssClass,
+            cssClass: appliedCssClass,
             closeMethod: closeMethod,
-            heading: heading,
+            heading: appliedHeading,
             level: level,
             message: message,
             showIcon: appliedShowIcon,
