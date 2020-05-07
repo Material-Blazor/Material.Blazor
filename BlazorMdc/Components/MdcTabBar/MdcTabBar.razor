@@ -58,9 +58,9 @@
         {
             _requestedTabIndex = value;
 
-            if (!SuppressTwoWayBinding && value != _tabIndex)
+            if (value != _tabIndex)
             {
-                _ = SetTabIndexAsync(value);
+                SetTabIndex(value);
                 _tabIndex = value;
             }
 
@@ -71,8 +71,9 @@
         }
     }
 
-
     [Parameter] public EventCallback<int> TabIndexChanged { get; set; }
+    
+    
     [Parameter] public bool StackIcons { get; set; }
     [Parameter] public EventCallback<int> OnTabClick { get; set; }
     [Parameter] public IEnumerable<TItem> Items { get; set; }
@@ -80,12 +81,11 @@
     [Parameter] public RenderFragment<TItem> Icon { get; set; }
 
 
-    internal bool SuppressTwoWayBinding = false;
-
-
     private string stackClass => StackIcons ? "mdc-tab--stacked" : "";
     private ElementReference elementReference;
     private bool hasRendered = false;
+    private bool allowNextRender = false;
+    private int stateNextIndex = -1;
 
 
     protected override void OnInitialized()
@@ -99,23 +99,41 @@
     }
 
 
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        allowNextRender = true;
+    }
+
+
     private async Task OnTabClickAsync(int index)
     {
         if (index != TabIndex)
         {
+            _tabIndex = index;
+            await TabIndexChanged.InvokeAsync(index).ConfigureAwait(false);
             await OnTabClick.InvokeAsync(index);
         }
     }
 
 
-    public async Task SetTabIndexAsync(int index)
+    public void SetTabIndex(int index)
     {
-        await jsRuntime.InvokeAsync<object>("BlazorMdc.tabBar.setTab", elementReference, index);
+        stateNextIndex = index;
+        allowNextRender = true;
+        StateHasChanged();
     }
 
 
     protected override bool ShouldRender()
     {
+        if (allowNextRender)
+        {
+            allowNextRender = false;
+            return true;
+        }
+
         return false;
     }
 
@@ -126,6 +144,11 @@
         {
             await jsRuntime.InvokeAsync<object>("BlazorMdc.tabBar.init", elementReference);
             hasRendered = true;
+        }
+        else if (stateNextIndex >= 0)
+        {
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.tabBar.setTab", elementReference, stateNextIndex);
+            stateNextIndex = -1;
         }
     }
 }

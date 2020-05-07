@@ -6,6 +6,8 @@
 
 <p>See <code>TabBarSample.razor</code> for sources.</p>
 
+<p><MdcTextField @bind-Value="@tabLabel1" Label="2nd Tab" /></p>
+
 <MdcTabBar Items="@tabLabels"
            Context="item"
            OnTabClick="@OnTabClick">
@@ -51,6 +53,11 @@
     private PMdcSlidingTabBar<SlidingTabItem> slidingTabBar;
     private int slidingTabIndex = 5;
     private string clickedTab = "Red";
+    private string tabLabel1
+    {
+        get => tabLabels[1];
+        set => tabLabels[1] = value;
+    }
 
     private string[] tabLabels = { "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet" };
 
