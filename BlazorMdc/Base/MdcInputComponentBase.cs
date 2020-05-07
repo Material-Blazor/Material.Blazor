@@ -20,7 +20,10 @@ namespace BlazorMdc
         private Type _nullableUnderlyingType;
         private bool _hasSetInitialParameters;
         protected bool _instantiate = false;
+        protected bool _hasInstantiated = false;
         protected bool _allowNextRender = false;
+        private bool _hasRenderValue = false;
+        private T _onRenderValue;
 
         [CascadingParameter] EditContext CascadedEditContext { get; set; }
 
@@ -37,18 +40,44 @@ namespace BlazorMdc
         /// </summary>
         [Parameter] public string Id { get; set; } = Utilities.GenerateCssElementSelector();
 
+
+        internal T UnderlyingValue;
         /// <summary>
         /// Gets or sets the value of the input. This should be used with two-way binding.
         /// </summary>
         /// <example>
         /// @bind-Value="@model.PropertyName"
         /// </example>
-        [Parameter] public T Value { get; set; }
-
-        internal T SetValue(T value)
+        [Parameter] public T Value
         {
-            return Value = value;
+            get => UnderlyingValue;
+            set
+            {
+                if (!EqualityComparer<T>.Default.Equals(value, UnderlyingValue))
+                {
+                    if (!_hasInstantiated || !HasOnRenderValueSetter)
+                    {
+                        UnderlyingValue = value;
+                    }
+                    else
+                    {
+                        _allowNextRender = true;
+                        _hasRenderValue = true;
+                        _onRenderValue = value;
+                    }
+                }
+            }
         }
+
+        //internal T SetValue(T value)
+        //{
+        //    return Value = value;
+        //}
+
+        /// <summary>
+        /// Derived components use this to get a callback when the caller changes the <see cref="Value"/> parameter
+        /// </summary>
+        protected virtual async Task OnRenderValueSetter(T value) => await Task.CompletedTask;
 
         /// <summary>
         /// Gets or sets a callback that updates the bound value.
@@ -77,15 +106,16 @@ namespace BlazorMdc
         /// </summary>
         protected T ReportingValue
         {
-            get => Value;
+            get => UnderlyingValue;
             set
             {
-                var hasChanged = !EqualityComparer<T>.Default.Equals(value, Value);
+                var hasChanged = !EqualityComparer<T>.Default.Equals(value, UnderlyingValue);
                 if (hasChanged)
                 {
-                    Value = value;
+                    UnderlyingValue = value;
                     _ = ValueChanged.InvokeAsync(value);
                     EditContext?.NotifyFieldChanged(FieldIdentifier);
+                    StateHasChanged();
                 }
             }
         }
@@ -146,6 +176,8 @@ namespace BlazorMdc
         /// Allows ShouldRender() to return "true" habitually.
         /// </summary>
         internal bool ForceShouldRenderToTrue { get; set; } = false;
+
+        internal bool HasOnRenderValueSetter { get; set; } = false;
 
         /// <summary>
         /// Formats the value as a string. Derived classes can override this to determine the formating used for <see cref="ReportingValueAsString"/>.
@@ -254,7 +286,13 @@ namespace BlazorMdc
             if (_instantiate)
             {
                 _instantiate = false;
+                _hasInstantiated = true;
                 await InitializeMdcComponent();
+            }
+            else if (_hasRenderValue && HasOnRenderValueSetter)
+            {
+                _hasRenderValue = false;
+                await OnRenderValueSetter(_onRenderValue);
             }
         }
     }

@@ -19,7 +19,7 @@
                 @foreach (var item in Items)
                 {
                     int index = i++;
-                    bool selected = (index == initialTabIndex);
+                    bool selected = (index == _tabIndex);
                     string buttonActive = selected ? "mdc-tab--active" : "";
                     string indicatorActive = selected ? "mdc-tab-indicator--active" : "";
 
@@ -45,8 +45,6 @@
 
 
 @code {
-    private int initialTabIndex;
-    private int _requestedTabIndex;
     private int _tabIndex;
 
     [Parameter]
@@ -56,36 +54,34 @@
 
         set
         {
-            _requestedTabIndex = value;
-
-            if (!SuppressTwoWayBinding && value != _tabIndex)
-            {
-                _ = SetTabIndexAsync(value);
-                _tabIndex = value;
-            }
-
             if (!hasRendered)
             {
+                _tabIndex = value;
+            }
+            else if (value != _tabIndex)
+            {
+                SetTabIndex(value);
                 _tabIndex = value;
             }
         }
     }
 
-
     [Parameter] public EventCallback<int> TabIndexChanged { get; set; }
+
+
     [Parameter] public bool StackIcons { get; set; }
-    [Parameter] public EventCallback<int> OnTabClick { get; set; }
+    
+    
     [Parameter] public IEnumerable<TItem> Items { get; set; }
     [Parameter] public RenderFragment<TItem> Label { get; set; }
     [Parameter] public RenderFragment<TItem> Icon { get; set; }
 
 
-    internal bool SuppressTwoWayBinding = false;
-
-
     private string stackClass => StackIcons ? "mdc-tab--stacked" : "";
     private ElementReference elementReference;
     private bool hasRendered = false;
+    private bool allowNextRender = false;
+    private int stateNextIndex = -1;
 
 
     protected override void OnInitialized()
@@ -94,8 +90,14 @@
 
         ClassMapper
             .Add("mdc-tab-bar");
+    }
 
-        initialTabIndex = _requestedTabIndex;
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        allowNextRender = true;
     }
 
 
@@ -103,19 +105,28 @@
     {
         if (index != TabIndex)
         {
-            await OnTabClick.InvokeAsync(index);
+            _tabIndex = index;
+            await TabIndexChanged.InvokeAsync(index).ConfigureAwait(false);
         }
     }
 
 
-    public async Task SetTabIndexAsync(int index)
+    public void SetTabIndex(int index)
     {
-        await jsRuntime.InvokeAsync<object>("BlazorMdc.tabBar.setTab", elementReference, index);
+        stateNextIndex = index;
+        allowNextRender = true;
+        StateHasChanged();
     }
 
 
     protected override bool ShouldRender()
     {
+        if (allowNextRender)
+        {
+            allowNextRender = false;
+            return true;
+        }
+
         return false;
     }
 
@@ -126,6 +137,11 @@
         {
             await jsRuntime.InvokeAsync<object>("BlazorMdc.tabBar.init", elementReference);
             hasRendered = true;
+        }
+        else if (stateNextIndex >= 0)
+        {
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.tabBar.setTab", elementReference, stateNextIndex);
+            stateNextIndex = -1;
         }
     }
 }

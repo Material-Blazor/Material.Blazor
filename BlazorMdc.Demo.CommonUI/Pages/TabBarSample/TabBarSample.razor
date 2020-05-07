@@ -6,13 +6,15 @@
 
 <p>See <code>TabBarSample.razor</code> for sources.</p>
 
-<MdcTabBar Items="@tabLabels"
-           Context="item"
-           OnTabClick="@OnTabClick">
+<p><MdcTextField @bind-Value="@tabLabel1" Label="2nd Tab" /></p>
+
+<MdcTabBar @bind-TabIndex="@tabIndex"
+           Items="@tabLabels"
+           Context="item">
     <Label>@item</Label>
 </MdcTabBar>
 
-<p>Clicked tab: @clickedTab</p>
+<p>Clicked tab: @tabLabels[tabIndex]</p>
 
 
 
@@ -47,10 +49,16 @@
 
 
 @code {
+    private int tabIndex = 0;
     private bool stacked = false;
+    
     private PMdcSlidingTabBar<SlidingTabItem> slidingTabBar;
     private int slidingTabIndex = 5;
-    private string clickedTab = "Red";
+    private string tabLabel1
+    {
+        get => tabLabels[1];
+        set => tabLabels[1] = value;
+    }
 
     private string[] tabLabels = { "Red", "Orange", "Yellow", "Green", "Blue", "Indigo", "Violet" };
 
@@ -94,10 +102,5 @@
         slidingTabIndex = 1;
         StateHasChanged();
         await Task.CompletedTask;
-    }
-
-    private void OnTabClick(int index)
-    {
-        clickedTab = tabLabels[index];
     }
 }

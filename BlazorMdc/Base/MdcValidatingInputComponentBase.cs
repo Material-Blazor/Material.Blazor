@@ -21,10 +21,10 @@ namespace BlazorMdc
                 throw new ArgumentException(componentName + " requires a non-empty Items parameter.");
             }
 
-            if ((appliedItemValidation == MdcItemValidation.DefaultToFirst) && (Value is null || string.IsNullOrEmpty(Value.ToString())))
-            {
-                await onItemClickAsync(items.FirstOrDefault().SelectedValue);
-            }
+ //           if ((appliedItemValidation == MdcItemValidation.DefaultToFirst) && (Value is null || string.IsNullOrEmpty(Value.ToString())))
+ //           {
+ //               await onItemClickAsync(items.FirstOrDefault().SelectedValue);
+ //           }
 
             if (items.GroupBy(i => i.SelectedValue).Where(g => g.Count() > 1).Count() > 0)
             {
@@ -36,7 +36,8 @@ namespace BlazorMdc
                 switch (appliedItemValidation)
                 {
                     case MdcItemValidation.DefaultToFirst:
-                        await onItemClickAsync(items.FirstOrDefault().SelectedValue);
+                        var firstOrDefault = items.FirstOrDefault().SelectedValue;
+                        await onItemClickAsync(firstOrDefault);
                         break;
 
                     case MdcItemValidation.Exception:

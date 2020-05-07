@@ -46,12 +46,12 @@ Reference the `BlazorMdc` namespace with `@using BlazorMdc` to your `_Imports.ra
 #### Option 1 - Using our bundled CSS and JS
 
 We bundle the Material Theme CSS and JS into BlazorMdc for your convenience, and you will need to add three items to your index file. Place this in the the `<head>` tag:
-```
+```html
     <link href="_content/BlazorMdc/blazormdc-bundled.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 ```
 and at the end of `<body>`:
-```
+```html
     <script src="_content/BlazorMdc/blazormdc-bundled.min.js"></script>
 ```
 See the [Blazor Server demo index file](BlazorMdc.Demo.WebServer/Pages/index_server.cshtml) for an example.
@@ -59,13 +59,13 @@ See the [Blazor Server demo index file](BlazorMdc.Demo.WebServer/Pages/index_ser
 #### Option 2 - Using our unbundled CSS and JS with Material Theme files from CDN 
 
 If you want to directly reference the Material Theme CSS and JS from the unpkg CDN (or download it for yourself), place this in the `<head>` tag:
-```
+```html
     <link href="_content/BlazorMdc/blazormdc.min.css" rel="stylesheet">
     <link href="https://unpkg.com/material-components-web@5.1.0/dist/material-components-web.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 ```
 and at the end of `<body>`:
-```
+```html
     <script src="https://unpkg.com/material-components-web@5.1.0/dist/material-components-web.min.js"></script>
     <script src="_content/BlazorMdc/blazormdc.min.js"></script>
 ```

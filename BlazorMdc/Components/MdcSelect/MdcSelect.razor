@@ -40,13 +40,13 @@
             {
                 var dv = item.SelectedValue;
 
-                if (object.Equals(item.SelectedValue, Value))
+                if (item.SelectedValue.Equals(Value))
                 {
-                    <li @key="@item" class="mdc-list-item mdc-list-item--selected @alignClass" data-value="@item.SelectedValue" aria-selected="true" role="option" @onclick="@(_ => OnItemClickAsync(dv))"><span class="mdc-list-item__text">@item.SelectedValue</span></li>
+                    <li @key="@item" class="mdc-list-item mdc-list-item--selected @alignClass" data-value="@item.Label" aria-selected="true" role="option" @onclick="@(_ => OnItemClickAsync(dv))"><span class="mdc-list-item__text">@item.Label</span></li>
                 }
                 else
                 {
-                    <li @key="@item" class="mdc-list-item @alignClass" data-value="@item.SelectedValue" aria-selected="false" role="option" @onclick=@(_ => OnItemClickAsync(dv))><span class="mdc-list-item__text">@item.SelectedValue</span></li>
+                    <li @key="@item" class="mdc-list-item @alignClass" data-value="@item.Label" aria-selected="false" role="option" @onclick=@(_ => OnItemClickAsync(dv))><span class="mdc-list-item__text">@item.Label</span></li>
                 }
             }
         </ul>
@@ -83,15 +83,18 @@
 
         ClassMapper
             .Add("mdc-select")
-        .AddIf("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
-        .AddIf("mdc-select--disabled", () => Disabled);
+            .AddIf("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
+            .AddIf("mdc-select--disabled", () => Disabled);
+
+        selectedText = Items.Where(i => object.Equals(i.SelectedValue, Value)).FirstOrDefault().Label;
+        floatingLabelClass = string.IsNullOrWhiteSpace(selectedText) ? "" : "mdc-floating-label--float-above";
     }
 
 
     private async Task OnItemClickAsync(TItem dataValue)
     {
-        Value = dataValue;
-        await ValueChanged.InvokeAsync(Value);
+        ReportingValue = dataValue;
+        await Task.CompletedTask;
     }
 
 

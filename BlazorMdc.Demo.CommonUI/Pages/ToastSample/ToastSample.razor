@@ -20,19 +20,19 @@
 
 @if (overrideDefaults)
 {
-<style>
-    :root {
-        --bmdc-toast-color-info: black !important;
-        --bmdc-toast-color-success: black !important;
-        --bmdc-toast-color-warning: black !important;
-        --bmdc-toast-color-error: black !important;
-        --bmdc-toast-background-color-info: var(--bmdc-color-lightblue-200) !important;
-        --bmdc-toast-background-color-success: var(--bmdc-color-green-200) !important;
-        --bmdc-toast-background-color-warning: var(--bmdc-color-amber-200) !important;
-        --bmdc-toast-background-color-error: var(--bmdc-color-red-200) !important;
-        --bmdc-toast-border-radius: 16px !important;
-    }
-</style>
+    <style>
+        :root {
+            --bmdc-toast-color-info: black !important;
+            --bmdc-toast-color-success: black !important;
+            --bmdc-toast-color-warning: black !important;
+            --bmdc-toast-color-error: black !important;
+            --bmdc-toast-background-color-info: var(--bmdc-color-lightblue-200) !important;
+            --bmdc-toast-background-color-success: var(--bmdc-color-green-200) !important;
+            --bmdc-toast-background-color-warning: var(--bmdc-color-amber-200) !important;
+            --bmdc-toast-background-color-error: var(--bmdc-color-red-200) !important;
+            --bmdc-toast-border-radius: 16px !important;
+        }
+    </style>
 }
 
 <p><MdcCheckbox @bind-Value="@overrideDefaults" Label="Change colors and border radius from default" /></p>
@@ -69,71 +69,17 @@
 </p>
 
 <p>Try different configuration options</p>
-<MdcButton OnClick="@customiseClick"
-           Label="Toast with selected options"
-           ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+<p><MdcSelect Label="Additional css class" @bind-Value="@cssClass" Items="cssClassItems" ItemValidation="@MdcItemValidation.DefaultToFirst"></MdcSelect></p>
+<p><MdcSelect Label="Close method" @bind-Value="@closeMethod" Items="closeMethodItems"></MdcSelect></p>
+<p><MdcSelect Label="Heading" @bind-Value="@heading" Items="headingItems" ItemValidation="@MdcItemValidation.DefaultToFirst"></MdcSelect></p>
+<p><MdcSelect Label="Icon" @bind-Value="@icon" Items="iconItems" ItemValidation="@MdcItemValidation.DefaultToFirst"></MdcSelect></p>
+<p><MdcSelect Label="Level" @bind-Value="@level" Items="levelItems"></MdcSelect></p>
+<p><MdcSelect Label="Message" @bind-Value="@message" Items="messageItems" ItemValidation="@MdcItemValidation.DefaultToFirst"></MdcSelect></p>
+<p><MdcSelect Label="Show icon" @bind-Value="@showIcon" Items="showIconItems" ItemValidation="@MdcItemValidation.DefaultToFirst"></MdcSelect></p>
+<p><MdcSelect Label="Timeout" @bind-Value="@timeout" Items="timeoutItems" ItemValidation="@MdcItemValidation.DefaultToFirst"></MdcSelect></p>
 <p>
-    <MdcButton OnClick="@(() => toastService.ShowToast(
-                              level: PMdcToastLevel.Warning,
-                              heading: "No Icon",
-                              showIcon: false))"
-               Label="No Icon"
-               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
-
-    <MdcButton OnClick="@(() => toastService.ShowToast(
-                              level: PMdcToastLevel.Warning,
-                              heading: "Ten Seconds",
-                              timeout: 10000 ))"
-               Label="Ten Seconds"
-               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
-
-    <MdcButton OnClick="@(() => toastService.ShowToast(
-                              level: PMdcToastLevel.Warning,
-                              heading: "No Close Button",
-                              message: "Press close to remove",
-                              closeMethod: PMdcToastCloseMethod.Timeout ))"
-               Label="No Close Button"
-               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
-
-    <MdcButton OnClick="@(() => toastService.ShowToast(
-                              level: PMdcToastLevel.Warning,
-                              heading: "No Timeout",
-                              message: "Press close to remove",
-                              closeMethod: PMdcToastCloseMethod.CloseButton ))"
-               Label="No Timeout"
-               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
-
-    <MdcButton OnClick="@(() => toastService.ShowToast(
-                              level: PMdcToastLevel.Warning,
-                              heading: "Icon Changed",
-                              icon: MdcIcons.Icon__directions_run ))"
-               Label="Change Icon"
-               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
-
-    <MdcButton OnClick="@(() => toastService.ShowToast(
-                              level: PMdcToastLevel.Warning,
-                              heading: "Additional Class",
-                              message: "Italicized font",
-                              cssClass: "my-class" ))"
-               Label="Additional Class"
-               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
-
-    <MdcButton OnClick="@(() => toastService.ShowToast(
-                              level: PMdcToastLevel.Warning,
-                              heading: "With <span style=\"color: var(--bmdc-color-deeppurple-700); \">Markup</span>",
-                              message: "Text <strong>bold</strong> and <u>underlined</u>" ))"
-               Label="With Markup"
-               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
-
-    <MdcButton OnClick="@(() => toastService.ShowToast(
-                              level: PMdcToastLevel.Warning,
-                              heading: "Heading truncated and truncated and truncated and truncated",
-                              message: "Message truncated and truncated and truncated and truncated" ))"
-               Label="Long text truncation"
-               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
-
-    <MdcButton OnClick="@(() => toastService.ShowToast())"
-               Label="No parameters at all"
+    <MdcButton OnClick="@customiseClick"
+               Label="Toast with selected options"
                ButtonStyle="@MdcButtonStyle.ContainedRaised" />
 </p>
 
@@ -141,17 +87,96 @@
 @code{
     private bool overrideDefaults = false;
 
+    string cssClass;
+    MdcListElement<string>[] cssClassItems = new MdcListElement<string>[]
+        {
+            new MdcListElement<string> { SelectedValue = "", Label = "Default" },
+            new MdcListElement<string> { SelectedValue = "my-class", Label = "Italic" },
+                    };
+
+    PMdcToastCloseMethod closeMethod;
+    IEnumerable<MdcListElement<PMdcToastCloseMethod>> closeMethodItems => from c in (PMdcToastCloseMethod[])Enum.GetValues(typeof(PMdcToastCloseMethod))
+                                                                          select new MdcListElement<PMdcToastCloseMethod>
+                                                                          {
+                                                                              SelectedValue = c,
+                                                                              Label = c.ToString()
+                                                                          };
+
+    string icon;
+    MdcListElement<string>[] iconItems = new MdcListElement<string>[]
+        {
+            new MdcListElement<string> { SelectedValue = "", Label = "Default" },
+            new MdcListElement<string> { SelectedValue = MdcIcons.Icon__directions_run, Label = MdcIcons.Icon__directions_run },
+            new MdcListElement<string> { SelectedValue = MdcIcons.Icon__3d_rotation, Label = MdcIcons.Icon__3d_rotation }
+                    };
+
+    string heading;
+    MdcListElement<string>[] headingItems = new MdcListElement<string>[]
+        {
+            new MdcListElement<string> { SelectedValue = "", Label = "Default" },
+            new MdcListElement<string> { SelectedValue = "Run of the mill heading", Label = "Run of the mill heading" },
+            new MdcListElement<string> { SelectedValue = "Heading truncated and truncated and truncated and truncated", Label = "Heading that will be truncated" }
+                    };
+
+    PMdcToastLevel level;
+    IEnumerable<MdcListElement<PMdcToastLevel>> levelItems => from c in (PMdcToastLevel[])Enum.GetValues(typeof(PMdcToastLevel))
+                                                              select new MdcListElement<PMdcToastLevel>
+                                                              {
+                                                                  SelectedValue = c,
+                                                                  Label = c.ToString()
+                                                              };
+
+    string message;
+    MdcListElement<string>[] messageItems = new MdcListElement<string>[]
+        {
+            new MdcListElement<string> { SelectedValue = "Run of the mill message", Label = "Run of the mill message" },
+            new MdcListElement<string> { SelectedValue = "Italicized font", Label = "Italicized font (To see this set the additional CSS class to italic)" },
+            new MdcListElement<string> { SelectedValue = "Text <strong>bold</strong> and <u>underlined</u>", Label = "Message with markup" },
+            new MdcListElement<string> { SelectedValue = "Message truncated and truncated and truncated and truncated", Label = "Message that will be truncated" }
+                    };
+
+    string showIcon;
+    MdcListElement<string>[] showIconItems = new MdcListElement<string>[]
+        {
+            new MdcListElement<string> { SelectedValue = "", Label = "Default" },
+            new MdcListElement<string> { SelectedValue = "true", Label = "true" },
+            new MdcListElement<string> { SelectedValue = "false", Label = "false" }
+                    };
+
+    string timeout;
+    MdcListElement<string>[] timeoutItems = new MdcListElement<string>[]
+        {
+            new MdcListElement<string> { SelectedValue = "", Label = "Default" },
+            new MdcListElement<string> { SelectedValue = "1000", Label = "1 second" },
+            new MdcListElement<string> { SelectedValue = "10000", Label = "10 seconds" },
+            new MdcListElement<string> { SelectedValue = "60000", Label = "60 seconds" }
+                    };
+
     protected void InfoClick()
     {
         toastService.ShowToast(
             level: PMdcToastLevel.Info,
-            message: "I'm an INFO" );
+            message: "I'm an INFO");
     }
 
     protected void customiseClick()
     {
+        string appliedCssClass = (cssClass.Length == 0) ? null : cssClass;
+
+        string appliedHeading = (heading.Length == 0) ? null : heading;
+
+        bool? appliedShowIcon = (showIcon.Length == 0) ? appliedShowIcon = null : appliedShowIcon = Convert.ToBoolean(showIcon);
+
+        uint? appliedTimeout = (timeout.Length == 0) ? appliedTimeout = null : appliedTimeout = Convert.ToUInt32(timeout);
+
         toastService.ShowToast(
-            level: PMdcToastLevel.Info,
-            message: "I'm an INFO" );
+            cssClass: appliedCssClass,
+            closeMethod: closeMethod,
+            heading: appliedHeading,
+            level: level,
+            message: message,
+            showIcon: appliedShowIcon,
+            timeout: appliedTimeout
+            );
     }
 }
