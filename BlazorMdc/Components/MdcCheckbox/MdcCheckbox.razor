@@ -1,4 +1,4 @@
-﻿@namespace BlazorMdc
+@namespace BlazorMdc
 
 @inherits MdcInputComponentBase<bool>
 
@@ -58,9 +58,7 @@
         ClassMapper.Add("mdc-checkbox mdc-checkbox--touch")
             .AddIf("mdc-checkbox--disabled", () => Disabled);
 
-<<<<<<< HEAD
         HasOnRenderValueSetter = true;
-=======
         RenderActionAfterValueChange = ClickCheckbox;
     }
 
@@ -69,7 +67,6 @@
     {
         await Task.CompletedTask;
         return value;
->>>>>>> bugFix
     }
 
 
