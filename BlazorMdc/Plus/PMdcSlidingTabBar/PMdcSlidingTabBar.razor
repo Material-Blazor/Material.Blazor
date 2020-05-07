@@ -9,22 +9,20 @@
 
 @if (Icon is null)
 {
-    <MdcTabBar TabIndex="@TabIndex"
+    <MdcTabBar @bind-TabIndex="@TabIndex"
                Items="@Items"
                Context="item"
-               StackIcons="@StackIcons"
-               OnTabClick="@OnLocalTabClickAsync">
+               StackIcons="@StackIcons">
 
         <Label>@Label(item)</Label>
     </MdcTabBar>
 }
 else
 {
-    <MdcTabBar TabIndex="@TabIndex"
+    <MdcTabBar @bind-TabIndex="@TabIndex"
                Items="@Items"
                Context="item"
-               StackIcons="@StackIcons"
-               OnTabClick="@OnLocalTabClickAsync">
+               StackIcons="@StackIcons">
 
         <Label>@Label(item)</Label>
         <Icon>@Icon(item)</Icon>
@@ -33,7 +31,7 @@ else
 
 
 <PMdcSlidingContent Items="@Items"
-                    @bind-ItemIndex="@TabIndex"
+                    ItemIndex="@TabIndex"
                     Context="item">
 
     <Content>
@@ -66,22 +64,12 @@ else
 
     [Parameter] public EventCallback<int> TabIndexChanged { get; set; }
 
-    [Parameter] public bool StackIcons { get; set; }
-    [Parameter] public EventCallback<int> OnTabClick { get; set; }
 
+    [Parameter] public bool StackIcons { get; set; }
+    
+    
     [Parameter] public IEnumerable<TItem> Items { get; set; }
     [Parameter] public RenderFragment<TItem> Label { get; set; }
     [Parameter] public RenderFragment<TItem> Icon { get; set; }
     [Parameter] public RenderFragment<TItem> Content { get; set; }
-
-
-    private async Task OnLocalTabClickAsync(int index)
-    {
-        if (index != TabIndex)
-        {
-            TabIndex = index;
-            StateHasChanged();
-            await OnTabClick.InvokeAsync(index);
-        }
-    }
 }
