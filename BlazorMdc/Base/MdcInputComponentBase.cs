@@ -41,7 +41,7 @@ namespace BlazorMdc
         [Parameter] public string Id { get; set; } = Utilities.GenerateCssElementSelector();
 
 
-        private T _value;
+        internal T UnderlyingValue;
         /// <summary>
         /// Gets or sets the value of the input. This should be used with two-way binding.
         /// </summary>
@@ -50,14 +50,14 @@ namespace BlazorMdc
         /// </example>
         [Parameter] public T Value
         {
-            get => _value;
+            get => UnderlyingValue;
             set
             {
-                if (!EqualityComparer<T>.Default.Equals(value, _value))
+                if (!EqualityComparer<T>.Default.Equals(value, UnderlyingValue))
                 {
                     if (!_hasInstantiated || !HasOnRenderValueSetter)
                     {
-                        _value = value;
+                        UnderlyingValue = value;
                     }
                     else
                     {
@@ -106,13 +106,13 @@ namespace BlazorMdc
         /// </summary>
         protected T ReportingValue
         {
-            get => _value;
+            get => UnderlyingValue;
             set
             {
-                var hasChanged = !EqualityComparer<T>.Default.Equals(value, _value);
+                var hasChanged = !EqualityComparer<T>.Default.Equals(value, UnderlyingValue);
                 if (hasChanged)
                 {
-                    _value = value;
+                    UnderlyingValue = value;
                     _ = ValueChanged.InvokeAsync(value);
                     EditContext?.NotifyFieldChanged(FieldIdentifier);
                     StateHasChanged();
