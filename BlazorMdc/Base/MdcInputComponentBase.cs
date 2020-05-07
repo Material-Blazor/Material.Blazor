@@ -20,6 +20,7 @@ namespace BlazorMdc
         private Type _nullableUnderlyingType;
         private bool _hasSetInitialParameters;
         protected bool _instantiate = false;
+        protected bool _hasInstantiated = false;
         protected bool _allowNextRender = false;
         private bool _hasRenderValue = false;
         private T _onRenderValue;
@@ -54,9 +55,11 @@ namespace BlazorMdc
             {
                 if (!EqualityComparer<T>.Default.Equals(value, _value))
                 {
-                    _value = value;
-
-                    if (RenderActionAfterValueChange != null)
+                    if (!_hasInstantiated || !HasOnRenderValueSetter)
+                    {
+                        _value = value;
+                    }
+                    else
                     {
                         _allowNextRender = true;
                         _hasRenderValue = true;
@@ -74,7 +77,7 @@ namespace BlazorMdc
         /// <summary>
         /// Derived components use this to get a callback when the caller changes the <see cref="Value"/> parameter
         /// </summary>
-        protected Func<T, Task<T>> RenderActionAfterValueChange;
+        protected virtual async Task OnRenderValueSetter(T value) => await Task.CompletedTask;
 
         /// <summary>
         /// Gets or sets a callback that updates the bound value.
@@ -112,6 +115,7 @@ namespace BlazorMdc
                     _value = value;
                     _ = ValueChanged.InvokeAsync(value);
                     EditContext?.NotifyFieldChanged(FieldIdentifier);
+                    StateHasChanged();
                 }
             }
         }
@@ -172,6 +176,8 @@ namespace BlazorMdc
         /// Allows ShouldRender() to return "true" habitually.
         /// </summary>
         internal bool ForceShouldRenderToTrue { get; set; } = false;
+
+        internal bool HasOnRenderValueSetter { get; set; } = false;
 
         /// <summary>
         /// Formats the value as a string. Derived classes can override this to determine the formating used for <see cref="ReportingValueAsString"/>.
@@ -280,13 +286,13 @@ namespace BlazorMdc
             if (_instantiate)
             {
                 _instantiate = false;
+                _hasInstantiated = true;
                 await InitializeMdcComponent();
             }
-            else if (_hasRenderValue && RenderActionAfterValueChange != null)
+            else if (_hasRenderValue && HasOnRenderValueSetter)
             {
                 _hasRenderValue = false;
-                RenderActionAfterValueChange.BeginInvoke(_onRenderValue, null, null);
-                RenderActionAfterValueChange.EndInvoke(null);
+                await OnRenderValueSetter(_onRenderValue);
             }
         }
     }

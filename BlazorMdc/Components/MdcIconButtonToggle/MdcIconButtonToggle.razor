@@ -54,6 +54,8 @@
         objectReference = DotNetObjectReference.Create(this);
 
         cachedIsOpen = ReportingValue;
+
+        HasOnRenderValueSetter = true;
     }
 
 
@@ -99,6 +101,19 @@
     public async Task TurnOffAsync()
     {
         await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.turnOff", elementReference);
+    }
+
+
+    protected override async Task OnRenderValueSetter(bool value)
+    {
+        if (value)
+        {
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.turnOn", elementReference);
+        }
+        else
+        {
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.turnOff", elementReference);
+        }
     }
 
 
