@@ -33,12 +33,12 @@ namespace BlazorMdc
         /// <param name="timeout">Length of time before autodismiss</param>
 #nullable enable annotations
         void ShowToast(
-            PMdcToastLevel level = PMdcToastLevel.Info,
+            PMdcToastLevel level,
+            string message,
+            string heading = null,
             PMdcToastCloseMethod? closeMethod = null,
             string cssClass = null,
-            string heading = null,
             string icon = null,
-            string message = null,
             bool? showIcon = null,
             uint? timeout = null);
 #nullable restore annotations
