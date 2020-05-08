@@ -69,8 +69,8 @@
     protected override void ValueSetter(bool value)
     {
         UnderlyingValue = value;
-        MyClassMapper();
-        AllowNextRender = true;
+
+        InvokeAsync(async () => await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.setOn", elementReference, value));
     }
 
 

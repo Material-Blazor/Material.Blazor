@@ -132,7 +132,15 @@ window.BlazorMdc = {
 
     iconButtonToggle: {
         init: function (elem) {
-            mdc.iconButton.MDCIconButtonToggle.attachTo(elem);
+            elem._iconButtonToggle = mdc.iconButton.MDCIconButtonToggle.attachTo(elem);
+        },
+
+        setOn: function (elem, isOn) {
+            elem._iconButtonToggle.on = isOn;
+        },
+
+        click: function (elem) {
+            elem._iconButtonToggle.root_.click();
         }
     },
 
