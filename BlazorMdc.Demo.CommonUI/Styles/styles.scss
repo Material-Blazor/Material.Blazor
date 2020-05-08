@@ -78,11 +78,6 @@ h1 {
         margin-left: auto;
     }
 
-/* When sidebar is open, shrink header bar so it all stays on screen */
-.mdc-drawer.mdc-drawer--open:not(.mdc-drawer--closing) + .mdc-drawer-app-content .mdc-top-app-bar {
-    width: calc(100% - 256px);
-}
-
 #blazor-error-ui {
     background: lightyellow;
     bottom: 0;
