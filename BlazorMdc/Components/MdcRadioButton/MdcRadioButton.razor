@@ -52,6 +52,14 @@
     {
         base.OnInitialized();
 
+        ForceShouldRenderToTrue = true;
+        HasValueSetter = true;
+    }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
         if (string.IsNullOrEmpty(RadioGroupName))
         {
             throw new ArgumentException("RadioGroupName is a required parameter in MdcRadioButton.");
@@ -78,8 +86,19 @@
         {
             disabledClass = " mdc-radio--disabled";
         }
+    }
 
-        ForceShouldRenderToTrue = true;
+
+    protected override void ValueSetter(TItem value)
+    {
+        UnderlyingValue = value;
+        InvokeAsync(async () =>
+        {
+            await jsRuntime.InvokeAsync<object>(
+            "BlazorMdc.radioButton.setChecked",
+            radioButtonReference,
+            Value.Equals(CheckedValue)).ConfigureAwait(false);
+        });
     }
 
 
@@ -96,7 +115,7 @@
             "BlazorMdc.radioButton.init",
             radioButtonReference,
             formReference,
-            Value.Equals(CheckedValue));
+            Value.Equals(CheckedValue)).ConfigureAwait(false);
     }
 
 }

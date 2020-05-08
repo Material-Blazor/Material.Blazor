@@ -173,10 +173,14 @@ window.BlazorMdc = {
 
     radioButton: {
         init: function (elem, formFieldElem, isChecked) {
-            let radio = mdc.radio.MDCRadio.attachTo(elem);
-            radio.checked = isChecked;
+            elem._radio = mdc.radio.MDCRadio.attachTo(elem);
+            elem._radio.checked = isChecked;
             let formField = mdc.formField.MDCFormField.attachTo(formFieldElem);
-            formField.input = radio;
+            formField.input = elem._radio;
+        },
+
+        setChecked: function (elem, isChecked) {
+            elem._radio.checked = isChecked;
         }
     },
 
