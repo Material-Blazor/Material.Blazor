@@ -12,7 +12,7 @@
      style="@StyleMapper.ToString()">
 
     <ul class="mdc-list bmdc-dp-list">
-        <li @ref="@listItem" class="mdc-list-item mdc-list-item--selected bmdc-dp-list-item" data-value="@cachedReportingValueText" aria-selected="true" role="option">
+        <li @ref="@ListItemReference" class="mdc-list-item mdc-list-item--selected bmdc-dp-list-item" data-value="@cachedReportingValueText" aria-selected="true" role="option">
             <span class="mdc-list-item__text bmdc-dp-list-item__text">@cachedReportingValueText</span>
         </li>
     </ul>
@@ -84,7 +84,7 @@
 
     private string[] daysOfWeek;
 
-    private ElementReference listItem;
+    internal ElementReference ListItemReference;
     private bool previousMonthDisabled => (startOfDisplayMonth <= MinDate);
     private bool nextMonthDisabled => (startOfDisplayMonth.AddMonths(1) >= MaxDate);
     private bool showYearPad;
@@ -111,6 +111,8 @@
             .Add("mdc-typography--body2 bmdc-dp-container");
 
         daysOfWeek = (new DateTimeFormatInfo()).DayNames.Select(d => d.Substring(0, 1)).ToArray();
+
+        ForceShouldRenderToTrue = true;
     }
 
 
@@ -127,10 +129,15 @@
     }
 
 
-    private void SetParameters(bool forceSetup)
+    internal void SetParameters(bool forceSetup, DateTime? newValue = null)
     {
         if (forceSetup || ReportingValue != cachedReportingValue || MinDate != cachedMinDate || MaxDate != cachedMaxDate)
         {
+            if (newValue != null)
+            {
+                UnderlyingValue = (DateTime)newValue;
+            }
+
             initialDate = Value;
             cachedReportingValue = Value;
             cachedMinDate = MinDate;
@@ -161,6 +168,7 @@
 
             showYearPad = false;
 
+            StateHasChanged();
         }
     }
 
@@ -171,7 +179,7 @@
         cachedReportingValue = Value;
         monthsOffset = 0;
         SetParameters(true);
-        await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", listItem, cachedReportingValueText);
+        await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", ListItemReference, cachedReportingValueText);
     }
 
 
