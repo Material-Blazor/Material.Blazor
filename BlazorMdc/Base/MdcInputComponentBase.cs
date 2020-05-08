@@ -21,8 +21,6 @@ namespace BlazorMdc
         private bool _hasSetInitialParameters;
         protected bool _instantiate = false;
         protected bool _hasInstantiated = false;
-        private bool _hasRenderValue = false;
-        private T _onRenderValue;
 
         [CascadingParameter] EditContext CascadedEditContext { get; set; }
 
@@ -54,7 +52,7 @@ namespace BlazorMdc
             {
                 if (!EqualityComparer<T>.Default.Equals(value, UnderlyingValue))
                 {
-                    if (!_hasInstantiated || !(HasValueSetter || HasOnRenderValueSetter))
+                    if (!_hasInstantiated || !HasValueSetter)
                     {
                         UnderlyingValue = value;
                     }
@@ -63,13 +61,6 @@ namespace BlazorMdc
                         if (HasValueSetter)
                         {
                             ValueSetter(value);
-                        }
-
-                        if (HasOnRenderValueSetter)
-                        {
-                            AllowNextRender = true;
-                            _hasRenderValue = true;
-                            _onRenderValue = value;
                         }
                     }
                 }
@@ -85,11 +76,6 @@ namespace BlazorMdc
         /// Derived components use this to get a callback from <see cref="OnAfterRenderAsync(bool)"/> when the consumer changes the <see cref="Value"/> parameter
         /// </summary>
         protected virtual void ValueSetter(T value) => _ = 0;
-
-        /// <summary>
-        /// Derived components use this to get a callback from <see cref="OnAfterRenderAsync(bool)"/> when the consumer changes the <see cref="Value"/> parameter
-        /// </summary>
-        protected virtual async Task OnRenderValueSetter(T value) => await Task.CompletedTask;
 
         /// <summary>
         /// Gets or sets a callback that updates the bound value.
@@ -200,11 +186,6 @@ namespace BlazorMdc
         private protected bool HasValueSetter { get; set; } = false;
 
         /// <summary>
-        /// Allows <see cref="ShouldRender()"/> to return "true" when <see cref="Value"/> is changed by the consumer and calls <see cref="OnRenderValueSetter(T)"/> from <see cref="OnAfterRenderAsync(bool)"/>.
-        /// </summary>
-        private protected bool HasOnRenderValueSetter { get; set; } = false;
-
-        /// <summary>
         /// Formats the value as a string. Derived classes can override this to determine the formating used for <see cref="ReportingValueAsString"/>.
         /// </summary>
         /// <param name="value">The value to format.</param>
@@ -313,11 +294,6 @@ namespace BlazorMdc
                 _instantiate = false;
                 _hasInstantiated = true;
                 await InitializeMdcComponent();
-            }
-            else if (_hasRenderValue && HasOnRenderValueSetter)
-            {
-                _hasRenderValue = false;
-                await OnRenderValueSetter(_onRenderValue);
             }
         }
     }

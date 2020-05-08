@@ -9,7 +9,7 @@
 @inject IJSRuntime jsRuntime
 
 
-<div @ref="elementReference"
+<div @ref="selectReference"
      class="@ClassMapper.ToString()"
      style="@StyleMapper.ToString()">
 
@@ -35,8 +35,8 @@
     </div>
 
     <div class="mdc-select__menu mdc-menu mdc-menu-surface">
-        <ul class="mdc-list">
-            @foreach (var item in ItemArray)
+        <ul @ref="@ulReference" class="mdc-list">
+            @foreach (var item in ItemDict.Values)
             {
                 var dv = item.SelectedValue;
 
@@ -63,31 +63,32 @@
     [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
 
 
-    private ElementReference elementReference;
+    private ElementReference selectReference;
+    private ElementReference ulReference;
     private MdcSelectInputStyle appliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
     private string labelId = Utilities.GenerateCssElementSelector();
     private string selectedText = "";
     private string floatingLabelClass = "";
     private string alignClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
-    private MdcListElement<TItem>[] ItemArray;
+    private Dictionary<TItem, MdcListElement<TItem>> ItemDict;
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         base.OnInitialized();
 
-        ItemArray = Items.ToArray();
+        HasValueSetter = true;
 
-        MdcItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidationSelect(ItemValidation);
+        ItemDict = Items.ToDictionary(i => i.SelectedValue);
 
-        await ValidateItemListAsync(ItemArray, appliedItemValidation, OnItemClickAsync);
+        ReportingValue = ValidateItemList(ItemDict.Values, CascadingDefaults.AppliedItemValidationSelect(ItemValidation));
 
         ClassMapper
+            .Clear()
             .Add("mdc-select")
             .AddIf("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
             .AddIf("mdc-select--disabled", () => Disabled);
 
-        selectedText = Items.Where(i => object.Equals(i.SelectedValue, Value)).FirstOrDefault().Label;
-        floatingLabelClass = string.IsNullOrWhiteSpace(selectedText) ? "" : "mdc-floating-label--float-above";
+        RenderSetup();
     }
 
 
@@ -98,5 +99,22 @@
     }
 
 
-    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.select.init", elementReference);
+    protected override void ValueSetter(TItem value)
+    {
+        //UnderlyingValue = value;
+        //RenderSetup();
+        //AllowNextRender = true;
+
+        InvokeAsync(async () => await jsRuntime.InvokeAsync<object>("BlazorMdc.select.clickItem", ulReference, ItemDict[value].Label));
+    }
+
+
+    private void RenderSetup()
+    {
+        selectedText = (UnderlyingValue is null) ? "" : Items.Where(i => object.Equals(i.SelectedValue, UnderlyingValue)).FirstOrDefault().Label;
+        floatingLabelClass = string.IsNullOrWhiteSpace(selectedText) ? "" : "mdc-floating-label--float-above";
+    }
+
+
+    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.select.init", selectReference);
 }

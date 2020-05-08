@@ -187,6 +187,14 @@ window.BlazorMdc = {
     select: {
         init: function (elem) {
             mdc.select.MDCSelect.attachTo(elem);
+        },
+
+        clickItem: function (ulElem, value) {
+            for (let i = 0; i < ulElem.children.length; i++) {
+                if (ulElem.children[i].outerText == value) {
+                    ulElem.children[i].click();
+                }
+            }
         }
     },
 
