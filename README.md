@@ -1,11 +1,15 @@
 ﻿# BlazorMdc (pre release)
 
-[![NuGet Downloads](https://img.shields.io/nuget/dt/BlazorMdc?label=NuGet%20Downloads)](https://www.nuget.org/packages/BlazorMdc/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](/LICENSE.md)
-[![GitHub issues](https://img.shields.io/github/issues/BlazorMdc/BlazorMdc)](https://github.com/BlazorMdc/BlazorMdc/issues)
-[![GitHub forks](https://img.shields.io/github/forks/BlazorMdc/BlazorMdc)](https://github.com/BlazorMdc/BlazorMdc/network/members)
-[![GitHub stars](https://img.shields.io/github/stars/BlazorMdc/BlazorMdc)](https://github.com/BlazorMdc/BlazorMdc/stargazers)
-[![Build Status](https://dev.azure.com/blazormdc/blazormdc/_apis/build/status/BlazorMdc.BlazorMdc?branchName=master)](https://dev.azure.com/blazormdc/blazormdc/_build/latest?definitionId=1&branchName=master)
+[![NuGet version](https://img.shields.io/nuget/v/BlazorMdc?label=nuget%20version&style=flat-square)](https://www.nuget.org/packages/Fluxor/)
+[![NuGet downloads](https://img.shields.io/nuget/dt/BlazorMdc?label=nuget%20downloads&style=flat-square)](https://www.nuget.org/packages/BlazorMdc/)
+
+[![Build Status](https://img.shields.io/azure-devops/build/blazormdc/blazormdc/1?label=azure%20pipelines&style=flat-square)](https://dev.azure.com/blazormdc/blazormdc/_build/latest?definitionId=1&branchName=master)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](/LICENSE.md)
+[![GitHub issues](https://img.shields.io/github/issues/BlazorMdc/BlazorMdc?style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/issues)
+[![GitHub forks](https://img.shields.io/github/forks/BlazorMdc/BlazorMdc?style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/BlazorMdc/BlazorMdc?style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/stargazers)
+[![GitHub stars](https://img.shields.io/github/watchers/BlazorMdc/BlazorMdc?style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/watchers)
 
 ## Lightweight Material Theme razor components for Blazor
 
