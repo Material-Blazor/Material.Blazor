@@ -10,7 +10,7 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-solution: 'BlazorMdc.sln'
+  solution: 'BlazorMdc.sln'
   project: 'BlazorMdc/BlazorMdc.csproj'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release_Server'
@@ -22,7 +22,7 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
-- script: dotnet build --configuration $(buildConfiguration) BlazorMdc/BlazorMdc.csproj
+- script: dotnet build --configuration $(buildConfiguration) $(project)
   displayName: 'Building $(project) in $(buildConfiguration) mode...'
 
 - task: DotNetCoreCLI@2
