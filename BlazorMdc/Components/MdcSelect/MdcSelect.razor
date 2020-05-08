@@ -76,8 +76,6 @@
     {
         base.OnInitialized();
 
-        HasValueSetter = true;
-
         ItemDict = Items.ToDictionary(i => i.SelectedValue);
 
         ReportingValue = ValidateItemList(ItemDict.Values, CascadingDefaults.AppliedItemValidationSelect(ItemValidation));
@@ -88,7 +86,10 @@
             .AddIf("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
             .AddIf("mdc-select--disabled", () => Disabled);
 
-        RenderSetup();
+        selectedText = (UnderlyingValue is null) ? "" : Items.Where(i => object.Equals(i.SelectedValue, UnderlyingValue)).FirstOrDefault().Label;
+        floatingLabelClass = string.IsNullOrWhiteSpace(selectedText) ? "" : "mdc-floating-label--float-above";
+
+        HasValueSetter = true;
     }
 
 
@@ -99,21 +100,7 @@
     }
 
 
-    protected override void ValueSetter(TItem value)
-    {
-        //UnderlyingValue = value;
-        //RenderSetup();
-        //AllowNextRender = true;
-
-        InvokeAsync(async () => await jsRuntime.InvokeAsync<object>("BlazorMdc.select.clickItem", ulReference, ItemDict[value].Label));
-    }
-
-
-    private void RenderSetup()
-    {
-        selectedText = (UnderlyingValue is null) ? "" : Items.Where(i => object.Equals(i.SelectedValue, UnderlyingValue)).FirstOrDefault().Label;
-        floatingLabelClass = string.IsNullOrWhiteSpace(selectedText) ? "" : "mdc-floating-label--float-above";
-    }
+    protected override void ValueSetter(TItem value) => InvokeAsync(async () => await jsRuntime.InvokeAsync<object>("BlazorMdc.select.clickItem", ulReference, ItemDict[value].Label));
 
 
     protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.select.init", selectReference);
