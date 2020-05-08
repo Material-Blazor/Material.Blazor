@@ -37,6 +37,8 @@ namespace BlazorMdc.Demo.Blazor
                 AnimationTime = 300
             });
 
+            builder.Services.AddScoped<DemoConfiguration>();
+
             await builder.Build().RunAsync();
         }
     }

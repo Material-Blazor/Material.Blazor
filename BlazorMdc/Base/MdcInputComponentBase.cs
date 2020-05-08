@@ -21,7 +21,6 @@ namespace BlazorMdc
         private bool _hasSetInitialParameters;
         protected bool _instantiate = false;
         protected bool _hasInstantiated = false;
-        protected bool _allowNextRender = false;
         private bool _hasRenderValue = false;
         private T _onRenderValue;
 
@@ -41,7 +40,7 @@ namespace BlazorMdc
         [Parameter] public string Id { get; set; } = Utilities.GenerateCssElementSelector();
 
 
-        internal T UnderlyingValue;
+        private protected T UnderlyingValue;
         /// <summary>
         /// Gets or sets the value of the input. This should be used with two-way binding.
         /// </summary>
@@ -55,27 +54,40 @@ namespace BlazorMdc
             {
                 if (!EqualityComparer<T>.Default.Equals(value, UnderlyingValue))
                 {
-                    if (!_hasInstantiated || !HasOnRenderValueSetter)
+                    if (!_hasInstantiated || !(HasValueSetter || HasOnRenderValueSetter))
                     {
                         UnderlyingValue = value;
                     }
                     else
                     {
-                        _allowNextRender = true;
-                        _hasRenderValue = true;
-                        _onRenderValue = value;
+                        if (HasValueSetter)
+                        {
+                            ValueSetter(value);
+                        }
+
+                        if (HasOnRenderValueSetter)
+                        {
+                            AllowNextRender = true;
+                            _hasRenderValue = true;
+                            _onRenderValue = value;
+                        }
                     }
                 }
             }
         }
 
-        //internal T SetValue(T value)
+        //private protected T SetValue(T value)
         //{
         //    return Value = value;
         //}
 
         /// <summary>
-        /// Derived components use this to get a callback when the caller changes the <see cref="Value"/> parameter
+        /// Derived components use this to get a callback from <see cref="OnAfterRenderAsync(bool)"/> when the consumer changes the <see cref="Value"/> parameter
+        /// </summary>
+        protected virtual void ValueSetter(T value) => _ = 0;
+
+        /// <summary>
+        /// Derived components use this to get a callback from <see cref="OnAfterRenderAsync(bool)"/> when the consumer changes the <see cref="Value"/> parameter
         /// </summary>
         protected virtual async Task OnRenderValueSetter(T value) => await Task.CompletedTask;
 
@@ -173,11 +185,24 @@ namespace BlazorMdc
         }
 
         /// <summary>
-        /// Allows ShouldRender() to return "true" habitually.
+        /// Allows <see cref="ShouldRender()"/> to return "true" habitually.
         /// </summary>
-        internal bool ForceShouldRenderToTrue { get; set; } = false;
+        private protected bool ForceShouldRenderToTrue { get; set; } = false;
 
-        internal bool HasOnRenderValueSetter { get; set; } = false;
+        /// <summary>
+        /// Allows <see cref="ShouldRender()"/> to return "true" for the next render only.
+        /// </summary>
+        private protected bool AllowNextRender = false;
+
+        /// <summary>
+        /// Allows <see cref="ShouldRender()"/> to return "true" when <see cref="Value"/> is changed by the consumer.
+        /// </summary>
+        private protected bool HasValueSetter { get; set; } = false;
+
+        /// <summary>
+        /// Allows <see cref="ShouldRender()"/> to return "true" when <see cref="Value"/> is changed by the consumer and calls <see cref="OnRenderValueSetter(T)"/> from <see cref="OnAfterRenderAsync(bool)"/>.
+        /// </summary>
+        private protected bool HasOnRenderValueSetter { get; set; } = false;
 
         /// <summary>
         /// Formats the value as a string. Derived classes can override this to determine the formating used for <see cref="ReportingValueAsString"/>.
@@ -259,21 +284,21 @@ namespace BlazorMdc
         public virtual void RequestInstantiation()
         {
             _instantiate = true;
-            _allowNextRender = true;
+            AllowNextRender = true;
         }
 
 
-        internal void AllowNextShouldRender()
+        private protected void AllowNextShouldRender()
         {
-            _allowNextRender = true;
+            AllowNextRender = true;
         }
 
 
         protected override bool ShouldRender()
         {
-            if (ForceShouldRenderToTrue || _allowNextRender)
+            if (ForceShouldRenderToTrue || AllowNextRender)
             {
-                _allowNextRender = false;
+                AllowNextRender = false;
                 return true;
             }
 

@@ -50,6 +50,17 @@ See <code>ButtonSample.razor</code> for sources.
     An icon button -> <MdcIconButton Icon="@MdcIcons.Icon__access_alarms" OnClick="@LogMessage" />
 </p>
 
+<div style="padding: 1rem; background-color: lightgray;">
+    <p>The checkbox and toggle icon button both bind to the same value. Press the toggle, then checkbox then toggle again and ... crash!</p>
+
+    <p><MdcCheckbox @bind-Value="@commonBool" Label="Checkbox and Toggle both bind to same value" /></p>
+
+    <p><MdcIconButtonToggle @bind-Value="@commonBool" IconOn="@MdcIcons.Icon__directions_run" IconOff="@MdcIcons.Icon__airline_seat_individual_suite" /></p>
+
+    <p>@commonBool</p>
+</div>
+
+
 <ul>
     @foreach (var logEntry in log)
     {
@@ -65,6 +76,8 @@ See <code>ButtonSample.razor</code> for sources.
     //              'raised' shows that the intended indent of the button is occurring.
     //
     List<string> log = new List<string>();
+
+    bool commonBool;
 
     void LogMessage()
         => log.Add("You clicked");

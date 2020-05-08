@@ -6,7 +6,6 @@
 
 
 <div @ref="@formReference" class="@formFieldClass">
-
     <div class="mdc-touch-target-wrapper">
         <div @ref="@elementReference"
              class="@ClassMapper.ToString()"
@@ -58,26 +57,14 @@
         ClassMapper.Add("mdc-checkbox mdc-checkbox--touch")
             .AddIf("mdc-checkbox--disabled", () => Disabled);
 
-        HasOnRenderValueSetter = true;
-    }
-
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
+        HasValueSetter = true;
     }
 
 
-    private async Task<bool> ClickCheckbox(bool value)
-    {
-        await Task.CompletedTask;
-        return value;
-    }
-
-
-    protected override async Task OnRenderValueSetter(bool value)
+    protected override void ValueSetter(bool value)
     {
         UnderlyingValue = value;
-        await jsRuntime.InvokeAsync<object>("BlazorMdc.checkBox.setChecked", elementReference, value);
+        AllowNextRender = true;
     }
 
 

@@ -45,13 +45,16 @@
     {
         base.OnInitialized();
 
+        MyClassMapper();
+
+        HasValueSetter = true;
+    }
+
+    private void MyClassMapper() =>
         ClassMapper
             .Add("mdc-icon-button")
             .AddIf("mdc-card__action mdc-card__action--icon", () => (Card != null))
             .AddIf("mdc-icon-button--on", () => Value);
-
-        HasOnRenderValueSetter = true;
-    }
 
 
     public async Task OnLocalClickAsync()
@@ -61,32 +64,13 @@
     }
 
 
-    public async Task TurnOnAsync()
+    protected override void ValueSetter(bool value)
     {
-        await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.turnOn", elementReference);
-    }
-
-
-    public async Task TurnOffAsync()
-    {
-        await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.turnOff", elementReference);
-    }
-
-
-    protected override async Task OnRenderValueSetter(bool value)
-    {
-        if (value)
-        {
-            await TurnOnAsync();
-        }
-        else
-        {
-            await TurnOffAsync();
-        }
-
         UnderlyingValue = value;
+        MyClassMapper();
+        AllowNextRender = true;
     }
 
 
-    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.init", elementReference, Value);
+    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.init", elementReference);
 }
