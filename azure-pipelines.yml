@@ -10,7 +10,7 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-solution: 'BlazorMdc.sln'
+  solution: 'BlazorMdc.sln'
   project: 'BlazorMdc/BlazorMdc.csproj'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release_Server'
@@ -22,17 +22,11 @@ steps:
   inputs:
     restoreSolution: '$(solution)'
 
-- script: dotnet build --configuration $(buildConfiguration) BlazorMdc/BlazorMdc.csproj
+- script: dotnet build --configuration $(buildConfiguration) $(project)
   displayName: 'Building $(project) in $(buildConfiguration) mode...'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Generating Nuget Package... '
+- task: NuGetCommand@2
   inputs:
-    command: pack
-
-    arguments: --no-build
-    packagesToPack: $(project)
-    configuration: $(buildConfiguration)
-
-- task: PublishBuildArtifacts@1
-  displayName: 'Publishing Build Artifacts...'
+    command: 'pack'
+    packagesToPack: ($project)
+    versioningScheme: 'off'
