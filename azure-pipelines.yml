@@ -25,10 +25,13 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration) $(project)
   displayName: 'Building $(project) in $(buildConfiguration) mode...'
 
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
+  displayName: 'Generating Nuget Package... '
   inputs:
-    command: 'pack'
-    packagesToPack: ($project)
+    command: pack
+    arguments: --no-build
+    packagesToPack: $(project)
+    configuration: $(buildConfiguration)
     versioningScheme: 'off'
 
 - task: NuGetCommand@2
