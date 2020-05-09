@@ -9,10 +9,9 @@ namespace BlazorMdc
     public abstract class MdcValidatingInputComponentBase<T> : MdcInputComponentBase<T>
     {
         // This method was added in the interest of DRY and is used by MdcSelect & PMdcRadioButtonGroup
-        public async Task ValidateItemListAsync(
-            MdcListElement<T>[] items,
-            MdcItemValidation appliedItemValidation,
-            Func<T, Task> onItemClickAsync)
+        public T ValidateItemList(
+            IEnumerable<MdcListElement<T>> items,
+            MdcItemValidation appliedItemValidation)
         {
             var componentName = (new Regex("^[a-z,A-Z]*")).Match(GetType().Name).ToString();
             
@@ -20,25 +19,18 @@ namespace BlazorMdc
             {
                 throw new ArgumentException(componentName + " requires a non-empty Items parameter.");
             }
-
- //           if ((appliedItemValidation == MdcItemValidation.DefaultToFirst) && (Value is null || string.IsNullOrEmpty(Value.ToString())))
- //           {
- //               await onItemClickAsync(items.FirstOrDefault().SelectedValue);
- //           }
-
             if (items.GroupBy(i => i.SelectedValue).Where(g => g.Count() > 1).Count() > 0)
             {
                 throw new ArgumentException(componentName + " has multiple enties in the List with the same SelectedValue");
             }
 
-            if (items.Where(i => object.Equals(i.SelectedValue, Value)).Count() == 0)
+            if (items.Where(i => object.Equals(i.SelectedValue, UnderlyingValue)).Count() == 0)
             {
                 switch (appliedItemValidation)
                 {
                     case MdcItemValidation.DefaultToFirst:
                         var firstOrDefault = items.FirstOrDefault().SelectedValue;
-                        await onItemClickAsync(firstOrDefault);
-                        break;
+                        return firstOrDefault;
 
                     case MdcItemValidation.Exception:
                         string itemList = "{ ";
@@ -52,12 +44,14 @@ namespace BlazorMdc
 
                         itemList += " }";
 
-                        throw new ArgumentException(componentName + $" cannot select item with data value of '{Value?.ToString()}' from {itemList}");
+                        throw new ArgumentException(componentName + $" cannot select item with data value of '{UnderlyingValue?.ToString()}' from {itemList}");
 
                     case MdcItemValidation.NoSelection:
-                        break;
+                        return default;
                 }
             }
+
+            return UnderlyingValue;
         }
     }
 

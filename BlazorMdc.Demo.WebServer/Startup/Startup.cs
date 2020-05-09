@@ -45,6 +45,8 @@ namespace BlazorMdc.Demo.WebServer
                 ApplyAnimation = true,
                 AnimationTime = 300
             });
+
+            services.AddScoped<DemoConfiguration>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -8,41 +8,66 @@
 
 <p>See <code>RadioButtonsSample.razor</code> for sources.</p>
 
-<hr />
-<MdcRadioButton @bind-Value="@animal"
-                CheckedValue=@animalEnum.dog
-                Label=@animalEnum.dog.ToString()
-                RadioGroupName="demoGroup" />
-<MdcRadioButton @bind-Value="@animal"
-                CheckedValue=@animalEnum.fish
-                Label=@animalEnum.fish.ToString()
-                RadioGroupName="demoGroup" />
-<MdcRadioButton @bind-Value="@animal"
-                CheckedValue=@animalEnum.zebra
-                Label=@animalEnum.zebra.ToString()
-                RadioGroupName="demoGroup" />
-<p style="margin-bottom: 4em;">Selected animal: '<strong>@animal.ToString()</strong>'</p>
-<hr />
 
+<hr />
+<h5 class="mdc-typography--headline5">Orphan radio buttons</h5>
+
+<p>
+    <MdcRadioButton @bind-Value="@animal"
+                    CheckedValue=@animalEnum.dog
+                    Label=@animalEnum.dog.ToString()
+                    RadioGroupName="demoGroup" />
+    <MdcRadioButton @bind-Value="@animal"
+                    CheckedValue=@animalEnum.fish
+                    Label=@animalEnum.fish.ToString()
+                    RadioGroupName="demoGroup" />
+    <MdcRadioButton @bind-Value="@animal"
+                    CheckedValue=@animalEnum.zebra
+                    Label=@animalEnum.zebra.ToString()
+                    RadioGroupName="demoGroup" />
+</p>
+<p>
+    <MdcRadioButton @bind-Value="@animal"
+                    CheckedValue=@animalEnum.dog
+                    Label=@repeatedDogLabel
+                    RadioGroupName="repeatGroup" />
+
+</p>
+<p style="margin-bottom: 4em;">Selected animal: '<strong>@animal.ToString()</strong>'</p>
+
+
+<hr />
+<h5 class="mdc-typography--headline5">Horizontal radio button group</h5>
 
 <PMdcRadioButtonGroup @bind-Value="@kittenBreed"
                       Items="stringItems"
                       ItemValidation="@MdcItemValidation.DefaultToFirst" />
-<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed ?? "")</strong>'</p>
-<hr />
 
+<PMdcRadioButtonGroup @bind-Value="@kittenBreed"
+                      Items="stringItems"
+                      ItemValidation="@MdcItemValidation.DefaultToFirst" />
+
+<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed ?? "")</strong>'</p>
+
+
+<hr />
+<h5 class="mdc-typography--headline5">Vertical radio button group</h5>
 
 <PMdcRadioButtonGroup @bind-Value="@colour"
                       Items="colourItems"
                       Vertical="true"
                       EnableTouchWrapper="false" />
+
 <p style="margin-bottom: 4em;">Selected: '<strong>@(colour.ToString())</strong>'</p>
+
+
 <hr />
 
 
 @code {
     enum animalEnum { dog, fish, zebra };
     animalEnum animal = animalEnum.fish;
+    string repeatedDogLabel => animalEnum.dog.ToString() + " repeated";
 
 
     string kittenBreed;
@@ -51,7 +76,7 @@
         new MdcListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MdcListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
         new MdcListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
-        };
+                    };
 
 
     Colour colour = Colour.Orange;

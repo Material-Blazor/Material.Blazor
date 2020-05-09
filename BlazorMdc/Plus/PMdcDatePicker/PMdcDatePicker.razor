@@ -11,7 +11,7 @@
 
     <div class="mdc-select__anchor">
         <i class="mdc-select__dropdown-icon"></i>
-        <div class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="@labelId" aria-disabled="Disabled">@initialText</div>
+        <div class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="@labelId" aria-disabled="@Disabled">@initialText</div>
 
         @if (appliedInputStyle == MdcSelectInputStyle.Outlined)
         {
@@ -31,10 +31,9 @@
     </div>
 
     <div class="mdc-select__menu mdc-menu mdc-menu-surface bmdc-dp-menu__surface-adjust">
-        <InternalDatePickerPanel @bind-Value="@ReportingValue" DateSelectionCriteria="@DateSelectionCriteria" MinDate="@MinDate" MaxDate="@MaxDate" />
+        <InternalDatePickerPanel @ref="Panel" @bind-Value="@ReportingValue" DateSelectionCriteria="@DateSelectionCriteria" MinDate="@MinDate" MaxDate="@MaxDate" />
     </div>
 </div>
-
 
 
 @code {
@@ -53,6 +52,7 @@
 
 
     private ElementReference elementReference;
+    private InternalDatePickerPanel Panel;
     private MdcSelectInputStyle appliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
     private string key = Utilities.GenerateCssElementSelector();
     private string labelId = Utilities.GenerateCssElementSelector();
@@ -72,6 +72,19 @@
 
         initialValue = Value;
         initialText = Utilities.DateToString(Value);
+
+        HasValueSetter = true;
+    }
+
+
+    protected override void ValueSetter(DateTime value)
+    {
+        InvokeAsync(async () =>
+        {
+            UnderlyingValue = value;
+            Panel.SetParameters(true, value);
+            await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(value)).ConfigureAwait(false);
+        });
     }
 
 

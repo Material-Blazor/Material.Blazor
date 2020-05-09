@@ -50,14 +50,18 @@ window.BlazorMdc = {
     },
 
     checkBox: {
-        setChecked: function (elem, formFieldElem, isChecked, isFormField) {
-            const checkbox = mdc.checkbox.MDCCheckbox.attachTo(elem);
-            checkbox.checked = isChecked;
+        init: function (elem, formFieldElem, isChecked, isFormField) {
+            elem._checkbox = mdc.checkbox.MDCCheckbox.attachTo(elem);
+            elem._checkbox.checked = isChecked;
 
             if (isFormField) {
-                const formField = mdc.formField.MDCFormField.attachTo(formFieldElem);
-                formField.input = checkbox;
+                elem._formField = mdc.formField.MDCFormField.attachTo(formFieldElem);
+                elem._formField.input = checkbox;
             }
+        },
+
+        setChecked: function (elem, isChecked) {
+            elem._checkbox.checked = isChecked;
         }
     },
 
@@ -127,35 +131,16 @@ window.BlazorMdc = {
     },
 
     iconButtonToggle: {
-        init: function (elem, dotNetObject, isOn) {
-            elem._iconToggleButton = mdc.iconButton.MDCIconButtonToggle.attachTo(elem);
-            elem._dotNetObject = dotNetObject;
-            elem._iconToggleButton.on = isOn;
-
-            return new Promise(resolve => {
-                const callback = event => {
-                    resolve(event.detail.action);
-                    elem._dotNetObject.invokeMethodAsync('NotifyOnAsync', elem._iconToggleButton.on);
-                };
-
-                elem._iconToggleButton.listen('MDCIconButtonToggle:change', callback);
-            });
+        init: function (elem) {
+            elem._iconButtonToggle = mdc.iconButton.MDCIconButtonToggle.attachTo(elem);
         },
 
-        turnOn: function (elem) {
-            if (elem) {
-                if (elem._iconToggleButton.on != true) {
-                    elem.click();
-                }
-            }
+        setOn: function (elem, isOn) {
+            elem._iconButtonToggle.on = isOn;
         },
 
-        turnOff: function (elem) {
-            if (elem) {
-                if (elem._iconToggleButton.on == true) {
-                    elem.click();
-                }
-            }
+        click: function (elem) {
+            elem._iconButtonToggle.root_.click();
         }
     },
 
@@ -196,16 +181,28 @@ window.BlazorMdc = {
 
     radioButton: {
         init: function (elem, formFieldElem, isChecked) {
-            let radio = mdc.radio.MDCRadio.attachTo(elem);
-            radio.checked = isChecked;
+            elem._radio = mdc.radio.MDCRadio.attachTo(elem);
+            elem._radio.checked = isChecked;
             let formField = mdc.formField.MDCFormField.attachTo(formFieldElem);
-            formField.input = radio;
+            formField.input = elem._radio;
+        },
+
+        setChecked: function (elem, isChecked) {
+            elem._radio.checked = isChecked;
         }
     },
 
     select: {
         init: function (elem) {
             mdc.select.MDCSelect.attachTo(elem);
+        },
+
+        clickItem: function (ulElem, value) {
+            for (let i = 0; i < ulElem.children.length; i++) {
+                if (ulElem.children[i].outerText == value) {
+                    ulElem.children[i].click();
+                }
+            }
         }
     },
 

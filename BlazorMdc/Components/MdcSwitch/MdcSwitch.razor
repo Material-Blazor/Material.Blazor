@@ -29,7 +29,9 @@
     //
     [Parameter] public string Label { get; set; } = "On/off";
 
+    
     ElementReference elementReference;
+
 
     protected override void OnInitialized()
     {
@@ -39,6 +41,8 @@
             .Add("mdc-switch")
             .AddIf("mdc-switch--disabled", () => Disabled)
             .AddIf("mdc-switch--checked", () => ReportingValue);
+
+        ForceShouldRenderToTrue = true;
     }
 
 

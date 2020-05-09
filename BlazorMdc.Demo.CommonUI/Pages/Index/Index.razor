@@ -1,6 +1,7 @@
 ﻿@namespace BlazorMdc.Demo
 
 @inject IPMdcAnimatedNavigationManager PMdcAnimatedNavigationManager
+@inject DemoConfiguration DemoConfiguration
 
 @page "/"
 
@@ -10,14 +11,26 @@
 
 <p>Currently executing on <strong>@runtime</strong> built in <strong>@mode</strong> mode.</p>
 
+
+
+<h5 class="mdc-typography--headline5">Top App Bar</h5>
+
+<PMdcRadioButtonGroup @bind-Value="@DemoConfiguration.TopAppBarType" Items="@appBarTypes" />
+
+<h5 class="mdc-typography--headline5">Animated Navigation</h5>
+
 <p><PMdcNumericIntField @bind-Value="@PMdcAnimatedNavigationManager.Configuration.AnimationTime" Label="Page animation time (ms)" NumericFormat="N0" Min="50" Max="3000" /></p>
 
-<p><MdcCheckbox @bind-Value="@PMdcAnimatedNavigationManager.Configuration.ApplyAnimation" Label="1 Apply animiations to page navigation" /></p>
-
-<p><MdcCheckbox @bind-Value="@PMdcAnimatedNavigationManager.Configuration.ApplyAnimation" Label="2 Apply animiations to page navigation" /></p>
-
-<p><MdcIconButtonToggle @bind-Value="PMdcAnimatedNavigationManager.Configuration.ApplyAnimation" IconOn="@MdcIcons.Icon__directions_run" IconOff="@MdcIcons.Icon__airline_seat_individual_suite" /></p>
-
-<p>Value: @PMdcAnimatedNavigationManager.Configuration.ApplyAnimation</p>
+<p><MdcCheckbox @bind-Value="@PMdcAnimatedNavigationManager.Configuration.ApplyAnimation" Label="Apply animiations to page navigation" /></p>
 
 <p style="margin-top: 80rem;">&nbsp;</p>
+
+
+@code {
+    IEnumerable<MdcListElement<MdcTopAppBarType>> appBarTypes => from c in (MdcTopAppBarType[])Enum.GetValues(typeof(MdcTopAppBarType))
+                                                                 select new MdcListElement<MdcTopAppBarType>
+                                                                 {
+                                                                     SelectedValue = c,
+                                                                     Label = c.ToString(),
+                                                                 };
+}

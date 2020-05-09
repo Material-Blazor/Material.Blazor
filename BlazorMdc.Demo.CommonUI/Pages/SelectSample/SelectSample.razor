@@ -8,29 +8,46 @@
 
 <p>See <code>SelectSample.razor</code> for sources.</p>
 
-<MdcSelect Label="Filled"
-           @bind-Value="@kittenBreed1"
-           Items="stringItems"
-           SelectInputStyle="MdcSelectInputStyle.Filled"
-           ItemValidation="@MdcItemValidation.NoSelection" />
+<p>
+    <MdcSelect Label="Filled"
+               @bind-Value="@kittenBreed1"
+               Items="stringItems"
+               SelectInputStyle="MdcSelectInputStyle.Filled"
+               ItemValidation="@MdcItemValidation.NoSelection" />
+</p>
 <p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed1 ?? "")</strong>'</p>
 
-<MdcSelect Label="Outlined"
-           @bind-Value="@kittenBreed2"
-           Items="stringItems"
-           SelectInputStyle="MdcSelectInputStyle.Outlined"
-           ItemValidation="@MdcItemValidation.NoSelection" />
+<p>
+    <MdcSelect Label="Outlined"
+               @bind-Value="@kittenBreed2"
+               Items="stringItems"
+               SelectInputStyle="MdcSelectInputStyle.Outlined"
+               ItemValidation="@MdcItemValidation.NoSelection" />
+</p>
 <p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed2 ?? "")</strong>'</p>
 
-<MdcSelect Label="Right Aligned"
-           @bind-Value="@kittenBreed3"
-           Items="stringItems"
-           SelectInputStyle="MdcSelectInputStyle.Outlined"
-           TextAlignStyle="MdcTextAlignStyle.Right"
-           ItemValidation="@MdcItemValidation.DefaultToFirst" />
+<p>
+    <MdcSelect Label="Right Aligned"
+               @bind-Value="@kittenBreed3"
+               Items="stringItems"
+               SelectInputStyle="MdcSelectInputStyle.Outlined"
+               TextAlignStyle="MdcTextAlignStyle.Right"
+               ItemValidation="@MdcItemValidation.DefaultToFirst" />
+
+    <MdcSelect Label="Right Aligned (repeated)"
+               @bind-Value="@kittenBreed3"
+               Items="stringItems"
+               SelectInputStyle="MdcSelectInputStyle.Outlined"
+               TextAlignStyle="MdcTextAlignStyle.Right"
+               ItemValidation="@MdcItemValidation.DefaultToFirst" />
+
+</p>
 <p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed3 ?? "")</strong>'</p>
 
-<MdcSelect Label="Colour Enumeration" @bind-Value="@colour" Items="colourItems"></MdcSelect>
+<p>
+    <MdcSelect Label="Colour Enumeration" @bind-Value="@colour" Items="colourItems"></MdcSelect>
+    <MdcSelect Label="Colour Enumeration (repeated)" @bind-Value="@colour" Items="colourItems"></MdcSelect>
+</p>
 <p style="margin-bottom: 4em;">Selected: '<strong>@(colour.ToString())</strong>'</p>
 
 

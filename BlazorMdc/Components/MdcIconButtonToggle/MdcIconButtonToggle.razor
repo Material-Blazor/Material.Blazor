@@ -1,7 +1,7 @@
 ﻿@namespace BlazorMdc
 
 @inherits MdcInputComponentBase<bool>
-@implements IDisposable
+@*@implements IDisposable*@
 
 @inject IJSRuntime jsRuntime
 
@@ -9,7 +9,7 @@
 <button @ref="@elementReference"
         class="@ClassMapper.ToString()"
         style="@StyleMapper.ToString()"
-        @onclick="@OnClick"
+        @onclick="@OnLocalClickAsync"
         @onmousedown="@OnMouseDown"
         @onkeydown="@OnKeyDown"
         @ontouchstart="@OnTouchStart"
@@ -38,86 +38,41 @@
     [Parameter] public EventCallback OnTouchStart { get; set; }
 
 
-    private DotNetObjectReference<MdcIconButtonToggle> objectReference;
     private ElementReference elementReference;
-    private bool cachedIsOpen;
 
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
 
+        MyClassMapper();
+
+        HasValueSetter = true;
+    }
+
+    private void MyClassMapper() =>
         ClassMapper
+            .Clear()
+            .Get(() => Class)
             .Add("mdc-icon-button")
-            .AddIf("mdc-card__action mdc-card__action--icon", () => (Card != null));
-
-        objectReference = DotNetObjectReference.Create(this);
-
-        cachedIsOpen = ReportingValue;
-
-        HasOnRenderValueSetter = true;
-    }
+            .AddIf("mdc-card__action mdc-card__action--icon", () => (Card != null))
+            .AddIf("mdc-icon-button--on", () => Value);
 
 
-    public void Dispose()
+    public async Task OnLocalClickAsync()
     {
-        objectReference?.Dispose();
+        ReportingValue = !ReportingValue;
+        await OnClick.InvokeAsync(ReportingValue).ConfigureAwait(false);
     }
 
 
-    protected override async Task OnParametersSetAsync()
+    protected override void ValueSetter(bool value)
     {
-        if (Value != cachedIsOpen)
-        {
-            if (Value)
-            {
-                await TurnOnAsync();
-            }
-            else
-            {
-                await TurnOffAsync();
-            }
-        }
+        UnderlyingValue = value;
 
-        await base.OnParametersSetAsync();
+        InvokeAsync(async () => await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.setOn", elementReference, value));
     }
 
 
-    [JSInvokable("NotifyOnAsync")]
-    public async Task NotifyOnAsync(bool on)
-    {
-        cachedIsOpen = on;
-        ReportingValue = on;
-        await Task.CompletedTask;
-    }
-
-
-    public async Task TurnOnAsync()
-    {
-        await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.turnOn", elementReference);
-    }
-
-
-    public async Task TurnOffAsync()
-    {
-        await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.turnOff", elementReference);
-    }
-
-
-    protected override async Task OnRenderValueSetter(bool value)
-    {
-        if (value)
-        {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.turnOn", elementReference);
-        }
-        else
-        {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.turnOff", elementReference);
-        }
-
-        //UnderlyingValue = value;
-    }
-
-
-    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.init", elementReference, objectReference, Value);
+    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.init", elementReference);
 }

@@ -170,7 +170,7 @@
         if (toggleOn)
         {
             var x = await menu.ToggleAsync();
-            await iconButtonToggle.TurnOffAsync();
+            toggleOn = false;
             StateHasChanged();
         }
     }

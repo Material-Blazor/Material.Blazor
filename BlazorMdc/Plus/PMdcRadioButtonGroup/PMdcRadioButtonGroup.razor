@@ -7,32 +7,31 @@
 @inject IJSRuntime jsRuntime
 
 
-    <div class="@ClassMapper.ToString()"
-         style="@StyleMapper.ToString()">
+<div class="@ClassMapper.ToString()"
+        style="@StyleMapper.ToString()">
 
-        @foreach (var item in ItemArray)
+    @foreach (var item in ItemArray)
+    {
+        @if (Vertical && isNotFirst)
         {
-            @if (Vertical && isNotFirst)
-            {
-                <div class="bmdc-mdc-radio-break"></div>
-            }
-
-            isNotFirst = true;
-
-            <MdcRadioButton @key="@item"
-                            Value="@localValue"
-                            ValueChanged="@valueChanged"
-                            ValueExpression="valueExpression"
-                            TItem="TItem"
-                            ButtonContainerClass="@item.ButtonContainerClass"
-                            Disabled="@item.Disabled"
-                            EnableTouchWrapper="@EnableTouchWrapper"
-                            Label="@item.Label"
-                            CheckedValue="@item.SelectedValue"
-                            RadioGroupName="@radioGroupName" />
+            <div class="bmdc-mdc-radio-break"></div>
         }
 
-    </div>
+        isNotFirst = true;
+
+        <MdcRadioButton @key="@item"
+                        @bind-Value="@ReportingValue"
+                        TItem="TItem"
+                        ButtonContainerClass="@item.ButtonContainerClass"
+                        Disabled="@item.Disabled"
+                        EnableTouchWrapper="@EnableTouchWrapper"
+                        Label="@item.Label"
+                        CheckedValue="@item.SelectedValue"
+                        RadioGroupName="@radioGroupName" />
+    }
+
+</div>
+
 
 @code {
     //
@@ -44,16 +43,13 @@
     [Parameter] public MdcItemValidation? ItemValidation { get; set; }
     [Parameter] public bool EnableTouchWrapper { get; set; } = true;
 
+
     private bool isNotFirst = false;
-
     private string radioGroupName = Utilities.GenerateCssElementSelector();
-
     private MdcListElement<TItem>[] ItemArray;
 
-    private TItem localValue;
 
-
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         base.OnInitialized();
 
@@ -61,21 +57,15 @@
 
         MdcItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidationRadioButtonGroup(ItemValidation);
 
-        localValue = Value;
-
         ForceShouldRenderToTrue = true;
 
-        await ValidateItemListAsync(ItemArray, appliedItemValidation, valueChanged);
+        ReportingValue = ValidateItemList(ItemArray, appliedItemValidation);
     }
 
 
-    private async Task valueChanged(TItem newValue)
+    private async Task ValidationValueSetter(TItem value)
     {
-        localValue = newValue;
-        ReportingValue = newValue;
+        ReportingValue = value;
         await Task.CompletedTask;
     }
-
-    private System.Linq.Expressions.Expression<System.Func<TItem>> valueExpression => (() => localValue);
-
 }

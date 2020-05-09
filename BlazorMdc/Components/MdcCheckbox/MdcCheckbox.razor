@@ -6,7 +6,6 @@
 
 
 <div @ref="@formReference" class="@formFieldClass">
-
     <div class="mdc-touch-target-wrapper">
         <div @ref="@elementReference"
              class="@ClassMapper.ToString()"
@@ -34,16 +33,16 @@
 
 
 @code {
-        //
-        //  2020-04-01  Mark Stega
-        //              Changed to use class & style mappers
-        //
-        //  2020-04-13  Mark Stega
-        //              Moved ClassMapper to constructor
-        //
-        [Parameter] public string Label { get; set; }
-        [Parameter] public EventCallback OnChange { get; set; }
-        [Parameter] public bool IsFormField { get; set; }
+    //
+    //  2020-04-01  Mark Stega
+    //              Changed to use class & style mappers
+    //
+    //  2020-04-13  Mark Stega
+    //              Moved ClassMapper to constructor
+    //
+    [Parameter] public string Label { get; set; }
+    [Parameter] public EventCallback OnChange { get; set; }
+    [Parameter] public bool IsFormField { get; set; }
 
 
     private string formFieldClass => (IsFormField || !(string.IsNullOrWhiteSpace(Label))) ? "mdc-form-field" : "";
@@ -58,28 +57,16 @@
         ClassMapper.Add("mdc-checkbox mdc-checkbox--touch")
             .AddIf("mdc-checkbox--disabled", () => Disabled);
 
-        HasOnRenderValueSetter = true;
-    }
-
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
+        HasValueSetter = true;
     }
 
 
-    private async Task<bool> ClickCheckbox(bool value)
-    {
-        await Task.CompletedTask;
-        return value;
-    }
-
-
-    protected override async Task OnRenderValueSetter(bool value)
+    protected override void ValueSetter(bool value)
     {
         UnderlyingValue = value;
-        await jsRuntime.InvokeAsync<object>("BlazorMdc.checkBox.setChecked", elementReference, formReference, value, IsFormField);
+        AllowNextRender = true;
     }
 
 
-    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.checkBox.setChecked", elementReference, formReference, ReportingValue, IsFormField);
+    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.checkBox.init", elementReference, formReference, ReportingValue, IsFormField);
 }

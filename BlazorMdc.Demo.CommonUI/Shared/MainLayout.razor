@@ -3,6 +3,7 @@
 @inherits LayoutComponentBase
 
 @inject IPMdcAnimatedNavigationManager PMdcAnimatedNavigationManager
+@inject DemoConfiguration DemoConfiguration
 
 <PMdcToastAnchor />
 
@@ -46,7 +47,7 @@
                   NavIcon="menu"
                   NavAriaLabel="Menu"
                   ScrollTarget="#main-content"
-                  TopAppBarType="MdcTopAppBarType.Short"
+                  TopAppBarType="@DemoConfiguration.TopAppBarType"
                   Class="mdc-top-app-bar--short-has-action-item">
         <div id="account-target">
             <MdcIconButtonToggle @bind-Value="PMdcAnimatedNavigationManager.Configuration.ApplyAnimation" IconOn="@MdcIcons.Icon__directions_run" IconOff="@MdcIcons.Icon__airline_seat_individual_suite" />
