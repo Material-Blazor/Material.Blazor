@@ -35,9 +35,9 @@ steps:
     configuration: $(buildConfiguration)
     versioningScheme: 'off'
 
-# - task: PublishBuildArtifacts@1
-#   displayName: 'Publishing Build Artifacts...'
-# 
+- task: PublishBuildArtifacts@1
+  displayName: 'Publishing Build Artifacts...'
+
 # - task: NuGetCommand@2
 #   inputs:
 #     command: 'push'
