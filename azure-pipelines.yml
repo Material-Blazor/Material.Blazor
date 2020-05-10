@@ -16,6 +16,7 @@ variables:
   buildConfiguration: 'Release_Server'
 
 steps:
+
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
@@ -25,11 +26,17 @@ steps:
 - script: dotnet build --configuration $(buildConfiguration) $(project)
   displayName: 'Building $(project) in $(buildConfiguration) mode...'
 
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
+  displayName: 'Generating Nuget Package... '
   inputs:
-    command: 'pack'
-    packagesToPack: ($project)
+    command: pack
+    arguments: --no-build
+    packagesToPack: $(project)
+    configuration: $(buildConfiguration)
     versioningScheme: 'off'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publishing Build Artifacts...'
 
 - task: NuGetCommand@2
   inputs:
