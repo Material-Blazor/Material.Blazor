@@ -10,11 +10,11 @@
 
 <p>Selection disallowing blanks: '<strong>@(selection1 ?? "")</strong>'</p>
 
-<PMdcAutocomplete @bind-Value="@selection1" Label="Blanks disallowed" TextInputStyle="MdcTextInputStyle.Filled" SelectItems="@fruits" />
+<PMdcAutocomplete @bind-Value="@selection1" Label="Blanks disallowed" TextInputStyle="MdcTextInputStyle.Filled" SelectItems="@fruits" LeadingIcon="@("alarm")" />
 
 <p style="margin-top: 4em;">Selection dallowing blanks: '<strong>@(selection2 ?? "")</strong>'</p>
 
-<PMdcAutocomplete @bind-Value="@selection2" Label="Blanks allowed" TextInputStyle="MdcTextInputStyle.Outlined" SelectItems="@fruits" AllowBlankResult="true" />
+<PMdcAutocomplete @bind-Value="@selection2" Label="Blanks allowed" TextInputStyle="MdcTextInputStyle.Outlined" SelectItems="@fruits" AllowBlankResult="true" TrailingIcon="@(new MdcFAIcon("fa-dragon"))" />
 
 <p style="margin-top: 4em;">Selection ignoring whitespace for comparison: '<strong>@(selection3 ?? "")</strong>'</p>
 
