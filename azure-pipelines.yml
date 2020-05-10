@@ -19,29 +19,29 @@ steps:
 
 - task: NuGetToolInstaller@1
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
-
-- script: dotnet build --configuration $(buildConfiguration) $(project)
-  displayName: 'Building $(project) in $(buildConfiguration) mode...'
-
-- task: DotNetCoreCLI@2
-  displayName: 'Generating Nuget Package... '
-  inputs:
-    command: pack
-    arguments: --no-build
-    packagesToPack: $(project)
-    configuration: $(buildConfiguration)
-    versioningScheme: 'off'
-
-- task: PublishBuildArtifacts@1
-  displayName: 'Publishing Build Artifacts...'
-
-- task: NuGetCommand@2
-  inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-    nuGetFeedType: 'internal'
-    publishVstsFeed: 'dc5d7cad-69a1-4747-8ac6-6bdbeef82bea'
-    allowPackageConflicts: true
+# - task: NuGetCommand@2
+#   inputs:
+#     restoreSolution: '$(solution)'# 
+# 
+# - script: dotnet build --configuration $(buildConfiguration) $(project)
+#   displayName: 'Building $(project) in $(buildConfiguration) mode...'
+# 
+# - task: DotNetCoreCLI@2
+#   displayName: 'Generating Nuget Package... '
+#   inputs:
+#     command: pack
+#     arguments: --no-build
+#     packagesToPack: $(project)
+#     configuration: $(buildConfiguration)
+#     versioningScheme: 'off'
+# 
+# - task: PublishBuildArtifacts@1
+#   displayName: 'Publishing Build Artifacts...'
+# 
+# - task: NuGetCommand@2
+#   inputs:
+#     command: 'push'
+#     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+#     nuGetFeedType: 'internal'
+#     publishVstsFeed: 'dc5d7cad-69a1-4747-8ac6-6bdbeef82bea'
+#     allowPackageConflicts: true
