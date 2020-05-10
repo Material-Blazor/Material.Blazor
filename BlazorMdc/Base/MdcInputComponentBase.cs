@@ -22,7 +22,7 @@ namespace BlazorMdc
         protected bool _instantiate = false;
         protected bool _hasInstantiated = false;
 
-        [CascadingParameter] EditContext CascadedEditContext { get; set; }
+        [CascadingParameter] private EditContext CascadedEditContext { get; set; }
 
         [CascadingParameter] private MdcDialog Dialog { get; set; }
 

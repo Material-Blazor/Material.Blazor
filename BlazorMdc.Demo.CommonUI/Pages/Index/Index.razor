@@ -23,10 +23,17 @@
 
 <p><MdcCheckbox @bind-Value="@PMdcAnimatedNavigationManager.Configuration.ApplyAnimation" Label="Apply animiations to page navigation" /></p>
 
+<p><MdcIcon Icon="iconText" /></p>
+<p><MdcIcon Icon="@(new MdcMCIcon("alarm", MdcMCIconTheme.TwoTone))" /></p>
+<p><MdcIcon Icon="@(new MdcFAIcon("fa-atom", MdcFAIconStyle.Solid, MdcFAIconRelativeSize.Large))" /></p>
+
 <p style="margin-top: 80rem;">&nbsp;</p>
 
 
 @code {
+    string iconText = "edit";
+    MdcMCIcon mcIcon = "edit";
+
     IEnumerable<MdcListElement<MdcTopAppBarType>> appBarTypes => from c in (MdcTopAppBarType[])Enum.GetValues(typeof(MdcTopAppBarType))
                                                                  select new MdcListElement<MdcTopAppBarType>
                                                                  {
