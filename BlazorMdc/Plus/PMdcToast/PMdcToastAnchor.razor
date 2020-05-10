@@ -20,7 +20,7 @@
                 @if (toast.Settings.AppliedShowIcon)
                 {
                     <div class="bmdc-toast-icon">
-                        <i class="material-icons" aria-hidden="true">@toast.Settings.AppliedIcon</i>
+                        <MdcIcon Icon="@toast.Settings.AppliedIcon" AriaHidden="true" />
                     </div>
                 }
 
@@ -32,7 +32,7 @@
 
                         @if (toast.Settings.CloseMethod != PMdcToastCloseMethod.Timeout)
                         {
-                            <MdcButton OnClick="@(() => CloseToast(toastId))" LeadingIcon="@MdcIcons.Icon__close" ButtonStyle="@MdcButtonStyle.Text" Class="bmdc-toast-close-button" />
+                            <MdcButton OnClick="@(() => CloseToast(toastId))" LeadingIcon="@MdcIcons.MI__close" ButtonStyle="@MdcButtonStyle.Text" Class="bmdc-toast-close-button" />
                         }
                     </div>
 

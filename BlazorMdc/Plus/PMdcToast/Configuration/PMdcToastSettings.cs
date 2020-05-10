@@ -20,7 +20,7 @@ namespace BlazorMdc
 
         public bool? ShowIcon { get; set; }
 
-        public string? Icon { get; set; }
+        public MdcGenericIcon? Icon { get; set; }
 
         public PMdcToastCloseMethod? CloseMethod { get; set; }
 
@@ -37,9 +37,9 @@ namespace BlazorMdc
 
         internal string AppliedCssClass => CssClass ?? "";
 
-        internal bool AppliedShowIcon => !string.IsNullOrWhiteSpace(AppliedIcon) && ((ShowIcon is null) ? Configuration?.ShowIcons ?? PMdcToastServiceConfiguration.DefaultShowIcons : (bool)ShowIcon);
+        internal bool AppliedShowIcon => (AppliedIcon != null) && ((ShowIcon is null) ? Configuration?.ShowIcons ?? PMdcToastServiceConfiguration.DefaultShowIcons : (bool)ShowIcon);
 
-        internal string AppliedIcon => (Icon is null) ? ConfigIcon : (string)Icon;
+        internal MdcGenericIcon AppliedIcon => (Icon is null) ? ConfigIcon : (MdcGenericIcon)Icon;
 
         internal PMdcToastCloseMethod AppliedCloseMethod => (CloseMethod is null) ? Configuration?.CloseMethod ?? PMdcToastServiceConfiguration.DefaultCloseMethod : (PMdcToastCloseMethod)CloseMethod;
 
@@ -61,12 +61,12 @@ namespace BlazorMdc
             _ => throw new InvalidOperationException(),
         };
 
-        internal string ConfigIcon => Level switch
+        internal MdcGenericIcon ConfigIcon => Level switch
         {
-            PMdcToastLevel.Error => Configuration?.ErrorIcon ?? PMdcToastServiceConfiguration.DefaultErrorIcon,
-            PMdcToastLevel.Info => Configuration?.InfoIcon ?? PMdcToastServiceConfiguration.DefaultInfoIcon,
-            PMdcToastLevel.Success => Configuration?.SuccessIcon ?? PMdcToastServiceConfiguration.DefaultSuccessIcon,
-            PMdcToastLevel.Warning => Configuration?.WarningIcon ?? PMdcToastServiceConfiguration.DefaultWarningIcon,
+            PMdcToastLevel.Error => Configuration?.ErrorIcon ?? Configuration.DefaultErrorIcon,
+            PMdcToastLevel.Info => Configuration?.InfoIcon ?? Configuration.DefaultInfoIcon,
+            PMdcToastLevel.Success => Configuration?.SuccessIcon ?? Configuration.DefaultSuccessIcon,
+            PMdcToastLevel.Warning => Configuration?.WarningIcon ?? Configuration.DefaultWarningIcon,
             _ => throw new InvalidOperationException(),
         };
 

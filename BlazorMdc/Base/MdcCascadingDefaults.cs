@@ -9,12 +9,12 @@ namespace BlazorMdc
         public string TextFieldCssClass { get; set; } = "";
 
         // Mdc Components
-        public MdcIconFoundry IconFoundry { get; set; } = MdcIconFoundry.MaterialComponents;
+        public MdcIconFoundry IconFoundry { get; set; } = MdcIconFoundry.MaterialIcons;
         internal MdcIconFoundry AppliedIconFoundry(MdcIconFoundry? iconFoundry = null) => (iconFoundry is null) ? IconFoundry : (MdcIconFoundry)iconFoundry;
 
 
-        public MdcMCIconTheme MCIconTheme { get; set; } = MdcMCIconTheme.Filled;
-        internal MdcMCIconTheme AppliedMCIconTheme(MdcMCIconTheme? iconTheme = null) => (iconTheme is null) ? MCIconTheme : (MdcMCIconTheme)iconTheme;
+        public MdcMIIconTheme MCIconTheme { get; set; } = MdcMIIconTheme.Filled;
+        internal MdcMIIconTheme AppliedMCIconTheme(MdcMIIconTheme? iconTheme = null) => (iconTheme is null) ? MCIconTheme : (MdcMIIconTheme)iconTheme;
 
 
         public MdcFAIconStyle FAIconStyle { get; set; } = MdcFAIconStyle.Solid;

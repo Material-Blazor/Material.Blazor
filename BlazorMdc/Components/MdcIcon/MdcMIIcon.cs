@@ -2,9 +2,9 @@
 
 namespace BlazorMdc
 {
-    public class MdcMCIcon : IMdcIconBase
+    public class MdcMIIcon : IMdcIconBase
     {
-        public MdcMCIconTheme? IconTheme { get; set; } = MdcMCIconTheme.Filled;
+        public MdcMIIconTheme? IconTheme { get; set; } = MdcMIIconTheme.Filled;
 
         public string Class
         {
@@ -12,11 +12,11 @@ namespace BlazorMdc
             {
                 return "material-icons" + CascadingDefaults.AppliedMCIconTheme(IconTheme) switch
                 {
-                    MdcMCIconTheme.Filled => "",
-                    MdcMCIconTheme.Outlined => "-outlined",
-                    MdcMCIconTheme.Round => "-round",
-                    MdcMCIconTheme.TwoTone => "-two-tone",
-                    MdcMCIconTheme.Sharp => "-sharp",
+                    MdcMIIconTheme.Filled => "",
+                    MdcMIIconTheme.Outlined => "-outlined",
+                    MdcMIIconTheme.Round => "-round",
+                    MdcMIIconTheme.TwoTone => "-two-tone",
+                    MdcMIIconTheme.Sharp => "-sharp",
                     _ => throw new System.NotImplementedException(),
                 };
             }
@@ -28,12 +28,12 @@ namespace BlazorMdc
 
         [CascadingParameter] protected MdcCascadingDefaults CascadingDefaults { get; set; } = new MdcCascadingDefaults();
 
-        public static implicit operator MdcMCIcon(string iconName) => new MdcMCIcon(iconName);
+        public static implicit operator MdcMIIcon(string iconName) => new MdcMIIcon(iconName);
 
 
-        public MdcMCIcon() { }
+        public MdcMIIcon() { }
 
-        public MdcMCIcon(string iconName, MdcMCIconTheme? iconTheme = null)
+        public MdcMIIcon(string iconName, MdcMIIconTheme? iconTheme = null)
         {
             IconName = iconName;
             IconTheme = iconTheme;

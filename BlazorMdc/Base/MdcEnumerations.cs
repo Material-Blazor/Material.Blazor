@@ -5,8 +5,8 @@
 namespace BlazorMdc
 {
     // Mdc components
-    public enum MdcIconFoundry { MaterialComponents, FontAwesome }
-    public enum MdcMCIconTheme { Filled, Outlined, Round, TwoTone, Sharp }
+    public enum MdcIconFoundry { MaterialIcons, FontAwesome }
+    public enum MdcMIIconTheme { Filled, Outlined, Round, TwoTone, Sharp }
     public enum MdcFAIconStyle { Solid, Regular, Light, Duotone, Brands }
     public enum MdcFAIconRelativeSize { Regular, ExtraSmall, Small, Large, TwoTimes, ThreeTimes, FiveTimes, SevenTimes, TenTimes }
 

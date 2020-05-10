@@ -12,7 +12,7 @@ namespace BlazorMdc
         public string IconName { get; set; }
 
 
-        public MdcMCIcon MCIcon { get; set; }
+        public MdcMIIcon MIIcon { get; set; }
 
         public MdcFAIcon FAIcon { get; set; }
 
@@ -21,7 +21,7 @@ namespace BlazorMdc
 
 
         public static implicit operator MdcGenericIcon(string iconName) => new MdcGenericIcon(iconName);
-        public static implicit operator MdcGenericIcon(MdcMCIcon mcIcon) => new MdcGenericIcon(mcIcon);
+        public static implicit operator MdcGenericIcon(MdcMIIcon mcIcon) => new MdcGenericIcon(mcIcon);
         public static implicit operator MdcGenericIcon(MdcFAIcon faIcon) => new MdcGenericIcon(faIcon);
 
 
@@ -30,9 +30,9 @@ namespace BlazorMdc
         {
             get
             {
-                if (MCIcon != null)
+                if (MIIcon != null)
                 {
-                    return MCIcon;
+                    return MIIcon;
                 }
 
                 if (FAIcon != null)
@@ -42,7 +42,7 @@ namespace BlazorMdc
 
                 return CascadingDefaults.IconFoundry switch
                 {
-                    MdcIconFoundry.MaterialComponents => new MdcMCIcon(IconName),
+                    MdcIconFoundry.MaterialIcons => new MdcMIIcon(IconName),
                     MdcIconFoundry.FontAwesome => new MdcFAIcon(IconName),
                     _ => throw new NotImplementedException(),
                 };
@@ -58,9 +58,9 @@ namespace BlazorMdc
             IconName = iconName;
         }
 
-        public MdcGenericIcon(MdcMCIcon mcIcon)
+        public MdcGenericIcon(MdcMIIcon mcIcon)
         {
-            MCIcon = mcIcon;
+            MIIcon = mcIcon;
         }
 
         public MdcGenericIcon(MdcFAIcon faIcon)
