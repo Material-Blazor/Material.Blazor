@@ -19,10 +19,10 @@ steps:
 
 - task: NuGetToolInstaller@1
 
-# - task: NuGetCommand@2
-#   inputs:
-#     restoreSolution: '$(solution)'# 
-# 
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'# 
+ 
 # - script: dotnet build --configuration $(buildConfiguration) $(project)
 #   displayName: 'Building $(project) in $(buildConfiguration) mode...'
 # 
