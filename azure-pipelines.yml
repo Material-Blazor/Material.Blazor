@@ -38,6 +38,8 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Publishing Build Artifacts...'
 
+- script: if exist (Build.ArtifactStagingDirectory)/*.nupkg del /q (Build.ArtifactStagingDirectory)/*.nupkg
+
 - task: NuGetCommand@2
   inputs:
     command: 'push'
