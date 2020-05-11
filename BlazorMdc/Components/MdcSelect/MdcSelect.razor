@@ -42,11 +42,11 @@
 
                 if (item.SelectedValue.Equals(Value))
                 {
-                    <li @key="@item" class="mdc-list-item mdc-list-item--selected @alignClass" data-value="@item.Label" aria-selected="true" role="option" @onclick="@(_ => OnItemClickAsync(dv))"><span class="mdc-list-item__text">@item.Label</span></li>
+                    <li @key="@item" class="mdc-list-item mdc-list-item--selected @alignClass" data-value="@item.Label" aria-selected="true" role="option" @onclick="@(_ => OnItemClickAsync(dv))"><span class="mdc-list-item__text bmdc-full-width">@item.Label</span></li>
                 }
                 else
                 {
-                    <li @key="@item" class="mdc-list-item @alignClass" data-value="@item.Label" aria-selected="false" role="option" @onclick=@(_ => OnItemClickAsync(dv))><span class="mdc-list-item__text">@item.Label</span></li>
+                    <li @key="@item" class="mdc-list-item @alignClass" data-value="@item.Label" aria-selected="false" role="option" @onclick=@(_ => OnItemClickAsync(dv))><span class="mdc-list-item__text bmdc-full-width">@item.Label</span></li>
                 }
             }
         </ul>
