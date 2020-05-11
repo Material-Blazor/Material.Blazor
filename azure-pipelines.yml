@@ -38,7 +38,12 @@ steps:
 - task: PublishBuildArtifacts@1
   displayName: 'Publishing Build Artifacts...'
 
+- script: dir (Build.ArtifactStagingDirectory)
+
 - script: if exist (Build.ArtifactStagingDirectory)/*.nupkg del /q (Build.ArtifactStagingDirectory)/*.nupkg
+  displayname: 'Deleting existing NuGet package'
+
+- script: dir (Build.ArtifactStagingDirectory)
 
 - task: NuGetCommand@2
   inputs:
