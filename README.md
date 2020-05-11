@@ -73,7 +73,7 @@ and at the end of `<body>`:
     <script src="https://unpkg.com/material-components-web@5.1.0/dist/material-components-web.min.js"></script>
     <script src="_content/BlazorMdc/blazormdc.min.js"></script>
 ```
-See the [Blazor WebAssembly demo index file](BlazorMdc.Demo.WebServer/Pages/index_wasm.cshtml) for an example.
+See the [Blazor WebAssembly demo index file](BlazorMdc.Demo.WebServer/Pages/index_webassembly.cshtml) for an example.
 
 ## Demonstration website
 
@@ -154,6 +154,7 @@ The following are extra or 'plus' components that extend the strict, core Materi
 | :------ | :---- |
 | `MdcCascadingDefaults` | Allows you to set up defaults such as button style (filled, outlined etc), text area style (filled or outlined) |
 | `MdcTypography` | Constants for standard Material Theme typography. |
+|` MdcGenericIcon` | Working with `MdcMIIcon` for [Material Icons](https://material.io/resources/icons/?style=baseline) and `MdcFAIcon` for [Font Awesome](https://fontawesome.com/icons?d=gallery) icons, `MdcGenericIcon` provides a general purpose means to pass icons to Mdc and PMdc components. Your default icon foundry can be set in `MdcCascadingDefaults` (which itself defaults to Material Icons) and then you can pass string names for the icon of your choice. For Font Awesome icons, omit the preceding "fas/r/l/d" because this is set in `MdcFAIcon.IconStyle` and in `MdcCascadingDefaults.FAIconStyle`. Font Awesome relative icon size and Material Icons theme are also similarly parameterized. If you want to use an icon from your non-default foundry or if you want to change the theme, style or relative size, then instead of passing a string as the icon name you can pass either an `MdcMIIcon` or an `MdcFAIcon` to a component's `Icon`, `LeadingIcon` or `TrailineIcon` parameter. BlazorMdc expects you to include Material Icons in your project (these are necessary for drop down arrows and so forth, but Font Awesome icons are discretionary depending upon your project's requirement - you do however need to use Font Awesome version 5. |
 
 ## Future Development
 
