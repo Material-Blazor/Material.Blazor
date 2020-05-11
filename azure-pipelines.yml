@@ -41,7 +41,7 @@ steps:
 - script: dir (Build.ArtifactStagingDirectory)
 
 - script: if exist (Build.ArtifactStagingDirectory)/*.nupkg del /q (Build.ArtifactStagingDirectory)/*.nupkg
-  displayname: 'Deleting existing NuGet package'
+  displayName: 'Deleting existing NuGet package'
 
 - script: dir (Build.ArtifactStagingDirectory)
 
