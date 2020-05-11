@@ -53,14 +53,14 @@
         <p><MdcCheckbox @bind-Value="@disableInput" Label="Disable confirmation input field" /></p>
     </Body>
     <UnconfirmedButtons>
-        <MdcButton Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
-        <MdcButton Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
-        <MdcButton Label="Bosh" LeadingIcon="sports_handball" Disabled="true" DialogAction="bosh" ButtonStyle="MdcButtonStyle.ContainedRaised" />
+        <MdcButton Label="Bish" LeadingIcon="@("alarm_on")" DialogAction="bish" />
+        <MdcButton Label="Bash" LeadingIcon="@("accessibility_new")" DialogAction="bash" />
+        <MdcButton Label="Bosh" LeadingIcon="@("sports_handball")" Disabled="true" DialogAction="bosh" ButtonStyle="MdcButtonStyle.ContainedRaised" />
     </UnconfirmedButtons>
     <ConfirmedButtons>
-        <MdcButton Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
-        <MdcButton Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
-        <MdcButton Label="Bosh" LeadingIcon="sports_handball" DialogAction="bosh" ButtonStyle="MdcButtonStyle.ContainedRaised" />
+        <MdcButton Label="Bish" LeadingIcon="@("alarm_on")" DialogAction="bish" />
+        <MdcButton Label="Bash" LeadingIcon="@("accessibility_new")" DialogAction="bash" />
+        <MdcButton Label="Bosh" LeadingIcon="@("sports_handball")" DialogAction="bosh" ButtonStyle="MdcButtonStyle.ContainedRaised" />
     </ConfirmedButtons>
 </PMdcConfirmationDialog>
 

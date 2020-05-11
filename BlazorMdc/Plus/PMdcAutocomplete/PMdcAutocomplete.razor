@@ -13,11 +13,7 @@
          class="@ClassMapper.ToString()"
          style="@StyleMapper.ToString()">
 
-        @*@LeadingIconMarkup*@
-        @if (LeadingIcon != null)
-        {
-            <MdcIcon Icon="@LeadingIcon" Class="mdc-text-field__icon mdc-text-field__icon--leading" />
-        }
+        @LeadingIconMarkup
 
         <input type="text"
                id="@Id"
@@ -29,11 +25,7 @@
                @oninput="OnInput"
                @onchange="OnTextFocusOutAsync">
 
-        @*@TrailingIconMarkup*@
-        @if (TrailingIcon != null)
-        {
-            <MdcIcon Icon="@TrailingIcon" Class="mdc-text-field__icon mdc-text-field__icon--trailing" />
-        }
+        @TrailingIconMarkup
 
         @if (appliedInputStyle == MdcTextInputStyle.Outlined)
         {
@@ -118,8 +110,8 @@
     private string labelId = Utilities.GenerateCssElementSelector();
     private string floatingLabelClass = "";
     private string alignClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
-    //private MarkupString LeadingIconMarkup;
-    //private MarkupString TrailingIconMarkup;
+    private MarkupString LeadingIconMarkup;
+    private MarkupString TrailingIconMarkup;
 
 
     private SelectItem[] mySelectItems;
@@ -133,8 +125,10 @@
         base.OnInitialized();
 
         ClassMapper
-            .Add("mdc-text-field mdc-text-field--textarea")
-            .AddIf($"mdc-text--{appliedInputStyle.ToString().ToLower()}", () => (appliedInputStyle != MdcTextInputStyle.Outlined))
+            .Add($"mdc-text-field {FieldClass} {CascadingDefaults.TextFieldCssClass}")
+            .AddIf("mdc-text-field--outlined", () => appliedInputStyle == MdcTextInputStyle.Outlined)
+            .AddIf("mdc-text-field--fullwidth", () => appliedInputStyle == MdcTextInputStyle.FullWidth)
+            .AddIf("mdc-text-field--no-label", () => NoLabel)
             .AddIf("mdc-select--disabled", () => Disabled)
             .AddIf("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
             .AddIf("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
@@ -175,8 +169,8 @@
         // All values that are bound to HTML are set once at initialization and then left unchanged
         // because allowing Blazor to re-render conflicts with the Material Theme js rendering. This
         // results in the floating label jumping to the wrong place.
-        //LeadingIconMarkup = (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--leading\" tabindex=\"-1\" role=\"button\">{LeadingIcon}</i>");
-        //TrailingIconMarkup = (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"material-icons mdc-text-field__icon mdc-text-field__icon--trailing\" tabindex=\"-1\" role=\"button\">{TrailingIcon}</i>");
+        LeadingIconMarkup = (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"{LeadingIcon.Class} mdc-text-field__icon mdc-text-field__icon--leading\" tabindex=\"-1\" role=\"button\">{LeadingIcon.Text}</i>");
+        TrailingIconMarkup = (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"{TrailingIcon.Class} mdc-text-field__icon mdc-text-field__icon--trailing\" tabindex=\"-1\" role=\"button\">{TrailingIcon.Text}</i>");
 
 
         selectInfo = BuildSelectList(ReportingValue);

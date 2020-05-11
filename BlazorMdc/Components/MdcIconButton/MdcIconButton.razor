@@ -15,7 +15,7 @@
         disabled="@Disabled" 
         type="@Type">
     
-    @Icon
+    <i class="@Icon.Class">@Icon.Text</i>
 </button>
 
 
@@ -27,7 +27,7 @@
     [CascadingParameter] private MdcCard Card { get; set; }
 
 
-    [Parameter] public string Icon { get; set; }
+    [Parameter] public MdcGenericIcon Icon { get; set; }
     [Parameter] public string Type { get; set; } = "button";
     [Parameter] public EventCallback OnClick { get; set; }
     [Parameter] public EventCallback OnMouseDown { get; set; }
@@ -51,7 +51,7 @@
         base.OnInitialized();
 
         ClassMapper
-            .Add("mdc-icon-button material-icons")
+            .Add($"mdc-icon-button")
             .AddIf("mdc-card__action mdc-card__action--icon", () => (Card != null));
     }
 }

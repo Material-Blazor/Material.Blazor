@@ -10,9 +10,10 @@
     @if (!(LeadingIcon is null))
     {
         <span class="mdc-list-item__graphic mdc-menu__selection-group-icon">
-            <i class="material-icons">@LeadingIcon </i>
+            <i class="@LeadingIcon.Class">@LeadingIcon.Text</i>
         </span>
     }
+
     <span class="mdc-list-item__text">@Text</span>
 </li>
 
@@ -34,7 +35,7 @@
 #nullable enable annotations
     [Parameter] public string Text { get; set; }
     [Parameter] public string NavigationReference { get; set; } = "";
-    [Parameter] public string? LeadingIcon { get; set; }
+    [Parameter] public MdcGenericIcon? LeadingIcon { get; set; }
     [Parameter] public bool IsSelectionItem { get; set; }
     [Parameter] public EventCallback<string> OnClick { get; set; }
 #nullable restore annotations
