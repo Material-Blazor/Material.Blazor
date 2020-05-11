@@ -93,8 +93,9 @@
     [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
     [Parameter] public string Label { get; set; } = "";
     [Parameter] public bool NoLabel { get; set; } = false;
-    [Parameter] public MdcGenericIcon? LeadingIcon { get; set; }
-    [Parameter] public MdcGenericIcon? TrailingIcon { get; set; }
+    [Parameter] public string? LeadingIcon { get; set; }
+    [Parameter] public string? TrailingIcon { get; set; }
+    [Parameter] public ulong? IconFoundrySpecification { get; set; }
     [Parameter] public bool FormNoValidate { get; set; } = false;
     [Parameter] public bool IgnoreWhitespace { get; set; } = false;
     [Parameter] public bool AllowBlankResult { get; set; } = false;
@@ -166,11 +167,11 @@
             floatingLabelClass = "mdc-floating-label--float-above";
         }
 
-        // All values that are bound to HTML are set once at initialization and then left unchanged
-        // because allowing Blazor to re-render conflicts with the Material Theme js rendering. This
-        // results in the floating label jumping to the wrong place.
-        LeadingIconMarkup = (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"{LeadingIcon.Class} mdc-text-field__icon mdc-text-field__icon--leading\" tabindex=\"-1\" role=\"button\">{LeadingIcon.Text}</i>");
-        TrailingIconMarkup = (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"{TrailingIcon.Class} mdc-text-field__icon mdc-text-field__icon--trailing\" tabindex=\"-1\" role=\"button\">{TrailingIcon.Text}</i>");
+        var leading = new Icon((string)LeadingIcon, IconFoundrySpecification);
+        var trailing = new Icon((string)TrailingIcon, IconFoundrySpecification);
+
+        LeadingIconMarkup = (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"{leading.Class} mdc-text-field__icon mdc-text-field__icon--leading\" tabindex=\"-1\" role=\"button\">{leading.Text}</i>");
+        TrailingIconMarkup = (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"{trailing.Class} mdc-text-field__icon mdc-text-field__icon--trailing\" tabindex=\"-1\" role=\"button\">{trailing.Text}</i>");
 
 
         selectInfo = BuildSelectList(ReportingValue);

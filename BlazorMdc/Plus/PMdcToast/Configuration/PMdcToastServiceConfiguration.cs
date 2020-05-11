@@ -9,10 +9,11 @@ namespace BlazorMdc
         public const bool DefaultShowIcons = true;
         public const PMdcToastCloseMethod DefaultCloseMethod = PMdcToastCloseMethod.TimeoutAndCloseButton;
         public const int DefaultTimeout = 3000; 
-        public readonly MdcMIIcon DefaultInfoIcon = MdcIcons.MI__notifications;
-        public readonly MdcMIIcon DefaultSuccessIcon = MdcIcons.MI__done;
-        public readonly MdcMIIcon DefaultWarningIcon = MdcIcons.MI__warning;
-        public readonly MdcMIIcon DefaultErrorIcon = MdcIcons.MI__error_outline;
+        public readonly string DefaultInfoIcon = MdcIcons.MI__notifications;
+        public readonly string DefaultSuccessIcon = MdcIcons.MI__done;
+        public readonly string DefaultWarningIcon = MdcIcons.MI__warning;
+        public readonly string DefaultErrorIcon = MdcIcons.MI__error_outline;
+        public readonly ulong DefaultIconFoundry = (ulong)MdcIconFoundry.MaterialIcons | (ulong)MdcMIIconTheme.Filled;
 
 
         internal event Action OnUpdate;
@@ -198,11 +199,11 @@ namespace BlazorMdc
         }
 
 
-        private MdcGenericIcon _infoIcon;
+        private string _infoIcon;
         /// <summary>
         /// Icon for an Info toast.
         /// </summary>
-        public MdcGenericIcon InfoIcon
+        public string InfoIcon
         {
             get => _infoIcon;
             set
@@ -216,11 +217,11 @@ namespace BlazorMdc
         }
 
 
-        private MdcGenericIcon _successIcon;
+        private string _successIcon;
         /// <summary>
         /// Icon for an Success toast.
         /// </summary>
-        public MdcGenericIcon SuccessIcon
+        public string SuccessIcon
         {
             get => _successIcon;
             set
@@ -234,11 +235,11 @@ namespace BlazorMdc
         }
 
 
-        private MdcGenericIcon _warningIcon;
+        private string _warningIcon;
         /// <summary>
         /// Icon for an waWrning toast.
         /// </summary>
-        public MdcGenericIcon WarningIcon
+        public string WarningIcon
         {
             get => _warningIcon;
             set
@@ -252,11 +253,11 @@ namespace BlazorMdc
         }
 
 
-        private MdcGenericIcon _errorIcon;
+        private string _errorIcon;
         /// <summary>
         /// Icon for an Error toast.
         /// </summary>
-        public MdcGenericIcon ErrorIcon
+        public string ErrorIcon
         {
             get => _errorIcon;
             set

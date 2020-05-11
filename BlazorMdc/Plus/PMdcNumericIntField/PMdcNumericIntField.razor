@@ -3,21 +3,22 @@
 @inherits MdcInputComponentBase<int>
 
 
-<PMdcNumericDoubleField  @bind-Value="@dblVal"
-                         Class="@Class"
-                         Style="@Style"
-                         TextInputStyle="TextInputStyle"
-                         Label="@Label"
-                         NoLabel="@NoLabel"
-                         LeadingIcon="@LeadingIcon"
-                         TrailingIcon="@TrailingIcon"
-                         NumericFormat="@NumericFormat"
-                         NumericSingularFormat="@NumericSingularFormat"
-                         Magnitude="@Magnitude"
-                         Min="@Min"
-                         Max="@Max"
-                         DecimalPlaces="0"
-                         Disabled=@Disabled />
+<PMdcNumericDoubleField @bind-Value="@dblVal"
+                        Class="@Class"
+                        Style="@Style"
+                        TextInputStyle="TextInputStyle"
+                        Label="@Label"
+                        NoLabel="@NoLabel"
+                        LeadingIcon="@LeadingIcon"
+                        TrailingIcon="@TrailingIcon"
+                        IconFoundrySpecification="@IconFoundrySpecification"
+                        NumericFormat="@NumericFormat"
+                        NumericSingularFormat="@NumericSingularFormat"
+                        Magnitude="@Magnitude"
+                        Min="@Min"
+                        Max="@Max"
+                        DecimalPlaces="0"
+                        Disabled=@Disabled />
 
 
 @code {
@@ -25,8 +26,9 @@
     [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
     [Parameter] public string Label { get; set; }
     [Parameter] public bool NoLabel { get; set; } = false;
-    [Parameter] public MdcGenericIcon? LeadingIcon { get; set; }
-    [Parameter] public MdcGenericIcon? TrailingIcon { get; set; }
+    [Parameter] public string? LeadingIcon { get; set; }
+    [Parameter] public string? TrailingIcon { get; set; }
+    [Parameter] public ulong? IconFoundrySpecification { get; set; }
     [Parameter] public string NumericFormat { get; set; }
     [Parameter] public string? NumericSingularFormat { get; set; }
     [Parameter] public MdcNumericInputMagnitude Magnitude { get; set; } = MdcNumericInputMagnitude.Normal;

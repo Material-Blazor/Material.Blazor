@@ -4,12 +4,12 @@ using System.Text;
 
 namespace BlazorMdc
 {
-    public interface IMdcIconBase
+    internal interface IIconBase
     {
         public string Class { get; }
 
         public string Text { get; }
 
-        public string IconName { get; set; }
+        public string IconName { get; }
     }
 }

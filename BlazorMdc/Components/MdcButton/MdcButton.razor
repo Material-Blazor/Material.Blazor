@@ -44,8 +44,9 @@
     [Parameter] public string Type { get; set; } = "button";
     [Parameter] public string Label { get; set; }
     [Parameter] public string TabIndex { get; set; } = "0";
-    [Parameter] public MdcGenericIcon? LeadingIcon { get; set; }
-    [Parameter] public MdcGenericIcon? TrailingIcon { get; set; }
+    [Parameter] public string? LeadingIcon { get; set; }
+    [Parameter] public string? TrailingIcon { get; set; }
+    [Parameter] public ulong? IconFoundrySpecification { get; set; }
     [Parameter] public EventCallback OnClick { get; set; }
     [Parameter] public EventCallback OnMouseDown { get; set; }
     [Parameter] public EventCallback OnKeyDown { get; set; }
@@ -55,8 +56,32 @@
 
 
     private ElementReference elementReference;
-    private MarkupString LeadingIconMarkup => (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"{LeadingIcon.Class} mdc-button__icon\" aria-hidden=\"true\">{LeadingIcon.Text}</i>");
-    private MarkupString TrailingIconMarkup => (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"{TrailingIcon.Class} mdc-button__icon\" aria-hidden=\"true\">{TrailingIcon.Text}</i>");
+
+
+    private MarkupString LeadingIconMarkup //=> (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"{LeadingIcon.Class} mdc-button__icon\" aria-hidden=\"true\">{LeadingIcon.Text}</i>");
+    {
+        get
+        {
+            if (LeadingIcon is null) return (MarkupString)"";
+
+            var icon = new Icon(LeadingIcon, IconFoundrySpecification);
+
+            return (MarkupString)$"<i class=\"{icon.Class} mdc-button__icon\" aria-hidden=\"true\">{icon.Text}</i>";
+        }
+    }
+
+
+    private MarkupString TrailingIconMarkup //=> (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"{TrailingIcon.Class} mdc-button__icon\" aria-hidden=\"true\">{TrailingIcon.Text}</i>");
+    {
+        get
+        {
+            if (TrailingIcon is null) return (MarkupString)"";
+
+            var icon = new Icon(TrailingIcon, IconFoundrySpecification);
+
+            return (MarkupString)$"<i class=\"{icon.Class} mdc-button__icon\" aria-hidden=\"true\">{icon.Text}</i>";
+        }
+    }
 
 
     protected override void OnInitialized()

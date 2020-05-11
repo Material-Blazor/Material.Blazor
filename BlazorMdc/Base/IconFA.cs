@@ -1,24 +1,22 @@
 ﻿using Microsoft.AspNetCore.Components;
+using System;
 
 namespace BlazorMdc
 {
-    public class MdcFAIcon : IMdcIconBase
+    internal class IconFA : IIconBase
     {
-        public MdcFAIconStyle? IconStyle { get; set; }
-
-        public MdcFAIconRelativeSize? IconRelativeSize { get; set; }
-
-
         public string Class => $"fa{IconStyleText} {IconNameText}";
 
         public string Text => "";
 
-        public string IconName { get; set; }
+        public string IconName { get; }
+
+        public MdcFAIconStyle? IconStyle { get; }
+
+        public MdcFAIconRelativeSize? IconRelativeSize { get; }
+
 
         [CascadingParameter] protected MdcCascadingDefaults CascadingDefaults { get; set; } = new MdcCascadingDefaults();
-
-
-        public static implicit operator MdcFAIcon(string iconName) => new MdcFAIcon(iconName);
 
 
         private string IconStyleText => CascadingDefaults.AppliedFAIconStyle(IconStyle).ToString().Substring(0, 1).ToLower();
@@ -45,13 +43,24 @@ namespace BlazorMdc
 
 
 
-        public MdcFAIcon() { }
-
-        public MdcFAIcon(string iconName, MdcFAIconStyle? iconStyle = null, MdcFAIconRelativeSize? iconRelativeSize = null)
+        public IconFA(string iconName, ulong? foundrySpecification = null)
         {
             IconName = iconName;
-            IconStyle = iconStyle;
-            IconRelativeSize = iconRelativeSize;
+
+            if (foundrySpecification is null) return;
+
+            var localSpec = (ulong)foundrySpecification & (IconMasks.IconFoundry | IconMasks.FAIconStyle | IconMasks.FAIconRelativeSize);
+
+            if (localSpec != foundrySpecification)
+            {
+                throw new ArgumentException("Invalid foundrySpecification provided for a Fornt Awesome Icon");
+            }
+
+            var style = localSpec & IconMasks.FAIconStyle;
+            var relativeSize = localSpec & IconMasks.FAIconRelativeSize;
+
+            if (style > 0) IconStyle = (MdcFAIconStyle)style;
+            if (relativeSize > 0) IconRelativeSize = (MdcFAIconRelativeSize)relativeSize;
         }
     }
 }

@@ -62,8 +62,9 @@
     [Parameter] public string Label { get; set; } = "";
     [Parameter] public string TabIndex { get; set; } = "";
     [Parameter] public bool NoLabel { get; set; } = false;
-    [Parameter] public MdcGenericIcon? LeadingIcon { get; set; }
-    [Parameter] public MdcGenericIcon? TrailingIcon { get; set; }
+    [Parameter] public string? LeadingIcon { get; set; }
+    [Parameter] public string? TrailingIcon { get; set; }
+    [Parameter] public ulong? IconFoundrySpecification { get; set; }
     [Parameter] public bool FormNoValidate { get; set; } = false;
     [Parameter] public EventCallback<ChangeEventArgs> OnInput { get; set; }
     [Parameter] public EventCallback<MouseEventArgs> OnMouseOver { get; set; }
@@ -104,11 +105,11 @@
     {
         base.OnParametersSet();
 
-        
-        LeadingIconMarkup = (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"{LeadingIcon.Class} mdc-text-field__icon mdc-text-field__icon--leading\" tabindex=\"-1\" role=\"button\">{LeadingIcon.Text}</i>");
+        var leading = new Icon((string)LeadingIcon, IconFoundrySpecification);
+        var trailing = new Icon((string)TrailingIcon, IconFoundrySpecification);
 
-        TrailingIconMarkup = (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"{TrailingIcon.Class} mdc-text-field__icon mdc-text-field__icon--trailing\" tabindex=\"-1\" role=\"button\">{TrailingIcon.Text}</i>");
-
+        LeadingIconMarkup = (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"{leading.Class} mdc-text-field__icon mdc-text-field__icon--leading\" tabindex=\"-1\" role=\"button\">{leading.Text}</i>");
+        TrailingIconMarkup = (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"{trailing.Class} mdc-text-field__icon mdc-text-field__icon--trailing\" tabindex=\"-1\" role=\"button\">{trailing.Text}</i>");
         floatingLabelClass = string.IsNullOrEmpty(ReportingValue) ? "" : "mdc-floating-label--float-above";
     }
 

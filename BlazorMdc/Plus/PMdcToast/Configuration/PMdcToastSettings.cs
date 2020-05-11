@@ -20,7 +20,7 @@ namespace BlazorMdc
 
         public bool? ShowIcon { get; set; }
 
-        public MdcGenericIcon? Icon { get; set; }
+        public string Icon { get; set; }
 
         public PMdcToastCloseMethod? CloseMethod { get; set; }
 
@@ -39,7 +39,7 @@ namespace BlazorMdc
 
         internal bool AppliedShowIcon => (AppliedIcon != null) && ((ShowIcon is null) ? Configuration?.ShowIcons ?? PMdcToastServiceConfiguration.DefaultShowIcons : (bool)ShowIcon);
 
-        internal MdcGenericIcon AppliedIcon => (Icon is null) ? ConfigIcon : (MdcGenericIcon)Icon;
+        internal string AppliedIcon => (Icon is null) ? ConfigIcon : Icon;
 
         internal PMdcToastCloseMethod AppliedCloseMethod => (CloseMethod is null) ? Configuration?.CloseMethod ?? PMdcToastServiceConfiguration.DefaultCloseMethod : (PMdcToastCloseMethod)CloseMethod;
 
@@ -61,7 +61,7 @@ namespace BlazorMdc
             _ => throw new InvalidOperationException(),
         };
 
-        internal MdcGenericIcon ConfigIcon => Level switch
+        internal string ConfigIcon => Level switch
         {
             PMdcToastLevel.Error => Configuration?.ErrorIcon ?? Configuration.DefaultErrorIcon,
             PMdcToastLevel.Info => Configuration?.InfoIcon ?? Configuration.DefaultInfoIcon,

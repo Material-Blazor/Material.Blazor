@@ -36,7 +36,8 @@ namespace BlazorMdc
             string heading = null,
             PMdcToastCloseMethod? closeMethod = null,
             string cssClass = null,
-            MdcGenericIcon icon = null,
+            string icon = null,
+            ulong? iconFoundrySpecification = null,
             bool? showIcon = null,
             uint? timeout = null)
 #nullable restore annotations

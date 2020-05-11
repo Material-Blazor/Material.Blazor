@@ -14,6 +14,7 @@
               NoLabel="@NoLabel"
               LeadingIcon="@LeadingIcon"
               TrailingIcon="@TrailingIcon"
+              IconFoundrySpecification="@IconFoundrySpecification"
               TextInputStyle="@TextInputStyle"
               TextAlignStyle="@MdcTextAlignStyle.Right"
               OnFocusIn="@OnFocusIn"
@@ -27,8 +28,9 @@
     [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
     [Parameter] public string Label { get; set; }
     [Parameter] public bool NoLabel { get; set; } = false;
-    [Parameter] public MdcGenericIcon? LeadingIcon { get; set; }
-    [Parameter] public MdcGenericIcon? TrailingIcon { get; set; }
+    [Parameter] public string? LeadingIcon { get; set; }
+    [Parameter] public string? TrailingIcon { get; set; }
+    [Parameter] public ulong? IconFoundrySpecification { get; set; }
     [Parameter] public bool FormNoValidate { get; set; } = false;
     [Parameter] public string NumericFormat { get; set; }
     [Parameter] public string? NumericSingularFormat { get; set; }

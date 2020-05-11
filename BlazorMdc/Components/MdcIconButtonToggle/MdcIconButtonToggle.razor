@@ -16,8 +16,8 @@
         disabled="@Disabled"
         type="@Type">
 
-    <i class="@IconOn.Class mdc-icon-button__icon mdc-icon-button__icon--on bmdc-dp-menu__icon-button">@IconOn.Text</i>
-    <i class="@IconOff.Class mdc-icon-button__icon bmdc-dp-menu__icon-button">@IconOff.Text</i>
+    <i class="@on.Class mdc-icon-button__icon mdc-icon-button__icon--on bmdc-dp-menu__icon-button">@on.Text</i>
+    <i class="@off.Class mdc-icon-button__icon bmdc-dp-menu__icon-button">@off.Text</i>
 </button>
 
 
@@ -29,8 +29,9 @@
     [CascadingParameter] private MdcCard Card { get; set; }
 
 
-    [Parameter] public MdcGenericIcon IconOn { get; set; }
-    [Parameter] public MdcGenericIcon IconOff { get; set; }
+    [Parameter] public string IconOn { get; set; }
+    [Parameter] public string IconOff { get; set; }
+    [Parameter] public ulong? IconFoundrySpecification { get; set; }
     [Parameter] public string Type { get; set; } = "button";
     [Parameter] public EventCallback OnClick { get; set; }
     [Parameter] public EventCallback OnMouseDown { get; set; }
@@ -39,6 +40,8 @@
 
 
     private ElementReference elementReference;
+    private Icon on => new Icon(IconOn, IconFoundrySpecification);
+    private Icon off => new Icon(IconOff, IconFoundrySpecification);
 
 
     protected override void OnInitialized()

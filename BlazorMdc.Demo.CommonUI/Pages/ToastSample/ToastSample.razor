@@ -103,14 +103,27 @@
                                                                               Label = c.ToString()
                                                                           };
 
-
-    MdcGenericIcon icon;
-    MdcListElement<MdcGenericIcon>[] iconItems = new MdcListElement<MdcGenericIcon>[]
+    class IconDefinition
     {
-        new MdcListElement<MdcGenericIcon> { SelectedValue = "", Label = "Default" },
-        new MdcListElement<MdcGenericIcon> { SelectedValue = MdcIcons.MI__directions_run, Label = MdcIcons.MI__directions_run },
-        new MdcListElement<MdcGenericIcon> { SelectedValue = MdcIcons.MI__3d_rotation, Label = MdcIcons.MI__3d_rotation },
-        new MdcListElement<MdcGenericIcon> { SelectedValue = new MdcFAIcon("fa-ambulance", iconRelativeSize: MdcFAIconRelativeSize.Regular), Label = "fa-ambulance" }
+        public readonly string Icon;
+        public readonly ulong? FoundrySpecification;
+
+        public static implicit operator IconDefinition(string icon) => new IconDefinition(icon);
+
+        public IconDefinition(string icon, ulong? foundrySpecification = null)
+        {
+            Icon = icon;
+            FoundrySpecification = foundrySpecification;
+        }
+    }
+
+    IconDefinition icon;
+    MdcListElement<IconDefinition>[] iconItems = new MdcListElement<IconDefinition>[]
+    {
+        new MdcListElement<IconDefinition> { SelectedValue = "", Label = "Default" },
+        new MdcListElement<IconDefinition> { SelectedValue = "directions_run", Label = "directions_run" },
+        new MdcListElement<IconDefinition> { SelectedValue = "3d_rotation", Label = "3d_rotation" },
+        new MdcListElement<IconDefinition> { SelectedValue = new IconDefinition("fa-ambulance", (ulong)MdcIconFoundry.FontAwesome | (ulong)MdcFAIconRelativeSize.Regular), Label = "fa-ambulance" }
     };
 
 
@@ -184,7 +197,8 @@
             heading: appliedHeading,
             level: level,
             message: message,
-            icon: (icon.MIIcon is null & icon.FAIcon is null) ? null : icon,
+            icon: icon.Icon,
+            iconFoundrySpecification: icon.FoundrySpecification,
             showIcon: appliedShowIcon,
             timeout: appliedTimeout);
     }

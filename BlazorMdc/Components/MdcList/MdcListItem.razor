@@ -7,10 +7,10 @@
     class="@ClassMapper.ToString()"
     style="@StyleMapper.ToString()">
 
-    @if (!(LeadingIcon is null))
+    @if (LeadingIcon != null)
     {
         <span class="mdc-list-item__graphic mdc-menu__selection-group-icon">
-            <i class="@LeadingIcon.Class">@LeadingIcon.Text</i>
+            <i class="@icon.Class">@icon.Text</i>
         </span>
     }
 
@@ -35,10 +35,14 @@
 #nullable enable annotations
     [Parameter] public string Text { get; set; }
     [Parameter] public string NavigationReference { get; set; } = "";
-    [Parameter] public MdcGenericIcon? LeadingIcon { get; set; }
+    [Parameter] public string? LeadingIcon { get; set; }
+    [Parameter] public ulong? IconFoundrySpecification { get; set; }
     [Parameter] public bool IsSelectionItem { get; set; }
     [Parameter] public EventCallback<string> OnClick { get; set; }
 #nullable restore annotations
+
+
+    private Icon icon => new Icon(LeadingIcon, IconFoundrySpecification);
 
 
     protected override void OnInitialized()

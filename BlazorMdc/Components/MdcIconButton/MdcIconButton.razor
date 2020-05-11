@@ -15,7 +15,7 @@
         disabled="@Disabled" 
         type="@Type">
     
-    <i class="@Icon.Class">@Icon.Text</i>
+    <i class="@myIcon.Class">@myIcon.Text</i>
 </button>
 
 
@@ -27,7 +27,8 @@
     [CascadingParameter] private MdcCard Card { get; set; }
 
 
-    [Parameter] public MdcGenericIcon Icon { get; set; }
+    [Parameter] public string Icon { get; set; }
+    [Parameter] public ulong? IconFoundrySpecification { get; set; }
     [Parameter] public string Type { get; set; } = "button";
     [Parameter] public EventCallback OnClick { get; set; }
     [Parameter] public EventCallback OnMouseDown { get; set; }
@@ -36,6 +37,7 @@
 
 
     private ElementReference elementReference;
+    private Icon myIcon => new Icon(Icon, IconFoundrySpecification);
 
 
     protected override async Task OnAfterRenderAsync(bool firstRender)

@@ -31,16 +31,16 @@ See <code>ButtonSample.razor</code> for sources.
 </p>
 
 <p>
-    <MdcButton Label="Leading icon" LeadingIcon="@("album")" OnClick="@LogMessage" />
+    <MdcButton Label="Leading icon" LeadingIcon="album" OnClick="@LogMessage" />
 </p>
 
 <p>
-    <MdcButton Label="Trailing icon" TrailingIcon="@("speed")" OnClick="@LogMessage" />
+    <MdcButton Label="Trailing icon" TrailingIcon="speed" OnClick="@LogMessage" />
 </p>
 
 <p>
     <MdcButton Label="Trailing icon with style of 'margin-left: 5em;'"
-               TrailingIcon="@("speed")"
+               TrailingIcon="speed"
                ButtonStyle="MdcButtonStyle.ContainedRaised"
                OnClick="@LogMessage"
                Style="margin-left: 5em;" />
@@ -51,7 +51,7 @@ See <code>ButtonSample.razor</code> for sources.
 </p>
 
 <p>
-    A font awesome icon button -> <MdcIconButton Icon="@(new MdcFAIcon("fa-frog"))" OnClick="@LogMessage" />
+    A font awesome icon button -> <MdcIconButton Icon="fa-frog" IconFoundrySpecification="(ulong)MdcIconFoundry.FontAwesome" OnClick="@LogMessage" />
 </p>
 
 <div style="padding: 1rem; background-color: lightgray;">
@@ -61,7 +61,7 @@ See <code>ButtonSample.razor</code> for sources.
 
     <p><MdcIconButtonToggle @bind-Value="@commonBool" IconOn="@MdcIcons.MI__directions_run" IconOff="@MdcIcons.MI__airline_seat_individual_suite" /></p>
 
-    <p><MdcIconButtonToggle @bind-Value="@commonBool" IconOn="@(new MdcFAIcon("fa-dog"))" IconOff="@(new MdcFAIcon("fa-cat"))" /></p>
+    <p><MdcIconButtonToggle @bind-Value="@commonBool" IconOn="fa-dog" IconOff="fa-cat" IconFoundrySpecification="(ulong)MdcIconFoundry.FontAwesome" /></p>
 
     <p>@commonBool</p>
 </div>
