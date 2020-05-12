@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BlazorMdc
 {
-    public interface IMdcIconBase
+    public interface IMdcIcon
     {
         public string Class { get; }
 

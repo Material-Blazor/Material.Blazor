@@ -5,18 +5,10 @@
 namespace BlazorMdc
 {
     // Mdc components
-    public enum MdcIconFoundryName : ulong { MaterialIcons = 0x0, FontAwesome = 0x1 }
-    public enum MdcIconMITheme : ulong { Filled = 0x1 * 0b100, Outlined = 0x2 * 0b100, Round = 0x3 * 0b100, TwoTone = 0x4 * 0b100, Sharp = 0x5 * 0b100 }
-    public enum MdcIconFAStyle : ulong { Solid = 0x1 * 0b100000, Regular = 0x2 * 0b100000, Light = 0x3 * 0b100000, Duotone = 0x4 * 0b100000, Brands = 0x5 * 0b100000 }
-    public enum MdcIconFARelativeSize : ulong { Regular = 0x1 * 0b100000000, ExtraSmall = 0x2 * 0b100000000, Small = 0x3 * 0b100000000, Large = 0x4 * 0b100000000, TwoTimes = 0x5 * 0b100000000, ThreeTimes = 0x6 * 0b100000000, FiveTimes = 0x7 * 0b100000000, SevenTimes = 0x8 * 0b100000000, TenTimes = 0x9 * 0b100000000 }
-
-    internal static class IconMasks
-    {
-        public const ulong IconFoundry = 0b11;
-        public const ulong MIIconTheme = 0b11100;
-        public const ulong FAIconStyle = 0b11100000;
-        public const ulong FAIconRelativeSize = 0b111100000000;
-    }
+    public enum MdcIconFoundryName : ulong { MaterialIcons, FontAwesome }
+    public enum MdcIconMITheme : ulong { Filled, Outlined, Round, TwoTone, Sharp }
+    public enum MdcIconFAStyle : ulong { Solid, Regular, Light, Duotone, Brands }
+    public enum MdcIconFARelativeSize : ulong { Regular, ExtraSmall, Small, Large, TwoTimes, ThreeTimes, FiveTimes, SevenTimes, TenTimes }
 
 
     public enum MdcButtonStyle { ContainedRaised, ContainedUnelevated, Outlined, Text }

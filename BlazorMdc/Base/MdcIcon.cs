@@ -3,7 +3,7 @@ using System;
 
 namespace BlazorMdc
 {
-    public class MdcIcon : IMdcIconBase
+    public class MdcIcon : IMdcIcon
     {
         public string Class => UnderlyingIcon.Class;
 
@@ -14,7 +14,7 @@ namespace BlazorMdc
         public bool RequiresWhiteFilter => UnderlyingIcon.RequiresWhiteFilter;
 
 
-        private readonly IMdcIconBase UnderlyingIcon;
+        private readonly IMdcIcon UnderlyingIcon;
 
 
         [CascadingParameter] protected MdcCascadingDefaults CascadingDefaults { get; set; } = new MdcCascadingDefaults();

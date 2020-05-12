@@ -3,7 +3,7 @@ using System;
 
 namespace BlazorMdc
 {
-    internal class IconMI : IMdcIconBase
+    internal class IconMI : IMdcIcon
     {
         public string Class
         {
