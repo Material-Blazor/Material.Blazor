@@ -11,6 +11,7 @@ pool:
 
 variables:
   solution: 'BlazorMdc.sln'
+  package: 'BlazorMdc'
   project: 'BlazorMdc/BlazorMdc.csproj'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release_Server'
@@ -21,33 +22,34 @@ steps:
 
 - task: NuGetCommand@2
   inputs:
-    restoreSolution: '$(solution)'# 
- 
-- script: dotnet build --configuration $(buildConfiguration) $(project)
+    restoreSolution: '$(solution)'
+
+- task: DotNetCoreCLI@2
   displayName: 'Building $(project) in $(buildConfiguration) mode...'
+  inputs:
+    command: 'build'
+    configuration: $(buildConfiguration)
+    projects: $(project)
 
 - task: DotNetCoreCLI@2
   displayName: 'Generating Nuget Package... '
   inputs:
     command: pack
-    arguments: --no-build
+    nobuild : true
     packagesToPack: $(project)
     configuration: $(buildConfiguration)
     versioningScheme: 'off'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publishing Build Artifacts...'
-
-- script: dir (Build.ArtifactStagingDirectory)
-
-- script: if exist (Build.ArtifactStagingDirectory)/*.nupkg del /q (Build.ArtifactStagingDirectory)/*.nupkg
-  displayName: 'Deleting existing NuGet package'
-
-- script: dir (Build.ArtifactStagingDirectory)
-
-- task: NuGetCommand@2
   inputs:
-    command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-    nuGetFeedType: 'internal'
-    allowPackageConflicts: true
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: $(package)
+    publishLocation: 'Container'
+
+#- task: NuGetCommand@2
+#  inputs:
+#    command: 'push'
+#    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+#    nuGetFeedType: 'internal'
+#    allowPackageConflicts: true
