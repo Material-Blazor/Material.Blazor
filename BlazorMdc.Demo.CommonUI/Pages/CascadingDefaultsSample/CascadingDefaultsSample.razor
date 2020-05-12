@@ -3,12 +3,12 @@
 @page "/cascadingdefaults"
 
 
-<h1 class="@MdcTypography.Heading4">Cascading defaults samples</h1>
+<h1 class="mdc-typography--headline4">Cascading defaults samples</h1>
 
 <p>Shows how MdcpCascadingDefaults can be used as a cascading value to set default component styles.</p>
 <p>See <code>CascadingDefaultsSample.razor</code> for sources.</p>
 
-<h3 class="@MdcTypography.Heading5" style="margin-top: 4rem;">BlazorMdc default styles</h3>
+<h3 class="mdc-typography--headline5" style="margin-top: 4rem;">BlazorMdc default styles</h3>
 <p><MdcSelect Label="Select" @bind-Value="@selectDefault" Items="items" ItemValidation="@MdcItemValidation.NoSelection" /></p>
 <p><PMdcDatePicker Label="Date" @bind-Value="dateDefault" MinDate="min" MaxDate="max" /></p>
 <p><MdcTextField Label="Text Field" @bind-Value="textFieldDefault" /></p>
@@ -16,7 +16,7 @@
 <p><MdcButton Label="Button" /></p>
 
 <CascadingValue Value="defaults1">
-    <h3 class="@MdcTypography.Heading5" style="margin-top: 4rem;">Variant 1</h3>
+    <h3 class="mdc-typography--headline5" style="margin-top: 4rem;">Variant 1</h3>
     <p><MdcSelect Label="Select" @bind-Value="@selectVariant1" Items="items" /></p>
     <p><PMdcDatePicker Label="Date" @bind-Value="dateVariant1" MinDate="min" MaxDate="max" /></p>
     <p><MdcTextField Label="Text Field" @bind-Value="textFieldVariant1" /></p>
@@ -25,7 +25,7 @@
 </CascadingValue>
 
 <CascadingValue Value="defaults2">
-    <h3 class="@MdcTypography.Heading5" style="margin-top: 4rem;">Variant 2</h3>
+    <h3 class="mdc-typography--headline5" style="margin-top: 4rem;">Variant 2</h3>
     <p><MdcSelect Label="Select" @bind-Value="@selectVariant2" Items="items" /></p>
     <p><PMdcDatePicker Label="Date" @bind-Value="dateVariant2" MinDate="min" MaxDate="max" /></p>
     <p><MdcTextField Label="Text Field" @bind-Value="textFieldVariant2" /></p>
@@ -34,7 +34,7 @@
 </CascadingValue>
 
 <CascadingValue Value="defaults3">
-    <h3 class="@MdcTypography.Heading5" style="margin-top: 4rem;">Variant 3</h3>
+    <h3 class="mdc-typography--headline5" style="margin-top: 4rem;">Variant 3</h3>
     <p><MdcSelect Label="Select" @bind-Value="@selectVariant3" Items="items" /></p>
     <p><PMdcDatePicker Label="Date" @bind-Value="dateVariant3" MinDate="min" MaxDate="max" /></p>
     <p><MdcTextField Label="Text Field" @bind-Value="textFieldVariant3" /></p>

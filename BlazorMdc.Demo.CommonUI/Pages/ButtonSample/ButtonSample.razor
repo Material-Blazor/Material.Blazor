@@ -2,7 +2,7 @@
 
 @page "/button"
 
-<h1 class="@MdcTypography.Heading4">Button samples</h1>
+<h1 class="mdc-typography--headline4">Button samples</h1>
 
 See <code>ButtonSample.razor</code> for sources.
 
@@ -47,7 +47,7 @@ See <code>ButtonSample.razor</code> for sources.
 </p>
 
 <p>
-    An icon button -> <MdcIconButton Icon="@MdcIcons.MI__access_alarms" OnClick="@LogMessage" />
+    An icon button -> <MdcIconButton Icon="access_alarms" OnClick="@LogMessage" />
 </p>
 
 <p>
@@ -59,7 +59,7 @@ See <code>ButtonSample.razor</code> for sources.
 
     <p><MdcCheckbox @bind-Value="@commonBool" Label="Checkbox and Toggle both bind to same value" /></p>
 
-    <p><MdcIconButtonToggle @bind-Value="@commonBool" IconOn="@MdcIcons.MI__directions_run" IconOff="@MdcIcons.MI__airline_seat_individual_suite" /></p>
+    <p><MdcIconButtonToggle @bind-Value="@commonBool" IconOn="directions_run" IconOff="airline_seat_individual_suite" /></p>
 
     <p><MdcIconButtonToggle @bind-Value="@commonBool" IconOn="fa-dog" IconOff="fa-cat" IconFoundrySpecification="(ulong)MdcIconFoundry.FontAwesome" /></p>
 

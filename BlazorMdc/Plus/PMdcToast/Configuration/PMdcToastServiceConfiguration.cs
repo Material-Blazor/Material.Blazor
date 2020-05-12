@@ -5,14 +5,14 @@ namespace BlazorMdc
     public class PMdcToastServiceConfiguration
     {
         public const PMdcToastPosition DefaultPosition = PMdcToastPosition.BottomRight;
-        public const string DefaultCloseButtonIcon = MdcIcons.MI__close;
+        public const string DefaultCloseButtonIcon = "close";
         public const bool DefaultShowIcons = true;
         public const PMdcToastCloseMethod DefaultCloseMethod = PMdcToastCloseMethod.TimeoutAndCloseButton;
         public const int DefaultTimeout = 3000; 
-        public readonly string DefaultInfoIcon = MdcIcons.MI__notifications;
-        public readonly string DefaultSuccessIcon = MdcIcons.MI__done;
-        public readonly string DefaultWarningIcon = MdcIcons.MI__warning;
-        public readonly string DefaultErrorIcon = MdcIcons.MI__error_outline;
+        public readonly string DefaultInfoIcon = "notifications";
+        public readonly string DefaultSuccessIcon = "done";
+        public readonly string DefaultWarningIcon = "warning";
+        public readonly string DefaultErrorIcon = "error_outline";
         public readonly ulong DefaultIconFoundry = (ulong)MdcIconFoundry.MaterialIcons | (ulong)MdcMIIconTheme.Filled;
 
 

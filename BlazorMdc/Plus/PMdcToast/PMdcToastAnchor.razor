@@ -32,7 +32,7 @@
 
                         @if (toast.Settings.CloseMethod != PMdcToastCloseMethod.Timeout)
                         {
-                            <MdcButton OnClick="@(() => CloseToast(toastId))" LeadingIcon="@MdcIcons.MI__close" ButtonStyle="@MdcButtonStyle.Text" Class="bmdc-toast-close-button" />
+                            <MdcButton OnClick="@(() => CloseToast(toastId))" LeadingIcon="close" ButtonStyle="@MdcButtonStyle.Text" Class="bmdc-toast-close-button" />
                         }
                     </div>
 
