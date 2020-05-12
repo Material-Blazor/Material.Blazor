@@ -14,7 +14,7 @@
 
 <p style="margin-top: 4em;">Selection dallowing blanks: '<strong>@(selection2 ?? "")</strong>'</p>
 
-<PMdcAutocomplete @bind-Value="@selection2" Label="Blanks allowed" TextInputStyle="MdcTextInputStyle.Outlined" SelectItems="@fruits" AllowBlankResult="true" TrailingIcon="fa-dragon" IconFoundrySpecification="(ulong)MdcIconFoundry.FontAwesome | (ulong)MdcFAIconRelativeSize.Large" />
+<PMdcAutocomplete @bind-Value="@selection2" Label="Blanks allowed" TextInputStyle="MdcTextInputStyle.Outlined" SelectItems="@fruits" AllowBlankResult="true" TrailingIcon="fa-dragon" IconFoundry="MdcIcon.FAFoundry(relativeSize: MdcIconFARelativeSize.Large)" />
 
 <p style="margin-top: 4em;">Selection ignoring whitespace for comparison: '<strong>@(selection3 ?? "")</strong>'</p>
 

@@ -36,13 +36,13 @@
     [Parameter] public string Text { get; set; }
     [Parameter] public string NavigationReference { get; set; } = "";
     [Parameter] public string? LeadingIcon { get; set; }
-    [Parameter] public ulong? IconFoundrySpecification { get; set; }
+    [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
     [Parameter] public bool IsSelectionItem { get; set; }
     [Parameter] public EventCallback<string> OnClick { get; set; }
 #nullable restore annotations
 
 
-    private Icon icon => new Icon(LeadingIcon, IconFoundrySpecification);
+    private MdcIcon icon => new MdcIcon(LeadingIcon, IconFoundry);
 
 
     protected override void OnInitialized()

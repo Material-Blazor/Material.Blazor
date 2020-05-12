@@ -95,7 +95,7 @@
     [Parameter] public bool NoLabel { get; set; } = false;
     [Parameter] public string? LeadingIcon { get; set; }
     [Parameter] public string? TrailingIcon { get; set; }
-    [Parameter] public ulong? IconFoundrySpecification { get; set; }
+    [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
     [Parameter] public bool FormNoValidate { get; set; } = false;
     [Parameter] public bool IgnoreWhitespace { get; set; } = false;
     [Parameter] public bool AllowBlankResult { get; set; } = false;
@@ -167,8 +167,8 @@
             floatingLabelClass = "mdc-floating-label--float-above";
         }
 
-        var leading = new Icon((string)LeadingIcon, IconFoundrySpecification);
-        var trailing = new Icon((string)TrailingIcon, IconFoundrySpecification);
+        var leading = new MdcIcon((string)LeadingIcon, IconFoundry);
+        var trailing = new MdcIcon((string)TrailingIcon, IconFoundry);
 
         LeadingIconMarkup = (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"{leading.Class} mdc-text-field__icon mdc-text-field__icon--leading\" tabindex=\"-1\" role=\"button\">{leading.Text}</i>");
         TrailingIconMarkup = (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"{trailing.Class} mdc-text-field__icon mdc-text-field__icon--trailing\" tabindex=\"-1\" role=\"button\">{trailing.Text}</i>");

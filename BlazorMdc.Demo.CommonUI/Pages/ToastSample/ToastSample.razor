@@ -105,16 +105,18 @@
 
     class IconDefinition
     {
+#nullable enable annotations
         public readonly string Icon;
-        public readonly ulong? FoundrySpecification;
+        public readonly IMdcIconFoundry? Foundry;
 
         public static implicit operator IconDefinition(string icon) => new IconDefinition(icon);
 
-        public IconDefinition(string icon, ulong? foundrySpecification = null)
+        public IconDefinition(string icon, IMdcIconFoundry? foundry = null)
         {
             Icon = icon;
-            FoundrySpecification = foundrySpecification;
+            Foundry = foundry;
         }
+#nullable restore annotations
     }
 
     IconDefinition icon;
@@ -123,7 +125,7 @@
         new MdcListElement<IconDefinition> { SelectedValue = "", Label = "Default" },
         new MdcListElement<IconDefinition> { SelectedValue = "directions_run", Label = "directions_run" },
         new MdcListElement<IconDefinition> { SelectedValue = "3d_rotation", Label = "3d_rotation" },
-        new MdcListElement<IconDefinition> { SelectedValue = new IconDefinition("fa-ambulance", (ulong)MdcIconFoundry.FontAwesome | (ulong)MdcFAIconRelativeSize.Regular), Label = "fa-ambulance" }
+        new MdcListElement<IconDefinition> { SelectedValue = new IconDefinition("fa-ambulance", MdcIcon.FAFoundry(relativeSize: MdcIconFARelativeSize.Large)), Label = "fa-ambulance" }
     };
 
 
@@ -198,7 +200,7 @@
             level: level,
             message: message,
             icon: icon.Icon,
-            iconFoundrySpecification: icon.FoundrySpecification,
+            iconFoundry: icon.Foundry,
             showIcon: appliedShowIcon,
             timeout: appliedTimeout);
     }

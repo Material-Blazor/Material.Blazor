@@ -46,7 +46,7 @@
     [Parameter] public string TabIndex { get; set; } = "0";
     [Parameter] public string? LeadingIcon { get; set; }
     [Parameter] public string? TrailingIcon { get; set; }
-    [Parameter] public ulong? IconFoundrySpecification { get; set; }
+    [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
     [Parameter] public EventCallback OnClick { get; set; }
     [Parameter] public EventCallback OnMouseDown { get; set; }
     [Parameter] public EventCallback OnKeyDown { get; set; }
@@ -64,7 +64,7 @@
         {
             if (LeadingIcon is null) return (MarkupString)"";
 
-            var icon = new Icon(LeadingIcon, IconFoundrySpecification);
+            var icon = new MdcIcon(LeadingIcon, IconFoundry);
 
             return (MarkupString)$"<i class=\"{icon.Class} mdc-button__icon\" aria-hidden=\"true\">{icon.Text}</i>";
         }
@@ -77,7 +77,7 @@
         {
             if (TrailingIcon is null) return (MarkupString)"";
 
-            var icon = new Icon(TrailingIcon, IconFoundrySpecification);
+            var icon = new MdcIcon(TrailingIcon, IconFoundry);
 
             return (MarkupString)$"<i class=\"{icon.Class} mdc-button__icon\" aria-hidden=\"true\">{icon.Text}</i>";
         }

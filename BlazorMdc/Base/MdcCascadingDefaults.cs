@@ -9,18 +9,18 @@ namespace BlazorMdc
         public string TextFieldCssClass { get; set; } = "";
 
         // Mdc Components
-        public MdcIconFoundry IconFoundry { get; set; } = MdcIconFoundry.MaterialIcons;
-        internal MdcIconFoundry AppliedIconFoundry(MdcIconFoundry? iconFoundry = null) => (iconFoundry is null) ? IconFoundry : (MdcIconFoundry)iconFoundry;
+        public MdcIconFoundryName IconFoundryName { get; set; } = MdcIconFoundryName.MaterialIcons;
+        internal MdcIconFoundryName AppliedIconFoundryName(MdcIconFoundryName? iconFoundryName = null) => (iconFoundryName is null) ? IconFoundryName : (MdcIconFoundryName)iconFoundryName;
 
 
-        public MdcMIIconTheme MCIconTheme { get; set; } = MdcMIIconTheme.Filled;
-        internal MdcMIIconTheme AppliedMCIconTheme(MdcMIIconTheme? iconTheme = null) => (iconTheme is null) ? MCIconTheme : (MdcMIIconTheme)iconTheme;
+        public MdcIconMITheme IconMITheme { get; set; } = MdcIconMITheme.Filled;
+        internal MdcIconMITheme AppliedIconMITheme(MdcIconMITheme? iconMITheme = null) => (iconMITheme is null) ? IconMITheme : (MdcIconMITheme)iconMITheme;
 
 
-        public MdcFAIconStyle FAIconStyle { get; set; } = MdcFAIconStyle.Solid;
-        public MdcFAIconRelativeSize FAIconRelativeSize { get; set; } = MdcFAIconRelativeSize.Regular;
-        internal MdcFAIconStyle AppliedFAIconStyle(MdcFAIconStyle? iconStyle = null) => (iconStyle is null) ? FAIconStyle : (MdcFAIconStyle)iconStyle;
-        internal MdcFAIconRelativeSize AppliedFAIconRelativeSize(MdcFAIconRelativeSize? iconRelativeSize = null) => (iconRelativeSize is null) ? FAIconRelativeSize : (MdcFAIconRelativeSize)iconRelativeSize;
+        public MdcIconFAStyle IconFAStyle { get; set; } = MdcIconFAStyle.Solid;
+        public MdcIconFARelativeSize IconFARelativeSize { get; set; } = MdcIconFARelativeSize.Regular;
+        internal MdcIconFAStyle AppliedIconFAStyle(MdcIconFAStyle? iconFAStyle = null) => (iconFAStyle is null) ? IconFAStyle : (MdcIconFAStyle)iconFAStyle;
+        internal MdcIconFARelativeSize AppliedIconFARelativeSize(MdcIconFARelativeSize? iconFARelativeSize = null) => (iconFARelativeSize is null) ? IconFARelativeSize : (MdcIconFARelativeSize)iconFARelativeSize;
 
 
         public MdcButtonStyle ButtonStyle { get; set; } = MdcButtonStyle.Text;

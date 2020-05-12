@@ -51,7 +51,7 @@ See <code>ButtonSample.razor</code> for sources.
 </p>
 
 <p>
-    A font awesome icon button -> <MdcIconButton Icon="fa-frog" IconFoundrySpecification="(ulong)MdcIconFoundry.FontAwesome" OnClick="@LogMessage" />
+    A font awesome icon button -> <MdcIconButton Icon="fa-frog" IconFoundry="MdcIcon.FAFoundry()" OnClick="@LogMessage" />
 </p>
 
 <div style="padding: 1rem; background-color: lightgray;">
@@ -61,7 +61,7 @@ See <code>ButtonSample.razor</code> for sources.
 
     <p><MdcIconButtonToggle @bind-Value="@commonBool" IconOn="directions_run" IconOff="airline_seat_individual_suite" /></p>
 
-    <p><MdcIconButtonToggle @bind-Value="@commonBool" IconOn="fa-dog" IconOff="fa-cat" IconFoundrySpecification="(ulong)MdcIconFoundry.FontAwesome" /></p>
+    <p><MdcIconButtonToggle @bind-Value="@commonBool" IconOn="fa-dog" IconOff="fa-cat" IconFoundry="MdcIcon.FAFoundry()" /></p>
 
     <p>@commonBool</p>
 </div>

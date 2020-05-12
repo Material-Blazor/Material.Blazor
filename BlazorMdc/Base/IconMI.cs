@@ -3,19 +3,19 @@ using System;
 
 namespace BlazorMdc
 {
-    internal class IconMI : IIconBase
+    internal class IconMI : IMdcIconBase
     {
         public string Class
         {
             get
             {
-                return "material-icons" + CascadingDefaults.AppliedMCIconTheme(IconTheme) switch
+                return "material-icons" + CascadingDefaults.AppliedIconMITheme(Theme) switch
                 {
-                    MdcMIIconTheme.Filled => "",
-                    MdcMIIconTheme.Outlined => "-outlined",
-                    MdcMIIconTheme.Round => "-round",
-                    MdcMIIconTheme.TwoTone => "-two-tone",
-                    MdcMIIconTheme.Sharp => "-sharp",
+                    MdcIconMITheme.Filled => "",
+                    MdcIconMITheme.Outlined => "-outlined",
+                    MdcIconMITheme.Round => "-round",
+                    MdcIconMITheme.TwoTone => "-two-tone",
+                    MdcIconMITheme.Sharp => "-sharp",
                     _ => throw new System.NotImplementedException(),
                 };
             }
@@ -25,28 +25,18 @@ namespace BlazorMdc
 
         public string IconName { get; }
 
-        public MdcMIIconTheme? IconTheme { get; }
+        public MdcIconMITheme? Theme { get; }
 
 
         [CascadingParameter] protected MdcCascadingDefaults CascadingDefaults { get; set; } = new MdcCascadingDefaults();
 
 
-        public IconMI(string iconName, ulong? foundrySpecification = null)
+#nullable enable annotations
+        public IconMI(string iconName, IconFoundryMI? foundry = null)
         {
             IconName = iconName;
-
-            if (foundrySpecification is null) return;
-
-            var localSpec = (ulong)foundrySpecification & (IconMasks.IconFoundry | IconMasks.MIIconTheme);
-
-            if (localSpec != foundrySpecification)
-            {
-                throw new ArgumentException("Invalid foundrySpecification provided for a Material Icon");
-            }
-
-            var theme = localSpec & IconMasks.MIIconTheme;
-
-            if (theme > 0) IconTheme = (MdcMIIconTheme)theme;
+            Theme = foundry?.Theme;
         }
+#nullable restore annotations
     }
 }
