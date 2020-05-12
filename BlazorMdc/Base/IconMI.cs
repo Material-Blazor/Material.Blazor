@@ -25,6 +25,8 @@ namespace BlazorMdc
 
         public string IconName { get; }
 
+        public bool RequiresWhiteFilter => CascadingDefaults.AppliedIconMITheme(Theme) == MdcIconMITheme.TwoTone;
+
         public MdcIconMITheme? Theme { get; }
 
 

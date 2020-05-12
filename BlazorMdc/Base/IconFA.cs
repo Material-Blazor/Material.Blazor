@@ -11,6 +11,8 @@ namespace BlazorMdc
 
         public string IconName { get; }
 
+        public bool RequiresWhiteFilter => false;
+
         public MdcIconFAStyle? Style { get; }
 
         public MdcIconFARelativeSize? RelativeSize { get; }

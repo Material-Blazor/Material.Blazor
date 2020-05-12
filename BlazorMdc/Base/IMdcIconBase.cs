@@ -11,5 +11,7 @@ namespace BlazorMdc
         public string Text { get; }
 
         public string IconName { get; }
+
+        public bool RequiresWhiteFilter { get; }
     }
 }

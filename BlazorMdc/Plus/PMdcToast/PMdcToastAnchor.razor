@@ -15,11 +15,13 @@
         {
             var toastId = toast.Id;
 
-            <div @key="toast" class="mdc-elevation--z5 bmdc-toast @toast.Settings.LevelClass @toast.Settings.StatusClass @toast.Settings.AppliedCssClass">
+            <div @key="toast" class="mdc-elevation--z5 bmdc-toast @toast.Settings.ContainerLevelClass @toast.Settings.StatusClass @toast.Settings.AppliedCssClass">
 
                 @if (toast.Settings.AppliedShowIcon)
                 {
-                    <div class="bmdc-toast-icon">
+                    var filterClass = toast.Settings.AppliedIcon.RequiresWhiteFilter ? toast.Settings.IconFilterClass : "";
+
+                    <div class="bmdc-toast-icon @filterClass">
                         <i class="@toast.Settings.AppliedIcon.Class" aria-hidden="true">@toast.Settings.AppliedIcon.Text</i>
                     </div>
                 }

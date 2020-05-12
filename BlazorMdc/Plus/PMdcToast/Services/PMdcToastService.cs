@@ -36,8 +36,7 @@ namespace BlazorMdc
             string heading = null,
             PMdcToastCloseMethod? closeMethod = null,
             string cssClass = null,
-            string icon = null,
-            IMdcIconFoundry? iconFoundry = null,
+            MdcIcon? icon = null,
             bool? showIcon = null,
             uint? timeout = null)
 #nullable restore annotations
@@ -49,7 +48,6 @@ namespace BlazorMdc
                 CloseMethod = closeMethod,
                 CssClass = cssClass,
                 Icon = icon,
-                IconFoundry = iconFoundry,
                 ShowIcon = showIcon,
                 Timeout = timeout
             };

@@ -11,6 +11,8 @@ namespace BlazorMdc
 
         public string IconName => UnderlyingIcon.IconName;
 
+        public bool RequiresWhiteFilter => UnderlyingIcon.RequiresWhiteFilter;
+
 
         private readonly IMdcIconBase UnderlyingIcon;
 
@@ -24,7 +26,7 @@ namespace BlazorMdc
 
 
 #nullable enable annotations
-        internal MdcIcon(string iconName, IMdcIconFoundry? foundry = null)
+        public MdcIcon(string iconName, IMdcIconFoundry? foundry = null)
         {
             MdcIconFoundryName iconFoundry = (foundry is null) ? CascadingDefaults.IconFoundryName : foundry.FoundryName;
 

@@ -20,9 +20,7 @@ namespace BlazorMdc
 
         public bool? ShowIcon { get; set; }
 
-        public MdcIcon Icon { get; set; }
-
-        public IMdcIconFoundry IconFoundry { get; set; }
+        public MdcIcon? Icon { get; set; }
 
         public PMdcToastCloseMethod? CloseMethod { get; set; }
 
@@ -80,6 +78,8 @@ namespace BlazorMdc
             _ => throw new InvalidOperationException(),
         };
 
-        internal string LevelClass => $"bmdc-toast__{Level.ToString().ToLower()}";
+        internal string ContainerLevelClass => $"bmdc-toast__{Level.ToString().ToLower()}";
+        
+        internal string IconFilterClass => $"{Level.ToString().ToLower()}-filter";
     }
 }
