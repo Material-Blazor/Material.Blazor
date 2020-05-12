@@ -1,0 +1,37 @@
+﻿@namespace BlazorMdc
+
+@inherits MdcComponentBase
+
+
+<div class="@ClassMapper.ToString()"
+     style="@StyleMapper.ToString()">
+
+    <div class="bmdc-shield--label @LabelClass"
+            style="@LabelStyle">
+        @Label
+    </div>
+
+    <div class="bmdc-shield--value @ValueClass"
+            style="@ValueStyle">
+        @Value
+    </div>
+</div>
+
+
+@code {
+    [Parameter] public string Label { get; set; }
+    [Parameter] public string Value { get; set; }
+    [Parameter] public string LabelClass { get; set; } = "";
+    [Parameter] public string LabelStyle { get; set; } = "";
+    [Parameter] public string ValueClass { get; set; } = "";
+    [Parameter] public string ValueStyle { get; set; } = "";
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        ClassMapper
+            .Add("bmdc-shield");
+    }
+}
