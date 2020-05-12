@@ -58,7 +58,7 @@ and at the end of `<body>`:
 ```html
     <script src="_content/BlazorMdc/blazormdc-bundled.min.js"></script>
 ```
-See the [Blazor Server demo index file](BlazorMdc.Demo.WebServer/Pages/index_server.cshtml) for an example.
+See the [Blazor WebAssembly demo index file](BlazorMdc.Demo.WebServer/Pages/index_webassembly.cshtml) for an example.
 
 #### Option 2 - Using our unbundled CSS and JS with Material Theme files from CDN 
 
@@ -73,7 +73,7 @@ and at the end of `<body>`:
     <script src="https://unpkg.com/material-components-web@5.1.0/dist/material-components-web.min.js"></script>
     <script src="_content/BlazorMdc/blazormdc.min.js"></script>
 ```
-See the [Blazor WebAssembly demo index file](BlazorMdc.Demo.WebServer/Pages/index_webassembly.cshtml) for an example.
+See the [Blazor Server demo index file](BlazorMdc.Demo.WebServer/Pages/index_server.cshtml) for an example.
 
 ## Demonstration website
 
