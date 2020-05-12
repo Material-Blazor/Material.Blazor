@@ -4,7 +4,7 @@
 
 @inject IJSRuntime jsRuntime
 
-<h1 class="@MdcTypography.Heading4">Text field samples</h1>
+<h1 class="mdc-typography--headline4">Text field samples</h1>
 
 <p>See <code>DebouncedTextFieldSample.razor</code> for sources.</p>
 
@@ -13,7 +13,7 @@
                       ItemValidation="@MdcItemValidation.DefaultToFirst" />
 
 <p style="margin-top: 3rem;">Debounce Text</p>
-<p><PMdcDebouncedTextField Label="Debounced Text" @bind-Value="@currentValue" TextInputStyle="MdcTextInputStyle.Outlined" LeadingIcon="@MdcIcons.Icon__account_balance_wallet" DebounceInterval="interval" /></p>
+<p><PMdcDebouncedTextField Label="Debounced Text" @bind-Value="@currentValue" TextInputStyle="MdcTextInputStyle.Outlined" LeadingIcon="account_balance_wallet" DebounceInterval="interval" /></p>
 
 <ul style="margin-top: 2rem;">
     @foreach (var logEntry in log)

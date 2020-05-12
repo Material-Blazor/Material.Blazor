@@ -9,6 +9,20 @@ namespace BlazorMdc
         public string TextFieldCssClass { get; set; } = "";
 
         // Mdc Components
+        public MdcIconFoundryName IconFoundryName { get; set; } = MdcIconFoundryName.MaterialIcons;
+        internal MdcIconFoundryName AppliedIconFoundryName(MdcIconFoundryName? iconFoundryName = null) => (iconFoundryName is null) ? IconFoundryName : (MdcIconFoundryName)iconFoundryName;
+
+
+        public MdcIconMITheme IconMITheme { get; set; } = MdcIconMITheme.Filled;
+        internal MdcIconMITheme AppliedIconMITheme(MdcIconMITheme? iconMITheme = null) => (iconMITheme is null) ? IconMITheme : (MdcIconMITheme)iconMITheme;
+
+
+        public MdcIconFAStyle IconFAStyle { get; set; } = MdcIconFAStyle.Solid;
+        public MdcIconFARelativeSize IconFARelativeSize { get; set; } = MdcIconFARelativeSize.Regular;
+        internal MdcIconFAStyle AppliedIconFAStyle(MdcIconFAStyle? iconFAStyle = null) => (iconFAStyle is null) ? IconFAStyle : (MdcIconFAStyle)iconFAStyle;
+        internal MdcIconFARelativeSize AppliedIconFARelativeSize(MdcIconFARelativeSize? iconFARelativeSize = null) => (iconFARelativeSize is null) ? IconFARelativeSize : (MdcIconFARelativeSize)iconFARelativeSize;
+
+
         public MdcButtonStyle ButtonStyle { get; set; } = MdcButtonStyle.Text;
         public MdcButtonStyle CardActionButtonStyle { get; set; } = MdcButtonStyle.Text;
         public MdcButtonStyle DialogActionButtonStyle { get; set; } = MdcButtonStyle.Text;

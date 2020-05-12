@@ -4,7 +4,7 @@
 
 @inject IPmdcToastService toastService
 
-<h1 class="@MdcTypography.Heading4">Toast samples</h1>
+<h1 class="mdc-typography--headline4">Toast samples</h1>
 
 <p>See <code>ToastSample.razor</code> for sources.</p>
 
@@ -26,6 +26,12 @@
             --bmdc-toast-color-success: black !important;
             --bmdc-toast-color-warning: black !important;
             --bmdc-toast-color-error: black !important;
+
+            --bmdc-toast-filter-info: initial !important;
+            --bmdc-toast-filter-success: initial !important;
+            --bmdc-toast-filter-warning: initial !important;
+            --bmdc-toast-filter-error: initial !important;
+
             --bmdc-toast-background-color-info: var(--bmdc-color-lightblue-200) !important;
             --bmdc-toast-background-color-success: var(--bmdc-color-green-200) !important;
             --bmdc-toast-background-color-warning: var(--bmdc-color-amber-200) !important;
@@ -89,10 +95,11 @@
 
     string cssClass;
     MdcListElement<string>[] cssClassItems = new MdcListElement<string>[]
-        {
-            new MdcListElement<string> { SelectedValue = "", Label = "Default" },
-            new MdcListElement<string> { SelectedValue = "my-class", Label = "Italic" },
-                    };
+    {
+        new MdcListElement<string> { SelectedValue = "", Label = "Default" },
+        new MdcListElement<string> { SelectedValue = "my-class", Label = "Italic" },
+    };
+
 
     PMdcToastCloseMethod closeMethod;
     IEnumerable<MdcListElement<PMdcToastCloseMethod>> closeMethodItems => from c in (PMdcToastCloseMethod[])Enum.GetValues(typeof(PMdcToastCloseMethod))
@@ -102,21 +109,29 @@
                                                                               Label = c.ToString()
                                                                           };
 
-    string icon;
-    MdcListElement<string>[] iconItems = new MdcListElement<string>[]
-        {
-            new MdcListElement<string> { SelectedValue = "", Label = "Default" },
-            new MdcListElement<string> { SelectedValue = MdcIcons.Icon__directions_run, Label = MdcIcons.Icon__directions_run },
-            new MdcListElement<string> { SelectedValue = MdcIcons.Icon__3d_rotation, Label = MdcIcons.Icon__3d_rotation }
-                    };
+
+    MdcIcon icon;
+    MdcListElement<MdcIcon>[] iconItems = new MdcListElement<MdcIcon>[]
+    {
+        new MdcListElement<MdcIcon> { SelectedValue = "directions_run", Label = "directions_run" },
+        new MdcListElement<MdcIcon> { SelectedValue = new MdcIcon("thumb_up", MdcIcon.MIFoundry(theme: MdcIconMITheme.Filled)), Label = "thumb_up (filled / default)" },
+        new MdcListElement<MdcIcon> { SelectedValue = new MdcIcon("thumb_up", MdcIcon.MIFoundry(theme: MdcIconMITheme.Outlined)), Label = "thumb_up (outlined)" },
+        new MdcListElement<MdcIcon> { SelectedValue = new MdcIcon("thumb_up", MdcIcon.MIFoundry(theme: MdcIconMITheme.Round)), Label = "thumb_up (rounded)" },
+        new MdcListElement<MdcIcon> { SelectedValue = new MdcIcon("thumb_up", MdcIcon.MIFoundry(theme: MdcIconMITheme.TwoTone)), Label = "thumb_up (two-tone)" },
+        new MdcListElement<MdcIcon> { SelectedValue = new MdcIcon("thumb_up", MdcIcon.MIFoundry(theme: MdcIconMITheme.Sharp)), Label = "thumb_up (sharp)" },
+        new MdcListElement<MdcIcon> { SelectedValue = new MdcIcon("fa-ambulance", MdcIcon.FAFoundry()), Label = "fa-ambulance" },
+        new MdcListElement<MdcIcon> { SelectedValue = new MdcIcon("fa-ambulance", MdcIcon.FAFoundry(relativeSize: MdcIconFARelativeSize.ExtraSmall)), Label = "fa-ambulance (x-small)" },
+    };
+
 
     string heading;
     MdcListElement<string>[] headingItems = new MdcListElement<string>[]
-        {
-            new MdcListElement<string> { SelectedValue = "", Label = "Default" },
-            new MdcListElement<string> { SelectedValue = "Run of the mill heading", Label = "Run of the mill heading" },
-            new MdcListElement<string> { SelectedValue = "Heading truncated and truncated and truncated and truncated", Label = "Heading that will be truncated" }
-                    };
+    {
+        new MdcListElement<string> { SelectedValue = "", Label = "Default" },
+        new MdcListElement<string> { SelectedValue = "Run of the mill heading", Label = "Run of the mill heading" },
+        new MdcListElement<string> { SelectedValue = "Heading truncated and truncated and truncated and truncated", Label = "Heading that will be truncated" }
+    };
+
 
     PMdcToastLevel level;
     IEnumerable<MdcListElement<PMdcToastLevel>> levelItems => from c in (PMdcToastLevel[])Enum.GetValues(typeof(PMdcToastLevel))
@@ -128,29 +143,32 @@
 
     string message;
     MdcListElement<string>[] messageItems = new MdcListElement<string>[]
-        {
-            new MdcListElement<string> { SelectedValue = "Run of the mill message", Label = "Run of the mill message" },
-            new MdcListElement<string> { SelectedValue = "Italicized font", Label = "Italicized font (To see this set the additional CSS class to italic)" },
-            new MdcListElement<string> { SelectedValue = "Text <strong>bold</strong> and <u>underlined</u>", Label = "Message with markup" },
-            new MdcListElement<string> { SelectedValue = "Message truncated and truncated and truncated and truncated", Label = "Message that will be truncated" }
-                    };
+    {
+        new MdcListElement<string> { SelectedValue = "Run of the mill message", Label = "Run of the mill message" },
+        new MdcListElement<string> { SelectedValue = "Italicized font", Label = "Italicized font (To see this set the additional CSS class to italic)" },
+        new MdcListElement<string> { SelectedValue = "Text <strong>bold</strong> and <u>underlined</u>", Label = "Message with markup" },
+        new MdcListElement<string> { SelectedValue = "Message truncated and truncated and truncated and truncated", Label = "Message that will be truncated" }
+    };
+
 
     string showIcon;
     MdcListElement<string>[] showIconItems = new MdcListElement<string>[]
-        {
-            new MdcListElement<string> { SelectedValue = "", Label = "Default" },
-            new MdcListElement<string> { SelectedValue = "true", Label = "true" },
-            new MdcListElement<string> { SelectedValue = "false", Label = "false" }
-                    };
+    {
+        new MdcListElement<string> { SelectedValue = "", Label = "Default" },
+        new MdcListElement<string> { SelectedValue = "true", Label = "true" },
+        new MdcListElement<string> { SelectedValue = "false", Label = "false" }
+    };
+
 
     string timeout;
     MdcListElement<string>[] timeoutItems = new MdcListElement<string>[]
-        {
-            new MdcListElement<string> { SelectedValue = "", Label = "Default" },
-            new MdcListElement<string> { SelectedValue = "1000", Label = "1 second" },
-            new MdcListElement<string> { SelectedValue = "10000", Label = "10 seconds" },
-            new MdcListElement<string> { SelectedValue = "60000", Label = "60 seconds" }
-                    };
+    {
+        new MdcListElement<string> { SelectedValue = "", Label = "Default" },
+        new MdcListElement<string> { SelectedValue = "1000", Label = "1 second" },
+        new MdcListElement<string> { SelectedValue = "10000", Label = "10 seconds" },
+        new MdcListElement<string> { SelectedValue = "60000", Label = "60 seconds" }
+    };
+
 
     protected void InfoClick()
     {
@@ -158,6 +176,7 @@
             level: PMdcToastLevel.Info,
             message: "I'm an INFO");
     }
+
 
     protected void customiseClick()
     {
@@ -175,8 +194,8 @@
             heading: appliedHeading,
             level: level,
             message: message,
+            icon: icon,
             showIcon: appliedShowIcon,
-            timeout: appliedTimeout
-            );
+            timeout: appliedTimeout);
     }
 }

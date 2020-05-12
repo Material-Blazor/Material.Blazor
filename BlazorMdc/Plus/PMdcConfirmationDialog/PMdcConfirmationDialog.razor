@@ -9,8 +9,8 @@
     <Buttons>
         @if (ConfirmedButtons is null || UnconfirmedButtons is null)
         { 
-            <MdcButton Label="OK" LeadingIcon="check" DialogAction="@Confirm" Disabled="@(!confirmed)" />
-            <MdcButton Label="Cancel" LeadingIcon="cancel" DialogAction="@Cancel" ButtonStyle="MdcButtonStyle.Text" />
+            <MdcButton Label="OK" LeadingIcon="@("check")" DialogAction="@Confirm" Disabled="@(!confirmed)" />
+            <MdcButton Label="Cancel" LeadingIcon="@("cancel")" DialogAction="@Cancel" ButtonStyle="MdcButtonStyle.Text" />
         }
         else
         {

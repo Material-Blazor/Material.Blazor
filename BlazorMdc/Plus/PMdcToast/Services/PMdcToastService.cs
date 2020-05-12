@@ -36,18 +36,18 @@ namespace BlazorMdc
             string heading = null,
             PMdcToastCloseMethod? closeMethod = null,
             string cssClass = null,
-            string icon = null,
+            MdcIcon? icon = null,
             bool? showIcon = null,
             uint? timeout = null)
 #nullable restore annotations
         {
             var settings = new PMdcToastSettings()
             {
+                Message = message,
+                Heading = heading,
                 CloseMethod = closeMethod,
                 CssClass = cssClass,
-                Heading = heading,
                 Icon = icon,
-                Message = message,
                 ShowIcon = showIcon,
                 Timeout = timeout
             };

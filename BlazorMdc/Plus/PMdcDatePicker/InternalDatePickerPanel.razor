@@ -23,19 +23,19 @@
                 @monthText
             </div>
             <div class="bmdc-dp-menu__float-left">
-               <MdcIconButtonToggle @bind-Value="@showYearPad" Class="bmdc-dp-menu__icon-button" IconOn="@MdcIcons.Icon__arrow_drop_up" IconOff="@MdcIcons.Icon__arrow_drop_down" />
+               <MdcIconButtonToggle @bind-Value="@showYearPad" Class="bmdc-dp-menu__icon-button" IconOn="arrow_drop_up" IconOff="arrow_drop_down" />
             </div>
 
             @if (!showYearPad)
             {
                 <div class="bmdc-dp-menu__float-right bmdc-dp-menu__float-right-spaced">
-                    <MdcIconButton OnClick="OnNextMonthClick" Class="bmdc-dp-menu__icon-button" Icon="@MdcIcons.Icon__chevron_right" Disabled="@nextMonthDisabled" />
+                    <MdcIconButton OnClick="OnNextMonthClick" Class="bmdc-dp-menu__icon-button" Icon="chevron_right" Disabled="@nextMonthDisabled" />
                 </div>
                 <div class="bmdc-dp-menu__float-right bmdc-dp-menu__float-right-spaced">
-                    <MdcIconButton OnClick="OnShowCurrentDateClick" Class="bmdc-dp-menu__icon-button" Icon="@MdcIcons.Icon__undo" />
+                    <MdcIconButton OnClick="OnShowCurrentDateClick" Class="bmdc-dp-menu__icon-button" Icon="undo" />
                 </div>
                 <div class="bmdc-dp-menu__float-right">
-                    <MdcIconButton OnClick="OnPreviousMonthClick" Class="bmdc-dp-menu__icon-button" Icon="@MdcIcons.Icon__chevron_left" Disabled="@previousMonthDisabled" />
+                    <MdcIconButton OnClick="OnPreviousMonthClick" Class="bmdc-dp-menu__icon-button" Icon="chevron_left" Disabled="@previousMonthDisabled" />
                 </div>
             }
         </div>

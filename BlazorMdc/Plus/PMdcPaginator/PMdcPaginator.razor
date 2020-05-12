@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="bmdc-dp-menu__float-left">
-                    <MdcIconButtonToggle @ref="@iconButtonToggle" @bind-Value="@toggleOn" OnClick="@OnMenuToggleAsync" IconOn="@MdcIcons.Icon__arrow_drop_up" IconOff="@MdcIcons.Icon__arrow_drop_down" />
+                    <MdcIconButtonToggle @ref="@iconButtonToggle" @bind-Value="@toggleOn" OnClick="@OnMenuToggleAsync" IconOn="arrow_drop_up" IconOff="arrow_drop_down" />
                     <div class="mdc-menu-surface--anchor">
                         <MdcMenu @ref="menu">
                             @foreach (var itemsPerPage in ItemsPerPageSelection)
@@ -41,10 +41,10 @@
                 </div>
 
                 <div class="bmdc-paginator__float-left">
-                    <MdcIconButton Icon="@MdcIcons.Icon__chevron_left" OnClick="@OnPreviousClick" Disabled="@previousDisabled" />
+                    <MdcIconButton Icon="chevron_left" OnClick="@OnPreviousClick" Disabled="@previousDisabled" />
                 </div>
                 <div class="bmdc-paginator__float-left">
-                    <MdcIconButton Icon="@MdcIcons.Icon__chevron_right" OnClick="@OnNextClick" Disabled="@nextDisabled" />
+                    <MdcIconButton Icon="chevron_right" OnClick="@OnNextClick" Disabled="@nextDisabled" />
                 </div>
             </div>
         </div>

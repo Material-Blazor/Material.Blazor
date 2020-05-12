@@ -5,14 +5,15 @@ namespace BlazorMdc
     public class PMdcToastServiceConfiguration
     {
         public const PMdcToastPosition DefaultPosition = PMdcToastPosition.BottomRight;
-        public const string DefaultCloseButtonIcon = MdcIcons.Icon__close;
+        public const string DefaultCloseButtonIcon = "close";
         public const bool DefaultShowIcons = true;
         public const PMdcToastCloseMethod DefaultCloseMethod = PMdcToastCloseMethod.TimeoutAndCloseButton;
         public const int DefaultTimeout = 3000; 
-        public const string DefaultInfoIcon = MdcIcons.Icon__notifications;
-        public const string DefaultSuccessIcon = MdcIcons.Icon__done;
-        public const string DefaultWarningIcon = MdcIcons.Icon__warning;
-        public const string DefaultErrorIcon = MdcIcons.Icon__error_outline;
+        public readonly MdcIcon DefaultInfoIcon = new MdcIcon("notifications", MdcIcon.MIFoundry());
+        public readonly MdcIcon DefaultSuccessIcon = new MdcIcon("done", MdcIcon.MIFoundry());
+        public readonly MdcIcon DefaultWarningIcon = new MdcIcon("warning", MdcIcon.MIFoundry());
+        public readonly MdcIcon DefaultErrorIcon = new MdcIcon("error_outline", MdcIcon.MIFoundry());
+        public readonly ulong DefaultIconFoundry = (ulong)MdcIconFoundryName.MaterialIcons | (ulong)MdcIconMITheme.Filled;
 
 
         internal event Action OnUpdate;
@@ -38,7 +39,7 @@ namespace BlazorMdc
 
         private string _closeButtonIcon = DefaultCloseButtonIcon;
         /// <summary>
-        /// The close icon. Defaults to <see cref="MdcIcons.Icon__close"/>.
+        /// The close icon. Defaults to <see cref="MdcIcons.MI__close"/>.
         /// </summary>
         public string CloseButtonIcon
         {
@@ -198,11 +199,11 @@ namespace BlazorMdc
         }
 
 
-        private string _infoIcon = DefaultInfoIcon;
+        private MdcIcon _infoIcon;
         /// <summary>
         /// Icon for an Info toast.
         /// </summary>
-        public string InfoIcon
+        public MdcIcon InfoIcon
         {
             get => _infoIcon;
             set
@@ -216,11 +217,11 @@ namespace BlazorMdc
         }
 
 
-        private string _successIcon = DefaultSuccessIcon;
+        private MdcIcon _successIcon;
         /// <summary>
         /// Icon for an Success toast.
         /// </summary>
-        public string SuccessIcon
+        public MdcIcon SuccessIcon
         {
             get => _successIcon;
             set
@@ -234,11 +235,11 @@ namespace BlazorMdc
         }
 
 
-        private string _warningIcon = DefaultWarningIcon;
+        private MdcIcon _warningIcon;
         /// <summary>
         /// Icon for an waWrning toast.
         /// </summary>
-        public string WarningIcon
+        public MdcIcon WarningIcon
         {
             get => _warningIcon;
             set
@@ -252,11 +253,11 @@ namespace BlazorMdc
         }
 
 
-        private string _errorIcon = DefaultErrorIcon;
+        private MdcIcon _errorIcon;
         /// <summary>
         /// Icon for an Error toast.
         /// </summary>
-        public string ErrorIcon
+        public MdcIcon ErrorIcon
         {
             get => _errorIcon;
             set
@@ -267,6 +268,14 @@ namespace BlazorMdc
                     OnUpdate?.Invoke();
                 }
             }
+        }
+
+        public PMdcToastServiceConfiguration()
+        {
+            _infoIcon = DefaultInfoIcon;
+            _successIcon = DefaultSuccessIcon;
+            _warningIcon = DefaultWarningIcon;
+            _errorIcon = DefaultErrorIcon;
         }
     }
 }

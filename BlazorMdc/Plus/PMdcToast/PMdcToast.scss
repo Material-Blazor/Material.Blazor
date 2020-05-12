@@ -19,6 +19,12 @@ $icon-horizontal-padding: 12px;
     --bmdc-toast-color-success: white;
     --bmdc-toast-color-warning: white;
     --bmdc-toast-color-error: white;
+
+    --bmdc-toast-filter-info: contrast(4) invert(1);
+    --bmdc-toast-filter-success: contrast(4) invert(1);
+    --bmdc-toast-filter-warning: contrast(4) invert(1);
+    --bmdc-toast-filter-error: contrast(4) invert(1);
+
     --bmdc-toast-background-color-info: var(--bmdc-color-lightblue-700);
     --bmdc-toast-background-color-success: var(--bmdc-color-green-700);
     --bmdc-toast-background-color-warning: var(--bmdc-color-amber-800);
@@ -214,6 +220,23 @@ $icon-horizontal-padding: 12px;
     padding: 0 0 0 $icon-horizontal-padding;
     font-size: $icon-font;
 }
+
+    .bmdc-toast-icon.info-filter {
+        filter: var(--bmdc-toast-filter-info);
+    }
+
+    .bmdc-toast-icon.success-filter {
+        filter: var(--bmdc-toast-filter-success);
+    }
+
+    .bmdc-toast-icon.warning-filter {
+        filter: var(--bmdc-toast-filter-warning);
+    }
+
+    .bmdc-toast-icon.error-filter {
+        filter: var(--bmdc-toast-filter-error);
+    }
+
 
 .bmdc-toast-body {
     flex-grow: 1;
