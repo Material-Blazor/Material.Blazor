@@ -10,41 +10,27 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  solution: 'BlazorMdc.sln'
+  buildConfiguration: 'Release_Server'
+  buildPlatform: 'Any CPU'
   package: 'BlazorMdc'
   project: 'BlazorMdc/BlazorMdc.csproj'
-  buildPlatform: 'Any CPU'
-  buildConfiguration: 'Release_Server'
 
 steps:
 
-- task: NuGetToolInstaller@1
-
-#- task: NuGetCommand@2
-#  displayName: 'Restoring solution'
-#  inputs:
-#    restoreSolution: '$(solution)'
-#
-#- task: DotNetCoreCLI@2
-#  displayName: 'Building $(project) in $(buildConfiguration) mode...'
-#  inputs:
-#    command: 'build'
-#    arguments: '--configuration $(buildConfiguration)'
-#    projects: $(project)
-
 - powershell 'dotnet build --configuration $(buildConfiguration) $(project)'
+  displayName: 'Building $(project) in $(buildConfiguration) mode...'
+
+- powershell: 'dotnet pack --configuration $(buildConfiguration) --no-build --version-suffix CI-$(ciTime) $(project)'
+  displayName: 'Generating Nuget Package with DotNet... '
 
 - task: DotNetCoreCLI@2
-  displayName: 'Generating Nuget Package... '
+  displayName: 'Generating Nuget Package with DotNetCoreCli... '
   inputs:
     command: pack
     nobuild : true
     packagesToPack: $(project)
     configuration: $(buildConfiguration)
-    versioningScheme: 'byPrereleaseNumber'
-    majorVersion: '3'
-    minorVersion: '0'
-    patchVersion: '0'
+    versioningScheme: 'off'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publishing Build Artifacts...'
@@ -59,5 +45,5 @@ steps:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     nuGetFeedType: 'internal'
-    publishVstsFeed: 'dc5d7cad-69a1-4747-8ac6-6bdbeef82bea'
+    publishVstsFeed: 'BlazorMdc'
     allowPackageConflicts: true
