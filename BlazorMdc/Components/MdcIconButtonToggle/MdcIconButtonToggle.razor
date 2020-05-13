@@ -42,8 +42,8 @@
 
 
     private ElementReference elementReference;
-    private MdcIcon on => new MdcIcon(IconOn, IconFoundry);
-    private MdcIcon off => new MdcIcon(IconOff, IconFoundry);
+    private MdcIcon on => new MdcIcon(CascadingDefaults, IconOn, IconFoundry);
+    private MdcIcon off => new MdcIcon(CascadingDefaults, IconOff, IconFoundry);
 
 
     protected override void OnInitialized()

@@ -105,8 +105,8 @@
     {
         base.OnParametersSet();
 
-        var leading = new MdcIcon((string)LeadingIcon, IconFoundry);
-        var trailing = new MdcIcon((string)TrailingIcon, IconFoundry);
+        var leading = new MdcIcon(CascadingDefaults, (string)LeadingIcon, IconFoundry);
+        var trailing = new MdcIcon(CascadingDefaults, (string)TrailingIcon, IconFoundry);
 
         LeadingIconMarkup = (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"{leading.Class} mdc-text-field__icon mdc-text-field__icon--leading\" tabindex=\"-1\" role=\"button\">{leading.Text}</i>");
         TrailingIconMarkup = (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"{trailing.Class} mdc-text-field__icon mdc-text-field__icon--trailing\" tabindex=\"-1\" role=\"button\">{trailing.Text}</i>");

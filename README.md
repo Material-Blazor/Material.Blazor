@@ -4,6 +4,7 @@
 [![NuGet downloads](https://img.shields.io/nuget/dt/BlazorMdc?label=nuget%20downloads&style=flat-square)](https://www.nuget.org/packages/BlazorMdc/)
 
 [![Build Status](https://img.shields.io/azure-devops/build/blazormdc/blazormdc/1?label=azure%20pipelines&style=flat-square)](https://dev.azure.com/blazormdc/blazormdc/_build/latest?definitionId=1&branchName=master)
+[![Gitter](https://badges.gitter.im/BlazorMdc/community.svg?style=flat-square)](https://gitter.im/BlazorMdc/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](/LICENSE.md)
 [![GitHub issues](https://img.shields.io/github/issues/BlazorMdc/BlazorMdc?style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/issues)
