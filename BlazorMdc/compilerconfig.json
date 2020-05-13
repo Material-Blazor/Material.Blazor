@@ -1,5 +1,9 @@
 ﻿[
   {
+    "outputFile": "wwwroot/blazormdc-fonts.css",
+    "inputFile": "Styles/fonts.scss"
+  },
+  {
     "outputFile": "wwwroot/blazormdc.css",
     "inputFile": "Styles/styles.scss"
   },

@@ -3,21 +3,22 @@
 @inherits MdcInputComponentBase<int>
 
 
-<PMdcNumericDoubleField  @bind-Value="@dblVal"
-                         Class="@Class"
-                         Style="@Style"
-                         TextInputStyle="TextInputStyle"
-                         Label="@Label"
-                         NoLabel="@NoLabel"
-                         LeadingIcon="@LeadingIcon"
-                         TrailingIcon="@TrailingIcon"
-                         NumericFormat="@NumericFormat"
-                         NumericSingularFormat="@NumericSingularFormat"
-                         Magnitude="@Magnitude"
-                         Min="@Min"
-                         Max="@Max"
-                         DecimalPlaces="0"
-                         Disabled=@Disabled />
+<PMdcNumericDoubleField @bind-Value="@dblVal"
+                        Class="@Class"
+                        Style="@Style"
+                        TextInputStyle="TextInputStyle"
+                        Label="@Label"
+                        NoLabel="@NoLabel"
+                        LeadingIcon="@LeadingIcon"
+                        TrailingIcon="@TrailingIcon"
+                        IconFoundry="@IconFoundry"
+                        NumericFormat="@NumericFormat"
+                        NumericSingularFormat="@NumericSingularFormat"
+                        Magnitude="@Magnitude"
+                        Min="@Min"
+                        Max="@Max"
+                        DecimalPlaces="0"
+                        Disabled=@Disabled />
 
 
 @code {
@@ -27,6 +28,7 @@
     [Parameter] public bool NoLabel { get; set; } = false;
     [Parameter] public string? LeadingIcon { get; set; }
     [Parameter] public string? TrailingIcon { get; set; }
+    [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
     [Parameter] public string NumericFormat { get; set; }
     [Parameter] public string? NumericSingularFormat { get; set; }
     [Parameter] public MdcNumericInputMagnitude Magnitude { get; set; } = MdcNumericInputMagnitude.Normal;

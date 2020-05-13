@@ -4,6 +4,7 @@
 [![NuGet downloads](https://img.shields.io/nuget/dt/BlazorMdc?label=nuget%20downloads&style=flat-square)](https://www.nuget.org/packages/BlazorMdc/)
 
 [![Build Status](https://img.shields.io/azure-devops/build/blazormdc/blazormdc/1?label=azure%20pipelines&style=flat-square)](https://dev.azure.com/blazormdc/blazormdc/_build/latest?definitionId=1&branchName=master)
+[![Gitter](https://badges.gitter.im/BlazorMdc/community.svg?style=flat-square)](https://gitter.im/BlazorMdc/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](/LICENSE.md)
 [![GitHub issues](https://img.shields.io/github/issues/BlazorMdc/BlazorMdc?style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/issues)
@@ -58,7 +59,7 @@ and at the end of `<body>`:
 ```html
     <script src="_content/BlazorMdc/blazormdc-bundled.min.js"></script>
 ```
-See the [Blazor Server demo index file](BlazorMdc.Demo.WebServer/Pages/index_server.cshtml) for an example.
+See the [Blazor WebAssembly demo index file](BlazorMdc.Demo.WebServer/Pages/index_webassembly.cshtml) for an example.
 
 #### Option 2 - Using our unbundled CSS and JS with Material Theme files from CDN 
 
@@ -73,7 +74,7 @@ and at the end of `<body>`:
     <script src="https://unpkg.com/material-components-web@5.1.0/dist/material-components-web.min.js"></script>
     <script src="_content/BlazorMdc/blazormdc.min.js"></script>
 ```
-See the [Blazor WebAssembly demo index file](BlazorMdc.Demo.WebServer/Pages/index_wasm.cshtml) for an example.
+See the [Blazor Server demo index file](BlazorMdc.Demo.WebServer/Pages/index_server.cshtml) for an example.
 
 ## Demonstration website
 
@@ -154,6 +155,7 @@ The following are extra or 'plus' components that extend the strict, core Materi
 | :------ | :---- |
 | `MdcCascadingDefaults` | Allows you to set up defaults such as button style (filled, outlined etc), text area style (filled or outlined) |
 | `MdcTypography` | Constants for standard Material Theme typography. |
+|` MdcIcon` | Working with `IMdcIcon` and `IMdcIconFoundry` to implement optional [Material Icons](https://material.io/resources/icons/?style=baseline) and `MdcFAIcon` for [Font Awesome](https://fontawesome.com/icons?d=gallery) icons. Icon names are passed to components as a string, with an additional parameter of `IconFoundry` using utility functions from `MdcIcon` to specify the foundry and its optional parameters. Your default icon foundry can be set in `MdcCascadingDefaults` (which itself defaults to Material Icons) and then you can pass string names for the icon of your choice. For Font Awesome icons, omit the preceding "fas/r/l/d" because this is set as a Font Awesome foundry style and in `MdcCascadingDefaults.FAIconStyle`. Font Awesome relative icon size and Material Icons theme are also similarly parameterized. BlazorMdc expects you to include Material Icons in your project (these are necessary for drop down arrows and so forth, but Font Awesome icons are discretionary depending upon your project's requirement - you do however need to use Font Awesome version 5. |
 
 ## Future Development
 

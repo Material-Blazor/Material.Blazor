@@ -1,0 +1,44 @@
+﻿$shield-height: 20px;
+$shield-line-height: 22px;
+$shield-font-family: "Verdana","Geneva","DejaVu Sans","sans-serif";
+$shield-font-size: 9pt;
+$shield-inner-padding: 5px;
+$shield-outer-padding: 6px;
+
+:root {
+    --bmdc-shield-label-color: white;
+    --bmdc-shield-value-color: white;
+    --bmdc-shield-label-background: var(--bmdc-color-bluegray-700);
+    --bmdc-shield-value-background: var(--bmdc-color-amber-700);
+}
+
+.bmdc-shield {
+    user-select: none;
+    -webkit-user-select: none;
+    display: flex;
+    flex-flow: row nowrap;
+    height: $shield-height;
+    line-height: $shield-line-height;
+    font-family: $shield-font-family;
+    font-size: $shield-font-size;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    white-space: nowrap;
+}
+
+.bmdc-shield--label {
+    color: var(--bmdc-shield-label-color);
+    background: var(--bmdc-shield-label-background);
+    margin: 0;
+    padding: 0 $shield-inner-padding 0 $shield-outer-padding;
+    border: 0;
+}
+
+.bmdc-shield--value {
+    color: var(--bmdc-shield-value-color);
+    background: var(--bmdc-shield-value-background);
+    margin: 0;
+    padding: 0 $shield-outer-padding 0 $shield-inner-padding;
+    border: 0;
+}

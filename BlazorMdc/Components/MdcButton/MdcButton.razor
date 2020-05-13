@@ -46,6 +46,7 @@
     [Parameter] public string TabIndex { get; set; } = "0";
     [Parameter] public string? LeadingIcon { get; set; }
     [Parameter] public string? TrailingIcon { get; set; }
+    [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
     [Parameter] public EventCallback OnClick { get; set; }
     [Parameter] public EventCallback OnMouseDown { get; set; }
     [Parameter] public EventCallback OnKeyDown { get; set; }
@@ -55,8 +56,32 @@
 
 
     private ElementReference elementReference;
-    private MarkupString LeadingIconMarkup => (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"material-icons mdc-button__icon\" aria-hidden=\"true\">{LeadingIcon}</i>");
-    private MarkupString TrailingIconMarkup => (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"material-icons mdc-button__icon\" aria-hidden=\"true\">{TrailingIcon}</i>");
+
+
+    private MarkupString LeadingIconMarkup
+    {
+        get
+        {
+            if (LeadingIcon is null) return (MarkupString)"";
+
+            var icon = new MdcIcon(CascadingDefaults, LeadingIcon, IconFoundry);
+
+            return (MarkupString)$"<i class=\"{icon.Class} mdc-button__icon\" aria-hidden=\"true\">{icon.Text}</i>";
+        }
+    }
+
+
+    private MarkupString TrailingIconMarkup
+    {
+        get
+        {
+            if (TrailingIcon is null) return (MarkupString)"";
+
+            var icon = new MdcIcon(CascadingDefaults, TrailingIcon, IconFoundry);
+
+            return (MarkupString)$"<i class=\"{icon.Class} mdc-button__icon\" aria-hidden=\"true\">{icon.Text}</i>";
+        }
+    }
 
 
     protected override void OnInitialized()

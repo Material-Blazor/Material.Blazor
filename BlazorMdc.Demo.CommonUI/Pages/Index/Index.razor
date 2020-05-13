@@ -5,7 +5,7 @@
 
 @page "/"
 
-<h1 class="@MdcTypography.Heading3">Hello, world!</h1>
+<h1 class="mdc-typography--headline3">Hello, world!</h1>
 
 <p>This sample demonstrates the use of RazorComponents.MaterialDesign components.</p>
 
@@ -23,10 +23,12 @@
 
 <p><MdcCheckbox @bind-Value="@PMdcAnimatedNavigationManager.Configuration.ApplyAnimation" Label="Apply animiations to page navigation" /></p>
 
+
 <p style="margin-top: 80rem;">&nbsp;</p>
 
 
 @code {
+    
     IEnumerable<MdcListElement<MdcTopAppBarType>> appBarTypes => from c in (MdcTopAppBarType[])Enum.GetValues(typeof(MdcTopAppBarType))
                                                                  select new MdcListElement<MdcTopAppBarType>
                                                                  {

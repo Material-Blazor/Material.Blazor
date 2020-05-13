@@ -2,17 +2,17 @@
 
 @page "/menu"
 
-<h1 class="@MdcTypography.Heading4">Menu samples</h1>
+<h1 class="mdc-typography--headline4">Menu samples</h1>
 
 <p>See <code>MenuSample.razor</code> for sources.</p>
 
 <div>
-    <MdcButton Label="Open Menu" OnClick="OpenMenuAsync" />
+    <MdcButton Label="Open Menu" OnClick="@OpenMenuAsync" />
 
     <div class="mdc-menu-surface--anchor">
         <MdcMenu @ref="menu">
             <MdcListItem Text="One" LeadingIcon="home" NavigationReference="One" OnClick="OnClickHandler" />
-            <MdcListItem Text="Two" LeadingIcon="" NavigationReference="Two" OnClick="OnClickHandler" />
+            <MdcListItem Text="Two" NavigationReference="Two" OnClick="OnClickHandler" />
             <MdcListDivider />
             <MdcMenuSelectionGroup>
                 <MdcListItem Text="Four" LeadingIcon="done" NavigationReference="Four" OnClick="OnClickHandler" />

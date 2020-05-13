@@ -15,12 +15,14 @@
         {
             var toastId = toast.Id;
 
-            <div @key="toast" class="mdc-elevation--z5 bmdc-toast @toast.Settings.LevelClass @toast.Settings.StatusClass @toast.Settings.AppliedCssClass">
+            <div @key="toast" class="mdc-elevation--z5 bmdc-toast @toast.Settings.ContainerLevelClass @toast.Settings.StatusClass @toast.Settings.AppliedCssClass">
 
                 @if (toast.Settings.AppliedShowIcon)
                 {
-                    <div class="bmdc-toast-icon">
-                        <i class="material-icons" aria-hidden="true">@toast.Settings.AppliedIcon</i>
+                    var filterClass = toast.Settings.AppliedIcon.RequiresWhiteFilter ? toast.Settings.IconFilterClass : "";
+
+                    <div class="bmdc-toast-icon @filterClass">
+                        <i class="@toast.Settings.AppliedIcon.Class" aria-hidden="true">@toast.Settings.AppliedIcon.Text</i>
                     </div>
                 }
 
@@ -32,7 +34,7 @@
 
                         @if (toast.Settings.CloseMethod != PMdcToastCloseMethod.Timeout)
                         {
-                            <MdcButton OnClick="@(() => CloseToast(toastId))" LeadingIcon="@MdcIcons.Icon__close" ButtonStyle="@MdcButtonStyle.Text" Class="bmdc-toast-close-button" />
+                            <MdcButton OnClick="@(() => CloseToast(toastId))" LeadingIcon="close" ButtonStyle="@MdcButtonStyle.Text" Class="bmdc-toast-close-button" />
                         }
                     </div>
 
