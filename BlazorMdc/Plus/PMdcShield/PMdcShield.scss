@@ -1,4 +1,5 @@
 ﻿$shield-height: 20px;
+$shield-line-height: 20px;
 $shield-font-family: "Verdana","Geneva","DejaVu Sans","sans-serif";
 $shield-font-size: 9pt;
 $shield-inner-padding: 5px;
@@ -17,7 +18,7 @@ $shield-outer-padding: 6px;
     display: flex;
     flex-flow: row nowrap;
     height: $shield-height;
-    line-height: $shield-height;
+    line-height: $shield-line-height;
     font-family: $shield-font-family;
     font-size: $shield-font-size;
     margin: 0;
