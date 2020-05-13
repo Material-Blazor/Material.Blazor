@@ -10,38 +10,33 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  solution: 'BlazorMdc.sln'
-  project: 'BlazorMdc/BlazorMdc.csproj'
-  buildPlatform: 'Any CPU'
+  artifactCollection: 'ArtifactCollection'
   buildConfiguration: 'Release_Server'
+  buildPlatform: 'Any CPU'
+  package: 'BlazorMdc'
+  project: 'BlazorMdc/BlazorMdc.csproj'
 
 steps:
 
-- task: NuGetToolInstaller@1
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
-
-- script: dotnet build --configuration $(buildConfiguration) $(project)
+- powershell: 'dotnet build --configuration $(buildConfiguration) $(project)'
   displayName: 'Building $(project) in $(buildConfiguration) mode...'
 
-- task: DotNetCoreCLI@2
-  displayName: 'Generating Nuget Package... '
-  inputs:
-    command: pack
-    arguments: --no-build
-    packagesToPack: $(project)
-    configuration: $(buildConfiguration)
-    versioningScheme: 'off'
+- powershell: 'dotnet pack --configuration $(buildConfiguration) --no-build --output $(Build.ArtifactStagingDirectory) $(project)'
+  displayName: 'Generating Nuget Package with DotNet... '
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publishing Build Artifacts...'
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: $(artifactCollection)
+    publishLocation: 'Container'
 
 - task: NuGetCommand@2
+  displayName: 'Pushing NuGet package to internal feed'
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     nuGetFeedType: 'internal'
-    publishVstsFeed: 'blazormdc'
+    publishVstsFeed: 'BlazorMdc'
     allowPackageConflicts: true
