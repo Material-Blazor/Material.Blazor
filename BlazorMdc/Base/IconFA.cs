@@ -13,21 +13,18 @@ namespace BlazorMdc
 
         public bool RequiresWhiteFilter => false;
 
-        public MdcIconFAStyle? Style { get; }
+        public MdcIconFAStyle Style { get; }
 
-        public MdcIconFARelativeSize? RelativeSize { get; }
-
-
-        [CascadingParameter] protected MdcCascadingDefaults CascadingDefaults { get; set; } = new MdcCascadingDefaults();
+        public MdcIconFARelativeSize RelativeSize { get; }
 
 
-        private string IconStyleText => CascadingDefaults.AppliedIconFAStyle(Style).ToString().Substring(0, 1).ToLower();
+        private string IconStyleText => Style.ToString().Substring(0, 1).ToLower();
 
         private string IconNameText
         {
             get
             {
-                return IconName.ToLower() + CascadingDefaults.AppliedIconFARelativeSize(RelativeSize) switch
+                return IconName.ToLower() + RelativeSize switch
                 {
                     MdcIconFARelativeSize.Regular => "",
                     MdcIconFARelativeSize.ExtraSmall => " fa-xs",
@@ -45,11 +42,11 @@ namespace BlazorMdc
 
 
 #nullable enable annotations
-        public IconFA(string iconName, IconFoundryFA? foundry = null)
+        public IconFA(MdcCascadingDefaults cascadingDefaults, string iconName, IconFoundryFA? foundry = null)
         {
             IconName = iconName;
-            Style = foundry?.Style;
-            RelativeSize = foundry?.RelativeSize;
+            Style = cascadingDefaults.AppliedIconFAStyle(foundry?.Style);
+            RelativeSize = cascadingDefaults.AppliedIconFARelativeSize(foundry?.RelativeSize);
         }
 #nullable restore annotations
     }

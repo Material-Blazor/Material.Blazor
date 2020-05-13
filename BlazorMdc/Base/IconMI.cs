@@ -9,7 +9,7 @@ namespace BlazorMdc
         {
             get
             {
-                return "material-icons" + CascadingDefaults.AppliedIconMITheme(Theme) switch
+                return "material-icons" + Theme switch
                 {
                     MdcIconMITheme.Filled => "",
                     MdcIconMITheme.Outlined => "-outlined",
@@ -25,19 +25,16 @@ namespace BlazorMdc
 
         public string IconName { get; }
 
-        public bool RequiresWhiteFilter => CascadingDefaults.AppliedIconMITheme(Theme) == MdcIconMITheme.TwoTone;
+        public bool RequiresWhiteFilter => Theme == MdcIconMITheme.TwoTone;
 
-        public MdcIconMITheme? Theme { get; }
-
-
-        [CascadingParameter] protected MdcCascadingDefaults CascadingDefaults { get; set; } = new MdcCascadingDefaults();
+        public MdcIconMITheme Theme { get; }
 
 
 #nullable enable annotations
-        public IconMI(string iconName, IconFoundryMI? foundry = null)
+        public IconMI(MdcCascadingDefaults cascadingDefaults, string iconName, IconFoundryMI? foundry = null)
         {
             IconName = iconName;
-            Theme = foundry?.Theme;
+            Theme = cascadingDefaults.AppliedIconMITheme(foundry?.Theme);
         }
 #nullable restore annotations
     }

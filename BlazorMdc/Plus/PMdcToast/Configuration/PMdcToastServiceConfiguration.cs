@@ -9,10 +9,10 @@ namespace BlazorMdc
         public const bool DefaultShowIcons = true;
         public const PMdcToastCloseMethod DefaultCloseMethod = PMdcToastCloseMethod.TimeoutAndCloseButton;
         public const int DefaultTimeout = 3000; 
-        public readonly MdcIcon DefaultInfoIcon = new MdcIcon("notifications", MdcIcon.MIFoundry());
-        public readonly MdcIcon DefaultSuccessIcon = new MdcIcon("done", MdcIcon.MIFoundry());
-        public readonly MdcIcon DefaultWarningIcon = new MdcIcon("warning", MdcIcon.MIFoundry());
-        public readonly MdcIcon DefaultErrorIcon = new MdcIcon("error_outline", MdcIcon.MIFoundry());
+        public readonly MdcIcon DefaultInfoIcon = new MdcIcon(null, "notifications", MdcIcon.MIFoundry());
+        public readonly MdcIcon DefaultSuccessIcon = new MdcIcon(null, "done", MdcIcon.MIFoundry());
+        public readonly MdcIcon DefaultWarningIcon = new MdcIcon(null, "warning", MdcIcon.MIFoundry());
+        public readonly MdcIcon DefaultErrorIcon = new MdcIcon(null, "error_outline", MdcIcon.MIFoundry());
         public readonly ulong DefaultIconFoundry = (ulong)MdcIconFoundryName.MaterialIcons | (ulong)MdcIconMITheme.Filled;
 
 

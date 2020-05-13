@@ -17,23 +17,24 @@ namespace BlazorMdc
         private readonly IMdcIcon UnderlyingIcon;
 
 
-        [CascadingParameter] protected MdcCascadingDefaults CascadingDefaults { get; set; } = new MdcCascadingDefaults();
-
-
-        public static implicit operator MdcIcon(string iconName) => new MdcIcon(iconName);
         public static IMdcIconFoundry MIFoundry(MdcIconMITheme? theme = null) => new IconFoundryMI(theme);
         public static IMdcIconFoundry FAFoundry(MdcIconFAStyle? style = null, MdcIconFARelativeSize? relativeSize = null) => new IconFoundryFA(style, relativeSize);
 
 
 #nullable enable annotations
-        public MdcIcon(string iconName, IMdcIconFoundry? foundry = null)
+        public MdcIcon(MdcCascadingDefaults cascadingDefaults, string iconName, IMdcIconFoundry? foundry = null)
         {
-            MdcIconFoundryName iconFoundry = (foundry is null) ? CascadingDefaults.IconFoundryName : foundry.FoundryName;
+            if (cascadingDefaults is null)
+            {
+                cascadingDefaults = new MdcCascadingDefaults();
+            }
+
+            MdcIconFoundryName iconFoundry = (foundry is null) ? cascadingDefaults.IconFoundryName : foundry.FoundryName;
 
             UnderlyingIcon = iconFoundry switch
             {
-                MdcIconFoundryName.MaterialIcons => new IconMI(iconName, (IconFoundryMI?)foundry),
-                MdcIconFoundryName.FontAwesome => new IconFA(iconName, (IconFoundryFA?)foundry),
+                MdcIconFoundryName.MaterialIcons => new IconMI(cascadingDefaults, iconName, (IconFoundryMI?)foundry),
+                MdcIconFoundryName.FontAwesome => new IconFA(cascadingDefaults, iconName, (IconFoundryFA?)foundry),
                 _ => throw new NotImplementedException(),
             };
         }

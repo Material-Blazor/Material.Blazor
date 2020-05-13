@@ -6,17 +6,24 @@
 <div class="@ClassMapper.ToString()"
      style="@StyleMapper.ToString()">
 
-    <div class="bmdc-shield--label @LabelClass" style="@LabelStyle">
-        @Label
-    </div>
+    @if (ShieldType != PMdcShieldType.ValueOnly)
+    {
+        <div class="bmdc-shield--label @LabelClass" style="@LabelStyle">
+            @Label
+        </div>
+    }
 
-    <div class="bmdc-shield--value @ValueClass" style="@ValueStyle">
-        @Value
-    </div>
+    @if (ShieldType != PMdcShieldType.LabelOnly)
+    {
+        <div class="bmdc-shield--value @ValueClass" style="@ValueStyle">
+            @Value
+        </div>
+    }
 </div>
 
 
 @code {
+    [Parameter] public PMdcShieldType ShieldType { get; set; } = PMdcShieldType.LabelAndValue;
     [Parameter] public string Label { get; set; }
     [Parameter] public string Value { get; set; }
     [Parameter] public string LabelClass { get; set; } = "";
