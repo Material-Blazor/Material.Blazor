@@ -1,6 +1,6 @@
 ﻿# BlazorMdc (pre release)
 
-[![NuGet version](https://img.shields.io/nuget/v/BlazorMdc?label=nuget%20version&style=flat-square)](https://www.nuget.org/packages/Fluxor/)
+[![NuGet version](https://img.shields.io/nuget/v/BlazorMdc?label=nuget%20version&style=flat-square)](https://www.nuget.org/packages/BlazorMdc/)
 [![NuGet downloads](https://img.shields.io/nuget/dt/BlazorMdc?label=nuget%20downloads&style=flat-square)](https://www.nuget.org/packages/BlazorMdc/)
 
 [![Build Status](https://img.shields.io/azure-devops/build/blazormdc/blazormdc/1?label=azure%20pipelines&style=flat-square)](https://dev.azure.com/blazormdc/blazormdc/_build/latest?definitionId=1&branchName=master)
