@@ -10,6 +10,7 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
+  artifactCollection: 'ArtifactCollection'
   buildConfiguration: 'Release_Server'
   buildPlatform: 'Any CPU'
   package: 'BlazorMdc'
@@ -17,30 +18,22 @@ variables:
 
 steps:
 
-- powershell 'dotnet build --configuration $(buildConfiguration) $(project)'
+
+- powershell: 'dotnet build --configuration $(buildConfiguration) $(project)'
   displayName: 'Building $(project) in $(buildConfiguration) mode...'
 
-- powershell: 'dotnet pack --configuration $(buildConfiguration) --no-build --version-suffix CI-$(ciTime) $(project)'
+- powershell: 'dotnet pack --configuration $(buildConfiguration) --no-build --output $(Build.ArtifactStagingDirectory) $(project)'
   displayName: 'Generating Nuget Package with DotNet... '
-
-- task: DotNetCoreCLI@2
-  displayName: 'Generating Nuget Package with DotNetCoreCli... '
-  inputs:
-    command: pack
-    nobuild : true
-    packagesToPack: $(project)
-    configuration: $(buildConfiguration)
-    versioningScheme: 'off'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publishing Build Artifacts...'
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: $(package)
+    ArtifactName: $(artifactCollection)
     publishLocation: 'Container'
 
 - task: NuGetCommand@2
-  displayName: 'Pushing NuGet package'
+  displayName: 'Pushing NuGet package to internal feed'
   inputs:
     command: 'push'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
