@@ -5,7 +5,8 @@
     <RazorLangVersion>3.0</RazorLangVersion>
     <Configurations>Debug_WebAssembly;Debug_Server;Release_WebAssembly;Release_Server</Configurations>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.27.0</Version>
+    <VersionPrefix>0.27.0</VersionPrefix>
+    <VersionSuffix></VersionSuffix>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <Authors />
     <Company>Dioptra</Company>
