@@ -138,6 +138,7 @@ The following are extra or 'plus' components that extend the strict, core Materi
 | `PMdcPagedDataList` | A templated component for paging generic data lists using `PMdcPaginator`. Uses the Wig Pig nested coding pattern and can either render list items one by one or wrap a component such as `MdcList` or `MdcDataTable`. |
 | `PMdcPaginator` | An implementation of the [Material paginator specification](https://material.io/components/data-tables#behavior). |
 | `PMdcRadioButtonGroup` | A group of MdcRadioButtons. The ItemValidation parameter has three possible values. Exception is the default value and an exception will be raised if the Value supplied does not match one of the Values in the List parameter data. DefaultToFirst will select the first item in the list if the Value does not match. NoSelection will not pick a radiobutton when the Value is illegal. Several ArgumentExceptions can also be thrown for such things as a missing or empty List, a List that has multiple identical SelectedValues, and missing Value bindings. |
+| `PMdcShield` | A simple component producing an HTML shield styled after svgs from shield.io (square, flat variety) |
 | `PMdcSlidingContent` | A templated component to provide previous/next navigation through a series of pages with light left/right and fade in/out animation. |
 | `PMdcSlidingTabBar` | An `MdcTabBar` augmented with content displayed in a `PMdcSlidingContent` |
 | `PMdcToast` | A port of [Blazored/Toast](https://github.com/Blazored/Toast) yet to be styled à la Material Theme. |
