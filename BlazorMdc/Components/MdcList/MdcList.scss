@@ -1,0 +1,15 @@
+﻿.bmdc-list--three-line .mdc-list-item__text {
+    align-self: flex-start
+}
+
+.bmdc-list--three-line .mdc-list-item {
+    height: 88px
+}
+
+.bmdc-list--three-line.mdc-list--dense .mdc-list-item, .mdc-list--avatar-list.mdc-list--dense .mdc-list-item {
+    height: 72px
+}
+
+.mdc-list-item__secondary-text.line-three {
+    margin-top: -4px;
+}

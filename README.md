@@ -110,7 +110,7 @@ The following is a list of core Material Theme components.
 | `MdcIconButton` | A [Material Icon Button](https://material.io/develop/web/components/buttons/icon-buttons/). |
 | `MdcIconButtonToggle` | A toggle variant of the [Material Icon Button](https://material.io/develop/web/components/buttons/icon-buttons/). |
 | `MdcLinearProgress` | A [Material Linear Progress bar](https://material.io/develop/web/components/linear-progress/). Only implements an indeterminate progress point |
-| `MdcList` | A [Material List](https://material.io/develop/web/components/lists/). |
+| `MdcList` | A [Material List](https://material.io/develop/web/components/lists/). Implements Material Theme Web Components one and two line lists, plus a BlazorMdc interpretation of a three line list. |
 | `MdcMenu` | A [Material Menu](https://material.io/develop/web/components/menus/). Does not implement sub menus. May redesign parameterization. |
 | `MdcNavLink` | A [Material List Item](https://material.io/develop/web/components/menus/) wrapping a Blazor `NavLink`. _Awaits review_. |
 | `MdcRadioButton` | A [Material Radio Button](https://material.io/develop/web/components/input-controls/radio-buttons/). |

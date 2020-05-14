@@ -6,18 +6,75 @@
 
 <p>See <code>ListSample.razor</code> for sources.</p>
 
+<p><MdcSwitch @bind-Value="@dense" Label="Set for dense" /></p>
+<p><MdcSwitch @bind-Value="@hideLineTwo" Label="Hide line two" /></p>
+<p><MdcSwitch @bind-Value="@hideLineThree" Label="Hide line three" /></p>
+
 <MdcList Items="@displayedProducts"
          Context="product"
          ShowSeparators="true"
          KeyboardInteractions="true"
          Ripple="true"
          AvatarList="true"
+         Dense="@dense"
+         HideLineTwo="@hideLineTwo"
+         HideLineThree="@hideLineThree"
          OnClick="OnClick"
          ListStyle="@MdcListStyle.Outlined">
 
     <Icon>shop</Icon>
     <Title>@product.DisplayName</Title>
-    <Subtitle>@product.Description</Subtitle>
+    <Actions>
+        <div style="width: 10rem">
+            <MdcSwitch @bind-Value="@product.IsInStock"
+                       Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
+        </div>
+    </Actions>
+</MdcList>
+
+<p></p>
+
+<MdcList Items="@displayedProducts"
+         Context="product"
+         ShowSeparators="true"
+         KeyboardInteractions="true"
+         Ripple="true"
+         AvatarList="true"
+         Dense="@dense"
+         HideLineTwo="@hideLineTwo"
+         HideLineThree="@hideLineThree"
+         OnClick="OnClick"
+         ListStyle="@MdcListStyle.Outlined">
+
+    <Icon>shop</Icon>
+    <Title>@product.DisplayName</Title>
+    <LineTwo>@product.LineTwo</LineTwo>
+    <Actions>
+        <div style="width: 10rem">
+            <MdcSwitch @bind-Value="@product.IsInStock"
+                       Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
+        </div>
+    </Actions>
+</MdcList>
+
+<p></p>
+
+<MdcList Items="@displayedProducts"
+         Context="product"
+         ShowSeparators="true"
+         KeyboardInteractions="true"
+         Ripple="true"
+         AvatarList="true"
+         Dense="@dense"
+         HideLineTwo="@hideLineTwo"
+         HideLineThree="@hideLineThree"
+         OnClick="OnClick"
+         ListStyle="@MdcListStyle.Outlined">
+
+    <Icon>shop</Icon>
+    <Title>@product.DisplayName</Title>
+    <LineTwo>@product.LineTwo</LineTwo>
+    <LineThree>@product.LineThree</LineThree>
     <Actions>
         <div style="width: 10rem">
             <MdcSwitch @bind-Value="@product.IsInStock"
@@ -31,20 +88,24 @@
 @code {
     IEnumerable<Product> displayedProducts = new List<Product>
 {
-        new Product { ProductId = 1, DisplayName = "Curly-wurly straw", Description = "Amaze your friends with this cheap plastic tube", IsInStock = true },
-        new Product { ProductId = 2, DisplayName = "Pepsi Connoisseur (12mo subscription)", Description = "Covers all developments in the world of Pepsi™", IsInStock = false },
-        new Product { ProductId = 3, DisplayName = "Recarbonator Pro", Description = "Revitalize your old beverages in just hours", IsInStock = true },
+        new Product { ProductId = 1, DisplayName = "Curly-wurly straw", LineTwo = "Amaze your friends with this cheap plastic tube", LineThree = "Line three", IsInStock = true },
+        new Product { ProductId = 2, DisplayName = "Pepsi Connoisseur (12mo subscription)", LineTwo = "Covers all developments in the world of Pepsi™", LineThree = "Line three", IsInStock = false },
+        new Product { ProductId = 3, DisplayName = "Recarbonator Pro", LineTwo = "Revitalize your old beverages in just hours", LineThree = "Line three", IsInStock = true },
     };
 
     public class Product
     {
         public int ProductId { get; set; }
         public string DisplayName { get; set; }
-        public string Description { get; set; }
+        public string LineTwo { get; set; }
+        public string LineThree { get; set; }
         public bool IsInStock { get; set; }
     }
 
     private int clickedIndex;
+    private bool dense = false;
+    private bool hideLineTwo = false;
+    private bool hideLineThree = false;
 
     private void OnClick(int index)
     {
