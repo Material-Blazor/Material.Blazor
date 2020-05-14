@@ -7,7 +7,7 @@
 <p>See <code>MenuSample.razor</code> for sources.</p>
 
 <div>
-    <MdcButton Label="Open Menu" OnClick="@OpenMenuAsync" />
+    <MdcButton Label="Open Menu" @onclick="@OpenMenuAsync" />
 
     <div class="mdc-menu-surface--anchor">
         <MdcMenu @ref="menu">

@@ -13,7 +13,7 @@
 }
 
 
-<p><MdcButton Label="Show general dialog" OnClick="@ShowDialog1"></MdcButton></p>
+<p><MdcButton Label="Show general dialog" @onclick="@ShowDialog1"></MdcButton></p>
 
 <p>Result: <strong>'@(result1 ?? "")'</strong></p>
 <p>Button result: <strong>'@(radioButtonResult1 ?? "")'</strong></p>
@@ -35,7 +35,7 @@
 
 
 
-<p style="margin-top: 3rem;"><MdcButton Label="Show default confirmation dialog" OnClick="@ShowDialog2"></MdcButton></p>
+<p style="margin-top: 3rem;"><MdcButton Label="Show default confirmation dialog" @onclick="@ShowDialog2"></MdcButton></p>
 
 <p>Result: <strong>'@(result2 ?? "")'</strong></p>
 
@@ -43,7 +43,7 @@
 
 
 
-<p style="margin-top: 3rem;"><MdcButton Label="Show tailored confirmation dialog" OnClick="@ShowDialog3"></MdcButton></p>
+<p style="margin-top: 3rem;"><MdcButton Label="Show tailored confirmation dialog" @onclick="@ShowDialog3"></MdcButton></p>
 
 <p>Result: <strong>'@(result3 ?? "")'</strong></p>
 
@@ -65,7 +65,7 @@
 </PMdcConfirmationDialog>
 
 
-<p style="margin-top: 3rem;"><MdcButton Label="Show general dialog with scrim and escape disabled (using HideAsync)" OnClick="@ShowDialog4"></MdcButton></p>
+<p style="margin-top: 3rem;"><MdcButton Label="Show general dialog with scrim and escape disabled (using HideAsync)" @onclick="@ShowDialog4"></MdcButton></p>
 
 <p>Logical result: <strong>'@(result4 ?? "")'</strong></p>
 <p>Dialog result: <strong>'@(dialogResult4 ?? "")'</strong></p>
@@ -84,7 +84,7 @@
 </MdcDialog>
 
 
-<p style="margin-top: 3rem;"><MdcButton Label="Dialog with Date Picker & OverflowVisible" OnClick="@ShowDialog5"></MdcButton></p>
+<p style="margin-top: 3rem;"><MdcButton Label="Dialog with Date Picker & OverflowVisible" @onclick="@ShowDialog5"></MdcButton></p>
 
 <p>Result: <strong>'@(date5.ToString("d") ?? "")'</strong></p>
 
@@ -101,7 +101,7 @@
 </MdcDialog>
 
 
-<p style="margin-top: 3rem;"><MdcButton Label="Confirmation Dialog with Date Picker & OverflowVisible" OnClick="@ShowDialog6"></MdcButton></p>
+<p style="margin-top: 3rem;"><MdcButton Label="Confirmation Dialog with Date Picker & OverflowVisible" @onclick="@ShowDialog6"></MdcButton></p>
 
 <p>Result: <strong>'@(date6.ToString("d") ?? "")'</strong></p>
 
