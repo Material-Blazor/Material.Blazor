@@ -23,6 +23,11 @@
 .bmdc-dp-menu__surface-adjust {
     overflow: visible !important;
     display: inline-block;
+    pointer-events: none;
+}
+
+.mdc-select--activated .bmdc-dp-menu__surface-adjust {
+    pointer-events: auto !important;
 }
 
 .bmdc-dp-menu__container {
