@@ -23,7 +23,7 @@
                         <MdcMenu @ref="menu">
                             @foreach (var itemsPerPage in ItemsPerPageSelection)
                             {
-                                <MdcListItem @key="@itemsPerPage" Text="@itemsPerPage.ToString("G0")" @onclick="@(_ => OnMenuItemClick(itemsPerPage))" />
+                                <MdcListItem @key="@itemsPerPage" Text="@itemsPerPage.ToString("G0")" OnClick="@(_ => OnMenuItemClick(itemsPerPage))" />
                             }
                         </MdcMenu>
                     </div>

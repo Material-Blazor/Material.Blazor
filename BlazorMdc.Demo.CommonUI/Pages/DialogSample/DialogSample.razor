@@ -78,8 +78,8 @@
         <p><MdcCheckbox @bind-Value="@checkMe" Label="Check me" /></p>
     </Body>
     <Buttons>
-        <MdcButton Label="Orange" OnClick="orangeClick"></MdcButton>
-        <MdcButton Label="Apple" OnClick="appleClick" ButtonStyle="@MdcButtonStyle.Text"></MdcButton>
+        <MdcButton Label="Orange" @onclick="orangeClick"></MdcButton>
+        <MdcButton Label="Apple" @onclick="appleClick" ButtonStyle="@MdcButtonStyle.Text"></MdcButton>
     </Buttons>
 </MdcDialog>
 
