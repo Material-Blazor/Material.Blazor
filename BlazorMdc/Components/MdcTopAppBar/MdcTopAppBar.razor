@@ -13,7 +13,7 @@
 
     <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-            <button class="mdc-icon-button material-icons mdc-top-app-bar__action-item--unbounded" aria-label="@NavAriaLabel" @onclick="OnNavClicked">@NavIcon</button>
+            <MdcIconButton Class="mdc-top-app-bar__action-item--unbounded" Icon="@NavIcon" IconFoundry="@IconFoundry" @attributes="@UnmatchedAttributes" />
             <span class="mdc-top-app-bar__title">@Title</span>
         </section>
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" style="padding-right: 20px;">
@@ -34,9 +34,9 @@
     //
     [Parameter] public string Title { get; set; }
     [Parameter] public string NavIcon { get; set; }
+    [Parameter] public IMdcIconFoundry IconFoundry { get; set; }
     [Parameter] public string NavAriaLabel { get; set; }
     [Parameter] public RenderFragment ChildContent { get; set; }
-    [Parameter] public EventCallback OnNavClicked { get; set; }
     [Parameter] public string ScrollTarget { get; set; }
     [Parameter] public MdcTopAppBarType TopAppBarType { get; set; } = MdcTopAppBarType.Standard;
 

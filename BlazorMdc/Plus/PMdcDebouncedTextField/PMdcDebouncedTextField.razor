@@ -7,15 +7,14 @@
 @using System.Threading
 
 
-<MdcTextField Type="text"
-              Value="@Value"
+<MdcTextField Value="@Value"
               Label="@Label"
               NoLabel="@NoLabel"
               LeadingIcon="@LeadingIcon"
               TrailingIcon="@TrailingIcon"
               TextInputStyle="@TextInputStyle"
               TextAlignStyle="@TextAlignStyle"
-              OnInput="@OnTextInput"
+              @oninput="@OnTextInput"
               Disabled=@Disabled
               FormNoValidate="@FormNoValidate" />
 

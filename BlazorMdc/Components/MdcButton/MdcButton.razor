@@ -10,7 +10,7 @@
         disabled="@Disabled"
         tabindex="@TabIndex"
         data-mdc-dialog-action="@DialogAction"
-        type="@Type"
+        type="button"
         @attributes="@UnmatchedAttributes">
     <div class="mdc-button__ripple"></div>
     @LeadingIconMarkup
@@ -38,7 +38,6 @@
 
 #nullable enable annotations
     [Parameter] public MdcButtonStyle? ButtonStyle { get; set; }
-    [Parameter] public string Type { get; set; } = "button";
     [Parameter] public string Label { get; set; }
     [Parameter] public string TabIndex { get; set; } = "0";
     [Parameter] public string? LeadingIcon { get; set; }

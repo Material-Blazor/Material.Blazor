@@ -8,7 +8,10 @@
 <MdcTextField @ref="textField"
               Class="@Class"
               Style="@Style"
-              Type="text"
+              type="text"
+              step="@(Math.Pow(10, -myDecimalPlaces).ToString())"
+              min="@Min"
+              max="@Max"
               @bind-Value="@formattedValue"
               Label="@Label"
               NoLabel="@NoLabel"
@@ -17,8 +20,8 @@
               IconFoundry="@IconFoundry"
               TextInputStyle="@TextInputStyle"
               TextAlignStyle="@MdcTextAlignStyle.Right"
-              OnFocusIn="@OnFocusIn"
-              OnFocusOut="@OnFocusOut"
+              @onfocusin="@OnFocusIn"
+              @onfocusout="@OnFocusOut"
               Disabled=@Disabled
               FormNoValidate="@myFormNoValidate"/>
 
@@ -112,14 +115,6 @@
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         await base.OnAfterRenderAsync(firstRender);
-
-        if (firstRender)
-        {
-            textField.AttributeMapper
-                        .Add("step", Math.Pow(10, -myDecimalPlaces).ToString())
-                        .AddIf("min", Min?.ToString(), () => Min != null)
-                        .AddIf("max", Max?.ToString(), () => Max != null);
-        }
 
         if (hasFocus == true && prevHasFocus == false)
         {

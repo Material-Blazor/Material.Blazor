@@ -11,7 +11,6 @@
 
     @LeadingIconMarkup
     <input @ref="@inputReference"
-           type="@Type"
            id="@Id"
            class="mdc-text-field__input @Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle)) @FieldClass"
            @bind="@ReportingValue"
@@ -19,13 +18,7 @@
            disabled="@Disabled"
            formnovalidate="@FormNoValidate"
            tabindex="@TabIndex"
-           @attributes="@AttributeMapper.ToDictionary()"
-           @oninput="OnInput"
-           @onmouseover="OnMouseOver"
-           @onmouseout="OnMouseOut"
-           @onfocus="OnFocus"
-           @onfocusin="OnFocusIn"
-           @onfocusout="OnFocusOut">
+           @attributes="@UnmatchedAttributes">
 
     @TrailingIconMarkup
 
@@ -58,7 +51,6 @@
 #nullable enable annotations
     [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
     [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
-    [Parameter] public string Type { get; set; } = "text";
     [Parameter] public string Label { get; set; } = "";
     [Parameter] public string TabIndex { get; set; } = "";
     [Parameter] public bool NoLabel { get; set; } = false;
@@ -66,12 +58,6 @@
     [Parameter] public string? TrailingIcon { get; set; }
     [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
     [Parameter] public bool FormNoValidate { get; set; } = false;
-    [Parameter] public EventCallback<ChangeEventArgs> OnInput { get; set; }
-    [Parameter] public EventCallback<MouseEventArgs> OnMouseOver { get; set; }
-    [Parameter] public EventCallback<MouseEventArgs> OnMouseOut { get; set; }
-    [Parameter] public EventCallback<FocusEventArgs> OnFocusIn { get; set; }
-    [Parameter] public EventCallback<FocusEventArgs> OnFocusOut { get; set; }
-    [Parameter] public EventCallback<FocusEventArgs> OnFocus { get; set; }
 #nullable restore annotations
 
 
