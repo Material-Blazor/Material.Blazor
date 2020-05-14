@@ -12,6 +12,7 @@
     <Company>Dioptra</Company>
     <Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io. WARNING: Under continual development, expect frequent breaking API changes until we reach version 1.0.0</Description>
     <RepositoryUrl>https://github.com/BlazorMdc/BlazorMdc</RepositoryUrl>
+    <Version>0.29.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_WebAssembly|AnyCPU'">
