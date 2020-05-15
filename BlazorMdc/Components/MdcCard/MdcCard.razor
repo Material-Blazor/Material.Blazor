@@ -6,8 +6,8 @@
 
 
 <CascadingValue Value="@this">
-    <div class="@ClassMapper.ToString()"
-         style="@StyleMapper.ToString()">
+    <div @attributes="@SplatAttributes(SplatType.MappersOnly)">
+
         @ChildContent
 
         @if (Primary != null)
@@ -22,7 +22,8 @@
             <div @ref="@primaryActionReference"
                  class="mdc-card__primary-action @primaryActionClass"
                  tabindex="0"
-                 @attributes="@Attributes">
+                 @attributes="@SplatAttributes(SplatType.ExcludeMappers)">
+
                 @PrimaryAction
             </div>
         }

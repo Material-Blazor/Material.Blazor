@@ -6,9 +6,6 @@
 
 
 <MdcTextField @ref="textField"
-              Class="@Class"
-              Style="@Style"
-              type="text"
               step="@(Math.Pow(10, -myDecimalPlaces).ToString())"
               min="@Min"
               max="@Max"
@@ -22,7 +19,8 @@
               TextAlignStyle="@MdcTextAlignStyle.Right"
               @onfocusin="@OnFocusIn"
               @onfocusout="@OnFocusOut"
-              FormNoValidate="@myFormNoValidate"/>
+              formnovalidate="@myFormNoValidate"
+              @attributes="@SplatAttributes()" />
 
 
 @code {

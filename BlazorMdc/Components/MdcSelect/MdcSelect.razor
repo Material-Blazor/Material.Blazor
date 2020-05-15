@@ -82,7 +82,7 @@
 
         ClassMapper
             .Clear()
-            .Get(() => Class)
+            //.Get(() => Class)
             .Add("mdc-select")
             .AddIf("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
             .AddIf("mdc-select--disabled", () => IsDisabled);

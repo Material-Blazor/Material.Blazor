@@ -5,12 +5,10 @@
 @inject IJSRuntime jsRuntime
 
 <button @ref="@elementReference"
-        class="@ClassMapper.ToString()"
-        style="@StyleMapper.ToString()"
         tabindex="@TabIndex"
         data-mdc-dialog-action="@DialogAction"
         type="button"
-        @attributes="@Attributes">
+        @attributes="@SplatAttributes()">
     <div class="mdc-button__ripple"></div>
     @LeadingIconMarkup
     <span class="mdc-button__label">@Label</span>

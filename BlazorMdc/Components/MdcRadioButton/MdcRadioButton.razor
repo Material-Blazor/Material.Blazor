@@ -7,16 +7,16 @@
 @inject IJSRuntime jsRuntime
 
 
-<div class="@ClassMapper.ToString()"
-     style="@StyleMapper.ToString()"
-     @ref="@formReference">
+<div @ref="@formReference"
+     @attributes="SplatAttributes(SplatType.MappersOnly)">
 
     <div @ref="@radioButtonReference" class="@buttonContainerClass">
         <input class="mdc-radio__native-control @disabledClass"
                type="radio"
                id="@radioId"
                name="@RadioGroupName"
-               @onclick="@(_ => OnInternalItemClickAsync())">
+               @onclick="@(_ => OnInternalItemClickAsync())"
+               @attributes="SplatAttributes(SplatType.ExcludeMappers)">
 
         <div class="mdc-radio__background">
             <div class="mdc-radio__outer-circle"></div>

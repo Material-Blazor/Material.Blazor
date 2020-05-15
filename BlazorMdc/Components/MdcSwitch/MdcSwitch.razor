@@ -6,8 +6,7 @@
 
 
 <div @ref="@elementReference"
-     class="@ClassMapper.ToString()"
-     style="@StyleMapper.ToString()">
+     @attributes="SplatAttributes(SplatType.MappersOnly)">
 
         <div class="mdc-switch__track"></div>
         <div class="mdc-switch__thumb-underlay">
@@ -16,7 +15,8 @@
                        id="@Id" 
                        @bind="@ReportingValue" 
                        class="mdc-switch__native-control" 
-                       role="switch" />
+                       role="switch"
+                       @attributes="SplatAttributes(SplatType.ExcludeMappers)" />
             </div>
         </div>
     </div>

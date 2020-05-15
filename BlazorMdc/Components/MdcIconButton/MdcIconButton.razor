@@ -6,10 +6,8 @@
 
 
 <button @ref="@elementReference" 
-        class="@ClassMapper.ToString()"
-        style="@StyleMapper.ToString()" 
         type="button"
-        @attributes="@Attributes">
+        @attributes="@SplatAttributes()">
     
     <i class="@myIcon.Class">@myIcon.Text</i>
 </button>

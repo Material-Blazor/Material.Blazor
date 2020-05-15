@@ -6,12 +6,11 @@
 @inject IJSRuntime jsRuntime
 
 
-<div @attributes="@Attributes">
+<div @attributes="@SplatAttributes(SplatType.ExcludeMappers)">
     <button @ref="@elementReference"
-            class="@ClassMapper.ToString()"
-            style="@StyleMapper.ToString()"
+            @attributes="@SplatAttributes(SplatType.MappersOnly)"
             type="button"
-            @onclick="@OnLocalClickAsync">
+            @onclick="@OnLocalClick">
 
         <i class="@on.Class mdc-icon-button__icon mdc-icon-button__icon--on bmdc-dp-menu__icon-button">@on.Text</i>
         <i class="@off.Class mdc-icon-button__icon bmdc-dp-menu__icon-button">@off.Text</i>
@@ -51,13 +50,13 @@
     private void MyClassMapper() =>
         ClassMapper
             .Clear()
-            .Get(() => Class)
+            //.Get(() => Class)
             .Add("mdc-icon-button")
             .AddIf("mdc-card__action mdc-card__action--icon", () => (Card != null))
             .AddIf("mdc-icon-button--on", () => Value);
 
 
-    public async Task OnLocalClickAsync()
+    public void OnLocalClick()
     {
         ReportingValue = !ReportingValue;
     }

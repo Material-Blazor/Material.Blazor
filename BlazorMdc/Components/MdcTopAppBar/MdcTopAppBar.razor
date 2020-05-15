@@ -8,12 +8,15 @@
 
 <header @ref="headerElem"
         id="app-bar"
-        class="@ClassMapper.ToString()"
-        style="@StyleMapper.ToString()">
+        @attributes="SplatAttributes(SplatType.MappersOnly)">
 
     <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-            <MdcIconButton Class="mdc-top-app-bar__action-item--unbounded" Icon="@NavIcon" IconFoundry="@IconFoundry" @attributes="@Attributes" />
+            <MdcIconButton class="mdc-top-app-bar__action-item--unbounded" 
+                           Icon="@NavIcon" 
+                           IconFoundry="@IconFoundry" 
+                           @attributes="@SplatAttributes(SplatType.ExcludeMappers)" />
+
             <span class="mdc-top-app-bar__title">@Title</span>
         </section>
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" style="padding-right: 20px;">
@@ -49,7 +52,7 @@
 
         ClassMapper
             .Clear()
-            .Get(() => Class)
+            //.Get(() => Class)
             .Add("mdc-top-app-bar")
             .AddIf($"mdc-top-app-bar--{TopAppBarType.ToString().ToLower()}", () => TopAppBarType != MdcTopAppBarType.Standard && TopAppBarType != MdcTopAppBarType.ShortCollapsed)
             .AddIf($"mdc-top-app-bar--short mdc-top-app-bar--short-collapsed", () => TopAppBarType == MdcTopAppBarType.ShortCollapsed)

@@ -4,8 +4,6 @@
 
 
 <PMdcNumericDoubleField @bind-Value="@dblVal"
-                        Class="@Class"
-                        Style="@Style"
                         TextInputStyle="TextInputStyle"
                         Label="@Label"
                         NoLabel="@NoLabel"
@@ -17,7 +15,8 @@
                         Magnitude="@Magnitude"
                         Min="@Min"
                         Max="@Max"
-                        DecimalPlaces="0" />
+                        DecimalPlaces="0"
+                        @attributes="@SplatAttributes()" />
 
 
 @code {

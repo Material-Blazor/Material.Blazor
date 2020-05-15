@@ -10,8 +10,6 @@
 
 <div>
     <MdcTextField @ref="@textField"
-                  Class="@Class" 
-                  Style="@Style"
                   @bind-Value="@selectInfo.SelectedText" 
                   TextAlignStyle="@TextAlignStyle"
                   TextInputStyle="@TextInputStyle"
@@ -21,10 +19,9 @@
                   TrailingIcon="@TrailingIcon"
                   IconFoundry="@IconFoundry"
                   FormNoValidate="@FormNoValidate"
-                  Disabled="@IsDisabled"
                   @oninput="OnInput"
                   @onchange="OnTextFocusOutAsync"
-                  @attributes="@Attributes" />
+                  @attributes="@SplatAttributes()" />
 
     <div class="mdc-menu-surface--anchor">
         <div @ref="menuReference" class="mdc-menu mdc-menu-surface" style="visibility:visible; min-height:1rem; min-width: 20rem;" @onfocusin="OnMenuFocusIn" @onfocusout="OnMenuFocusOut">
