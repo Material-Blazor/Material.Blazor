@@ -1,7 +1,5 @@
 ﻿@namespace BlazorMdc.Demo
 
-@inherits MdcInputComponentBase<string>
-
 <MdcDialog Title=@dialogHeader
            @ref="pinLogonDialogReference">
 
@@ -113,7 +111,8 @@
                         {
                             <MdcButton Style="margin: 0.75em 0.25em 0.25em 0.25em;"
                                        Type="submit"
-                                       Label="Enter PIN" />
+                                       Label="Enter PIN"
+                                       ButtonStyle="MdcButtonStyle.ContainedRaised"/>
                         }
                         <MdcButton @onclick="@CancelClick"
                                    Style="margin: 0.75em 0.25em 0.25em 0.25em;"
@@ -139,10 +138,11 @@
 
     private string dialogHeader { get; set; }
     private string lastFocus { get; set; }
+    private string returnValue { get; set; }
     private MdcDialog pinLogonDialogReference { get; set; }
     private PINLogonDTO pinLogonDTO = new PINLogonDTO();
 
-    public async Task OpenPINLogonDialogAsync()
+    public async Task<string> OpenPINLogonDialogAsync()
     {
         pinLogonDTO.PIN1 = "";
         pinLogonDTO.PIN2 = "";
@@ -159,12 +159,13 @@
             pinLogonDTO.PIN2 = "x";
         }
 
-        await pinLogonDialogReference.ShowAsync();
-    }
+        var ret = await pinLogonDialogReference.ShowAsync();
+        if (ret.Equals("dismissed"))
+        {
+            ret = returnValue;
+        }
 
-    public async Task CloseDialogAsync()
-    {
-        await pinLogonDialogReference.HideAsync();
+        return ret;
     }
 
     async Task SubmitLogon()
@@ -173,7 +174,7 @@
         {
             if (pinLogonDTO.PIN1 == validationPIN)
             {
-                ReportingValue = "<SUCCEEDED>";
+                returnValue = "<Log on succeeded>";
 
                 toastService.ShowToast(
                     level: PMdcToastLevel.Success,
@@ -192,11 +193,11 @@
         {
             if (pinLogonDTO.PIN1 == pinLogonDTO.PIN2)
             {
-                ReportingValue = pinLogonDTO.PIN1;
+                returnValue = "<PIN created with a value of '" + pinLogonDTO.PIN1.ToString() + "'>";
 
                 toastService.ShowToast(
                     level: PMdcToastLevel.Success,
-                    message: "PIN creation succeeded");
+                    message: "<PIN creation succeeded>");
 
                 await pinLogonDialogReference.HideAsync();
             }
@@ -211,7 +212,7 @@
 
     async Task CancelClick()
     {
-        ReportingValue = "<CANCELED>";
+        returnValue = "<CANCELED>";
 
         await pinLogonDialogReference.HideAsync();
     }

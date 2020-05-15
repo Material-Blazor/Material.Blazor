@@ -18,39 +18,37 @@
               @onclick="@ShowDialog1"
               ButtonStyle="MdcButtonStyle.ContainedRaised" /></p>
 
-<p>Created PIN: <string>'@(pin1 ?? "")'</string></p>
+<p>Result: <string>'@(result1 ?? "")'</string></p>
 
 <PINLogonDialog @ref="pinLogonDialogReference1"
-                @bind-Value="@pin1"
                 dialogStyle="PINLogonDialog.ePINDialogStyle.CreatePIN" />
 
-<p><MdcButton Label="Show logon with PIN dialog (Expected PIN is 31415)"
+<p><MdcButton Label="Show logon with PIN dialog (Valid PIN is 3141)"
               @onclick="@ShowDialog2"
               ButtonStyle="MdcButtonStyle.ContainedRaised"/></p>
 
-<p>Result: <string>'@(pin2 ?? "")'</string></p>
+<p>Result: <string>'@(result2 ?? "")'</string></p>
 
 <PINLogonDialog @ref="pinLogonDialogReference2"
-                @bind-Value="pin2"
                 dialogStyle="PINLogonDialog.ePINDialogStyle.EnterPIN"
-                validationPIN="31415" />
+                validationPIN="3141" />
 
 @code {
     [Parameter] public bool HideHeading { get; set; }
 
     PINLogonDialog pinLogonDialogReference1;
-    public string pin1 = "";
+    public string result1 = "";
 
     async Task ShowDialog1()
     {
-        await pinLogonDialogReference1.OpenPINLogonDialogAsync();
+        result1 = await pinLogonDialogReference1.OpenPINLogonDialogAsync();
     }
 
     PINLogonDialog pinLogonDialogReference2;
-    public string pin2 = "";
+    public string result2 = "";
 
     async Task ShowDialog2()
     {
-        await pinLogonDialogReference2.OpenPINLogonDialogAsync();
+        result2 = await pinLogonDialogReference2.OpenPINLogonDialogAsync();
     }
 }
