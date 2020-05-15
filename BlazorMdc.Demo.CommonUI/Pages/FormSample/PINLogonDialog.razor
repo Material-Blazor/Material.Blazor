@@ -1,0 +1,257 @@
+﻿@namespace BlazorMdc.Demo
+
+<MdcDialog Title=@dialogHeader
+           @ref="pinLogonDialogReference">
+
+    <Body>
+        @if (dialogStyle == ePINDialogStyle.CreatePIN)
+        {
+            <h6>Your PIN has never been set.</h6>
+            <h6>Pick a PIN, enter it, and verify the entry.</h6>
+            <PMdcDivider Padded="true" />
+        }
+
+        <EditForm Model="@pinLogonDTO" OnValidSubmit="@SubmitLogon">
+            <DataAnnotationsValidator />
+
+            @if (dialogStyle == ePINDialogStyle.CreatePIN)
+            {
+                <div class="form-group">
+                    <MdcTextField @bind-Value="pinLogonDTO.PIN1"
+                                  @onfocus="@(() => FocusPIN("PIN1"))"
+                                  Label="New PIN"
+                                  TrailingIcon="lock_outline"
+                                  Type="password" />
+                    <ValidationMessage For=@( () => pinLogonDTO.PIN1 ) />
+                </div>
+                <div class="form-group">
+                    <MdcTextField @bind-Value="pinLogonDTO.PIN2"
+                                  @onfocus="@(() => FocusPIN("PIN2"))"
+                                  Label="Verify PIN"
+                                  TrailingIcon="lock_outline"
+                                  Type="password" />
+                    <ValidationMessage For=@( () => pinLogonDTO.PIN2 ) />
+                </div>
+            }
+            else
+            {
+                <div class="form-group">
+                    <MdcTextField @bind-Value="pinLogonDTO.PIN1"
+                                  @onfocus="@(() => FocusPIN("PIN1"))"
+                                  Label="PIN"
+                                  TrailingIcon="lock_outline"
+                                  Type="password" />
+                    <ValidationMessage For=@( () => pinLogonDTO.PIN1 ) />
+                </div>
+            }
+            <div class="form-group">
+                <div style="display: flex; flex-direction:column; justify-content:flex-start;">
+                    <div style="display:flex; flex-direction: row; justify-content: center;">
+                        <MdcButton Label="7"
+                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                   @onclick="@(() => NumberClick("7"))"
+                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                        <MdcButton Label="8"
+                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                   @onclick="@(() => NumberClick("8"))"
+                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                        <MdcButton Label="9"
+                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                   @onclick="@(() => NumberClick("9"))"
+                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                    </div>
+                    <div style="display:flex; flex-direction: row; justify-content: center;">
+                        <MdcButton Label="4"
+                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                   @onclick="@(() => NumberClick("4"))"
+                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                        <MdcButton Label="5"
+                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                   @onclick="@(() => NumberClick("5"))"
+                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                        <MdcButton Label="6"
+                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                   @onclick="@(() => NumberClick("6"))"
+                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                    </div>
+                    <div style="display:flex; flex-direction: row; justify-content: center;">
+                        <MdcButton Label="1"
+                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                   @onclick="@(() => NumberClick("1"))"
+                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                        <MdcButton Label="2"
+                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                   @onclick="@(() => NumberClick("2"))"
+                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                        <MdcButton Label="3"
+                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                   @onclick="@(() => NumberClick("3"))"
+                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                    </div>
+                    <div style="display:flex; flex-direction: row; justify-content: center;">
+                        <MdcButton Label="0"
+                                   Style="margin: 0.75em 0.75em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                   @onclick="@(() => NumberClick("0"))"
+                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                        <MdcButton Label="Backspace"
+                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; min-width: 128px;"
+                                   @onclick="@(() => NumberClick("BKS"))"
+                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                    </div>
+
+                    <div style="display:flex; flex-direction: row; justify-content: center;">
+                        @if (dialogStyle == ePINDialogStyle.CreatePIN)
+                        {
+                            <MdcButton Style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                       Type="submit"
+                                       Label="Create PIN"
+                                       ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                        }
+                        else
+                        {
+                            <MdcButton Style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                       Type="submit"
+                                       Label="Enter PIN"
+                                       ButtonStyle="MdcButtonStyle.ContainedRaised"/>
+                        }
+                        <MdcButton @onclick="@CancelClick"
+                                   Style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                   Label="Cancel"
+                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                    </div>
+                </div>
+            </div>
+            <hr />
+        </EditForm>
+    </Body>
+    <Buttons></Buttons>
+</MdcDialog>
+
+@code{
+
+    public enum ePINDialogStyle { CreatePIN, EnterPIN };
+
+    [Inject] private IPmdcToastService toastService { get; set; }
+
+    [Parameter] public ePINDialogStyle dialogStyle { get; set; }
+    [Parameter] public string validationPIN { get; set; }
+
+    private string dialogHeader { get; set; }
+    private string lastFocus { get; set; }
+    private string returnValue { get; set; }
+    private MdcDialog pinLogonDialogReference { get; set; }
+    private PINLogonDTO pinLogonDTO = new PINLogonDTO();
+
+    public async Task<string> OpenPINLogonDialogAsync()
+    {
+        pinLogonDTO.PIN1 = "";
+        pinLogonDTO.PIN2 = "";
+
+        if (dialogStyle == ePINDialogStyle.CreatePIN)
+        {
+            dialogHeader = "Create PIN";
+        }
+        else
+        {
+            dialogHeader = "Enter PIN";
+
+            // Prevent validation error
+            pinLogonDTO.PIN2 = "x";
+        }
+
+        var ret = await pinLogonDialogReference.ShowAsync();
+        if (ret.Equals("dismissed"))
+        {
+            ret = returnValue;
+        }
+
+        return ret;
+    }
+
+    async Task SubmitLogon()
+    {
+        if (dialogStyle == ePINDialogStyle.EnterPIN)
+        {
+            if (pinLogonDTO.PIN1 == validationPIN)
+            {
+                returnValue = "<Log on succeeded>";
+
+                toastService.ShowToast(
+                    level: PMdcToastLevel.Success,
+                    message: "Log on succeeded");
+
+                await pinLogonDialogReference.HideAsync();
+            }
+            else
+            {
+                toastService.ShowToast(
+                    level: PMdcToastLevel.Error,
+                    message: "Log on failed");
+            }
+        }
+        else
+        {
+            if (pinLogonDTO.PIN1 == pinLogonDTO.PIN2)
+            {
+                returnValue = "<PIN created with a value of '" + pinLogonDTO.PIN1.ToString() + "'>";
+
+                toastService.ShowToast(
+                    level: PMdcToastLevel.Success,
+                    message: "<PIN creation succeeded>");
+
+                await pinLogonDialogReference.HideAsync();
+            }
+            else
+            {
+                toastService.ShowToast(
+                    level: PMdcToastLevel.Error,
+                    message: "PINs do not match");
+            }
+        }
+    }
+
+    async Task CancelClick()
+    {
+        returnValue = "<CANCELED>";
+
+        await pinLogonDialogReference.HideAsync();
+    }
+
+    void FocusPIN(string pin)
+    {
+        lastFocus = pin;
+    }
+
+    void NumberClick(string result)
+    {
+        if (result == "BKS")
+        {
+            if (lastFocus.StartsWith("PIN1"))
+            {
+                if (pinLogonDTO.PIN1.Length > 0)
+                {
+                    pinLogonDTO.PIN1 = pinLogonDTO.PIN1.Remove(pinLogonDTO.PIN1.Length - 1, 1);
+                }
+            }
+            else
+            {
+                if (pinLogonDTO.PIN2.Length > 0)
+                {
+                    pinLogonDTO.PIN2 = pinLogonDTO.PIN2.Remove(pinLogonDTO.PIN2.Length - 1, 1);
+                }
+            }
+        }
+        else
+        {
+            if (lastFocus.StartsWith("PIN1"))
+            {
+                pinLogonDTO.PIN1 += result;
+            }
+            else
+            {
+                pinLogonDTO.PIN2 += result;
+            }
+        }
+    }
+
+}
