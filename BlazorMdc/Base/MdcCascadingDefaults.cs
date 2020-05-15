@@ -9,11 +9,10 @@ namespace BlazorMdc
 {
     public class MdcCascadingDefaults
     {
-        public bool UnconstrainSplattableAttributes { get; set; } = false;
+        public bool ConstrainSplattableAttributes { get; set; } = true;
         public IList<string> AllowedSplattableAttributes { get; set; } = new string[] { "class", "style", "disabled", "type" };
 
 
-        public string TextFieldCssClass { get; set; } = "";
 
         // Mdc Components
         public MdcIconFoundryName IconFoundryName { get; set; } = MdcIconFoundryName.MaterialIcons;

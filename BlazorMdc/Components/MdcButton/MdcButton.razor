@@ -53,7 +53,7 @@
         {
             if (LeadingIcon is null) return (MarkupString)"";
 
-            var icon = new MdcIcon(CascadingDefaults, LeadingIcon, IconFoundry);
+            var icon = new MdcIconHelper(CascadingDefaults, LeadingIcon, IconFoundry);
 
             return (MarkupString)$"<i class=\"{icon.Class} mdc-button__icon\" aria-hidden=\"true\">{icon.Text}</i>";
         }
@@ -66,7 +66,7 @@
         {
             if (TrailingIcon is null) return (MarkupString)"";
 
-            var icon = new MdcIcon(CascadingDefaults, TrailingIcon, IconFoundry);
+            var icon = new MdcIconHelper(CascadingDefaults, TrailingIcon, IconFoundry);
 
             return (MarkupString)$"<i class=\"{icon.Class} mdc-button__icon\" aria-hidden=\"true\">{icon.Text}</i>";
         }

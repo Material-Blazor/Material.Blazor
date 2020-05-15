@@ -3,7 +3,7 @@ using System;
 
 namespace BlazorMdc
 {
-    public class MdcIcon : IMdcIcon
+    public class MdcIconHelper : IMdcIcon
     {
         public string Class => UnderlyingIcon.Class;
 
@@ -22,7 +22,7 @@ namespace BlazorMdc
 
 
 #nullable enable annotations
-        public MdcIcon(MdcCascadingDefaults cascadingDefaults, string iconName, IMdcIconFoundry? foundry = null)
+        public MdcIconHelper(MdcCascadingDefaults cascadingDefaults, string iconName, IMdcIconFoundry? foundry = null)
         {
             if (cascadingDefaults is null)
             {

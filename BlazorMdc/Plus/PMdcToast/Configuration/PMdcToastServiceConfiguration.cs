@@ -9,10 +9,10 @@ namespace BlazorMdc
         public const bool DefaultShowIcons = true;
         public const PMdcToastCloseMethod DefaultCloseMethod = PMdcToastCloseMethod.TimeoutAndCloseButton;
         public const int DefaultTimeout = 3000; 
-        public readonly MdcIcon DefaultInfoIcon = new MdcIcon(null, "notifications", MdcIcon.MIFoundry());
-        public readonly MdcIcon DefaultSuccessIcon = new MdcIcon(null, "done", MdcIcon.MIFoundry());
-        public readonly MdcIcon DefaultWarningIcon = new MdcIcon(null, "warning", MdcIcon.MIFoundry());
-        public readonly MdcIcon DefaultErrorIcon = new MdcIcon(null, "error_outline", MdcIcon.MIFoundry());
+        public readonly MdcIconHelper DefaultInfoIcon = new MdcIconHelper(null, "notifications", MdcIconHelper.MIFoundry());
+        public readonly MdcIconHelper DefaultSuccessIcon = new MdcIconHelper(null, "done", MdcIconHelper.MIFoundry());
+        public readonly MdcIconHelper DefaultWarningIcon = new MdcIconHelper(null, "warning", MdcIconHelper.MIFoundry());
+        public readonly MdcIconHelper DefaultErrorIcon = new MdcIconHelper(null, "error_outline", MdcIconHelper.MIFoundry());
         public readonly ulong DefaultIconFoundry = (ulong)MdcIconFoundryName.MaterialIcons | (ulong)MdcIconMITheme.Filled;
 
 
@@ -199,11 +199,11 @@ namespace BlazorMdc
         }
 
 
-        private MdcIcon _infoIcon;
+        private MdcIconHelper _infoIcon;
         /// <summary>
         /// Icon for an Info toast.
         /// </summary>
-        public MdcIcon InfoIcon
+        public MdcIconHelper InfoIcon
         {
             get => _infoIcon;
             set
@@ -217,11 +217,11 @@ namespace BlazorMdc
         }
 
 
-        private MdcIcon _successIcon;
+        private MdcIconHelper _successIcon;
         /// <summary>
         /// Icon for an Success toast.
         /// </summary>
-        public MdcIcon SuccessIcon
+        public MdcIconHelper SuccessIcon
         {
             get => _successIcon;
             set
@@ -235,11 +235,11 @@ namespace BlazorMdc
         }
 
 
-        private MdcIcon _warningIcon;
+        private MdcIconHelper _warningIcon;
         /// <summary>
         /// Icon for an waWrning toast.
         /// </summary>
-        public MdcIcon WarningIcon
+        public MdcIconHelper WarningIcon
         {
             get => _warningIcon;
             set
@@ -253,11 +253,11 @@ namespace BlazorMdc
         }
 
 
-        private MdcIcon _errorIcon;
+        private MdcIconHelper _errorIcon;
         /// <summary>
         /// Icon for an Error toast.
         /// </summary>
-        public MdcIcon ErrorIcon
+        public MdcIconHelper ErrorIcon
         {
             get => _errorIcon;
             set

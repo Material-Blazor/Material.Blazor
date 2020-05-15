@@ -49,7 +49,7 @@ namespace BlazorMdc
         /// <summary>
         /// Attributes That the component can elect to set for inclusion in SplatAttributes.
         /// </summary>
-        internal IDictionary<string, object> ComponentSetAttributes { get; set; } = new Dictionary<string, object>(StringComparer.CurrentCultureIgnoreCase);
+        internal IDictionary<string, object> ComponentAttributes { get; set; } = new Dictionary<string, object>(StringComparer.CurrentCultureIgnoreCase);
 
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace BlazorMdc
         /// </summary>
         internal IReadOnlyDictionary<string, object> AttributesToSplat(SplatType splatType = SplatType.All)
         {
-            var result = new Dictionary<string, object>(ComponentSetAttributes);
+            var result = new Dictionary<string, object>(ComponentAttributes);
 
             if (UnmatchedAttributes != null)
             {
@@ -91,17 +91,17 @@ namespace BlazorMdc
                 }
             }
 
-            if (!CascadingDefaults.UnconstrainSplattableAttributes)
+            if (CascadingDefaults.ConstrainSplattableAttributes)
             {
                 var forbidden = result
-                                    .Where(r => r.Value.GetType().IsPrimitive)
+                                    .Where(r => r.Value.GetType().Name.Length < 13 || r.Value.GetType().Name.Substring(0, 13) != "EventCallback")
                                     .Select(kvp => kvp.Key)
                                     .Where(a => a.Length < 6 || a.Substring(0, 5) != "aria-")
                                     .Except(CascadingDefaults.AllowedSplattableAttributes);
 
                 if (forbidden.Count() > 0)
                 {
-                    throw new ArgumentException($"Cannot use \"{string.Join(", ", forbidden)}\" attributes in {Utilities.GetTypeName(GetType())}");
+                    throw new ArgumentException($"BlazorMdc: You cannot use '{string.Join(", ", forbidden)}' attributes in {Utilities.GetTypeName(GetType())}. Either remove the attribute or change 'ConstrainSplattableAttributes' or 'AllowedSplattableAttributes' in your MdcCascadingDefaults");
                 }
             }
 

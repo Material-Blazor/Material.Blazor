@@ -10,7 +10,7 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  buildConfiguration: 'Release_Server'
+  buildConfiguration: 'Debug_Server'
   buildPlatform: 'Any CPU'
   ciTime: $[format('{0:yyyyMMddHHmmss}', pipeline.startTime)]
   project: 'BlazorMdc/BlazorMdc.csproj'
@@ -28,7 +28,7 @@ steps:
   displayName: 'Pushing NuGet package to internal feed'
   inputs:
     command: 'push'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
     nuGetFeedType: 'internal'
     publishVstsFeed: 'BlazorMdc'
     allowPackageConflicts: true

@@ -34,8 +34,8 @@
 
 
     private ElementReference elementReference;
-    private MdcIcon on => new MdcIcon(CascadingDefaults, IconOn, IconFoundry);
-    private MdcIcon off => new MdcIcon(CascadingDefaults, IconOff, IconFoundry);
+    private MdcIconHelper on => new MdcIconHelper(CascadingDefaults, IconOn, IconFoundry);
+    private MdcIconHelper off => new MdcIconHelper(CascadingDefaults, IconOff, IconFoundry);
 
 
     protected override void OnInitialized()
@@ -58,7 +58,6 @@
     public void OnLocalClick()
     {
         ReportingValue = !ReportingValue;
-        await Task.CompletedTask;
     }
 
 
