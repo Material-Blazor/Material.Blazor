@@ -3,8 +3,7 @@
 @inherits MdcComponentBase
 
 <div role="progressbar"
-     class="@ClassMapper.ToString()"
-     style="@StyleMapper.ToString()">
+     @attributes="@AttributesToSplat()">
 
     <div class="mdc-linear-progress__buffering-dots"></div>
     <div class="mdc-linear-progress__buffer"></div>

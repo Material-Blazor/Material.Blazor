@@ -12,10 +12,9 @@
 {
     <div @key="@key"
          @ref="dialogElem"
-            class="@ClassMapper.ToString()"
-            style="@StyleMapper.ToString()"
-            aria-labelledby="@titleId"
-            aria-describedby="@descId">
+         aria-labelledby="@titleId"
+         aria-describedby="@descId"
+         @attributes="@AttributesToSplat()">
 
         <CascadingValue Value="this">
             <div class="mdc-dialog__container">

@@ -9,8 +9,7 @@
 @inject IJSRuntime jsRuntime
 
 
-<div class="@ClassMapper.ToString() @visibilityClass"
-     style="@StyleMapper.ToString()">
+<div @attributes="AttributesToSplat()">
 
 	<div class="@contentClass @ListTemplateClass">
 		@ListTemplate(@:@{
@@ -77,8 +76,6 @@
 
 
     private string contentClass = "";
-    private bool hideContent = false;
-    private string visibilityClass => hideContent ? PMdcSlidingContent<object>.Hidden : PMdcSlidingContent<object>.Visible;
     private bool hasRendered = false;
     private IEnumerable<TItem> CheckedData => Data ?? Array.Empty<TItem>();
     public IEnumerable<TItem> CurrentPage => CheckedData.Skip(PageNumber * ItemsPerPage).Take(ItemsPerPage);
@@ -103,10 +100,10 @@
 
             await Task.Delay(100);
 
-            hideContent = true;
+            ClassMapper.Clear().Add(PMdcSlidingContent<object>.Hidden);
             contentClass = nextClass;
             _pageNumber = newPageNumber;
-            hideContent = false;
+            ClassMapper.Clear().Add(PMdcSlidingContent<object>.Visible);
 
             StateHasChanged();
         }
@@ -115,6 +112,8 @@
 
     protected override void OnParametersSet()
     {
+        ClassMapper.Clear().Add(PMdcSlidingContent<object>.Visible);
+
         if (ItemTemplate == null)
         {
             ItemTemplate = (item) => @:@{ 

@@ -5,9 +5,8 @@
 @inject IJSRuntime jsRuntime
 
 <aside @ref="drawerElem"
-       class="@ClassMapper.ToString()"
-       style="@StyleMapper.ToString()"
-       id="app-drawer">
+       id="app-drawer"
+       @attributes="@AttributesToSplat()">
 
     <div class="mdc-drawer__content">
         <CascadingValue Value="@this">

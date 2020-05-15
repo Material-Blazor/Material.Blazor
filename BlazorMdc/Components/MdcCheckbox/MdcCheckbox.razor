@@ -8,8 +8,7 @@
 <div @ref="@formReference" class="@formFieldClass">
     <div class="mdc-touch-target-wrapper">
         <div @ref="@elementReference"
-             class="@ClassMapper.ToString()"
-             style="@StyleMapper.ToString()">
+        @attributes="@AttributesToSplat()">
 
             <input @bind="@ReportingValue"
                    type="checkbox"

@@ -8,9 +8,8 @@
 
 
 <ul @ref="@elementReference"
-    class="@ClassMapper.ToString()"
-    style="@StyleMapper.ToString()"
-    aria-orientation="vertical">
+    aria-orientation="vertical"
+    @attributes="@AttributesToSplat()">
 
     @{ var index = 0; }
     @foreach (var item in Items)

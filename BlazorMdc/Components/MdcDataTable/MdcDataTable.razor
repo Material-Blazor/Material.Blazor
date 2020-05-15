@@ -8,8 +8,7 @@
 
 
 <div @ref="@elementReference" 
-     class="@ClassMapper.ToString()"
-     style="@StyleMapper.ToString()" >
+     @attributes="@AttributesToSplat()">
 
     <table class="mdc-data-table__table">
         <thead>

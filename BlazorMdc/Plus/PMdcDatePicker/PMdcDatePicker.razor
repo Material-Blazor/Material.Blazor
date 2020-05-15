@@ -6,8 +6,7 @@
 
 
 <div @ref="elementReference"
-     class="@ClassMapper.ToString()"
-     style="@StyleMapper.ToString()">
+     @attributes="@AttributesToSplat()" >
 
     <div class="mdc-select__anchor">
         <i class="mdc-select__dropdown-icon"></i>

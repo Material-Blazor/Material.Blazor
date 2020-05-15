@@ -10,7 +10,7 @@ namespace BlazorMdc
     public class MdcCascadingDefaults
     {
         public bool ConstrainSplattableAttributes { get; set; } = true;
-        public IList<string> AllowedSplattableAttributes { get; set; } = new string[] { "class", "style", "disabled", "type" };
+        public IList<string> AllowedSplattableAttributes { get; set; } = new string[] { "class", "disabled", "formnovalidate", "role", "style", "type" };
 
 
 

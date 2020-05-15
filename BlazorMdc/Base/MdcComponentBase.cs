@@ -94,9 +94,9 @@ namespace BlazorMdc
             if (CascadingDefaults.ConstrainSplattableAttributes)
             {
                 var forbidden = result
-                                    .Where(r => r.Value.GetType().Name.Length < 13 || r.Value.GetType().Name.Substring(0, 13) != "EventCallback")
                                     .Select(kvp => kvp.Key)
                                     .Where(a => a.Length < 6 || a.Substring(0, 5) != "aria-")
+                                    .Where(a => a.Length < 3 || a.Substring(0, 2) != "on")
                                     .Except(CascadingDefaults.AllowedSplattableAttributes);
 
                 if (forbidden.Count() > 0)

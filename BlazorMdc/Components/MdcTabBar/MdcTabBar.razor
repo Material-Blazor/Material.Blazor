@@ -9,8 +9,7 @@
 
 <div @ref="elementReference"
      role="tablist"
-     class="@ClassMapper.ToString()"
-     style="@StyleMapper.ToString()">
+     @attributes="@AttributesToSplat()">
 
     <div class="mdc-tab-scroller">
         <div class="mdc-tab-scroller__scroll-area">

@@ -4,8 +4,7 @@
 
 <li role="menuitem"
     @onclick="InternalClickHandler"
-    class="@ClassMapper.ToString()"
-    style="@StyleMapper.ToString()">
+    @attributes="@AttributesToSplat()">
 
     @if (LeadingIcon != null)
     {
