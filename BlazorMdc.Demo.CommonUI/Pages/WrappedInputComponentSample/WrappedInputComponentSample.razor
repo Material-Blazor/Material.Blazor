@@ -19,8 +19,8 @@
                    ButtonStyle="MdcButtonStyle.ContainedRaised" />
     </p>
 
-    <p>PIN 1: <strong>'@(LogonDTO.pPIN1 ?? "")'</strong></p>
-    <p>PIN 2: <strong>'@(LogonDTO.pPIN2 ?? "")'</strong></p>
+    <p>PIN 1: <strong>'@(LogonDTO.PIN1 ?? "")'</strong></p>
+    <p>PIN 2: <strong>'@(LogonDTO.PIN2 ?? "")'</strong></p>
 
     <MdcDialog Title="Create a new PIN"
                @ref="DialogReference">
@@ -33,15 +33,15 @@
                 <DataAnnotationsValidator />
 
                 <div class="form-group">
-                    <WrappedInputComponent @bind-StringValue="@LogonDTO.pPIN1"
+                    <WrappedInputComponent @bind-StringValue="@LogonDTO.PIN1"
                                            Type="password" />
-                    <ValidationMessage For=@( () => LogonDTO.pPIN1 ) />
+                    <ValidationMessage For=@( () => LogonDTO.PIN1 ) />
                 </div>
 
                 <div class="form-group"
-                    <WrappedInputComponent @bind-StringValue="@LogonDTO.pPIN2"
+                    <WrappedInputComponent @bind-StringValue="@LogonDTO.PIN2"
                                            Type="password" />
-                    <ValidationMessage For=@( () => LogonDTO.pPIN2 ) />
+                    <ValidationMessage For=@( () => LogonDTO.PIN2 ) />
                 </div>
 
                 <div class="form-group">
