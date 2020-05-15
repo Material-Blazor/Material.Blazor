@@ -7,11 +7,10 @@
 <button @ref="@elementReference"
         class="@ClassMapper.ToString()"
         style="@StyleMapper.ToString()"
-        disabled="@Disabled"
         tabindex="@TabIndex"
         data-mdc-dialog-action="@DialogAction"
         type="button"
-        @attributes="@UnmatchedAttributes">
+        @attributes="@Attributes">
     <div class="mdc-button__ripple"></div>
     @LeadingIconMarkup
     <span class="mdc-button__label">@Label</span>

@@ -16,7 +16,6 @@
                type="radio"
                id="@radioId"
                name="@RadioGroupName"
-               disabled="@Disabled"
                @onclick="@(_ => OnInternalItemClickAsync())">
 
         <div class="mdc-radio__background">
@@ -82,7 +81,7 @@
             buttonContainerClass += " " + ButtonContainerClass;
         }
 
-        if (Disabled)
+        if (IsDisabled)
         {
             disabledClass = " mdc-radio--disabled";
         }

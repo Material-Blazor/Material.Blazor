@@ -51,13 +51,13 @@
 
         ClassMapper
             .Add("mdc-list-item")
-            .AddIf("mdc-list-item--disabled bmdc-list-item--disabled", () => Disabled);
+            .AddIf("mdc-list-item--disabled bmdc-list-item--disabled", () => IsDisabled);
     }
 
 
     protected void InternalClickHandler()
     {
-        if (!Disabled)
+        if (!IsDisabled)
         {
             OnClick.InvokeAsync(NavigationReference);
         }

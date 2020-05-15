@@ -85,7 +85,7 @@
             .Get(() => Class)
             .Add("mdc-select")
             .AddIf("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
-            .AddIf("mdc-select--disabled", () => Disabled);
+            .AddIf("mdc-select--disabled", () => IsDisabled);
 
         selectedText = (UnderlyingValue is null) ? "" : Items.Where(i => object.Equals(i.SelectedValue, UnderlyingValue)).FirstOrDefault().Label;
         floatingLabelClass = string.IsNullOrWhiteSpace(selectedText) ? "" : "mdc-floating-label--float-above";

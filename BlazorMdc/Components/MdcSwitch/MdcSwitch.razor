@@ -12,7 +12,11 @@
         <div class="mdc-switch__track"></div>
         <div class="mdc-switch__thumb-underlay">
             <div class="mdc-switch__thumb">
-                <input type="checkbox" id="@Id" @bind="@ReportingValue" class="mdc-switch__native-control" role="switch" disabled="@Disabled" />
+                <input type="checkbox" 
+                       id="@Id" 
+                       @bind="@ReportingValue" 
+                       class="mdc-switch__native-control" 
+                       role="switch" />
             </div>
         </div>
     </div>
@@ -39,7 +43,7 @@
 
         ClassMapper
             .Add("mdc-switch")
-            .AddIf("mdc-switch--disabled", () => Disabled)
+            .AddIf("mdc-switch--disabled", () => IsDisabled)
             .AddIf("mdc-switch--checked", () => ReportingValue);
 
         ForceShouldRenderToTrue = true;

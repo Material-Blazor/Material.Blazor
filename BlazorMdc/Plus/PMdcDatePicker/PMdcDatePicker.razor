@@ -11,7 +11,7 @@
 
     <div class="mdc-select__anchor">
         <i class="mdc-select__dropdown-icon"></i>
-        <div class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="@labelId" aria-disabled="@Disabled">@initialText</div>
+        <div class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="@labelId" aria-disabled="@IsDisabled">@initialText</div>
 
         @if (appliedInputStyle == MdcSelectInputStyle.Outlined)
         {
@@ -68,7 +68,7 @@
         ClassMapper
             .Add("mdc-select")
             .AddIf("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
-            .AddIf("mdc-select--disabled", () => Disabled);
+            .AddIf("mdc-select--disabled", () => IsDisabled);
 
         initialValue = Value;
         initialText = Utilities.DateToString(Value);

@@ -5,7 +5,9 @@
 //  2020-04-13  Mark Stega
 //              Reworked 
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using System.Collections.Generic;
+using System.Security;
 using System.Threading.Tasks;
 
 namespace BlazorMdc
@@ -18,11 +20,31 @@ namespace BlazorMdc
         /// Gets or sets a collection of additional attributes that will be applied to the created element.
         /// </summary>
         [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object> UnmatchedAttributes { get; set; }
-        
-        /// <summary>
-        /// Gets whether the component is disabled.
-        /// </summary>
-        [Parameter] public bool Disabled { get; set; } = false;
+
+
+        private Dictionary<string, object> _attributes;
+        internal Dictionary<string, object> Attributes
+        {
+            get
+            {
+                if (_attributes == null)
+                {
+                    if (UnmatchedAttributes == null)
+                    {
+                        _attributes = new Dictionary<string, object>();
+                    }
+                    else
+                    {
+                        _attributes = new Dictionary<string, object>(UnmatchedAttributes);
+                    }
+                }
+
+                return _attributes;
+
+            }
+        }
+
+        internal bool IsDisabled => Attributes.ContainsKey("disabled");
 
 
         protected ClassMapper ClassMapper { get; } = new ClassMapper();

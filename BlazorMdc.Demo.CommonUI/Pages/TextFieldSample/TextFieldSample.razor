@@ -8,24 +8,30 @@
 
 <p>See <code>TextFieldSample.razor</code> for sources.</p>
 
+<p><MdcSwitch @bind-Value="@disabled" Label="Disable text fields" /></p>
+
 <p style="margin-top: 3rem;">Filled style</p>
-<p><MdcTextField Label="Filled" @bind-Value="@currentValueFilled" TextInputStyle="MdcTextInputStyle.Filled" TrailingIcon="account_balance_wallet" /></p>
+<p><MdcTextField Label="Filled" @bind-Value="@currentValueFilled" TextInputStyle="MdcTextInputStyle.Filled" TrailingIcon="account_balance_wallet" disabled="@disabled" /></p>
+<p>You typed: <strong>'@(currentValueFilled ?? "")'</strong></p>
+
+<p style="margin-top: 3rem;">Filled style</p>
+<p><MdcTextField Label="Filled" @bind-Value="@currentValueFilled" TextInputStyle="MdcTextInputStyle.Filled" TrailingIcon="account_balance_wallet" disabled="@disabled" /></p>
 <p>You typed: <strong>'@(currentValueFilled ?? "")'</strong></p>
 
 <p style="margin-top: 3rem;">Outlined style</p>
-<p><MdcTextField Label="Outlined" @bind-Value="@currentValueOutlined" TextInputStyle="MdcTextInputStyle.Outlined" LeadingIcon="account_balance_wallet" /></p>
+<p><MdcTextField Label="Outlined" @bind-Value="@currentValueOutlined" TextInputStyle="MdcTextInputStyle.Outlined" LeadingIcon="account_balance_wallet" disabled="@disabled" /></p>
 <p>You typed: <strong>'@(currentValueOutlined ?? "")'</strong></p>
 
 <p style="margin-top: 3rem;">Full Width style (need to disable floating labels for full width to adhere to MT style guidelines)</p>
-<p><MdcTextField Label="Full Width" @bind-Value="@currentValueFullWidth" TextInputStyle="MdcTextInputStyle.FullWidth" /></p>
+<p><MdcTextField Label="Full Width" @bind-Value="@currentValueFullWidth" TextInputStyle="MdcTextInputStyle.FullWidth" disabled="@disabled" /></p>
 <p>You typed: <strong>'@(currentValueFullWidth ?? "")'</strong></p>
 
 <p style="margin-top: 3rem;">Right aligned</p>
-<p><MdcTextField Label="Right aligned" @bind-Value="@currentValueRight" TextInputStyle="MdcTextInputStyle.Outlined" TextAlignStyle="MdcTextAlignStyle.Right" /></p>
+<p><MdcTextField Label="Right aligned" @bind-Value="@currentValueRight" TextInputStyle="MdcTextInputStyle.Outlined" TextAlignStyle="MdcTextAlignStyle.Right" disabled="@disabled" /></p>
 <p>You typed: <strong>'@(currentValueRight ?? "")'</strong></p>
 
 <p style="margin-top: 3rem;">Password</p>
-<p><MdcTextField Label="Password" @bind-Value="@currentValuePassword" TextInputStyle="MdcTextInputStyle.Outlined" Type="password" /></p>
+<p><MdcTextField Label="Password" @bind-Value="@currentValuePassword" TextInputStyle="MdcTextInputStyle.Outlined" type="password" disabled="@disabled" /></p>
 <p>You typed: <strong>'@(currentValuePassword ?? "")'</strong></p>
 
 
@@ -35,4 +41,5 @@
     string currentValueFullWidth;
     string currentValueRight;
     string currentValuePassword;
+    bool disabled = true;
 }

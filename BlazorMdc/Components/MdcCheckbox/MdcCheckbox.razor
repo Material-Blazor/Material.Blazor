@@ -14,8 +14,7 @@
             <input @bind="@ReportingValue"
                    type="checkbox"
                    class="mdc-checkbox__native-control @FieldClass"
-                   id="@Id"
-                   disabled="@Disabled" />
+                   id="@Id" />
             <div class="mdc-checkbox__background">
                 <svg class="mdc-checkbox__checkmark"
                      viewBox="0 0 24 24">
@@ -54,7 +53,7 @@
         base.OnInitialized();
 
         ClassMapper.Add("mdc-checkbox mdc-checkbox--touch")
-            .AddIf("mdc-checkbox--disabled", () => Disabled);
+            .AddIf("mdc-checkbox--disabled", () => IsDisabled);
 
         HasValueSetter = true;
     }

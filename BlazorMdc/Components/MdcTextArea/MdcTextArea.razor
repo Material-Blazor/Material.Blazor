@@ -8,6 +8,11 @@
 <div @ref="elementReference"
      class="@ClassMapper.ToString()"
      style="@StyleMapper.ToString()">
+    
+    @if (appliedTextInputStyle == MdcTextInputStyle.Filled || appliedTextInputStyle == MdcTextInputStyle.FullWidth)
+    {
+        <div class="mdc-text-field__ripple"></div>
+    }
 
     <textarea id="@id"
               class="mdc-text-field__input @appliedTextInputStyleClass @FieldClass"
@@ -15,8 +20,8 @@
               aria-labelledby="@labelId"
               rows="@Rows"
               cols="@Cols"
-              disabled="@Disabled"
-              @attributes="@UnmatchedAttributes" />
+              disabled="@IsDisabled"
+              @attributes="@Attributes" />
 
     @if (appliedTextInputStyle == MdcTextInputStyle.Outlined)
     {
@@ -30,7 +35,11 @@
     }
     else
     {
-        <label class="mdc-floating-label @floatingLabelClass" for="@id" id="@labelId">@Label</label>
+        @if (appliedTextInputStyle == MdcTextInputStyle.Filled)
+        {
+            <label class="mdc-floating-label @floatingLabelClass" for="@id" id="@labelId">@Label</label>
+        }
+
         <div class="mdc-line-ripple"></div>
     }
 </div>
@@ -70,7 +79,7 @@
             .AddIf("mdc-text-field--outlined", () => (appliedTextInputStyle == MdcTextInputStyle.Outlined))
             .AddIf("mdc-text-field--fullwidth", () => (appliedTextInputStyle == MdcTextInputStyle.FullWidth))
             .AddIf("mdc-text-field--no-label", () => NoLabel)
-            .AddIf("mdc-text-field--disabled", () => Disabled);
+            .AddIf("mdc-text-field--disabled", () => IsDisabled);
 
         ForceShouldRenderToTrue = true;
     }

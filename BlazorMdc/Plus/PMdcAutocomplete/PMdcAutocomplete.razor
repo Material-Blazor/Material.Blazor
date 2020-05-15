@@ -9,40 +9,22 @@
 
 
 <div>
-    <div @ref="textReference"
-         class="@ClassMapper.ToString()"
-         style="@StyleMapper.ToString()">
-
-        @LeadingIconMarkup
-
-        <input type="text"
-               id="@Id"
-               class="mdc-text-field__input @alignClass @FieldClass"
-               value="@selectInfo.SelectedText"
-               aria-labelledby="@labelId"
-               disabled="@Disabled"
-               formnovalidate="@FormNoValidate"
-               @oninput="OnInput"
-               @onchange="OnTextFocusOutAsync">
-
-        @TrailingIconMarkup
-
-        @if (appliedInputStyle == MdcTextInputStyle.Outlined)
-        {
-            <div class="mdc-notched-outline">
-                <div class="mdc-notched-outline__leading"></div>
-                <div class="mdc-notched-outline__notch">
-                    <label class="mdc-floating-label @floatingLabelClass" for="@Id" id="@labelId">@Label</label>
-                </div>
-                <div class="mdc-notched-outline__trailing"></div>
-            </div>
-        }
-        else
-        {
-            <label class="mdc-floating-label @floatingLabelClass" for="@Id" id="@labelId">@Label</label>
-            <div class="mdc-line-ripple"></div>
-        }
-    </div>
+    <MdcTextField @ref="@textField"
+                  Class="@Class" 
+                  Style="@Style"
+                  @bind-Value="@selectInfo.SelectedText" 
+                  TextAlignStyle="@TextAlignStyle"
+                  TextInputStyle="@TextInputStyle"
+                  Label="@Label"
+                  NoLabel="@NoLabel"
+                  LeadingIcon="@LeadingIcon"
+                  TrailingIcon="@TrailingIcon"
+                  IconFoundry="@IconFoundry"
+                  FormNoValidate="@FormNoValidate"
+                  Disabled="@IsDisabled"
+                  @oninput="OnInput"
+                  @onchange="OnTextFocusOutAsync"
+                  @attributes="@Attributes" />
 
     <div class="mdc-menu-surface--anchor">
         <div @ref="menuReference" class="mdc-menu mdc-menu-surface" style="visibility:visible; min-height:1rem; min-width: 20rem;" @onfocusin="OnMenuFocusIn" @onfocusout="OnMenuFocusOut">
@@ -52,7 +34,7 @@
                     {
                         var clickItem = string.Copy(item);
 
-                        <li @key="@item" class="mdc-list-item" role="menuitem" @onclick="@(() => OnItemClickAsync(clickItem))" tabindex="0" disabled="@Disabled">
+                        <li @key="@item" class="mdc-list-item" role="menuitem" @onclick="@(() => OnItemClickAsync(clickItem))" tabindex="0" disabled="@IsDisabled">
                             <span class="mdc-list-item__text">@item</span>
                         </li>
                     }
@@ -104,15 +86,9 @@
 #nullable restore annotations
 
 
-    private MdcTextInputStyle appliedInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
     private DotNetObjectReference<PMdcAutocomplete> objectReference;
-    private ElementReference textReference;
+    private MdcTextField textField;
     private ElementReference menuReference;
-    private string labelId = Utilities.GenerateCssElementSelector();
-    private string floatingLabelClass = "";
-    private string alignClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
-    private MarkupString LeadingIconMarkup;
-    private MarkupString TrailingIconMarkup;
 
 
     private SelectItem[] mySelectItems;
@@ -124,15 +100,6 @@
     protected override void OnInitialized()
     {
         base.OnInitialized();
-
-        ClassMapper
-            .Add($"mdc-text-field {FieldClass} {CascadingDefaults.TextFieldCssClass}")
-            .AddIf("mdc-text-field--outlined", () => appliedInputStyle == MdcTextInputStyle.Outlined)
-            .AddIf("mdc-text-field--fullwidth", () => appliedInputStyle == MdcTextInputStyle.FullWidth)
-            .AddIf("mdc-text-field--no-label", () => NoLabel)
-            .AddIf("mdc-select--disabled", () => Disabled)
-            .AddIf("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
-            .AddIf("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
 
         objectReference = DotNetObjectReference.Create(this);
     }
@@ -161,18 +128,6 @@
                              Item = i,
                              IgnoreWhitespace = IgnoreWhitespace
                          }).ToArray();
-
-        if (!string.IsNullOrEmpty(Value))
-        {
-            floatingLabelClass = "mdc-floating-label--float-above";
-        }
-
-        var leading = new MdcIcon(CascadingDefaults, (string)LeadingIcon, IconFoundry);
-        var trailing = new MdcIcon(CascadingDefaults, (string)TrailingIcon, IconFoundry);
-
-        LeadingIconMarkup = (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"{leading.Class} mdc-text-field__icon mdc-text-field__icon--leading\" tabindex=\"-1\" role=\"button\">{leading.Text}</i>");
-        TrailingIconMarkup = (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"{trailing.Class} mdc-text-field__icon mdc-text-field__icon--trailing\" tabindex=\"-1\" role=\"button\">{trailing.Text}</i>");
-
 
         selectInfo = BuildSelectList(ReportingValue);
 
@@ -300,5 +255,5 @@
     }
 
 
-    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.autoComplete.init", textReference);
+    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.autoComplete.init", textField.TextFieldReference);
 }

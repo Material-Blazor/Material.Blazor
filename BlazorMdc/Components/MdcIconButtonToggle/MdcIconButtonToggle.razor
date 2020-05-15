@@ -6,11 +6,10 @@
 @inject IJSRuntime jsRuntime
 
 
-<div @attributes="@UnmatchedAttributes">
+<div @attributes="@Attributes">
     <button @ref="@elementReference"
             class="@ClassMapper.ToString()"
             style="@StyleMapper.ToString()"
-            disabled="@Disabled"
             type="button"
             @onclick="@OnLocalClickAsync">
 
