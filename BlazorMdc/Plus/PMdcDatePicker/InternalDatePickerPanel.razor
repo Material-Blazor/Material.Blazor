@@ -28,13 +28,13 @@
             @if (!showYearPad)
             {
                 <div class="bmdc-dp-menu__float-right bmdc-dp-menu__float-right-spaced">
-                    <MdcIconButton OnClick="OnNextMonthClick" Class="bmdc-dp-menu__icon-button" Icon="chevron_right" Disabled="@nextMonthDisabled" />
+                    <MdcIconButton @onclick="@OnNextMonthClick" Class="bmdc-dp-menu__icon-button" Icon="chevron_right" Disabled="@nextMonthDisabled" />
                 </div>
                 <div class="bmdc-dp-menu__float-right bmdc-dp-menu__float-right-spaced">
-                    <MdcIconButton OnClick="OnShowCurrentDateClick" Class="bmdc-dp-menu__icon-button" Icon="undo" />
+                    <MdcIconButton @onclick="@OnShowCurrentDateClick" Class="bmdc-dp-menu__icon-button" Icon="undo" />
                 </div>
                 <div class="bmdc-dp-menu__float-right">
-                    <MdcIconButton OnClick="OnPreviousMonthClick" Class="bmdc-dp-menu__icon-button" Icon="chevron_left" Disabled="@previousMonthDisabled" />
+                    <MdcIconButton @onclick="@OnPreviousMonthClick" Class="bmdc-dp-menu__icon-button" Icon="chevron_left" Disabled="@previousMonthDisabled" />
                 </div>
             }
         </div>

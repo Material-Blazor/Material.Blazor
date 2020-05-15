@@ -12,11 +12,18 @@
 <div @ref="selectReference"
      @attributes="AttributesToSplat()">
 
-    <div class="mdc-select__anchor" aria-labelledby="@labelId @selectedTextId">
-        <span class="mdc-select__ripple"></span>
+    <div class="mdc-select__anchor" 
+         role="button"
+         aria-haspopup="@listboxReference"
+         aria-labelledby="@labelId @selectedTextId">
+
+        @if (appliedInputStyle == MdcSelectInputStyle.Filled)
+        {
+            <span class="mdc-select__ripple"></span>
+        }
+
         <input id="@selectedTextId" type="text" disabled readonly class="mdc-select__selected-text @alignClass">
         <i class="mdc-select__dropdown-icon"></i>
-        @*<div class="mdc-select__selected-text @alignClass" role="button" aria-haspopup="listbox" aria-labelledby="@labelId" aria-disabled="Disabled">@selectedText</div>*@
 
         @if (appliedInputStyle == MdcSelectInputStyle.Outlined)
         {
@@ -35,7 +42,7 @@
         }
     </div>
 
-    <div class="mdc-select__menu mdc-menu mdc-menu-surface">
+    <div @ref="@listboxReference" class="mdc-select__menu mdc-menu mdc-menu-surface">
         <ul @ref="@ulReference" class="mdc-list">
             @foreach (var item in ItemDict.Values)
             {
@@ -43,7 +50,7 @@
 
                 if (item.SelectedValue.Equals(Value))
                 {
-                    <li @key="@item" class="mdc-list-item mdc-list-item--selected @alignClass" data-value="@item.Label" aria-selected="true" role="option" @onclick="@(_ => OnItemClickAsync(dv))">
+                    <li @key="@item" class="mdc-list-item mdc-list-item--selected @alignClass" data-value="@item.Label" aria-selected="true" aria-disabled="@item.Disabled" role="option" @onclick="@(_ => OnItemClickAsync(dv))">
                         <span class="mdc-list-item__text bmdc-full-width">
                             @item.Label
                         </span>
@@ -51,7 +58,7 @@
                 }
                 else
                 {
-                    <li @key="@item" class="mdc-list-item @alignClass" data-value="@item.Label" aria-selected="false" role="option" @onclick=@(_ => OnItemClickAsync(dv))>
+                    <li @key="@item" class="mdc-list-item @alignClass" data-value="@item.Label" aria-selected="false" aria-disabled="@item.Disabled" role="option" @onclick=@(_ => OnItemClickAsync(dv))>
                         <span class="mdc-list-item__text bmdc-full-width">
                             @item.Label
                         </span>
@@ -73,6 +80,7 @@
 
 
     private ElementReference selectReference;
+    private ElementReference listboxReference;
     private ElementReference ulReference;
     private MdcSelectInputStyle appliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
     private string selectedTextId = Utilities.GenerateCssElementSelector();
