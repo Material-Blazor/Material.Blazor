@@ -22,10 +22,7 @@
             <div @ref="@primaryActionReference"
                  class="mdc-card__primary-action @primaryActionClass"
                  tabindex="0"
-                 @onclick="@OnPrimaryActionClick"
-                 @onmousedown="@OnPrimaryActionMouseDown"
-                 @onkeydown="@OnPrimaryActionKeyDown"
-                 @ontouchstart="@OnPrimaryActionTouchStart">
+                 @attributes="@UnmatchedAttributes">
                 @PrimaryAction
             </div>
         }
@@ -68,10 +65,6 @@
     [Parameter] public RenderFragment Actions { get; set; }
     [Parameter] public RenderFragment ActionButtons { get; set; }
     [Parameter] public RenderFragment ActionIcons { get; set; }
-    [Parameter] public EventCallback OnPrimaryActionClick { get; set; }
-    [Parameter] public EventCallback OnPrimaryActionMouseDown { get; set; }
-    [Parameter] public EventCallback OnPrimaryActionKeyDown { get; set; }
-    [Parameter] public EventCallback OnPrimaryActionTouchStart { get; set; }
 
 
     private string primaryClass => AutoStyled ? "bmdc-card__primary" : "";

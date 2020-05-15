@@ -15,7 +15,7 @@
 <div>
     <p>
         <MdcButton Label="Open dialog with wrapped input components"
-                   OnClick="@OpenDialogAsync"
+                   @onclick="@OpenDialogAsync"
                    ButtonStyle="MdcButtonStyle.ContainedRaised" />
     </p>
 
@@ -51,7 +51,7 @@
                                    Label="PIN entry complete"
                                    ButtonStyle="MdcButtonStyle.ContainedRaised" />
 
-                        <MdcButton OnClick="@CancelClick"
+                        <MdcButton @onclick="@CancelClick"
                                    Style="margin: 0.75em 0.25em 0.25em 0.25em;"
                                    Label="Cancel"
                                    ButtonStyle="MdcButtonStyle.ContainedRaised" />

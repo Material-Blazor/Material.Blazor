@@ -47,12 +47,12 @@
 
 <p>
     <MdcButton Style="background-color: var(--bmdc-toast-background-color-info);"
-               OnClick="@InfoClick"
+               @onclick="@InfoClick"
                Label="Info Toast"
                ButtonStyle="@MdcButtonStyle.ContainedRaised" />
 
     <MdcButton Style="background-color: var(--bmdc-toast-background-color-success);"
-               OnClick="@(() => toastService.ShowToast(
+               @onclick="@(() => toastService.ShowToast(
                               level: PMdcToastLevel.Success,
                               heading: "I'm a SUCCESS",
                               message: "Congratulations!" ))"
@@ -60,14 +60,14 @@
                ButtonStyle="@MdcButtonStyle.ContainedRaised" />
 
     <MdcButton Style="background-color: var(--bmdc-toast-background-color-warning);"
-               OnClick="@(() => toastService.ShowToast(
+               @onclick="@(() => toastService.ShowToast(
                               level: PMdcToastLevel.Warning,
                               message: "I'm a WARNING" ))"
                Label="Warning Toast"
                ButtonStyle="@MdcButtonStyle.ContainedRaised" />
 
     <MdcButton Style="background-color: var(--bmdc-toast-background-color-error);"
-               OnClick="@(() => toastService.ShowToast(
+               @onclick="@(() => toastService.ShowToast(
                               level: PMdcToastLevel.Error,
                               message: "I'm an ERROR" ))"
                Label="Error Toast"
@@ -84,7 +84,7 @@
 <p><MdcSelect Label="Show icon" @bind-Value="@showIcon" Items="showIconItems" ItemValidation="@MdcItemValidation.DefaultToFirst"></MdcSelect></p>
 <p><MdcSelect Label="Timeout" @bind-Value="@timeout" Items="timeoutItems" ItemValidation="@MdcItemValidation.DefaultToFirst"></MdcSelect></p>
 <p>
-    <MdcButton OnClick="@customiseClick"
+    <MdcButton @onclick="@customiseClick"
                Label="Toast with selected options"
                ButtonStyle="@MdcButtonStyle.ContainedRaised" />
 </p>

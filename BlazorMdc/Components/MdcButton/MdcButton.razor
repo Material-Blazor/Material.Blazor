@@ -7,14 +7,11 @@
 <button @ref="@elementReference"
         class="@ClassMapper.ToString()"
         style="@StyleMapper.ToString()"
-        @onclick="@OnClick"
-        @onmousedown="@OnMouseDown"
-        @onkeydown="@OnKeyDown"
-        @ontouchstart="@OnTouchStart"
         disabled="@Disabled"
         tabindex="@TabIndex"
         data-mdc-dialog-action="@DialogAction"
-        type="@Type">
+        type="button"
+        @attributes="@UnmatchedAttributes">
     <div class="mdc-button__ripple"></div>
     @LeadingIconMarkup
     <span class="mdc-button__label">@Label</span>
@@ -41,16 +38,11 @@
 
 #nullable enable annotations
     [Parameter] public MdcButtonStyle? ButtonStyle { get; set; }
-    [Parameter] public string Type { get; set; } = "button";
     [Parameter] public string Label { get; set; }
     [Parameter] public string TabIndex { get; set; } = "0";
     [Parameter] public string? LeadingIcon { get; set; }
     [Parameter] public string? TrailingIcon { get; set; }
     [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
-    [Parameter] public EventCallback OnClick { get; set; }
-    [Parameter] public EventCallback OnMouseDown { get; set; }
-    [Parameter] public EventCallback OnKeyDown { get; set; }
-    [Parameter] public EventCallback OnTouchStart { get; set; }
     [Parameter] public string DialogAction { get; set; }
 #nullable restore annotations
 

@@ -50,24 +50,23 @@ Reference the `BlazorMdc` namespace with `@using BlazorMdc` to your `_Imports.ra
 
 #### Option 1 - Using our bundled CSS and JS
 
-We bundle the Material Theme CSS and JS into BlazorMdc for your convenience, and you will need to add three items to your index file. Place this in the the `<head>` tag:
+We bundle the Material Theme CSS and JS into BlazorMdc for your convenience along with [Material Icons](https://material.io/resources/icons/?style=baseline) which are essential for BlazorMdc. You will need to add two items to your index.html/_Host.cshtml file. Place this in the the `<head>` tag:
 ```html
     <link href="_content/BlazorMdc/blazormdc-bundled.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 ```
 and at the end of `<body>`:
 ```html
     <script src="_content/BlazorMdc/blazormdc-bundled.min.js"></script>
 ```
-See the [Blazor WebAssembly demo index file](BlazorMdc.Demo.WebServer/Pages/index_webassembly.cshtml) for an example.
+See the [Blazor WebAssembly demo index file](BlazorMdc.Demo.WebServer/Pages/index_webassembly.cshtml) for an example. We also provide un-minified `blazormdc-bundled.css` and `blazormdc-bundled.js`.
 
 #### Option 2 - Using our unbundled CSS and JS with Material Theme files from CDN 
 
-If you want to directly reference the Material Theme CSS and JS from the unpkg CDN (or download it for yourself), place this in the `<head>` tag:
+If you want, you can directly reference the Material Theme CSS and JS from the unpkg CDN (or download it for yourself). Again we package a reference to [Material Icons](https://material.io/resources/icons/?style=baseline). You will to add five items to your index.html/_Host.cshtml. Place this in the `<head>` tag:
 ```html
-    <link href="_content/BlazorMdc/blazormdc.min.css" rel="stylesheet">
     <link href="https://unpkg.com/material-components-web@5.1.0/dist/material-components-web.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="_content/BlazorMdc/blazormdc-fonts.css" rel="stylesheet" />
+    <link href="_content/BlazorMdc/blazormdc.min.css" rel="stylesheet">
 ```
 and at the end of `<body>`:
 ```html

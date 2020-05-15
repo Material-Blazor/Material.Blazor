@@ -13,3 +13,7 @@
 .mdc-list-item__secondary-text.line-three {
     margin-top: -4px;
 }
+
+.bmdc-list-item--disabled {
+    pointer-events: none;
+}

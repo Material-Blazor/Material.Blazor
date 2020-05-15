@@ -5,15 +5,25 @@
 //  2020-04-13  Mark Stega
 //              Reworked 
 using Microsoft.AspNetCore.Components;
-
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BlazorMdc
 {
     public abstract class MdcComponentBase : ComponentBase
     {
-        [CascadingParameter]
-        protected MdcCascadingDefaults CascadingDefaults { get; set; } = new MdcCascadingDefaults();
+        [CascadingParameter] protected MdcCascadingDefaults CascadingDefaults { get; set; } = new MdcCascadingDefaults();
+
+        /// <summary>
+        /// Gets or sets a collection of additional attributes that will be applied to the created element.
+        /// </summary>
+        [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object> UnmatchedAttributes { get; set; }
+        
+        /// <summary>
+        /// Gets whether the component is disabled.
+        /// </summary>
+        [Parameter] public bool Disabled { get; set; } = false;
+
 
         protected ClassMapper ClassMapper { get; } = new ClassMapper();
 
@@ -21,10 +31,6 @@ namespace BlazorMdc
 
         internal AttributeMapper AttributeMapper { get; } = new AttributeMapper();
 
-        /// <summary>
-        /// Gets whether the component is disabled.
-        /// </summary>
-        [Parameter] public bool Disabled { get; set; } = false;
 
 
 

@@ -1,7 +1,7 @@
 ﻿@namespace BlazorMdc
 
 
-<MdcButton OnClick="@OnClickAsync" Label="@DisplayYear.ToString()" Class="bmdc-dp-year-pad__button" ButtonStyle="@buttonStyle" Disabled="@disabled" />
+<MdcButton @onclick="@OnClickAsync" Label="@DisplayYear.ToString()" Class="bmdc-dp-year-pad__button" ButtonStyle="@buttonStyle" Disabled="@disabled" />
 
 
 @code {
