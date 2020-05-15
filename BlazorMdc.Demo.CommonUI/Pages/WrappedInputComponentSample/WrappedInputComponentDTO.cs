@@ -8,7 +8,7 @@ namespace BlazorMdc.Demo
 {
     public class LogonDTO
     {
-        [Required(ErrorMessage = "PIN is required")] public string pPIN1 { get; set; }
-        [Required(ErrorMessage = "Validation PIN is required")] public string pPIN2 { get; set; }
+        [Required(ErrorMessage = "PIN is required")] public string PIN1 { get; set; }
+        [Required(ErrorMessage = "Validation PIN is required")] public string PIN2 { get; set; }
     }
 }

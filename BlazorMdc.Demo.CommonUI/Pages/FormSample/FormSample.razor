@@ -1,0 +1,56 @@
+﻿@namespace BlazorMdc.Demo
+
+@page "/form"
+
+
+@if (!HideHeading)
+{
+    <h1 class="mdc-typography--headline4">Form samples</h1>
+
+    <p>See <code>FormSample.razor, PINLogonDialog.razor, and PINLogonDTO.cs</code> for sources.</p>
+
+    <p>There is no form component per se; This demo demonstrates the use of a form with BlazorMdc Components.
+    It shows that the underlying input components function as expected in a forms validation environment.</p>
+}
+
+
+<p><MdcButton Label="Show create PIN dialog"
+              @onclick="@ShowDialog1"
+              ButtonStyle="MdcButtonStyle.ContainedRaised" /></p>
+
+<p>Created PIN: <string>'@(pin1 ?? "")'</string></p>
+
+<PINLogonDialog @ref="pinLogonDialogReference1"
+                @bind-Value="@pin1"
+                dialogStyle="PINLogonDialog.ePINDialogStyle.CreatePIN" />
+
+<p><MdcButton Label="Show logon with PIN dialog (Expected PIN is 31415)"
+              @onclick="@ShowDialog2"
+              ButtonStyle="MdcButtonStyle.ContainedRaised"/></p>
+
+<p>Result: <string>'@(pin2 ?? "")'</string></p>
+
+<PINLogonDialog @ref="pinLogonDialogReference2"
+                @bind-Value="pin2"
+                dialogStyle="PINLogonDialog.ePINDialogStyle.EnterPIN"
+                validationPIN="31415" />
+
+@code {
+    [Parameter] public bool HideHeading { get; set; }
+
+    PINLogonDialog pinLogonDialogReference1;
+    public string pin1 = "";
+
+    async Task ShowDialog1()
+    {
+        await pinLogonDialogReference1.OpenPINLogonDialogAsync();
+    }
+
+    PINLogonDialog pinLogonDialogReference2;
+    public string pin2 = "";
+
+    async Task ShowDialog2()
+    {
+        await pinLogonDialogReference2.OpenPINLogonDialogAsync();
+    }
+}
