@@ -10,8 +10,7 @@
 
 
 <div @ref="selectReference"
-     class="@ClassMapper.ToString()"
-     style="@StyleMapper.ToString()">
+     @attributes="AttributesToSplat()">
 
     <div class="mdc-select__anchor">
         <i class="mdc-select__dropdown-icon"></i>
@@ -82,7 +81,6 @@
 
         ClassMapper
             .Clear()
-            //.Get(() => Class)
             .Add("mdc-select")
             .AddIf("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
             .AddIf("mdc-select--disabled", () => IsDisabled);

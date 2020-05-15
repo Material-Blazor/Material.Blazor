@@ -7,8 +7,7 @@
 @inject IJSRuntime jsRuntime
 
 
-<div class="@ClassMapper.ToString()"
-     style="@StyleMapper.ToString()">
+<div @attributes="AttributesToSplat()">
 
     <div class="bmdc-paginator">
         <div class="bmdc-paginator__container">

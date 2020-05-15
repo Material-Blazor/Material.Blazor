@@ -5,13 +5,9 @@
 //  2020-04-13  Mark Stega
 //              Reworked 
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Security;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace BlazorMdc
@@ -71,22 +67,28 @@ namespace BlazorMdc
                 }
             }
 
-            if (result.ContainsKey(Class))
+            if (ClassMapper.Items.Count() > 0)
             {
-                result[Class] += " " + ClassMapper.ToString();
-            }
-            else
-            {
-                result.Add(Class, ClassMapper.ToString());
+                if (result.ContainsKey(Class))
+                {
+                    result[Class] += " " + ClassMapper.ToString();
+                }
+                else
+                {
+                    result.Add(Class, ClassMapper.ToString());
+                }
             }
 
-            if (result.ContainsKey(Style))
+            if (StyleMapper.Items.Count() > 0)
             {
-                result[Style] += " " + StyleMapper.ToString();
-            }
-            else
-            {
-                result.Add(Style, StyleMapper.ToString());
+                if (result.ContainsKey(Style))
+                {
+                    result[Style] += " " + StyleMapper.ToString();
+                }
+                else
+                {
+                    result.Add(Style, StyleMapper.ToString());
+                }
             }
 
             if (!CascadingDefaults.UnconstrainSplattableAttributes)

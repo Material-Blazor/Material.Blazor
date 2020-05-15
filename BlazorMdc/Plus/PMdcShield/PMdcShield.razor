@@ -3,8 +3,7 @@
 @inherits MdcComponentBase
 
 
-<div class="@ClassMapper.ToString()"
-     style="@StyleMapper.ToString()">
+<div @attributes="AttributesToSplat()">
 
     @if (ShieldType != PMdcShieldType.ValueOnly)
     {
