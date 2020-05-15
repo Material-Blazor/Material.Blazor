@@ -89,6 +89,20 @@ namespace BlazorMdc
                 result.Add(Style, StyleMapper.ToString());
             }
 
+            if (!CascadingDefaults.UnconstrainSplattableAttributes)
+            {
+                var forbidden = result
+                                    .Where(r => r.Value.GetType().IsPrimitive)
+                                    .Select(kvp => kvp.Key)
+                                    .Where(a => a.Length < 6 || a.Substring(0, 5) != "aria-")
+                                    .Except(CascadingDefaults.AllowedSplattableAttributes);
+
+                if (forbidden.Count() > 0)
+                {
+                    throw new ArgumentException($"Cannot use \"{string.Join(", ", forbidden)}\" attributes in {Utilities.GetTypeName(GetType())}");
+                }
+            }
+
             return splatType switch
             {
                 SplatType.All => result,
@@ -122,26 +136,5 @@ namespace BlazorMdc
                 await InitializeMdcComponent();
             }
         }
-
-        
-        //protected MdcComponentBase()
-        //{
-        //    ClassMapper.Get(() => Class);
-
-        //    StyleMapper.Get(() => Style);
-        //}
-
-        ///// <summary>
-        ///// Specifies one or more classnames for an DOM element.
-        ///// </summary>
-        //[Parameter]
-        //public string Class { get; set; }
-
-
-        ///// <summary>
-        ///// Specifies an inline style for an DOM element.
-        ///// </summary>
-        //[Parameter]
-        //public string Style { get; set; }
     }
 }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace BlazorMdc
 {
@@ -13,7 +11,7 @@ namespace BlazorMdc
             IEnumerable<MdcListElement<T>> items,
             MdcItemValidation appliedItemValidation)
         {
-            var componentName = (new Regex("^[a-z,A-Z]*")).Match(GetType().Name).ToString();
+            var componentName = Utilities.GetTypeName(GetType());
             
             if (items.Count() == 0)
             {

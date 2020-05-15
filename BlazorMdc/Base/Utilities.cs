@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 
 namespace BlazorMdc
 {
@@ -25,6 +26,11 @@ namespace BlazorMdc
                 MdcTextAlignStyle.Right => " bmdc-align-right",
                 _ => "",
             };
+        }
+
+        public static string GetTypeName(Type componentType)
+        {
+            return (new Regex("^[a-z,A-Z]*")).Match(componentType.Name).ToString();
         }
 
 #nullable enable annotations

@@ -4,6 +4,12 @@
 
 @inject IJSRuntime jsRuntime
 
+<style>
+    .my-orange-background {
+        background-color: orange !important;
+    }
+</style>
+
 <h1 class="mdc-typography--headline4">Text field samples</h1>
 
 <p>See <code>TextFieldSample.razor</code> for sources.</p>
@@ -11,11 +17,11 @@
 <p><MdcSwitch @bind-Value="@disabled" Label="Disable text fields" /></p>
 
 <p style="margin-top: 3rem;">Filled style</p>
-<p><MdcTextField Label="Filled" @bind-Value="@currentValueFilled" TextInputStyle="MdcTextInputStyle.Filled" TrailingIcon="account_balance_wallet" disabled="@disabled" /></p>
+<p><MdcTextField class="my-orange-background" Label="Filled" @bind-Value="@currentValueFilled" TextInputStyle="MdcTextInputStyle.Filled" TrailingIcon="account_balance_wallet" disabled="@disabled" /></p>
 <p>You typed: <strong>'@(currentValueFilled ?? "")'</strong></p>
 
 <p style="margin-top: 3rem;">Filled style</p>
-<p><MdcTextField Label="Filled" @bind-Value="@currentValueFilled" TextInputStyle="MdcTextInputStyle.Filled" TrailingIcon="account_balance_wallet" disabled="@disabled" /></p>
+<p><MdcTextField style="background-color: aquamarine;" Label="Filled" @bind-Value="@currentValueFilled" TextInputStyle="MdcTextInputStyle.Filled" TrailingIcon="account_balance_wallet" disabled="@disabled" /></p>
 <p>You typed: <strong>'@(currentValueFilled ?? "")'</strong></p>
 
 <p style="margin-top: 3rem;">Outlined style</p>

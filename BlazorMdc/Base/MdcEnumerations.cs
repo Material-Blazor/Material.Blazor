@@ -4,11 +4,156 @@
 //
 namespace BlazorMdc
 {
-    // Mdc components
-    public enum MdcIconFoundryName : ulong { MaterialIcons, FontAwesome }
-    public enum MdcIconMITheme : ulong { Filled, Outlined, Round, TwoTone, Sharp }
-    public enum MdcIconFAStyle : ulong { Solid, Regular, Light, Duotone, Brands }
-    public enum MdcIconFARelativeSize : ulong { Regular, ExtraSmall, Small, Large, TwoTimes, ThreeTimes, FiveTimes, SevenTimes, TenTimes }
+    /*
+     * ==============================================
+     * 
+     * Mdc Components
+     * 
+     * ==============================================
+     */
+
+
+    /// <summary>
+    /// Specifies whether to use Material Icons from Google or Font Awesome Icons.
+    /// </summary>
+    public enum MdcIconFoundryName 
+    {
+        /// <summary>
+        /// Google Material Icons.
+        /// </summary>
+        MaterialIcons,
+
+        /// <summary>
+        /// Font Awesome Icons.
+        /// </summary>
+        FontAwesome
+    }
+
+
+
+    /// <summary>
+    /// Sets the Google Material Icons theme.
+    /// </summary>
+    public enum MdcIconMITheme 
+    {
+        /// <summary>
+        /// Filled theme, <code>class="material-icons"</code>.
+        /// </summary>
+        Filled,
+
+        /// <summary>
+        /// Outlined theme, <code>class="material-icons-outlined"</code>.
+        /// </summary>
+        Outlined,
+        /// <summary>
+        /// Rounded theme, <code>class="material-icons-round"</code>.
+        /// </summary>
+        Round,
+
+        /// <summary>
+        /// Two-tone theme, <code>class="material-icons-two-tone"</code>. Note that two-tone does not use css color, but filter instead.
+        /// </summary>
+        TwoTone,
+
+        /// <summary>
+        /// Sharp theme, <code>class="material-icons-sharp"</code>.
+        /// </summary>
+        Sharp
+    }
+
+
+
+    /// <summary>
+    /// Sets the Font Awesome style.
+    /// </summary>
+    public enum MdcIconFAStyle 
+    {
+        /// <summary>
+        /// Solid style, <code>class="fas ..."</code>.
+        /// </summary>
+        Solid,
+
+        /// <summary>
+        /// Regular style, <code>class="far ..."</code>. Requires a PRO licence.
+        /// </summary>
+        Regular,
+
+        /// <summary>
+        /// Light style, <code>class="fal ..."</code>. Requires a PRO licence.
+        /// </summary>
+        Light,
+
+        /// <summary>
+        /// Duotone style, <code>class="fad ..."</code>. Requires a PRO licence.
+        /// </summary>
+        Duotone,
+
+        /// <summary>
+        /// Brands style, <code>class="fab ..."</code>.
+        /// </summary> 
+        Brands
+    }
+
+
+
+    /// <summary>
+    /// Sets the Font Awesome relative size.
+    /// </summary>
+    public enum MdcIconFARelativeSize 
+    {
+        /// <summary>
+        /// Regular relative size (no markup change).
+        /// </summary> 
+        Regular,
+
+        /// <summary>
+        /// Extra small relative size: 
+        /// <code>class="... fa-xs"</code>
+        /// </summary> 
+        ExtraSmall,
+
+        /// <summary>
+        /// Small relative size: 
+        /// <code>class="... fa-sm"</code>
+        /// </summary> 
+        Small,
+
+        /// <summary>
+        /// Large relative size: 
+        /// <code>class="... fa-lg"</code>
+        /// </summary>
+        Large,
+
+        /// <summary>
+        /// Two times relative size: 
+        /// <code>class="... fa-2x"</code>
+        /// </summary> 
+        TwoTimes,
+
+        /// <summary>
+        /// Three times relative size:
+        /// <code>class="... fa-3x"</code>
+        /// </summary>
+        ThreeTimes,
+
+        /// <summary>
+        /// Five times relative size: 
+        /// <code>class="... fa-5x"</code>
+        /// </summary>
+        FiveTimes,
+
+        /// <summary>
+        /// Seven times relative size: 
+        /// <code>class="... fa-7x"</code>
+        /// </summary>
+        SevenTimes,
+
+        /// <summary>
+        /// Ten times relative size:
+        /// <code>class="... fa-10x"</code>
+        /// </summary> 
+        TenTimes
+    }
 
 
     public enum MdcButtonStyle { ContainedRaised, ContainedUnelevated, Outlined, Text }
@@ -42,7 +187,15 @@ namespace BlazorMdc
 
 
 
-    // PMdc components
+    /*
+     * ==============================================
+     * 
+     * PMdc Plus Components
+     * 
+     * ==============================================
+     */
+
+
     public enum PMdcDateSelectionCriteria { AllowAll, WeekendsOnly, WeekdaysOnly }
 
     public enum PMdcShieldType { LabelAndValue, LabelOnly, ValueOnly }

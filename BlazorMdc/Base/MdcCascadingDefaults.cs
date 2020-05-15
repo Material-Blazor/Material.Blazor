@@ -2,10 +2,17 @@
 //  2020-04-23  Mark Stega
 //              Removed all enumerations and placed them in MdcEnumerations
 //
+using System.Collections;
+using System.Collections.Generic;
+
 namespace BlazorMdc
 {
     public class MdcCascadingDefaults
     {
+        public bool UnconstrainSplattableAttributes { get; set; } = false;
+        public IList<string> AllowedSplattableAttributes { get; set; } = new string[] { "class", "style", "disabled", "type" };
+
+
         public string TextFieldCssClass { get; set; } = "";
 
         // Mdc Components
