@@ -6,7 +6,7 @@
 
 
 <div @ref="TextFieldReference"
-     @attributes="@SplatAttributes(SplatType.MappersOnly)">
+     @attributes="@AttributesToSplat(SplatType.ClassAndStyleOnly)">
 
     @if (appliedTextInputStyle == MdcTextInputStyle.Filled || appliedTextInputStyle == MdcTextInputStyle.FullWidth)
     {
@@ -18,7 +18,7 @@
            id="@Id"
            class="mdc-text-field__input @Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle)) @FieldClass"
            @bind="@ReportingValue"
-           @attributes="@SplatAttributes(SplatType.ExcludeMappers)">
+           @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)">
 
     @TrailingIconMarkup
 

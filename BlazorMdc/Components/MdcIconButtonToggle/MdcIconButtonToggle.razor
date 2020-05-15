@@ -6,9 +6,9 @@
 @inject IJSRuntime jsRuntime
 
 
-<div @attributes="@SplatAttributes(SplatType.ExcludeMappers)">
+<div @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)">
     <button @ref="@elementReference"
-            @attributes="@SplatAttributes(SplatType.MappersOnly)"
+            @attributes="@AttributesToSplat(SplatType.ClassAndStyleOnly)"
             type="button"
             @onclick="@OnLocalClick">
 

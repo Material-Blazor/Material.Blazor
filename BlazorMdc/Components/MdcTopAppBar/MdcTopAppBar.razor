@@ -8,14 +8,14 @@
 
 <header @ref="headerElem"
         id="app-bar"
-        @attributes="SplatAttributes(SplatType.MappersOnly)">
+        @attributes="AttributesToSplat(SplatType.ClassAndStyleOnly)">
 
     <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
             <MdcIconButton class="mdc-top-app-bar__action-item--unbounded" 
                            Icon="@NavIcon" 
                            IconFoundry="@IconFoundry" 
-                           @attributes="@SplatAttributes(SplatType.ExcludeMappers)" />
+                           @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)" />
 
             <span class="mdc-top-app-bar__title">@Title</span>
         </section>

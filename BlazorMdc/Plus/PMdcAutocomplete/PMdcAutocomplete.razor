@@ -21,7 +21,7 @@
                   FormNoValidate="@FormNoValidate"
                   @oninput="OnInput"
                   @onchange="OnTextFocusOutAsync"
-                  @attributes="@SplatAttributes()" />
+                  @attributes="@AttributesToSplat()" />
 
     <div class="mdc-menu-surface--anchor">
         <div @ref="menuReference" class="mdc-menu mdc-menu-surface" style="visibility:visible; min-height:1rem; min-width: 20rem;" @onfocusin="OnMenuFocusIn" @onfocusout="OnMenuFocusOut">

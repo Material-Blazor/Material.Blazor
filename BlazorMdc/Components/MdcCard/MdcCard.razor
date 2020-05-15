@@ -6,7 +6,7 @@
 
 
 <CascadingValue Value="@this">
-    <div @attributes="@SplatAttributes(SplatType.MappersOnly)">
+    <div @attributes="@AttributesToSplat(SplatType.ClassAndStyleOnly)">
 
         @ChildContent
 
@@ -22,7 +22,7 @@
             <div @ref="@primaryActionReference"
                  class="mdc-card__primary-action @primaryActionClass"
                  tabindex="0"
-                 @attributes="@SplatAttributes(SplatType.ExcludeMappers)">
+                 @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)">
 
                 @PrimaryAction
             </div>

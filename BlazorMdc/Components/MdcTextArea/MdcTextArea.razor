@@ -6,7 +6,7 @@
 
 
 <div @ref="elementReference"
-     @attributes="@SplatAttributes(SplatType.MappersOnly)">
+     @attributes="@AttributesToSplat(SplatType.ClassAndStyleOnly)">
     
     @if (appliedTextInputStyle == MdcTextInputStyle.Filled || appliedTextInputStyle == MdcTextInputStyle.FullWidth)
     {
@@ -20,7 +20,7 @@
               rows="@Rows"
               cols="@Cols"
               disabled="@IsDisabled"
-              @attributes="@SplatAttributes(SplatType.ExcludeMappers)" />
+              @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)" />
 
     @if (appliedTextInputStyle == MdcTextInputStyle.Outlined)
     {

@@ -8,7 +8,7 @@
 
 
 <div @ref="@formReference"
-     @attributes="SplatAttributes(SplatType.MappersOnly)">
+     @attributes="AttributesToSplat(SplatType.ClassAndStyleOnly)">
 
     <div @ref="@radioButtonReference" class="@buttonContainerClass">
         <input class="mdc-radio__native-control @disabledClass"
@@ -16,7 +16,7 @@
                id="@radioId"
                name="@RadioGroupName"
                @onclick="@(_ => OnInternalItemClickAsync())"
-               @attributes="SplatAttributes(SplatType.ExcludeMappers)">
+               @attributes="AttributesToSplat(SplatType.ExcludeClassAndStyle)">
 
         <div class="mdc-radio__background">
             <div class="mdc-radio__outer-circle"></div>

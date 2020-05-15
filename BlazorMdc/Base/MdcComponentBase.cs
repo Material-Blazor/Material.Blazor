@@ -8,7 +8,10 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Security;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 
 namespace BlazorMdc
@@ -19,23 +22,26 @@ namespace BlazorMdc
     internal enum SplatType
     { 
         /// <summary>
-        /// Return all attributes including values from <see cref="ClassMapper"/> and <see cref="StyleMapper"/>.
+        /// Return all attributes including class and style, also including values from <see cref="ClassMapper"/> and <see cref="StyleMapper"/>.
         /// </summary>
-        AllIncludingMappers,
+        All,
 
         /// <summary>
-        /// Return only values from <see cref="ClassMapper"/> and <see cref="StyleMapper"/> - merges mappers with other class and style attributes.
+        /// Return only class and style values, which includes <see cref="ClassMapper"/> and <see cref="StyleMapper"/>.
         /// </summary>
-        MappersOnly,
+        ClassAndStyleOnly,
 
         /// <summary>
-        /// Return all attributes except values from <see cref="ClassMapper"/> and <see cref="StyleMapper"/> - may include class and style.
+        /// Return all attributes except class and style, also excluding <see cref="ClassMapper"/> and <see cref="StyleMapper"/>.
         /// </summary>
-        ExcludeMappers
+        ExcludeClassAndStyle
     }
 
     public abstract class MdcComponentBase : ComponentBase
     {
+        private const string Class = "class";
+        private const string Style = "style";
+
         [CascadingParameter] protected MdcCascadingDefaults CascadingDefaults { get; set; } = new MdcCascadingDefaults();
 
         /// <summary>
@@ -51,13 +57,13 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Attributes ready for splatting in components. Guaranteed not null, unlike UnmatchedAttributes. Default parameter is <see cref="SplatType.AllIncludingMappers".
+        /// Attributes ready for splatting in components. Guaranteed not null, unlike UnmatchedAttributes. Default parameter is <see cref="SplatType.All".
         /// </summary>
-        internal IReadOnlyDictionary<string, object> SplatAttributes(SplatType splatType = SplatType.AllIncludingMappers)
+        internal IReadOnlyDictionary<string, object> AttributesToSplat(SplatType splatType = SplatType.All)
         {
             var result = new Dictionary<string, object>(ComponentSetAttributes);
 
-            if (UnmatchedAttributes != null && splatType != SplatType.MappersOnly)
+            if (UnmatchedAttributes != null)
             {
                 foreach (var item in UnmatchedAttributes)
                 {
@@ -65,28 +71,31 @@ namespace BlazorMdc
                 }
             }
 
-            if (splatType != SplatType.ExcludeMappers)
+            if (result.ContainsKey(Class))
             {
-                if (result.ContainsKey("class"))
-                {
-                    result["class"] += " " + ClassMapper.ToString();
-                }
-                else
-                {
-                    result.Add("class", ClassMapper.ToString());
-                }
-
-                if (result.ContainsKey("style"))
-                {
-                    result["style"] += " " + StyleMapper.ToString();
-                }
-                else
-                {
-                    result.Add("style", StyleMapper.ToString());
-                }
+                result[Class] += " " + ClassMapper.ToString();
+            }
+            else
+            {
+                result.Add(Class, ClassMapper.ToString());
             }
 
-            return result;
+            if (result.ContainsKey(Style))
+            {
+                result[Style] += " " + StyleMapper.ToString();
+            }
+            else
+            {
+                result.Add(Style, StyleMapper.ToString());
+            }
+
+            return splatType switch
+            {
+                SplatType.All => result,
+                SplatType.ClassAndStyleOnly => result.Where(r => r.Key == Class || r.Key == Style).ToDictionary(k => k.Key, k => k.Value),
+                SplatType.ExcludeClassAndStyle => result.Where(r => r.Key != Class && r.Key != Style).ToDictionary(k => k.Key, k => k.Value),
+                _ => throw new NotImplementedException(),
+            };
         }
 
 
