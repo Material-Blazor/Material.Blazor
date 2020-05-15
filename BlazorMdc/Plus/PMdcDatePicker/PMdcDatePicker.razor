@@ -9,8 +9,14 @@
      @attributes="@AttributesToSplat()" >
 
     <div class="mdc-select__anchor">
+        <span class="mdc-select__ripple"></span>
+        <input type="text" disabled readonly class="mdc-select__selected-text">
         <i class="mdc-select__dropdown-icon"></i>
-        <div class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="@labelId" aria-disabled="@IsDisabled">@initialText</div>
+
+
+
+        @*<i class="mdc-select__dropdown-icon"></i>
+        <div class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="@labelId" aria-disabled="@IsDisabled">@initialText</div>*@
 
         @if (appliedInputStyle == MdcSelectInputStyle.Outlined)
         {
