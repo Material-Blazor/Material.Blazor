@@ -199,7 +199,7 @@ window.BlazorMdc = {
 
         clickItem: function (ulElem, value) {
             for (let i = 0; i < ulElem.children.length; i++) {
-                if (ulElem.children[i].outerText == value) {
+                if (ulElem.children[i].dataset.value == value) {
                     ulElem.children[i].click();
                 }
             }
