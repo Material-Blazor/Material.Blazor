@@ -15,8 +15,7 @@
               TextInputStyle="@TextInputStyle"
               TextAlignStyle="@TextAlignStyle"
               @oninput="@OnTextInput"
-              Disabled=@Disabled
-              FormNoValidate="@FormNoValidate" />
+              Disabled=@Disabled />
 
 
 @code {
@@ -27,7 +26,6 @@
     [Parameter] public bool NoLabel { get; set; } = false;
     [Parameter] public string? LeadingIcon { get; set; }
     [Parameter] public string? TrailingIcon { get; set; }
-    [Parameter] public bool FormNoValidate { get; set; } = false;
     [Parameter] public int? DebounceInterval { get; set; }
 #nullable restore annotations
 

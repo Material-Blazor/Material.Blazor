@@ -8,12 +8,13 @@
 <div @ref="@formReference" class="@formFieldClass">
     <div class="mdc-touch-target-wrapper">
         <div @ref="@elementReference"
-        @attributes="@AttributesToSplat()">
+        @attributes="@AttributesToSplat(SplatType.ExcludeHtmlExcludingClassAndStyle)">
 
             <input @bind="@ReportingValue"
                    type="checkbox"
                    class="mdc-checkbox__native-control @FieldClass"
-                   id="@Id" />
+                   id="@Id"
+                   @attributes="AttributesToSplat(SplatType.HtmlExcludingClassAndStyle)"/>
             <div class="mdc-checkbox__background">
                 <svg class="mdc-checkbox__checkmark"
                      viewBox="0 0 24 24">

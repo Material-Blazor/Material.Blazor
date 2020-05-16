@@ -57,9 +57,9 @@ namespace BlazorMdc
     {
         private const string ClassAttrName = "class";
         private const string StyleAttrName = "style";
-        private const string DisplayAttrName = "display";
+        private const string DisabledAttributeName = "disabled";
 
-        private readonly string[] ReservedAttributes = { ClassAttrName, StyleAttrName, DisplayAttrName };
+        private readonly string[] ReservedAttributes = { ClassAttrName, StyleAttrName, DisabledAttributeName };
         private readonly string[] EventAttributeNames = { "onfocus", "onblur", "onfocusin", "onfocusout", "onmouseover", "onmouseout", "onmousemove", "onmousedown", "onmouseup", "onclick", "ondblclick", "onwheel", "onmousewheel", "oncontextmenu", "ondrag", "ondragend", "ondragenter", "ondragleave", "ondragover", "ondragstart", "ondrop", "onkeydown", "onkeyup", "onkeypress", "onchange", "oninput", "oninvalid", "onreset", "onselect", "onselectstart", "onselectionchange", "onsubmit", "onbeforecopy", "onbeforecut", "onbeforepaste", "oncopy", "oncut", "onpaste", "ontouchcancel", "ontouchend", "ontouchmove", "ontouchstart", "ontouchenter", "ontouchleave", "ongotpointercapture", "onlostpointercapture", "onpointercancel", "onpointerdown", "onpointerenter", "onpointerleave", "onpointermove", "onpointerout", "onpointerover", "onpointerup", "oncanplay", "oncanplaythrough", "oncuechange", "ondurationchange", "onemptied", "onpause", "onplay", "onplaying", "onratechange", "onseeked", "onseeking", "onstalled", "onstop", "onsuspend", "ontimeupdate", "onvolumechange", "onwaiting", "onloadstart", "ontimeout", "onabort", "onload", "onloadend", "onprogress", "onerror", "onactivate", "onbeforeactivate", "onbeforedeactivate", "ondeactivate", "onended", "onfullscreenchange", "onfullscreenerror", "onloadeddata", "onloadedmetadata", "onpointerlockchange", "onpointerlockerror", "onreadystatechange", "onscroll" };
         private readonly string[] AriaAttributeNames = { "aria-activedescendant", "aria-atomic", "aria-autocomplete", "aria-busy", "aria-checked", "aria-controls", "aria-describedat", "aria-describedby", "aria-disabled", "aria-dropeffect", "aria-expanded", "aria-flowto", "aria-grabbed", "aria-haspopup", "aria-hidden", "aria-invalid", "aria-label", "aria-labelledby", "aria-level", "aria-live", "aria-multiline", "aria-multiselectable", "aria-orientation", "aria-owns", "aria-posinset", "aria-pressed", "aria-readonly", "aria-relevant", "aria-required", "aria-selected", "aria-setsize", "aria-sort", "aria-valuemax", "aria-valuemin", "aria-valuenow", "aria-valuetext" };
 
@@ -137,7 +137,7 @@ namespace BlazorMdc
                     }
                 }
 
-                if (Disabled) allAttributes.Add(DisplayAttrName, Disabled);
+                if (Disabled) allAttributes.Add(DisabledAttributeName, Disabled);
 
                 if (splatType == SplatType.ExcludeClassAndStyle) return allAttributes;
 
@@ -236,9 +236,7 @@ namespace BlazorMdc
             if (reserved.Count() > 0)
             {
                 throw new ArgumentException(
-                    @$"BlazorMdc: You cannot use '{string.Join(", ", reserved.Select(x => $"'{x}'"))}' attributes in 
-                            {Utilities.GetTypeName(GetType())}. BlazorMdc reserves the 'class', 'style' and 'display' 
-                            HTML attributes for internal use, so use the 'Class', 'Style' and 'Display' parameters instead");
+                    $"BlazorMdc: You cannot use {string.Join(", ", reserved.Select(x => $"'{x}'"))} attributes in {Utilities.GetTypeName(GetType())}. BlazorMdc reserves the 'class', 'style' and 'display' HTML attributes for internal use, so use the 'Class', 'Style' and 'Display' parameters instead");
             }
 
             if (!CascadingDefaults.ConstrainSplattableAttributes)
@@ -256,14 +254,12 @@ namespace BlazorMdc
             if (forbidden.Count() > 0)
             {
                 throw new ArgumentException(
-                    @$"BlazorMdc: You cannot use '{string.Join(", ", forbidden.Select(x => $"'{x}'"))}' attributes in 
-                            {Utilities.GetTypeName(GetType())}. Either remove the attribute or change 
-                            'ConstrainSplattableAttributes' or 'AllowedSplattableAttributes' in your MdcCascadingDefaults");
+                    $"BlazorMdc: You cannot use {string.Join(", ", forbidden.Select(x => $"'{x}'"))} attributes in {Utilities.GetTypeName(GetType())}. Either remove the attribute or change 'ConstrainSplattableAttributes' or 'AllowedSplattableAttributes' in your MdcCascadingDefaults");
             }
         }
 
 
-        /// /// <summary>
+        /// <summary>
         /// BlazorMdc components generally *should not* override this because it handles the case where components need
         /// to be adjusted when inside an <c>MdcDialog</c> or <c>MdcCard</c>. 
         /// </summary>
