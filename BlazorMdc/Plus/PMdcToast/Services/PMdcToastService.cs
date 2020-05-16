@@ -15,6 +15,7 @@ namespace BlazorMdc
         public PMdcToastServiceConfiguration Configuration { get; set; } = new PMdcToastServiceConfiguration();
 
         private event Action<PMdcToastLevel, PMdcToastSettings> OnAdd;
+
         ///<inheritdoc/>
         event Action<PMdcToastLevel, PMdcToastSettings> IPmdcToastService.OnAdd
         {
@@ -51,6 +52,11 @@ namespace BlazorMdc
                 ShowIcon = showIcon,
                 Timeout = timeout
             };
+
+            if (OnAdd is null)
+            {
+                throw new InvalidOperationException($"BlazorMdc: you attempted to show a toast notification from a {Utilities.GetTypeName(typeof(IPmdcToastService))} but have not placed a {Utilities.GetTypeName(typeof(PMdcToastAnchor))} component at the top of either App.razor or MainLayout.razor");
+            }
 
             OnAdd?.Invoke(level, settings);
         }

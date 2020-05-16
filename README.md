@@ -140,14 +140,14 @@ The following are extra or 'plus' components that extend the strict, core Materi
 | `PMdcShield` | A simple component producing an HTML shield styled after svgs from shield.io (square, flat variety) |
 | `PMdcSlidingContent` | A templated component to provide previous/next navigation through a series of pages with light left/right and fade in/out animation. |
 | `PMdcSlidingTabBar` | An `MdcTabBar` augmented with content displayed in a `PMdcSlidingContent` |
-| `PMdcToast` | A port of [Blazored/Toast](https://github.com/Blazored/Toast) yet to be styled à la Material Theme. |
+| `PMdcToastAnchor` | A port of [Blazored/Toast](https://github.com/Blazored/Toast), modified and styled à la Material Theme. Place once instance of this in your Blazor app at the top of `App.razor` or `MainLayout.razor`. Requires that you register an `IPmdcToastService` service and will throw an exception on startup if the service is not found. |
 
 ## Services
  
 | Service | Notes |
 | :------ | :---- |
 | `IPmdcAnimatedNavigationManager` | Manages fade out/in page navigation, wrapping Blazor's `NavigationManager.NavigateTo()` function. This is purely optional and you can continue to use Blazor's navigtion if you don't want animation. |
-| `IPmdcToast` | Manages toast notification. |
+| `IPmdcToastService` | Manages toast notification. Requires a `PMdcToastAnchor` component and will throw an exception when you attempt to show a toast notification if this isn't found. |
 
 ## Utilities
  
@@ -155,7 +155,7 @@ The following are extra or 'plus' components that extend the strict, core Materi
 | :------ | :---- |
 | `MdcCascadingDefaults` | Allows you to set up defaults such as button style (filled, outlined etc), text area style (filled or outlined) |
 | `MdcTypography` | Constants for standard Material Theme typography. |
-|` MdcIcon` | Working with `IMdcIcon` and `IMdcIconFoundry` to implement optional [Material Icons](https://material.io/resources/icons/?style=baseline) and `MdcFAIcon` for [Font Awesome](https://fontawesome.com/icons?d=gallery) icons. Icon names are passed to components as a string, with an additional parameter of `IconFoundry` using utility functions from `MdcIcon` to specify the foundry and its optional parameters. Your default icon foundry can be set in `MdcCascadingDefaults` (which itself defaults to Material Icons) and then you can pass string names for the icon of your choice. For Font Awesome icons, omit the preceding "fas/r/l/d" because this is set as a Font Awesome foundry style and in `MdcCascadingDefaults.FAIconStyle`. Font Awesome relative icon size and Material Icons theme are also similarly parameterized. BlazorMdc expects you to include Material Icons in your project (these are necessary for drop down arrows and so forth, but Font Awesome icons are discretionary depending upon your project's requirement - you do however need to use Font Awesome version 5. |
+|` MdcIconHelper` | Working with `IMdcIcon` and `IMdcIconFoundry` to implement optional [Material Icons](https://material.io/resources/icons/?style=baseline) and `MdcFAIcon` for [Font Awesome](https://fontawesome.com/icons?d=gallery) icons. Icon names are passed to components as a string, with an additional parameter of `IconFoundry` using utility functions from `MdcIcon` to specify the foundry and its optional parameters. Your default icon foundry can be set in `MdcCascadingDefaults` (which itself defaults to Material Icons) and then you can pass string names for the icon of your choice. For Font Awesome icons, omit the preceding "fas/r/l/d" because this is set as a Font Awesome foundry style and in `MdcCascadingDefaults.FAIconStyle`. Font Awesome relative icon size and Material Icons theme are also similarly parameterized. BlazorMdc expects you to include Material Icons in your project (these are necessary for drop down arrows and so forth, but Font Awesome icons are discretionary depending upon your project's requirement - you do however need to use Font Awesome version 5. |
 
 ## Future Development
 
