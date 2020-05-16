@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
-using System;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BlazorMdc
 {
@@ -8,6 +8,8 @@ namespace BlazorMdc
         public string Class => UnderlyingIcon.Class;
 
         public string Text => UnderlyingIcon.Text;
+
+        public IDictionary<string, object> Attributes => UnderlyingIcon.Attributes;
 
         public string IconName => UnderlyingIcon.IconName;
 
@@ -19,6 +21,7 @@ namespace BlazorMdc
 
         public static IMdcIconFoundry MIFoundry(MdcIconMITheme? theme = null) => new IconFoundryMI(theme);
         public static IMdcIconFoundry FAFoundry(MdcIconFAStyle? style = null, MdcIconFARelativeSize? relativeSize = null) => new IconFoundryFA(style, relativeSize);
+        public static IMdcIconFoundry OIFoundry() => new IconFoundryOI();
 
 
 #nullable enable annotations
@@ -35,6 +38,7 @@ namespace BlazorMdc
             {
                 MdcIconFoundryName.MaterialIcons => new IconMI(cascadingDefaults, iconName, (IconFoundryMI?)foundry),
                 MdcIconFoundryName.FontAwesome => new IconFA(cascadingDefaults, iconName, (IconFoundryFA?)foundry),
+                MdcIconFoundryName.OpenIconic => new IconOI(cascadingDefaults, iconName, (IconFoundryOI?)foundry),
                 _ => throw new NotImplementedException(),
             };
         }

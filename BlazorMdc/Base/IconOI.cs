@@ -2,13 +2,13 @@
 
 namespace BlazorMdc
 {
-    internal class IconFA : IMdcIcon
+    internal class IconOI : IMdcIcon
     {
-        public string Class => $"fa{IconStyleText} {IconNameText}";
+        public string Class => "oi";
 
         public string Text => "";
 
-        private readonly Dictionary<string, object> _attributes = new Dictionary<string, object>();
+        private readonly Dictionary<string, object> _attributes;
         public IDictionary<string, object> Attributes => _attributes;
 
         public string IconName { get; }
@@ -44,11 +44,14 @@ namespace BlazorMdc
 
 
 #nullable enable annotations
-        public IconFA(MdcCascadingDefaults cascadingDefaults, string iconName, IconFoundryFA? foundry = null)
+        public IconOI(MdcCascadingDefaults cascadingDefaults, string iconName, IconFoundryOI? foundry = null)
         {
             IconName = iconName;
-            Style = cascadingDefaults.AppliedIconFAStyle(foundry?.Style);
-            RelativeSize = cascadingDefaults.AppliedIconFARelativeSize(foundry?.RelativeSize);
+
+            _attributes = new Dictionary<string, object>
+            {
+                { "data-glyph", iconName }
+            };
         }
 #nullable restore annotations
     }

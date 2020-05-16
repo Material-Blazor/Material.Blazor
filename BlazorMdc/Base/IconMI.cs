@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
-using System;
+﻿using System.Collections.Generic;
 
 namespace BlazorMdc
 {
@@ -23,6 +22,9 @@ namespace BlazorMdc
 
         public string Text => IconName.ToLower();
 
+        private readonly Dictionary<string, object> _attributes = new Dictionary<string, object>();
+        public IDictionary<string, object> Attributes => _attributes; 
+        
         public string IconName { get; }
 
         public bool RequiresWhiteFilter => Theme == MdcIconMITheme.TwoTone;

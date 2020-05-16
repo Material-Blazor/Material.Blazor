@@ -26,7 +26,12 @@ namespace BlazorMdc
         /// <summary>
         /// Font Awesome Icons.
         /// </summary>
-        FontAwesome
+        FontAwesome,
+
+        /// <summary>
+        /// Open Iconic Icons.
+        /// </summary>
+        OpenIconic
     }
 
 

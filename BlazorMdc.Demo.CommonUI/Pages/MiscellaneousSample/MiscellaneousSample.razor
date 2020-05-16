@@ -1,0 +1,54 @@
+﻿@namespace BlazorMdc.Demo
+
+@page "/miscellaneous"
+
+@inject IJSRuntime jsRuntime
+
+<h1 class="mdc-typography--headline4">Miscellaneous samples</h1>
+
+<h5 class="mdc-typography--headline5">Shields</h5>
+
+<style>
+    .my-label-two {
+        --bmdc-shield-label-color: var(--bmdc-color-bluegray-100);
+        --bmdc-shield-value-color: var(--bmdc-color-bluegray-100);
+        --bmdc-shield-label-background: var(--bmdc-color-bluegray-900);
+        --bmdc-shield-value-background: var(--bmdc-color-green-700);
+    }
+</style>
+<div style="display: flex; flex-flow: column nowrap">
+    <PMdcShield Style="margin-bottom: 6px;" Label="label one" Value="value one" />
+    <PMdcShield Label="label two" Value="value two" ValueClass="my-label-two" />
+</div>
+
+<h5 class="mdc-typography--headline5">Icons</h5>
+
+<p><PMdcIcon Icon="alarm" /></p>
+<p><PMdcIcon Icon="alarm" IconFoundry="MdcIconHelper.MIFoundry(MdcIconMITheme.TwoTone)" /></p>
+<p><PMdcIcon Icon="fa-dog" IconFoundry="MdcIconHelper.FAFoundry()" /></p>
+<p><PMdcIcon Icon="fa-dog" IconFoundry="MdcIconHelper.FAFoundry(relativeSize: MdcIconFARelativeSize.ThreeTimes)" /></p>
+<p><PMdcIcon Icon="shield" IconFoundry="MdcIconHelper.OIFoundry()" /></p>
+
+
+<h5 class="mdc-typography--headline5">Typography</h5>
+
+<div style="margin-left: 3rem;">
+    <h2 class="mdc-typography--headline1">Heading 1</h2>
+    <h2 class="mdc-typography--headline2">Heading 2</h2>
+    <h2 class="mdc-typography--headline3">Heading 3</h2>
+    <h2 class="mdc-typography--headline4">Heading 4</h2>
+    <h2 class="mdc-typography--headline5">Heading 5</h2>
+    <h2 class="mdc-typography--headline6">Heading 6</h2>
+
+    <h2 class="mdc-typography--subtitle1">Subtitle 1</h2>
+    <h2 class="mdc-typography--subtitle2">Subtitle 2</h2>
+
+    <p class="mdc-typography--body1">Body 1</p>
+    <p class="mdc-typography--body2">Body 2</p>
+    <p class="mdc-typography--caption">Caption</p>
+    <p class="mdc-typography--overline">Overline</p>
+
+    <p class="mdc-typography">Regular paragraph with the 'mdc-typography' class applied</p>
+
+    <p style="color: var(--bmdc-color-red-300);">Material Theme color 'red 300' from a CSS variable</p>
+</div>

@@ -1,5 +1,5 @@
 ﻿$shield-height: 20px;
-$shield-line-height: 22px;
+$shield-line-height: 20px;
 $shield-font-family: "Verdana","Geneva","DejaVu Sans","sans-serif";
 $shield-font-size: 9pt;
 $shield-inner-padding: 5px;
@@ -25,6 +25,10 @@ $shield-outer-padding: 6px;
     padding: 0;
     border: 0;
     white-space: nowrap;
+}
+
+.bmdc-shield__icon-adjust {
+    margin-left: 4px;
 }
 
 .bmdc-shield--label {

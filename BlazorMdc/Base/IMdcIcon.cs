@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace BlazorMdc
 {
@@ -9,6 +7,8 @@ namespace BlazorMdc
         public string Class { get; }
 
         public string Text { get; }
+
+        public IDictionary<string, object> Attributes { get; }
 
         public string IconName { get; }
 
