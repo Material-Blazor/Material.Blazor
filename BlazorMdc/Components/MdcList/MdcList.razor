@@ -129,14 +129,6 @@
             .AddIf("mdc-list--avatar-list", () => AvatarList);
     }
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.list.init", elementReference, KeyboardInteractions, Ripple);
-        }
-    }
-
     private async Task OnItemClickAsync(int index)
     {
         await OnClick.InvokeAsync(index);
@@ -156,4 +148,6 @@
     {
         await OnTouchStart.InvokeAsync(index);
     }
+
+    private protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.list.init", elementReference, KeyboardInteractions, Ripple);
 }

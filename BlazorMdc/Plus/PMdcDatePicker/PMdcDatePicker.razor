@@ -72,7 +72,7 @@
         ClassMapper
             .Add("mdc-select")
             .AddIf("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
-            .AddIf("mdc-select--disabled", () => IsDisabled);
+            .AddIf("mdc-select--disabled", () => Disabled);
 
         initialValue = Value;
         initialText = Utilities.DateToString(Value);
@@ -92,5 +92,5 @@
     }
 
 
-    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.init", elementReference);
+    private protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.init", elementReference);
 }

@@ -102,7 +102,7 @@
             .Clear()
             .Add("mdc-select")
             .AddIf("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
-            .AddIf("mdc-select--disabled", () => IsDisabled);
+            .AddIf("mdc-select--disabled", () => Disabled);
 
         selectedText = (UnderlyingValue is null) ? "" : Items.Where(i => object.Equals(i.SelectedValue, UnderlyingValue)).FirstOrDefault().Label;
         floatingLabelClass = string.IsNullOrWhiteSpace(selectedText) ? "" : "mdc-floating-label--float-above";
@@ -121,5 +121,5 @@
     protected override void ValueSetter(TItem value) => InvokeAsync(async () => await jsRuntime.InvokeAsync<object>("BlazorMdc.select.clickItem", ulReference, ItemDict[value].Label));
 
 
-    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.select.init", selectReference);
+    private protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.select.init", selectReference);
 }

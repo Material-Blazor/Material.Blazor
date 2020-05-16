@@ -18,7 +18,6 @@
                   LeadingIcon="@LeadingIcon"
                   TrailingIcon="@TrailingIcon"
                   IconFoundry="@IconFoundry"
-                  FormNoValidate="@FormNoValidate"
                   @oninput="OnInput"
                   @onchange="OnTextFocusOutAsync"
                   @attributes="@AttributesToSplat()" />
@@ -31,7 +30,7 @@
                     {
                         var clickItem = string.Copy(item);
 
-                        <li @key="@item" class="mdc-list-item" role="menuitem" @onclick="@(() => OnItemClickAsync(clickItem))" tabindex="0" disabled="@IsDisabled">
+                        <li @key="@item" class="mdc-list-item" role="menuitem" @onclick="@(() => OnItemClickAsync(clickItem))" tabindex="0" disabled="@Disabled">
                             <span class="mdc-list-item__text">@item</span>
                         </li>
                     }
@@ -75,7 +74,6 @@
     [Parameter] public string? LeadingIcon { get; set; }
     [Parameter] public string? TrailingIcon { get; set; }
     [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
-    [Parameter] public bool FormNoValidate { get; set; } = false;
     [Parameter] public bool IgnoreWhitespace { get; set; } = false;
     [Parameter] public bool AllowBlankResult { get; set; } = false;
     [Parameter] public bool MatchFromItemStart { get; set; } = false;
@@ -252,5 +250,5 @@
     }
 
 
-    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.autoComplete.init", textField.TextFieldReference);
+    private protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.autoComplete.init", textField.TextFieldReference);
 }

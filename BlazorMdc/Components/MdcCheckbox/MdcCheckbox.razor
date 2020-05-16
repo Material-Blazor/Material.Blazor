@@ -52,7 +52,7 @@
         base.OnInitialized();
 
         ClassMapper.Add("mdc-checkbox mdc-checkbox--touch")
-            .AddIf("mdc-checkbox--disabled", () => IsDisabled);
+            .AddIf("mdc-checkbox--disabled", () => Disabled);
 
         HasValueSetter = true;
     }
@@ -65,5 +65,5 @@
     }
 
 
-    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.checkBox.init", elementReference, formReference, ReportingValue, IsFormField);
+    private protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.checkBox.init", elementReference, formReference, ReportingValue, IsFormField);
 }

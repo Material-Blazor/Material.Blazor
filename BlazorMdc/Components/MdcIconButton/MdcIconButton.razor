@@ -31,14 +31,6 @@
     private MdcIconHelper myIcon => new MdcIconHelper(CascadingDefaults, Icon, IconFoundry);
 
 
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButton.init", elementReference);
-        }
-    }
-
     protected override void OnInitialized()
     {
         base.OnInitialized();
@@ -47,4 +39,7 @@
             .Add($"mdc-icon-button")
             .AddIf("mdc-card__action mdc-card__action--icon", () => (Card != null));
     }
+
+
+    private protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButton.init", elementReference);
 }

@@ -44,14 +44,19 @@
         isOpen = StartOpen;
     }
 
-    public void Toggle()
-        => Toggle(!isOpen);
+
+    public void Toggle() => Toggle(!isOpen);
+
 
     public void Toggle(bool open)
     {
         isOpen = open;
-        StateHasChanged();
+        InvokeAsync(async () =>
+        {
+            await InitializeMdcComponent();
+        });
     }
+
 
     public void NotifyNavigation()
     {
@@ -61,10 +66,6 @@
         }
     }
 
-    protected async override Task OnAfterRenderAsync(bool firstRender)
-        => await jsRuntime.InvokeAsync<object>(
-            "BlazorMdc.drawer.toggle",
-            drawerElem,
-            isOpen);
 
+    private protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.drawer.toggle", drawerElem, isOpen);
 }

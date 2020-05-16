@@ -19,7 +19,7 @@
               aria-labelledby="@labelId"
               rows="@Rows"
               cols="@Cols"
-              disabled="@IsDisabled"
+              disabled="@Disabled"
               @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)" />
 
     @if (appliedTextInputStyle == MdcTextInputStyle.Outlined)
@@ -79,7 +79,7 @@
             .AddIf("mdc-text-field--outlined", () => (appliedTextInputStyle == MdcTextInputStyle.Outlined))
             .AddIf("mdc-text-field--fullwidth", () => (appliedTextInputStyle == MdcTextInputStyle.FullWidth))
             .AddIf("mdc-text-field--no-label", () => NoLabel)
-            .AddIf("mdc-text-field--disabled", () => IsDisabled);
+            .AddIf("mdc-text-field--disabled", () => Disabled);
 
         ForceShouldRenderToTrue = true;
     }
@@ -91,5 +91,5 @@
     }
 
 
-    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.textField.init", elementReference);
+    private protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.textField.init", elementReference);
 }

@@ -44,7 +44,7 @@
 
 <div class="mdc-drawer-app-content">
     <MdcTopAppBar Title="BlazorMdc - Material Theme components for Blazor"
-                  @onclick="@(() => sidebar.Toggle())"
+                  @onclick="@SideBarToggle"
                   NavIcon="menu"
                   NavAriaLabel="Menu"
                   ScrollTarget="#main-content"
@@ -75,9 +75,14 @@
 @code {
     MdcDrawer sidebar;
 
-    protected void ListItemClickHandler(string NavigationReference)
+    private void ListItemClickHandler(string NavigationReference)
     {
         sidebar.NotifyNavigation();
         PMdcAnimatedNavigationManager.NavigateTo(NavigationReference);
+    }
+
+    private void SideBarToggle()
+    {
+        sidebar.Toggle();
     }
 }

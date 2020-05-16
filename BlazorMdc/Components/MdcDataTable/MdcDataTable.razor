@@ -49,11 +49,5 @@
             .Add("mdc-data-table");
     }
 
-    protected async override Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.dataTable.init", elementReference);
-        }
-    }
+    private protected async override Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.dataTable.init", elementReference);
 }

@@ -8,14 +8,14 @@
 
 <header @ref="headerElem"
         id="app-bar"
-        @attributes="AttributesToSplat(SplatType.ClassAndStyleOnly)">
+        @attributes="AttributesToSplat(SplatType.ExcludeEvents)">
 
     <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-            <MdcIconButton class="mdc-top-app-bar__action-item--unbounded" 
+            <MdcIconButton Class="mdc-top-app-bar__action-item--unbounded" 
                            Icon="@NavIcon" 
                            IconFoundry="@IconFoundry" 
-                           @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)" />
+                           @attributes="@AttributesToSplat(SplatType.EventsOnly)" />
 
             <span class="mdc-top-app-bar__title">@Title</span>
         </section>
@@ -59,11 +59,11 @@
     }
 
 
-    protected async override Task OnAfterRenderAsync(bool firstRender)
+    protected override bool ShouldRender()
     {
-        if (firstRender)
-        {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.topAppBar.init", headerElem, ScrollTarget);
-        }
+        return false;
     }
+
+
+    private protected override async Task InitializeMdcComponent() =>await jsRuntime.InvokeAsync<object>("BlazorMdc.topAppBar.init", headerElem, ScrollTarget);
 }

@@ -37,26 +37,26 @@ namespace BlazorMdc
     public enum MdcIconMITheme 
     {
         /// <summary>
-        /// Filled theme, <code>class="material-icons"</code>.
+        /// Filled theme, <c>class="material-icons"</c>.
         /// </summary>
         Filled,
 
         /// <summary>
-        /// Outlined theme, <code>class="material-icons-outlined"</code>.
+        /// Outlined theme, <c>class="material-icons-outlined"</c>.
         /// </summary>
         Outlined,
         /// <summary>
-        /// Rounded theme, <code>class="material-icons-round"</code>.
+        /// Rounded theme, <c>class="material-icons-round"</c>.
         /// </summary>
         Round,
 
         /// <summary>
-        /// Two-tone theme, <code>class="material-icons-two-tone"</code>. Note that two-tone does not use css color, but filter instead.
+        /// Two-tone theme, <c>class="material-icons-two-tone"</c>. Note that two-tone does not use css color, but filter instead.
         /// </summary>
         TwoTone,
 
         /// <summary>
-        /// Sharp theme, <code>class="material-icons-sharp"</code>.
+        /// Sharp theme, <c>class="material-icons-sharp"</c>.
         /// </summary>
         Sharp
     }
@@ -69,27 +69,27 @@ namespace BlazorMdc
     public enum MdcIconFAStyle 
     {
         /// <summary>
-        /// Solid style, <code>class="fas ..."</code>.
+        /// Solid style, <c>class="fas ..."</c>.
         /// </summary>
         Solid,
 
         /// <summary>
-        /// Regular style, <code>class="far ..."</code>. Requires a PRO licence.
+        /// Regular style, <c>class="far ..."</c>. Requires a PRO licence.
         /// </summary>
         Regular,
 
         /// <summary>
-        /// Light style, <code>class="fal ..."</code>. Requires a PRO licence.
+        /// Light style, <c>class="fal ..."</c>. Requires a PRO licence.
         /// </summary>
         Light,
 
         /// <summary>
-        /// Duotone style, <code>class="fad ..."</code>. Requires a PRO licence.
+        /// Duotone style, <c>class="fad ..."</c>. Requires a PRO licence.
         /// </summary>
         Duotone,
 
         /// <summary>
-        /// Brands style, <code>class="fab ..."</code>.
+        /// Brands style, <c>class="fab ..."</c>.
         /// </summary> 
         Brands
     }
@@ -107,50 +107,42 @@ namespace BlazorMdc
         Regular,
 
         /// <summary>
-        /// Extra small relative size: 
-        /// <code>class="... fa-xs"</code>
+        /// Extra small relative size, <c>class="... fa-xs"</c>
         /// </summary> 
         ExtraSmall,
 
         /// <summary>
-        /// Small relative size: 
-        /// <code>class="... fa-sm"</code>
+        /// Small relative size: <c>class="... fa-sm"</c>
         /// </summary> 
         Small,
 
         /// <summary>
-        /// Large relative size: 
-        /// <code>class="... fa-lg"</code>
+        /// Large relative size, <c>class="... fa-lg"</c>
         /// </summary>
         Large,
 
         /// <summary>
-        /// Two times relative size: 
-        /// <code>class="... fa-2x"</code>
+        /// Two times relative size. <c>class="... fa-2x"</c>
         /// </summary> 
         TwoTimes,
 
         /// <summary>
-        /// Three times relative size:
-        /// <code>class="... fa-3x"</code>
+        /// Three times relative size, <c>class="... fa-3x"</c>
         /// </summary>
         ThreeTimes,
 
         /// <summary>
-        /// Five times relative size: 
-        /// <code>class="... fa-5x"</code>
+        /// Five times relative size, <c>class="... fa-5x"</c>
         /// </summary>
         FiveTimes,
 
         /// <summary>
-        /// Seven times relative size: 
-        /// <code>class="... fa-7x"</code>
+        /// Seven times relative size, <c>class="... fa-7x"</c>
         /// </summary>
         SevenTimes,
 
         /// <summary>
-        /// Ten times relative size:
-        /// <code>class="... fa-10x"</code>
+        /// Ten times relative size, <c>class="... fa-10x"</c>
         /// </summary> 
         TenTimes
     }

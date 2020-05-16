@@ -89,18 +89,18 @@
             .AddIf("mdc-text-field--outlined", () => appliedTextInputStyle == MdcTextInputStyle.Outlined)
             .AddIf("mdc-text-field--filled mdc-text-field--fullwidth", () => appliedTextInputStyle == MdcTextInputStyle.FullWidth)
             .AddIf("mdc-text-field--no-label", () => NoLabel)
-            .AddIf("mdc-text-field--disabled", () => IsDisabled)
+            .AddIf("mdc-text-field--disabled", () => Disabled)
             .AddIf("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
             .AddIf("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
 
 
         if (!NoLabel && appliedTextInputStyle != MdcTextInputStyle.FullWidth)
         {
-            ComponentAttributes.Add("aria-labelledby", labelId);
+            ComponentPureHtmlAttributes.Add("aria-labelledby", labelId);
         }
         else if (!string.IsNullOrWhiteSpace(Label))
         {
-            ComponentAttributes.Add("aria-label", Label);
+            ComponentPureHtmlAttributes.Add("aria-label", Label);
         }
 
         ForceShouldRenderToTrue = true;
@@ -120,7 +120,7 @@
     }
 
 
-    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.textField.init", TextFieldReference);
+    private protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.textField.init", TextFieldReference);
 
 
     internal async Task Select()

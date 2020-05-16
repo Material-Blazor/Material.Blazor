@@ -138,7 +138,6 @@
             try
             {
                 afterRenderShowAction = false;
-                //afterDialogInitialization = true;
                 tcs.SetResult(await jsRuntime.InvokeAsync<string>("BlazorMdc.dialog.show", dialogElem, objectReference, EscapeKeyAction, ScrimClickAction));
                 isOpen = false;
                 StateHasChanged();

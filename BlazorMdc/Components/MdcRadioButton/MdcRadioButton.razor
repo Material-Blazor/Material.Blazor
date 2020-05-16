@@ -81,7 +81,7 @@
             buttonContainerClass += " " + ButtonContainerClass;
         }
 
-        if (IsDisabled)
+        if (Disabled)
         {
             disabledClass = " mdc-radio--disabled";
         }
@@ -108,7 +108,7 @@
     }
 
 
-    protected override async Task InitializeMdcComponent()
+    private protected override async Task InitializeMdcComponent()
     {
         await jsRuntime.InvokeAsync<object>(
             "BlazorMdc.radioButton.init",

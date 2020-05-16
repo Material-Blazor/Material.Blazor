@@ -43,12 +43,12 @@
 
         ClassMapper
             .Add("mdc-switch")
-            .AddIf("mdc-switch--disabled", () => IsDisabled)
+            .AddIf("mdc-switch--disabled", () => Disabled)
             .AddIf("mdc-switch--checked", () => ReportingValue);
 
         ForceShouldRenderToTrue = true;
     }
 
 
-    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.switch.setChecked", elementReference, ReportingValue);
+    private protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.switch.setChecked", elementReference, ReportingValue);
 }
