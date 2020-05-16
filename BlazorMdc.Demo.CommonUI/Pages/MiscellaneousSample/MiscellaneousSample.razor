@@ -10,15 +10,17 @@
 
 <style>
     .my-label-two {
-        --bmdc-shield-label-color: var(--bmdc-color-bluegray-100);
-        --bmdc-shield-value-color: var(--bmdc-color-bluegray-100);
-        --bmdc-shield-label-background: var(--bmdc-color-bluegray-900);
+        --bmdc-shield-label-color: var(--bmdc-color-orange-100);
+        --bmdc-shield-value-color: var(--bmdc-color-orange-100);
+        --bmdc-shield-label-background: var(--bmdc-color-blue-700);
         --bmdc-shield-value-background: var(--bmdc-color-green-700);
     }
 </style>
+
 <div style="display: flex; flex-flow: column nowrap">
     <PMdcShield Style="margin-bottom: 6px;" Label="label one" Value="value one" />
-    <PMdcShield Label="label two" Value="value two" ValueClass="my-label-two" />
+    <PMdcShield Style="margin-bottom: 6px;" Label="label two" Value="value two" LabelClass="my-label-two" ValueClass="my-label-two" />
+    <PMdcShield Label="label three" Value="value three" LabelIcon="edit" ValueIcon="edit" />
 </div>
 
 <h5 class="mdc-typography--headline5">Icons</h5>

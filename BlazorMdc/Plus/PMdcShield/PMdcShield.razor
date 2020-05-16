@@ -4,18 +4,31 @@
 
 
 <div @attributes="AttributesToSplat()">
-
     @if (ShieldType != PMdcShieldType.ValueOnly)
     {
         <div class="bmdc-shield--label @LabelClass" style="@LabelStyle">
-            @Label
+            @if (!string.IsNullOrWhiteSpace(LabelIcon))
+            {
+                <div>
+                    <PMdcIcon Icon="@LabelIcon" IconFoundry="@IconFoundry" Class="bmdc-shield--icon" />
+                </div>
+            }
+
+            <div>@Label</div>
         </div>
     }
 
     @if (ShieldType != PMdcShieldType.LabelOnly)
     {
         <div class="bmdc-shield--value @ValueClass" style="@ValueStyle">
-            @Value
+            @if (!string.IsNullOrWhiteSpace(ValueIcon))
+            {
+                <div>
+                    <PMdcIcon Icon="@ValueIcon" IconFoundry="@IconFoundry" Class="bmdc-shield--icon" />
+                </div>
+            }
+            
+            <div>@Value</div>
         </div>
     }
 </div>
@@ -34,6 +47,7 @@
     [Parameter] public string ValueIcon { get; set; } = "";
     [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
 #nullable restore annotations
+
 
 
     protected override void OnInitialized()
