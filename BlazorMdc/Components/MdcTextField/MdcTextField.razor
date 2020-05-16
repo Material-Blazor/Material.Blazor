@@ -13,14 +13,21 @@
         <span class="mdc-text-field__ripple"></span>
     }
 
-    @LeadingIconMarkup
+    @if (!string.IsNullOrWhiteSpace(LeadingIcon))
+    {
+        <PMdcIcon Icon="@LeadingIcon" IconFoundry="@IconFoundry" Class="mdc-text-field__icon mdc-text-field__icon--leading" tabindex="-1" role="button" />
+    }
+
     <input @ref="@inputReference"
            id="@Id"
            class="mdc-text-field__input @Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle)) @FieldClass"
            @bind="@ReportingValue"
            @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)">
 
-    @TrailingIconMarkup
+    @if (!string.IsNullOrWhiteSpace(TrailingIcon))
+    {
+        <PMdcIcon Icon="@TrailingIcon" IconFoundry="@IconFoundry" Class="mdc-text-field__icon mdc-text-field__icon--trailing" tabindex="-1" role="button" />
+    }
 
     @if (appliedTextInputStyle == MdcTextInputStyle.Outlined)
     {
@@ -73,8 +80,6 @@
     private ElementReference inputReference;
     private string labelId = Guid.NewGuid().ToString();
     private string floatingLabelClass;
-    private MarkupString LeadingIconMarkup;
-    private MarkupString TrailingIconMarkup;
     private Dictionary<string, object> attributes;
 
 
@@ -114,8 +119,6 @@
         var leading = new MdcIconHelper(CascadingDefaults, (string)LeadingIcon, IconFoundry);
         var trailing = new MdcIconHelper(CascadingDefaults, (string)TrailingIcon, IconFoundry);
 
-        LeadingIconMarkup = (MarkupString)((LeadingIcon is null) ? "" : $"<i class=\"{leading.Class} mdc-text-field__icon mdc-text-field__icon--leading\" tabindex=\"-1\" role=\"button\">{leading.Text}</i>");
-        TrailingIconMarkup = (MarkupString)((TrailingIcon is null) ? "" : $"<i class=\"{trailing.Class} mdc-text-field__icon mdc-text-field__icon--trailing\" tabindex=\"-1\" role=\"button\">{trailing.Text}</i>");
         floatingLabelClass = string.IsNullOrEmpty(ReportingValue) ? "" : "mdc-floating-label--float-above";
     }
 

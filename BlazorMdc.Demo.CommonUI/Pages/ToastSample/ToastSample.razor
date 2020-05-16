@@ -109,18 +109,25 @@
                                                                               Label = c.ToString()
                                                                           };
 
-
-    MdcIconHelper icon;
-    MdcListElement<MdcIconHelper>[] iconItems = new MdcListElement<MdcIconHelper>[]
+#nullable enable annotations
+    class MyIcon
     {
-        new MdcListElement<MdcIconHelper> { SelectedValue = new MdcIconHelper(null, "directions_run"), Label = "directions_run" },
-        new MdcListElement<MdcIconHelper> { SelectedValue = new MdcIconHelper(null, "thumb_up", MdcIconHelper.MIFoundry(theme: MdcIconMITheme.Filled)), Label = "thumb_up (filled / default)" },
-        new MdcListElement<MdcIconHelper> { SelectedValue = new MdcIconHelper(null, "thumb_up", MdcIconHelper.MIFoundry(theme: MdcIconMITheme.Outlined)), Label = "thumb_up (outlined)" },
-        new MdcListElement<MdcIconHelper> { SelectedValue = new MdcIconHelper(null, "thumb_up", MdcIconHelper.MIFoundry(theme: MdcIconMITheme.Round)), Label = "thumb_up (rounded)" },
-        new MdcListElement<MdcIconHelper> { SelectedValue = new MdcIconHelper(null, "thumb_up", MdcIconHelper.MIFoundry(theme: MdcIconMITheme.TwoTone)), Label = "thumb_up (two-tone)" },
-        new MdcListElement<MdcIconHelper> { SelectedValue = new MdcIconHelper(null, "thumb_up", MdcIconHelper.MIFoundry(theme: MdcIconMITheme.Sharp)), Label = "thumb_up (sharp)" },
-        new MdcListElement<MdcIconHelper> { SelectedValue = new MdcIconHelper(null, "fa-ambulance", MdcIconHelper.FAFoundry()), Label = "fa-ambulance" },
-        new MdcListElement<MdcIconHelper> { SelectedValue = new MdcIconHelper(null, "fa-ambulance", MdcIconHelper.FAFoundry(relativeSize: MdcIconFARelativeSize.ExtraSmall)), Label = "fa-ambulance (x-small)" },
+        public string Name;
+        public IMdcIconFoundry? Foundry;
+    }
+#nullable restore annotations
+
+    MyIcon icon;
+    MdcListElement<MyIcon>[] iconItems = new MdcListElement<MyIcon>[]
+    {
+        new MdcListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "directions_run" }, Label = "directions_run" },
+        new MdcListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MdcIconHelper.MIFoundry(theme: MdcIconMITheme.Filled) }, Label = "thumb_up (filled / default)" },
+        new MdcListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MdcIconHelper.MIFoundry(theme: MdcIconMITheme.Outlined) }, Label = "thumb_up (outlined)" },
+        new MdcListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MdcIconHelper.MIFoundry(theme: MdcIconMITheme.Round) }, Label = "thumb_up (rounded)" },
+        new MdcListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MdcIconHelper.MIFoundry(theme: MdcIconMITheme.TwoTone) }, Label = "thumb_up (two-tone)" },
+        new MdcListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MdcIconHelper.MIFoundry(theme: MdcIconMITheme.Sharp) }, Label = "thumb_up (sharp)" },
+        new MdcListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = MdcIconHelper.FAFoundry() }, Label = "fa-ambulance" },
+        new MdcListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = MdcIconHelper.FAFoundry(relativeSize: MdcIconFARelativeSize.ExtraSmall) }, Label = "fa-ambulance (x-small)" },
     };
 
 
@@ -194,7 +201,8 @@
             heading: appliedHeading,
             level: level,
             message: message,
-            icon: icon,
+            iconName: icon.Name,
+            iconFoundry: icon.Foundry,
             showIcon: appliedShowIcon,
             timeout: appliedTimeout);
     }

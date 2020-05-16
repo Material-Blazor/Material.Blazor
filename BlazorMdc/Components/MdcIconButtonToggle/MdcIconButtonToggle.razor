@@ -12,8 +12,8 @@
             type="button"
             @onclick="@OnLocalClick">
 
-        <i class="@on.Class mdc-icon-button__icon mdc-icon-button__icon--on bmdc-dp-menu__icon-button">@on.Text</i>
-        <i class="@off.Class mdc-icon-button__icon bmdc-dp-menu__icon-button">@off.Text</i>
+        <PMdcIcon Icon="@IconOn" IconFoundry="@IconFoundry" Class="mdc-icon-button__icon mdc-icon-button__icon--on bmdc-dp-menu__icon-button" />
+        <PMdcIcon Icon="@IconOff" IconFoundry="@IconFoundry" Class="mdc-icon-button__icon bmdc-dp-menu__icon-button" />
     </button>
 </div>
 
@@ -34,8 +34,6 @@
 
 
     private ElementReference elementReference;
-    private MdcIconHelper on => new MdcIconHelper(CascadingDefaults, IconOn, IconFoundry);
-    private MdcIconHelper off => new MdcIconHelper(CascadingDefaults, IconOff, IconFoundry);
 
 
     protected override void OnInitialized()

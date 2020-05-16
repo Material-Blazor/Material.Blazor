@@ -22,6 +22,7 @@
 
 
 @code {
+#nullable enable annotations
     [Parameter] public PMdcShieldType ShieldType { get; set; } = PMdcShieldType.LabelAndValue;
     [Parameter] public string Label { get; set; }
     [Parameter] public string Value { get; set; }
@@ -32,6 +33,7 @@
     [Parameter] public string ValueStyle { get; set; } = "";
     [Parameter] public string ValueIcon { get; set; } = "";
     [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
+#nullable restore annotations
 
 
     protected override void OnInitialized()

@@ -249,7 +249,7 @@ namespace BlazorMdc
                         .Select(kvp => kvp.Key)
                         .Except(EventAttributeNames)
                         .Except(AriaAttributeNames)
-                        .Except(CascadingDefaults.AllowedSplattableAttributes);
+                        .Except(CascadingDefaults.AppliedAllowedSplattableAttributes);
 
             if (forbidden.Count() > 0)
             {

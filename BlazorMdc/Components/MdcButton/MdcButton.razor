@@ -4,16 +4,25 @@
 
 @inject IJSRuntime jsRuntime
 
-<button @ref="@elementReference"
-        tabindex="@TabIndex"
-        data-mdc-dialog-action="@DialogAction"
-        type="button"
-        @attributes="@AttributesToSplat()">
-    <div class="mdc-button__ripple"></div>
-    @LeadingIconMarkup
-    <span class="mdc-button__label">@Label</span>
-    @TrailingIconMarkup
-</button>
+    <button @ref="@elementReference"
+            tabindex="@TabIndex"
+            data-mdc-dialog-action="@DialogAction"
+            type="button"
+            @attributes="@AttributesToSplat()">
+        <div class="mdc-button__ripple"></div>
+
+        @if (!string.IsNullOrWhiteSpace(LeadingIcon))
+        {
+            <PMdcIcon Icon="@LeadingIcon" IconFoundry="@IconFoundry" Class="mdc-button__icon" aria-hidden="true" />
+        }
+
+        <span class="mdc-button__label">@Label</span>
+
+        @if (!string.IsNullOrWhiteSpace(TrailingIcon))
+        {
+            <PMdcIcon Icon="@TrailingIcon" IconFoundry="@IconFoundry" Class="mdc-button__icon" aria-hidden="true" />
+        }
+    </button>
 
 
 @code {
@@ -46,31 +55,6 @@
 
     private ElementReference elementReference;
 
-
-    private MarkupString LeadingIconMarkup
-    {
-        get
-        {
-            if (LeadingIcon is null) return (MarkupString)"";
-
-            var icon = new MdcIconHelper(CascadingDefaults, LeadingIcon, IconFoundry);
-
-            return (MarkupString)$"<i class=\"{icon.Class} mdc-button__icon\" aria-hidden=\"true\">{icon.Text}</i>";
-        }
-    }
-
-
-    private MarkupString TrailingIconMarkup
-    {
-        get
-        {
-            if (TrailingIcon is null) return (MarkupString)"";
-
-            var icon = new MdcIconHelper(CascadingDefaults, TrailingIcon, IconFoundry);
-
-            return (MarkupString)$"<i class=\"{icon.Class} mdc-button__icon\" aria-hidden=\"true\">{icon.Text}</i>";
-        }
-    }
 
 
     protected override void OnInitialized()

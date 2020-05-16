@@ -5,7 +5,7 @@
 @inject IJSRuntime jsRuntime
 
 
-<i @attributes="@AttributesToSplat()">@myIcon.Text</i>
+<i @attributes="@AttributesToSplat()">@iconHelper.Text</i>
 
 
 @code {
@@ -15,19 +15,19 @@
 #nullable restore annotations
 
 
-    private MdcIconHelper myIcon;
+    private MdcIconHelper iconHelper;
 
 
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
 
-        myIcon = new MdcIconHelper(CascadingDefaults, Icon, IconFoundry);
+        iconHelper = new MdcIconHelper(CascadingDefaults, Icon, IconFoundry);
 
         ClassMapper
             .Clear()
-            .Add(myIcon.Class);
+            .Add(iconHelper.Class);
 
-        ComponentPureHtmlAttributes = myIcon.Attributes;
+        ComponentPureHtmlAttributes = iconHelper.Attributes;
     }
 }

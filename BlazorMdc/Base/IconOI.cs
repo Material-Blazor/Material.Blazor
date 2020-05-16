@@ -15,35 +15,9 @@ namespace BlazorMdc
 
         public bool RequiresWhiteFilter => false;
 
-        public MdcIconFAStyle Style { get; }
-
-        public MdcIconFARelativeSize RelativeSize { get; }
-
-
-        private string IconStyleText => Style.ToString().Substring(0, 1).ToLower();
-
-        private string IconNameText
-        {
-            get
-            {
-                return IconName.ToLower() + RelativeSize switch
-                {
-                    MdcIconFARelativeSize.Regular => "",
-                    MdcIconFARelativeSize.ExtraSmall => " fa-xs",
-                    MdcIconFARelativeSize.Small => " fa-sm",
-                    MdcIconFARelativeSize.Large => " fa-lg",
-                    MdcIconFARelativeSize.TwoTimes => " fa-2x",
-                    MdcIconFARelativeSize.ThreeTimes => " fa-3x",
-                    MdcIconFARelativeSize.FiveTimes => " fa-5x",
-                    MdcIconFARelativeSize.SevenTimes => " fa-7x",
-                    MdcIconFARelativeSize.TenTimes => " fa-10x",
-                    _ => throw new System.NotImplementedException(),
-                };
-            }
-        }
-
 
 #nullable enable annotations
+#pragma warning disable IDE0060 // Remove unused parameter
         public IconOI(MdcCascadingDefaults cascadingDefaults, string iconName, IconFoundryOI? foundry = null)
         {
             IconName = iconName;
@@ -53,6 +27,7 @@ namespace BlazorMdc
                 { "data-glyph", iconName }
             };
         }
+#pragma warning restore IDE0060 // Remove unused parameter
 #nullable restore annotations
     }
 }

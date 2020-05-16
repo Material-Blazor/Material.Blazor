@@ -2,15 +2,19 @@
 //  2020-04-23  Mark Stega
 //              Removed all enumerations and placed them in MdcEnumerations
 //
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BlazorMdc
 {
     public class MdcCascadingDefaults
     {
         public bool ConstrainSplattableAttributes { get; set; } = true;
-        public IList<string> AllowedSplattableAttributes { get; set; } = new string[] { "class", "disabled", "formnovalidate", "max", "min", "role", "step", "style", "type" };
+        public readonly IEnumerable<string> EssentialSplattableAttributes = new string[] { "formnovalidate", "max", "min", "role", "step", "tabindex", "type" };
+        public IEnumerable<string> AllowedSplattableAttributes { get; set; } = Array.Empty<string>();
+        internal IEnumerable<string> AppliedAllowedSplattableAttributes => EssentialSplattableAttributes.Union(AllowedSplattableAttributes.Select(x => x.ToLower())).Distinct();
 
 
 
