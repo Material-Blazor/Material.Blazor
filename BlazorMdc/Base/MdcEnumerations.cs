@@ -1,25 +1,14 @@
-﻿//
-//  2020-04-23  Mark Stega
-//              Created from the enumerations defined in MdcCascadingDefaults
-//
-namespace BlazorMdc
+﻿namespace BlazorMdc
 {
-    /*
-     * ==============================================
-     * 
-     * Mdc Components
-     * 
-     * ==============================================
-     */
-
-
     /// <summary>
     /// Specifies whether to use Material Icons from Google or Font Awesome Icons.
+    /// <para>See <see cref="MdcIconHelper"/></para>
+    /// <para><see cref="MdcCascadingDefaults"/> has a default of <see cref="MaterialIcons"/></para>
     /// </summary>
     public enum MdcIconFoundryName 
     {
         /// <summary>
-        /// Google Material Icons.
+        /// Google Material Icons. This is the <see cref="MdcCascadingDefaults"/> default.
         /// </summary>
         MaterialIcons,
 
@@ -38,11 +27,13 @@ namespace BlazorMdc
 
     /// <summary>
     /// Sets the Google Material Icons theme.
+    /// <para>See <see cref="MdcIconHelper.MIFoundry(MdcIconMITheme?)"/>, <seealso cref="IconMI"/> and <seealso cref="IconFoundryMI"/></para>
+    /// <para><see cref="MdcCascadingDefaults"/> has a default of <see cref="Filled"/></para>
     /// </summary>
     public enum MdcIconMITheme 
     {
         /// <summary>
-        /// Filled theme, <c>class="material-icons"</c>.
+        /// Filled theme, <c>class="material-icons"</c>. This is the <see cref="MdcCascadingDefaults"/> default.
         /// </summary>
         Filled,
 
@@ -70,26 +61,28 @@ namespace BlazorMdc
 
     /// <summary>
     /// Sets the Font Awesome style.
+    /// <para>See <see cref="MdcIconHelper.FAFoundry(MdcIconFAStyle?, MdcIconFARelativeSize?)"/>, <seealso cref="IconFA"/> and <seealso cref="IconFoundryFA"/></para>
+    /// <para><see cref="MdcCascadingDefaults"/> has a default of <see cref="Solid"/> (all other styles except <see cref="Brands"/> require a paid-for Font Awesome PRO licence)</para>
     /// </summary>
     public enum MdcIconFAStyle 
     {
         /// <summary>
-        /// Solid style, <c>class="fas ..."</c>.
+        /// Solid style, <c>class="fas ..."</c>. This is the <see cref="MdcCascadingDefaults"/> default.
         /// </summary>
         Solid,
 
         /// <summary>
-        /// Regular style, <c>class="far ..."</c>. Requires a PRO licence.
+        /// Regular style, <c>class="far ..."</c>. Requires a paid-for Font Awesome PRO licence.
         /// </summary>
         Regular,
 
         /// <summary>
-        /// Light style, <c>class="fal ..."</c>. Requires a PRO licence.
+        /// Light style, <c>class="fal ..."</c>. Requires a paid-for Font Awesome PRO licence.
         /// </summary>
         Light,
 
         /// <summary>
-        /// Duotone style, <c>class="fad ..."</c>. Requires a PRO licence.
+        /// Duotone style, <c>class="fad ..."</c>. Requires a paid-for Font Awesome PRO licence.
         /// </summary>
         Duotone,
 
@@ -103,11 +96,13 @@ namespace BlazorMdc
 
     /// <summary>
     /// Sets the Font Awesome relative size.
+    /// <para>See <see cref="MdcIconHelper.FAFoundry(MdcIconFAStyle?, MdcIconFARelativeSize?)"/>, <seealso cref="IconFA"/> and <seealso cref="IconFoundryFA"/></para>
+    /// <para><see cref="MdcCascadingDefaults"/> has a default of <see cref="Regular"/></para>
     /// </summary>
     public enum MdcIconFARelativeSize 
     {
         /// <summary>
-        /// Regular relative size (no markup change).
+        /// Regular relative size (no markup applied). This is the <see cref="MdcCascadingDefaults"/> default.
         /// </summary> 
         Regular,
 
@@ -153,51 +148,358 @@ namespace BlazorMdc
     }
 
 
-    public enum MdcButtonStyle { ContainedRaised, ContainedUnelevated, Outlined, Text }
+    /// <summary>
+    /// Style for an <see cref="MdcButton"/> per Material Theme styling.
+    /// <para><see cref="MdcCascadingDefaults"/> has a default of <see cref="Text"/></para>
+    /// </summary>
+    public enum MdcButtonStyle
+    {
+        /// <summary>
+        /// Contained style, raised.
+        /// </summary> 
+        ContainedRaised,
 
-    
-    public enum MdcCardStyle { Default, Outlined }
+        /// <summary>
+        /// Contained style, unelevated.
+        /// </summary> 
+        ContainedUnelevated,
+
+        /// <summary>
+        /// Outlined style.
+        /// </summary> 
+        Outlined,
+
+        /// <summary>
+        /// Regular or default style. This is the <see cref="MdcCascadingDefaults"/> default.
+        /// </summary>  
+        Text
+    }
 
 
-    public enum MdcItemValidation { DefaultToFirst, Exception, NoSelection }
+    /// <summary>
+    /// Style for an <see cref="MdcCard"/> per Material Theme styling.
+    /// <para><see cref="MdcCascadingDefaults"/> has a default of <see cref="Default"/></para>
+    /// </summary>
+    public enum MdcCardStyle
+    {
+        /// <summary>
+        /// Default style. This is the <see cref="MdcCascadingDefaults"/> default.
+        /// </summary>
+        Default,
+
+        /// <summary>
+        /// Outlined style.
+        /// </summary>
+        Outlined
+    }
 
 
-    public enum MdcListStyle { None, Outlined }
+    /// <summary>
+    /// Style for an <see cref="MdcList{TItem}"/>. The <see cref="Outlined"/> variety borrows card markup matching <see cref="MdcCardStyle.Outlined"/>.
+    /// <para><see cref="MdcCascadingDefaults"/> has a default of <see cref="None"/></para>
+    /// </summary>
+    public enum MdcListStyle
+    {
+        /// <summary>
+        /// No styling applied. This is the <see cref="MdcCascadingDefaults"/> default.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// Borrows card markup matching <see cref="MdcCardStyle.Outlined"/>.
+        /// </summary>
+        Outlined
+    }
+
+
+    /// <summary>
+    /// Material Theme top app bar type applied to an <see cref="MdcTopAppBar"/>.
+    /// </summary>
+    public enum MdcTopAppBarType
+    {
+        /// <summary>
+        /// The standard variety.
+        /// </summary>
+        Standard,
+
+        /// <summary>
+        /// The fixed variety.
+        /// </summary>
+        Fixed,
+
+        /// <summary>
+        /// The dense variety.
+        /// </summary>
+        Dense,
+
+        /// <summary>
+        /// The prominent variety.
+        /// </summary>
+        Prominent,
+
+        /// <summary>
+        /// The short variety.
+        /// </summary>
+        Short,
+
+        /// <summary>
+        /// The short collapsed variety.
+        /// </summary>
+        ShortCollapsed
+    }
+
+
+    /// <summary>
+    /// Material Theme text field and text area input style applied to <see cref="MdcTextField"/> and <see cref="MdcTextArea"/>.
+    /// <para>Note that Material Web Components 6.0.0 have pending implementation of <see cref="Filled"/> and <see cref="FullWidth"/> for text areas, with degraded markup results in the interim.</para>
+    /// <para>Applied also to <seealso cref="PMdcAutocomplete"/>, <seealso cref="PMdcDebouncedTextField"/>, <seealso cref="PMdcNumericDoubleField"/> and <seealso cref="PMdcNumericIntField"/></para>
+    /// <para><see cref="MdcCascadingDefaults"/> has a default of <see cref="Filled"/></para>
+    /// </summary>
+    public enum MdcTextInputStyle 
+    {
+        /// <summary>
+        /// The filled style (pending in Material Web Components 6.0.0 for <see cref="MdcTextArea"/>). This is the <see cref="MdcCascadingDefaults"/> default.
+        /// </summary>
+        Filled,
+
+        /// <summary>
+        /// The outlined style.
+        /// </summary>
+        Outlined,
+
+        /// <summary>
+        /// The full width style (pending in Material Web Components 6.0.0 for <see cref="MdcTextArea"/>).
+        /// </summary>
+        FullWidth
+    }
+
+
+    /// <summary>
+    /// Material Theme select input style applied to <see cref="MdcSelect{TItem}"/>.
+    /// <para>Applied also to <seealso cref="PMdcDatePicker"/></para>
+    /// <para><see cref="MdcCascadingDefaults"/> has a default of <see cref="Filled"/></para>
+    /// </summary>
+    public enum MdcSelectInputStyle
+    {
+        /// <summary>
+        /// The filled style. This is the <see cref="MdcCascadingDefaults"/> default.
+        /// </summary>
+        Filled,
+
+        /// <summary>
+        /// The outlined style.
+        /// </summary>
+        Outlined
+    }
+
+
+    /// <summary>
+    /// A helper to set the alignment of text in <see cref="MdcTextField"/>, <see cref="MdcTextArea"/> and <see cref="MdcSelect{TItem}"/>.
+    /// <para>Applied also to <seealso cref="PMdcAutocomplete"/>, <seealso cref="PMdcDebouncedTextField"/>, <seealso cref="PMdcNumericDoubleField"/> and <seealso cref="PMdcNumericIntField"/></para>
+    /// <para><see cref="MdcCascadingDefaults"/> has a default of <see cref="Default"/></para>
+    /// </summary>
+    public enum MdcTextAlignStyle 
+    {
+        /// <summary>
+        /// Default - no further styling applied. This is the <see cref="MdcCascadingDefaults"/> default.
+        /// </summary>
+        Default,
+
+        /// <summary>
+        /// Left aligned text contents.
+        /// </summary>
+        Left,
+
+        /// <summary>
+        /// Centered text contents.
+        /// </summary>
+        Center,
+
+        /// <summary>
+        /// Right aligned text contents.
+        /// </summary>
+        Right
+    }
+
+
+    /// <summary>
+    /// A helper to determine how a <see cref="MdcSelect{TItem}"/> or <see cref="PMdcRadioButtonGroup{TItem}"/> should handle an intial bound value not matching elements in the value list.
+    /// <para><see cref="MdcCascadingDefaults"/> has a default of <see cref="Exception"/></para>
+    /// </summary>
+    public enum MdcItemValidation 
+    {
+        /// <summary>
+        /// Sets the bound value to the first item in the list.
+        /// </summary>
+        DefaultToFirst,
+
+        /// <summary>
+        /// Throws an exception. This is the <see cref="MdcCascadingDefaults"/> default.
+        /// </summary>
+        Exception,
+        
+        /// <summary>
+        /// Does nothing, leaving the bound value as it is.
+        /// </summary>
+        NoSelection
+    }
 
 
     // The style of MDC input: note that FullWidth is mutually exclusive with Outlined
-    public enum MdcNumericInputMagnitude { Normal = 0, Percent = 2, BasisPoints = 4 }
+    /// <summary>
+    /// A helper to determine the magnitude adjustment when editting values as text in <see cref="PMdcNumericDoubleField"/> and <see cref="PMdcNumericIntField">.
+    /// <para>Note that <see cref="BasisPoints"/> is pending future implementation because unlike percentages there is no native C# support for supporting formatting basis points.</para>
+    /// </summary>
+    public enum MdcNumericInputMagnitude 
+    {
+        /// <summary>
+        /// Normal numbers requiring no adjustment.
+        /// </summary>
+        Normal = 0,
+
+        /// <summary>
+        /// Percentages where the numeric input needs to multiply the value by 100 when editting (formatted display is handled by standard percent C# formatting).
+        /// </summary>
+        Percent = 2,
+
+        /// <summary>
+        /// Basis points where the numeric input needs to multiply the value by 10 000 when editting (formatted display is not handled by standard percent C# formatting which lacks support for basis points).
+        /// <para>PENDING FUTURE IMPLEMENTATION</para>
+        /// </summary>
+        BasisPoints = 4
+    }
 
 
-    public enum MdcTopAppBarType { Standard, Fixed, Dense, Prominent, Short, ShortCollapsed }
+    /// <summary>
+    /// Determines the allowed selections in <see cref="PMdcDatePicker"/>
+    /// <para><see cref="MdcCascadingDefaults"/> has a default of <see cref="AllowAll"/></para>
+    /// </summary>
+    public enum PMdcDateSelectionCriteria 
+    {
+        /// <summary>
+        /// Allow weekdays and weekends. This is the <see cref="MdcCascadingDefaults"/> default.
+        /// </summary>
+        AllowAll,
+
+        /// <summary>
+        /// Limit selection to weekends only.
+        /// </summary>
+        WeekendsOnly,
+
+        /// <summary>
+        /// Limit selection to weekdays only.
+        /// </summary>
+        WeekdaysOnly
+    }
 
 
-    public enum MdcTextAlignStyle { Default, Left, Center, Right }
-    
+    /// <summary>
+    /// Determines whether a <see cref="PMdcShield"/> displays the label (left hand element), value (right hand element) or both.
+    /// <para>Defaults to <see cref="LabelAndValue"/></para>
+    /// </summary>
+    public enum PMdcShieldType 
+    {
+        /// <summary>
+        /// Show both label (left hand element) and value (right hand element). This is the default.
+        /// </summary>
+        LabelAndValue,
 
-    // The style of MDC input: note that FullWidth is mutually exclusive with Outlined
-    public enum MdcTextInputStyle { Filled, Outlined, FullWidth }
+        /// <summary>
+        /// Show both label (left hand element) only.
+        /// </summary>
+        LabelOnly,
+
+        /// <summary>
+        /// Show both value (right hand element) only.
+        /// </summary>
+        ValueOnly
+    }
 
 
-    public enum MdcSelectInputStyle { Filled, Outlined }
+    /// <summary>
+    /// Determines whether a toast notfication times out and whether it has a close button.
+    /// <para>Defaults to <see cref="TimeoutAndCloseButton"/></para>
+    /// </summary>
+    public enum PMdcToastCloseMethod 
+    {
+        /// <summary>
+        /// Apply a timeout and show the close button. This is the default.
+        /// </summary>
+        TimeoutAndCloseButton,
+
+        /// <summary>
+        /// Apply a timeout only.
+        /// </summary>
+        Timeout,
+
+        /// <summary>
+        /// Show the close button only.
+        /// </summary>
+        CloseButton
+    }
 
 
+    /// <summary>
+    /// Determines the type of a toast notfication. This is a required toast parameter without defaults.
+    /// </summary>
+    public enum PMdcToastLevel 
+    {
+        /// <summary>
+        /// Informational toast.
+        /// </summary>
+        Info,
+
+        /// <summary>
+        /// Success toast.
+        /// </summary>
+        Success,
+
+        /// <summary>
+        /// Warning toast.
+        /// </summary>
+        Warning,
+
+        /// <summary>
+        /// Error toast.
+        /// </summary>
+        Error
+    }
 
 
-    /*
-     * ==============================================
-     * 
-     * PMdc Plus Components
-     * 
-     * ==============================================
-     */
+    /// <summary>
+    /// Determines where toasts are positioned.
+    /// <para>Defaults to <see cref="BottomRight"/></para>
+    /// </summary>
+    public enum PMdcToastPosition 
+    {
+        /// <summary>
+        /// Top left positioning, newest toasts on top.
+        /// </summary>
+        TopLeft,
 
+        /// <summary>
+        /// Top left right, newest toasts on top.
+        /// </summary>
+        TopRight,
 
-    public enum PMdcDateSelectionCriteria { AllowAll, WeekendsOnly, WeekdaysOnly }
+        /// <summary>
+        /// Top left center, newest toasts on top.
+        /// </summary>
+        TopCenter,
 
-    public enum PMdcShieldType { LabelAndValue, LabelOnly, ValueOnly }
+        /// <summary>
+        /// Bottom left positioning, newest toasts on the bottom.
+        /// </summary>
+        BottomLeft,
 
-    public enum PMdcToastCloseMethod { TimeoutAndCloseButton, Timeout, CloseButton }
-    public enum PMdcToastLevel { Info, Success, Warning, Error }
-    public enum PMdcToastPosition { TopLeft, TopRight, TopCenter, BottomLeft, BottomRight, BottomCenter }
+        /// <summary>
+        /// Bottom right positioning, newest toasts on the bottom.
+        /// </summary>
+        BottomRight,
+
+        /// <summary>
+        /// Bottom center positioning, newest toasts on the bottom.
+        /// </summary>
+        BottomCenter
+    }
 }
