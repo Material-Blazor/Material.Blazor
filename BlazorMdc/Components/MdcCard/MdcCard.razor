@@ -2,27 +2,23 @@
 
 @inherits MdcComponentBase
 
-@inject IJSRuntime jsRuntime
-
 
 <CascadingValue Value="@this">
-    <div @attributes="@AttributesToSplat(SplatType.ClassAndStyleOnly)">
-
-        @ChildContent
+    <div @attributes="@AttributesToSplat(SplatType.ExcludeEvents)">
 
         @if (Primary != null)
         {
-            <div class="@primaryClass">
+            <div class="@PrimaryClass">
                 @Primary
             </div>
         }
 
         @if (PrimaryAction != null)
         {
-            <div @ref="@primaryActionReference"
-                 class="mdc-card__primary-action @primaryActionClass"
+            <div @ref="@PrimaryActionReference"
+                 class="mdc-card__primary-action @PrimaryActionClass"
                  tabindex="0"
-                 @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)">
+                 @attributes="@AttributesToSplat(SplatType.EventsOnly)">
 
                 @PrimaryAction
             </div>
@@ -49,45 +45,3 @@
     </div>
 </CascadingValue>
 
-
-@code {
-    //
-    //  2020-04-01  Mark Stega
-    //              Changed to use class & style mappers
-    //
-    //  2020-04-13  Mark Stega
-    //              Moved ClassMapper to constructor
-    //
-    [Parameter] public MdcCardStyle? CardStyle { get; set; }
-    [Parameter] public bool AutoStyled { get; set; }
-    [Parameter] public RenderFragment ChildContent { get; set; }
-    [Parameter] public RenderFragment Primary { get; set; }
-    [Parameter] public RenderFragment PrimaryAction { get; set; }
-    [Parameter] public RenderFragment Actions { get; set; }
-    [Parameter] public RenderFragment ActionButtons { get; set; }
-    [Parameter] public RenderFragment ActionIcons { get; set; }
-
-
-    private string primaryClass => AutoStyled ? "bmdc-card__primary" : "";
-    private string primaryActionClass => AutoStyled ? "bmdc-card__primary-action" : "";
-    private ElementReference primaryActionReference;
-
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        ClassMapper
-            .Add("mdc-card")
-            .AddIf("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(CardStyle) == MdcCardStyle.Outlined));
-    }
-
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender && PrimaryAction != null)
-        {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.cardPrimaryAction.init", primaryActionReference);
-        }
-    }
-}
