@@ -4,12 +4,21 @@ using System.Linq;
 
 namespace BlazorMdc
 {
+    /// <summary>
+    /// A DRY inspired abstract class providing <see cref="MdcSelect{TItem}"/> and <see cref="PMdcRadioButtonGroup{TItem}"/> with validation.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class MdcValidatingInputComponentBase<T> : MdcInputComponentBase<T>
     {
         // This method was added in the interest of DRY and is used by MdcSelect & PMdcRadioButtonGroup
-        public T ValidateItemList(
-            IEnumerable<MdcListElement<T>> items,
-            MdcItemValidation appliedItemValidation)
+        /// <summary>
+        /// Validates the item list against the validation specification.
+        /// </summary>
+        /// <param name="items">The item list</param>
+        /// <param name="appliedItemValidation">Specification of the required validation <see cref="MdcItemValidation"/></param>
+        /// <returns>The item in the list matching <see cref="MdcInputComponentBase{T}.UnderlyingValue"/></returns>
+        /// <exception cref="ArgumentException"/>
+        public T ValidateItemList(IEnumerable<MdcListElement<T>> items, MdcItemValidation appliedItemValidation)
         {
             var componentName = Utilities.GetTypeName(GetType());
             
@@ -52,5 +61,4 @@ namespace BlazorMdc
             return UnderlyingValue;
         }
     }
-
 }
