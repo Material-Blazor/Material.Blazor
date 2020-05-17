@@ -40,7 +40,7 @@
     [Parameter] public string RadioGroupName { get; set; }
 
 
-    private readonly string radioId = Utilities.GenerateCssElementSelector();
+    private readonly string radioId = Utilities.GenerateUniqueElementName();
     private ElementReference formReference { get; set; }
     private ElementReference radioButtonReference;
     private string buttonContainerClass;

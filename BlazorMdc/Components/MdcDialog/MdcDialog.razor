@@ -50,8 +50,8 @@
 
 
     private List<IMdcDialogChild> layoutChildren = new List<IMdcDialogChild>();
-    private string titleId = Utilities.GenerateCssElementSelector();
-    private string descId = Utilities.GenerateCssElementSelector();
+    private string titleId = Utilities.GenerateUniqueElementName();
+    private string descId = Utilities.GenerateUniqueElementName();
     private DotNetObjectReference<MdcDialog> objectReference;
     private ElementReference dialogElem;
     private bool isOpen = false;
@@ -79,7 +79,7 @@
     }
 
 
-    public void RegisterLayoutAction(IMdcDialogChild child)
+    void IMdcDialog.RegisterLayoutAction(IMdcDialogChild child)
     {
         layoutChildren.Add(child);
     }
@@ -94,7 +94,7 @@
         else
         {
             layoutChildren.Clear();
-            key = Utilities.GenerateCssElementSelector();
+            key = Utilities.GenerateUniqueElementName();
             isOpen = true;
             afterRenderShowAction = true;
             StateHasChanged();

@@ -58,8 +58,8 @@
     private ElementReference elementReference;
     private InternalDatePickerPanel Panel;
     private MdcSelectInputStyle appliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
-    private string key = Utilities.GenerateCssElementSelector();
-    private string labelId = Utilities.GenerateCssElementSelector();
+    private string key = Utilities.GenerateUniqueElementName();
+    private string labelId = Utilities.GenerateUniqueElementName();
     private string initialText = "";
     private DateTime initialValue;
     private bool isOpen { get; set; } = false;

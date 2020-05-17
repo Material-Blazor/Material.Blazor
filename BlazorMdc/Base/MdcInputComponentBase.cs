@@ -2,9 +2,6 @@
 using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -24,13 +21,13 @@ namespace BlazorMdc
 
         [CascadingParameter] private EditContext CascadedEditContext { get; set; }
 
-        [CascadingParameter] private MdcDialog Dialog { get; set; }
+        [CascadingParameter] private IMdcDialog Dialog { get; set; }
 
 
         /// <summary>
         /// Gets a value for the component's 'id' attribute.
         /// </summary>
-        [Parameter] public string Id { get; set; } = Utilities.GenerateCssElementSelector();
+        [Parameter] public string Id { get; set; } = Utilities.GenerateUniqueElementName();
 
 
         private protected T UnderlyingValue;
@@ -62,35 +59,36 @@ namespace BlazorMdc
             }
         }
 
-        //private protected T SetValue(T value)
-        //{
-        //    return Value = value;
-        //}
 
         /// <summary>
         /// Derived components use this to get a callback from <see cref="OnAfterRenderAsync(bool)"/> when the consumer changes the <see cref="Value"/> parameter
         /// </summary>
         protected virtual void ValueSetter(T value) => _ = 0;
 
+
         /// <summary>
         /// Gets or sets a callback that updates the bound value.
         /// </summary>
         [Parameter] public EventCallback<T> ValueChanged { get; set; }
+
 
         /// <summary>
         /// Gets or sets an expression that identifies the bound value.
         /// </summary>
         [Parameter] public Expression<Func<T>> ValueExpression { get; set; }
 
+
         /// <summary>
         /// Gets the associated <see cref="Microsoft.AspNetCore.Components.Forms.EditContext"/>.
         /// </summary>
         protected EditContext EditContext { get; private set; }
 
+
         /// <summary>
         /// Gets the <see cref="FieldIdentifier"/> for the bound value.
         /// </summary>
         protected FieldIdentifier FieldIdentifier { get; private set; }
+
 
         /// <summary>
         /// Gets or sets the value of the input. To be used by Mdc and PMdc components for binding to native components, or to set the value
@@ -112,6 +110,7 @@ namespace BlazorMdc
                 }
             }
         }
+
 
         /// <summary>
         /// Gets or sets the current value of the input, represented as a string.
@@ -165,20 +164,24 @@ namespace BlazorMdc
             }
         }
 
+
         /// <summary>
         /// Allows <see cref="ShouldRender()"/> to return "true" habitually.
         /// </summary>
         private protected bool ForceShouldRenderToTrue { get; set; } = false;
+
 
         /// <summary>
         /// Allows <see cref="ShouldRender()"/> to return "true" for the next render only.
         /// </summary>
         private protected bool AllowNextRender = false;
 
+
         /// <summary>
         /// Allows <see cref="ShouldRender()"/> to return "true" when <see cref="Value"/> is changed by the consumer.
         /// </summary>
         private protected bool HasValueSetter { get; set; } = false;
+
 
         /// <summary>
         /// Formats the value as a string. Derived classes can override this to determine the formating used for <see cref="ReportingValueAsString"/>.
@@ -187,6 +190,7 @@ namespace BlazorMdc
         /// <returns>A string representation of the value.</returns>
         protected virtual string FormatValueToString(T value)
             => value?.ToString();
+
 
         /// <summary>
         /// Parses a string to create an instance of <typeparamref name="T"/>. Derived classes can override this to change how
@@ -199,6 +203,7 @@ namespace BlazorMdc
         protected virtual bool TryParseValueFromString(string value, out T result, out string validationErrorMessage)
             => throw new NotImplementedException($"This component does not parse string inputs. Bind to the '{nameof(ReportingValue)}' property, not '{nameof(ReportingValueAsString)}'.");
 
+
         /// <summary>
         /// Gets a string that indicates the status of the field being edited. This will include
         /// some combination of "modified", "valid", or "invalid", depending on the status of the field.
@@ -207,11 +212,30 @@ namespace BlazorMdc
             => EditContext?.FieldCssClass(FieldIdentifier) ?? string.Empty;
 
 
-        /// <inheritdoc />
+        /// <para>
+        /// Components must call base.OnInitialized() otherwise rendering in dialogs will be unpredictable.
+        /// </para>
         protected override void OnInitialized()
         {
             base.OnInitialized();
-        
+
+            OnInitDialog();
+        }
+
+
+        /// <para>
+        /// Components must call base.OnInitialized() otherwise rendering in dialogs will be unpredictable.
+        /// </para>
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+
+            OnInitDialog();
+        }
+
+
+        private void OnInitDialog()
+        {
             if (Dialog != null)
             {
                 Dialog.RegisterLayoutAction(this);
@@ -221,6 +245,7 @@ namespace BlazorMdc
                 _instantiate = true;
             }
         }
+
 
         /// <inheritdoc />
         public override async Task SetParametersAsync(ParameterView parameters)
@@ -257,7 +282,8 @@ namespace BlazorMdc
         }
 
 
-        public virtual void RequestInstantiation()
+        /// <inheritdoc/>
+        void IMdcDialogChild.RequestInstantiation()
         {
             _instantiate = true;
             AllowNextRender = true;
@@ -270,6 +296,9 @@ namespace BlazorMdc
         }
 
 
+        /// <summary>
+        /// BlazorMdc components descending from MdcInputComponentBase _*must not*_ override ShouldRender().
+        /// </summary>
         protected override bool ShouldRender()
         {
             if (ForceShouldRenderToTrue || AllowNextRender)
@@ -282,6 +311,9 @@ namespace BlazorMdc
         }
 
 
+        /// <summary>
+        /// BlazorMdc components descending from MdcInputComponentBase _*must not*_ override OnAfterRenderAsync(bool).
+        /// </summary>
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (_instantiate)

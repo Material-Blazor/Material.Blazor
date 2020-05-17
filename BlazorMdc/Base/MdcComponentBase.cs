@@ -13,7 +13,8 @@ using System.Threading.Tasks;
 namespace BlazorMdc
 {
     /// <summary>
-    /// Determines what attributes to splat from <see cref="SplatAttributes"/>.
+    /// Determines what attributes to splat from <see cref="SplatAttributes"/>. Can be specified with bitwise or, eg:
+    /// <code>@attributes="<see cref="AttributesToSplat"/>(<see cref="ClassAndStyleOnly"/> | <see cref="HtmlExcludingClassAndStyle"/>)"</code>
     /// </summary>
     internal enum SplatType : ushort
     { 
@@ -25,17 +26,17 @@ namespace BlazorMdc
         /// <summary>
         /// Return only class and style values, which includes <see cref="ClassMapper"/> and <see cref="StyleMapper"/>.
         /// </summary>
-        ClassAndStyleOnly = 0x0002,
+        ClassAndStyleOnly = 0x0001,
 
         /// <summary>
         /// Return only class and style values, which includes <see cref="ClassMapper"/> and <see cref="StyleMapper"/>.
         /// </summary>
-        HtmlExcludingClassAndStyle = 0x0004,
+        HtmlExcludingClassAndStyle = 0x0002,
 
         /// <summary>
         /// Return only class and style values, which includes <see cref="ClassMapper"/> and <see cref="StyleMapper"/>.
         /// </summary>
-        EventsOnly = 0x0008,
+        EventsOnly = 0x0004,
 
         /// <summary>
         /// Return all attributes except class and style, also excluding <see cref="ClassMapper"/> and <see cref="StyleMapper"/>.
@@ -224,6 +225,10 @@ namespace BlazorMdc
         }
 
 
+        /// <summary>
+        /// BlazorMdc allows a user to limit unmatched attributes that will be splatted to a defined list in <see cref="MdcCascadingDefaults"/>.
+        /// This method checks validity against that list.
+        /// </summary>
         private void CheckAttributeValidity()
         {
             if (UnmatchedAttributes is null)

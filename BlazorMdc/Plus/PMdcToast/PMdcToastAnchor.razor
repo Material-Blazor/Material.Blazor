@@ -20,7 +20,7 @@
                 @if (toast.Settings.AppliedShowIcon)
                 {
                     var iconHelper = new MdcIconHelper(null, toast.Settings.AppliedIconName, toast.Settings.AppliedIconFoundry);
-                    var filterClass = iconHelper.RequiresWhiteFilter ? toast.Settings.IconFilterClass : "";
+                    var filterClass = iconHelper.RequiresColorFilter ? toast.Settings.IconFilterClass : "";
 
                     <div class="bmdc-toast-icon @filterClass">
                         <PMdcIcon Icon="@toast.Settings.AppliedIconName" IconFoundry="@toast.Settings.IconFoundry" aria-hidden="true" />

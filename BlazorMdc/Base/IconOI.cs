@@ -2,18 +2,30 @@
 
 namespace BlazorMdc
 {
+    /// <summary>
+    /// Open Iconic icon.
+    /// </summary>
     internal class IconOI : IMdcIcon
     {
+        /// <inheritdoc />
         public string Class => "oi";
 
+
+        /// <inheritdoc />
         public string Text => "";
 
+        
         private readonly Dictionary<string, object> _attributes;
+        /// <inheritdoc />
         public IDictionary<string, object> Attributes => _attributes;
 
+
+        /// <inheritdoc />
         public string IconName { get; }
 
-        public bool RequiresWhiteFilter => false;
+
+        /// <inheritdoc />
+        public bool RequiresColorFilter => false;
 
 
 #nullable enable annotations

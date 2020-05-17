@@ -83,8 +83,8 @@
     private ElementReference listboxReference;
     private ElementReference ulReference;
     private MdcSelectInputStyle appliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
-    private string selectedTextId = Utilities.GenerateCssElementSelector();
-    private string labelId = Utilities.GenerateCssElementSelector();
+    private string selectedTextId = Utilities.GenerateUniqueElementName();
+    private string labelId = Utilities.GenerateUniqueElementName();
     private string selectedText = "";
     private string floatingLabelClass = "";
     private string alignClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
