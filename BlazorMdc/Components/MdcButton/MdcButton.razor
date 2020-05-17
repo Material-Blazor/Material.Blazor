@@ -1,73 +1,22 @@
 ﻿@namespace BlazorMdc
-
 @inherits MdcComponentBase
 
-@inject IJSRuntime jsRuntime
 
-    <button @ref="@elementReference"
-            tabindex="@TabIndex"
-            data-mdc-dialog-action="@DialogAction"
-            type="button"
-            @attributes="@AttributesToSplat()">
-        <div class="mdc-button__ripple"></div>
+<button @ref="@ElementReference"
+        data-mdc-dialog-action="@DialogAction"
+        type="button"
+        @attributes="@AttributesToSplat()">
+    <div class="mdc-button__ripple"></div>
 
-        @if (!string.IsNullOrWhiteSpace(LeadingIcon))
-        {
-            <PMdcIcon Icon="@LeadingIcon" IconFoundry="@IconFoundry" Class="mdc-button__icon" aria-hidden="true" />
-        }
-
-        <span class="mdc-button__label">@Label</span>
-
-        @if (!string.IsNullOrWhiteSpace(TrailingIcon))
-        {
-            <PMdcIcon Icon="@TrailingIcon" IconFoundry="@IconFoundry" Class="mdc-button__icon" aria-hidden="true" />
-        }
-    </button>
-
-
-@code {
-    //
-    //  2020-03-31  Mark Stega
-    //              Changed to use class & style mappers
-    //
-    //  2020-04-01  Mark Stega
-    //              Changed to re-enable AppliedButtonStyle
-    //
-    //  2020-04-13  Mark Stega
-    //              Made ButtonStyle nullable
-    //              Moved ClassMapper to constructor
-    //
-
-    [CascadingParameter] private MdcCard Card { get; set; }
-    [CascadingParameter] private MdcDialog Dialog { get; set; }
-
-
-#nullable enable annotations
-    [Parameter] public MdcButtonStyle? ButtonStyle { get; set; }
-    [Parameter] public string Label { get; set; }
-    [Parameter] public string TabIndex { get; set; } = "0";
-    [Parameter] public string? LeadingIcon { get; set; }
-    [Parameter] public string? TrailingIcon { get; set; }
-    [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
-    [Parameter] public string DialogAction { get; set; }
-#nullable restore annotations
-
-
-    private ElementReference elementReference;
-
-
-    protected override void OnInitialized()
+    @if (!string.IsNullOrWhiteSpace(LeadingIcon))
     {
-        base.OnInitialized();
-
-        ClassMapper
-            .Add("mdc-button")
-            .AddIf("mdc-button--raised", () => (CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MdcButtonStyle.ContainedRaised))
-            .AddIf("mdc-button--unelevated", () => (CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MdcButtonStyle.ContainedUnelevated))
-            .AddIf("mdc-button--outlined", () => (CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MdcButtonStyle.Outlined))
-            .AddIf("mdc-card__action mdc-card__action--button", () => (Card != null));
+        <PMdcIcon Icon="@LeadingIcon" IconFoundry="@IconFoundry" Class="mdc-button__icon" aria-hidden="true" />
     }
 
+    <span class="mdc-button__label">@Label</span>
 
-    private protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.button.init", elementReference);
-}
+    @if (!string.IsNullOrWhiteSpace(TrailingIcon))
+    {
+        <PMdcIcon Icon="@TrailingIcon" IconFoundry="@IconFoundry" Class="mdc-button__icon" aria-hidden="true" />
+    }
+</button>
