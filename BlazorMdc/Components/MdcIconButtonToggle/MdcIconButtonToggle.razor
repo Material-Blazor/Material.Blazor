@@ -1,67 +1,14 @@
 ﻿@namespace BlazorMdc
-
 @inherits MdcInputComponentBase<bool>
-@*@implements IDisposable*@
-
-@inject IJSRuntime jsRuntime
 
 
 <div @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)">
-    <button @ref="@elementReference"
+    <button @ref="@ElementReference"
             @attributes="@AttributesToSplat(SplatType.ClassAndStyleOnly)"
             type="button"
-            @onclick="@OnLocalClick">
+            @onclick="@ToggleOnClick">
 
         <PMdcIcon Icon="@IconOn" IconFoundry="@IconFoundry" Class="mdc-icon-button__icon mdc-icon-button__icon--on bmdc-dp-menu__icon-button" />
         <PMdcIcon Icon="@IconOff" IconFoundry="@IconFoundry" Class="mdc-icon-button__icon bmdc-dp-menu__icon-button" />
     </button>
 </div>
-
-
-@code {
-    //
-    //  2020-04-01  Mark Stega
-    //              Changed to use class & style mappers
-    //
-    [CascadingParameter] private MdcCard Card { get; set; }
-
-
-#nullable enable annotations
-    [Parameter] public string IconOn { get; set; }
-    [Parameter] public string IconOff { get; set; }
-    [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
-#nullable restore annotations
-
-
-    private ElementReference elementReference;
-
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        MyClassMapper();
-    }
-
-    private void MyClassMapper() =>
-        ClassMapper
-            .Clear()
-            .Add("mdc-icon-button")
-            .AddIf("mdc-card__action mdc-card__action--icon", () => (Card != null))
-            .AddIf("mdc-icon-button--on", () => Value);
-
-
-    public void OnLocalClick()
-    {
-        ReportingValue = !ReportingValue;
-    }
-
-
-    protected override void ValueSetter(bool value)
-    {
-        InvokeAsync(async () => await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.setOn", elementReference, value));
-    }
-
-
-    private protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.init", elementReference);
-}

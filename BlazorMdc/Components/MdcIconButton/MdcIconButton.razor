@@ -1,45 +1,10 @@
 ﻿@namespace BlazorMdc
-
 @inherits MdcComponentBase
 
-@inject IJSRuntime jsRuntime
 
-
-<button @ref="@elementReference" 
+<button @ref="@ElementReference" 
         type="button"
         @attributes="@AttributesToSplat()">
     
     <PMdcIcon Icon="@Icon" IconFoundry="@IconFoundry" />
 </button>
-
-
-@code {
-    //
-    //  2020-04-01  Mark Stega
-    //              Changed to use class & style mappers
-    //
-    [CascadingParameter] private MdcCard Card { get; set; }
-
-
-#nullable enable annotations
-    [Parameter] public string Icon { get; set; }
-    [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
-#nullable restore annotations
-
-
-    private ElementReference elementReference;
-    private MdcIconHelper myIcon => new MdcIconHelper(CascadingDefaults, Icon, IconFoundry);
-
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        ClassMapper
-            .Add($"mdc-icon-button")
-            .AddIf("mdc-card__action mdc-card__action--icon", () => (Card != null));
-    }
-
-
-    private protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButton.init", elementReference);
-}
