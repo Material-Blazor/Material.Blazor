@@ -103,7 +103,7 @@ The following is a list of core Material Theme components.
 | `MdcButton` | A [Material Button](https://material.io/develop/web/components/buttons/). |
 | `MdcCard` | A [Material Card](https://material.io/develop/web/components/cards/). _Requires ripple effect._ |
 | `MdcCheckbox` | A [Material Checkbox](https://material.io/develop/web/components/input-controls/checkboxes/). Implements a two state on/off checkbox, but not yet an indeterminate variety. |
-| `MdcCircularProgress` | A [Material Circular Progress bar](https://material.io/develop/web/components/progress-indicator/). |
+| `MdcCircularProgress` | A [Material Circular Progress indicator](https://material.io/develop/web/components/progress-indicator/). |
 | `MdcDataTable` | A [Material Data Table](https://material.io/develop/web/components/data-tables/) without row selection |
 | `MdcDialog` | A [Material Dialog](https://material.io/develop/web/components/dialogs/). Can set scrim and escape button actions. |
 | `MdcDrawer` | A [Material Drawer](https://material.io/develop/web/components/drawers/). _Awaits review_. |
