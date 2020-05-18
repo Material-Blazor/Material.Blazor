@@ -1,22 +1,18 @@
 ﻿@namespace BlazorMdc
-
-@typeparam TItem
-
 @inherits MdcValidatingInputComponentBase<TItem>
-
-@inject IJSRuntime jsRuntime
+@typeparam TItem
 
 
 <div @attributes="AttributesToSplat()">
 
     @foreach (var item in ItemArray)
     {
-        @if (Vertical && isNotFirst)
+        @if (Vertical && IsNotFirst)
         {
             <div class="bmdc-mdc-radio-break"></div>
         }
 
-        isNotFirst = true;
+        IsNotFirst = true;
 
         <MdcRadioButton @key="@item"
                         @bind-Value="@ReportingValue"
@@ -25,46 +21,8 @@
                         Disabled="@item.Disabled"
                         EnableTouchWrapper="@EnableTouchWrapper"
                         Label="@item.Label"
-                        CheckedValue="@item.SelectedValue"
-                        RadioGroupName="@radioGroupName" />
+                        TargetCheckedValue="@item.SelectedValue"
+                        RadioGroupName="@RadioGroupName" />
     }
 
 </div>
-
-
-@code {
-    //
-    //  2020-04-22  Mark Stega
-    //              Changed to use the newly created MdcRadioButton
-    //
-    [Parameter] public IEnumerable<MdcListElement<TItem>> Items { get; set; }
-    [Parameter] public bool Vertical { get; set; } = false;
-    [Parameter] public MdcItemValidation? ItemValidation { get; set; }
-    [Parameter] public bool EnableTouchWrapper { get; set; } = true;
-
-
-    private bool isNotFirst = false;
-    private string radioGroupName = Utilities.GenerateUniqueElementName();
-    private MdcListElement<TItem>[] ItemArray;
-
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        ItemArray = Items.ToArray();
-
-        MdcItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidationRadioButtonGroup(ItemValidation);
-
-        ForceShouldRenderToTrue = true;
-
-        ReportingValue = ValidateItemList(ItemArray, appliedItemValidation);
-    }
-
-
-    private async Task ValidationValueSetter(TItem value)
-    {
-        ReportingValue = value;
-        await Task.CompletedTask;
-    }
-}
