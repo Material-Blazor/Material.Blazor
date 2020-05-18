@@ -10,9 +10,6 @@ namespace BlazorMdc
     /// </summary>
     public partial class MdcDataTable<TItem> : MdcComponentBase
     {
-        [Inject] private IJSRuntime JsRuntime { get; set; }
-
-
         /// <summary>
         /// Data to render in the <see cref="TableRow"/> render fragment.
         /// </summary>

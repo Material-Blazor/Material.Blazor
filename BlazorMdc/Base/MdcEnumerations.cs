@@ -195,6 +195,33 @@
 
 
     /// <summary>
+    /// Style for an <see cref="MdcLinearProgress"/>.
+    /// </summary>
+    public enum MdcLinearProgressType
+    {
+        /// <summary>
+        /// An indeterminate linear progress.
+        /// </summary>
+        Indeterminate,
+
+        /// <summary>
+        /// A determinate linear progress with a value from 0 to 1.
+        /// </summary>
+        Determinate,
+
+        /// <summary>
+        /// A reversed determinate linear progress with a value from 0 to 1.
+        /// </summary>
+        ReversedDeterminate,
+
+        /// <summary>
+        /// A closed lienar progress.
+        /// </summary>
+        Closed
+    }
+
+
+    /// <summary>
     /// Style for an <see cref="MdcList{TItem}"/>. The <see cref="Outlined"/> variety borrows card markup matching <see cref="MdcCardStyle.Outlined"/>.
     /// <para><see cref="MdcCascadingDefaults"/> has a default of <see cref="None"/></para>
     /// </summary>

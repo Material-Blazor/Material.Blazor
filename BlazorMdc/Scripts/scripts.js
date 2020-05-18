@@ -144,6 +144,18 @@ window.BlazorMdc = {
         }
     },
 
+    linearProgress: {
+        init: function (elem, progress, buffer) {
+            elem._linearProgress = mdc.linearProgress.MDCLinearProgress.attachTo(elem);
+            this.setProgress(elem, progress, buffer);
+        },
+
+        setProgress: function (elem, progress, buffer) {
+            elem._linearProgress.progress = progress;
+            elem._linearProgress.buffer = buffer;
+        }
+    },
+
     list: {
         init: function (elem, keyboardInteractions, ripple) {
             if (keyboardInteractions == true) {

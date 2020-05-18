@@ -11,9 +11,6 @@ namespace BlazorMdc
     /// </summary>
     public partial class MdcIconButton : MdcComponentBase
     {
-        [Inject] private IJSRuntime JsRuntime { get; set; }
-
-
         [CascadingParameter] private MdcCard Card { get; set; }
 
 

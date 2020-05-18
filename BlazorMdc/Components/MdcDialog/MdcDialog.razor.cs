@@ -14,9 +14,6 @@ namespace BlazorMdc
     /// </summary>
     public partial class MdcDialog : MdcComponentBase, IDisposable, IMdcDialog
     {
-        [Inject] private IJSRuntime JsRuntime { get; set; }
-
-
         /// <summary>
         /// The dialog title.
         /// </summary>

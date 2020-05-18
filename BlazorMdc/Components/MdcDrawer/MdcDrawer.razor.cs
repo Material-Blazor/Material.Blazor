@@ -9,9 +9,6 @@ namespace BlazorMdc
     /// </summary>
     public partial class MdcDrawer : MdcComponentBase
     {
-        [Inject] private IJSRuntime JsRuntime { get; set; }
-
-
         /// <summary>
         /// The drawer contents.
         /// </summary>

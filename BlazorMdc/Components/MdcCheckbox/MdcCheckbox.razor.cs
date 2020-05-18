@@ -10,10 +10,7 @@ namespace BlazorMdc
     /// </summary>
     public partial class MdcCheckbox : MdcInputComponentBase<bool>
     {
-        [Inject] private IJSRuntime JsRuntime { get; set; }
-
-
-        /// <summary>
+        // <summary>
         /// The check box label.
         /// </summary>
         [Parameter] public string Label { get; set; }

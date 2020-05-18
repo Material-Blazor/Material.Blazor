@@ -9,9 +9,6 @@ namespace BlazorMdc
     /// </summary>
     public partial class MdcCard : MdcComponentBase
     {
-        [Inject] private IJSRuntime JsRuntime { get; set; }
-
-
         /// <summary>
         /// The card style - see <see cref="MdcCardStyle"/>
         /// </summary>

@@ -11,9 +11,6 @@ namespace BlazorMdc
     /// </summary>
     public partial class MdcIconButtonToggle : MdcInputComponentBase<bool>
     {
-        [Inject] private IJSRuntime JsRuntime { get; set; }
-
-
         [CascadingParameter] private MdcCard Card { get; set; }
 
 
