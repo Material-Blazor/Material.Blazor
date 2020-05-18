@@ -65,6 +65,17 @@ window.BlazorMdc = {
         }
     },
 
+    circularProgress: {
+        init: function (elem, progress) {
+            elem._circularProgress = mdc.circularProgress.MDCCircularProgress.attachTo(elem);
+            this.setProgress(elem, progress);
+        },
+
+        setProgress: function (elem, progress) {
+            elem._circularProgress.progress = progress;
+        }
+    },
+
     dataTable: {
         init: function (elem) {
             //mdc.dataTable.MDCDataTable.attachTo(elem);

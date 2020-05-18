@@ -195,7 +195,51 @@
 
 
     /// <summary>
-    /// Style for an <see cref="MdcLinearProgress"/>.
+    /// Size for an <see cref="MdcCircularProgress"/>.
+    /// </summary>
+    public enum MdcCircularProgressSize
+    {
+        /// <summary>
+        /// A small sized circular progress.
+        /// </summary>
+        Small,
+
+        /// <summary>
+        /// A medium sized circular progress.
+        /// </summary>
+        Medium,
+
+        /// <summary>
+        /// A large sized circular progress. This is the default.
+        /// </summary>
+        Large
+    }
+
+
+    /// <summary>
+    /// Type for an <see cref="MdcCircularProgress"/>.
+    /// </summary>
+    public enum MdcCircularProgressType
+    {
+        /// <summary>
+        /// An indeterminate circular progress.
+        /// </summary>
+        Indeterminate,
+
+        /// <summary>
+        /// A determinate circular progress with a value from 0 to 1.
+        /// </summary>
+        Determinate,
+
+        /// <summary>
+        /// A closed circular progress.
+        /// </summary>
+        Closed
+    }
+
+
+    /// <summary>
+    /// Type for an <see cref="MdcLinearProgress"/>.
     /// </summary>
     public enum MdcLinearProgressType
     {
@@ -215,7 +259,7 @@
         ReversedDeterminate,
 
         /// <summary>
-        /// A closed lienar progress.
+        /// A closed linear progress.
         /// </summary>
         Closed
     }
