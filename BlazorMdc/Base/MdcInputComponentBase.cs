@@ -56,7 +56,7 @@ namespace BlazorMdc
         /// Derived components can use this to get a callback the <see cref="Value"/> setter when the consumer changes the value.
         /// This allows a component to take action with Material Theme js to update the DOM to reflect the data change visually. An
         /// example is a select where the relevant list item needs to be automatically clicked to get Material Theme to update
-        /// the value shown in the input html tag.
+        /// the value shown in the <c>&lt;input&gt;</c> HTML tag.
         /// </summary>
         protected virtual void ValueSetter(T value) => _ = 0;
 

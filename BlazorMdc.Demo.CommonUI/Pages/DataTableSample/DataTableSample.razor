@@ -21,16 +21,16 @@
 <MdcDataTable Items="@biscuits"
               Context="item"
               Class="full-width">
-    <Header>
+    <TableHeader>
         <th class="mdc-data-table__header-cell header-bold" role="columnheader" scope="col">Biscuit</th>
         <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric header-bold" role="columnheader" scope="col">Price</th>
         <th class="mdc-data-table__header-cell header-bold" role="columnheader" scope="col">Review</th>
-    </Header>
-    <Row>
+    </TableHeader>
+    <TableRow>
         <td class="mdc-data-table__cell">@item.Name</td>
         <td class="mdc-data-table__cell mdc-data-table__cell--numeric">@item.Price.ToString("C2")</td>
         <td class="mdc-data-table__cell">@item.Review</td>
-    </Row>
+    </TableRow>
 </MdcDataTable>
 
 

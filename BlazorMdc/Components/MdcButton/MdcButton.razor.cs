@@ -8,10 +8,9 @@ namespace BlazorMdc
     /// This is a general purpose Material Theme button, with provision for standard MT styling, leading 
     /// and trailing icons and all standard Blazor events.
     /// </summary>
-    /// <param>s</param>
     public partial class MdcButton : MdcComponentBase
     {
-        [Inject] private IJSRuntime JSRuntime { get; set; }
+        [Inject] private IJSRuntime JsRuntime { get; set; }
 
         [CascadingParameter] private MdcCard Card { get; set; }
 
@@ -20,7 +19,7 @@ namespace BlazorMdc
 
 #nullable enable annotations
         /// <summary>
-        /// The button's Material Theme style - see <see cref="MdcButtonStyle"/>
+        /// The button's Material Theme style - see <see cref="MdcButtonStyle"/>.
         /// </summary>
         [Parameter] public MdcButtonStyle? ButtonStyle { get; set; }
 
@@ -45,12 +44,10 @@ namespace BlazorMdc
 
         /// <summary>
         /// The foundry to use for both leading and trailing icons.
+        /// <para><c>IconFoundry="MdcIconHelper.MIIcon()"</c></para>
+        /// <para><c>IconFoundry="MdcIconHelper.FAIcon()"</c></para>
+        /// <para><c>IconFoundry="MdcIconHelper.OIIcon()"</c></para>
         /// </summary>
-        /// <example>
-        /// <code>IconFoundry="MdcIconHelper.MIIcon()"</code>
-        /// <code>IconFoundry="MdcIconHelper.FAIcon()"</code>
-        /// <code>IconFoundry="MdcIconHelper.OIIcon()"</code>
-        /// </example>
         [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
 
 
@@ -79,6 +76,6 @@ namespace BlazorMdc
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JSRuntime.InvokeAsync<object>("BlazorMdc.button.init", ElementReference);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.button.init", ElementReference);
     }
 }

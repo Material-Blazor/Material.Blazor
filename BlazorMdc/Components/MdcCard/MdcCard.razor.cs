@@ -9,7 +9,7 @@ namespace BlazorMdc
     /// </summary>
     public partial class MdcCard : MdcComponentBase
     {
-        [Inject] private IJSRuntime JSRuntime { get; set; }
+        [Inject] private IJSRuntime JsRuntime { get; set; }
 
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace BlazorMdc
         {
             if (firstRender && PrimaryAction != null)
             {
-                await JSRuntime.InvokeAsync<object>("BlazorMdc.cardPrimaryAction.init", PrimaryActionReference);
+                await JsRuntime.InvokeAsync<object>("BlazorMdc.cardPrimaryAction.init", PrimaryActionReference);
             }
         }
     }
