@@ -52,7 +52,6 @@
         base.OnInitialized();
 
         ForceShouldRenderToTrue = true;
-        HasValueSetter = true;
     }
 
     protected override void OnParametersSet()
@@ -90,14 +89,7 @@
 
     protected override void ValueSetter(TItem value)
     {
-        UnderlyingValue = value;
-        InvokeAsync(async () =>
-        {
-            await jsRuntime.InvokeAsync<object>(
-            "BlazorMdc.radioButton.setChecked",
-            radioButtonReference,
-            Value.Equals(CheckedValue)).ConfigureAwait(false);
-        });
+        InvokeAsync(async () => await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.setChecked", radioButtonReference, Value.Equals(CheckedValue)).ConfigureAwait(false));
     }
 
 

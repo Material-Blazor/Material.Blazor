@@ -41,8 +41,6 @@
         base.OnInitialized();
 
         MyClassMapper();
-
-        HasValueSetter = true;
     }
 
     private void MyClassMapper() =>
@@ -61,8 +59,6 @@
 
     protected override void ValueSetter(bool value)
     {
-        UnderlyingValue = value;
-
         InvokeAsync(async () => await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.setOn", elementReference, value));
     }
 

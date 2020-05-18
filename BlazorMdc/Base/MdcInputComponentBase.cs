@@ -30,7 +30,7 @@ namespace BlazorMdc
         [Parameter] public string Id { get; set; } = Utilities.GenerateUniqueElementName();
 
 
-        private protected T UnderlyingValue;
+        private T _underlyingValue;
         /// <summary>
         /// Gets or sets the value of the input. This should be used with two-way binding.
         /// </summary>
@@ -39,29 +39,24 @@ namespace BlazorMdc
         /// </example>
         [Parameter] public T Value
         {
-            get => UnderlyingValue;
+            get => _underlyingValue;
             set
             {
-                if (!EqualityComparer<T>.Default.Equals(value, UnderlyingValue))
+                if (!EqualityComparer<T>.Default.Equals(value, _underlyingValue))
                 {
-                    if (!_hasInstantiated || !HasValueSetter)
-                    {
-                        UnderlyingValue = value;
-                    }
-                    else
-                    {
-                        if (HasValueSetter)
-                        {
-                            ValueSetter(value);
-                        }
-                    }
+                    _underlyingValue = value;
+                   
+                    if (_hasInstantiated) ValueSetter(value);
                 }
             }
         }
 
 
         /// <summary>
-        /// Derived components use this to get a callback from <see cref="OnAfterRenderAsync(bool)"/> when the consumer changes the <see cref="Value"/> parameter
+        /// Derived components can use this to get a callback the <see cref="Value"/> setter when the consumer changes the value.
+        /// This allows a component to take action with Material Theme js to update the DOM to reflect the data change visually. An
+        /// example is a select where the relevant list item needs to be automatically clicked to get Material Theme to update
+        /// the value shown in the input html tag.
         /// </summary>
         protected virtual void ValueSetter(T value) => _ = 0;
 
@@ -91,19 +86,21 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Gets or sets the value of the input. To be used by Mdc and PMdc components for binding to native components, or to set the value
-        /// in response to an event arising from the native component. In contrast the <see cref="Value"/> parameter is for use by BlazorMdc's consumers.
-        /// Do not mix these usages up.
+        /// Gets or sets the value of the component. To be used by BlazorMdc components for binding to native components, or to set the value
+        /// in response to an event arising from the native component. This property fires a change event to the consumer in contrast the 
+        /// <see cref="Value"/> parameter. As a result BlazorMdc components must always change the value by using this rather than <see cref="Value"/>
+        /// which never fires a change event but does call <see cref="ValueSetter(T)"/> which would cause a race condition if called in response to
+        /// user interaction arising within a BlazorMdc component.
         /// </summary>
-        protected T ReportingValue
+        private protected T ReportingValue
         {
-            get => UnderlyingValue;
+            get => _underlyingValue;
             set
             {
-                var hasChanged = !EqualityComparer<T>.Default.Equals(value, UnderlyingValue);
+                var hasChanged = !EqualityComparer<T>.Default.Equals(value, _underlyingValue);
                 if (hasChanged)
                 {
-                    UnderlyingValue = value;
+                    _underlyingValue = value;
                     _ = ValueChanged.InvokeAsync(value);
                     EditContext?.NotifyFieldChanged(FieldIdentifier);
                     StateHasChanged();
@@ -175,12 +172,6 @@ namespace BlazorMdc
         /// Allows <see cref="ShouldRender()"/> to return "true" for the next render only.
         /// </summary>
         private protected bool AllowNextRender = false;
-
-
-        /// <summary>
-        /// Allows <see cref="ShouldRender()"/> to return "true" when <see cref="Value"/> is changed by the consumer.
-        /// </summary>
-        private protected bool HasValueSetter { get; set; } = false;
 
 
         /// <summary>

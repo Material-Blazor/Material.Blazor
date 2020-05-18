@@ -54,14 +54,11 @@
 
         ClassMapper.Add("mdc-checkbox mdc-checkbox--touch")
             .AddIf("mdc-checkbox--disabled", () => Disabled);
-
-        HasValueSetter = true;
     }
 
 
     protected override void ValueSetter(bool value)
     {
-        UnderlyingValue = value;
         AllowNextRender = true;
     }
 
