@@ -79,10 +79,10 @@
     }
 
 
-    protected override void ValueSetter(DateTime value)
+    protected override void ValueSetter()
     {
-        Panel.SetParameters(true, value);
-        InvokeAsync(async () => await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(value)).ConfigureAwait(false));
+        Panel.SetParameters(true, Value);
+        InvokeAsync(async () => await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value)).ConfigureAwait(false));
     }
 
 

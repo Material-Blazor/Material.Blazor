@@ -46,7 +46,7 @@ namespace BlazorMdc
                 {
                     _underlyingValue = value;
                    
-                    if (_hasInstantiated) ValueSetter(value);
+                    if (_hasInstantiated) ValueSetter();
                 }
             }
         }
@@ -58,7 +58,7 @@ namespace BlazorMdc
         /// example is a select where the relevant list item needs to be automatically clicked to get Material Theme to update
         /// the value shown in the <c>&lt;input&gt;</c> HTML tag.
         /// </summary>
-        protected virtual void ValueSetter(T value) => _ = 0;
+        protected virtual void ValueSetter() => _ = 0;
 
 
         /// <summary>

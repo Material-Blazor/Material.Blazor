@@ -87,7 +87,7 @@
     }
 
 
-    protected override void ValueSetter(TItem value)
+    protected override void ValueSetter()
     {
         InvokeAsync(async () => await jsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.setChecked", radioButtonReference, Value.Equals(CheckedValue)).ConfigureAwait(false));
     }

@@ -116,7 +116,7 @@
     }
 
 
-    protected override void ValueSetter(TItem value) => InvokeAsync(async () => await jsRuntime.InvokeAsync<object>("BlazorMdc.select.clickItem", ulReference, ItemDict[value].Label));
+    protected override void ValueSetter() => InvokeAsync(async () => await jsRuntime.InvokeAsync<object>("BlazorMdc.select.clickItem", ulReference, ItemDict[Value].Label));
 
 
     private protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.select.init", selectReference);

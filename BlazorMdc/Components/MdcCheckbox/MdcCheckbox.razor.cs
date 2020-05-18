@@ -38,7 +38,7 @@ namespace BlazorMdc
 
 
         /// <inheritdoc/>
-        protected override void ValueSetter(bool value)
+        protected override void ValueSetter()
         {
             AllowNextRender = true;
         }
