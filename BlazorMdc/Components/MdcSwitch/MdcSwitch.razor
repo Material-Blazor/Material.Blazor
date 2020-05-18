@@ -1,11 +1,8 @@
 ﻿@namespace BlazorMdc
-
 @inherits MdcInputComponentBase<bool>
 
-@inject IJSRuntime jsRuntime
 
-
-<div @ref="@elementReference"
+<div @ref="@ElementReference"
      @attributes="AttributesToSplat(SplatType.ClassAndStyleOnly)">
 
         <div class="mdc-switch__track"></div>
@@ -21,34 +18,3 @@
         </div>
     </div>
 <label for="@Id" style="margin-left: 1rem;">@Label</label>
-
-
-@code {
-    //
-    //  2020-04-02  Mark Stega
-    //              Changed to use class & style mappers
-    //
-    //  2020-04-13  Mark Stega
-    //              Moved ClassMapper to constructor
-    //
-    [Parameter] public string Label { get; set; } = "On/off";
-
-    
-    ElementReference elementReference;
-
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        ClassMapper
-            .Add("mdc-switch")
-            .AddIf("mdc-switch--disabled", () => Disabled)
-            .AddIf("mdc-switch--checked", () => ReportingValue);
-
-        ForceShouldRenderToTrue = true;
-    }
-
-
-    private protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.switch.setChecked", elementReference, ReportingValue);
-}

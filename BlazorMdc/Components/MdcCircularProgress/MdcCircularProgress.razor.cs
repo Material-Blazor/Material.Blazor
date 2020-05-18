@@ -91,7 +91,7 @@ namespace BlazorMdc
 
 
         /// <inheritdoc/>
-        protected override void ValueSetter() => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.circularProgress.setProgress", ElementReference, Value));
+        protected override void OnValueSet() => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.circularProgress.setProgress", ElementReference, Value));
 
 
         /// <inheritdoc/>

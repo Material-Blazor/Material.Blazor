@@ -58,7 +58,7 @@ namespace BlazorMdc
         }
 
 
-        //private async Task ValidationValueSetter(TItem value)
+        //private async Task ValidationOnValueSet(TItem value)
         //{
         //    ReportingValue = value;
         //    await Task.CompletedTask;

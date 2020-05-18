@@ -63,7 +63,7 @@ namespace BlazorMdc
 
 
         /// <inheritdoc/>
-        protected override void ValueSetter() => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.setOn", ElementReference, Value));
+        protected override void OnValueSet() => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.setOn", ElementReference, Value));
 
 
         /// <inheritdoc/>

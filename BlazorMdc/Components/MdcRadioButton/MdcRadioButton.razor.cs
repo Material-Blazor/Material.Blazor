@@ -99,7 +99,7 @@ namespace BlazorMdc
 
 
         /// <inheritdoc/>
-        protected override void ValueSetter()
+        protected override void OnValueSet()
         {
             InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.setChecked", RadioButtonReference, Value.Equals(TargetCheckedValue)).ConfigureAwait(false));
         }

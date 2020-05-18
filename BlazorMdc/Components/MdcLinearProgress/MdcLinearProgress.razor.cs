@@ -34,7 +34,7 @@ namespace BlazorMdc
                 if (value != _bufferValue)
                 {
                     _bufferValue = value;
-                    ValueSetter();
+                    OnValueSet();
                 }    
             }
         }
@@ -74,7 +74,7 @@ namespace BlazorMdc
 
 
         /// <inheritdoc/>
-        protected override void ValueSetter() => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.linearProgress.setProgress", ElementReference, Value, MyBufferValue));
+        protected override void OnValueSet() => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.linearProgress.setProgress", ElementReference, Value, MyBufferValue));
 
 
         /// <inheritdoc/>

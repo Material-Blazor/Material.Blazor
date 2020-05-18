@@ -1,56 +1,50 @@
 ﻿@namespace BlazorMdc
-
+@inherits MdcValidatingInputComponentBase<TItem>
 @typeparam TItem
 
-@inherits MdcValidatingInputComponentBase<TItem>
 
-@implements IMdcDialogChild
-
-@inject IJSRuntime jsRuntime
-
-
-<div @ref="selectReference"
+<div @ref="SelectReference"
      @attributes="AttributesToSplat()">
 
-    <div class="mdc-select__anchor" 
+    <div class="mdc-select__anchor"
          role="button"
-         aria-haspopup="@listboxReference"
-         aria-labelledby="@labelId @selectedTextId">
+         aria-haspopup="@ListboxReference"
+         aria-labelledby="@LabelId @SelectedTextId">
 
-        @if (appliedInputStyle == MdcSelectInputStyle.Filled)
+        @if (AppliedInputStyle == MdcSelectInputStyle.Filled)
         {
             <span class="mdc-select__ripple"></span>
         }
 
-        <input id="@selectedTextId" type="text" disabled readonly class="mdc-select__selected-text @alignClass">
+        <input id="@SelectedTextId" type="text" disabled readonly class="mdc-select__selected-text @AlignClass">
         <i class="mdc-select__dropdown-icon"></i>
 
-        @if (appliedInputStyle == MdcSelectInputStyle.Outlined)
+        @if (AppliedInputStyle == MdcSelectInputStyle.Outlined)
         {
             <span class="mdc-notched-outline">
                 <span class="mdc-notched-outline__leading"></span>
                 <span class="mdc-notched-outline__notch">
-                    <span id="@labelId" class="mdc-floating-label @floatingLabelClass">@Label</span>
+                    <span id="@LabelId" class="mdc-floating-label @FloatingLabelClass">@Label</span>
                 </span>
                 <span class="mdc-notched-outline__trailing"></span>
             </span>
         }
         else
         {
-            <span id="@labelId" class="mdc-floating-label @floatingLabelClass">@Label</span>
+            <span id="@LabelId" class="mdc-floating-label @FloatingLabelClass">@Label</span>
             <div class="mdc-line-ripple"></div>
         }
     </div>
 
-    <div @ref="@listboxReference" class="mdc-select__menu mdc-menu mdc-menu-surface">
-        <ul @ref="@ulReference" class="mdc-list">
+    <div @ref="@ListboxReference" class="mdc-select__menu mdc-menu mdc-menu-surface">
+        <ul @ref="@UlReference" class="mdc-list">
             @foreach (var item in ItemDict.Values)
             {
                 var dv = item.SelectedValue;
 
                 if (item.SelectedValue.Equals(Value))
                 {
-                    <li @key="@item" class="mdc-list-item mdc-list-item--selected @alignClass" data-value="@item.Label" aria-selected="true" aria-disabled="@item.Disabled" role="option" @onclick="@(_ => OnItemClickAsync(dv))">
+                    <li @key="@item" class="mdc-list-item mdc-list-item--selected @AlignClass" data-value="@item.Label" aria-selected="true" aria-disabled="@item.Disabled" role="option" @onclick="@(_ => OnItemClickAsync(dv))">
                         <span class="mdc-list-item__text bmdc-full-width">
                             @item.Label
                         </span>
@@ -58,7 +52,7 @@
                 }
                 else
                 {
-                    <li @key="@item" class="mdc-list-item @alignClass" data-value="@item.Label" aria-selected="false" aria-disabled="@item.Disabled" role="option" @onclick=@(_ => OnItemClickAsync(dv))>
+                    <li @key="@item" class="mdc-list-item @AlignClass" data-value="@item.Label" aria-selected="false" aria-disabled="@item.Disabled" role="option" @onclick=@(_ => OnItemClickAsync(dv))>
                         <span class="mdc-list-item__text bmdc-full-width">
                             @item.Label
                         </span>
@@ -68,56 +62,3 @@
         </ul>
     </div>
 </div>
-
-
-
-@code {
-    [Parameter] public MdcItemValidation? ItemValidation { get; set; }
-    [Parameter] public string Label { get; set; }
-    [Parameter] public IEnumerable<MdcListElement<TItem>> Items { get; set; }
-    [Parameter] public MdcSelectInputStyle? SelectInputStyle { get; set; }
-    [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
-
-
-    private ElementReference selectReference;
-    private ElementReference listboxReference;
-    private ElementReference ulReference;
-    private MdcSelectInputStyle appliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
-    private string selectedTextId = Utilities.GenerateUniqueElementName();
-    private string labelId = Utilities.GenerateUniqueElementName();
-    private string selectedText = "";
-    private string floatingLabelClass = "";
-    private string alignClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
-    private Dictionary<TItem, MdcListElement<TItem>> ItemDict;
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        ItemDict = Items.ToDictionary(i => i.SelectedValue);
-
-        ReportingValue = ValidateItemList(ItemDict.Values, CascadingDefaults.AppliedItemValidationSelect(ItemValidation));
-
-        ClassMapper
-            .Clear()
-            .Add("mdc-select")
-            .AddIf("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
-            .AddIf("mdc-select--disabled", () => Disabled);
-
-        selectedText = (Value is null) ? "" : Items.Where(i => object.Equals(i.SelectedValue, Value)).FirstOrDefault().Label;
-        floatingLabelClass = string.IsNullOrWhiteSpace(selectedText) ? "" : "mdc-floating-label--float-above";
-    }
-
-
-    private async Task OnItemClickAsync(TItem dataValue)
-    {
-        ReportingValue = dataValue;
-        await Task.CompletedTask;
-    }
-
-
-    protected override void ValueSetter() => InvokeAsync(async () => await jsRuntime.InvokeAsync<object>("BlazorMdc.select.clickItem", ulReference, ItemDict[Value].Label));
-
-
-    private protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.select.init", selectReference);
-}

@@ -46,7 +46,7 @@ namespace BlazorMdc
                 {
                     _underlyingValue = value;
                    
-                    if (_hasInstantiated) ValueSetter();
+                    if (_hasInstantiated) OnValueSet();
                 }
             }
         }
@@ -58,7 +58,7 @@ namespace BlazorMdc
         /// example is a select where the relevant list item needs to be automatically clicked to get Material Theme to update
         /// the value shown in the <c>&lt;input&gt;</c> HTML tag.
         /// </summary>
-        protected virtual void ValueSetter() => _ = 0;
+        protected virtual void OnValueSet() => _ = 0;
 
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace BlazorMdc
         /// Gets or sets the value of the component. To be used by BlazorMdc components for binding to native components, or to set the value
         /// in response to an event arising from the native component. This property fires a change event to the consumer in contrast the 
         /// <see cref="Value"/> parameter. As a result BlazorMdc components must always change the value by using this rather than <see cref="Value"/>
-        /// which never fires a change event but does call <see cref="ValueSetter(T)"/> which would cause a race condition if called in response to
+        /// which never fires a change event but does call <see cref="OnValueSet(T)"/> which would cause a race condition if called in response to
         /// user interaction arising within a BlazorMdc component.
         /// </summary>
         private protected T ReportingValue
