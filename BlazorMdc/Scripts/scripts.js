@@ -76,12 +76,6 @@ window.BlazorMdc = {
         }
     },
 
-    dataTable: {
-        init: function (elem) {
-            //mdc.dataTable.MDCDataTable.attachTo(elem);
-        }
-    },
-
     datePicker: {
         init: function (elem) {
             mdc.select.MDCSelect.attachTo(elem);
@@ -90,6 +84,18 @@ window.BlazorMdc = {
         listItemClick: function (elem, elemText) {
             elem.innerText = elemText;
             elem.click();
+        },
+
+        scrollToYear: function (id) {
+            // Presently disabled because of undesirable overscroll-behaviour
+            //var element = document.getElementById(id);
+            //element.scrollIntoView();
+        }
+    },
+
+    dataTable: {
+        init: function (elem) {
+            //mdc.dataTable.MDCDataTable.attachTo(elem);
         }
     },
 

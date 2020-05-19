@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BlazorMdc
@@ -39,8 +40,29 @@ namespace BlazorMdc
         [Parameter] public DateTime MaxDate { get; set; }
 
 
+        /// <summary>
+        /// HTML element id for the current year
+        /// </summary>
+        [Parameter] public string CurrentYearId { get; set; }
+
+
         private MdcButtonStyle ButtonStyle => (DisplayYear == CurrentYear) ? MdcButtonStyle.ContainedUnelevated : MdcButtonStyle.Text;
         
+
+        private Dictionary<string, object> Attributes
+        {
+            get
+            {
+                var result = new Dictionary<string, object>();
+
+                if (DisplayYear == CurrentYear)
+                {
+                    result.Add("id", CurrentYearId);
+                }
+
+                return result;
+            }
+        }
 
         private bool ButtonDisabled => (MaxDate < new DateTime(DisplayYear, 1, 1)) || (MinDate > new DateTime(DisplayYear, 12, 31));
 

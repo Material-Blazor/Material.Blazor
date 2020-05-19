@@ -45,9 +45,9 @@ namespace BlazorMdc
         /// <see cref="ConstrainSplattableAttributes"/> and <see cref="AllowedSplattableAttributes"/>.
         /// </summary>
         /// <remarks>
-        /// Includes "formnovalidate", "max", "min", "role", "step", "tabindex" and "type"
+        /// Includes "formnovalidate", "id", "max", "min", "role", "step", "tabindex" and "type"
         /// </remarks>
-        public readonly IEnumerable<string> EssentialSplattableAttributes = new string[] { "formnovalidate", "max", "min", "role", "step", "tabindex", "type" };
+        public readonly IEnumerable<string> EssentialSplattableAttributes = new string[] { "formnovalidate", "id", "max", "min", "role", "step", "tabindex", "type" };
 
         /// <summary>
         /// Further attributes that can be set as allowable when <see cref="MdcComponentBase"/>

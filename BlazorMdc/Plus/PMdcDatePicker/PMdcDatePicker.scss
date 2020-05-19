@@ -16,7 +16,21 @@
     Applied to InternalDatePickerPanel.razor
 ************************************************/
 
+/*
+    The structure of this file is designed to be driven entirely from
+    $dp-button-height. The panel width and height will flex to accommodate
+    that, as will day and year buttons. Icon buttons for the to pmenu are 
+    the only other parameter that needs to be set to effect a resize.
+    Setting these values to 28px and 24px respectively makes the date picker
+    conform to the detailed Material Theme specification.
+*/
 $dp-button-height: 28px;
+$dp-menu-icon-button-size: 24px;
+
+
+/*
+    General purpose definitions
+*/
 $dp-button-border-radius: $dp-button-height / 2;
 $dp-button-margin: 2px;
 $dp-day-pad-horizontal-margin: 16px;
@@ -62,7 +76,6 @@ $dp-year-button-width: ($dp-panel-width - $dp-year-pad-padding-left - $dp-year-p
 
 $dp-menu-height: 52px;
 $dp-menu-padding: 16px 8px 12px 24px;
-$dp-menu-icon-button-size: 24px;
 $dp-menu-icon-button-margin: 4px;
 
 
@@ -122,7 +135,6 @@ $dp-day-pad-weekdays-size: $dp-button-height + $dp-button-margin;
     user-select: none;
     overflow: visible;
     width: $dp-panel-width;
-    background-color: lightcyan;
 }
 
 
@@ -180,7 +192,6 @@ $dp-year-pad-rows: 7;
     overflow-x: hidden;
     overflow-y: scroll;
     max-height: $dp-year-pad-rows * ($dp-button-height + 2 * $dp-button-margin);
-    background-color: mistyrose;
 }
 
 .bmdc-dp-year-pad__button {

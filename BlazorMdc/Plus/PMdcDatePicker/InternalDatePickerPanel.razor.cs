@@ -34,8 +34,10 @@ namespace BlazorMdc
         /// <summary>
         /// Reference to the <c>&lt;li&gt;</c> embedded in the panel.
         /// </summary>
-        internal ElementReference ListItemReference;
+        internal ElementReference ListItemReference { get; set; }
 
+
+        private bool ScrollToYear { get; set; } = false;
 
         private string[] DaysOfWeek { get; set; }
 
@@ -43,7 +45,16 @@ namespace BlazorMdc
 
         private bool NextMonthDisabled => (StartOfDisplayMonth.AddMonths(1) >= MaxDate);
 
-        private bool ShowYearPad { get; set; }
+        private bool _showYearPad = false;
+        private bool ShowYearPad
+        {
+            get => _showYearPad;
+            set
+            {
+                _showYearPad = value;
+                ScrollToYear = value;
+            }
+        }
 
         private LinkedList<DateTime> Dates { get; set; } = new LinkedList<DateTime>();
 
@@ -68,6 +79,11 @@ namespace BlazorMdc
         private int Year => StartOfDisplayMonth.Year;
 
         private bool IsFirstParametersSet { get; set; } = true;
+
+
+        private readonly string currentYearId = Utilities.GenerateUniqueElementName();
+
+        private readonly IMdcIconFoundry foundry = MdcIconHelper.MIFoundry(MdcIconMITheme.Filled);
 
 
         /// <inheritdoc/>
@@ -177,6 +193,18 @@ namespace BlazorMdc
         {
             MonthsOffset++;
             SetParameters(true);
+        }
+
+
+        /// <inheritdoc/>
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (!firstRender && ScrollToYear)
+            {
+                ScrollToYear = false;
+
+                await JsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.scrollToYear", currentYearId);
+            }
         }
     }
 }
