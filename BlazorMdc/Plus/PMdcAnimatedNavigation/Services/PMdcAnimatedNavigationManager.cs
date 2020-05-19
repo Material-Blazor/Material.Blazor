@@ -1,10 +1,17 @@
 ﻿using Microsoft.AspNetCore.Components;
+using System;
 
 namespace BlazorMdc
 {
+    /// <inheritdoc/>
     public class PMdcAnimatedNavigationManager : IPMdcAnimatedNavigationManager
     {
         private readonly NavigationManager NavigationManager;
+
+
+        /// <summary>
+        /// A reference to the registered <see cref="PMdcAnimatedNavigation"/>.
+        /// </summary>
         internal PMdcAnimatedNavigation NavigationComponent { get; set; } = null;
         
 
@@ -12,7 +19,11 @@ namespace BlazorMdc
         public PMdcAnimatedNaviationManagerConfiguration Configuration { get; set; } = new PMdcAnimatedNaviationManagerConfiguration();
 
 
+        /// <inheritdoc/>
         int IPMdcAnimatedNavigationManager.FadeOutTime => Configuration.AnimationTime * 4 / 10;
+
+
+        /// <inheritdoc/>
         int IPMdcAnimatedNavigationManager.FadeInTime => Configuration.AnimationTime * 6 / 10;
 
 
@@ -23,14 +34,15 @@ namespace BlazorMdc
         }
 
 
-        /// <summary>
-        /// Navigates to the specified URI. 
-        /// </summary>
-        /// <param name="uri">The destination URI. This can be absolute, or relative to the base URI (as returned by Microsoft.AspNetCore.Components.NavigationManager.BaseUri).</param>
-        /// <param name="forceLoad">If true, bypasses client-side routing and forces the browser to load the new page from the server, whether or not the URI would normally be handled by the client-side router.</param>
+        /// <inheritdoc/>
         public void NavigateTo(string uri, bool forceLoad = false)
         {
-            if (NavigationComponent is null || !Configuration.ApplyAnimation)
+            if (NavigationComponent is null)
+            {
+                throw new InvalidOperationException($"BlazorMdc: you have registered a {Utilities.GetTypeName(typeof(IPMdcAnimatedNavigationManager))} but have not placed a {Utilities.GetTypeName(typeof(PMdcAnimatedNavigation))} component around your markup in either App.razor or MainLayout.razor");
+            }
+
+            if (!Configuration.ApplyAnimation)
             {
                 NavigationManager.NavigateTo(uri, forceLoad);
             }
@@ -41,12 +53,14 @@ namespace BlazorMdc
         }
 
 
+        /// <inheritdoc/>
         void IPMdcAnimatedNavigationManager.RegisterNavigationComponent(PMdcAnimatedNavigation navigationComponent)
         {
             NavigationComponent = navigationComponent;
         }
 
 
+        /// <inheritdoc/>
         void IPMdcAnimatedNavigationManager.DeregisterNavigationComponent(PMdcAnimatedNavigation navigationComponent)
         {
             if (navigationComponent.Equals(NavigationComponent))
