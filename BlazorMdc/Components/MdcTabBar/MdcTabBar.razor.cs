@@ -60,7 +60,10 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Icon render fragments.
+        /// Icon render fragments requiring correct icon markup including the "mdc-tab__icon"
+        /// CSS class. As a helper you can render with <see cref="PMdcIcon"/> with <see cref="PMdcIcon.TabBar"/>
+        /// set to true. Note that Material Icons always render properly, while some wider Font Awesome
+        /// icons for instance render too close to the tab text.
         /// </summary>
         [Parameter] public RenderFragment<TItem> Icon { get; set; }
 

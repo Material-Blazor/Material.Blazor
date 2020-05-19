@@ -1,33 +1,5 @@
 ﻿@namespace BlazorMdc
-
 @inherits MdcComponentBase
 
-@inject IJSRuntime jsRuntime
 
-
-<i @attributes="@AttributesToSplat()">@iconHelper.Text</i>
-
-
-@code {
-#nullable enable annotations
-    [Parameter] public string Icon { get; set; }
-    [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
-#nullable restore annotations
-
-
-    private MdcIconHelper iconHelper;
-
-
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
-
-        iconHelper = new MdcIconHelper(CascadingDefaults, Icon, IconFoundry);
-
-        ClassMapper
-            .Clear()
-            .Add(iconHelper.Class);
-
-        ComponentPureHtmlAttributes = iconHelper.Attributes;
-    }
-}
+<i @attributes="@AttributesToSplat()">@IconHelper.Text</i>
