@@ -1,52 +1,46 @@
 ﻿@namespace BlazorMdc
-
 @inherits MdcInputComponentBase<DateTime>
-
-@using System.Globalization
-
-@inject IJSRuntime jsRuntime
-
 
 
 <div @attributes="@AttributesToSplat()">
 
     <ul class="mdc-list bmdc-dp-list">
-        <li @ref="@ListItemReference" class="mdc-list-item mdc-list-item--selected bmdc-dp-list-item" data-value="@cachedReportingValueText" aria-selected="true" role="option">
-            <span class="mdc-list-item__text bmdc-dp-list-item__text">@cachedReportingValueText</span>
+        <li @ref="@ListItemReference" class="mdc-list-item mdc-list-item--selected bmdc-dp-list-item" data-value="@CachedReportingValueText" aria-selected="true" role="option">
+            <span class="mdc-list-item__text bmdc-dp-list-item__text">@CachedReportingValueText</span>
         </li>
     </ul>
 
     <div class="bmdc-dp-menu">
         <div class="bmdc-dp-menu__container">
             <div class="bmdc-dp-menu__float-left">
-                @monthText
+                @MonthText
             </div>
             <div class="bmdc-dp-menu__float-left">
-               <MdcIconButtonToggle @bind-Value="@showYearPad" Class="bmdc-dp-menu__icon-button" IconOn="arrow_drop_up" IconOff="arrow_drop_down" />
+               <MdcIconButtonToggle @bind-Value="@ShowYearPad" Class="bmdc-dp-menu__icon-button" IconOn="arrow_drop_up" IconOff="arrow_drop_down" />
             </div>
 
-            @if (!showYearPad)
+            @if (!ShowYearPad)
             {
                 <div class="bmdc-dp-menu__float-right bmdc-dp-menu__float-right-spaced">
-                    <MdcIconButton @onclick="@OnNextMonthClick" Class="bmdc-dp-menu__icon-button" Icon="chevron_right" Disabled="@nextMonthDisabled" />
+                    <MdcIconButton @onclick="@OnNextMonthClick" Class="bmdc-dp-menu__icon-button" Icon="chevron_right" Disabled="@NextMonthDisabled" />
                 </div>
                 <div class="bmdc-dp-menu__float-right bmdc-dp-menu__float-right-spaced">
                     <MdcIconButton @onclick="@OnShowCurrentDateClick" Class="bmdc-dp-menu__icon-button" Icon="undo" />
                 </div>
                 <div class="bmdc-dp-menu__float-right">
-                    <MdcIconButton @onclick="@OnPreviousMonthClick" Class="bmdc-dp-menu__icon-button" Icon="chevron_left" Disabled="@previousMonthDisabled" />
+                    <MdcIconButton @onclick="@OnPreviousMonthClick" Class="bmdc-dp-menu__icon-button" Icon="chevron_left" Disabled="@PreviousMonthDisabled" />
                 </div>
             }
         </div>
     </div>
 
-    @if (showYearPad)
+    @if (ShowYearPad)
     {
         <div class="bmdc-dp-year-pad">
             <div class="mdc-list bmdc-dp-year-pad__years-line">
-                @foreach (var year in years)
+                @foreach (var year in Years)
                 {
-                    <InternalDatePickerYearButton @key="@year" CurrentYear="@startOfDisplayMonth.Year" DisplayYear="@year" OnItemClickAsync="@OnYearItemClick" MinDate="@MinDate" MaxDate="@MaxDate" />
+                    <InternalDatePickerYearButton @key="@year" CurrentYear="@StartOfDisplayMonth.Year" DisplayYear="@year" OnItemClickAsync="@OnYearItemClick" MinDate="@MinDate" MaxDate="@MaxDate" />
                 }
             </div>
         </div>
@@ -55,164 +49,17 @@
     {
         <div class="bmdc-dp-day-pad">
             <div class="bmdc-dp-day-pad__weekdays-line">
-                @foreach (var d in daysOfWeek)
+                @foreach (var d in DaysOfWeek)
                 {
                     <span class="mdc-theme--text-disabled-on-background bmdc-dp-day-pad__weekday">@d</span>
                 }
             </div>
             <div class="mdc-list bmdc-dp-day-pad__days-line">
-                @foreach (var date in dates)
+                @foreach (var date in Dates)
                 {
-                    <InternalDatePickerDayButton @key="@date" DateSelectionCriteria="@DateSelectionCriteria" CurrentDate="@initialDate" DisplayDate="@date" StartOfDisplayMonth="@startOfDisplayMonth" OnItemClickAsync="@OnDayItemClickAsync" MinDate="@MinDate" MaxDate="@MaxDate" />
+                    <InternalDatePickerDayButton @key="@date" DateSelectionCriteria="@DateSelectionCriteria" CurrentDate="@InitialDate" DisplayDate="@date" StartOfDisplayMonth="@StartOfDisplayMonth" OnItemClickAsync="@OnDayItemClickAsync" MinDate="@MinDate" MaxDate="@MaxDate" />
                 }
             </div>
         </div>
     }
 </div>
-
-
-
-@code {
-    //
-    //  2020-04-02  Mark Stega
-    //              Changed to use class & style mappers
-    //
-    [Parameter] public PMdcDateSelectionCriteria? DateSelectionCriteria { get; set; }
-    [Parameter] public DateTime MinDate { get; set; }
-    [Parameter] public DateTime MaxDate { get; set; }
-
-    private string[] daysOfWeek;
-
-    internal ElementReference ListItemReference;
-    private bool previousMonthDisabled => (startOfDisplayMonth <= MinDate);
-    private bool nextMonthDisabled => (startOfDisplayMonth.AddMonths(1) >= MaxDate);
-    private bool showYearPad;
-
-
-    private LinkedList<DateTime> dates { get; set; } = new LinkedList<DateTime>();
-    private LinkedList<int> years { get; set; } = new LinkedList<int>();
-    private DateTime initialDate;
-    private DateTime cachedReportingValue;
-    private DateTime cachedMinDate;
-    private DateTime cachedMaxDate;
-    private string cachedReportingValueText => Utilities.DateToString(cachedReportingValue);
-    private int monthsOffset = 0;
-    private DateTime startOfDisplayMonth;
-    private string monthText => startOfDisplayMonth.ToString("MMMM yyyy");
-    private int year => startOfDisplayMonth.Year;
-
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        ClassMapper
-            .Add("mdc-typography--body2 bmdc-dp-container");
-
-        daysOfWeek = (new DateTimeFormatInfo()).DayNames.Select(d => d.Substring(0, 1)).ToArray();
-
-        ForceShouldRenderToTrue = true;
-    }
-
-
-    private bool IsFirstParametersSet = true;
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
-
-        if (IsFirstParametersSet)
-        {
-            IsFirstParametersSet = false;
-            SetParameters(true);
-        }
-    }
-
-
-    internal void SetParameters(bool forceSetup, DateTime? newValue = null)
-    {
-        if (forceSetup || ReportingValue != cachedReportingValue || MinDate != cachedMinDate || MaxDate != cachedMaxDate)
-        {
-            if (newValue != null)
-            {
-                Value = (DateTime)newValue;
-            }
-
-            initialDate = Value;
-            cachedReportingValue = Value;
-            cachedMinDate = MinDate;
-            cachedMaxDate = MaxDate;
-
-            var startDate = startOfDisplayMonth = new DateTime(Value.Year, Value.Month, 1).AddMonths(monthsOffset);
-            var endDate = startDate.AddMonths(1).AddDays(-1);
-
-            startDate = startDate.AddDays(-Convert.ToInt32(startDate.DayOfWeek));
-            endDate = endDate.AddDays(-Convert.ToInt32(endDate.DayOfWeek) + 7);
-
-            dates = new LinkedList<DateTime>();
-
-            for (var date = startDate; date < endDate; date = date.AddDays(1))
-            {
-                dates.AddLast(date);
-            }
-
-            var startYear = ((MinDate.Year - 1) / 4) * 4 + 1;
-            var endYear = ((MaxDate.Year + 3) / 4) * 4 + 1;
-
-            years = new LinkedList<int>();
-
-            for (var year = startYear; year < endYear; year++)
-            {
-                years.AddLast(year);
-            }
-
-            showYearPad = false;
-
-            StateHasChanged();
-        }
-    }
-
-
-    private async Task OnDayItemClickAsync(DateTime dateTime)
-    {
-        ReportingValue = dateTime;
-        cachedReportingValue = Value;
-        monthsOffset = 0;
-        SetParameters(true);
-        await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", ListItemReference, cachedReportingValueText);
-    }
-
-
-    private void OnYearItemClick(int year)
-    {
-        monthsOffset += (year - startOfDisplayMonth.Year) * 12;
-        showYearPad = false;
-        SetParameters(true);
-    }
-
-
-    private void OnPreviousMonthClick()
-    {
-        monthsOffset--;
-        SetParameters(true);
-    }
-
-
-    private void OnShowCurrentDateClick()
-    {
-        monthsOffset = 0;
-        SetParameters(true);
-    }
-
-
-    private void OnNextMonthClick()
-    {
-        monthsOffset++;
-        SetParameters(true);
-    }
-
-
-    protected override bool ShouldRender()
-    {
-        return true;
-    }
-}

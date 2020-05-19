@@ -1,15 +1,14 @@
 ﻿@namespace BlazorMdc
-
 @inherits MdcInputComponentBase<DateTime>
 
-@inject IJSRuntime jsRuntime
+@inject IJSRuntime JsRuntime
 
 
-<div @ref="elementReference"
+<div @ref="ElementReference"
      @attributes="@AttributesToSplat()" >
 
     <div class="mdc-select__anchor">
-        @if (appliedInputStyle == MdcSelectInputStyle.Filled)
+        @if (AppliedInputStyle == MdcSelectInputStyle.Filled)
         {
             <span class="mdc-select__ripple"></span>
         }
@@ -17,7 +16,7 @@
         <input type="text" disabled readonly class="mdc-select__selected-text">
         <i class="mdc-select__dropdown-icon"></i>
 
-        @if (appliedInputStyle == MdcSelectInputStyle.Outlined)
+        @if (AppliedInputStyle == MdcSelectInputStyle.Outlined)
         {
             <span class="mdc-notched-outline">
                 <span class="mdc-notched-outline__leading"></span>
@@ -48,43 +47,4 @@
     //  2020-04-13  Mark Stega
     //              Moved ClassMapper to constructor
     //
-    [Parameter] public MdcSelectInputStyle? SelectInputStyle { get; set; }
-    [Parameter] public string Label { get; set; }
-    [Parameter] public PMdcDateSelectionCriteria? DateSelectionCriteria { get; set; }
-    [Parameter] public DateTime MinDate { get; set; }
-    [Parameter] public DateTime MaxDate { get; set; }
-
-
-    private ElementReference elementReference;
-    private InternalDatePickerPanel Panel;
-    private MdcSelectInputStyle appliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
-    private string key = Utilities.GenerateUniqueElementName();
-    private string labelId = Utilities.GenerateUniqueElementName();
-    private string initialText = "";
-    private DateTime initialValue;
-    private bool isOpen { get; set; } = false;
-
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        ClassMapper
-            .Add("mdc-select")
-            .AddIf("mdc-select--outlined", () => (appliedInputStyle == MdcSelectInputStyle.Outlined))
-            .AddIf("mdc-select--disabled", () => Disabled);
-
-        initialValue = Value;
-        initialText = Utilities.DateToString(Value);
-    }
-
-
-    protected override void OnValueSet()
-    {
-        Panel.SetParameters(true, Value);
-        InvokeAsync(async () => await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value)).ConfigureAwait(false));
-    }
-
-
-    private protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.init", elementReference);
 }

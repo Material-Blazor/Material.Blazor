@@ -1,20 +1,5 @@
 ﻿@namespace BlazorMdc
+@inherits MdcComponentBase
 
 
-<MdcButton @onclick="@OnClickAsync" Label="@DisplayYear.ToString()" Class="bmdc-dp-year-pad__button" ButtonStyle="@buttonStyle" Disabled="@disabled" />
-
-
-@code {
-    [Parameter] public int CurrentYear { get; set; }
-    [Parameter] public int DisplayYear { get; set; }
-    [Parameter] public EventCallback<int> OnItemClickAsync { get; set; }
-    [Parameter] public DateTime MinDate { get; set; }
-    [Parameter] public DateTime MaxDate { get; set; }
-
-
-    private MdcButtonStyle buttonStyle => (DisplayYear == CurrentYear) ? MdcButtonStyle.ContainedUnelevated : MdcButtonStyle.Text;
-    private bool disabled => (MaxDate < new DateTime(DisplayYear, 1, 1)) || (MinDate > new DateTime(DisplayYear, 12, 31));
-
-
-    private async Task OnClickAsync() => await OnItemClickAsync.InvokeAsync(DisplayYear);
-}
+<MdcButton @onclick="@OnClickAsync" Label="@DisplayYear.ToString()" Class="bmdc-dp-year-pad__button" ButtonStyle="@ButtonStyle" Disabled="@ButtonDisabled" />
