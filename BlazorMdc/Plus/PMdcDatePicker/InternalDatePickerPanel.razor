@@ -11,50 +11,40 @@
     </ul>
 
     <div class="bmdc-dp-menu">
-        <div class="bmdc-dp-menu__container">
-            <div class="bmdc-dp-menu__float-left">
-                @MonthText
-            </div>
-            <div class="bmdc-dp-menu__float-left">
-               <MdcIconButtonToggle @bind-Value="@ShowYearPad" Class="bmdc-dp-menu__icon-button" IconOn="arrow_drop_up" IconOff="arrow_drop_down" />
-            </div>
-
-            @if (!ShowYearPad)
-            {
-                <div class="bmdc-dp-menu__float-right bmdc-dp-menu__float-right-spaced">
-                    <MdcIconButton @onclick="@OnNextMonthClick" Class="bmdc-dp-menu__icon-button" Icon="chevron_right" Disabled="@NextMonthDisabled" />
-                </div>
-                <div class="bmdc-dp-menu__float-right bmdc-dp-menu__float-right-spaced">
-                    <MdcIconButton @onclick="@OnShowCurrentDateClick" Class="bmdc-dp-menu__icon-button" Icon="undo" />
-                </div>
-                <div class="bmdc-dp-menu__float-right">
-                    <MdcIconButton @onclick="@OnPreviousMonthClick" Class="bmdc-dp-menu__icon-button" Icon="chevron_left" Disabled="@PreviousMonthDisabled" />
-                </div>
-            }
+        <div class="bmdc-dp-menu__left">
+            <span>@MonthText</span>
+            <MdcIconButtonToggle @bind-Value="@ShowYearPad" Class="bmdc-dp-menu__icon-button" IconOn="arrow_drop_up" IconOff="arrow_drop_down" />
         </div>
+
+        @if (!ShowYearPad)
+        {
+            <div class="bmdc-dp-menu__right">
+                <MdcIconButton @onclick="@OnPreviousMonthClick" Class="bmdc-dp-menu__icon-button" Icon="chevron_left" Disabled="@PreviousMonthDisabled" />
+                <MdcIconButton @onclick="@OnShowCurrentDateClick" Class="bmdc-dp-menu__icon-button spaced" Icon="undo" />
+                <MdcIconButton @onclick="@OnNextMonthClick" Class="bmdc-dp-menu__icon-button spaced" Icon="chevron_right" Disabled="@NextMonthDisabled" />
+            </div>
+        }
     </div>
 
     @if (ShowYearPad)
     {
         <div class="bmdc-dp-year-pad">
-            <div class="mdc-list bmdc-dp-year-pad__years-line">
-                @foreach (var year in Years)
-                {
-                    <InternalDatePickerYearButton @key="@year" CurrentYear="@StartOfDisplayMonth.Year" DisplayYear="@year" OnItemClickAsync="@OnYearItemClick" MinDate="@MinDate" MaxDate="@MaxDate" />
-                }
-            </div>
+            @foreach (var year in Years)
+            {
+                <InternalDatePickerYearButton @key="@year" CurrentYear="@StartOfDisplayMonth.Year" DisplayYear="@year" OnItemClickAsync="@OnYearItemClick" MinDate="@MinDate" MaxDate="@MaxDate" />
+            }
         </div>
     }
     else
     {
         <div class="bmdc-dp-day-pad">
-            <div class="bmdc-dp-day-pad__weekdays-line">
+            <div class="bmdc-dp-day-pad__weekdays-block">
                 @foreach (var d in DaysOfWeek)
                 {
                     <span class="mdc-theme--text-disabled-on-background bmdc-dp-day-pad__weekday">@d</span>
                 }
             </div>
-            <div class="mdc-list bmdc-dp-day-pad__days-line">
+            <div class="mdc-list bmdc-dp-day-pad__days-block">
                 @foreach (var date in Dates)
                 {
                     <InternalDatePickerDayButton @key="@date" DateSelectionCriteria="@DateSelectionCriteria" CurrentDate="@InitialDate" DisplayDate="@date" StartOfDisplayMonth="@StartOfDisplayMonth" OnItemClickAsync="@OnDayItemClickAsync" MinDate="@MinDate" MaxDate="@MaxDate" />

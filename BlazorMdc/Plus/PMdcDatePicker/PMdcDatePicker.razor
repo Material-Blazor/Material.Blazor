@@ -1,8 +1,6 @@
 ﻿@namespace BlazorMdc
 @inherits MdcInputComponentBase<DateTime>
 
-@inject IJSRuntime JsRuntime
-
 
 <div @ref="ElementReference"
      @attributes="@AttributesToSplat()" >
@@ -37,14 +35,3 @@
         <InternalDatePickerPanel @ref="Panel" @bind-Value="@ReportingValue" DateSelectionCriteria="@DateSelectionCriteria" MinDate="@MinDate" MaxDate="@MaxDate" />
     </div>
 </div>
-
-
-@code {
-    //
-    //  2020-04-02  Mark Stega
-    //              Changed to use class & style mappers
-    //
-    //  2020-04-13  Mark Stega
-    //              Moved ClassMapper to constructor
-    //
-}

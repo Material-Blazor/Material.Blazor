@@ -1,25 +1,6 @@
-﻿.bmdc-dp-container {
-    display: inline-block;
-}
-
-.bmdc-dp-list {
-    height: 0 !important;
-    width: 0;
-    padding: 0 !important;
-    visibility: hidden;
-}
-
-.bmdc-dp-menu {
-    box-sizing: content-box;
-    padding: 16px 8px 12px 24px;
-    height: 24px;
-    font-weight: bold;
-    user-select: none;
-    width: 224px;
-    min-width: 224px;
-    overflow: visible !important;
-}
-
+﻿/************************************************
+    Applied to PMdcDatePicker.razor
+************************************************/
 .bmdc-dp-menu__surface-adjust {
     overflow: visible !important;
     display: inline-block;
@@ -30,115 +11,188 @@
     pointer-events: auto !important;
 }
 
-.bmdc-dp-menu__container {
-    position: relative;
-}
 
-.bmdc-dp-menu__icon-button {
-    height: 24px !important;
-    width: 24px !important;
-    padding: 0 !important;
-}
+/************************************************
+    Applied to InternalDatePickerPanel.razor
+************************************************/
 
-.bmdc-dp-menu__float-left {
-    float: left;
-    height: 24px;
-    line-height: 24px;
-    margin-right: 4px;
-}
+$dp-button-height: 28px;
+$dp-button-border-radius: $dp-button-height / 2;
+$dp-button-margin: 2px;
+$dp-day-pad-horizontal-margin: 16px;
+$dp-day-pad-bottom-margin: 8px;
 
-.bmdc-dp-menu__float-right {
-    float: right;
-    height: 24px;
-    line-height: 24px;
-}
+$dp-panel-width: 7 * ($dp-button-height + 2 * $dp-button-margin) + 2 * $dp-day-pad-horizontal-margin;
 
-.bmdc-dp-menu__float-right-spaced {
-    margin-left: 4px;
-}
+$dp-year-pad-padding-top: 4px;
+$dp-year-pad-padding-right: 0;
+$dp-year-pad-padding-bottom: 8px;
+$dp-year-pad-padding-left: 12px;
+$dp-year-pad-clear-space-right: 20px;
 
-.bmdc-dp-day-pad {
-    display: inline-block;
-    box-sizing: content-box;
-    padding: 0 16px 4px 16px; /* Want bottom padding of 8px, but inline-block adds 4px of whitespace already */
-    user-select: none;
-    overflow: visible;
-    width: 224px;
-}
+$dp-day-button-width: $dp-button-height;
+$dp-year-button-width: ($dp-panel-width - $dp-year-pad-padding-left - $dp-year-pad-clear-space-right) / 4 - 2 * $dp-button-margin;
 
-.bmdc-dp-day-pad__weekdays-line {
-    box-sizing: content-box;
-    padding: 0 0 12px 0!important;
+
+/*
+    Container
+*/
+.bmdc-dp-container {
+    display: flex;
+    flex-flow: column nowrap;
+    width: $dp-panel-width;
     overflow: hidden;
 }
 
+
+/*
+    Hidden List
+*/
+.bmdc-dp-list {
+    height: 0 !important;
+    width: 0;
+    padding: 0 !important;
+    visibility: hidden;
+}
+
+
+/*
+    Menu at top
+*/
+
+$dp-menu-height: 52px;
+$dp-menu-padding: 16px 8px 12px 24px;
+$dp-menu-icon-button-size: 24px;
+$dp-menu-icon-button-margin: 4px;
+
+
+.bmdc-dp-menu {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: $dp-menu-padding;
+    height: $dp-menu-height;
+    font-weight: bold;
+    user-select: none;
+    width: $dp-panel-width;
+    min-width: $dp-panel-width;
+    overflow: visible !important;
+}
+
+
+.bmdc-dp-menu__left {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+}
+
+
+.bmdc-dp-menu__right {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+}
+
+
+.bmdc-dp-menu__icon-button {
+    height: $dp-menu-icon-button-size !important;
+    width: $dp-menu-icon-button-size !important;
+    padding: 0 !important;
+}
+
+
+.bmdc-dp-menu__icon-button.spaced {
+    margin-left: $dp-menu-icon-button-margin;
+}
+
+
+/*
+    Day pad
+*/
+
+$dp-day-pad-weekdays-margin-bottom: 8px;
+$dp-day-pad-weekdays-size: $dp-button-height + $dp-button-margin;
+
+.bmdc-dp-day-pad {
+    display: flex;
+    flex-flow: column nowrap;
+    box-sizing: border-box;
+    padding: 0 $dp-day-pad-horizontal-margin $dp-day-pad-bottom-margin $dp-day-pad-horizontal-margin;
+    user-select: none;
+    overflow: visible;
+    width: $dp-panel-width;
+    background-color: lightcyan;
+}
+
+
+.bmdc-dp-day-pad__weekdays-block {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-bottom: $dp-day-pad-weekdays-margin-bottom;
+}
+
+
 .bmdc-dp-day-pad__weekday {
-    float: left;
     text-align: center;
-    height: 32px;
-    line-height: 32px;
-    width: 32px;
+    height: $dp-day-pad-weekdays-size;
+    line-height: $dp-day-pad-weekdays-size;
+    width: $dp-day-pad-weekdays-size;
     margin: auto;
     padding: 0;
 }
 
-.bmdc-dp-day-pad__days-line {
-    box-sizing: content-box;
+
+.bmdc-dp-day-pad__days-block {
+    display: flex;
+    flex-flow: row wrap;
     padding: 0 !important;
     overflow: hidden;
 }
 
+
 .bmdc-dp-day-pad__button {
-    float: left;
-    text-align: center;
-    height: 28px !important;
-    line-height: 28px;
-    width: 28px !important;
-    min-width: 28px !important;
-    max-width: 28px;
-    border-radius: 14px !important;
-    margin: 2px !important;
-    padding: 0 !important;
-    top: 0;
-    left: 0;
+    height: $dp-button-height;
+    width: $dp-day-button-width;
+    min-width: $dp-day-button-width;
+    max-width: $dp-day-button-width;
+    border-radius: $dp-button-border-radius;
+    margin: $dp-button-margin;
+    padding: 0;
+
+    .mdc-button__ripple {
+        border-radius: $dp-button-border-radius;
+    }
 }
 
-.bmdc-dp-day-pad__button__ripple {
-    border-radius: 14px !important;
-}
+
+/*
+    Year pad
+*/
+
+$dp-year-pad-rows: 7;
 
 .bmdc-dp-year-pad {
-    display: inline-block;
-    box-sizing: content-box;
-    padding: 4px 0 4px 12px; /* Want bottom padding of 8px, but inline-block adds 4px of whitespace already */
+    display: flex;
+    flex-flow: row wrap;
+    padding: $dp-year-pad-padding-top $dp-year-pad-padding-right $dp-year-pad-padding-bottom $dp-year-pad-padding-left;
     user-select: none;
-    overflow: visible;
-    max-height: 228px;
-    width: 256px;
-}
-
-.bmdc-dp-year-pad__years-line {
-    box-sizing: content-box;
-    padding: 0 !important;
-    overflow: auto;
-    max-height: 228px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    max-height: $dp-year-pad-rows * ($dp-button-height + 2 * $dp-button-margin);
+    background-color: mistyrose;
 }
 
 .bmdc-dp-year-pad__button {
-    float: left;
-    text-align: center;
-    height: 28px !important;
-    line-height: 28px;
-    width: 52px !important;
-    min-width: 52px !important;
-    max-width: 52px;
-    border-radius: 14px !important;
-    margin: 2px !important;
-    padding: 0 !important;
-    top: 0;
-    left: 0;
-}
+    height: $dp-button-height;
+    width: $dp-year-button-width;
+    min-width: $dp-year-button-width;
+    max-width: $dp-year-button-width;
+    border-radius: $dp-button-border-radius;
+    margin: $dp-button-margin;
+    padding: 0;
 
-.bmdc-dp-year-pad__button__ripple {
-    border-radius: 14px !important;
+    .mdc-button__ripple {
+        border-radius: $dp-button-border-radius;
+    }
 }
