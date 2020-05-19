@@ -1,9 +1,9 @@
 ﻿@namespace BlazorMdc
-
 @inherits MdcInputComponentBase<int>
 
 
-<PMdcNumericDoubleField @bind-Value="@dblVal"
+<PMdcNumericDoubleField @attributes="@AttributesToSplat()"
+                        @bind-Value="@DblVal"
                         TextInputStyle="TextInputStyle"
                         Label="@Label"
                         NoLabel="@NoLabel"
@@ -15,37 +15,4 @@
                         Magnitude="@Magnitude"
                         Min="@Min"
                         Max="@Max"
-                        DecimalPlaces="0"
-                        @attributes="@AttributesToSplat()" />
-
-
-@code {
-#nullable enable annotations
-    [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
-    [Parameter] public string Label { get; set; }
-    [Parameter] public bool NoLabel { get; set; } = false;
-    [Parameter] public string? LeadingIcon { get; set; }
-    [Parameter] public string? TrailingIcon { get; set; }
-    [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
-    [Parameter] public string NumericFormat { get; set; }
-    [Parameter] public string? NumericSingularFormat { get; set; }
-    [Parameter] public MdcNumericInputMagnitude Magnitude { get; set; } = MdcNumericInputMagnitude.Normal;
-    [Parameter] public double? Min { get; set; }
-    [Parameter] public double? Max { get; set; }
-#nullable restore annotations
-
-
-    private double dblVal
-    {
-        get => (double)ReportingValue;
-        set => ReportingValue = Convert.ToInt32(Math.Round(value, 0));
-    }
-
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        ForceShouldRenderToTrue = true;
-    }
-}
+                        DecimalPlaces="0" />
