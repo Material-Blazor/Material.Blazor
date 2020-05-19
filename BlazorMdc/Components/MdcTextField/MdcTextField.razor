@@ -1,14 +1,11 @@
 ﻿@namespace BlazorMdc
-
 @inherits MdcInputComponentBase<string>
-
-@inject IJSRuntime jsRuntime
 
 
 <div @ref="TextFieldReference"
      @attributes="@AttributesToSplat(SplatType.ClassAndStyleOnly)">
 
-    @if (appliedTextInputStyle == MdcTextInputStyle.Filled || appliedTextInputStyle == MdcTextInputStyle.FullWidth)
+    @if (AppliedTextInputStyle == MdcTextInputStyle.Filled || AppliedTextInputStyle == MdcTextInputStyle.FullWidth)
     {
         <span class="mdc-text-field__ripple"></span>
     }
@@ -18,7 +15,7 @@
         <PMdcIcon Icon="@LeadingIcon" IconFoundry="@IconFoundry" Class="mdc-text-field__icon mdc-text-field__icon--leading" tabindex="-1" role="button" />
     }
 
-    <input @ref="@inputReference"
+    <input @ref="@InputReference"
            id="@Id"
            class="mdc-text-field__input @Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle)) @FieldClass"
            @bind="@ReportingValue"
@@ -29,7 +26,7 @@
         <PMdcIcon Icon="@TrailingIcon" IconFoundry="@IconFoundry" Class="mdc-text-field__icon mdc-text-field__icon--trailing" tabindex="-1" role="button" />
     }
 
-    @if (appliedTextInputStyle == MdcTextInputStyle.Outlined)
+    @if (AppliedTextInputStyle == MdcTextInputStyle.Outlined)
     {
         <span class="mdc-notched-outline">
             <span class="mdc-notched-outline__leading"></span>
@@ -37,7 +34,7 @@
             @if (!NoLabel)
             {
                 <span class="mdc-notched-outline__notch">
-                    <span class="mdc-floating-label @floatingLabelClass" for="@Id" id="@labelId">@Label</span>
+                    <span class="mdc-floating-label @FloatingLabelClass" for="@Id" id="@labelId">@Label</span>
                 </span>
             }
 
@@ -46,87 +43,11 @@
     }
     else
     {
-        @if (appliedTextInputStyle == MdcTextInputStyle.Filled && ! NoLabel)
+        @if (AppliedTextInputStyle == MdcTextInputStyle.Filled && ! NoLabel)
         {
-            <span class="mdc-floating-label @floatingLabelClass" for="@Id" id="@labelId">@Label</span>
+            <span class="mdc-floating-label @FloatingLabelClass" for="@Id" id="@labelId">@Label</span>
         }
 
         <span class="mdc-line-ripple"></span>
     }
 </div>
-
-@code {
-    //
-    //  2020-04-02  Mark Stega
-    //              Changed to use class & style mappers
-    //
-    //  2020-04-13  Mark Stega
-    //              Moved ClassMapper to constructor
-    //
-
-#nullable enable annotations
-    [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
-    [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
-    [Parameter] public string Label { get; set; } = "";
-    [Parameter] public bool NoLabel { get; set; } = false;
-    [Parameter] public string? LeadingIcon { get; set; }
-    [Parameter] public string? TrailingIcon { get; set; }
-    [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
-#nullable restore annotations
-
-
-    private MdcTextInputStyle appliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
-    internal ElementReference TextFieldReference;
-    private ElementReference inputReference;
-    private string labelId = Guid.NewGuid().ToString();
-    private string floatingLabelClass;
-
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        ClassMapper
-            .Add("mdc-text-field")
-            .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
-            .AddIf("mdc-text-field--filled", () => appliedTextInputStyle == MdcTextInputStyle.Filled)
-            .AddIf("mdc-text-field--outlined", () => appliedTextInputStyle == MdcTextInputStyle.Outlined)
-            .AddIf("mdc-text-field--filled mdc-text-field--fullwidth", () => appliedTextInputStyle == MdcTextInputStyle.FullWidth)
-            .AddIf("mdc-text-field--no-label", () => NoLabel)
-            .AddIf("mdc-text-field--disabled", () => Disabled)
-            .AddIf("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
-            .AddIf("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
-
-
-        if (!NoLabel && appliedTextInputStyle != MdcTextInputStyle.FullWidth)
-        {
-            ComponentPureHtmlAttributes.Add("aria-labelledby", labelId);
-        }
-        else if (!string.IsNullOrWhiteSpace(Label))
-        {
-            ComponentPureHtmlAttributes.Add("aria-label", Label);
-        }
-
-        ForceShouldRenderToTrue = true;
-    }
-
-
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
-
-        var leading = new MdcIconHelper(CascadingDefaults, (string)LeadingIcon, IconFoundry);
-        var trailing = new MdcIconHelper(CascadingDefaults, (string)TrailingIcon, IconFoundry);
-
-        floatingLabelClass = string.IsNullOrEmpty(ReportingValue) ? "" : "mdc-floating-label--float-above";
-    }
-
-
-    private protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.textField.init", TextFieldReference);
-
-
-    internal async Task Select()
-    {
-        await jsRuntime.InvokeAsync<object>("BlazorMdc.textField.select", inputReference);
-    }
-}

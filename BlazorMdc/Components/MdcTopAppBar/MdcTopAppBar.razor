@@ -1,12 +1,8 @@
 ﻿@namespace BlazorMdc
-
 @inherits MdcComponentBase
 
-@inject IJSRuntime jsRuntime
 
-
-
-<header @ref="headerElem"
+<header @ref="HeaderElem"
         id="app-bar"
         @attributes="AttributesToSplat(SplatType.ExcludeEvents)">
 
@@ -24,40 +20,3 @@
         </section>
     </div>
 </header>
-
-
-
-@code {
-    //
-    //  2020-04-02  Mark Stega
-    //              Changed to use class & style mappers
-    //
-    //  2020-04-13  Mark Stega
-    //              Moved ClassMapper to constructor
-    //
-    [Parameter] public string Title { get; set; }
-    [Parameter] public string NavIcon { get; set; }
-    [Parameter] public IMdcIconFoundry IconFoundry { get; set; }
-    [Parameter] public string NavAriaLabel { get; set; }
-    [Parameter] public RenderFragment ChildContent { get; set; }
-    [Parameter] public string ScrollTarget { get; set; }
-    [Parameter] public MdcTopAppBarType TopAppBarType { get; set; } = MdcTopAppBarType.Standard;
-
-    ElementReference headerElem;
-
-
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
-
-        ClassMapper
-            .Clear()
-            .Add("mdc-top-app-bar")
-            .AddIf($"mdc-top-app-bar--{TopAppBarType.ToString().ToLower()}", () => TopAppBarType != MdcTopAppBarType.Standard && TopAppBarType != MdcTopAppBarType.ShortCollapsed)
-            .AddIf($"mdc-top-app-bar--short mdc-top-app-bar--short-collapsed", () => TopAppBarType == MdcTopAppBarType.ShortCollapsed)
-            .Add("app-bar");
-    }
-
-
-    private protected override async Task InitializeMdcComponent() =>await jsRuntime.InvokeAsync<object>("BlazorMdc.topAppBar.init", headerElem, ScrollTarget);
-}
