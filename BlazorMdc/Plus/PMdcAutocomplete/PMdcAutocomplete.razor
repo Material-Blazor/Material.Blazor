@@ -1,16 +1,10 @@
 ﻿@namespace BlazorMdc
-
 @inherits MdcInputComponentBase<string>
-@implements IDisposable
-
-@using System.Text.RegularExpressions
-
-@inject IJSRuntime jsRuntime
 
 
 <div>
-    <MdcTextField @ref="@textField"
-                  @bind-Value="@selectInfo.SelectedText" 
+    <MdcTextField @ref="@TextField"
+                  @bind-Value="@SelectInfo.SelectedText" 
                   TextAlignStyle="@TextAlignStyle"
                   TextInputStyle="@TextInputStyle"
                   Label="@Label"
@@ -23,12 +17,12 @@
                   @attributes="@AttributesToSplat()" />
 
     <div class="mdc-menu-surface--anchor">
-        <div @ref="menuReference" class="mdc-menu mdc-menu-surface" style="visibility:visible; min-height:1rem; min-width: 20rem;" @onfocusin="OnMenuFocusIn" @onfocusout="OnMenuFocusOut">
+        <div @ref="MenuReference" class="mdc-menu mdc-menu-surface" style="visibility:visible; min-height:1rem; min-width: 20rem;" @onfocusin="OnMenuFocusIn" @onfocusout="OnMenuFocusOut">
             <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="0">
-                @if (isOpen)
-                {@foreach (var item in selectInfo.SelectList)
-                    {
-                        var clickItem = string.Copy(item);
+                @if (IsOpen)
+                {@foreach (var item in SelectInfo.SelectList)
+                {
+                    var clickItem = string.Copy(item);
 
                         <li @key="@item" class="mdc-list-item" role="menuitem" @onclick="@(() => OnItemClickAsync(clickItem))" tabindex="0" disabled="@Disabled">
                             <span class="mdc-list-item__text">@item</span>
@@ -39,216 +33,3 @@
         </div>
     </div>
 </div>
-
-
-
-@code {
-    //
-    //  2020-04-02  Mark Stega
-    //              Changed to use class & style mappers
-    //
-    //  2020-04-13  Mark Stega
-    //              Moved ClassMapper to constructor
-    //
-    private class SelectInfo
-    {
-        public string SelectedText;
-        public IEnumerable<string> SelectList;
-        public bool PotentialMatchesFound => SelectList.Count() > 0;
-        public bool FullMatchFound => (SelectList.Count() == 1) && SelectList.Contains(SelectedText);
-    }
-
-    private class SelectItem
-    {
-        public string Item;
-        public bool IgnoreWhitespace;
-        public string SearchTarget => IgnoreWhitespace ? Regex.Replace(Item, @"\s+", String.Empty) : Item;
-    }
-
-
-#nullable enable annotations
-    [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
-    [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
-    [Parameter] public string Label { get; set; } = "";
-    [Parameter] public bool NoLabel { get; set; } = false;
-    [Parameter] public string? LeadingIcon { get; set; }
-    [Parameter] public string? TrailingIcon { get; set; }
-    [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
-    [Parameter] public bool IgnoreWhitespace { get; set; } = false;
-    [Parameter] public bool AllowBlankResult { get; set; } = false;
-    [Parameter] public bool MatchFromItemStart { get; set; } = false;
-    [Parameter] public IEnumerable<string> SelectItems { get; set; }
-#nullable restore annotations
-
-
-    private DotNetObjectReference<PMdcAutocomplete> objectReference;
-    private MdcTextField textField;
-    private ElementReference menuReference;
-
-
-    private SelectItem[] mySelectItems;
-    private SelectInfo selectInfo = new SelectInfo();
-    private bool isOpen = false;
-    private bool menuHasFocus = false;
-
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        objectReference = DotNetObjectReference.Create(this);
-    }
-
-
-    public void Dispose()
-    {
-        GC.SuppressFinalize(this);
-        objectReference?.Dispose();
-    }
-
-
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
-
-        SetParameters();
-    }
-
-
-    protected void SetParameters()
-    {
-        mySelectItems = (from i in SelectItems
-                         select new SelectItem
-                         {
-                             Item = i,
-                             IgnoreWhitespace = IgnoreWhitespace
-                         }).ToArray();
-
-        selectInfo = BuildSelectList(ReportingValue);
-
-        StateHasChanged();
-    }
-
-
-    private SelectInfo BuildSelectList(string fieldText)
-    {
-        var regexOptions = RegexOptions.IgnoreCase | (IgnoreWhitespace ? RegexOptions.IgnorePatternWhitespace : 0);
-
-        var fullMatchRegex = new Regex($"^{fieldText}$", regexOptions);
-        var fullMatches = (from f in mySelectItems
-                           where fullMatchRegex.Matches(f.SearchTarget).Count > 0
-                           select f.Item).ToArray();
-
-        if (fullMatches.Count() > 0)
-        {
-            return new SelectInfo()
-            {
-                SelectedText = fullMatches.FirstOrDefault(),
-                SelectList = fullMatches
-            };
-        }
-
-        var startMatch = MatchFromItemStart ? "^" : "";
-        var partialMatchRegex = new Regex($"{startMatch}{fieldText}", regexOptions);
-        var partialMatches = (from f in mySelectItems
-                              where partialMatchRegex.Matches(f.SearchTarget).Count > 0
-                              select f.Item).ToArray();
-
-        return new SelectInfo()
-        {
-            SelectedText = fieldText,
-            SelectList = partialMatches
-        };
-    }
-
-
-    private async Task OnInput(ChangeEventArgs args)
-    {
-        selectInfo = BuildSelectList((string)args.Value);
-
-        if (selectInfo.FullMatchFound)
-        {
-            await CloseMenuAsync();
-            ReportingValue = selectInfo.SelectedText.Trim();
-            SetParameters();
-        }
-
-        await OpenMenuAsync();
-    }
-
-
-    private async Task OnTextFocusOutAsync()
-    {
-        await Task.Delay(100);
-
-        if (!menuHasFocus)
-        {
-            await CloseMenuAsync(true);
-
-            if (selectInfo.FullMatchFound || (AllowBlankResult && string.IsNullOrWhiteSpace(selectInfo.SelectedText)))
-            {
-                ReportingValue = selectInfo.SelectedText.Trim();
-            }
-
-            SetParameters();
-        }
-    }
-
-
-    private void OnMenuFocusIn()
-    {
-        menuHasFocus = true;
-    }
-
-
-    private void OnMenuFocusOut()
-    {
-        menuHasFocus = false;
-    }
-
-
-    private async Task OnItemClickAsync(string menuValue)
-    {
-        await CloseMenuAsync();
-        selectInfo = BuildSelectList(menuValue);
-        ReportingValue = menuValue.Trim();
-        SetParameters();
-    }
-
-
-    [JSInvokable("NotifyClosedAsync")]
-    public async Task NotifyClosedAsync()
-    {
-        isOpen = false;
-        await Task.CompletedTask;
-    }
-
-
-    public async Task OpenMenuAsync(bool forceOpen = false)
-    {
-        if (!isOpen || forceOpen)
-        {
-            isOpen = true;
-            await jsRuntime.InvokeAsync<string>("BlazorMdc.autoComplete.open", menuReference, objectReference);
-        }
-    }
-
-
-    public async Task CloseMenuAsync(bool forceClose = false)
-    {
-        if (isOpen || forceClose)
-        {
-            isOpen = false;
-            await jsRuntime.InvokeAsync<string>("BlazorMdc.autoComplete.close", menuReference, objectReference);
-        }
-    }
-
-
-    protected override bool ShouldRender()
-    {
-        return true;
-    }
-
-
-    private protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.autoComplete.init", textField.TextFieldReference);
-}
