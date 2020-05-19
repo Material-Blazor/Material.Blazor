@@ -16,6 +16,17 @@ namespace BlazorMdc
     /// Throws a <see cref="System.InvalidOperationException"/> if <see cref="NavigateTo(string, bool)"/>
     /// is called without a <see cref="PMdcAnimatedNavigation"/> component used in the app.
     /// </para>
+    /// <example>
+    /// <para>You can optionally add configuration when you add this to the service collection:</para>
+    /// <code>
+    /// services.AddPMdcToastService(new PMdcToastServiceConfiguration()
+    /// {
+    ///     Position = PMdcToastPosition.TopRight,
+    ///     CloseMethod = PMdcToastCloseMethod.Timeout,
+    ///     ... etc
+    /// });
+    /// </code>
+    /// </example>
     /// </summary>
     public interface IPMdcAnimatedNavigationManager
     {

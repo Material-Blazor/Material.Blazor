@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace BlazorMdc
 {
+    /// <summary>
+    /// Configuration for <see cref="IPmdcToastService"/>.
+    /// </summary>
     public class PMdcToastServiceConfiguration
     {
         public const PMdcToastPosition DefaultPosition = PMdcToastPosition.BottomRight;
@@ -10,12 +13,16 @@ namespace BlazorMdc
         public const bool DefaultShowIcons = true;
         public const PMdcToastCloseMethod DefaultCloseMethod = PMdcToastCloseMethod.TimeoutAndCloseButton;
         public const int DefaultTimeout = 3000; 
-        public readonly string DefaultInfoIconName = "notifications";
-        public readonly string DefaultSuccessIconName = "done";
-        public readonly string DefaultWarningIconName = "warning";
-        public readonly string DefaultErrorIconName = "error_outline";
+        public const string DefaultInfoIconName = "notifications";
+        public const string DefaultSuccessIconName = "done";
+        public const string DefaultWarningIconName = "warning";
+        public const string DefaultErrorIconName = "error_outline";
         
 
+        /// <summary>
+        /// Toast configuration update callback. Is this ever actually used?
+        /// </summary>
+        [Obsolete]
         internal event Action OnUpdate;
 
 

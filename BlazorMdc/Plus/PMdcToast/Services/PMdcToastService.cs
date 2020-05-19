@@ -4,12 +4,13 @@
 //
 
 using System;
-using System.Runtime.InteropServices;
-using Microsoft.AspNetCore.Components;
 
 namespace BlazorMdc
 {
-    public class PMdcToastService : IPmdcToastService
+    /// <summary>
+    /// The internal implementation of <see cref="IPmdcToastService"/>.
+    /// </summary>
+    internal class PMdcToastService : IPmdcToastService
     {
         ///<inheritdoc/>
         public PMdcToastServiceConfiguration Configuration { get; set; } = new PMdcToastServiceConfiguration();

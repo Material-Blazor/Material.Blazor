@@ -3,8 +3,10 @@ using System;
 
 namespace BlazorMdc
 {
-    /// <inheritdoc/>
-    public class PMdcAnimatedNavigationManager : IPMdcAnimatedNavigationManager
+    /// <summary>
+    /// The internal implementation of <see cref="IPMdcAnimatedNavigationManager"/>.
+    /// </summary>
+    internal class PMdcAnimatedNavigationManager : IPMdcAnimatedNavigationManager
     {
         private readonly NavigationManager NavigationManager;
 
