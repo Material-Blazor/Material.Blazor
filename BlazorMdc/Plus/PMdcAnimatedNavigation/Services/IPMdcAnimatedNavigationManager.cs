@@ -5,13 +5,16 @@ namespace BlazorMdc
     /// <summary>
     /// Interface for the animated navigation manager service. Animated navigations augment
     /// <see cref="Microsoft.AspNetCore.Components.NavigationManager"/> with minor animation.
-    /// 
     /// <para>
     /// First the current page fades out for 40% of the animation period, followed by a call to
     /// <see cref="Microsoft.AspNetCore.Components.NavigationManager.NavigateTo(string, bool)"/>
     /// before the new page fades in for the remaining 60% of the animation period. The default
     /// animation period is 500ms (but seems faster due to the end of the fade in being imperceptible),
     /// and animation is disapplied by default.
+    /// </para>
+    /// <para>
+    /// Throws a <see cref="System.InvalidOperationException"/> if <see cref="NavigateTo(string, bool)"/>
+    /// is called without a <see cref="PMdcAnimatedNavigation"/> component used in the app.
     /// </para>
     /// </summary>
     public interface IPMdcAnimatedNavigationManager
