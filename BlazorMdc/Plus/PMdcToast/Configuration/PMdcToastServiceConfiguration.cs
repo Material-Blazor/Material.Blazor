@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace BlazorMdc
 {
+    /// <summary>
+    /// Configuration for <see cref="IPmdcToastService"/>.
+    /// </summary>
     public class PMdcToastServiceConfiguration
     {
         public const PMdcToastPosition DefaultPosition = PMdcToastPosition.BottomRight;
@@ -9,13 +13,16 @@ namespace BlazorMdc
         public const bool DefaultShowIcons = true;
         public const PMdcToastCloseMethod DefaultCloseMethod = PMdcToastCloseMethod.TimeoutAndCloseButton;
         public const int DefaultTimeout = 3000; 
-        public readonly MdcIcon DefaultInfoIcon = new MdcIcon(null, "notifications", MdcIcon.MIFoundry());
-        public readonly MdcIcon DefaultSuccessIcon = new MdcIcon(null, "done", MdcIcon.MIFoundry());
-        public readonly MdcIcon DefaultWarningIcon = new MdcIcon(null, "warning", MdcIcon.MIFoundry());
-        public readonly MdcIcon DefaultErrorIcon = new MdcIcon(null, "error_outline", MdcIcon.MIFoundry());
-        public readonly ulong DefaultIconFoundry = (ulong)MdcIconFoundryName.MaterialIcons | (ulong)MdcIconMITheme.Filled;
+        public const string DefaultInfoIconName = "notifications";
+        public const string DefaultSuccessIconName = "done";
+        public const string DefaultWarningIconName = "warning";
+        public const string DefaultErrorIconName = "error_outline";
+        
 
-
+        /// <summary>
+        /// Toast configuration update callback. Is this ever actually used?
+        /// </summary>
+        [Obsolete]
         internal event Action OnUpdate;
 
 
@@ -199,83 +206,102 @@ namespace BlazorMdc
         }
 
 
-        private MdcIcon _infoIcon;
+        private string _infoIconName;
         /// <summary>
         /// Icon for an Info toast.
         /// </summary>
-        public MdcIcon InfoIcon
+        public string InfoIconName
         {
-            get => _infoIcon;
+            get => _infoIconName;
             set
             {
-                if (value != _infoIcon)
+                if (value != _infoIconName)
                 {
-                    _infoIcon = value;
+                    _infoIconName = value;
                     OnUpdate?.Invoke();
                 }
             }
         }
 
 
-        private MdcIcon _successIcon;
+        private string _successIconName;
         /// <summary>
         /// Icon for an Success toast.
         /// </summary>
-        public MdcIcon SuccessIcon
+        public string SuccessIconName
         {
-            get => _successIcon;
+            get => _successIconName;
             set
             {
-                if (value != _successIcon)
+                if (value != _successIconName)
                 {
-                    _successIcon = value;
+                    _successIconName = value;
                     OnUpdate?.Invoke();
                 }
             }
         }
 
 
-        private MdcIcon _warningIcon;
+        private string _warningIconName;
         /// <summary>
         /// Icon for an waWrning toast.
         /// </summary>
-        public MdcIcon WarningIcon
+        public string WarningIconName
         {
-            get => _warningIcon;
+            get => _warningIconName;
             set
             {
-                if (value != _warningIcon)
+                if (value != _warningIconName)
                 {
-                    _warningIcon = value;
+                    _warningIconName = value;
                     OnUpdate?.Invoke();
                 }
             }
         }
 
 
-        private MdcIcon _errorIcon;
+        private string _errorIconName;
         /// <summary>
         /// Icon for an Error toast.
         /// </summary>
-        public MdcIcon ErrorIcon
+        public string ErrorIconName
         {
-            get => _errorIcon;
+            get => _errorIconName;
             set
             {
-                if (value != _errorIcon)
+                if (value != _errorIconName)
                 {
-                    _errorIcon = value;
+                    _errorIconName = value;
                     OnUpdate?.Invoke();
                 }
             }
         }
 
+
+        private IMdcIconFoundry _iconFoundry;
+        /// <summary>
+        /// Toast icon foundry.
+        /// </summary>
+        public IMdcIconFoundry IconFoundry
+        {
+            get => _iconFoundry;
+            set
+            {
+                if (!EqualityComparer<IMdcIconFoundry>.Default.Equals(value, _iconFoundry))
+                {
+                    _iconFoundry = value;
+                    OnUpdate?.Invoke();
+                }
+            }
+        }
+
+
         public PMdcToastServiceConfiguration()
         {
-            _infoIcon = DefaultInfoIcon;
-            _successIcon = DefaultSuccessIcon;
-            _warningIcon = DefaultWarningIcon;
-            _errorIcon = DefaultErrorIcon;
+            _infoIconName = DefaultInfoIconName;
+            _successIconName = DefaultSuccessIconName;
+            _warningIconName = DefaultWarningIconName;
+            _errorIconName = DefaultErrorIconName;
         }
     }
 }

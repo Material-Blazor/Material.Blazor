@@ -1,20 +1,42 @@
-﻿using Microsoft.AspNetCore.Components;
-using System;
+﻿using System.Collections.Generic;
 
 namespace BlazorMdc
 {
+    /// <summary>
+    /// Font Awesome icon.
+    /// </summary>
     internal class IconFA : IMdcIcon
     {
+        /// <inheritdoc />
         public string Class => $"fa{IconStyleText} {IconNameText}";
 
+
+        /// <inheritdoc />
         public string Text => "";
 
+        
+        private readonly Dictionary<string, object> _attributes = new Dictionary<string, object>();
+        /// <inheritdoc />
+        public IDictionary<string, object> Attributes => _attributes;
+
+
+        /// <inheritdoc />
         public string IconName { get; }
 
-        public bool RequiresWhiteFilter => false;
 
+        /// <inheritdoc />
+        public bool RequiresColorFilter => false;
+
+
+        /// <summary>
+        /// The Font Awesome style.
+        /// </summary>
         public MdcIconFAStyle Style { get; }
 
+
+        /// <summary>
+        /// The Font Awesome relative size.
+        /// </summary>
         public MdcIconFARelativeSize RelativeSize { get; }
 
 

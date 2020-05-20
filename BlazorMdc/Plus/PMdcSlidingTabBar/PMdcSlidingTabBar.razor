@@ -38,38 +38,3 @@ else
         @Content(item)
     </Content>
 </PMdcSlidingContent>
-
-
-@code {
-    //
-    //  2020-04-02  Mark Stega
-    //              Changed to use class & style mappers
-    //
-    private int _tabIndex;
-
-    [Parameter]
-    public int TabIndex
-    {
-        get => _tabIndex;
-
-        set
-        {
-            if (value != _tabIndex)
-            {
-                _tabIndex = value;
-                TabIndexChanged.InvokeAsync(value);
-            }
-        }
-    }
-
-    [Parameter] public EventCallback<int> TabIndexChanged { get; set; }
-
-
-    [Parameter] public bool StackIcons { get; set; }
-    
-    
-    [Parameter] public IEnumerable<TItem> Items { get; set; }
-    [Parameter] public RenderFragment<TItem> Label { get; set; }
-    [Parameter] public RenderFragment<TItem> Icon { get; set; }
-    [Parameter] public RenderFragment<TItem> Content { get; set; }
-}

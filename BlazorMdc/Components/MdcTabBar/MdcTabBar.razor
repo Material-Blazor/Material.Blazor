@@ -1,16 +1,11 @@
 ﻿@namespace BlazorMdc
-
+@inherits MdcComponentBase
 @typeparam TItem
 
-@inherits MdcComponentBase
 
-@inject IJSRuntime jsRuntime
-
-
-<div @ref="elementReference"
+<div @ref="ElementReference"
      role="tablist"
-     class="@ClassMapper.ToString()"
-     style="@StyleMapper.ToString()">
+     @attributes="@AttributesToSplat()">
 
     <div class="mdc-tab-scroller">
         <div class="mdc-tab-scroller__scroll-area">
@@ -23,11 +18,11 @@
                     string buttonActive = selected ? "mdc-tab--active" : "";
                     string indicatorActive = selected ? "mdc-tab-indicator--active" : "";
 
-                    <button @key="item" class="mdc-tab @stackClass @buttonActive" role="tab" aria-selected="@selected" tabindex="-1" @onclick="(_ => OnTabClickAsync(index))">
+                    <button @key="item" class="mdc-tab @StackClass @buttonActive" role="tab" aria-selected="@selected" tabindex="-1" @onclick="(_ => OnTabClickAsync(index))">
                         <span class="mdc-tab__content">
                             @if (Icon != null)
                             {
-                                <span class="mdc-tab__icon material-icons" aria-hidden="true">@Icon(item)</span>
+                                @Icon(item)
                             }
 
                             <span class="mdc-tab__text-label">@Label(item)</span>
@@ -42,106 +37,3 @@
         </div>
     </div>
 </div>
-
-
-@code {
-    private int _tabIndex;
-
-    [Parameter]
-    public int TabIndex
-    {
-        get => _tabIndex;
-
-        set
-        {
-            if (!hasRendered)
-            {
-                _tabIndex = value;
-            }
-            else if (value != _tabIndex)
-            {
-                SetTabIndex(value);
-                _tabIndex = value;
-            }
-        }
-    }
-
-    [Parameter] public EventCallback<int> TabIndexChanged { get; set; }
-
-
-    [Parameter] public bool StackIcons { get; set; }
-    
-    
-    [Parameter] public IEnumerable<TItem> Items { get; set; }
-    [Parameter] public RenderFragment<TItem> Label { get; set; }
-    [Parameter] public RenderFragment<TItem> Icon { get; set; }
-
-
-    private string stackClass => StackIcons ? "mdc-tab--stacked" : "";
-    private ElementReference elementReference;
-    private bool hasRendered = false;
-    private bool allowNextRender = false;
-    private int stateNextIndex = -1;
-
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        ClassMapper
-            .Add("mdc-tab-bar");
-    }
-
-
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
-
-        allowNextRender = true;
-    }
-
-
-    private async Task OnTabClickAsync(int index)
-    {
-        if (index != TabIndex)
-        {
-            _tabIndex = index;
-            await TabIndexChanged.InvokeAsync(index).ConfigureAwait(false);
-        }
-    }
-
-
-    public void SetTabIndex(int index)
-    {
-        stateNextIndex = index;
-        allowNextRender = true;
-        StateHasChanged();
-    }
-
-
-    protected override bool ShouldRender()
-    {
-        if (allowNextRender)
-        {
-            allowNextRender = false;
-            return true;
-        }
-
-        return false;
-    }
-
-
-    protected async override Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.tabBar.init", elementReference);
-            hasRendered = true;
-        }
-        else if (stateNextIndex >= 0)
-        {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.tabBar.setTab", elementReference, stateNextIndex);
-            stateNextIndex = -1;
-        }
-    }
-}

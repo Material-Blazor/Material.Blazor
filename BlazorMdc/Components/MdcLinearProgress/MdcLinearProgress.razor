@@ -1,13 +1,19 @@
 ﻿@namespace BlazorMdc
+@inherits MdcInputComponentBase<double>
 
-@inherits MdcComponentBase
 
-<div role="progressbar"
-     class="@ClassMapper.ToString()"
-     style="@StyleMapper.ToString()">
+<div @ref="@ElementReference"
+     role="progressbar" 
+     @attributes="AttributesToSplat()"
+     aria-label="@AriaLabel"
+     aria-valuemin="0" 
+     aria-valuemax="1" 
+     aria-valuenow="@IntialValue">
 
-    <div class="mdc-linear-progress__buffering-dots"></div>
-    <div class="mdc-linear-progress__buffer"></div>
+    <div class="mdc-linear-progress__buffer">
+        <div class="mdc-linear-progress__buffer-bar"></div>
+        <div class="mdc-linear-progress__buffer-dots"></div>
+    </div>
     <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
         <span class="mdc-linear-progress__bar-inner"></span>
     </div>
@@ -15,20 +21,3 @@
         <span class="mdc-linear-progress__bar-inner"></span>
     </div>
 </div>
-
-@code {
-    //
-    //  2020-04-02  Mark Stega
-    //              Changed to use class & style mappers
-    //
-    [Parameter] public bool Indeterminant { get; set; } = true;
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        ClassMapper
-            .Add("mdc-linear-progress")
-            .AddIf("mdc-linear-progress--indeterminate", () => Indeterminant);
-    }
-}

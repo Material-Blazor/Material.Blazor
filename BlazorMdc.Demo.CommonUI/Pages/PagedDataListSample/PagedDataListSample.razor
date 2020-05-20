@@ -119,16 +119,16 @@
         <MdcDataTable Items="@dataList4.CurrentPage"
                       Context="person"
                       Class="my-full-width">
-            <Header>
+            <TableHeader>
                 <th class="mdc-data-table__header-cell my-header-bold" role="columnheader" scope="col">Salutation</th>
                 <th class="mdc-data-table__header-cell my-header-bold" role="columnheader" scope="col">Given Name</th>
                 <th class="mdc-data-table__header-cell my-header-bold" role="columnheader" scope="col">Family Name</th>
-            </Header>
-            <Row>
+            </TableHeader>
+            <TableRow>
                 <td class="mdc-data-table__cell">@person.Salutation</td>
                 <td class="mdc-data-table__cell">@person.GivenName</td>
                 <td class="mdc-data-table__cell">@person.FamilyName</td>
-            </Row>
+            </TableRow>
         </MdcDataTable>
     </ListTemplate>
 </PMdcPagedDataList>

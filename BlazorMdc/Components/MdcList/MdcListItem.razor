@@ -1,65 +1,17 @@
 ﻿@namespace BlazorMdc
-
 @inherits MdcComponentBase
 
+
 <li role="menuitem"
-    @onclick="InternalClickHandler"
-    class="@ClassMapper.ToString()"
-    style="@StyleMapper.ToString()">
+    @attributes="@AttributesToSplat()"
+    @onclick="InternalClickHandler">
 
     @if (LeadingIcon != null)
     {
         <span class="mdc-list-item__graphic mdc-menu__selection-group-icon">
-            <i class="@icon.Class">@icon.Text</i>
+            <PMdcIcon Icon="@LeadingIcon" IconFoundry="@IconFoundry" />
         </span>
     }
 
     <span class="mdc-list-item__text">@Text</span>
 </li>
-
-@code {
-    //
-    //  2020-04-02  Mark Stega
-    //              Renamed from MdcMenuListItem
-    //              Added NavRef parameter
-    //
-    //  2020-04-04  Mark Stega
-    //              Use ClassMapper
-    //              Refined disabled handling
-    //              Removed Drawer actions, this really did not belong in this class
-    //
-    //  2020-04-13  Mark Stega
-    //              Moved ClassMapper to constructor
-    //
-
-#nullable enable annotations
-    [Parameter] public string Text { get; set; }
-    [Parameter] public string NavigationReference { get; set; } = "";
-    [Parameter] public string? LeadingIcon { get; set; }
-    [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
-    [Parameter] public bool IsSelectionItem { get; set; }
-    [Parameter] public EventCallback<string> OnClick { get; set; }
-#nullable restore annotations
-
-
-    private MdcIcon icon => new MdcIcon(CascadingDefaults, LeadingIcon, IconFoundry);
-
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        ClassMapper
-            .Add("mdc-list-item")
-            .AddIf("mdc-list-item--disabled bmdc-list-item--disabled", () => Disabled);
-    }
-
-
-    protected void InternalClickHandler()
-    {
-        if (!Disabled)
-        {
-            OnClick.InvokeAsync(NavigationReference);
-        }
-    }
-}

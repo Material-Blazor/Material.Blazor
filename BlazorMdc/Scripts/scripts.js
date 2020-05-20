@@ -65,9 +65,14 @@ window.BlazorMdc = {
         }
     },
 
-    dataTable: {
-        init: function (elem) {
-            //mdc.dataTable.MDCDataTable.attachTo(elem);
+    circularProgress: {
+        init: function (elem, progress) {
+            elem._circularProgress = mdc.circularProgress.MDCCircularProgress.attachTo(elem);
+            this.setProgress(elem, progress);
+        },
+
+        setProgress: function (elem, progress) {
+            elem._circularProgress.progress = progress;
         }
     },
 
@@ -79,6 +84,18 @@ window.BlazorMdc = {
         listItemClick: function (elem, elemText) {
             elem.innerText = elemText;
             elem.click();
+        },
+
+        scrollToYear: function (id) {
+            // Presently disabled because of undesirable overscroll-behaviour
+            //var element = document.getElementById(id);
+            //element.scrollIntoView();
+        }
+    },
+
+    dataTable: {
+        init: function (elem) {
+            //mdc.dataTable.MDCDataTable.attachTo(elem);
         }
     },
 
@@ -144,6 +161,18 @@ window.BlazorMdc = {
         }
     },
 
+    linearProgress: {
+        init: function (elem, progress, buffer) {
+            elem._linearProgress = mdc.linearProgress.MDCLinearProgress.attachTo(elem);
+            this.setProgress(elem, progress, buffer);
+        },
+
+        setProgress: function (elem, progress, buffer) {
+            elem._linearProgress.progress = progress;
+            elem._linearProgress.buffer = buffer;
+        }
+    },
+
     list: {
         init: function (elem, keyboardInteractions, ripple) {
             if (keyboardInteractions == true) {
@@ -199,7 +228,7 @@ window.BlazorMdc = {
 
         clickItem: function (ulElem, value) {
             for (let i = 0; i < ulElem.children.length; i++) {
-                if (ulElem.children[i].outerText == value) {
+                if (ulElem.children[i].dataset.value == value) {
                     ulElem.children[i].click();
                 }
             }

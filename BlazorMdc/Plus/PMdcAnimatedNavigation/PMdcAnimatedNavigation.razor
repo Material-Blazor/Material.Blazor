@@ -1,107 +1,26 @@
 ﻿@namespace BlazorMdc
 
-@implements IDisposable
-
-@inject IPMdcAnimatedNavigationManager PMdcAnimatedNavigationManager
-@inject NavigationManager NavigationManager
-
 
 @if (PMdcAnimatedNavigationManager.Configuration.ApplyAnimation)
 {
     <style>
         .bmdc-navigation-fade-in {
-            @fadeInAnimation
-            @fadeInAnimationWebkit
+            @FadeInAnimation
+            @FadeInAnimationWebkit
         }
 
         .bmdc-navigation-fade-out {
-            @fadeOutAnimation
-            @fadeOutAnimationWebkit
+            @FadeOutAnimation
+            @FadeOutAnimationWebkit
         }
     </style>
 
 
-    <div class="@pageClass">
+    <div class="@PageClass">
         @ChildContent
     </div>
 }
 else
 {
     @ChildContent
-}
-
-
-@code {
-    [Parameter] public RenderFragment ChildContent { get; set; }
-
-
-    private const string FadeIn = "bmdc-navigation-fade-in";
-    private const string FadeOut = "bmdc-navigation-fade-out";
-
-
-    private MarkupString fadeInAnimation => (MarkupString)$"animation: bmdcNavFadeIn ease {(PMdcAnimatedNavigationManager.FadeOutTime * 10).ToString("D")}ms;";
-    private MarkupString fadeInAnimationWebkit => (MarkupString)$"-webkit-animation: bmdcNavFadeIn ease {(PMdcAnimatedNavigationManager.FadeOutTime * 10).ToString("D")}ms;";
-
-    private MarkupString fadeOutAnimation => (MarkupString)$"animation: bmdcNavFadeOut ease {(PMdcAnimatedNavigationManager.FadeOutTime * 10).ToString("D")}ms;";
-    private MarkupString fadeOutAnimationWebkit => (MarkupString)$"-webkit-animation: bmdcNavFadeOut ease {(PMdcAnimatedNavigationManager.FadeOutTime * 10).ToString("D")}ms;";
-
-
-    private string pageClass = "";
-
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        PMdcAnimatedNavigationManager.RegisterNavigationComponent(this);
-    }
-
-
-    public void Dispose()
-    {
-        PMdcAnimatedNavigationManager.DeregisterNavigationComponent(this);
-    }
-
-
-    internal void NavigateTo(string uri, bool forceLoad = false)
-    {
-        InvokeAsync(async () =>
-        {
-            _ = await FadePageOutAsync().ConfigureAwait(false);
-
-            NavigationManager.NavigateTo(uri, forceLoad);
-
-            _ = await FadePageInAsync().ConfigureAwait(false);
-        });
-    }
-
-
-    private async Task<object> FadePageInAsync()
-    {
-        pageClass = FadeIn;
-        StateHasChanged();
-
-        await Task.CompletedTask;
-
-        return null;
-    }
-
-
-    private async Task<object> FadePageOutAsync()
-    {
-        pageClass = FadeOut;
-        StateHasChanged();
-
-        await Task.CompletedTask;
-
-        await Task.Delay(PMdcAnimatedNavigationManager.FadeOutTime);
-
-        return null;
-    }
-
-
-    internal void UnanimatePage()
-    {
-        pageClass = "";
-    }
 }

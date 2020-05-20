@@ -24,6 +24,7 @@
         <MdcListItem NavigationReference="form" LeadingIcon="ballot" Text="Form" OnClick="@ListItemClickHandler" />
         <MdcListItem NavigationReference="list" LeadingIcon="list" Text="List" OnClick="@ListItemClickHandler" />
         <MdcListItem NavigationReference="menu" LeadingIcon="menu" Text="Menu" OnClick="@ListItemClickHandler" />
+        <MdcListItem NavigationReference="miscellaneous" LeadingIcon="text_format" Text="Miscellaneous" OnClick="@ListItemClickHandler" />
         <MdcListItem NavigationReference="numericfield" LeadingIcon="money" Text="Numeric Field" OnClick="@ListItemClickHandler" />
         <MdcListItem NavigationReference="pageddatalist" LeadingIcon="view_list" Text="Paged Data List" OnClick="@ListItemClickHandler" />
         <MdcListItem NavigationReference="paginator" LeadingIcon="pages" Text="Paginator" OnClick="@ListItemClickHandler" />
@@ -36,7 +37,6 @@
         <MdcListItem NavigationReference="textarea" LeadingIcon="assignment" Text="Text Area" OnClick="@ListItemClickHandler" />
         <MdcListItem NavigationReference="textfield" LeadingIcon="text_format" Text="Text Field" OnClick="@ListItemClickHandler" />
         <MdcListItem NavigationReference="toast" LeadingIcon="textsms" Text="Toast" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="typography" LeadingIcon="text_format" Text="Typography" OnClick="@ListItemClickHandler" />
         <MdcListDivider />
         <MdcListItem NavigationReference="wrappedinput" LeadingIcon="menu" Text="Wrapped input component" OnClick="@ListItemClickHandler" />
     </div>
@@ -44,9 +44,8 @@
 
 <div class="mdc-drawer-app-content">
     <MdcTopAppBar Title="BlazorMdc - Material Theme components for Blazor"
-                  @onclick="@(() => sidebar.Toggle())"
+                  @onclick="@SideBarToggle"
                   NavIcon="menu"
-                  NavAriaLabel="Menu"
                   ScrollTarget="#main-content"
                   TopAppBarType="@DemoConfiguration.TopAppBarType"
                   Class="mdc-top-app-bar--short-has-action-item">
@@ -75,9 +74,14 @@
 @code {
     MdcDrawer sidebar;
 
-    protected void ListItemClickHandler(string NavigationReference)
+    private void ListItemClickHandler(string NavigationReference)
     {
         sidebar.NotifyNavigation();
         PMdcAnimatedNavigationManager.NavigateTo(NavigationReference);
+    }
+
+    private void SideBarToggle()
+    {
+        sidebar.Toggle();
     }
 }

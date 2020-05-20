@@ -1,0 +1,30 @@
+﻿@namespace BlazorMdc
+@inherits MdcInputComponentBase<double>
+
+@*
+    DO NOT UNDER ANY CIRCUMSTANCES CHANGE THE DIV SPACING!
+    MATERIAL THEME INDICATE THAT THIS GIVES UNPREDICTABLE RESULTS
+*@
+
+<div @ref="@ElementReference"
+     role="progressbar" 
+     @attributes="AttributesToSplat()"
+     aria-label="@AriaLabel"
+     aria-valuemin="0" 
+     aria-valuemax="1" 
+     aria-valuenow="@IntialValue">
+    <div class="mdc-circular-progress__determinate-container">
+        @SVGDeterminate
+    </div>
+    <div class="mdc-circular-progress__indeterminate-container">
+        <div class="mdc-circular-progress__spinner-layer">
+            <div class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-left">
+                @SVGIndeterminate
+            </div><div class="mdc-circular-progress__gap-patch">
+                @SVGIndeterminate
+            </div><div class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-right">
+                @SVGIndeterminate
+            </div>
+        </div>
+    </div>
+</div>

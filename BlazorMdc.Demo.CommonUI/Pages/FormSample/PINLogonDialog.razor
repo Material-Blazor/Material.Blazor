@@ -23,7 +23,7 @@
                                   @onfocus="@(() => FocusPIN("PIN1"))"
                                   Label="New PIN"
                                   TrailingIcon="lock_outline"
-                                  Type="password" />
+                                  type="password" />
                     <ValidationMessage For=@( () => pinLogonDTO.PIN1 ) />
                 </div>
                 <div class="form-group">
@@ -31,7 +31,7 @@
                                   @onfocus="@(() => FocusPIN("PIN2"))"
                                   Label="Verify PIN"
                                   TrailingIcon="lock_outline"
-                                  Type="password" />
+                                  type="password" />
                     <ValidationMessage For=@( () => pinLogonDTO.PIN2 ) />
                 </div>
             }
@@ -42,7 +42,7 @@
                                   @onfocus="@(() => FocusPIN("PIN1"))"
                                   Label="PIN"
                                   TrailingIcon="lock_outline"
-                                  Type="password" />
+                                  type="password" />
                     <ValidationMessage For=@( () => pinLogonDTO.PIN1 ) />
                 </div>
             }
@@ -105,14 +105,14 @@
                         @if (dialogStyle == ePINDialogStyle.CreatePIN)
                         {
                             <MdcButton Style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                                       Type="submit"
+                                       type="submit"
                                        Label="Create PIN"
                                        ButtonStyle="MdcButtonStyle.ContainedRaised" />
                         }
                         else
                         {
                             <MdcButton Style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                                       Type="submit"
+                                       type="submit"
                                        Label="Enter PIN"
                                        ButtonStyle="MdcButtonStyle.ContainedRaised"/>
                         }

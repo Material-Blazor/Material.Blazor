@@ -4,11 +4,40 @@
 
 <h1 class="mdc-typography--headline4">Progress samples</h1>
 
-<p>See <code>ProgressSample.razor</code> for sources.</p>
+<p style="margin-bottom: 2rem;">See <code>ProgressSample.razor</code> for sources.</p>
 
-<MdcLinearProgress />
+<p><MdcSwitch @bind-Value="@show" Label="Show bars" /></p>
+<p><MdcSwitch @bind-Value="@showBuffer" Label="Show buffer" /></p>
 
-<br />
-<br />
+<h5 class="mdc-typography--headline5">Indeterminate</h5>
+<p><MdcLinearProgress LinearProgressType="@linearIndeterminate" /></p>
 
-<MdcLinearProgress Indeterminant="false" />
+<p><MdcCircularProgress CircularProgressType="@circularIndeterminate" /></p>
+<p><MdcCircularProgress CircularProgressType="@circularIndeterminate" CircularProgressSize="MdcCircularProgressSize.Medium" /></p>
+<p><MdcCircularProgress CircularProgressType="@circularIndeterminate" CircularProgressSize="MdcCircularProgressSize.Small" /></p>
+
+<h5 class="mdc-typography--headline5">Determinate</h5>
+<PMdcNumericDoubleField @bind-Value="@progress" Label="Progress (0 to 100%)" Min="0" Max="1" Magnitude="MdcNumericInputMagnitude.Percent" DecimalPlaces="2" NumericFormat="P0" />
+
+<p>Regular:</p>
+<p><MdcLinearProgress LinearProgressType="linearDeterminate" Value="@progress" BufferValue="buffer" /></p>
+
+<p>Reversed:</p>
+<p><MdcLinearProgress LinearProgressType="linearReversed" Value="@progress" BufferValue="buffer" /></p>
+
+<p><MdcCircularProgress Value="@progress" CircularProgressType="@circularDeterminate" /></p>
+<p><MdcCircularProgress Value="@progress" CircularProgressType="@circularDeterminate" CircularProgressSize="MdcCircularProgressSize.Medium" /></p>
+<p><MdcCircularProgress Value="@progress" CircularProgressType="@circularDeterminate" CircularProgressSize="MdcCircularProgressSize.Small" /></p>
+
+
+@code {
+    bool show = true;
+    bool showBuffer = true;
+    double progress = 0.2;
+    double? buffer => showBuffer ? (double?)progress + (1 - progress) / 3 : null;
+    MdcLinearProgressType linearIndeterminate => show ? MdcLinearProgressType.Indeterminate : MdcLinearProgressType.Closed;
+    MdcLinearProgressType linearDeterminate => show ? MdcLinearProgressType.Determinate : MdcLinearProgressType.Closed;
+    MdcLinearProgressType linearReversed => show ? MdcLinearProgressType.ReversedDeterminate : MdcLinearProgressType.Closed;
+    MdcCircularProgressType circularIndeterminate => show ? MdcCircularProgressType.Indeterminate : MdcCircularProgressType.Closed;
+    MdcCircularProgressType circularDeterminate => show ? MdcCircularProgressType.Determinate : MdcCircularProgressType.Closed;
+}

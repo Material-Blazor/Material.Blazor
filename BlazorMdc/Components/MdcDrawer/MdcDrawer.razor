@@ -1,13 +1,10 @@
 ﻿@namespace BlazorMdc
-
 @inherits MdcComponentBase
 
-@inject IJSRuntime jsRuntime
 
-<aside @ref="drawerElem"
-       class="@ClassMapper.ToString()"
-       style="@StyleMapper.ToString()"
-       id="app-drawer">
+<aside @ref="DrawerElem"
+       id="app-drawer"
+       @attributes="@AttributesToSplat()">
 
     <div class="mdc-drawer__content">
         <CascadingValue Value="@this">
@@ -16,56 +13,3 @@
     </div>
 
 </aside>
-
-@code {
-    //
-    //  2020-04-01  Mark Stega
-    //              Changed to use class & style mappers
-    //
-    //  2020-04-13  Mark Stega
-    //              Moved ClassMapper to constructor
-    //
-    ElementReference drawerElem;
-    bool isOpen;
-
-    [Parameter] public RenderFragment ChildContent { get; set; }
-    [Parameter] public bool StartOpen { get; set; } = false;
-    [Parameter] public bool IsDismissible { get; set; } = true;
-    [Parameter] public bool CloseOnNavigate { get; set; } = true;
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        ClassMapper
-            .Add("mdc-drawer")
-            .AddIf("mdc-drawer--dismissible", () => IsDismissible)
-            .AddIf("mdc-drawer--open", () => StartOpen);
-
-        isOpen = StartOpen;
-    }
-
-    public void Toggle()
-        => Toggle(!isOpen);
-
-    public void Toggle(bool open)
-    {
-        isOpen = open;
-        StateHasChanged();
-    }
-
-    public void NotifyNavigation()
-    {
-        if (CloseOnNavigate)
-        {
-            Toggle(false);
-        }
-    }
-
-    protected async override Task OnAfterRenderAsync(bool firstRender)
-        => await jsRuntime.InvokeAsync<object>(
-            "BlazorMdc.drawer.toggle",
-            drawerElem,
-            isOpen);
-
-}

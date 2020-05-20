@@ -5,14 +5,12 @@
 @using System.Text.RegularExpressions
 
 
-<MdcTextField @ref="textField"
-              Class="@Class"
-              Style="@Style"
-              type="text"
-              step="@(Math.Pow(10, -myDecimalPlaces).ToString())"
+<MdcTextField @ref="TextField"
+              @attributes="@MyAttributes"
+              step="@(Math.Pow(10, -MyDecimalPlaces).ToString())"
               min="@Min"
               max="@Max"
-              @bind-Value="@formattedValue"
+              @bind-Value="@FormattedValue"
               Label="@Label"
               NoLabel="@NoLabel"
               LeadingIcon="@LeadingIcon"
@@ -21,140 +19,4 @@
               TextInputStyle="@TextInputStyle"
               TextAlignStyle="@MdcTextAlignStyle.Right"
               @onfocusin="@OnFocusIn"
-              @onfocusout="@OnFocusOut"
-              Disabled=@Disabled
-              FormNoValidate="@myFormNoValidate"/>
-
-
-@code {
-#nullable enable annotations
-    [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
-    [Parameter] public string Label { get; set; }
-    [Parameter] public bool NoLabel { get; set; } = false;
-    [Parameter] public string? LeadingIcon { get; set; }
-    [Parameter] public string? TrailingIcon { get; set; }
-    [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
-    [Parameter] public bool FormNoValidate { get; set; } = false;
-    [Parameter] public string NumericFormat { get; set; }
-    [Parameter] public string? NumericSingularFormat { get; set; }
-    [Parameter] public MdcNumericInputMagnitude Magnitude { get; set; } = MdcNumericInputMagnitude.Normal;
-    [Parameter] public double? Min { get; set; }
-    [Parameter] public double? Max { get; set; }
-    [Parameter] public int DecimalPlaces { get; set; } = 2;
-#nullable restore annotations
-
-
-    private const string DoublePattern = @"^[-+]?[0-9]*\.?[0-9]+$";
-    private const string PositiveDoublePattern = @"[0-9]*\.?[0-9]+$";
-    private const string IntegerPattern = @"^(\+|-)?\d+$";
-    private const string PositiveIntegerPattern = @"^\d+$";
-
-
-    private MdcTextField textField;
-    private double mult { get; set; } = 1;
-    private double appliedMult => hasFocus ? mult : 1;
-    private int myDecimalPlaces { get; set; } = 0;
-    private Regex regex { get; set; }
-    private string type => hasFocus ? "number" : "text";
-    private bool myFormNoValidate => hasFocus ? true : FormNoValidate;
-
-
-    private bool prevHasFocus = false;
-    private bool hasFocus = false;
-
-
-    private string formattedValue
-    {
-        get
-        {
-            return hasFocus ? Math.Round(Convert.ToDouble(ReportingValue) * mult, myDecimalPlaces).ToString() : StringValue(ReportingValue);
-        }
-
-        set
-        {
-            var enteredVal = hasFocus ? Convert.ToDouble(Convert.ToDouble(string.IsNullOrWhiteSpace(value) ? "0" : value.Trim()) / mult) : NumericValue(value);
-            ReportingValue = Math.Round(Math.Max(Min ?? enteredVal, Math.Min(enteredVal, Max ?? enteredVal)), myDecimalPlaces + (int)Magnitude);
-        }
-    }
-
-
-    private string appliedFormat
-    {
-        get
-        {
-            if (hasFocus) return "";
-
-            if (!(NumericSingularFormat is null) && Utilities.DoubleEqual(Math.Abs(ReportingValue), 1)) return NumericSingularFormat;
-
-            return NumericFormat;
-        }
-    }
-
-
-    protected override void OnInitialized()
-    {
-        bool allowSign = !(Min != null && Min >= 0);
-
-        mult = Math.Pow(10, (int)Magnitude);
-
-        if (DecimalPlaces <= 0)
-        {
-            myDecimalPlaces = 0;
-            regex = new Regex(allowSign ? IntegerPattern : PositiveIntegerPattern);
-        }
-        else
-        {
-            myDecimalPlaces = DecimalPlaces;
-            regex = new Regex(allowSign ? DoublePattern : PositiveDoublePattern);
-        }
-
-        ForceShouldRenderToTrue = true;
-    }
-
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        await base.OnAfterRenderAsync(firstRender);
-
-        if (hasFocus == true && prevHasFocus == false)
-        {
-            await textField.Select();
-        }
-
-        prevHasFocus = hasFocus;
-    }
-
-
-    private void OnFocusIn() => hasFocus = true;
-    private void OnFocusOut() => hasFocus = false;
-    private string StringValue(double? value) => (Convert.ToDouble(value) * appliedMult).ToString(appliedFormat);
-
-
-    private double NumericValue(string displayText)
-    {
-        int myRounding = myDecimalPlaces + Convert.ToInt32(Math.Log(appliedMult));
-
-        if (!regex.IsMatch(displayText))
-        {
-            return ReportingValue;
-        }
-
-        double amount = 0;
-
-        try
-        {
-            amount = Convert.ToDouble(Math.Round(Convert.ToDouble(displayText) / appliedMult, myRounding));
-        }
-        catch
-        {
-            return ReportingValue;
-        }
-
-        if ((Min != null && amount < Min) || (Max != null && amount > Max))
-        {
-            return ReportingValue;
-        }
-
-        return amount;
-    }
-}
+              @onfocusout="@OnFocusOut" />

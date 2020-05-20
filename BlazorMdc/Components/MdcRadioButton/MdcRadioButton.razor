@@ -1,23 +1,18 @@
 ﻿@namespace BlazorMdc
-
+@inherits MdcInputComponentBase<TItem>
 @typeparam TItem
 
-@inherits MdcInputComponentBase<TItem>
 
-@inject IJSRuntime jsRuntime
+<div @ref="@FormReference"
+     @attributes="AttributesToSplat(SplatType.ClassAndStyleOnly)">
 
-
-<div class="@ClassMapper.ToString()"
-     style="@StyleMapper.ToString()"
-     @ref="@formReference">
-
-    <div @ref="@radioButtonReference" class="@buttonContainerClass">
-        <input class="mdc-radio__native-control @disabledClass"
+    <div @ref="@RadioButtonReference" class="@MyButtonContainerClass">
+        <input class="mdc-radio__native-control @DisabledClass"
                type="radio"
                id="@radioId"
                name="@RadioGroupName"
-               disabled="@Disabled"
-               @onclick="@(_ => OnInternalItemClickAsync())">
+               @onclick="@(_ => OnInternalItemClickAsync())"
+               @attributes="AttributesToSplat(SplatType.ExcludeClassAndStyle)">
 
         <div class="mdc-radio__background">
             <div class="mdc-radio__outer-circle"></div>
@@ -26,96 +21,4 @@
         <div class="mdc-radio__ripple"></div>
     </div>
     <label for="@radioId">@Label</label>
-
 </div>
-
-@code{
-    //
-    //  2020-04-20  Mark Stega
-    //              Created (loosely) from MdcRadioButtons
-    //
-    [Parameter] public TItem CheckedValue { get; set; }
-    [Parameter] public string Label { get; set; }
-    [Parameter] public string ButtonContainerClass { get; set; }
-    [Parameter] public bool EnableTouchWrapper { get; set; } = true;
-    [Parameter] public string RadioGroupName { get; set; }
-
-
-    private readonly string radioId = Utilities.GenerateCssElementSelector();
-    private ElementReference formReference { get; set; }
-    private ElementReference radioButtonReference;
-    private string buttonContainerClass;
-    private string disabledClass = "";
-
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        ForceShouldRenderToTrue = true;
-        HasValueSetter = true;
-    }
-
-    protected override void OnParametersSet()
-    {
-        base.OnParametersSet();
-
-        if (string.IsNullOrEmpty(RadioGroupName))
-        {
-            throw new ArgumentException("RadioGroupName is a required parameter in MdcRadioButton.");
-        }
-
-        ClassMapper
-            .Add("mdc-form-field");
-
-        if (EnableTouchWrapper)
-        {
-            buttonContainerClass = "mdc-radio mdc-radio--touch";
-        }
-        else
-        {
-            buttonContainerClass = "mdc-radio";
-        }
-
-        if (!string.IsNullOrWhiteSpace(ButtonContainerClass))
-        {
-            buttonContainerClass += " " + ButtonContainerClass;
-        }
-
-        if (Disabled)
-        {
-            disabledClass = " mdc-radio--disabled";
-        }
-    }
-
-
-    protected override void ValueSetter(TItem value)
-    {
-        UnderlyingValue = value;
-        InvokeAsync(async () =>
-        {
-            await jsRuntime.InvokeAsync<object>(
-            "BlazorMdc.radioButton.setChecked",
-            radioButtonReference,
-            Value.Equals(CheckedValue)).ConfigureAwait(false);
-        });
-    }
-
-
-    private async Task OnInternalItemClickAsync()
-    {
-        ReportingValue = CheckedValue;
-        await Task.CompletedTask;
-    }
-
-
-    protected override async Task InitializeMdcComponent()
-    {
-        await jsRuntime.InvokeAsync<object>(
-            "BlazorMdc.radioButton.init",
-            radioButtonReference,
-            formReference,
-            Value.Equals(CheckedValue)).ConfigureAwait(false);
-    }
-
-}

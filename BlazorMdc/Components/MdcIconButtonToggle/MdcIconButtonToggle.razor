@@ -1,77 +1,14 @@
 ﻿@namespace BlazorMdc
-
 @inherits MdcInputComponentBase<bool>
-@*@implements IDisposable*@
-
-@inject IJSRuntime jsRuntime
 
 
-<div @attributes="@UnmatchedAttributes">
-    <button @ref="@elementReference"
-            class="@ClassMapper.ToString()"
-            style="@StyleMapper.ToString()"
-            disabled="@Disabled"
+<div @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)">
+    <button @ref="@ElementReference"
+            @attributes="@AttributesToSplat(SplatType.ClassAndStyleOnly)"
             type="button"
-            @onclick="@OnLocalClickAsync">
+            @onclick="@ToggleOnClick">
 
-        <i class="@on.Class mdc-icon-button__icon mdc-icon-button__icon--on bmdc-dp-menu__icon-button">@on.Text</i>
-        <i class="@off.Class mdc-icon-button__icon bmdc-dp-menu__icon-button">@off.Text</i>
+        <PMdcIcon Icon="@IconOn" IconFoundry="@IconFoundry" Class="mdc-icon-button__icon mdc-icon-button__icon--on bmdc-dp-menu__icon-button" />
+        <PMdcIcon Icon="@IconOff" IconFoundry="@IconFoundry" Class="mdc-icon-button__icon bmdc-dp-menu__icon-button" />
     </button>
 </div>
-
-
-@code {
-    //
-    //  2020-04-01  Mark Stega
-    //              Changed to use class & style mappers
-    //
-    [CascadingParameter] private MdcCard Card { get; set; }
-
-
-#nullable enable annotations
-    [Parameter] public string IconOn { get; set; }
-    [Parameter] public string IconOff { get; set; }
-    [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
-#nullable restore annotations
-
-
-    private ElementReference elementReference;
-    private MdcIcon on => new MdcIcon(CascadingDefaults, IconOn, IconFoundry);
-    private MdcIcon off => new MdcIcon(CascadingDefaults, IconOff, IconFoundry);
-
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        MyClassMapper();
-
-        HasValueSetter = true;
-    }
-
-    private void MyClassMapper() =>
-        ClassMapper
-            .Clear()
-            .Get(() => Class)
-            .Add("mdc-icon-button")
-            .AddIf("mdc-card__action mdc-card__action--icon", () => (Card != null))
-            .AddIf("mdc-icon-button--on", () => Value);
-
-
-    public async Task OnLocalClickAsync()
-    {
-        ReportingValue = !ReportingValue;
-        await Task.CompletedTask;
-    }
-
-
-    protected override void ValueSetter(bool value)
-    {
-        UnderlyingValue = value;
-
-        InvokeAsync(async () => await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.setOn", elementReference, value));
-    }
-
-
-    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.init", elementReference);
-}

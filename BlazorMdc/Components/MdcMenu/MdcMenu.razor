@@ -1,69 +1,12 @@
 ﻿@namespace BlazorMdc
-
 @inherits MdcComponentBase
-@implements IDisposable
-
-@inject IJSRuntime jsRuntime
 
 
-<div @ref="elementReference"
-     class="@ClassMapper.ToString()"
-     style="@StyleMapper.ToString()">
+<div @ref="ElementReference"
+     @attributes="@AttributesToSplat()">
 
     <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
         @ChildContent
     </ul>
 
 </div>
-
-
-@code {
-    //
-    //  2020-04-02  Mark Stega
-    //              Changed to use class & style mappers
-    //
-    [Parameter] public RenderFragment ChildContent { get; set; }
-
-    private DotNetObjectReference<MdcMenu> objectReference;
-    private ElementReference elementReference;
-    private bool isOpen { get; set; } = false;
-
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        ClassMapper
-            .Add("mdc-menu mdc-menu-surface");
-
-        objectReference = DotNetObjectReference.Create(this);
-    }
-
-
-    public void Dispose()
-    {
-        GC.SuppressFinalize(this);
-        objectReference?.Dispose();
-    }
-
-
-    [JSInvokable("NotifyClosedAsync")]
-    public async Task NotifyClosedAsync()
-    {
-        isOpen = false;
-        await Task.CompletedTask;
-    }
-
-
-    public async Task<string> ToggleAsync()
-    {
-        if (isOpen)
-        {
-            return await jsRuntime.InvokeAsync<string>("BlazorMdc.menu.hide", elementReference);
-        }
-        else
-        {
-            return await jsRuntime.InvokeAsync<string>("BlazorMdc.menu.show", elementReference, objectReference);
-        }
-    }
-}

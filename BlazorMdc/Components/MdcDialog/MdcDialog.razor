@@ -1,27 +1,24 @@
 ﻿@namespace BlazorMdc
-
 @inherits MdcComponentBase
-@implements IDisposable
-@implements IMdcDialog
 
-@using System.Collections.Generic
-
-@inject IJSRuntime jsRuntime
 
 @if (isOpen)
 {
     <div @key="@key"
-         @ref="dialogElem"
-            class="@ClassMapper.ToString()"
-            style="@StyleMapper.ToString()"
-            aria-labelledby="@titleId"
-            aria-describedby="@descId">
+         @ref="DialogElem"
+         aria-labelledby="@titleId"
+         aria-describedby="@descId"
+         @attributes="@AttributesToSplat()">
 
         <CascadingValue Value="this">
             <div class="mdc-dialog__container">
-                <div class="mdc-dialog__surface @overflowClass">
+                <div class="mdc-dialog__surface @OverflowClass">
                     <h2 id="@titleId" class="mdc-dialog__title">@Title</h2>
-                    <div id="@descId" class="mdc-dialog__content @overflowClass">@Body</div>
+                    
+                    <div id="@descId" class="mdc-dialog__content @OverflowClass">
+                        @Body
+                    </div>
+
                     @if (Buttons != null)
                     {
                         <footer class="mdc-dialog__actions">
@@ -34,131 +31,4 @@
 
         <div class="mdc-dialog__scrim"></div>
     </div>
-}
-
-
-@code {
-    //
-    //  2020-04-01  Mark Stega
-    //              Changed to use class & style mappers
-    //
-    [Parameter] public string Title { get; set; }
-    [Parameter] public RenderFragment Body { get; set; }
-    [Parameter] public RenderFragment Buttons { get; set; }
-    [Parameter] public string ScrimClickAction { get; set; } = "close";
-    [Parameter] public string EscapeKeyAction { get; set; } = "close";
-    [Parameter] public bool OverflowVisible { get; set; } = false;
-
-
-    private List<IMdcDialogChild> layoutChildren = new List<IMdcDialogChild>();
-    private string titleId = Utilities.GenerateCssElementSelector();
-    private string descId = Utilities.GenerateCssElementSelector();
-    private DotNetObjectReference<MdcDialog> objectReference;
-    private ElementReference dialogElem;
-    private bool isOpen = false;
-    private bool afterRenderShowAction = false;
-    private bool afterDialogInitialization = false;
-    private string overflowClass => OverflowVisible ? "bmdc-dialog-overflow-visible" : "";
-    private string key = "";
-    TaskCompletionSource<string> tcs;
-
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        ClassMapper
-            .Add("mdc-dialog");
-
-        objectReference = DotNetObjectReference.Create(this);
-    }
-
-
-    public void Dispose()
-    {
-        objectReference?.Dispose();
-    }
-
-
-    public void RegisterLayoutAction(IMdcDialogChild child)
-    {
-        layoutChildren.Add(child);
-    }
-
-
-    public async Task<string> ShowAsync()
-    {
-        if (isOpen)
-        {
-            throw new InvalidOperationException("Cannot show MdcDialog that is already open");
-        }
-        else
-        {
-            layoutChildren.Clear();
-            key = Utilities.GenerateCssElementSelector();
-            isOpen = true;
-            afterRenderShowAction = true;
-            StateHasChanged();
-            tcs = new TaskCompletionSource<string>();
-            var ret = await tcs.Task;
-            return ret;
-        }
-    }
-
-
-    public async Task HideAsync()
-    {
-        if (isOpen)
-        {
-            await jsRuntime.InvokeAsync<string>("BlazorMdc.dialog.hide", dialogElem);
-            isOpen = false;
-            StateHasChanged();
-        }
-        else
-        {
-            throw new InvalidOperationException("Cannot hide MdcDialog that is not already open");
-        }
-    }
-
-
-    [JSInvokable("NotifyOpenedAsync")]
-    public async Task NotifyOpenedAsync()
-    {
-        afterDialogInitialization = true;
-        StateHasChanged();
-        await Task.CompletedTask;
-    }
-
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        base.OnAfterRender(firstRender);
-
-        if (afterRenderShowAction)
-        {
-            try
-            {
-                afterRenderShowAction = false;
-                //afterDialogInitialization = true;
-                tcs.SetResult(await jsRuntime.InvokeAsync<string>("BlazorMdc.dialog.show", dialogElem, objectReference, EscapeKeyAction, ScrimClickAction));
-                isOpen = false;
-                StateHasChanged();
-            }
-            catch
-            {
-                tcs?.SetCanceled();
-            }
-        }
-        else if (afterDialogInitialization)
-        {
-            afterDialogInitialization = false;
-
-            foreach (var child in layoutChildren)
-            {
-                child.RequestInstantiation();
-            }
-
-            StateHasChanged();
-        }
-    }
 }

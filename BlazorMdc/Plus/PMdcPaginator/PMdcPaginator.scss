@@ -1,34 +1,29 @@
-﻿.bmdc-paginator {
-    display: inline-block;
+﻿$paginator-height: 48px;
+$paginator-spacing: 18px;
+$position-text-spacing: 6px;
+
+
+.bmdc-paginator {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    justify-content: left;
     box-sizing: content-box;
+    height: $paginator-height;
+    line-height: $paginator-height;
     font-weight: bold;
     user-select: none;
 }
 
-.bmdc-paginator__container {
-    height: 48px;
-    position: relative;
-}
 
-.bmdc-paginator__float-left {
-    float: left;
-    height: 48px;
-    line-height: 48px;
-    margin-right: 4px;
-}
-
-.bmdc-paginator__float-right {
-    float: right;
-    height: 48px;
-    line-height: 48px;
-}
-
-.bmdc-paginator__spaced {
-    padding: 0 0.3rem 0 0.3rem;
+.bmdc-paginator__position-text {
+    display: flex;
+    flex-flow: column nowrap;
+    padding: 0 $position-text-spacing 0 $position-text-spacing;
     text-align: center;
 }
 
-.bmdc-paginator__position-hidden {
+
+.bmdc-paginator__position-text-hidden {
     height: 0;
     overflow: hidden;
 }

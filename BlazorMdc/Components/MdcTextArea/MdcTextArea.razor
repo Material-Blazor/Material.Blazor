@@ -1,36 +1,41 @@
 ﻿@namespace BlazorMdc
-
 @inherits MdcInputComponentBase<string>
 
-@inject IJSRuntime jsRuntime
 
-
-<div @ref="elementReference"
-     class="@ClassMapper.ToString()"
-     style="@StyleMapper.ToString()">
+<div @ref="ElementReference"
+     @attributes="@AttributesToSplat(SplatType.ClassAndStyleOnly)">
+    
+    @if (AppliedTextInputStyle == MdcTextInputStyle.Filled || AppliedTextInputStyle == MdcTextInputStyle.FullWidth)
+    {
+        <div class="mdc-text-field__ripple"></div>
+    }
 
     <textarea id="@id"
-              class="mdc-text-field__input @appliedTextInputStyleClass @FieldClass"
+              class="mdc-text-field__input @AppliedTextInputStyleClass @FieldClass"
               @bind="@ReportingValue"
               aria-labelledby="@labelId"
               rows="@Rows"
               cols="@Cols"
               disabled="@Disabled"
-              @attributes="@UnmatchedAttributes" />
+              @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)" />
 
-    @if (appliedTextInputStyle == MdcTextInputStyle.Outlined)
+    @if (AppliedTextInputStyle == MdcTextInputStyle.Outlined)
     {
         <div class="mdc-notched-outline">
             <div class="mdc-notched-outline__leading"></div>
             <div class="mdc-notched-outline__notch">
-                <label class="mdc-floating-label @floatingLabelClass" for="@id" id="@labelId">@Label</label>
+                <label class="mdc-floating-label @FloatingLabelClass" for="@id" id="@labelId">@Label</label>
             </div>
             <div class="mdc-notched-outline__trailing"></div>
         </div>
     }
     else
     {
-        <label class="mdc-floating-label @floatingLabelClass" for="@id" id="@labelId">@Label</label>
+        @if (AppliedTextInputStyle == MdcTextInputStyle.Filled)
+        {
+            <label class="mdc-floating-label @FloatingLabelClass" for="@id" id="@labelId">@Label</label>
+        }
+
         <div class="mdc-line-ripple"></div>
     }
 </div>
@@ -43,44 +48,5 @@
     //  2020-04-13  Mark Stega
     //              Moved ClassMapper to constructor
     //
-    [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
-    [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
-    [Parameter] public string Label { get; set; } = "";
-    [Parameter] public bool NoLabel { get; set; } = false;
-    [Parameter] public int Rows { get; set; }
-    [Parameter] public int Cols { get; set; }
 
-
-    private string id = Guid.NewGuid().ToString();
-    private ElementReference elementReference;
-    private MdcTextInputStyle appliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
-    private string labelId = Guid.NewGuid().ToString();
-    private string appliedTextInputStyleClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
-    private string floatingLabelClass;
-    public MarkupString LeadingIconMarkup;
-    public MarkupString TrailingIconMarkup;
-
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        ClassMapper
-            .Add($"mdc-text-field mdc-text-field--textarea {FieldClass} {CascadingDefaults.TextFieldCssClass}")
-            .AddIf("mdc-text-field--outlined", () => (appliedTextInputStyle == MdcTextInputStyle.Outlined))
-            .AddIf("mdc-text-field--fullwidth", () => (appliedTextInputStyle == MdcTextInputStyle.FullWidth))
-            .AddIf("mdc-text-field--no-label", () => NoLabel)
-            .AddIf("mdc-text-field--disabled", () => Disabled);
-
-        ForceShouldRenderToTrue = true;
-    }
-
-
-    protected override void OnParametersSet()
-    {
-        floatingLabelClass = string.IsNullOrEmpty(ReportingValue) ? "" : "mdc-floating-label--float-above";
-    }
-
-
-    protected override async Task InitializeMdcComponent() => await jsRuntime.InvokeAsync<object>("BlazorMdc.textField.init", elementReference);
 }

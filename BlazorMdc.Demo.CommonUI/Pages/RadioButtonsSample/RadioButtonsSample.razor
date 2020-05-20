@@ -14,21 +14,21 @@
 
 <p>
     <MdcRadioButton @bind-Value="@animal"
-                    CheckedValue=@animalEnum.dog
+                    TargetCheckedValue=@animalEnum.dog
                     Label=@animalEnum.dog.ToString()
                     RadioGroupName="demoGroup" />
     <MdcRadioButton @bind-Value="@animal"
-                    CheckedValue=@animalEnum.fish
+                    TargetCheckedValue=@animalEnum.fish
                     Label=@animalEnum.fish.ToString()
                     RadioGroupName="demoGroup" />
     <MdcRadioButton @bind-Value="@animal"
-                    CheckedValue=@animalEnum.zebra
+                    TargetCheckedValue=@animalEnum.zebra
                     Label=@animalEnum.zebra.ToString()
                     RadioGroupName="demoGroup" />
 </p>
 <p>
     <MdcRadioButton @bind-Value="@animal"
-                    CheckedValue=@animalEnum.dog
+                    TargetCheckedValue=@animalEnum.dog
                     Label=@repeatedDogLabel
                     RadioGroupName="repeatGroup" />
 

@@ -14,6 +14,7 @@
 <p><MdcTextField Label="Text Field" @bind-Value="textFieldDefault" /></p>
 <p><MdcTextArea Label="Text Area" Rows="2" @bind-Value="textAreaDefault" /></p>
 <p><MdcButton Label="Button" /></p>
+<p><PMdcIcon Icon="thumb_up" /></p>
 
 <CascadingValue Value="defaults1">
     <h3 class="mdc-typography--headline5" style="margin-top: 4rem;">Variant 1</h3>
@@ -22,6 +23,7 @@
     <p><MdcTextField Label="Text Field" @bind-Value="textFieldVariant1" /></p>
     <p><MdcTextArea Label="Text Area" Rows="2" @bind-Value="textAreaVariant1" /></p>
     <p><MdcButton Label="Button" /></p>
+    <p><PMdcIcon Icon="thumb_up" /></p>
 </CascadingValue>
 
 <CascadingValue Value="defaults2">
@@ -31,6 +33,7 @@
     <p><MdcTextField Label="Text Field" @bind-Value="textFieldVariant2" /></p>
     <p><MdcTextArea Label="Text Area" Rows="2" @bind-Value="textAreaVariant2" /></p>
     <p><MdcButton Label="Button" /></p>
+    <p><PMdcIcon Icon="thumb_up" /></p>
 </CascadingValue>
 
 <CascadingValue Value="defaults3">
@@ -40,6 +43,7 @@
     <p><MdcTextField Label="Text Field" @bind-Value="textFieldVariant3" /></p>
     <p><MdcTextArea Label="Text Area" Rows="2" @bind-Value="textAreaVariant3" /></p>
     <p><MdcButton Label="Button" /></p>
+    <p><PMdcIcon Icon="fa-hiking" /></p>
 </CascadingValue>
 
 
@@ -50,7 +54,7 @@
     string textAreaDefault;
     DateTime dateDefault = new DateTime(2020, 2, 29);
     DateTime min = new DateTime(2019, 1, 1);
-    DateTime max = new DateTime(2038, 12, 31);
+    DateTime max = new DateTime(2078, 12, 31);
 
 
     MdcCascadingDefaults defaults1 = new MdcCascadingDefaults()
@@ -59,7 +63,8 @@
         TextInputStyle = MdcTextInputStyle.Outlined,
         ButtonStyle = MdcButtonStyle.Outlined,
         DateSelectionCriteria = PMdcDateSelectionCriteria.WeekdaysOnly,
-        ItemValidation = MdcItemValidation.NoSelection
+        ItemValidation = MdcItemValidation.NoSelection,
+        IconMITheme = MdcIconMITheme.Outlined
     };
     string selectVariant1;
     string textFieldVariant1;
@@ -73,7 +78,8 @@
         TextInputStyle = MdcTextInputStyle.FullWidth,
         ButtonStyle = MdcButtonStyle.ContainedUnelevated,
         DateSelectionCriteria = PMdcDateSelectionCriteria.WeekendsOnly,
-        ItemValidation = MdcItemValidation.NoSelection
+        ItemValidation = MdcItemValidation.NoSelection,
+        IconMITheme = MdcIconMITheme.TwoTone
     };
     string selectVariant2;
     string textFieldVariant2;
@@ -87,7 +93,9 @@
         TextInputStyle = MdcTextInputStyle.Filled,
         ButtonStyle = MdcButtonStyle.ContainedRaised,
         DateSelectionCriteria = PMdcDateSelectionCriteria.AllowAll,
-        ItemValidation = MdcItemValidation.NoSelection
+        ItemValidation = MdcItemValidation.NoSelection,
+        IconFoundryName = MdcIconFoundryName.FontAwesome,
+        IconFARelativeSize = MdcIconFARelativeSize.TenTimes
     };
     string selectVariant3;
     string textFieldVariant3;

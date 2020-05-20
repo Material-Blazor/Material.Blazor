@@ -1,15 +1,8 @@
 ﻿@namespace BlazorMdc
 
+
 <li>
     <ul class="mdc-menu__selection-group">
         @ChildContent
     </ul>
 </li>
-
-@code {
-    //
-    //  2020-04-02  Mark Stega
-    //              Renamed from MdcMenuListSelectionGroup
-    //
-    [Parameter] public RenderFragment ChildContent { get; set; }
-}

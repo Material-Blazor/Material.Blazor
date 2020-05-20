@@ -1,66 +1,15 @@
 ﻿@namespace BlazorMdc
-
-@implements IDisposable
-
 @inherits MdcInputComponentBase<string>
 
-@using System.Threading
 
-
-<MdcTextField Value="@Value"
+<MdcTextField @attributes="AttributesToSplat()"
+              Value="@Value"
               Label="@Label"
               NoLabel="@NoLabel"
               LeadingIcon="@LeadingIcon"
               TrailingIcon="@TrailingIcon"
+              IconFoundry="@IconFoundry"
               TextInputStyle="@TextInputStyle"
               TextAlignStyle="@TextAlignStyle"
               @oninput="@OnTextInput"
-              Disabled=@Disabled
-              FormNoValidate="@FormNoValidate" />
-
-
-@code {
-#nullable enable annotations
-    [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
-    [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
-    [Parameter] public string Label { get; set; }
-    [Parameter] public bool NoLabel { get; set; } = false;
-    [Parameter] public string? LeadingIcon { get; set; }
-    [Parameter] public string? TrailingIcon { get; set; }
-    [Parameter] public bool FormNoValidate { get; set; } = false;
-    [Parameter] public int? DebounceInterval { get; set; }
-#nullable restore annotations
-
-
-    private Timer timer;
-    private string currentValue = "";
-    private int appliedDebounceInterval => CascadingDefaults.AppliedDebounceInterval(DebounceInterval);
-
-
-    protected override void OnInitialized()
-    {
-        currentValue = Value;
-        base.OnInitialized();
-    }
-
-
-    public void Dispose()
-    {
-        timer?.Dispose();
-    }
-
-
-    private void OnTextInput(ChangeEventArgs eventArgs)
-    {
-        timer?.Dispose();
-        currentValue = eventArgs.Value.ToString();
-        var autoReset = new AutoResetEvent(false);
-        timer = new Timer(OnTimerComplete, autoReset, appliedDebounceInterval, Timeout.Infinite);
-    }
-
-
-    private void OnTimerComplete(object stateInfo)
-    {
-        InvokeAsync(() => ReportingValue = currentValue);
-    }
-}
+              Disabled=@Disabled />

@@ -1,99 +1,22 @@
 ﻿@namespace BlazorMdc
-
 @inherits MdcComponentBase
 
-@inject IJSRuntime jsRuntime
 
-<button @ref="@elementReference"
-        class="@ClassMapper.ToString()"
-        style="@StyleMapper.ToString()"
-        disabled="@Disabled"
-        tabindex="@TabIndex"
+<button @ref="@ElementReference"
         data-mdc-dialog-action="@DialogAction"
         type="button"
-        @attributes="@UnmatchedAttributes">
+        @attributes="@AttributesToSplat()">
     <div class="mdc-button__ripple"></div>
-    @LeadingIconMarkup
+
+    @if (!string.IsNullOrWhiteSpace(LeadingIcon))
+    {
+        <PMdcIcon Icon="@LeadingIcon" IconFoundry="@IconFoundry" Class="mdc-button__icon" aria-hidden="true" />
+    }
+
     <span class="mdc-button__label">@Label</span>
-    @TrailingIconMarkup
+
+    @if (!string.IsNullOrWhiteSpace(TrailingIcon))
+    {
+        <PMdcIcon Icon="@TrailingIcon" IconFoundry="@IconFoundry" Class="mdc-button__icon" aria-hidden="true" />
+    }
 </button>
-
-
-@code {
-    //
-    //  2020-03-31  Mark Stega
-    //              Changed to use class & style mappers
-    //
-    //  2020-04-01  Mark Stega
-    //              Changed to re-enable AppliedButtonStyle
-    //
-    //  2020-04-13  Mark Stega
-    //              Made ButtonStyle nullable
-    //              Moved ClassMapper to constructor
-    //
-
-    [CascadingParameter] private MdcCard Card { get; set; }
-    [CascadingParameter] private MdcDialog Dialog { get; set; }
-
-
-#nullable enable annotations
-    [Parameter] public MdcButtonStyle? ButtonStyle { get; set; }
-    [Parameter] public string Label { get; set; }
-    [Parameter] public string TabIndex { get; set; } = "0";
-    [Parameter] public string? LeadingIcon { get; set; }
-    [Parameter] public string? TrailingIcon { get; set; }
-    [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
-    [Parameter] public string DialogAction { get; set; }
-#nullable restore annotations
-
-
-    private ElementReference elementReference;
-
-
-    private MarkupString LeadingIconMarkup
-    {
-        get
-        {
-            if (LeadingIcon is null) return (MarkupString)"";
-
-            var icon = new MdcIcon(CascadingDefaults, LeadingIcon, IconFoundry);
-
-            return (MarkupString)$"<i class=\"{icon.Class} mdc-button__icon\" aria-hidden=\"true\">{icon.Text}</i>";
-        }
-    }
-
-
-    private MarkupString TrailingIconMarkup
-    {
-        get
-        {
-            if (TrailingIcon is null) return (MarkupString)"";
-
-            var icon = new MdcIcon(CascadingDefaults, TrailingIcon, IconFoundry);
-
-            return (MarkupString)$"<i class=\"{icon.Class} mdc-button__icon\" aria-hidden=\"true\">{icon.Text}</i>";
-        }
-    }
-
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        ClassMapper
-            .Add("mdc-button")
-            .AddIf("mdc-button--raised", () => (CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MdcButtonStyle.ContainedRaised))
-            .AddIf("mdc-button--unelevated", () => (CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MdcButtonStyle.ContainedUnelevated))
-            .AddIf("mdc-button--outlined", () => (CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MdcButtonStyle.Outlined))
-            .AddIf("mdc-card__action mdc-card__action--button", () => (Card != null));
-    }
-
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.button.init", elementReference);
-        }
-    }
-}

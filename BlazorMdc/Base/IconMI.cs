@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Components;
-using System;
+﻿using System.Collections.Generic;
 
 namespace BlazorMdc
 {
+    /// <summary>
+    /// Material Icons icon.
+    /// </summary>
     internal class IconMI : IMdcIcon
     {
+        /// <inheritdoc />
         public string Class
         {
             get
@@ -21,12 +24,27 @@ namespace BlazorMdc
             }
         }
 
+
+        /// <inheritdoc />
         public string Text => IconName.ToLower();
 
+        
+        private readonly Dictionary<string, object> _attributes = new Dictionary<string, object>();
+        /// <inheritdoc />
+        public IDictionary<string, object> Attributes => _attributes;
+
+
+        /// <inheritdoc />
         public string IconName { get; }
 
-        public bool RequiresWhiteFilter => Theme == MdcIconMITheme.TwoTone;
 
+        /// <inheritdoc />
+        public bool RequiresColorFilter => Theme == MdcIconMITheme.TwoTone;
+
+
+        /// <summary>
+        /// The Material Icons theme.
+        /// </summary>
         public MdcIconMITheme Theme { get; }
 
 

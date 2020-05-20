@@ -1,60 +1,24 @@
 ﻿@namespace BlazorMdc
-
+@inherits MdcComponentBase
 @typeparam TItem
 
-@inherits MdcComponentBase
 
-@inject IJSRuntime jsRuntime
-
-
-<div @ref="@elementReference" 
-     class="@ClassMapper.ToString()"
-     style="@StyleMapper.ToString()" >
+<div @ref="@ElementReference"
+     @attributes="@AttributesToSplat()">
 
     <table class="mdc-data-table__table">
         <thead>
-            @Header
+            @TableHeader
         </thead>
 
         <tbody class="mdc-data-table__content">
             @foreach (var item in Items)
-            { 
-                <tr @key="@Row(item)" class="mdc-data-table__row">
-                    @Row(item)
+            {
+                <tr @key="@TableRow(item)" class="mdc-data-table__row">
+                    @TableRow(item)
                 </tr>
             }
         </tbody>
     </table>
 
 </div>
-
-
-@code {
-    //
-    //  2020-04-01  Mark Stega
-    //              Changed to use class & style mappers
-    //
-    [Parameter] public RenderFragment Header { get; set; }
-    [Parameter] public IEnumerable<TItem> Items { get; set; }
-    [Parameter] public RenderFragment<TItem> Row { get; set; }
-
-
-    private ElementReference elementReference;
-
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        ClassMapper
-            .Add("mdc-data-table");
-    }
-
-    protected async override Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await jsRuntime.InvokeAsync<object>("BlazorMdc.dataTable.init", elementReference);
-        }
-    }
-}

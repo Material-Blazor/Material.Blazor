@@ -1,42 +1,33 @@
 ﻿@namespace BlazorMdc
-
 @inherits MdcComponentBase
 
 
-<div class="@ClassMapper.ToString()"
-     style="@StyleMapper.ToString()">
-
+<div @attributes="AttributesToSplat()">
     @if (ShieldType != PMdcShieldType.ValueOnly)
     {
         <div class="bmdc-shield--label @LabelClass" style="@LabelStyle">
-            @Label
+            @if (!string.IsNullOrWhiteSpace(LabelIcon))
+            {
+                <div>
+                    <PMdcIcon Icon="@LabelIcon" IconFoundry="@IconFoundry" Class="bmdc-shield--icon" />
+                </div>
+            }
+
+            <div>@Label</div>
         </div>
     }
 
     @if (ShieldType != PMdcShieldType.LabelOnly)
     {
         <div class="bmdc-shield--value @ValueClass" style="@ValueStyle">
-            @Value
+            @if (!string.IsNullOrWhiteSpace(ValueIcon))
+            {
+                <div>
+                    <PMdcIcon Icon="@ValueIcon" IconFoundry="@IconFoundry" Class="bmdc-shield--icon" />
+                </div>
+            }
+            
+            <div>@Value</div>
         </div>
     }
 </div>
-
-
-@code {
-    [Parameter] public PMdcShieldType ShieldType { get; set; } = PMdcShieldType.LabelAndValue;
-    [Parameter] public string Label { get; set; }
-    [Parameter] public string Value { get; set; }
-    [Parameter] public string LabelClass { get; set; } = "";
-    [Parameter] public string LabelStyle { get; set; } = "";
-    [Parameter] public string ValueClass { get; set; } = "";
-    [Parameter] public string ValueStyle { get; set; } = "";
-
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        ClassMapper
-            .Add("bmdc-shield");
-    }
-}

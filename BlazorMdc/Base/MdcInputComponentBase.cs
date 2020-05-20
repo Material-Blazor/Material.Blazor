@@ -2,9 +2,6 @@
 using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -24,16 +21,16 @@ namespace BlazorMdc
 
         [CascadingParameter] private EditContext CascadedEditContext { get; set; }
 
-        [CascadingParameter] private MdcDialog Dialog { get; set; }
+        [CascadingParameter] private IMdcDialog Dialog { get; set; }
 
 
         /// <summary>
         /// Gets a value for the component's 'id' attribute.
         /// </summary>
-        [Parameter] public string Id { get; set; } = Utilities.GenerateCssElementSelector();
+        [Parameter] public string Id { get; set; } = Utilities.GenerateUniqueElementName();
 
 
-        private protected T UnderlyingValue;
+        private T _underlyingValue;
         /// <summary>
         /// Gets or sets the value of the input. This should be used with two-way binding.
         /// </summary>
@@ -42,76 +39,75 @@ namespace BlazorMdc
         /// </example>
         [Parameter] public T Value
         {
-            get => UnderlyingValue;
+            get => _underlyingValue;
             set
             {
-                if (!EqualityComparer<T>.Default.Equals(value, UnderlyingValue))
+                if (!EqualityComparer<T>.Default.Equals(value, _underlyingValue))
                 {
-                    if (!_hasInstantiated || !HasValueSetter)
-                    {
-                        UnderlyingValue = value;
-                    }
-                    else
-                    {
-                        if (HasValueSetter)
-                        {
-                            ValueSetter(value);
-                        }
-                    }
+                    _underlyingValue = value;
+                   
+                    if (_hasInstantiated) OnValueSet();
                 }
             }
         }
 
-        //private protected T SetValue(T value)
-        //{
-        //    return Value = value;
-        //}
 
         /// <summary>
-        /// Derived components use this to get a callback from <see cref="OnAfterRenderAsync(bool)"/> when the consumer changes the <see cref="Value"/> parameter
+        /// Derived components can use this to get a callback the <see cref="Value"/> setter when the consumer changes the value.
+        /// This allows a component to take action with Material Theme js to update the DOM to reflect the data change visually. An
+        /// example is a select where the relevant list item needs to be automatically clicked to get Material Theme to update
+        /// the value shown in the <c>&lt;input&gt;</c> HTML tag.
         /// </summary>
-        protected virtual void ValueSetter(T value) => _ = 0;
+        protected virtual void OnValueSet() => _ = 0;
+
 
         /// <summary>
         /// Gets or sets a callback that updates the bound value.
         /// </summary>
         [Parameter] public EventCallback<T> ValueChanged { get; set; }
 
+
         /// <summary>
         /// Gets or sets an expression that identifies the bound value.
         /// </summary>
         [Parameter] public Expression<Func<T>> ValueExpression { get; set; }
+
 
         /// <summary>
         /// Gets the associated <see cref="Microsoft.AspNetCore.Components.Forms.EditContext"/>.
         /// </summary>
         protected EditContext EditContext { get; private set; }
 
+
         /// <summary>
         /// Gets the <see cref="FieldIdentifier"/> for the bound value.
         /// </summary>
         protected FieldIdentifier FieldIdentifier { get; private set; }
 
+
         /// <summary>
-        /// Gets or sets the value of the input. To be used by Mdc and PMdc components for binding to native components, or to set the value
-        /// in response to an event arising from the native component. In contrast the <see cref="Value"/> parameter is for use by BlazorMdc's consumers.
-        /// Do not mix these usages up.
+        /// Gets or sets the value of the component. To be used by BlazorMdc components for binding to native components, or to set the value
+        /// in response to an event arising from the native component. This property fires a change event to the consumer in contrast the 
+        /// <see cref="Value"/> parameter. As a result BlazorMdc components must always change the value by using this rather than <see cref="Value"/>
+        /// which never fires a change event but does call <see cref="OnValueSet(T)"/> which would cause a race condition if called in response to
+        /// user interaction arising within a BlazorMdc component.
         /// </summary>
-        protected T ReportingValue
+        private protected T ReportingValue
         {
-            get => UnderlyingValue;
+            get => _underlyingValue;
             set
             {
-                var hasChanged = !EqualityComparer<T>.Default.Equals(value, UnderlyingValue);
+                var hasChanged = !EqualityComparer<T>.Default.Equals(value, _underlyingValue);
                 if (hasChanged)
                 {
-                    UnderlyingValue = value;
+                    _underlyingValue = value;
                     _ = ValueChanged.InvokeAsync(value);
                     EditContext?.NotifyFieldChanged(FieldIdentifier);
                     StateHasChanged();
                 }
             }
         }
+
 
         /// <summary>
         /// Gets or sets the current value of the input, represented as a string.
@@ -165,20 +161,18 @@ namespace BlazorMdc
             }
         }
 
+
         /// <summary>
         /// Allows <see cref="ShouldRender()"/> to return "true" habitually.
         /// </summary>
         private protected bool ForceShouldRenderToTrue { get; set; } = false;
+
 
         /// <summary>
         /// Allows <see cref="ShouldRender()"/> to return "true" for the next render only.
         /// </summary>
         private protected bool AllowNextRender = false;
 
-        /// <summary>
-        /// Allows <see cref="ShouldRender()"/> to return "true" when <see cref="Value"/> is changed by the consumer.
-        /// </summary>
-        private protected bool HasValueSetter { get; set; } = false;
 
         /// <summary>
         /// Formats the value as a string. Derived classes can override this to determine the formating used for <see cref="ReportingValueAsString"/>.
@@ -187,6 +181,7 @@ namespace BlazorMdc
         /// <returns>A string representation of the value.</returns>
         protected virtual string FormatValueToString(T value)
             => value?.ToString();
+
 
         /// <summary>
         /// Parses a string to create an instance of <typeparamref name="T"/>. Derived classes can override this to change how
@@ -199,6 +194,7 @@ namespace BlazorMdc
         protected virtual bool TryParseValueFromString(string value, out T result, out string validationErrorMessage)
             => throw new NotImplementedException($"This component does not parse string inputs. Bind to the '{nameof(ReportingValue)}' property, not '{nameof(ReportingValueAsString)}'.");
 
+
         /// <summary>
         /// Gets a string that indicates the status of the field being edited. This will include
         /// some combination of "modified", "valid", or "invalid", depending on the status of the field.
@@ -207,11 +203,30 @@ namespace BlazorMdc
             => EditContext?.FieldCssClass(FieldIdentifier) ?? string.Empty;
 
 
-        /// <inheritdoc />
+        /// <para>
+        /// Components must call base.OnInitialized() otherwise rendering in dialogs will be unpredictable.
+        /// </para>
         protected override void OnInitialized()
         {
             base.OnInitialized();
-        
+
+            OnInitDialog();
+        }
+
+
+        /// <para>
+        /// Components must call base.OnInitialized() otherwise rendering in dialogs will be unpredictable.
+        /// </para>
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+
+            OnInitDialog();
+        }
+
+
+        private void OnInitDialog()
+        {
             if (Dialog != null)
             {
                 Dialog.RegisterLayoutAction(this);
@@ -221,6 +236,7 @@ namespace BlazorMdc
                 _instantiate = true;
             }
         }
+
 
         /// <inheritdoc />
         public override async Task SetParametersAsync(ParameterView parameters)
@@ -257,7 +273,8 @@ namespace BlazorMdc
         }
 
 
-        public virtual void RequestInstantiation()
+        /// <inheritdoc/>
+        void IMdcDialogChild.RequestInstantiation()
         {
             _instantiate = true;
             AllowNextRender = true;
@@ -270,6 +287,9 @@ namespace BlazorMdc
         }
 
 
+        /// <summary>
+        /// BlazorMdc components descending from MdcInputComponentBase _*must not*_ override ShouldRender().
+        /// </summary>
         protected override bool ShouldRender()
         {
             if (ForceShouldRenderToTrue || AllowNextRender)
@@ -282,6 +302,9 @@ namespace BlazorMdc
         }
 
 
+        /// <summary>
+        /// BlazorMdc components descending from MdcInputComponentBase _*must not*_ override OnAfterRenderAsync(bool).
+        /// </summary>
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (_instantiate)

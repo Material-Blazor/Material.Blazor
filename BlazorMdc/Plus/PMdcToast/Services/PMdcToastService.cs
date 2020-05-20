@@ -4,17 +4,19 @@
 //
 
 using System;
-using System.Runtime.InteropServices;
-using Microsoft.AspNetCore.Components;
 
 namespace BlazorMdc
 {
-    public class PMdcToastService : IPmdcToastService
+    /// <summary>
+    /// The internal implementation of <see cref="IPmdcToastService"/>.
+    /// </summary>
+    internal class PMdcToastService : IPmdcToastService
     {
         ///<inheritdoc/>
         public PMdcToastServiceConfiguration Configuration { get; set; } = new PMdcToastServiceConfiguration();
 
         private event Action<PMdcToastLevel, PMdcToastSettings> OnAdd;
+
         ///<inheritdoc/>
         event Action<PMdcToastLevel, PMdcToastSettings> IPmdcToastService.OnAdd
         {
@@ -36,7 +38,8 @@ namespace BlazorMdc
             string heading = null,
             PMdcToastCloseMethod? closeMethod = null,
             string cssClass = null,
-            MdcIcon? icon = null,
+            string iconName = null,
+            IMdcIconFoundry? iconFoundry = null,
             bool? showIcon = null,
             uint? timeout = null)
 #nullable restore annotations
@@ -47,10 +50,16 @@ namespace BlazorMdc
                 Heading = heading,
                 CloseMethod = closeMethod,
                 CssClass = cssClass,
-                Icon = icon,
+                IconName = iconName,
+                IconFoundry = iconFoundry,
                 ShowIcon = showIcon,
                 Timeout = timeout
             };
+
+            if (OnAdd is null)
+            {
+                throw new InvalidOperationException($"BlazorMdc: you attempted to show a toast notification from a {Utilities.GetTypeName(typeof(IPmdcToastService))} but have not placed a {Utilities.GetTypeName(typeof(PMdcToastAnchor))} component at the top of either App.razor or MainLayout.razor");
+            }
 
             OnAdd?.Invoke(level, settings);
         }

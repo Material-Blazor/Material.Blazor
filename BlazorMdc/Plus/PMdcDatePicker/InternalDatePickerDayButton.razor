@@ -1,57 +1,9 @@
 ﻿@namespace BlazorMdc
-
 @inherits MdcComponentBase
 
 
-<MdcButton @onclick="@OnClickAsync" Label="@day" Class="bmdc-dp-day-pad__button" ButtonStyle="@buttonStyle" Disabled="@disabled" />
-
-
-@code {
-    [Parameter] public DateTime CurrentDate { get; set; }
-    [Parameter] public DateTime DisplayDate { get; set; }
-    [Parameter] public DateTime StartOfDisplayMonth { get; set; }
-    [Parameter] public EventCallback<DateTime> OnItemClickAsync { get; set; }
-    [Parameter] public PMdcDateSelectionCriteria? DateSelectionCriteria { get; set; }
-    [Parameter] public DateTime MinDate { get; set; }
-    [Parameter] public DateTime MaxDate { get; set; }
-
-
-    private string day => DisplayDate.Day.ToString();
-    private MdcButtonStyle buttonStyle => (DisplayDate == CurrentDate) ? MdcButtonStyle.ContainedUnelevated : MdcButtonStyle.Text;
-
-
-    private bool disabled
-    {
-        get
-        {
-            if (DisplayDate.Month != StartOfDisplayMonth.Month)
-            {
-                return true;
-            }
-            
-            var criteria = CascadingDefaults.AppliedDateSelectionCriteria(DateSelectionCriteria);
-
-            switch (criteria)
-            {
-                case PMdcDateSelectionCriteria.WeekendsOnly:
-                    if ((DisplayDate.DayOfWeek != DayOfWeek.Sunday) && (DisplayDate.DayOfWeek != DayOfWeek.Saturday))
-                    {
-                        return true;
-                    }
-                    break;
-
-                case PMdcDateSelectionCriteria.WeekdaysOnly:
-                    if ((DisplayDate.DayOfWeek == DayOfWeek.Sunday) || (DisplayDate.DayOfWeek == DayOfWeek.Saturday))
-                    {
-                        return true;
-                    }
-                    break;
-            }
-
-            return DisplayDate < MinDate || DisplayDate > MaxDate;
-        }
-    }
-
-
-    private async Task OnClickAsync() => await OnItemClickAsync.InvokeAsync(DisplayDate);
-}
+<MdcButton @onclick="@OnClickAsync" 
+           Label="@Day" 
+           Class="bmdc-dp-day-pad__button" 
+           ButtonStyle="@ButtonStyle" 
+           Disabled="@ButtonDisabled" />

@@ -1,31 +1,31 @@
 ﻿# BlazorMdc (pre release)
 
-[![NuGet version](https://img.shields.io/nuget/v/BlazorMdc?label=nuget%20version&style=flat-square)](https://www.nuget.org/packages/BlazorMdc/)
-[![NuGet downloads](https://img.shields.io/nuget/dt/BlazorMdc?label=nuget%20downloads&style=flat-square)](https://www.nuget.org/packages/BlazorMdc/)
+[![NuGet version](https://img.shields.io/nuget/v/BlazorMdc?logo=nuget&label=nuget%20version&style=flat-square)](https://www.nuget.org/packages/BlazorMdc/)
+[![NuGet downloads](https://img.shields.io/nuget/dt/BlazorMdc?logo=nuget&label=nuget%20downloads&style=flat-square)](https://www.nuget.org/packages/BlazorMdc/)
 
-[![Build Status](https://img.shields.io/azure-devops/build/blazormdc/blazormdc/1?label=azure%20pipelines&style=flat-square)](https://dev.azure.com/blazormdc/blazormdc/_build/latest?definitionId=1&branchName=master)
-[![Gitter](https://badges.gitter.im/BlazorMdc/community.svg?style=flat-square)](https://gitter.im/BlazorMdc/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Build Status](https://img.shields.io/azure-devops/build/blazormdc/blazormdc/1?logo=azure-pipelines&label=azure%20pipelines&style=flat-square)](https://dev.azure.com/blazormdc/blazormdc/_build/latest?definitionId=1&branchName=master)
+[![Gitter](https://img.shields.io/gitter/room/egil/bunit?logo=gitter&style=flat-square)](https://gitter.im/BlazorMdc/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](/LICENSE.md)
-[![GitHub issues](https://img.shields.io/github/issues/BlazorMdc/BlazorMdc?style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/issues)
-[![GitHub forks](https://img.shields.io/github/forks/BlazorMdc/BlazorMdc?style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/network/members)
-[![GitHub stars](https://img.shields.io/github/stars/BlazorMdc/BlazorMdc?style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/stargazers)
-[![GitHub stars](https://img.shields.io/github/watchers/BlazorMdc/BlazorMdc?style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/watchers)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?logo=github&style=flat-square)](/LICENSE.md)
+[![GitHub issues](https://img.shields.io/github/issues/BlazorMdc/BlazorMdc?logo=github&style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/issues)
+[![GitHub forks](https://img.shields.io/github/forks/BlazorMdc/BlazorMdc?logo=github&style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/network/members)
+[![GitHub stars](https://img.shields.io/github/stars/BlazorMdc/BlazorMdc?logo=github&style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/stargazers)
+[![GitHub stars](https://img.shields.io/github/watchers/BlazorMdc/BlazorMdc?logo=github&style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/watchers)
 
 ## Lightweight Material Theme razor components for Blazor
 
-BlazorMdc is a lightweight [Material Theme](https://material.io/) [web development platform](https://material.io/develop/web/) component library for [ASP.NET Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor) that is rigorously faithful to the Material Theme's design philosophy, markup and code usage. Material Theme has very specific and detailed guidance showing web designers how to build web apps with HTML, CSS and JavaScript. Since neither Blazor for WebAssembly are directly supported, Blazor developers either need to roll their own components or use a component library such as BlazorMdc. This is available at https://www.nuget.org/packages/BlazorMdc.
+BlazorMdc is a lightweight [Material Theme](https://material.io/) [web development platform](https://material.io/develop/web/) (version 6.0.0) component library for [ASP.NET Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor) that is rigorously faithful to the Material Theme's design philosophy, markup and code usage. Material Theme has very specific and detailed guidance showing web designers how to build web apps with HTML, CSS and JavaScript. Since neither Blazor for WebAssembly are directly supported, Blazor developers either need to roll their own components or use a component library such as BlazorMdc. This is available at https://www.nuget.org/packages/BlazorMdc.
 
-BlazorMdc isn't the only Blazor component library for Material Theme and we encourage developers to look at others including open source projects such as [MatBlazor](https://www.matblazor.com/), [Blazorize](https://materialdemo.blazorise.com/) and [Skclusive.Material.Component](https://github.com/skclusive/Skclusive.Material.Component), or commercial products such as those from Telerik and Syncfusion; this is not an exhaustive list and there may be others. So why create BlazorMdc as yet another option? In building our Blazor applications using Material Theme we had some overriding objectives and to our taste this required a new library focussing on the following:
+BlazorMdc isn't the only Blazor component library for Material Theme and we encourage developers to look at others including open source projects such as [MatBlazor](https://www.matblazor.com/), [Blazorize](https://materialdemo.blazorise.com/) and [Skclusive.Material.Component](https://github.com/skclusive/Skclusive.Material.Component), or commercial products such as those from [Telerik](https://www.telerik.com/blazor-ui), and [Syncfusion](https://blazor.syncfusion.com/); this is not an exhaustive list and there may be others. So why did we create BlazorMdc as yet another option? In building our Blazor applications using Material Theme we had some overriding objectives and to our taste this required a new library focussing on the following:
 
-- Lightweight components that require the minimal possible setup and boilerplate Blazor coding and without intensive startup processing,
-- Native Blazor code to the greatest possible extent, using JavaScript Interop only where absolutely necessary, such as when initializing individual components to apply things like ripple and drop down menu functionality from the Material JavaScript libraries in the same manner as required for any other Material Theme web application,
+- Lightweight components that require the minimal possible setup or boilerplate Blazor coding and without intensive startup processing,
+- An entirely native Blazor experience for BlazorMdc's consumer, using JavaScript Interop within BlazorMdc only where absolutely necessary, such as when initializing individual components to apply things like ripple and drop down menu functionality from the Material JavaScript libraries in the same manner as required for any other Material Theme web application,
 - A balanced approach (or at least what we think is balanced) to component customization: enough to be functional but keeping things to the point and maintainable,
-- A native Material Theme HTML/CSS experience where a developer wants and expects to use Material Theme's HTML Markup and CSS - BlazorMdc keeps out of a developer's way when she wants to follow Material Theme's guidance rigorously and take full advantage of its theming capability. So if you are less interested in that control but want to deliver something that looks good fast, this is where you may want to consider other libraries,
-- Some added value components derived from core material theme components but that are not strictly material theme themselves. These include an autocomplete box, a confimration dialog, a date picker (following the material theme date picker specification quite closely) and formatted numeric input fields, and
+- A native Material Theme HTML/CSS experience where a developer wants and expects to use Material Theme's HTML Markup and CSS. BlazorMdc keeps out of a developer's way when she wants to follow Material Theme's guidance rigorously and take full advantage of its theming capability. This requires you to manage your layout because BlazorMdc does not attempt to give you layout shortcuts. This is so you can decide what layout system to use? Material Theme, Bootstrap or as you wish. Other libraries take a different approach, and if you have a different requirement you may want to consider other options,
+- Some added value components derived from core material theme components but that are not strictly material theme themselves. These include an autocomplete box, a confimration dialog and formatted numeric input fields. We also provide a date picker and paginator, each of which follow Material Theme specification in the absence of a Material Theme css/js implementation, and
 - We aim for BlazorMdc to employ best practice for Blazor development. As a starting point this should be considered as being defined per [this video from NDC London, January 2020](https://www.youtube.com/watch?v=QnBYmTpugz0). We have plenty to do to arrive at that position.
 
-Note that BlazorMdc is in the early stages of development, so there are likely to be **frequent breaking changes** until we reach version 1. This project is owned by [Dioptra](https://dioptra.tech) and is licensed under the terms of the MIT license.
+Note that BlazorMdc is in the early stages of development, so there are likely to be **frequent breaking changes** until we reach version 1. This project is owned by [Dioptra](https://dioptra.tech) and is provided as-is under the terms of the [MIT license](https://github.com/BlazorMdc/BlazorMdc/blob/master/LICENSE.md).
 
 Lastly if you want to contribute please note our [code of conduct](https://github.com/BlazorMdc/BlazorMdc/blob/master/CODE_OF_CONDUCT.md).
 
@@ -46,7 +46,7 @@ Reference the `BlazorMdc` namespace with `@using BlazorMdc` to your `_Imports.ra
 - If you want to use `PMdcToast` add `services.AddPMdcToast();` to your `ConfigureServices` function for Blazor Server or to the `Main()` function for Blazor WebAssembly, and
 - If you want animated page navigation using `PMdcAnimationdNavigation` add `services.AddPMdcAnimatedNavigationManager();` to `ConfigureServices`.
 
-**NOTE** - BlazorMdc works with [Material Components v5.1.0](https://github.com/material-components/material-components-web/releases/tag/v5.1.0). [Version 6.0.0](https://github.com/material-components/material-components-web/releases/tag/v6.0.0) released on 23 April 2020 causes dramatic markup failure. We aim to migrate promptly once we consider the relevant Material Theme documentation to be clear enough to enable this.
+**NOTE** - BlazorMdc works with [Material Components v6.0.0](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#600-2020-04-22).
 
 #### Option 1 - Using our bundled CSS and JS
 
@@ -64,13 +64,13 @@ See the [Blazor WebAssembly demo index file](BlazorMdc.Demo.WebServer/Pages/inde
 
 If you want, you can directly reference the Material Theme CSS and JS from the unpkg CDN (or download it for yourself). Again we package a reference to [Material Icons](https://material.io/resources/icons/?style=baseline). You will to add five items to your index.html/_Host.cshtml. Place this in the `<head>` tag:
 ```html
-    <link href="https://unpkg.com/material-components-web@5.1.0/dist/material-components-web.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.min.css" rel="stylesheet">
     <link href="_content/BlazorMdc/blazormdc-fonts.css" rel="stylesheet" />
     <link href="_content/BlazorMdc/blazormdc.min.css" rel="stylesheet">
 ```
 and at the end of `<body>`:
 ```html
-    <script src="https://unpkg.com/material-components-web@5.1.0/dist/material-components-web.min.js"></script>
+    <script src="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.min.js"></script>
     <script src="_content/BlazorMdc/blazormdc.min.js"></script>
 ```
 See the [Blazor Server demo index file](BlazorMdc.Demo.WebServer/Pages/index_server.cshtml) for an example.
@@ -103,12 +103,13 @@ The following is a list of core Material Theme components.
 | `MdcButton` | A [Material Button](https://material.io/develop/web/components/buttons/). |
 | `MdcCard` | A [Material Card](https://material.io/develop/web/components/cards/). _Requires ripple effect._ |
 | `MdcCheckbox` | A [Material Checkbox](https://material.io/develop/web/components/input-controls/checkboxes/). Implements a two state on/off checkbox, but not yet an indeterminate variety. |
+| `MdcCircularProgress` | A [Material Circular Progress indicator](https://material.io/develop/web/components/progress-indicator/). |
 | `MdcDataTable` | A [Material Data Table](https://material.io/develop/web/components/data-tables/) without row selection |
 | `MdcDialog` | A [Material Dialog](https://material.io/develop/web/components/dialogs/). Can set scrim and escape button actions. |
 | `MdcDrawer` | A [Material Drawer](https://material.io/develop/web/components/drawers/). _Awaits review_. |
 | `MdcIconButton` | A [Material Icon Button](https://material.io/develop/web/components/buttons/icon-buttons/). |
 | `MdcIconButtonToggle` | A toggle variant of the [Material Icon Button](https://material.io/develop/web/components/buttons/icon-buttons/). |
-| `MdcLinearProgress` | A [Material Linear Progress bar](https://material.io/develop/web/components/linear-progress/). Only implements an indeterminate progress point |
+| `MdcLinearProgress` | A [Material Linear Progress bar](https://material.io/develop/web/components/progress-indicator/). |
 | `MdcList` | A [Material List](https://material.io/develop/web/components/lists/). Implements Material Theme Web Components one and two line lists, plus a BlazorMdc interpretation of a three line list. |
 | `MdcMenu` | A [Material Menu](https://material.io/develop/web/components/menus/). Does not implement sub menus. May redesign parameterization. |
 | `MdcNavLink` | A [Material List Item](https://material.io/develop/web/components/menus/) wrapping a Blazor `NavLink`. _Awaits review_. |
@@ -132,6 +133,7 @@ The following are extra or 'plus' components that extend the strict, core Materi
 | `PMdcDatePicker` | An implementation of the [Material date picker specification](https://material.io/components/pickers/#specs) for the desktop. Does not implement date ranges. Date pickers are only implemented in Material Theme for Android, so we interpreted as closely as possible the specification with our own CSS. This is the only instance where we have created CSS for a component, because our goal is to use standard Material Theme styling throughout. The result seems a bit too dense and is within a couple of pixels of unstyled overflow content on the month selection menu for long month names in English; this is likely to overflow for languages with longer month names. We are therefore likely to relax the component's density, which should improve usability. We have deviated from the specification by adding an "undo" button to return to the current selected date. There is no "today" button, which is not in the Material Theme specification. |
 | `PMdcDebouncedTextField` | A debounced version of `MdcTextField` |
 | `PMdcDivider` | Implements a list divider by wrapping `hr` and gives the option of inset and padded. This uses the mdc-list-divider styles. | 
+| `PMdcIcon` | Displays an icon from the specified icon foundry or the default foundry from `MdcCascadingDefaults`. See `MdcIconHelper`. |
 | `PMdcNumericDoubleField` | Wraps `MdcTextField` to format numeric entry of a `double`. The format is applied when the component lacks focus, at which point the field is a text field holding the formatted number as text. When the field gains focus it switches to a number field. Allows for percentages to be entered as a whole number, e.g. typing "12" will yield a `double` equal to '0.12' and displaying '12%' when lacking focus. We intend to find a similar way to handle [basis points](https://en.wikipedia.org/wiki/Basis_point). |
 | `PMdcNumericIntField` | A wrapper for `MdcpNumericDoubleField` for `int` variables. |
 | `PMdcPagedDataList` | A templated component for paging generic data lists using `PMdcPaginator`. Uses the Wig Pig nested coding pattern and can either render list items one by one or wrap a component such as `MdcList` or `MdcDataTable`. |
@@ -140,14 +142,14 @@ The following are extra or 'plus' components that extend the strict, core Materi
 | `PMdcShield` | A simple component producing an HTML shield styled after svgs from shield.io (square, flat variety) |
 | `PMdcSlidingContent` | A templated component to provide previous/next navigation through a series of pages with light left/right and fade in/out animation. |
 | `PMdcSlidingTabBar` | An `MdcTabBar` augmented with content displayed in a `PMdcSlidingContent` |
-| `PMdcToast` | A port of [Blazored/Toast](https://github.com/Blazored/Toast) yet to be styled à la Material Theme. |
+| `PMdcToastAnchor` | A port of [Blazored/Toast](https://github.com/Blazored/Toast), modified and styled à la Material Theme. Place once instance of this in your Blazor app at the top of `App.razor` or `MainLayout.razor`. Requires that you register an `IPmdcToastService` service and will throw an exception on startup if the service is not found. |
 
 ## Services
  
 | Service | Notes |
 | :------ | :---- |
 | `IPmdcAnimatedNavigationManager` | Manages fade out/in page navigation, wrapping Blazor's `NavigationManager.NavigateTo()` function. This is purely optional and you can continue to use Blazor's navigtion if you don't want animation. |
-| `IPmdcToast` | Manages toast notification. |
+| `IPmdcToastService` | Manages toast notification. Requires a `PMdcToastAnchor` component and will throw an exception when you attempt to show a toast notification if this isn't found. |
 
 ## Utilities
  
@@ -155,7 +157,7 @@ The following are extra or 'plus' components that extend the strict, core Materi
 | :------ | :---- |
 | `MdcCascadingDefaults` | Allows you to set up defaults such as button style (filled, outlined etc), text area style (filled or outlined) |
 | `MdcTypography` | Constants for standard Material Theme typography. |
-|` MdcIcon` | Working with `IMdcIcon` and `IMdcIconFoundry` to implement optional [Material Icons](https://material.io/resources/icons/?style=baseline) and `MdcFAIcon` for [Font Awesome](https://fontawesome.com/icons?d=gallery) icons. Icon names are passed to components as a string, with an additional parameter of `IconFoundry` using utility functions from `MdcIcon` to specify the foundry and its optional parameters. Your default icon foundry can be set in `MdcCascadingDefaults` (which itself defaults to Material Icons) and then you can pass string names for the icon of your choice. For Font Awesome icons, omit the preceding "fas/r/l/d" because this is set as a Font Awesome foundry style and in `MdcCascadingDefaults.FAIconStyle`. Font Awesome relative icon size and Material Icons theme are also similarly parameterized. BlazorMdc expects you to include Material Icons in your project (these are necessary for drop down arrows and so forth, but Font Awesome icons are discretionary depending upon your project's requirement - you do however need to use Font Awesome version 5. |
+|` MdcIconHelper` | Working with `IMdcIcon` and `IMdcIconFoundry` to implement `MIFoundry()` to specify [Material Icons](https://material.io/resources/icons/?style=baseline), and optionally `FAFoundry()` for [Font Awesome](https://fontawesome.com/icons?d=gallery) and `OIFoundry()` for [Open Iconic](https://useiconic.com/open) icons. Icon names are passed to components as a string, with an additional parameter of `IconFoundry` using utility functions from `MdcIcon` to specify the foundry and its optional parameters. Your default icon foundry can be set in `MdcCascadingDefaults` (which itself defaults to Material Icons) and then you can pass string names for the icon of your choice. For Font Awesome icons, omit the preceding "fas/r/l/d" because this is set as a Font Awesome foundry style and in `MdcCascadingDefaults.FAIconStyle`. Font Awesome relative icon size and Material Icons theme are also similarly parameterized. BlazorMdc expects you to include Material Icons in your project (these are necessary for drop down arrows and so forth, but Font Awesome icons are discretionary depending upon your project's requirement - you do however need to use Font Awesome version 5 and Open Iconic version 1.1. |
 
 ## Future Development
 
