@@ -52,7 +52,7 @@ $dp-year-button-width: ($dp-panel-width - $dp-year-pad-padding-left - $dp-year-p
     Container
 */
 .bmdc-dp-container {
-    display: flex;
+    display: inline-flex;
     flex-flow: column nowrap;
     width: $dp-panel-width;
     overflow: hidden;
