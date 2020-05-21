@@ -20,12 +20,7 @@ variables:
 
 steps:
 
-- task: InlinePowershell@1
-  displayName: 'Inline Powershell'
-  inputs:
-    Script:
-
-       Write-Host "##vso[task.setvariable variable=ciSuffix]CI-$(ciYear)-$(ciMonth)"
+- powershell: Write-Host "##vso[task.setvariable variable=ciSuffix]CI-$(ciYear)-$(ciMonth)"
 
 - task: CmdLine@2
   inputs:
