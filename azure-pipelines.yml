@@ -19,7 +19,7 @@ variables:
 
 steps:
 
-- powershell: 'Write-Host "##vso[task.setvariable variable=ciSuffix]CI.$(ciYear).$(ciMonth).$(ciDay).$(ciHour).$(ciMinute).$(ciSecond)"''
+- powershell: 'Write-Host "##vso[task.setvariable variable=ciSuffix]CI.$(ciYear).$(ciMonth).$(ciDay).$(ciHour).$(ciMinute).$(ciSecond)"'
   displayName: 'Creating CI suffix with powershell...'
 
 - task: CmdLine@2
