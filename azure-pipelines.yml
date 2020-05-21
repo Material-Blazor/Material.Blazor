@@ -20,7 +20,7 @@ variables:
 steps:
 
 - powershell: 'Write-Host "##vso[task.setvariable variable=ciSuffix]CI.$(ciYear).$(ciMonth).$(ciDay).$(ciHour).$(ciMinute).$(ciSecond)"'
-  displayName: 'Creating CI suffix with powershell...'
+  displayName: 'Creating CI suffix with powershell'
 
 - task: CmdLine@2
   diaplayName: "Displaying CI suffix"
@@ -28,10 +28,10 @@ steps:
     script: echo ciSuffix is $(ciSuffix)
 
 - powershell: 'dotnet build --configuration $(buildConfiguration) $(project)'
-  displayName: 'Building $(project) in $(buildConfiguration) mode...'
+  displayName: 'Building $(project) in $(buildConfiguration) mode'
 
 - powershell: 'dotnet pack --configuration $(buildConfiguration) --no-build --output $(Build.ArtifactStagingDirectory) --version-suffix $(ciSuffix) $(project)'
-  displayName: 'Generating Nuget Package...'
+  displayName: 'Generating Nuget Package with a CI suffix of $(ciSuffix)'
 
 - task: NuGetCommand@2
   displayName: 'Pushing NuGet package to internal feed'
