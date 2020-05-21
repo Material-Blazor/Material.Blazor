@@ -29,7 +29,7 @@ steps:
   displayName: 'Building $(project) in $(buildConfiguration) mode...'
 
 - powershell: 'dotnet pack --configuration $(buildConfiguration) --no-build --output $(Build.ArtifactStagingDirectory) --version-suffix (ciSuffix) $(project)'
-  displayName: 'Generating Nuget Package... '
+  displayName: 'Generating Nuget Package with a ciSuffix of $(ciSuffix)...'
 
 - task: NuGetCommand@2
   displayName: 'Pushing NuGet package to internal feed'
