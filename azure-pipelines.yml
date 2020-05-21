@@ -15,12 +15,11 @@ variables:
   ciHour: $[format('{0:HH}', pipeline.startTime)]
   ciMinute: $[format('{0:mm}', pipeline.startTime)]
   ciSecond: $[format('{0:ss}', pipeline.startTime)]
-  ciTime: $(ciYear) '-' $(ciMonth) '-' $(ciDay) '--' $(ciHour) '-' $(ciMinute) '-' $(ciSecond)
   project: 'BlazorMdc/BlazorMdc.csproj'
 
 steps:
 
-- powershell: Write-Host "##vso[task.setvariable variable=ciSuffix]CI-$(ciYear)-$(ciMonth)"
+- powershell: Write-Host "##vso[task.setvariable variable=ciSuffix]CI.$(ciYear).$(ciMonth).$(ciDay).$(ciHour).$(ciMinute).$(ciSecond)"
 
 - task: CmdLine@2
   inputs:
@@ -29,7 +28,7 @@ steps:
 - powershell: 'dotnet build --configuration $(buildConfiguration) $(project)'
   displayName: 'Building $(project) in $(buildConfiguration) mode...'
 
-- powershell: 'dotnet pack --configuration $(buildConfiguration) --no-build --output $(Build.ArtifactStagingDirectory) --version-suffix CI.$(ciTime) $(project)'
+- powershell: 'dotnet pack --configuration $(buildConfiguration) --no-build --output $(Build.ArtifactStagingDirectory) --version-suffix (ciSuffix) $(project)'
   displayName: 'Generating Nuget Package... '
 
 - task: NuGetCommand@2
