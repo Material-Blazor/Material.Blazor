@@ -9,7 +9,13 @@ pool:
 variables:
   buildConfiguration: 'Release_Server'
   buildPlatform: 'Any CPU'
-  ciTime: $[format('{0:yyyyMMddHHmmss}', pipeline.startTime)]
+  ciYear: $[format('{0:yyyy}', pipeline.startTime)]
+  ciMonth: $[format('{0:MM}', pipeline.startTime)]
+  ciDay: $[format('{0:dd}', pipeline.startTime)]
+  ciHour: $[format('{0:HH}', pipeline.startTime)]
+  ciMinute: $[format('{0:mm}', pipeline.startTime)]
+  ciSecond: $[format('{0:ss}', pipeline.startTime)]
+  ciTime: $(ciYear) '-' $(ciMonth) '-' $(ciDay) '--' $(ciHour) '-' $(ciMinute) '-' $(ciSecond)
   project: 'BlazorMdc/BlazorMdc.csproj'
 
 steps:
