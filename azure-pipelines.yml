@@ -23,14 +23,15 @@ steps:
   displayName: 'Creating CI suffix with powershell...'
 
 - task: CmdLine@2
+  diaplayName: "Displaying CI suffix"
   inputs:
     script: echo ciSuffix is $(ciSuffix)
 
 - powershell: 'dotnet build --configuration $(buildConfiguration) $(project)'
   displayName: 'Building $(project) in $(buildConfiguration) mode...'
 
-- powershell: 'dotnet pack --configuration $(buildConfiguration) --no-build --output $(Build.ArtifactStagingDirectory) --version-suffix (ciSuffix) $(project)'
-  displayName: 'Generating Nuget Package with a ciSuffix of $(ciSuffix)...'
+- powershell: 'dotnet pack --configuration $(buildConfiguration) --no-build --output $(Build.ArtifactStagingDirectory) --version-suffix $(ciSuffix) $(project)'
+  displayName: 'Generating Nuget Package...'
 
 - task: NuGetCommand@2
   displayName: 'Pushing NuGet package to internal feed'
