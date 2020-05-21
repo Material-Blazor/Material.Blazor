@@ -9,17 +9,31 @@ pool:
 variables:
   buildConfiguration: 'Release_Server'
   buildPlatform: 'Any CPU'
-  ciTime: $[format('{0:yyyyMMddHHmmss}', pipeline.startTime)]
+#  ciYear: $[format('{0:yyyy}', pipeline.startTime)]
+#  ciMonth: $[format('{0:MM}', pipeline.startTime)]
+#  ciDay: $[format('{0:dd}', pipeline.startTime)]
+#  ciHour: $[format('{0:HH}', pipeline.startTime)]
+#  ciMinute: $[format('{0:mm}', pipeline.startTime)]
+#  ciSecond: $[format('{0:ss}', pipeline.startTime)]
   project: 'BlazorMdc/BlazorMdc.csproj'
 
 steps:
 
+#- powershell: 'Write-Host "##vso[task.setvariable variable=ciSuffix]CI.$(ciYear)$(ciMonth)$(ciDay).$(ciHour)$(ciMinute)$(ciSecond)"'
+
+- powershell: 'Write-Host "##vso[task.setvariable variable=ciSuffix]CI.$(Build.BuildNumber)"'
+  displayName: 'Creating CI suffix with powershell'
+
+- task: CmdLine@2
+  displayName: "Displaying CI suffix"
+  inputs:
+    script: echo ciSuffix is $(ciSuffix)
 
 - powershell: 'dotnet build --configuration $(buildConfiguration) $(project)'
-  displayName: 'Building $(project) in $(buildConfiguration) mode...'
+  displayName: 'Building $(project) in $(buildConfiguration) mode'
 
-- powershell: 'dotnet pack --configuration $(buildConfiguration) --no-build --output $(Build.ArtifactStagingDirectory) --version-suffix CI.$(ciTime) $(project)'
-  displayName: 'Generating Nuget Package... '
+- powershell: 'dotnet pack --configuration $(buildConfiguration) --no-build --output $(Build.ArtifactStagingDirectory) --version-suffix $(ciSuffix) $(project)'
+  displayName: 'Generating nuget package'
 
 - task: NuGetCommand@2
   displayName: 'Pushing NuGet package to internal feed'
