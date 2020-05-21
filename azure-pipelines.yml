@@ -12,16 +12,11 @@ variables:
   ciYear: $[format('{0:yyyy}', pipeline.startTime)]
   ciMonth: $[format('{0:MM}', pipeline.startTime)]
   ciDay: $[format('{0:dd}', pipeline.startTime)]
-  ciHour: $[format('{0:HH}', pipeline.startTime)]
-  ciMinute: $[format('{0:mm}', pipeline.startTime)]
-  ciSecond: $[format('{0:ss}', pipeline.startTime)]
   project: 'BlazorMdc/BlazorMdc.csproj'
 
 steps:
 
-#- powershell: 'Write-Host "##vso[task.setvariable variable=ciSuffix]CI.$(ciYear)$(ciMonth)$(ciDay).$(ciHour)$(ciMinute)$(ciSecond)"'
-
-- powershell: 'Write-Host "##vso[task.setvariable variable=ciSuffix]CI.$(Build.BuildNumber)"'
+- powershell: 'Write-Host "##vso[task.setvariable variable=ciSuffix]CI.$(ciYear)-$(ciMonth)-$(ciDay).$(Rev:.rr)"'
   displayName: 'Creating CI suffix with powershell'
 
 - task: CmdLine@2
