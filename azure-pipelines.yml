@@ -28,7 +28,7 @@ steps:
   displayName: 'Building $(project) in $(buildConfiguration) mode'
 
 - powershell: 'dotnet pack --configuration $(buildConfiguration) --no-build --output $(Build.ArtifactStagingDirectory) --version-suffix $(ciSuffix) $(project)'
-  displayName: 'Generating nuget package'
+  displayName: 'Generating nuget package with a CI suffix of $[variables.ciSuffix]'
 
 - task: NuGetCommand@2
   displayName: 'Pushing NuGet package to internal feed'
