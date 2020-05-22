@@ -1,7 +1,11 @@
 # Runs on the BlazorMdc.BlazorMdc.Master pipeline
 
 trigger:
-- master
+  branches:
+    include:
+      - master
+    exclude:
+      - develop
 
 pool:
   vmImage: 'windows-latest'
