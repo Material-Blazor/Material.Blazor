@@ -1,7 +1,7 @@
 # ASP.NET Core (.NET Framework)
 
 trigger:
-- master
+- develop
 
 pool:
   vmImage: 'windows-latest'
