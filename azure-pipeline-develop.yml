@@ -3,9 +3,17 @@
 trigger:
   branches:
     include:
-      - develop
+    - develop
     exclude:
-      - master
+    - master
+
+pr: 
+  autoCancel: true
+  branches:
+    include:
+    - develop
+    exclude:
+    - master
 
 pool:
   vmImage: 'windows-latest'
