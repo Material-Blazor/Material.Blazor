@@ -1,4 +1,4 @@
-# ASP.NET Core (.NET Framework)
+# Runs on the BlazorMdc.BlazorMdc.Develop pipeline
 
 trigger:
 - develop
