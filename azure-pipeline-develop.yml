@@ -1,7 +1,19 @@
-# ASP.NET Core (.NET Framework)
+# Runs on the BlazorMdc.BlazorMdc.Develop pipeline
 
 trigger:
-- develop
+  branches:
+    include:
+    - develop
+    exclude:
+    - master
+
+pr: 
+  autoCancel: true
+  branches:
+    include:
+    - develop
+    exclude:
+    - master
 
 pool:
   vmImage: 'windows-latest'

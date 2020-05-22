@@ -1,7 +1,19 @@
-# ASP.NET Core (.NET Framework)
+# Runs on the BlazorMdc.BlazorMdc.Master pipeline
 
 trigger:
-- master
+  branches:
+    include:
+    - master
+    exclude:
+    - develop
+
+pr: 
+  autoCancel: true
+  branches:
+    include:
+    - master
+    exclude:
+    - develop
 
 pool:
   vmImage: 'windows-latest'
@@ -13,18 +25,10 @@ variables:
 
 steps:
 
-- powershell: 'Write-Host "##vso[task.setvariable variable=ciSuffix]CI.$(Build.BuildNumber)"'
-  displayName: 'Creating CI suffix with powershell'
-
-- task: CmdLine@2
-  displayName: "Displaying CI suffix"
-  inputs:
-    script: echo ciSuffix is $(ciSuffix)
-
 - powershell: 'dotnet build --configuration $(buildConfiguration) $(project)'
   displayName: 'Building $(project) in $(buildConfiguration) mode'
 
-- powershell: 'dotnet pack --configuration $(buildConfiguration) --no-build --output $(Build.ArtifactStagingDirectory) --version-suffix $(ciSuffix) $(project)'
+- powershell: 'dotnet pack --configuration $(buildConfiguration) --no-build --output $(Build.ArtifactStagingDirectory) $(project)'
   displayName: 'Generating nuget package'
 
 - task: NuGetCommand@2
