@@ -344,6 +344,4 @@ healthchecksdb
 **/BlazorMdc/Styles/lib/material-components-web/dist/*.js
 **/BlazorMdc/wwwroot/*.css
 **/BlazorMdc/wwwroot/*.js
-**/BlazorMdc/wwwroot/dist/*.css
-**/BlazorMdc/wwwroot/dist/*.js
 **/BlazorMdc.Demo.CommonUI/wwwroot/css/*.css

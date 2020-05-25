@@ -66,12 +66,27 @@ See the [Blazor WebAssembly demo index file](BlazorMdc.Demo.WebServer/Pages/inde
 If you want, you can directly reference the Material Theme CSS and JS from the unpkg CDN (or download it for yourself). Again we package a reference to [Material Icons](https://material.io/resources/icons/?style=baseline). You will to add five items to your index.html/_Host.cshtml. Place this in the `<head>` tag:
 ```html
     <link href="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.min.css" rel="stylesheet">
-    <link href="_content/BlazorMdc/blazormdc-fonts.css" rel="stylesheet" />
     <link href="_content/BlazorMdc/blazormdc.min.css" rel="stylesheet">
+    <link href="_content/BlazorMdc/material-components-icons.min.css" rel="stylesheet">
 ```
 and at the end of `<body>`:
 ```html
     <script src="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.min.js"></script>
+    <script src="_content/BlazorMdc/blazormdc.min.js"></script>
+```
+See the [Blazor Server demo index file](BlazorMdc.Demo.WebServer/Pages/index_server.cshtml) for an example.
+
+#### Option 3 - Using our unbundled CSS and JS with Material Theme files from BlazorMdc 
+
+If you want, you can directly reference the Material Theme CSS and JS from the unpkg CDN (or download it for yourself). Again we package a reference to [Material Icons](https://material.io/resources/icons/?style=baseline). You will to add five items to your index.html/_Host.cshtml. Place this in the `<head>` tag:
+```html
+    <link href="_content/BlazorMdc/material-components-web.min.css" rel="stylesheet">
+    <link href="_content/BlazorMdc/blazormdc.min.css" rel="stylesheet">
+    <link href="_content/BlazorMdc/material-components-icons.min.css" rel="stylesheet">
+```
+and at the end of `<body>`:
+```html
+    <script src="_content/BlazorMdc/material-components-web.min.js"></script>
     <script src="_content/BlazorMdc/blazormdc.min.js"></script>
 ```
 See the [Blazor Server demo index file](BlazorMdc.Demo.WebServer/Pages/index_server.cshtml) for an example.

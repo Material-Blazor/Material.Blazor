@@ -47,4 +47,14 @@
     </None>
   </ItemGroup>
 
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="copy ..\BlazorMdc.MaterialComponents\material-components-web\dist\*.* .\wwwroot\" />
+  </Target>
+
 </Project>
