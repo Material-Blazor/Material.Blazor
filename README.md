@@ -89,7 +89,6 @@ and at the end of `<body>`:
     <script src="_content/BlazorMdc/material-components-web.min.js"></script>
     <script src="_content/BlazorMdc/blazormdc.min.js"></script>
 ```
-See the [Blazor Server demo index file](BlazorMdc.Demo.WebServer/Pages/index_server.cshtml) for an example.
 
 ## Demonstration website
 
