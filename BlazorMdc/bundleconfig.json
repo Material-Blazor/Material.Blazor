@@ -2,7 +2,7 @@
   {
     "outputFileName": "wwwroot/blazormdc-bundled.min.css",
     "inputFiles": [
-        "wwwroot/blazormdc-fonts.min.css",
+        "wwwroot/blazormdc-icons.min.css",
         "../BlazorMdc.MaterialComponents/material-components-web/dist/material-components-icons.min.css",
         "../BlazorMdc.MaterialComponents/material-components-web/dist/material-components-web.min.css",
         "wwwroot/blazormdc.css"
