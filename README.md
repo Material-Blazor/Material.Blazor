@@ -82,7 +82,11 @@ We are not yet hosting a demonstration, but you can fork and download this proje
 
 ## Demonstration from local build
 
-If you have cloned the repository and are building from source there is a project 'BlazorMDC.Demo.WebServer' that should be selected as the startup project.
+If you have cloned the repository and are building from source there is a project 'BlazorMDC.Demo.WebServer' that should be selected as the startup project.  To build, you need to install `libman` if you haven't already:
+
+```console
+dotnet tool install -g Microsoft.Web.LibraryManager.Cli
+```
 
 There are four implemented solution configurations:
 
