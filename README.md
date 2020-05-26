@@ -41,8 +41,7 @@ We also want to acknowledge the work of
 
 ## Installation
 
-Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add the CSS and JS in your html (there are non-minified unbundled files for BlazorMdc.css & BlazorMds.js to reference if you need them for debugging purposes). Note that if you fork this repo, we compile, bundle and minify SASS/CSS and JS. In Visual Studio you will need to install the [Web Compiler](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.WebCompiler) and [Bundler Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) extensions.
-
+Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add the CSS and JS in your html (there are non-minified unbundled files for BlazorMdc.css & BlazorMds.js to reference if you need them for debugging purposes).
 Reference the `BlazorMdc` namespace with `@using BlazorMdc` to your `_Imports.razor` file. There are two optional services in BlazorMdc:
 - If you want to use `PMdcToast` add `services.AddPMdcToast();` to your `ConfigureServices` function for Blazor Server or to the `Main()` function for Blazor WebAssembly, and
 - If you want animated page navigation using `PMdcAnimationdNavigation` add `services.AddPMdcAnimatedNavigationManager();` to `ConfigureServices`.
@@ -69,6 +68,13 @@ We are not yet hosting a demonstration, but you can fork and download this proje
 ## Demonstration from local build
 
 If you have cloned the repository and are building from source there is a project 'BlazorMDC.Demo.WebServer' that should be selected as the startup project.
+ 
+Note that we compile, bundle and minify SASS/CSS and JS. In Visual Studio you will need to install the   [Bundler Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) and [Web Compiler](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.WebCompiler)  extensions.
+
+If you are experimenting with different versions of the Material Design Components you will need to build the BlazorMDC.MaterialComponents project. You need to install `libman` if you haven't already:
+```console
+dotnet tool install -g Microsoft.Web.LibraryManager.Cli
+```
 
 There are four implemented solution configurations:
 
