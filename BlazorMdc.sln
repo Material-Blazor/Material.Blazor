@@ -65,13 +65,9 @@ Global
 		{538DF864-828F-470C-AE74-7345272F5EEF}.Release_WebAssembly|Any CPU.ActiveCfg = Release_WebAssembly|Any CPU
 		{538DF864-828F-470C-AE74-7345272F5EEF}.Release_WebAssembly|Any CPU.Build.0 = Release_WebAssembly|Any CPU
 		{3212BDA0-B2EF-4A95-AB38-8F22B9D80280}.Debug_Server|Any CPU.ActiveCfg = Debug_Server|Any CPU
-		{3212BDA0-B2EF-4A95-AB38-8F22B9D80280}.Debug_Server|Any CPU.Build.0 = Debug_Server|Any CPU
 		{3212BDA0-B2EF-4A95-AB38-8F22B9D80280}.Debug_WebAssembly|Any CPU.ActiveCfg = Debug_WebAssembly|Any CPU
-		{3212BDA0-B2EF-4A95-AB38-8F22B9D80280}.Debug_WebAssembly|Any CPU.Build.0 = Debug_WebAssembly|Any CPU
 		{3212BDA0-B2EF-4A95-AB38-8F22B9D80280}.Release_Server|Any CPU.ActiveCfg = Release_Server|Any CPU
-		{3212BDA0-B2EF-4A95-AB38-8F22B9D80280}.Release_Server|Any CPU.Build.0 = Release_Server|Any CPU
 		{3212BDA0-B2EF-4A95-AB38-8F22B9D80280}.Release_WebAssembly|Any CPU.ActiveCfg = Release_WebAssembly|Any CPU
-		{3212BDA0-B2EF-4A95-AB38-8F22B9D80280}.Release_WebAssembly|Any CPU.Build.0 = Release_WebAssembly|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
