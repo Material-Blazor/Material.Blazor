@@ -48,6 +48,7 @@
 
 
   <ItemGroup>
+    <Folder Include="Material-Components-Web\dist\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

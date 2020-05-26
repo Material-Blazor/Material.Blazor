@@ -342,7 +342,7 @@ healthchecksdb
 #Generated CSS files
 **/BlazorMdc/wwwroot/*.css
 **/BlazorMdc/wwwroot/*.js
-!**/BlazorMdc/wwwroot/material-components-*.*
+!**/BlazorMdc/material-components-web/dist/material-components-*.*
 **/BlazorMdc.Demo.CommonUI/wwwroot/css/*.css
 **/BlazorMdc.MaterialComponents/material-components-web/dist/*.css
 **/BlazorMdc.MaterialComponents/material-components-web/dist/*.js
