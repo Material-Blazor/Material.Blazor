@@ -41,15 +41,14 @@ We also want to acknowledge the work of
 
 ## Installation
 
-Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add one of the two following methods of linking CSS and JS in your html (there are non-minified unbundled files to reference if you prefer, but not for the bundled alternatives). Note that if you fork this repo, we compile, bundle and minify SASS/CSS and JS. In Visual Studio you will need to install the [Web Compiler](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.WebCompiler) and [Bundler Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) extensions.
-
+Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add the CSS and JS in your html (there are non-minified unbundled files for BlazorMdc.css & BlazorMds.js to reference if you need them for debugging purposes).
 Reference the `BlazorMdc` namespace with `@using BlazorMdc` to your `_Imports.razor` file. There are two optional services in BlazorMdc:
 - If you want to use `PMdcToast` add `services.AddPMdcToast();` to your `ConfigureServices` function for Blazor Server or to the `Main()` function for Blazor WebAssembly, and
 - If you want animated page navigation using `PMdcAnimationdNavigation` add `services.AddPMdcAnimatedNavigationManager();` to `ConfigureServices`.
 
 **NOTE** - BlazorMdc works with [Material Components v6.0.0](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#600-2020-04-22).
 
-#### Option 1 - Using our bundled CSS and JS
+#### Directions for using our bundled CSS and JS
 
 We bundle the Material Theme CSS and JS into BlazorMdc for your convenience along with [Material Icons](https://material.io/resources/icons/?style=baseline) which are essential for BlazorMdc. You will need to add two items to your index.html/_Host.cshtml file. Place this in the the `<head>` tag:
 ```html
@@ -59,22 +58,8 @@ and at the end of `<body>`:
 ```html
     <script src="_content/BlazorMdc/blazormdc-bundled.min.js"></script>
 ```
-See the [Blazor WebAssembly demo index file](BlazorMdc.Demo.WebServer/Pages/index_webassembly.cshtml) for an example. We also provide un-minified `blazormdc-bundled.css` and `blazormdc-bundled.js`.
+See the [Blazor WebAssembly demo index file](BlazorMdc.Demo.WebServer/Pages/index_webassembly.cshtml) and [Blazor Server demo index file](BlazorMdc.Demo.WebServer/Pages/index_server.cshtml) for examples. We also provide un-minified `blazormdc.css` and `blazormdc.js`.
 
-#### Option 2 - Using our unbundled CSS and JS with Material Theme files from CDN 
-
-If you want, you can directly reference the Material Theme CSS and JS from the unpkg CDN (or download it for yourself). Again we package a reference to [Material Icons](https://material.io/resources/icons/?style=baseline). You will to add five items to your index.html/_Host.cshtml. Place this in the `<head>` tag:
-```html
-    <link href="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.min.css" rel="stylesheet">
-    <link href="_content/BlazorMdc/blazormdc-fonts.css" rel="stylesheet" />
-    <link href="_content/BlazorMdc/blazormdc.min.css" rel="stylesheet">
-```
-and at the end of `<body>`:
-```html
-    <script src="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.min.js"></script>
-    <script src="_content/BlazorMdc/blazormdc.min.js"></script>
-```
-See the [Blazor Server demo index file](BlazorMdc.Demo.WebServer/Pages/index_server.cshtml) for an example.
 
 ## Demonstration website
 
@@ -83,6 +68,13 @@ We are not yet hosting a demonstration, but you can fork and download this proje
 ## Demonstration from local build
 
 If you have cloned the repository and are building from source there is a project 'BlazorMDC.Demo.WebServer' that should be selected as the startup project.
+ 
+Note that we compile, bundle and minify SASS/CSS and JS. In Visual Studio you will need to install the   [Bundler Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) and [Web Compiler](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.WebCompiler)  extensions.
+
+If you are experimenting with different versions of the Material Design Components you will need to build the BlazorMDC.MaterialComponents project. You need to install `libman` if you haven't already:
+```console
+dotnet tool install -g Microsoft.Web.LibraryManager.Cli
+```
 
 There are four implemented solution configurations:
 
