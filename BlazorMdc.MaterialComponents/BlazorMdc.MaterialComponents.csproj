@@ -32,7 +32,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="copy .\material-components-web\dist\*.min.* ..\blazormdc\wwwroot\" />
+    <Exec Command="copy .\material-components-web\dist\*.min.* ..\blazormdc\material-components-web\dist\" />
   </Target>
 
 </Project>
