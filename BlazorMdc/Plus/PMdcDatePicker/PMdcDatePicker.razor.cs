@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BBase;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace BlazorMdc
     /// A date picker styled to match the Material Theme date picker specification, using
     /// a modfied Material Theme select input as also applied in <see cref="MdcSelect{TItem}"/>.
     /// </summary>
-    public partial class PMdcDatePicker : MdcInputComponentBase<DateTime>
+    public partial class PMdcDatePicker : BBase.InputComponentBase<DateTime>
     {
         /// <summary>
         /// The select style.
@@ -50,8 +51,8 @@ namespace BlazorMdc
         private bool IsOpen { get; set; } = false;
 
 
-        private readonly string key = Utilities.GenerateUniqueElementName();
-        private readonly string labelId = Utilities.GenerateUniqueElementName();
+        private readonly string key = BBase.Utilities.GenerateUniqueElementName();
+        private readonly string labelId = BBase.Utilities.GenerateUniqueElementName();
 
 
         /// <inheritdoc/>
@@ -70,7 +71,7 @@ namespace BlazorMdc
         protected override void OnValueSet()
         {
             Panel.SetParameters(true, Value);
-            InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value)).ConfigureAwait(false));
+            InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", Panel.ListItemReference, BBase.Utilities.DateToString(Value)).ConfigureAwait(false));
         }
 
 

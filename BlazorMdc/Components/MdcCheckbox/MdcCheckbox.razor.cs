@@ -1,14 +1,15 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BBase;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace BlazorMdc
+namespace BMdc
 {
     /// <summary>
     /// This is a general purpose Material Theme check box accepting a boolean as a bound value. This
     /// check box does not implement indeteriminate state.
     /// </summary>
-    public partial class MdcCheckbox : MdcInputComponentBase<bool>
+    public partial class MdcCheckbox : BBase.InputComponentBase<bool>
     {
         // <summary>
         /// The check box label.
@@ -32,7 +33,8 @@ namespace BlazorMdc
         {
             base.OnInitialized();
 
-            ClassMapper.Add("mdc-checkbox mdc-checkbox--touch")
+            ClassMapper
+                .Add("mdc-checkbox mdc-checkbox--touch")
                 .AddIf("mdc-checkbox--disabled", () => Disabled);
         }
 

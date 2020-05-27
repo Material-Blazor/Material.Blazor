@@ -1,14 +1,15 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BBase;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BlazorMdc
+namespace BMdc
 {
     /// <summary>
     /// This is a general purpose Material Theme data table.
     /// </summary>
-    public partial class MdcDataTable<TItem> : MdcComponentBase
+    public partial class MdcDataTable<TItem> : BBase.ComponentBase
     {
         /// <summary>
         /// Data to render in the <see cref="TableRow"/> render fragment.

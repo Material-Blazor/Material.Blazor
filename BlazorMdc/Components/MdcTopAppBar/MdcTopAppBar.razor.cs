@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BBase;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace BlazorMdc
+namespace BMdc
 {
     /// <summary>
     /// A Material Theme top app bar
     /// </summary>
-    public partial class MdcTopAppBar : MdcComponentBase
+    public partial class MdcTopAppBar : BBase.ComponentBase
     {
         /// <summary>
         /// App bar title.

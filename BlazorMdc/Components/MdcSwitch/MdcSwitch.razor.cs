@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BBase;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace BlazorMdc
+namespace BMdc
 {
     /// <summary>
     /// This is a general purpose Material Theme switch.
     /// </summary>
-    public partial class MdcSwitch : MdcInputComponentBase<bool>
+    public partial class MdcSwitch : BBase.InputComponentBase<bool>
     {
         /// <summary>
         /// The switch's label
@@ -22,7 +23,7 @@ namespace BlazorMdc
         protected override void OnInitialized()
         {
             base.OnInitialized();
-
+            
             ClassMapper
                 .Add("mdc-switch")
                 .AddIf("mdc-switch--disabled", () => Disabled)

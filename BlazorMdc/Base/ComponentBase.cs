@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BlazorMdc
+namespace BBase
 {
     /// <summary>
     /// Determines what attributes to splat from <see cref="SplatAttributes"/>. Can be specified with bitwise or, eg:
@@ -49,7 +49,7 @@ namespace BlazorMdc
         ExcludeEvents = ClassAndStyleOnly | HtmlExcludingClassAndStyle
     }
 
-    public abstract class MdcComponentBase : ComponentBase
+    public abstract class ComponentBase : Microsoft.AspNetCore.Components.ComponentBase
     {
         private const string ClassAttrName = "class";
         private const string StyleAttrName = "style";

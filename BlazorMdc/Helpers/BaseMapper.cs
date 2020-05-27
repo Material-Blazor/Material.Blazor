@@ -6,7 +6,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace BlazorMdc
+namespace BBase
 {
     public class BaseMapper
     {

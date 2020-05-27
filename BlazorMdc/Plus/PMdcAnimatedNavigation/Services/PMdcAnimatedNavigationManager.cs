@@ -41,7 +41,7 @@ namespace BlazorMdc
         {
             if (NavigationComponent is null)
             {
-                throw new InvalidOperationException($"BlazorMdc: you have registered a {Utilities.GetTypeName(typeof(IPMdcAnimatedNavigationManager))} but have not placed a {Utilities.GetTypeName(typeof(PMdcAnimatedNavigation))} component around your markup in either App.razor or MainLayout.razor");
+                throw new InvalidOperationException($"BlazorMdc: you have registered a {BBase.Utilities.GetTypeName(typeof(IPMdcAnimatedNavigationManager))} but have not placed a {BBase.Utilities.GetTypeName(typeof(PMdcAnimatedNavigation))} component around your markup in either App.razor or MainLayout.razor");
             }
 
             if (!Configuration.ApplyAnimation)

@@ -1,9 +1,9 @@
-﻿@namespace BlazorMdc
-@inherits MdcInputComponentBase<string>
+﻿@namespace BMdc
+@inherits BBase.InputComponentBase<string>
 
 
 <div @ref="TextFieldReference"
-     @attributes="@AttributesToSplat(SplatType.ClassAndStyleOnly)">
+     @attributes="@AttributesToSplat(BBase.SplatType.ClassAndStyleOnly)">
 
     @if (AppliedTextInputStyle == BEnum.TextInputStyle.Filled || AppliedTextInputStyle == BEnum.TextInputStyle.FullWidth)
     {
@@ -17,9 +17,9 @@
 
     <input @ref="@InputReference"
            id="@Id"
-           class="mdc-text-field__input @Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle)) @FieldClass"
+           class="mdc-text-field__input @BBase.Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle)) @FieldClass"
            @bind="@ReportingValue"
-           @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)">
+           @attributes="@AttributesToSplat(BBase.SplatType.ExcludeClassAndStyle)">
 
     @if (!string.IsNullOrWhiteSpace(TrailingIcon))
     {

@@ -1,9 +1,9 @@
-﻿@namespace BlazorMdc
-@inherits MdcInputComponentBase<string>
+﻿@namespace BMdc
+@inherits BBase.InputComponentBase<string>
 
 
 <div @ref="ElementReference"
-     @attributes="@AttributesToSplat(SplatType.ClassAndStyleOnly)">
+     @attributes="@AttributesToSplat(BBase.SplatType.ClassAndStyleOnly)">
     
     @if (AppliedTextInputStyle == BEnum.TextInputStyle.Filled || AppliedTextInputStyle == BEnum.TextInputStyle.FullWidth)
     {
@@ -17,7 +17,7 @@
               rows="@Rows"
               cols="@Cols"
               disabled="@Disabled"
-              @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)" />
+              @attributes="@AttributesToSplat(BBase.SplatType.ExcludeClassAndStyle)" />
 
     @if (AppliedTextInputStyle == BEnum.TextInputStyle.Outlined)
     {

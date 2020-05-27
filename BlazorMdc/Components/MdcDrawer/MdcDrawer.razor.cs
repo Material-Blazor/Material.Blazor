@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BBase;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace BlazorMdc
+namespace BMdc
 {
     /// <summary>
     /// This is a general purpose Material Theme drawer.
     /// </summary>
-    public partial class MdcDrawer : MdcComponentBase
+    public partial class MdcDrawer : BBase.ComponentBase
     {
         /// <summary>
         /// The drawer contents.

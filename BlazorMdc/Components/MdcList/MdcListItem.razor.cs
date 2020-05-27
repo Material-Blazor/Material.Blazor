@@ -1,13 +1,12 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
-using System.Threading.Tasks;
+﻿using BBase;
+using Microsoft.AspNetCore.Components;
 
-namespace BlazorMdc
+namespace BMdc
 {
     /// <summary>
     /// This is a general purpose Material Theme list item.
     /// </summary>
-    public partial class MdcListItem : MdcComponentBase
+    public partial class MdcListItem : BBase.ComponentBase
     {
 #nullable enable annotations
         /// <summary>

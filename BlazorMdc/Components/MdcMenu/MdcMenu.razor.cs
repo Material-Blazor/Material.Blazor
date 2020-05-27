@@ -1,14 +1,15 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BBase;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
 using System.Threading.Tasks;
 
-namespace BlazorMdc
+namespace BMdc
 {
     /// <summary>
     /// This is a general purpose Material Theme menu.
     /// </summary>
-    public partial class MdcMenu : MdcComponentBase, IDisposable
+    public partial class MdcMenu : BBase.ComponentBase, IDisposable
     {
         /// <summary>
         /// A render fragement as a set of <see cref="MdcListItem"/>s.
@@ -25,7 +26,7 @@ namespace BlazorMdc
         protected override void OnInitialized()
         {
             base.OnInitialized();
-
+            
             ClassMapper
                 .Add("mdc-menu mdc-menu-surface");
 

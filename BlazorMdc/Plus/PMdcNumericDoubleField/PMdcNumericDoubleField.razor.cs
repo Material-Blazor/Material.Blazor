@@ -11,7 +11,7 @@ namespace BlazorMdc
     /// A Material Theme numeric input field. This wraps <see cref="MdcTextField"/> and normally
     /// displays the numeric value as formatted text, but switches to a pure number on being selected.
     /// </summary>
-    public partial class PMdcNumericDoubleField : MdcInputComponentBase<double>
+    public partial class PMdcNumericDoubleField : BBase.InputComponentBase<double>
     {
 #nullable enable annotations
         /// <summary>
@@ -99,7 +99,7 @@ namespace BlazorMdc
         private const string PositiveIntegerPattern = @"^\d+$";
 
 
-        private MdcTextField TextField { get; set; }
+        private BMdc.MdcTextField TextField { get; set; }
         private double Mult { get; set; } = 1;
         private double AppliedMult => HasFocus ? Mult : 1;
         private int MyDecimalPlaces { get; set; } = 0;
@@ -139,7 +139,7 @@ namespace BlazorMdc
             {
                 if (HasFocus) return "";
 
-                if (!(NumericSingularFormat is null) && Utilities.DoubleEqual(Math.Abs(ReportingValue), 1)) return NumericSingularFormat;
+                if (!(NumericSingularFormat is null) && BBase.Utilities.DoubleEqual(Math.Abs(ReportingValue), 1)) return NumericSingularFormat;
 
                 return NumericFormat;
             }

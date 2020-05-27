@@ -1,15 +1,16 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BBase;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BlazorMdc
+namespace BMdc
 {
     /// <summary>
     /// A Material Theme select.
     /// </summary>
-    public partial class MdcSelect<TItem> : MdcValidatingInputComponentBase<TItem>, BModel.IDialogChild
+    public partial class MdcSelect<TItem> : BBase.ValidatingInputComponentBase<TItem>, BModel.IDialogChild
     {
         /// <summary>
         /// The item list to be represented as a select
@@ -47,11 +48,11 @@ namespace BlazorMdc
         private ElementReference ListboxReference { get; set; }
         private ElementReference UlReference { get; set; }
         private BEnum.SelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
-        private string SelectedTextId { get; set; } = Utilities.GenerateUniqueElementName();
-        private string LabelId { get; set; } = Utilities.GenerateUniqueElementName();
+        private string SelectedTextId { get; set; } = BBase.Utilities.GenerateUniqueElementName();
+        private string LabelId { get; set; } = BBase.Utilities.GenerateUniqueElementName();
         private string SelectedText { get; set; } = "";
         private string FloatingLabelClass { get; set; } = "";
-        private string AlignClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
+        private string AlignClass => BBase.Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
         private Dictionary<TItem, BModel.ListElement<TItem>> ItemDict { get; set; }
 
 

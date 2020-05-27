@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BBase;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace BlazorMdc
+namespace BMdc
 {
     /// <summary>
     /// A Material Theme text field.
     /// </summary>
-    public partial class MdcTextArea : MdcInputComponentBase<string>
+    public partial class MdcTextArea : BBase.InputComponentBase<string>
     {
         /// <summary>
         /// The text input style.
@@ -47,11 +48,11 @@ namespace BlazorMdc
 
         private ElementReference ElementReference { get; set; }
         private BEnum.TextInputStyle AppliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
-        private string AppliedTextInputStyleClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
+        private string AppliedTextInputStyleClass => BBase.Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
         private string FloatingLabelClass { get; set; }
 
-        private readonly string id = Utilities.GenerateUniqueElementName();
-        private readonly string labelId = Utilities.GenerateUniqueElementName();
+        private readonly string id = BBase.Utilities.GenerateUniqueElementName();
+        private readonly string labelId = BBase.Utilities.GenerateUniqueElementName();
 
 
         /// <inheritdoc/>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlazorMdc
 {
-    public partial class PMdcPaginator : MdcComponentBase
+    public partial class PMdcPaginator : BBase.ComponentBase
     {
         /// <summary>
         /// A list of the allowable number of items per page for the
@@ -97,8 +97,8 @@ namespace BlazorMdc
 
 
         private bool HasRendered { get; set; } = false;
-        private MdcMenu Menu { get; set; }
-        private MdcIconButtonToggle IconButtonToggle { get; set; }
+        private BMdc.MdcMenu Menu { get; set; }
+        private BMdc.MdcIconButtonToggle IconButtonToggle { get; set; }
         private bool ToggleOn { get; set; }
         private BModel.ListElement<int>[] ItemsPerPageItems { get; set; }
         private int MaxPageNumber => Math.Max(0, Convert.ToInt32(Math.Ceiling((double)ItemCount / ItemsPerPage)) - 1);

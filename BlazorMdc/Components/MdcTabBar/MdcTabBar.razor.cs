@@ -1,15 +1,15 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BBase;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Threading.Tasks;
 
-namespace BlazorMdc
+namespace BMdc
 {
     /// <summary>
     /// This is a general purpose Material Theme tab bar.
     /// </summary>
-    public partial class MdcTabBar<TItem> : MdcComponentBase
+    public partial class MdcTabBar<TItem> : BBase.ComponentBase
     {
         private int _tabIndex;
         /// <summary>

@@ -14,7 +14,7 @@
 
 <div>
     <p>
-        <MdcButton Label="Open dialog with wrapped input components"
+        <BMdc.MdcButton Label="Open dialog with wrapped input components"
                    @onclick="@OpenDialogAsync"
                    ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
     </p>
@@ -22,7 +22,7 @@
     <p>PIN 1: <strong>'@(LogonDTO.PIN1 ?? "")'</strong></p>
     <p>PIN 2: <strong>'@(LogonDTO.PIN2 ?? "")'</strong></p>
 
-    <MdcDialog Title="Create a new PIN"
+    <BMdc.MdcDialog Title="Create a new PIN"
                @ref="DialogReference">
         <Body>
 
@@ -46,12 +46,12 @@
 
                 <div class="form-group">
                     <div style="display:flex; flex-direction: row; justify-content: center;">
-                        <MdcButton Style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                        <BMdc.MdcButton Style="margin: 0.75em 0.25em 0.25em 0.25em;"
                                    Type="submit"
                                    Label="PIN entry complete"
                                    ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
 
-                        <MdcButton @onclick="@CancelClick"
+                        <BMdc.MdcButton @onclick="@CancelClick"
                                    Style="margin: 0.75em 0.25em 0.25em 0.25em;"
                                    Label="Cancel"
                                    ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
@@ -62,12 +62,12 @@
         <Buttons>
         </Buttons>
 
-    </MdcDialog>
+    </BMdc.MdcDialog>
 </div>
 
 
 @code {
-    private MdcDialog DialogReference;
+    private BMdc.MdcDialog DialogReference;
 
     protected LogonDTO LogonDTO = new LogonDTO();
 

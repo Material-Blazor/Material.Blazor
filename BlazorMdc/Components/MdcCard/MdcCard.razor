@@ -1,9 +1,9 @@
-﻿@namespace BlazorMdc
-@inherits MdcComponentBase
+﻿@namespace BMdc
+@inherits BBase.ComponentBase
 
 
 <CascadingValue Value="@this">
-    <div @attributes="@AttributesToSplat(SplatType.ExcludeEvents)">
+    <div @attributes="@AttributesToSplat(BBase.SplatType.ExcludeEvents)">
 
         @if (Primary != null)
         {
@@ -17,7 +17,7 @@
             <div @ref="@PrimaryActionReference"
                  class="mdc-card__primary-action @PrimaryActionClass"
                  tabindex="0"
-                 @attributes="@AttributesToSplat(SplatType.EventsOnly)">
+                 @attributes="@AttributesToSplat(BBase.SplatType.EventsOnly)">
 
                 @PrimaryAction
             </div>

@@ -6,9 +6,9 @@
 
 <p>See <code>TabBarSample.razor</code> for sources.</p>
 
-<p><MdcTextField @bind-Value="@tabLabel1" Label="2nd Tab" /></p>
+<p><BMdc.MdcTextField @bind-Value="@tabLabel1" Label="2nd Tab" /></p>
 
-<MdcTabBar @bind-TabIndex="@tabIndex"
+<BMdc.MdcTabBar @bind-TabIndex="@tabIndex"
            Items="@tabLabels"
            Context="item">
     <Icon>
@@ -16,7 +16,7 @@
         <PMdcIcon Icon="@name" TabBar="true" IconFoundry="BModel.IconHelper.FAFoundry()" />
     </Icon>
     <Label>@item</Label>
-</MdcTabBar>
+</BMdc.MdcTabBar>
 
 <p>Clicked tab: @tabLabels[tabIndex]</p>
 
@@ -24,11 +24,11 @@
 
 <PMdcDivider Style="margin: 3rem 0 3rem 0;"></PMdcDivider>
 
-<p><MdcSwitch @bind-Value="@stacked" Label="Stack Icons" /></p>
+<p><BMdc.MdcSwitch @bind-Value="@stacked" Label="Stack Icons" /></p>
 
 <p>Current tab index: @slidingTabIndex</p>
 
-<p style="margin-bottom: 2em;"><MdcButton Label="Got to Alarm" @onclick="@ButtonClickAsync" /></p>
+<p style="margin-bottom: 2em;"><BMdc.MdcButton Label="Got to Alarm" @onclick="@ButtonClickAsync" /></p>
 
 
 <PMdcSlidingTabBar @key="@stacked"

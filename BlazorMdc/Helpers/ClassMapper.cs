@@ -5,7 +5,7 @@
 
 using System.Linq;
 
-namespace BlazorMdc
+namespace BBase
 {
     public class ClassMapper : BaseMapper
     {

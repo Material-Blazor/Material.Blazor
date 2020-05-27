@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace BlazorMdc
+namespace BBase
 {
     internal static class Utilities
     {

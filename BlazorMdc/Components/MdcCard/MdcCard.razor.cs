@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BBase;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace BlazorMdc
+namespace BMdc
 {
     /// <summary>
     /// A Material Theme card with three elements: primary, primary action buttons and action icons.
     /// </summary>
-    public partial class MdcCard : MdcComponentBase
+    public partial class MdcCard : BBase.ComponentBase
     {
         /// <summary>
         /// The card style - see <see cref="BlazorMdc.CardStyle"/>

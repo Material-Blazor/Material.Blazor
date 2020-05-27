@@ -5,12 +5,14 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace BlazorMdc
+namespace BBase
 {
-    // This is like InputBase from Microsoft.AspNetCore.Components.Forms, except that it treats
-    // [CascadingParameter] EditContext as optional.
-
-    public abstract class MdcInputComponentBase<T> : MdcComponentBase, BModel.IDialogChild
+    /// <summary>
+    /// This is like InputBase from Microsoft.AspNetCore.Components.Forms, except that it treats
+    /// [CascadingParameter] EditContext as optional.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public abstract class InputComponentBase<T> : BBase.ComponentBase, BModel.IDialogChild
     {
         private bool _previousParsingAttemptFailed;
         private ValidationMessageStore _parsingValidationMessages;

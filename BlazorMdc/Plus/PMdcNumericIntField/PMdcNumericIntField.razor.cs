@@ -6,7 +6,7 @@ namespace BlazorMdc
     /// <summary>
     /// An integer variant of <see cref="PMdcNumericDoubleField"/>.
     /// </summary>
-    public partial class PMdcNumericIntField : MdcInputComponentBase<int>
+    public partial class PMdcNumericIntField : BBase.InputComponentBase<int>
     {
 #nullable enable annotations
         /// <summary>

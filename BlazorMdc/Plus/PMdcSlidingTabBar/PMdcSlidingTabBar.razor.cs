@@ -8,7 +8,7 @@ namespace BlazorMdc
     /// beneath showing tabbed content.
     /// </summary>
     /// <typeparam name="TItem"></typeparam>
-    public partial class PMdcSlidingTabBar<TItem> : MdcComponentBase
+    public partial class PMdcSlidingTabBar<TItem> : BBase.ComponentBase
     {
         private int _tabIndex;
         /// <summary>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BBase;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
@@ -10,7 +11,7 @@ namespace BlazorMdc
     /// library's CSS, while you can elect whether to include Font Awesome and Open Iconic
     /// in your app.
     /// </summary>
-    public partial class PMdcIcon : MdcComponentBase
+    public partial class PMdcIcon : BBase.ComponentBase
     {
 #nullable enable annotations
         /// <summary>

@@ -13,21 +13,21 @@
 <h5 class="mdc-typography--headline5">Orphan radio buttons</h5>
 
 <p>
-    <MdcRadioButton @bind-Value="@animal"
+    <BMdc.MdcRadioButton @bind-Value="@animal"
                     TargetCheckedValue=@animalEnum.dog
                     Label=@animalEnum.dog.ToString()
                     RadioGroupName="demoGroup" />
-    <MdcRadioButton @bind-Value="@animal"
+    <BMdc.MdcRadioButton @bind-Value="@animal"
                     TargetCheckedValue=@animalEnum.fish
                     Label=@animalEnum.fish.ToString()
                     RadioGroupName="demoGroup" />
-    <MdcRadioButton @bind-Value="@animal"
+    <BMdc.MdcRadioButton @bind-Value="@animal"
                     TargetCheckedValue=@animalEnum.zebra
                     Label=@animalEnum.zebra.ToString()
                     RadioGroupName="demoGroup" />
 </p>
 <p>
-    <MdcRadioButton @bind-Value="@animal"
+    <BMdc.MdcRadioButton @bind-Value="@animal"
                     TargetCheckedValue=@animalEnum.dog
                     Label=@repeatedDogLabel
                     RadioGroupName="repeatGroup" />

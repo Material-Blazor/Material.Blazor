@@ -1,15 +1,16 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BBase;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace BlazorMdc
+namespace BMdc
 {
     /// <summary>
     /// This is a general purpose Material Theme button, with provision for standard MT styling, leading 
     /// and trailing icons and all standard Blazor events. Adds the "mdc-card__action--button" class when 
     /// placed inside an <see cref="MdcCard"/>.
     /// </summary>
-    public partial class MdcButton : MdcComponentBase
+    public partial class MdcButton : BBase.ComponentBase
     {
         [CascadingParameter] private MdcCard Card { get; set; }
 

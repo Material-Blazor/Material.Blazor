@@ -1,14 +1,15 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BBase;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace BlazorMdc
+namespace BMdc
 {
     /// <summary>
     /// This is a general purpose Material Theme linear progress bar. Can be determinant or
     /// indeterminant. If determinant the value needs to be between 0 and 1.
     /// </summary>
-    public partial class MdcLinearProgress : MdcInputComponentBase<double>
+    public partial class MdcLinearProgress : BBase.InputComponentBase<double>
     {
         /// <summary>
         /// Makes the progress bar indeterminant if True.

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BBase;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
@@ -7,7 +8,7 @@ namespace BlazorMdc
     /// <summary>
     /// A Material Theme divider.
     /// </summary>
-    public partial class PMdcDivider : MdcComponentBase
+    public partial class PMdcDivider : BBase.ComponentBase
     {
         /// <summary>
         /// Material Theme "mdc-list-divider--inset" if True.

@@ -1,17 +1,17 @@
-@namespace BlazorMdc
-@inherits MdcInputComponentBase<bool>
+@namespace BMdc
+@inherits BBase.InputComponentBase<bool>
 
 
 <div @ref="@FormReference" class="@FormFieldClass">
     <div class="mdc-touch-target-wrapper">
         <div @ref="@ElementReference"
-        @attributes="@AttributesToSplat(SplatType.ExcludeHtmlExcludingClassAndStyle)">
+        @attributes="@AttributesToSplat(BBase.SplatType.ExcludeHtmlExcludingClassAndStyle)">
 
             <input @bind="@ReportingValue"
                    type="checkbox"
                    class="mdc-checkbox__native-control @FieldClass"
                    id="@Id"
-                   @attributes="AttributesToSplat(SplatType.HtmlExcludingClassAndStyle)"/>
+                   @attributes="AttributesToSplat(BBase.SplatType.HtmlExcludingClassAndStyle)"/>
             <div class="mdc-checkbox__background">
                 <svg class="mdc-checkbox__checkmark"
                      viewBox="0 0 24 24">

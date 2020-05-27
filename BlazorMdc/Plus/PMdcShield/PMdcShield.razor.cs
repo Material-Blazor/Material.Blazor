@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BBase;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
@@ -8,7 +9,7 @@ namespace BlazorMdc
     /// A shield similar to those from shield.io and used in GitHub. Implemented
     /// with HTML rather than SVG.
     /// </summary>
-    public partial class PMdcShield : MdcComponentBase
+    public partial class PMdcShield : BBase.ComponentBase
     {
 #nullable enable annotations
         /// <summary>

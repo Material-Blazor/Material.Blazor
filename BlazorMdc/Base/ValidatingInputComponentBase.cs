@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BlazorMdc
+namespace BBase
 {
     /// <summary>
     /// A DRY inspired abstract class providing <see cref="MdcSelect{TItem}"/> and <see cref="PMdcRadioButtonGroup{TItem}"/> with validation.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class MdcValidatingInputComponentBase<T> : MdcInputComponentBase<T>
+    public abstract class ValidatingInputComponentBase<T> : BBase.InputComponentBase<T>
     {
         // This method was added in the interest of DRY and is used by MdcSelect & PMdcRadioButtonGroup
         /// <summary>
@@ -16,7 +16,7 @@ namespace BlazorMdc
         /// </summary>
         /// <param name="items">The item list</param>
         /// <param name="appliedItemValidation">Specification of the required validation <see cref="ItemValidation"/></param>
-        /// <returns>The item in the list matching <see cref="MdcInputComponentBase{T}._underlyingValue"/></returns>
+        /// <returns>The item in the list matching <see cref="InputComponentBase{T}._underlyingValue"/></returns>
         /// <exception cref="ArgumentException"/>
         public T ValidateItemList(IEnumerable<BModel.ListElement<T>> items, BEnum.ItemValidation appliedItemValidation)
         {

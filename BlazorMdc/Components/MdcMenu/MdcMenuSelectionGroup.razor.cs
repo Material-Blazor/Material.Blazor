@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace BlazorMdc
+namespace BMdc
 {
     /// <summary>
     /// A Material Theme menu selection group.

@@ -6,28 +6,28 @@
 
 <p style="margin-bottom: 2rem;">See <code>ProgressSample.razor</code> for sources.</p>
 
-<p><MdcSwitch @bind-Value="@show" Label="Show bars" /></p>
-<p><MdcSwitch @bind-Value="@showBuffer" Label="Show buffer" /></p>
+<p><BMdc.MdcSwitch @bind-Value="@show" Label="Show bars" /></p>
+<p><BMdc.MdcSwitch @bind-Value="@showBuffer" Label="Show buffer" /></p>
 
 <h5 class="mdc-typography--headline5">Indeterminate</h5>
-<p><MdcLinearProgress LinearProgressType="@linearIndeterminate" /></p>
+<p><BMdc.MdcLinearProgress LinearProgressType="@linearIndeterminate" /></p>
 
-<p><MdcCircularProgress CircularProgressType="@circularIndeterminate" /></p>
-<p><MdcCircularProgress CircularProgressType="@circularIndeterminate" CircularProgressSize="BEnum.CircularProgressSize.Medium" /></p>
-<p><MdcCircularProgress CircularProgressType="@circularIndeterminate" CircularProgressSize="BEnum.CircularProgressSize.Small" /></p>
+<p><BMdc.MdcCircularProgress CircularProgressType="@circularIndeterminate" /></p>
+<p><BMdc.MdcCircularProgress CircularProgressType="@circularIndeterminate" CircularProgressSize="BEnum.CircularProgressSize.Medium" /></p>
+<p><BMdc.MdcCircularProgress CircularProgressType="@circularIndeterminate" CircularProgressSize="BEnum.CircularProgressSize.Small" /></p>
 
 <h5 class="mdc-typography--headline5">Determinate</h5>
 <PMdcNumericDoubleField @bind-Value="@progress" Label="Progress (0 to 100%)" Min="0" Max="1" Magnitude="BEnum.NumericInputMagnitude.Percent" DecimalPlaces="2" NumericFormat="P0" />
 
 <p>Regular:</p>
-<p><MdcLinearProgress LinearProgressType="linearDeterminate" Value="@progress" BufferValue="buffer" /></p>
+<p><BMdc.MdcLinearProgress LinearProgressType="linearDeterminate" Value="@progress" BufferValue="buffer" /></p>
 
 <p>Reversed:</p>
-<p><MdcLinearProgress LinearProgressType="linearReversed" Value="@progress" BufferValue="buffer" /></p>
+<p><BMdc.MdcLinearProgress LinearProgressType="linearReversed" Value="@progress" BufferValue="buffer" /></p>
 
-<p><MdcCircularProgress Value="@progress" CircularProgressType="@circularDeterminate" /></p>
-<p><MdcCircularProgress Value="@progress" CircularProgressType="@circularDeterminate" CircularProgressSize="BEnum.CircularProgressSize.Medium" /></p>
-<p><MdcCircularProgress Value="@progress" CircularProgressType="@circularDeterminate" CircularProgressSize="BEnum.CircularProgressSize.Small" /></p>
+<p><BMdc.MdcCircularProgress Value="@progress" CircularProgressType="@circularDeterminate" /></p>
+<p><BMdc.MdcCircularProgress Value="@progress" CircularProgressType="@circularDeterminate" CircularProgressSize="BEnum.CircularProgressSize.Medium" /></p>
+<p><BMdc.MdcCircularProgress Value="@progress" CircularProgressType="@circularDeterminate" CircularProgressSize="BEnum.CircularProgressSize.Small" /></p>
 
 
 @code {

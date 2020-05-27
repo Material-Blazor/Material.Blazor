@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BBase;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace BlazorMdc
     /// <summary>
     /// For BlazorMdc internal use only.
     /// </summary>
-    public partial class InternalDatePickerPanel : MdcInputComponentBase<DateTime>
+    public partial class InternalDatePickerPanel : BBase.InputComponentBase<DateTime>
     {
         /// <summary>
         /// Date selection criteria
@@ -68,7 +69,7 @@ namespace BlazorMdc
 
         private DateTime CachedMaxDate { get; set; }
 
-        private string CachedReportingValueText => Utilities.DateToString(CachedReportingValue);
+        private string CachedReportingValueText => BBase.Utilities.DateToString(CachedReportingValue);
 
         private int MonthsOffset { get; set; } = 0;
 
@@ -81,7 +82,7 @@ namespace BlazorMdc
         private bool IsFirstParametersSet { get; set; } = true;
 
 
-        private readonly string currentYearId = Utilities.GenerateUniqueElementName();
+        private readonly string currentYearId = BBase.Utilities.GenerateUniqueElementName();
 
         private readonly BModel.IIconFoundry foundry = BModel.IconHelper.MIFoundry(BEnum.IconMITheme.Filled);
 

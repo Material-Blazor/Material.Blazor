@@ -10,7 +10,7 @@ namespace BlazorMdc
     /// <summary>
     /// A group of <see cref="MdcRadioButton{TItem}"/>s displayed horizontally or vertically.
     /// </summary>
-    public partial class PMdcRadioButtonGroup<TItem> : MdcValidatingInputComponentBase<TItem>
+    public partial class PMdcRadioButtonGroup<TItem> : BBase.ValidatingInputComponentBase<TItem>
     {
         /// <summary>
         /// The item list to be represented as radio buttons
@@ -39,7 +39,7 @@ namespace BlazorMdc
 
 
         private bool IsNotFirst { get;  set; } = false;
-        private string RadioGroupName { get; set; } = Utilities.GenerateUniqueElementName();
+        private string RadioGroupName { get; set; } = BBase.Utilities.GenerateUniqueElementName();
         private BModel.ListElement<TItem>[] ItemArray { get; set; }
 
 
@@ -56,12 +56,5 @@ namespace BlazorMdc
 
             ReportingValue = ValidateItemList(ItemArray, appliedItemValidation);
         }
-
-
-        //private async Task ValidationOnValueSet(TItem value)
-        //{
-        //    ReportingValue = value;
-        //    await Task.CompletedTask;
-        //}
     }
 }

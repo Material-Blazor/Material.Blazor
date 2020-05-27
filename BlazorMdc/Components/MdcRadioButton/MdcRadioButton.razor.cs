@@ -1,19 +1,20 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BBase;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
 using System.Threading.Tasks;
 
-namespace BlazorMdc
+namespace BMdc
 {
     /// <summary>
     /// This is a general purpose Material Theme radio button. Accepts a generic class TItem
-    /// and displays as checked if <see cref="MdcInputComponentBase{T}.Value"/> equals <see cref="TargetCheckedValue"/>.
+    /// and displays as checked if <see cref="InputComponentBase{T}.Value"/> equals <see cref="TargetCheckedValue"/>.
     /// </summary>
-    public partial class MdcRadioButton<TItem> : MdcInputComponentBase<TItem>
+    public partial class MdcRadioButton<TItem> : BBase.InputComponentBase<TItem>
     {
         /// <summary>
-        /// <see cref="MdcInputComponentBase{T}.Value"/> is set to this when the 
-        /// radio button is clicked. If the consumer sets <see cref="MdcInputComponentBase{T}.Value"/>
+        /// <see cref="InputComponentBase{T}.Value"/> is set to this when the 
+        /// radio button is clicked. If the consumer sets <see cref="InputComponentBase{T}.Value"/>
         /// to this the radio state will change to checked, or cleared for any other value.
         /// </summary>
         [Parameter] public TItem TargetCheckedValue { get; set; }
@@ -46,7 +47,7 @@ namespace BlazorMdc
         [Parameter] public string RadioGroupName { get; set; }
 
 
-        private readonly string radioId = Utilities.GenerateUniqueElementName();
+        private readonly string radioId = BBase.Utilities.GenerateUniqueElementName();
 
 
         private ElementReference FormReference { get; set; }

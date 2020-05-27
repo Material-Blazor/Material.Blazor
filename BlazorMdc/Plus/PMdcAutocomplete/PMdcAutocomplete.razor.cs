@@ -12,7 +12,7 @@ namespace BlazorMdc
     /// An autocomplete built using an <see cref="MdcTextField"/> with the anchor and drop
     /// down list implementation from a Material Theme select.
     /// </summary>
-    public partial class PMdcAutocomplete : MdcInputComponentBase<string>, IDisposable
+    public partial class PMdcAutocomplete : BBase.InputComponentBase<string>, IDisposable
     {
         private class SelectionInfo
         {
@@ -103,7 +103,7 @@ namespace BlazorMdc
 
 
         private DotNetObjectReference<PMdcAutocomplete> ObjectReference { get; set; }
-        private MdcTextField TextField { get; set; }
+        private BMdc.MdcTextField TextField { get; set; }
         private ElementReference MenuReference { get; set; }
         private SelectionItem[] MySelectItems { get; set; }
         private SelectionInfo SelectInfo { get; set; } = new SelectionInfo();

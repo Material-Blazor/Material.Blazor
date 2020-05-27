@@ -1,13 +1,14 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BBase;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
 
-namespace BlazorMdc
+namespace BMdc
 {
     /// <summary>
     /// A Material Theme text field.
     /// </summary>
-    public partial class MdcTextField : MdcInputComponentBase<string>
+    public partial class MdcTextField : BBase.InputComponentBase<string>
     {
 #nullable enable annotations
         /// <summary>
@@ -65,7 +66,7 @@ namespace BlazorMdc
         private string FloatingLabelClass { get; set; }
 
         
-        private readonly string labelId = Utilities.GenerateUniqueElementName();
+        private readonly string labelId = BBase.Utilities.GenerateUniqueElementName();
         
 
         /// <inheritdoc/>

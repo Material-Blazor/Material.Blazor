@@ -8,7 +8,7 @@ namespace BlazorMdc
     /// <summary>
     /// For BlazorMdc internal use only.
     /// </summary>
-    public partial class InternalDatePickerYearButton : MdcComponentBase
+    public partial class InternalDatePickerYearButton : BBase.ComponentBase
     {
         /// <summary>
         /// The currently selected year.

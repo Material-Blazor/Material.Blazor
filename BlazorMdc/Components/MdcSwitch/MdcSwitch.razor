@@ -1,9 +1,9 @@
-﻿@namespace BlazorMdc
-@inherits MdcInputComponentBase<bool>
+﻿@namespace BMdc
+@inherits BBase.InputComponentBase<bool>
 
 
 <div @ref="@ElementReference"
-     @attributes="AttributesToSplat(SplatType.ClassAndStyleOnly)">
+     @attributes="AttributesToSplat(BBase.SplatType.ClassAndStyleOnly)">
 
         <div class="mdc-switch__track"></div>
         <div class="mdc-switch__thumb-underlay">
@@ -13,7 +13,7 @@
                        @bind="@ReportingValue" 
                        class="mdc-switch__native-control" 
                        role="switch"
-                       @attributes="AttributesToSplat(SplatType.ExcludeClassAndStyle)" />
+                       @attributes="AttributesToSplat(BBase.SplatType.ExcludeClassAndStyle)" />
             </div>
         </div>
     </div>

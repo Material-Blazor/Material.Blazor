@@ -8,7 +8,7 @@ namespace BlazorMdc
     /// <summary>
     /// A Material Theme debounced text field.
     /// </summary>
-    public partial class PMdcDebouncedTextField : MdcInputComponentBase<string>, IDisposable
+    public partial class PMdcDebouncedTextField : BBase.InputComponentBase<string>, IDisposable
     {
 #nullable enable annotations
         /// <summary>

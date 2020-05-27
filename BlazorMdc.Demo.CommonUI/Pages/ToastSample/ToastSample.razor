@@ -41,17 +41,17 @@
     </style>
 }
 
-<p><MdcCheckbox @bind-Value="@overrideDefaults" Label="Change colors and border radius from default" /></p>
+<p><BMdc.MdcCheckbox @bind-Value="@overrideDefaults" Label="Change colors and border radius from default" /></p>
 
 <p><PMdcNumericIntField @bind-Value="@toastService.Configuration.MaxToastsShowing" Label="Max Toasts (0-10)" Min="0" Max="10" NumericFormat="N0" /></p>
 
 <p>
-    <MdcButton Style="background-color: var(--bmdc-toast-background-color-info);"
+    <BMdc.MdcButton Style="background-color: var(--bmdc-toast-background-color-info);"
                @onclick="@InfoClick"
                Label="Info Toast"
                ButtonStyle="@BEnum.ButtonStyle.ContainedRaised" />
 
-    <MdcButton Style="background-color: var(--bmdc-toast-background-color-success);"
+    <BMdc.MdcButton Style="background-color: var(--bmdc-toast-background-color-success);"
                @onclick="@(() => toastService.ShowToast(
                               level: BEnum.ToastLevel.Success,
                               heading: "I'm a SUCCESS",
@@ -59,14 +59,14 @@
                Label="Success Toast"
                ButtonStyle="@BEnum.ButtonStyle.ContainedRaised" />
 
-    <MdcButton Style="background-color: var(--bmdc-toast-background-color-warning);"
+    <BMdc.MdcButton Style="background-color: var(--bmdc-toast-background-color-warning);"
                @onclick="@(() => toastService.ShowToast(
                               level: BEnum.ToastLevel.Warning,
                               message: "I'm a WARNING" ))"
                Label="Warning Toast"
                ButtonStyle="@BEnum.ButtonStyle.ContainedRaised" />
 
-    <MdcButton Style="background-color: var(--bmdc-toast-background-color-error);"
+    <BMdc.MdcButton Style="background-color: var(--bmdc-toast-background-color-error);"
                @onclick="@(() => toastService.ShowToast(
                               level: BEnum.ToastLevel.Error,
                               message: "I'm an ERROR" ))"
@@ -75,16 +75,16 @@
 </p>
 
 <p>Try different configuration options</p>
-<p><MdcSelect Label="Additional css class" @bind-Value="@cssClass" Items="cssClassItems" ItemValidation="@BEnum.ItemValidation.DefaultToFirst"></MdcSelect></p>
-<p><MdcSelect Label="Close method" @bind-Value="@closeMethod" Items="closeMethodItems"></MdcSelect></p>
-<p><MdcSelect Label="Heading" @bind-Value="@heading" Items="headingItems" ItemValidation="@BEnum.ItemValidation.DefaultToFirst"></MdcSelect></p>
-<p><MdcSelect Label="Icon" @bind-Value="@icon" Items="iconItems" ItemValidation="@BEnum.ItemValidation.DefaultToFirst"></MdcSelect></p>
-<p><MdcSelect Label="Level" @bind-Value="@level" Items="levelItems"></MdcSelect></p>
-<p><MdcSelect Label="Message" @bind-Value="@message" Items="messageItems" ItemValidation="@BEnum.ItemValidation.DefaultToFirst"></MdcSelect></p>
-<p><MdcSelect Label="Show icon" @bind-Value="@showIcon" Items="showIconItems" ItemValidation="@BEnum.ItemValidation.DefaultToFirst"></MdcSelect></p>
-<p><MdcSelect Label="Timeout" @bind-Value="@timeout" Items="timeoutItems" ItemValidation="@BEnum.ItemValidation.DefaultToFirst"></MdcSelect></p>
+<p><BMdc.MdcSelect Label="Additional css class" @bind-Value="@cssClass" Items="cssClassItems" ItemValidation="@BEnum.ItemValidation.DefaultToFirst"></BMdc.MdcSelect></p>
+<p><BMdc.MdcSelect Label="Close method" @bind-Value="@closeMethod" Items="closeMethodItems"></BMdc.MdcSelect></p>
+<p><BMdc.MdcSelect Label="Heading" @bind-Value="@heading" Items="headingItems" ItemValidation="@BEnum.ItemValidation.DefaultToFirst"></BMdc.MdcSelect></p>
+<p><BMdc.MdcSelect Label="Icon" @bind-Value="@icon" Items="iconItems" ItemValidation="@BEnum.ItemValidation.DefaultToFirst"></BMdc.MdcSelect></p>
+<p><BMdc.MdcSelect Label="Level" @bind-Value="@level" Items="levelItems"></BMdc.MdcSelect></p>
+<p><BMdc.MdcSelect Label="Message" @bind-Value="@message" Items="messageItems" ItemValidation="@BEnum.ItemValidation.DefaultToFirst"></BMdc.MdcSelect></p>
+<p><BMdc.MdcSelect Label="Show icon" @bind-Value="@showIcon" Items="showIconItems" ItemValidation="@BEnum.ItemValidation.DefaultToFirst"></BMdc.MdcSelect></p>
+<p><BMdc.MdcSelect Label="Timeout" @bind-Value="@timeout" Items="timeoutItems" ItemValidation="@BEnum.ItemValidation.DefaultToFirst"></BMdc.MdcSelect></p>
 <p>
-    <MdcButton @onclick="@customiseClick"
+    <BMdc.MdcButton @onclick="@customiseClick"
                Label="Toast with selected options"
                ButtonStyle="@BEnum.ButtonStyle.ContainedRaised" />
 </p>

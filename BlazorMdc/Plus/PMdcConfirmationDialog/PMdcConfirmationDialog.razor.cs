@@ -77,7 +77,7 @@ namespace BlazorMdc
         [Parameter] public bool OverflowVisible { get; set; } = false;
 
 
-        private MdcDialog Dialog { get; set; }
+        private BMdc.MdcDialog Dialog { get; set; }
         private string EnteredText { get; set; } = "";
         private bool Confirmed { get; set; } = false;
         private string MyConfirmationPhrase => string.IsNullOrWhiteSpace(ConfirmationPhrase) ? digitText : ConfirmationPhrase;
@@ -94,7 +94,7 @@ namespace BlazorMdc
             if ((UnconfirmedButtons == null && ConfirmedButtons != null) ||
                 (UnconfirmedButtons != null && ConfirmedButtons == null))
             {
-                throw new ArgumentException($"BlazorMdc: UnconfirmedButtons and ConfirmedButton in {Utilities.GetTypeName(this.GetType())} must both be either null or not null");
+                throw new ArgumentException($"BlazorMdc: UnconfirmedButtons and ConfirmedButton in {BBase.Utilities.GetTypeName(this.GetType())} must both be either null or not null");
             }
         }
 

@@ -6,11 +6,11 @@
 
 <p>See <code>ListSample.razor</code> for sources.</p>
 
-<p><MdcSwitch @bind-Value="@dense" Label="Set for dense" /></p>
-<p><MdcSwitch @bind-Value="@hideLineTwo" Label="Hide line two" /></p>
-<p><MdcSwitch @bind-Value="@hideLineThree" Label="Hide line three" /></p>
+<p><BMdc.MdcSwitch @bind-Value="@dense" Label="Set for dense" /></p>
+<p><BMdc.MdcSwitch @bind-Value="@hideLineTwo" Label="Hide line two" /></p>
+<p><BMdc.MdcSwitch @bind-Value="@hideLineThree" Label="Hide line three" /></p>
 
-<MdcList Items="@displayedProducts"
+<BMdc.MdcList Items="@displayedProducts"
          Context="product"
          ShowSeparators="true"
          KeyboardInteractions="true"
@@ -26,15 +26,15 @@
     <Title>@product.DisplayName</Title>
     <Actions>
         <div style="width: 10rem">
-            <MdcSwitch @bind-Value="@product.IsInStock"
+            <BMdc.MdcSwitch @bind-Value="@product.IsInStock"
                        Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
         </div>
     </Actions>
-</MdcList>
+</BMdc.MdcList>
 
 <p></p>
 
-<MdcList Items="@displayedProducts"
+<BMdc.MdcList Items="@displayedProducts"
          Context="product"
          ShowSeparators="true"
          KeyboardInteractions="true"
@@ -51,15 +51,15 @@
     <LineTwo>@product.LineTwo</LineTwo>
     <Actions>
         <div style="width: 10rem">
-            <MdcSwitch @bind-Value="@product.IsInStock"
+            <BMdc.MdcSwitch @bind-Value="@product.IsInStock"
                        Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
         </div>
     </Actions>
-</MdcList>
+</BMdc.MdcList>
 
 <p></p>
 
-<MdcList Items="@displayedProducts"
+<BMdc.MdcList Items="@displayedProducts"
          Context="product"
          ShowSeparators="true"
          KeyboardInteractions="true"
@@ -77,11 +77,11 @@
     <LineThree>@product.LineThree</LineThree>
     <Actions>
         <div style="width: 10rem">
-            <MdcSwitch @bind-Value="@product.IsInStock"
+            <BMdc.MdcSwitch @bind-Value="@product.IsInStock"
                        Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
         </div>
     </Actions>
-</MdcList>
+</BMdc.MdcList>
 
 <p>Clicked index: '@clickedIndex'</p>
 

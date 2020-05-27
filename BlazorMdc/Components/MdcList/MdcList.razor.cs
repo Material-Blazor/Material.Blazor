@@ -1,16 +1,17 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BBase;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BlazorMdc
+namespace BMdc
 {
     /// <summary>
     /// This is a general purpose Material Theme list implementing one and two line MT web component
     /// standards. It also implements a BlazorMdc interpretation of the specification for a three line
     /// list item.
     /// </summary>
-    public partial class MdcList<TItem> : MdcComponentBase
+    public partial class MdcList<TItem> : BBase.ComponentBase
     {
         /// <summary>
         /// The list style.

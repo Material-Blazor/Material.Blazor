@@ -1,10 +1,11 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BBase;
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BlazorMdc
+namespace BMdc
 {
     /// <summary>
     /// This is a general purpose Material Theme dialog. The BlazorMdc dialog implementation does not render a dialog at all until
@@ -12,7 +13,7 @@ namespace BlazorMdc
     /// intiate it and its embedded components. Likewise when the dialog is closed, Material Theme is permitted to close the dialog
     /// gracefully before BlazorMdc removes the markup.
     /// </summary>
-    public partial class MdcDialog : MdcComponentBase, IDisposable, BModel.IDialog
+    public partial class MdcDialog : BBase.ComponentBase, IDisposable, BModel.IDialog
     {
         /// <summary>
         /// The dialog title.
@@ -63,8 +64,8 @@ namespace BlazorMdc
         private string OverflowClass => OverflowVisible ? "bmdc-dialog-overflow-visible" : "";
 
 
-        private readonly string titleId = Utilities.GenerateUniqueElementName();
-        private readonly string descId = Utilities.GenerateUniqueElementName();
+        private readonly string titleId = BBase.Utilities.GenerateUniqueElementName();
+        private readonly string descId = BBase.Utilities.GenerateUniqueElementName();
         private bool isOpen = false;
         private bool afterRenderShowAction = false;
         private bool afterDialogInitialization = false;
@@ -112,7 +113,7 @@ namespace BlazorMdc
             else
             {
                 LayoutChildren.Clear();
-                key = Utilities.GenerateUniqueElementName();
+                key = BBase.Utilities.GenerateUniqueElementName();
                 isOpen = true;
                 afterRenderShowAction = true;
                 StateHasChanged();

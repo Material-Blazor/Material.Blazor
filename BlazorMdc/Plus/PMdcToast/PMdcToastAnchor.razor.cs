@@ -11,7 +11,7 @@ namespace BlazorMdc
     /// <see cref="IPmdcToastService.ShowToast(ToastLevel, string, string, ToastCloseMethod?, string, string, IIconFoundry?, bool?, uint?)"/>.
     /// Place this component at the top of either App.razor or MainLayout.razor.
     /// </summary>
-    public partial class PMdcToastAnchor : ComponentBase
+    public partial class PMdcToastAnchor : Microsoft.AspNetCore.Components.ComponentBase
     {
         [Inject] private IPmdcToastService ToastService { get; set; }
 
