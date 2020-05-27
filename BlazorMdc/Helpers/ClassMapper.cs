@@ -5,7 +5,7 @@
 
 using System.Linq;
 
-namespace BBase
+namespace BMdcBase
 {
     public class ClassMapper : BaseMapper
     {

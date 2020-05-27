@@ -1,4 +1,4 @@
-﻿using BBase;
+﻿using BMdcBase;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
@@ -8,7 +8,7 @@ namespace BMdc
     /// <summary>
     /// A Material Theme top app bar
     /// </summary>
-    public partial class TopAppBar : BBase.ComponentBase
+    public partial class TopAppBar : BMdcBase.ComponentBase
     {
         /// <summary>
         /// App bar title.
@@ -24,11 +24,11 @@ namespace BMdc
 
         /// <summary>
         /// The foundry to use for both leading and trailing icons.
-        /// <para><c>IconFoundry="BModel.IconHelper.MIIcon()"</c></para>
-        /// <para><c>IconFoundry="BModel.IconHelper.FAIcon()"</c></para>
-        /// <para><c>IconFoundry="BModel.IconHelper.OIIcon()"</c></para>
+        /// <para><c>IconFoundry="BMdcModel.IconHelper.MIIcon()"</c></para>
+        /// <para><c>IconFoundry="BMdcModel.IconHelper.FAIcon()"</c></para>
+        /// <para><c>IconFoundry="BMdcModel.IconHelper.OIIcon()"</c></para>
         /// </summary>
-        [Parameter] public BModel.IIconFoundry IconFoundry { get; set; }
+        [Parameter] public BMdcModel.IIconFoundry IconFoundry { get; set; }
 
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace BMdc
         /// <summary>
         /// Top app bar type. See <see cref="BlazorMdc.TopAppBarType"/>
         /// </summary>
-        [Parameter] public BEnum.TopAppBarType TopAppBarType { get; set; } = BEnum.TopAppBarType.Standard;
+        [Parameter] public BMdcModel.TopAppBarType TopAppBarType { get; set; } = BMdcModel.TopAppBarType.Standard;
 
         
         private ElementReference HeaderElem { get; set; }
@@ -60,8 +60,8 @@ namespace BMdc
             ClassMapper
                 .Clear()
                 .Add("mdc-top-app-bar")
-                .AddIf($"mdc-top-app-bar--{TopAppBarType.ToString().ToLower()}", () => TopAppBarType != BEnum.TopAppBarType.Standard && TopAppBarType != BEnum.TopAppBarType.ShortCollapsed)
-                .AddIf($"mdc-top-app-bar--short mdc-top-app-bar--short-collapsed", () => TopAppBarType == BEnum.TopAppBarType.ShortCollapsed)
+                .AddIf($"mdc-top-app-bar--{TopAppBarType.ToString().ToLower()}", () => TopAppBarType != BMdcModel.TopAppBarType.Standard && TopAppBarType != BMdcModel.TopAppBarType.ShortCollapsed)
+                .AddIf($"mdc-top-app-bar--short mdc-top-app-bar--short-collapsed", () => TopAppBarType == BMdcModel.TopAppBarType.ShortCollapsed)
                 .Add("app-bar");
         }
 

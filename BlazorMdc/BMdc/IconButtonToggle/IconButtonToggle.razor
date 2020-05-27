@@ -1,14 +1,14 @@
 ﻿@namespace BMdc
-@inherits BBase.InputComponentBase<bool>
+@inherits BMdcBase.InputComponentBase<bool>
 
 
-<div @attributes="@AttributesToSplat(BBase.SplatType.ExcludeClassAndStyle)">
+<div @attributes="@AttributesToSplat(BMdcBase.SplatType.ExcludeClassAndStyle)">
     <button @ref="@ElementReference"
-            @attributes="@AttributesToSplat(BBase.SplatType.ClassAndStyleOnly)"
+            @attributes="@AttributesToSplat(BMdcBase.SplatType.ClassAndStyleOnly)"
             type="button"
             @onclick="@ToggleOnClick">
 
-        <BPlus.Icon IconName="@IconOn" IconFoundry="@IconFoundry" Class="mdc-icon-button__icon mdc-icon-button__icon--on bmdc-dp-menu__icon-button" />
-        <BPlus.Icon IconName="@IconOff" IconFoundry="@IconFoundry" Class="mdc-icon-button__icon bmdc-dp-menu__icon-button" />
+        <BMdcPlus.Icon IconName="@IconOn" IconFoundry="@IconFoundry" Class="mdc-icon-button__icon mdc-icon-button__icon--on bmdc-dp-menu__icon-button" />
+        <BMdcPlus.Icon IconName="@IconOff" IconFoundry="@IconFoundry" Class="mdc-icon-button__icon bmdc-dp-menu__icon-button" />
     </button>
 </div>

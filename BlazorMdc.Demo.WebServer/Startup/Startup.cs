@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BPlus;
+using BMdcPlus;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -30,7 +30,7 @@ namespace BlazorMdc.Demo.WebServer
             services.AddServerSideBlazor();
 
             // The configuration is optional
-            services.AddBPlusToastService(new BPlus.ToastServiceConfiguration()
+            services.AddBMdcPlusToastService(new BMdcPlus.ToastServiceConfiguration()
             {
                 InfoDefaultHeading = "Info",
                 SuccessDefaultHeading = "Success",
@@ -41,7 +41,7 @@ namespace BlazorMdc.Demo.WebServer
             });
 
             // The configuration is optional
-            services.AddBPlusAnimatedNavigationManager(new BPlus.AnimatedNaviationManagerConfiguration()
+            services.AddBMdcPlusAnimatedNavigationManager(new BMdcPlus.AnimatedNaviationManagerConfiguration()
             {
                 ApplyAnimation = true,
                 AnimationTime = 300

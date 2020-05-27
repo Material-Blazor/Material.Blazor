@@ -1,32 +1,32 @@
 ﻿@namespace BMdc
-@inherits BBase.InputComponentBase<string>
+@inherits BMdcBase.InputComponentBase<string>
 
 
 <div @ref="TextFieldReference"
-     @attributes="@AttributesToSplat(BBase.SplatType.ClassAndStyleOnly)">
+     @attributes="@AttributesToSplat(BMdcBase.SplatType.ClassAndStyleOnly)">
 
-    @if (AppliedTextInputStyle == BEnum.TextInputStyle.Filled || AppliedTextInputStyle == BEnum.TextInputStyle.FullWidth)
+    @if (AppliedTextInputStyle == BMdcModel.TextInputStyle.Filled || AppliedTextInputStyle == BMdcModel.TextInputStyle.FullWidth)
     {
         <span class="mdc-text-field__ripple"></span>
     }
 
     @if (!string.IsNullOrWhiteSpace(LeadingIcon))
     {
-        <BPlus.Icon IconName="@LeadingIcon" IconFoundry="@IconFoundry" Class="mdc-text-field__icon mdc-text-field__icon--leading" tabindex="-1" role="button" />
+        <BMdcPlus.Icon IconName="@LeadingIcon" IconFoundry="@IconFoundry" Class="mdc-text-field__icon mdc-text-field__icon--leading" tabindex="-1" role="button" />
     }
 
     <input @ref="@InputReference"
            id="@Id"
-           class="mdc-text-field__input @BBase.Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle)) @FieldClass"
+           class="mdc-text-field__input @Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle)) @FieldClass"
            @bind="@ReportingValue"
-           @attributes="@AttributesToSplat(BBase.SplatType.ExcludeClassAndStyle)">
+           @attributes="@AttributesToSplat(BMdcBase.SplatType.ExcludeClassAndStyle)">
 
     @if (!string.IsNullOrWhiteSpace(TrailingIcon))
     {
-        <BPlus.Icon IconName="@TrailingIcon" IconFoundry="@IconFoundry" Class="mdc-text-field__icon mdc-text-field__icon--trailing" tabindex="-1" role="button" />
+        <BMdcPlus.Icon IconName="@TrailingIcon" IconFoundry="@IconFoundry" Class="mdc-text-field__icon mdc-text-field__icon--trailing" tabindex="-1" role="button" />
     }
 
-    @if (AppliedTextInputStyle == BEnum.TextInputStyle.Outlined)
+    @if (AppliedTextInputStyle == BMdcModel.TextInputStyle.Outlined)
     {
         <span class="mdc-notched-outline">
             <span class="mdc-notched-outline__leading"></span>
@@ -43,7 +43,7 @@
     }
     else
     {
-        @if (AppliedTextInputStyle == BEnum.TextInputStyle.Filled && ! NoLabel)
+        @if (AppliedTextInputStyle == BMdcModel.TextInputStyle.Filled && ! NoLabel)
         {
             <span class="mdc-floating-label @FloatingLabelClass" for="@Id" id="@labelId">@Label</span>
         }

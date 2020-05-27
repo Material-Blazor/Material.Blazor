@@ -11,19 +11,19 @@ See <code>ButtonSample.razor</code> for sources.
 </p>
 
 <p>
-    <BMdc.Button Label="Contained raised" ButtonStyle="@BEnum.ButtonStyle.ContainedRaised" @onclick="@LogMessage" />
+    <BMdc.Button Label="Contained raised" ButtonStyle="@BMdcModel.ButtonStyle.ContainedRaised" @onclick="@LogMessage" />
 </p>
 
 <p>
-    <BMdc.Button Label="Contained unelevated" ButtonStyle="@BEnum.ButtonStyle.ContainedUnelevated" @onclick="@LogMessage" />
+    <BMdc.Button Label="Contained unelevated" ButtonStyle="@BMdcModel.ButtonStyle.ContainedUnelevated" @onclick="@LogMessage" />
 </p>
 
 <p>
-    <BMdc.Button Label="Outlined" ButtonStyle="@BEnum.ButtonStyle.Outlined" @onclick="@LogMessage" />
+    <BMdc.Button Label="Outlined" ButtonStyle="@BMdcModel.ButtonStyle.Outlined" @onclick="@LogMessage" />
 </p>
 
 <p>
-    <BMdc.Button Label="Text" ButtonStyle="@BEnum.ButtonStyle.Text" @onclick="@LogMessage" />
+    <BMdc.Button Label="Text" ButtonStyle="@BMdcModel.ButtonStyle.Text" @onclick="@LogMessage" />
 </p>
 
 <p>
@@ -31,7 +31,7 @@ See <code>ButtonSample.razor</code> for sources.
 </p>
 
 <p>
-    <BMdc.Button Label="Leading icon" LeadingIcon="shield" IconFoundry="BModel.IconHelper.OIFoundry()" @onclick="@LogMessage" />
+    <BMdc.Button Label="Leading icon" LeadingIcon="shield" IconFoundry="BMdcModel.IconHelper.OIFoundry()" @onclick="@LogMessage" />
 </p>
 
 <p>
@@ -41,7 +41,7 @@ See <code>ButtonSample.razor</code> for sources.
 <p>
     <BMdc.Button Label="Trailing icon with style of 'margin-left: 5em;'"
                TrailingIcon="speed"
-               ButtonStyle="BEnum.ButtonStyle.ContainedRaised"
+               ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised"
                @onclick="@LogMessage"
                Style="margin-left: 5em;" />
 </p>
@@ -51,7 +51,7 @@ See <code>ButtonSample.razor</code> for sources.
 </p>
 
 <p>
-    A font awesome icon button -> <BMdc.IconButton Icon="fa-frog" IconFoundry="BModel.IconHelper.FAFoundry()" @onclick="@LogMessage" />
+    A font awesome icon button -> <BMdc.IconButton Icon="fa-frog" IconFoundry="BMdcModel.IconHelper.FAFoundry()" @onclick="@LogMessage" />
 </p>
 
 <div style="padding: 1rem; background-color: lightgray;">
@@ -61,7 +61,7 @@ See <code>ButtonSample.razor</code> for sources.
 
     <p><BMdc.IconButtonToggle @bind-Value="@commonBool" IconOn="directions_run" IconOff="airline_seat_individual_suite" /></p>
 
-    <p><BMdc.IconButtonToggle @bind-Value="@commonBool" IconOn="fa-dog" IconOff="fa-cat" IconFoundry="BModel.IconHelper.FAFoundry()" /></p>
+    <p><BMdc.IconButtonToggle @bind-Value="@commonBool" IconOn="fa-dog" IconOff="fa-cat" IconFoundry="BMdcModel.IconHelper.FAFoundry()" /></p>
 
     <p>@commonBool</p>
 </div>

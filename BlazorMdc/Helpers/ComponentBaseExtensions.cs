@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Components;
 
 using System.Collections.Generic;
 
-namespace BBase
+namespace BMdcBase
 {
     public static class ComponentBaseExtensions
     {

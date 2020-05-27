@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BBase
+namespace BMdcBase
 {
     public class ClassBuilder<T>
     {

@@ -23,14 +23,14 @@
     <Body>
         <p>Please choose a fruit.</p>
         <BMdc.Checkbox @bind-Value="@checkMe" Label="Check me" />
-        <BPlus.RadioButtonGroup @bind-Value="@radioButtonResult1"
+        <BMdcPlus.RadioButtonGroup @bind-Value="@radioButtonResult1"
                               Items="stringItems"
                               Vertical="true"
-                              ItemValidation="@BEnum.ItemValidation.DefaultToFirst" />
+                              ItemValidation="@BMdcModel.ItemValidation.DefaultToFirst" />
     </Body>
     <Buttons>
         <BMdc.Button Label="Orange" DialogAction="orange"></BMdc.Button>
-        <BMdc.Button Label="Apple" DialogAction="apple" ButtonStyle="@BEnum.ButtonStyle.Text"></BMdc.Button>
+        <BMdc.Button Label="Apple" DialogAction="apple" ButtonStyle="@BMdcModel.ButtonStyle.Text"></BMdc.Button>
     </Buttons>
 </BMdc.Dialog>
 
@@ -40,7 +40,7 @@
 
 <p>Result: <strong>'@(result2 ?? "")'</strong></p>
 
-<BPlus.ConfirmationDialog @ref="@dialog2" 
+<BMdcPlus.ConfirmationDialog @ref="@dialog2" 
                         Title="Default confirmation dialog" />
 
 
@@ -49,7 +49,7 @@
 
 <p>Result: <strong>'@(result3 ?? "")'</strong></p>
 
-<BPlus.ConfirmationDialog @ref="@dialog3" 
+<BMdcPlus.ConfirmationDialog @ref="@dialog3" 
                         Title="Tailored confirmation dialog" ConfirmationPhrase="overridden confirmation" 
                         ActionPhrase="to play handball" 
                         ConfirmationDisabled="@disableInput">
@@ -60,14 +60,14 @@
     <UnconfirmedButtons>
         <BMdc.Button Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
         <BMdc.Button Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
-        <BMdc.Button Label="Bosh" LeadingIcon="sports_handball" Disabled="true" DialogAction="bosh" ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
+        <BMdc.Button Label="Bosh" LeadingIcon="sports_handball" Disabled="true" DialogAction="bosh" ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
     </UnconfirmedButtons>
     <ConfirmedButtons>
         <BMdc.Button Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
         <BMdc.Button Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
-        <BMdc.Button Label="Bosh" LeadingIcon="sports_handball" DialogAction="bosh" ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
+        <BMdc.Button Label="Bosh" LeadingIcon="sports_handball" DialogAction="bosh" ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
     </ConfirmedButtons>
-</BPlus.ConfirmationDialog>
+</BMdcPlus.ConfirmationDialog>
 
 
 <p style="margin-top: 3rem;"><BMdc.Button Label="Show general dialog with scrim and escape disabled (using HideAsync)" @onclick="@ShowDialog4"></BMdc.Button></p>
@@ -84,7 +84,7 @@
     </Body>
     <Buttons>
         <BMdc.Button Label="Orange" @onclick="orangeClick"></BMdc.Button>
-        <BMdc.Button Label="Apple" @onclick="appleClick" ButtonStyle="@BEnum.ButtonStyle.Text"></BMdc.Button>
+        <BMdc.Button Label="Apple" @onclick="appleClick" ButtonStyle="@BMdcModel.ButtonStyle.Text"></BMdc.Button>
     </Buttons>
 </BMdc.Dialog>
 
@@ -97,11 +97,11 @@
            OverflowVisible="true">
     <Body>
         <p>Set the date.</p>
-        <BPlus.DatePicker Label="The date" @bind-Value="@date5" SelectInputStyle="BEnum.SelectInputStyle.Outlined" MinDate="minDate" MaxDate="maxDate"></BPlus.DatePicker>
+        <BMdcPlus.DatePicker Label="The date" @bind-Value="@date5" SelectInputStyle="BMdcModel.SelectInputStyle.Outlined" MinDate="minDate" MaxDate="maxDate"></BMdcPlus.DatePicker>
     </Body>
     <Buttons>
         <BMdc.Button Label="Orange" DialogAction="orange"></BMdc.Button>
-        <BMdc.Button Label="Apple" DialogAction="apple" ButtonStyle="@BEnum.ButtonStyle.Text"></BMdc.Button>
+        <BMdc.Button Label="Apple" DialogAction="apple" ButtonStyle="@BMdcModel.ButtonStyle.Text"></BMdc.Button>
     </Buttons>
 </BMdc.Dialog>
 
@@ -110,14 +110,14 @@
 
 <p>Result: <strong>'@(date6.ToString("d") ?? "")'</strong></p>
 
-<BPlus.ConfirmationDialog @ref="@dialog6" 
+<BMdcPlus.ConfirmationDialog @ref="@dialog6" 
                         Title="Date Picker Confirmation Dialog" 
                         OverflowVisible="true">
     <Body>
         <p>Set the date.</p>
-        <BPlus.DatePicker Label="The date" @bind-Value="@date6" SelectInputStyle="BEnum.SelectInputStyle.Outlined" MinDate="minDate" MaxDate="maxDate"></BPlus.DatePicker>
+        <BMdcPlus.DatePicker Label="The date" @bind-Value="@date6" SelectInputStyle="BMdcModel.SelectInputStyle.Outlined" MinDate="minDate" MaxDate="maxDate"></BMdcPlus.DatePicker>
     </Body>
-</BPlus.ConfirmationDialog>
+</BMdcPlus.ConfirmationDialog>
 
 
 
@@ -138,14 +138,14 @@
         result1 = await dialog1.ShowAsync();
     }
 
-    BModel.ListElement<string>[] stringItems = new BModel.ListElement<string>[]
+    BMdcModel.ListElement<string>[] stringItems = new BMdcModel.ListElement<string>[]
 {
-        new BModel.ListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
-        new BModel.ListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
-        new BModel.ListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+        new BMdcModel.ListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new BMdcModel.ListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new BMdcModel.ListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
  };
 
-    BPlus.ConfirmationDialog dialog2;
+    BMdcPlus.ConfirmationDialog dialog2;
     string result2;
 
     async Task ShowDialog2()
@@ -153,7 +153,7 @@
         result2 = await dialog2.ShowAsync();
     }
 
-    BPlus.ConfirmationDialog dialog3;
+    BMdcPlus.ConfirmationDialog dialog3;
     string result3;
 
     async Task ShowDialog3()
@@ -192,7 +192,7 @@
         _ = await dialog5.ShowAsync();
     }
 
-    BPlus.ConfirmationDialog dialog6;
+    BMdcPlus.ConfirmationDialog dialog6;
     DateTime date6 = DateTime.Today;
 
     async Task ShowDialog6()

@@ -1,17 +1,17 @@
 ﻿@namespace BMdc
-@inherits BBase.ComponentBase
+@inherits BMdcBase.ComponentBase
 
 
 <header @ref="HeaderElem"
         id="app-bar"
-        @attributes="AttributesToSplat(BBase.SplatType.ExcludeEvents)">
+        @attributes="AttributesToSplat(BMdcBase.SplatType.ExcludeEvents)">
 
     <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
             <IconButton Class="mdc-top-app-bar__action-item--unbounded" 
                            Icon="@NavIcon" 
                            IconFoundry="@IconFoundry" 
-                           @attributes="@AttributesToSplat(BBase.SplatType.EventsOnly)" />
+                           @attributes="@AttributesToSplat(BMdcBase.SplatType.EventsOnly)" />
 
             <span class="mdc-top-app-bar__title">@Title</span>
         </section>

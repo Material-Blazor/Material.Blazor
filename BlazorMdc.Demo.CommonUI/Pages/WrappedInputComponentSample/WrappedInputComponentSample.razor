@@ -16,7 +16,7 @@
     <p>
         <BMdc.Button Label="Open dialog with wrapped input components"
                    @onclick="@OpenDialogAsync"
-                   ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
+                   ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
     </p>
 
     <p>PIN 1: <strong>'@(LogonDTO.PIN1 ?? "")'</strong></p>
@@ -28,7 +28,7 @@
 
             <h6>Your PIN has never been set.</h6>
             <h6>Pick a PIN, enter it, and verify the entry.</h6>
-            <BPlus.Divider Padded="true" />
+            <BMdcPlus.Divider Padded="true" />
             <EditForm Model="@LogonDTO" OnValidSubmit="@SubmitLogon">
                 <DataAnnotationsValidator />
 
@@ -49,12 +49,12 @@
                         <BMdc.Button Style="margin: 0.75em 0.25em 0.25em 0.25em;"
                                    Type="submit"
                                    Label="PIN entry complete"
-                                   ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
+                                   ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
 
                         <BMdc.Button @onclick="@CancelClick"
                                    Style="margin: 0.75em 0.25em 0.25em 0.25em;"
                                    Label="Cancel"
-                                   ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
+                                   ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
                     </div>
                 </div>
             </EditForm>

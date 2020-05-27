@@ -39,13 +39,13 @@
 <hr />
 <h5 class="mdc-typography--headline5">Horizontal radio button group</h5>
 
-<BPlus.RadioButtonGroup @bind-Value="@kittenBreed"
+<BMdcPlus.RadioButtonGroup @bind-Value="@kittenBreed"
                       Items="stringItems"
-                      ItemValidation="@BEnum.ItemValidation.DefaultToFirst" />
+                      ItemValidation="@BMdcModel.ItemValidation.DefaultToFirst" />
 
-<BPlus.RadioButtonGroup @bind-Value="@kittenBreed"
+<BMdcPlus.RadioButtonGroup @bind-Value="@kittenBreed"
                       Items="stringItems"
-                      ItemValidation="@BEnum.ItemValidation.DefaultToFirst" />
+                      ItemValidation="@BMdcModel.ItemValidation.DefaultToFirst" />
 
 <p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed ?? "")</strong>'</p>
 
@@ -53,7 +53,7 @@
 <hr />
 <h5 class="mdc-typography--headline5">Vertical radio button group</h5>
 
-<BPlus.RadioButtonGroup @bind-Value="@colour"
+<BMdcPlus.RadioButtonGroup @bind-Value="@colour"
                       Items="colourItems"
                       Vertical="true"
                       EnableTouchWrapper="false" />
@@ -71,18 +71,18 @@
 
 
     string kittenBreed;
-    BModel.ListElement<string>[] stringItems = new BModel.ListElement<string>[]
+    BMdcModel.ListElement<string>[] stringItems = new BMdcModel.ListElement<string>[]
     {
-        new BModel.ListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
-        new BModel.ListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
-        new BModel.ListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+        new BMdcModel.ListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new BMdcModel.ListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new BMdcModel.ListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
                     };
 
 
     Colour colour = Colour.Orange;
     enum Colour { Red, Orange, Yellow, Green, Blue, Indigo, Violet };
-    IEnumerable<BModel.ListElement<Colour>> colourItems => from c in (Colour[])Enum.GetValues(typeof(Colour))
-                                                       select new BModel.ListElement<Colour>
+    IEnumerable<BMdcModel.ListElement<Colour>> colourItems => from c in (Colour[])Enum.GetValues(typeof(Colour))
+                                                       select new BMdcModel.ListElement<Colour>
                                                        {
                                                            SelectedValue = c,
                                                            Label = c.ToString() + ((c == Colour.Blue) ? " (disabled)" : ""),

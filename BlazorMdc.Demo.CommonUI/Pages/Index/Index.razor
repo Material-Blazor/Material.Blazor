@@ -1,6 +1,6 @@
 ﻿@namespace BlazorMdc.Demo
 
-@inject BPlus.IAnimatedNavigationManager AnimatedNavigationManager
+@inject BMdcPlus.IAnimatedNavigationManager AnimatedNavigationManager
 @inject DemoConfiguration DemoConfiguration
 
 @page "/"
@@ -15,7 +15,7 @@
 
 <h5 class="mdc-typography--headline5">Top App Bar</h5>
 
-<BPlus.RadioButtonGroup @bind-Value="@DemoConfiguration.TopAppBarType" Items="@appBarTypes" />
+<BMdcPlus.RadioButtonGroup @bind-Value="@DemoConfiguration.TopAppBarType" Items="@appBarTypes" />
 
 <h5 class="mdc-typography--headline5">Animated Navigation</h5>
 
@@ -27,8 +27,8 @@
 
 @code {
     
-    IEnumerable<BModel.ListElement<BEnum.TopAppBarType>> appBarTypes => from c in (BEnum.TopAppBarType[])Enum.GetValues(typeof(BEnum.TopAppBarType))
-                                                                 select new BModel.ListElement<BEnum.TopAppBarType>
+    IEnumerable<BMdcModel.ListElement<BMdcModel.TopAppBarType>> appBarTypes => from c in (BMdcModel.TopAppBarType[])Enum.GetValues(typeof(BMdcModel.TopAppBarType))
+                                                                 select new BMdcModel.ListElement<BMdcModel.TopAppBarType>
                                                                  {
                                                                      SelectedValue = c,
                                                                      Label = c.ToString(),

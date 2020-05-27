@@ -1,4 +1,4 @@
-﻿using BBase;
+﻿using BMdcBase;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
@@ -9,12 +9,12 @@ namespace BMdc
     /// This is a general purpose Material Theme linear progress bar. Can be determinant or
     /// indeterminant. If determinant the value needs to be between 0 and 1.
     /// </summary>
-    public partial class LinearProgress : BBase.InputComponentBase<double>
+    public partial class LinearProgress : BMdcBase.InputComponentBase<double>
     {
         /// <summary>
         /// Makes the progress bar indeterminant if True.
         /// </summary>
-        [Parameter] public BEnum.LinearProgressType LinearProgressType { get; set; } = BEnum.LinearProgressType.Indeterminate;
+        [Parameter] public BMdcModel.LinearProgressType LinearProgressType { get; set; } = BMdcModel.LinearProgressType.Indeterminate;
 
 
         /// <summary>
@@ -68,9 +68,9 @@ namespace BMdc
             ClassMapper
                 .Clear()
                 .Add("mdc-linear-progress")
-                .AddIf("mdc-linear-progress--indeterminate", () => LinearProgressType == BEnum.LinearProgressType.Indeterminate)
-                .AddIf("mdc-linear-progress--reversed", () => LinearProgressType == BEnum.LinearProgressType.ReversedDeterminate)
-                .AddIf("mdc-linear-progress--closed", () => LinearProgressType == BEnum.LinearProgressType.Closed);
+                .AddIf("mdc-linear-progress--indeterminate", () => LinearProgressType == BMdcModel.LinearProgressType.Indeterminate)
+                .AddIf("mdc-linear-progress--reversed", () => LinearProgressType == BMdcModel.LinearProgressType.ReversedDeterminate)
+                .AddIf("mdc-linear-progress--closed", () => LinearProgressType == BMdcModel.LinearProgressType.Closed);
         }
 
 
