@@ -1,4 +1,4 @@
-﻿using BBase;
+﻿using BMdcBase;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ namespace BMdc
     /// <summary>
     /// This is a general purpose Material Theme data table.
     /// </summary>
-    public partial class DataTable<TItem> : BBase.ComponentBase
+    public partial class DataTable<TItem> : BMdcBase.ComponentBase
     {
         /// <summary>
         /// Data to render in the <see cref="TableRow"/> render fragment.

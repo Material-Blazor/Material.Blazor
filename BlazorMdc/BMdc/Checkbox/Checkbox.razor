@@ -1,17 +1,17 @@
 @namespace BMdc
-@inherits BBase.InputComponentBase<bool>
+@inherits BMdcBase.InputComponentBase<bool>
 
 
 <div @ref="@FormReference" class="@FormFieldClass">
     <div class="mdc-touch-target-wrapper">
         <div @ref="@ElementReference"
-        @attributes="@AttributesToSplat(BBase.SplatType.ExcludeHtmlExcludingClassAndStyle)">
+        @attributes="@AttributesToSplat(BMdcBase.SplatType.ExcludeHtmlExcludingClassAndStyle)">
 
             <input @bind="@ReportingValue"
                    type="checkbox"
                    class="mdc-checkbox__native-control @FieldClass"
                    id="@Id"
-                   @attributes="AttributesToSplat(BBase.SplatType.HtmlExcludingClassAndStyle)"/>
+                   @attributes="AttributesToSplat(BMdcBase.SplatType.HtmlExcludingClassAndStyle)"/>
             <div class="mdc-checkbox__background">
                 <svg class="mdc-checkbox__checkmark"
                      viewBox="0 0 24 24">

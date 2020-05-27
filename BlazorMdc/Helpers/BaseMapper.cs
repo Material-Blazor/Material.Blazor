@@ -6,7 +6,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace BBase
+namespace BMdcBase
 {
     public class BaseMapper
     {

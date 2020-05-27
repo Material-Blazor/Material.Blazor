@@ -1,4 +1,4 @@
-﻿using BBase;
+﻿using BMdcBase;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
@@ -10,7 +10,7 @@ namespace BMdc
     /// and trailing icons and all standard Blazor events. Adds the "mdc-card__action--icon" class when 
     /// placed inside an <see cref="BMdc.Card"/>.
     /// </summary>
-    public partial class IconButtonToggle : BBase.InputComponentBase<bool>
+    public partial class IconButtonToggle : BMdcBase.InputComponentBase<bool>
     {
         [CascadingParameter] private Card Card { get; set; }
 
@@ -30,11 +30,11 @@ namespace BMdc
 
         /// <summary>
         /// The foundry to use for both leading and trailing icons.
-        /// <para><c>IconFoundry="BModel.IconHelper.MIIcon()"</c></para>
-        /// <para><c>IconFoundry="BModel.IconHelper.FAIcon()"</c></para>
-        /// <para><c>IconFoundry="BModel.IconHelper.OIIcon()"</c></para>
+        /// <para><c>IconFoundry="BMdcModel.IconHelper.MIIcon()"</c></para>
+        /// <para><c>IconFoundry="BMdcModel.IconHelper.FAIcon()"</c></para>
+        /// <para><c>IconFoundry="BMdcModel.IconHelper.OIIcon()"</c></para>
         /// </summary>
-        [Parameter] public BModel.IIconFoundry? IconFoundry { get; set; }
+        [Parameter] public BMdcModel.IIconFoundry? IconFoundry { get; set; }
 #nullable restore annotations
 
 

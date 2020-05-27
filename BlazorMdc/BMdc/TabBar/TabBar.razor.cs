@@ -1,4 +1,4 @@
-﻿using BBase;
+﻿using BMdcBase;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Collections.Generic;
@@ -9,7 +9,7 @@ namespace BMdc
     /// <summary>
     /// This is a general purpose Material Theme tab bar.
     /// </summary>
-    public partial class TabBar<TItem> : BBase.ComponentBase
+    public partial class TabBar<TItem> : BMdcBase.ComponentBase
     {
         private int _tabIndex;
         /// <summary>
@@ -61,7 +61,7 @@ namespace BMdc
 
         /// <summary>
         /// Icon render fragments requiring correct icon markup including the "mdc-tab__icon"
-        /// CSS class. As a helper you can render with <see cref="BPlus.Icon"/> with <see cref="BPlus.Icon.TabBar"/>
+        /// CSS class. As a helper you can render with <see cref="BMdcPlus.Icon"/> with <see cref="BMdcPlus.Icon.TabBar"/>
         /// set to true. Note that Material Icons always render properly, while some wider Font Awesome
         /// icons for instance render too close to the tab text.
         /// </summary>

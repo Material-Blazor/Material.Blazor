@@ -1,4 +1,4 @@
-﻿using BBase;
+﻿using BMdcBase;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
@@ -9,7 +9,7 @@ namespace BMdc
     /// <summary>
     /// This is a general purpose Material Theme menu.
     /// </summary>
-    public partial class Menu : BBase.ComponentBase, IDisposable
+    public partial class Menu : BMdcBase.ComponentBase, IDisposable
     {
         /// <summary>
         /// A render fragement as a set of <see cref="ListItem"/>s.

@@ -1,4 +1,4 @@
-﻿using BBase;
+﻿using BMdcBase;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Collections.Generic;
@@ -11,12 +11,12 @@ namespace BMdc
     /// standards. It also implements a BlazorMdc interpretation of the specification for a three line
     /// list item.
     /// </summary>
-    public partial class List<TItem> : BBase.ComponentBase
+    public partial class List<TItem> : BMdcBase.ComponentBase
     {
         /// <summary>
         /// The list style.
         /// </summary>
-        [Parameter] public BEnum.ListStyle? ListStyle { get; set; }
+        [Parameter] public BMdcModel.ListStyle? ListStyle { get; set; }
 
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace BMdc
 
         /// <summary>
         /// The icon render fragment to use if <c>!<see cref="SuppressIcons"/></c>.
-        /// Note that you will be expected to render your own icon, and can use <see cref="BPlus.Icon"/>.
+        /// Note that you will be expected to render your own icon, and can use <see cref="BMdcPlus.Icon"/>.
         /// </summary>
         [Parameter] public RenderFragment<TItem> Icon { get; set; }
 
@@ -164,7 +164,7 @@ namespace BMdc
             ClassMapper
                 .Clear()
                 .Add("mdc-list")
-                .AddIf("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(ListStyle) == BEnum.ListStyle.Outlined))
+                .AddIf("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(ListStyle) == BMdcModel.ListStyle.Outlined))
                 .AddIf("mdc-list--two-line", () => (NumberOfLines == 2))
                 .AddIf("bmdc-list--three-line", () => (NumberOfLines == 3))
                 .AddIf("mdc-list--non-interactive", () => NonInteractive)

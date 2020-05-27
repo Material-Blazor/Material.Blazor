@@ -2,14 +2,14 @@
 
 @page "/toast"
 
-@inject BPlus.IToastService toastService
+@inject BMdcPlus.IToastService toastService
 
 <h1 class="mdc-typography--headline4">Toast samples</h1>
 
 <p>See <code>ToastSample.razor</code> for sources.</p>
 
 <p>
-    Note the addition of <code>AddBPlus.Toast()</code> in Startup.cs (Server) and Program.cs (WASM) as well as the component <code>BPlus.Toasts</code> in MainLayout.razor.
+    Note the addition of <code>AddBMdcPlus.Toast()</code> in Startup.cs (Server) and Program.cs (WASM) as well as the component <code>BMdcPlus.Toasts</code> in MainLayout.razor.
 </p>
 
 <style>
@@ -43,50 +43,50 @@
 
 <p><BMdc.Checkbox @bind-Value="@overrideDefaults" Label="Change colors and border radius from default" /></p>
 
-<p><BPlus.NumericIntField @bind-Value="@toastService.Configuration.MaxToastsShowing" Label="Max Toasts (0-10)" Min="0" Max="10" NumericFormat="N0" /></p>
+<p><BMdcPlus.NumericIntField @bind-Value="@toastService.Configuration.MaxToastsShowing" Label="Max Toasts (0-10)" Min="0" Max="10" NumericFormat="N0" /></p>
 
 <p>
     <BMdc.Button Style="background-color: var(--bmdc-toast-background-color-info);"
                @onclick="@InfoClick"
                Label="Info Toast"
-               ButtonStyle="@BEnum.ButtonStyle.ContainedRaised" />
+               ButtonStyle="@BMdcModel.ButtonStyle.ContainedRaised" />
 
     <BMdc.Button Style="background-color: var(--bmdc-toast-background-color-success);"
                @onclick="@(() => toastService.ShowToast(
-                              level: BEnum.ToastLevel.Success,
+                              level: BMdcModel.ToastLevel.Success,
                               heading: "I'm a SUCCESS",
                               message: "Congratulations!" ))"
                Label="Success Toast"
-               ButtonStyle="@BEnum.ButtonStyle.ContainedRaised" />
+               ButtonStyle="@BMdcModel.ButtonStyle.ContainedRaised" />
 
     <BMdc.Button Style="background-color: var(--bmdc-toast-background-color-warning);"
                @onclick="@(() => toastService.ShowToast(
-                              level: BEnum.ToastLevel.Warning,
+                              level: BMdcModel.ToastLevel.Warning,
                               message: "I'm a WARNING" ))"
                Label="Warning Toast"
-               ButtonStyle="@BEnum.ButtonStyle.ContainedRaised" />
+               ButtonStyle="@BMdcModel.ButtonStyle.ContainedRaised" />
 
     <BMdc.Button Style="background-color: var(--bmdc-toast-background-color-error);"
                @onclick="@(() => toastService.ShowToast(
-                              level: BEnum.ToastLevel.Error,
+                              level: BMdcModel.ToastLevel.Error,
                               message: "I'm an ERROR" ))"
                Label="Error Toast"
-               ButtonStyle="@BEnum.ButtonStyle.ContainedRaised" />
+               ButtonStyle="@BMdcModel.ButtonStyle.ContainedRaised" />
 </p>
 
 <p>Try different configuration options</p>
-<p><BMdc.Select Label="Additional css class" @bind-Value="@cssClass" Items="cssClassItems" ItemValidation="@BEnum.ItemValidation.DefaultToFirst"></BMdc.Select></p>
+<p><BMdc.Select Label="Additional css class" @bind-Value="@cssClass" Items="cssClassItems" ItemValidation="@BMdcModel.ItemValidation.DefaultToFirst"></BMdc.Select></p>
 <p><BMdc.Select Label="Close method" @bind-Value="@closeMethod" Items="closeMethodItems"></BMdc.Select></p>
-<p><BMdc.Select Label="Heading" @bind-Value="@heading" Items="headingItems" ItemValidation="@BEnum.ItemValidation.DefaultToFirst"></BMdc.Select></p>
-<p><BMdc.Select Label="Icon" @bind-Value="@icon" Items="iconItems" ItemValidation="@BEnum.ItemValidation.DefaultToFirst"></BMdc.Select></p>
+<p><BMdc.Select Label="Heading" @bind-Value="@heading" Items="headingItems" ItemValidation="@BMdcModel.ItemValidation.DefaultToFirst"></BMdc.Select></p>
+<p><BMdc.Select Label="Icon" @bind-Value="@icon" Items="iconItems" ItemValidation="@BMdcModel.ItemValidation.DefaultToFirst"></BMdc.Select></p>
 <p><BMdc.Select Label="Level" @bind-Value="@level" Items="levelItems"></BMdc.Select></p>
-<p><BMdc.Select Label="Message" @bind-Value="@message" Items="messageItems" ItemValidation="@BEnum.ItemValidation.DefaultToFirst"></BMdc.Select></p>
-<p><BMdc.Select Label="Show icon" @bind-Value="@showIcon" Items="showIconItems" ItemValidation="@BEnum.ItemValidation.DefaultToFirst"></BMdc.Select></p>
-<p><BMdc.Select Label="Timeout" @bind-Value="@timeout" Items="timeoutItems" ItemValidation="@BEnum.ItemValidation.DefaultToFirst"></BMdc.Select></p>
+<p><BMdc.Select Label="Message" @bind-Value="@message" Items="messageItems" ItemValidation="@BMdcModel.ItemValidation.DefaultToFirst"></BMdc.Select></p>
+<p><BMdc.Select Label="Show icon" @bind-Value="@showIcon" Items="showIconItems" ItemValidation="@BMdcModel.ItemValidation.DefaultToFirst"></BMdc.Select></p>
+<p><BMdc.Select Label="Timeout" @bind-Value="@timeout" Items="timeoutItems" ItemValidation="@BMdcModel.ItemValidation.DefaultToFirst"></BMdc.Select></p>
 <p>
     <BMdc.Button @onclick="@customiseClick"
                Label="Toast with selected options"
-               ButtonStyle="@BEnum.ButtonStyle.ContainedRaised" />
+               ButtonStyle="@BMdcModel.ButtonStyle.ContainedRaised" />
 </p>
 
 
@@ -94,16 +94,16 @@
     private bool overrideDefaults = false;
 
     string cssClass;
-    BModel.ListElement<string>[] cssClassItems = new BModel.ListElement<string>[]
+    BMdcModel.ListElement<string>[] cssClassItems = new BMdcModel.ListElement<string>[]
     {
-        new BModel.ListElement<string> { SelectedValue = "", Label = "Default" },
-        new BModel.ListElement<string> { SelectedValue = "my-class", Label = "Italic" },
+        new BMdcModel.ListElement<string> { SelectedValue = "", Label = "Default" },
+        new BMdcModel.ListElement<string> { SelectedValue = "my-class", Label = "Italic" },
     };
 
 
-    BEnum.ToastCloseMethod closeMethod;
-    IEnumerable<BModel.ListElement<BEnum.ToastCloseMethod>> closeMethodItems => from c in (BEnum.ToastCloseMethod[])Enum.GetValues(typeof(BEnum.ToastCloseMethod))
-                                                                          select new BModel.ListElement<BEnum.ToastCloseMethod>
+    BMdcModel.ToastCloseMethod closeMethod;
+    IEnumerable<BMdcModel.ListElement<BMdcModel.ToastCloseMethod>> closeMethodItems => from c in (BMdcModel.ToastCloseMethod[])Enum.GetValues(typeof(BMdcModel.ToastCloseMethod))
+                                                                          select new BMdcModel.ListElement<BMdcModel.ToastCloseMethod>
                                                                           {
                                                                               SelectedValue = c,
                                                                               Label = c.ToString()
@@ -113,74 +113,74 @@
     class MyIcon
     {
         public string Name;
-        public BModel.IIconFoundry? Foundry;
+        public BMdcModel.IIconFoundry? Foundry;
     }
 #nullable restore annotations
 
     MyIcon icon;
-    BModel.ListElement<MyIcon>[] iconItems = new BModel.ListElement<MyIcon>[]
+    BMdcModel.ListElement<MyIcon>[] iconItems = new BMdcModel.ListElement<MyIcon>[]
     {
-        new BModel.ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "directions_run" }, Label = "directions_run" },
-        new BModel.ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = BModel.IconHelper.MIFoundry(theme: BEnum.IconMITheme.Filled) }, Label = "thumb_up (filled / default)" },
-        new BModel.ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = BModel.IconHelper.MIFoundry(theme: BEnum.IconMITheme.Outlined) }, Label = "thumb_up (outlined)" },
-        new BModel.ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = BModel.IconHelper.MIFoundry(theme: BEnum.IconMITheme.Round) }, Label = "thumb_up (rounded)" },
-        new BModel.ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = BModel.IconHelper.MIFoundry(theme: BEnum.IconMITheme.TwoTone) }, Label = "thumb_up (two-tone)" },
-        new BModel.ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = BModel.IconHelper.MIFoundry(theme: BEnum.IconMITheme.Sharp) }, Label = "thumb_up (sharp)" },
-        new BModel.ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = BModel.IconHelper.FAFoundry() }, Label = "fa-ambulance" },
-        new BModel.ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = BModel.IconHelper.FAFoundry(relativeSize: BEnum.IconFARelativeSize.ExtraSmall) }, Label = "fa-ambulance (x-small)" },
+        new BMdcModel.ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "directions_run" }, Label = "directions_run" },
+        new BMdcModel.ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = BMdcModel.IconHelper.MIFoundry(theme: BMdcModel.IconMITheme.Filled) }, Label = "thumb_up (filled / default)" },
+        new BMdcModel.ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = BMdcModel.IconHelper.MIFoundry(theme: BMdcModel.IconMITheme.Outlined) }, Label = "thumb_up (outlined)" },
+        new BMdcModel.ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = BMdcModel.IconHelper.MIFoundry(theme: BMdcModel.IconMITheme.Round) }, Label = "thumb_up (rounded)" },
+        new BMdcModel.ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = BMdcModel.IconHelper.MIFoundry(theme: BMdcModel.IconMITheme.TwoTone) }, Label = "thumb_up (two-tone)" },
+        new BMdcModel.ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = BMdcModel.IconHelper.MIFoundry(theme: BMdcModel.IconMITheme.Sharp) }, Label = "thumb_up (sharp)" },
+        new BMdcModel.ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = BMdcModel.IconHelper.FAFoundry() }, Label = "fa-ambulance" },
+        new BMdcModel.ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = BMdcModel.IconHelper.FAFoundry(relativeSize: BMdcModel.IconFARelativeSize.ExtraSmall) }, Label = "fa-ambulance (x-small)" },
     };
 
 
     string heading;
-    BModel.ListElement<string>[] headingItems = new BModel.ListElement<string>[]
+    BMdcModel.ListElement<string>[] headingItems = new BMdcModel.ListElement<string>[]
     {
-        new BModel.ListElement<string> { SelectedValue = "", Label = "Default" },
-        new BModel.ListElement<string> { SelectedValue = "Run of the mill heading", Label = "Run of the mill heading" },
-        new BModel.ListElement<string> { SelectedValue = "Heading truncated and truncated and truncated and truncated", Label = "Heading that will be truncated" }
+        new BMdcModel.ListElement<string> { SelectedValue = "", Label = "Default" },
+        new BMdcModel.ListElement<string> { SelectedValue = "Run of the mill heading", Label = "Run of the mill heading" },
+        new BMdcModel.ListElement<string> { SelectedValue = "Heading truncated and truncated and truncated and truncated", Label = "Heading that will be truncated" }
     };
 
 
-    BEnum.ToastLevel level;
-    IEnumerable<BModel.ListElement<BEnum.ToastLevel>> levelItems => from c in (BEnum.ToastLevel[])Enum.GetValues(typeof(BEnum.ToastLevel))
-                                                              select new BModel.ListElement<BEnum.ToastLevel>
+    BMdcModel.ToastLevel level;
+    IEnumerable<BMdcModel.ListElement<BMdcModel.ToastLevel>> levelItems => from c in (BMdcModel.ToastLevel[])Enum.GetValues(typeof(BMdcModel.ToastLevel))
+                                                              select new BMdcModel.ListElement<BMdcModel.ToastLevel>
                                                               {
                                                                   SelectedValue = c,
                                                                   Label = c.ToString()
                                                               };
 
     string message;
-    BModel.ListElement<string>[] messageItems = new BModel.ListElement<string>[]
+    BMdcModel.ListElement<string>[] messageItems = new BMdcModel.ListElement<string>[]
     {
-        new BModel.ListElement<string> { SelectedValue = "Run of the mill message", Label = "Run of the mill message" },
-        new BModel.ListElement<string> { SelectedValue = "Italicized font", Label = "Italicized font (To see this set the additional CSS class to italic)" },
-        new BModel.ListElement<string> { SelectedValue = "Text <strong>bold</strong> and <u>underlined</u>", Label = "Message with markup" },
-        new BModel.ListElement<string> { SelectedValue = "Message truncated and truncated and truncated and truncated", Label = "Message that will be truncated" }
+        new BMdcModel.ListElement<string> { SelectedValue = "Run of the mill message", Label = "Run of the mill message" },
+        new BMdcModel.ListElement<string> { SelectedValue = "Italicized font", Label = "Italicized font (To see this set the additional CSS class to italic)" },
+        new BMdcModel.ListElement<string> { SelectedValue = "Text <strong>bold</strong> and <u>underlined</u>", Label = "Message with markup" },
+        new BMdcModel.ListElement<string> { SelectedValue = "Message truncated and truncated and truncated and truncated", Label = "Message that will be truncated" }
     };
 
 
     string showIcon;
-    BModel.ListElement<string>[] showIconItems = new BModel.ListElement<string>[]
+    BMdcModel.ListElement<string>[] showIconItems = new BMdcModel.ListElement<string>[]
     {
-        new BModel.ListElement<string> { SelectedValue = "", Label = "Default" },
-        new BModel.ListElement<string> { SelectedValue = "true", Label = "true" },
-        new BModel.ListElement<string> { SelectedValue = "false", Label = "false" }
+        new BMdcModel.ListElement<string> { SelectedValue = "", Label = "Default" },
+        new BMdcModel.ListElement<string> { SelectedValue = "true", Label = "true" },
+        new BMdcModel.ListElement<string> { SelectedValue = "false", Label = "false" }
     };
 
 
     string timeout;
-    BModel.ListElement<string>[] timeoutItems = new BModel.ListElement<string>[]
+    BMdcModel.ListElement<string>[] timeoutItems = new BMdcModel.ListElement<string>[]
     {
-        new BModel.ListElement<string> { SelectedValue = "", Label = "Default" },
-        new BModel.ListElement<string> { SelectedValue = "1000", Label = "1 second" },
-        new BModel.ListElement<string> { SelectedValue = "10000", Label = "10 seconds" },
-        new BModel.ListElement<string> { SelectedValue = "60000", Label = "60 seconds" }
+        new BMdcModel.ListElement<string> { SelectedValue = "", Label = "Default" },
+        new BMdcModel.ListElement<string> { SelectedValue = "1000", Label = "1 second" },
+        new BMdcModel.ListElement<string> { SelectedValue = "10000", Label = "10 seconds" },
+        new BMdcModel.ListElement<string> { SelectedValue = "60000", Label = "60 seconds" }
     };
 
 
     protected void InfoClick()
     {
         toastService.ShowToast(
-            level: BEnum.ToastLevel.Info,
+            level: BMdcModel.ToastLevel.Info,
             message: "I'm an INFO");
     }
 

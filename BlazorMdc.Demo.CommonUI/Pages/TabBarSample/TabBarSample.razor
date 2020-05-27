@@ -13,7 +13,7 @@
            Context="item">
     <Icon>
         @{ var name = "fa-" + item; }
-        <BPlus.Icon IconName="@name" TabBar="true" IconFoundry="BModel.IconHelper.FAFoundry()" />
+        <BMdcPlus.Icon IconName="@name" TabBar="true" IconFoundry="BMdcModel.IconHelper.FAFoundry()" />
     </Icon>
     <Label>@item</Label>
 </BMdc.TabBar>
@@ -22,7 +22,7 @@
 
 
 
-<BPlus.Divider Style="margin: 3rem 0 3rem 0;"></BPlus.Divider>
+<BMdcPlus.Divider Style="margin: 3rem 0 3rem 0;"></BMdcPlus.Divider>
 
 <p><BMdc.Switch @bind-Value="@stacked" Label="Stack Icons" /></p>
 
@@ -31,7 +31,7 @@
 <p style="margin-bottom: 2em;"><BMdc.Button Label="Got to Alarm" @onclick="@ButtonClickAsync" /></p>
 
 
-<BPlus.SlidingTabBar @key="@stacked"
+<BMdcPlus.SlidingTabBar @key="@stacked"
                        @ref="slidingTabBar"
                        Items="@slidingTabItems"
                        Context="item"
@@ -39,7 +39,7 @@
                        StackIcons="@stacked">
 
     <Label>@item.IconName</Label>
-    <Icon><BPlus.Icon IconName="@item.IconName" TabBar="true" /></Icon>
+    <Icon><BMdcPlus.Icon IconName="@item.IconName" TabBar="true" /></Icon>
     <Content>
         <h3 class="mdc-typography--headline6">@item.IconName.ToUpper()</h3>
         <p class="mdc-typography">@item.Text</p>
@@ -49,14 +49,14 @@
             <DialogSample HideHeading="true" />
         }
     </Content>
-</BPlus.SlidingTabBar>
+</BMdcPlus.SlidingTabBar>
 
 
 @code {
     private int tabIndex = 0;
     private bool stacked = false;
 
-    private BPlus.SlidingTabBar<SlidingTabItem> slidingTabBar;
+    private BMdcPlus.SlidingTabBar<SlidingTabItem> slidingTabBar;
     private int slidingTabIndex = 5;
     private string tabLabel1
     {

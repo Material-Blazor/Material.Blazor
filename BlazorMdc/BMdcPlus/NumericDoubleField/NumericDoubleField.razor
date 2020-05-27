@@ -1,0 +1,22 @@
+﻿@namespace BMdcPlus
+
+@inherits BMdcBase.InputComponentBase<double>
+
+@using System.Text.RegularExpressions
+
+
+<BMdc.TextField @ref="TextField"
+                @attributes="@MyAttributes"
+                step="@(Math.Pow(10, -MyDecimalPlaces).ToString())"
+                min="@Min"
+                max="@Max"
+                @bind-Value="@FormattedValue"
+                Label="@Label"
+                NoLabel="@NoLabel"
+                LeadingIcon="@LeadingIcon"
+                TrailingIcon="@TrailingIcon"
+                IconFoundry="@IconFoundry"
+                TextInputStyle="@TextInputStyle"
+                TextAlignStyle="@BMdcModel.TextAlignStyle.Right"
+                @onfocusin="@OnFocusIn"
+                @onfocusout="@OnFocusOut" />

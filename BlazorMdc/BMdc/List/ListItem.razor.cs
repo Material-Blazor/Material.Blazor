@@ -1,4 +1,4 @@
-﻿using BBase;
+﻿using BMdcBase;
 using Microsoft.AspNetCore.Components;
 
 namespace BMdc
@@ -6,7 +6,7 @@ namespace BMdc
     /// <summary>
     /// This is a general purpose Material Theme list item.
     /// </summary>
-    public partial class ListItem : BBase.ComponentBase
+    public partial class ListItem : BMdcBase.ComponentBase
     {
 #nullable enable annotations
         /// <summary>
@@ -29,11 +29,11 @@ namespace BMdc
 
         /// <summary>
         /// The foundry to use for both leading and trailing icons.
-        /// <para><c>IconFoundry="BModel.IconHelper.MIIcon()"</c></para>
-        /// <para><c>IconFoundry="BModel.IconHelper.FAIcon()"</c></para>
-        /// <para><c>IconFoundry="BModel.IconHelper.OIIcon()"</c></para>
+        /// <para><c>IconFoundry="BMdcModel.IconHelper.MIIcon()"</c></para>
+        /// <para><c>IconFoundry="BMdcModel.IconHelper.FAIcon()"</c></para>
+        /// <para><c>IconFoundry="BMdcModel.IconHelper.OIIcon()"</c></para>
         /// </summary>
-        [Parameter] public BModel.IIconFoundry? IconFoundry { get; set; }
+        [Parameter] public BMdcModel.IIconFoundry? IconFoundry { get; set; }
 
 
         /// <summary>

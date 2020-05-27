@@ -5,7 +5,7 @@
 
 using System;
 
-namespace BBase
+namespace BMdcBase
 {
     public class ClassBuilderRuleIf<T> : ClassBuilderRule<T>
     {

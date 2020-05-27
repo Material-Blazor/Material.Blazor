@@ -37,21 +37,21 @@
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">No templates</h2>
 
-<BPlus.PagedDataList Class="my-container"
+<BMdcPlus.PagedDataList Class="my-container"
                    PaginatorClass="my-float-right"
                    @bind-ItemsPerPage="@itemsPerPage1"
                    @bind-PageNumber="@pageNumber1"
                    ItemsPerPageSelection="@itemsPerPageSelection"
                    Data=@People>
-</BPlus.PagedDataList>
+</BMdcPlus.PagedDataList>
 
 
 
-<BPlus.Divider Style="margin: 2rem 0 1rem 0;" />
+<BMdcPlus.Divider Style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">ItemTemplate only</h2>
 
-<BPlus.PagedDataList Class="my-container"
+<BMdcPlus.PagedDataList Class="my-container"
                    PaginatorClass="my-float-right"
                    @bind-ItemsPerPage="@itemsPerPage2"
                    @bind-PageNumber="@pageNumber2"
@@ -63,15 +63,15 @@
             @person.Salutation @person.FamilyName, @person.GivenName
         </li>
     </ItemTemplate>
-</BPlus.PagedDataList>
+</BMdcPlus.PagedDataList>
 
 
 
-<BPlus.Divider Style="margin: 2rem 0 1rem 0;" />
+<BMdcPlus.Divider Style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">ListTemplate and ItemTemplate</h2>
 
-<BPlus.PagedDataList Class="my-container"
+<BMdcPlus.PagedDataList Class="my-container"
                    PaginatorClass="my-float-right"
                    @bind-ItemsPerPage="@itemsPerPage3"
                    @bind-PageNumber="@pageNumber3"
@@ -99,15 +99,15 @@
             <td>@person.FamilyName</td>
         </tr>
     </ItemTemplate>
-</BPlus.PagedDataList>
+</BMdcPlus.PagedDataList>
 
 
 
-<BPlus.Divider Style="margin: 2rem 0 1rem 0;" />
+<BMdcPlus.Divider Style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">ListTemplate and MdcDataTable</h2>
 
-<BPlus.PagedDataList @ref="dataList4"
+<BMdcPlus.PagedDataList @ref="dataList4"
                    Class="my-container"
                    PaginatorClass="my-float-right"
                    @bind-ItemsPerPage="@itemsPerPage4"
@@ -131,15 +131,15 @@
             </TableRow>
         </BMdc.DataTable>
     </ListTemplate>
-</BPlus.PagedDataList>
+</BMdcPlus.PagedDataList>
 
 
 
-<BPlus.Divider Style="margin: 2rem 0 1rem 0;" />
+<BMdcPlus.Divider Style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">ListTemplate and MdcList</h2>
 
-<BPlus.PagedDataList @ref="dataList5"
+<BMdcPlus.PagedDataList @ref="dataList5"
                    Class="my-container"
                    PaginatorClass="my-float-right"
                    @bind-ItemsPerPage="@itemsPerPage5"
@@ -152,22 +152,22 @@
                  Context="person"
                  ShowSeparators="true"
                  AvatarList="true"
-                 ListStyle="@BEnum.ListStyle.Outlined">
+                 ListStyle="@BMdcModel.ListStyle.Outlined">
 
             <Icon>shop</Icon>
             <Title>@person.FamilyName</Title>
             <LineTwo>@person.Salutation @person.FamilyName, @person.GivenName</LineTwo>
         </BMdc.List>
     </ListTemplate>
-</BPlus.PagedDataList>
+</BMdcPlus.PagedDataList>
 
 
 
-<BPlus.Divider Style="margin: 2rem 0 1rem 0;" />
+<BMdcPlus.Divider Style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">ListTemplate and Two x MdcList</h2>
 
-<BPlus.PagedDataList @ref="dataList6"
+<BMdcPlus.PagedDataList @ref="dataList6"
                    Class="my-container"
                    ListTemplateClass="my-container"
                    PaginatorClass="my-float-right"
@@ -188,7 +188,7 @@
                      Context="person"
                      ShowSeparators="true"
                      AvatarList="true"
-                     ListStyle="@BEnum.ListStyle.Outlined">
+                     ListStyle="@BMdcModel.ListStyle.Outlined">
 
                 <Icon>shop</Icon>
                 <Title>@person.FamilyName</Title>
@@ -201,7 +201,7 @@
                      Context="person"
                      ShowSeparators="true"
                      AvatarList="true"
-                     ListStyle="@BEnum.ListStyle.Outlined">
+                     ListStyle="@BMdcModel.ListStyle.Outlined">
 
                 <Icon>shop</Icon>
                 <Title>@person.FamilyName</Title>
@@ -209,7 +209,7 @@
             </BMdc.List>
         </div>
     </ListTemplate>
-</BPlus.PagedDataList>
+</BMdcPlus.PagedDataList>
 
 
 
@@ -265,8 +265,8 @@
     private int pageNumber5 = 0;
     private int pageNumber6 = 0;
 
-    private BPlus.PagedDataList<Person> dataList4;
-    private BPlus.PagedDataList<Person> dataList5;
-    private BPlus.PagedDataList<Person> dataList6;
+    private BMdcPlus.PagedDataList<Person> dataList4;
+    private BMdcPlus.PagedDataList<Person> dataList5;
+    private BMdcPlus.PagedDataList<Person> dataList6;
 }
 

@@ -1,4 +1,4 @@
-﻿using BBase;
+﻿using BMdcBase;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
@@ -13,7 +13,7 @@ namespace BMdc
     /// intiate it and its embedded components. Likewise when the dialog is closed, Material Theme is permitted to close the dialog
     /// gracefully before BlazorMdc removes the markup.
     /// </summary>
-    public partial class Dialog : BBase.ComponentBase, IDisposable, BModel.IDialog
+    public partial class Dialog : BMdcBase.ComponentBase, IDisposable, BMdcModel.IDialog
     {
         /// <summary>
         /// The dialog title.
@@ -59,13 +59,13 @@ namespace BMdc
 
 
         private ElementReference DialogElem { get; set; }
-        private System.Collections.Generic.List<BModel.IDialogChild> LayoutChildren { get; set; } = new System.Collections.Generic.List<BModel.IDialogChild>();
+        private System.Collections.Generic.List<BMdcModel.IDialogChild> LayoutChildren { get; set; } = new System.Collections.Generic.List<BMdcModel.IDialogChild>();
         private DotNetObjectReference<Dialog> ObjectReference { get; set; }
         private string OverflowClass => OverflowVisible ? "bmdc-dialog-overflow-visible" : "";
 
 
-        private readonly string titleId = BBase.Utilities.GenerateUniqueElementName();
-        private readonly string descId = BBase.Utilities.GenerateUniqueElementName();
+        private readonly string titleId = BMdcBase.Utilities.GenerateUniqueElementName();
+        private readonly string descId = BMdcBase.Utilities.GenerateUniqueElementName();
         private bool isOpen = false;
         private bool afterRenderShowAction = false;
         private bool afterDialogInitialization = false;
@@ -93,7 +93,7 @@ namespace BMdc
 
 
         /// <inheritdoc/>
-        void BModel.IDialog.RegisterLayoutAction(BModel.IDialogChild child)
+        void BMdcModel.IDialog.RegisterLayoutAction(BMdcModel.IDialogChild child)
         {
             LayoutChildren.Add(child);
         }
@@ -113,7 +113,7 @@ namespace BMdc
             else
             {
                 LayoutChildren.Clear();
-                key = BBase.Utilities.GenerateUniqueElementName();
+                key = BMdcBase.Utilities.GenerateUniqueElementName();
                 isOpen = true;
                 afterRenderShowAction = true;
                 StateHasChanged();

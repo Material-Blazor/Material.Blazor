@@ -1,4 +1,4 @@
-﻿using BBase;
+﻿using BMdcBase;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Threading.Tasks;
@@ -9,7 +9,7 @@ namespace BMdc
     /// This is a general purpose Material Theme circular progress bar. Can be determinant or
     /// indeterminant. If determinant the value needs to be between 0 and 1.
     /// </summary>
-    public partial class CircularProgress : BBase.InputComponentBase<double>
+    public partial class CircularProgress : BMdcBase.InputComponentBase<double>
     {
         private const string SVGSmallDeterminate = "<svg class=\"mdc-circular-progress__determinate-circle-graphic\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><circle class=\"mdc-circular-progress__determinate-circle\" cx=\"12\" cy=\"12\" r=\"8.75\" stroke-dasharray=\"54.978\" stroke-dashoffset=\"54.978\" /></svg>";
         private const string SVGMediumDeterminate = "<svg class=\"mdc-circular-progress__determinate-circle-graphic\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\"><circle class=\"mdc-circular-progress__determinate-circle\" cx=\"16\" cy=\"16\" r=\"12.5\" stroke-dasharray=\"78.54\" stroke-dashoffset=\"78.54\" /></svg>";
@@ -22,13 +22,13 @@ namespace BMdc
         /// <summary>
         /// Makes the progress spinner indeterminant if True.
         /// </summary>
-        [Parameter] public BEnum.CircularProgressType CircularProgressType { get; set; } = BEnum.CircularProgressType.Indeterminate;
+        [Parameter] public BMdcModel.CircularProgressType CircularProgressType { get; set; } = BMdcModel.CircularProgressType.Indeterminate;
 
 
         /// <summary>
         /// Makes the progress spinner indeterminant if True.
         /// </summary>
-        [Parameter] public BEnum.CircularProgressSize CircularProgressSize { get; set; } = BEnum.CircularProgressSize.Large;
+        [Parameter] public BMdcModel.CircularProgressSize CircularProgressSize { get; set; } = BMdcModel.CircularProgressSize.Large;
 
 
         /// <summary>
@@ -49,18 +49,18 @@ namespace BMdc
 
         private MarkupString SVGDeterminate => CircularProgressSize switch
         {
-            BEnum.CircularProgressSize.Small => (MarkupString)SVGSmallDeterminate,
-            BEnum.CircularProgressSize.Medium => (MarkupString)SVGMediumDeterminate,
-            BEnum.CircularProgressSize.Large => (MarkupString)SVGLargeDeterminate,
+            BMdcModel.CircularProgressSize.Small => (MarkupString)SVGSmallDeterminate,
+            BMdcModel.CircularProgressSize.Medium => (MarkupString)SVGMediumDeterminate,
+            BMdcModel.CircularProgressSize.Large => (MarkupString)SVGLargeDeterminate,
             _ => throw new System.NotImplementedException(),
         };
 
 
         private MarkupString SVGIndeterminate => CircularProgressSize switch
         {
-            BEnum.CircularProgressSize.Small => (MarkupString)SVGSmallIndeterminate,
-            BEnum.CircularProgressSize.Medium => (MarkupString)SVGMediumIndeterminate,
-            BEnum.CircularProgressSize.Large => (MarkupString)SVGLargeIndeterminate,
+            BMdcModel.CircularProgressSize.Small => (MarkupString)SVGSmallIndeterminate,
+            BMdcModel.CircularProgressSize.Medium => (MarkupString)SVGMediumIndeterminate,
+            BMdcModel.CircularProgressSize.Large => (MarkupString)SVGLargeIndeterminate,
             _ => throw new System.NotImplementedException(),
         };
 
@@ -83,11 +83,11 @@ namespace BMdc
             ClassMapper
                 .Clear()
                 .Add("mdc-circular-progress")
-                .AddIf("mdc-circular-progress--small", () => CircularProgressSize == BEnum.CircularProgressSize.Small)
-                .AddIf("mdc-circular-progress--medium", () => CircularProgressSize == BEnum.CircularProgressSize.Medium)
-                .AddIf("mdc-circular-progress--large", () => CircularProgressSize == BEnum.CircularProgressSize.Large)
-                .AddIf("mdc-circular-progress--indeterminate", () => CircularProgressType == BEnum.CircularProgressType.Indeterminate)
-                .AddIf("mdc-circular-progress--closed", () => CircularProgressType == BEnum.CircularProgressType.Closed);
+                .AddIf("mdc-circular-progress--small", () => CircularProgressSize == BMdcModel.CircularProgressSize.Small)
+                .AddIf("mdc-circular-progress--medium", () => CircularProgressSize == BMdcModel.CircularProgressSize.Medium)
+                .AddIf("mdc-circular-progress--large", () => CircularProgressSize == BMdcModel.CircularProgressSize.Large)
+                .AddIf("mdc-circular-progress--indeterminate", () => CircularProgressType == BMdcModel.CircularProgressType.Indeterminate)
+                .AddIf("mdc-circular-progress--closed", () => CircularProgressType == BMdcModel.CircularProgressType.Closed);
         }
 
 

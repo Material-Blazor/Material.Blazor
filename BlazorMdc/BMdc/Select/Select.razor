@@ -1,5 +1,5 @@
 ﻿@namespace BMdc
-@inherits BBase.ValidatingInputComponentBase<TItem>
+@inherits BMdcBase.ValidatingInputComponentBase<TItem>
 @typeparam TItem
 
 
@@ -11,7 +11,7 @@
          aria-haspopup="@ListboxReference"
          aria-labelledby="@LabelId @SelectedTextId">
 
-        @if (AppliedInputStyle == BEnum.SelectInputStyle.Filled)
+        @if (AppliedInputStyle == BMdcModel.SelectInputStyle.Filled)
         {
             <span class="mdc-select__ripple"></span>
         }
@@ -19,7 +19,7 @@
         <input id="@SelectedTextId" type="text" disabled readonly class="mdc-select__selected-text @AlignClass">
         <i class="mdc-select__dropdown-icon"></i>
 
-        @if (AppliedInputStyle == BEnum.SelectInputStyle.Outlined)
+        @if (AppliedInputStyle == BMdcModel.SelectInputStyle.Outlined)
         {
             <span class="mdc-notched-outline">
                 <span class="mdc-notched-outline__leading"></span>

@@ -2,10 +2,10 @@
 
 @inherits LayoutComponentBase
 
-@inject BPlus.IAnimatedNavigationManager AnimatedNavigationManager
+@inject BMdcPlus.IAnimatedNavigationManager AnimatedNavigationManager
 @inject DemoConfiguration DemoConfiguration
 
-<BPlus.ToastAnchor />
+<BMdcPlus.ToastAnchor />
 
 <BMdc.Drawer @ref="@sidebar"
            IsDismissible="true">
@@ -55,7 +55,7 @@
     </BMdc.TopAppBar>
 
     <main class="main-content" id="main-content">
-        <BPlus.AnimatedNavigation>
+        <BMdcPlus.AnimatedNavigation>
             <div class="mdc-top-app-bar--fixed-adjust">
                 <div class="mdc-card main-content-card">
                     <div class="mdc-layout-grid">
@@ -67,7 +67,7 @@
                     </div>
                 </div>
             </div>
-        </BPlus.AnimatedNavigation>
+        </BMdcPlus.AnimatedNavigation>
     </main>
 </div>
 

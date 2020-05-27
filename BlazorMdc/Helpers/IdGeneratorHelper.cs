@@ -5,7 +5,7 @@
 
 using System;
 
-namespace BBase
+namespace BMdcBase
 {
     public static class IdGeneratorHelper
     {
