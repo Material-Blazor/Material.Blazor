@@ -9,24 +9,24 @@
 
 @if (Icon is null)
 {
-    <MdcTabBar @bind-TabIndex="@TabIndex"
+    <BMdc.TabBar @bind-TabIndex="@TabIndex"
                Items="@Items"
                Context="item"
                StackIcons="@StackIcons">
 
         <Label>@Label(item)</Label>
-    </MdcTabBar>
+    </BMdc.TabBar>
 }
 else
 {
-    <MdcTabBar @bind-TabIndex="@TabIndex"
+    <BMdc.TabBar @bind-TabIndex="@TabIndex"
                Items="@Items"
                Context="item"
                StackIcons="@StackIcons">
 
         <Label>@Label(item)</Label>
         <Icon>@Icon(item)</Icon>
-    </MdcTabBar>
+    </BMdc.TabBar>
 }
 
 

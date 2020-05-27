@@ -77,7 +77,7 @@ namespace BlazorMdc
         [Parameter] public bool OverflowVisible { get; set; } = false;
 
 
-        private BMdc.MdcDialog Dialog { get; set; }
+        private BMdc.Dialog Dialog { get; set; }
         private string EnteredText { get; set; } = "";
         private bool Confirmed { get; set; } = false;
         private string MyConfirmationPhrase => string.IsNullOrWhiteSpace(ConfirmationPhrase) ? digitText : ConfirmationPhrase;

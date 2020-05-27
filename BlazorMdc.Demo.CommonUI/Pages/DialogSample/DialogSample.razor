@@ -13,30 +13,30 @@
 }
 
 
-<p><BMdc.MdcButton Label="Show general dialog" @onclick="@ShowDialog1"></BMdc.MdcButton></p>
+<p><BMdc.Button Label="Show general dialog" @onclick="@ShowDialog1"></BMdc.Button></p>
 
 <p>Result: <strong>'@(result1 ?? "")'</strong></p>
 <p>Button result: <strong>'@(radioButtonResult1 ?? "")'</strong></p>
 
-<BMdc.MdcDialog @ref="@dialog1" 
+<BMdc.Dialog @ref="@dialog1" 
            Title="General dialog">
     <Body>
         <p>Please choose a fruit.</p>
-        <BMdc.MdcCheckbox @bind-Value="@checkMe" Label="Check me" />
+        <BMdc.Checkbox @bind-Value="@checkMe" Label="Check me" />
         <PMdcRadioButtonGroup @bind-Value="@radioButtonResult1"
                               Items="stringItems"
                               Vertical="true"
                               ItemValidation="@BEnum.ItemValidation.DefaultToFirst" />
     </Body>
     <Buttons>
-        <BMdc.MdcButton Label="Orange" DialogAction="orange"></BMdc.MdcButton>
-        <BMdc.MdcButton Label="Apple" DialogAction="apple" ButtonStyle="@BEnum.ButtonStyle.Text"></BMdc.MdcButton>
+        <BMdc.Button Label="Orange" DialogAction="orange"></BMdc.Button>
+        <BMdc.Button Label="Apple" DialogAction="apple" ButtonStyle="@BEnum.ButtonStyle.Text"></BMdc.Button>
     </Buttons>
-</BMdc.MdcDialog>
+</BMdc.Dialog>
 
 
 
-<p style="margin-top: 3rem;"><BMdc.MdcButton Label="Show default confirmation dialog" @onclick="@ShowDialog2"></BMdc.MdcButton></p>
+<p style="margin-top: 3rem;"><BMdc.Button Label="Show default confirmation dialog" @onclick="@ShowDialog2"></BMdc.Button></p>
 
 <p>Result: <strong>'@(result2 ?? "")'</strong></p>
 
@@ -45,7 +45,7 @@
 
 
 
-<p style="margin-top: 3rem;"><BMdc.MdcButton Label="Show tailored confirmation dialog" @onclick="@ShowDialog3"></BMdc.MdcButton></p>
+<p style="margin-top: 3rem;"><BMdc.Button Label="Show tailored confirmation dialog" @onclick="@ShowDialog3"></BMdc.Button></p>
 
 <p>Result: <strong>'@(result3 ?? "")'</strong></p>
 
@@ -55,58 +55,58 @@
                         ConfirmationDisabled="@disableInput">
     <Body>
         <p>Some markup before the confirmation message and input.</p>
-        <p><BMdc.MdcCheckbox @bind-Value="@disableInput" Label="Disable confirmation input field" /></p>
+        <p><BMdc.Checkbox @bind-Value="@disableInput" Label="Disable confirmation input field" /></p>
     </Body>
     <UnconfirmedButtons>
-        <BMdc.MdcButton Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
-        <BMdc.MdcButton Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
-        <BMdc.MdcButton Label="Bosh" LeadingIcon="sports_handball" Disabled="true" DialogAction="bosh" ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
+        <BMdc.Button Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
+        <BMdc.Button Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
+        <BMdc.Button Label="Bosh" LeadingIcon="sports_handball" Disabled="true" DialogAction="bosh" ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
     </UnconfirmedButtons>
     <ConfirmedButtons>
-        <BMdc.MdcButton Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
-        <BMdc.MdcButton Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
-        <BMdc.MdcButton Label="Bosh" LeadingIcon="sports_handball" DialogAction="bosh" ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
+        <BMdc.Button Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
+        <BMdc.Button Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
+        <BMdc.Button Label="Bosh" LeadingIcon="sports_handball" DialogAction="bosh" ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
     </ConfirmedButtons>
 </PMdcConfirmationDialog>
 
 
-<p style="margin-top: 3rem;"><BMdc.MdcButton Label="Show general dialog with scrim and escape disabled (using HideAsync)" @onclick="@ShowDialog4"></BMdc.MdcButton></p>
+<p style="margin-top: 3rem;"><BMdc.Button Label="Show general dialog with scrim and escape disabled (using HideAsync)" @onclick="@ShowDialog4"></BMdc.Button></p>
 
 <p>Logical result: <strong>'@(result4 ?? "")'</strong></p>
 <p>Dialog result: <strong>'@(dialogResult4 ?? "")'</strong></p>
 
-<BMdc.MdcDialog @ref="@dialog4" Title="General dialog with scrim and escape disabled (using HideAsync)"
+<BMdc.Dialog @ref="@dialog4" Title="General dialog with scrim and escape disabled (using HideAsync)"
            ScrimClickAction=""
            EscapeKeyAction="">
     <Body>
         <p>Please choose a fruit.</p>
-        <p><BMdc.MdcCheckbox @bind-Value="@checkMe" Label="Check me" /></p>
+        <p><BMdc.Checkbox @bind-Value="@checkMe" Label="Check me" /></p>
     </Body>
     <Buttons>
-        <BMdc.MdcButton Label="Orange" @onclick="orangeClick"></BMdc.MdcButton>
-        <BMdc.MdcButton Label="Apple" @onclick="appleClick" ButtonStyle="@BEnum.ButtonStyle.Text"></BMdc.MdcButton>
+        <BMdc.Button Label="Orange" @onclick="orangeClick"></BMdc.Button>
+        <BMdc.Button Label="Apple" @onclick="appleClick" ButtonStyle="@BEnum.ButtonStyle.Text"></BMdc.Button>
     </Buttons>
-</BMdc.MdcDialog>
+</BMdc.Dialog>
 
 
-<p style="margin-top: 3rem;"><BMdc.MdcButton Label="Dialog with Date Picker & OverflowVisible" @onclick="@ShowDialog5"></BMdc.MdcButton></p>
+<p style="margin-top: 3rem;"><BMdc.Button Label="Dialog with Date Picker & OverflowVisible" @onclick="@ShowDialog5"></BMdc.Button></p>
 
 <p>Result: <strong>'@(date5.ToString("d") ?? "")'</strong></p>
 
-<BMdc.MdcDialog @ref="@dialog5" Title="Date Picker Dialog"
+<BMdc.Dialog @ref="@dialog5" Title="Date Picker Dialog"
            OverflowVisible="true">
     <Body>
         <p>Set the date.</p>
         <PMdcDatePicker Label="The date" @bind-Value="@date5" SelectInputStyle="BEnum.SelectInputStyle.Outlined" MinDate="minDate" MaxDate="maxDate"></PMdcDatePicker>
     </Body>
     <Buttons>
-        <BMdc.MdcButton Label="Orange" DialogAction="orange"></BMdc.MdcButton>
-        <BMdc.MdcButton Label="Apple" DialogAction="apple" ButtonStyle="@BEnum.ButtonStyle.Text"></BMdc.MdcButton>
+        <BMdc.Button Label="Orange" DialogAction="orange"></BMdc.Button>
+        <BMdc.Button Label="Apple" DialogAction="apple" ButtonStyle="@BEnum.ButtonStyle.Text"></BMdc.Button>
     </Buttons>
-</BMdc.MdcDialog>
+</BMdc.Dialog>
 
 
-<p style="margin-top: 3rem;"><BMdc.MdcButton Label="Confirmation Dialog with Date Picker & OverflowVisible" @onclick="@ShowDialog6"></BMdc.MdcButton></p>
+<p style="margin-top: 3rem;"><BMdc.Button Label="Confirmation Dialog with Date Picker & OverflowVisible" @onclick="@ShowDialog6"></BMdc.Button></p>
 
 <p>Result: <strong>'@(date6.ToString("d") ?? "")'</strong></p>
 
@@ -127,7 +127,7 @@
 @code {
     [Parameter] public bool HideHeading { get; set; }
 
-    BMdc.MdcDialog dialog1;
+    BMdc.Dialog dialog1;
     string result1;
     string radioButtonResult1;
     bool checkMe;
@@ -161,7 +161,7 @@
         result3 = await dialog3.ShowAsync();
     }
 
-    BMdc.MdcDialog dialog4;
+    BMdc.Dialog dialog4;
     string dialogResult4;
     string result4;
 
@@ -182,7 +182,7 @@
         result4 = "orange (via OnClick)";
     }
 
-    BMdc.MdcDialog dialog5;
+    BMdc.Dialog dialog5;
     DateTime minDate = new DateTime(2015, 1, 1);
     DateTime maxDate = new DateTime(2025, 12, 31);
     DateTime date5 = DateTime.Today;

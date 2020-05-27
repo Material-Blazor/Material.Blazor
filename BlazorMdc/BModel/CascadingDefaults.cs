@@ -153,9 +153,9 @@ namespace BModel
         /// </summary>
         /// <param name="style">The style parameter passed to the <see cref="MdcButton"/></param>
         /// <param name="card">The <see cref="BMdc.MdcButton"/>'s card reference (null if button is not in a card)</param>
-        /// <param name="dialog">The <see cref="BMdc.MdcDialog"/>'s card reference (null if button is not in a dialog)</param>
+        /// <param name="dialog">The <see cref="BMdc.Dialog"/>'s card reference (null if button is not in a dialog)</param>
         /// <returns>The <see cref="BEnum.ButtonStyle"/> to apply.</returns>
-        internal BEnum.ButtonStyle AppliedStyle(BEnum.ButtonStyle? style, BMdc.MdcCard card, BMdc.MdcDialog dialog)
+        internal BEnum.ButtonStyle AppliedStyle(BEnum.ButtonStyle? style, BMdc.Card card, BMdc.Dialog dialog)
         {
             if (style != null) return (BEnum.ButtonStyle)style;
             if (card != null) return CardActionButtonStyle;

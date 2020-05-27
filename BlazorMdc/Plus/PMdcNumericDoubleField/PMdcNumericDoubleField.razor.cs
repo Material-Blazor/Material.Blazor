@@ -99,7 +99,7 @@ namespace BlazorMdc
         private const string PositiveIntegerPattern = @"^\d+$";
 
 
-        private BMdc.MdcTextField TextField { get; set; }
+        private BMdc.TextField TextField { get; set; }
         private double Mult { get; set; } = 1;
         private double AppliedMult => HasFocus ? Mult : 1;
         private int MyDecimalPlaces { get; set; } = 0;

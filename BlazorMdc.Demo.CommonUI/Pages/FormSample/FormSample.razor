@@ -14,7 +14,7 @@
 }
 
 
-<p><BMdc.MdcButton Label="Show create PIN dialog"
+<p><BMdc.Button Label="Show create PIN dialog"
               @onclick="@ShowDialog1"
               ButtonStyle="BEnum.ButtonStyle.ContainedRaised" /></p>
 
@@ -23,7 +23,7 @@
 <PINLogonDialog @ref="pinLogonDialogReference1"
                 dialogStyle="PINLogonDialog.ePINDialogStyle.CreatePIN" />
 
-<p><BMdc.MdcButton Label="Show logon with PIN dialog (Valid PIN is 3141)"
+<p><BMdc.Button Label="Show logon with PIN dialog (Valid PIN is 3141)"
               @onclick="@ShowDialog2"
               ButtonStyle="BEnum.ButtonStyle.ContainedRaised"/></p>
 

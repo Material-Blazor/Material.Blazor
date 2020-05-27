@@ -14,15 +14,15 @@
 
         IsNotFirst = true;
 
-        <MdcRadioButton @key="@item"
-                        @bind-Value="@ReportingValue"
-                        TItem="TItem"
-                        ButtonContainerClass="@item.ButtonContainerClass"
-                        Disabled="@item.Disabled"
-                        EnableTouchWrapper="@EnableTouchWrapper"
-                        Label="@item.Label"
-                        TargetCheckedValue="@item.SelectedValue"
-                        RadioGroupName="@RadioGroupName" />
+        <BMdc.RadioButton @key="@item"
+                          @bind-Value="@ReportingValue"
+                          TItem="TItem"
+                          ButtonContainerClass="@item.ButtonContainerClass"
+                          Disabled="@item.Disabled"
+                          EnableTouchWrapper="@EnableTouchWrapper"
+                          Label="@item.Label"
+                          TargetCheckedValue="@item.SelectedValue"
+                          RadioGroupName="@RadioGroupName" />
     }
 
 </div>

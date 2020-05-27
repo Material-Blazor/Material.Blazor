@@ -103,7 +103,7 @@ namespace BlazorMdc
 
 
         private DotNetObjectReference<PMdcAutocomplete> ObjectReference { get; set; }
-        private BMdc.MdcTextField TextField { get; set; }
+        private BMdc.TextField TextField { get; set; }
         private ElementReference MenuReference { get; set; }
         private SelectionItem[] MySelectItems { get; set; }
         private SelectionInfo SelectInfo { get; set; } = new SelectionInfo();

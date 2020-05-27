@@ -14,30 +14,30 @@
 
 <p>See <code>TextFieldSample.razor</code> for sources.</p>
 
-<p><BMdc.MdcSwitch @bind-Value="@disabled" Label="Disable text fields" /></p>
+<p><BMdc.Switch @bind-Value="@disabled" Label="Disable text fields" /></p>
 
 <p style="margin-top: 3rem;">Filled style</p>
-<p><BMdc.MdcTextField class="my-orange-background" Label="Filled" @bind-Value="@currentValueFilled" TextInputStyle="BEnum.TextInputStyle.Filled" TrailingIcon="account_balance_wallet" Disabled="@disabled" /></p>
+<p><BMdc.TextField class="my-orange-background" Label="Filled" @bind-Value="@currentValueFilled" TextInputStyle="BEnum.TextInputStyle.Filled" TrailingIcon="account_balance_wallet" Disabled="@disabled" /></p>
 <p>You typed: <strong>'@(currentValueFilled ?? "")'</strong></p>
 
 <p style="margin-top: 3rem;">Filled style</p>
-<p><BMdc.MdcTextField style="background-color: aquamarine;" Label="Filled" @bind-Value="@currentValueFilled" TextInputStyle="BEnum.TextInputStyle.Filled" TrailingIcon="account_balance_wallet" Disabled="@disabled" /></p>
+<p><BMdc.TextField style="background-color: aquamarine;" Label="Filled" @bind-Value="@currentValueFilled" TextInputStyle="BEnum.TextInputStyle.Filled" TrailingIcon="account_balance_wallet" Disabled="@disabled" /></p>
 <p>You typed: <strong>'@(currentValueFilled ?? "")'</strong></p>
 
 <p style="margin-top: 3rem;">Outlined style</p>
-<p><BMdc.MdcTextField Label="Outlined" @bind-Value="@currentValueOutlined" TextInputStyle="BEnum.TextInputStyle.Outlined" LeadingIcon="account_balance_wallet" Disabled="@disabled" /></p>
+<p><BMdc.TextField Label="Outlined" @bind-Value="@currentValueOutlined" TextInputStyle="BEnum.TextInputStyle.Outlined" LeadingIcon="account_balance_wallet" Disabled="@disabled" /></p>
 <p>You typed: <strong>'@(currentValueOutlined ?? "")'</strong></p>
 
 <p style="margin-top: 3rem;">Full Width style (need to disable floating labels for full width to adhere to MT style guidelines)</p>
-<p><BMdc.MdcTextField Label="Full Width" @bind-Value="@currentValueFullWidth" TextInputStyle="BEnum.TextInputStyle.FullWidth" Disabled="@disabled" /></p>
+<p><BMdc.TextField Label="Full Width" @bind-Value="@currentValueFullWidth" TextInputStyle="BEnum.TextInputStyle.FullWidth" Disabled="@disabled" /></p>
 <p>You typed: <strong>'@(currentValueFullWidth ?? "")'</strong></p>
 
 <p style="margin-top: 3rem;">Right aligned</p>
-<p><BMdc.MdcTextField Label="Right aligned" @bind-Value="@currentValueRight" TextInputStyle="BEnum.TextInputStyle.Outlined" TextAlignStyle="BEnum.TextAlignStyle.Right" Disabled="@disabled" /></p>
+<p><BMdc.TextField Label="Right aligned" @bind-Value="@currentValueRight" TextInputStyle="BEnum.TextInputStyle.Outlined" TextAlignStyle="BEnum.TextAlignStyle.Right" Disabled="@disabled" /></p>
 <p>You typed: <strong>'@(currentValueRight ?? "")'</strong></p>
 
 <p style="margin-top: 3rem;">Password</p>
-<p><BMdc.MdcTextField Label="Password" @bind-Value="@currentValuePassword" TextInputStyle="BEnum.TextInputStyle.Outlined" type="password" Disabled="@disabled" /></p>
+<p><BMdc.TextField Label="Password" @bind-Value="@currentValuePassword" TextInputStyle="BEnum.TextInputStyle.Outlined" type="password" Disabled="@disabled" /></p>
 <p>You typed: <strong>'@(currentValuePassword ?? "")'</strong></p>
 
 

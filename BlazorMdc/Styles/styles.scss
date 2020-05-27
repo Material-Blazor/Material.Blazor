@@ -1,10 +1,10 @@
 @import 'colors.scss';
 
-@import '../Components/MdcCard/MdcCard.scss';
-@import '../Components/MdcDialog/MdcDialog.scss';
-@import '../Components/MdcList/MdcList.scss';
-@import '../Components/MdcSelect/MdcSelect.scss';
-@import '../Components/MdcTopAppBar/MdcTopAppBar.scss';
+@import '../BMdc/Card/Card.scss';
+@import '../BMdc/Dialog/Dialog.scss';
+@import '../BMdc/List/List.scss';
+@import '../BMdc/Select/Select.scss';
+@import '../BMdc/TopAppBar/TopAppBar.scss';
 
 @import '../Plus/PMdcAnimatedNavigation/PMdcAnimatedNavigation.scss';
 @import '../Plus/PMdcDatePicker/PMdcDatePicker.scss';

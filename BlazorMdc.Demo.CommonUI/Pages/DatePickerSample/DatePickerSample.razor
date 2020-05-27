@@ -15,7 +15,7 @@
 
 <p>
     <PMdcDatePicker Label="Weekdays Outlined" @bind-Value="@outlined" SelectInputStyle="BEnum.SelectInputStyle.Outlined" DateSelectionCriteria="BEnum.DateSelectionCriteria.WeekdaysOnly" MinDate="min" MaxDate="max"></PMdcDatePicker>
-    <BMdc.MdcButton @onclick="@(() => outlined = DateTime.Today)" Label="Go to Today" />
+    <BMdc.Button @onclick="@(() => outlined = DateTime.Today)" Label="Go to Today" />
 </p>
 <p style="margin-bottom: 20em;">Selected: '<strong>@outlined.ToString()</strong>'</p>
 

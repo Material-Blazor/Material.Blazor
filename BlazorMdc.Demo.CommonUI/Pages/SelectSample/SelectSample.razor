@@ -12,7 +12,7 @@
 	<div class="mdc-layout-grid__cell">
 		<h2 class="mdc-typography--headline5">Default alignment</h2>
 		<p>
-			<BMdc.MdcSelect Label="Filled"
+			<BMdc.Select Label="Filled"
 								 @bind-Value="@kittenBreed1"
 								 Items="stringItems"
 								 SelectInputStyle="BEnum.SelectInputStyle.Filled"
@@ -21,7 +21,7 @@
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed1 ?? "")</strong>'</p>
 
 		<p>
-			<BMdc.MdcSelect Label="Outlined"
+			<BMdc.Select Label="Outlined"
 								 @bind-Value="@kittenBreed2"
 								 Items="stringItems"
 								 SelectInputStyle="BEnum.SelectInputStyle.Outlined"
@@ -30,13 +30,13 @@
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed2 ?? "")</strong>'</p>
 
 		<p>
-			<BMdc.MdcSelect Label="Default to First"
+			<BMdc.Select Label="Default to First"
 								 @bind-Value="@kittenBreed3"
 								 Items="stringItems"
 								 SelectInputStyle="BEnum.SelectInputStyle.Outlined"
 								 ItemValidation="@BEnum.ItemValidation.DefaultToFirst" />
 
-			<BMdc.MdcSelect Label="Default to First (repeated)"
+			<BMdc.Select Label="Default to First (repeated)"
 								 @bind-Value="@kittenBreed3"
 								 Items="stringItems"
 								 SelectInputStyle="BEnum.SelectInputStyle.Outlined"
@@ -46,8 +46,8 @@
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed3 ?? "")</strong>'</p>
 
 		<p>
-			<BMdc.MdcSelect Label="Colour Enumeration" @bind-Value="@colour" Items="colourItems"></BMdc.MdcSelect>
-			<BMdc.MdcSelect Label="Colour Enumeration (repeated)" @bind-Value="@colour" Items="colourItems"></BMdc.MdcSelect>
+			<BMdc.Select Label="Colour Enumeration" @bind-Value="@colour" Items="colourItems"></BMdc.Select>
+			<BMdc.Select Label="Colour Enumeration (repeated)" @bind-Value="@colour" Items="colourItems"></BMdc.Select>
 		</p>
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(colour.ToString())</strong>'</p>
 
@@ -55,7 +55,7 @@
 	<div class="mdc-layout-grid__cell">
 		<h2 class="mdc-typography--headline5">Right aligned</h2>
 		<p>
-			<BMdc.MdcSelect Label="Filled"
+			<BMdc.Select Label="Filled"
 								 @bind-Value="@kittenBreed1"
 								 Items="stringItems"
 								 SelectInputStyle="BEnum.SelectInputStyle.Filled"
@@ -65,7 +65,7 @@
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed1 ?? "")</strong>'</p>
 
 		<p>
-			<BMdc.MdcSelect Label="Outlined"
+			<BMdc.Select Label="Outlined"
 								 @bind-Value="@kittenBreed2"
 								 Items="stringItems"
 								 SelectInputStyle="BEnum.SelectInputStyle.Outlined"
@@ -75,14 +75,14 @@
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed2 ?? "")</strong>'</p>
 
 		<p>
-			<BMdc.MdcSelect Label="Default to First"
+			<BMdc.Select Label="Default to First"
 								 @bind-Value="@kittenBreed3"
 								 Items="stringItems"
 								 SelectInputStyle="BEnum.SelectInputStyle.Outlined"
 								 TextAlignStyle="BEnum.TextAlignStyle.Right"
 								 ItemValidation="@BEnum.ItemValidation.DefaultToFirst" />
 
-			<BMdc.MdcSelect Label="Default to First (repeated)"
+			<BMdc.Select Label="Default to First (repeated)"
 								 @bind-Value="@kittenBreed3"
 								 Items="stringItems"
 								 SelectInputStyle="BEnum.SelectInputStyle.Outlined"
@@ -93,16 +93,16 @@
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed3 ?? "")</strong>'</p>
 
 		<p>
-			<BMdc.MdcSelect Label="Colour Enumeration" 
+			<BMdc.Select Label="Colour Enumeration" 
 								 @bind-Value="@colour" 
 								 TextAlignStyle="BEnum.TextAlignStyle.Right"
 								 Items="colourItems">
-			</BMdc.MdcSelect>
-			<BMdc.MdcSelect Label="Colour Enumeration (repeated)" 
+			</BMdc.Select>
+			<BMdc.Select Label="Colour Enumeration (repeated)" 
 								 @bind-Value="@colour" 
 								 TextAlignStyle="BEnum.TextAlignStyle.Right"
 								 Items="colourItems">
-			</BMdc.MdcSelect>
+			</BMdc.Select>
 		</p>
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(colour.ToString())</strong>'</p>
 

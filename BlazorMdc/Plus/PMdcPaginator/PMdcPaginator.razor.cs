@@ -97,8 +97,8 @@ namespace BlazorMdc
 
 
         private bool HasRendered { get; set; } = false;
-        private BMdc.MdcMenu Menu { get; set; }
-        private BMdc.MdcIconButtonToggle IconButtonToggle { get; set; }
+        private BMdc.Menu Menu { get; set; }
+        private BMdc.IconButtonToggle IconButtonToggle { get; set; }
         private bool ToggleOn { get; set; }
         private BModel.ListElement<int>[] ItemsPerPageItems { get; set; }
         private int MaxPageNumber => Math.Max(0, Convert.ToInt32(Math.Ceiling((double)ItemCount / ItemsPerPage)) - 1);

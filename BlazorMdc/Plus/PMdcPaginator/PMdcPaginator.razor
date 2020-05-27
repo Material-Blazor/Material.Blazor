@@ -13,14 +13,14 @@
         <span>@ItemsText</span>
 
         <div>
-            <MdcIconButtonToggle @ref="@IconButtonToggle" @bind-Value="@ToggleOn" @onclick="@OnMenuToggleAsync" IconOn="arrow_drop_up" IconOff="arrow_drop_down" />
+            <BMdc.IconButtonToggle @ref="@IconButtonToggle" @bind-Value="@ToggleOn" @onclick="@OnMenuToggleAsync" IconOn="arrow_drop_up" IconOff="arrow_drop_down" />
             <div class="mdc-menu-surface--anchor">
-                <MdcMenu @ref="Menu">
+                <BMdc.Menu @ref="Menu">
                     @foreach (var itemsPerPage in ItemsPerPageSelection)
                     {
-                        <MdcListItem @key="@itemsPerPage" Text="@itemsPerPage.ToString("G0")" OnClick="@(_ => OnMenuItemClick(itemsPerPage))" />
+                        <BMdc.ListItem @key="@itemsPerPage" Text="@itemsPerPage.ToString("G0")" OnClick="@(_ => OnMenuItemClick(itemsPerPage))" />
                     }
-                </MdcMenu>
+                </BMdc.Menu>
             </div>
         </div>
 
@@ -30,8 +30,8 @@
             <span>@PositionText</span>
         </div>
 
-        <MdcIconButton Icon="chevron_left" @onclick="@OnPreviousClick" Disabled="@PreviousDisabled" />
+        <IconButton Icon="chevron_left" @onclick="@OnPreviousClick" Disabled="@PreviousDisabled" />
 
-        <MdcIconButton Icon="chevron_right" @onclick="@OnNextClick" Disabled="@NextDisabled" />
+        <IconButton Icon="chevron_right" @onclick="@OnNextClick" Disabled="@NextDisabled" />
     </div>
 </div>

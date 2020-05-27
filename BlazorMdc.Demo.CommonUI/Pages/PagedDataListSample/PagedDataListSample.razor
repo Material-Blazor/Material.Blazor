@@ -116,7 +116,7 @@
                    Data=@People>
 
     <ListTemplate Context="listOfPeople">
-        <BMdc.MdcDataTable Items="@dataList4.CurrentPage"
+        <BMdc.DataTable Items="@dataList4.CurrentPage"
                       Context="person"
                       Class="my-full-width">
             <TableHeader>
@@ -129,7 +129,7 @@
                 <td class="mdc-data-table__cell">@person.GivenName</td>
                 <td class="mdc-data-table__cell">@person.FamilyName</td>
             </TableRow>
-        </BMdc.MdcDataTable>
+        </BMdc.DataTable>
     </ListTemplate>
 </PMdcPagedDataList>
 
@@ -148,7 +148,7 @@
                    Data=@People>
 
     <ListTemplate Context="listOfPeople">
-        <BMdc.MdcList Items="@dataList5.CurrentPage"
+        <BMdc.List Items="@dataList5.CurrentPage"
                  Context="person"
                  ShowSeparators="true"
                  AvatarList="true"
@@ -157,7 +157,7 @@
             <Icon>shop</Icon>
             <Title>@person.FamilyName</Title>
             <LineTwo>@person.Salutation @person.FamilyName, @person.GivenName</LineTwo>
-        </BMdc.MdcList>
+        </BMdc.List>
     </ListTemplate>
 </PMdcPagedDataList>
 
@@ -184,7 +184,7 @@
         }
 
         <div class="my-half-list">
-            <BMdc.MdcList Items="@leftList"
+            <BMdc.List Items="@leftList"
                      Context="person"
                      ShowSeparators="true"
                      AvatarList="true"
@@ -193,11 +193,11 @@
                 <Icon>shop</Icon>
                 <Title>@person.FamilyName</Title>
                 <LineTwo>@person.Salutation @person.FamilyName, @person.GivenName</LineTwo>
-            </BMdc.MdcList>
+            </BMdc.List>
         </div>
 
         <div class="my-half-list">
-            <BMdc.MdcList Items="@rightList"
+            <BMdc.List Items="@rightList"
                      Context="person"
                      ShowSeparators="true"
                      AvatarList="true"
@@ -206,7 +206,7 @@
                 <Icon>shop</Icon>
                 <Title>@person.FamilyName</Title>
                 <LineTwo>@person.Salutation @person.FamilyName, @person.GivenName</LineTwo>
-            </BMdc.MdcList>
+            </BMdc.List>
         </div>
     </ListTemplate>
 </PMdcPagedDataList>

@@ -28,7 +28,7 @@
 
                         @if (toast.Settings.CloseMethod != BEnum.ToastCloseMethod.Timeout)
                         {
-                            <MdcButton @onclick="@(() => CloseToast(toastId))" LeadingIcon="close" ButtonStyle="@BEnum.ButtonStyle.Text" Class="bmdc-toast-close-button" />
+                            <BMdc.Button @onclick="@(() => CloseToast(toastId))" LeadingIcon="close" ButtonStyle="@BEnum.ButtonStyle.Text" Class="bmdc-toast-close-button" />
                         }
                     </div>
 
