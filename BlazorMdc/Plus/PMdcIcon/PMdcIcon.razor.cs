@@ -21,11 +21,11 @@ namespace BlazorMdc
 
         /// <summary>
         /// The foundry.
-        /// <para><c>IconFoundry="MdcIconHelper.MIIcon()"</c></para>
-        /// <para><c>IconFoundry="MdcIconHelper.FAIcon()"</c></para>
-        /// <para><c>IconFoundry="MdcIconHelper.OIIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.MIIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.FAIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.OIIcon()"</c></para>
         /// </summary>
-        [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
+        [Parameter] public BModel.IIconFoundry? IconFoundry { get; set; }
 
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace BlazorMdc
 #nullable restore annotations
 
 
-        private MdcIconHelper IconHelper { get; set; }
+        private BModel.IconHelper IconHelper { get; set; }
 
 
         /// <inheritdoc/>
@@ -44,7 +44,7 @@ namespace BlazorMdc
         {
             base.OnParametersSet();
 
-            IconHelper = new MdcIconHelper(CascadingDefaults, Icon, IconFoundry);
+            IconHelper = new BModel.IconHelper(CascadingDefaults, Icon, IconFoundry);
 
             ClassMapper
                 .Clear()

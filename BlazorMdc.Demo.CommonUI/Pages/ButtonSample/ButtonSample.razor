@@ -11,19 +11,19 @@ See <code>ButtonSample.razor</code> for sources.
 </p>
 
 <p>
-    <MdcButton Label="Contained raised" ButtonStyle="@MdcButtonStyle.ContainedRaised" @onclick="@LogMessage" />
+    <MdcButton Label="Contained raised" ButtonStyle="@BEnum.ButtonStyle.ContainedRaised" @onclick="@LogMessage" />
 </p>
 
 <p>
-    <MdcButton Label="Contained unelevated" ButtonStyle="@MdcButtonStyle.ContainedUnelevated" @onclick="@LogMessage" />
+    <MdcButton Label="Contained unelevated" ButtonStyle="@BEnum.ButtonStyle.ContainedUnelevated" @onclick="@LogMessage" />
 </p>
 
 <p>
-    <MdcButton Label="Outlined" ButtonStyle="@MdcButtonStyle.Outlined" @onclick="@LogMessage" />
+    <MdcButton Label="Outlined" ButtonStyle="@BEnum.ButtonStyle.Outlined" @onclick="@LogMessage" />
 </p>
 
 <p>
-    <MdcButton Label="Text" ButtonStyle="@MdcButtonStyle.Text" @onclick="@LogMessage" />
+    <MdcButton Label="Text" ButtonStyle="@BEnum.ButtonStyle.Text" @onclick="@LogMessage" />
 </p>
 
 <p>
@@ -31,7 +31,7 @@ See <code>ButtonSample.razor</code> for sources.
 </p>
 
 <p>
-    <MdcButton Label="Leading icon" LeadingIcon="shield" IconFoundry="MdcIconHelper.OIFoundry()" @onclick="@LogMessage" />
+    <MdcButton Label="Leading icon" LeadingIcon="shield" IconFoundry="BModel.IconHelper.OIFoundry()" @onclick="@LogMessage" />
 </p>
 
 <p>
@@ -41,7 +41,7 @@ See <code>ButtonSample.razor</code> for sources.
 <p>
     <MdcButton Label="Trailing icon with style of 'margin-left: 5em;'"
                TrailingIcon="speed"
-               ButtonStyle="MdcButtonStyle.ContainedRaised"
+               ButtonStyle="BEnum.ButtonStyle.ContainedRaised"
                @onclick="@LogMessage"
                Style="margin-left: 5em;" />
 </p>
@@ -51,7 +51,7 @@ See <code>ButtonSample.razor</code> for sources.
 </p>
 
 <p>
-    A font awesome icon button -> <MdcIconButton Icon="fa-frog" IconFoundry="MdcIconHelper.FAFoundry()" @onclick="@LogMessage" />
+    A font awesome icon button -> <MdcIconButton Icon="fa-frog" IconFoundry="BModel.IconHelper.FAFoundry()" @onclick="@LogMessage" />
 </p>
 
 <div style="padding: 1rem; background-color: lightgray;">
@@ -61,7 +61,7 @@ See <code>ButtonSample.razor</code> for sources.
 
     <p><MdcIconButtonToggle @bind-Value="@commonBool" IconOn="directions_run" IconOff="airline_seat_individual_suite" /></p>
 
-    <p><MdcIconButtonToggle @bind-Value="@commonBool" IconOn="fa-dog" IconOff="fa-cat" IconFoundry="MdcIconHelper.FAFoundry()" /></p>
+    <p><MdcIconButtonToggle @bind-Value="@commonBool" IconOn="fa-dog" IconOff="fa-cat" IconFoundry="BModel.IconHelper.FAFoundry()" /></p>
 
     <p>@commonBool</p>
 </div>

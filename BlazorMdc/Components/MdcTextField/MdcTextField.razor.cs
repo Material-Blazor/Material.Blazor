@@ -13,13 +13,13 @@ namespace BlazorMdc
         /// <summary>
         /// The text input style.
         /// </summary>
-        [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
+        [Parameter] public BEnum.TextInputStyle? TextInputStyle { get; set; }
 
 
         /// <summary>
         /// The text alignment style.
         /// </summary>
-        [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
+        [Parameter] public BEnum.TextAlignStyle? TextAlignStyle { get; set; }
 
 
         /// <summary>
@@ -48,15 +48,15 @@ namespace BlazorMdc
 
         /// <summary>
         /// The foundry to use for both leading and trailing icons.
-        /// <para><c>IconFoundry="MdcIconHelper.MIIcon()"</c></para>
-        /// <para><c>IconFoundry="MdcIconHelper.FAIcon()"</c></para>
-        /// <para><c>IconFoundry="MdcIconHelper.OIIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.MIIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.FAIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.OIIcon()"</c></para>
         /// </summary>
-        [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
+        [Parameter] public BModel.IIconFoundry? IconFoundry { get; set; }
 #nullable restore annotations
 
 
-        private MdcTextInputStyle AppliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
+        private BEnum.TextInputStyle AppliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
         
         internal ElementReference TextFieldReference { get; set; }
         
@@ -76,16 +76,16 @@ namespace BlazorMdc
             ClassMapper
                 .Add("mdc-text-field")
                 .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
-                .AddIf("mdc-text-field--filled", () => AppliedTextInputStyle == MdcTextInputStyle.Filled)
-                .AddIf("mdc-text-field--outlined", () => AppliedTextInputStyle == MdcTextInputStyle.Outlined)
-                .AddIf("mdc-text-field--filled mdc-text-field--fullwidth", () => AppliedTextInputStyle == MdcTextInputStyle.FullWidth)
+                .AddIf("mdc-text-field--filled", () => AppliedTextInputStyle == BEnum.TextInputStyle.Filled)
+                .AddIf("mdc-text-field--outlined", () => AppliedTextInputStyle == BEnum.TextInputStyle.Outlined)
+                .AddIf("mdc-text-field--filled mdc-text-field--fullwidth", () => AppliedTextInputStyle == BEnum.TextInputStyle.FullWidth)
                 .AddIf("mdc-text-field--no-label", () => NoLabel)
                 .AddIf("mdc-text-field--disabled", () => Disabled)
                 .AddIf("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
                 .AddIf("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
 
 
-            if (!NoLabel && AppliedTextInputStyle != MdcTextInputStyle.FullWidth)
+            if (!NoLabel && AppliedTextInputStyle != BEnum.TextInputStyle.FullWidth)
             {
                 ComponentPureHtmlAttributes.Add("aria-labelledby", labelId);
             }
@@ -103,8 +103,8 @@ namespace BlazorMdc
         {
             base.OnParametersSet();
 
-            var leading = new MdcIconHelper(CascadingDefaults, (string)LeadingIcon, IconFoundry);
-            var trailing = new MdcIconHelper(CascadingDefaults, (string)TrailingIcon, IconFoundry);
+            var leading = new BModel.IconHelper(CascadingDefaults, LeadingIcon, IconFoundry);
+            var trailing = new BModel.IconHelper(CascadingDefaults, TrailingIcon, IconFoundry);
 
             FloatingLabelClass = string.IsNullOrEmpty(ReportingValue) ? "" : "mdc-floating-label--float-above";
         }

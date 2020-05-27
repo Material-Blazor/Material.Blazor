@@ -15,10 +15,10 @@ namespace BlazorMdc
         ///<inheritdoc/>
         public PMdcToastServiceConfiguration Configuration { get; set; } = new PMdcToastServiceConfiguration();
 
-        private event Action<PMdcToastLevel, PMdcToastSettings> OnAdd;
+        private event Action<BEnum.ToastLevel, PMdcToastSettings> OnAdd;
 
         ///<inheritdoc/>
-        event Action<PMdcToastLevel, PMdcToastSettings> IPmdcToastService.OnAdd
+        event Action<BEnum.ToastLevel, PMdcToastSettings> IPmdcToastService.OnAdd
         {
             add => OnAdd += value;
             remove => OnAdd -= value;
@@ -33,13 +33,13 @@ namespace BlazorMdc
         ///<inheritdoc/>
 #nullable enable annotations
         public void ShowToast(
-            PMdcToastLevel level,
+            BEnum.ToastLevel level,
             string message,
             string heading = null,
-            PMdcToastCloseMethod? closeMethod = null,
+            BEnum.ToastCloseMethod? closeMethod = null,
             string cssClass = null,
             string iconName = null,
-            IMdcIconFoundry? iconFoundry = null,
+            BModel.IIconFoundry? iconFoundry = null,
             bool? showIcon = null,
             uint? timeout = null)
 #nullable restore annotations

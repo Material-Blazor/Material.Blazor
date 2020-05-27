@@ -35,13 +35,13 @@ namespace BlazorMdc
         /// <summary>
         /// The text input style.
         /// </summary>
-        [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
+        [Parameter] public BEnum.TextInputStyle? TextInputStyle { get; set; }
 
 
         /// <summary>
         /// The text alignment style.
         /// </summary>
-        [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
+        [Parameter] public BEnum.TextAlignStyle? TextAlignStyle { get; set; }
 
 
         /// <summary>
@@ -70,11 +70,11 @@ namespace BlazorMdc
 
         /// <summary>
         /// The foundry to use for both leading and trailing icons.
-        /// <para><c>IconFoundry="MdcIconHelper.MIIcon()"</c></para>
-        /// <para><c>IconFoundry="MdcIconHelper.FAIcon()"</c></para>
-        /// <para><c>IconFoundry="MdcIconHelper.OIIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.MIIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.FAIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.OIIcon()"</c></para>
         /// </summary>
-        [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
+        [Parameter] public BModel.IIconFoundry? IconFoundry { get; set; }
 
 
         /// <summary>

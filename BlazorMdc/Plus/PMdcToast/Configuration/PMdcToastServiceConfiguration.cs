@@ -8,10 +8,10 @@ namespace BlazorMdc
     /// </summary>
     public class PMdcToastServiceConfiguration
     {
-        public const PMdcToastPosition DefaultPosition = PMdcToastPosition.BottomRight;
+        public const BEnum.ToastPosition DefaultPosition = BEnum.ToastPosition.BottomRight;
         public const string DefaultCloseButtonIcon = "close";
         public const bool DefaultShowIcons = true;
-        public const PMdcToastCloseMethod DefaultCloseMethod = PMdcToastCloseMethod.TimeoutAndCloseButton;
+        public const BEnum.ToastCloseMethod DefaultCloseMethod = BEnum.ToastCloseMethod.TimeoutAndCloseButton;
         public const int DefaultTimeout = 3000; 
         public const string DefaultInfoIconName = "notifications";
         public const string DefaultSuccessIconName = "done";
@@ -26,11 +26,11 @@ namespace BlazorMdc
         internal event Action OnUpdate;
 
 
-        private PMdcToastPosition _position = DefaultPosition;
+        private BEnum.ToastPosition _position = DefaultPosition;
         /// <summary>
         /// Sets the toast's position.
         /// </summary>
-        public PMdcToastPosition Position
+        public BEnum.ToastPosition Position
         {
             get => _position;
             set
@@ -80,11 +80,11 @@ namespace BlazorMdc
         }
 
 
-        private PMdcToastCloseMethod _closeMethod = DefaultCloseMethod;
+        private BEnum.ToastCloseMethod _closeMethod = DefaultCloseMethod;
         /// <summary>
-        /// Determines how the toast closes. Defaults to <see cref="PMdcToastCloseMethod.TimeoutAndCloseButton"/>.
+        /// Determines how the toast closes. Defaults to <see cref="ToastCloseMethod.TimeoutAndCloseButton"/>.
         /// </summary>
-        public PMdcToastCloseMethod CloseMethod
+        public BEnum.ToastCloseMethod CloseMethod
         {
             get => _closeMethod;
             set
@@ -100,7 +100,7 @@ namespace BlazorMdc
 
         private uint _timeout = DefaultTimeout;
         /// <summary>
-        /// Timeout in milliseconds until the toast automatically closes. Defaults to 3000 and ignored if <see cref="PMdcToastServiceConfiguration.CloseMethod"/> is <see cref="PMdcToastCloseMethod.CloseButton"/>.
+        /// Timeout in milliseconds until the toast automatically closes. Defaults to 3000 and ignored if <see cref="PMdcToastServiceConfiguration.CloseMethod"/> is <see cref="ToastCloseMethod.CloseButton"/>.
         /// </summary>
         public uint Timeout
         {
@@ -278,16 +278,16 @@ namespace BlazorMdc
         }
 
 
-        private IMdcIconFoundry _iconFoundry;
+        private BModel.IIconFoundry _iconFoundry;
         /// <summary>
         /// Toast icon foundry.
         /// </summary>
-        public IMdcIconFoundry IconFoundry
+        public BModel.IIconFoundry IconFoundry
         {
             get => _iconFoundry;
             set
             {
-                if (!EqualityComparer<IMdcIconFoundry>.Default.Equals(value, _iconFoundry))
+                if (!EqualityComparer<BModel.IIconFoundry>.Default.Equals(value, _iconFoundry))
                 {
                     _iconFoundry = value;
                     OnUpdate?.Invoke();

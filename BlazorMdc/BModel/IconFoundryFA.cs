@@ -2,30 +2,30 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BlazorMdc
+namespace BModel
 {
     /// <summary>
     /// Font Awesome foundry details.
     /// </summary>
-    public class IconFoundryFA : IMdcIconFoundry
+    public class IconFoundryFA : IIconFoundry
     {
         /// <inheritdoc/>
-        MdcIconFoundryName IMdcIconFoundry.FoundryName => MdcIconFoundryName.FontAwesome;
+        BEnum.IconFoundryName IIconFoundry.FoundryName => BEnum.IconFoundryName.FontAwesome;
 
         
         /// <summary>
         /// The Font Awesome style.
         /// </summary>
-        public MdcIconFAStyle? Style { get; }
+        public BEnum.IconFAStyle? Style { get; }
 
 
         /// <summary>
         /// The Font Awesome relative size.
         /// </summary>
-        public MdcIconFARelativeSize? RelativeSize { get; }
+        public BEnum.IconFARelativeSize? RelativeSize { get; }
 
 
-        public IconFoundryFA(MdcIconFAStyle? style = null, MdcIconFARelativeSize? relativesize = null)
+        public IconFoundryFA(BEnum.IconFAStyle? style = null, BEnum.IconFARelativeSize? relativesize = null)
         {
             Style = style;
             RelativeSize = relativesize;

@@ -52,53 +52,53 @@
                         <MdcButton Label="7"
                                    Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
                                    @onclick="@(() => NumberClick("7"))"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                                   ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
                         <MdcButton Label="8"
                                    Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
                                    @onclick="@(() => NumberClick("8"))"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                                   ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
                         <MdcButton Label="9"
                                    Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
                                    @onclick="@(() => NumberClick("9"))"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                                   ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
                     </div>
                     <div style="display:flex; flex-direction: row; justify-content: center;">
                         <MdcButton Label="4"
                                    Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
                                    @onclick="@(() => NumberClick("4"))"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                                   ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
                         <MdcButton Label="5"
                                    Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
                                    @onclick="@(() => NumberClick("5"))"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                                   ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
                         <MdcButton Label="6"
                                    Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
                                    @onclick="@(() => NumberClick("6"))"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                                   ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
                     </div>
                     <div style="display:flex; flex-direction: row; justify-content: center;">
                         <MdcButton Label="1"
                                    Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
                                    @onclick="@(() => NumberClick("1"))"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                                   ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
                         <MdcButton Label="2"
                                    Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
                                    @onclick="@(() => NumberClick("2"))"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                                   ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
                         <MdcButton Label="3"
                                    Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
                                    @onclick="@(() => NumberClick("3"))"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                                   ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
                     </div>
                     <div style="display:flex; flex-direction: row; justify-content: center;">
                         <MdcButton Label="0"
                                    Style="margin: 0.75em 0.75em 0.25em 0.25em; height: 2rem; width: 2rem;"
                                    @onclick="@(() => NumberClick("0"))"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                                   ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
                         <MdcButton Label="Backspace"
                                    Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; min-width: 128px;"
                                    @onclick="@(() => NumberClick("BKS"))"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                                   ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
                     </div>
 
                     <div style="display:flex; flex-direction: row; justify-content: center;">
@@ -107,19 +107,19 @@
                             <MdcButton Style="margin: 0.75em 0.25em 0.25em 0.25em;"
                                        type="submit"
                                        Label="Create PIN"
-                                       ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                                       ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
                         }
                         else
                         {
                             <MdcButton Style="margin: 0.75em 0.25em 0.25em 0.25em;"
                                        type="submit"
                                        Label="Enter PIN"
-                                       ButtonStyle="MdcButtonStyle.ContainedRaised"/>
+                                       ButtonStyle="BEnum.ButtonStyle.ContainedRaised"/>
                         }
                         <MdcButton @onclick="@CancelClick"
                                    Style="margin: 0.75em 0.25em 0.25em 0.25em;"
                                    Label="Cancel"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                                   ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
                     </div>
                 </div>
             </div>
@@ -179,7 +179,7 @@
                 returnValue = "<Log on succeeded>";
 
                 toastService.ShowToast(
-                    level: PMdcToastLevel.Success,
+                    level: BEnum.ToastLevel.Success,
                     message: "Log on succeeded");
 
                 await pinLogonDialogReference.HideAsync();
@@ -187,7 +187,7 @@
             else
             {
                 toastService.ShowToast(
-                    level: PMdcToastLevel.Error,
+                    level: BEnum.ToastLevel.Error,
                     message: "Log on failed");
             }
         }
@@ -198,7 +198,7 @@
                 returnValue = "<PIN created with a value of '" + pinLogonDTO.PIN1.ToString() + "'>";
 
                 toastService.ShowToast(
-                    level: PMdcToastLevel.Success,
+                    level: BEnum.ToastLevel.Success,
                     message: "<PIN creation succeeded>");
 
                 await pinLogonDialogReference.HideAsync();
@@ -206,7 +206,7 @@
             else
             {
                 toastService.ShowToast(
-                    level: PMdcToastLevel.Error,
+                    level: BEnum.ToastLevel.Error,
                     message: "PINs do not match");
             }
         }

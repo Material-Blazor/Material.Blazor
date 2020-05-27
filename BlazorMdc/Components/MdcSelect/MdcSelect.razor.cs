@@ -9,12 +9,12 @@ namespace BlazorMdc
     /// <summary>
     /// A Material Theme select.
     /// </summary>
-    public partial class MdcSelect<TItem> : MdcValidatingInputComponentBase<TItem>, IMdcDialogChild
+    public partial class MdcSelect<TItem> : MdcValidatingInputComponentBase<TItem>, BModel.IDialogChild
     {
         /// <summary>
         /// The item list to be represented as a select
         /// </summary>
-        [Parameter] public IEnumerable<MdcListElement<TItem>> Items { get; set; }
+        [Parameter] public IEnumerable<BModel.ListElement<TItem>> Items { get; set; }
 
 
         /// <summary>
@@ -22,7 +22,7 @@ namespace BlazorMdc
         /// a value outside the <see cref="Items"/> list, replace it with the first list item or
         /// to throw an exception (the default).
         /// </summary>
-        [Parameter] public MdcItemValidation? ItemValidation { get; set; }
+        [Parameter] public BEnum.ItemValidation? ItemValidation { get; set; }
 
 
         /// <summary>
@@ -32,27 +32,27 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// The select's <see cref="MdcSelectInputStyle"/>.
+        /// The select's <see cref="BlazorMdc.SelectInputStyle"/>.
         /// </summary>
-        [Parameter] public MdcSelectInputStyle? SelectInputStyle { get; set; }
+        [Parameter] public BEnum.SelectInputStyle? SelectInputStyle { get; set; }
 
 
         /// <summary>
-        /// The select's <see cref="MdcTextAlignStyle"/>.
+        /// The select's <see cref="BlazorMdc.TextAlignStyle"/>.
         /// </summary>
-        [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
+        [Parameter] public BEnum.TextAlignStyle? TextAlignStyle { get; set; }
 
 
         private ElementReference SelectReference { get; set; }
         private ElementReference ListboxReference { get; set; }
         private ElementReference UlReference { get; set; }
-        private MdcSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
+        private BEnum.SelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
         private string SelectedTextId { get; set; } = Utilities.GenerateUniqueElementName();
         private string LabelId { get; set; } = Utilities.GenerateUniqueElementName();
         private string SelectedText { get; set; } = "";
         private string FloatingLabelClass { get; set; } = "";
         private string AlignClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
-        private Dictionary<TItem, MdcListElement<TItem>> ItemDict { get; set; }
+        private Dictionary<TItem, BModel.ListElement<TItem>> ItemDict { get; set; }
 
 
         /// <inheritdoc/>
@@ -67,7 +67,7 @@ namespace BlazorMdc
             ClassMapper
                 .Clear()
                 .Add("mdc-select")
-                .AddIf("mdc-select--outlined", () => (AppliedInputStyle == MdcSelectInputStyle.Outlined))
+                .AddIf("mdc-select--outlined", () => AppliedInputStyle == BEnum.SelectInputStyle.Outlined)
                 .AddIf("mdc-select--disabled", () => Disabled);
 
             SelectedText = (Value is null) ? "" : Items.Where(i => object.Equals(i.SelectedValue, Value)).FirstOrDefault().Label;

@@ -12,7 +12,7 @@ namespace BlazorMdc
     /// intiate it and its embedded components. Likewise when the dialog is closed, Material Theme is permitted to close the dialog
     /// gracefully before BlazorMdc removes the markup.
     /// </summary>
-    public partial class MdcDialog : MdcComponentBase, IDisposable, IMdcDialog
+    public partial class MdcDialog : MdcComponentBase, IDisposable, BModel.IDialog
     {
         /// <summary>
         /// The dialog title.
@@ -58,7 +58,7 @@ namespace BlazorMdc
 
 
         private ElementReference DialogElem { get; set; }
-        private List<IMdcDialogChild> LayoutChildren { get; set; } = new List<IMdcDialogChild>();
+        private List<BModel.IDialogChild> LayoutChildren { get; set; } = new List<BModel.IDialogChild>();
         private DotNetObjectReference<MdcDialog> ObjectReference { get; set; }
         private string OverflowClass => OverflowVisible ? "bmdc-dialog-overflow-visible" : "";
 
@@ -92,7 +92,7 @@ namespace BlazorMdc
 
 
         /// <inheritdoc/>
-        void IMdcDialog.RegisterLayoutAction(IMdcDialogChild child)
+        void BModel.IDialog.RegisterLayoutAction(BModel.IDialogChild child)
         {
             LayoutChildren.Add(child);
         }

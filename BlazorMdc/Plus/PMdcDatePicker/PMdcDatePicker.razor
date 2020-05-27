@@ -6,7 +6,7 @@
      @attributes="@AttributesToSplat()" >
 
     <div class="mdc-select__anchor">
-        @if (AppliedInputStyle == MdcSelectInputStyle.Filled)
+        @if (AppliedInputStyle == BEnum.SelectInputStyle.Filled)
         {
             <span class="mdc-select__ripple"></span>
         }
@@ -14,7 +14,7 @@
         <input type="text" disabled readonly class="mdc-select__selected-text">
         <i class="mdc-select__dropdown-icon"></i>
 
-        @if (AppliedInputStyle == MdcSelectInputStyle.Outlined)
+        @if (AppliedInputStyle == BEnum.SelectInputStyle.Outlined)
         {
             <span class="mdc-notched-outline">
                 <span class="mdc-notched-outline__leading"></span>

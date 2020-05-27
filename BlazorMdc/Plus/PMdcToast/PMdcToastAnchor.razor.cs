@@ -8,18 +8,21 @@ namespace BlazorMdc
 {
     /// <summary>
     /// An anchor component that displays toast notification that you display via
-    /// <see cref="IPmdcToastService.ShowToast(PMdcToastLevel, string, string, PMdcToastCloseMethod?, string, string, IMdcIconFoundry?, bool?, uint?)"/>.
+    /// <see cref="IPmdcToastService.ShowToast(ToastLevel, string, string, ToastCloseMethod?, string, string, IIconFoundry?, bool?, uint?)"/>.
     /// Place this component at the top of either App.razor or MainLayout.razor.
     /// </summary>
     public partial class PMdcToastAnchor : ComponentBase
     {
         [Inject] private IPmdcToastService ToastService { get; set; }
 
+
         private List<ToastInstance> DisplayedToasts { get; set; } = new List<ToastInstance>();
         private Queue<ToastInstance> PendingToasts { get; set; } = new Queue<ToastInstance>();
+        private string PositionClass => $"bmdc-toast__{ToastService.Configuration.Position.ToString().ToLower()}";
+
+
         private readonly SemaphoreSlim displayedToastsSemaphore = new SemaphoreSlim(1);
         private readonly SemaphoreSlim pendingToastsSemaphore = new SemaphoreSlim(1);
-        private string positionClass => $"bmdc-toast__{ToastService.Configuration.Position.ToString().ToLower()}";
 
 
         /// <inheritdoc/>
@@ -29,7 +32,7 @@ namespace BlazorMdc
         }
 
 
-        private void AddToast(PMdcToastLevel level, PMdcToastSettings settings)
+        private void AddToast(BEnum.ToastLevel level, PMdcToastSettings settings)
         {
             InvokeAsync(async () =>
             {
@@ -80,7 +83,7 @@ namespace BlazorMdc
 
                 DisplayedToasts.Add(toastInstance);
 
-                if (toastInstance.Settings.AppliedCloseMethod != PMdcToastCloseMethod.CloseButton)
+                if (toastInstance.Settings.AppliedCloseMethod != BEnum.ToastCloseMethod.CloseButton)
                 {
                     InvokeAsync(() =>
                     {

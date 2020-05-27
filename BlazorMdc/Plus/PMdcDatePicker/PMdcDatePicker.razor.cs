@@ -14,7 +14,7 @@ namespace BlazorMdc
         /// <summary>
         /// The select style.
         /// </summary>
-        [Parameter] public MdcSelectInputStyle? SelectInputStyle { get; set; }
+        [Parameter] public BEnum.SelectInputStyle? SelectInputStyle { get; set; }
 
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace BlazorMdc
         /// <summary>
         /// Date selection criteria
         /// </summary>
-        [Parameter] public PMdcDateSelectionCriteria? DateSelectionCriteria { get; set; }
+        [Parameter] public BEnum.DateSelectionCriteria? DateSelectionCriteria { get; set; }
 
 
         /// <summary>
@@ -45,7 +45,7 @@ namespace BlazorMdc
 
         private InternalDatePickerPanel Panel { get; set; }
 
-        private MdcSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
+        private BEnum.SelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
 
         private bool IsOpen { get; set; } = false;
 
@@ -61,7 +61,7 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-select")
-                .AddIf("mdc-select--outlined", () => (AppliedInputStyle == MdcSelectInputStyle.Outlined))
+                .AddIf("mdc-select--outlined", () => (AppliedInputStyle == BEnum.SelectInputStyle.Outlined))
                 .AddIf("mdc-select--disabled", () => Disabled);
         }
 

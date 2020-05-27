@@ -13,7 +13,7 @@ namespace BlazorMdc
         /// <summary>
         /// Makes the progress bar indeterminant if True.
         /// </summary>
-        [Parameter] public MdcLinearProgressType LinearProgressType { get; set; } = MdcLinearProgressType.Indeterminate;
+        [Parameter] public BEnum.LinearProgressType LinearProgressType { get; set; } = BEnum.LinearProgressType.Indeterminate;
 
 
         /// <summary>
@@ -67,9 +67,9 @@ namespace BlazorMdc
             ClassMapper
                 .Clear()
                 .Add("mdc-linear-progress")
-                .AddIf("mdc-linear-progress--indeterminate", () => LinearProgressType == MdcLinearProgressType.Indeterminate)
-                .AddIf("mdc-linear-progress--reversed", () => LinearProgressType == MdcLinearProgressType.ReversedDeterminate)
-                .AddIf("mdc-linear-progress--closed", () => LinearProgressType == MdcLinearProgressType.Closed);
+                .AddIf("mdc-linear-progress--indeterminate", () => LinearProgressType == BEnum.LinearProgressType.Indeterminate)
+                .AddIf("mdc-linear-progress--reversed", () => LinearProgressType == BEnum.LinearProgressType.ReversedDeterminate)
+                .AddIf("mdc-linear-progress--closed", () => LinearProgressType == BEnum.LinearProgressType.Closed);
         }
 
 

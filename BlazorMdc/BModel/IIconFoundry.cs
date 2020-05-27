@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BlazorMdc
+﻿namespace BModel
 {
     /// <summary>
     /// An interface for supplying icon foundry information to components.
     /// </summary>
-    public interface IMdcIconFoundry
+    public interface IIconFoundry
     {
         /// <summary>
         /// The foundry's name.
         /// </summary>
-        internal MdcIconFoundryName FoundryName { get;}
+        internal BEnum.IconFoundryName FoundryName { get;}
     }
 }

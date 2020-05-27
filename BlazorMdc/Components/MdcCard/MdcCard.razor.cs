@@ -10,9 +10,9 @@ namespace BlazorMdc
     public partial class MdcCard : MdcComponentBase
     {
         /// <summary>
-        /// The card style - see <see cref="MdcCardStyle"/>
+        /// The card style - see <see cref="BlazorMdc.CardStyle"/>
         /// </summary>
-        [Parameter] public MdcCardStyle? CardStyle { get; set; }
+        [Parameter] public BEnum.CardStyle? CardStyle { get; set; }
 
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-card")
-                .AddIf("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(CardStyle) == MdcCardStyle.Outlined));
+                .AddIf("mdc-card--outlined", () => CascadingDefaults.AppliedStyle(CardStyle) == BEnum.CardStyle.Outlined);
         }
 
 

@@ -1,10 +1,4 @@
-﻿//
-//  2020-03-31  Mark Stega
-//              Added ClassMapper/Class & StyleMapper/Style
-//
-//  2020-04-13  Mark Stega
-//              Reworked 
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
@@ -69,7 +63,7 @@ namespace BlazorMdc
         [Inject] private protected IJSRuntime JsRuntime { get; set; }
 
 
-        [CascadingParameter] protected MdcCascadingDefaults CascadingDefaults { get; set; } = new MdcCascadingDefaults();
+        [CascadingParameter] protected BModel.CascadingDefaults CascadingDefaults { get; set; } = new BModel.CascadingDefaults();
 
 
         /// <summary>
@@ -231,7 +225,7 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// BlazorMdc allows a user to limit unmatched attributes that will be splatted to a defined list in <see cref="MdcCascadingDefaults"/>.
+        /// BlazorMdc allows a user to limit unmatched attributes that will be splatted to a defined list in <see cref="BlazorMdc.CascadingDefaults"/>.
         /// This method checks validity against that list.
         /// </summary>
         private void CheckAttributeValidity()

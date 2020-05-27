@@ -18,9 +18,9 @@ namespace BlazorMdc
 
 #nullable enable annotations
         /// <summary>
-        /// The button's Material Theme style - see <see cref="MdcButtonStyle"/>.
+        /// The button's Material Theme style - see <see cref="BlazorMdc.ButtonStyle"/>.
         /// </summary>
-        [Parameter] public MdcButtonStyle? ButtonStyle { get; set; }
+        [Parameter] public BEnum.ButtonStyle? ButtonStyle { get; set; }
 
 
         /// <summary>
@@ -43,11 +43,11 @@ namespace BlazorMdc
 
         /// <summary>
         /// The foundry to use for both leading and trailing icons.
-        /// <para><c>IconFoundry="MdcIconHelper.MIIcon()"</c></para>
-        /// <para><c>IconFoundry="MdcIconHelper.FAIcon()"</c></para>
-        /// <para><c>IconFoundry="MdcIconHelper.OIIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.MIIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.FAIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.OIIcon()"</c></para>
         /// </summary>
-        [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
+        [Parameter] public BModel.IIconFoundry? IconFoundry { get; set; }
 
 
         /// <summary>
@@ -67,9 +67,9 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-button")
-                .AddIf("mdc-button--raised", () => (CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MdcButtonStyle.ContainedRaised))
-                .AddIf("mdc-button--unelevated", () => (CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MdcButtonStyle.ContainedUnelevated))
-                .AddIf("mdc-button--outlined", () => (CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MdcButtonStyle.Outlined))
+                .AddIf("mdc-button--raised", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == BEnum.ButtonStyle.ContainedRaised)
+                .AddIf("mdc-button--unelevated", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == BEnum.ButtonStyle.ContainedUnelevated)
+                .AddIf("mdc-button--outlined", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == BEnum.ButtonStyle.Outlined)
                 .AddIf("mdc-card__action mdc-card__action--button", () => (Card != null));
         }
 

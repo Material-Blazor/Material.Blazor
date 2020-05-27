@@ -6,6 +6,6 @@ namespace BlazorMdc.Demo
 {
     public class DemoConfiguration
     {
-        public MdcTopAppBarType TopAppBarType { get; set; } = MdcTopAppBarType.Dense;
+        public BEnum.TopAppBarType TopAppBarType { get; set; } = BEnum.TopAppBarType.Dense;
     }
 }

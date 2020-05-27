@@ -1,19 +1,15 @@
-﻿//
-//  2020-04-23  Mark Stega
-//              Removed all enumerations and placed them in MdcEnumerations
-//
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BlazorMdc
+namespace BModel
 {
     /// <summary>
     /// A class to be used as a cascading value setting defaults for your application.
     /// </summary>
     /// <remarks>
     /// For example the default style for
-    /// a material button is <see cref="MdcButtonStyle.Text"/>, however you can change that by setting <see cref="ButtonStyle"/>
+    /// a material button is <see cref="BEnum.ButtonStyle.Text"/>, however you can change that by setting <see cref="ButtonStyle"/>
     /// to another value and your whole application within the cascading value will change appearance. You can of course
     /// nest cascading values in the normal manner.
     /// </remarks>
@@ -23,7 +19,7 @@ namespace BlazorMdc
     ///// '<'/CascadingValue'>'
     ///// </code>
     ///// </example>
-    public class MdcCascadingDefaults
+    public class CascadingDefaults
     {
         /*************************************************************************************************************
          * 
@@ -62,9 +58,9 @@ namespace BlazorMdc
         /// </summary>
         internal IEnumerable<string> AppliedAllowedSplattableAttributes => EssentialSplattableAttributes.Union(AllowedSplattableAttributes.Select(x => x.ToLower())).Distinct();
 
-        public MdcItemValidation ItemValidation { get; set; } = MdcItemValidation.Exception;
-        internal MdcItemValidation AppliedItemValidationSelect(MdcItemValidation? criteria = null) => (criteria is null) ? ItemValidation : (MdcItemValidation)criteria;
-        internal MdcItemValidation AppliedItemValidationRadioButtonGroup(MdcItemValidation? criteria = null) => (criteria is null) ? ItemValidation : (MdcItemValidation)criteria;
+        public BEnum.ItemValidation ItemValidation { get; set; } = BEnum.ItemValidation.Exception;
+        internal BEnum.ItemValidation AppliedItemValidationSelect(BEnum.ItemValidation? criteria = null) => (criteria is null) ? ItemValidation : (BEnum.ItemValidation)criteria;
+        internal BEnum.ItemValidation AppliedItemValidationRadioButtonGroup(BEnum.ItemValidation? criteria = null) => (criteria is null) ? ItemValidation : (BEnum.ItemValidation)criteria;
 
 
 
@@ -77,54 +73,54 @@ namespace BlazorMdc
          ************************************************************************************************************/
 
         /// <summary>
-        /// The default foundry name, initialized to <see cref="MdcIconFoundryName.MaterialIcons"/> if not explicitly set.
+        /// The default foundry name, initialized to <see cref="BEnum.IconFoundryName.MaterialIcons"/> if not explicitly set.
         /// </summary>
-        public MdcIconFoundryName IconFoundryName { get; set; } = MdcIconFoundryName.MaterialIcons;
+        public BEnum.IconFoundryName IconFoundryName { get; set; } = BEnum.IconFoundryName.MaterialIcons;
 
         /// <summary>
         /// The foundry name to apply within a BlazorMdc component.
         /// </summary>
         /// <param name="iconFoundryName">The foundry name parameter passed to the component</param>
-        /// <returns>The <see cref="MdcIconFoundryName"/> to apply.</returns>
-        internal MdcIconFoundryName AppliedIconFoundryName(MdcIconFoundryName? iconFoundryName = null) => (iconFoundryName is null) ? IconFoundryName : (MdcIconFoundryName)iconFoundryName;
+        /// <returns>The <see cref="BEnum.IconFoundryName"/> to apply.</returns>
+        internal BEnum.IconFoundryName AppliedIconFoundryName(BEnum.IconFoundryName? iconFoundryName = null) => (iconFoundryName is null) ? IconFoundryName : (BEnum.IconFoundryName)iconFoundryName;
 
 
         /// <summary>
-        /// The default Material Icons theme, initialized to <see cref="MdcIconMITheme.Filled"/> if not explicitly set.
+        /// The default Material Icons theme, initialized to <see cref="BEnum.IconMITheme.Filled"/> if not explicitly set.
         /// </summary>
-        public MdcIconMITheme IconMITheme { get; set; } = MdcIconMITheme.Filled;
+        public BEnum.IconMITheme IconMITheme { get; set; } = BEnum.IconMITheme.Filled;
 
         /// <summary>
         /// The Material Icons theme to apply within a BlazorMdc component.
         /// </summary>
         /// <param name="iconMITheme">The theme parameter passed to the component</param>
-        /// <returns>The <see cref="MdcIconMITheme"/> to apply.</returns>
-        internal MdcIconMITheme AppliedIconMITheme(MdcIconMITheme? iconMITheme = null) => (iconMITheme is null) ? IconMITheme : (MdcIconMITheme)iconMITheme;
+        /// <returns>The <see cref="BEnum.IconMITheme"/> to apply.</returns>
+        internal BEnum.IconMITheme AppliedIconMITheme(BEnum.IconMITheme? iconMITheme = null) => (iconMITheme is null) ? IconMITheme : (BEnum.IconMITheme)iconMITheme;
 
 
         /// <summary>
-        /// The default Font Awesome style, initialized to <see cref="MdcIconFAStyle.Solid"/> if not explicitly set.
+        /// The default Font Awesome style, initialized to <see cref="BEnum.IconFAStyle.Solid"/> if not explicitly set.
         /// </summary>
-        public MdcIconFAStyle IconFAStyle { get; set; } = MdcIconFAStyle.Solid;
+        public BEnum.IconFAStyle IconFAStyle { get; set; } = BEnum.IconFAStyle.Solid;
 
         /// <summary>
         /// The Font Awesome style to apply within a BlazorMdc component.
         /// </summary>
         /// <param name="iconFAStyle">The style parameter passed to the component</param>
-        /// <returns>The <see cref="MdcIconFAStyle"/> to apply.</returns>
-        internal MdcIconFAStyle AppliedIconFAStyle(MdcIconFAStyle? iconFAStyle = null) => (iconFAStyle is null) ? IconFAStyle : (MdcIconFAStyle)iconFAStyle;
+        /// <returns>The <see cref="BEnum.IconFAStyle"/> to apply.</returns>
+        internal BEnum.IconFAStyle AppliedIconFAStyle(BEnum.IconFAStyle? iconFAStyle = null) => (iconFAStyle is null) ? IconFAStyle : (BEnum.IconFAStyle)iconFAStyle;
 
         /// <summary>
-        /// The default Font Awesome relative size, initialized to <see cref="MdcIconFARelativeSize.Regular"/> if not explicitly set.
+        /// The default Font Awesome relative size, initialized to <see cref="BEnum.IconFARelativeSize.Regular"/> if not explicitly set.
         /// </summary>
-        public MdcIconFARelativeSize IconFARelativeSize { get; set; } = MdcIconFARelativeSize.Regular;
+        public BEnum.IconFARelativeSize IconFARelativeSize { get; set; } = BEnum.IconFARelativeSize.Regular;
 
         /// <summary>
         /// The Font Awesome relative size to apply within a BlazorMdc component.
         /// </summary>
         /// <param name="iconFARelativeSize">The relative size parameter passed to the component</param>
-        /// <returns>The <see cref="MdcIconFARelativeSize"/> to apply.</returns>
-        internal MdcIconFARelativeSize AppliedIconFARelativeSize(MdcIconFARelativeSize? iconFARelativeSize = null) => (iconFARelativeSize is null) ? IconFARelativeSize : (MdcIconFARelativeSize)iconFARelativeSize;
+        /// <returns>The <see cref="BEnum.IconFARelativeSize"/> to apply.</returns>
+        internal BEnum.IconFARelativeSize AppliedIconFARelativeSize(BEnum.IconFARelativeSize? iconFARelativeSize = null) => (iconFARelativeSize is null) ? IconFARelativeSize : (BEnum.IconFARelativeSize)iconFARelativeSize;
 
 
 
@@ -137,31 +133,31 @@ namespace BlazorMdc
          ************************************************************************************************************/
 
         /// <summary>
-        /// The default style for an <see cref="MdcButton"/>, initialized to <see cref="MdcButtonStyle.Text"/> if not explicitly set.
+        /// The default style for an <see cref="MdcButton"/>, initialized to <see cref="BEnum.ButtonStyle.Text"/> if not explicitly set.
         /// </summary>
-        public MdcButtonStyle ButtonStyle { get; set; } = MdcButtonStyle.Text;
+        public BEnum.ButtonStyle ButtonStyle { get; set; } = BEnum.ButtonStyle.Text;
 
         /// <summary>
-        /// The default style for a card action button/<see cref="MdcButton"/> in an <see cref="MdcCard"/>, initialized to <see cref="MdcButtonStyle.Text"/> if not explicitly set.
+        /// The default style for a card action button/<see cref="MdcButton"/> in an <see cref="MdcCard"/>, initialized to <see cref="BEnum.ButtonStyle.Text"/> if not explicitly set.
         /// </summary>
-        public MdcButtonStyle CardActionButtonStyle { get; set; } = MdcButtonStyle.Text;
+        public BEnum.ButtonStyle CardActionButtonStyle { get; set; } = BEnum.ButtonStyle.Text;
         
         /// <summary>
-        /// The default style for a dialog action button/<see cref="MdcButton"/> in an <see cref="MdcDialog"/>, initialized to <see cref="MdcButtonStyle.Text"/> if not explicitly set.
+        /// The default style for a dialog action button/<see cref="MdcButton"/> in an <see cref="MdcDialog"/>, initialized to <see cref="BEnum.ButtonStyle.Text"/> if not explicitly set.
         /// </summary>
-        public MdcButtonStyle DialogActionButtonStyle { get; set; } = MdcButtonStyle.Text;
+        public BEnum.ButtonStyle DialogActionButtonStyle { get; set; } = BEnum.ButtonStyle.Text;
 
         /// <summary>
         /// The style to apply within an <see cref="MdcButton"/>. <see cref="MdcCard"/> and <see cref="MdcDialog"/> must
         /// pass a reference to themselves (<c>this</c>) to reference the relevant default.
         /// </summary>
         /// <param name="style">The style parameter passed to the <see cref="MdcButton"/></param>
-        /// <param name="card">The <see cref="MdcButton"/>'s card reference (null if button is not in a card)</param>
-        /// <param name="dialog">The <see cref="MdcDialog"/>'s card reference (null if button is not in a dialog)</param>
-        /// <returns>The <see cref="MdcButtonStyle"/> to apply.</returns>
-        internal MdcButtonStyle AppliedStyle(MdcButtonStyle? style, MdcCard card, MdcDialog dialog)
+        /// <param name="card">The <see cref="BlazorMdc.MdcButton"/>'s card reference (null if button is not in a card)</param>
+        /// <param name="dialog">The <see cref="BlazorMdc.MdcDialog"/>'s card reference (null if button is not in a dialog)</param>
+        /// <returns>The <see cref="BEnum.ButtonStyle"/> to apply.</returns>
+        internal BEnum.ButtonStyle AppliedStyle(BEnum.ButtonStyle? style, BlazorMdc.MdcCard card, BlazorMdc.MdcDialog dialog)
         {
-            if (style != null) return (MdcButtonStyle)style;
+            if (style != null) return (BEnum.ButtonStyle)style;
             if (card != null) return CardActionButtonStyle;
             if (dialog != null) return DialogActionButtonStyle;
             return ButtonStyle;
@@ -169,99 +165,99 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// The default style for an <see cref="MdcCard"/>, initialized to <see cref="MdcCardStyle.Default"/> if not explicitly set.
+        /// The default style for an <see cref="MdcCard"/>, initialized to <see cref="BEnum.CardStyle.Default"/> if not explicitly set.
         /// </summary>
-        public MdcCardStyle CardStyle { get; set; } = MdcCardStyle.Default;
+        public BEnum.CardStyle CardStyle { get; set; } = BEnum.CardStyle.Default;
 
         /// <summary>
         /// The style to apply to an <see cref="MdcCard"/>.
         /// </summary>
         /// <param name="style">The style parameter passed to the <see cref="MdcCard"/></param>
-        /// <returns>The <see cref="MdcCardStyle"/> to apply.</returns>
-        public MdcCardStyle AppliedStyle(MdcCardStyle? style = null) => (style is null) ? CardStyle : (MdcCardStyle)style;
+        /// <returns>The <see cref="BEnum.CardStyle"/> to apply.</returns>
+        public BEnum.CardStyle AppliedStyle(BEnum.CardStyle? style = null) => (style is null) ? CardStyle : (BEnum.CardStyle)style;
 
 
         /// <summary>
-        /// The default style for an <see cref="MdcList{TItem}"/>, initialized to <see cref="MdcListStyle.None"/> if not explicitly set.
+        /// The default style for an <see cref="MdcList{TItem}"/>, initialized to <see cref="BEnum.ListStyle.None"/> if not explicitly set.
         /// </summary>
-        public MdcListStyle ListStyle { get; set; } = MdcListStyle.None;
+        public BEnum.ListStyle ListStyle { get; set; } = BEnum.ListStyle.None;
 
         /// <summary>
         /// The style to apply to an <see cref="MdcList{TItem}"/>.
         /// </summary>
         /// <param name="style">The style parameter passed to the <see cref="MdcList{TItem}"/></param>
-        /// <returns>The <see cref="MdcListStyle"/> to apply.</returns>
-        internal MdcListStyle AppliedStyle(MdcListStyle? style = null) => (style is null) ? ListStyle : (MdcListStyle)style;
+        /// <returns>The <see cref="BEnum.ListStyle"/> to apply.</returns>
+        internal BEnum.ListStyle AppliedStyle(BEnum.ListStyle? style = null) => (style is null) ? ListStyle : (BEnum.ListStyle)style;
 
 
         /// <summary>
-        /// The default style for an <see cref="MdcSelect{TItem}"/>, initialized to <see cref="MdcSelectInputStyle.Filled"/> if not explicitly set.
+        /// The default style for an <see cref="MdcSelect{TItem}"/>, initialized to <see cref="BEnum.SelectInputStyle.Filled"/> if not explicitly set.
         /// </summary>
         /// <remarks>
         /// Also applied to <seealso cref="PMdcDatePicker"/>.
         /// </remarks>
-        public MdcSelectInputStyle SelectInputStyle { get; set; } = MdcSelectInputStyle.Filled;
+        public BEnum.SelectInputStyle SelectInputStyle { get; set; } = BEnum.SelectInputStyle.Filled;
 
         /// <summary>
         /// The style to apply to an <see cref="MdcCard"/>.
         /// </summary>
         /// <param name="style">The style parameter passed to the <see cref="MdcCard"/></param>
-        /// <returns>The <see cref="MdcCardStyle"/> to apply.</returns>
-        internal MdcSelectInputStyle AppliedStyle(MdcSelectInputStyle? style = null) => (style is null) ? SelectInputStyle : (MdcSelectInputStyle)style;
+        /// <returns>The <see cref="BEnum.CardStyle"/> to apply.</returns>
+        internal BEnum.SelectInputStyle AppliedStyle(BEnum.SelectInputStyle? style = null) => (style is null) ? SelectInputStyle : (BEnum.SelectInputStyle)style;
 
 
         /// <summary>
-        /// The default text alignment style for an <see cref="MdcTextField"/>, an <see cref="MdcTextArea"/> or <see cref="MdcSelect{TItem}"/>, initialized to <see cref="MdcTextAlignStyle.Default"/> if not explicitly set.
+        /// The default text alignment style for an <see cref="MdcTextField"/>, an <see cref="MdcTextArea"/> or <see cref="MdcSelect{TItem}"/>, initialized to <see cref="BEnum.TextAlignStyle.Default"/> if not explicitly set.
         /// </summary>
         /// <remarks>
         /// Also applied to <seealso cref="PMdcAutocomplete"/>, <seealso cref="PMdcDebouncedTextField"/>, <seealso cref="PMdcNumericDoubleField"/> and <seealso cref="PMdcNumericIntField"/>.
         /// </remarks>
-        public MdcTextAlignStyle TextAlignStyle { get; set; } = MdcTextAlignStyle.Default;
+        public BEnum.TextAlignStyle TextAlignStyle { get; set; } = BEnum.TextAlignStyle.Default;
 
         /// <summary>
         /// The text alignment style to apply to an <see cref="MdcTextField"/>, an <see cref="MdcTextArea"/> or <see cref="MdcSelect{TItem}"/>.
         /// </summary>
         /// <param name="style">The text align style parameter passed to the <see cref="MdcTextField"/>, <see cref="MdcTextArea"/> or <see cref="MdcSelect{TItem}"/></param>
-        /// <returns>The <see cref="MdcTextAlignStyle"/> to apply.</returns>
-        public MdcTextAlignStyle AppliedStyle(MdcTextAlignStyle? style = null) => (style is null) ? TextAlignStyle : (MdcTextAlignStyle)style;
+        /// <returns>The <see cref="BEnum.TextAlignStyle"/> to apply.</returns>
+        public BEnum.TextAlignStyle AppliedStyle(BEnum.TextAlignStyle? style = null) => (style is null) ? TextAlignStyle : (BEnum.TextAlignStyle)style;
 
 
         /// <summary>
-        /// The default style for an <see cref="MdcTextField"/> or an <see cref="MdcTextArea"/>, initialized to <see cref="MdcTextInputStyle.Filled"/> if not explicitly set.
+        /// The default style for an <see cref="MdcTextField"/> or an <see cref="MdcTextArea"/>, initialized to <see cref="BEnum.TextInputStyle.Filled"/> if not explicitly set.
         /// </summary>
         /// <remarks>
         /// Also applied to <seealso cref="PMdcAutocomplete"/>, <seealso cref="PMdcDebouncedTextField"/>, <seealso cref="PMdcNumericDoubleField"/> and <seealso cref="PMdcNumericIntField"/>.
         /// </remarks>
-        public MdcTextInputStyle TextInputStyle { get; set; } = MdcTextInputStyle.Filled;
+        public BEnum.TextInputStyle TextInputStyle { get; set; } = BEnum.TextInputStyle.Filled;
 
         /// <summary>
         /// The text input style to apply to an <see cref="MdcTextField"/> or an <see cref="MdcTextArea"/>.
         /// </summary>
         /// <param name="style">The text input style parameter passed to the <see cref="MdcTextField"/> or <see cref="MdcTextArea"/></param>
-        /// <returns>The <see cref="MdcTextAlignStyle"/> to apply.</returns>
-        internal MdcTextInputStyle AppliedStyle(MdcTextInputStyle? style = null) => (style is null) ? TextInputStyle : (MdcTextInputStyle)style;
+        /// <returns>The <see cref="BEnum.TextAlignStyle"/> to apply.</returns>
+        internal BEnum.TextInputStyle AppliedStyle(BEnum.TextInputStyle? style = null) => (style is null) ? TextInputStyle : (BEnum.TextInputStyle)style;
 
 
 
         /*************************************************************************************************************
          * 
          * 
-         *      MDC CORE COMPONENTS
+         *      PLUS COMPONENTS
          * 
          * 
          ************************************************************************************************************/
 
         /// <summary>
-        /// The default date selection criteria for a <see cref="PMdcDatePicker"/>, initialized to <see cref="PMdcDateSelectionCriteria.AllowAll"/> if not explicitly set.
+        /// The default date selection criteria for a <see cref="PMdcDatePicker"/>, initialized to <see cref="BEnum.DateSelectionCriteria.AllowAll"/> if not explicitly set.
         /// </summary>
-        public PMdcDateSelectionCriteria DateSelectionCriteria { get; set; } = PMdcDateSelectionCriteria.AllowAll;
+        public BEnum.DateSelectionCriteria DateSelectionCriteria { get; set; } = BEnum.DateSelectionCriteria.AllowAll;
 
         /// <summary>
         /// The date selection criteria to apply to a <see cref="PMdcDatePicker"/>.
         /// </summary>
         /// <param name="criteria">The criteria style parameter passed to the <see cref="PMdcDatePicker"/></param>
-        /// <returns>The <see cref="PMdcDateSelectionCriteria"/> to apply.</returns>
-        internal PMdcDateSelectionCriteria AppliedDateSelectionCriteria(PMdcDateSelectionCriteria? criteria = null) => (criteria is null) ? DateSelectionCriteria : (PMdcDateSelectionCriteria)criteria;
+        /// <returns>The <see cref="BEnum.DateSelectionCriteria"/> to apply.</returns>
+        internal BEnum.DateSelectionCriteria AppliedDateSelectionCriteria(BEnum.DateSelectionCriteria? criteria = null) => (criteria is null) ? DateSelectionCriteria : (BEnum.DateSelectionCriteria)criteria;
 
 
         /// <summary>

@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 
-namespace BlazorMdc
+namespace BModel
 {
     /// <summary>
     /// Interface providing markup elements for an icon in a given foundry.
     /// </summary>
-    public interface IMdcIcon
+    public interface IIcon
     {
         /// <summary>
         /// Value applied to the icon <c>class</c> attribute.

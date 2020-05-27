@@ -15,10 +15,10 @@ namespace BlazorMdc
         /// Validates the item list against the validation specification.
         /// </summary>
         /// <param name="items">The item list</param>
-        /// <param name="appliedItemValidation">Specification of the required validation <see cref="MdcItemValidation"/></param>
+        /// <param name="appliedItemValidation">Specification of the required validation <see cref="ItemValidation"/></param>
         /// <returns>The item in the list matching <see cref="MdcInputComponentBase{T}._underlyingValue"/></returns>
         /// <exception cref="ArgumentException"/>
-        public T ValidateItemList(IEnumerable<MdcListElement<T>> items, MdcItemValidation appliedItemValidation)
+        public T ValidateItemList(IEnumerable<BModel.ListElement<T>> items, BEnum.ItemValidation appliedItemValidation)
         {
             var componentName = Utilities.GetTypeName(GetType());
             
@@ -35,11 +35,11 @@ namespace BlazorMdc
             {
                 switch (appliedItemValidation)
                 {
-                    case MdcItemValidation.DefaultToFirst:
+                    case BEnum.ItemValidation.DefaultToFirst:
                         var firstOrDefault = items.FirstOrDefault().SelectedValue;
                         return firstOrDefault;
 
-                    case MdcItemValidation.Exception:
+                    case BEnum.ItemValidation.Exception:
                         string itemList = "{ ";
                         string prepend = "";
 
@@ -53,7 +53,7 @@ namespace BlazorMdc
 
                         throw new ArgumentException(componentName + $" cannot select item with data value of '{Value?.ToString()}' from {itemList}");
 
-                    case MdcItemValidation.NoSelection:
+                    case BEnum.ItemValidation.NoSelection:
                         return default;
                 }
             }

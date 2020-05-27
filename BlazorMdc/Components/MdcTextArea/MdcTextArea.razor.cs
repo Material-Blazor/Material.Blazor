@@ -12,13 +12,13 @@ namespace BlazorMdc
         /// <summary>
         /// The text input style.
         /// </summary>
-        [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
+        [Parameter] public BEnum.TextInputStyle? TextInputStyle { get; set; }
 
 
         /// <summary>
         /// The text alignment style.
         /// </summary>
-        [Parameter] public MdcTextAlignStyle? TextAlignStyle { get; set; }
+        [Parameter] public BEnum.TextAlignStyle? TextAlignStyle { get; set; }
 
 
         /// <summary>
@@ -46,7 +46,7 @@ namespace BlazorMdc
 
 
         private ElementReference ElementReference { get; set; }
-        private MdcTextInputStyle AppliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
+        private BEnum.TextInputStyle AppliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
         private string AppliedTextInputStyleClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
         private string FloatingLabelClass { get; set; }
 
@@ -62,8 +62,8 @@ namespace BlazorMdc
             ClassMapper
                 .Add("mdc-text-field mdc-text-field--textarea")
                 .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
-                .AddIf("mdc-text-field--outlined", () => (AppliedTextInputStyle == MdcTextInputStyle.Outlined))
-                .AddIf("mdc-text-field--fullwidth", () => (AppliedTextInputStyle == MdcTextInputStyle.FullWidth))
+                .AddIf("mdc-text-field--outlined", () => (AppliedTextInputStyle == BEnum.TextInputStyle.Outlined))
+                .AddIf("mdc-text-field--fullwidth", () => (AppliedTextInputStyle == BEnum.TextInputStyle.FullWidth))
                 .AddIf("mdc-text-field--no-label", () => NoLabel)
                 .AddIf("mdc-text-field--disabled", () => Disabled);
 

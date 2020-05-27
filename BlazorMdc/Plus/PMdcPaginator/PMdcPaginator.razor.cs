@@ -100,7 +100,7 @@ namespace BlazorMdc
         private MdcMenu Menu { get; set; }
         private MdcIconButtonToggle IconButtonToggle { get; set; }
         private bool ToggleOn { get; set; }
-        private MdcListElement<int>[] ItemsPerPageItems { get; set; }
+        private BModel.ListElement<int>[] ItemsPerPageItems { get; set; }
         private int MaxPageNumber => Math.Max(0, Convert.ToInt32(Math.Ceiling((double)ItemCount / ItemsPerPage)) - 1);
         private string ItemsText => $"{ItemsPerPage:G0} items per page";
         private string PositionText => PositionTextString(PageNumber);
@@ -122,11 +122,11 @@ namespace BlazorMdc
 
             if (!ItemsPerPageSelection.Contains(ItemsPerPage))
             {
-                throw new ArgumentException($"PMdcPaginator: Cannot set ItemsPerPage to {ItemsPerPage} from selection of {{ {ItemsPerPageSelection.Select(r => r).ToString()} }}");
+                throw new ArgumentException($"PMdcPaginator: Cannot set ItemsPerPage to {ItemsPerPage} from selection of {{ {ItemsPerPageSelection.Select(r => r)} }}");
             }
 
             ItemsPerPageItems = (from r in ItemsPerPageSelection
-                                 select new MdcListElement<int>
+                                 select new BModel.ListElement<int>
                                  {
                                      SelectedValue = r,
                                      Label = r.ToString()
@@ -147,7 +147,7 @@ namespace BlazorMdc
         {
             if (ToggleOn)
             {
-                var x = await Menu.ToggleAsync();
+                _ = await Menu.ToggleAsync();
                 ToggleOn = false;
                 StateHasChanged();
             }

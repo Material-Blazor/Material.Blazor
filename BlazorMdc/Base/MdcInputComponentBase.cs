@@ -10,7 +10,7 @@ namespace BlazorMdc
     // This is like InputBase from Microsoft.AspNetCore.Components.Forms, except that it treats
     // [CascadingParameter] EditContext as optional.
 
-    public abstract class MdcInputComponentBase<T> : MdcComponentBase, IMdcDialogChild
+    public abstract class MdcInputComponentBase<T> : MdcComponentBase, BModel.IDialogChild
     {
         private bool _previousParsingAttemptFailed;
         private ValidationMessageStore _parsingValidationMessages;
@@ -21,7 +21,7 @@ namespace BlazorMdc
 
         [CascadingParameter] private EditContext CascadedEditContext { get; set; }
 
-        [CascadingParameter] private IMdcDialog Dialog { get; set; }
+        [CascadingParameter] private BModel.IDialog Dialog { get; set; }
 
 
         /// <summary>
@@ -274,7 +274,7 @@ namespace BlazorMdc
 
 
         /// <inheritdoc/>
-        void IMdcDialogChild.RequestInstantiation()
+        void BModel.IDialogChild.RequestInstantiation()
         {
             _instantiate = true;
             AllowNextRender = true;

@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace BlazorMdc
+namespace BModel
 {
     /// <summary>
     /// A list item used by <see cref="MdcSelect{TItem}"/>, <see cref="PMdcRadioButtonGroup{TItem}"/> and <see cref="PMdcPagedDataList{TItem}"/>
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class MdcListElement<T>
+    public class ListElement<T>
     {
         /// <summary>
         /// The value associated with the list element.

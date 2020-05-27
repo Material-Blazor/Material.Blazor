@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BlazorMdc
+namespace BModel
 {
     /// <summary>
     /// Material Icons foundry details.
     /// </summary>
-    internal class IconFoundryMI : IMdcIconFoundry
+    internal class IconFoundryMI : IIconFoundry
     {
         /// <inheritdoc/>
-        MdcIconFoundryName IMdcIconFoundry.FoundryName => MdcIconFoundryName.MaterialIcons;
+        BEnum.IconFoundryName IIconFoundry.FoundryName => BEnum.IconFoundryName.MaterialIcons;
 
         
         /// <summary>
         /// The Material Icons theme.
         /// </summary>
-        public MdcIconMITheme? Theme { get; }
+        public BEnum.IconMITheme? Theme { get; }
 
 
-        public IconFoundryMI(MdcIconMITheme? theme = null)
+        public IconFoundryMI(BEnum.IconMITheme? theme = null)
         {
             Theme = theme;
         }

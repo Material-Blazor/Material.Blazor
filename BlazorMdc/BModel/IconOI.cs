@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 
-namespace BlazorMdc
+namespace BModel
 {
     /// <summary>
     /// Open Iconic icon.
     /// </summary>
-    internal class IconOI : IMdcIcon
+    internal class IconOI : BModel.IIcon
     {
         /// <inheritdoc />
         public string Class => "oi";
@@ -30,7 +30,7 @@ namespace BlazorMdc
 
 #nullable enable annotations
 #pragma warning disable IDE0060 // Remove unused parameter
-        public IconOI(MdcCascadingDefaults cascadingDefaults, string iconName, IconFoundryOI? foundry = null)
+        public IconOI(BModel.CascadingDefaults cascadingDefaults, string iconName, IconFoundryOI? foundry = null)
         {
             IconName = iconName;
 

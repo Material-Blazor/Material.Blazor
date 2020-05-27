@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BlazorMdc
+namespace BModel
 {
     /// <summary>
     /// Open Iconic foundry details.
     /// </summary>
-    internal class IconFoundryOI : IMdcIconFoundry
+    internal class IconFoundryOI : IIconFoundry
     {
         /// <inheritdoc/>
-        MdcIconFoundryName IMdcIconFoundry.FoundryName => MdcIconFoundryName.OpenIconic;
+        BEnum.IconFoundryName IIconFoundry.FoundryName => BEnum.IconFoundryName.OpenIconic;
     }
 }

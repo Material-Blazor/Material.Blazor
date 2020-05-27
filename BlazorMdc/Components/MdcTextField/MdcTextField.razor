@@ -5,7 +5,7 @@
 <div @ref="TextFieldReference"
      @attributes="@AttributesToSplat(SplatType.ClassAndStyleOnly)">
 
-    @if (AppliedTextInputStyle == MdcTextInputStyle.Filled || AppliedTextInputStyle == MdcTextInputStyle.FullWidth)
+    @if (AppliedTextInputStyle == BEnum.TextInputStyle.Filled || AppliedTextInputStyle == BEnum.TextInputStyle.FullWidth)
     {
         <span class="mdc-text-field__ripple"></span>
     }
@@ -26,7 +26,7 @@
         <PMdcIcon Icon="@TrailingIcon" IconFoundry="@IconFoundry" Class="mdc-text-field__icon mdc-text-field__icon--trailing" tabindex="-1" role="button" />
     }
 
-    @if (AppliedTextInputStyle == MdcTextInputStyle.Outlined)
+    @if (AppliedTextInputStyle == BEnum.TextInputStyle.Outlined)
     {
         <span class="mdc-notched-outline">
             <span class="mdc-notched-outline__leading"></span>
@@ -43,7 +43,7 @@
     }
     else
     {
-        @if (AppliedTextInputStyle == MdcTextInputStyle.Filled && ! NoLabel)
+        @if (AppliedTextInputStyle == BEnum.TextInputStyle.Filled && ! NoLabel)
         {
             <span class="mdc-floating-label @FloatingLabelClass" for="@Id" id="@labelId">@Label</span>
         }

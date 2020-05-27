@@ -29,11 +29,11 @@ namespace BlazorMdc
 
         /// <summary>
         /// The foundry to use for both leading and trailing icons.
-        /// <para><c>IconFoundry="MdcIconHelper.MIIcon()"</c></para>
-        /// <para><c>IconFoundry="MdcIconHelper.FAIcon()"</c></para>
-        /// <para><c>IconFoundry="MdcIconHelper.OIIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.MIIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.FAIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.OIIcon()"</c></para>
         /// </summary>
-        [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
+        [Parameter] public BModel.IIconFoundry? IconFoundry { get; set; }
 #nullable restore annotations
 
 

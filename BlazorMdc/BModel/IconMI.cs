@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 
-namespace BlazorMdc
+namespace BModel
 {
     /// <summary>
     /// Material Icons icon.
     /// </summary>
-    internal class IconMI : IMdcIcon
+    internal class IconMI : BModel.IIcon
     {
         /// <inheritdoc />
         public string Class
@@ -14,11 +14,11 @@ namespace BlazorMdc
             {
                 return "material-icons" + Theme switch
                 {
-                    MdcIconMITheme.Filled => "",
-                    MdcIconMITheme.Outlined => "-outlined",
-                    MdcIconMITheme.Round => "-round",
-                    MdcIconMITheme.TwoTone => "-two-tone",
-                    MdcIconMITheme.Sharp => "-sharp",
+                    BEnum.IconMITheme.Filled => "",
+                    BEnum.IconMITheme.Outlined => "-outlined",
+                    BEnum.IconMITheme.Round => "-round",
+                    BEnum.IconMITheme.TwoTone => "-two-tone",
+                    BEnum.IconMITheme.Sharp => "-sharp",
                     _ => throw new System.NotImplementedException(),
                 };
             }
@@ -39,17 +39,17 @@ namespace BlazorMdc
 
 
         /// <inheritdoc />
-        public bool RequiresColorFilter => Theme == MdcIconMITheme.TwoTone;
+        public bool RequiresColorFilter => Theme == BEnum.IconMITheme.TwoTone;
 
 
         /// <summary>
         /// The Material Icons theme.
         /// </summary>
-        public MdcIconMITheme Theme { get; }
+        public BEnum.IconMITheme Theme { get; }
 
 
 #nullable enable annotations
-        public IconMI(MdcCascadingDefaults cascadingDefaults, string iconName, IconFoundryMI? foundry = null)
+        public IconMI(CascadingDefaults cascadingDefaults, string iconName, IconFoundryMI? foundry = null)
         {
             IconName = iconName;
             Theme = cascadingDefaults.AppliedIconMITheme(foundry?.Theme);

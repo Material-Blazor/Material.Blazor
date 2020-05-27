@@ -15,8 +15,8 @@
 			<MdcSelect Label="Filled"
 								 @bind-Value="@kittenBreed1"
 								 Items="stringItems"
-								 SelectInputStyle="MdcSelectInputStyle.Filled"
-								 ItemValidation="@MdcItemValidation.NoSelection" />
+								 SelectInputStyle="BEnum.SelectInputStyle.Filled"
+								 ItemValidation="@BEnum.ItemValidation.NoSelection" />
 		</p>
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed1 ?? "")</strong>'</p>
 
@@ -24,8 +24,8 @@
 			<MdcSelect Label="Outlined"
 								 @bind-Value="@kittenBreed2"
 								 Items="stringItems"
-								 SelectInputStyle="MdcSelectInputStyle.Outlined"
-								 ItemValidation="@MdcItemValidation.NoSelection" />
+								 SelectInputStyle="BEnum.SelectInputStyle.Outlined"
+								 ItemValidation="@BEnum.ItemValidation.NoSelection" />
 		</p>
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed2 ?? "")</strong>'</p>
 
@@ -33,14 +33,14 @@
 			<MdcSelect Label="Default to First"
 								 @bind-Value="@kittenBreed3"
 								 Items="stringItems"
-								 SelectInputStyle="MdcSelectInputStyle.Outlined"
-								 ItemValidation="@MdcItemValidation.DefaultToFirst" />
+								 SelectInputStyle="BEnum.SelectInputStyle.Outlined"
+								 ItemValidation="@BEnum.ItemValidation.DefaultToFirst" />
 
 			<MdcSelect Label="Default to First (repeated)"
 								 @bind-Value="@kittenBreed3"
 								 Items="stringItems"
-								 SelectInputStyle="MdcSelectInputStyle.Outlined"
-								 ItemValidation="@MdcItemValidation.DefaultToFirst" />
+								 SelectInputStyle="BEnum.SelectInputStyle.Outlined"
+								 ItemValidation="@BEnum.ItemValidation.DefaultToFirst" />
 
 		</p>
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed3 ?? "")</strong>'</p>
@@ -58,9 +58,9 @@
 			<MdcSelect Label="Filled"
 								 @bind-Value="@kittenBreed1"
 								 Items="stringItems"
-								 SelectInputStyle="MdcSelectInputStyle.Filled"
-								 TextAlignStyle="MdcTextAlignStyle.Right"
-								 ItemValidation="@MdcItemValidation.NoSelection" />
+								 SelectInputStyle="BEnum.SelectInputStyle.Filled"
+								 TextAlignStyle="BEnum.TextAlignStyle.Right"
+								 ItemValidation="@BEnum.ItemValidation.NoSelection" />
 		</p>
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed1 ?? "")</strong>'</p>
 
@@ -68,9 +68,9 @@
 			<MdcSelect Label="Outlined"
 								 @bind-Value="@kittenBreed2"
 								 Items="stringItems"
-								 SelectInputStyle="MdcSelectInputStyle.Outlined"
-								 TextAlignStyle="MdcTextAlignStyle.Right"
-								 ItemValidation="@MdcItemValidation.NoSelection" />
+								 SelectInputStyle="BEnum.SelectInputStyle.Outlined"
+								 TextAlignStyle="BEnum.TextAlignStyle.Right"
+								 ItemValidation="@BEnum.ItemValidation.NoSelection" />
 		</p>
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed2 ?? "")</strong>'</p>
 
@@ -78,16 +78,16 @@
 			<MdcSelect Label="Default to First"
 								 @bind-Value="@kittenBreed3"
 								 Items="stringItems"
-								 SelectInputStyle="MdcSelectInputStyle.Outlined"
-								 TextAlignStyle="MdcTextAlignStyle.Right"
-								 ItemValidation="@MdcItemValidation.DefaultToFirst" />
+								 SelectInputStyle="BEnum.SelectInputStyle.Outlined"
+								 TextAlignStyle="BEnum.TextAlignStyle.Right"
+								 ItemValidation="@BEnum.ItemValidation.DefaultToFirst" />
 
 			<MdcSelect Label="Default to First (repeated)"
 								 @bind-Value="@kittenBreed3"
 								 Items="stringItems"
-								 SelectInputStyle="MdcSelectInputStyle.Outlined"
-								 TextAlignStyle="MdcTextAlignStyle.Right"
-								 ItemValidation="@MdcItemValidation.DefaultToFirst" />
+								 SelectInputStyle="BEnum.SelectInputStyle.Outlined"
+								 TextAlignStyle="BEnum.TextAlignStyle.Right"
+								 ItemValidation="@BEnum.ItemValidation.DefaultToFirst" />
 
 		</p>
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed3 ?? "")</strong>'</p>
@@ -95,12 +95,12 @@
 		<p>
 			<MdcSelect Label="Colour Enumeration" 
 								 @bind-Value="@colour" 
-								 TextAlignStyle="MdcTextAlignStyle.Right"
+								 TextAlignStyle="BEnum.TextAlignStyle.Right"
 								 Items="colourItems">
 			</MdcSelect>
 			<MdcSelect Label="Colour Enumeration (repeated)" 
 								 @bind-Value="@colour" 
-								 TextAlignStyle="MdcTextAlignStyle.Right"
+								 TextAlignStyle="BEnum.TextAlignStyle.Right"
 								 Items="colourItems">
 			</MdcSelect>
 		</p>
@@ -116,17 +116,17 @@
 	string kittenBreed3;
 	Colour colour;
 
-	MdcListElement<string>[] stringItems = new MdcListElement<string>[]
+	BModel.ListElement<string>[] stringItems = new BModel.ListElement<string>[]
 	{
-				new MdcListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
-				new MdcListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
-				new MdcListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+				new BModel.ListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+				new BModel.ListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+				new BModel.ListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
 		};
 
 	enum Colour { Red, Orange, Yellow, Green, Blue, Indigo, Violet };
 
-	IEnumerable<MdcListElement<Colour>> colourItems => from c in (Colour[])Enum.GetValues(typeof(Colour))
-																										 select new MdcListElement<Colour>
+	IEnumerable<BModel.ListElement<Colour>> colourItems => from c in (Colour[])Enum.GetValues(typeof(Colour))
+																										 select new BModel.ListElement<Colour>
 																										 {
 																											 SelectedValue = c,
 																											 Label = c.ToString()

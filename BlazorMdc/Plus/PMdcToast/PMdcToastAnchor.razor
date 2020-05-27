@@ -3,7 +3,7 @@
 
 @if (DisplayedToasts.Any())
 {
-    <div class="bmdc-toast-container @positionClass">
+    <div class="bmdc-toast-container @PositionClass">
         @foreach (var toast in DisplayedToasts.OrderBy(x => x.TimeStamp))
         {
             var toastId = toast.Id;
@@ -12,7 +12,7 @@
 
                 @if (toast.Settings.AppliedShowIcon)
                 {
-                    var iconHelper = new MdcIconHelper(null, toast.Settings.AppliedIconName, toast.Settings.AppliedIconFoundry);
+                    var iconHelper = new BModel.IconHelper(null, toast.Settings.AppliedIconName, toast.Settings.AppliedIconFoundry);
                     var filterClass = iconHelper.RequiresColorFilter ? toast.Settings.IconFilterClass : "";
 
                     <div class="bmdc-toast-icon @filterClass">
@@ -26,9 +26,9 @@
                             <h5 class="mdc-typography--subtitle1">@((MarkupString)toast.Settings.AppliedHeading)</h5>
                         </div>
 
-                        @if (toast.Settings.CloseMethod != PMdcToastCloseMethod.Timeout)
+                        @if (toast.Settings.CloseMethod != BEnum.ToastCloseMethod.Timeout)
                         {
-                            <MdcButton @onclick="@(() => CloseToast(toastId))" LeadingIcon="close" ButtonStyle="@MdcButtonStyle.Text" Class="bmdc-toast-close-button" />
+                            <MdcButton @onclick="@(() => CloseToast(toastId))" LeadingIcon="close" ButtonStyle="@BEnum.ButtonStyle.Text" Class="bmdc-toast-close-button" />
                         }
                     </div>
 

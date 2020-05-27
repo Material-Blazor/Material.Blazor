@@ -36,7 +36,7 @@ namespace BlazorMdc
         /// <summary>
         /// Date selection criteria
         /// </summary>
-        [Parameter] public PMdcDateSelectionCriteria? DateSelectionCriteria { get; set; }
+        [Parameter] public BEnum.DateSelectionCriteria? DateSelectionCriteria { get; set; }
 
 
         /// <summary>
@@ -52,7 +52,7 @@ namespace BlazorMdc
 
 
         private string Day => DisplayDate.Day.ToString();
-        private MdcButtonStyle ButtonStyle => (DisplayDate == CurrentDate) ? MdcButtonStyle.ContainedUnelevated : MdcButtonStyle.Text;
+        private BEnum.ButtonStyle ButtonStyle => (DisplayDate == CurrentDate) ? BEnum.ButtonStyle.ContainedUnelevated : BEnum.ButtonStyle.Text;
 
         
         private bool ButtonDisabled
@@ -68,14 +68,14 @@ namespace BlazorMdc
 
                 switch (criteria)
                 {
-                    case PMdcDateSelectionCriteria.WeekendsOnly:
+                    case BEnum.DateSelectionCriteria.WeekendsOnly:
                         if ((DisplayDate.DayOfWeek != DayOfWeek.Sunday) && (DisplayDate.DayOfWeek != DayOfWeek.Saturday))
                         {
                             return true;
                         }
                         break;
 
-                    case PMdcDateSelectionCriteria.WeekdaysOnly:
+                    case BEnum.DateSelectionCriteria.WeekdaysOnly:
                         if ((DisplayDate.DayOfWeek == DayOfWeek.Sunday) || (DisplayDate.DayOfWeek == DayOfWeek.Saturday))
                         {
                             return true;

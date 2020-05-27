@@ -23,11 +23,11 @@ namespace BlazorMdc
 
         /// <summary>
         /// The foundry to use for both leading and trailing icons.
-        /// <para><c>IconFoundry="MdcIconHelper.MIIcon()"</c></para>
-        /// <para><c>IconFoundry="MdcIconHelper.FAIcon()"</c></para>
-        /// <para><c>IconFoundry="MdcIconHelper.OIIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.MIIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.FAIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.OIIcon()"</c></para>
         /// </summary>
-        [Parameter] public IMdcIconFoundry IconFoundry { get; set; }
+        [Parameter] public BModel.IIconFoundry IconFoundry { get; set; }
 
 
         /// <summary>
@@ -43,9 +43,9 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Top app bar type. See <see cref="MdcTopAppBarType"/>
+        /// Top app bar type. See <see cref="BlazorMdc.TopAppBarType"/>
         /// </summary>
-        [Parameter] public MdcTopAppBarType TopAppBarType { get; set; } = MdcTopAppBarType.Standard;
+        [Parameter] public BEnum.TopAppBarType TopAppBarType { get; set; } = BEnum.TopAppBarType.Standard;
 
         
         private ElementReference HeaderElem { get; set; }
@@ -59,8 +59,8 @@ namespace BlazorMdc
             ClassMapper
                 .Clear()
                 .Add("mdc-top-app-bar")
-                .AddIf($"mdc-top-app-bar--{TopAppBarType.ToString().ToLower()}", () => TopAppBarType != MdcTopAppBarType.Standard && TopAppBarType != MdcTopAppBarType.ShortCollapsed)
-                .AddIf($"mdc-top-app-bar--short mdc-top-app-bar--short-collapsed", () => TopAppBarType == MdcTopAppBarType.ShortCollapsed)
+                .AddIf($"mdc-top-app-bar--{TopAppBarType.ToString().ToLower()}", () => TopAppBarType != BEnum.TopAppBarType.Standard && TopAppBarType != BEnum.TopAppBarType.ShortCollapsed)
+                .AddIf($"mdc-top-app-bar--short mdc-top-app-bar--short-collapsed", () => TopAppBarType == BEnum.TopAppBarType.ShortCollapsed)
                 .Add("app-bar");
         }
 

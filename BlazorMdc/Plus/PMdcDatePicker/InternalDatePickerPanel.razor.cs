@@ -16,7 +16,7 @@ namespace BlazorMdc
         /// <summary>
         /// Date selection criteria
         /// </summary>
-        [Parameter] public PMdcDateSelectionCriteria? DateSelectionCriteria { get; set; }
+        [Parameter] public BEnum.DateSelectionCriteria? DateSelectionCriteria { get; set; }
 
 
         /// <summary>
@@ -83,7 +83,7 @@ namespace BlazorMdc
 
         private readonly string currentYearId = Utilities.GenerateUniqueElementName();
 
-        private readonly IMdcIconFoundry foundry = MdcIconHelper.MIFoundry(MdcIconMITheme.Filled);
+        private readonly BModel.IIconFoundry foundry = BModel.IconHelper.MIFoundry(BEnum.IconMITheme.Filled);
 
 
         /// <inheritdoc/>

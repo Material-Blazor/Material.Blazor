@@ -15,7 +15,7 @@ namespace BlazorMdc
         /// <summary>
         /// The item list to be represented as radio buttons
         /// </summary>
-        [Parameter] public IEnumerable<MdcListElement<TItem>> Items { get; set; }
+        [Parameter] public IEnumerable<BModel.ListElement<TItem>> Items { get; set; }
 
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace BlazorMdc
         /// a value outside the <see cref="Items"/> list, replace it with the first list item or
         /// to throw an exception (the default).
         /// </summary>
-        [Parameter] public MdcItemValidation? ItemValidation { get; set; }
+        [Parameter] public BEnum.ItemValidation? ItemValidation { get; set; }
 
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace BlazorMdc
 
         private bool IsNotFirst { get;  set; } = false;
         private string RadioGroupName { get; set; } = Utilities.GenerateUniqueElementName();
-        private MdcListElement<TItem>[] ItemArray { get; set; }
+        private BModel.ListElement<TItem>[] ItemArray { get; set; }
 
 
         /// <inheritdoc/>
@@ -50,7 +50,7 @@ namespace BlazorMdc
 
             ItemArray = Items.ToArray();
 
-            MdcItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidationRadioButtonGroup(ItemValidation);
+            BEnum.ItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidationRadioButtonGroup(ItemValidation);
 
             ForceShouldRenderToTrue = true;
 

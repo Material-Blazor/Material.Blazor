@@ -26,11 +26,11 @@
         <PMdcRadioButtonGroup @bind-Value="@radioButtonResult1"
                               Items="stringItems"
                               Vertical="true"
-                              ItemValidation="@MdcItemValidation.DefaultToFirst" />
+                              ItemValidation="@BEnum.ItemValidation.DefaultToFirst" />
     </Body>
     <Buttons>
         <MdcButton Label="Orange" DialogAction="orange"></MdcButton>
-        <MdcButton Label="Apple" DialogAction="apple" ButtonStyle="@MdcButtonStyle.Text"></MdcButton>
+        <MdcButton Label="Apple" DialogAction="apple" ButtonStyle="@BEnum.ButtonStyle.Text"></MdcButton>
     </Buttons>
 </MdcDialog>
 
@@ -60,12 +60,12 @@
     <UnconfirmedButtons>
         <MdcButton Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
         <MdcButton Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
-        <MdcButton Label="Bosh" LeadingIcon="sports_handball" Disabled="true" DialogAction="bosh" ButtonStyle="MdcButtonStyle.ContainedRaised" />
+        <MdcButton Label="Bosh" LeadingIcon="sports_handball" Disabled="true" DialogAction="bosh" ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
     </UnconfirmedButtons>
     <ConfirmedButtons>
         <MdcButton Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
         <MdcButton Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
-        <MdcButton Label="Bosh" LeadingIcon="sports_handball" DialogAction="bosh" ButtonStyle="MdcButtonStyle.ContainedRaised" />
+        <MdcButton Label="Bosh" LeadingIcon="sports_handball" DialogAction="bosh" ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
     </ConfirmedButtons>
 </PMdcConfirmationDialog>
 
@@ -84,7 +84,7 @@
     </Body>
     <Buttons>
         <MdcButton Label="Orange" @onclick="orangeClick"></MdcButton>
-        <MdcButton Label="Apple" @onclick="appleClick" ButtonStyle="@MdcButtonStyle.Text"></MdcButton>
+        <MdcButton Label="Apple" @onclick="appleClick" ButtonStyle="@BEnum.ButtonStyle.Text"></MdcButton>
     </Buttons>
 </MdcDialog>
 
@@ -97,11 +97,11 @@
            OverflowVisible="true">
     <Body>
         <p>Set the date.</p>
-        <PMdcDatePicker Label="The date" @bind-Value="@date5" SelectInputStyle="MdcSelectInputStyle.Outlined" MinDate="minDate" MaxDate="maxDate"></PMdcDatePicker>
+        <PMdcDatePicker Label="The date" @bind-Value="@date5" SelectInputStyle="BEnum.SelectInputStyle.Outlined" MinDate="minDate" MaxDate="maxDate"></PMdcDatePicker>
     </Body>
     <Buttons>
         <MdcButton Label="Orange" DialogAction="orange"></MdcButton>
-        <MdcButton Label="Apple" DialogAction="apple" ButtonStyle="@MdcButtonStyle.Text"></MdcButton>
+        <MdcButton Label="Apple" DialogAction="apple" ButtonStyle="@BEnum.ButtonStyle.Text"></MdcButton>
     </Buttons>
 </MdcDialog>
 
@@ -115,7 +115,7 @@
                         OverflowVisible="true">
     <Body>
         <p>Set the date.</p>
-        <PMdcDatePicker Label="The date" @bind-Value="@date6" SelectInputStyle="MdcSelectInputStyle.Outlined" MinDate="minDate" MaxDate="maxDate"></PMdcDatePicker>
+        <PMdcDatePicker Label="The date" @bind-Value="@date6" SelectInputStyle="BEnum.SelectInputStyle.Outlined" MinDate="minDate" MaxDate="maxDate"></PMdcDatePicker>
     </Body>
 </PMdcConfirmationDialog>
 
@@ -138,11 +138,11 @@
         result1 = await dialog1.ShowAsync();
     }
 
-    MdcListElement<string>[] stringItems = new MdcListElement<string>[]
+    BModel.ListElement<string>[] stringItems = new BModel.ListElement<string>[]
 {
-        new MdcListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
-        new MdcListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
-        new MdcListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+        new BModel.ListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new BModel.ListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new BModel.ListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
  };
 
     PMdcConfirmationDialog dialog2;

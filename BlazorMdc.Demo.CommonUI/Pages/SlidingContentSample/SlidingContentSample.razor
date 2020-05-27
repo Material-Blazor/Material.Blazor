@@ -7,7 +7,7 @@
 <p>See <code>SlidingContentSample.razor</code> for sources.</p>
 
 <p>
-    <MdcButton Label="Move to Paragraph 4" @onclick="@(() => index = 3)" ButtonStyle="MdcButtonStyle.ContainedRaised" />
+    <MdcButton Label="Move to Paragraph 4" @onclick="@(() => index = 3)" ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
 </p>
 
 <PMdcSlidingContent @ref="@slidingContent"
@@ -22,8 +22,8 @@
 </PMdcSlidingContent>
 
 <p>
-    <MdcButton Label="Previous" LeadingIcon="chevron_left" @onclick="@(() => index--)" ButtonStyle="MdcButtonStyle.ContainedRaised" Disabled="@disablePrevious" />
-    <MdcButton Label="Next" TrailingIcon="chevron_right" @onclick="@(() => index++)" ButtonStyle="MdcButtonStyle.ContainedRaised" Disabled="@disableNext" />
+    <MdcButton Label="Previous" LeadingIcon="chevron_left" @onclick="@(() => index--)" ButtonStyle="BEnum.ButtonStyle.ContainedRaised" Disabled="@disablePrevious" />
+    <MdcButton Label="Next" TrailingIcon="chevron_right" @onclick="@(() => index++)" ButtonStyle="BEnum.ButtonStyle.ContainedRaised" Disabled="@disableNext" />
 </p>
 
 @code {

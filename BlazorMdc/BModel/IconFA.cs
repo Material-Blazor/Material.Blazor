@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 
-namespace BlazorMdc
+namespace BModel
 {
     /// <summary>
     /// Font Awesome icon.
     /// </summary>
-    internal class IconFA : IMdcIcon
+    internal class IconFA : BModel.IIcon
     {
         /// <inheritdoc />
         public string Class => $"fa{IconStyleText} {IconNameText}";
@@ -31,13 +31,13 @@ namespace BlazorMdc
         /// <summary>
         /// The Font Awesome style.
         /// </summary>
-        public MdcIconFAStyle Style { get; }
+        public BEnum.IconFAStyle Style { get; }
 
 
         /// <summary>
         /// The Font Awesome relative size.
         /// </summary>
-        public MdcIconFARelativeSize RelativeSize { get; }
+        public BEnum.IconFARelativeSize RelativeSize { get; }
 
 
         private string IconStyleText => Style.ToString().Substring(0, 1).ToLower();
@@ -48,15 +48,15 @@ namespace BlazorMdc
             {
                 return IconName.ToLower() + RelativeSize switch
                 {
-                    MdcIconFARelativeSize.Regular => "",
-                    MdcIconFARelativeSize.ExtraSmall => " fa-xs",
-                    MdcIconFARelativeSize.Small => " fa-sm",
-                    MdcIconFARelativeSize.Large => " fa-lg",
-                    MdcIconFARelativeSize.TwoTimes => " fa-2x",
-                    MdcIconFARelativeSize.ThreeTimes => " fa-3x",
-                    MdcIconFARelativeSize.FiveTimes => " fa-5x",
-                    MdcIconFARelativeSize.SevenTimes => " fa-7x",
-                    MdcIconFARelativeSize.TenTimes => " fa-10x",
+                    BEnum.IconFARelativeSize.Regular => "",
+                    BEnum.IconFARelativeSize.ExtraSmall => " fa-xs",
+                    BEnum.IconFARelativeSize.Small => " fa-sm",
+                    BEnum.IconFARelativeSize.Large => " fa-lg",
+                    BEnum.IconFARelativeSize.TwoTimes => " fa-2x",
+                    BEnum.IconFARelativeSize.ThreeTimes => " fa-3x",
+                    BEnum.IconFARelativeSize.FiveTimes => " fa-5x",
+                    BEnum.IconFARelativeSize.SevenTimes => " fa-7x",
+                    BEnum.IconFARelativeSize.TenTimes => " fa-10x",
                     _ => throw new System.NotImplementedException(),
                 };
             }
@@ -64,7 +64,7 @@ namespace BlazorMdc
 
 
 #nullable enable annotations
-        public IconFA(MdcCascadingDefaults cascadingDefaults, string iconName, IconFoundryFA? foundry = null)
+        public IconFA(CascadingDefaults cascadingDefaults, string iconName, IconFoundryFA? foundry = null)
         {
             IconName = iconName;
             Style = cascadingDefaults.AppliedIconFAStyle(foundry?.Style);

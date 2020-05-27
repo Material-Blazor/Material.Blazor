@@ -34,14 +34,14 @@ namespace BlazorMdc
         /// Returns a BlazorMdc CSS class 
         /// </summary>
         /// <param name="textaAlign"></param>
-        /// <returns><c>bmdc-align-left</c>, <c>...center</c> or <c>...right</c> unless the value is <see cref="MdcTextAlignStyle.Default"/> returning a blank string.</returns>
-        public static string GetTextAlignClass(MdcTextAlignStyle textaAlign)
+        /// <returns><c>bmdc-align-left</c>, <c>...center</c> or <c>...right</c> unless the value is <see cref="TextAlignStyle.Default"/> returning a blank string.</returns>
+        public static string GetTextAlignClass(BEnum.TextAlignStyle textaAlign)
         {
             return textaAlign switch
             {
-                MdcTextAlignStyle.Left => " bmdc-align-left",
-                MdcTextAlignStyle.Center => " bmdc-align-center",
-                MdcTextAlignStyle.Right => " bmdc-align-right",
+                BEnum.TextAlignStyle.Left => " bmdc-align-left",
+                BEnum.TextAlignStyle.Center => " bmdc-align-center",
+                BEnum.TextAlignStyle.Right => " bmdc-align-right",
                 _ => "",
             };
         }

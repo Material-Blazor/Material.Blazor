@@ -17,7 +17,7 @@ namespace BlazorMdc
         /// <summary>
         /// The text input style.
         /// </summary>
-        [Parameter] public MdcTextInputStyle? TextInputStyle { get; set; }
+        [Parameter] public BEnum.TextInputStyle? TextInputStyle { get; set; }
 
 
         /// <summary>
@@ -46,11 +46,11 @@ namespace BlazorMdc
 
         /// <summary>
         /// The foundry to use for both leading and trailing icons.
-        /// <para><c>IconFoundry="MdcIconHelper.MIIcon()"</c></para>
-        /// <para><c>IconFoundry="MdcIconHelper.FAIcon()"</c></para>
-        /// <para><c>IconFoundry="MdcIconHelper.OIIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.MIIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.FAIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.OIIcon()"</c></para>
         /// </summary>
-        [Parameter] public IMdcIconFoundry? IconFoundry { get; set; }
+        [Parameter] public BModel.IIconFoundry? IconFoundry { get; set; }
 
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace BlazorMdc
         /// percentages and basis points (the latter of which lacks appropriate Numeric Format in C#:
         /// this issue may not get solved.
         /// </summary>
-        [Parameter] public MdcNumericInputMagnitude Magnitude { get; set; } = MdcNumericInputMagnitude.Normal;
+        [Parameter] public BEnum.NumericInputMagnitude Magnitude { get; set; } = BEnum.NumericInputMagnitude.Normal;
 
 
         /// <summary>
@@ -230,8 +230,7 @@ namespace BlazorMdc
                 return ReportingValue;
             }
 
-            double amount = 0;
-
+            double amount;
             try
             {
                 amount = Convert.ToDouble(Math.Round(Convert.ToDouble(displayText) / AppliedMult, myRounding));

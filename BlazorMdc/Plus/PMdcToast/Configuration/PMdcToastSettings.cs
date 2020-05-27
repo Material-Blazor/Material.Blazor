@@ -42,17 +42,17 @@ namespace BlazorMdc
 
         /// <summary>
         /// The foundry to use for both leading and trailing icons.
-        /// <para><c>IconFoundry="MdcIconHelper.MIIcon()"</c></para>
-        /// <para><c>IconFoundry="MdcIconHelper.FAIcon()"</c></para>
-        /// <para><c>IconFoundry="MdcIconHelper.OIIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.MIIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.FAIcon()"</c></para>
+        /// <para><c>IconFoundry="BModel.IconHelper.OIIcon()"</c></para>
         /// </summary>
-        public IMdcIconFoundry? IconFoundry { get; set; }
+        public BModel.IIconFoundry? IconFoundry { get; set; }
 
         
         /// <summary>
-        /// How the toast message gets closed. See <see cref="PMdcToastCloseMethod"/>.
+        /// How the toast message gets closed. See <see cref="ToastCloseMethod"/>.
         /// </summary>
-        public PMdcToastCloseMethod? CloseMethod { get; set; }
+        public BEnum.ToastCloseMethod? CloseMethod { get; set; }
 
 
         /// <summary>
@@ -77,17 +77,17 @@ namespace BlazorMdc
 
         internal string AppliedIconName => string.IsNullOrWhiteSpace(IconName) ? ConfigIconName : IconName;
         
-        internal IMdcIconFoundry AppliedIconFoundry => (IconFoundry is null) ? Configuration?.IconFoundry ?? new IconFoundryMI() : IconFoundry;
+        internal BModel.IIconFoundry AppliedIconFoundry => (IconFoundry is null) ? Configuration?.IconFoundry ?? new BModel.IconFoundryMI() : IconFoundry;
 
-        internal PMdcToastCloseMethod AppliedCloseMethod => (CloseMethod is null) ? Configuration?.CloseMethod ?? PMdcToastServiceConfiguration.DefaultCloseMethod : (PMdcToastCloseMethod)CloseMethod;
+        internal BEnum.ToastCloseMethod AppliedCloseMethod => (CloseMethod is null) ? Configuration?.CloseMethod ?? PMdcToastServiceConfiguration.DefaultCloseMethod : (BEnum.ToastCloseMethod)CloseMethod;
 
         internal uint AppliedTimeout => (Timeout is null) ? Configuration?.Timeout ?? PMdcToastServiceConfiguration.DefaultTimeout : (uint)Timeout;
 
 
         /// <summary>
-        /// The level of the toast. See <see cref="PMdcToastLevel"/>.
+        /// The level of the toast. See <see cref="ToastLevel"/>.
         /// </summary>
-        internal PMdcToastLevel Level { get; set; }
+        internal BEnum.ToastLevel Level { get; set; }
 
 
         /// <summary>
@@ -101,10 +101,10 @@ namespace BlazorMdc
         /// </summary>
         internal string ConfigHeading => Level switch
         {
-            PMdcToastLevel.Error => Configuration?.ErrorDefaultHeading ?? "",
-            PMdcToastLevel.Info => Configuration?.InfoDefaultHeading ?? "",
-            PMdcToastLevel.Success => Configuration?.SuccessDefaultHeading ?? "",
-            PMdcToastLevel.Warning => Configuration?.WarningDefaultHeading ?? "",
+            BEnum.ToastLevel.Error => Configuration?.ErrorDefaultHeading ?? "",
+            BEnum.ToastLevel.Info => Configuration?.InfoDefaultHeading ?? "",
+            BEnum.ToastLevel.Success => Configuration?.SuccessDefaultHeading ?? "",
+            BEnum.ToastLevel.Warning => Configuration?.WarningDefaultHeading ?? "",
             _ => throw new InvalidOperationException(),
         };
 
@@ -114,10 +114,10 @@ namespace BlazorMdc
         /// </summary>
         internal string ConfigIconName => Level switch
         {
-            PMdcToastLevel.Error => Configuration?.ErrorIconName ?? PMdcToastServiceConfiguration.DefaultErrorIconName,
-            PMdcToastLevel.Info => Configuration?.InfoIconName ?? PMdcToastServiceConfiguration.DefaultInfoIconName,
-            PMdcToastLevel.Success => Configuration?.SuccessIconName ?? PMdcToastServiceConfiguration.DefaultSuccessIconName,
-            PMdcToastLevel.Warning => Configuration?.WarningIconName ?? PMdcToastServiceConfiguration.DefaultWarningIconName,
+            BEnum.ToastLevel.Error => Configuration?.ErrorIconName ?? PMdcToastServiceConfiguration.DefaultErrorIconName,
+            BEnum.ToastLevel.Info => Configuration?.InfoIconName ?? PMdcToastServiceConfiguration.DefaultInfoIconName,
+            BEnum.ToastLevel.Success => Configuration?.SuccessIconName ?? PMdcToastServiceConfiguration.DefaultSuccessIconName,
+            BEnum.ToastLevel.Warning => Configuration?.WarningIconName ?? PMdcToastServiceConfiguration.DefaultWarningIconName,
             _ => throw new InvalidOperationException(),
         };
 

@@ -46,7 +46,7 @@ namespace BlazorMdc
         [Parameter] public string CurrentYearId { get; set; }
 
 
-        private MdcButtonStyle ButtonStyle => (DisplayYear == CurrentYear) ? MdcButtonStyle.ContainedUnelevated : MdcButtonStyle.Text;
+        private BEnum.ButtonStyle ButtonStyle => (DisplayYear == CurrentYear) ? BEnum.ButtonStyle.ContainedUnelevated : BEnum.ButtonStyle.Text;
         
 
         private Dictionary<string, object> Attributes
