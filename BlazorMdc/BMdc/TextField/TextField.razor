@@ -12,7 +12,7 @@
 
     @if (!string.IsNullOrWhiteSpace(LeadingIcon))
     {
-        <PMdcIcon Icon="@LeadingIcon" IconFoundry="@IconFoundry" Class="mdc-text-field__icon mdc-text-field__icon--leading" tabindex="-1" role="button" />
+        <BPlus.Icon IconName="@LeadingIcon" IconFoundry="@IconFoundry" Class="mdc-text-field__icon mdc-text-field__icon--leading" tabindex="-1" role="button" />
     }
 
     <input @ref="@InputReference"
@@ -23,7 +23,7 @@
 
     @if (!string.IsNullOrWhiteSpace(TrailingIcon))
     {
-        <PMdcIcon Icon="@TrailingIcon" IconFoundry="@IconFoundry" Class="mdc-text-field__icon mdc-text-field__icon--trailing" tabindex="-1" role="button" />
+        <BPlus.Icon IconName="@TrailingIcon" IconFoundry="@IconFoundry" Class="mdc-text-field__icon mdc-text-field__icon--trailing" tabindex="-1" role="button" />
     }
 
     @if (AppliedTextInputStyle == BEnum.TextInputStyle.Outlined)

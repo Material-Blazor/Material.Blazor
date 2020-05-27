@@ -10,13 +10,13 @@
 
     @if (!string.IsNullOrWhiteSpace(LeadingIcon))
     {
-        <PMdcIcon Icon="@LeadingIcon" IconFoundry="@IconFoundry" Class="mdc-button__icon" aria-hidden="true" />
+        <BPlus.Icon IconName="@LeadingIcon" IconFoundry="@IconFoundry" Class="mdc-button__icon" aria-hidden="true" />
     }
 
     <span class="mdc-button__label">@Label</span>
 
     @if (!string.IsNullOrWhiteSpace(TrailingIcon))
     {
-        <PMdcIcon Icon="@TrailingIcon" IconFoundry="@IconFoundry" Class="mdc-button__icon" aria-hidden="true" />
+        <BPlus.Icon IconName="@TrailingIcon" IconFoundry="@IconFoundry" Class="mdc-button__icon" aria-hidden="true" />
     }
 </button>

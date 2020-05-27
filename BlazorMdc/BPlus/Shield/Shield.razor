@@ -1,0 +1,33 @@
+﻿@namespace BPlus
+@inherits BBase.ComponentBase
+
+
+<div @attributes="AttributesToSplat()">
+    @if (ShieldType != BEnum.ShieldType.ValueOnly)
+    {
+        <div class="bmdc-shield--label @LabelClass" style="@LabelStyle">
+            @if (!string.IsNullOrWhiteSpace(LabelIcon))
+            {
+                <div>
+                    <BPlus.Icon IconName="@LabelIcon" IconFoundry="@IconFoundry" Class="bmdc-shield--icon" />
+                </div>
+            }
+
+            <div>@Label</div>
+        </div>
+    }
+
+    @if (ShieldType != BEnum.ShieldType.LabelOnly)
+    {
+        <div class="bmdc-shield--value @ValueClass" style="@ValueStyle">
+            @if (!string.IsNullOrWhiteSpace(ValueIcon))
+            {
+                <div>
+                    <BPlus.Icon IconName="@ValueIcon" IconFoundry="@IconFoundry" Class="bmdc-shield--icon" />
+                </div>
+            }
+            
+            <div>@Value</div>
+        </div>
+    }
+</div>

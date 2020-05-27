@@ -10,7 +10,7 @@
         {
             <h6>Your PIN has never been set.</h6>
             <h6>Pick a PIN, enter it, and verify the entry.</h6>
-            <PMdcDivider Padded="true" />
+            <BPlus.Divider Padded="true" />
         }
 
         <EditForm Model="@pinLogonDTO" OnValidSubmit="@SubmitLogon">
@@ -133,7 +133,7 @@
 
     public enum ePINDialogStyle { CreatePIN, EnterPIN };
 
-    [Inject] private IPmdcToastService toastService { get; set; }
+    [Inject] private BPlus.IToastService toastService { get; set; }
 
     [Parameter] public ePINDialogStyle dialogStyle { get; set; }
     [Parameter] public string validationPIN { get; set; }

@@ -27,7 +27,7 @@ namespace BMdc
 
         /// <summary>
         /// The icon render fragment to use if <c>!<see cref="SuppressIcons"/></c>.
-        /// Note that you will be expected to render your own icon, and can use <see cref="PMdcIcon"/>.
+        /// Note that you will be expected to render your own icon, and can use <see cref="BPlus.Icon"/>.
         /// </summary>
         [Parameter] public RenderFragment<TItem> Icon { get; set; }
 

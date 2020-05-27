@@ -10,7 +10,7 @@
     <BMdc.Button Label="Move to Paragraph 4" @onclick="@(() => index = 3)" ButtonStyle="BEnum.ButtonStyle.ContainedRaised" />
 </p>
 
-<PMdcSlidingContent @ref="@slidingContent"
+<BPlus.SlidingContent @ref="@slidingContent"
                     Items="@items"
                     @bind-ItemIndex="@index"
                     Context="item">
@@ -19,7 +19,7 @@
         <h3 class="mdc-typography--headline6">@item.Title</h3>
         <p>@item.Text</p>
     </Content>
-</PMdcSlidingContent>
+</BPlus.SlidingContent>
 
 <p>
     <BMdc.Button Label="Previous" LeadingIcon="chevron_left" @onclick="@(() => index--)" ButtonStyle="BEnum.ButtonStyle.ContainedRaised" Disabled="@disablePrevious" />
@@ -27,7 +27,7 @@
 </p>
 
 @code {
-    private PMdcSlidingContent<Item> slidingContent;
+    private BPlus.SlidingContent<Item> slidingContent;
     private bool disablePrevious => index == 0;
     private bool disableNext => index == items.Length - 1;
 

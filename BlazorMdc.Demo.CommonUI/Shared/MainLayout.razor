@@ -2,10 +2,10 @@
 
 @inherits LayoutComponentBase
 
-@inject IPMdcAnimatedNavigationManager PMdcAnimatedNavigationManager
+@inject BPlus.IAnimatedNavigationManager AnimatedNavigationManager
 @inject DemoConfiguration DemoConfiguration
 
-<PMdcToastAnchor />
+<BPlus.ToastAnchor />
 
 <BMdc.Drawer @ref="@sidebar"
            IsDismissible="true">
@@ -50,12 +50,12 @@
                   TopAppBarType="@DemoConfiguration.TopAppBarType"
                   Class="mdc-top-app-bar--short-has-action-item">
         <div id="account-target">
-            <BMdc.IconButtonToggle @bind-Value="PMdcAnimatedNavigationManager.Configuration.ApplyAnimation" IconOn="directions_run" IconOff="airline_seat_individual_suite" />
+            <BMdc.IconButtonToggle @bind-Value="AnimatedNavigationManager.Configuration.ApplyAnimation" IconOn="directions_run" IconOff="airline_seat_individual_suite" />
         </div>
     </BMdc.TopAppBar>
 
     <main class="main-content" id="main-content">
-        <PMdcAnimatedNavigation>
+        <BPlus.AnimatedNavigation>
             <div class="mdc-top-app-bar--fixed-adjust">
                 <div class="mdc-card main-content-card">
                     <div class="mdc-layout-grid">
@@ -67,7 +67,7 @@
                     </div>
                 </div>
             </div>
-        </PMdcAnimatedNavigation>
+        </BPlus.AnimatedNavigation>
     </main>
 </div>
 
@@ -77,7 +77,7 @@
     private void ListItemClickHandler(string NavigationReference)
     {
         sidebar.NotifyNavigation();
-        PMdcAnimatedNavigationManager.NavigateTo(NavigationReference);
+        AnimatedNavigationManager.NavigateTo(NavigationReference);
     }
 
     private void SideBarToggle()

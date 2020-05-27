@@ -1,6 +1,6 @@
 ﻿@namespace BlazorMdc.Demo
 
-@inject IPMdcAnimatedNavigationManager PMdcAnimatedNavigationManager
+@inject BPlus.IAnimatedNavigationManager AnimatedNavigationManager
 @inject DemoConfiguration DemoConfiguration
 
 @page "/"
@@ -15,11 +15,11 @@
 
 <h5 class="mdc-typography--headline5">Top App Bar</h5>
 
-<PMdcRadioButtonGroup @bind-Value="@DemoConfiguration.TopAppBarType" Items="@appBarTypes" />
+<BPlus.RadioButtonGroup @bind-Value="@DemoConfiguration.TopAppBarType" Items="@appBarTypes" />
 
 <h5 class="mdc-typography--headline5">Animated Navigation</h5>
 
-<p><BMdc.Checkbox @bind-Value="@PMdcAnimatedNavigationManager.Configuration.ApplyAnimation" Label="Apply animiations to page navigation" /></p>
+<p><BMdc.Checkbox @bind-Value="@AnimatedNavigationManager.Configuration.ApplyAnimation" Label="Apply animiations to page navigation" /></p>
 
 
 <p style="margin-top: 80rem;">&nbsp;</p>

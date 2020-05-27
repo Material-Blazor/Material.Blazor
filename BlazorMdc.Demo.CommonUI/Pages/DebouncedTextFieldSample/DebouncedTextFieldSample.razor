@@ -8,12 +8,12 @@
 
 <p>See <code>DebouncedTextFieldSample.razor</code> for sources.</p>
 
-<PMdcRadioButtonGroup @bind-Value="@interval"
+<BPlus.RadioButtonGroup @bind-Value="@interval"
                       Items="intervals"
                       ItemValidation="@BEnum.ItemValidation.DefaultToFirst" />
 
 <p style="margin-top: 3rem;">Debounce Text</p>
-<p><PMdcDebouncedTextField Label="Debounced Text" @bind-Value="@currentValue" TextInputStyle="BEnum.TextInputStyle.Outlined" LeadingIcon="account_balance_wallet" DebounceInterval="interval" /></p>
+<p><BPlus.DebouncedTextField Label="Debounced Text" @bind-Value="@currentValue" TextInputStyle="BEnum.TextInputStyle.Outlined" LeadingIcon="account_balance_wallet" DebounceInterval="interval" /></p>
 
 <ul style="margin-top: 2rem;">
     @foreach (var logEntry in log)

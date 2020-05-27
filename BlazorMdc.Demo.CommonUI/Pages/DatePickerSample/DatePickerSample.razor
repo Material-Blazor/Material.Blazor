@@ -9,24 +9,18 @@
 <p>See <code>DatePickerSample.razor</code> for sources.</p>
 
 <p>
-    <PMdcDatePicker Label="Filled" @bind-Value="@filled" SelectInputStyle="BEnum.SelectInputStyle.Filled" MinDate="min" MaxDate="max"></PMdcDatePicker>
+    <BPlus.DatePicker Label="Filled" @bind-Value="@filled" SelectInputStyle="BEnum.SelectInputStyle.Filled" MinDate="min" MaxDate="max"></BPlus.DatePicker>
 </p>
 <p style="margin-bottom: 4em;">Selected: '<strong>@filled.ToString()</strong>'</p>
 
 <p>
-    <PMdcDatePicker Label="Weekdays Outlined" @bind-Value="@outlined" SelectInputStyle="BEnum.SelectInputStyle.Outlined" DateSelectionCriteria="BEnum.DateSelectionCriteria.WeekdaysOnly" MinDate="min" MaxDate="max"></PMdcDatePicker>
+    <BPlus.DatePicker Label="Weekdays Outlined" @bind-Value="@outlined" SelectInputStyle="BEnum.SelectInputStyle.Outlined" DateSelectionCriteria="BEnum.DateSelectionCriteria.WeekdaysOnly" MinDate="min" MaxDate="max"></BPlus.DatePicker>
     <BMdc.Button @onclick="@(() => outlined = DateTime.Today)" Label="Go to Today" />
 </p>
 <p style="margin-bottom: 20em;">Selected: '<strong>@outlined.ToString()</strong>'</p>
 
-<p>Inline date picker purely for test purposes - in production please use <code>PMdcDatePicker</code></p>
-<InternalDatePickerPanel @bind-Value="@inline" Class="mdc-elevation--z3" MinDate="min" MaxDate="max"></InternalDatePickerPanel>
-<p style="margin-bottom: 4em;">Selected: '<strong>@inline.ToString()</strong>'</p>
-
-
 
 @code {
-    DateTime inline = DateTime.Today.AddMonths(1);
     DateTime filled = DateTime.Today.AddMonths(1);
     DateTime outlined = DateTime.Today.AddMonths(1);
 

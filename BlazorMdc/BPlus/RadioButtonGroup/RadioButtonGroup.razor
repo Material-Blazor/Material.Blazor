@@ -1,0 +1,28 @@
+﻿@namespace BPlus
+@inherits BBase.ValidatingInputComponentBase<TItem>
+@typeparam TItem
+
+
+<div @attributes="AttributesToSplat()">
+
+    @foreach (var item in ItemArray)
+    {
+        @if (Vertical && IsNotFirst)
+        {
+            <div class="bmdc-mdc-radio-break"></div>
+        }
+
+        IsNotFirst = true;
+
+        <BMdc.RadioButton @key="@item"
+                          @bind-Value="@ReportingValue"
+                          TItem="TItem"
+                          ButtonContainerClass="@item.ButtonContainerClass"
+                          Disabled="@item.Disabled"
+                          EnableTouchWrapper="@EnableTouchWrapper"
+                          Label="@item.Label"
+                          TargetCheckedValue="@item.SelectedValue"
+                          RadioGroupName="@RadioGroupName" />
+    }
+
+</div>

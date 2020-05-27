@@ -1,0 +1,27 @@
+﻿@namespace BPlus
+@inherits BBase.ComponentBase
+
+
+@if (AnimatedNavigationManager.Configuration.ApplyAnimation)
+{
+    <style>
+        .bmdc-navigation-fade-in {
+            @FadeInAnimation
+            @FadeInAnimationWebkit
+        }
+
+        .bmdc-navigation-fade-out {
+            @FadeOutAnimation
+            @FadeOutAnimationWebkit
+        }
+    </style>
+
+
+    <div class="@PageClass">
+        @ChildContent
+    </div>
+}
+else
+{
+    @ChildContent
+}

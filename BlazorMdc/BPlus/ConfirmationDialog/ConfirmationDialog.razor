@@ -1,0 +1,27 @@
+﻿@namespace BPlus
+
+<BMdc.Dialog @ref="@Dialog" Title="@Title" OverflowVisible="@OverflowVisible">
+    <Body>
+        @Body
+        <p>Please type <strong>@MyConfirmationPhrase</strong> @ActionPhrase.</p>
+        <p><BMdc.TextField @bind-Value="@EnteredText" @oninput="@OnInput" TextInputStyle="@BEnum.TextInputStyle.FullWidth" Disabled="ConfirmationDisabled" /></p>
+    </Body>
+    <Buttons>
+        @if (ConfirmedButtons is null || UnconfirmedButtons is null)
+        { 
+            <BMdc.Button Label="OK" LeadingIcon="@("check")" DialogAction="@ConfirmActionResult" Disabled="@(!Confirmed)" />
+            <BMdc.Button Label="Cancel" LeadingIcon="@("cancel")" DialogAction="@CancelActionResult" ButtonStyle="BEnum.ButtonStyle.Text" />
+        }
+        else
+        {
+            if (Confirmed)
+            {
+                @ConfirmedButtons
+            }
+            else
+            {
+                @UnconfirmedButtons
+            }
+        }
+    </Buttons>
+</BMdc.Dialog>

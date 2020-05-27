@@ -1,0 +1,35 @@
+﻿@namespace BPlus
+@inherits BBase.InputComponentBase<string>
+
+
+<div>
+    <BMdc.TextField @ref="@TextField"
+                  @bind-Value="@SelectInfo.SelectedText" 
+                  TextAlignStyle="@TextAlignStyle"
+                  TextInputStyle="@TextInputStyle"
+                  Label="@Label"
+                  NoLabel="@NoLabel"
+                  LeadingIcon="@LeadingIcon"
+                  TrailingIcon="@TrailingIcon"
+                  IconFoundry="@IconFoundry"
+                  @oninput="OnInput"
+                  @onchange="OnTextFocusOutAsync"
+                  @attributes="@AttributesToSplat()" />
+
+    <div class="mdc-menu-surface--anchor">
+        <div @ref="MenuReference" class="mdc-menu mdc-menu-surface" style="visibility:visible; min-height:1rem; min-width: 20rem;" @onfocusin="OnMenuFocusIn" @onfocusout="OnMenuFocusOut">
+            <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="0">
+                @if (IsOpen)
+                {@foreach (var item in SelectInfo.SelectList)
+                {
+                    var clickItem = string.Copy(item);
+
+                        <li @key="@item" class="mdc-list-item" role="menuitem" @onclick="@(() => OnItemClickAsync(clickItem))" tabindex="0" disabled="@Disabled">
+                            <span class="mdc-list-item__text">@item</span>
+                        </li>
+                    }
+            }
+            </ul>
+        </div>
+    </div>
+</div>

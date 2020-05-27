@@ -1,0 +1,40 @@
+﻿@namespace BPlus
+
+@typeparam TItem
+
+@inherits BBase.ComponentBase
+
+@inject IJSRuntime jsRuntime
+
+
+@if (Icon is null)
+{
+    <BMdc.TabBar @bind-TabIndex="@TabIndex"
+               Items="@Items"
+               Context="item"
+               StackIcons="@StackIcons">
+
+        <Label>@Label(item)</Label>
+    </BMdc.TabBar>
+}
+else
+{
+    <BMdc.TabBar @bind-TabIndex="@TabIndex"
+               Items="@Items"
+               Context="item"
+               StackIcons="@StackIcons">
+
+        <Label>@Label(item)</Label>
+        <Icon>@Icon(item)</Icon>
+    </BMdc.TabBar>
+}
+
+
+<SlidingContent Items="@Items"
+                ItemIndex="@TabIndex"
+                Context="item">
+
+    <Content>
+        @Content(item)
+    </Content>
+</SlidingContent>
