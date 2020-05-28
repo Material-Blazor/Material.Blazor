@@ -102,13 +102,13 @@ namespace BMdcBase
         /// <summary>
         /// Allows a component to build or map out a group of CSS classes to be applied to the component. Use this in <see cref="OnInitialialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
         /// </summary>
-        private protected ClassMapper ClassMapper { get; } = new ClassMapper();
+        private protected ClassAndStyleMapper ClassMapper { get; } = new ClassAndStyleMapper();
 
 
         /// <summary>
         /// Allows a component to build or map out a group of HTML styles to be applied to the component. Use this in <see cref="OnInitialialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
         /// </summary>
-        private protected StyleMapper StyleMapper { get; } = new StyleMapper();
+        private protected ClassAndStyleMapper StyleMapper { get; } = new ClassAndStyleMapper();
 
 
         /// <summary>
@@ -155,8 +155,8 @@ namespace BMdcBase
                 if (splatType == SplatType.EventsOnly) return eventAttributes;
             }
 
-            var classString = (ClassMapper.ToString() + " " + Class).Trim();
-            var styleString = (StyleMapper.ToString() + " " + Style).Trim();
+            var classString = (ClassMapper.ToClassString() + " " + Class).Trim();
+            var styleString = (StyleMapper.ToStyleString() + " " + Style).Trim();
 
             if (!string.IsNullOrWhiteSpace(classString)) classAndStyle.Add(ClassAttrName, classString);
             if (!string.IsNullOrWhiteSpace(styleString)) classAndStyle.Add(StyleAttrName, styleString);

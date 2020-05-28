@@ -100,6 +100,8 @@ namespace BMdcPlus
         private string contentClass = "";
         
         private bool hasRendered = false;
+
+        private bool isHidden = false;
         
         private IEnumerable<TItem> CheckedData => Data ?? Array.Empty<TItem>();
         
@@ -124,13 +126,22 @@ namespace BMdcPlus
 
                 await Task.Delay(100);
 
-                ClassMapper.Clear().Add(SlidingContent<object>.Hidden);
+                isHidden = true;
                 contentClass = nextClass;
                 _pageNumber = newPageNumber;
-                ClassMapper.Clear().Add(SlidingContent<object>.Visible);
+                isHidden = false;
 
                 StateHasChanged();
             }
+        }
+
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+
+            ClassMapper
+                .AddIf(SlidingContent<object>.Hidden, () => isHidden)
+                .AddIf(SlidingContent<object>.Visible, () => !isHidden);
         }
 
 

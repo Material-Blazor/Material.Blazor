@@ -9,19 +9,19 @@ namespace BMdcPlus
     internal class ToastService : IToastService
     {
         ///<inheritdoc/>
-        public ToastServiceConfiguration Configuration { get; set; } = new ToastServiceConfiguration();
+        public BMdcModel.ToastServiceConfiguration Configuration { get; set; } = new BMdcModel.ToastServiceConfiguration();
 
-        private event Action<BMdcModel.ToastLevel, ToastSettings> OnAdd;
+        private event Action<BMdcModel.ToastLevel, BMdcModel.ToastSettings> OnAdd;
 
         ///<inheritdoc/>
-        event Action<BMdcModel.ToastLevel, ToastSettings> IToastService.OnAdd
+        event Action<BMdcModel.ToastLevel, BMdcModel.ToastSettings> IToastService.OnAdd
         {
             add => OnAdd += value;
             remove => OnAdd -= value;
         }
 
 
-        public ToastService(ToastServiceConfiguration configuration)
+        public ToastService(BMdcModel.ToastServiceConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -40,7 +40,7 @@ namespace BMdcPlus
             uint? timeout = null)
 #nullable restore annotations
         {
-            var settings = new ToastSettings()
+            var settings = new BMdcModel.ToastSettings()
             {
                 Message = message,
                 Heading = heading,

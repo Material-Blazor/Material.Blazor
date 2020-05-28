@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BMdcPlus
+namespace BMdcModel
 {
     /// <summary>
     /// Settings for an individual toast notification determining all aspects controlling

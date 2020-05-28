@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BMdcPlus
+namespace BMdcModel
 {
     /// <summary>
     /// Configuration for <see cref="IPmdcToastService"/>.
@@ -287,7 +287,7 @@ namespace BMdcPlus
             get => _iconFoundry;
             set
             {
-                if (!EqualityComparer<BMdcModel.IIconFoundry>.Default.Equals(value, _iconFoundry))
+                if (!EqualityComparer< BMdcModel.IIconFoundry >.Default.Equals(value, _iconFoundry))
                 {
                     _iconFoundry = value;
                     OnUpdate?.Invoke();

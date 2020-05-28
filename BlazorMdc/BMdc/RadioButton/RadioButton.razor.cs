@@ -62,6 +62,9 @@ namespace BMdc
             base.OnInitialized();
 
             ForceShouldRenderToTrue = true;
+
+            ClassMapper
+                .Add("mdc-form-field");
         }
 
 
@@ -74,9 +77,6 @@ namespace BMdc
             {
                 throw new ArgumentException("RadioGroupName is a required parameter in MdcRadioButton.");
             }
-
-            ClassMapper
-                .Add("mdc-form-field");
 
             if (EnableTouchWrapper)
             {

@@ -47,7 +47,6 @@ namespace BMdc
             base.OnInitialized();
 
             ClassMapper
-                .Clear()
                 .Add("mdc-icon-button")
                 .AddIf("mdc-card__action mdc-card__action--icon", () => (Card != null))
                 .AddIf("mdc-icon-button--on", () => Value);

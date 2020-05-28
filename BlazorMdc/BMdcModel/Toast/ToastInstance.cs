@@ -1,11 +1,6 @@
-﻿//
-//  2020-04-10  Mark Stega
-//              Created from github.com/ChrisSainty/Blazored.Toast by Chris Sainty
-//
+﻿using System;
 
-using System;
-
-namespace BMdcPlus
+namespace BMdcModel
 {
     /// <summary>
     /// The current status of a Toast, expressed through it's CSS class.

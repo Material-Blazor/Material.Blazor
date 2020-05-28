@@ -16,8 +16,8 @@ namespace BMdcPlus
         [Inject] private IToastService ToastService { get; set; }
 
 
-        private List<ToastInstance> DisplayedToasts { get; set; } = new List<ToastInstance>();
-        private Queue<ToastInstance> PendingToasts { get; set; } = new Queue<ToastInstance>();
+        private List<BMdcModel.ToastInstance> DisplayedToasts { get; set; } = new List<BMdcModel.ToastInstance>();
+        private Queue<BMdcModel.ToastInstance> PendingToasts { get; set; } = new Queue<BMdcModel.ToastInstance>();
         private string PositionClass => $"bmdc-toast__{ToastService.Configuration.Position.ToString().ToLower()}";
 
 
@@ -32,14 +32,14 @@ namespace BMdcPlus
         }
 
 
-        private void AddToast(BMdcModel.ToastLevel level, ToastSettings settings)
+        private void AddToast(BMdcModel.ToastLevel level, BMdcModel.ToastSettings settings)
         {
             InvokeAsync(async () =>
             {
                 settings.Configuration = ToastService.Configuration;
                 settings.Level = level;
 
-                var toastInstance = new ToastInstance
+                var toastInstance = new BMdcModel.ToastInstance
                 {
                     Id = Guid.NewGuid(),
                     TimeStamp = DateTime.Now,
@@ -75,7 +75,7 @@ namespace BMdcPlus
 
         private void FlushPendingToasts()
         {
-            bool FlushNext() => PendingToasts.Count() > 0 && (ToastService.Configuration.MaxToastsShowing <= 0 || DisplayedToasts.Where(t => t.Settings.Status != ToastStatus.Hide).Count() < ToastService.Configuration.MaxToastsShowing);
+            bool FlushNext() => PendingToasts.Count() > 0 && (ToastService.Configuration.MaxToastsShowing <= 0 || DisplayedToasts.Where(t => t.Settings.Status != BMdcModel.ToastStatus.Hide).Count() < ToastService.Configuration.MaxToastsShowing);
 
             while (FlushNext())
             {
@@ -116,7 +116,7 @@ namespace BMdcPlus
                         return;
                     }
 
-                    toastInstance.Settings.Status = ToastStatus.FadeOut;
+                    toastInstance.Settings.Status = BMdcModel.ToastStatus.FadeOut;
                     StateHasChanged();
                 }
                 finally
@@ -149,11 +149,11 @@ namespace BMdcPlus
                         return;
                     }
 
-                    toastInstance.Settings.Status = ToastStatus.Hide;
+                    toastInstance.Settings.Status = BMdcModel.ToastStatus.Hide;
 
-                    if (DisplayedToasts.Where(x => x.Settings.Status == ToastStatus.FadeOut).Count() == 0)
+                    if (DisplayedToasts.Where(x => x.Settings.Status == BMdcModel.ToastStatus.FadeOut).Count() == 0)
                     {
-                        DisplayedToasts.RemoveAll(x => x.Settings.Status == ToastStatus.Hide);
+                        DisplayedToasts.RemoveAll(x => x.Settings.Status == BMdcModel.ToastStatus.Hide);
                     }
 
                     StateHasChanged();

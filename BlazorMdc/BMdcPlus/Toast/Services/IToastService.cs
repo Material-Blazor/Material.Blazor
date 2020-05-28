@@ -29,12 +29,12 @@ namespace BMdcPlus
         /// <summary>
         /// Toast service configuration
         /// </summary>
-        public ToastServiceConfiguration Configuration { get; set; }
+        public BMdcModel.ToastServiceConfiguration Configuration { get; set; }
 
         /// <summary>
         /// A event that will be invoked when showing a toast
         /// </summary>
-        internal event Action<BMdcModel.ToastLevel, ToastSettings> OnAdd;
+        internal event Action<BMdcModel.ToastLevel, BMdcModel.ToastSettings> OnAdd;
 
         /// <summary>
         /// Shows a toast using the supplied settings

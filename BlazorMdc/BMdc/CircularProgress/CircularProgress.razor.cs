@@ -72,6 +72,14 @@ namespace BMdc
 
             ForceShouldRenderToTrue = true;
             IntialValue = Value;
+
+            ClassMapper
+                .Add("mdc-circular-progress")
+                .AddIf("mdc-circular-progress--small", () => CircularProgressSize == BMdcModel.CircularProgressSize.Small)
+                .AddIf("mdc-circular-progress--medium", () => CircularProgressSize == BMdcModel.CircularProgressSize.Medium)
+                .AddIf("mdc-circular-progress--large", () => CircularProgressSize == BMdcModel.CircularProgressSize.Large)
+                .AddIf("mdc-circular-progress--indeterminate", () => CircularProgressType == BMdcModel.CircularProgressType.Indeterminate)
+                .AddIf("mdc-circular-progress--closed", () => CircularProgressType == BMdcModel.CircularProgressType.Closed);
         }
 
 
@@ -79,15 +87,6 @@ namespace BMdc
         protected override void OnParametersSet()
         {
             base.OnParametersSet();
-
-            ClassMapper
-                .Clear()
-                .Add("mdc-circular-progress")
-                .AddIf("mdc-circular-progress--small", () => CircularProgressSize == BMdcModel.CircularProgressSize.Small)
-                .AddIf("mdc-circular-progress--medium", () => CircularProgressSize == BMdcModel.CircularProgressSize.Medium)
-                .AddIf("mdc-circular-progress--large", () => CircularProgressSize == BMdcModel.CircularProgressSize.Large)
-                .AddIf("mdc-circular-progress--indeterminate", () => CircularProgressType == BMdcModel.CircularProgressType.Indeterminate)
-                .AddIf("mdc-circular-progress--closed", () => CircularProgressType == BMdcModel.CircularProgressType.Closed);
         }
 
 

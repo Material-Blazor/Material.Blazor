@@ -30,7 +30,7 @@ namespace BlazorMdc.Demo.WebServer
             services.AddServerSideBlazor();
 
             // The configuration is optional
-            services.AddBMdcPlusToastService(new BMdcPlus.ToastServiceConfiguration()
+            services.AddBMdcPlusToastService(new BMdcModel.ToastServiceConfiguration()
             {
                 InfoDefaultHeading = "Info",
                 SuccessDefaultHeading = "Success",

@@ -40,18 +40,23 @@ namespace BMdcPlus
 
 
         /// <inheritdoc/>
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+        }
+
+        /// <inheritdoc/>
         protected override void OnParametersSet()
         {
             base.OnParametersSet();
 
             IconHelper = new BMdcModel.IconHelper(CascadingDefaults, IconName, IconFoundry);
 
+            ComponentPureHtmlAttributes = IconHelper.Attributes;
+
             ClassMapper
-                .Clear()
                 .Add(IconHelper.Class)
                 .AddIf("mdc-tab__icon", () => TabBar);
-
-            ComponentPureHtmlAttributes = IconHelper.Attributes;
         }
     }
 }

@@ -66,7 +66,6 @@ namespace BMdc
             ReportingValue = ValidateItemList(ItemDict.Values, CascadingDefaults.AppliedItemValidationSelect(ItemValidation));
 
             ClassMapper
-                .Clear()
                 .Add("mdc-select")
                 .AddIf("mdc-select--outlined", () => AppliedInputStyle == BMdcModel.SelectInputStyle.Outlined)
                 .AddIf("mdc-select--disabled", () => Disabled);

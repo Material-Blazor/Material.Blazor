@@ -57,6 +57,12 @@ namespace BMdc
 
             ForceShouldRenderToTrue = true;
             IntialValue = Value;
+
+            ClassMapper
+                .Add("mdc-linear-progress")
+                .AddIf("mdc-linear-progress--indeterminate", () => LinearProgressType == BMdcModel.LinearProgressType.Indeterminate)
+                .AddIf("mdc-linear-progress--reversed", () => LinearProgressType == BMdcModel.LinearProgressType.ReversedDeterminate)
+                .AddIf("mdc-linear-progress--closed", () => LinearProgressType == BMdcModel.LinearProgressType.Closed);
         }
 
 
@@ -64,13 +70,6 @@ namespace BMdc
         protected override void OnParametersSet()
         {
             base.OnParametersSet();
-
-            ClassMapper
-                .Clear()
-                .Add("mdc-linear-progress")
-                .AddIf("mdc-linear-progress--indeterminate", () => LinearProgressType == BMdcModel.LinearProgressType.Indeterminate)
-                .AddIf("mdc-linear-progress--reversed", () => LinearProgressType == BMdcModel.LinearProgressType.ReversedDeterminate)
-                .AddIf("mdc-linear-progress--closed", () => LinearProgressType == BMdcModel.LinearProgressType.Closed);
         }
 
 

@@ -19,11 +19,11 @@ namespace BMdcPlus
         /// </code>
         /// </example>
         /// </summary>
-        public static IServiceCollection AddBMdcPlusToastService(this IServiceCollection services, ToastServiceConfiguration configuration = null)
+        public static IServiceCollection AddBMdcPlusToastService(this IServiceCollection services, BMdcModel.ToastServiceConfiguration configuration = null)
         {
             if (configuration == null)
             {
-                configuration = new ToastServiceConfiguration();
+                configuration = new BMdcModel.ToastServiceConfiguration();
             }
 
             return services.AddScoped<IToastService, ToastService>(serviceProvider => new ToastService(configuration));

@@ -53,12 +53,11 @@ namespace BMdc
 
 
         /// <inheritdoc/>
-        protected override void OnParametersSet()
+        protected override void OnInitialized()
         {
-            base.OnParametersSet();
+            base.OnInitialized();
 
             ClassMapper
-                .Clear()
                 .Add("mdc-top-app-bar")
                 .AddIf($"mdc-top-app-bar--{TopAppBarType.ToString().ToLower()}", () => TopAppBarType != BMdcModel.TopAppBarType.Standard && TopAppBarType != BMdcModel.TopAppBarType.ShortCollapsed)
                 .AddIf($"mdc-top-app-bar--short mdc-top-app-bar--short-collapsed", () => TopAppBarType == BMdcModel.TopAppBarType.ShortCollapsed)
