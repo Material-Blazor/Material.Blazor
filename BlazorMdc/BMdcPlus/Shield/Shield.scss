@@ -2,10 +2,11 @@
 $shield-line-height: 20px;
 $shield-font-family: "Verdana","Geneva","DejaVu Sans","sans-serif";
 $shield-font-size: 9pt;
-$shield-icon-font-size: 11pt;
-$shield-inner-padding: 5px;
-$shield-outer-padding: 6px;
-$shield-icon-spacing: 4px;
+$shield-icon-font-size: 10pt;
+$shield-inner-padding: 4px;
+$shield-outer-padding: 4px;
+$shield-icon-left-margin: -1px;
+$shield-icon-right-margin: 3px;
 
 :root {
     --bmdc-shield-label-color: white;
@@ -32,7 +33,7 @@ $shield-icon-spacing: 4px;
 .bmdc-shield--icon {
     font-size: $shield-icon-font-size;
     line-height: $shield-line-height;
-    margin-right: $shield-icon-spacing;
+    margin: 0 $shield-icon-right-margin 0 $shield-icon-left-margin;
 }
 
 .bmdc-shield--label {
