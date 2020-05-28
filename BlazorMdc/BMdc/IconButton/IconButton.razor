@@ -1,0 +1,10 @@
+﻿@namespace BMdc
+@inherits BMdcBase.ComponentBase
+
+
+<button @ref="@ElementReference" 
+        type="button"
+        @attributes="@AttributesToSplat()">
+    
+    <BMdcPlus.Icon IconName="@Icon" IconFoundry="@IconFoundry" />
+</button>

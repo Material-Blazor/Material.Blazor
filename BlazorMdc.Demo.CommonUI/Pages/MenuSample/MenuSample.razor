@@ -7,21 +7,21 @@
 <p>See <code>MenuSample.razor</code> for sources.</p>
 
 <div>
-    <MdcButton Label="Open Menu" @onclick="@OpenMenuAsync" />
+    <BMdc.Button Label="Open Menu" @onclick="@OpenMenuAsync" />
 
     <div class="mdc-menu-surface--anchor">
-        <MdcMenu @ref="menu">
-            <MdcListItem Text="One" LeadingIcon="home" NavigationReference="One" OnClick="OnClickHandler" />
-            <MdcListItem Text="Two" NavigationReference="Two" OnClick="OnClickHandler" />
-            <MdcListItem Text="Three" LeadingIcon="shield" IconFoundry="MdcIconHelper.OIFoundry()" NavigationReference="Three" OnClick="OnClickHandler" />
-            <MdcListDivider />
-            <MdcMenuSelectionGroup>
-                <MdcListItem Text="Four" LeadingIcon="done" NavigationReference="Four" OnClick="OnClickHandler" />
-                <MdcListItem Text="Five" LeadingIcon="done" NavigationReference="Five" OnClick="OnClickHandler" />
-            </MdcMenuSelectionGroup>
-            <MdcListDivider />
-            <MdcListItem Text="Six (disabled)" Disabled="true" NavigationReference="Six" OnClick="OnClickHandler" />
-        </MdcMenu>
+        <BMdc.Menu @ref="menu">
+            <BMdc.ListItem Text="One" LeadingIcon="home" NavigationReference="One" OnClick="OnClickHandler" />
+            <BMdc.ListItem Text="Two" NavigationReference="Two" OnClick="OnClickHandler" />
+            <BMdc.ListItem Text="Three" LeadingIcon="shield" IconFoundry="BMdcModel.IconHelper.OIFoundry()" NavigationReference="Three" OnClick="OnClickHandler" />
+            <BMdc.ListDivider />
+            <BMdc.MenuSelectionGroup>
+                <BMdc.ListItem Text="Four" LeadingIcon="done" NavigationReference="Four" OnClick="OnClickHandler" />
+                <BMdc.ListItem Text="Five" LeadingIcon="done" NavigationReference="Five" OnClick="OnClickHandler" />
+            </BMdc.MenuSelectionGroup>
+            <BMdc.ListDivider />
+            <BMdc.ListItem Text="Six (disabled)" Disabled="true" NavigationReference="Six" OnClick="OnClickHandler" />
+        </BMdc.Menu>
     </div>
 </div>
 
@@ -29,7 +29,7 @@
 
 
 @code {
-    private MdcMenu menu;
+    private BMdc.Menu menu;
     private string clickResult = "";
 
     private async Task OpenMenuAsync()

@@ -1,0 +1,15 @@
+﻿@namespace BMdc
+@inherits BMdcBase.ComponentBase
+
+
+<aside @ref="DrawerElem"
+       id="app-drawer"
+       @attributes="@AttributesToSplat()">
+
+    <div class="mdc-drawer__content">
+        <CascadingValue Value="@this">
+            @ChildContent
+        </CascadingValue>
+    </div>
+
+</aside>

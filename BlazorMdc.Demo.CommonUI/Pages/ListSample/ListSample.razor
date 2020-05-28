@@ -6,11 +6,11 @@
 
 <p>See <code>ListSample.razor</code> for sources.</p>
 
-<p><MdcSwitch @bind-Value="@dense" Label="Set for dense" /></p>
-<p><MdcSwitch @bind-Value="@hideLineTwo" Label="Hide line two" /></p>
-<p><MdcSwitch @bind-Value="@hideLineThree" Label="Hide line three" /></p>
+<p><BMdc.Switch @bind-Value="@dense" Label="Set for dense" /></p>
+<p><BMdc.Switch @bind-Value="@hideLineTwo" Label="Hide line two" /></p>
+<p><BMdc.Switch @bind-Value="@hideLineThree" Label="Hide line three" /></p>
 
-<MdcList Items="@displayedProducts"
+<BMdc.List Items="@displayedProducts"
          Context="product"
          ShowSeparators="true"
          KeyboardInteractions="true"
@@ -20,21 +20,21 @@
          HideLineTwo="@hideLineTwo"
          HideLineThree="@hideLineThree"
          OnClick="OnClick"
-         ListStyle="@MdcListStyle.Outlined">
+         ListStyle="@BMdcModel.ListStyle.Outlined">
 
     <Icon>shop</Icon>
     <Title>@product.DisplayName</Title>
     <Actions>
         <div style="width: 10rem">
-            <MdcSwitch @bind-Value="@product.IsInStock"
+            <BMdc.Switch @bind-Value="@product.IsInStock"
                        Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
         </div>
     </Actions>
-</MdcList>
+</BMdc.List>
 
 <p></p>
 
-<MdcList Items="@displayedProducts"
+<BMdc.List Items="@displayedProducts"
          Context="product"
          ShowSeparators="true"
          KeyboardInteractions="true"
@@ -44,22 +44,22 @@
          HideLineTwo="@hideLineTwo"
          HideLineThree="@hideLineThree"
          OnClick="OnClick"
-         ListStyle="@MdcListStyle.Outlined">
+         ListStyle="@BMdcModel.ListStyle.Outlined">
 
     <Icon>shop</Icon>
     <Title>@product.DisplayName</Title>
     <LineTwo>@product.LineTwo</LineTwo>
     <Actions>
         <div style="width: 10rem">
-            <MdcSwitch @bind-Value="@product.IsInStock"
+            <BMdc.Switch @bind-Value="@product.IsInStock"
                        Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
         </div>
     </Actions>
-</MdcList>
+</BMdc.List>
 
 <p></p>
 
-<MdcList Items="@displayedProducts"
+<BMdc.List Items="@displayedProducts"
          Context="product"
          ShowSeparators="true"
          KeyboardInteractions="true"
@@ -69,7 +69,7 @@
          HideLineTwo="@hideLineTwo"
          HideLineThree="@hideLineThree"
          OnClick="OnClick"
-         ListStyle="@MdcListStyle.Outlined">
+         ListStyle="@BMdcModel.ListStyle.Outlined">
 
     <Icon>shop</Icon>
     <Title>@product.DisplayName</Title>
@@ -77,11 +77,11 @@
     <LineThree>@product.LineThree</LineThree>
     <Actions>
         <div style="width: 10rem">
-            <MdcSwitch @bind-Value="@product.IsInStock"
+            <BMdc.Switch @bind-Value="@product.IsInStock"
                        Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
         </div>
     </Actions>
-</MdcList>
+</BMdc.List>
 
 <p>Clicked index: '@clickedIndex'</p>
 

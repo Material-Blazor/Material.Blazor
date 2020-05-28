@@ -13,21 +13,21 @@
 <h5 class="mdc-typography--headline5">Orphan radio buttons</h5>
 
 <p>
-    <MdcRadioButton @bind-Value="@animal"
+    <BMdc.RadioButton @bind-Value="@animal"
                     TargetCheckedValue=@animalEnum.dog
                     Label=@animalEnum.dog.ToString()
                     RadioGroupName="demoGroup" />
-    <MdcRadioButton @bind-Value="@animal"
+    <BMdc.RadioButton @bind-Value="@animal"
                     TargetCheckedValue=@animalEnum.fish
                     Label=@animalEnum.fish.ToString()
                     RadioGroupName="demoGroup" />
-    <MdcRadioButton @bind-Value="@animal"
+    <BMdc.RadioButton @bind-Value="@animal"
                     TargetCheckedValue=@animalEnum.zebra
                     Label=@animalEnum.zebra.ToString()
                     RadioGroupName="demoGroup" />
 </p>
 <p>
-    <MdcRadioButton @bind-Value="@animal"
+    <BMdc.RadioButton @bind-Value="@animal"
                     TargetCheckedValue=@animalEnum.dog
                     Label=@repeatedDogLabel
                     RadioGroupName="repeatGroup" />
@@ -39,13 +39,13 @@
 <hr />
 <h5 class="mdc-typography--headline5">Horizontal radio button group</h5>
 
-<PMdcRadioButtonGroup @bind-Value="@kittenBreed"
+<BMdcPlus.RadioButtonGroup @bind-Value="@kittenBreed"
                       Items="stringItems"
-                      ItemValidation="@MdcItemValidation.DefaultToFirst" />
+                      ItemValidation="@BMdcModel.ItemValidation.DefaultToFirst" />
 
-<PMdcRadioButtonGroup @bind-Value="@kittenBreed"
+<BMdcPlus.RadioButtonGroup @bind-Value="@kittenBreed"
                       Items="stringItems"
-                      ItemValidation="@MdcItemValidation.DefaultToFirst" />
+                      ItemValidation="@BMdcModel.ItemValidation.DefaultToFirst" />
 
 <p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed ?? "")</strong>'</p>
 
@@ -53,7 +53,7 @@
 <hr />
 <h5 class="mdc-typography--headline5">Vertical radio button group</h5>
 
-<PMdcRadioButtonGroup @bind-Value="@colour"
+<BMdcPlus.RadioButtonGroup @bind-Value="@colour"
                       Items="colourItems"
                       Vertical="true"
                       EnableTouchWrapper="false" />
@@ -71,18 +71,18 @@
 
 
     string kittenBreed;
-    MdcListElement<string>[] stringItems = new MdcListElement<string>[]
+    BMdcModel.ListElement<string>[] stringItems = new BMdcModel.ListElement<string>[]
     {
-        new MdcListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
-        new MdcListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
-        new MdcListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+        new BMdcModel.ListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new BMdcModel.ListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new BMdcModel.ListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
                     };
 
 
     Colour colour = Colour.Orange;
     enum Colour { Red, Orange, Yellow, Green, Blue, Indigo, Violet };
-    IEnumerable<MdcListElement<Colour>> colourItems => from c in (Colour[])Enum.GetValues(typeof(Colour))
-                                                       select new MdcListElement<Colour>
+    IEnumerable<BMdcModel.ListElement<Colour>> colourItems => from c in (Colour[])Enum.GetValues(typeof(Colour))
+                                                       select new BMdcModel.ListElement<Colour>
                                                        {
                                                            SelectedValue = c,
                                                            Label = c.ToString() + ((c == Colour.Blue) ? " (disabled)" : ""),

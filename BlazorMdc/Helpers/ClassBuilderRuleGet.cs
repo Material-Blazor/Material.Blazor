@@ -5,7 +5,7 @@
 
 using System;
 
-namespace BlazorMdc
+namespace BMdcBase
 {
     public class ClassBuilderRuleGet<T> : ClassBuilderRule<T>
     {

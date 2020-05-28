@@ -1,0 +1,18 @@
+﻿@namespace BMdcPlus
+@inherits BMdcBase.InputComponentBase<int>
+
+
+<NumericDoubleField @attributes="@AttributesToSplat()"
+                    @bind-Value="@DblVal"
+                    TextInputStyle="TextInputStyle"
+                    Label="@Label"
+                    NoLabel="@NoLabel"
+                    LeadingIcon="@LeadingIcon"
+                    TrailingIcon="@TrailingIcon"
+                    IconFoundry="@IconFoundry"
+                    NumericFormat="@NumericFormat"
+                    NumericSingularFormat="@NumericSingularFormat"
+                    Magnitude="@Magnitude"
+                    Min="@Min"
+                    Max="@Max"
+                    DecimalPlaces="0" />

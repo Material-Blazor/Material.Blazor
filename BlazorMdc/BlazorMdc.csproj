@@ -5,7 +5,7 @@
     <RazorLangVersion>3.0</RazorLangVersion>
     <Configurations>Debug_WebAssembly;Debug_Server;Release_WebAssembly;Release_Server</Configurations>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <VersionPrefix>0.32.0</VersionPrefix>
+    <VersionPrefix>0.32.3</VersionPrefix>
     <VersionSuffix></VersionSuffix>
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <Authors />
@@ -30,6 +30,11 @@
     <DefineConstants>BlazorServer;RELEASE</DefineConstants>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="bundleconfig.json" />
+    <Content Remove="compilerconfig.json" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="3.2.447" />
@@ -44,12 +49,13 @@
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
+    <None Include="bundleconfig.json" />
+    <None Include="compilerconfig.json" />
   </ItemGroup>
 
 
   <ItemGroup>
     <Folder Include="Material-Components-Web\dist\" />
-    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 </Project>

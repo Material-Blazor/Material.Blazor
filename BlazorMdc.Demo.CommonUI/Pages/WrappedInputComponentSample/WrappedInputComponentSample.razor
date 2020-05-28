@@ -14,21 +14,21 @@
 
 <div>
     <p>
-        <MdcButton Label="Open dialog with wrapped input components"
+        <BMdc.Button Label="Open dialog with wrapped input components"
                    @onclick="@OpenDialogAsync"
-                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                   ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
     </p>
 
     <p>PIN 1: <strong>'@(LogonDTO.PIN1 ?? "")'</strong></p>
     <p>PIN 2: <strong>'@(LogonDTO.PIN2 ?? "")'</strong></p>
 
-    <MdcDialog Title="Create a new PIN"
+    <BMdc.Dialog Title="Create a new PIN"
                @ref="DialogReference">
         <Body>
 
             <h6>Your PIN has never been set.</h6>
             <h6>Pick a PIN, enter it, and verify the entry.</h6>
-            <PMdcDivider Padded="true" />
+            <BMdcPlus.Divider Padded="true" />
             <EditForm Model="@LogonDTO" OnValidSubmit="@SubmitLogon">
                 <DataAnnotationsValidator />
 
@@ -46,15 +46,15 @@
 
                 <div class="form-group">
                     <div style="display:flex; flex-direction: row; justify-content: center;">
-                        <MdcButton Style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                        <BMdc.Button Style="margin: 0.75em 0.25em 0.25em 0.25em;"
                                    Type="submit"
                                    Label="PIN entry complete"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                                   ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
 
-                        <MdcButton @onclick="@CancelClick"
+                        <BMdc.Button @onclick="@CancelClick"
                                    Style="margin: 0.75em 0.25em 0.25em 0.25em;"
                                    Label="Cancel"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                                   ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
                     </div>
                 </div>
             </EditForm>
@@ -62,12 +62,12 @@
         <Buttons>
         </Buttons>
 
-    </MdcDialog>
+    </BMdc.Dialog>
 </div>
 
 
 @code {
-    private MdcDialog DialogReference;
+    private BMdc.Dialog DialogReference;
 
     protected LogonDTO LogonDTO = new LogonDTO();
 

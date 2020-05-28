@@ -7,61 +7,61 @@
 See <code>ButtonSample.razor</code> for sources.
 
 <p>
-    <MdcButton Label="Default style" @onclick="@LogMessage" />
+    <BMdc.Button Label="Default style" @onclick="@LogMessage" />
 </p>
 
 <p>
-    <MdcButton Label="Contained raised" ButtonStyle="@MdcButtonStyle.ContainedRaised" @onclick="@LogMessage" />
+    <BMdc.Button Label="Contained raised" ButtonStyle="@BMdcModel.ButtonStyle.ContainedRaised" @onclick="@LogMessage" />
 </p>
 
 <p>
-    <MdcButton Label="Contained unelevated" ButtonStyle="@MdcButtonStyle.ContainedUnelevated" @onclick="@LogMessage" />
+    <BMdc.Button Label="Contained unelevated" ButtonStyle="@BMdcModel.ButtonStyle.ContainedUnelevated" @onclick="@LogMessage" />
 </p>
 
 <p>
-    <MdcButton Label="Outlined" ButtonStyle="@MdcButtonStyle.Outlined" @onclick="@LogMessage" />
+    <BMdc.Button Label="Outlined" ButtonStyle="@BMdcModel.ButtonStyle.Outlined" @onclick="@LogMessage" />
 </p>
 
 <p>
-    <MdcButton Label="Text" ButtonStyle="@MdcButtonStyle.Text" @onclick="@LogMessage" />
+    <BMdc.Button Label="Text" ButtonStyle="@BMdcModel.ButtonStyle.Text" @onclick="@LogMessage" />
 </p>
 
 <p>
-    <MdcButton Label="Disabled" Disabled="true" @onclick="@LogMessage" />
+    <BMdc.Button Label="Disabled" Disabled="true" @onclick="@LogMessage" />
 </p>
 
 <p>
-    <MdcButton Label="Leading icon" LeadingIcon="shield" IconFoundry="MdcIconHelper.OIFoundry()" @onclick="@LogMessage" />
+    <BMdc.Button Label="Leading icon" LeadingIcon="shield" IconFoundry="BMdcModel.IconHelper.OIFoundry()" @onclick="@LogMessage" />
 </p>
 
 <p>
-    <MdcButton Label="Trailing icon" TrailingIcon="speed" @onclick="@LogMessage" />
+    <BMdc.Button Label="Trailing icon" TrailingIcon="speed" @onclick="@LogMessage" />
 </p>
 
 <p>
-    <MdcButton Label="Trailing icon with style of 'margin-left: 5em;'"
+    <BMdc.Button Label="Trailing icon with style of 'margin-left: 5em;'"
                TrailingIcon="speed"
-               ButtonStyle="MdcButtonStyle.ContainedRaised"
+               ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised"
                @onclick="@LogMessage"
                Style="margin-left: 5em;" />
 </p>
 
 <p>
-    An icon button -> <MdcIconButton Icon="access_alarms" @onclick="@LogMessage" />
+    An icon button -> <BMdc.IconButton Icon="access_alarms" @onclick="@LogMessage" />
 </p>
 
 <p>
-    A font awesome icon button -> <MdcIconButton Icon="fa-frog" IconFoundry="MdcIconHelper.FAFoundry()" @onclick="@LogMessage" />
+    A font awesome icon button -> <BMdc.IconButton Icon="fa-frog" IconFoundry="BMdcModel.IconHelper.FAFoundry()" @onclick="@LogMessage" />
 </p>
 
 <div style="padding: 1rem; background-color: lightgray;">
     <p>The checkbox and toggle icon buttons all bind to the same value.</p>
 
-    <p><MdcCheckbox @bind-Value="@commonBool" Label="Checkbox and Toggle both bind to same value" /></p>
+    <p><BMdc.Checkbox @bind-Value="@commonBool" Label="Checkbox and Toggle both bind to same value" /></p>
 
-    <p><MdcIconButtonToggle @bind-Value="@commonBool" IconOn="directions_run" IconOff="airline_seat_individual_suite" /></p>
+    <p><BMdc.IconButtonToggle @bind-Value="@commonBool" IconOn="directions_run" IconOff="airline_seat_individual_suite" /></p>
 
-    <p><MdcIconButtonToggle @bind-Value="@commonBool" IconOn="fa-dog" IconOff="fa-cat" IconFoundry="MdcIconHelper.FAFoundry()" /></p>
+    <p><BMdc.IconButtonToggle @bind-Value="@commonBool" IconOn="fa-dog" IconOff="fa-cat" IconFoundry="BMdcModel.IconHelper.FAFoundry()" /></p>
 
     <p>@commonBool</p>
 </div>

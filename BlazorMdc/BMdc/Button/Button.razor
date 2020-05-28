@@ -1,0 +1,22 @@
+﻿@namespace BMdc
+@inherits BMdcBase.ComponentBase
+
+
+<button @ref="@ElementReference"
+        data-mdc-dialog-action="@DialogAction"
+        type="button"
+        @attributes="@AttributesToSplat()">
+    <div class="mdc-button__ripple"></div>
+
+    @if (!string.IsNullOrWhiteSpace(LeadingIcon))
+    {
+        <BMdcPlus.Icon IconName="@LeadingIcon" IconFoundry="@IconFoundry" Class="mdc-button__icon" aria-hidden="true" />
+    }
+
+    <span class="mdc-button__label">@Label</span>
+
+    @if (!string.IsNullOrWhiteSpace(TrailingIcon))
+    {
+        <BMdcPlus.Icon IconName="@TrailingIcon" IconFoundry="@IconFoundry" Class="mdc-button__icon" aria-hidden="true" />
+    }
+</button>

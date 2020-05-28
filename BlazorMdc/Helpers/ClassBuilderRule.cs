@@ -3,7 +3,7 @@
 //              Created - See MatBlazor for the original implementation by @SamProf
 //
 
-namespace BlazorMdc
+namespace BMdcBase
 {
     public abstract class ClassBuilderRule<T>
     {

@@ -7,10 +7,10 @@
 <p>See <code>SlidingContentSample.razor</code> for sources.</p>
 
 <p>
-    <MdcButton Label="Move to Paragraph 4" @onclick="@(() => index = 3)" ButtonStyle="MdcButtonStyle.ContainedRaised" />
+    <BMdc.Button Label="Move to Paragraph 4" @onclick="@(() => index = 3)" ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
 </p>
 
-<PMdcSlidingContent @ref="@slidingContent"
+<BMdcPlus.SlidingContent @ref="@slidingContent"
                     Items="@items"
                     @bind-ItemIndex="@index"
                     Context="item">
@@ -19,15 +19,15 @@
         <h3 class="mdc-typography--headline6">@item.Title</h3>
         <p>@item.Text</p>
     </Content>
-</PMdcSlidingContent>
+</BMdcPlus.SlidingContent>
 
 <p>
-    <MdcButton Label="Previous" LeadingIcon="chevron_left" @onclick="@(() => index--)" ButtonStyle="MdcButtonStyle.ContainedRaised" Disabled="@disablePrevious" />
-    <MdcButton Label="Next" TrailingIcon="chevron_right" @onclick="@(() => index++)" ButtonStyle="MdcButtonStyle.ContainedRaised" Disabled="@disableNext" />
+    <BMdc.Button Label="Previous" LeadingIcon="chevron_left" @onclick="@(() => index--)" ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" Disabled="@disablePrevious" />
+    <BMdc.Button Label="Next" TrailingIcon="chevron_right" @onclick="@(() => index++)" ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" Disabled="@disableNext" />
 </p>
 
 @code {
-    private PMdcSlidingContent<Item> slidingContent;
+    private BMdcPlus.SlidingContent<Item> slidingContent;
     private bool disablePrevious => index == 0;
     private bool disableNext => index == items.Length - 1;
 

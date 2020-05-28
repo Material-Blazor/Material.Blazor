@@ -23,12 +23,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="compilerconfig.json" />
+    <Content Remove="libman.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="BuildWebCompiler" Version="1.12.405" />
     <PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.76" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Material-Components-Web\dist\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="compilerconfig.json" />
+    <None Include="libman.json" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">

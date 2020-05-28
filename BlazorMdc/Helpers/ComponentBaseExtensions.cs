@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Components;
 
 using System.Collections.Generic;
 
-namespace BlazorMdc
+namespace BMdcBase
 {
     public static class ComponentBaseExtensions
     {
-        public static bool ParameterIsChanged<T>(this ComponentBase cmp, ParameterView parameters,
+        public static bool ParameterIsChanged<T>(this Microsoft.AspNetCore.Components.ComponentBase cmp, ParameterView parameters,
             string parameterName, T value)
         {
             T newValue;

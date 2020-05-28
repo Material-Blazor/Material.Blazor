@@ -1,0 +1,20 @@
+﻿@namespace BMdc
+@inherits BMdcBase.InputComponentBase<bool>
+
+
+<div @ref="@ElementReference"
+     @attributes="AttributesToSplat(BMdcBase.SplatType.ClassAndStyleOnly)">
+
+        <div class="mdc-switch__track"></div>
+        <div class="mdc-switch__thumb-underlay">
+            <div class="mdc-switch__thumb">
+                <input type="checkbox" 
+                       id="@Id" 
+                       @bind="@ReportingValue" 
+                       class="mdc-switch__native-control" 
+                       role="switch"
+                       @attributes="AttributesToSplat(BMdcBase.SplatType.ExcludeClassAndStyle)" />
+            </div>
+        </div>
+    </div>
+<label for="@Id" style="margin-left: 1rem;">@Label</label>

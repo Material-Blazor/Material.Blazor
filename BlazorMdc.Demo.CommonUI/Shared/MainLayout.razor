@@ -2,60 +2,60 @@
 
 @inherits LayoutComponentBase
 
-@inject IPMdcAnimatedNavigationManager PMdcAnimatedNavigationManager
+@inject BMdcPlus.IAnimatedNavigationManager AnimatedNavigationManager
 @inject DemoConfiguration DemoConfiguration
 
-<PMdcToastAnchor />
+<BMdcPlus.ToastAnchor />
 
-<MdcDrawer @ref="@sidebar"
+<BMdc.Drawer @ref="@sidebar"
            IsDismissible="true">
     <div class="mdc-list">
-        <MdcListItem NavigationReference="" LeadingIcon="home" Text="Home" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="" LeadingIcon="home" Text="Home (Disabled)" OnClick="@ListItemClickHandler" Disabled="true" />
-        <MdcListItem NavigationReference="autocomplete" LeadingIcon="keyboard" Text="Autocomplete" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="button" LeadingIcon="touch_app" Text="Button" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="card" LeadingIcon="dashboard" Text="Card" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="cascadingdefaults" LeadingIcon="web" Text="CascadingDefaults" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="checkbox" LeadingIcon="check_box" Text="Checkbox" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="datatable" LeadingIcon="table_chart" Text="Data Table" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="datepicker" LeadingIcon="date_range" Text="Date Picker" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="debouncedtextfield" LeadingIcon="search" Text="Debounced Text Field" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="dialog" LeadingIcon="picture_in_picture" Text="Dialog" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="form" LeadingIcon="ballot" Text="Form" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="list" LeadingIcon="list" Text="List" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="menu" LeadingIcon="menu" Text="Menu" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="miscellaneous" LeadingIcon="text_format" Text="Miscellaneous" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="numericfield" LeadingIcon="money" Text="Numeric Field" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="pageddatalist" LeadingIcon="view_list" Text="Paged Data List" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="paginator" LeadingIcon="pages" Text="Paginator" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="progress" LeadingIcon="access_time" Text="Progress" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="radiobuttons" LeadingIcon="radio_button_checked" Text="Radio Buttons" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="select" LeadingIcon="arrow_drop_down" Text="Select" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="slidingcontent" LeadingIcon="compare_arrows" Text="Sliding Content" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="switch" LeadingIcon="toggle_on" Text="Switch" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="tabbar" LeadingIcon="tab" Text="Tab Bar" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="textarea" LeadingIcon="assignment" Text="Text Area" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="textfield" LeadingIcon="text_format" Text="Text Field" OnClick="@ListItemClickHandler" />
-        <MdcListItem NavigationReference="toast" LeadingIcon="textsms" Text="Toast" OnClick="@ListItemClickHandler" />
-        <MdcListDivider />
-        <MdcListItem NavigationReference="wrappedinput" LeadingIcon="menu" Text="Wrapped input component" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="" LeadingIcon="home" Text="Home" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="" LeadingIcon="home" Text="Home (Disabled)" OnClick="@ListItemClickHandler" Disabled="true" />
+        <BMdc.ListItem NavigationReference="autocomplete" LeadingIcon="keyboard" Text="Autocomplete" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="button" LeadingIcon="touch_app" Text="Button" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="card" LeadingIcon="dashboard" Text="Card" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="cascadingdefaults" LeadingIcon="web" Text="CascadingDefaults" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="checkbox" LeadingIcon="check_box" Text="Checkbox" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="datatable" LeadingIcon="table_chart" Text="Data Table" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="datepicker" LeadingIcon="date_range" Text="Date Picker" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="debouncedtextfield" LeadingIcon="search" Text="Debounced Text Field" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="dialog" LeadingIcon="picture_in_picture" Text="Dialog" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="form" LeadingIcon="ballot" Text="Form" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="list" LeadingIcon="list" Text="List" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="menu" LeadingIcon="menu" Text="Menu" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="miscellaneous" LeadingIcon="text_format" Text="Miscellaneous" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="numericfield" LeadingIcon="money" Text="Numeric Field" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="pageddatalist" LeadingIcon="view_list" Text="Paged Data List" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="paginator" LeadingIcon="pages" Text="Paginator" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="progress" LeadingIcon="access_time" Text="Progress" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="radiobuttons" LeadingIcon="radio_button_checked" Text="Radio Buttons" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="select" LeadingIcon="arrow_drop_down" Text="Select" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="slidingcontent" LeadingIcon="compare_arrows" Text="Sliding Content" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="switch" LeadingIcon="toggle_on" Text="Switch" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="tabbar" LeadingIcon="tab" Text="Tab Bar" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="textarea" LeadingIcon="assignment" Text="Text Area" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="textfield" LeadingIcon="text_format" Text="Text Field" OnClick="@ListItemClickHandler" />
+        <BMdc.ListItem NavigationReference="toast" LeadingIcon="textsms" Text="Toast" OnClick="@ListItemClickHandler" />
+        <BMdc.ListDivider />
+        <BMdc.ListItem NavigationReference="wrappedinput" LeadingIcon="menu" Text="Wrapped input component" OnClick="@ListItemClickHandler" />
     </div>
-</MdcDrawer>
+</BMdc.Drawer>
 
 <div class="mdc-drawer-app-content">
-    <MdcTopAppBar Title="BlazorMdc - Material Theme components for Blazor"
+    <BMdc.TopAppBar Title="BlazorMdc - Material Theme components for Blazor"
                   @onclick="@SideBarToggle"
                   NavIcon="menu"
                   ScrollTarget="#main-content"
                   TopAppBarType="@DemoConfiguration.TopAppBarType"
                   Class="mdc-top-app-bar--short-has-action-item">
         <div id="account-target">
-            <MdcIconButtonToggle @bind-Value="PMdcAnimatedNavigationManager.Configuration.ApplyAnimation" IconOn="directions_run" IconOff="airline_seat_individual_suite" />
+            <BMdc.IconButtonToggle @bind-Value="AnimatedNavigationManager.Configuration.ApplyAnimation" IconOn="directions_run" IconOff="airline_seat_individual_suite" />
         </div>
-    </MdcTopAppBar>
+    </BMdc.TopAppBar>
 
     <main class="main-content" id="main-content">
-        <PMdcAnimatedNavigation>
+        <BMdcPlus.AnimatedNavigation>
             <div class="mdc-top-app-bar--fixed-adjust">
                 <div class="mdc-card main-content-card">
                     <div class="mdc-layout-grid">
@@ -67,17 +67,17 @@
                     </div>
                 </div>
             </div>
-        </PMdcAnimatedNavigation>
+        </BMdcPlus.AnimatedNavigation>
     </main>
 </div>
 
 @code {
-    MdcDrawer sidebar;
+    BMdc.Drawer sidebar;
 
     private void ListItemClickHandler(string NavigationReference)
     {
         sidebar.NotifyNavigation();
-        PMdcAnimatedNavigationManager.NavigateTo(NavigationReference);
+        AnimatedNavigationManager.NavigateTo(NavigationReference);
     }
 
     private void SideBarToggle()

@@ -37,21 +37,21 @@
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">No templates</h2>
 
-<PMdcPagedDataList Class="my-container"
+<BMdcPlus.PagedDataList Class="my-container"
                    PaginatorClass="my-float-right"
                    @bind-ItemsPerPage="@itemsPerPage1"
                    @bind-PageNumber="@pageNumber1"
                    ItemsPerPageSelection="@itemsPerPageSelection"
                    Data=@People>
-</PMdcPagedDataList>
+</BMdcPlus.PagedDataList>
 
 
 
-<PMdcDivider Style="margin: 2rem 0 1rem 0;" />
+<BMdcPlus.Divider Style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">ItemTemplate only</h2>
 
-<PMdcPagedDataList Class="my-container"
+<BMdcPlus.PagedDataList Class="my-container"
                    PaginatorClass="my-float-right"
                    @bind-ItemsPerPage="@itemsPerPage2"
                    @bind-PageNumber="@pageNumber2"
@@ -63,15 +63,15 @@
             @person.Salutation @person.FamilyName, @person.GivenName
         </li>
     </ItemTemplate>
-</PMdcPagedDataList>
+</BMdcPlus.PagedDataList>
 
 
 
-<PMdcDivider Style="margin: 2rem 0 1rem 0;" />
+<BMdcPlus.Divider Style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">ListTemplate and ItemTemplate</h2>
 
-<PMdcPagedDataList Class="my-container"
+<BMdcPlus.PagedDataList Class="my-container"
                    PaginatorClass="my-float-right"
                    @bind-ItemsPerPage="@itemsPerPage3"
                    @bind-PageNumber="@pageNumber3"
@@ -99,15 +99,15 @@
             <td>@person.FamilyName</td>
         </tr>
     </ItemTemplate>
-</PMdcPagedDataList>
+</BMdcPlus.PagedDataList>
 
 
 
-<PMdcDivider Style="margin: 2rem 0 1rem 0;" />
+<BMdcPlus.Divider Style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">ListTemplate and MdcDataTable</h2>
 
-<PMdcPagedDataList @ref="dataList4"
+<BMdcPlus.PagedDataList @ref="dataList4"
                    Class="my-container"
                    PaginatorClass="my-float-right"
                    @bind-ItemsPerPage="@itemsPerPage4"
@@ -116,7 +116,7 @@
                    Data=@People>
 
     <ListTemplate Context="listOfPeople">
-        <MdcDataTable Items="@dataList4.CurrentPage"
+        <BMdc.DataTable Items="@dataList4.CurrentPage"
                       Context="person"
                       Class="my-full-width">
             <TableHeader>
@@ -129,17 +129,17 @@
                 <td class="mdc-data-table__cell">@person.GivenName</td>
                 <td class="mdc-data-table__cell">@person.FamilyName</td>
             </TableRow>
-        </MdcDataTable>
+        </BMdc.DataTable>
     </ListTemplate>
-</PMdcPagedDataList>
+</BMdcPlus.PagedDataList>
 
 
 
-<PMdcDivider Style="margin: 2rem 0 1rem 0;" />
+<BMdcPlus.Divider Style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">ListTemplate and MdcList</h2>
 
-<PMdcPagedDataList @ref="dataList5"
+<BMdcPlus.PagedDataList @ref="dataList5"
                    Class="my-container"
                    PaginatorClass="my-float-right"
                    @bind-ItemsPerPage="@itemsPerPage5"
@@ -148,26 +148,26 @@
                    Data=@People>
 
     <ListTemplate Context="listOfPeople">
-        <MdcList Items="@dataList5.CurrentPage"
+        <BMdc.List Items="@dataList5.CurrentPage"
                  Context="person"
                  ShowSeparators="true"
                  AvatarList="true"
-                 ListStyle="@MdcListStyle.Outlined">
+                 ListStyle="@BMdcModel.ListStyle.Outlined">
 
             <Icon>shop</Icon>
             <Title>@person.FamilyName</Title>
             <LineTwo>@person.Salutation @person.FamilyName, @person.GivenName</LineTwo>
-        </MdcList>
+        </BMdc.List>
     </ListTemplate>
-</PMdcPagedDataList>
+</BMdcPlus.PagedDataList>
 
 
 
-<PMdcDivider Style="margin: 2rem 0 1rem 0;" />
+<BMdcPlus.Divider Style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">ListTemplate and Two x MdcList</h2>
 
-<PMdcPagedDataList @ref="dataList6"
+<BMdcPlus.PagedDataList @ref="dataList6"
                    Class="my-container"
                    ListTemplateClass="my-container"
                    PaginatorClass="my-float-right"
@@ -184,32 +184,32 @@
         }
 
         <div class="my-half-list">
-            <MdcList Items="@leftList"
+            <BMdc.List Items="@leftList"
                      Context="person"
                      ShowSeparators="true"
                      AvatarList="true"
-                     ListStyle="@MdcListStyle.Outlined">
+                     ListStyle="@BMdcModel.ListStyle.Outlined">
 
                 <Icon>shop</Icon>
                 <Title>@person.FamilyName</Title>
                 <LineTwo>@person.Salutation @person.FamilyName, @person.GivenName</LineTwo>
-            </MdcList>
+            </BMdc.List>
         </div>
 
         <div class="my-half-list">
-            <MdcList Items="@rightList"
+            <BMdc.List Items="@rightList"
                      Context="person"
                      ShowSeparators="true"
                      AvatarList="true"
-                     ListStyle="@MdcListStyle.Outlined">
+                     ListStyle="@BMdcModel.ListStyle.Outlined">
 
                 <Icon>shop</Icon>
                 <Title>@person.FamilyName</Title>
                 <LineTwo>@person.Salutation @person.FamilyName, @person.GivenName</LineTwo>
-            </MdcList>
+            </BMdc.List>
         </div>
     </ListTemplate>
-</PMdcPagedDataList>
+</BMdcPlus.PagedDataList>
 
 
 
@@ -265,8 +265,8 @@
     private int pageNumber5 = 0;
     private int pageNumber6 = 0;
 
-    private PMdcPagedDataList<Person> dataList4;
-    private PMdcPagedDataList<Person> dataList5;
-    private PMdcPagedDataList<Person> dataList6;
+    private BMdcPlus.PagedDataList<Person> dataList4;
+    private BMdcPlus.PagedDataList<Person> dataList5;
+    private BMdcPlus.PagedDataList<Person> dataList6;
 }
 

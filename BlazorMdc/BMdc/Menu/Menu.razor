@@ -1,0 +1,12 @@
+﻿@namespace BMdc
+@inherits BMdcBase.ComponentBase
+
+
+<div @ref="ElementReference"
+     @attributes="@AttributesToSplat()">
+
+    <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
+        @ChildContent
+    </ul>
+
+</div>
