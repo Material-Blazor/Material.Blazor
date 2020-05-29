@@ -1,8 +1,12 @@
 ﻿using BMdcBase;
+
+using BMdcPlus;
+
 using Microsoft.AspNetCore.Components;
+
 using System;
 
-namespace BMdcPlus
+namespace BMdcModel
 {
     /// <summary>
     /// The internal implementation of <see cref="IAnimatedNavigationManager"/>.

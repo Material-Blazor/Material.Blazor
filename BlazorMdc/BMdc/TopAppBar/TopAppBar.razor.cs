@@ -1,6 +1,10 @@
 ﻿using BMdcBase;
+
+using BMdcModel;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System.Threading.Tasks;
 
 namespace BMdc
@@ -8,7 +12,7 @@ namespace BMdc
     /// <summary>
     /// A Material Theme top app bar
     /// </summary>
-    public partial class TopAppBar : BMdcBase.ComponentBase
+    public partial class TopAppBar : BMdcComponentBase
     {
         /// <summary>
         /// App bar title.
@@ -28,7 +32,7 @@ namespace BMdc
         /// <para><c>IconFoundry="BMdcModel.IconHelper.FAIcon()"</c></para>
         /// <para><c>IconFoundry="BMdcModel.IconHelper.OIIcon()"</c></para>
         /// </summary>
-        [Parameter] public BMdcModel.IIconFoundry IconFoundry { get; set; }
+        [Parameter] public IIconFoundry IconFoundry { get; set; }
 
 
         /// <summary>
@@ -46,7 +50,7 @@ namespace BMdc
         /// <summary>
         /// Top app bar type. See <see cref="BlazorMdc.TopAppBarType"/>
         /// </summary>
-        [Parameter] public BMdcModel.TopAppBarType TopAppBarType { get; set; } = BMdcModel.TopAppBarType.Standard;
+        [Parameter] public TopAppBarType TopAppBarType { get; set; } = TopAppBarType.Standard;
 
         
         private ElementReference HeaderElem { get; set; }

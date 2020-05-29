@@ -1,6 +1,10 @@
 ﻿using BMdcBase;
+
+using BMdcModel;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,12 +15,12 @@ namespace BMdc
     /// standards. It also implements a BlazorMdc interpretation of the specification for a three line
     /// list item.
     /// </summary>
-    public partial class List<TItem> : BMdcBase.ComponentBase
+    public partial class List<TItem> : BMdcComponentBase
     {
         /// <summary>
         /// The list style.
         /// </summary>
-        [Parameter] public BMdcModel.ListStyle? ListStyle { get; set; }
+        [Parameter] public ListStyle? ListStyle { get; set; }
 
 
         /// <summary>

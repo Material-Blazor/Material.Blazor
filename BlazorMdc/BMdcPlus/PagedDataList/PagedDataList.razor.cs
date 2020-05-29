@@ -1,5 +1,7 @@
 ﻿using BMdcBase;
+
 using Microsoft.AspNetCore.Components;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,7 @@ namespace BMdcPlus
     /// A paged data list using the "wig pig" construct allowing the consumer to free render the relevant paged data.
     /// </summary>
     /// <typeparam name="TItem"></typeparam>
-    public partial class PagedDataList<TItem> : BMdcBase.ComponentBase
+    public partial class PagedDataList<TItem> : BMdcComponentBase
     {
         /// <summary>
         /// A CSS class to apply to the div surrounding the paged data.
@@ -126,7 +128,7 @@ namespace BMdcPlus
 
                 await Task.Delay(100);
 
-                isHidden = true;
+                //isHidden = true;
                 contentClass = nextClass;
                 _pageNumber = newPageNumber;
                 isHidden = false;
@@ -135,6 +137,7 @@ namespace BMdcPlus
             }
         }
 
+        /// <inheritdoc/>
         protected override void OnInitialized()
         {
             base.OnInitialized();

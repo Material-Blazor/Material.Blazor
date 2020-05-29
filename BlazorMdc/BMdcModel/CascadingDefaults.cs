@@ -30,7 +30,7 @@ namespace BMdcModel
          ************************************************************************************************************/
 
         /// <summary>
-        /// Determines whether <see cref="MdcComponentBase"/> should throw an exception for invalid 
+        /// Determines whether <see cref="BMdcComponentBase"/> should throw an exception for invalid 
         /// unmatched HTML attributes passed to a component. Works with <see cref="EssentialSplattableAttributes"/>
         /// and <see cref="AllowedSplattableAttributes"/>
         /// </summary>
@@ -46,7 +46,7 @@ namespace BMdcModel
         public readonly IEnumerable<string> EssentialSplattableAttributes = new string[] { "formnovalidate", "id", "max", "min", "role", "step", "tabindex", "type" };
 
         /// <summary>
-        /// Further attributes that can be set as allowable when <see cref="MdcComponentBase"/>
+        /// Further attributes that can be set as allowable when <see cref="BMdcComponentBase"/>
         /// performs unmatched attribute validation. Works with <see cref="ConstrainSplattableAttributes"/>
         /// and <see cref="EssentialSplattableAttributes"/>.
         /// </summary>

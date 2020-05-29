@@ -1,6 +1,10 @@
 ﻿using BMdcBase;
+
+using BMdcModel;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -12,12 +16,12 @@ namespace BMdcPlus
     /// <summary>
     /// For BlazorMdc internal use only.
     /// </summary>
-    public partial class InternalDatePickerPanel : BMdcBase.InputComponentBase<DateTime>
+    public partial class InternalDatePickerPanel : BMdcInputComponentBase<DateTime>
     {
         /// <summary>
         /// Date selection criteria
         /// </summary>
-        [Parameter] public BMdcModel.DateSelectionCriteria? DateSelectionCriteria { get; set; }
+        [Parameter] public DateSelectionCriteria? DateSelectionCriteria { get; set; }
 
 
         /// <summary>

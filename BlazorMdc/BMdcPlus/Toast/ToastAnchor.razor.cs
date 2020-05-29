@@ -1,4 +1,9 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BMdcBase;
+
+using BMdcModel;
+
+using Microsoft.AspNetCore.Components;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +16,7 @@ namespace BMdcPlus
     /// <see cref="IPmdcToastService.ShowToast(ToastLevel, string, string, ToastCloseMethod?, string, string, IIconFoundry?, bool?, uint?)"/>.
     /// Place this component at the top of either App.razor or MainLayout.razor.
     /// </summary>
-    public partial class ToastAnchor : BMdcBase.ComponentBase
+    public partial class ToastAnchor : BMdcComponentBase
     {
         [Inject] private IToastService ToastService { get; set; }
 
@@ -39,7 +44,7 @@ namespace BMdcPlus
                 settings.Configuration = ToastService.Configuration;
                 settings.Level = level;
 
-                var toastInstance = new BMdcModel.ToastInstance
+                var toastInstance = new ToastInstance
                 {
                     Id = Guid.NewGuid(),
                     TimeStamp = DateTime.Now,
@@ -83,7 +88,7 @@ namespace BMdcPlus
 
                 DisplayedToasts.Add(toastInstance);
 
-                if (toastInstance.Settings.AppliedCloseMethod != BMdcModel.ToastCloseMethod.CloseButton)
+                if (toastInstance.Settings.AppliedCloseMethod != ToastCloseMethod.CloseButton)
                 {
                     InvokeAsync(() =>
                     {
@@ -116,7 +121,7 @@ namespace BMdcPlus
                         return;
                     }
 
-                    toastInstance.Settings.Status = BMdcModel.ToastStatus.FadeOut;
+                    toastInstance.Settings.Status = ToastStatus.FadeOut;
                     StateHasChanged();
                 }
                 finally
@@ -149,11 +154,11 @@ namespace BMdcPlus
                         return;
                     }
 
-                    toastInstance.Settings.Status = BMdcModel.ToastStatus.Hide;
+                    toastInstance.Settings.Status = ToastStatus.Hide;
 
-                    if (DisplayedToasts.Where(x => x.Settings.Status == BMdcModel.ToastStatus.FadeOut).Count() == 0)
+                    if (DisplayedToasts.Where(x => x.Settings.Status == ToastStatus.FadeOut).Count() == 0)
                     {
-                        DisplayedToasts.RemoveAll(x => x.Settings.Status == BMdcModel.ToastStatus.Hide);
+                        DisplayedToasts.RemoveAll(x => x.Settings.Status == ToastStatus.Hide);
                     }
 
                     StateHasChanged();

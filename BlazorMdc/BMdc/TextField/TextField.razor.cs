@@ -1,6 +1,10 @@
 ﻿using BMdcBase;
+
+using BMdcModel;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System.Threading.Tasks;
 
 namespace BMdc
@@ -8,19 +12,19 @@ namespace BMdc
     /// <summary>
     /// A Material Theme text field.
     /// </summary>
-    public partial class TextField : BMdcBase.InputComponentBase<string>
+    public partial class TextField : BMdcInputComponentBase<string>
     {
 #nullable enable annotations
         /// <summary>
         /// The text input style.
         /// </summary>
-        [Parameter] public BMdcModel.TextInputStyle? TextInputStyle { get; set; }
+        [Parameter] public TextInputStyle? TextInputStyle { get; set; }
 
 
         /// <summary>
         /// The text alignment style.
         /// </summary>
-        [Parameter] public BMdcModel.TextAlignStyle? TextAlignStyle { get; set; }
+        [Parameter] public TextAlignStyle? TextAlignStyle { get; set; }
 
 
         /// <summary>
@@ -53,7 +57,7 @@ namespace BMdc
         /// <para><c>IconFoundry="BMdcModel.IconHelper.FAIcon()"</c></para>
         /// <para><c>IconFoundry="BMdcModel.IconHelper.OIIcon()"</c></para>
         /// </summary>
-        [Parameter] public BMdcModel.IIconFoundry? IconFoundry { get; set; }
+        [Parameter] public IIconFoundry? IconFoundry { get; set; }
 #nullable restore annotations
 
 
@@ -66,7 +70,7 @@ namespace BMdc
         private string FloatingLabelClass { get; set; }
 
         
-        private readonly string labelId = BMdcBase.Utilities.GenerateUniqueElementName();
+        private readonly string labelId = Utilities.GenerateUniqueElementName();
         
 
         /// <inheritdoc/>
@@ -104,8 +108,8 @@ namespace BMdc
         {
             base.OnParametersSet();
 
-            var leading = new BMdcModel.IconHelper(CascadingDefaults, LeadingIcon, IconFoundry);
-            var trailing = new BMdcModel.IconHelper(CascadingDefaults, TrailingIcon, IconFoundry);
+            var leading = new IconHelper(CascadingDefaults, LeadingIcon, IconFoundry);
+            var trailing = new IconHelper(CascadingDefaults, TrailingIcon, IconFoundry);
 
             FloatingLabelClass = string.IsNullOrEmpty(ReportingValue) ? "" : "mdc-floating-label--float-above";
         }

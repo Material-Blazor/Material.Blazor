@@ -1,6 +1,8 @@
 ﻿using BMdcBase;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System.Threading.Tasks;
 
 namespace BMdc
@@ -9,7 +11,7 @@ namespace BMdc
     /// This is a general purpose Material Theme check box accepting a boolean as a bound value. This
     /// check box does not implement indeteriminate state.
     /// </summary>
-    public partial class Checkbox : BMdcBase.InputComponentBase<bool>
+    public partial class Checkbox : BMdcInputComponentBase<bool>
     {
         // <summary>
         /// The check box label.

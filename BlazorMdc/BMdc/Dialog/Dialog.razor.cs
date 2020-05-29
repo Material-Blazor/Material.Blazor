@@ -1,8 +1,11 @@
 ﻿using BMdcBase;
+
+using BMdcModel;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BMdc
@@ -13,7 +16,7 @@ namespace BMdc
     /// intiate it and its embedded components. Likewise when the dialog is closed, Material Theme is permitted to close the dialog
     /// gracefully before BlazorMdc removes the markup.
     /// </summary>
-    public partial class Dialog : BMdcBase.ComponentBase, IDisposable, BMdcModel.IDialog
+    public partial class Dialog : BMdcComponentBase, IDisposable, IDialog
     {
         /// <summary>
         /// The dialog title.

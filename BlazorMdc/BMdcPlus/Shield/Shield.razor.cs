@@ -1,7 +1,8 @@
 ﻿using BMdcBase;
+
+using BMdcModel;
+
 using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
-using System.Threading.Tasks;
 
 namespace BMdcPlus
 {
@@ -9,13 +10,13 @@ namespace BMdcPlus
     /// A shield similar to those from shield.io and used in GitHub. Implemented
     /// with HTML rather than SVG.
     /// </summary>
-    public partial class Shield : BMdcBase.ComponentBase
+    public partial class Shield : BMdcComponentBase
     {
 #nullable enable annotations
         /// <summary>
         /// The shield type, being Label (left part), Value (right part) or both.
         /// </summary>
-        [Parameter] public BMdcModel.ShieldType ShieldType { get; set; } = BMdcModel.ShieldType.LabelAndValue;
+        [Parameter] public ShieldType ShieldType { get; set; } = BMdcModel.ShieldType.LabelAndValue;
 
 
         /// <summary>
@@ -72,7 +73,7 @@ namespace BMdcPlus
         /// <para><c>IconFoundry="BMdcModel.IconHelper.FAIcon()"</c></para>
         /// <para><c>IconFoundry="BMdcModel.IconHelper.OIIcon()"</c></para>
         /// </summary>
-        [Parameter] public BMdcModel.IIconFoundry? IconFoundry { get; set; }
+        [Parameter] public IIconFoundry? IconFoundry { get; set; }
 #nullable restore annotations
 
 

@@ -1,10 +1,13 @@
 ﻿using BMdcBase;
+
+using BMdcPlus;
+
 using System;
 
-namespace BMdcPlus
+namespace BMdcModel
 {
     /// <summary>
-    /// The internal implementation of <see cref="IPmdcToastService"/>.
+    /// The internal implementation of <see cref="BMdcModel.IToastService"/>.
     /// </summary>
     internal class ToastService : IToastService
     {

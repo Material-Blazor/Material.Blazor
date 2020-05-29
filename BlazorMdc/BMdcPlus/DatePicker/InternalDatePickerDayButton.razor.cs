@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BMdcBase;
+
+using Microsoft.AspNetCore.Components;
+
 using System;
 using System.Threading.Tasks;
 
@@ -7,7 +10,7 @@ namespace BMdcPlus
     /// <summary>
     /// For BlazorMdc internal use only.
     /// </summary>
-    public partial class InternalDatePickerDayButton : BMdcBase.ComponentBase
+    public partial class InternalDatePickerDayButton : BMdcComponentBase
     {
         /// <summary>
         /// The currently selected date.

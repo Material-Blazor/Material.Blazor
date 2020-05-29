@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BMdcBase;
+
+using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +15,7 @@ namespace BMdcPlus
     /// An autocomplete built using an <see cref="MdcTextField"/> with the anchor and drop
     /// down list implementation from a Material Theme select.
     /// </summary>
-    public partial class Autocomplete : BMdcBase.InputComponentBase<string>, IDisposable
+    public partial class Autocomplete : BMdcInputComponentBase<string>, IDisposable
     {
         private class SelectionInfo
         {

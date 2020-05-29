@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BMdcBase;
+using Microsoft.AspNetCore.Components;
 using System.Collections.Generic;
 
 namespace BMdcPlus
@@ -8,7 +9,7 @@ namespace BMdcPlus
     /// beneath showing tabbed content.
     /// </summary>
     /// <typeparam name="TItem"></typeparam>
-    public partial class SlidingTabBar<TItem> : BMdcBase.ComponentBase
+    public partial class SlidingTabBar<TItem> : BMdcComponentBase
     {
         private int _tabIndex;
         /// <summary>

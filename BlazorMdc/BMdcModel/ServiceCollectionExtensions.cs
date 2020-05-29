@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BMdcModel;
+
+using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BMdcPlus
+namespace BMdcModel
 {
     public static class ServiceCollectionExtensions
     {
@@ -19,7 +21,7 @@ namespace BMdcPlus
         /// </code>
         /// </example>
         /// </summary>
-        public static IServiceCollection AddBMdcPlusToastService(this IServiceCollection services, BMdcModel.ToastServiceConfiguration configuration = null)
+        public static IServiceCollection AddToastService(this IServiceCollection services, BMdcModel.ToastServiceConfiguration configuration = null)
         {
             if (configuration == null)
             {
@@ -44,7 +46,7 @@ namespace BMdcPlus
         /// </code>
         /// </example>
         /// </summary>
-        public static IServiceCollection AddBMdcPlusAnimatedNavigationManager(this IServiceCollection services, AnimatedNaviationManagerConfiguration configuration = null)
+        public static IServiceCollection AddAnimatedNavigationManager(this IServiceCollection services, AnimatedNaviationManagerConfiguration configuration = null)
         {
             if (configuration == null)
             {

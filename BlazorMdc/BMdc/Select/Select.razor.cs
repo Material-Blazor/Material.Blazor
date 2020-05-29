@@ -1,6 +1,10 @@
 ﻿using BMdcBase;
+
+using BMdcModel;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,7 +14,7 @@ namespace BMdc
     /// <summary>
     /// A Material Theme select.
     /// </summary>
-    public partial class Select<TItem> : BMdcBase.ValidatingInputComponentBase<TItem>, BMdcModel.IDialogChild
+    public partial class Select<TItem> : BMdcValidatingInputComponentBase<TItem>, IDialogChild
     {
         /// <summary>
         /// The item list to be represented as a select

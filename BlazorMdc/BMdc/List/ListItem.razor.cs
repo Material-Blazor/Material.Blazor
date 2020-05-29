@@ -1,4 +1,5 @@
 ﻿using BMdcBase;
+
 using Microsoft.AspNetCore.Components;
 
 namespace BMdc
@@ -6,7 +7,7 @@ namespace BMdc
     /// <summary>
     /// This is a general purpose Material Theme list item.
     /// </summary>
-    public partial class ListItem : BMdcBase.ComponentBase
+    public partial class ListItem : BMdcComponentBase
     {
 #nullable enable annotations
         /// <summary>

@@ -1,6 +1,10 @@
 ﻿using BMdcBase;
+
+using BMdcModel;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System.Threading.Tasks;
 
 namespace BMdc
@@ -8,18 +12,18 @@ namespace BMdc
     /// <summary>
     /// A Material Theme text field.
     /// </summary>
-    public partial class TextArea : BMdcBase.InputComponentBase<string>
+    public partial class TextArea : BMdcInputComponentBase<string>
     {
         /// <summary>
         /// The text input style.
         /// </summary>
-        [Parameter] public BMdcModel.TextInputStyle? TextInputStyle { get; set; }
+        [Parameter] public TextInputStyle? TextInputStyle { get; set; }
 
 
         /// <summary>
         /// The text alignment style.
         /// </summary>
-        [Parameter] public BMdcModel.TextAlignStyle? TextAlignStyle { get; set; }
+        [Parameter] public TextAlignStyle? TextAlignStyle { get; set; }
 
 
         /// <summary>

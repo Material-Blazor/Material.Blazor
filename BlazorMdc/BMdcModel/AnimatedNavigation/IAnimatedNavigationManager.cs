@@ -1,4 +1,6 @@
-﻿namespace BMdcPlus
+﻿using BMdcPlus;
+
+namespace BMdcModel
 {
     /// <summary>
     /// Interface for the animated navigation manager service. Animated navigations augment

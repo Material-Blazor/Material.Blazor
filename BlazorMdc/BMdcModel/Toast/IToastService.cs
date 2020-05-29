@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BMdcPlus
+namespace BMdcModel
 {
     /// <summary>
     /// Interface for the BlazorMdc toast service, developed from the code base of Blazored Toast by Chris Sainty.

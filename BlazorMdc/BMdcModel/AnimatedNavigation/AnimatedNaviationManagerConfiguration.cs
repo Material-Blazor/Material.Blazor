@@ -1,4 +1,4 @@
-﻿namespace BMdcPlus
+﻿namespace BMdcModel
 {
     /// <summary>
     /// Configuration for <see cref="IAnimatedNavigationManager"/>.

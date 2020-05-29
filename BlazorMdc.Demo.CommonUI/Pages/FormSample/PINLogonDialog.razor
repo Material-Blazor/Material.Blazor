@@ -133,7 +133,7 @@
 
     public enum ePINDialogStyle { CreatePIN, EnterPIN };
 
-    [Inject] private BMdcPlus.IToastService toastService { get; set; }
+    [Inject] private IToastService toastService { get; set; }
 
     [Parameter] public ePINDialogStyle dialogStyle { get; set; }
     [Parameter] public string validationPIN { get; set; }

@@ -1,5 +1,9 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
+﻿using BMdcBase;
+
+using BMdcModel;
+
+using Microsoft.AspNetCore.Components;
+
 using System;
 using System.Threading;
 
@@ -8,19 +12,19 @@ namespace BMdcPlus
     /// <summary>
     /// A Material Theme debounced text field.
     /// </summary>
-    public partial class DebouncedTextField : BMdcBase.InputComponentBase<string>, IDisposable
+    public partial class DebouncedTextField : BMdcInputComponentBase<string>, IDisposable
     {
 #nullable enable annotations
         /// <summary>
         /// The text input style.
         /// </summary>
-        [Parameter] public BMdcModel.TextInputStyle? TextInputStyle { get; set; }
+        [Parameter] public TextInputStyle? TextInputStyle { get; set; }
 
 
         /// <summary>
         /// The text alignment style.
         /// </summary>
-        [Parameter] public BMdcModel.TextAlignStyle? TextAlignStyle { get; set; }
+        [Parameter] public TextAlignStyle? TextAlignStyle { get; set; }
 
 
         /// <summary>

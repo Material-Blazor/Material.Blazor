@@ -1,5 +1,9 @@
 ﻿using BMdcBase;
+
+using BMdcModel;
+
 using Microsoft.AspNetCore.Components;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +16,13 @@ namespace BMdcPlus
     /// A Material Theme numeric input field. This wraps <see cref="MdcTextField"/> and normally
     /// displays the numeric value as formatted text, but switches to a pure number on being selected.
     /// </summary>
-    public partial class NumericDoubleField : BMdcBase.InputComponentBase<double>
+    public partial class NumericDoubleField : BMdcInputComponentBase<double>
     {
 #nullable enable annotations
         /// <summary>
         /// The text input style.
         /// </summary>
-        [Parameter] public BMdcModel.TextInputStyle? TextInputStyle { get; set; }
+        [Parameter] public TextInputStyle? TextInputStyle { get; set; }
 
 
         /// <summary>
@@ -51,7 +55,7 @@ namespace BMdcPlus
         /// <para><c>IconFoundry="BMdcModel.IconHelper.FAIcon()"</c></para>
         /// <para><c>IconFoundry="BMdcModel.IconHelper.OIIcon()"</c></para>
         /// </summary>
-        [Parameter] public BMdcModel.IIconFoundry? IconFoundry { get; set; }
+        [Parameter] public IIconFoundry? IconFoundry { get; set; }
 
 
         /// <summary>

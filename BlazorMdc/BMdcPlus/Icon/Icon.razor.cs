@@ -1,5 +1,7 @@
 ﻿using BMdcBase;
+
 using BMdcModel;
+
 using Microsoft.AspNetCore.Components;
 
 namespace BMdcPlus
@@ -10,7 +12,7 @@ namespace BMdcPlus
     /// library's CSS, while you can elect whether to include Font Awesome and Open Iconic
     /// in your app.
     /// </summary>
-    public partial class Icon : BMdcBase.ComponentBase
+    public partial class Icon : BMdcComponentBase
     {
 #nullable enable annotations
         /// <summary>
@@ -40,21 +42,19 @@ namespace BMdcPlus
 
 
         /// <inheritdoc/>
-        protected override void OnInitialized()
-        {
-            base.OnInitialized();
-        }
-
-        /// <inheritdoc/>
         protected override void OnParametersSet()
         {
             base.OnParametersSet();
 
-            IconHelper = new BMdcModel.IconHelper(CascadingDefaults, IconName, IconFoundry);
-
+            IconHelper = new IconHelper(CascadingDefaults, IconName, IconFoundry);
             ComponentPureHtmlAttributes = IconHelper.Attributes;
 
+            //
+            // Has to be here, the string in Add/AddIf is evaluated only once at the
+            // time of the add.
+            //
             ClassMapper
+                .Clear()
                 .Add(IconHelper.Class)
                 .AddIf("mdc-tab__icon", () => TabBar);
         }

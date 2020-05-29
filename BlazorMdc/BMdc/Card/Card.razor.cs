@@ -1,6 +1,8 @@
 ﻿using BMdcBase;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System.Threading.Tasks;
 
 namespace BMdc
@@ -8,7 +10,7 @@ namespace BMdc
     /// <summary>
     /// A Material Theme card with three elements: primary, primary action buttons and action icons.
     /// </summary>
-    public partial class Card : BMdcBase.ComponentBase
+    public partial class Card : BMdcComponentBase
     {
         /// <summary>
         /// The card style - see <see cref="BlazorMdc.CardStyle"/>

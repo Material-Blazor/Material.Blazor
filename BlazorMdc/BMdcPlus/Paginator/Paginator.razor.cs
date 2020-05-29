@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BMdcBase;
+
+using Microsoft.AspNetCore.Components;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BMdcPlus
 {
-    public partial class Paginator : BMdcBase.ComponentBase
+    public partial class Paginator : BMdcComponentBase
     {
         /// <summary>
         /// A list of the allowable number of items per page for the

@@ -1,6 +1,8 @@
 ﻿using BMdcBase;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System.Threading.Tasks;
 
 namespace BMdc
@@ -10,7 +12,7 @@ namespace BMdc
     /// and trailing icons and all standard Blazor events. Adds the "mdc-card__action--button" class when 
     /// placed inside an <see cref="BMdc.Card"/>.
     /// </summary>
-    public partial class Button : BMdcBase.ComponentBase
+    public partial class Button : BMdcComponentBase
     {
         [CascadingParameter] private Card Card { get; set; }
 

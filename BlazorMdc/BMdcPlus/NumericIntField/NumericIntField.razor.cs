@@ -1,4 +1,9 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BMdcBase;
+
+using BMdcModel;
+
+using Microsoft.AspNetCore.Components;
+
 using System;
 
 namespace BMdcPlus
@@ -6,13 +11,13 @@ namespace BMdcPlus
     /// <summary>
     /// An integer variant of <see cref="NumericDoubleField"/>.
     /// </summary>
-    public partial class NumericIntField : BMdcBase.InputComponentBase<int>
+    public partial class NumericIntField : BMdcInputComponentBase<int>
     {
 #nullable enable annotations
         /// <summary>
         /// The text input style.
         /// </summary>
-        [Parameter] public BMdcModel.TextInputStyle? TextInputStyle { get; set; }
+        [Parameter] public TextInputStyle? TextInputStyle { get; set; }
 
 
         /// <summary>

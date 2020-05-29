@@ -1,6 +1,8 @@
 ﻿using BMdcBase;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System.Threading.Tasks;
 
 namespace BMdc
@@ -8,7 +10,7 @@ namespace BMdc
     /// <summary>
     /// This is a general purpose Material Theme drawer.
     /// </summary>
-    public partial class Drawer : BMdcBase.ComponentBase
+    public partial class Drawer : BMdcComponentBase
     {
         /// <summary>
         /// The drawer contents.
