@@ -10,7 +10,7 @@ namespace BMdc
     /// <summary>
     /// A Material Theme card with three elements: primary, primary action buttons and action icons.
     /// </summary>
-    public partial class Card : BMdcComponentBase
+    public partial class Card : BMdcBase.ComponentBase
     {
         /// <summary>
         /// The card style - see <see cref="BlazorMdc.CardStyle"/>

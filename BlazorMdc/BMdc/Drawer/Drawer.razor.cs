@@ -10,7 +10,7 @@ namespace BMdc
     /// <summary>
     /// This is a general purpose Material Theme drawer.
     /// </summary>
-    public partial class Drawer : BMdcComponentBase
+    public partial class Drawer : BMdcBase.ComponentBase
     {
         /// <summary>
         /// The drawer contents.

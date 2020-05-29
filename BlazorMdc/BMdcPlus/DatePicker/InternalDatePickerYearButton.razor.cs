@@ -12,7 +12,7 @@ namespace BMdcPlus
     /// <summary>
     /// For BlazorMdc internal use only.
     /// </summary>
-    public partial class InternalDatePickerYearButton : BMdcComponentBase
+    public partial class InternalDatePickerYearButton : BMdcBase.ComponentBase
     {
         /// <summary>
         /// The currently selected year.

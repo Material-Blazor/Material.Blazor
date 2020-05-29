@@ -15,7 +15,7 @@ namespace BMdcPlus
     /// but not surrounding your app bars and navigation menus - you don't want those to fade in and out when
     /// your user navigates from one page to another.
     /// </summary>
-    public partial class AnimatedNavigation: BMdcComponentBase, IDisposable
+    public partial class AnimatedNavigation: BMdcBase.ComponentBase, IDisposable
     {
         [Inject] private IAnimatedNavigationManager AnimatedNavigationManager { get; set; }
         [Inject] private NavigationManager NavigationManager { get; set; }

@@ -16,7 +16,7 @@ namespace BMdcPlus
     /// <summary>
     /// For BlazorMdc internal use only.
     /// </summary>
-    public partial class InternalDatePickerPanel : BMdcInputComponentBase<DateTime>
+    public partial class InternalDatePickerPanel : InputComponentBase<DateTime>
     {
         /// <summary>
         /// Date selection criteria

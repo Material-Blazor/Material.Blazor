@@ -10,7 +10,7 @@ namespace BMdcPlus
     /// <summary>
     /// A group of <see cref="MdcRadioButton{TItem}"/>s displayed horizontally or vertically.
     /// </summary>
-    public partial class RadioButtonGroup<TItem> : BMdcValidatingInputComponentBase<TItem>
+    public partial class RadioButtonGroup<TItem> : ValidatingInputComponentBase<TItem>
     {
         /// <summary>
         /// The item list to be represented as radio buttons

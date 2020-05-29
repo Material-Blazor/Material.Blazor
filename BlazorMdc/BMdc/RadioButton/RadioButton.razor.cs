@@ -10,13 +10,13 @@ namespace BMdc
 {
     /// <summary>
     /// This is a general purpose Material Theme radio button. Accepts a generic class TItem
-    /// and displays as checked if <see cref="BMdcInputComponentBase{T}.Value"/> equals <see cref="TargetCheckedValue"/>.
+    /// and displays as checked if <see cref="InputComponentBase{T}.Value"/> equals <see cref="TargetCheckedValue"/>.
     /// </summary>
-    public partial class RadioButton<TItem> : BMdcInputComponentBase<TItem>
+    public partial class RadioButton<TItem> : InputComponentBase<TItem>
     {
         /// <summary>
-        /// <see cref="BMdcInputComponentBase{T}.Value"/> is set to this when the 
-        /// radio button is clicked. If the consumer sets <see cref="BMdcInputComponentBase{T}.Value"/>
+        /// <see cref="InputComponentBase{T}.Value"/> is set to this when the 
+        /// radio button is clicked. If the consumer sets <see cref="InputComponentBase{T}.Value"/>
         /// to this the radio state will change to checked, or cleared for any other value.
         /// </summary>
         [Parameter] public TItem TargetCheckedValue { get; set; }

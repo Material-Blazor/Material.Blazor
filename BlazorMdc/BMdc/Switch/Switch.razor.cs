@@ -10,7 +10,7 @@ namespace BMdc
     /// <summary>
     /// This is a general purpose Material Theme switch.
     /// </summary>
-    public partial class Switch : BMdcInputComponentBase<bool>
+    public partial class Switch : InputComponentBase<bool>
     {
         /// <summary>
         /// The switch's label

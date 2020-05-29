@@ -14,7 +14,7 @@ namespace BMdcPlus
     /// A date picker styled to match the Material Theme date picker specification, using
     /// a modfied Material Theme select input as also applied in <see cref="MdcSelect{TItem}"/>.
     /// </summary>
-    public partial class DatePicker : BMdcInputComponentBase<DateTime>
+    public partial class DatePicker : InputComponentBase<DateTime>
     {
         /// <summary>
         /// The select style.

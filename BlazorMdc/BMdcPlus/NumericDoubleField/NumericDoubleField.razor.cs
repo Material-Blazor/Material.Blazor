@@ -16,7 +16,7 @@ namespace BMdcPlus
     /// A Material Theme numeric input field. This wraps <see cref="MdcTextField"/> and normally
     /// displays the numeric value as formatted text, but switches to a pure number on being selected.
     /// </summary>
-    public partial class NumericDoubleField : BMdcInputComponentBase<double>
+    public partial class NumericDoubleField : InputComponentBase<double>
     {
 #nullable enable annotations
         /// <summary>

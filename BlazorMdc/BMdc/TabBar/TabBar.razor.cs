@@ -11,7 +11,7 @@ namespace BMdc
     /// <summary>
     /// This is a general purpose Material Theme tab bar.
     /// </summary>
-    public partial class TabBar<TItem> : BMdcComponentBase
+    public partial class TabBar<TItem> : BMdcBase.ComponentBase
     {
         private int _tabIndex;
         /// <summary>

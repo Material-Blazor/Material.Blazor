@@ -11,7 +11,7 @@ namespace BMdc
     /// This is a general purpose Material Theme check box accepting a boolean as a bound value. This
     /// check box does not implement indeteriminate state.
     /// </summary>
-    public partial class Checkbox : BMdcInputComponentBase<bool>
+    public partial class Checkbox : InputComponentBase<bool>
     {
         // <summary>
         /// The check box label.

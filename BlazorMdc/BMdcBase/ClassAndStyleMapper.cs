@@ -9,12 +9,12 @@ using System.Collections.Generic;
 namespace BMdcBase
 {
     /// <summary>
-    /// The definition of BMdcClassAndStyleMapper and BMdcClassAndStyleMapperExtensions
+    /// The definition of ClassAndStyleMapper and ClassAndStyleMapperExtensions
     /// ultimately define a list ofparameterless functions that return a string.
     /// The Func<string> items are enumerated and evaluated when 
     /// one of the ToXXXXString functions is called 
     /// </summary>
-    public class BMdcClassAndStyleMapper
+    public class ClassAndStyleMapper
     {
         public List<Func<string>> Items = new List<Func<string>>();
         public string ToClassString()
@@ -47,19 +47,19 @@ namespace BMdcBase
 
     public static class ClassAndStyleMapperExtensions
     {
-        public static BMdcClassAndStyleMapper Add(this BMdcClassAndStyleMapper m, string name)
+        public static ClassAndStyleMapper Add(this ClassAndStyleMapper m, string name)
         {
             m.Items.Add(() => name);
             return m;
         }
 
-        public static BMdcClassAndStyleMapper AddIf(this BMdcClassAndStyleMapper m, string name, Func<bool> func)
+        public static ClassAndStyleMapper AddIf(this ClassAndStyleMapper m, string name, Func<bool> func)
         {
             m.Items.Add(() => func() ? name : null);
             return m;
         }
 
-        public static BMdcClassAndStyleMapper Clear(this BMdcClassAndStyleMapper m)
+        public static ClassAndStyleMapper Clear(this ClassAndStyleMapper m)
         {
             m.Items.Clear();
             return m;

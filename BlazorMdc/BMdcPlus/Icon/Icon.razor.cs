@@ -12,7 +12,7 @@ namespace BMdcPlus
     /// library's CSS, while you can elect whether to include Font Awesome and Open Iconic
     /// in your app.
     /// </summary>
-    public partial class Icon : BMdcComponentBase
+    public partial class Icon : BMdcBase.ComponentBase
     {
 #nullable enable annotations
         /// <summary>

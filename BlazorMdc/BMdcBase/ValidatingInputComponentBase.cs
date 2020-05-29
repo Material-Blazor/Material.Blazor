@@ -8,7 +8,7 @@ namespace BMdcBase
     /// A DRY inspired abstract class providing <see cref="MdcSelect{TItem}"/> and <see cref="PMdcRadioButtonGroup{TItem}"/> with validation.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class BMdcValidatingInputComponentBase<T> : BMdcBase.BMdcInputComponentBase<T>
+    public abstract class ValidatingInputComponentBase<T> : BMdcBase.InputComponentBase<T>
     {
         // This method was added in the interest of DRY and is used by MdcSelect & PMdcRadioButtonGroup
         /// <summary>
@@ -16,7 +16,7 @@ namespace BMdcBase
         /// </summary>
         /// <param name="items">The item list</param>
         /// <param name="appliedItemValidation">Specification of the required validation <see cref="ItemValidation"/></param>
-        /// <returns>The item in the list matching <see cref="BMdcInputComponentBase{T}._underlyingValue"/></returns>
+        /// <returns>The item in the list matching <see cref="InputComponentBase{T}._underlyingValue"/></returns>
         /// <exception cref="ArgumentException"/>
         public T ValidateItemList(IEnumerable<BMdcModel.ListElement<T>> items, BMdcModel.ItemValidation appliedItemValidation)
         {

@@ -15,7 +15,7 @@ namespace BMdcPlus
     /// An autocomplete built using an <see cref="MdcTextField"/> with the anchor and drop
     /// down list implementation from a Material Theme select.
     /// </summary>
-    public partial class Autocomplete : BMdcInputComponentBase<string>, IDisposable
+    public partial class Autocomplete : InputComponentBase<string>, IDisposable
     {
         private class SelectionInfo
         {

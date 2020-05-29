@@ -11,7 +11,7 @@ namespace BMdc
     /// <summary>
     /// This is a general purpose Material Theme data table.
     /// </summary>
-    public partial class DataTable<TItem> : BMdcComponentBase
+    public partial class DataTable<TItem> : BMdcBase.ComponentBase
     {
         /// <summary>
         /// Data to render in the <see cref="TableRow"/> render fragment.

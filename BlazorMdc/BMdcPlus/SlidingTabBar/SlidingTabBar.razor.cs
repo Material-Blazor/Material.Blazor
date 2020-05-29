@@ -9,7 +9,7 @@ namespace BMdcPlus
     /// beneath showing tabbed content.
     /// </summary>
     /// <typeparam name="TItem"></typeparam>
-    public partial class SlidingTabBar<TItem> : BMdcComponentBase
+    public partial class SlidingTabBar<TItem> : BMdcBase.ComponentBase
     {
         private int _tabIndex;
         /// <summary>

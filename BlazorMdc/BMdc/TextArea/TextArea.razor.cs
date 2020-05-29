@@ -12,7 +12,7 @@ namespace BMdc
     /// <summary>
     /// A Material Theme text field.
     /// </summary>
-    public partial class TextArea : BMdcInputComponentBase<string>
+    public partial class TextArea : InputComponentBase<string>
     {
         /// <summary>
         /// The text input style.

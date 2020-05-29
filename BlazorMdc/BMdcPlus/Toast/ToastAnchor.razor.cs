@@ -16,7 +16,7 @@ namespace BMdcPlus
     /// <see cref="IPmdcToastService.ShowToast(ToastLevel, string, string, ToastCloseMethod?, string, string, IIconFoundry?, bool?, uint?)"/>.
     /// Place this component at the top of either App.razor or MainLayout.razor.
     /// </summary>
-    public partial class ToastAnchor : BMdcComponentBase
+    public partial class ToastAnchor : BMdcBase.ComponentBase
     {
         [Inject] private IToastService ToastService { get; set; }
 

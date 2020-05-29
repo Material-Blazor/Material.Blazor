@@ -12,7 +12,7 @@ namespace BMdc
     /// and trailing icons and all standard Blazor events. Adds the "mdc-card__action--icon" class when 
     /// placed inside an <see cref="BMdc.Card"/>.
     /// </summary>
-    public partial class IconButtonToggle : BMdcInputComponentBase<bool>
+    public partial class IconButtonToggle : InputComponentBase<bool>
     {
         [CascadingParameter] private Card Card { get; set; }
 

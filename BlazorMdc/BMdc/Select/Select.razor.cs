@@ -14,7 +14,7 @@ namespace BMdc
     /// <summary>
     /// A Material Theme select.
     /// </summary>
-    public partial class Select<TItem> : BMdcValidatingInputComponentBase<TItem>, IDialogChild
+    public partial class Select<TItem> : ValidatingInputComponentBase<TItem>, IDialogChild
     {
         /// <summary>
         /// The item list to be represented as a select

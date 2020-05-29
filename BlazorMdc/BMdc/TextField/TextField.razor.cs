@@ -12,7 +12,7 @@ namespace BMdc
     /// <summary>
     /// A Material Theme text field.
     /// </summary>
-    public partial class TextField : BMdcInputComponentBase<string>
+    public partial class TextField : InputComponentBase<string>
     {
 #nullable enable annotations
         /// <summary>

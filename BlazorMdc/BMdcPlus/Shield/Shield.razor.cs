@@ -10,7 +10,7 @@ namespace BMdcPlus
     /// A shield similar to those from shield.io and used in GitHub. Implemented
     /// with HTML rather than SVG.
     /// </summary>
-    public partial class Shield : BMdcComponentBase
+    public partial class Shield : BMdcBase.ComponentBase
     {
 #nullable enable annotations
         /// <summary>

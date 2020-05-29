@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BMdcPlus
 {
-    public partial class Paginator : BMdcComponentBase
+    public partial class Paginator : BMdcBase.ComponentBase
     {
         /// <summary>
         /// A list of the allowable number of items per page for the

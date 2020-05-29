@@ -12,7 +12,7 @@ namespace BMdcBase
     /// [CascadingParameter] EditContext as optional.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class BMdcInputComponentBase<T> : BMdcBase.BMdcComponentBase, BMdcModel.IDialogChild
+    public abstract class InputComponentBase<T> : BMdcBase.ComponentBase, BMdcModel.IDialogChild
     {
         private bool _previousParsingAttemptFailed;
         private ValidationMessageStore _parsingValidationMessages;

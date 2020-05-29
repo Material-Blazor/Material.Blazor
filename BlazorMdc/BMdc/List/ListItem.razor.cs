@@ -7,7 +7,7 @@ namespace BMdc
     /// <summary>
     /// This is a general purpose Material Theme list item.
     /// </summary>
-    public partial class ListItem : BMdcComponentBase
+    public partial class ListItem : BMdcBase.ComponentBase
     {
 #nullable enable annotations
         /// <summary>

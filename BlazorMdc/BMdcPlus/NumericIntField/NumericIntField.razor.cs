@@ -11,7 +11,7 @@ namespace BMdcPlus
     /// <summary>
     /// An integer variant of <see cref="NumericDoubleField"/>.
     /// </summary>
-    public partial class NumericIntField : BMdcInputComponentBase<int>
+    public partial class NumericIntField : InputComponentBase<int>
     {
 #nullable enable annotations
         /// <summary>

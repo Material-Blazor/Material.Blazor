@@ -50,7 +50,7 @@ namespace BMdcBase
         ExcludeEvents = ClassAndStyleOnly | HtmlExcludingClassAndStyle
     }
 
-    public abstract class BMdcComponentBase : Microsoft.AspNetCore.Components.ComponentBase
+    public abstract class ComponentBase : Microsoft.AspNetCore.Components.ComponentBase
     {
         private const string ClassAttrName = "class";
         private const string StyleAttrName = "style";
@@ -102,13 +102,13 @@ namespace BMdcBase
         /// <summary>
         /// Allows a component to build or map out a group of CSS classes to be applied to the component. Use this in <see cref="OnInitialialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
         /// </summary>
-        private protected BMdcClassAndStyleMapper ClassMapper { get; } = new BMdcClassAndStyleMapper();
+        private protected ClassAndStyleMapper ClassMapper { get; } = new ClassAndStyleMapper();
 
 
         /// <summary>
         /// Allows a component to build or map out a group of HTML styles to be applied to the component. Use this in <see cref="OnInitialialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
         /// </summary>
-        private protected BMdcClassAndStyleMapper StyleMapper { get; } = new BMdcClassAndStyleMapper();
+        private protected ClassAndStyleMapper StyleMapper { get; } = new ClassAndStyleMapper();
 
 
         /// <summary>

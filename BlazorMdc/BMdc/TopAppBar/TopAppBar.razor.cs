@@ -12,7 +12,7 @@ namespace BMdc
     /// <summary>
     /// A Material Theme top app bar
     /// </summary>
-    public partial class TopAppBar : BMdcComponentBase
+    public partial class TopAppBar : BMdcBase.ComponentBase
     {
         /// <summary>
         /// App bar title.

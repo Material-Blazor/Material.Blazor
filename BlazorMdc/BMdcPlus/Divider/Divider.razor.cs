@@ -7,7 +7,7 @@ namespace BMdcPlus
     /// <summary>
     /// A Material Theme divider.
     /// </summary>
-    public partial class Divider : BMdcComponentBase
+    public partial class Divider : BMdcBase.ComponentBase
     {
         /// <summary>
         /// Material Theme "mdc-list-divider--inset" if True.

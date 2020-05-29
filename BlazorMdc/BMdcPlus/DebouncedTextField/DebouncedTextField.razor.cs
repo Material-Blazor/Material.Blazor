@@ -12,7 +12,7 @@ namespace BMdcPlus
     /// <summary>
     /// A Material Theme debounced text field.
     /// </summary>
-    public partial class DebouncedTextField : BMdcInputComponentBase<string>, IDisposable
+    public partial class DebouncedTextField : InputComponentBase<string>, IDisposable
     {
 #nullable enable annotations
         /// <summary>

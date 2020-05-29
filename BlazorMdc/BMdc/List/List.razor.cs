@@ -15,7 +15,7 @@ namespace BMdc
     /// standards. It also implements a BlazorMdc interpretation of the specification for a three line
     /// list item.
     /// </summary>
-    public partial class List<TItem> : BMdcComponentBase
+    public partial class List<TItem> : BMdcBase.ComponentBase
     {
         /// <summary>
         /// The list style.
