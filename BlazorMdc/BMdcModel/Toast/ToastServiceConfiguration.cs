@@ -8,10 +8,10 @@ namespace BMdcModel
     /// </summary>
     public class ToastServiceConfiguration
     {
-        public const BMdcModel.ToastPosition DefaultPosition = BMdcModel.ToastPosition.BottomRight;
+        public const eToastPosition DefaultPosition = eToastPosition.BottomRight;
         public const string DefaultCloseButtonIcon = "close";
         public const bool DefaultShowIcons = true;
-        public const BMdcModel.ToastCloseMethod DefaultCloseMethod = BMdcModel.ToastCloseMethod.TimeoutAndCloseButton;
+        public const eToastCloseMethod DefaultCloseMethod = eToastCloseMethod.TimeoutAndCloseButton;
         public const int DefaultTimeout = 3000; 
         public const string DefaultInfoIconName = "notifications";
         public const string DefaultSuccessIconName = "done";
@@ -26,11 +26,11 @@ namespace BMdcModel
         internal event Action OnUpdate;
 
 
-        private BMdcModel.ToastPosition _position = DefaultPosition;
+        private eToastPosition _position = DefaultPosition;
         /// <summary>
         /// Sets the toast's position.
         /// </summary>
-        public BMdcModel.ToastPosition Position
+        public eToastPosition Position
         {
             get => _position;
             set
@@ -80,11 +80,11 @@ namespace BMdcModel
         }
 
 
-        private BMdcModel.ToastCloseMethod _closeMethod = DefaultCloseMethod;
+        private eToastCloseMethod _closeMethod = DefaultCloseMethod;
         /// <summary>
-        /// Determines how the toast closes. Defaults to <see cref="ToastCloseMethod.TimeoutAndCloseButton"/>.
+        /// Determines how the toast closes. Defaults to <see cref="eToastCloseMethod.TimeoutAndCloseButton"/>.
         /// </summary>
-        public BMdcModel.ToastCloseMethod CloseMethod
+        public eToastCloseMethod CloseMethod
         {
             get => _closeMethod;
             set
@@ -100,7 +100,7 @@ namespace BMdcModel
 
         private uint _timeout = DefaultTimeout;
         /// <summary>
-        /// Timeout in milliseconds until the toast automatically closes. Defaults to 3000 and ignored if <see cref="ToastServiceConfiguration.CloseMethod"/> is <see cref="ToastCloseMethod.CloseButton"/>.
+        /// Timeout in milliseconds until the toast automatically closes. Defaults to 3000 and ignored if <see cref="ToastServiceConfiguration.CloseMethod"/> is <see cref="eToastCloseMethod.CloseButton"/>.
         /// </summary>
         public uint Timeout
         {
@@ -278,16 +278,16 @@ namespace BMdcModel
         }
 
 
-        private BMdcModel.IIconFoundry _iconFoundry;
+        private IIconFoundry _iconFoundry;
         /// <summary>
         /// Toast icon foundry.
         /// </summary>
-        public BMdcModel.IIconFoundry IconFoundry
+        public IIconFoundry IconFoundry
         {
             get => _iconFoundry;
             set
             {
-                if (!EqualityComparer< BMdcModel.IIconFoundry >.Default.Equals(value, _iconFoundry))
+                if (!EqualityComparer< IIconFoundry >.Default.Equals(value, _iconFoundry))
                 {
                     _iconFoundry = value;
                     OnUpdate?.Invoke();

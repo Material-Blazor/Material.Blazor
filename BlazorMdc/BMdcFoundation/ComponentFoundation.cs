@@ -1,12 +1,15 @@
 ﻿
+using BMdcModel;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BMdcBase
+namespace BMdcFoundation
 {
     /// <summary>
     /// Determines what attributes to splat from <see cref="SplatAttributes"/>. Can be specified with bitwise or, eg:
@@ -50,7 +53,7 @@ namespace BMdcBase
         ExcludeEvents = ClassAndStyleOnly | HtmlExcludingClassAndStyle
     }
 
-    public abstract class ComponentBase : Microsoft.AspNetCore.Components.ComponentBase
+    public abstract class ComponentFoundation : ComponentBase
     {
         private const string ClassAttrName = "class";
         private const string StyleAttrName = "style";
@@ -64,7 +67,7 @@ namespace BMdcBase
         [Inject] private protected IJSRuntime JsRuntime { get; set; }
 
 
-        [CascadingParameter] protected BMdcModel.CascadingDefaults CascadingDefaults { get; set; } = new BMdcModel.CascadingDefaults();
+        [CascadingParameter] protected CascadingDefaults CascadingDefaults { get; set; } = new CascadingDefaults();
 
 
         /// <summary>

@@ -9,7 +9,7 @@
 <p>See <code>CascadingDefaultsSample.razor</code> for sources.</p>
 
 <h3 class="mdc-typography--headline5" style="margin-top: 4rem;">BlazorMdc default styles</h3>
-<p><BMdc.Select Label="Select" @bind-Value="@selectDefault" Items="items" ItemValidation="@BMdcModel.ItemValidation.NoSelection" /></p>
+<p><BMdc.Select Label="Select" @bind-Value="@selectDefault" Items="items" ItemValidation="@eItemValidation.NoSelection" /></p>
 <p><BMdcPlus.DatePicker Label="Date" @bind-Value="dateDefault" MinDate="min" MaxDate="max" /></p>
 <p><BMdc.TextField Label="Text Field" @bind-Value="textFieldDefault" /></p>
 <p><BMdc.TextArea Label="Text Area" Rows="2" @bind-Value="textAreaDefault" /></p>
@@ -57,14 +57,14 @@
     DateTime max = new DateTime(2078, 12, 31);
 
 
-    BMdcModel.CascadingDefaults defaults1 = new BMdcModel.CascadingDefaults()
+    CascadingDefaults defaults1 = new CascadingDefaults()
     {
-        SelectInputStyle = BMdcModel.SelectInputStyle.Outlined,
-        TextInputStyle = BMdcModel.TextInputStyle.Outlined,
-        ButtonStyle = BMdcModel.ButtonStyle.Outlined,
-        DateSelectionCriteria = BMdcModel.DateSelectionCriteria.WeekdaysOnly,
-        ItemValidation = BMdcModel.ItemValidation.NoSelection,
-        IconMITheme = BMdcModel.IconMITheme.Outlined
+        SelectInputStyle = eSelectInputStyle.Outlined,
+        TextInputStyle = eTextInputStyle.Outlined,
+        ButtonStyle = eButtonStyle.Outlined,
+        DateSelectionCriteria = eDateSelectionCriteria.WeekdaysOnly,
+        ItemValidation = eItemValidation.NoSelection,
+        IconMITheme = eIconMITheme.Outlined
     };
     string selectVariant1;
     string textFieldVariant1;
@@ -72,14 +72,14 @@
     DateTime dateVariant1 = new DateTime(2020, 2, 29);
 
 
-    BMdcModel.CascadingDefaults defaults2 = new BMdcModel.CascadingDefaults()
+    CascadingDefaults defaults2 = new CascadingDefaults()
     {
-        SelectInputStyle = BMdcModel.SelectInputStyle.Filled,
-        TextInputStyle = BMdcModel.TextInputStyle.FullWidth,
-        ButtonStyle = BMdcModel.ButtonStyle.ContainedUnelevated,
-        DateSelectionCriteria = BMdcModel.DateSelectionCriteria.WeekendsOnly,
-        ItemValidation = BMdcModel.ItemValidation.NoSelection,
-        IconMITheme = BMdcModel.IconMITheme.TwoTone
+        SelectInputStyle = eSelectInputStyle.Filled,
+        TextInputStyle = eTextInputStyle.FullWidth,
+        ButtonStyle = eButtonStyle.ContainedUnelevated,
+        DateSelectionCriteria = eDateSelectionCriteria.WeekendsOnly,
+        ItemValidation = eItemValidation.NoSelection,
+        IconMITheme = eIconMITheme.TwoTone
     };
     string selectVariant2;
     string textFieldVariant2;
@@ -87,15 +87,15 @@
     DateTime dateVariant2 = new DateTime(2020, 2, 29);
 
 
-    BMdcModel.CascadingDefaults defaults3 = new BMdcModel.CascadingDefaults()
+    CascadingDefaults defaults3 = new CascadingDefaults()
     {
-        SelectInputStyle = BMdcModel.SelectInputStyle.Outlined,
-        TextInputStyle = BMdcModel.TextInputStyle.Filled,
-        ButtonStyle = BMdcModel.ButtonStyle.ContainedRaised,
-        DateSelectionCriteria = BMdcModel.DateSelectionCriteria.AllowAll,
-        ItemValidation = BMdcModel.ItemValidation.NoSelection,
-        IconFoundryName = BMdcModel.IconFoundryName.FontAwesome,
-        IconFARelativeSize = BMdcModel.IconFARelativeSize.TenTimes
+        SelectInputStyle = eSelectInputStyle.Outlined,
+        TextInputStyle = eTextInputStyle.Filled,
+        ButtonStyle = eButtonStyle.ContainedRaised,
+        DateSelectionCriteria = eDateSelectionCriteria.AllowAll,
+        ItemValidation = eItemValidation.NoSelection,
+        IconFoundryName = eIconFoundryName.FontAwesome,
+        IconFARelativeSize = eIconFARelativeSize.TenTimes
     };
     string selectVariant3;
     string textFieldVariant3;
@@ -104,11 +104,11 @@
 
 
 
-    BMdcModel.ListElement<string>[] items = new BMdcModel.ListElement<string>[]
+    ListElement<string>[] items = new ListElement<string>[]
     {
-        new BMdcModel.ListElement<string> { SelectedValue = "", Label = "" },
-        new BMdcModel.ListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
-        new BMdcModel.ListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
-        new BMdcModel.ListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+        new ListElement<string> { SelectedValue = "", Label = "" },
+        new ListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new ListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new ListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
     };
 }

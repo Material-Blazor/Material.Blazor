@@ -1,4 +1,4 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
 
 using BMdcModel;
 
@@ -13,16 +13,16 @@ namespace BMdcPlus
 {
     /// <summary>
     /// An anchor component that displays toast notification that you display via
-    /// <see cref="IPmdcToastService.ShowToast(ToastLevel, string, string, ToastCloseMethod?, string, string, IIconFoundry?, bool?, uint?)"/>.
+    /// <see cref="IPmdcToastService.ShowToast(eToastLevel, string, string, eToastCloseMethod?, string, string, IIconFoundry?, bool?, uint?)"/>.
     /// Place this component at the top of either App.razor or MainLayout.razor.
     /// </summary>
-    public partial class ToastAnchor : BMdcBase.ComponentBase
+    public partial class ToastAnchor : ComponentFoundation
     {
         [Inject] private IToastService ToastService { get; set; }
 
 
-        private List<BMdcModel.ToastInstance> DisplayedToasts { get; set; } = new List<BMdcModel.ToastInstance>();
-        private Queue<BMdcModel.ToastInstance> PendingToasts { get; set; } = new Queue<BMdcModel.ToastInstance>();
+        private List<ToastInstance> DisplayedToasts { get; set; } = new List<ToastInstance>();
+        private Queue<ToastInstance> PendingToasts { get; set; } = new Queue<ToastInstance>();
         private string PositionClass => $"bmdc-toast__{ToastService.Configuration.Position.ToString().ToLower()}";
 
 
@@ -37,7 +37,7 @@ namespace BMdcPlus
         }
 
 
-        private void AddToast(BMdcModel.ToastLevel level, BMdcModel.ToastSettings settings)
+        private void AddToast(eToastLevel level, ToastSettings settings)
         {
             InvokeAsync(async () =>
             {
@@ -80,7 +80,7 @@ namespace BMdcPlus
 
         private void FlushPendingToasts()
         {
-            bool FlushNext() => PendingToasts.Count() > 0 && (ToastService.Configuration.MaxToastsShowing <= 0 || DisplayedToasts.Where(t => t.Settings.Status != BMdcModel.ToastStatus.Hide).Count() < ToastService.Configuration.MaxToastsShowing);
+            bool FlushNext() => PendingToasts.Count() > 0 && (ToastService.Configuration.MaxToastsShowing <= 0 || DisplayedToasts.Where(t => t.Settings.Status != ToastStatus.Hide).Count() < ToastService.Configuration.MaxToastsShowing);
 
             while (FlushNext())
             {
@@ -88,7 +88,7 @@ namespace BMdcPlus
 
                 DisplayedToasts.Add(toastInstance);
 
-                if (toastInstance.Settings.AppliedCloseMethod != ToastCloseMethod.CloseButton)
+                if (toastInstance.Settings.AppliedCloseMethod != eToastCloseMethod.CloseButton)
                 {
                     InvokeAsync(() =>
                     {

@@ -21,7 +21,7 @@ namespace BlazorMdc.Demo.Blazor
                 new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             // The configuration is optional
-            builder.Services.AddToastService(new BMdcModel.ToastServiceConfiguration()
+            builder.Services.AddToastService(new ToastServiceConfiguration()
             {
                 InfoDefaultHeading = "Info",
                 SuccessDefaultHeading = "Success",

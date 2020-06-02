@@ -26,11 +26,11 @@
         <BMdcPlus.RadioButtonGroup @bind-Value="@radioButtonResult1"
                               Items="stringItems"
                               Vertical="true"
-                              ItemValidation="@BMdcModel.ItemValidation.DefaultToFirst" />
+                              ItemValidation="@eItemValidation.DefaultToFirst" />
     </Body>
     <Buttons>
         <BMdc.Button Label="Orange" DialogAction="orange"></BMdc.Button>
-        <BMdc.Button Label="Apple" DialogAction="apple" ButtonStyle="@BMdcModel.ButtonStyle.Text"></BMdc.Button>
+        <BMdc.Button Label="Apple" DialogAction="apple" ButtonStyle="@eButtonStyle.Text"></BMdc.Button>
     </Buttons>
 </BMdc.Dialog>
 
@@ -60,12 +60,12 @@
     <UnconfirmedButtons>
         <BMdc.Button Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
         <BMdc.Button Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
-        <BMdc.Button Label="Bosh" LeadingIcon="sports_handball" Disabled="true" DialogAction="bosh" ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
+        <BMdc.Button Label="Bosh" LeadingIcon="sports_handball" Disabled="true" DialogAction="bosh" ButtonStyle="eButtonStyle.ContainedRaised" />
     </UnconfirmedButtons>
     <ConfirmedButtons>
         <BMdc.Button Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
         <BMdc.Button Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
-        <BMdc.Button Label="Bosh" LeadingIcon="sports_handball" DialogAction="bosh" ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
+        <BMdc.Button Label="Bosh" LeadingIcon="sports_handball" DialogAction="bosh" ButtonStyle="eButtonStyle.ContainedRaised" />
     </ConfirmedButtons>
 </BMdcPlus.ConfirmationDialog>
 
@@ -84,7 +84,7 @@
     </Body>
     <Buttons>
         <BMdc.Button Label="Orange" @onclick="orangeClick"></BMdc.Button>
-        <BMdc.Button Label="Apple" @onclick="appleClick" ButtonStyle="@BMdcModel.ButtonStyle.Text"></BMdc.Button>
+        <BMdc.Button Label="Apple" @onclick="appleClick" ButtonStyle="@eButtonStyle.Text"></BMdc.Button>
     </Buttons>
 </BMdc.Dialog>
 
@@ -97,11 +97,11 @@
            OverflowVisible="true">
     <Body>
         <p>Set the date.</p>
-        <BMdcPlus.DatePicker Label="The date" @bind-Value="@date5" SelectInputStyle="BMdcModel.SelectInputStyle.Outlined" MinDate="minDate" MaxDate="maxDate"></BMdcPlus.DatePicker>
+        <BMdcPlus.DatePicker Label="The date" @bind-Value="@date5" SelectInputStyle="eSelectInputStyle.Outlined" MinDate="minDate" MaxDate="maxDate"></BMdcPlus.DatePicker>
     </Body>
     <Buttons>
         <BMdc.Button Label="Orange" DialogAction="orange"></BMdc.Button>
-        <BMdc.Button Label="Apple" DialogAction="apple" ButtonStyle="@BMdcModel.ButtonStyle.Text"></BMdc.Button>
+        <BMdc.Button Label="Apple" DialogAction="apple" ButtonStyle="@eButtonStyle.Text"></BMdc.Button>
     </Buttons>
 </BMdc.Dialog>
 
@@ -115,7 +115,7 @@
                         OverflowVisible="true">
     <Body>
         <p>Set the date.</p>
-        <BMdcPlus.DatePicker Label="The date" @bind-Value="@date6" SelectInputStyle="BMdcModel.SelectInputStyle.Outlined" MinDate="minDate" MaxDate="maxDate"></BMdcPlus.DatePicker>
+        <BMdcPlus.DatePicker Label="The date" @bind-Value="@date6" SelectInputStyle="eSelectInputStyle.Outlined" MinDate="minDate" MaxDate="maxDate"></BMdcPlus.DatePicker>
     </Body>
 </BMdcPlus.ConfirmationDialog>
 
@@ -138,11 +138,11 @@
         result1 = await dialog1.ShowAsync();
     }
 
-    BMdcModel.ListElement<string>[] stringItems = new BMdcModel.ListElement<string>[]
+    ListElement<string>[] stringItems = new ListElement<string>[]
 {
-        new BMdcModel.ListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
-        new BMdcModel.ListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
-        new BMdcModel.ListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+        new ListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new ListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new ListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
  };
 
     BMdcPlus.ConfirmationDialog dialog2;

@@ -5,7 +5,7 @@ namespace BMdcModel
     /// <summary>
     /// Material Icons icon.
     /// </summary>
-    internal class IconMI : BMdcModel.IIcon
+    internal class IconMI : IIcon
     {
         /// <inheritdoc />
         public string Class
@@ -14,11 +14,11 @@ namespace BMdcModel
             {
                 return "material-icons" + Theme switch
                 {
-                    BMdcModel.IconMITheme.Filled => "",
-                    BMdcModel.IconMITheme.Outlined => "-outlined",
-                    BMdcModel.IconMITheme.Round => "-round",
-                    BMdcModel.IconMITheme.TwoTone => "-two-tone",
-                    BMdcModel.IconMITheme.Sharp => "-sharp",
+                    eIconMITheme.Filled => "",
+                    eIconMITheme.Outlined => "-outlined",
+                    eIconMITheme.Round => "-round",
+                    eIconMITheme.TwoTone => "-two-tone",
+                    eIconMITheme.Sharp => "-sharp",
                     _ => throw new System.NotImplementedException(),
                 };
             }
@@ -39,13 +39,13 @@ namespace BMdcModel
 
 
         /// <inheritdoc />
-        public bool RequiresColorFilter => Theme == BMdcModel.IconMITheme.TwoTone;
+        public bool RequiresColorFilter => Theme == eIconMITheme.TwoTone;
 
 
         /// <summary>
         /// The Material Icons theme.
         /// </summary>
-        public BMdcModel.IconMITheme Theme { get; }
+        public eIconMITheme Theme { get; }
 
 
 #nullable enable annotations

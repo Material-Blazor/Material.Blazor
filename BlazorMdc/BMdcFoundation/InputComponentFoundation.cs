@@ -1,18 +1,21 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BMdcModel;
+
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
-namespace BMdcBase
+namespace BMdcFoundation
 {
     /// <summary>
     /// This is like InputBase from Microsoft.AspNetCore.Components.Forms, except that it treats
     /// [CascadingParameter] EditContext as optional.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class InputComponentBase<T> : BMdcBase.ComponentBase, BMdcModel.IDialogChild
+    public abstract class InputComponentFoundation<T> : ComponentFoundation, IDialogChild
     {
         private bool _previousParsingAttemptFailed;
         private ValidationMessageStore _parsingValidationMessages;
@@ -23,7 +26,7 @@ namespace BMdcBase
 
         [CascadingParameter] private EditContext CascadedEditContext { get; set; }
 
-        [CascadingParameter] private BMdcModel.IDialog Dialog { get; set; }
+        [CascadingParameter] private IDialog Dialog { get; set; }
 
 
         /// <summary>
@@ -276,7 +279,7 @@ namespace BMdcBase
 
 
         /// <inheritdoc/>
-        void BMdcModel.IDialogChild.RequestInstantiation()
+        void IDialogChild.RequestInstantiation()
         {
             _instantiate = true;
             AllowNextRender = true;
@@ -290,7 +293,7 @@ namespace BMdcBase
 
 
         /// <summary>
-        /// BlazorMdc components descending from MdcInputComponentBase _*must not*_ override ShouldRender().
+        /// BlazorMdc components descending from MdcInputComponentFoundation _*must not*_ override ShouldRender().
         /// </summary>
         protected override bool ShouldRender()
         {
@@ -305,7 +308,7 @@ namespace BMdcBase
 
 
         /// <summary>
-        /// BlazorMdc components descending from MdcInputComponentBase _*must not*_ override OnAfterRenderAsync(bool).
+        /// BlazorMdc components descending from MdcInputComponentFoundation _*must not*_ override OnAfterRenderAsync(bool).
         /// </summary>
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {

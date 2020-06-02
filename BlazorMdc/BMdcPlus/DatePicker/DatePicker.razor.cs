@@ -1,4 +1,4 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
 
 using BMdcModel;
 
@@ -14,12 +14,12 @@ namespace BMdcPlus
     /// A date picker styled to match the Material Theme date picker specification, using
     /// a modfied Material Theme select input as also applied in <see cref="MdcSelect{TItem}"/>.
     /// </summary>
-    public partial class DatePicker : InputComponentBase<DateTime>
+    public partial class DatePicker : InputComponentFoundation<DateTime>
     {
         /// <summary>
         /// The select style.
         /// </summary>
-        [Parameter] public SelectInputStyle? SelectInputStyle { get; set; }
+        [Parameter] public eSelectInputStyle? SelectInputStyle { get; set; }
 
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace BMdcPlus
         /// <summary>
         /// Date selection criteria
         /// </summary>
-        [Parameter] public DateSelectionCriteria? DateSelectionCriteria { get; set; }
+        [Parameter] public eDateSelectionCriteria? DateSelectionCriteria { get; set; }
 
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace BMdcPlus
 
         private InternalDatePickerPanel Panel { get; set; }
 
-        private SelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
+        private eSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
 
         private bool IsOpen { get; set; } = false;
 
@@ -66,7 +66,7 @@ namespace BMdcPlus
 
             ClassMapper
                 .Add("mdc-select")
-                .AddIf("mdc-select--outlined", () => (AppliedInputStyle == BMdcModel.SelectInputStyle.Outlined))
+                .AddIf("mdc-select--outlined", () => AppliedInputStyle == eSelectInputStyle.Outlined)
                 .AddIf("mdc-select--disabled", () => Disabled);
         }
 

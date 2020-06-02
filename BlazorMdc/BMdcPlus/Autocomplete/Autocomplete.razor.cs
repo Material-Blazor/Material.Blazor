@@ -1,4 +1,6 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
+
+using BMdcModel;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
@@ -15,7 +17,7 @@ namespace BMdcPlus
     /// An autocomplete built using an <see cref="MdcTextField"/> with the anchor and drop
     /// down list implementation from a Material Theme select.
     /// </summary>
-    public partial class Autocomplete : InputComponentBase<string>, IDisposable
+    public partial class Autocomplete : InputComponentFoundation<string>, IDisposable
     {
         private class SelectionInfo
         {
@@ -38,13 +40,13 @@ namespace BMdcPlus
         /// <summary>
         /// The text input style.
         /// </summary>
-        [Parameter] public BMdcModel.TextInputStyle? TextInputStyle { get; set; }
+        [Parameter] public eTextInputStyle? TextInputStyle { get; set; }
 
 
         /// <summary>
         /// The text alignment style.
         /// </summary>
-        [Parameter] public BMdcModel.TextAlignStyle? TextAlignStyle { get; set; }
+        [Parameter] public eTextAlignStyle? TextAlignStyle { get; set; }
 
 
         /// <summary>
@@ -73,11 +75,11 @@ namespace BMdcPlus
 
         /// <summary>
         /// The foundry to use for both leading and trailing icons.
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.MIIcon()"</c></para>
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.FAIcon()"</c></para>
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.OIIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
         /// </summary>
-        [Parameter] public BMdcModel.IIconFoundry? IconFoundry { get; set; }
+        [Parameter] public IIconFoundry? IconFoundry { get; set; }
 
 
         /// <summary>

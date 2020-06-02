@@ -1,4 +1,4 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
 
 using BMdcPlus;
 
@@ -7,24 +7,24 @@ using System;
 namespace BMdcModel
 {
     /// <summary>
-    /// The internal implementation of <see cref="BMdcModel.IToastService"/>.
+    /// The internal implementation of <see cref="IToastService"/>.
     /// </summary>
     internal class ToastService : IToastService
     {
         ///<inheritdoc/>
-        public BMdcModel.ToastServiceConfiguration Configuration { get; set; } = new BMdcModel.ToastServiceConfiguration();
+        public ToastServiceConfiguration Configuration { get; set; } = new ToastServiceConfiguration();
 
-        private event Action<BMdcModel.ToastLevel, BMdcModel.ToastSettings> OnAdd;
+        private event Action<eToastLevel, ToastSettings> OnAdd;
 
         ///<inheritdoc/>
-        event Action<BMdcModel.ToastLevel, BMdcModel.ToastSettings> IToastService.OnAdd
+        event Action<eToastLevel, ToastSettings> IToastService.OnAdd
         {
             add => OnAdd += value;
             remove => OnAdd -= value;
         }
 
 
-        public ToastService(BMdcModel.ToastServiceConfiguration configuration)
+        public ToastService(ToastServiceConfiguration configuration)
         {
             Configuration = configuration;
         }
@@ -32,18 +32,18 @@ namespace BMdcModel
         ///<inheritdoc/>
 #nullable enable annotations
         public void ShowToast(
-            BMdcModel.ToastLevel level,
+            eToastLevel level,
             string message,
             string heading = null,
-            BMdcModel.ToastCloseMethod? closeMethod = null,
+            eToastCloseMethod? closeMethod = null,
             string cssClass = null,
             string iconName = null,
-            BMdcModel.IIconFoundry? iconFoundry = null,
+            IIconFoundry? iconFoundry = null,
             bool? showIcon = null,
             uint? timeout = null)
 #nullable restore annotations
         {
-            var settings = new BMdcModel.ToastSettings()
+            var settings = new ToastSettings()
             {
                 Message = message,
                 Heading = heading,

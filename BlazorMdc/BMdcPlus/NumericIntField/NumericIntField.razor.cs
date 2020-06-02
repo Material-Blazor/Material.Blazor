@@ -1,4 +1,4 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
 
 using BMdcModel;
 
@@ -11,13 +11,13 @@ namespace BMdcPlus
     /// <summary>
     /// An integer variant of <see cref="NumericDoubleField"/>.
     /// </summary>
-    public partial class NumericIntField : InputComponentBase<int>
+    public partial class NumericIntField : InputComponentFoundation<int>
     {
 #nullable enable annotations
         /// <summary>
         /// The text input style.
         /// </summary>
-        [Parameter] public TextInputStyle? TextInputStyle { get; set; }
+        [Parameter] public eTextInputStyle? TextInputStyle { get; set; }
 
 
         /// <summary>
@@ -46,11 +46,11 @@ namespace BMdcPlus
 
         /// <summary>
         /// The foundry to use for both leading and trailing icons.
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.MIIcon()"</c></para>
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.FAIcon()"</c></para>
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.OIIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
         /// </summary>
-        [Parameter] public BMdcModel.IIconFoundry? IconFoundry { get; set; }
+        [Parameter] public IIconFoundry? IconFoundry { get; set; }
 
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace BMdcPlus
         /// percentages and basis points (the latter of which lacks appropriate Numeric Format in C#:
         /// this issue may not get solved.
         /// </summary>
-        [Parameter] public BMdcModel.NumericInputMagnitude Magnitude { get; set; } = BMdcModel.NumericInputMagnitude.Normal;
+        [Parameter] public eNumericInputMagnitude Magnitude { get; set; } = eNumericInputMagnitude.Normal;
 
 
         /// <summary>

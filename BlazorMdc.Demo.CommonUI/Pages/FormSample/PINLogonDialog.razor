@@ -1,9 +1,9 @@
 ﻿@namespace BlazorMdc.Demo
 
 <BMdc.Dialog Title=@dialogHeader
-           EscapeKeyAction=""
-           ScrimClickAction=""
-           @ref="pinLogonDialogReference">
+             EscapeKeyAction=""
+             ScrimClickAction=""
+             @ref="pinLogonDialogReference">
 
     <Body>
         @if (dialogStyle == ePINDialogStyle.CreatePIN)
@@ -13,25 +13,27 @@
             <BMdcPlus.Divider Padded="true" />
         }
 
-        <EditForm Model="@pinLogonDTO" OnValidSubmit="@SubmitLogon">
+        <EditForm Model="@pinLogonDTO"
+                  OnValidSubmit="@SubmitLogon">
+
             <DataAnnotationsValidator />
 
             @if (dialogStyle == ePINDialogStyle.CreatePIN)
             {
                 <div class="form-group">
                     <BMdc.TextField @bind-Value="pinLogonDTO.PIN1"
-                                  @onfocus="@(() => FocusPIN("PIN1"))"
-                                  Label="New PIN"
-                                  TrailingIcon="lock_outline"
-                                  type="password" />
+                                    @onfocus="@(() => FocusPIN("PIN1"))"
+                                    Label="New PIN"
+                                    TrailingIcon="lock_outline"
+                                    type="password" />
                     <ValidationMessage For=@( () => pinLogonDTO.PIN1 ) />
                 </div>
                 <div class="form-group">
                     <BMdc.TextField @bind-Value="pinLogonDTO.PIN2"
-                                  @onfocus="@(() => FocusPIN("PIN2"))"
-                                  Label="Verify PIN"
-                                  TrailingIcon="lock_outline"
-                                  type="password" />
+                                    @onfocus="@(() => FocusPIN("PIN2"))"
+                                    Label="Verify PIN"
+                                    TrailingIcon="lock_outline"
+                                    type="password" />
                     <ValidationMessage For=@( () => pinLogonDTO.PIN2 ) />
                 </div>
             }
@@ -39,10 +41,10 @@
             {
                 <div class="form-group">
                     <BMdc.TextField @bind-Value="pinLogonDTO.PIN1"
-                                  @onfocus="@(() => FocusPIN("PIN1"))"
-                                  Label="PIN"
-                                  TrailingIcon="lock_outline"
-                                  type="password" />
+                                    @onfocus="@(() => FocusPIN("PIN1"))"
+                                    Label="PIN"
+                                    TrailingIcon="lock_outline"
+                                    type="password" />
                     <ValidationMessage For=@( () => pinLogonDTO.PIN1 ) />
                 </div>
             }
@@ -50,76 +52,76 @@
                 <div style="display: flex; flex-direction:column; justify-content:flex-start;">
                     <div style="display:flex; flex-direction: row; justify-content: center;">
                         <BMdc.Button Label="7"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
-                                   @onclick="@(() => NumberClick("7"))"
-                                   ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
+                                     Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                     @onclick="@(() => NumberClick("7"))"
+                                     ButtonStyle="eButtonStyle.ContainedRaised" />
                         <BMdc.Button Label="8"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
-                                   @onclick="@(() => NumberClick("8"))"
-                                   ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
+                                     Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                     @onclick="@(() => NumberClick("8"))"
+                                     ButtonStyle="eButtonStyle.ContainedRaised" />
                         <BMdc.Button Label="9"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
-                                   @onclick="@(() => NumberClick("9"))"
-                                   ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
+                                     Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                     @onclick="@(() => NumberClick("9"))"
+                                     ButtonStyle="eButtonStyle.ContainedRaised" />
                     </div>
                     <div style="display:flex; flex-direction: row; justify-content: center;">
                         <BMdc.Button Label="4"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
-                                   @onclick="@(() => NumberClick("4"))"
-                                   ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
+                                     Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                     @onclick="@(() => NumberClick("4"))"
+                                     ButtonStyle="eButtonStyle.ContainedRaised" />
                         <BMdc.Button Label="5"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
-                                   @onclick="@(() => NumberClick("5"))"
-                                   ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
+                                     Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                     @onclick="@(() => NumberClick("5"))"
+                                     ButtonStyle="eButtonStyle.ContainedRaised" />
                         <BMdc.Button Label="6"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
-                                   @onclick="@(() => NumberClick("6"))"
-                                   ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
+                                     Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                     @onclick="@(() => NumberClick("6"))"
+                                     ButtonStyle="eButtonStyle.ContainedRaised" />
                     </div>
                     <div style="display:flex; flex-direction: row; justify-content: center;">
                         <BMdc.Button Label="1"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
-                                   @onclick="@(() => NumberClick("1"))"
-                                   ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
+                                     Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                     @onclick="@(() => NumberClick("1"))"
+                                     ButtonStyle="eButtonStyle.ContainedRaised" />
                         <BMdc.Button Label="2"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
-                                   @onclick="@(() => NumberClick("2"))"
-                                   ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
+                                     Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                     @onclick="@(() => NumberClick("2"))"
+                                     ButtonStyle="eButtonStyle.ContainedRaised" />
                         <BMdc.Button Label="3"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
-                                   @onclick="@(() => NumberClick("3"))"
-                                   ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
+                                     Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                     @onclick="@(() => NumberClick("3"))"
+                                     ButtonStyle="eButtonStyle.ContainedRaised" />
                     </div>
                     <div style="display:flex; flex-direction: row; justify-content: center;">
                         <BMdc.Button Label="0"
-                                   Style="margin: 0.75em 0.75em 0.25em 0.25em; height: 2rem; width: 2rem;"
-                                   @onclick="@(() => NumberClick("0"))"
-                                   ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
+                                     Style="margin: 0.75em 0.75em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                     @onclick="@(() => NumberClick("0"))"
+                                     ButtonStyle="eButtonStyle.ContainedRaised" />
                         <BMdc.Button Label="Backspace"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; min-width: 128px;"
-                                   @onclick="@(() => NumberClick("BKS"))"
-                                   ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
+                                     Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; min-width: 128px;"
+                                     @onclick="@(() => NumberClick("BKS"))"
+                                     ButtonStyle="eButtonStyle.ContainedRaised" />
                     </div>
 
                     <div style="display:flex; flex-direction: row; justify-content: center;">
                         @if (dialogStyle == ePINDialogStyle.CreatePIN)
                         {
                             <BMdc.Button Style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                                       type="submit"
-                                       Label="Create PIN"
-                                       ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
+                                         type="submit"
+                                         Label="Create PIN"
+                                         ButtonStyle="eButtonStyle.ContainedRaised" />
                         }
                         else
                         {
                             <BMdc.Button Style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                                       type="submit"
-                                       Label="Enter PIN"
-                                       ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised"/>
+                                         type="submit"
+                                         Label="Enter PIN"
+                                         ButtonStyle="eButtonStyle.ContainedRaised" />
                         }
                         <BMdc.Button @onclick="@CancelClick"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                                   Label="Cancel"
-                                   ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
+                                     Style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                     Label="Cancel"
+                                     ButtonStyle="eButtonStyle.ContainedRaised" />
                     </div>
                 </div>
             </div>
@@ -179,7 +181,7 @@
                 returnValue = "<Log on succeeded>";
 
                 toastService.ShowToast(
-                    level: BMdcModel.ToastLevel.Success,
+                    level: eToastLevel.Success,
                     message: "Log on succeeded");
 
                 await pinLogonDialogReference.HideAsync();
@@ -187,7 +189,7 @@
             else
             {
                 toastService.ShowToast(
-                    level: BMdcModel.ToastLevel.Error,
+                    level: eToastLevel.Error,
                     message: "Log on failed");
             }
         }
@@ -198,7 +200,7 @@
                 returnValue = "<PIN created with a value of '" + pinLogonDTO.PIN1.ToString() + "'>";
 
                 toastService.ShowToast(
-                    level: BMdcModel.ToastLevel.Success,
+                    level: eToastLevel.Success,
                     message: "<PIN creation succeeded>");
 
                 await pinLogonDialogReference.HideAsync();
@@ -206,7 +208,7 @@
             else
             {
                 toastService.ShowToast(
-                    level: BMdcModel.ToastLevel.Error,
+                    level: eToastLevel.Error,
                     message: "PINs do not match");
             }
         }

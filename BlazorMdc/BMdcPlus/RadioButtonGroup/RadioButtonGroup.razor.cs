@@ -1,4 +1,4 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
 using BMdcModel;
 using Microsoft.AspNetCore.Components;
 
@@ -10,7 +10,7 @@ namespace BMdcPlus
     /// <summary>
     /// A group of <see cref="MdcRadioButton{TItem}"/>s displayed horizontally or vertically.
     /// </summary>
-    public partial class RadioButtonGroup<TItem> : ValidatingInputComponentBase<TItem>
+    public partial class RadioButtonGroup<TItem> : ValidatingInputComponentFoundation<TItem>
     {
         /// <summary>
         /// The item list to be represented as radio buttons
@@ -29,7 +29,7 @@ namespace BMdcPlus
         /// a value outside the <see cref="Items"/> list, replace it with the first list item or
         /// to throw an exception (the default).
         /// </summary>
-        [Parameter] public ItemValidation? ItemValidation { get; set; }
+        [Parameter] public eItemValidation? ItemValidation { get; set; }
 
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace BMdcPlus
 
             ItemArray = Items.ToArray();
 
-            ItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidationRadioButtonGroup(ItemValidation);
+            eItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidationRadioButtonGroup(ItemValidation);
 
             ForceShouldRenderToTrue = true;
 

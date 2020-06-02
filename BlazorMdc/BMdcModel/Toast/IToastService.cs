@@ -9,7 +9,7 @@ namespace BMdcModel
     /// 
     /// <para>
     /// Throws a <see cref="System.InvalidOperationException"/> if
-    /// <see cref="ShowToast(ToastLevel, string, string, ToastCloseMethod?, string, string, IIconFoundry?, bool?, uint?)"/>
+    /// <see cref="ShowToast(eToastLevel, string, string, eToastCloseMethod?, string, string, IIconFoundry?, bool?, uint?)"/>
     /// is called without a <see cref="PMdcToastAnchor"/> component used in the app.
     /// </para>
     /// <example>
@@ -29,12 +29,12 @@ namespace BMdcModel
         /// <summary>
         /// Toast service configuration
         /// </summary>
-        public BMdcModel.ToastServiceConfiguration Configuration { get; set; }
+        public ToastServiceConfiguration Configuration { get; set; }
 
         /// <summary>
         /// A event that will be invoked when showing a toast
         /// </summary>
-        internal event Action<BMdcModel.ToastLevel, BMdcModel.ToastSettings> OnAdd;
+        internal event Action<eToastLevel, ToastSettings> OnAdd;
 
         /// <summary>
         /// Shows a toast using the supplied settings
@@ -49,13 +49,13 @@ namespace BMdcModel
         /// <param name="timeout">Length of time before autodismiss</param>
 #nullable enable annotations
         void ShowToast(
-            BMdcModel.ToastLevel level,
+            eToastLevel level,
             string message,
             string heading = null,
-            BMdcModel.ToastCloseMethod? closeMethod = null,
+            eToastCloseMethod? closeMethod = null,
             string cssClass = null,
             string iconName = null,
-            BMdcModel.IIconFoundry? iconFoundry = null,
+            IIconFoundry? iconFoundry = null,
             bool? showIcon = null,
             uint? timeout = null);
 #nullable restore annotations

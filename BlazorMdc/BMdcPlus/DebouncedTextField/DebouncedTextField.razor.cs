@@ -1,4 +1,4 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
 
 using BMdcModel;
 
@@ -12,19 +12,19 @@ namespace BMdcPlus
     /// <summary>
     /// A Material Theme debounced text field.
     /// </summary>
-    public partial class DebouncedTextField : InputComponentBase<string>, IDisposable
+    public partial class DebouncedTextField : InputComponentFoundation<string>, IDisposable
     {
 #nullable enable annotations
         /// <summary>
         /// The text input style.
         /// </summary>
-        [Parameter] public TextInputStyle? TextInputStyle { get; set; }
+        [Parameter] public eTextInputStyle? TextInputStyle { get; set; }
 
 
         /// <summary>
         /// The text alignment style.
         /// </summary>
-        [Parameter] public TextAlignStyle? TextAlignStyle { get; set; }
+        [Parameter] public eTextAlignStyle? TextAlignStyle { get; set; }
 
 
         /// <summary>
@@ -53,11 +53,11 @@ namespace BMdcPlus
 
         /// <summary>
         /// The foundry to use for both leading and trailing icons.
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.MIIcon()"</c></para>
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.FAIcon()"</c></para>
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.OIIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
         /// </summary>
-        [Parameter] public BMdcModel.IIconFoundry? IconFoundry { get; set; }
+        [Parameter] public IIconFoundry? IconFoundry { get; set; }
 
 
         /// <summary>

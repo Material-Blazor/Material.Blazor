@@ -8,6 +8,6 @@
         /// <summary>
         /// The foundry's name.
         /// </summary>
-        internal BMdcModel.IconFoundryName FoundryName { get;}
+        internal eIconFoundryName FoundryName { get;}
     }
 }

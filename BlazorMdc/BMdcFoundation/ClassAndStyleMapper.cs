@@ -6,7 +6,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace BMdcBase
+namespace BMdcFoundation
 {
     /// <summary>
     /// The definition of ClassAndStyleMapper and ClassAndStyleMapperExtensions

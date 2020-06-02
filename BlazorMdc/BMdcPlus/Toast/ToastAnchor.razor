@@ -1,5 +1,5 @@
 ﻿@namespace BMdcPlus
-@inherits BMdcBase.ComponentBase
+@inherits ComponentFoundation
 
 
 @if (DisplayedToasts.Any())
@@ -13,7 +13,7 @@
 
                 @if (toast.Settings.AppliedShowIcon)
                 {
-                    var iconHelper = new BMdcModel.IconHelper(null, toast.Settings.AppliedIconName, toast.Settings.AppliedIconFoundry);
+                    var iconHelper = new IconHelper(null, toast.Settings.AppliedIconName, toast.Settings.AppliedIconFoundry);
                     var filterClass = iconHelper.RequiresColorFilter ? toast.Settings.IconFilterClass : "";
 
                     <div class="bmdc-toast-icon @filterClass">
@@ -27,9 +27,9 @@
                             <h5 class="mdc-typography--subtitle1">@((MarkupString)toast.Settings.AppliedHeading)</h5>
                         </div>
 
-                        @if (toast.Settings.CloseMethod != BMdcModel.ToastCloseMethod.Timeout)
+                        @if (toast.Settings.CloseMethod != eToastCloseMethod.Timeout)
                         {
-                            <BMdc.Button @onclick="@(() => CloseToast(toastId))" LeadingIcon="close" ButtonStyle="@BMdcModel.ButtonStyle.Text" Class="bmdc-toast-close-button" />
+                            <BMdc.Button @onclick="@(() => CloseToast(toastId))" LeadingIcon="close" ButtonStyle="@eButtonStyle.Text" Class="bmdc-toast-close-button" />
                         }
                     </div>
 

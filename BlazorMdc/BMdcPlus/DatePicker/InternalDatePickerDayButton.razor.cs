@@ -1,4 +1,6 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
+
+using BMdcModel;
 
 using Microsoft.AspNetCore.Components;
 
@@ -10,7 +12,7 @@ namespace BMdcPlus
     /// <summary>
     /// For BlazorMdc internal use only.
     /// </summary>
-    public partial class InternalDatePickerDayButton : BMdcBase.ComponentBase
+    public partial class InternalDatePickerDayButton : ComponentFoundation
     {
         /// <summary>
         /// The currently selected date.
@@ -39,7 +41,7 @@ namespace BMdcPlus
         /// <summary>
         /// Date selection criteria
         /// </summary>
-        [Parameter] public BMdcModel.DateSelectionCriteria? DateSelectionCriteria { get; set; }
+        [Parameter] public eDateSelectionCriteria? DateSelectionCriteria { get; set; }
 
 
         /// <summary>
@@ -55,7 +57,7 @@ namespace BMdcPlus
 
 
         private string Day => DisplayDate.Day.ToString();
-        private BMdcModel.ButtonStyle ButtonStyle => (DisplayDate == CurrentDate) ? BMdcModel.ButtonStyle.ContainedUnelevated : BMdcModel.ButtonStyle.Text;
+        private eButtonStyle ButtonStyle => (DisplayDate == CurrentDate) ? eButtonStyle.ContainedUnelevated : eButtonStyle.Text;
 
         
         private bool ButtonDisabled
@@ -71,14 +73,14 @@ namespace BMdcPlus
 
                 switch (criteria)
                 {
-                    case BMdcModel.DateSelectionCriteria.WeekendsOnly:
+                    case eDateSelectionCriteria.WeekendsOnly:
                         if ((DisplayDate.DayOfWeek != DayOfWeek.Sunday) && (DisplayDate.DayOfWeek != DayOfWeek.Saturday))
                         {
                             return true;
                         }
                         break;
 
-                    case BMdcModel.DateSelectionCriteria.WeekdaysOnly:
+                    case eDateSelectionCriteria.WeekdaysOnly:
                         if ((DisplayDate.DayOfWeek == DayOfWeek.Sunday) || (DisplayDate.DayOfWeek == DayOfWeek.Saturday))
                         {
                             return true;

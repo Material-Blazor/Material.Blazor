@@ -27,8 +27,8 @@
 
 @code {
     
-    IEnumerable<BMdcModel.ListElement<BMdcModel.TopAppBarType>> appBarTypes => from c in (BMdcModel.TopAppBarType[])Enum.GetValues(typeof(BMdcModel.TopAppBarType))
-                                                                 select new BMdcModel.ListElement<BMdcModel.TopAppBarType>
+    IEnumerable<ListElement<eTopAppBarType>> appBarTypes => from c in (eTopAppBarType[])Enum.GetValues(typeof(eTopAppBarType))
+                                                                 select new ListElement<eTopAppBarType>
                                                                  {
                                                                      SelectedValue = c,
                                                                      Label = c.ToString(),

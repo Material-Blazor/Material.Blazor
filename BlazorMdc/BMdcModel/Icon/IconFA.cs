@@ -5,7 +5,7 @@ namespace BMdcModel
     /// <summary>
     /// Font Awesome icon.
     /// </summary>
-    internal class IconFA : BMdcModel.IIcon
+    internal class IconFA : IIcon
     {
         /// <inheritdoc />
         public string Class => $"fa{IconStyleText} {IconNameText}";
@@ -31,13 +31,13 @@ namespace BMdcModel
         /// <summary>
         /// The Font Awesome style.
         /// </summary>
-        public BMdcModel.IconFAStyle Style { get; }
+        public eIconFAStyle Style { get; }
 
 
         /// <summary>
         /// The Font Awesome relative size.
         /// </summary>
-        public BMdcModel.IconFARelativeSize RelativeSize { get; }
+        public eIconFARelativeSize RelativeSize { get; }
 
 
         private string IconStyleText => Style.ToString().Substring(0, 1).ToLower();
@@ -48,15 +48,15 @@ namespace BMdcModel
             {
                 return IconName.ToLower() + RelativeSize switch
                 {
-                    BMdcModel.IconFARelativeSize.Regular => "",
-                    BMdcModel.IconFARelativeSize.ExtraSmall => " fa-xs",
-                    BMdcModel.IconFARelativeSize.Small => " fa-sm",
-                    BMdcModel.IconFARelativeSize.Large => " fa-lg",
-                    BMdcModel.IconFARelativeSize.TwoTimes => " fa-2x",
-                    BMdcModel.IconFARelativeSize.ThreeTimes => " fa-3x",
-                    BMdcModel.IconFARelativeSize.FiveTimes => " fa-5x",
-                    BMdcModel.IconFARelativeSize.SevenTimes => " fa-7x",
-                    BMdcModel.IconFARelativeSize.TenTimes => " fa-10x",
+                    eIconFARelativeSize.Regular => "",
+                    eIconFARelativeSize.ExtraSmall => " fa-xs",
+                    eIconFARelativeSize.Small => " fa-sm",
+                    eIconFARelativeSize.Large => " fa-lg",
+                    eIconFARelativeSize.TwoTimes => " fa-2x",
+                    eIconFARelativeSize.ThreeTimes => " fa-3x",
+                    eIconFARelativeSize.FiveTimes => " fa-5x",
+                    eIconFARelativeSize.SevenTimes => " fa-7x",
+                    eIconFARelativeSize.TenTimes => " fa-10x",
                     _ => throw new System.NotImplementedException(),
                 };
             }

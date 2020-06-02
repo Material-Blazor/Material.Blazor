@@ -1,4 +1,4 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
 
 using BMdcModel;
 
@@ -16,12 +16,12 @@ namespace BMdcPlus
     /// <summary>
     /// For BlazorMdc internal use only.
     /// </summary>
-    public partial class InternalDatePickerPanel : InputComponentBase<DateTime>
+    public partial class InternalDatePickerPanel : InputComponentFoundation<DateTime>
     {
         /// <summary>
         /// Date selection criteria
         /// </summary>
-        [Parameter] public DateSelectionCriteria? DateSelectionCriteria { get; set; }
+        [Parameter] public eDateSelectionCriteria? DateSelectionCriteria { get; set; }
 
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace BMdcPlus
 
         private DateTime CachedMaxDate { get; set; }
 
-        private string CachedReportingValueText => BMdcBase.Utilities.DateToString(CachedReportingValue);
+        private string CachedReportingValueText => BMdcFoundation.Utilities.DateToString(CachedReportingValue);
 
         private int MonthsOffset { get; set; } = 0;
 
@@ -86,9 +86,9 @@ namespace BMdcPlus
         private bool IsFirstParametersSet { get; set; } = true;
 
 
-        private readonly string currentYearId = BMdcBase.Utilities.GenerateUniqueElementName();
+        private readonly string currentYearId = BMdcFoundation.Utilities.GenerateUniqueElementName();
 
-        private readonly BMdcModel.IIconFoundry foundry = BMdcModel.IconHelper.MIFoundry(BMdcModel.IconMITheme.Filled);
+        private readonly IIconFoundry foundry = IconHelper.MIFoundry(eIconMITheme.Filled);
 
 
         /// <inheritdoc/>

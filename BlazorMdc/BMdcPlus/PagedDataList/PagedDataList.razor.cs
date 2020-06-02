@@ -1,4 +1,4 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
 
 using Microsoft.AspNetCore.Components;
 
@@ -13,7 +13,7 @@ namespace BMdcPlus
     /// A paged data list using the "wig pig" construct allowing the consumer to free render the relevant paged data.
     /// </summary>
     /// <typeparam name="TItem"></typeparam>
-    public partial class PagedDataList<TItem> : BMdcBase.ComponentBase
+    public partial class PagedDataList<TItem> : ComponentFoundation
     {
         /// <summary>
         /// A CSS class to apply to the div surrounding the paged data.

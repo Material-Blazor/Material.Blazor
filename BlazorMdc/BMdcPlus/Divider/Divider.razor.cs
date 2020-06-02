@@ -1,4 +1,4 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
 
 using Microsoft.AspNetCore.Components;
 
@@ -7,7 +7,7 @@ namespace BMdcPlus
     /// <summary>
     /// A Material Theme divider.
     /// </summary>
-    public partial class Divider : BMdcBase.ComponentBase
+    public partial class Divider : ComponentFoundation
     {
         /// <summary>
         /// Material Theme "mdc-list-divider--inset" if True.

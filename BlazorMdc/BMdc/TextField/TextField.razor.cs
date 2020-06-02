@@ -1,4 +1,4 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
 
 using BMdcModel;
 
@@ -12,19 +12,19 @@ namespace BMdc
     /// <summary>
     /// A Material Theme text field.
     /// </summary>
-    public partial class TextField : InputComponentBase<string>
+    public partial class TextField : InputComponentFoundation<string>
     {
 #nullable enable annotations
         /// <summary>
         /// The text input style.
         /// </summary>
-        [Parameter] public TextInputStyle? TextInputStyle { get; set; }
+        [Parameter] public eTextInputStyle? TextInputStyle { get; set; }
 
 
         /// <summary>
         /// The text alignment style.
         /// </summary>
-        [Parameter] public TextAlignStyle? TextAlignStyle { get; set; }
+        [Parameter] public eTextAlignStyle? TextAlignStyle { get; set; }
 
 
         /// <summary>
@@ -53,15 +53,15 @@ namespace BMdc
 
         /// <summary>
         /// The foundry to use for both leading and trailing icons.
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.MIIcon()"</c></para>
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.FAIcon()"</c></para>
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.OIIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
         /// </summary>
         [Parameter] public IIconFoundry? IconFoundry { get; set; }
 #nullable restore annotations
 
 
-        private BMdcModel.TextInputStyle AppliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
+        private eTextInputStyle AppliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
         
         internal ElementReference TextFieldReference { get; set; }
         
@@ -81,16 +81,16 @@ namespace BMdc
             ClassMapper
                 .Add("mdc-text-field")
                 .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
-                .AddIf("mdc-text-field--filled", () => AppliedTextInputStyle == BMdcModel.TextInputStyle.Filled)
-                .AddIf("mdc-text-field--outlined", () => AppliedTextInputStyle == BMdcModel.TextInputStyle.Outlined)
-                .AddIf("mdc-text-field--filled mdc-text-field--fullwidth", () => AppliedTextInputStyle == BMdcModel.TextInputStyle.FullWidth)
+                .AddIf("mdc-text-field--filled", () => AppliedTextInputStyle == eTextInputStyle.Filled)
+                .AddIf("mdc-text-field--outlined", () => AppliedTextInputStyle == eTextInputStyle.Outlined)
+                .AddIf("mdc-text-field--filled mdc-text-field--fullwidth", () => AppliedTextInputStyle == eTextInputStyle.FullWidth)
                 .AddIf("mdc-text-field--no-label", () => NoLabel)
                 .AddIf("mdc-text-field--disabled", () => Disabled)
                 .AddIf("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
                 .AddIf("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
 
 
-            if (!NoLabel && AppliedTextInputStyle != BMdcModel.TextInputStyle.FullWidth)
+            if (!NoLabel && AppliedTextInputStyle != eTextInputStyle.FullWidth)
             {
                 ComponentPureHtmlAttributes.Add("aria-labelledby", labelId);
             }

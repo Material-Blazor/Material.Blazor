@@ -11,23 +11,23 @@
 <p><BMdc.Switch @bind-Value="@hideLineThree" Label="Hide line three" /></p>
 
 <BMdc.List Items="@displayedProducts"
-         Context="product"
-         ShowSeparators="true"
-         KeyboardInteractions="true"
-         Ripple="true"
-         AvatarList="true"
-         Dense="@dense"
-         HideLineTwo="@hideLineTwo"
-         HideLineThree="@hideLineThree"
-         OnClick="OnClick"
-         ListStyle="@BMdcModel.ListStyle.Outlined">
+           Context="product"
+           ShowSeparators="true"
+           KeyboardInteractions="true"
+           Ripple="true"
+           AvatarList="true"
+           Dense="@dense"
+           HideLineTwo="@hideLineTwo"
+           HideLineThree="@hideLineThree"
+           OnClick="OnClick"
+           ListStyle="@eListStyle.Outlined">
 
     <Icon>shop</Icon>
     <Title>@product.DisplayName</Title>
     <Actions>
         <div style="width: 10rem">
             <BMdc.Switch @bind-Value="@product.IsInStock"
-                       Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
+                         Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
         </div>
     </Actions>
 </BMdc.List>
@@ -35,16 +35,16 @@
 <p></p>
 
 <BMdc.List Items="@displayedProducts"
-         Context="product"
-         ShowSeparators="true"
-         KeyboardInteractions="true"
-         Ripple="true"
-         AvatarList="true"
-         Dense="@dense"
-         HideLineTwo="@hideLineTwo"
-         HideLineThree="@hideLineThree"
-         OnClick="OnClick"
-         ListStyle="@BMdcModel.ListStyle.Outlined">
+           Context="product"
+           ShowSeparators="true"
+           KeyboardInteractions="true"
+           Ripple="true"
+           AvatarList="true"
+           Dense="@dense"
+           HideLineTwo="@hideLineTwo"
+           HideLineThree="@hideLineThree"
+           OnClick="OnClick"
+           ListStyle="@eListStyle.Outlined">
 
     <Icon>shop</Icon>
     <Title>@product.DisplayName</Title>
@@ -52,7 +52,7 @@
     <Actions>
         <div style="width: 10rem">
             <BMdc.Switch @bind-Value="@product.IsInStock"
-                       Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
+                         Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
         </div>
     </Actions>
 </BMdc.List>
@@ -60,16 +60,16 @@
 <p></p>
 
 <BMdc.List Items="@displayedProducts"
-         Context="product"
-         ShowSeparators="true"
-         KeyboardInteractions="true"
-         Ripple="true"
-         AvatarList="true"
-         Dense="@dense"
-         HideLineTwo="@hideLineTwo"
-         HideLineThree="@hideLineThree"
-         OnClick="OnClick"
-         ListStyle="@BMdcModel.ListStyle.Outlined">
+           Context="product"
+           ShowSeparators="true"
+           KeyboardInteractions="true"
+           Ripple="true"
+           AvatarList="true"
+           Dense="@dense"
+           HideLineTwo="@hideLineTwo"
+           HideLineThree="@hideLineThree"
+           OnClick="OnClick"
+           ListStyle="@eListStyle.Outlined">
 
     <Icon>shop</Icon>
     <Title>@product.DisplayName</Title>
@@ -78,7 +78,7 @@
     <Actions>
         <div style="width: 10rem">
             <BMdc.Switch @bind-Value="@product.IsInStock"
-                       Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
+                         Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
         </div>
     </Actions>
 </BMdc.List>

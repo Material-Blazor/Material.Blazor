@@ -1,4 +1,4 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
 
 using BMdcModel;
 
@@ -14,12 +14,12 @@ namespace BMdc
     /// <summary>
     /// A Material Theme select.
     /// </summary>
-    public partial class Select<TItem> : ValidatingInputComponentBase<TItem>, IDialogChild
+    public partial class Select<TItem> : ValidatingInputComponentFoundation<TItem>, IDialogChild
     {
         /// <summary>
         /// The item list to be represented as a select
         /// </summary>
-        [Parameter] public IEnumerable<BMdcModel.ListElement<TItem>> Items { get; set; }
+        [Parameter] public IEnumerable<ListElement<TItem>> Items { get; set; }
 
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace BMdc
         /// a value outside the <see cref="Items"/> list, replace it with the first list item or
         /// to throw an exception (the default).
         /// </summary>
-        [Parameter] public BMdcModel.ItemValidation? ItemValidation { get; set; }
+        [Parameter] public eItemValidation? ItemValidation { get; set; }
 
 
         /// <summary>
@@ -39,25 +39,25 @@ namespace BMdc
         /// <summary>
         /// The select's <see cref="BlazorMdc.SelectInputStyle"/>.
         /// </summary>
-        [Parameter] public BMdcModel.SelectInputStyle? SelectInputStyle { get; set; }
+        [Parameter] public eSelectInputStyle? SelectInputStyle { get; set; }
 
 
         /// <summary>
         /// The select's <see cref="BlazorMdc.TextAlignStyle"/>.
         /// </summary>
-        [Parameter] public BMdcModel.TextAlignStyle? TextAlignStyle { get; set; }
+        [Parameter] public eTextAlignStyle? TextAlignStyle { get; set; }
 
 
         private ElementReference SelectReference { get; set; }
         private ElementReference ListboxReference { get; set; }
         private ElementReference UlReference { get; set; }
-        private BMdcModel.SelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
-        private string SelectedTextId { get; set; } = BMdcBase.Utilities.GenerateUniqueElementName();
-        private string LabelId { get; set; } = BMdcBase.Utilities.GenerateUniqueElementName();
+        private eSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
+        private string SelectedTextId { get; set; } = BMdcFoundation.Utilities.GenerateUniqueElementName();
+        private string LabelId { get; set; } = BMdcFoundation.Utilities.GenerateUniqueElementName();
         private string SelectedText { get; set; } = "";
         private string FloatingLabelClass { get; set; } = "";
-        private string AlignClass => BMdcBase.Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
-        private Dictionary<TItem, BMdcModel.ListElement<TItem>> ItemDict { get; set; }
+        private string AlignClass => BMdcFoundation.Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
+        private Dictionary<TItem, ListElement<TItem>> ItemDict { get; set; }
 
 
         /// <inheritdoc/>
@@ -71,7 +71,7 @@ namespace BMdc
 
             ClassMapper
                 .Add("mdc-select")
-                .AddIf("mdc-select--outlined", () => AppliedInputStyle == BMdcModel.SelectInputStyle.Outlined)
+                .AddIf("mdc-select--outlined", () => AppliedInputStyle == eSelectInputStyle.Outlined)
                 .AddIf("mdc-select--disabled", () => Disabled);
 
             SelectedText = (Value is null) ? "" : Items.Where(i => object.Equals(i.SelectedValue, Value)).FirstOrDefault().Label;

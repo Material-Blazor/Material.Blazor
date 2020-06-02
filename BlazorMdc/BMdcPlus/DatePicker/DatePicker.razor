@@ -1,12 +1,12 @@
 ﻿@namespace BMdcPlus
-@inherits InputComponentBase<DateTime>
+@inherits InputComponentFoundation<DateTime>
 
 
 <div @ref="ElementReference"
      @attributes="@AttributesToSplat()" >
 
     <div class="mdc-select__anchor">
-        @if (AppliedInputStyle == BMdcModel.SelectInputStyle.Filled)
+        @if (AppliedInputStyle == eSelectInputStyle.Filled)
         {
             <span class="mdc-select__ripple"></span>
         }
@@ -14,7 +14,7 @@
         <input type="text" disabled readonly class="mdc-select__selected-text">
         <i class="mdc-select__dropdown-icon"></i>
 
-        @if (AppliedInputStyle == BMdcModel.SelectInputStyle.Outlined)
+        @if (AppliedInputStyle == eSelectInputStyle.Outlined)
         {
             <span class="mdc-notched-outline">
                 <span class="mdc-notched-outline__leading"></span>

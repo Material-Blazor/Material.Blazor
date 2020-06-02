@@ -1,4 +1,4 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
 
 using BMdcModel;
 
@@ -12,7 +12,7 @@ namespace BMdcPlus
     /// library's CSS, while you can elect whether to include Font Awesome and Open Iconic
     /// in your app.
     /// </summary>
-    public partial class Icon : BMdcBase.ComponentBase
+    public partial class Icon : ComponentFoundation
     {
 #nullable enable annotations
         /// <summary>
@@ -23,11 +23,11 @@ namespace BMdcPlus
 
         /// <summary>
         /// The foundry.
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.MIIcon()"</c></para>
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.FAIcon()"</c></para>
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.OIIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
         /// </summary>
-        [Parameter] public BMdcModel.IIconFoundry? IconFoundry { get; set; }
+        [Parameter] public IIconFoundry? IconFoundry { get; set; }
 
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace BMdcPlus
 #nullable restore annotations
 
 
-        private BMdcModel.IconHelper IconHelper { get; set; }
+        private IconHelper IconHelper { get; set; }
 
 
         /// <inheritdoc/>

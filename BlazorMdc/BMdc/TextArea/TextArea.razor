@@ -1,11 +1,11 @@
 ﻿@namespace BMdc
-@inherits InputComponentBase<string>
+@inherits InputComponentFoundation<string>
 
 
 <div @ref="ElementReference"
-     @attributes="@AttributesToSplat(BMdcBase.SplatType.ClassAndStyleOnly)">
+     @attributes="@AttributesToSplat(SplatType.ClassAndStyleOnly)">
     
-    @if (AppliedTextInputStyle == BMdcModel.TextInputStyle.Filled || AppliedTextInputStyle == BMdcModel.TextInputStyle.FullWidth)
+    @if (AppliedTextInputStyle == eTextInputStyle.Filled || AppliedTextInputStyle == eTextInputStyle.FullWidth)
     {
         <div class="mdc-text-field__ripple"></div>
     }
@@ -17,9 +17,9 @@
               rows="@Rows"
               cols="@Cols"
               disabled="@Disabled"
-              @attributes="@AttributesToSplat(BMdcBase.SplatType.ExcludeClassAndStyle)" />
+              @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)" />
 
-    @if (AppliedTextInputStyle == BMdcModel.TextInputStyle.Outlined)
+    @if (AppliedTextInputStyle == eTextInputStyle.Outlined)
     {
         <div class="mdc-notched-outline">
             <div class="mdc-notched-outline__leading"></div>
@@ -31,7 +31,7 @@
     }
     else
     {
-        @if (AppliedTextInputStyle == BMdcModel.TextInputStyle.Filled)
+        @if (AppliedTextInputStyle == eTextInputStyle.Filled)
         {
             <label class="mdc-floating-label @FloatingLabelClass" for="@id" id="@labelId">@Label</label>
         }

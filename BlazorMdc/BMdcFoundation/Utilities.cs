@@ -1,7 +1,9 @@
-﻿using System;
+﻿using BMdcModel;
+
+using System;
 using System.Text.RegularExpressions;
 
-namespace BMdcBase
+namespace BMdcFoundation
 {
     internal static class Utilities
     {
@@ -34,14 +36,14 @@ namespace BMdcBase
         /// Returns a BlazorMdc CSS class 
         /// </summary>
         /// <param name="textaAlign"></param>
-        /// <returns><c>bmdc-align-left</c>, <c>...center</c> or <c>...right</c> unless the value is <see cref="TextAlignStyle.Default"/> returning a blank string.</returns>
-        public static string GetTextAlignClass(BMdcModel.TextAlignStyle textaAlign)
+        /// <returns><c>bmdc-align-left</c>, <c>...center</c> or <c>...right</c> unless the value is <see cref="eTextAlignStyle.Default"/> returning a blank string.</returns>
+        public static string GetTextAlignClass(eTextAlignStyle textaAlign)
         {
             return textaAlign switch
             {
-                BMdcModel.TextAlignStyle.Left => " bmdc-align-left",
-                BMdcModel.TextAlignStyle.Center => " bmdc-align-center",
-                BMdcModel.TextAlignStyle.Right => " bmdc-align-right",
+                eTextAlignStyle.Left => " bmdc-align-left",
+                eTextAlignStyle.Center => " bmdc-align-center",
+                eTextAlignStyle.Right => " bmdc-align-right",
                 _ => "",
             };
         }

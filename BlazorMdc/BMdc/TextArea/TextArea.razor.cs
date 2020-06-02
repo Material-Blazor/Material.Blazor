@@ -1,4 +1,4 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
 
 using BMdcModel;
 
@@ -12,18 +12,18 @@ namespace BMdc
     /// <summary>
     /// A Material Theme text field.
     /// </summary>
-    public partial class TextArea : InputComponentBase<string>
+    public partial class TextArea : InputComponentFoundation<string>
     {
         /// <summary>
         /// The text input style.
         /// </summary>
-        [Parameter] public TextInputStyle? TextInputStyle { get; set; }
+        [Parameter] public eTextInputStyle? TextInputStyle { get; set; }
 
 
         /// <summary>
         /// The text alignment style.
         /// </summary>
-        [Parameter] public TextAlignStyle? TextAlignStyle { get; set; }
+        [Parameter] public eTextAlignStyle? TextAlignStyle { get; set; }
 
 
         /// <summary>
@@ -51,12 +51,12 @@ namespace BMdc
 
 
         private ElementReference ElementReference { get; set; }
-        private BMdcModel.TextInputStyle AppliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
-        private string AppliedTextInputStyleClass => BMdcBase.Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
+        private eTextInputStyle AppliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
+        private string AppliedTextInputStyleClass => BMdcFoundation.Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
         private string FloatingLabelClass { get; set; }
 
-        private readonly string id = BMdcBase.Utilities.GenerateUniqueElementName();
-        private readonly string labelId = BMdcBase.Utilities.GenerateUniqueElementName();
+        private readonly string id = BMdcFoundation.Utilities.GenerateUniqueElementName();
+        private readonly string labelId = BMdcFoundation.Utilities.GenerateUniqueElementName();
 
 
         /// <inheritdoc/>
@@ -67,8 +67,8 @@ namespace BMdc
             ClassMapper
                 .Add("mdc-text-field mdc-text-field--textarea")
                 .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
-                .AddIf("mdc-text-field--outlined", () => (AppliedTextInputStyle == BMdcModel.TextInputStyle.Outlined))
-                .AddIf("mdc-text-field--fullwidth", () => (AppliedTextInputStyle == BMdcModel.TextInputStyle.FullWidth))
+                .AddIf("mdc-text-field--outlined", () => AppliedTextInputStyle == eTextInputStyle.Outlined)
+                .AddIf("mdc-text-field--fullwidth", () => (AppliedTextInputStyle == eTextInputStyle.FullWidth))
                 .AddIf("mdc-text-field--no-label", () => NoLabel)
                 .AddIf("mdc-text-field--disabled", () => Disabled);
 

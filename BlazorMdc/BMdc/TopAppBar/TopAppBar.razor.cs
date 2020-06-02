@@ -1,4 +1,4 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
 
 using BMdcModel;
 
@@ -12,7 +12,7 @@ namespace BMdc
     /// <summary>
     /// A Material Theme top app bar
     /// </summary>
-    public partial class TopAppBar : BMdcBase.ComponentBase
+    public partial class TopAppBar : ComponentFoundation
     {
         /// <summary>
         /// App bar title.
@@ -28,9 +28,9 @@ namespace BMdc
 
         /// <summary>
         /// The foundry to use for both leading and trailing icons.
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.MIIcon()"</c></para>
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.FAIcon()"</c></para>
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.OIIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
         /// </summary>
         [Parameter] public IIconFoundry IconFoundry { get; set; }
 
@@ -50,7 +50,7 @@ namespace BMdc
         /// <summary>
         /// Top app bar type. See <see cref="BlazorMdc.TopAppBarType"/>
         /// </summary>
-        [Parameter] public TopAppBarType TopAppBarType { get; set; } = TopAppBarType.Standard;
+        [Parameter] public eTopAppBarType TopAppBarType { get; set; } = eTopAppBarType.Standard;
 
         
         private ElementReference HeaderElem { get; set; }
@@ -63,8 +63,8 @@ namespace BMdc
 
             ClassMapper
                 .Add("mdc-top-app-bar")
-                .AddIf($"mdc-top-app-bar--{TopAppBarType.ToString().ToLower()}", () => TopAppBarType != BMdcModel.TopAppBarType.Standard && TopAppBarType != BMdcModel.TopAppBarType.ShortCollapsed)
-                .AddIf($"mdc-top-app-bar--short mdc-top-app-bar--short-collapsed", () => TopAppBarType == BMdcModel.TopAppBarType.ShortCollapsed)
+                .AddIf($"mdc-top-app-bar--{TopAppBarType.ToString().ToLower()}", () => TopAppBarType != eTopAppBarType.Standard && TopAppBarType != eTopAppBarType.ShortCollapsed)
+                .AddIf($"mdc-top-app-bar--short mdc-top-app-bar--short-collapsed", () => TopAppBarType == eTopAppBarType.ShortCollapsed)
                 .Add("app-bar");
         }
 

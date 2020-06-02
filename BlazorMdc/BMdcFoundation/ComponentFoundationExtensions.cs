@@ -7,9 +7,9 @@ using Microsoft.AspNetCore.Components;
 
 using System.Collections.Generic;
 
-namespace BMdcBase
+namespace BMdcFoundation
 {
-    public static class ComponentBaseExtensions
+    public static class ComponentFoundationExtensions
     {
         public static bool ParameterIsChanged<T>(this Microsoft.AspNetCore.Components.ComponentBase cmp, ParameterView parameters,
             string parameterName, T value)

@@ -5,7 +5,7 @@ namespace BMdcModel
     /// <summary>
     /// Open Iconic icon.
     /// </summary>
-    internal class IconOI : BMdcModel.IIcon
+    internal class IconOI : IIcon
     {
         /// <inheritdoc />
         public string Class => "oi";
@@ -30,7 +30,7 @@ namespace BMdcModel
 
 #nullable enable annotations
 #pragma warning disable IDE0060 // Remove unused parameter
-        public IconOI(BMdcModel.CascadingDefaults cascadingDefaults, string iconName, IconFoundryOI? foundry = null)
+        public IconOI(CascadingDefaults cascadingDefaults, string iconName, IconFoundryOI? foundry = null)
         {
             IconName = iconName;
 

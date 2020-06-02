@@ -1,24 +1,26 @@
-﻿using System;
+﻿using BMdcModel;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BMdcBase
+namespace BMdcFoundation
 {
     /// <summary>
     /// A DRY inspired abstract class providing <see cref="MdcSelect{TItem}"/> and <see cref="PMdcRadioButtonGroup{TItem}"/> with validation.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class ValidatingInputComponentBase<T> : BMdcBase.InputComponentBase<T>
+    public abstract class ValidatingInputComponentFoundation<T> : BMdcFoundation.InputComponentFoundation<T>
     {
         // This method was added in the interest of DRY and is used by MdcSelect & PMdcRadioButtonGroup
         /// <summary>
         /// Validates the item list against the validation specification.
         /// </summary>
         /// <param name="items">The item list</param>
-        /// <param name="appliedItemValidation">Specification of the required validation <see cref="ItemValidation"/></param>
-        /// <returns>The item in the list matching <see cref="InputComponentBase{T}._underlyingValue"/></returns>
+        /// <param name="appliedItemValidation">Specification of the required validation <see cref="eItemValidation"/></param>
+        /// <returns>The item in the list matching <see cref="InputComponentFoundation{T}._underlyingValue"/></returns>
         /// <exception cref="ArgumentException"/>
-        public T ValidateItemList(IEnumerable<BMdcModel.ListElement<T>> items, BMdcModel.ItemValidation appliedItemValidation)
+        public T ValidateItemList(IEnumerable<ListElement<T>> items, eItemValidation appliedItemValidation)
         {
             var componentName = Utilities.GetTypeName(GetType());
             
@@ -35,11 +37,11 @@ namespace BMdcBase
             {
                 switch (appliedItemValidation)
                 {
-                    case BMdcModel.ItemValidation.DefaultToFirst:
+                    case eItemValidation.DefaultToFirst:
                         var firstOrDefault = items.FirstOrDefault().SelectedValue;
                         return firstOrDefault;
 
-                    case BMdcModel.ItemValidation.Exception:
+                    case eItemValidation.Exception:
                         string itemList = "{ ";
                         string prepend = "";
 
@@ -53,7 +55,7 @@ namespace BMdcBase
 
                         throw new ArgumentException(componentName + $" cannot select item with data value of '{Value?.ToString()}' from {itemList}");
 
-                    case BMdcModel.ItemValidation.NoSelection:
+                    case eItemValidation.NoSelection:
                         return default;
                 }
             }

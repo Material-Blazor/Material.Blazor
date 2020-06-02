@@ -1,4 +1,4 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
@@ -10,7 +10,7 @@ namespace BMdc
     /// <summary>
     /// This is a general purpose Material Theme switch.
     /// </summary>
-    public partial class Switch : InputComponentBase<bool>
+    public partial class Switch : InputComponentFoundation<bool>
     {
         /// <summary>
         /// The switch's label

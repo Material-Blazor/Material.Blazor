@@ -10,22 +10,22 @@ namespace BMdcModel
     public class IconFoundryFA : IIconFoundry
     {
         /// <inheritdoc/>
-        BMdcModel.IconFoundryName IIconFoundry.FoundryName => BMdcModel.IconFoundryName.FontAwesome;
+        eIconFoundryName IIconFoundry.FoundryName => eIconFoundryName.FontAwesome;
 
         
         /// <summary>
         /// The Font Awesome style.
         /// </summary>
-        public BMdcModel.IconFAStyle? Style { get; }
+        public eIconFAStyle? Style { get; }
 
 
         /// <summary>
         /// The Font Awesome relative size.
         /// </summary>
-        public BMdcModel.IconFARelativeSize? RelativeSize { get; }
+        public eIconFARelativeSize? RelativeSize { get; }
 
 
-        public IconFoundryFA(BMdcModel.IconFAStyle? style = null, BMdcModel.IconFARelativeSize? relativesize = null)
+        public IconFoundryFA(eIconFAStyle? style = null, eIconFARelativeSize? relativesize = null)
         {
             Style = style;
             RelativeSize = relativesize;

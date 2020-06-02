@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using BMdcModel;
 
 namespace BlazorMdc.Demo
 {
     public class DemoConfiguration
     {
-        public BMdcModel.TopAppBarType TopAppBarType { get; set; } = BMdcModel.TopAppBarType.Dense;
+        public eTopAppBarType TopAppBarType { get; set; } = eTopAppBarType.Dense;
     }
 }

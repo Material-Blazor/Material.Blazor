@@ -1,4 +1,4 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
 
 using BMdcModel;
 
@@ -15,12 +15,12 @@ namespace BMdc
     /// standards. It also implements a BlazorMdc interpretation of the specification for a three line
     /// list item.
     /// </summary>
-    public partial class List<TItem> : BMdcBase.ComponentBase
+    public partial class List<TItem> : ComponentFoundation
     {
         /// <summary>
         /// The list style.
         /// </summary>
-        [Parameter] public ListStyle? ListStyle { get; set; }
+        [Parameter] public eListStyle? ListStyle { get; set; }
 
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace BMdc
         {
             ClassMapper
                 .Add("mdc-list")
-                .AddIf("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(ListStyle) == BMdcModel.ListStyle.Outlined))
+                .AddIf("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(ListStyle) == eListStyle.Outlined))
                 .AddIf("mdc-list--two-line", () => (NumberOfLines == 2))
                 .AddIf("bmdc-list--three-line", () => (NumberOfLines == 3))
                 .AddIf("mdc-list--non-interactive", () => NonInteractive)

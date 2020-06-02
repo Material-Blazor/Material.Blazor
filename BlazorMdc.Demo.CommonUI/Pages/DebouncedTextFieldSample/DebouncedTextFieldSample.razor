@@ -10,10 +10,10 @@
 
 <BMdcPlus.RadioButtonGroup @bind-Value="@interval"
                       Items="intervals"
-                      ItemValidation="@BMdcModel.ItemValidation.DefaultToFirst" />
+                      ItemValidation="@eItemValidation.DefaultToFirst" />
 
 <p style="margin-top: 3rem;">Debounce Text</p>
-<p><BMdcPlus.DebouncedTextField Label="Debounced Text" @bind-Value="@currentValue" TextInputStyle="BMdcModel.TextInputStyle.Outlined" LeadingIcon="account_balance_wallet" DebounceInterval="interval" /></p>
+<p><BMdcPlus.DebouncedTextField Label="Debounced Text" @bind-Value="@currentValue" TextInputStyle="eTextInputStyle.Outlined" LeadingIcon="account_balance_wallet" DebounceInterval="interval" /></p>
 
 <ul style="margin-top: 2rem;">
     @foreach (var logEntry in log)
@@ -47,11 +47,11 @@
     }
 
 
-    BMdcModel.ListElement<int>[] intervals = new BMdcModel.ListElement<int>[]
+    ListElement<int>[] intervals = new ListElement<int>[]
     {
-        new BMdcModel.ListElement<int> { SelectedValue = 300, Label = "300 ms" },
-        new BMdcModel.ListElement<int> { SelectedValue = 500, Label = "500 ms" },
-        new BMdcModel.ListElement<int> { SelectedValue = 1000, Label = "1,000 ms" }
+        new ListElement<int> { SelectedValue = 300, Label = "300 ms" },
+        new ListElement<int> { SelectedValue = 500, Label = "500 ms" },
+        new ListElement<int> { SelectedValue = 1000, Label = "1,000 ms" }
     };
 
 

@@ -1,4 +1,4 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
 
 using BMdcModel;
 
@@ -10,13 +10,13 @@ namespace BMdcPlus
     /// A shield similar to those from shield.io and used in GitHub. Implemented
     /// with HTML rather than SVG.
     /// </summary>
-    public partial class Shield : BMdcBase.ComponentBase
+    public partial class Shield : ComponentFoundation
     {
 #nullable enable annotations
         /// <summary>
         /// The shield type, being Label (left part), Value (right part) or both.
         /// </summary>
-        [Parameter] public ShieldType ShieldType { get; set; } = BMdcModel.ShieldType.LabelAndValue;
+        [Parameter] public eShieldType ShieldType { get; set; } = eShieldType.LabelAndValue;
 
 
         /// <summary>
@@ -69,9 +69,9 @@ namespace BMdcPlus
 
         /// <summary>
         /// The foundry to use for both icons.
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.MIIcon()"</c></para>
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.FAIcon()"</c></para>
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.OIIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
         /// </summary>
         [Parameter] public IIconFoundry? IconFoundry { get; set; }
 #nullable restore annotations

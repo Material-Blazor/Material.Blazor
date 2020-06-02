@@ -1,4 +1,4 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
@@ -10,13 +10,13 @@ namespace BMdc
 {
     /// <summary>
     /// This is a general purpose Material Theme radio button. Accepts a generic class TItem
-    /// and displays as checked if <see cref="InputComponentBase{T}.Value"/> equals <see cref="TargetCheckedValue"/>.
+    /// and displays as checked if <see cref="InputComponentFoundation{T}.Value"/> equals <see cref="TargetCheckedValue"/>.
     /// </summary>
-    public partial class RadioButton<TItem> : InputComponentBase<TItem>
+    public partial class RadioButton<TItem> : InputComponentFoundation<TItem>
     {
         /// <summary>
-        /// <see cref="InputComponentBase{T}.Value"/> is set to this when the 
-        /// radio button is clicked. If the consumer sets <see cref="InputComponentBase{T}.Value"/>
+        /// <see cref="InputComponentFoundation{T}.Value"/> is set to this when the 
+        /// radio button is clicked. If the consumer sets <see cref="InputComponentFoundation{T}.Value"/>
         /// to this the radio state will change to checked, or cleared for any other value.
         /// </summary>
         [Parameter] public TItem TargetCheckedValue { get; set; }
@@ -49,7 +49,7 @@ namespace BMdc
         [Parameter] public string RadioGroupName { get; set; }
 
 
-        private readonly string radioId = BMdcBase.Utilities.GenerateUniqueElementName();
+        private readonly string radioId = BMdcFoundation.Utilities.GenerateUniqueElementName();
 
 
         private ElementReference FormReference { get; set; }
