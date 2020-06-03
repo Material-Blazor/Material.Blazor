@@ -9,7 +9,7 @@
 <p>See <code>CascadingDefaultsSample.razor</code> for sources.</p>
 
 <h3 class="mdc-typography--headline5" style="margin-top: 4rem;">BlazorMdc default styles</h3>
-<p><BMdc.Select Label="Select" @bind-Value="@selectDefault" Items="items" ItemValidation="@eItemValidation.NoSelection" /></p>
+<p><BMdc.Select Label="Select" @bind-Value="@selectDefault" Items="items" ItemValidation="@EItemValidation.NoSelection" /></p>
 <p><BMdcPlus.DatePicker Label="Date" @bind-Value="dateDefault" MinDate="min" MaxDate="max" /></p>
 <p><BMdc.TextField Label="Text Field" @bind-Value="textFieldDefault" /></p>
 <p><BMdc.TextArea Label="Text Area" Rows="2" @bind-Value="textAreaDefault" /></p>
@@ -59,12 +59,12 @@
 
     CascadingDefaults defaults1 = new CascadingDefaults()
     {
-        SelectInputStyle = eSelectInputStyle.Outlined,
-        TextInputStyle = eTextInputStyle.Outlined,
-        ButtonStyle = eButtonStyle.Outlined,
-        DateSelectionCriteria = eDateSelectionCriteria.WeekdaysOnly,
-        ItemValidation = eItemValidation.NoSelection,
-        IconMITheme = eIconMITheme.Outlined
+        SelectInputStyle = ESelectInputStyle.Outlined,
+        TextInputStyle = ETextInputStyle.Outlined,
+        ButtonStyle = EButtonStyle.Outlined,
+        DateSelectionCriteria = EDateSelectionCriteria.WeekdaysOnly,
+        ItemValidation = EItemValidation.NoSelection,
+        IconMITheme = EIconMITheme.Outlined
     };
     string selectVariant1;
     string textFieldVariant1;
@@ -74,12 +74,12 @@
 
     CascadingDefaults defaults2 = new CascadingDefaults()
     {
-        SelectInputStyle = eSelectInputStyle.Filled,
-        TextInputStyle = eTextInputStyle.FullWidth,
-        ButtonStyle = eButtonStyle.ContainedUnelevated,
-        DateSelectionCriteria = eDateSelectionCriteria.WeekendsOnly,
-        ItemValidation = eItemValidation.NoSelection,
-        IconMITheme = eIconMITheme.TwoTone
+        SelectInputStyle = ESelectInputStyle.Filled,
+        TextInputStyle = ETextInputStyle.FullWidth,
+        ButtonStyle = EButtonStyle.ContainedUnelevated,
+        DateSelectionCriteria = EDateSelectionCriteria.WeekendsOnly,
+        ItemValidation = EItemValidation.NoSelection,
+        IconMITheme = EIconMITheme.TwoTone
     };
     string selectVariant2;
     string textFieldVariant2;
@@ -89,13 +89,13 @@
 
     CascadingDefaults defaults3 = new CascadingDefaults()
     {
-        SelectInputStyle = eSelectInputStyle.Outlined,
-        TextInputStyle = eTextInputStyle.Filled,
-        ButtonStyle = eButtonStyle.ContainedRaised,
-        DateSelectionCriteria = eDateSelectionCriteria.AllowAll,
-        ItemValidation = eItemValidation.NoSelection,
-        IconFoundryName = eIconFoundryName.FontAwesome,
-        IconFARelativeSize = eIconFARelativeSize.TenTimes
+        SelectInputStyle = ESelectInputStyle.Outlined,
+        TextInputStyle = ETextInputStyle.Filled,
+        ButtonStyle = EButtonStyle.ContainedRaised,
+        DateSelectionCriteria = EDateSelectionCriteria.AllowAll,
+        ItemValidation = EItemValidation.NoSelection,
+        IconFoundryName = EIconFoundryName.FontAwesome,
+        IconFARelativeSize = EIconFARelativeSize.TenTimes
     };
     string selectVariant3;
     string textFieldVariant3;

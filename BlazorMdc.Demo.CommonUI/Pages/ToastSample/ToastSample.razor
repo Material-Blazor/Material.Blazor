@@ -49,44 +49,44 @@
     <BMdc.Button Style="background-color: var(--bmdc-toast-background-color-info);"
                @onclick="@InfoClick"
                Label="Info Toast"
-               ButtonStyle="@eButtonStyle.ContainedRaised" />
+               ButtonStyle="@EButtonStyle.ContainedRaised" />
 
     <BMdc.Button Style="background-color: var(--bmdc-toast-background-color-success);"
                @onclick="@(() => toastService.ShowToast(
-                              level: eToastLevel.Success,
+                              level: EToastLevel.Success,
                               heading: "I'm a SUCCESS",
                               message: "Congratulations!" ))"
                Label="Success Toast"
-               ButtonStyle="@eButtonStyle.ContainedRaised" />
+               ButtonStyle="@EButtonStyle.ContainedRaised" />
 
     <BMdc.Button Style="background-color: var(--bmdc-toast-background-color-warning);"
                @onclick="@(() => toastService.ShowToast(
-                              level: eToastLevel.Warning,
+                              level: EToastLevel.Warning,
                               message: "I'm a WARNING" ))"
                Label="Warning Toast"
-               ButtonStyle="@eButtonStyle.ContainedRaised" />
+               ButtonStyle="@EButtonStyle.ContainedRaised" />
 
     <BMdc.Button Style="background-color: var(--bmdc-toast-background-color-error);"
                @onclick="@(() => toastService.ShowToast(
-                              level: eToastLevel.Error,
+                              level: EToastLevel.Error,
                               message: "I'm an ERROR" ))"
                Label="Error Toast"
-               ButtonStyle="@eButtonStyle.ContainedRaised" />
+               ButtonStyle="@EButtonStyle.ContainedRaised" />
 </p>
 
 <p>Try different configuration options</p>
-<p><BMdc.Select Label="Additional css class" @bind-Value="@cssClass" Items="cssClassItems" ItemValidation="@eItemValidation.DefaultToFirst"></BMdc.Select></p>
+<p><BMdc.Select Label="Additional css class" @bind-Value="@cssClass" Items="cssClassItems" ItemValidation="@EItemValidation.DefaultToFirst"></BMdc.Select></p>
 <p><BMdc.Select Label="Close method" @bind-Value="@closeMethod" Items="closeMethodItems"></BMdc.Select></p>
-<p><BMdc.Select Label="Heading" @bind-Value="@heading" Items="headingItems" ItemValidation="@eItemValidation.DefaultToFirst"></BMdc.Select></p>
-<p><BMdc.Select Label="Icon" @bind-Value="@icon" Items="iconItems" ItemValidation="@eItemValidation.DefaultToFirst"></BMdc.Select></p>
+<p><BMdc.Select Label="Heading" @bind-Value="@heading" Items="headingItems" ItemValidation="@EItemValidation.DefaultToFirst"></BMdc.Select></p>
+<p><BMdc.Select Label="Icon" @bind-Value="@icon" Items="iconItems" ItemValidation="@EItemValidation.DefaultToFirst"></BMdc.Select></p>
 <p><BMdc.Select Label="Level" @bind-Value="@level" Items="levelItems"></BMdc.Select></p>
-<p><BMdc.Select Label="Message" @bind-Value="@message" Items="messageItems" ItemValidation="@eItemValidation.DefaultToFirst"></BMdc.Select></p>
-<p><BMdc.Select Label="Show icon" @bind-Value="@showIcon" Items="showIconItems" ItemValidation="@eItemValidation.DefaultToFirst"></BMdc.Select></p>
-<p><BMdc.Select Label="Timeout" @bind-Value="@timeout" Items="timeoutItems" ItemValidation="@eItemValidation.DefaultToFirst"></BMdc.Select></p>
+<p><BMdc.Select Label="Message" @bind-Value="@message" Items="messageItems" ItemValidation="@EItemValidation.DefaultToFirst"></BMdc.Select></p>
+<p><BMdc.Select Label="Show icon" @bind-Value="@showIcon" Items="showIconItems" ItemValidation="@EItemValidation.DefaultToFirst"></BMdc.Select></p>
+<p><BMdc.Select Label="Timeout" @bind-Value="@timeout" Items="timeoutItems" ItemValidation="@EItemValidation.DefaultToFirst"></BMdc.Select></p>
 <p>
     <BMdc.Button @onclick="@customiseClick"
                Label="Toast with selected options"
-               ButtonStyle="@eButtonStyle.ContainedRaised" />
+               ButtonStyle="@EButtonStyle.ContainedRaised" />
 </p>
 
 
@@ -101,13 +101,13 @@
     };
 
 
-    eToastCloseMethod closeMethod;
-    IEnumerable<ListElement<eToastCloseMethod>> closeMethodItems => from c in (eToastCloseMethod[])Enum.GetValues(typeof(eToastCloseMethod))
-                                                                          select new ListElement<eToastCloseMethod>
-                                                                          {
-                                                                              SelectedValue = c,
-                                                                              Label = c.ToString()
-                                                                          };
+    EToastCloseMethod closeMethod;
+    IEnumerable<ListElement<EToastCloseMethod>> closeMethodItems => from c in (EToastCloseMethod[])Enum.GetValues(typeof(EToastCloseMethod))
+                                                                    select new ListElement<EToastCloseMethod>
+                                                                    {
+                                                                        SelectedValue = c,
+                                                                        Label = c.ToString()
+                                                                    };
 
 #nullable enable annotations
     class MyIcon
@@ -121,13 +121,13 @@
     ListElement<MyIcon>[] iconItems = new ListElement<MyIcon>[]
     {
         new ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "directions_run" }, Label = "directions_run" },
-        new ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = IconHelper.MIFoundry(theme: eIconMITheme.Filled) }, Label = "thumb_up (filled / default)" },
-        new ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = IconHelper.MIFoundry(theme: eIconMITheme.Outlined) }, Label = "thumb_up (outlined)" },
-        new ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = IconHelper.MIFoundry(theme: eIconMITheme.Round) }, Label = "thumb_up (rounded)" },
-        new ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = IconHelper.MIFoundry(theme: eIconMITheme.TwoTone) }, Label = "thumb_up (two-tone)" },
-        new ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = IconHelper.MIFoundry(theme: eIconMITheme.Sharp) }, Label = "thumb_up (sharp)" },
+        new ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = IconHelper.MIFoundry(theme: EIconMITheme.Filled) }, Label = "thumb_up (filled / default)" },
+        new ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = IconHelper.MIFoundry(theme: EIconMITheme.Outlined) }, Label = "thumb_up (outlined)" },
+        new ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = IconHelper.MIFoundry(theme: EIconMITheme.Round) }, Label = "thumb_up (rounded)" },
+        new ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = IconHelper.MIFoundry(theme: EIconMITheme.TwoTone) }, Label = "thumb_up (two-tone)" },
+        new ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = IconHelper.MIFoundry(theme: EIconMITheme.Sharp) }, Label = "thumb_up (sharp)" },
         new ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = IconHelper.FAFoundry() }, Label = "fa-ambulance" },
-        new ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = IconHelper.FAFoundry(relativeSize: eIconFARelativeSize.ExtraSmall) }, Label = "fa-ambulance (x-small)" },
+        new ListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = IconHelper.FAFoundry(relativeSize: EIconFARelativeSize.ExtraSmall) }, Label = "fa-ambulance (x-small)" },
     };
 
 
@@ -140,13 +140,13 @@
     };
 
 
-    eToastLevel level;
-    IEnumerable<ListElement<eToastLevel>> levelItems => from c in (eToastLevel[])Enum.GetValues(typeof(eToastLevel))
-                                                              select new ListElement<eToastLevel>
-                                                              {
-                                                                  SelectedValue = c,
-                                                                  Label = c.ToString()
-                                                              };
+    EToastLevel level;
+    IEnumerable<ListElement<EToastLevel>> levelItems => from c in (EToastLevel[])Enum.GetValues(typeof(EToastLevel))
+                                                        select new ListElement<EToastLevel>
+                                                        {
+                                                            SelectedValue = c,
+                                                            Label = c.ToString()
+                                                        };
 
     string message;
     ListElement<string>[] messageItems = new ListElement<string>[]
@@ -179,7 +179,7 @@
     protected void InfoClick()
     {
         toastService.ShowToast(
-            level: eToastLevel.Info,
+            level: EToastLevel.Info,
             message: "I'm an INFO");
     }
 

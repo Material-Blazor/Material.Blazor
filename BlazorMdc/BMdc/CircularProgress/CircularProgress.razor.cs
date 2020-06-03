@@ -26,13 +26,13 @@ namespace BMdc
         /// <summary>
         /// Makes the progress spinner indeterminant if True.
         /// </summary>
-        [Parameter] public eCircularProgressType CircularProgressType { get; set; } = eCircularProgressType.Indeterminate;
+        [Parameter] public ECircularProgressType CircularProgressType { get; set; } = ECircularProgressType.Indeterminate;
 
 
         /// <summary>
         /// Makes the progress spinner indeterminant if True.
         /// </summary>
-        [Parameter] public eCircularProgressSize CircularProgressSize { get; set; } = eCircularProgressSize.Large;
+        [Parameter] public ECircularProgressSize CircularProgressSize { get; set; } = ECircularProgressSize.Large;
 
 
         /// <summary>
@@ -53,18 +53,18 @@ namespace BMdc
 
         private MarkupString SVGDeterminate => CircularProgressSize switch
         {
-            eCircularProgressSize.Small => (MarkupString)SVGSmallDeterminate,
-            eCircularProgressSize.Medium => (MarkupString)SVGMediumDeterminate,
-            eCircularProgressSize.Large => (MarkupString)SVGLargeDeterminate,
+            ECircularProgressSize.Small => (MarkupString)SVGSmallDeterminate,
+            ECircularProgressSize.Medium => (MarkupString)SVGMediumDeterminate,
+            ECircularProgressSize.Large => (MarkupString)SVGLargeDeterminate,
             _ => throw new System.NotImplementedException(),
         };
 
 
         private MarkupString SVGIndeterminate => CircularProgressSize switch
         {
-            eCircularProgressSize.Small => (MarkupString)SVGSmallIndeterminate,
-            eCircularProgressSize.Medium => (MarkupString)SVGMediumIndeterminate,
-            eCircularProgressSize.Large => (MarkupString)SVGLargeIndeterminate,
+            ECircularProgressSize.Small => (MarkupString)SVGSmallIndeterminate,
+            ECircularProgressSize.Medium => (MarkupString)SVGMediumIndeterminate,
+            ECircularProgressSize.Large => (MarkupString)SVGLargeIndeterminate,
             _ => throw new System.NotImplementedException(),
         };
 
@@ -79,11 +79,11 @@ namespace BMdc
 
             ClassMapper
                 .Add("mdc-circular-progress")
-                .AddIf("mdc-circular-progress--small", () => CircularProgressSize == eCircularProgressSize.Small)
-                .AddIf("mdc-circular-progress--medium", () => CircularProgressSize == eCircularProgressSize.Medium)
-                .AddIf("mdc-circular-progress--large", () => CircularProgressSize == eCircularProgressSize.Large)
-                .AddIf("mdc-circular-progress--indeterminate", () => CircularProgressType == eCircularProgressType.Indeterminate)
-                .AddIf("mdc-circular-progress--closed", () => CircularProgressType == eCircularProgressType.Closed);
+                .AddIf("mdc-circular-progress--small", () => CircularProgressSize == ECircularProgressSize.Small)
+                .AddIf("mdc-circular-progress--medium", () => CircularProgressSize == ECircularProgressSize.Medium)
+                .AddIf("mdc-circular-progress--large", () => CircularProgressSize == ECircularProgressSize.Large)
+                .AddIf("mdc-circular-progress--indeterminate", () => CircularProgressType == ECircularProgressType.Indeterminate)
+                .AddIf("mdc-circular-progress--closed", () => CircularProgressType == ECircularProgressType.Closed);
         }
 
 

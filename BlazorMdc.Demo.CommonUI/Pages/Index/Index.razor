@@ -27,8 +27,8 @@
 
 @code {
     
-    IEnumerable<ListElement<eTopAppBarType>> appBarTypes => from c in (eTopAppBarType[])Enum.GetValues(typeof(eTopAppBarType))
-                                                                 select new ListElement<eTopAppBarType>
+    IEnumerable<ListElement<ETopAppBarType>> appBarTypes => from c in (ETopAppBarType[])Enum.GetValues(typeof(ETopAppBarType))
+                                                                 select new ListElement<ETopAppBarType>
                                                                  {
                                                                      SelectedValue = c,
                                                                      Label = c.ToString(),

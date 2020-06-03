@@ -17,7 +17,7 @@ namespace BMdcPlus
         /// <summary>
         /// The text input style.
         /// </summary>
-        [Parameter] public eTextInputStyle? TextInputStyle { get; set; }
+        [Parameter] public ETextInputStyle? TextInputStyle { get; set; }
 
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace BMdcPlus
         /// percentages and basis points (the latter of which lacks appropriate Numeric Format in C#:
         /// this issue may not get solved.
         /// </summary>
-        [Parameter] public eNumericInputMagnitude Magnitude { get; set; } = eNumericInputMagnitude.Normal;
+        [Parameter] public ENumericInputMagnitude Magnitude { get; set; } = ENumericInputMagnitude.Normal;
 
 
         /// <summary>

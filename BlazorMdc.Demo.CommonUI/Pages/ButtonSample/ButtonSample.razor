@@ -11,19 +11,19 @@ See <code>ButtonSample.razor</code> for sources.
 </p>
 
 <p>
-    <BMdc.Button Label="Contained raised" ButtonStyle="@eButtonStyle.ContainedRaised" @onclick="@LogMessage" />
+    <BMdc.Button Label="Contained raised" ButtonStyle="@EButtonStyle.ContainedRaised" @onclick="@LogMessage" />
 </p>
 
 <p>
-    <BMdc.Button Label="Contained unelevated" ButtonStyle="@eButtonStyle.ContainedUnelevated" @onclick="@LogMessage" />
+    <BMdc.Button Label="Contained unelevated" ButtonStyle="@EButtonStyle.ContainedUnelevated" @onclick="@LogMessage" />
 </p>
 
 <p>
-    <BMdc.Button Label="Outlined" ButtonStyle="@eButtonStyle.Outlined" @onclick="@LogMessage" />
+    <BMdc.Button Label="Outlined" ButtonStyle="@EButtonStyle.Outlined" @onclick="@LogMessage" />
 </p>
 
 <p>
-    <BMdc.Button Label="Text" ButtonStyle="@eButtonStyle.Text" @onclick="@LogMessage" />
+    <BMdc.Button Label="Text" ButtonStyle="@EButtonStyle.Text" @onclick="@LogMessage" />
 </p>
 
 <p>
@@ -41,7 +41,7 @@ See <code>ButtonSample.razor</code> for sources.
 <p>
     <BMdc.Button Label="Trailing icon with style of 'margin-left: 5em;'"
                TrailingIcon="speed"
-               ButtonStyle="eButtonStyle.ContainedRaised"
+               ButtonStyle="EButtonStyle.ContainedRaised"
                @onclick="@LogMessage"
                Style="margin-left: 5em;" />
 </p>
@@ -81,7 +81,7 @@ See <code>ButtonSample.razor</code> for sources.
     //              also implies 'contained'). Visually both are identical with a 'text' style but adding
     //              'raised' shows that the intended indent of the button is occurring.
     //
-    System.Collections.Generic.List<string> log = new System.Collections.Generic.List<string>();
+    List<string> log = new List<string>();
 
     bool commonBool;
 

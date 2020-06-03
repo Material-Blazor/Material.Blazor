@@ -31,13 +31,13 @@ namespace BMdcModel
         /// <summary>
         /// The Font Awesome style.
         /// </summary>
-        public eIconFAStyle Style { get; }
+        public EIconFAStyle Style { get; }
 
 
         /// <summary>
         /// The Font Awesome relative size.
         /// </summary>
-        public eIconFARelativeSize RelativeSize { get; }
+        public EIconFARelativeSize RelativeSize { get; }
 
 
         private string IconStyleText => Style.ToString().Substring(0, 1).ToLower();
@@ -48,15 +48,15 @@ namespace BMdcModel
             {
                 return IconName.ToLower() + RelativeSize switch
                 {
-                    eIconFARelativeSize.Regular => "",
-                    eIconFARelativeSize.ExtraSmall => " fa-xs",
-                    eIconFARelativeSize.Small => " fa-sm",
-                    eIconFARelativeSize.Large => " fa-lg",
-                    eIconFARelativeSize.TwoTimes => " fa-2x",
-                    eIconFARelativeSize.ThreeTimes => " fa-3x",
-                    eIconFARelativeSize.FiveTimes => " fa-5x",
-                    eIconFARelativeSize.SevenTimes => " fa-7x",
-                    eIconFARelativeSize.TenTimes => " fa-10x",
+                    EIconFARelativeSize.Regular => "",
+                    EIconFARelativeSize.ExtraSmall => " fa-xs",
+                    EIconFARelativeSize.Small => " fa-sm",
+                    EIconFARelativeSize.Large => " fa-lg",
+                    EIconFARelativeSize.TwoTimes => " fa-2x",
+                    EIconFARelativeSize.ThreeTimes => " fa-3x",
+                    EIconFARelativeSize.FiveTimes => " fa-5x",
+                    EIconFARelativeSize.SevenTimes => " fa-7x",
+                    EIconFARelativeSize.TenTimes => " fa-10x",
                     _ => throw new System.NotImplementedException(),
                 };
             }

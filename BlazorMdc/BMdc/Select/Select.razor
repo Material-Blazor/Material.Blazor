@@ -11,7 +11,7 @@
          aria-haspopup="@ListboxReference"
          aria-labelledby="@LabelId @SelectedTextId">
 
-        @if (AppliedInputStyle == eSelectInputStyle.Filled)
+        @if (AppliedInputStyle == ESelectInputStyle.Filled)
         {
             <span class="mdc-select__ripple"></span>
         }
@@ -19,7 +19,7 @@
         <input id="@SelectedTextId" type="text" disabled readonly class="mdc-select__selected-text @AlignClass">
         <i class="mdc-select__dropdown-icon"></i>
 
-        @if (AppliedInputStyle == eSelectInputStyle.Outlined)
+        @if (AppliedInputStyle == ESelectInputStyle.Outlined)
         {
             <span class="mdc-notched-outline">
                 <span class="mdc-notched-outline__leading"></span>

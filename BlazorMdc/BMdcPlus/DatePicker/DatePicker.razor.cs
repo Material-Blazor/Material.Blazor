@@ -19,7 +19,7 @@ namespace BMdcPlus
         /// <summary>
         /// The select style.
         /// </summary>
-        [Parameter] public eSelectInputStyle? SelectInputStyle { get; set; }
+        [Parameter] public ESelectInputStyle? SelectInputStyle { get; set; }
 
 
         /// <summary>
@@ -31,7 +31,7 @@ namespace BMdcPlus
         /// <summary>
         /// Date selection criteria
         /// </summary>
-        [Parameter] public eDateSelectionCriteria? DateSelectionCriteria { get; set; }
+        [Parameter] public EDateSelectionCriteria? DateSelectionCriteria { get; set; }
 
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace BMdcPlus
 
         private InternalDatePickerPanel Panel { get; set; }
 
-        private eSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
+        private ESelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
 
         private bool IsOpen { get; set; } = false;
 
@@ -66,7 +66,7 @@ namespace BMdcPlus
 
             ClassMapper
                 .Add("mdc-select")
-                .AddIf("mdc-select--outlined", () => AppliedInputStyle == eSelectInputStyle.Outlined)
+                .AddIf("mdc-select--outlined", () => AppliedInputStyle == ESelectInputStyle.Outlined)
                 .AddIf("mdc-select--disabled", () => Disabled);
         }
 

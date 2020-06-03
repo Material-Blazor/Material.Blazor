@@ -4,20 +4,20 @@
 
 
 
-<h1 class="mdc-typography--headline4">Select samples</h1>
+<h1 class="mdc-typography--headline4">Datepicker samples</h1>
 
 <p>See <code>DatePickerSample.razor</code> for sources.</p>
 
 <p>
-    <BMdcPlus.DatePicker Label="Filled" @bind-Value="@filled" SelectInputStyle="eSelectInputStyle.Filled" MinDate="min" MaxDate="max"></BMdcPlus.DatePicker>
+    <BMdcPlus.DatePicker Label="Filled" @bind-Value="@filled" SelectInputStyle="ESelectInputStyle.Filled" MinDate="min" MaxDate="max"></BMdcPlus.DatePicker>
 </p>
-<p style="margin-bottom: 4em;">Selected: '<strong>@filled.ToString()</strong>'</p>
+<p style="margin-bottom: 4em;">Selected: '<strong>@filled.ToString("D")</strong>'</p>
 
 <p>
-    <BMdcPlus.DatePicker Label="Weekdays Outlined" @bind-Value="@outlined" SelectInputStyle="eSelectInputStyle.Outlined" DateSelectionCriteria="eDateSelectionCriteria.WeekdaysOnly" MinDate="min" MaxDate="max"></BMdcPlus.DatePicker>
+    <BMdcPlus.DatePicker Label="Weekdays Outlined" @bind-Value="@outlined" SelectInputStyle="ESelectInputStyle.Outlined" DateSelectionCriteria="EDateSelectionCriteria.WeekdaysOnly" MinDate="min" MaxDate="max"></BMdcPlus.DatePicker>
     <BMdc.Button @onclick="@(() => outlined = DateTime.Today)" Label="Go to Today" />
 </p>
-<p style="margin-bottom: 20em;">Selected: '<strong>@outlined.ToString()</strong>'</p>
+<p style="margin-bottom: 20em;">Selected: '<strong>@outlined.ToString("D")</strong>'</p>
 
 
 @code {

@@ -20,7 +20,7 @@ namespace BMdc
         /// <summary>
         /// The list style.
         /// </summary>
-        [Parameter] public eListStyle? ListStyle { get; set; }
+        [Parameter] public EListStyle? ListStyle { get; set; }
 
 
         /// <summary>
@@ -153,7 +153,7 @@ namespace BMdc
         {
             ClassMapper
                 .Add("mdc-list")
-                .AddIf("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(ListStyle) == eListStyle.Outlined))
+                .AddIf("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(ListStyle) == EListStyle.Outlined))
                 .AddIf("mdc-list--two-line", () => (NumberOfLines == 2))
                 .AddIf("bmdc-list--three-line", () => (NumberOfLines == 3))
                 .AddIf("mdc-list--non-interactive", () => NonInteractive)

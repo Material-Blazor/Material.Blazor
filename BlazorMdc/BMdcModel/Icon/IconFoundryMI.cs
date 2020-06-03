@@ -10,16 +10,16 @@ namespace BMdcModel
     internal class IconFoundryMI : IIconFoundry
     {
         /// <inheritdoc/>
-        eIconFoundryName IIconFoundry.FoundryName => eIconFoundryName.MaterialIcons;
+        EIconFoundryName IIconFoundry.FoundryName => EIconFoundryName.MaterialIcons;
 
         
         /// <summary>
         /// The Material Icons theme.
         /// </summary>
-        public eIconMITheme? Theme { get; }
+        public EIconMITheme? Theme { get; }
 
 
-        public IconFoundryMI(eIconMITheme? theme = null)
+        public IconFoundryMI(EIconMITheme? theme = null)
         {
             Theme = theme;
         }

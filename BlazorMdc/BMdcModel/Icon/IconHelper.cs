@@ -34,18 +34,18 @@ namespace BMdcModel
         /// <summary>
         /// Returns a new <see cref="IconHelper"> for a Material Icons icon.
         /// </summary>
-        /// <param name="theme">Optional <see cref="eIconMITheme"/> specifying the Material Icons theme.</param>
+        /// <param name="theme">Optional <see cref="EIconMITheme"/> specifying the Material Icons theme.</param>
         /// <returns><see cref="IIconFoundry"/> to be passed to a BlazorMdc component.</returns>
-        public static IIconFoundry MIFoundry(eIconMITheme? theme = null) => new IconFoundryMI(theme);
+        public static IIconFoundry MIFoundry(EIconMITheme? theme = null) => new IconFoundryMI(theme);
 
 
         /// <summary>
         /// Returns a new <see cref="IconHelper"> for a Font Awesome icon.
         /// </summary>
-        /// <param name="style">Optional <see cref="eIconFAStyle"/> specifying the Font Awesome style.</param>
-        /// <param name="relativeSize">Optional <see cref="eIconFARelativeSize"/> specifying the Font Awesome relative size.</param>
+        /// <param name="style">Optional <see cref="EIconFAStyle"/> specifying the Font Awesome style.</param>
+        /// <param name="relativeSize">Optional <see cref="EIconFARelativeSize"/> specifying the Font Awesome relative size.</param>
         /// <returns><see cref="IIconFoundry"/> to be passed to a BlazorMdc component.</returns>
-        public static IIconFoundry FAFoundry(eIconFAStyle? style = null, eIconFARelativeSize? relativeSize = null) => new IconFoundryFA(style, relativeSize);
+        public static IIconFoundry FAFoundry(EIconFAStyle? style = null, EIconFARelativeSize? relativeSize = null) => new IconFoundryFA(style, relativeSize);
 
 
         /// <summary>
@@ -69,13 +69,13 @@ namespace BMdcModel
                 cascadingDefaults = new CascadingDefaults();
             }
 
-            eIconFoundryName iconFoundry = (foundry is null) ? cascadingDefaults.IconFoundryName : foundry.FoundryName;
+            EIconFoundryName iconFoundry = (foundry is null) ? cascadingDefaults.IconFoundryName : foundry.FoundryName;
 
             UnderlyingIcon = iconFoundry switch
             {
-                eIconFoundryName.MaterialIcons => new IconMI(cascadingDefaults, iconName, (IconFoundryMI?)foundry),
-                eIconFoundryName.FontAwesome => new IconFA(cascadingDefaults, iconName, (IconFoundryFA?)foundry),
-                eIconFoundryName.OpenIconic => new IconOI(cascadingDefaults, iconName, (IconFoundryOI?)foundry),
+                EIconFoundryName.MaterialIcons => new IconMI(cascadingDefaults, iconName, (IconFoundryMI?)foundry),
+                EIconFoundryName.FontAwesome => new IconFA(cascadingDefaults, iconName, (IconFoundryFA?)foundry),
+                EIconFoundryName.OpenIconic => new IconOI(cascadingDefaults, iconName, (IconFoundryOI?)foundry),
                 _ => throw new NotImplementedException(),
             };
         }

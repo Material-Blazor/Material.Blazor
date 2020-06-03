@@ -17,13 +17,13 @@ namespace BMdc
         /// <summary>
         /// The text input style.
         /// </summary>
-        [Parameter] public eTextInputStyle? TextInputStyle { get; set; }
+        [Parameter] public ETextInputStyle? TextInputStyle { get; set; }
 
 
         /// <summary>
         /// The text alignment style.
         /// </summary>
-        [Parameter] public eTextAlignStyle? TextAlignStyle { get; set; }
+        [Parameter] public ETextAlignStyle? TextAlignStyle { get; set; }
 
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace BMdc
 
 
         private ElementReference ElementReference { get; set; }
-        private eTextInputStyle AppliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
+        private ETextInputStyle AppliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
         private string AppliedTextInputStyleClass => BMdcFoundation.Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
         private string FloatingLabelClass { get; set; }
 
@@ -67,8 +67,8 @@ namespace BMdc
             ClassMapper
                 .Add("mdc-text-field mdc-text-field--textarea")
                 .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
-                .AddIf("mdc-text-field--outlined", () => AppliedTextInputStyle == eTextInputStyle.Outlined)
-                .AddIf("mdc-text-field--fullwidth", () => (AppliedTextInputStyle == eTextInputStyle.FullWidth))
+                .AddIf("mdc-text-field--outlined", () => AppliedTextInputStyle == ETextInputStyle.Outlined)
+                .AddIf("mdc-text-field--fullwidth", () => (AppliedTextInputStyle == ETextInputStyle.FullWidth))
                 .AddIf("mdc-text-field--no-label", () => NoLabel)
                 .AddIf("mdc-text-field--disabled", () => Disabled);
 

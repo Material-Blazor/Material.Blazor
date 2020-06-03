@@ -16,7 +16,7 @@ namespace BMdcPlus
         /// <summary>
         /// The shield type, being Label (left part), Value (right part) or both.
         /// </summary>
-        [Parameter] public eShieldType ShieldType { get; set; } = eShieldType.LabelAndValue;
+        [Parameter] public EShieldType ShieldType { get; set; } = EShieldType.LabelAndValue;
 
 
         /// <summary>

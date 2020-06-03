@@ -18,13 +18,13 @@ namespace BMdc
         /// <summary>
         /// The text input style.
         /// </summary>
-        [Parameter] public eTextInputStyle? TextInputStyle { get; set; }
+        [Parameter] public ETextInputStyle? TextInputStyle { get; set; }
 
 
         /// <summary>
         /// The text alignment style.
         /// </summary>
-        [Parameter] public eTextAlignStyle? TextAlignStyle { get; set; }
+        [Parameter] public ETextAlignStyle? TextAlignStyle { get; set; }
 
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace BMdc
 #nullable restore annotations
 
 
-        private eTextInputStyle AppliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
+        private ETextInputStyle AppliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
         
         internal ElementReference TextFieldReference { get; set; }
         
@@ -81,16 +81,16 @@ namespace BMdc
             ClassMapper
                 .Add("mdc-text-field")
                 .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
-                .AddIf("mdc-text-field--filled", () => AppliedTextInputStyle == eTextInputStyle.Filled)
-                .AddIf("mdc-text-field--outlined", () => AppliedTextInputStyle == eTextInputStyle.Outlined)
-                .AddIf("mdc-text-field--filled mdc-text-field--fullwidth", () => AppliedTextInputStyle == eTextInputStyle.FullWidth)
+                .AddIf("mdc-text-field--filled", () => AppliedTextInputStyle == ETextInputStyle.Filled)
+                .AddIf("mdc-text-field--outlined", () => AppliedTextInputStyle == ETextInputStyle.Outlined)
+                .AddIf("mdc-text-field--filled mdc-text-field--fullwidth", () => AppliedTextInputStyle == ETextInputStyle.FullWidth)
                 .AddIf("mdc-text-field--no-label", () => NoLabel)
                 .AddIf("mdc-text-field--disabled", () => Disabled)
                 .AddIf("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
                 .AddIf("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
 
 
-            if (!NoLabel && AppliedTextInputStyle != eTextInputStyle.FullWidth)
+            if (!NoLabel && AppliedTextInputStyle != ETextInputStyle.FullWidth)
             {
                 ComponentPureHtmlAttributes.Add("aria-labelledby", labelId);
             }

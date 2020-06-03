@@ -49,7 +49,7 @@ namespace BMdc
         [Parameter] public string RadioGroupName { get; set; }
 
 
-        private readonly string radioId = BMdcFoundation.Utilities.GenerateUniqueElementName();
+        private readonly string radioId = Utilities.GenerateUniqueElementName();
 
 
         private ElementReference FormReference { get; set; }

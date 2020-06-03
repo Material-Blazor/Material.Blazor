@@ -25,7 +25,7 @@ namespace BMdc
         /// <summary>
         /// The button's Material Theme style - see <see cref="BlazorMdc.ButtonStyle"/>.
         /// </summary>
-        [Parameter] public eButtonStyle? ButtonStyle { get; set; }
+        [Parameter] public EButtonStyle? ButtonStyle { get; set; }
 
 
         /// <summary>
@@ -72,9 +72,9 @@ namespace BMdc
 
             ClassMapper
                 .Add("mdc-button")
-                .AddIf("mdc-button--raised", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == eButtonStyle.ContainedRaised)
-                .AddIf("mdc-button--unelevated", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == eButtonStyle.ContainedUnelevated)
-                .AddIf("mdc-button--outlined", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == eButtonStyle.Outlined)
+                .AddIf("mdc-button--raised", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == EButtonStyle.ContainedRaised)
+                .AddIf("mdc-button--unelevated", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == EButtonStyle.ContainedUnelevated)
+                .AddIf("mdc-button--outlined", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == EButtonStyle.Outlined)
                 .AddIf("mdc-card__action mdc-card__action--button", () => (Card != null));
         }
 

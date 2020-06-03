@@ -55,7 +55,6 @@
 
 
   <ItemGroup>
-    <Folder Include="BMdcPlus\Services\" />
     <Folder Include="Material-Components-Web\dist\" />
   </ItemGroup>
 

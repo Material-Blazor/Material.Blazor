@@ -13,7 +13,7 @@ namespace BMdcPlus
 {
     /// <summary>
     /// An anchor component that displays toast notification that you display via
-    /// <see cref="IPmdcToastService.ShowToast(eToastLevel, string, string, eToastCloseMethod?, string, string, IIconFoundry?, bool?, uint?)"/>.
+    /// <see cref="IPmdcToastService.ShowToast(EToastLevel, string, string, EToastCloseMethod?, string, string, IIconFoundry?, bool?, uint?)"/>.
     /// Place this component at the top of either App.razor or MainLayout.razor.
     /// </summary>
     public partial class ToastAnchor : ComponentFoundation
@@ -37,7 +37,7 @@ namespace BMdcPlus
         }
 
 
-        private void AddToast(eToastLevel level, ToastSettings settings)
+        private void AddToast(EToastLevel level, ToastSettings settings)
         {
             InvokeAsync(async () =>
             {
@@ -88,7 +88,7 @@ namespace BMdcPlus
 
                 DisplayedToasts.Add(toastInstance);
 
-                if (toastInstance.Settings.AppliedCloseMethod != eToastCloseMethod.CloseButton)
+                if (toastInstance.Settings.AppliedCloseMethod != EToastCloseMethod.CloseButton)
                 {
                     InvokeAsync(() =>
                     {

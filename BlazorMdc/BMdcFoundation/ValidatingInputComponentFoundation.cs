@@ -17,10 +17,10 @@ namespace BMdcFoundation
         /// Validates the item list against the validation specification.
         /// </summary>
         /// <param name="items">The item list</param>
-        /// <param name="appliedItemValidation">Specification of the required validation <see cref="eItemValidation"/></param>
+        /// <param name="appliedItemValidation">Specification of the required validation <see cref="EItemValidation"/></param>
         /// <returns>The item in the list matching <see cref="InputComponentFoundation{T}._underlyingValue"/></returns>
         /// <exception cref="ArgumentException"/>
-        public T ValidateItemList(IEnumerable<ListElement<T>> items, eItemValidation appliedItemValidation)
+        public T ValidateItemList(IEnumerable<ListElement<T>> items, EItemValidation appliedItemValidation)
         {
             var componentName = Utilities.GetTypeName(GetType());
             
@@ -37,11 +37,11 @@ namespace BMdcFoundation
             {
                 switch (appliedItemValidation)
                 {
-                    case eItemValidation.DefaultToFirst:
+                    case EItemValidation.DefaultToFirst:
                         var firstOrDefault = items.FirstOrDefault().SelectedValue;
                         return firstOrDefault;
 
-                    case eItemValidation.Exception:
+                    case EItemValidation.Exception:
                         string itemList = "{ ";
                         string prepend = "";
 
@@ -55,7 +55,7 @@ namespace BMdcFoundation
 
                         throw new ArgumentException(componentName + $" cannot select item with data value of '{Value?.ToString()}' from {itemList}");
 
-                    case eItemValidation.NoSelection:
+                    case EItemValidation.NoSelection:
                         return default;
                 }
             }

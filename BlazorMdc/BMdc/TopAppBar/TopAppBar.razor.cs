@@ -50,7 +50,7 @@ namespace BMdc
         /// <summary>
         /// Top app bar type. See <see cref="BlazorMdc.TopAppBarType"/>
         /// </summary>
-        [Parameter] public eTopAppBarType TopAppBarType { get; set; } = eTopAppBarType.Standard;
+        [Parameter] public ETopAppBarType TopAppBarType { get; set; } = ETopAppBarType.Standard;
 
         
         private ElementReference HeaderElem { get; set; }
@@ -63,8 +63,8 @@ namespace BMdc
 
             ClassMapper
                 .Add("mdc-top-app-bar")
-                .AddIf($"mdc-top-app-bar--{TopAppBarType.ToString().ToLower()}", () => TopAppBarType != eTopAppBarType.Standard && TopAppBarType != eTopAppBarType.ShortCollapsed)
-                .AddIf($"mdc-top-app-bar--short mdc-top-app-bar--short-collapsed", () => TopAppBarType == eTopAppBarType.ShortCollapsed)
+                .AddIf($"mdc-top-app-bar--{TopAppBarType.ToString().ToLower()}", () => TopAppBarType != ETopAppBarType.Standard && TopAppBarType != ETopAppBarType.ShortCollapsed)
+                .AddIf($"mdc-top-app-bar--short mdc-top-app-bar--short-collapsed", () => TopAppBarType == ETopAppBarType.ShortCollapsed)
                 .Add("app-bar");
         }
 

@@ -4,6 +4,6 @@ namespace BlazorMdc.Demo
 {
     public class DemoConfiguration
     {
-        public eTopAppBarType TopAppBarType { get; set; } = eTopAppBarType.Dense;
+        public ETopAppBarType TopAppBarType { get; set; } = ETopAppBarType.Dense;
     }
 }

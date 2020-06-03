@@ -16,7 +16,7 @@
     <p>
         <BMdc.Button Label="Open dialog with wrapped input components"
                      @onclick="@OpenDialogAsync"
-                     ButtonStyle="eButtonStyle.ContainedRaised" />
+                     ButtonStyle="EButtonStyle.ContainedRaised" />
     </p>
 
     <p>PIN 1: <strong>'@(LogonDTO.PIN1 ?? "")'</strong></p>
@@ -49,12 +49,12 @@
                         <BMdc.Button Style="margin: 0.75em 0.25em 0.25em 0.25em;"
                                      type="submit"
                                      Label="PIN entry complete"
-                                     ButtonStyle="eButtonStyle.ContainedRaised" />
+                                     ButtonStyle="EButtonStyle.ContainedRaised" />
 
                         <BMdc.Button @onclick="@CancelClick"
                                      Style="margin: 0.75em 0.25em 0.25em 0.25em;"
                                      Label="Cancel"
-                                     ButtonStyle="eButtonStyle.ContainedRaised" />
+                                     ButtonStyle="EButtonStyle.ContainedRaised" />
                     </div>
                 </div>
             </EditForm>

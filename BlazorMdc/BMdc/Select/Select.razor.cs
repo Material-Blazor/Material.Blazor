@@ -27,7 +27,7 @@ namespace BMdc
         /// a value outside the <see cref="Items"/> list, replace it with the first list item or
         /// to throw an exception (the default).
         /// </summary>
-        [Parameter] public eItemValidation? ItemValidation { get; set; }
+        [Parameter] public EItemValidation? ItemValidation { get; set; }
 
 
         /// <summary>
@@ -39,19 +39,19 @@ namespace BMdc
         /// <summary>
         /// The select's <see cref="BlazorMdc.SelectInputStyle"/>.
         /// </summary>
-        [Parameter] public eSelectInputStyle? SelectInputStyle { get; set; }
+        [Parameter] public ESelectInputStyle? SelectInputStyle { get; set; }
 
 
         /// <summary>
         /// The select's <see cref="BlazorMdc.TextAlignStyle"/>.
         /// </summary>
-        [Parameter] public eTextAlignStyle? TextAlignStyle { get; set; }
+        [Parameter] public ETextAlignStyle? TextAlignStyle { get; set; }
 
 
         private ElementReference SelectReference { get; set; }
         private ElementReference ListboxReference { get; set; }
         private ElementReference UlReference { get; set; }
-        private eSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
+        private ESelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
         private string SelectedTextId { get; set; } = BMdcFoundation.Utilities.GenerateUniqueElementName();
         private string LabelId { get; set; } = BMdcFoundation.Utilities.GenerateUniqueElementName();
         private string SelectedText { get; set; } = "";
@@ -71,7 +71,7 @@ namespace BMdc
 
             ClassMapper
                 .Add("mdc-select")
-                .AddIf("mdc-select--outlined", () => AppliedInputStyle == eSelectInputStyle.Outlined)
+                .AddIf("mdc-select--outlined", () => AppliedInputStyle == ESelectInputStyle.Outlined)
                 .AddIf("mdc-select--disabled", () => Disabled);
 
             SelectedText = (Value is null) ? "" : Items.Where(i => object.Equals(i.SelectedValue, Value)).FirstOrDefault().Label;

@@ -17,7 +17,7 @@ namespace BMdc
         /// <summary>
         /// The card style - see <see cref="BlazorMdc.CardStyle"/>
         /// </summary>
-        [Parameter] public eCardStyle? CardStyle { get; set; }
+        [Parameter] public ECardStyle? CardStyle { get; set; }
 
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace BMdc
 
             ClassMapper
                 .Add("mdc-card")
-                .AddIf("mdc-card--outlined", () => CascadingDefaults.AppliedStyle(CardStyle) == eCardStyle.Outlined);
+                .AddIf("mdc-card--outlined", () => CascadingDefaults.AppliedStyle(CardStyle) == ECardStyle.Outlined);
         }
 
 

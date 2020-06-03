@@ -21,7 +21,7 @@ namespace BMdcPlus
         /// <summary>
         /// Date selection criteria
         /// </summary>
-        [Parameter] public eDateSelectionCriteria? DateSelectionCriteria { get; set; }
+        [Parameter] public EDateSelectionCriteria? DateSelectionCriteria { get; set; }
 
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace BMdcPlus
 
         private readonly string currentYearId = BMdcFoundation.Utilities.GenerateUniqueElementName();
 
-        private readonly IIconFoundry foundry = IconHelper.MIFoundry(eIconMITheme.Filled);
+        private readonly IIconFoundry foundry = IconHelper.MIFoundry(EIconMITheme.Filled);
 
 
         /// <inheritdoc/>

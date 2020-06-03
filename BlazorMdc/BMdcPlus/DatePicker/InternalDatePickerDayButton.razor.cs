@@ -41,7 +41,7 @@ namespace BMdcPlus
         /// <summary>
         /// Date selection criteria
         /// </summary>
-        [Parameter] public eDateSelectionCriteria? DateSelectionCriteria { get; set; }
+        [Parameter] public EDateSelectionCriteria? DateSelectionCriteria { get; set; }
 
 
         /// <summary>
@@ -57,7 +57,7 @@ namespace BMdcPlus
 
 
         private string Day => DisplayDate.Day.ToString();
-        private eButtonStyle ButtonStyle => (DisplayDate == CurrentDate) ? eButtonStyle.ContainedUnelevated : eButtonStyle.Text;
+        private EButtonStyle ButtonStyle => (DisplayDate == CurrentDate) ? EButtonStyle.ContainedUnelevated : EButtonStyle.Text;
 
         
         private bool ButtonDisabled
@@ -73,14 +73,14 @@ namespace BMdcPlus
 
                 switch (criteria)
                 {
-                    case eDateSelectionCriteria.WeekendsOnly:
+                    case EDateSelectionCriteria.WeekendsOnly:
                         if ((DisplayDate.DayOfWeek != DayOfWeek.Sunday) && (DisplayDate.DayOfWeek != DayOfWeek.Saturday))
                         {
                             return true;
                         }
                         break;
 
-                    case eDateSelectionCriteria.WeekdaysOnly:
+                    case EDateSelectionCriteria.WeekdaysOnly:
                         if ((DisplayDate.DayOfWeek == DayOfWeek.Sunday) || (DisplayDate.DayOfWeek == DayOfWeek.Saturday))
                         {
                             return true;

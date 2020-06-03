@@ -14,10 +14,10 @@ namespace BMdcModel
         ///<inheritdoc/>
         public ToastServiceConfiguration Configuration { get; set; } = new ToastServiceConfiguration();
 
-        private event Action<eToastLevel, ToastSettings> OnAdd;
+        private event Action<EToastLevel, ToastSettings> OnAdd;
 
         ///<inheritdoc/>
-        event Action<eToastLevel, ToastSettings> IToastService.OnAdd
+        event Action<EToastLevel, ToastSettings> IToastService.OnAdd
         {
             add => OnAdd += value;
             remove => OnAdd -= value;
@@ -32,10 +32,10 @@ namespace BMdcModel
         ///<inheritdoc/>
 #nullable enable annotations
         public void ShowToast(
-            eToastLevel level,
+            EToastLevel level,
             string message,
             string heading = null,
-            eToastCloseMethod? closeMethod = null,
+            EToastCloseMethod? closeMethod = null,
             string cssClass = null,
             string iconName = null,
             IIconFoundry? iconFoundry = null,

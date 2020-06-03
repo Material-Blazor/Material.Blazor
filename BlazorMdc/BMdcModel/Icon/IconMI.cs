@@ -14,11 +14,11 @@ namespace BMdcModel
             {
                 return "material-icons" + Theme switch
                 {
-                    eIconMITheme.Filled => "",
-                    eIconMITheme.Outlined => "-outlined",
-                    eIconMITheme.Round => "-round",
-                    eIconMITheme.TwoTone => "-two-tone",
-                    eIconMITheme.Sharp => "-sharp",
+                    EIconMITheme.Filled => "",
+                    EIconMITheme.Outlined => "-outlined",
+                    EIconMITheme.Round => "-round",
+                    EIconMITheme.TwoTone => "-two-tone",
+                    EIconMITheme.Sharp => "-sharp",
                     _ => throw new System.NotImplementedException(),
                 };
             }
@@ -39,13 +39,13 @@ namespace BMdcModel
 
 
         /// <inheritdoc />
-        public bool RequiresColorFilter => Theme == eIconMITheme.TwoTone;
+        public bool RequiresColorFilter => Theme == EIconMITheme.TwoTone;
 
 
         /// <summary>
         /// The Material Icons theme.
         /// </summary>
-        public eIconMITheme Theme { get; }
+        public EIconMITheme Theme { get; }
 
 
 #nullable enable annotations

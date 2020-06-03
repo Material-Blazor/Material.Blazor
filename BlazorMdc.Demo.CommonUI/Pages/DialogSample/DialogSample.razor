@@ -26,11 +26,11 @@
         <BMdcPlus.RadioButtonGroup @bind-Value="@radioButtonResult1"
                               Items="stringItems"
                               Vertical="true"
-                              ItemValidation="@eItemValidation.DefaultToFirst" />
+                              ItemValidation="@EItemValidation.DefaultToFirst" />
     </Body>
     <Buttons>
         <BMdc.Button Label="Orange" DialogAction="orange"></BMdc.Button>
-        <BMdc.Button Label="Apple" DialogAction="apple" ButtonStyle="@eButtonStyle.Text"></BMdc.Button>
+        <BMdc.Button Label="Apple" DialogAction="apple" ButtonStyle="@EButtonStyle.Text"></BMdc.Button>
     </Buttons>
 </BMdc.Dialog>
 
@@ -60,12 +60,12 @@
     <UnconfirmedButtons>
         <BMdc.Button Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
         <BMdc.Button Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
-        <BMdc.Button Label="Bosh" LeadingIcon="sports_handball" Disabled="true" DialogAction="bosh" ButtonStyle="eButtonStyle.ContainedRaised" />
+        <BMdc.Button Label="Bosh" LeadingIcon="sports_handball" Disabled="true" DialogAction="bosh" ButtonStyle="EButtonStyle.ContainedRaised" />
     </UnconfirmedButtons>
     <ConfirmedButtons>
         <BMdc.Button Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
         <BMdc.Button Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
-        <BMdc.Button Label="Bosh" LeadingIcon="sports_handball" DialogAction="bosh" ButtonStyle="eButtonStyle.ContainedRaised" />
+        <BMdc.Button Label="Bosh" LeadingIcon="sports_handball" DialogAction="bosh" ButtonStyle="EButtonStyle.ContainedRaised" />
     </ConfirmedButtons>
 </BMdcPlus.ConfirmationDialog>
 
@@ -84,7 +84,7 @@
     </Body>
     <Buttons>
         <BMdc.Button Label="Orange" @onclick="orangeClick"></BMdc.Button>
-        <BMdc.Button Label="Apple" @onclick="appleClick" ButtonStyle="@eButtonStyle.Text"></BMdc.Button>
+        <BMdc.Button Label="Apple" @onclick="appleClick" ButtonStyle="@EButtonStyle.Text"></BMdc.Button>
     </Buttons>
 </BMdc.Dialog>
 
@@ -97,11 +97,11 @@
            OverflowVisible="true">
     <Body>
         <p>Set the date.</p>
-        <BMdcPlus.DatePicker Label="The date" @bind-Value="@date5" SelectInputStyle="eSelectInputStyle.Outlined" MinDate="minDate" MaxDate="maxDate"></BMdcPlus.DatePicker>
+        <BMdcPlus.DatePicker Label="The date" @bind-Value="@date5" SelectInputStyle="ESelectInputStyle.Outlined" MinDate="minDate" MaxDate="maxDate"></BMdcPlus.DatePicker>
     </Body>
     <Buttons>
         <BMdc.Button Label="Orange" DialogAction="orange"></BMdc.Button>
-        <BMdc.Button Label="Apple" DialogAction="apple" ButtonStyle="@eButtonStyle.Text"></BMdc.Button>
+        <BMdc.Button Label="Apple" DialogAction="apple" ButtonStyle="@EButtonStyle.Text"></BMdc.Button>
     </Buttons>
 </BMdc.Dialog>
 
@@ -115,7 +115,7 @@
                         OverflowVisible="true">
     <Body>
         <p>Set the date.</p>
-        <BMdcPlus.DatePicker Label="The date" @bind-Value="@date6" SelectInputStyle="eSelectInputStyle.Outlined" MinDate="minDate" MaxDate="maxDate"></BMdcPlus.DatePicker>
+        <BMdcPlus.DatePicker Label="The date" @bind-Value="@date6" SelectInputStyle="ESelectInputStyle.Outlined" MinDate="minDate" MaxDate="maxDate"></BMdcPlus.DatePicker>
     </Body>
 </BMdcPlus.ConfirmationDialog>
 

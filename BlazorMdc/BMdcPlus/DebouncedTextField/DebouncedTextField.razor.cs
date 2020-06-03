@@ -18,13 +18,13 @@ namespace BMdcPlus
         /// <summary>
         /// The text input style.
         /// </summary>
-        [Parameter] public eTextInputStyle? TextInputStyle { get; set; }
+        [Parameter] public ETextInputStyle? TextInputStyle { get; set; }
 
 
         /// <summary>
         /// The text alignment style.
         /// </summary>
-        [Parameter] public eTextAlignStyle? TextAlignStyle { get; set; }
+        [Parameter] public ETextAlignStyle? TextAlignStyle { get; set; }
 
 
         /// <summary>

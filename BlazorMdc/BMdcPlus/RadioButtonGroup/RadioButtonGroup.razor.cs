@@ -29,7 +29,7 @@ namespace BMdcPlus
         /// a value outside the <see cref="Items"/> list, replace it with the first list item or
         /// to throw an exception (the default).
         /// </summary>
-        [Parameter] public eItemValidation? ItemValidation { get; set; }
+        [Parameter] public EItemValidation? ItemValidation { get; set; }
 
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace BMdcPlus
 
             ItemArray = Items.ToArray();
 
-            eItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidationRadioButtonGroup(ItemValidation);
+            EItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidationRadioButtonGroup(ItemValidation);
 
             ForceShouldRenderToTrue = true;
 

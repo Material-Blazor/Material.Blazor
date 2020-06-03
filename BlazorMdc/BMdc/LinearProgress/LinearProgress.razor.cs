@@ -18,7 +18,7 @@ namespace BMdc
         /// <summary>
         /// Makes the progress bar indeterminant if True.
         /// </summary>
-        [Parameter] public eLinearProgressType LinearProgressType { get; set; } = eLinearProgressType.Indeterminate;
+        [Parameter] public ELinearProgressType LinearProgressType { get; set; } = ELinearProgressType.Indeterminate;
 
 
         /// <summary>
@@ -64,9 +64,9 @@ namespace BMdc
 
             ClassMapper
                 .Add("mdc-linear-progress")
-                .AddIf("mdc-linear-progress--indeterminate", () => LinearProgressType == eLinearProgressType.Indeterminate)
-                .AddIf("mdc-linear-progress--reversed", () => LinearProgressType == eLinearProgressType.ReversedDeterminate)
-                .AddIf("mdc-linear-progress--closed", () => LinearProgressType == eLinearProgressType.Closed);
+                .AddIf("mdc-linear-progress--indeterminate", () => LinearProgressType == ELinearProgressType.Indeterminate)
+                .AddIf("mdc-linear-progress--reversed", () => LinearProgressType == ELinearProgressType.ReversedDeterminate)
+                .AddIf("mdc-linear-progress--closed", () => LinearProgressType == ELinearProgressType.Closed);
         }
 
 

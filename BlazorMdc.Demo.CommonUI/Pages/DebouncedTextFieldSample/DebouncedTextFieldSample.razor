@@ -10,10 +10,10 @@
 
 <BMdcPlus.RadioButtonGroup @bind-Value="@interval"
                       Items="intervals"
-                      ItemValidation="@eItemValidation.DefaultToFirst" />
+                      ItemValidation="@EItemValidation.DefaultToFirst" />
 
 <p style="margin-top: 3rem;">Debounce Text</p>
-<p><BMdcPlus.DebouncedTextField Label="Debounced Text" @bind-Value="@currentValue" TextInputStyle="eTextInputStyle.Outlined" LeadingIcon="account_balance_wallet" DebounceInterval="interval" /></p>
+<p><BMdcPlus.DebouncedTextField Label="Debounced Text" @bind-Value="@currentValue" TextInputStyle="ETextInputStyle.Outlined" LeadingIcon="account_balance_wallet" DebounceInterval="interval" /></p>
 
 <ul style="margin-top: 2rem;">
     @foreach (var logEntry in log)
@@ -55,5 +55,5 @@
     };
 
 
-    private System.Collections.Generic.List<string> log = new System.Collections.Generic.List<string>();
+    private List<string> log = new List<string>();
 }

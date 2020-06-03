@@ -9,7 +9,7 @@ namespace BMdcModel
     /// 
     /// <para>
     /// Throws a <see cref="System.InvalidOperationException"/> if
-    /// <see cref="ShowToast(eToastLevel, string, string, eToastCloseMethod?, string, string, IIconFoundry?, bool?, uint?)"/>
+    /// <see cref="ShowToast(EToastLevel, string, string, EToastCloseMethod?, string, string, IIconFoundry?, bool?, uint?)"/>
     /// is called without a <see cref="PMdcToastAnchor"/> component used in the app.
     /// </para>
     /// <example>
@@ -34,7 +34,7 @@ namespace BMdcModel
         /// <summary>
         /// A event that will be invoked when showing a toast
         /// </summary>
-        internal event Action<eToastLevel, ToastSettings> OnAdd;
+        internal event Action<EToastLevel, ToastSettings> OnAdd;
 
         /// <summary>
         /// Shows a toast using the supplied settings
@@ -49,10 +49,10 @@ namespace BMdcModel
         /// <param name="timeout">Length of time before autodismiss</param>
 #nullable enable annotations
         void ShowToast(
-            eToastLevel level,
+            EToastLevel level,
             string message,
             string heading = null,
-            eToastCloseMethod? closeMethod = null,
+            EToastCloseMethod? closeMethod = null,
             string cssClass = null,
             string iconName = null,
             IIconFoundry? iconFoundry = null,

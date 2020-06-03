@@ -36,14 +36,14 @@ namespace BMdcFoundation
         /// Returns a BlazorMdc CSS class 
         /// </summary>
         /// <param name="textaAlign"></param>
-        /// <returns><c>bmdc-align-left</c>, <c>...center</c> or <c>...right</c> unless the value is <see cref="eTextAlignStyle.Default"/> returning a blank string.</returns>
-        public static string GetTextAlignClass(eTextAlignStyle textaAlign)
+        /// <returns><c>bmdc-align-left</c>, <c>...center</c> or <c>...right</c> unless the value is <see cref="ETextAlignStyle.Default"/> returning a blank string.</returns>
+        public static string GetTextAlignClass(ETextAlignStyle textaAlign)
         {
             return textaAlign switch
             {
-                eTextAlignStyle.Left => " bmdc-align-left",
-                eTextAlignStyle.Center => " bmdc-align-center",
-                eTextAlignStyle.Right => " bmdc-align-right",
+                ETextAlignStyle.Left => " bmdc-align-left",
+                ETextAlignStyle.Center => " bmdc-align-center",
+                ETextAlignStyle.Right => " bmdc-align-right",
                 _ => "",
             };
         }

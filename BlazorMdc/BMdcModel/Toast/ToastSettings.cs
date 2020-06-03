@@ -50,9 +50,9 @@ namespace BMdcModel
 
         
         /// <summary>
-        /// How the toast message gets closed. See <see cref="eToastCloseMethod"/>.
+        /// How the toast message gets closed. See <see cref="EToastCloseMethod"/>.
         /// </summary>
-        public eToastCloseMethod? CloseMethod { get; set; }
+        public EToastCloseMethod? CloseMethod { get; set; }
 
 
         /// <summary>
@@ -79,15 +79,15 @@ namespace BMdcModel
         
         internal IIconFoundry AppliedIconFoundry => (IconFoundry is null) ? Configuration?.IconFoundry ?? new IconFoundryMI() : IconFoundry;
 
-        internal eToastCloseMethod AppliedCloseMethod => (CloseMethod is null) ? Configuration?.CloseMethod ?? ToastServiceConfiguration.DefaultCloseMethod : (eToastCloseMethod)CloseMethod;
+        internal EToastCloseMethod AppliedCloseMethod => (CloseMethod is null) ? Configuration?.CloseMethod ?? ToastServiceConfiguration.DefaultCloseMethod : (EToastCloseMethod)CloseMethod;
 
         internal uint AppliedTimeout => (Timeout is null) ? Configuration?.Timeout ?? ToastServiceConfiguration.DefaultTimeout : (uint)Timeout;
 
 
         /// <summary>
-        /// The level of the toast. See <see cref="eToastLevel"/>.
+        /// The level of the toast. See <see cref="EToastLevel"/>.
         /// </summary>
-        internal eToastLevel Level { get; set; }
+        internal EToastLevel Level { get; set; }
 
 
         /// <summary>
@@ -101,10 +101,10 @@ namespace BMdcModel
         /// </summary>
         internal string ConfigHeading => Level switch
         {
-            eToastLevel.Error => Configuration?.ErrorDefaultHeading ?? "",
-            eToastLevel.Info => Configuration?.InfoDefaultHeading ?? "",
-            eToastLevel.Success => Configuration?.SuccessDefaultHeading ?? "",
-            eToastLevel.Warning => Configuration?.WarningDefaultHeading ?? "",
+            EToastLevel.Error => Configuration?.ErrorDefaultHeading ?? "",
+            EToastLevel.Info => Configuration?.InfoDefaultHeading ?? "",
+            EToastLevel.Success => Configuration?.SuccessDefaultHeading ?? "",
+            EToastLevel.Warning => Configuration?.WarningDefaultHeading ?? "",
             _ => throw new InvalidOperationException(),
         };
 
@@ -114,10 +114,10 @@ namespace BMdcModel
         /// </summary>
         internal string ConfigIconName => Level switch
         {
-            eToastLevel.Error => Configuration?.ErrorIconName ?? ToastServiceConfiguration.DefaultErrorIconName,
-            eToastLevel.Info => Configuration?.InfoIconName ?? ToastServiceConfiguration.DefaultInfoIconName,
-            eToastLevel.Success => Configuration?.SuccessIconName ?? ToastServiceConfiguration.DefaultSuccessIconName,
-            eToastLevel.Warning => Configuration?.WarningIconName ?? ToastServiceConfiguration.DefaultWarningIconName,
+            EToastLevel.Error => Configuration?.ErrorIconName ?? ToastServiceConfiguration.DefaultErrorIconName,
+            EToastLevel.Info => Configuration?.InfoIconName ?? ToastServiceConfiguration.DefaultInfoIconName,
+            EToastLevel.Success => Configuration?.SuccessIconName ?? ToastServiceConfiguration.DefaultSuccessIconName,
+            EToastLevel.Warning => Configuration?.WarningIconName ?? ToastServiceConfiguration.DefaultWarningIconName,
             _ => throw new InvalidOperationException(),
         };
 

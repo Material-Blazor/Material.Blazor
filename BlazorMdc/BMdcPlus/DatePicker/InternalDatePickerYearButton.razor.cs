@@ -50,7 +50,7 @@ namespace BMdcPlus
         [Parameter] public string CurrentYearId { get; set; }
 
 
-        private eButtonStyle ButtonStyle => (DisplayYear == CurrentYear) ? eButtonStyle.ContainedUnelevated : eButtonStyle.Text;
+        private EButtonStyle ButtonStyle => (DisplayYear == CurrentYear) ? EButtonStyle.ContainedUnelevated : EButtonStyle.Text;
         
 
         private Dictionary<string, object> Attributes

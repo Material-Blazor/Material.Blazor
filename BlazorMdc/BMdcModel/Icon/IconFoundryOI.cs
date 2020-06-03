@@ -10,6 +10,6 @@ namespace BMdcModel
     internal class IconFoundryOI : IIconFoundry
     {
         /// <inheritdoc/>
-        eIconFoundryName IIconFoundry.FoundryName => eIconFoundryName.OpenIconic;
+        EIconFoundryName IIconFoundry.FoundryName => EIconFoundryName.OpenIconic;
     }
 }
