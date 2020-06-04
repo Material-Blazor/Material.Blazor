@@ -1,13 +1,11 @@
-﻿using BMdcFoundation;
-
-using BMdcModel;
+﻿using BMdcModel;
 
 using Microsoft.AspNetCore.Components;
 
 using System;
 using System.Threading.Tasks;
 
-namespace BMdcPlus
+namespace BMdcFoundation
 {
     /// <summary>
     /// For BlazorMdc internal use only.

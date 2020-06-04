@@ -29,13 +29,6 @@ namespace BMdc
 
 
         /// <summary>
-        /// Class of the radio button's <c>&lt;div&gt;</c> container.
-        /// </summary>
-        [Parameter] public string ButtonContainerClass { get; set; }
-
-
-
-        /// <summary>
         /// Enables the Material Theme touch wrapper.
         /// </summary>
         [Parameter] public bool EnableTouchWrapper { get; set; } = true;
@@ -54,7 +47,7 @@ namespace BMdc
 
         private ElementReference FormReference { get; set; }
         private ElementReference RadioButtonReference { get; set; }
-        private string MyButtonContainerClass { get; set; }
+        private string ButtonContainerClass { get; set; }
         private string DisabledClass { get; set; } = "";
 
 
@@ -82,16 +75,11 @@ namespace BMdc
 
             if (EnableTouchWrapper)
             {
-                MyButtonContainerClass = "mdc-radio mdc-radio--touch";
+                ButtonContainerClass = "mdc-radio mdc-radio--touch";
             }
             else
             {
-                MyButtonContainerClass = "mdc-radio";
-            }
-
-            if (!string.IsNullOrWhiteSpace(ButtonContainerClass))
-            {
-                MyButtonContainerClass += " " + ButtonContainerClass;
+                ButtonContainerClass = "mdc-radio";
             }
 
             if (Disabled)

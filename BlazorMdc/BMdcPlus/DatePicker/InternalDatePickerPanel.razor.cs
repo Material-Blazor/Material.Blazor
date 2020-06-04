@@ -1,6 +1,4 @@
-﻿using BMdcFoundation;
-
-using BMdcModel;
+﻿using BMdcModel;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
@@ -11,7 +9,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BMdcPlus
+namespace BMdcFoundation
 {
     /// <summary>
     /// For BlazorMdc internal use only.
