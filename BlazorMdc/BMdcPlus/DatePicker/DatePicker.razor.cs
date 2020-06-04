@@ -46,6 +46,12 @@ namespace BMdcPlus
         [Parameter] public DateTime MaxDate { get; set; }
 
 
+        /// <summary>
+        /// Specification for date format
+        /// </summary>
+        [Parameter] public string DateFormat { get; set; } = "D";
+
+
         private ElementReference ElementReference { get; set; }
 
         private InternalDatePickerPanel Panel { get; set; }
@@ -75,7 +81,7 @@ namespace BMdcPlus
         protected override void OnValueSet()
         {
             Panel.SetParameters(true, Value);
-            InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value)).ConfigureAwait(false));
+            InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, DateFormat)).ConfigureAwait(false));
         }
 
 

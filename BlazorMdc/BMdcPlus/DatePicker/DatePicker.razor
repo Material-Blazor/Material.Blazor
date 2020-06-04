@@ -32,6 +32,11 @@
     </div>
 
     <div class="mdc-select__menu mdc-menu mdc-menu-surface bmdc-dp-menu__surface-adjust">
-        <InternalDatePickerPanel @ref="Panel" @bind-Value="@ReportingValue" DateSelectionCriteria="@DateSelectionCriteria" MinDate="@MinDate" MaxDate="@MaxDate" />
+        <InternalDatePickerPanel @ref="Panel"
+                                 @bind-Value="@ReportingValue"
+                                 DateSelectionCriteria="@DateSelectionCriteria"
+                                 MinDate="@MinDate"
+                                 MaxDate="@MaxDate"
+                                 DateFormat="@DateFormat"/>
     </div>
 </div>

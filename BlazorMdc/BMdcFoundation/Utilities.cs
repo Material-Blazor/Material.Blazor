@@ -67,11 +67,9 @@ namespace BMdcFoundation
         /// <param name="dateTime">The <see cref="DateTime"/> to format.</param>
         /// <param name="format">The format string.</param>
         /// <returns></returns>
-        public static string DateToString(DateTime dateTime, string? format = null)
+        public static string DateToString(DateTime dateTime, string format)
         {
-            string myFormat = (format is null) ? "D" : format;
-
-            return dateTime.ToString(myFormat);
+            return dateTime.ToString(format);
         }
 #nullable restore annotations
     }

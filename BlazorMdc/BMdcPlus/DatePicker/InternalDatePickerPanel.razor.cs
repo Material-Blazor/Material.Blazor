@@ -42,6 +42,12 @@ namespace BMdcPlus
         internal ElementReference ListItemReference { get; set; }
 
 
+        /// <summary>
+        /// Specification for date format
+        /// </summary>
+        [Parameter] public string DateFormat { get; set; }
+
+
         private bool ScrollToYear { get; set; } = false;
 
         private string[] DaysOfWeek { get; set; }
@@ -73,7 +79,7 @@ namespace BMdcPlus
 
         private DateTime CachedMaxDate { get; set; }
 
-        private string CachedReportingValueText => BMdcFoundation.Utilities.DateToString(CachedReportingValue);
+        private string CachedReportingValueText => BMdcFoundation.Utilities.DateToString(CachedReportingValue, DateFormat);
 
         private int MonthsOffset { get; set; } = 0;
 
