@@ -1,6 +1,6 @@
 ﻿@namespace BMdcPlus
 
-@inherits BMdcBase.InputComponentBase<double>
+@inherits InputComponentFoundation<double>
 
 @using System.Text.RegularExpressions
 
@@ -17,6 +17,6 @@
                 TrailingIcon="@TrailingIcon"
                 IconFoundry="@IconFoundry"
                 TextInputStyle="@TextInputStyle"
-                TextAlignStyle="@BMdcModel.TextAlignStyle.Right"
+                TextAlignStyle="@ETextAlignStyle.Right"
                 @onfocusin="@OnFocusIn"
                 @onfocusout="@OnFocusOut" />

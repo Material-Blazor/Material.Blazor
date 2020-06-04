@@ -1,6 +1,10 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
+
+using BMdcModel;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System.Threading.Tasks;
 
 namespace BMdc
@@ -8,12 +12,12 @@ namespace BMdc
     /// <summary>
     /// A Material Theme card with three elements: primary, primary action buttons and action icons.
     /// </summary>
-    public partial class Card : BMdcBase.ComponentBase
+    public partial class Card : ComponentFoundation
     {
         /// <summary>
         /// The card style - see <see cref="BlazorMdc.CardStyle"/>
         /// </summary>
-        [Parameter] public BMdcModel.CardStyle? CardStyle { get; set; }
+        [Parameter] public ECardStyle? CardStyle { get; set; }
 
 
         /// <summary>
@@ -59,7 +63,7 @@ namespace BMdc
 
             ClassMapper
                 .Add("mdc-card")
-                .AddIf("mdc-card--outlined", () => CascadingDefaults.AppliedStyle(CardStyle) == BMdcModel.CardStyle.Outlined);
+                .AddIf("mdc-card--outlined", () => CascadingDefaults.AppliedStyle(CardStyle) == ECardStyle.Outlined);
         }
 
 

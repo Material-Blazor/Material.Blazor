@@ -11,23 +11,23 @@
 <p><BMdc.Switch @bind-Value="@hideLineThree" Label="Hide line three" /></p>
 
 <BMdc.List Items="@displayedProducts"
-         Context="product"
-         ShowSeparators="true"
-         KeyboardInteractions="true"
-         Ripple="true"
-         AvatarList="true"
-         Dense="@dense"
-         HideLineTwo="@hideLineTwo"
-         HideLineThree="@hideLineThree"
-         OnClick="OnClick"
-         ListStyle="@BMdcModel.ListStyle.Outlined">
+           Context="product"
+           ShowSeparators="true"
+           KeyboardInteractions="true"
+           Ripple="true"
+           AvatarList="true"
+           Dense="@dense"
+           HideLineTwo="@hideLineTwo"
+           HideLineThree="@hideLineThree"
+           OnClick="OnClick"
+           ListStyle="@EListStyle.Outlined">
 
     <Icon>shop</Icon>
     <Title>@product.DisplayName</Title>
     <Actions>
         <div style="width: 10rem">
             <BMdc.Switch @bind-Value="@product.IsInStock"
-                       Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
+                         Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
         </div>
     </Actions>
 </BMdc.List>
@@ -35,16 +35,16 @@
 <p></p>
 
 <BMdc.List Items="@displayedProducts"
-         Context="product"
-         ShowSeparators="true"
-         KeyboardInteractions="true"
-         Ripple="true"
-         AvatarList="true"
-         Dense="@dense"
-         HideLineTwo="@hideLineTwo"
-         HideLineThree="@hideLineThree"
-         OnClick="OnClick"
-         ListStyle="@BMdcModel.ListStyle.Outlined">
+           Context="product"
+           ShowSeparators="true"
+           KeyboardInteractions="true"
+           Ripple="true"
+           AvatarList="true"
+           Dense="@dense"
+           HideLineTwo="@hideLineTwo"
+           HideLineThree="@hideLineThree"
+           OnClick="OnClick"
+           ListStyle="@EListStyle.Outlined">
 
     <Icon>shop</Icon>
     <Title>@product.DisplayName</Title>
@@ -52,7 +52,7 @@
     <Actions>
         <div style="width: 10rem">
             <BMdc.Switch @bind-Value="@product.IsInStock"
-                       Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
+                         Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
         </div>
     </Actions>
 </BMdc.List>
@@ -60,16 +60,16 @@
 <p></p>
 
 <BMdc.List Items="@displayedProducts"
-         Context="product"
-         ShowSeparators="true"
-         KeyboardInteractions="true"
-         Ripple="true"
-         AvatarList="true"
-         Dense="@dense"
-         HideLineTwo="@hideLineTwo"
-         HideLineThree="@hideLineThree"
-         OnClick="OnClick"
-         ListStyle="@BMdcModel.ListStyle.Outlined">
+           Context="product"
+           ShowSeparators="true"
+           KeyboardInteractions="true"
+           Ripple="true"
+           AvatarList="true"
+           Dense="@dense"
+           HideLineTwo="@hideLineTwo"
+           HideLineThree="@hideLineThree"
+           OnClick="OnClick"
+           ListStyle="@EListStyle.Outlined">
 
     <Icon>shop</Icon>
     <Title>@product.DisplayName</Title>
@@ -78,7 +78,7 @@
     <Actions>
         <div style="width: 10rem">
             <BMdc.Switch @bind-Value="@product.IsInStock"
-                       Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
+                         Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
         </div>
     </Actions>
 </BMdc.List>
@@ -86,7 +86,7 @@
 <p>Clicked index: '@clickedIndex'</p>
 
 @code {
-    IEnumerable<Product> displayedProducts = new List<Product>
+    IEnumerable<Product> displayedProducts = new System.Collections.Generic.List<Product>
 {
         new Product { ProductId = 1, DisplayName = "Curly-wurly straw", LineTwo = "Amaze your friends with this cheap plastic tube", LineThree = "Line three", IsInStock = true },
         new Product { ProductId = 2, DisplayName = "Pepsi Connoisseur (12mo subscription)", LineTwo = "Covers all developments in the world of Pepsi™", LineThree = "Line three", IsInStock = false },

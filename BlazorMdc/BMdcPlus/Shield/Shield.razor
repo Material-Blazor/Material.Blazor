@@ -1,9 +1,9 @@
 ﻿@namespace BMdcPlus
-@inherits BMdcBase.ComponentBase
+@inherits ComponentFoundation
 
 
 <div @attributes="AttributesToSplat()">
-    @if (ShieldType != BMdcModel.ShieldType.ValueOnly)
+    @if (ShieldType != EShieldType.ValueOnly)
     {
         <div class="bmdc-shield--label @LabelClass" style="@LabelStyle">
             @if (!string.IsNullOrWhiteSpace(LabelIcon))
@@ -17,7 +17,7 @@
         </div>
     }
 
-    @if (ShieldType != BMdcModel.ShieldType.LabelOnly)
+    @if (ShieldType != EShieldType.LabelOnly)
     {
         <div class="bmdc-shield--value @ValueClass" style="@ValueStyle">
             @if (!string.IsNullOrWhiteSpace(ValueIcon))

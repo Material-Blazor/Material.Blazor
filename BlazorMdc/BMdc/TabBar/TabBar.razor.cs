@@ -1,6 +1,8 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,7 +11,7 @@ namespace BMdc
     /// <summary>
     /// This is a general purpose Material Theme tab bar.
     /// </summary>
-    public partial class TabBar<TItem> : BMdcBase.ComponentBase
+    public partial class TabBar<TItem> : ComponentFoundation
     {
         private int _tabIndex;
         /// <summary>

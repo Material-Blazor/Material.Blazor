@@ -21,13 +21,6 @@ namespace BMdcModel
 
 
         /// <summary>
-        /// A CSS class used by <see cref="MdcRadioButton{TItem}"/> one div inside the outer <c>"mdc-radio"</c> div
-        /// </summary>
-        [Obsolete]
-        public string ButtonContainerClass { get; set; }
-
-
-        /// <summary>
         /// Determines whether the list item is to be disabled
         /// </summary>
         public bool Disabled { get; set; } = false;

@@ -13,11 +13,11 @@
 <p><BMdc.LinearProgress LinearProgressType="@linearIndeterminate" /></p>
 
 <p><BMdc.CircularProgress CircularProgressType="@circularIndeterminate" /></p>
-<p><BMdc.CircularProgress CircularProgressType="@circularIndeterminate" CircularProgressSize="BMdcModel.CircularProgressSize.Medium" /></p>
-<p><BMdc.CircularProgress CircularProgressType="@circularIndeterminate" CircularProgressSize="BMdcModel.CircularProgressSize.Small" /></p>
+<p><BMdc.CircularProgress CircularProgressType="@circularIndeterminate" CircularProgressSize="ECircularProgressSize.Medium" /></p>
+<p><BMdc.CircularProgress CircularProgressType="@circularIndeterminate" CircularProgressSize="ECircularProgressSize.Small" /></p>
 
 <h5 class="mdc-typography--headline5">Determinate</h5>
-<BMdcPlus.NumericDoubleField @bind-Value="@progress" Label="Progress (0 to 100%)" Min="0" Max="1" Magnitude="BMdcModel.NumericInputMagnitude.Percent" DecimalPlaces="2" NumericFormat="P0" />
+<BMdcPlus.NumericDoubleField @bind-Value="@progress" Label="Progress (0 to 100%)" Min="0" Max="1" Magnitude="ENumericInputMagnitude.Percent" DecimalPlaces="2" NumericFormat="P0" />
 
 <p>Regular:</p>
 <p><BMdc.LinearProgress LinearProgressType="linearDeterminate" Value="@progress" BufferValue="buffer" /></p>
@@ -26,8 +26,8 @@
 <p><BMdc.LinearProgress LinearProgressType="linearReversed" Value="@progress" BufferValue="buffer" /></p>
 
 <p><BMdc.CircularProgress Value="@progress" CircularProgressType="@circularDeterminate" /></p>
-<p><BMdc.CircularProgress Value="@progress" CircularProgressType="@circularDeterminate" CircularProgressSize="BMdcModel.CircularProgressSize.Medium" /></p>
-<p><BMdc.CircularProgress Value="@progress" CircularProgressType="@circularDeterminate" CircularProgressSize="BMdcModel.CircularProgressSize.Small" /></p>
+<p><BMdc.CircularProgress Value="@progress" CircularProgressType="@circularDeterminate" CircularProgressSize="ECircularProgressSize.Medium" /></p>
+<p><BMdc.CircularProgress Value="@progress" CircularProgressType="@circularDeterminate" CircularProgressSize="ECircularProgressSize.Small" /></p>
 
 
 @code {
@@ -35,9 +35,9 @@
     bool showBuffer = true;
     double progress = 0.2;
     double? buffer => showBuffer ? (double?)progress + (1 - progress) / 3 : null;
-    BMdcModel.LinearProgressType linearIndeterminate => show ? BMdcModel.LinearProgressType.Indeterminate : BMdcModel.LinearProgressType.Closed;
-    BMdcModel.LinearProgressType linearDeterminate => show ? BMdcModel.LinearProgressType.Determinate : BMdcModel.LinearProgressType.Closed;
-    BMdcModel.LinearProgressType linearReversed => show ? BMdcModel.LinearProgressType.ReversedDeterminate : BMdcModel.LinearProgressType.Closed;
-    BMdcModel.CircularProgressType circularIndeterminate => show ? BMdcModel.CircularProgressType.Indeterminate : BMdcModel.CircularProgressType.Closed;
-    BMdcModel.CircularProgressType circularDeterminate => show ? BMdcModel.CircularProgressType.Determinate : BMdcModel.CircularProgressType.Closed;
+    ELinearProgressType linearIndeterminate => show ? ELinearProgressType.Indeterminate : ELinearProgressType.Closed;
+    ELinearProgressType linearDeterminate => show ? ELinearProgressType.Determinate : ELinearProgressType.Closed;
+    ELinearProgressType linearReversed => show ? ELinearProgressType.ReversedDeterminate : ELinearProgressType.Closed;
+    ECircularProgressType circularIndeterminate => show ? ECircularProgressType.Indeterminate : ECircularProgressType.Closed;
+    ECircularProgressType circularDeterminate => show ? ECircularProgressType.Determinate : ECircularProgressType.Closed;
 }

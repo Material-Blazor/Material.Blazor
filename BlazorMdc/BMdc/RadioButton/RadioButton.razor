@@ -1,18 +1,18 @@
 ﻿@namespace BMdc
-@inherits BMdcBase.InputComponentBase<TItem>
+@inherits InputComponentFoundation<TItem>
 @typeparam TItem
 
 
 <div @ref="@FormReference"
-     @attributes="AttributesToSplat(BMdcBase.SplatType.ClassAndStyleOnly)">
+     @attributes="AttributesToSplat(SplatType.ClassAndStyleOnly)">
 
-    <div @ref="@RadioButtonReference" class="@MyButtonContainerClass">
+    <div @ref="@RadioButtonReference" class="@ButtonContainerClass">
         <input class="mdc-radio__native-control @DisabledClass"
                type="radio"
                id="@radioId"
                name="@RadioGroupName"
                @onclick="@(_ => OnInternalItemClickAsync())"
-               @attributes="AttributesToSplat(BMdcBase.SplatType.ExcludeClassAndStyle)">
+               @attributes="AttributesToSplat(SplatType.ExcludeClassAndStyle)">
 
         <div class="mdc-radio__background">
             <div class="mdc-radio__outer-circle"></div>

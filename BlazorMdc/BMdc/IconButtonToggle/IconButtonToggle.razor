@@ -1,10 +1,10 @@
 ﻿@namespace BMdc
-@inherits BMdcBase.InputComponentBase<bool>
+@inherits InputComponentFoundation<bool>
 
 
-<div @attributes="@AttributesToSplat(BMdcBase.SplatType.ExcludeClassAndStyle)">
+<div @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)">
     <button @ref="@ElementReference"
-            @attributes="@AttributesToSplat(BMdcBase.SplatType.ClassAndStyleOnly)"
+            @attributes="@AttributesToSplat(SplatType.ClassAndStyleOnly)"
             type="button"
             @onclick="@ToggleOnClick">
 

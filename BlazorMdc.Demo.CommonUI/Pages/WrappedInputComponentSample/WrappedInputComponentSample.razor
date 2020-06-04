@@ -15,15 +15,15 @@
 <div>
     <p>
         <BMdc.Button Label="Open dialog with wrapped input components"
-                   @onclick="@OpenDialogAsync"
-                   ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
+                     @onclick="@OpenDialogAsync"
+                     ButtonStyle="EButtonStyle.ContainedRaised" />
     </p>
 
     <p>PIN 1: <strong>'@(LogonDTO.PIN1 ?? "")'</strong></p>
     <p>PIN 2: <strong>'@(LogonDTO.PIN2 ?? "")'</strong></p>
 
     <BMdc.Dialog Title="Create a new PIN"
-               @ref="DialogReference">
+                 @ref="DialogReference">
         <Body>
 
             <h6>Your PIN has never been set.</h6>
@@ -38,7 +38,7 @@
                     <ValidationMessage For=@( () => LogonDTO.PIN1 ) />
                 </div>
 
-                <div class="form-group"
+                <div class="form-group">
                     <WrappedInputComponent @bind-StringValue="@LogonDTO.PIN2"
                                            Type="password" />
                     <ValidationMessage For=@( () => LogonDTO.PIN2 ) />
@@ -47,14 +47,14 @@
                 <div class="form-group">
                     <div style="display:flex; flex-direction: row; justify-content: center;">
                         <BMdc.Button Style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                                   Type="submit"
-                                   Label="PIN entry complete"
-                                   ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
+                                     type="submit"
+                                     Label="PIN entry complete"
+                                     ButtonStyle="EButtonStyle.ContainedRaised" />
 
                         <BMdc.Button @onclick="@CancelClick"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                                   Label="Cancel"
-                                   ButtonStyle="BMdcModel.ButtonStyle.ContainedRaised" />
+                                     Style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                     Label="Cancel"
+                                     ButtonStyle="EButtonStyle.ContainedRaised" />
                     </div>
                 </div>
             </EditForm>

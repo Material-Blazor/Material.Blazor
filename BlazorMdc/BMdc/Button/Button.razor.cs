@@ -1,6 +1,10 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
+
+using BMdcModel;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System.Threading.Tasks;
 
 namespace BMdc
@@ -10,7 +14,7 @@ namespace BMdc
     /// and trailing icons and all standard Blazor events. Adds the "mdc-card__action--button" class when 
     /// placed inside an <see cref="BMdc.Card"/>.
     /// </summary>
-    public partial class Button : BMdcBase.ComponentBase
+    public partial class Button : ComponentFoundation
     {
         [CascadingParameter] private Card Card { get; set; }
 
@@ -21,7 +25,7 @@ namespace BMdc
         /// <summary>
         /// The button's Material Theme style - see <see cref="BlazorMdc.ButtonStyle"/>.
         /// </summary>
-        [Parameter] public BMdcModel.ButtonStyle? ButtonStyle { get; set; }
+        [Parameter] public EButtonStyle? ButtonStyle { get; set; }
 
 
         /// <summary>
@@ -44,11 +48,11 @@ namespace BMdc
 
         /// <summary>
         /// The foundry to use for both leading and trailing icons.
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.MIIcon()"</c></para>
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.FAIcon()"</c></para>
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.OIIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
         /// </summary>
-        [Parameter] public BMdcModel.IIconFoundry? IconFoundry { get; set; }
+        [Parameter] public IIconFoundry? IconFoundry { get; set; }
 
 
         /// <summary>
@@ -68,9 +72,9 @@ namespace BMdc
 
             ClassMapper
                 .Add("mdc-button")
-                .AddIf("mdc-button--raised", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == BMdcModel.ButtonStyle.ContainedRaised)
-                .AddIf("mdc-button--unelevated", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == BMdcModel.ButtonStyle.ContainedUnelevated)
-                .AddIf("mdc-button--outlined", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == BMdcModel.ButtonStyle.Outlined)
+                .AddIf("mdc-button--raised", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == EButtonStyle.ContainedRaised)
+                .AddIf("mdc-button--unelevated", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == EButtonStyle.ContainedUnelevated)
+                .AddIf("mdc-button--outlined", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == EButtonStyle.Outlined)
                 .AddIf("mdc-card__action mdc-card__action--button", () => (Card != null));
         }
 

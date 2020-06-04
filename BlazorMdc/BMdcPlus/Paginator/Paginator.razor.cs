@@ -1,4 +1,9 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BMdcFoundation;
+
+using BMdcModel;
+
+using Microsoft.AspNetCore.Components;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BMdcPlus
 {
-    public partial class Paginator : BMdcBase.ComponentBase
+    public partial class Paginator : ComponentFoundation
     {
         /// <summary>
         /// A list of the allowable number of items per page for the
@@ -100,7 +105,7 @@ namespace BMdcPlus
         private BMdc.Menu Menu { get; set; }
         private BMdc.IconButtonToggle IconButtonToggle { get; set; }
         private bool ToggleOn { get; set; }
-        private BMdcModel.ListElement<int>[] ItemsPerPageItems { get; set; }
+        private ListElement<int>[] ItemsPerPageItems { get; set; }
         private int MaxPageNumber => Math.Max(0, Convert.ToInt32(Math.Ceiling((double)ItemCount / ItemsPerPage)) - 1);
         private string ItemsText => $"{ItemsPerPage:G0} items per page";
         private string PositionText => PositionTextString(PageNumber);
@@ -126,7 +131,7 @@ namespace BMdcPlus
             }
 
             ItemsPerPageItems = (from r in ItemsPerPageSelection
-                                 select new BMdcModel.ListElement<int>
+                                 select new ListElement<int>
                                  {
                                      SelectedValue = r,
                                      Label = r.ToString()

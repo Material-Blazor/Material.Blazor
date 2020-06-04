@@ -1,6 +1,10 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
+
+using BMdcModel;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System;
 using System.Threading.Tasks;
 
@@ -10,12 +14,12 @@ namespace BMdcPlus
     /// A date picker styled to match the Material Theme date picker specification, using
     /// a modfied Material Theme select input as also applied in <see cref="MdcSelect{TItem}"/>.
     /// </summary>
-    public partial class DatePicker : BMdcBase.InputComponentBase<DateTime>
+    public partial class DatePicker : InputComponentFoundation<DateTime>
     {
         /// <summary>
         /// The select style.
         /// </summary>
-        [Parameter] public BMdcModel.SelectInputStyle? SelectInputStyle { get; set; }
+        [Parameter] public ESelectInputStyle? SelectInputStyle { get; set; }
 
 
         /// <summary>
@@ -27,7 +31,7 @@ namespace BMdcPlus
         /// <summary>
         /// Date selection criteria
         /// </summary>
-        [Parameter] public BMdcModel.DateSelectionCriteria? DateSelectionCriteria { get; set; }
+        [Parameter] public EDateSelectionCriteria? DateSelectionCriteria { get; set; }
 
 
         /// <summary>
@@ -42,11 +46,17 @@ namespace BMdcPlus
         [Parameter] public DateTime MaxDate { get; set; }
 
 
+        /// <summary>
+        /// Specification for date format
+        /// </summary>
+        [Parameter] public string DateFormat { get; set; } = "D";
+
+
         private ElementReference ElementReference { get; set; }
 
         private InternalDatePickerPanel Panel { get; set; }
 
-        private BMdcModel.SelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
+        private ESelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
 
         private bool IsOpen { get; set; } = false;
 
@@ -62,7 +72,7 @@ namespace BMdcPlus
 
             ClassMapper
                 .Add("mdc-select")
-                .AddIf("mdc-select--outlined", () => (AppliedInputStyle == BMdcModel.SelectInputStyle.Outlined))
+                .AddIf("mdc-select--outlined", () => AppliedInputStyle == ESelectInputStyle.Outlined)
                 .AddIf("mdc-select--disabled", () => Disabled);
         }
 
@@ -71,7 +81,7 @@ namespace BMdcPlus
         protected override void OnValueSet()
         {
             Panel.SetParameters(true, Value);
-            InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value)).ConfigureAwait(false));
+            InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, DateFormat)).ConfigureAwait(false));
         }
 
 

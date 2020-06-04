@@ -1,6 +1,8 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System;
 using System.Threading.Tasks;
 
@@ -9,7 +11,7 @@ namespace BMdc
     /// <summary>
     /// This is a general purpose Material Theme menu.
     /// </summary>
-    public partial class Menu : BMdcBase.ComponentBase, IDisposable
+    public partial class Menu : ComponentFoundation, IDisposable
     {
         /// <summary>
         /// A render fragement as a set of <see cref="ListItem"/>s.

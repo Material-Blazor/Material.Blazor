@@ -1,5 +1,7 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
+
 using Microsoft.AspNetCore.Components;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +13,7 @@ namespace BMdcPlus
     /// A paged data list using the "wig pig" construct allowing the consumer to free render the relevant paged data.
     /// </summary>
     /// <typeparam name="TItem"></typeparam>
-    public partial class PagedDataList<TItem> : BMdcBase.ComponentBase
+    public partial class PagedDataList<TItem> : ComponentFoundation
     {
         /// <summary>
         /// A CSS class to apply to the div surrounding the paged data.
@@ -100,6 +102,8 @@ namespace BMdcPlus
         private string contentClass = "";
         
         private bool hasRendered = false;
+
+        private bool isHidden = false;
         
         private IEnumerable<TItem> CheckedData => Data ?? Array.Empty<TItem>();
         
@@ -124,13 +128,23 @@ namespace BMdcPlus
 
                 await Task.Delay(100);
 
-                ClassMapper.Clear().Add(SlidingContent<object>.Hidden);
+                //isHidden = true;
                 contentClass = nextClass;
                 _pageNumber = newPageNumber;
-                ClassMapper.Clear().Add(SlidingContent<object>.Visible);
+                isHidden = false;
 
                 StateHasChanged();
             }
+        }
+
+        /// <inheritdoc/>
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+
+            ClassMapper
+                .AddIf(SlidingContent<object>.Hidden, () => isHidden)
+                .AddIf(SlidingContent<object>.Visible, () => !isHidden);
         }
 
 

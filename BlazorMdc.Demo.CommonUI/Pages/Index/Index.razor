@@ -1,6 +1,6 @@
 ﻿@namespace BlazorMdc.Demo
 
-@inject BMdcPlus.IAnimatedNavigationManager AnimatedNavigationManager
+@inject IAnimatedNavigationManager AnimatedNavigationManager
 @inject DemoConfiguration DemoConfiguration
 
 @page "/"
@@ -27,8 +27,8 @@
 
 @code {
     
-    IEnumerable<BMdcModel.ListElement<BMdcModel.TopAppBarType>> appBarTypes => from c in (BMdcModel.TopAppBarType[])Enum.GetValues(typeof(BMdcModel.TopAppBarType))
-                                                                 select new BMdcModel.ListElement<BMdcModel.TopAppBarType>
+    IEnumerable<ListElement<ETopAppBarType>> appBarTypes => from c in (ETopAppBarType[])Enum.GetValues(typeof(ETopAppBarType))
+                                                                 select new ListElement<ETopAppBarType>
                                                                  {
                                                                      SelectedValue = c,
                                                                      Label = c.ToString(),

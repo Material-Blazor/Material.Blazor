@@ -1,5 +1,7 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
+
 using BMdcModel;
+
 using Microsoft.AspNetCore.Components;
 
 namespace BMdcPlus
@@ -10,7 +12,7 @@ namespace BMdcPlus
     /// library's CSS, while you can elect whether to include Font Awesome and Open Iconic
     /// in your app.
     /// </summary>
-    public partial class Icon : BMdcBase.ComponentBase
+    public partial class Icon : ComponentFoundation
     {
 #nullable enable annotations
         /// <summary>
@@ -21,11 +23,11 @@ namespace BMdcPlus
 
         /// <summary>
         /// The foundry.
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.MIIcon()"</c></para>
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.FAIcon()"</c></para>
-        /// <para><c>IconFoundry="BMdcModel.IconHelper.OIIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
         /// </summary>
-        [Parameter] public BMdcModel.IIconFoundry? IconFoundry { get; set; }
+        [Parameter] public IIconFoundry? IconFoundry { get; set; }
 
 
         /// <summary>
@@ -36,7 +38,7 @@ namespace BMdcPlus
 #nullable restore annotations
 
 
-        private BMdcModel.IconHelper IconHelper { get; set; }
+        private IconHelper IconHelper { get; set; }
 
 
         /// <inheritdoc/>
@@ -44,14 +46,17 @@ namespace BMdcPlus
         {
             base.OnParametersSet();
 
-            IconHelper = new BMdcModel.IconHelper(CascadingDefaults, IconName, IconFoundry);
+            IconHelper = new IconHelper(CascadingDefaults, IconName, IconFoundry);
+            ComponentPureHtmlAttributes = IconHelper.Attributes;
 
+            //
+            // Has to be here, the string in Add/AddIf is evaluated only once at the
+            // time of the add.
+            //
             ClassMapper
                 .Clear()
                 .Add(IconHelper.Class)
                 .AddIf("mdc-tab__icon", () => TabBar);
-
-            ComponentPureHtmlAttributes = IconHelper.Attributes;
         }
     }
 }

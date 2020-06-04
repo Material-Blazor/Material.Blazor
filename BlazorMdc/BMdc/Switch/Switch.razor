@@ -1,9 +1,9 @@
 ﻿@namespace BMdc
-@inherits BMdcBase.InputComponentBase<bool>
+@inherits InputComponentFoundation<bool>
 
 
 <div @ref="@ElementReference"
-     @attributes="AttributesToSplat(BMdcBase.SplatType.ClassAndStyleOnly)">
+     @attributes="AttributesToSplat(SplatType.ClassAndStyleOnly)">
 
         <div class="mdc-switch__track"></div>
         <div class="mdc-switch__thumb-underlay">
@@ -13,7 +13,7 @@
                        @bind="@ReportingValue" 
                        class="mdc-switch__native-control" 
                        role="switch"
-                       @attributes="AttributesToSplat(BMdcBase.SplatType.ExcludeClassAndStyle)" />
+                       @attributes="AttributesToSplat(SplatType.ExcludeClassAndStyle)" />
             </div>
         </div>
     </div>

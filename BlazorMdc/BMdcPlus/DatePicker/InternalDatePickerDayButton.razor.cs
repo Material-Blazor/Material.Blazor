@@ -1,13 +1,16 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BMdcModel;
+
+using Microsoft.AspNetCore.Components;
+
 using System;
 using System.Threading.Tasks;
 
-namespace BMdcPlus
+namespace BMdcFoundation
 {
     /// <summary>
     /// For BlazorMdc internal use only.
     /// </summary>
-    public partial class InternalDatePickerDayButton : BMdcBase.ComponentBase
+    public partial class InternalDatePickerDayButton : ComponentFoundation
     {
         /// <summary>
         /// The currently selected date.
@@ -36,7 +39,7 @@ namespace BMdcPlus
         /// <summary>
         /// Date selection criteria
         /// </summary>
-        [Parameter] public BMdcModel.DateSelectionCriteria? DateSelectionCriteria { get; set; }
+        [Parameter] public EDateSelectionCriteria? DateSelectionCriteria { get; set; }
 
 
         /// <summary>
@@ -52,7 +55,7 @@ namespace BMdcPlus
 
 
         private string Day => DisplayDate.Day.ToString();
-        private BMdcModel.ButtonStyle ButtonStyle => (DisplayDate == CurrentDate) ? BMdcModel.ButtonStyle.ContainedUnelevated : BMdcModel.ButtonStyle.Text;
+        private EButtonStyle ButtonStyle => (DisplayDate == CurrentDate) ? EButtonStyle.ContainedUnelevated : EButtonStyle.Text;
 
         
         private bool ButtonDisabled
@@ -68,14 +71,14 @@ namespace BMdcPlus
 
                 switch (criteria)
                 {
-                    case BMdcModel.DateSelectionCriteria.WeekendsOnly:
+                    case EDateSelectionCriteria.WeekendsOnly:
                         if ((DisplayDate.DayOfWeek != DayOfWeek.Sunday) && (DisplayDate.DayOfWeek != DayOfWeek.Saturday))
                         {
                             return true;
                         }
                         break;
 
-                    case BMdcModel.DateSelectionCriteria.WeekdaysOnly:
+                    case EDateSelectionCriteria.WeekdaysOnly:
                         if ((DisplayDate.DayOfWeek == DayOfWeek.Sunday) || (DisplayDate.DayOfWeek == DayOfWeek.Saturday))
                         {
                             return true;

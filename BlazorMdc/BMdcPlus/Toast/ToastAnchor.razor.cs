@@ -1,4 +1,9 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BMdcFoundation;
+
+using BMdcModel;
+
+using Microsoft.AspNetCore.Components;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +13,10 @@ namespace BMdcPlus
 {
     /// <summary>
     /// An anchor component that displays toast notification that you display via
-    /// <see cref="IPmdcToastService.ShowToast(ToastLevel, string, string, ToastCloseMethod?, string, string, IIconFoundry?, bool?, uint?)"/>.
+    /// <see cref="IPmdcToastService.ShowToast(EToastLevel, string, string, EToastCloseMethod?, string, string, IIconFoundry?, bool?, uint?)"/>.
     /// Place this component at the top of either App.razor or MainLayout.razor.
     /// </summary>
-    public partial class ToastAnchor : BMdcBase.ComponentBase
+    public partial class ToastAnchor : ComponentFoundation
     {
         [Inject] private IToastService ToastService { get; set; }
 
@@ -32,7 +37,7 @@ namespace BMdcPlus
         }
 
 
-        private void AddToast(BMdcModel.ToastLevel level, ToastSettings settings)
+        private void AddToast(EToastLevel level, ToastSettings settings)
         {
             InvokeAsync(async () =>
             {
@@ -83,7 +88,7 @@ namespace BMdcPlus
 
                 DisplayedToasts.Add(toastInstance);
 
-                if (toastInstance.Settings.AppliedCloseMethod != BMdcModel.ToastCloseMethod.CloseButton)
+                if (toastInstance.Settings.AppliedCloseMethod != EToastCloseMethod.CloseButton)
                 {
                     InvokeAsync(() =>
                     {

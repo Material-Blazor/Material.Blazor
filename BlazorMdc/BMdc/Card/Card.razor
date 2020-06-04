@@ -1,9 +1,9 @@
 ﻿@namespace BMdc
-@inherits BMdcBase.ComponentBase
+@inherits ComponentFoundation
 
 
 <CascadingValue Value="@this">
-    <div @attributes="@AttributesToSplat(BMdcBase.SplatType.ExcludeEvents)">
+    <div @attributes="@AttributesToSplat(SplatType.ExcludeEvents)">
 
         @if (Primary != null)
         {
@@ -17,7 +17,7 @@
             <div @ref="@PrimaryActionReference"
                  class="mdc-card__primary-action @PrimaryActionClass"
                  tabindex="0"
-                 @attributes="@AttributesToSplat(BMdcBase.SplatType.EventsOnly)">
+                 @attributes="@AttributesToSplat(SplatType.EventsOnly)">
 
                 @PrimaryAction
             </div>

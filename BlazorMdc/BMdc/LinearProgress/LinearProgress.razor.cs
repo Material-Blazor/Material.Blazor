@@ -1,6 +1,10 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
+
+using BMdcModel;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System.Threading.Tasks;
 
 namespace BMdc
@@ -9,12 +13,12 @@ namespace BMdc
     /// This is a general purpose Material Theme linear progress bar. Can be determinant or
     /// indeterminant. If determinant the value needs to be between 0 and 1.
     /// </summary>
-    public partial class LinearProgress : BMdcBase.InputComponentBase<double>
+    public partial class LinearProgress : InputComponentFoundation<double>
     {
         /// <summary>
         /// Makes the progress bar indeterminant if True.
         /// </summary>
-        [Parameter] public BMdcModel.LinearProgressType LinearProgressType { get; set; } = BMdcModel.LinearProgressType.Indeterminate;
+        [Parameter] public ELinearProgressType LinearProgressType { get; set; } = ELinearProgressType.Indeterminate;
 
 
         /// <summary>
@@ -57,6 +61,12 @@ namespace BMdc
 
             ForceShouldRenderToTrue = true;
             IntialValue = Value;
+
+            ClassMapper
+                .Add("mdc-linear-progress")
+                .AddIf("mdc-linear-progress--indeterminate", () => LinearProgressType == ELinearProgressType.Indeterminate)
+                .AddIf("mdc-linear-progress--reversed", () => LinearProgressType == ELinearProgressType.ReversedDeterminate)
+                .AddIf("mdc-linear-progress--closed", () => LinearProgressType == ELinearProgressType.Closed);
         }
 
 
@@ -64,13 +74,6 @@ namespace BMdc
         protected override void OnParametersSet()
         {
             base.OnParametersSet();
-
-            ClassMapper
-                .Clear()
-                .Add("mdc-linear-progress")
-                .AddIf("mdc-linear-progress--indeterminate", () => LinearProgressType == BMdcModel.LinearProgressType.Indeterminate)
-                .AddIf("mdc-linear-progress--reversed", () => LinearProgressType == BMdcModel.LinearProgressType.ReversedDeterminate)
-                .AddIf("mdc-linear-progress--closed", () => LinearProgressType == BMdcModel.LinearProgressType.Closed);
         }
 
 

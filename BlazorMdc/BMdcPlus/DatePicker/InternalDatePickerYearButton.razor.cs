@@ -1,14 +1,16 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using BMdcModel;
+
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BMdcPlus
+namespace BMdcFoundation
 {
     /// <summary>
     /// For BlazorMdc internal use only.
     /// </summary>
-    public partial class InternalDatePickerYearButton : BMdcBase.ComponentBase
+    public partial class InternalDatePickerYearButton : ComponentFoundation
     {
         /// <summary>
         /// The currently selected year.
@@ -46,7 +48,7 @@ namespace BMdcPlus
         [Parameter] public string CurrentYearId { get; set; }
 
 
-        private BMdcModel.ButtonStyle ButtonStyle => (DisplayYear == CurrentYear) ? BMdcModel.ButtonStyle.ContainedUnelevated : BMdcModel.ButtonStyle.Text;
+        private EButtonStyle ButtonStyle => (DisplayYear == CurrentYear) ? EButtonStyle.ContainedUnelevated : EButtonStyle.Text;
         
 
         private Dictionary<string, object> Attributes

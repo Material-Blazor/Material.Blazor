@@ -1,12 +1,12 @@
 ﻿@namespace BMdcPlus
-@inherits BMdcBase.InputComponentBase<DateTime>
+@inherits InputComponentFoundation<DateTime>
 
 
 <div @ref="ElementReference"
      @attributes="@AttributesToSplat()" >
 
     <div class="mdc-select__anchor">
-        @if (AppliedInputStyle == BMdcModel.SelectInputStyle.Filled)
+        @if (AppliedInputStyle == ESelectInputStyle.Filled)
         {
             <span class="mdc-select__ripple"></span>
         }
@@ -14,7 +14,7 @@
         <input type="text" disabled readonly class="mdc-select__selected-text">
         <i class="mdc-select__dropdown-icon"></i>
 
-        @if (AppliedInputStyle == BMdcModel.SelectInputStyle.Outlined)
+        @if (AppliedInputStyle == ESelectInputStyle.Outlined)
         {
             <span class="mdc-notched-outline">
                 <span class="mdc-notched-outline__leading"></span>
@@ -32,6 +32,11 @@
     </div>
 
     <div class="mdc-select__menu mdc-menu mdc-menu-surface bmdc-dp-menu__surface-adjust">
-        <InternalDatePickerPanel @ref="Panel" @bind-Value="@ReportingValue" DateSelectionCriteria="@DateSelectionCriteria" MinDate="@MinDate" MaxDate="@MaxDate" />
+        <InternalDatePickerPanel @ref="Panel"
+                                 @bind-Value="@ReportingValue"
+                                 DateSelectionCriteria="@DateSelectionCriteria"
+                                 MinDate="@MinDate"
+                                 MaxDate="@MaxDate"
+                                 DateFormat="@DateFormat"/>
     </div>
 </div>

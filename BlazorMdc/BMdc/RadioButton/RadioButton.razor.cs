@@ -1,6 +1,8 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System;
 using System.Threading.Tasks;
 
@@ -8,13 +10,13 @@ namespace BMdc
 {
     /// <summary>
     /// This is a general purpose Material Theme radio button. Accepts a generic class TItem
-    /// and displays as checked if <see cref="InputComponentBase{T}.Value"/> equals <see cref="TargetCheckedValue"/>.
+    /// and displays as checked if <see cref="InputComponentFoundation{T}.Value"/> equals <see cref="TargetCheckedValue"/>.
     /// </summary>
-    public partial class RadioButton<TItem> : BMdcBase.InputComponentBase<TItem>
+    public partial class RadioButton<TItem> : InputComponentFoundation<TItem>
     {
         /// <summary>
-        /// <see cref="InputComponentBase{T}.Value"/> is set to this when the 
-        /// radio button is clicked. If the consumer sets <see cref="InputComponentBase{T}.Value"/>
+        /// <see cref="InputComponentFoundation{T}.Value"/> is set to this when the 
+        /// radio button is clicked. If the consumer sets <see cref="InputComponentFoundation{T}.Value"/>
         /// to this the radio state will change to checked, or cleared for any other value.
         /// </summary>
         [Parameter] public TItem TargetCheckedValue { get; set; }
@@ -24,13 +26,6 @@ namespace BMdc
         /// The radio button label.
         /// </summary>
         [Parameter] public string Label { get; set; }
-
-
-        /// <summary>
-        /// Class of the radio button's <c>&lt;div&gt;</c> container.
-        /// </summary>
-        [Parameter] public string ButtonContainerClass { get; set; }
-
 
 
         /// <summary>
@@ -47,12 +42,12 @@ namespace BMdc
         [Parameter] public string RadioGroupName { get; set; }
 
 
-        private readonly string radioId = BMdcBase.Utilities.GenerateUniqueElementName();
+        private readonly string radioId = Utilities.GenerateUniqueElementName();
 
 
         private ElementReference FormReference { get; set; }
         private ElementReference RadioButtonReference { get; set; }
-        private string MyButtonContainerClass { get; set; }
+        private string ButtonContainerClass { get; set; }
         private string DisabledClass { get; set; } = "";
 
 
@@ -62,6 +57,9 @@ namespace BMdc
             base.OnInitialized();
 
             ForceShouldRenderToTrue = true;
+
+            ClassMapper
+                .Add("mdc-form-field");
         }
 
 
@@ -75,21 +73,13 @@ namespace BMdc
                 throw new ArgumentException("RadioGroupName is a required parameter in MdcRadioButton.");
             }
 
-            ClassMapper
-                .Add("mdc-form-field");
-
             if (EnableTouchWrapper)
             {
-                MyButtonContainerClass = "mdc-radio mdc-radio--touch";
+                ButtonContainerClass = "mdc-radio mdc-radio--touch";
             }
             else
             {
-                MyButtonContainerClass = "mdc-radio";
-            }
-
-            if (!string.IsNullOrWhiteSpace(ButtonContainerClass))
-            {
-                MyButtonContainerClass += " " + ButtonContainerClass;
+                ButtonContainerClass = "mdc-radio";
             }
 
             if (Disabled)

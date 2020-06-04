@@ -41,11 +41,11 @@
 
 <BMdcPlus.RadioButtonGroup @bind-Value="@kittenBreed"
                       Items="stringItems"
-                      ItemValidation="@BMdcModel.ItemValidation.DefaultToFirst" />
+                      ItemValidation="@EItemValidation.DefaultToFirst" />
 
 <BMdcPlus.RadioButtonGroup @bind-Value="@kittenBreed"
                       Items="stringItems"
-                      ItemValidation="@BMdcModel.ItemValidation.DefaultToFirst" />
+                      ItemValidation="@EItemValidation.DefaultToFirst" />
 
 <p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed ?? "")</strong>'</p>
 
@@ -71,18 +71,18 @@
 
 
     string kittenBreed;
-    BMdcModel.ListElement<string>[] stringItems = new BMdcModel.ListElement<string>[]
+    ListElement<string>[] stringItems = new ListElement<string>[]
     {
-        new BMdcModel.ListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
-        new BMdcModel.ListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
-        new BMdcModel.ListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+        new ListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new ListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new ListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
                     };
 
 
     Colour colour = Colour.Orange;
     enum Colour { Red, Orange, Yellow, Green, Blue, Indigo, Violet };
-    IEnumerable<BMdcModel.ListElement<Colour>> colourItems => from c in (Colour[])Enum.GetValues(typeof(Colour))
-                                                       select new BMdcModel.ListElement<Colour>
+    IEnumerable<ListElement<Colour>> colourItems => from c in (Colour[])Enum.GetValues(typeof(Colour))
+                                                       select new ListElement<Colour>
                                                        {
                                                            SelectedValue = c,
                                                            Label = c.ToString() + ((c == Colour.Blue) ? " (disabled)" : ""),

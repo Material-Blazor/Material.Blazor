@@ -1,6 +1,10 @@
-﻿using BMdcBase;
+﻿using BMdcFoundation;
+
+using BMdcModel;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,12 +15,12 @@ namespace BMdc
     /// standards. It also implements a BlazorMdc interpretation of the specification for a three line
     /// list item.
     /// </summary>
-    public partial class List<TItem> : BMdcBase.ComponentBase
+    public partial class List<TItem> : ComponentFoundation
     {
         /// <summary>
         /// The list style.
         /// </summary>
-        [Parameter] public BMdcModel.ListStyle? ListStyle { get; set; }
+        [Parameter] public EListStyle? ListStyle { get; set; }
 
 
         /// <summary>
@@ -145,6 +149,18 @@ namespace BMdc
         private string LineThreeClass { get; set; }
 
 
+        protected override void OnInitialized()
+        {
+            ClassMapper
+                .Add("mdc-list")
+                .AddIf("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(ListStyle) == EListStyle.Outlined))
+                .AddIf("mdc-list--two-line", () => (NumberOfLines == 2))
+                .AddIf("bmdc-list--three-line", () => (NumberOfLines == 3))
+                .AddIf("mdc-list--non-interactive", () => NonInteractive)
+                .AddIf("mdc-list--dense", () => Dense)
+                .AddIf("mdc-list--avatar-list", () => AvatarList);
+        }
+
         /// <inheritdoc/>
         protected override void OnParametersSet()
         {
@@ -160,16 +176,6 @@ namespace BMdc
             TitleClass = (NumberOfLines == 1) ? "" : "mdc-list-item__primary-text";
             LineTwoClass = "mdc-list-item__secondary-text bmdc-full-width";
             LineThreeClass = "mdc-list-item__secondary-text" + ((NumberOfLines == 3) ? " line-three" : "") + " bmdc-full-width";
-
-            ClassMapper
-                .Clear()
-                .Add("mdc-list")
-                .AddIf("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(ListStyle) == BMdcModel.ListStyle.Outlined))
-                .AddIf("mdc-list--two-line", () => (NumberOfLines == 2))
-                .AddIf("bmdc-list--three-line", () => (NumberOfLines == 3))
-                .AddIf("mdc-list--non-interactive", () => NonInteractive)
-                .AddIf("mdc-list--dense", () => Dense)
-                .AddIf("mdc-list--avatar-list", () => AvatarList);
         }
 
 

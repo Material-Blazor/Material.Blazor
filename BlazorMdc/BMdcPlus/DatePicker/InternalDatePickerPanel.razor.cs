@@ -1,23 +1,25 @@
-﻿using BMdcBase;
+﻿using BMdcModel;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BMdcPlus
+namespace BMdcFoundation
 {
     /// <summary>
     /// For BlazorMdc internal use only.
     /// </summary>
-    public partial class InternalDatePickerPanel : BMdcBase.InputComponentBase<DateTime>
+    public partial class InternalDatePickerPanel : InputComponentFoundation<DateTime>
     {
         /// <summary>
         /// Date selection criteria
         /// </summary>
-        [Parameter] public BMdcModel.DateSelectionCriteria? DateSelectionCriteria { get; set; }
+        [Parameter] public EDateSelectionCriteria? DateSelectionCriteria { get; set; }
 
 
         /// <summary>
@@ -36,6 +38,12 @@ namespace BMdcPlus
         /// Reference to the <c>&lt;li&gt;</c> embedded in the panel.
         /// </summary>
         internal ElementReference ListItemReference { get; set; }
+
+
+        /// <summary>
+        /// Specification for date format
+        /// </summary>
+        [Parameter] public string DateFormat { get; set; }
 
 
         private bool ScrollToYear { get; set; } = false;
@@ -69,7 +77,7 @@ namespace BMdcPlus
 
         private DateTime CachedMaxDate { get; set; }
 
-        private string CachedReportingValueText => BMdcBase.Utilities.DateToString(CachedReportingValue);
+        private string CachedReportingValueText => BMdcFoundation.Utilities.DateToString(CachedReportingValue, DateFormat);
 
         private int MonthsOffset { get; set; } = 0;
 
@@ -82,9 +90,9 @@ namespace BMdcPlus
         private bool IsFirstParametersSet { get; set; } = true;
 
 
-        private readonly string currentYearId = BMdcBase.Utilities.GenerateUniqueElementName();
+        private readonly string currentYearId = BMdcFoundation.Utilities.GenerateUniqueElementName();
 
-        private readonly BMdcModel.IIconFoundry foundry = BMdcModel.IconHelper.MIFoundry(BMdcModel.IconMITheme.Filled);
+        private readonly IIconFoundry foundry = IconHelper.MIFoundry(EIconMITheme.Filled);
 
 
         /// <inheritdoc/>
