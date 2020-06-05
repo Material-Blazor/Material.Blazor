@@ -1,8 +1,7 @@
 window.BlazorMdc = {
     autoComplete: {
         init: function (textElem) {
-            const text = mdc.textField.MDCTextField.attachTo(textElem);
-            textElem._text = text;
+            textElem._textField = mdc.textField.MDCTextField.attachTo(textElem);
         },
 
         open: function (menuElem, dotNetObject) {
@@ -34,6 +33,14 @@ window.BlazorMdc = {
             if (menuElem._menu) {
                 menuElem._menu.open = false;
             }
+        },
+
+        setValue: function (textElem, value) {
+            textElem._textField.value = value;
+        },
+
+        setDisabled: function (textElem, value) {
+            textElem._textField.disabled = value;
         }
     },
 
@@ -260,13 +267,21 @@ window.BlazorMdc = {
     },
 
     textField: {
-        init: function (textFieldElem) {
-            mdc.textField.MDCTextField.attachTo(textFieldElem);
+        init: function (elem) {
+            elem._textField = mdc.textField.MDCTextField.attachTo(elem);
         },
 
         select: function (inputElem) {
             inputElem.focus();
             inputElem.select();
+        },
+
+        setValue: function (elem, value) {
+            elem._textField.value = value;
+        },
+
+        setDisabled: function (elem, value) {
+            elem._textField.disabled = value;
         }
     },
 

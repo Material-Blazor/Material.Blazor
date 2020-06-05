@@ -4,7 +4,7 @@ using BMdcModel;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-
+using System;
 using System.Threading.Tasks;
 
 namespace BMdc
@@ -72,14 +72,32 @@ namespace BMdc
                 .AddIf("mdc-text-field--no-label", () => NoLabel)
                 .AddIf("mdc-text-field--disabled", () => Disabled);
 
-            ForceShouldRenderToTrue = true;
+            FloatingLabelClass = string.IsNullOrEmpty(ReportingValue) ? "" : "mdc-floating-label--float-above";
+
+            OnValueSet += OnValueSetCallback;
+            OnDisabledSet += OnDisabledSetCallback;
         }
+
+
+        /// <summary>
+        /// Callback for value the value setter.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.textField.setValue", ElementReference, Value));
+
+
+        /// <summary>
+        /// Callback for value the Disabled value setter.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.textField.setDisabled", ElementReference, Disabled));
 
 
         /// <inheritdoc/>
         protected override void OnParametersSet()
         {
-            FloatingLabelClass = string.IsNullOrEmpty(ReportingValue) ? "" : "mdc-floating-label--float-above";
         }
 
 

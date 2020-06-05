@@ -14,38 +14,39 @@
 
 <p>See <code>TextFieldSample.razor</code> for sources.</p>
 
-<p><BMdc.Switch @bind-Value="@disabled" Label="Disable text fields" /></p>
-
 <p style="margin-top: 3rem;">Filled style</p>
-<p><BMdc.TextField class="my-orange-background" Label="Filled" @bind-Value="@currentValueFilled" TextInputStyle="ETextInputStyle.Filled" TrailingIcon="account_balance_wallet" Disabled="@disabled" /></p>
+<p><BMdc.TextField class="my-orange-background" Label="Filled" @bind-Value="@currentValueFilled" TextInputStyle="ETextInputStyle.Filled" TrailingIcon="account_balance_wallet" Disabled="@DisableComponents" /></p>
+<p><BMdc.TextField Label="Filled (repeated)" @bind-Value="@currentValueFilled" TextInputStyle="ETextInputStyle.Filled" TrailingIcon="account_balance_wallet" Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@(currentValueFilled ?? "")'</strong></p>
 
+
 <p style="margin-top: 3rem;">Filled style</p>
-<p><BMdc.TextField style="background-color: aquamarine;" Label="Filled" @bind-Value="@currentValueFilled" TextInputStyle="ETextInputStyle.Filled" TrailingIcon="account_balance_wallet" Disabled="@disabled" /></p>
+<p><BMdc.TextField style="background-color: aquamarine;" Label="Filled" @bind-Value="@currentValueFilled" TextInputStyle="ETextInputStyle.Filled" TrailingIcon="account_balance_wallet" Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@(currentValueFilled ?? "")'</strong></p>
 
 <p style="margin-top: 3rem;">Outlined style</p>
-<p><BMdc.TextField Label="Outlined" @bind-Value="@currentValueOutlined" TextInputStyle="ETextInputStyle.Outlined" LeadingIcon="account_balance_wallet" Disabled="@disabled" /></p>
+<p><BMdc.TextField Label="Outlined" @bind-Value="@currentValueOutlined" TextInputStyle="ETextInputStyle.Outlined" LeadingIcon="account_balance_wallet" Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@(currentValueOutlined ?? "")'</strong></p>
 
 <p style="margin-top: 3rem;">Full Width style (floating labels diabled, adhering to MT style guidelines)</p>
-<p><BMdc.TextField Label="Full Width" @bind-Value="@currentValueFullWidth" TextInputStyle="ETextInputStyle.FullWidth" Disabled="@disabled" /></p>
+<p><BMdc.TextField Label="Full Width" @bind-Value="@currentValueFullWidth" TextInputStyle="ETextInputStyle.FullWidth" Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@(currentValueFullWidth ?? "")'</strong></p>
 
 <p style="margin-top: 3rem;">Right aligned</p>
-<p><BMdc.TextField Label="Right aligned" @bind-Value="@currentValueRight" TextInputStyle="ETextInputStyle.Outlined" TextAlignStyle="ETextAlignStyle.Right" Disabled="@disabled" /></p>
+<p><BMdc.TextField Label="Right aligned" @bind-Value="@currentValueRight" TextInputStyle="ETextInputStyle.Outlined" TextAlignStyle="ETextAlignStyle.Right" Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@(currentValueRight ?? "")'</strong></p>
 
 <p style="margin-top: 3rem;">Password</p>
-<p><BMdc.TextField Label="Password" @bind-Value="@currentValuePassword" TextInputStyle="ETextInputStyle.Outlined" type="password" Disabled="@disabled" /></p>
+<p><BMdc.TextField Label="Password" @bind-Value="@currentValuePassword" TextInputStyle="ETextInputStyle.Outlined" type="password" Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@(currentValuePassword ?? "")'</strong></p>
 
 
 @code {
+    [CascadingParameter(Name = "DisableComponents")] private bool DisableComponents { get; set; }
+
     string currentValueFilled;
     string currentValueOutlined;
     string currentValueFullWidth;
     string currentValueRight;
     string currentValuePassword;
-    bool disabled = false;
 }

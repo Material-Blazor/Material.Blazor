@@ -122,6 +122,8 @@ namespace BMdcPlus
             base.OnInitialized();
 
             ObjectReference = DotNetObjectReference.Create(this);
+
+            ForceShouldRenderToTrue = true;
         }
 
 
@@ -157,7 +159,6 @@ namespace BMdcPlus
         }
 
 
-        /// <inheritdoc/>
         private SelectionInfo BuildSelectList(string fieldText)
         {
             var regexOptions = RegexOptions.IgnoreCase | (IgnoreWhitespace ? RegexOptions.IgnorePatternWhitespace : 0);
@@ -190,7 +191,6 @@ namespace BMdcPlus
         }
 
 
-        /// <inheritdoc/>
         private async Task OnInput(ChangeEventArgs args)
         {
             SelectInfo = BuildSelectList((string)args.Value);
@@ -206,15 +206,13 @@ namespace BMdcPlus
         }
 
 
-        /// <inheritdoc/>
-        private async Task OnTextFocusOutAsync()
+        private async Task OnTextChangeAsync()
         {
-            await Task.Delay(100);
+            //await Task.Delay(100);
+            await CloseMenuAsync(true);
 
             if (!MenuHasFocus)
             {
-                await CloseMenuAsync(true);
-
                 if (SelectInfo.FullMatchFound || (AllowBlankResult && string.IsNullOrWhiteSpace(SelectInfo.SelectedText)))
                 {
                     ReportingValue = SelectInfo.SelectedText.Trim();
@@ -225,21 +223,27 @@ namespace BMdcPlus
         }
 
 
-        /// <inheritdoc/>
+        private async Task OnTextFocusOutAsync()
+        {
+            if (SelectInfo.SelectList.Count() == 0)
+            {
+                await CloseMenuAsync();
+            }
+        }
+
+
         private void OnMenuFocusIn()
         {
             MenuHasFocus = true;
         }
 
 
-        /// <inheritdoc/>
         private void OnMenuFocusOut()
         {
             MenuHasFocus = false;
         }
 
 
-        /// <inheritdoc/>
         private async Task OnItemClickAsync(string menuValue)
         {
             await CloseMenuAsync();
@@ -257,6 +261,11 @@ namespace BMdcPlus
         public async Task NotifyClosedAsync()
         {
             IsOpen = false;
+
+            SelectInfo.SelectedText = Value;
+
+            StateHasChanged();
+
             await Task.CompletedTask;
         }
 
@@ -282,13 +291,6 @@ namespace BMdcPlus
 
 
         /// <inheritdoc/>
-        protected override bool ShouldRender()
-        {
-            return true;
-        }
-
-
-        /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.autoComplete.init", TextField.TextFieldReference);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.autoComplete.init", TextField.ElementReference);
     }
 }

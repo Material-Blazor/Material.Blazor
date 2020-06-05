@@ -4,7 +4,7 @@ using BMdcModel;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-
+using System;
 using System.Threading.Tasks;
 
 namespace BMdc
@@ -63,7 +63,7 @@ namespace BMdc
 
         private ETextInputStyle AppliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
         
-        internal ElementReference TextFieldReference { get; set; }
+        internal ElementReference ElementReference { get; set; }
         
         private ElementReference InputReference { get; set; }
         
@@ -89,7 +89,6 @@ namespace BMdc
                 .AddIf("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
                 .AddIf("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
 
-
             if (!NoLabel && AppliedTextInputStyle != ETextInputStyle.FullWidth)
             {
                 ComponentPureHtmlAttributes.Add("aria-labelledby", labelId);
@@ -99,24 +98,31 @@ namespace BMdc
                 ComponentPureHtmlAttributes.Add("aria-label", Label);
             }
 
-            ForceShouldRenderToTrue = true;
-        }
-
-
-        /// <inheritdoc/>
-        protected override void OnParametersSet()
-        {
-            base.OnParametersSet();
-
-            var leading = new IconHelper(CascadingDefaults, LeadingIcon, IconFoundry);
-            var trailing = new IconHelper(CascadingDefaults, TrailingIcon, IconFoundry);
-
             FloatingLabelClass = string.IsNullOrEmpty(ReportingValue) ? "" : "mdc-floating-label--float-above";
+
+            OnValueSet += OnValueSetCallback;
+            OnDisabledSet += OnDisabledSetCallback;
         }
 
 
+        /// <summary>
+        /// Callback for value the value setter.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.textField.setValue", ElementReference, Value));
+
+
+        /// <summary>
+        /// Callback for value the Disabled value setter.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.textField.setDisabled", ElementReference, Disabled));
+
+
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.textField.init", TextFieldReference);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.textField.init", ElementReference);
 
 
         /// <summary>
