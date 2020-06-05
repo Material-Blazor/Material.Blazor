@@ -74,11 +74,17 @@ namespace BMdcPlus
                 .Add("mdc-select")
                 .AddIf("mdc-select--outlined", () => AppliedInputStyle == ESelectInputStyle.Outlined)
                 .AddIf("mdc-select--disabled", () => Disabled);
+
+            OnValueSet += OnValueSetCallback;
         }
 
 
-        /// <inheritdoc/>
-        protected override void OnValueSet()
+        /// <summary>
+        /// Callback for value the value setter.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void OnValueSetCallback(object sender, EventArgs e)
         {
             Panel.SetParameters(true, Value);
             InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, DateFormat)).ConfigureAwait(false));

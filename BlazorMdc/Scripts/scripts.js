@@ -223,7 +223,7 @@ window.BlazorMdc = {
 
     select: {
         init: function (elem) {
-            mdc.select.MDCSelect.attachTo(elem);
+            elem._select = mdc.select.MDCSelect.attachTo(elem);
         },
 
         clickItem: function (ulElem, value) {
@@ -232,6 +232,10 @@ window.BlazorMdc = {
                     ulElem.children[i].click();
                 }
             }
+        },
+
+        setDisabled: function (elem, value) {
+            elem._select.disabled = value;
         }
     },
 

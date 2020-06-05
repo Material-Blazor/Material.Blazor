@@ -4,7 +4,7 @@ using BMdcModel;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-
+using System;
 using System.Threading.Tasks;
 
 namespace BMdc
@@ -39,7 +39,7 @@ namespace BMdc
                 if (value != _bufferValue)
                 {
                     _bufferValue = value;
-                    OnValueSet();
+                    OnValueSetCallback(null, null);
                 }    
             }
         }
@@ -67,6 +67,8 @@ namespace BMdc
                 .AddIf("mdc-linear-progress--indeterminate", () => LinearProgressType == ELinearProgressType.Indeterminate)
                 .AddIf("mdc-linear-progress--reversed", () => LinearProgressType == ELinearProgressType.ReversedDeterminate)
                 .AddIf("mdc-linear-progress--closed", () => LinearProgressType == ELinearProgressType.Closed);
+
+            OnValueSet += OnValueSetCallback;
         }
 
 
@@ -77,8 +79,12 @@ namespace BMdc
         }
 
 
-        /// <inheritdoc/>
-        protected override void OnValueSet() => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.linearProgress.setProgress", ElementReference, Value, MyBufferValue));
+        /// <summary>
+        /// Callback for value the value setter.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.linearProgress.setProgress", ElementReference, Value, MyBufferValue));
 
 
         /// <inheritdoc/>
