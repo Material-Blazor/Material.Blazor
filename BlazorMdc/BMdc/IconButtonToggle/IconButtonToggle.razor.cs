@@ -4,7 +4,7 @@ using BMdcModel;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-
+using System;
 using System.Threading.Tasks;
 
 namespace BMdc
@@ -54,6 +54,8 @@ namespace BMdc
                 .Add("mdc-icon-button")
                 .AddIf("mdc-card__action mdc-card__action--icon", () => (Card != null))
                 .AddIf("mdc-icon-button--on", () => Value);
+
+            OnValueSet += OnValueSetCallback;
         }            
 
 
@@ -66,8 +68,12 @@ namespace BMdc
         }
 
 
-        /// <inheritdoc/>
-        protected override void OnValueSet() => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.setOn", ElementReference, Value));
+        /// <summary>
+        /// Callback for value the value setter.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.setOn", ElementReference, Value));
 
 
         /// <inheritdoc/>

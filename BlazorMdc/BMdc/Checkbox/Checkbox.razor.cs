@@ -2,7 +2,7 @@
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-
+using System;
 using System.Threading.Tasks;
 
 namespace BMdc
@@ -38,14 +38,17 @@ namespace BMdc
             ClassMapper
                 .Add("mdc-checkbox mdc-checkbox--touch")
                 .AddIf("mdc-checkbox--disabled", () => Disabled);
+
+            OnValueSet += OnValueSetCallback;
         }
 
 
-        /// <inheritdoc/>
-        protected override void OnValueSet()
-        {
-            AllowNextRender = true;
-        }
+        /// <summary>
+        /// Callback for value the value setter.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void OnValueSetCallback(object sender, EventArgs e) => AllowNextRender = true;
 
 
         /// <inheritdoc/>

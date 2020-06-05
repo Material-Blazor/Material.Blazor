@@ -51,19 +51,19 @@ namespace BMdcFoundation
                 {
                     _underlyingValue = value;
                    
-                    if (_hasInstantiated) OnValueSet();
+                    if (_hasInstantiated) OnValueSet?.Invoke(this, null);
                 }
             }
         }
 
 
         /// <summary>
-        /// Derived components can use this to get a callback the <see cref="Value"/> setter when the consumer changes the value.
+        /// Derived components can use this to get a callback from the <see cref="Value"/> setter when the consumer changes the value.
         /// This allows a component to take action with Material Theme js to update the DOM to reflect the data change visually. An
         /// example is a select where the relevant list item needs to be automatically clicked to get Material Theme to update
         /// the value shown in the <c>&lt;input&gt;</c> HTML tag.
         /// </summary>
-        protected virtual void OnValueSet() => _ = 0;
+        protected event EventHandler OnValueSet;
 
 
         /// <summary>

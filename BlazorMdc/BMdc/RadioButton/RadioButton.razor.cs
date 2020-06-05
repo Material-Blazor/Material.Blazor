@@ -60,6 +60,8 @@ namespace BMdc
 
             ClassMapper
                 .Add("mdc-form-field");
+
+            OnValueSet += OnValueSetCallback;
         }
 
 
@@ -89,11 +91,12 @@ namespace BMdc
         }
 
 
-        /// <inheritdoc/>
-        protected override void OnValueSet()
-        {
-            InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.setChecked", RadioButtonReference, Value.Equals(TargetCheckedValue)).ConfigureAwait(false));
-        }
+        /// <summary>
+        /// Callback for value the value setter.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.radioButton.setChecked", RadioButtonReference, Value.Equals(TargetCheckedValue)).ConfigureAwait(false));
 
 
         private async Task OnInternalItemClickAsync()

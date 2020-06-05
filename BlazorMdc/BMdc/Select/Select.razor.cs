@@ -4,7 +4,7 @@ using BMdcModel;
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -76,6 +76,9 @@ namespace BMdc
 
             SelectedText = (Value is null) ? "" : Items.Where(i => object.Equals(i.SelectedValue, Value)).FirstOrDefault().Label;
             FloatingLabelClass = string.IsNullOrWhiteSpace(SelectedText) ? "" : "mdc-floating-label--float-above";
+
+            OnValueSet += OnValueSetCallback;
+            OnDisabledSet += OnDisabledSetCallback;
         }
 
 
@@ -86,12 +89,23 @@ namespace BMdc
         }
 
 
-        /// <inheritdoc/>
-        protected override void OnValueSet() => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.select.clickItem", UlReference, ItemDict[Value].Label));
+        /// <summary>
+        /// Callback for value the value setter.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.select.clickItem", UlReference, ItemDict[Value].Label));
+
+
+        /// <summary>
+        /// Callback for value the Disabled value setter.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.select.setDisabled", SelectReference, Disabled));
 
 
         /// <inheritdoc/>
         private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.select.init", SelectReference);
-
     }
 }
