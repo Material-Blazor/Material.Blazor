@@ -195,7 +195,7 @@ namespace BMdcPlus
         {
             SelectInfo = BuildSelectList((string)args.Value);
 
-            if (SelectInfo.FullMatchFound)
+            if (SelectInfo.FullMatchFound || (AllowBlankResult && string.IsNullOrWhiteSpace(SelectInfo.SelectedText)))
             {
                 await CloseMenuAsync();
                 ReportingValue = SelectInfo.SelectedText.Trim();
