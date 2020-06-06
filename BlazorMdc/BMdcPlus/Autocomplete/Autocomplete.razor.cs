@@ -1,4 +1,5 @@
-﻿using BMdcFoundation;
+﻿using BMdc;
+using BMdcFoundation;
 
 using BMdcModel;
 
@@ -8,6 +9,7 @@ using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -19,6 +21,9 @@ namespace BMdcPlus
     /// </summary>
     public partial class Autocomplete : InputComponentFoundation<string>, IDisposable
     {
+        private IEnumerable<string> selectItems;
+        private IEnumerable<string> newSelectItems = null;
+
         private class SelectionInfo
         {
             public string SelectedText { get; set; }
@@ -103,7 +108,21 @@ namespace BMdcPlus
         /// <summary>
         /// List of items to select from.
         /// </summary>
-        [Parameter] public IEnumerable<string> SelectItems { get; set; }
+        [Parameter] public IEnumerable<string> SelectItems 
+        { 
+            get => selectItems;
+            set
+            {
+                if (IsOpen)
+                {
+                    newSelectItems = value;
+                }
+                else
+                {
+                    selectItems = value;
+                }
+            }
+        }
 #nullable restore annotations
 
 
@@ -247,7 +266,7 @@ namespace BMdcPlus
         private async Task OnItemClickAsync(string menuValue)
         {
             await CloseMenuAsync();
-            SelectInfo = BuildSelectList(menuValue);
+            //SelectInfo = BuildSelectList(menuValue);
             ReportingValue = menuValue.Trim();
             SetParameters();
         }
@@ -263,6 +282,12 @@ namespace BMdcPlus
             IsOpen = false;
 
             SelectInfo.SelectedText = Value;
+
+            if (newSelectItems != null)
+            {
+                selectItems = newSelectItems;
+                newSelectItems = null;
+            }
 
             StateHasChanged();
 
