@@ -1,9 +1,9 @@
-# Runs on the BlazorMdc.BlazorMdc.Master pipeline
+# Runs on the BlazorMdc.BlazorMdc.Main pipeline
 
 trigger:
   branches:
     include:
-    - master
+    - main
     exclude:
     - develop
 
@@ -11,7 +11,7 @@ pr:
   autoCancel: true
   branches:
     include:
-    - master
+    - main
     exclude:
     - develop
 

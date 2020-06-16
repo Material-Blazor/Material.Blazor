@@ -233,16 +233,12 @@ window.BlazorMdc = {
             elem._select = mdc.select.MDCSelect.attachTo(elem);
         },
 
-        clickItem: function (ulElem, value) {
-            for (let i = 0; i < ulElem.children.length; i++) {
-                if (ulElem.children[i].dataset.value == value) {
-                    ulElem.children[i].click();
-                }
-            }
-        },
-
         setDisabled: function (elem, value) {
             elem._select.disabled = value;
+        },
+
+        setIndex: function (elem, index) {
+            elem._select.selectedIndex = index;
         }
     },
 

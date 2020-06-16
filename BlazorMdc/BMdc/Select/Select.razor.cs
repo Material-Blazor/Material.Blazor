@@ -50,7 +50,6 @@ namespace BMdc
 
         private ElementReference SelectReference { get; set; }
         private ElementReference ListboxReference { get; set; }
-        private ElementReference UlReference { get; set; }
         private ESelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
         private string SelectedTextId { get; set; } = BMdcFoundation.Utilities.GenerateUniqueElementName();
         private string LabelId { get; set; } = BMdcFoundation.Utilities.GenerateUniqueElementName();
@@ -94,7 +93,7 @@ namespace BMdc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.select.clickItem", UlReference, ItemDict[Value].Label));
+        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.select.setIndex", SelectReference, ItemDict.Keys.ToList().IndexOf(Value)));
 
 
         /// <summary>

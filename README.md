@@ -10,7 +10,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/BlazorMdc/BlazorMdc?logo=github&style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/stargazers)
 [![GitHub stars](https://img.shields.io/github/watchers/BlazorMdc/BlazorMdc?logo=github&style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/watchers)
 
-[![Build Status](https://img.shields.io/azure-devops/build/blazormdc/blazormdc/1?logo=azure-pipelines&label=azure%20master%20pipeline&style=flat-square)](https://dev.azure.com/blazormdc/blazormdc/_build/latest?definitionId=1&branchName=master)
+[![Build Status](https://img.shields.io/azure-devops/build/blazormdc/blazormdc/1?logo=azure-pipelines&label=azure%20main%20pipeline&style=flat-square)](https://dev.azure.com/blazormdc/blazormdc/_build/latest?definitionId=1&branchName=main)
 [![Build Status](https://img.shields.io/azure-devops/build/blazormdc/blazormdc/2?logo=azure-pipelines&label=azure%20develop%20pipeline&style=flat-square)](https://dev.azure.com/blazormdc/blazormdc/_build/latest?definitionId=1&branchName=develop)
 
 ## Lightweight Material Theme razor components for Blazor
@@ -26,9 +26,9 @@ BlazorMdc isn't the only Blazor component library for Material Theme and we enco
 - Some added value components derived from core material theme components but that are not strictly material theme themselves. These include an autocomplete box, a confimration dialog and formatted numeric input fields. We also provide a date picker and paginator, each of which follow Material Theme specification in the absence of a Material Theme css/js implementation, and
 - We aim for BlazorMdc to employ best practice for Blazor development. As a starting point this should be considered as being defined per [this video from NDC London, January 2020](https://www.youtube.com/watch?v=QnBYmTpugz0). We have plenty to do to arrive at that position.
 
-Note that BlazorMdc is in the early stages of development, so there are likely to be **frequent breaking changes** until we reach version 1. This project is owned by [Dioptra](https://dioptra.tech) and is provided as-is under the terms of the [MIT license](https://github.com/BlazorMdc/BlazorMdc/blob/master/LICENSE.md).
+Note that BlazorMdc is in the early stages of development, so there are likely to be **frequent breaking changes** until we reach version 1. This project is owned by [Dioptra](https://dioptra.tech) and is provided as-is under the terms of the [MIT license](https://github.com/BlazorMdc/BlazorMdc/blob/main/LICENSE.md).
 
-Lastly if you want to contribute please note our [code of conduct](https://github.com/BlazorMdc/BlazorMdc/blob/master/CODE_OF_CONDUCT.md).
+Lastly if you want to contribute please note our [code of conduct](https://github.com/BlazorMdc/BlazorMdc/blob/main/CODE_OF_CONDUCT.md).
 
 ## Attribution
 
