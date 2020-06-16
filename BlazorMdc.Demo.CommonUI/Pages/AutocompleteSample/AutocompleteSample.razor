@@ -10,21 +10,24 @@
 
 <p>Selection disallowing blanks: '<strong>@(selection1 ?? "")</strong>'</p>
 
-<BMdcPlus.Autocomplete @bind-Value="@selection1" Label="Blanks disallowed" TextInputStyle="ETextInputStyle.Filled" SelectItems="@fruits" LeadingIcon="alarm" />
+<p><BMdcPlus.Autocomplete @bind-Value="@selection1" Label="Blanks disallowed" TextInputStyle="ETextInputStyle.Filled" SelectItems="@fruits" LeadingIcon="alarm" AllowBlankResult="false" Disabled="@DisableComponents" /></p>
+<p><BMdcPlus.Autocomplete @bind-Value="@selection1" Label="Blanks disallowed (repeated)" TextInputStyle="ETextInputStyle.Filled" SelectItems="@fruits" LeadingIcon="alarm" AllowBlankResult="false" Disabled="@DisableComponents" /></p>
 
 <p style="margin-top: 4em;">Selection allowing blanks: '<strong>@(selection2 ?? "")</strong>'</p>
 
-<BMdcPlus.Autocomplete @bind-Value="@selection2" Label="Blanks allowed" TextInputStyle="ETextInputStyle.Outlined" SelectItems="@fruits" AllowBlankResult="true" TrailingIcon="fa-dragon" IconFoundry="IconHelper.FAFoundry(relativeSize: EIconFARelativeSize.Large)" />
+<p><BMdcPlus.Autocomplete @bind-Value="@selection2" Label="Blanks allowed" TextInputStyle="ETextInputStyle.Outlined" SelectItems="@fruits" AllowBlankResult="true" TrailingIcon="fa-dragon" IconFoundry="IconHelper.FAFoundry(relativeSize: EIconFARelativeSize.Large)" Disabled="@DisableComponents" /></p>
 
 <p style="margin-top: 4em;">Selection ignoring whitespace for comparison: '<strong>@(selection3 ?? "")</strong>'</p>
 
-<BMdcPlus.Autocomplete @bind-Value="@selection3" Label="Whitespace ignored" TextInputStyle="ETextInputStyle.FullWidth" SelectItems="@fruits" IgnoreWhitespace="true" />
+<p><BMdcPlus.Autocomplete @bind-Value="@selection3" Label="Whitespace ignored" TextInputStyle="ETextInputStyle.FullWidth" SelectItems="@fruits" AllowBlankResult="true" IgnoreWhitespace="true" Disabled="@DisableComponents" /></p>
 
 
 
-@code {
+@code {    
+    [CascadingParameter(Name = "DisableComponents")] private bool DisableComponents { get; set; }
+
     string[] fruits = { "Avocado", "Banana", "Blackberry", "Blueberry", "Cantaloupe", "Cherry", "Clementine", "Dragonfruit", "Fig", "Grape", "Guava", "Honeydew", "Huckleberry", "Jujube", "Kiwi", "Kumquat", "Lime", "Nectarine", "Orange", "Papaya", "Passion Fruit", "Pineapple", "Plum", "Pomegranate", "Raspberry", "Satsuma", "Strawberry", "Tangerine", "Tomato", "Watermelon" };
-    string selection1;
+    string selection1 = "Avocado";
     string selection2;
     string selection3;
 }

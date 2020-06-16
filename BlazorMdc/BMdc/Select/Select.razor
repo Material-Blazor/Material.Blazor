@@ -37,28 +37,29 @@
         }
     </div>
 
-    <div @ref="@ListboxReference" class="mdc-select__menu mdc-menu mdc-menu-surface">
-        <ul @ref="@UlReference" class="mdc-list">
+    <div @ref="@ListboxReference" 
+         class="mdc-select__menu mdc-menu mdc-menu-surface">
+
+        <ul class="mdc-list">
+
             @foreach (var item in ItemDict.Values)
             {
-                var dv = item.SelectedValue;
+                var clickItem = item.SelectedValue;
+                var listClass = "mdc-list-item" + (item.SelectedValue.Equals(Value) ? " mdc-list-item--selected" : "");
+                var ariaSelected = item.SelectedValue.Equals(Value);
 
-                if (item.SelectedValue.Equals(Value))
-                {
-                    <li @key="@item" class="mdc-list-item mdc-list-item--selected @AlignClass" data-value="@item.Label" aria-selected="true" aria-disabled="@item.Disabled" role="option" @onclick="@(_ => OnItemClickAsync(dv))">
-                        <span class="mdc-list-item__text bmdc-full-width">
-                            @item.Label
-                        </span>
-                    </li>
-                }
-                else
-                {
-                    <li @key="@item" class="mdc-list-item @AlignClass" data-value="@item.Label" aria-selected="false" aria-disabled="@item.Disabled" role="option" @onclick=@(_ => OnItemClickAsync(dv))>
-                        <span class="mdc-list-item__text bmdc-full-width">
-                            @item.Label
-                        </span>
-                    </li>
-                }
+                <li @key="@item"
+                    class="@listClass @AlignClass"
+                    data-value="@item.Label"
+                    aria-selected="@ariaSelected"
+                    aria-disabled="@item.Disabled"
+                    role="option"
+                    @onclick=@(_ => OnItemClickAsync(clickItem))>
+
+                    <span class="mdc-list-item__text bmdc-full-width">
+                        @item.Label
+                    </span>
+                </li>
             }
         </ul>
     </div>

@@ -44,14 +44,15 @@
 
 <div class="mdc-drawer-app-content">
     <BMdc.TopAppBar Title="BlazorMdc - Material Theme components for Blazor"
-                  @onclick="@SideBarToggle"
-                  NavIcon="menu"
-                  ScrollTarget="#main-content"
-                  TopAppBarType="@DemoConfiguration.TopAppBarType"
-                  Class="mdc-top-app-bar--short-has-action-item">
-        <div id="account-target">
-            <BMdc.IconButtonToggle @bind-Value="AnimatedNavigationManager.Configuration.ApplyAnimation" IconOn="directions_run" IconOff="airline_seat_individual_suite" />
-        </div>
+                    @onclick="@SideBarToggle"
+                    NavIcon="menu"
+                    ScrollTarget="#main-content"
+                    TopAppBarType="@DemoConfiguration.TopAppBarType"
+                    Class="mdc-top-app-bar--short-has-action-item">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+            <BMdc.IconButtonToggle @bind-Value="@AnimatedNavigationManager.Configuration.ApplyAnimation" IconOn="directions_run" IconOff="airline_seat_individual_suite" @onmouseup="@MouseUp" />
+            <BMdc.IconButtonToggle @bind-Value="@disableComponents" IconOn="pause_circle_outline" IconOff="play_circle_outline" @onmouseup="@MouseUp" />
+        </section>
     </BMdc.TopAppBar>
 
     <main class="main-content" id="main-content">
@@ -61,7 +62,9 @@
                     <div class="mdc-layout-grid">
                         <div class="mdc-layout-grid__inner">
                             <div class="mdc-layout-grid__cell--span-12">
-                                @Body
+                                <CascadingValue Value="disableComponents" Name="DisableComponents"> 
+                                    @Body
+                                </CascadingValue>
                             </div>
                         </div>
                     </div>
@@ -73,6 +76,7 @@
 
 @code {
     BMdc.Drawer sidebar;
+    private bool disableComponents = false;
 
     private void ListItemClickHandler(string NavigationReference)
     {
@@ -83,5 +87,10 @@
     private void SideBarToggle()
     {
         sidebar.Toggle();
+    }
+
+    private void MouseUp()
+    {
+        StateHasChanged();
     }
 }
