@@ -38,7 +38,6 @@ namespace BMdcPlus
         [Parameter] public bool EnableTouchWrapper { get; set; } = true;
 
 
-        private bool IsNotFirst { get;  set; } = false;
         private string RadioGroupName { get; set; } = Utilities.GenerateUniqueElementName();
         private ListElement<TItem>[] ItemArray { get; set; }
 
@@ -55,6 +54,8 @@ namespace BMdcPlus
             ForceShouldRenderToTrue = true;
 
             ReportingValue = ValidateItemList(ItemArray, appliedItemValidation);
+
+            ClassMapper.AddIf("bmdc-mdc-radio-group-vertical", () => Vertical);
         }
     }
 }
