@@ -55,6 +55,8 @@ namespace BMdcPlus
             ForceShouldRenderToTrue = true;
 
             ReportingValue = ValidateItemList(ItemArray, appliedItemValidation);
+
+            ClassMapper.AddIf("bmdc-mdc-radio-group-vertical", () => Vertical);
         }
     }
 }
