@@ -31,13 +31,13 @@ namespace BlazorMdc.Internal
         /// <summary>
         /// The Font Awesome style.
         /// </summary>
-        public IconFAStyle Style { get; }
+        public MTIconFAStyle Style { get; }
 
 
         /// <summary>
         /// The Font Awesome relative size.
         /// </summary>
-        public IconFARelativeSize RelativeSize { get; }
+        public MTIconFARelativeSize RelativeSize { get; }
 
 
         private string IconStyleText => Style.ToString().Substring(0, 1).ToLower();
@@ -48,15 +48,15 @@ namespace BlazorMdc.Internal
             {
                 return IconName.ToLower() + RelativeSize switch
                 {
-                    IconFARelativeSize.Regular => "",
-                    IconFARelativeSize.ExtraSmall => " fa-xs",
-                    IconFARelativeSize.Small => " fa-sm",
-                    IconFARelativeSize.Large => " fa-lg",
-                    IconFARelativeSize.TwoTimes => " fa-2x",
-                    IconFARelativeSize.ThreeTimes => " fa-3x",
-                    IconFARelativeSize.FiveTimes => " fa-5x",
-                    IconFARelativeSize.SevenTimes => " fa-7x",
-                    IconFARelativeSize.TenTimes => " fa-10x",
+                    MTIconFARelativeSize.Regular => "",
+                    MTIconFARelativeSize.ExtraSmall => " fa-xs",
+                    MTIconFARelativeSize.Small => " fa-sm",
+                    MTIconFARelativeSize.Large => " fa-lg",
+                    MTIconFARelativeSize.TwoTimes => " fa-2x",
+                    MTIconFARelativeSize.ThreeTimes => " fa-3x",
+                    MTIconFARelativeSize.FiveTimes => " fa-5x",
+                    MTIconFARelativeSize.SevenTimes => " fa-7x",
+                    MTIconFARelativeSize.TenTimes => " fa-10x",
                     _ => throw new System.NotImplementedException(),
                 };
             }

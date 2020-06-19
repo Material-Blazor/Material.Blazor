@@ -17,13 +17,13 @@ namespace BlazorMdc
         /// <summary>
         /// The text input style.
         /// </summary>
-        [Parameter] public TextInputStyleEnum? TextInputStyle { get; set; }
+        [Parameter] public MTTextInputStyle? TextInputStyle { get; set; }
 
 
         /// <summary>
         /// The text alignment style.
         /// </summary>
-        [Parameter] public TextAlignStyle? TextAlignStyle { get; set; }
+        [Parameter] public MTTextAlignStyle? TextAlignStyle { get; set; }
 
 
         /// <summary>
@@ -60,7 +60,7 @@ namespace BlazorMdc
 #nullable restore annotations
 
 
-        private TextInputStyleEnum AppliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
+        private MTTextInputStyle AppliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
         
         internal ElementReference ElementReference { get; set; }
         
@@ -80,15 +80,15 @@ namespace BlazorMdc
             ClassMapper
                 .Add("mdc-text-field")
                 .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
-                .AddIf("mdc-text-field--filled", () => AppliedTextInputStyle == TextInputStyleEnum.Filled)
-                .AddIf("mdc-text-field--outlined", () => AppliedTextInputStyle == TextInputStyleEnum.Outlined)
-                .AddIf("mdc-text-field--filled mdc-text-field--fullwidth", () => AppliedTextInputStyle == TextInputStyleEnum.FullWidth)
+                .AddIf("mdc-text-field--filled", () => AppliedTextInputStyle == MTTextInputStyle.Filled)
+                .AddIf("mdc-text-field--outlined", () => AppliedTextInputStyle == MTTextInputStyle.Outlined)
+                .AddIf("mdc-text-field--filled mdc-text-field--fullwidth", () => AppliedTextInputStyle == MTTextInputStyle.FullWidth)
                 .AddIf("mdc-text-field--no-label", () => NoLabel)
                 .AddIf("mdc-text-field--disabled", () => Disabled)
                 .AddIf("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
                 .AddIf("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
 
-            if (!NoLabel && AppliedTextInputStyle != TextInputStyleEnum.FullWidth)
+            if (!NoLabel && AppliedTextInputStyle != MTTextInputStyle.FullWidth)
             {
                 ComponentPureHtmlAttributes.Add("aria-labelledby", labelId);
             }

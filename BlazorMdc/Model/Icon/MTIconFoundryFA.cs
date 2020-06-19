@@ -6,22 +6,22 @@
     public class MTIconFoundryFA : IMTIconFoundry
     {
         /// <inheritdoc/>
-        IconFoundryName IMTIconFoundry.FoundryName => IconFoundryName.FontAwesome;
+        MTIconFoundryName IMTIconFoundry.FoundryName => MTIconFoundryName.FontAwesome;
 
         
         /// <summary>
         /// The Font Awesome style.
         /// </summary>
-        public IconFAStyle? Style { get; }
+        public MTIconFAStyle? Style { get; }
 
 
         /// <summary>
         /// The Font Awesome relative size.
         /// </summary>
-        public IconFARelativeSize? RelativeSize { get; }
+        public MTIconFARelativeSize? RelativeSize { get; }
 
 
-        public MTIconFoundryFA(IconFAStyle? style = null, IconFARelativeSize? relativesize = null)
+        public MTIconFoundryFA(MTIconFAStyle? style = null, MTIconFARelativeSize? relativesize = null)
         {
             Style = style;
             RelativeSize = relativesize;

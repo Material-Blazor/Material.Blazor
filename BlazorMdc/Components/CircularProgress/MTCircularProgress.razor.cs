@@ -25,13 +25,13 @@ namespace BlazorMdc
         /// <summary>
         /// Makes the progress spinner indeterminant if True.
         /// </summary>
-        [Parameter] public CircularProgressType CircularProgressType { get; set; } = CircularProgressType.Indeterminate;
+        [Parameter] public MTCircularProgressType CircularProgressType { get; set; } = MTCircularProgressType.Indeterminate;
 
 
         /// <summary>
         /// Makes the progress spinner indeterminant if True.
         /// </summary>
-        [Parameter] public CircularProgressSize CircularProgressSize { get; set; } = CircularProgressSize.Large;
+        [Parameter] public MTCircularProgressSize CircularProgressSize { get; set; } = MTCircularProgressSize.Large;
 
 
         /// <summary>
@@ -52,18 +52,18 @@ namespace BlazorMdc
 
         private MarkupString SVGDeterminate => CircularProgressSize switch
         {
-            CircularProgressSize.Small => (MarkupString)SVGSmallDeterminate,
-            CircularProgressSize.Medium => (MarkupString)SVGMediumDeterminate,
-            CircularProgressSize.Large => (MarkupString)SVGLargeDeterminate,
+            MTCircularProgressSize.Small => (MarkupString)SVGSmallDeterminate,
+            MTCircularProgressSize.Medium => (MarkupString)SVGMediumDeterminate,
+            MTCircularProgressSize.Large => (MarkupString)SVGLargeDeterminate,
             _ => throw new System.NotImplementedException(),
         };
 
 
         private MarkupString SVGIndeterminate => CircularProgressSize switch
         {
-            CircularProgressSize.Small => (MarkupString)SVGSmallIndeterminate,
-            CircularProgressSize.Medium => (MarkupString)SVGMediumIndeterminate,
-            CircularProgressSize.Large => (MarkupString)SVGLargeIndeterminate,
+            MTCircularProgressSize.Small => (MarkupString)SVGSmallIndeterminate,
+            MTCircularProgressSize.Medium => (MarkupString)SVGMediumIndeterminate,
+            MTCircularProgressSize.Large => (MarkupString)SVGLargeIndeterminate,
             _ => throw new System.NotImplementedException(),
         };
 
@@ -78,11 +78,11 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-circular-progress")
-                .AddIf("mdc-circular-progress--small", () => CircularProgressSize == CircularProgressSize.Small)
-                .AddIf("mdc-circular-progress--medium", () => CircularProgressSize == CircularProgressSize.Medium)
-                .AddIf("mdc-circular-progress--large", () => CircularProgressSize == CircularProgressSize.Large)
-                .AddIf("mdc-circular-progress--indeterminate", () => CircularProgressType == CircularProgressType.Indeterminate)
-                .AddIf("mdc-circular-progress--closed", () => CircularProgressType == CircularProgressType.Closed);
+                .AddIf("mdc-circular-progress--small", () => CircularProgressSize == MTCircularProgressSize.Small)
+                .AddIf("mdc-circular-progress--medium", () => CircularProgressSize == MTCircularProgressSize.Medium)
+                .AddIf("mdc-circular-progress--large", () => CircularProgressSize == MTCircularProgressSize.Large)
+                .AddIf("mdc-circular-progress--indeterminate", () => CircularProgressType == MTCircularProgressType.Indeterminate)
+                .AddIf("mdc-circular-progress--closed", () => CircularProgressType == MTCircularProgressType.Closed);
 
             OnValueSet += OnValueSetCallback;
         }

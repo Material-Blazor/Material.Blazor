@@ -5,10 +5,10 @@
     /// </summary>
     public class MTToastServiceConfiguration
     {
-        public const ToastPosition DefaultPosition = ToastPosition.BottomRight;
+        public const MTToastPosition DefaultPosition = MTToastPosition.BottomRight;
         public const string DefaultCloseButtonIcon = "close";
         public const bool DefaultShowIcons = true;
-        public const ToastCloseMethod DefaultCloseMethod = ToastCloseMethod.TimeoutAndCloseButton;
+        public const MTToastCloseMethod DefaultCloseMethod = MTToastCloseMethod.TimeoutAndCloseButton;
         public const int DefaultTimeout = 3000; 
         public const string DefaultInfoIconName = "notifications";
         public const string DefaultSuccessIconName = "done";
@@ -19,7 +19,7 @@
         /// <summary>
         /// Sets the toast's position.
         /// </summary>
-        public ToastPosition Position { get; set; } = DefaultPosition;
+        public MTToastPosition Position { get; set; } = DefaultPosition;
 
 
         /// <summary>
@@ -35,13 +35,13 @@
 
 
         /// <summary>
-        /// Determines how the toast closes. Defaults to <see cref="ToastCloseMethod.TimeoutAndCloseButton"/>.
+        /// Determines how the toast closes. Defaults to <see cref="MTToastCloseMethod.TimeoutAndCloseButton"/>.
         /// </summary>
-        public ToastCloseMethod CloseMethod { get; set; } = DefaultCloseMethod;
+        public MTToastCloseMethod CloseMethod { get; set; } = DefaultCloseMethod;
 
 
         /// <summary>
-        /// Timeout in milliseconds until the toast automatically closes. Defaults to 3000 and ignored if <see cref="MTToastServiceConfiguration.CloseMethod"/> is <see cref="ToastCloseMethod.CloseButton"/>.
+        /// Timeout in milliseconds until the toast automatically closes. Defaults to 3000 and ignored if <see cref="MTToastServiceConfiguration.CloseMethod"/> is <see cref="MTToastCloseMethod.CloseButton"/>.
         /// </summary>
         public uint Timeout { get; set; } = DefaultTimeout;
 

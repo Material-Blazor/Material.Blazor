@@ -1,11 +1,9 @@
-﻿using BlazorMdc.Internal;
-
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BlazorMdc
+namespace BlazorMdc.Internal
 {
     /// <summary>
     /// For BlazorMdc internal use only.
@@ -48,7 +46,7 @@ namespace BlazorMdc
         [Parameter] public string CurrentYearId { get; set; }
 
 
-        private ButtonStyleEnum ButtonStyle => (DisplayYear == CurrentYear) ? ButtonStyleEnum.ContainedUnelevated : ButtonStyleEnum.Text;
+        private MTButtonStyle ButtonStyle => (DisplayYear == CurrentYear) ? MTButtonStyle.ContainedUnelevated : MTButtonStyle.Text;
         
 
         private Dictionary<string, object> Attributes

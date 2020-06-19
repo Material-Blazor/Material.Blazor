@@ -14,11 +14,11 @@ namespace BlazorMdc
             {
                 return "material-icons" + Theme switch
                 {
-                    IconMITheme.Filled => "",
-                    IconMITheme.Outlined => "-outlined",
-                    IconMITheme.Round => "-round",
-                    IconMITheme.TwoTone => "-two-tone",
-                    IconMITheme.Sharp => "-sharp",
+                    MTIconMITheme.Filled => "",
+                    MTIconMITheme.Outlined => "-outlined",
+                    MTIconMITheme.Round => "-round",
+                    MTIconMITheme.TwoTone => "-two-tone",
+                    MTIconMITheme.Sharp => "-sharp",
                     _ => throw new System.NotImplementedException(),
                 };
             }
@@ -39,13 +39,13 @@ namespace BlazorMdc
 
 
         /// <inheritdoc />
-        public bool RequiresColorFilter => Theme == IconMITheme.TwoTone;
+        public bool RequiresColorFilter => Theme == MTIconMITheme.TwoTone;
 
 
         /// <summary>
         /// The Material Icons theme.
         /// </summary>
-        public IconMITheme Theme { get; }
+        public MTIconMITheme Theme { get; }
 
 
 #nullable enable annotations

@@ -18,7 +18,7 @@ namespace BlazorMdc
         /// <summary>
         /// The list style.
         /// </summary>
-        [Parameter] public ListStyleEnum? ListStyle { get; set; }
+        [Parameter] public MTListStyleEnum? ListStyle { get; set; }
 
 
         /// <summary>
@@ -151,7 +151,7 @@ namespace BlazorMdc
         {
             ClassMapper
                 .Add("mdc-list")
-                .AddIf("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(ListStyle) == ListStyleEnum.Outlined))
+                .AddIf("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(ListStyle) == MTListStyleEnum.Outlined))
                 .AddIf("mdc-list--two-line", () => (NumberOfLines == 2))
                 .AddIf("bmdc-list--three-line", () => (NumberOfLines == 3))
                 .AddIf("mdc-list--non-interactive", () => NonInteractive)

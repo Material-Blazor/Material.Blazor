@@ -3,7 +3,7 @@
 
 
 <div @attributes="AttributesToSplat()">
-    @if (ShieldType != ShieldType.ValueOnly)
+    @if (ShieldType != MTShieldType.ValueOnly)
     {
         <div class="bmdc-shield--label @LabelClass" style="@LabelStyle">
             @if (!string.IsNullOrWhiteSpace(LabelIcon))
@@ -17,7 +17,7 @@
         </div>
     }
 
-    @if (ShieldType != ShieldType.LabelOnly)
+    @if (ShieldType != MTShieldType.LabelOnly)
     {
         <div class="bmdc-shield--value @ValueClass" style="@ValueStyle">
             @if (!string.IsNullOrWhiteSpace(ValueIcon))

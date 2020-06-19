@@ -17,7 +17,7 @@ namespace BlazorMdc
         /// <summary>
         /// Makes the progress bar indeterminant if True.
         /// </summary>
-        [Parameter] public LinearProgressType LinearProgressType { get; set; } = LinearProgressType.Indeterminate;
+        [Parameter] public MTLinearProgressType LinearProgressType { get; set; } = MTLinearProgressType.Indeterminate;
 
 
         /// <summary>
@@ -63,9 +63,9 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-linear-progress")
-                .AddIf("mdc-linear-progress--indeterminate", () => LinearProgressType == LinearProgressType.Indeterminate)
-                .AddIf("mdc-linear-progress--reversed", () => LinearProgressType == LinearProgressType.ReversedDeterminate)
-                .AddIf("mdc-linear-progress--closed", () => LinearProgressType == LinearProgressType.Closed);
+                .AddIf("mdc-linear-progress--indeterminate", () => LinearProgressType == MTLinearProgressType.Indeterminate)
+                .AddIf("mdc-linear-progress--reversed", () => LinearProgressType == MTLinearProgressType.ReversedDeterminate)
+                .AddIf("mdc-linear-progress--closed", () => LinearProgressType == MTLinearProgressType.Closed);
 
             OnValueSet += OnValueSetCallback;
         }

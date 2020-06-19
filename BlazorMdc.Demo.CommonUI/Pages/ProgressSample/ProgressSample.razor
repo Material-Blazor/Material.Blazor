@@ -13,11 +13,11 @@
 <p><MTLinearProgress LinearProgressType="@linearIndeterminate" /></p>
 
 <p><MTCircularProgress CircularProgressType="@circularIndeterminate" /></p>
-<p><MTCircularProgress CircularProgressType="@circularIndeterminate" CircularProgressSize="CircularProgressSize.Medium" /></p>
-<p><MTCircularProgress CircularProgressType="@circularIndeterminate" CircularProgressSize="CircularProgressSize.Small" /></p>
+<p><MTCircularProgress CircularProgressType="@circularIndeterminate" CircularProgressSize="MTCircularProgressSize.Medium" /></p>
+<p><MTCircularProgress CircularProgressType="@circularIndeterminate" CircularProgressSize="MTCircularProgressSize.Small" /></p>
 
 <h5 class="mdc-typography--headline5">Determinate</h5>
-<MTNumericDoubleField @bind-Value="@progress" Label="Progress (0 to 100%)" Min="0" Max="1" Magnitude="NumericInputMagnitude.Percent" DecimalPlaces="2" NumericFormat="P0" />
+<MTNumericDoubleField @bind-Value="@progress" Label="Progress (0 to 100%)" Min="0" Max="1" Magnitude="MTNumericInputMagnitude.Percent" DecimalPlaces="2" NumericFormat="P0" />
 
 <p>Regular:</p>
 <p><MTLinearProgress LinearProgressType="linearDeterminate" Value="@progress" BufferValue="buffer" /></p>
@@ -26,8 +26,8 @@
 <p><MTLinearProgress LinearProgressType="linearReversed" Value="@progress" BufferValue="buffer" /></p>
 
 <p><MTCircularProgress Value="@progress" CircularProgressType="@circularDeterminate" /></p>
-<p><MTCircularProgress Value="@progress" CircularProgressType="@circularDeterminate" CircularProgressSize="CircularProgressSize.Medium" /></p>
-<p><MTCircularProgress Value="@progress" CircularProgressType="@circularDeterminate" CircularProgressSize="CircularProgressSize.Small" /></p>
+<p><MTCircularProgress Value="@progress" CircularProgressType="@circularDeterminate" CircularProgressSize="MTCircularProgressSize.Medium" /></p>
+<p><MTCircularProgress Value="@progress" CircularProgressType="@circularDeterminate" CircularProgressSize="MTCircularProgressSize.Small" /></p>
 
 
 @code {
@@ -35,9 +35,9 @@
     bool showBuffer = true;
     double progress = 0.2;
     double? buffer => showBuffer ? (double?)progress + (1 - progress) / 3 : null;
-    LinearProgressType linearIndeterminate => show ? LinearProgressType.Indeterminate : LinearProgressType.Closed;
-    LinearProgressType linearDeterminate => show ? LinearProgressType.Determinate : LinearProgressType.Closed;
-    LinearProgressType linearReversed => show ? LinearProgressType.ReversedDeterminate : LinearProgressType.Closed;
-    CircularProgressType circularIndeterminate => show ? CircularProgressType.Indeterminate : CircularProgressType.Closed;
-    CircularProgressType circularDeterminate => show ? CircularProgressType.Determinate : CircularProgressType.Closed;
+    MTLinearProgressType linearIndeterminate => show ? MTLinearProgressType.Indeterminate : MTLinearProgressType.Closed;
+    MTLinearProgressType linearDeterminate => show ? MTLinearProgressType.Determinate : MTLinearProgressType.Closed;
+    MTLinearProgressType linearReversed => show ? MTLinearProgressType.ReversedDeterminate : MTLinearProgressType.Closed;
+    MTCircularProgressType circularIndeterminate => show ? MTCircularProgressType.Indeterminate : MTCircularProgressType.Closed;
+    MTCircularProgressType circularDeterminate => show ? MTCircularProgressType.Determinate : MTCircularProgressType.Closed;
 }

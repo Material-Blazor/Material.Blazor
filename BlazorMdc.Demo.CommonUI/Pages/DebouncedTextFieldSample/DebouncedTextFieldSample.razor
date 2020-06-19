@@ -10,12 +10,12 @@
 
 <MTRadioButtonGroup @bind-Value="@interval"
                     Items="intervals"
-                    ItemValidation="@ItemValidation.DefaultToFirst" />
+                    ItemValidation="@MTItemValidation.DefaultToFirst" />
 
 <p style="margin-top: 3rem;">Debounce Text</p>
 <p><MTDebouncedTextField Label="Debounced Text"
                          @bind-Value="@currentValue"
-                         TextInputStyle="TextInputStyleEnum.Outlined"
+                         TextInputStyle="MTTextInputStyle.Outlined"
                          LeadingIcon="account_balance_wallet"
                          DebounceInterval="interval" /></p>
 

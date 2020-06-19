@@ -17,7 +17,7 @@ namespace BlazorMdc.Internal
         /// <summary>
         /// Date selection criteria
         /// </summary>
-        [Parameter] public DateSelectionCriteria? DateSelectionCriteria { get; set; }
+        [Parameter] public MTDateSelectionCriteria? DateSelectionCriteria { get; set; }
 
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace BlazorMdc.Internal
 
         private readonly string currentYearId = MTUtilities.GenerateUniqueElementName();
 
-        private readonly IMTIconFoundry foundry = MTIconHelper.MIFoundry(IconMITheme.Filled);
+        private readonly IMTIconFoundry foundry = MTIconHelper.MIFoundry(MTIconMITheme.Filled);
 
 
         /// <inheritdoc/>

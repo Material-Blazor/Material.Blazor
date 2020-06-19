@@ -11,7 +11,7 @@ namespace BlazorMdc
 {
     /// <summary>
     /// An anchor component that displays toast notification that you display via
-    /// <see cref="IPmdcToastService.ShowToast(ToastLevel, string, string, ToastCloseMethod?, string, string, IMTIconFoundry?, bool?, uint?)"/>.
+    /// <see cref="IPmdcToastService.ShowToast(MTToastLevel, string, string, MTToastCloseMethod?, string, string, IMTIconFoundry?, bool?, uint?)"/>.
     /// Place this component at the top of either App.razor or MainLayout.razor.
     /// </summary>
     public partial class MTToastAnchor : MTComponentBase
@@ -35,7 +35,7 @@ namespace BlazorMdc
         }
 
 
-        private void AddToast(ToastLevel level, MTToastSettings settings)
+        private void AddToast(MTToastLevel level, MTToastSettings settings)
         {
             InvokeAsync(async () =>
             {
@@ -86,7 +86,7 @@ namespace BlazorMdc
 
                 DisplayedToasts.Add(toastInstance);
 
-                if (toastInstance.Settings.AppliedCloseMethod != ToastCloseMethod.CloseButton)
+                if (toastInstance.Settings.AppliedCloseMethod != MTToastCloseMethod.CloseButton)
                 {
                     InvokeAsync(() =>
                     {

@@ -27,8 +27,8 @@
 
 @code {
     
-    IEnumerable<MTListElement<TopAppBarType>> appBarTypes => from c in (TopAppBarType[])Enum.GetValues(typeof(TopAppBarType))
-                                                                 select new MTListElement<TopAppBarType>
+    IEnumerable<MTListElement<MTTopAppBarType>> appBarTypes => from c in (MTTopAppBarType[])Enum.GetValues(typeof(MTTopAppBarType))
+                                                                 select new MTListElement<MTTopAppBarType>
                                                                  {
                                                                      SelectedValue = c,
                                                                      Label = c.ToString(),

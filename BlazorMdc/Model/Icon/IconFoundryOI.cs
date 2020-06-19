@@ -6,6 +6,6 @@
     internal class IconFoundryOI : IMTIconFoundry
     {
         /// <inheritdoc/>
-        IconFoundryName IMTIconFoundry.FoundryName => IconFoundryName.OpenIconic;
+        MTIconFoundryName IMTIconFoundry.FoundryName => MTIconFoundryName.OpenIconic;
     }
 }

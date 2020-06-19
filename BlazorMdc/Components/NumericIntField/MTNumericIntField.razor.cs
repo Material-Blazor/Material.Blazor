@@ -15,7 +15,7 @@ namespace BlazorMdc
         /// <summary>
         /// The text input style.
         /// </summary>
-        [Parameter] public TextInputStyleEnum? TextInputStyle { get; set; }
+        [Parameter] public MTTextInputStyle? TextInputStyle { get; set; }
 
 
         /// <summary>
@@ -69,7 +69,7 @@ namespace BlazorMdc
         /// percentages and basis points (the latter of which lacks appropriate Numeric Format in C#:
         /// this issue may not get solved.
         /// </summary>
-        [Parameter] public NumericInputMagnitude Magnitude { get; set; } = NumericInputMagnitude.Normal;
+        [Parameter] public MTNumericInputMagnitude Magnitude { get; set; } = MTNumericInputMagnitude.Normal;
 
 
         /// <summary>

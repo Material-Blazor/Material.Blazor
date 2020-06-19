@@ -9,7 +9,7 @@ namespace BlazorMdc
     /// 
     /// <para>
     /// Throws a <see cref="System.InvalidOperationException"/> if
-    /// <see cref="ShowToast(ToastLevel, string, string, ToastCloseMethod?, string, string, IMTIconFoundry?, bool?, uint?)"/>
+    /// <see cref="ShowToast(MTToastLevel, string, string, MTToastCloseMethod?, string, string, IMTIconFoundry?, bool?, uint?)"/>
     /// is called without a <see cref="PMdcToastAnchor"/> component used in the app.
     /// </para>
     /// <example>
@@ -34,7 +34,7 @@ namespace BlazorMdc
         /// <summary>
         /// A event that will be invoked when showing a toast
         /// </summary>
-        internal event Action<ToastLevel, MTToastSettings> OnAdd;
+        internal event Action<MTToastLevel, MTToastSettings> OnAdd;
 
         /// <summary>
         /// Shows a toast using the supplied settings
@@ -49,10 +49,10 @@ namespace BlazorMdc
         /// <param name="timeout">Length of time before autodismiss</param>
 #nullable enable annotations
         void ShowToast(
-            ToastLevel level,
+            MTToastLevel level,
             string message,
             string heading = null,
-            ToastCloseMethod? closeMethod = null,
+            MTToastCloseMethod? closeMethod = null,
             string cssClass = null,
             string iconName = null,
             IMTIconFoundry? iconFoundry = null,

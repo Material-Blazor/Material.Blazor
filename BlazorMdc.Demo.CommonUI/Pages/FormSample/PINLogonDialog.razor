@@ -54,53 +54,53 @@
                         <MTButton Label="7"
                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
                                   @onclick="@(() => NumberClick("7"))"
-                                  ButtonStyle="ButtonStyleEnum.ContainedRaised" />
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
                         <MTButton Label="8"
                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
                                   @onclick="@(() => NumberClick("8"))"
-                                  ButtonStyle="ButtonStyleEnum.ContainedRaised" />
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
                         <MTButton Label="9"
                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
                                   @onclick="@(() => NumberClick("9"))"
-                                  ButtonStyle="ButtonStyleEnum.ContainedRaised" />
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
                     </div>
                     <div style="display:flex; flex-direction: row; justify-content: center;">
                         <MTButton Label="4"
                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
                                   @onclick="@(() => NumberClick("4"))"
-                                  ButtonStyle="ButtonStyleEnum.ContainedRaised" />
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
                         <MTButton Label="5"
                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
                                   @onclick="@(() => NumberClick("5"))"
-                                  ButtonStyle="ButtonStyleEnum.ContainedRaised" />
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
                         <MTButton Label="6"
                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
                                   @onclick="@(() => NumberClick("6"))"
-                                  ButtonStyle="ButtonStyleEnum.ContainedRaised" />
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
                     </div>
                     <div style="display:flex; flex-direction: row; justify-content: center;">
                         <MTButton Label="1"
                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
                                   @onclick="@(() => NumberClick("1"))"
-                                  ButtonStyle="ButtonStyleEnum.ContainedRaised" />
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
                         <MTButton Label="2"
                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
                                   @onclick="@(() => NumberClick("2"))"
-                                  ButtonStyle="ButtonStyleEnum.ContainedRaised" />
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
                         <MTButton Label="3"
                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
                                   @onclick="@(() => NumberClick("3"))"
-                                  ButtonStyle="ButtonStyleEnum.ContainedRaised" />
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
                     </div>
                     <div style="display:flex; flex-direction: row; justify-content: center;">
                         <MTButton Label="0"
                                   Style="margin: 0.75em 0.75em 0.25em 0.25em; height: 2rem; width: 2rem;"
                                   @onclick="@(() => NumberClick("0"))"
-                                  ButtonStyle="ButtonStyleEnum.ContainedRaised" />
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
                         <MTButton Label="Backspace"
                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; min-width: 128px;"
                                   @onclick="@(() => NumberClick("BKS"))"
-                                  ButtonStyle="ButtonStyleEnum.ContainedRaised" />
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
                     </div>
 
                     <div style="display:flex; flex-direction: row; justify-content: center;">
@@ -109,19 +109,19 @@
                             <MTButton Style="margin: 0.75em 0.25em 0.25em 0.25em;"
                                       type="submit"
                                       Label="Create PIN"
-                                      ButtonStyle="ButtonStyleEnum.ContainedRaised" />
+                                      ButtonStyle="MTButtonStyle.ContainedRaised" />
                         }
                         else
                         {
                             <MTButton Style="margin: 0.75em 0.25em 0.25em 0.25em;"
                                       type="submit"
                                       Label="Enter PIN"
-                                      ButtonStyle="ButtonStyleEnum.ContainedRaised" />
+                                      ButtonStyle="MTButtonStyle.ContainedRaised" />
                         }
                         <MTButton @onclick="@CancelClick"
                                   Style="margin: 0.75em 0.25em 0.25em 0.25em;"
                                   Label="Cancel"
-                                  ButtonStyle="ButtonStyleEnum.ContainedRaised" />
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
                     </div>
                 </div>
             </div>
@@ -181,7 +181,7 @@
                 returnValue = "<Log on succeeded>";
 
                 toastService.ShowToast(
-                    level: ToastLevel.Success,
+                    level: MTToastLevel.Success,
                     message: "Log on succeeded");
 
                 await pinLogonDialogReference.HideAsync();
@@ -189,7 +189,7 @@
             else
             {
                 toastService.ShowToast(
-                    level: ToastLevel.Error,
+                    level: MTToastLevel.Error,
                     message: "Log on failed");
             }
         }
@@ -200,7 +200,7 @@
                 returnValue = "<PIN created with a value of '" + pinLogonDTO.PIN1.ToString() + "'>";
 
                 toastService.ShowToast(
-                    level: ToastLevel.Success,
+                    level: MTToastLevel.Success,
                     message: "<PIN creation succeeded>");
 
                 await pinLogonDialogReference.HideAsync();
@@ -208,7 +208,7 @@
             else
             {
                 toastService.ShowToast(
-                    level: ToastLevel.Error,
+                    level: MTToastLevel.Error,
                     message: "PINs do not match");
             }
         }

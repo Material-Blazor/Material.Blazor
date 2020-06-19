@@ -11,19 +11,19 @@ See <code>ButtonSample.razor</code> for sources.
 </p>
 
 <p>
-    <MTButton Label="Contained raised" ButtonStyle="@ButtonStyleEnum.ContainedRaised" @onclick="@LogMessage" />
+    <MTButton Label="Contained raised" ButtonStyle="@MTButtonStyle.ContainedRaised" @onclick="@LogMessage" />
 </p>
 
 <p>
-    <MTButton Label="Contained unelevated" ButtonStyle="@ButtonStyleEnum.ContainedUnelevated" @onclick="@LogMessage" />
+    <MTButton Label="Contained unelevated" ButtonStyle="@MTButtonStyle.ContainedUnelevated" @onclick="@LogMessage" />
 </p>
 
 <p>
-    <MTButton Label="Outlined" ButtonStyle="ButtonStyleEnum.Outlined" @onclick="@LogMessage" />
+    <MTButton Label="Outlined" ButtonStyle="MTButtonStyle.Outlined" @onclick="@LogMessage" />
 </p>
 
 <p>
-    <MTButton Label="Text" ButtonStyle="ButtonStyleEnum.Text" @onclick="@LogMessage" />
+    <MTButton Label="Text" ButtonStyle="MTButtonStyle.Text" @onclick="@LogMessage" />
 </p>
 
 <p>
@@ -41,7 +41,7 @@ See <code>ButtonSample.razor</code> for sources.
 <p>
     <MTButton Label="Trailing icon with style of 'margin-left: 5em;'"
                TrailingIcon="speed"
-               ButtonStyle="ButtonStyleEnum.ContainedRaised"
+               ButtonStyle="MTButtonStyle.ContainedRaised"
                @onclick="@LogMessage"
                Style="margin-left: 5em;" />
 </p>

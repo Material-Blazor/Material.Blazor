@@ -52,9 +52,9 @@ namespace BlazorMdc
 
         
         /// <summary>
-        /// How the toast message gets closed. See <see cref="ToastCloseMethod"/>.
+        /// How the toast message gets closed. See <see cref="MTToastCloseMethod"/>.
         /// </summary>
-        public ToastCloseMethod? CloseMethod { get; set; }
+        public MTToastCloseMethod? CloseMethod { get; set; }
 
 
         /// <summary>
@@ -81,15 +81,15 @@ namespace BlazorMdc
         
         internal IMTIconFoundry AppliedIconFoundry => (IconFoundry is null) ? Configuration?.IconFoundry ?? new IconFoundryMI() : IconFoundry;
 
-        internal ToastCloseMethod AppliedCloseMethod => (CloseMethod is null) ? Configuration?.CloseMethod ?? MTToastServiceConfiguration.DefaultCloseMethod : (ToastCloseMethod)CloseMethod;
+        internal MTToastCloseMethod AppliedCloseMethod => (CloseMethod is null) ? Configuration?.CloseMethod ?? MTToastServiceConfiguration.DefaultCloseMethod : (MTToastCloseMethod)CloseMethod;
 
         internal uint AppliedTimeout => (Timeout is null) ? Configuration?.Timeout ?? MTToastServiceConfiguration.DefaultTimeout : (uint)Timeout;
 
 
         /// <summary>
-        /// The level of the toast. See <see cref="ToastLevel"/>.
+        /// The level of the toast. See <see cref="MTToastLevel"/>.
         /// </summary>
-        internal ToastLevel Level { get; set; }
+        internal MTToastLevel Level { get; set; }
 
 
         /// <summary>
@@ -103,10 +103,10 @@ namespace BlazorMdc
         /// </summary>
         internal string ConfigHeading => Level switch
         {
-            ToastLevel.Error => Configuration?.ErrorDefaultHeading ?? "",
-            ToastLevel.Info => Configuration?.InfoDefaultHeading ?? "",
-            ToastLevel.Success => Configuration?.SuccessDefaultHeading ?? "",
-            ToastLevel.Warning => Configuration?.WarningDefaultHeading ?? "",
+            MTToastLevel.Error => Configuration?.ErrorDefaultHeading ?? "",
+            MTToastLevel.Info => Configuration?.InfoDefaultHeading ?? "",
+            MTToastLevel.Success => Configuration?.SuccessDefaultHeading ?? "",
+            MTToastLevel.Warning => Configuration?.WarningDefaultHeading ?? "",
             _ => throw new InvalidOperationException(),
         };
 
@@ -116,10 +116,10 @@ namespace BlazorMdc
         /// </summary>
         internal string ConfigIconName => Level switch
         {
-            ToastLevel.Error => Configuration?.ErrorIconName ?? MTToastServiceConfiguration.DefaultErrorIconName,
-            ToastLevel.Info => Configuration?.InfoIconName ?? MTToastServiceConfiguration.DefaultInfoIconName,
-            ToastLevel.Success => Configuration?.SuccessIconName ?? MTToastServiceConfiguration.DefaultSuccessIconName,
-            ToastLevel.Warning => Configuration?.WarningIconName ?? MTToastServiceConfiguration.DefaultWarningIconName,
+            MTToastLevel.Error => Configuration?.ErrorIconName ?? MTToastServiceConfiguration.DefaultErrorIconName,
+            MTToastLevel.Info => Configuration?.InfoIconName ?? MTToastServiceConfiguration.DefaultInfoIconName,
+            MTToastLevel.Success => Configuration?.SuccessIconName ?? MTToastServiceConfiguration.DefaultSuccessIconName,
+            MTToastLevel.Warning => Configuration?.WarningIconName ?? MTToastServiceConfiguration.DefaultWarningIconName,
             _ => throw new InvalidOperationException(),
         };
 

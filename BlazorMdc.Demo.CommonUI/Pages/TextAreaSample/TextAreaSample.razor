@@ -8,13 +8,13 @@
 
 <p>See <code>TextAreaSample.razor</code> for sources.</p>
 
-<p><MTTextArea Label="Filled" @bind-Value="@currentValueFilled" Rows="8" TextInputStyle="TextInputStyleEnum.Filled" Disabled="@DisableComponents" /></p>
+<p><MTTextArea Label="Filled" @bind-Value="@currentValueFilled" Rows="8" TextInputStyle="MTTextInputStyle.Filled" Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@(currentValueFilled ?? "")'</strong></p>
 
-<p><MTTextArea Label="Outlined" @bind-Value="@currentValueOutlined" Rows="8" TextInputStyle="TextInputStyleEnum.Outlined" Disabled="@DisableComponents" /></p>
+<p><MTTextArea Label="Outlined" @bind-Value="@currentValueOutlined" Rows="8" TextInputStyle="MTTextInputStyle.Outlined" Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@(currentValueOutlined ?? "")'</strong></p>
 
-<p><MTTextArea Label="Full Width" @bind-Value="@currentValueFullWidth" Rows="8" TextInputStyle="TextInputStyleEnum.FullWidth" Disabled="@DisableComponents" /></p>
+<p><MTTextArea Label="Full Width" @bind-Value="@currentValueFullWidth" Rows="8" TextInputStyle="MTTextInputStyle.FullWidth" Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@(currentValueFullWidth ?? "")'</strong></p>
 
 

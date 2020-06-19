@@ -41,11 +41,11 @@
 
 <MTRadioButtonGroup @bind-Value="@kittenBreed"
                     Items="stringItems"
-                    ItemValidation="@ItemValidation.DefaultToFirst" />
+                    ItemValidation="@MTItemValidation.DefaultToFirst" />
 
 <MTRadioButtonGroup @bind-Value="@kittenBreed"
                     Items="stringItems"
-                    ItemValidation="@ItemValidation.DefaultToFirst" />
+                    ItemValidation="@MTItemValidation.DefaultToFirst" />
 
 <p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed ?? "")</strong>'</p>
 

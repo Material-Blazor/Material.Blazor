@@ -27,9 +27,9 @@
                             <h5 class="mdc-typography--subtitle1">@((MarkupString)toast.Settings.AppliedHeading)</h5>
                         </div>
 
-                        @if (toast.Settings.CloseMethod != ToastCloseMethod.Timeout)
+                        @if (toast.Settings.CloseMethod != MTToastCloseMethod.Timeout)
                         {
-                            <MTButton @onclick="@(() => CloseToast(toastId))" LeadingIcon="close" ButtonStyle="@ButtonStyleEnum.Text" Class="bmdc-toast-close-button" />
+                            <MTButton @onclick="@(() => CloseToast(toastId))" LeadingIcon="close" ButtonStyle="@MTButtonStyle.Text" Class="bmdc-toast-close-button" />
                         }
                     </div>
 

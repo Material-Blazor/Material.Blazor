@@ -4,13 +4,13 @@
     <Body>
         @Body
         <p>Please type <strong>@MyConfirmationPhrase</strong> @ActionPhrase.</p>
-        <p><MTTextField @bind-Value="@EnteredText" @oninput="@OnInput" TextInputStyle="@TextInputStyleEnum.FullWidth" Disabled="ConfirmationDisabled" /></p>
+        <p><MTTextField @bind-Value="@EnteredText" @oninput="@OnInput" TextInputStyle="@MTTextInputStyle.FullWidth" Disabled="ConfirmationDisabled" /></p>
     </Body>
     <Buttons>
         @if (ConfirmedButtons is null || UnconfirmedButtons is null)
         {
             <MTButton Label="OK" LeadingIcon="@("check")" DialogAction="@ConfirmActionResult" Disabled="@(!Confirmed)" />
-            <MTButton Label="Cancel" LeadingIcon="@("cancel")" DialogAction="@CancelActionResult" ButtonStyle="ButtonStyleEnum.Text" />
+            <MTButton Label="Cancel" LeadingIcon="@("cancel")" DialogAction="@CancelActionResult" ButtonStyle="MTButtonStyle.Text" />
         }
         else
         {

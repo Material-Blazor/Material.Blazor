@@ -36,18 +36,18 @@ namespace BlazorMdc
         /// <summary>
         /// Returns a new <see cref="MTIconHelper"> for a Material Icons icon.
         /// </summary>
-        /// <param name="theme">Optional <see cref="IconMITheme"/> specifying the Material Icons theme.</param>
+        /// <param name="theme">Optional <see cref="MTIconMITheme"/> specifying the Material Icons theme.</param>
         /// <returns><see cref="IMTIconFoundry"/> to be passed to a BlazorMdc component.</returns>
-        public static IMTIconFoundry MIFoundry(IconMITheme? theme = null) => new IconFoundryMI(theme);
+        public static IMTIconFoundry MIFoundry(MTIconMITheme? theme = null) => new IconFoundryMI(theme);
 
 
         /// <summary>
         /// Returns a new <see cref="MTIconHelper"> for a Font Awesome icon.
         /// </summary>
-        /// <param name="style">Optional <see cref="IconFAStyle"/> specifying the Font Awesome style.</param>
-        /// <param name="relativeSize">Optional <see cref="IconFARelativeSize"/> specifying the Font Awesome relative size.</param>
+        /// <param name="style">Optional <see cref="MTIconFAStyle"/> specifying the Font Awesome style.</param>
+        /// <param name="relativeSize">Optional <see cref="MTIconFARelativeSize"/> specifying the Font Awesome relative size.</param>
         /// <returns><see cref="IMTIconFoundry"/> to be passed to a BlazorMdc component.</returns>
-        public static IMTIconFoundry FAFoundry(IconFAStyle? style = null, IconFARelativeSize? relativeSize = null) => new MTIconFoundryFA(style, relativeSize);
+        public static IMTIconFoundry FAFoundry(MTIconFAStyle? style = null, MTIconFARelativeSize? relativeSize = null) => new MTIconFoundryFA(style, relativeSize);
 
 
         /// <summary>
@@ -71,13 +71,13 @@ namespace BlazorMdc
                 cascadingDefaults = new MTCascadingDefaults();
             }
 
-            IconFoundryName iconFoundry = (foundry is null) ? cascadingDefaults.IconFoundryName : foundry.FoundryName;
+            MTIconFoundryName iconFoundry = (foundry is null) ? cascadingDefaults.IconFoundryName : foundry.FoundryName;
 
             UnderlyingIcon = iconFoundry switch
             {
-                IconFoundryName.MaterialIcons => new IconMI(cascadingDefaults, iconName, (IconFoundryMI?)foundry),
-                IconFoundryName.FontAwesome => new IconFA(cascadingDefaults, iconName, (MTIconFoundryFA?)foundry),
-                IconFoundryName.OpenIconic => new IconOI(cascadingDefaults, iconName, (IconFoundryOI?)foundry),
+                MTIconFoundryName.MaterialIcons => new IconMI(cascadingDefaults, iconName, (IconFoundryMI?)foundry),
+                MTIconFoundryName.FontAwesome => new IconFA(cascadingDefaults, iconName, (MTIconFoundryFA?)foundry),
+                MTIconFoundryName.OpenIconic => new IconOI(cascadingDefaults, iconName, (IconFoundryOI?)foundry),
                 _ => throw new NotImplementedException(),
             };
         }

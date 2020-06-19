@@ -8,6 +8,6 @@
         /// <summary>
         /// The foundry's name.
         /// </summary>
-        internal IconFoundryName FoundryName { get;}
+        internal MTIconFoundryName FoundryName { get;}
     }
 }

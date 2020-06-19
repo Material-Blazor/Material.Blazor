@@ -29,7 +29,7 @@ namespace BlazorMdc
         /// a value outside the <see cref="Items"/> list, replace it with the first list item or
         /// to throw an exception (the default).
         /// </summary>
-        [Parameter] public ItemValidation? ItemValidation { get; set; }
+        [Parameter] public MTItemValidation? ItemValidation { get; set; }
 
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace BlazorMdc
 
             ItemArray = Items.ToArray();
 
-            ItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidationRadioButtonGroup(ItemValidation);
+            MTItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidationRadioButtonGroup(ItemValidation);
 
             ForceShouldRenderToTrue = true;
 

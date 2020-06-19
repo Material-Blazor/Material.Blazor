@@ -15,10 +15,10 @@ namespace BlazorMdc.Internal
         /// Validates the item list against the validation specification.
         /// </summary>
         /// <param name="items">The item list</param>
-        /// <param name="appliedItemValidation">Specification of the required validation <see cref="ItemValidation"/></param>
+        /// <param name="appliedItemValidation">Specification of the required validation <see cref="MTItemValidation"/></param>
         /// <returns>The item in the list matching <see cref="MTInputComponentBase{T}._underlyingValue"/></returns>
         /// <exception cref="ArgumentException"/>
-        public T ValidateItemList(IEnumerable<MTListElement<T>> items, ItemValidation appliedItemValidation)
+        public T ValidateItemList(IEnumerable<MTListElement<T>> items, MTItemValidation appliedItemValidation)
         {
             var componentName = MTUtilities.GetTypeName(GetType());
             
@@ -35,11 +35,11 @@ namespace BlazorMdc.Internal
             {
                 switch (appliedItemValidation)
                 {
-                    case ItemValidation.DefaultToFirst:
+                    case MTItemValidation.DefaultToFirst:
                         var firstOrDefault = items.FirstOrDefault().SelectedValue;
                         return firstOrDefault;
 
-                    case ItemValidation.Exception:
+                    case MTItemValidation.Exception:
                         string itemList = "{ ";
                         string prepend = "";
 
@@ -53,7 +53,7 @@ namespace BlazorMdc.Internal
 
                         throw new ArgumentException(componentName + $" cannot select item with data value of '{Value?.ToString()}' from {itemList}");
 
-                    case ItemValidation.NoSelection:
+                    case MTItemValidation.NoSelection:
                         return default;
                 }
             }

@@ -10,16 +10,16 @@ namespace BlazorMdc
     internal class IconFoundryMI : IMTIconFoundry
     {
         /// <inheritdoc/>
-        IconFoundryName IMTIconFoundry.FoundryName => IconFoundryName.MaterialIcons;
+        MTIconFoundryName IMTIconFoundry.FoundryName => MTIconFoundryName.MaterialIcons;
 
         
         /// <summary>
         /// The Material Icons theme.
         /// </summary>
-        public IconMITheme? Theme { get; }
+        public MTIconMITheme? Theme { get; }
 
 
-        public IconFoundryMI(IconMITheme? theme = null)
+        public IconFoundryMI(MTIconMITheme? theme = null)
         {
             Theme = theme;
         }

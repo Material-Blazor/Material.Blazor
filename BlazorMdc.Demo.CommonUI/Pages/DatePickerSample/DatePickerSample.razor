@@ -11,7 +11,7 @@
 <p>
     <MTDatePicker Label="Filled"
                          @bind-Value="@filled"
-                         SelectInputStyle="SelectInputStyleEnum.Filled"
+                         SelectInputStyle="MTSelectInputStyle.Filled"
                          MinDate="min"
                          MaxDate="max" />
 </p>
@@ -20,8 +20,8 @@
 <p>
     <MTDatePicker Label="Weekdays Outlined"
                          @bind-Value="@outlined"
-                         SelectInputStyle="SelectInputStyleEnum.Outlined"
-                         DateSelectionCriteria="DateSelectionCriteria.WeekdaysOnly"
+                         SelectInputStyle="MTSelectInputStyle.Outlined"
+                         DateSelectionCriteria="MTDateSelectionCriteria.WeekdaysOnly"
                          MinDate="min"
                          MaxDate="max"
                          DateFormat="ddd MMM dd, yyyy" />

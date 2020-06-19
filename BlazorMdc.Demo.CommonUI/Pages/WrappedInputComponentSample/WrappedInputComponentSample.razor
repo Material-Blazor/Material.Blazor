@@ -16,7 +16,7 @@
     <p>
         <MTButton Label="Open dialog with wrapped input components"
                   @onclick="@OpenDialogAsync"
-                  ButtonStyle="ButtonStyleEnum.ContainedRaised" />
+                  ButtonStyle="MTButtonStyle.ContainedRaised" />
     </p>
 
     <p>PIN 1: <strong>'@(LogonDTO.PIN1 ?? "")'</strong></p>
@@ -49,12 +49,12 @@
                         <MTButton Style="margin: 0.75em 0.25em 0.25em 0.25em;"
                                   type="submit"
                                   Label="PIN entry complete"
-                                  ButtonStyle="ButtonStyleEnum.ContainedRaised" />
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
 
                         <MTButton @onclick="@CancelClick"
                                   Style="margin: 0.75em 0.25em 0.25em 0.25em;"
                                   Label="Cancel"
-                                  ButtonStyle="ButtonStyleEnum.ContainedRaised" />
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
                     </div>
                 </div>
             </EditForm>

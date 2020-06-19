@@ -7,7 +7,7 @@
 <p>See <code>SlidingContentSample.razor</code> for sources.</p>
 
 <p>
-    <MTButton Label="Move to Paragraph 4" @onclick="@(() => index = 3)" ButtonStyle="ButtonStyleEnum.ContainedRaised" />
+    <MTButton Label="Move to Paragraph 4" @onclick="@(() => index = 3)" ButtonStyle="MTButtonStyle.ContainedRaised" />
 </p>
 
 <MTSlidingContent @ref="@slidingContent"
@@ -22,8 +22,8 @@
 </MTSlidingContent>
 
 <p>
-    <MTButton Label="Previous" LeadingIcon="chevron_left" @onclick="@(() => index--)" ButtonStyle="ButtonStyleEnum.ContainedRaised" Disabled="@disablePrevious" />
-    <MTButton Label="Next" TrailingIcon="chevron_right" @onclick="@(() => index++)" ButtonStyle="ButtonStyleEnum.ContainedRaised" Disabled="@disableNext" />
+    <MTButton Label="Previous" LeadingIcon="chevron_left" @onclick="@(() => index--)" ButtonStyle="MTButtonStyle.ContainedRaised" Disabled="@disablePrevious" />
+    <MTButton Label="Next" TrailingIcon="chevron_right" @onclick="@(() => index++)" ButtonStyle="MTButtonStyle.ContainedRaised" Disabled="@disableNext" />
 </p>
 
 @code {

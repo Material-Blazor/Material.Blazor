@@ -12,7 +12,7 @@
 <p><MTNumericDoubleField Label="Double 2dp"
                          @bind-Value="@currentDouble"
                          NumericFormat="N2" DecimalPlaces="2"
-                         TextInputStyle="TextInputStyleEnum.Outlined"
+                         TextInputStyle="MTTextInputStyle.Outlined"
                          Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@currentDouble'</strong></p>
 
@@ -20,7 +20,7 @@
 <p><MTNumericDoubleField Label="Money"
                          @bind-Value="@currentMoney"
                          NumericFormat="C2" DecimalPlaces="2"
-                         TextInputStyle="TextInputStyleEnum.Outlined"
+                         TextInputStyle="MTTextInputStyle.Outlined"
                          Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@currentMoney'</strong></p>
 
@@ -28,7 +28,7 @@
 <p><MTNumericIntField Label="Integer"
                       @bind-Value="@currentInteger"
                       NumericFormat="N0"
-                      TextInputStyle="TextInputStyleEnum.Outlined"
+                      TextInputStyle="MTTextInputStyle.Outlined"
                       Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@currentInteger'</strong></p>
 
@@ -37,8 +37,8 @@
                          @bind-Value="@currentPercent"
                          NumericFormat="P2"
                          DecimalPlaces="2"
-                         TextInputStyle="TextInputStyleEnum.Outlined"
-                         Magnitude="NumericInputMagnitude.Percent"
+                         TextInputStyle="MTTextInputStyle.Outlined"
+                         Magnitude="MTNumericInputMagnitude.Percent"
                          Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@currentPercent'</strong></p>
 
@@ -46,8 +46,8 @@
 <p><MTNumericDoubleField Label="Basis Points"
                          @bind-Value="@CurrentBasisPoints"
                          NumericFormat="#,### bp;-#,### bp"
-                         TextInputStyle="TextInputStyleEnum.Outlined"
-                         Magnitude="NumericInputMagnitude.BasisPoints"
+                         TextInputStyle="MTTextInputStyle.Outlined"
+                         Magnitude="MTNumericInputMagnitude.BasisPoints"
                          Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@CurrentBasisPoints / @CurrentBasisPoints.ToString("#,##0 bp")'</strong> - need to work on how to format basis points</p>
 
@@ -56,7 +56,7 @@
                       @bind-Value="@currentMonths"
                       NumericFormat="#,##0 months;-#,##0 months"
                       NumericSingularFormat="#,##0 month;-#,##0 month"
-                      TextInputStyle="TextInputStyleEnum.Outlined"
+                      TextInputStyle="MTTextInputStyle.Outlined"
                       Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@currentMonths'</strong></p>
 

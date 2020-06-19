@@ -2,6 +2,6 @@
 {
     public class DemoConfiguration
     {
-        public TopAppBarType TopAppBarType { get; set; } = TopAppBarType.Dense;
+        public MTTopAppBarType TopAppBarType { get; set; } = MTTopAppBarType.Dense;
     }
 }

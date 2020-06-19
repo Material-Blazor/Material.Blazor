@@ -10,10 +10,10 @@ namespace BlazorMdc.Internal
         ///<inheritdoc/>
         public MTToastServiceConfiguration Configuration { get; set; } = new MTToastServiceConfiguration();
 
-        private event Action<ToastLevel, MTToastSettings> OnAdd;
+        private event Action<MTToastLevel, MTToastSettings> OnAdd;
 
         ///<inheritdoc/>
-        event Action<ToastLevel, MTToastSettings> IMTToastService.OnAdd
+        event Action<MTToastLevel, MTToastSettings> IMTToastService.OnAdd
         {
             add => OnAdd += value;
             remove => OnAdd -= value;
@@ -28,10 +28,10 @@ namespace BlazorMdc.Internal
         ///<inheritdoc/>
 #nullable enable annotations
         public void ShowToast(
-            ToastLevel level,
+            MTToastLevel level,
             string message,
             string heading = null,
-            ToastCloseMethod? closeMethod = null,
+            MTToastCloseMethod? closeMethod = null,
             string cssClass = null,
             string iconName = null,
             IMTIconFoundry? iconFoundry = null,

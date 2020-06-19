@@ -16,13 +16,13 @@ namespace BlazorMdc
         /// <summary>
         /// The text input style.
         /// </summary>
-        [Parameter] public TextInputStyleEnum? TextInputStyle { get; set; }
+        [Parameter] public MTTextInputStyle? TextInputStyle { get; set; }
 
 
         /// <summary>
         /// The text alignment style.
         /// </summary>
-        [Parameter] public TextAlignStyle? TextAlignStyle { get; set; }
+        [Parameter] public MTTextAlignStyle? TextAlignStyle { get; set; }
 
 
         /// <summary>

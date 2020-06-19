@@ -26,11 +26,11 @@
         <MTRadioButtonGroup @bind-Value="@radioButtonResult1"
                             Items="stringItems"
                             Vertical="true"
-                            ItemValidation="@ItemValidation.DefaultToFirst" />
+                            ItemValidation="@MTItemValidation.DefaultToFirst" />
     </Body>
     <Buttons>
         <MTButton Label="Orange" DialogAction="orange"></MTButton>
-        <MTButton Label="Apple" DialogAction="apple" ButtonStyle="@ButtonStyleEnum.Text"></MTButton>
+        <MTButton Label="Apple" DialogAction="apple" ButtonStyle="@MTButtonStyle.Text"></MTButton>
     </Buttons>
 </MTDialog>
 
@@ -60,12 +60,12 @@
     <UnconfirmedButtons>
         <MTButton Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
         <MTButton Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
-        <MTButton Label="Bosh" LeadingIcon="sports_handball" Disabled="true" DialogAction="bosh" ButtonStyle="ButtonStyleEnum.ContainedRaised" />
+        <MTButton Label="Bosh" LeadingIcon="sports_handball" Disabled="true" DialogAction="bosh" ButtonStyle="MTButtonStyle.ContainedRaised" />
     </UnconfirmedButtons>
     <ConfirmedButtons>
         <MTButton Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
         <MTButton Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
-        <MTButton Label="Bosh" LeadingIcon="sports_handball" DialogAction="bosh" ButtonStyle="ButtonStyleEnum.ContainedRaised" />
+        <MTButton Label="Bosh" LeadingIcon="sports_handball" DialogAction="bosh" ButtonStyle="MTButtonStyle.ContainedRaised" />
     </ConfirmedButtons>
 </MTConfirmationDialog>
 
@@ -84,7 +84,7 @@
     </Body>
     <Buttons>
         <MTButton Label="Orange" @onclick="orangeClick"></MTButton>
-        <MTButton Label="Apple" @onclick="appleClick" ButtonStyle="@ButtonStyleEnum.Text"></MTButton>
+        <MTButton Label="Apple" @onclick="appleClick" ButtonStyle="@MTButtonStyle.Text"></MTButton>
     </Buttons>
 </MTDialog>
 
@@ -97,11 +97,11 @@
           OverflowVisible="true">
     <Body>
         <p>Set the date.</p>
-        <MTDatePicker Label="The date" @bind-Value="@date5" SelectInputStyle="SelectInputStyleEnum.Outlined" MinDate="minDate" MaxDate="maxDate"></MTDatePicker>
+        <MTDatePicker Label="The date" @bind-Value="@date5" SelectInputStyle="MTSelectInputStyle.Outlined" MinDate="minDate" MaxDate="maxDate"></MTDatePicker>
     </Body>
     <Buttons>
         <MTButton Label="Orange" DialogAction="orange"></MTButton>
-        <MTButton Label="Apple" DialogAction="apple" ButtonStyle="@ButtonStyleEnum.Text"></MTButton>
+        <MTButton Label="Apple" DialogAction="apple" ButtonStyle="@MTButtonStyle.Text"></MTButton>
     </Buttons>
 </MTDialog>
 
@@ -115,7 +115,7 @@
                       OverflowVisible="true">
     <Body>
         <p>Set the date.</p>
-        <MTDatePicker Label="The date" @bind-Value="@date6" SelectInputStyle="SelectInputStyleEnum.Outlined" MinDate="minDate" MaxDate="maxDate"></MTDatePicker>
+        <MTDatePicker Label="The date" @bind-Value="@date6" SelectInputStyle="MTSelectInputStyle.Outlined" MinDate="minDate" MaxDate="maxDate"></MTDatePicker>
     </Body>
 </MTConfirmationDialog>
 

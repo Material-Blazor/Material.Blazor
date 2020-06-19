@@ -15,8 +15,8 @@
 			<MTSelect Label="Filled"
 						 @bind-Value="@kittenBreed1"
    						 Items="stringItems"
-						 SelectInputStyle="SelectInputStyleEnum.Filled"
-			 			 ItemValidation="@ItemValidation.NoSelection"
+						 SelectInputStyle="MTSelectInputStyle.Filled"
+			 			 ItemValidation="@MTItemValidation.NoSelection"
 						 Disabled="@DisableComponents"/>
 		</p>
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed1 ?? "")</strong>'</p>
@@ -25,8 +25,8 @@
             <MTSelect Label="Outlined"
                          @bind-Value="@kittenBreed2"
                          Items="stringItems"
-                         SelectInputStyle="SelectInputStyleEnum.Outlined"
-                         ItemValidation="@ItemValidation.NoSelection"
+                         SelectInputStyle="MTSelectInputStyle.Outlined"
+                         ItemValidation="@MTItemValidation.NoSelection"
                          Disabled="@DisableComponents" />
 		</p>
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed2 ?? "")</strong>'</p>
@@ -35,15 +35,15 @@
             <MTSelect Label="Default to First"
                          @bind-Value="@kittenBreed3"
                          Items="stringItems"
-                         SelectInputStyle="SelectInputStyleEnum.Outlined"
-                         ItemValidation="@ItemValidation.DefaultToFirst"
+                         SelectInputStyle="MTSelectInputStyle.Outlined"
+                         ItemValidation="@MTItemValidation.DefaultToFirst"
                          Disabled="@DisableComponents" />
 
             <MTSelect Label="Default to First (repeated)"
                          @bind-Value="@kittenBreed3"
                          Items="stringItems"
-                         SelectInputStyle="SelectInputStyleEnum.Outlined"
-                         ItemValidation="@ItemValidation.DefaultToFirst"
+                         SelectInputStyle="MTSelectInputStyle.Outlined"
+                         ItemValidation="@MTItemValidation.DefaultToFirst"
                          Disabled="@DisableComponents" />
 
 		</p>
@@ -69,9 +69,9 @@
             <MTSelect Label="Filled"
                          @bind-Value="@kittenBreed1"
                          Items="stringItems"
-                         SelectInputStyle="SelectInputStyleEnum.Filled"
-                         TextAlignStyle="TextAlignStyle.Right"
-                         ItemValidation="ItemValidation.NoSelection"
+                         SelectInputStyle="MTSelectInputStyle.Filled"
+                         TextAlignStyle="MTTextAlignStyle.Right"
+                         ItemValidation="MTItemValidation.NoSelection"
                          Disabled="@DisableComponents" />
 		</p>
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed1 ?? "")</strong>'</p>
@@ -80,9 +80,9 @@
             <MTSelect Label="Outlined"
                          @bind-Value="@kittenBreed2"
                          Items="stringItems"
-                         SelectInputStyle="SelectInputStyleEnum.Outlined"
-                         TextAlignStyle="TextAlignStyle.Right"
-                         ItemValidation="ItemValidation.NoSelection"
+                         SelectInputStyle="MTSelectInputStyle.Outlined"
+                         TextAlignStyle="MTTextAlignStyle.Right"
+                         ItemValidation="MTItemValidation.NoSelection"
                          Disabled="@DisableComponents" />
 		</p>
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed2 ?? "")</strong>'</p>
@@ -91,17 +91,17 @@
             <MTSelect Label="Default to First"
                          @bind-Value="@kittenBreed3"
                          Items="stringItems"
-                         SelectInputStyle="SelectInputStyleEnum.Outlined"
-                         TextAlignStyle="TextAlignStyle.Right"
-                         ItemValidation="ItemValidation.DefaultToFirst"
+                         SelectInputStyle="MTSelectInputStyle.Outlined"
+                         TextAlignStyle="MTTextAlignStyle.Right"
+                         ItemValidation="MTItemValidation.DefaultToFirst"
                          Disabled="@DisableComponents" />
 
             <MTSelect Label="Default to First (repeated)"
                          @bind-Value="@kittenBreed3"
                          Items="stringItems"
-                         SelectInputStyle="SelectInputStyleEnum.Outlined"
-                         TextAlignStyle="TextAlignStyle.Right"
-                         ItemValidation="ItemValidation.DefaultToFirst"
+                         SelectInputStyle="MTSelectInputStyle.Outlined"
+                         TextAlignStyle="MTTextAlignStyle.Right"
+                         ItemValidation="MTItemValidation.DefaultToFirst"
                          Disabled="@DisableComponents" />
 
 		</p>
@@ -110,13 +110,13 @@
 		<p>
             <MTSelect Label="Colour Enumeration"
                          @bind-Value="@colour"
-                         TextAlignStyle="TextAlignStyle.Right"
+                         TextAlignStyle="MTTextAlignStyle.Right"
                          Items="colourItems"
                          Disabled="@DisableComponents" />
 			
             <MTSelect Label="Colour Enumeration (repeated)"
                          @bind-Value="@colour"
-                         TextAlignStyle="TextAlignStyle.Right"
+                         TextAlignStyle="MTTextAlignStyle.Right"
                          Items="colourItems"
                          Disabled="@DisableComponents" />
 		</p>

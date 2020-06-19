@@ -26,7 +26,7 @@ namespace BlazorMdc
         /// a value outside the <see cref="Items"/> list, replace it with the first list item or
         /// to throw an exception (the default).
         /// </summary>
-        [Parameter] public ItemValidation? ItemValidation { get; set; }
+        [Parameter] public MTItemValidation? ItemValidation { get; set; }
 
 
         /// <summary>
@@ -36,20 +36,20 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// The select's <see cref="BlazorMdc.SelectInputStyleEnum"/>.
+        /// The select's <see cref="BlazorMdc.MTSelectInputStyle"/>.
         /// </summary>
-        [Parameter] public SelectInputStyleEnum? SelectInputStyle { get; set; }
+        [Parameter] public MTSelectInputStyle? SelectInputStyle { get; set; }
 
 
         /// <summary>
-        /// The select's <see cref="BlazorMdc.TextAlignStyle"/>.
+        /// The select's <see cref="BlazorMdc.MTTextAlignStyle"/>.
         /// </summary>
-        [Parameter] public TextAlignStyle? TextAlignStyle { get; set; }
+        [Parameter] public MTTextAlignStyle? TextAlignStyle { get; set; }
 
 
         private ElementReference SelectReference { get; set; }
         private ElementReference ListboxReference { get; set; }
-        private SelectInputStyleEnum AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
+        private MTSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
         private string SelectedTextId { get; set; } = MTUtilities.GenerateUniqueElementName();
         private string LabelId { get; set; } = MTUtilities.GenerateUniqueElementName();
         private string SelectedText { get; set; } = "";
@@ -69,7 +69,7 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-select")
-                .AddIf("mdc-select--outlined", () => AppliedInputStyle == SelectInputStyleEnum.Outlined)
+                .AddIf("mdc-select--outlined", () => AppliedInputStyle == MTSelectInputStyle.Outlined)
                 .AddIf("mdc-select--disabled", () => Disabled);
 
             SelectedText = (Value is null) ? "" : Items.Where(i => object.Equals(i.SelectedValue, Value)).FirstOrDefault().Label;

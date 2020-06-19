@@ -9,7 +9,7 @@
 <p>See <code>CascadingDefaultsSample.razor</code> for sources.</p>
 
 <h3 class="mdc-typography--headline5" style="margin-top: 4rem;">BlazorMdc default styles</h3>
-<p><MTSelect Label="Select" @bind-Value="@selectDefault" Items="items" ItemValidation="@ItemValidation.NoSelection" /></p>
+<p><MTSelect Label="Select" @bind-Value="@selectDefault" Items="items" ItemValidation="@MTItemValidation.NoSelection" /></p>
 <p><MTDatePicker Label="Date" @bind-Value="dateDefault" MinDate="min" MaxDate="max" /></p>
 <p><MTTextField Label="Text Field" @bind-Value="textFieldDefault" /></p>
 <p><MTTextArea Label="Text Area" Rows="2" @bind-Value="textAreaDefault" /></p>
@@ -59,12 +59,12 @@
 
     MTCascadingDefaults defaults1 = new MTCascadingDefaults()
     {
-        SelectInputStyle = SelectInputStyleEnum.Outlined,
-        TextInputStyle = TextInputStyleEnum.Outlined,
-        ButtonStyle = ButtonStyleEnum.Outlined,
-        DateSelectionCriteria = DateSelectionCriteria.WeekdaysOnly,
-        ItemValidation = ItemValidation.NoSelection,
-        IconMITheme = IconMITheme.Outlined
+        SelectInputStyle = MTSelectInputStyle.Outlined,
+        TextInputStyle = MTTextInputStyle.Outlined,
+        ButtonStyle = MTButtonStyle.Outlined,
+        DateSelectionCriteria = MTDateSelectionCriteria.WeekdaysOnly,
+        ItemValidation = MTItemValidation.NoSelection,
+        IconMITheme = MTIconMITheme.Outlined
     };
     string selectVariant1;
     string textFieldVariant1;
@@ -74,12 +74,12 @@
 
     MTCascadingDefaults defaults2 = new MTCascadingDefaults()
     {
-        SelectInputStyle = SelectInputStyleEnum.Filled,
-        TextInputStyle = TextInputStyleEnum.FullWidth,
-        ButtonStyle = ButtonStyleEnum.ContainedUnelevated,
-        DateSelectionCriteria = DateSelectionCriteria.WeekendsOnly,
-        ItemValidation = ItemValidation.NoSelection,
-        IconMITheme = IconMITheme.TwoTone
+        SelectInputStyle = MTSelectInputStyle.Filled,
+        TextInputStyle = MTTextInputStyle.FullWidth,
+        ButtonStyle = MTButtonStyle.ContainedUnelevated,
+        DateSelectionCriteria = MTDateSelectionCriteria.WeekendsOnly,
+        ItemValidation = MTItemValidation.NoSelection,
+        IconMITheme = MTIconMITheme.TwoTone
     };
     string selectVariant2;
     string textFieldVariant2;
@@ -89,13 +89,13 @@
 
     MTCascadingDefaults defaults3 = new MTCascadingDefaults()
     {
-        SelectInputStyle = SelectInputStyleEnum.Outlined,
-        TextInputStyle = TextInputStyleEnum.Filled,
-        ButtonStyle = ButtonStyleEnum.ContainedRaised,
-        DateSelectionCriteria = DateSelectionCriteria.AllowAll,
-        ItemValidation = ItemValidation.NoSelection,
-        IconFoundryName = IconFoundryName.FontAwesome,
-        IconFARelativeSize = IconFARelativeSize.TenTimes
+        SelectInputStyle = MTSelectInputStyle.Outlined,
+        TextInputStyle = MTTextInputStyle.Filled,
+        ButtonStyle = MTButtonStyle.ContainedRaised,
+        DateSelectionCriteria = MTDateSelectionCriteria.AllowAll,
+        ItemValidation = MTItemValidation.NoSelection,
+        IconFoundryName = MTIconFoundryName.FontAwesome,
+        IconFARelativeSize = MTIconFARelativeSize.TenTimes
     };
     string selectVariant3;
     string textFieldVariant3;

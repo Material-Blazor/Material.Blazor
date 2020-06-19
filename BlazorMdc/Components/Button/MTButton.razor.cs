@@ -21,9 +21,9 @@ namespace BlazorMdc
 
 #nullable enable annotations
         /// <summary>
-        /// The button's Material Theme style - see <see cref="BlazorMdc.ButtonStyleEnum"/>.
+        /// The button's Material Theme style - see <see cref="BlazorMdc.MTButtonStyle"/>.
         /// </summary>
-        [Parameter] public ButtonStyleEnum? ButtonStyle { get; set; }
+        [Parameter] public MTButtonStyle? ButtonStyle { get; set; }
 
 
         /// <summary>
@@ -70,9 +70,9 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-button")
-                .AddIf("mdc-button--raised", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == ButtonStyleEnum.ContainedRaised)
-                .AddIf("mdc-button--unelevated", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == ButtonStyleEnum.ContainedUnelevated)
-                .AddIf("mdc-button--outlined", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == ButtonStyleEnum.Outlined)
+                .AddIf("mdc-button--raised", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MTButtonStyle.ContainedRaised)
+                .AddIf("mdc-button--unelevated", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MTButtonStyle.ContainedUnelevated)
+                .AddIf("mdc-button--outlined", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MTButtonStyle.Outlined)
                 .AddIf("mdc-card__action mdc-card__action--button", () => (Card != null));
         }
 

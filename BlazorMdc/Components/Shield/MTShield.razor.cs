@@ -14,7 +14,7 @@ namespace BlazorMdc
         /// <summary>
         /// The shield type, being Label (left part), Value (right part) or both.
         /// </summary>
-        [Parameter] public ShieldType ShieldType { get; set; } = ShieldType.LabelAndValue;
+        [Parameter] public MTShieldType ShieldType { get; set; } = MTShieldType.LabelAndValue;
 
 
         /// <summary>

@@ -13,9 +13,9 @@ namespace BlazorMdc
     public partial class MTCard : MTComponentBase
     {
         /// <summary>
-        /// The card style - see <see cref="BlazorMdc.CardStyle"/>
+        /// The card style - see <see cref="BlazorMdc.MTICardStyle"/>
         /// </summary>
-        [Parameter] public CardStyle? CardStyle { get; set; }
+        [Parameter] public MTCardStyle? CardStyle { get; set; }
 
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-card")
-                .AddIf("mdc-card--outlined", () => CascadingDefaults.AppliedStyle(CardStyle) == BlazorMdc.CardStyle.Outlined);
+                .AddIf("mdc-card--outlined", () => CascadingDefaults.AppliedStyle(CardStyle) == MTCardStyle.Outlined);
         }
 
 
