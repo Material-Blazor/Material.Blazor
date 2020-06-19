@@ -178,16 +178,16 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// The default style for an <see cref="MdcList{TItem}"/>, initialized to <see cref="MTListStyleEnum.None"/> if not explicitly set.
+        /// The default style for an <see cref="MdcList{TItem}"/>, initialized to <see cref="MTListStyle.None"/> if not explicitly set.
         /// </summary>
-        public MTListStyleEnum ListStyle { get; set; } = MTListStyleEnum.None;
+        public MTListStyle ListStyle { get; set; } = MTListStyle.None;
 
         /// <summary>
         /// The style to apply to an <see cref="MdcList{TItem}"/>.
         /// </summary>
         /// <param name="style">The style parameter passed to the <see cref="MdcList{TItem}"/></param>
         /// <returns>The <see cref="ListStyle"/> to apply.</returns>
-        internal MTListStyleEnum AppliedStyle(MTListStyleEnum? style = null) => (style is null) ? ListStyle : (MTListStyleEnum)style;
+        internal MTListStyle AppliedStyle(MTListStyle? style = null) => (style is null) ? ListStyle : (MTListStyle)style;
 
 
         /// <summary>

@@ -311,7 +311,7 @@
     /// Style for an <see cref="MdcList{TItem}"/>. The <see cref="Outlined"/> variety borrows card markup matching <see cref="MTICardStyle.Outlined"/>.
     /// <para><see cref="MTCascadingDefaults"/> has a default of <see cref="None"/></para>
     /// </summary>
-    public enum MTListStyleEnum
+    public enum MTListStyle
     {
         /// <summary>
         /// No styling applied. This is the <see cref="MTCascadingDefaults"/> default.
