@@ -28,6 +28,8 @@ BlazorMdc isn't the only Blazor component library for Material Theme and we enco
 
 Note that BlazorMdc is in the early stages of development, so there are likely to be **frequent breaking changes** until we reach version 1. This project is owned by [Dioptra](https://dioptra.tech) and is provided as-is under the terms of the [MIT license](https://github.com/BlazorMdc/BlazorMdc/blob/main/LICENSE.md).
 
+Note also that BlazorMdc has advanced making this documentation somewhat obsolete. In particular there is a single namespace of BlazorMdc and component prefixes are simply MT.
+
 Lastly if you want to contribute please note our [code of conduct](https://github.com/BlazorMdc/BlazorMdc/blob/main/CODE_OF_CONDUCT.md).
 
 ## Attribution

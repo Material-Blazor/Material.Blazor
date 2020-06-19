@@ -37,21 +37,21 @@
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">No templates</h2>
 
-<BMdcPlus.PagedDataList Class="my-container"
+<MTPagedDataList Class="my-container"
                    PaginatorClass="my-float-right"
                    @bind-ItemsPerPage="@itemsPerPage1"
                    @bind-PageNumber="@pageNumber1"
                    ItemsPerPageSelection="@itemsPerPageSelection"
                    Data=@People>
-</BMdcPlus.PagedDataList>
+</MTPagedDataList>
 
 
 
-<BMdcPlus.Divider Style="margin: 2rem 0 1rem 0;" />
+<MTDivider Style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">ItemTemplate only</h2>
 
-<BMdcPlus.PagedDataList Class="my-container"
+<MTPagedDataList Class="my-container"
                    PaginatorClass="my-float-right"
                    @bind-ItemsPerPage="@itemsPerPage2"
                    @bind-PageNumber="@pageNumber2"
@@ -63,15 +63,15 @@
             @person.Salutation @person.FamilyName, @person.GivenName
         </li>
     </ItemTemplate>
-</BMdcPlus.PagedDataList>
+</MTPagedDataList>
 
 
 
-<BMdcPlus.Divider Style="margin: 2rem 0 1rem 0;" />
+<MTDivider Style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">ListTemplate and ItemTemplate</h2>
 
-<BMdcPlus.PagedDataList Class="my-container"
+<MTPagedDataList Class="my-container"
                    PaginatorClass="my-float-right"
                    @bind-ItemsPerPage="@itemsPerPage3"
                    @bind-PageNumber="@pageNumber3"
@@ -99,15 +99,15 @@
             <td>@person.FamilyName</td>
         </tr>
     </ItemTemplate>
-</BMdcPlus.PagedDataList>
+</MTPagedDataList>
 
 
 
-<BMdcPlus.Divider Style="margin: 2rem 0 1rem 0;" />
+<MTDivider Style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">ListTemplate and MdcDataTable</h2>
 
-<BMdcPlus.PagedDataList @ref="dataList4"
+<MTPagedDataList @ref="dataList4"
                    Class="my-container"
                    PaginatorClass="my-float-right"
                    @bind-ItemsPerPage="@itemsPerPage4"
@@ -116,7 +116,7 @@
                    Data=@People>
 
     <ListTemplate Context="listOfPeople">
-        <BMdc.DataTable Items="@dataList4.CurrentPage"
+        <MTDataTable Items="@dataList4.CurrentPage"
                       Context="person"
                       Class="my-full-width">
             <TableHeader>
@@ -129,17 +129,17 @@
                 <td class="mdc-data-table__cell">@person.GivenName</td>
                 <td class="mdc-data-table__cell">@person.FamilyName</td>
             </TableRow>
-        </BMdc.DataTable>
+        </MTDataTable>
     </ListTemplate>
-</BMdcPlus.PagedDataList>
+</MTPagedDataList>
 
 
 
-<BMdcPlus.Divider Style="margin: 2rem 0 1rem 0;" />
+<MTDivider Style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">ListTemplate and MdcList</h2>
 
-<BMdcPlus.PagedDataList @ref="dataList5"
+<MTPagedDataList @ref="dataList5"
                    Class="my-container"
                    PaginatorClass="my-float-right"
                    @bind-ItemsPerPage="@itemsPerPage5"
@@ -148,26 +148,26 @@
                    Data=@People>
 
     <ListTemplate Context="listOfPeople">
-        <BMdc.List Items="@dataList5.CurrentPage"
+        <MTList Items="@dataList5.CurrentPage"
                  Context="person"
                  ShowSeparators="true"
                  AvatarList="true"
-                 ListStyle="@EListStyle.Outlined">
+                 ListStyle="ListStyleEnum.Outlined">
 
             <Icon>shop</Icon>
             <Title>@person.FamilyName</Title>
             <LineTwo>@person.Salutation @person.FamilyName, @person.GivenName</LineTwo>
-        </BMdc.List>
+        </MTList>
     </ListTemplate>
-</BMdcPlus.PagedDataList>
+</MTPagedDataList>
 
 
 
-<BMdcPlus.Divider Style="margin: 2rem 0 1rem 0;" />
+<MTDivider Style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">ListTemplate and Two x MdcList</h2>
 
-<BMdcPlus.PagedDataList @ref="dataList6"
+<MTPagedDataList @ref="dataList6"
                    Class="my-container"
                    ListTemplateClass="my-container"
                    PaginatorClass="my-float-right"
@@ -184,32 +184,32 @@
         }
 
         <div class="my-half-list">
-            <BMdc.List Items="@leftList"
+            <MTList Items="@leftList"
                      Context="person"
                      ShowSeparators="true"
                      AvatarList="true"
-                     ListStyle="@EListStyle.Outlined">
+                     ListStyle="ListStyleEnum.Outlined">
 
                 <Icon>shop</Icon>
                 <Title>@person.FamilyName</Title>
                 <LineTwo>@person.Salutation @person.FamilyName, @person.GivenName</LineTwo>
-            </BMdc.List>
+            </MTList>
         </div>
 
         <div class="my-half-list">
-            <BMdc.List Items="@rightList"
+            <MTList Items="@rightList"
                      Context="person"
                      ShowSeparators="true"
                      AvatarList="true"
-                     ListStyle="@EListStyle.Outlined">
+                     ListStyle="ListStyleEnum.Outlined">
 
                 <Icon>shop</Icon>
                 <Title>@person.FamilyName</Title>
                 <LineTwo>@person.Salutation @person.FamilyName, @person.GivenName</LineTwo>
-            </BMdc.List>
+            </MTList>
         </div>
     </ListTemplate>
-</BMdcPlus.PagedDataList>
+</MTPagedDataList>
 
 
 
@@ -265,8 +265,8 @@
     private int pageNumber5 = 0;
     private int pageNumber6 = 0;
 
-    private BMdcPlus.PagedDataList<Person> dataList4;
-    private BMdcPlus.PagedDataList<Person> dataList5;
-    private BMdcPlus.PagedDataList<Person> dataList6;
+    private MTPagedDataList<Person> dataList4;
+    private MTPagedDataList<Person> dataList5;
+    private MTPagedDataList<Person> dataList6;
 }
 

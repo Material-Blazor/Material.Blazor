@@ -1,0 +1,77 @@
+﻿@namespace BlazorMdc
+@inherits MTInputComponentBase<string>
+
+
+<div class="bmdc-autocomplete">
+    <MTTextField @ref="@TextField"
+                 @bind-Value="@SelectInfo.SelectedText"
+                 TextAlignStyle="@TextAlignStyle"
+                 TextStyle="@TextInputStyle"
+                 Label="@Label"
+                 NoLabel="@NoLabel"
+                 LeadingIcon="@LeadingIcon"
+                 TrailingIcon="@TrailingIcon"
+                 IconFoundry="@IconFoundry"
+                 Disabled="@Disabled"
+                 @oninput="@OnInput"
+                 @onchange="@OnTextChangeAsync"
+                 @onfocusout="@OnTextFocusOutAsync"
+                 @attributes="@AttributesToSplat()" />
+
+    <div class="mdc-select" style="height: 0;">
+        <div class="mdc-select__anchor"
+             role="button"
+             aria-disabled="@Disabled"
+             aria-haspopup="@MenuReference"
+             aria-labelledby="@TextField">
+        </div>
+
+        <div @ref="@MenuReference"
+             class="mdc-select__menu mdc-menu mdc-menu-surface"
+             style="visibility:visible; min-height:1rem; min-width: 20rem;"
+             @onfocusin="OnMenuFocusIn"
+             @onfocusout="OnMenuFocusOut"
+             tabindex="-1">
+
+            <ul class="mdc-list"
+                tabindex="-1">
+
+                @if (AllowBlankResult)
+                {
+                    var item = "";
+                    <li @key="@item"
+                        class="mdc-list-item bmdc-autocomplete--blank"
+                        data-value="@item"
+                        aria-selected="false"
+                        role="option"
+                        tabindex="-1">
+
+                        <span class="mdc-list-item__text bmdc-full-width">
+                            @item
+                        </span>
+                    </li>
+                }
+
+                @foreach (var item in SelectInfo.SelectList)
+                {
+                    var clickItem = string.Copy(item);
+                    var listClass = "mdc-list-item" + (item.Equals(Value) ? " mdc-list-item--selected" : "");
+                    var ariaSelected = item.Equals(Value);
+
+                    <li @key="@item"
+                        class="@listClass"
+                        data-value="@item"
+                        aria-selected="@ariaSelected"
+                        role="option"
+                        tabindex="0"
+                        @onclick="@(() => OnItemClickAsync(clickItem))">
+
+                        <span class="mdc-list-item__text bmdc-full-width">
+                            @item
+                        </span>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>

@@ -14,21 +14,21 @@
 
 <div>
     <p>
-        <BMdc.Button Label="Open dialog with wrapped input components"
-                     @onclick="@OpenDialogAsync"
-                     ButtonStyle="EButtonStyle.ContainedRaised" />
+        <MTButton Label="Open dialog with wrapped input components"
+                  @onclick="@OpenDialogAsync"
+                  ButtonStyle="ButtonStyleEnum.ContainedRaised" />
     </p>
 
     <p>PIN 1: <strong>'@(LogonDTO.PIN1 ?? "")'</strong></p>
     <p>PIN 2: <strong>'@(LogonDTO.PIN2 ?? "")'</strong></p>
 
-    <BMdc.Dialog Title="Create a new PIN"
-                 @ref="DialogReference">
+    <MTDialog Title="Create a new PIN"
+              @ref="DialogReference">
         <Body>
 
             <h6>Your PIN has never been set.</h6>
             <h6>Pick a PIN, enter it, and verify the entry.</h6>
-            <BMdcPlus.Divider Padded="true" />
+            <MTDivider Padded="true" />
             <EditForm Model="@LogonDTO" OnValidSubmit="@SubmitLogon">
                 <DataAnnotationsValidator />
 
@@ -46,15 +46,15 @@
 
                 <div class="form-group">
                     <div style="display:flex; flex-direction: row; justify-content: center;">
-                        <BMdc.Button Style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                                     type="submit"
-                                     Label="PIN entry complete"
-                                     ButtonStyle="EButtonStyle.ContainedRaised" />
+                        <MTButton Style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                  type="submit"
+                                  Label="PIN entry complete"
+                                  ButtonStyle="ButtonStyleEnum.ContainedRaised" />
 
-                        <BMdc.Button @onclick="@CancelClick"
-                                     Style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                                     Label="Cancel"
-                                     ButtonStyle="EButtonStyle.ContainedRaised" />
+                        <MTButton @onclick="@CancelClick"
+                                  Style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                  Label="Cancel"
+                                  ButtonStyle="ButtonStyleEnum.ContainedRaised" />
                     </div>
                 </div>
             </EditForm>
@@ -62,12 +62,12 @@
         <Buttons>
         </Buttons>
 
-    </BMdc.Dialog>
+    </MTDialog>
 </div>
 
 
 @code {
-    private BMdc.Dialog DialogReference;
+    private MTDialog DialogReference;
 
     protected LogonDTO LogonDTO = new LogonDTO();
 

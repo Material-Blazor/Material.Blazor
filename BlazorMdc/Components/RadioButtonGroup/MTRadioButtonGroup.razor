@@ -1,0 +1,20 @@
+﻿@namespace BlazorMdc
+@inherits MTValidatingInputComponentBase<TItem>
+@typeparam TItem
+
+
+<div @attributes="AttributesToSplat()">
+
+    @foreach (var item in ItemArray)
+    {
+        <MTRadioButton @key="@item"
+                       @bind-Value="@ReportingValue"
+                       TItem="TItem"
+                       Disabled="@item.Disabled"
+                       EnableTouchWrapper="@EnableTouchWrapper"
+                       Label="@item.Label"
+                       TargetCheckedValue="@item.SelectedValue"
+                       RadioGroupName="@RadioGroupName" />
+    }
+
+</div>

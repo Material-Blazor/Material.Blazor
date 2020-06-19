@@ -1,0 +1,32 @@
+﻿@namespace BlazorMdc
+@inherits MTComponentBase
+
+
+<div @attributes="AttributesToSplat()">
+
+    <div class="bmdc-paginator">
+        <span>@ItemsText</span>
+
+        <div>
+            <MTIconButtonToggle @ref="@IconButtonToggle" @bind-Value="@ToggleOn" @onclick="@OnMenuToggleAsync" IconOn="arrow_drop_up" IconOff="arrow_drop_down" />
+            <div class="mdc-menu-surface--anchor">
+                <MTMenu @ref="Menu">
+                    @foreach (var itemsPerPage in ItemsPerPageSelection)
+                    {
+                        <MTListItem @key="@itemsPerPage" Text="@itemsPerPage.ToString("G0")" OnClick="@(_ => OnMenuItemClick(itemsPerPage))" />
+                    }
+                </MTMenu>
+            </div>
+        </div>
+
+        <div class="bmdc-paginator__position-text">
+            @* This hidden element serves to give the actual position text a constant width equal to the maximum width that may be required *@
+            <span class="bmdc-paginator__position-text-hidden">@MaxPositionText</span>
+            <span>@PositionText</span>
+        </div>
+
+        <MTIconButton Icon="chevron_left" @onclick="@OnPreviousClick" Disabled="@PreviousDisabled" />
+
+        <MTIconButton Icon="chevron_right" @onclick="@OnNextClick" Disabled="@NextDisabled" />
+    </div>
+</div>

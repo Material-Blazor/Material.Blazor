@@ -51,12 +51,9 @@
     </None>
     <None Include="bundleconfig.json" />
     <None Include="compilerconfig.json" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Folder Include="Material-Components-Web\dist\" />
-    <Folder Include="wwwroot\" />
+    <None Include="wwwroot\Material-Components-Web\dist\material-components-icons.min.css" />
+    <None Include="wwwroot\Material-Components-Web\dist\material-components-web.min.css" />
+    <None Include="wwwroot\Material-Components-Web\dist\material-components-web.min.js" />
   </ItemGroup>
 
 </Project>

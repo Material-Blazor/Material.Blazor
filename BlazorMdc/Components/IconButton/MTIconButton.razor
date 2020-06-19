@@ -1,0 +1,10 @@
+﻿@namespace BlazorMdc
+@inherits MTComponentBase
+
+
+<button @ref="@ElementReference"
+        type="button"
+        @attributes="@AttributesToSplat()">
+
+    <MTIcon IconName="@Icon" IconFoundry="@IconFoundry" />
+</button>

@@ -1,0 +1,40 @@
+﻿@namespace BlazorMdc
+
+@typeparam TItem
+
+@inherits MTComponentBase
+
+@inject IJSRuntime jsRuntime
+
+
+@if (Icon is null)
+{
+    <MTTabBar @bind-TabIndex="@TabIndex"
+              Items="@Items"
+              Context="item"
+              StackIcons="@StackIcons">
+
+        <Label>@Label(item)</Label>
+    </MTTabBar>
+}
+else
+{
+    <MTTabBar @bind-TabIndex="@TabIndex"
+              Items="@Items"
+              Context="item"
+              StackIcons="@StackIcons">
+
+        <Label>@Label(item)</Label>
+        <Icon>@Icon(item)</Icon>
+    </MTTabBar>
+}
+
+
+<MTSlidingContent Items="@Items"
+                  ItemIndex="@TabIndex"
+                  Context="item">
+
+    <Content>
+        @Content(item)
+    </Content>
+</MTSlidingContent>

@@ -1,0 +1,41 @@
+﻿@namespace BlazorMdc
+@inherits MTInputComponentBase<string>
+
+
+<div @ref="ElementReference"
+     @attributes="@AttributesToSplat(SplatType.ClassAndStyleOnly)">
+    
+    @if (AppliedTextInputStyle == TextInputStyleEnum.Filled || AppliedTextInputStyle == TextInputStyleEnum.FullWidth)
+    {
+        <div class="mdc-text-field__ripple"></div>
+    }
+
+    <textarea id="@id"
+              class="mdc-text-field__input @AppliedTextInputStyleClass @FieldClass"
+              @bind="@ReportingValue"
+              aria-labelledby="@labelId"
+              rows="@Rows"
+              cols="@Cols"
+              disabled="@Disabled"
+              @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)" />
+
+    @if (AppliedTextInputStyle == TextInputStyleEnum.Outlined)
+    {
+        <div class="mdc-notched-outline">
+            <div class="mdc-notched-outline__leading"></div>
+            <div class="mdc-notched-outline__notch">
+                <label class="mdc-floating-label @FloatingLabelClass" for="@id" id="@labelId">@Label</label>
+            </div>
+            <div class="mdc-notched-outline__trailing"></div>
+        </div>
+    }
+    else
+    {
+        @if (AppliedTextInputStyle == TextInputStyleEnum.Filled)
+        {
+            <label class="mdc-floating-label @FloatingLabelClass" for="@id" id="@labelId">@Label</label>
+        }
+
+        <div class="mdc-line-ripple"></div>
+    }
+</div>

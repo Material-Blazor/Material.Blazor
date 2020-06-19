@@ -6,32 +6,32 @@
 
 <p>See <code>TabBarSample.razor</code> for sources.</p>
 
-<p><BMdc.TextField @bind-Value="@tabLabel1" Label="2nd Tab" /></p>
+<p><MTTextField @bind-Value="@tabLabel1" Label="2nd Tab" /></p>
 
-<BMdc.TabBar @bind-TabIndex="@tabIndex"
+<MTTabBar @bind-TabIndex="@tabIndex"
            Items="@tabLabels"
            Context="item">
     <Icon>
         @{ var name = "fa-" + item; }
-        <BMdcPlus.Icon IconName="@name" TabBar="true" IconFoundry="IconHelper.FAFoundry()" />
+        <MTIcon IconName="@name" TabBar="true" IconFoundry="MTIconHelper.FAFoundry()" />
     </Icon>
     <Label>@item</Label>
-</BMdc.TabBar>
+</MTTabBar>
 
 <p>Clicked tab: @tabLabels[tabIndex]</p>
 
 
 
-<BMdcPlus.Divider Style="margin: 3rem 0 3rem 0;"></BMdcPlus.Divider>
+<MTDivider Style="margin: 3rem 0 3rem 0;"></MTDivider>
 
-<p><BMdc.Switch @bind-Value="@stacked" Label="Stack Icons" /></p>
+<p><MTSwitch @bind-Value="@stacked" Label="Stack Icons" /></p>
 
 <p>Current tab index: @slidingTabIndex</p>
 
-<p style="margin-bottom: 2em;"><BMdc.Button Label="Got to Alarm" @onclick="@ButtonClickAsync" /></p>
+<p style="margin-bottom: 2em;"><MTButton Label="Got to Alarm" @onclick="@ButtonClickAsync" /></p>
 
 
-<BMdcPlus.SlidingTabBar @key="@stacked"
+<MTSlidingTabBar @key="@stacked"
                        @ref="slidingTabBar"
                        Items="@slidingTabItems"
                        Context="item"
@@ -39,7 +39,7 @@
                        StackIcons="@stacked">
 
     <Label>@item.IconName</Label>
-    <Icon><BMdcPlus.Icon IconName="@item.IconName" TabBar="true" /></Icon>
+    <Icon><MTIcon IconName="@item.IconName" TabBar="true" /></Icon>
     <Content>
         <h3 class="mdc-typography--headline6">@item.IconName.ToUpper()</h3>
         <p class="mdc-typography">@item.Text</p>
@@ -49,14 +49,14 @@
             <DialogSample HideHeading="true" />
         }
     </Content>
-</BMdcPlus.SlidingTabBar>
+</MTSlidingTabBar>
 
 
 @code {
     private int tabIndex = 0;
     private bool stacked = false;
 
-    private BMdcPlus.SlidingTabBar<SlidingTabItem> slidingTabBar;
+    private MTSlidingTabBar<SlidingTabItem> slidingTabBar;
     private int slidingTabIndex = 5;
     private string tabLabel1
     {

@@ -1,9 +1,7 @@
-﻿using BMdcModel;
-
-namespace BlazorMdc.Demo
+﻿namespace BlazorMdc.Demo
 {
     public class DemoConfiguration
     {
-        public ETopAppBarType TopAppBarType { get; set; } = ETopAppBarType.Dense;
+        public TopAppBarType TopAppBarType { get; set; } = TopAppBarType.Dense;
     }
 }

@@ -1,0 +1,24 @@
+﻿@namespace BlazorMdc
+@inherits MTInputComponentBase<TItem>
+@typeparam TItem
+
+
+<div @ref="@FormReference"
+     @attributes="AttributesToSplat(SplatType.ClassAndStyleOnly)">
+
+    <div @ref="@RadioButtonReference" class="@ButtonContainerClass">
+        <input class="mdc-radio__native-control @DisabledClass"
+               type="radio"
+               id="@radioId"
+               name="@RadioGroupName"
+               @onclick="@(_ => OnInternalItemClickAsync())"
+               @attributes="AttributesToSplat(SplatType.ExcludeClassAndStyle)">
+
+        <div class="mdc-radio__background">
+            <div class="mdc-radio__outer-circle"></div>
+            <div class="mdc-radio__inner-circle"></div>
+        </div>
+        <div class="mdc-radio__ripple"></div>
+    </div>
+    <label for="@radioId">@Label</label>
+</div>

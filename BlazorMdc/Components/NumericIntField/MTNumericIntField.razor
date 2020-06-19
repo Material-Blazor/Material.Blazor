@@ -1,0 +1,19 @@
+﻿@namespace BlazorMdc
+@inherits MTInputComponentBase<int>
+
+
+<MTNumericDoubleField @attributes="@AttributesToSplat()"
+                      TextInputStyle="TextInputStyle"
+                      Label="@Label"
+                      NoLabel="@NoLabel"
+                      LeadingIcon="@LeadingIcon"
+                      TrailingIcon="@TrailingIcon"
+                      IconFoundry="@IconFoundry"
+                      NumericFormat="@NumericFormat"
+                      NumericSingularFormat="@NumericSingularFormat"
+                      Magnitude="@Magnitude"
+                      Min="@Min"
+                      Max="@Max"
+                      DecimalPlaces="0"
+                      Disabled="@Disabled"
+                      @bind-Value="@DblVal" />

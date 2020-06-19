@@ -1,0 +1,48 @@
+﻿@namespace BlazorMdc
+@typeparam TItem
+@inherits MTComponentBase
+
+
+<div @attributes="AttributesToSplat()">
+
+    <div class="@contentClass @ListTemplateClass">
+        @ListTemplate(@:@{
+            foreach (TItem item in CurrentPage)
+            {
+                @ItemTemplate(item)
+            }}
+        )
+    </div>
+
+    <div class="@PaginatorClass">
+        <MTPaginator @bind-ItemsPerPage="@ItemsPerPage" @bind-PageNumber="@PageNumber" ItemsPerPageSelection="@ItemsPerPageSelection" ItemCount="@Data.Count()"></MTPaginator>
+    </div>
+</div>
+
+
+@code {
+
+        /// <inheritdoc/>
+    protected override void OnParametersSet()
+    {
+
+        if (ItemTemplate == null)
+        {
+            ItemTemplate = (item) =>@:@{
+        <li @key=item>@item.ToString()</li>}
+            ;
+    }
+
+    if (ListTemplate == null)
+    {
+        ListTemplate = _ => @:@{
+        <ul>
+            @foreach (TItem item in CurrentPage)
+            {
+                @ItemTemplate(item)
+            }
+        </ul>}
+        ;
+            }
+        }
+    }
