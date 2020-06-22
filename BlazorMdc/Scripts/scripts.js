@@ -39,8 +39,8 @@ window.BlazorMdc = {
             textElem._textField.value = value;
         },
 
-        setDisabled: function (textElem, value) {
-            textElem._textField.disabled = value;
+        setDisabled: function (textElem, disabled) {
+            textElem._textField.disabled = disabled;
         }
     },
 
@@ -67,8 +67,12 @@ window.BlazorMdc = {
             }
         },
 
-        setChecked: function (elem, isChecked) {
-            elem._checkbox.checked = isChecked;
+        setChecked: function (elem, checked) {
+            elem._checkbox.checked = checked;
+        },
+
+        setDisabled: function (elem, disabled) {
+            elem._checkbox.disabled = disabled;
         }
     },
 
