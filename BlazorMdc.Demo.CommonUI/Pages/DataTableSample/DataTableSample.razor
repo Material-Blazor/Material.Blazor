@@ -4,7 +4,7 @@
 
 
 
-<h1 class="mdc-typography--headline4">Radio button samples</h1>
+<h1 class="mdc-typography--headline4">Data table samples</h1>
 
 <p>See <code>DataTableSample.razor</code> for sources.</p>
 
@@ -18,7 +18,7 @@
     }
 </style>
 
-<MdcDataTable Items="@biscuits"
+<MTDataTable Items="@biscuits"
               Context="item"
               Class="full-width">
     <TableHeader>
@@ -31,7 +31,7 @@
         <td class="mdc-data-table__cell mdc-data-table__cell--numeric">@item.Price.ToString("C2")</td>
         <td class="mdc-data-table__cell">@item.Review</td>
     </TableRow>
-</MdcDataTable>
+</MTDataTable>
 
 
 

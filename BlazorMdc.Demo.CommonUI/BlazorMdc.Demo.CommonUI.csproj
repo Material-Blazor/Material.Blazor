@@ -1,57 +1,70 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
-  <PropertyGroup>
-    <IsPackable>true</IsPackable>
-    <OutputType>Library</OutputType>
-    <RootNamespace>BlazorMdc.Demo.CommonUI</RootNamespace>
-    <TargetFramework>netstandard2.1</TargetFramework>
+	<PropertyGroup>
+		<IsPackable>true</IsPackable>
+		<OutputType>Library</OutputType>
+		<RootNamespace>BlazorMdc.Demo.CommonUI</RootNamespace>
+		<TargetFramework>netstandard2.1</TargetFramework>
 
-    <RazorLangVersion>3.0</RazorLangVersion>
-    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
-    
-    <Configurations>Debug_WebAssembly;Debug_Server;Release_WebAssembly;Release_Server</Configurations>
-  </PropertyGroup>
+		<RazorLangVersion>3.0</RazorLangVersion>
+		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_WebAssembly|AnyCPU'">
-    <DefineConstants>BlazorWebAssembly;DEBUG;</DefineConstants>
-  </PropertyGroup>
+		<Configurations>Debug_WebAssembly;Debug_Server;Release_WebAssembly;Release_Server</Configurations>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Server|AnyCPU'">
-    <DefineConstants>BlazorServer;DEBUG;</DefineConstants>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_WebAssembly|AnyCPU'">
+		<DefineConstants>BlazorWebAssembly;DEBUG;</DefineConstants>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_WebAssembly|AnyCPU'">
-    <DefineConstants>BlazorWebAssembly;RELEASE;</DefineConstants>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Server|AnyCPU'">
+		<DefineConstants>BlazorServer;DEBUG;</DefineConstants>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Server|AnyCPU'">
-    <DefineConstants>BlazorServer;RELEASE</DefineConstants>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_WebAssembly|AnyCPU'">
+		<DefineConstants>BlazorWebAssembly;RELEASE;</DefineConstants>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Compile Remove="Pages\TextFieldSample\DebouncedTextFieldSample\**" />
-    <Content Remove="Pages\TextFieldSample\DebouncedTextFieldSample\**" />
-    <EmbeddedResource Remove="Pages\TextFieldSample\DebouncedTextFieldSample\**" />
-    <None Remove="Pages\TextFieldSample\DebouncedTextFieldSample\**" />
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Server|AnyCPU'">
+		<DefineConstants>BlazorServer;RELEASE</DefineConstants>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Content Remove="Pages\TextFieldSample\TextFieldSample - Copy.razor" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="Pages\TextFieldSample\DebouncedTextFieldSample\**" />
+		<Content Remove="Pages\TextFieldSample\DebouncedTextFieldSample\**" />
+		<EmbeddedResource Remove="Pages\TextFieldSample\DebouncedTextFieldSample\**" />
+		<None Remove="Pages\TextFieldSample\DebouncedTextFieldSample\**" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="BuildWebCompiler" Version="1.12.405" />
-  </ItemGroup>
+	<ItemGroup>
+		<Content Remove="compilerconfig.json" />
+		<Content Remove="Pages\TextFieldSample\TextFieldSample - Copy.razor" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\BlazorMdc\BlazorMdc.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\BlazorMdc\BlazorMdc.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Update="Styles\styles.scss">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Update="Styles\styles.scss">
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</None>
+	</ItemGroup>
+
+	<Target Name="RestoreDotnetTools" BeforeTargets="PreBuildEvent">
+		<Exec Command="dotnet tool restore" />
+	</Target>
+
+	<Target Name="CompileCss" AfterTargets="RestoreDotnetTools">
+		<Exec Command="dotnet tool run webcompiler Styles/Styles.scss -z disable" />
+	</Target>
+
+	<Target Name="CopyCss" AfterTargets="CompileCss">
+		<Exec Command="xcopy /y .\styles\*.css .\wwwroot\css" />
+	</Target>
+
+	<Target Name="DeleteCss" AfterTargets="CopyCss">
+		<Exec Command="del .\styles\*.css" />
+	</Target>
 
 </Project>

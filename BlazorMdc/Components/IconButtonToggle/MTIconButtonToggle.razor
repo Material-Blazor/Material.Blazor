@@ -1,0 +1,12 @@
+﻿@namespace BlazorMdc
+@inherits InputComponentFoundation<bool>
+
+
+<button @ref="@ElementReference"
+        @attributes="@AttributesToSplat(SplatType.All)"
+        type="button"
+        @onclick="@ToggleOnClick">
+
+    <MTIcon IconName="@IconOn" IconFoundry="@IconFoundry" Class="mdc-icon-button__icon mdc-icon-button__icon--on bmdc-dp-menu__icon-button" />
+    <MTIcon IconName="@IconOff" IconFoundry="@IconFoundry" Class="mdc-icon-button__icon bmdc-dp-menu__icon-button" />
+</button>

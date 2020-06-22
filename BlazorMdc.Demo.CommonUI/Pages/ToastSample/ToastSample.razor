@@ -2,14 +2,14 @@
 
 @page "/toast"
 
-@inject IPmdcToastService toastService
+@inject IMTToastService toastService
 
 <h1 class="mdc-typography--headline4">Toast samples</h1>
 
 <p>See <code>ToastSample.razor</code> for sources.</p>
 
 <p>
-    Note the addition of <code>AddPMdcToast()</code> in Startup.cs (Server) and Program.cs (WASM) as well as the component <code>PMdcToasts</code> in MainLayout.razor.
+    Note the addition of <code>AddMTToast()</code> in Startup.cs (Server) and Program.cs (WASM) as well as the component <code>MTToasts</code> in MainLayout.razor.
 </p>
 
 <style>
@@ -41,52 +41,52 @@
     </style>
 }
 
-<p><MdcCheckbox @bind-Value="@overrideDefaults" Label="Change colors and border radius from default" /></p>
+<p><MTCheckbox @bind-Value="@overrideDefaults" Label="Change colors and border radius from default" /></p>
 
-<p><PMdcNumericIntField @bind-Value="@toastService.Configuration.MaxToastsShowing" Label="Max Toasts (0-10)" Min="0" Max="10" NumericFormat="N0" /></p>
+<p><MTNumericIntField @bind-Value="@toastService.Configuration.MaxToastsShowing" Label="Max Toasts (0-10)" Min="0" Max="10" NumericFormat="N0" /></p>
 
 <p>
-    <MdcButton Style="background-color: var(--bmdc-toast-background-color-info);"
+    <MTButton Style="background-color: var(--bmdc-toast-background-color-info);"
                @onclick="@InfoClick"
                Label="Info Toast"
-               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+               ButtonStyle="@MTButtonStyle.ContainedRaised" />
 
-    <MdcButton Style="background-color: var(--bmdc-toast-background-color-success);"
+    <MTButton Style="background-color: var(--bmdc-toast-background-color-success);"
                @onclick="@(() => toastService.ShowToast(
-                              level: PMdcToastLevel.Success,
+                              level: MTToastLevel.Success,
                               heading: "I'm a SUCCESS",
                               message: "Congratulations!" ))"
                Label="Success Toast"
-               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+               ButtonStyle="@MTButtonStyle.ContainedRaised" />
 
-    <MdcButton Style="background-color: var(--bmdc-toast-background-color-warning);"
+    <MTButton Style="background-color: var(--bmdc-toast-background-color-warning);"
                @onclick="@(() => toastService.ShowToast(
-                              level: PMdcToastLevel.Warning,
+                              level: MTToastLevel.Warning,
                               message: "I'm a WARNING" ))"
                Label="Warning Toast"
-               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+               ButtonStyle="@MTButtonStyle.ContainedRaised" />
 
-    <MdcButton Style="background-color: var(--bmdc-toast-background-color-error);"
+    <MTButton Style="background-color: var(--bmdc-toast-background-color-error);"
                @onclick="@(() => toastService.ShowToast(
-                              level: PMdcToastLevel.Error,
+                              level: MTToastLevel.Error,
                               message: "I'm an ERROR" ))"
                Label="Error Toast"
-               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+               ButtonStyle="@MTButtonStyle.ContainedRaised" />
 </p>
 
 <p>Try different configuration options</p>
-<p><MdcSelect Label="Additional css class" @bind-Value="@cssClass" Items="cssClassItems" ItemValidation="@MdcItemValidation.DefaultToFirst"></MdcSelect></p>
-<p><MdcSelect Label="Close method" @bind-Value="@closeMethod" Items="closeMethodItems"></MdcSelect></p>
-<p><MdcSelect Label="Heading" @bind-Value="@heading" Items="headingItems" ItemValidation="@MdcItemValidation.DefaultToFirst"></MdcSelect></p>
-<p><MdcSelect Label="Icon" @bind-Value="@icon" Items="iconItems" ItemValidation="@MdcItemValidation.DefaultToFirst"></MdcSelect></p>
-<p><MdcSelect Label="Level" @bind-Value="@level" Items="levelItems"></MdcSelect></p>
-<p><MdcSelect Label="Message" @bind-Value="@message" Items="messageItems" ItemValidation="@MdcItemValidation.DefaultToFirst"></MdcSelect></p>
-<p><MdcSelect Label="Show icon" @bind-Value="@showIcon" Items="showIconItems" ItemValidation="@MdcItemValidation.DefaultToFirst"></MdcSelect></p>
-<p><MdcSelect Label="Timeout" @bind-Value="@timeout" Items="timeoutItems" ItemValidation="@MdcItemValidation.DefaultToFirst"></MdcSelect></p>
+<p><MTSelect Label="Additional css class" @bind-Value="@cssClass" Items="cssClassItems" ItemValidation="@MTItemValidation.DefaultToFirst"></MTSelect></p>
+<p><MTSelect Label="Close method" @bind-Value="@closeMethod" Items="closeMethodItems"></MTSelect></p>
+<p><MTSelect Label="Heading" @bind-Value="@heading" Items="headingItems" ItemValidation="@MTItemValidation.DefaultToFirst"></MTSelect></p>
+<p><MTSelect Label="Icon" @bind-Value="@icon" Items="iconItems" ItemValidation="@MTItemValidation.DefaultToFirst"></MTSelect></p>
+<p><MTSelect Label="Level" @bind-Value="@level" Items="levelItems"></MTSelect></p>
+<p><MTSelect Label="Message" @bind-Value="@message" Items="messageItems" ItemValidation="@MTItemValidation.DefaultToFirst"></MTSelect></p>
+<p><MTSelect Label="Show icon" @bind-Value="@showIcon" Items="showIconItems" ItemValidation="@MTItemValidation.DefaultToFirst"></MTSelect></p>
+<p><MTSelect Label="Timeout" @bind-Value="@timeout" Items="timeoutItems" ItemValidation="@MTItemValidation.DefaultToFirst"></MTSelect></p>
 <p>
-    <MdcButton @onclick="@customiseClick"
+    <MTButton @onclick="@customiseClick"
                Label="Toast with selected options"
-               ButtonStyle="@MdcButtonStyle.ContainedRaised" />
+               ButtonStyle="@MTButtonStyle.ContainedRaised" />
 </p>
 
 
@@ -94,93 +94,92 @@
     private bool overrideDefaults = false;
 
     string cssClass;
-    MdcListElement<string>[] cssClassItems = new MdcListElement<string>[]
+    MTListElement<string>[] cssClassItems = new MTListElement<string>[]
     {
-        new MdcListElement<string> { SelectedValue = "", Label = "Default" },
-        new MdcListElement<string> { SelectedValue = "my-class", Label = "Italic" },
+        new MTListElement<string> { SelectedValue = "", Label = "Default" },
+        new MTListElement<string> { SelectedValue = "my-class", Label = "Italic" },
     };
 
 
-    PMdcToastCloseMethod closeMethod;
-    IEnumerable<MdcListElement<PMdcToastCloseMethod>> closeMethodItems => from c in (PMdcToastCloseMethod[])Enum.GetValues(typeof(PMdcToastCloseMethod))
-                                                                          select new MdcListElement<PMdcToastCloseMethod>
-                                                                          {
-                                                                              SelectedValue = c,
-                                                                              Label = c.ToString()
-                                                                          };
+    MTToastCloseMethod closeMethod;
+    IEnumerable<MTListElement<MTToastCloseMethod>> closeMethodItems => from c in (MTToastCloseMethod[])Enum.GetValues(typeof(MTToastCloseMethod))
+                                                                    select new MTListElement<MTToastCloseMethod>
+                                                                    {
+                                                                        SelectedValue = c,
+                                                                        Label = c.ToString()
+                                                                    };
 
 #nullable enable annotations
     class MyIcon
     {
         public string Name;
-        public IMdcIconFoundry? Foundry;
+        public IMTIconFoundry? Foundry;
     }
 #nullable restore annotations
 
     MyIcon icon;
-    MdcListElement<MyIcon>[] iconItems = new MdcListElement<MyIcon>[]
+    MTListElement<MyIcon>[] iconItems = new MTListElement<MyIcon>[]
     {
-        new MdcListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "directions_run" }, Label = "directions_run" },
-        new MdcListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MdcIconHelper.MIFoundry(theme: MdcIconMITheme.Filled) }, Label = "thumb_up (filled / default)" },
-        new MdcListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MdcIconHelper.MIFoundry(theme: MdcIconMITheme.Outlined) }, Label = "thumb_up (outlined)" },
-        new MdcListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MdcIconHelper.MIFoundry(theme: MdcIconMITheme.Round) }, Label = "thumb_up (rounded)" },
-        new MdcListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MdcIconHelper.MIFoundry(theme: MdcIconMITheme.TwoTone) }, Label = "thumb_up (two-tone)" },
-        new MdcListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MdcIconHelper.MIFoundry(theme: MdcIconMITheme.Sharp) }, Label = "thumb_up (sharp)" },
-        new MdcListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = MdcIconHelper.FAFoundry() }, Label = "fa-ambulance" },
-        new MdcListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = MdcIconHelper.FAFoundry(relativeSize: MdcIconFARelativeSize.ExtraSmall) }, Label = "fa-ambulance (x-small)" },
+        new MTListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "directions_run" }, Label = "directions_run" },
+        new MTListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MTIconHelper.MIFoundry(theme: MTIconMITheme.Filled) }, Label = "thumb_up (filled / default)" },
+        new MTListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MTIconHelper.MIFoundry(theme: MTIconMITheme.Outlined) }, Label = "thumb_up (outlined)" },
+        new MTListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MTIconHelper.MIFoundry(theme: MTIconMITheme.Round) }, Label = "thumb_up (rounded)" },
+        new MTListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MTIconHelper.MIFoundry(theme: MTIconMITheme.TwoTone) }, Label = "thumb_up (two-tone)" },
+        new MTListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MTIconHelper.MIFoundry(theme: MTIconMITheme.Sharp) }, Label = "thumb_up (sharp)" },
+        new MTListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = MTIconHelper.FAFoundry() }, Label = "fa-ambulance" },
+        new MTListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = MTIconHelper.FAFoundry(relativeSize: MTIconFARelativeSize.ExtraSmall) }, Label = "fa-ambulance (x-small)" },
     };
 
 
     string heading;
-    MdcListElement<string>[] headingItems = new MdcListElement<string>[]
+    MTListElement<string>[] headingItems = new MTListElement<string>[]
     {
-        new MdcListElement<string> { SelectedValue = "", Label = "Default" },
-        new MdcListElement<string> { SelectedValue = "Run of the mill heading", Label = "Run of the mill heading" },
-        new MdcListElement<string> { SelectedValue = "Heading truncated and truncated and truncated and truncated", Label = "Heading that will be truncated" }
+        new MTListElement<string> { SelectedValue = "", Label = "Default" },
+        new MTListElement<string> { SelectedValue = "Run of the mill heading", Label = "Run of the mill heading" },
+        new MTListElement<string> { SelectedValue = "Heading truncated and truncated and truncated and truncated", Label = "Heading that will be truncated" }
     };
 
 
-    PMdcToastLevel level;
-    IEnumerable<MdcListElement<PMdcToastLevel>> levelItems => from c in (PMdcToastLevel[])Enum.GetValues(typeof(PMdcToastLevel))
-                                                              select new MdcListElement<PMdcToastLevel>
-                                                              {
-                                                                  SelectedValue = c,
-                                                                  Label = c.ToString()
-                                                              };
+    MTToastLevel level;
+    IEnumerable<MTListElement<MTToastLevel>> levelItems => from c in (MTToastLevel[])Enum.GetValues(typeof(MTToastLevel))
+                                                        select new MTListElement<MTToastLevel>
+                                                        {
+                                                            SelectedValue = c,
+                                                            Label = c.ToString()
+                                                        };
 
     string message;
-    MdcListElement<string>[] messageItems = new MdcListElement<string>[]
+    MTListElement<string>[] messageItems = new MTListElement<string>[]
     {
-        new MdcListElement<string> { SelectedValue = "Run of the mill message", Label = "Run of the mill message" },
-        new MdcListElement<string> { SelectedValue = "Italicized font", Label = "Italicized font (To see this set the additional CSS class to italic)" },
-        new MdcListElement<string> { SelectedValue = "Text <strong>bold</strong> and <u>underlined</u>", Label = "Message with markup" },
-        new MdcListElement<string> { SelectedValue = "Message truncated and truncated and truncated and truncated", Label = "Message that will be truncated" }
+        new MTListElement<string> { SelectedValue = "Run of the mill message", Label = "Run of the mill message" },
+        new MTListElement<string> { SelectedValue = "Text <strong>bold</strong> and <u>underlined</u>", Label = "Message with markup" },
+        new MTListElement<string> { SelectedValue = "Message truncated and truncated and truncated and truncated", Label = "Message that will be truncated" }
     };
 
 
     string showIcon;
-    MdcListElement<string>[] showIconItems = new MdcListElement<string>[]
+    MTListElement<string>[] showIconItems = new MTListElement<string>[]
     {
-        new MdcListElement<string> { SelectedValue = "", Label = "Default" },
-        new MdcListElement<string> { SelectedValue = "true", Label = "true" },
-        new MdcListElement<string> { SelectedValue = "false", Label = "false" }
+        new MTListElement<string> { SelectedValue = "", Label = "Default" },
+        new MTListElement<string> { SelectedValue = "true", Label = "true" },
+        new MTListElement<string> { SelectedValue = "false", Label = "false" }
     };
 
 
     string timeout;
-    MdcListElement<string>[] timeoutItems = new MdcListElement<string>[]
+    MTListElement<string>[] timeoutItems = new MTListElement<string>[]
     {
-        new MdcListElement<string> { SelectedValue = "", Label = "Default" },
-        new MdcListElement<string> { SelectedValue = "1000", Label = "1 second" },
-        new MdcListElement<string> { SelectedValue = "10000", Label = "10 seconds" },
-        new MdcListElement<string> { SelectedValue = "60000", Label = "60 seconds" }
+        new MTListElement<string> { SelectedValue = "", Label = "Default" },
+        new MTListElement<string> { SelectedValue = "1000", Label = "1 second" },
+        new MTListElement<string> { SelectedValue = "10000", Label = "10 seconds" },
+        new MTListElement<string> { SelectedValue = "60000", Label = "60 seconds" }
     };
 
 
     protected void InfoClick()
     {
         toastService.ShowToast(
-            level: PMdcToastLevel.Info,
+            level: MTToastLevel.Info,
             message: "I'm an INFO");
     }
 

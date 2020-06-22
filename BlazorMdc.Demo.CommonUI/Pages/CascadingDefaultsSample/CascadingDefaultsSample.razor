@@ -9,41 +9,41 @@
 <p>See <code>CascadingDefaultsSample.razor</code> for sources.</p>
 
 <h3 class="mdc-typography--headline5" style="margin-top: 4rem;">BlazorMdc default styles</h3>
-<p><MdcSelect Label="Select" @bind-Value="@selectDefault" Items="items" ItemValidation="@MdcItemValidation.NoSelection" /></p>
-<p><PMdcDatePicker Label="Date" @bind-Value="dateDefault" MinDate="min" MaxDate="max" /></p>
-<p><MdcTextField Label="Text Field" @bind-Value="textFieldDefault" /></p>
-<p><MdcTextArea Label="Text Area" Rows="2" @bind-Value="textAreaDefault" /></p>
-<p><MdcButton Label="Button" /></p>
-<p><PMdcIcon Icon="thumb_up" /></p>
+<p><MTSelect Label="Select" @bind-Value="@selectDefault" Items="items" ItemValidation="@MTItemValidation.NoSelection" /></p>
+<p><MTDatePicker Label="Date" @bind-Value="dateDefault" MinDate="min" MaxDate="max" /></p>
+<p><MTTextField Label="Text Field" @bind-Value="textFieldDefault" /></p>
+<p><MTTextArea Label="Text Area" Rows="2" @bind-Value="textAreaDefault" /></p>
+<p><MTButton Label="Button" /></p>
+<p><MTIcon IconName="thumb_up" /></p>
 
 <CascadingValue Value="defaults1">
     <h3 class="mdc-typography--headline5" style="margin-top: 4rem;">Variant 1</h3>
-    <p><MdcSelect Label="Select" @bind-Value="@selectVariant1" Items="items" /></p>
-    <p><PMdcDatePicker Label="Date" @bind-Value="dateVariant1" MinDate="min" MaxDate="max" /></p>
-    <p><MdcTextField Label="Text Field" @bind-Value="textFieldVariant1" /></p>
-    <p><MdcTextArea Label="Text Area" Rows="2" @bind-Value="textAreaVariant1" /></p>
-    <p><MdcButton Label="Button" /></p>
-    <p><PMdcIcon Icon="thumb_up" /></p>
+    <p><MTSelect Label="Select" @bind-Value="@selectVariant1" Items="items" /></p>
+    <p><MTDatePicker Label="Date" @bind-Value="dateVariant1" MinDate="min" MaxDate="max" /></p>
+    <p><MTTextField Label="Text Field" @bind-Value="textFieldVariant1" /></p>
+    <p><MTTextArea Label="Text Area" Rows="2" @bind-Value="textAreaVariant1" /></p>
+    <p><MTButton Label="Button" /></p>
+    <p><MTIcon IconName="thumb_up" /></p>
 </CascadingValue>
 
 <CascadingValue Value="defaults2">
     <h3 class="mdc-typography--headline5" style="margin-top: 4rem;">Variant 2</h3>
-    <p><MdcSelect Label="Select" @bind-Value="@selectVariant2" Items="items" /></p>
-    <p><PMdcDatePicker Label="Date" @bind-Value="dateVariant2" MinDate="min" MaxDate="max" /></p>
-    <p><MdcTextField Label="Text Field" @bind-Value="textFieldVariant2" /></p>
-    <p><MdcTextArea Label="Text Area" Rows="2" @bind-Value="textAreaVariant2" /></p>
-    <p><MdcButton Label="Button" /></p>
-    <p><PMdcIcon Icon="thumb_up" /></p>
+    <p><MTSelect Label="Select" @bind-Value="@selectVariant2" Items="items" /></p>
+    <p><MTDatePicker Label="Date" @bind-Value="dateVariant2" MinDate="min" MaxDate="max" /></p>
+    <p><MTTextField Label="Text Field" @bind-Value="textFieldVariant2" /></p>
+    <p><MTTextArea Label="Text Area" Rows="2" @bind-Value="textAreaVariant2" /></p>
+    <p><MTButton Label="Button" /></p>
+    <p><MTIcon IconName="thumb_up" /></p>
 </CascadingValue>
 
 <CascadingValue Value="defaults3">
     <h3 class="mdc-typography--headline5" style="margin-top: 4rem;">Variant 3</h3>
-    <p><MdcSelect Label="Select" @bind-Value="@selectVariant3" Items="items" /></p>
-    <p><PMdcDatePicker Label="Date" @bind-Value="dateVariant3" MinDate="min" MaxDate="max" /></p>
-    <p><MdcTextField Label="Text Field" @bind-Value="textFieldVariant3" /></p>
-    <p><MdcTextArea Label="Text Area" Rows="2" @bind-Value="textAreaVariant3" /></p>
-    <p><MdcButton Label="Button" /></p>
-    <p><PMdcIcon Icon="fa-hiking" /></p>
+    <p><MTSelect Label="Select" @bind-Value="@selectVariant3" Items="items" /></p>
+    <p><MTDatePicker Label="Date" @bind-Value="dateVariant3" MinDate="min" MaxDate="max" /></p>
+    <p><MTTextField Label="Text Field" @bind-Value="textFieldVariant3" /></p>
+    <p><MTTextArea Label="Text Area" Rows="2" @bind-Value="textAreaVariant3" /></p>
+    <p><MTButton Label="Button" /></p>
+    <p><MTIcon IconName="fa-hiking" /></p>
 </CascadingValue>
 
 
@@ -57,14 +57,14 @@
     DateTime max = new DateTime(2078, 12, 31);
 
 
-    MdcCascadingDefaults defaults1 = new MdcCascadingDefaults()
+    MTCascadingDefaults defaults1 = new MTCascadingDefaults()
     {
-        SelectInputStyle = MdcSelectInputStyle.Outlined,
-        TextInputStyle = MdcTextInputStyle.Outlined,
-        ButtonStyle = MdcButtonStyle.Outlined,
-        DateSelectionCriteria = PMdcDateSelectionCriteria.WeekdaysOnly,
-        ItemValidation = MdcItemValidation.NoSelection,
-        IconMITheme = MdcIconMITheme.Outlined
+        SelectInputStyle = MTSelectInputStyle.Outlined,
+        TextInputStyle = MTTextInputStyle.Outlined,
+        ButtonStyle = MTButtonStyle.Outlined,
+        DateSelectionCriteria = MTDateSelectionCriteria.WeekdaysOnly,
+        ItemValidation = MTItemValidation.NoSelection,
+        IconMITheme = MTIconMITheme.Outlined
     };
     string selectVariant1;
     string textFieldVariant1;
@@ -72,14 +72,14 @@
     DateTime dateVariant1 = new DateTime(2020, 2, 29);
 
 
-    MdcCascadingDefaults defaults2 = new MdcCascadingDefaults()
+    MTCascadingDefaults defaults2 = new MTCascadingDefaults()
     {
-        SelectInputStyle = MdcSelectInputStyle.Filled,
-        TextInputStyle = MdcTextInputStyle.FullWidth,
-        ButtonStyle = MdcButtonStyle.ContainedUnelevated,
-        DateSelectionCriteria = PMdcDateSelectionCriteria.WeekendsOnly,
-        ItemValidation = MdcItemValidation.NoSelection,
-        IconMITheme = MdcIconMITheme.TwoTone
+        SelectInputStyle = MTSelectInputStyle.Filled,
+        TextInputStyle = MTTextInputStyle.FullWidth,
+        ButtonStyle = MTButtonStyle.ContainedUnelevated,
+        DateSelectionCriteria = MTDateSelectionCriteria.WeekendsOnly,
+        ItemValidation = MTItemValidation.NoSelection,
+        IconMITheme = MTIconMITheme.TwoTone
     };
     string selectVariant2;
     string textFieldVariant2;
@@ -87,15 +87,15 @@
     DateTime dateVariant2 = new DateTime(2020, 2, 29);
 
 
-    MdcCascadingDefaults defaults3 = new MdcCascadingDefaults()
+    MTCascadingDefaults defaults3 = new MTCascadingDefaults()
     {
-        SelectInputStyle = MdcSelectInputStyle.Outlined,
-        TextInputStyle = MdcTextInputStyle.Filled,
-        ButtonStyle = MdcButtonStyle.ContainedRaised,
-        DateSelectionCriteria = PMdcDateSelectionCriteria.AllowAll,
-        ItemValidation = MdcItemValidation.NoSelection,
-        IconFoundryName = MdcIconFoundryName.FontAwesome,
-        IconFARelativeSize = MdcIconFARelativeSize.TenTimes
+        SelectInputStyle = MTSelectInputStyle.Outlined,
+        TextInputStyle = MTTextInputStyle.Filled,
+        ButtonStyle = MTButtonStyle.ContainedRaised,
+        DateSelectionCriteria = MTDateSelectionCriteria.AllowAll,
+        ItemValidation = MTItemValidation.NoSelection,
+        IconFoundryName = MTIconFoundryName.FontAwesome,
+        IconFARelativeSize = MTIconFARelativeSize.TenTimes
     };
     string selectVariant3;
     string textFieldVariant3;
@@ -104,11 +104,11 @@
 
 
 
-    MdcListElement<string>[] items = new MdcListElement<string>[]
+    MTListElement<string>[] items = new MTListElement<string>[]
     {
-        new MdcListElement<string> { SelectedValue = "", Label = "" },
-        new MdcListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
-        new MdcListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
-        new MdcListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+        new MTListElement<string> { SelectedValue = "", Label = "" },
+        new MTListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new MTListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new MTListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
     };
 }

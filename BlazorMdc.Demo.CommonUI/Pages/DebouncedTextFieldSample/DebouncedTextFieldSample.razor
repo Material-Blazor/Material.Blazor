@@ -4,16 +4,20 @@
 
 @inject IJSRuntime jsRuntime
 
-<h1 class="mdc-typography--headline4">Text field samples</h1>
+<h1 class="mdc-typography--headline4">Debounced text field samples</h1>
 
 <p>See <code>DebouncedTextFieldSample.razor</code> for sources.</p>
 
-<PMdcRadioButtonGroup @bind-Value="@interval"
-                      Items="intervals"
-                      ItemValidation="@MdcItemValidation.DefaultToFirst" />
+<MTRadioButtonGroup @bind-Value="@interval"
+                    Items="intervals"
+                    ItemValidation="@MTItemValidation.DefaultToFirst" />
 
 <p style="margin-top: 3rem;">Debounce Text</p>
-<p><PMdcDebouncedTextField Label="Debounced Text" @bind-Value="@currentValue" TextInputStyle="MdcTextInputStyle.Outlined" LeadingIcon="account_balance_wallet" DebounceInterval="interval" /></p>
+<p><MTDebouncedTextField Label="Debounced Text"
+                         @bind-Value="@currentValue"
+                         TextInputStyle="MTTextInputStyle.Outlined"
+                         LeadingIcon="account_balance_wallet"
+                         DebounceInterval="interval" /></p>
 
 <ul style="margin-top: 2rem;">
     @foreach (var logEntry in log)
@@ -47,12 +51,12 @@
     }
 
 
-    MdcListElement<int>[] intervals = new MdcListElement<int>[]
+    MTListElement<int>[] intervals = new MTListElement<int>[]
     {
-        new MdcListElement<int> { SelectedValue = 300, Label = "300 ms" },
-        new MdcListElement<int> { SelectedValue = 500, Label = "500 ms" },
-        new MdcListElement<int> { SelectedValue = 1000, Label = "1,000 ms" }
-    };
+        new MTListElement<int> { SelectedValue = 300, Label = "300 ms" },
+        new MTListElement<int> { SelectedValue = 500, Label = "500 ms" },
+        new MTListElement<int> { SelectedValue = 1000, Label = "1,000 ms" }
+        };
 
 
     private List<string> log = new List<string>();

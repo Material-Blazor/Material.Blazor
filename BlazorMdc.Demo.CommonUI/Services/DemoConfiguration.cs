@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BlazorMdc.Demo
+﻿namespace BlazorMdc.Demo
 {
     public class DemoConfiguration
     {
-        public MdcTopAppBarType TopAppBarType { get; set; } = MdcTopAppBarType.Dense;
+        public MTTopAppBarType TopAppBarType { get; set; } = MTTopAppBarType.Dense;
     }
 }

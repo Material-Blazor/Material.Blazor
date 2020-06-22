@@ -6,70 +6,70 @@
 
 <p>See <code>ListSample.razor</code> for sources.</p>
 
-<p><MdcSwitch @bind-Value="@dense" Label="Set for dense" /></p>
-<p><MdcSwitch @bind-Value="@hideLineTwo" Label="Hide line two" /></p>
-<p><MdcSwitch @bind-Value="@hideLineThree" Label="Hide line three" /></p>
+<p><MTSwitch @bind-Value="@dense" Label="Set for dense" /></p>
+<p><MTSwitch @bind-Value="@hideLineTwo" Label="Hide line two" /></p>
+<p><MTSwitch @bind-Value="@hideLineThree" Label="Hide line three" /></p>
 
-<MdcList Items="@displayedProducts"
-         Context="product"
-         ShowSeparators="true"
-         KeyboardInteractions="true"
-         Ripple="true"
-         AvatarList="true"
-         Dense="@dense"
-         HideLineTwo="@hideLineTwo"
-         HideLineThree="@hideLineThree"
-         OnClick="OnClick"
-         ListStyle="@MdcListStyle.Outlined">
+<MTList Items="@displayedProducts"
+        Context="product"
+        ShowSeparators="true"
+        KeyboardInteractions="true"
+        Ripple="true"
+        AvatarList="true"
+        Dense="@dense"
+        HideLineTwo="@hideLineTwo"
+        HideLineThree="@hideLineThree"
+        OnClick="OnClick"
+        ListStyle="MTListStyle.Outlined">
 
     <Icon>shop</Icon>
     <Title>@product.DisplayName</Title>
     <Actions>
         <div style="width: 10rem">
-            <MdcSwitch @bind-Value="@product.IsInStock"
-                       Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
+            <MTSwitch @bind-Value="@product.IsInStock"
+                      Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
         </div>
     </Actions>
-</MdcList>
+</MTList>
 
 <p></p>
 
-<MdcList Items="@displayedProducts"
-         Context="product"
-         ShowSeparators="true"
-         KeyboardInteractions="true"
-         Ripple="true"
-         AvatarList="true"
-         Dense="@dense"
-         HideLineTwo="@hideLineTwo"
-         HideLineThree="@hideLineThree"
-         OnClick="OnClick"
-         ListStyle="@MdcListStyle.Outlined">
+<MTList Items="@displayedProducts"
+        Context="product"
+        ShowSeparators="true"
+        KeyboardInteractions="true"
+        Ripple="true"
+        AvatarList="true"
+        Dense="@dense"
+        HideLineTwo="@hideLineTwo"
+        HideLineThree="@hideLineThree"
+        OnClick="OnClick"
+        ListStyle="MTListStyle.Outlined">
 
     <Icon>shop</Icon>
     <Title>@product.DisplayName</Title>
     <LineTwo>@product.LineTwo</LineTwo>
     <Actions>
         <div style="width: 10rem">
-            <MdcSwitch @bind-Value="@product.IsInStock"
-                       Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
+            <MTSwitch @bind-Value="@product.IsInStock"
+                      Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
         </div>
     </Actions>
-</MdcList>
+</MTList>
 
 <p></p>
 
-<MdcList Items="@displayedProducts"
-         Context="product"
-         ShowSeparators="true"
-         KeyboardInteractions="true"
-         Ripple="true"
-         AvatarList="true"
-         Dense="@dense"
-         HideLineTwo="@hideLineTwo"
-         HideLineThree="@hideLineThree"
-         OnClick="OnClick"
-         ListStyle="@MdcListStyle.Outlined">
+<MTList Items="@displayedProducts"
+        Context="product"
+        ShowSeparators="true"
+        KeyboardInteractions="true"
+        Ripple="true"
+        AvatarList="true"
+        Dense="@dense"
+        HideLineTwo="@hideLineTwo"
+        HideLineThree="@hideLineThree"
+        OnClick="OnClick"
+        ListStyle="@MTListStyle.Outlined">
 
     <Icon>shop</Icon>
     <Title>@product.DisplayName</Title>
@@ -77,16 +77,16 @@
     <LineThree>@product.LineThree</LineThree>
     <Actions>
         <div style="width: 10rem">
-            <MdcSwitch @bind-Value="@product.IsInStock"
-                       Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
+            <MTSwitch @bind-Value="@product.IsInStock"
+                      Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
         </div>
     </Actions>
-</MdcList>
+</MTList>
 
 <p>Clicked index: '@clickedIndex'</p>
 
 @code {
-    IEnumerable<Product> displayedProducts = new List<Product>
+    IEnumerable<Product> displayedProducts = new System.Collections.Generic.List<Product>
 {
         new Product { ProductId = 1, DisplayName = "Curly-wurly straw", LineTwo = "Amaze your friends with this cheap plastic tube", LineThree = "Line three", IsInStock = true },
         new Product { ProductId = 2, DisplayName = "Pepsi Connoisseur (12mo subscription)", LineTwo = "Covers all developments in the world of Pepsi™", LineThree = "Line three", IsInStock = false },

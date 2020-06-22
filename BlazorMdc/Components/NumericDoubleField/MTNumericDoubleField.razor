@@ -1,0 +1,23 @@
+﻿@namespace BlazorMdc
+
+@inherits InputComponentFoundation<double>
+
+@using System.Text.RegularExpressions
+
+
+<MTTextField @ref="TextField"
+             @attributes="@MyAttributes"
+             step="@(Math.Pow(10, -MyDecimalPlaces).ToString())"
+             min="@Min"
+             max="@Max"
+             @bind-Value="@FormattedValue"
+             Label="@Label"
+             NoLabel="@NoLabel"
+             LeadingIcon="@LeadingIcon"
+             TrailingIcon="@TrailingIcon"
+             IconFoundry="@IconFoundry"
+             TextInputStyle="@TextInputStyle"
+             TextAlignStyle="@MTTextAlignStyle.Right"
+             Disabled="@Disabled"
+             @onfocusin="@OnFocusIn"
+             @onfocusout="@OnFocusOut" />

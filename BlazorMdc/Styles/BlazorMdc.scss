@@ -1,0 +1,70 @@
+@import '_colors.scss';
+
+@import '../Components/Autocomplete/MTAutocomplete.scss';
+@import '../Components/AnimatedNavigation/MTAnimatedNavigation.scss';
+@import '../Components/Card/MTCard.scss';
+@import '../Components/DatePicker/MTDatePicker.scss';
+@import '../Components/Dialog/MTDialog.scss';
+@import '../Components/List/MTList.scss';
+@import '../Components/Paginator/MTPaginator.scss';
+@import '../Components/RadioButtonGroup/MTRadioButtonGroup.scss';
+@import '../Components/Select/MTSelect.scss';
+@import '../Components/Shield/MTShield.scss';
+@import '../Components/SlidingContent/MTSlidingContent.scss';
+@import '../Components/Toast/MTToast.scss';
+@import '../Components/TopAppBar/MTTopAppBar.scss';
+
+
+:root {
+    --bmdc-select-scroll-margin-right: 4px;
+    --bmdc-select-scroll-width: 8px;
+    --bmdc-select-scroll-border-radius: 4px;
+    --bmdc-select-scroll-track-color: rgba(0, 0, 0, 0);
+    --bmdc-select-scroll-color: var(--bmdc-color-bluegray-400);
+    --bmdc-select-scroll-color__hover: var(--bmdc-color-bluegray-700);
+}
+
+
+.mdc-drawer__content, .mdc-menu-surface, .bmdc-dp-year-pad {
+    scrollbar-width: thin;
+}
+
+
+.mdc-select, .mdc-menu-surface--anchor, .mdc-drawer {
+    ::-webkit-scrollbar {
+        width: var(--bmdc-select-scroll-width);
+    }
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background-color: var(--bmdc-select-scroll-track-color);
+        margin-right: var(--bmdc-select-scroll-margin-right);
+    }
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: var(--bmdc-select-scroll-color);
+        border-radius: var(--bmdc-select-scroll-border-radius);
+    }
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--bmdc-select-scroll-color__hover);
+    }
+}
+
+
+
+
+.bmdc-align-left {
+    text-align: left;
+}
+
+.bmdc-align-center {
+    text-align: center;
+}
+
+.bmdc-align-right {
+    text-align: right;
+}
+
+.bmdc-full-width {
+    width: 100%;
+}

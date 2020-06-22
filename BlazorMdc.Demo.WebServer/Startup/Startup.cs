@@ -1,11 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using BlazorMdc;
+
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -29,7 +25,7 @@ namespace BlazorMdc.Demo.WebServer
             services.AddServerSideBlazor();
 
             // The configuration is optional
-            services.AddPMdcToastService(new PMdcToastServiceConfiguration()
+            services.AddMTToastService(new MTToastServiceConfiguration()
             {
                 InfoDefaultHeading = "Info",
                 SuccessDefaultHeading = "Success",
@@ -40,7 +36,7 @@ namespace BlazorMdc.Demo.WebServer
             });
 
             // The configuration is optional
-            services.AddPMdcAnimatedNavigationManager(new PMdcAnimatedNaviationManagerConfiguration()
+            services.AddMTAnimatedNavigationManager(new MTAnimatedNaviationManagerConfiguration()
             {
                 ApplyAnimation = true,
                 AnimationTime = 300

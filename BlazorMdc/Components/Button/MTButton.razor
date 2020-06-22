@@ -1,0 +1,22 @@
+﻿@namespace BlazorMdc
+@inherits ComponentFoundation
+
+
+<button @ref="@ElementReference"
+        data-mdc-dialog-action="@DialogAction"
+        type="button"
+        @attributes="@AttributesToSplat()">
+    <div class="mdc-button__ripple"></div>
+
+    @if (!string.IsNullOrWhiteSpace(LeadingIcon))
+    {
+        <MTIcon IconName="@LeadingIcon" IconFoundry="@IconFoundry" Class="mdc-button__icon" aria-hidden="true" />
+    }
+
+    <span class="mdc-button__label">@Label</span>
+
+    @if (!string.IsNullOrWhiteSpace(TrailingIcon))
+    {
+        <MTIcon IconName="@TrailingIcon" IconFoundry="@IconFoundry" Class="mdc-button__icon" aria-hidden="true" />
+    }
+</button>

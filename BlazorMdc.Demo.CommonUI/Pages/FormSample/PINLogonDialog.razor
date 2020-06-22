@@ -1,125 +1,127 @@
 ﻿@namespace BlazorMdc.Demo
 
-<MdcDialog Title=@dialogHeader
-           EscapeKeyAction=""
-           ScrimClickAction=""
-           @ref="pinLogonDialogReference">
+<MTDialog Title=@dialogHeader
+          EscapeKeyAction=""
+          ScrimClickAction=""
+          @ref="pinLogonDialogReference">
 
     <Body>
         @if (dialogStyle == ePINDialogStyle.CreatePIN)
         {
             <h6>Your PIN has never been set.</h6>
             <h6>Pick a PIN, enter it, and verify the entry.</h6>
-            <PMdcDivider Padded="true" />
+            <MTDivider Padded="true" />
         }
 
-        <EditForm Model="@pinLogonDTO" OnValidSubmit="@SubmitLogon">
+        <EditForm Model="@pinLogonDTO"
+                  OnValidSubmit="@SubmitLogon">
+
             <DataAnnotationsValidator />
 
             @if (dialogStyle == ePINDialogStyle.CreatePIN)
             {
                 <div class="form-group">
-                    <MdcTextField @bind-Value="pinLogonDTO.PIN1"
-                                  @onfocus="@(() => FocusPIN("PIN1"))"
-                                  Label="New PIN"
-                                  TrailingIcon="lock_outline"
-                                  type="password" />
+                    <MTTextField @bind-Value="pinLogonDTO.PIN1"
+                                 @onfocus="@(() => FocusPIN("PIN1"))"
+                                 Label="New PIN"
+                                 TrailingIcon="lock_outline"
+                                 type="password" />
                     <ValidationMessage For=@( () => pinLogonDTO.PIN1 ) />
                 </div>
                 <div class="form-group">
-                    <MdcTextField @bind-Value="pinLogonDTO.PIN2"
-                                  @onfocus="@(() => FocusPIN("PIN2"))"
-                                  Label="Verify PIN"
-                                  TrailingIcon="lock_outline"
-                                  type="password" />
+                    <MTTextField @bind-Value="pinLogonDTO.PIN2"
+                                 @onfocus="@(() => FocusPIN("PIN2"))"
+                                 Label="Verify PIN"
+                                 TrailingIcon="lock_outline"
+                                 type="password" />
                     <ValidationMessage For=@( () => pinLogonDTO.PIN2 ) />
                 </div>
             }
             else
             {
                 <div class="form-group">
-                    <MdcTextField @bind-Value="pinLogonDTO.PIN1"
-                                  @onfocus="@(() => FocusPIN("PIN1"))"
-                                  Label="PIN"
-                                  TrailingIcon="lock_outline"
-                                  type="password" />
+                    <MTTextField @bind-Value="pinLogonDTO.PIN1"
+                                 @onfocus="@(() => FocusPIN("PIN1"))"
+                                 Label="PIN"
+                                 TrailingIcon="lock_outline"
+                                 type="password" />
                     <ValidationMessage For=@( () => pinLogonDTO.PIN1 ) />
                 </div>
             }
             <div class="form-group">
                 <div style="display: flex; flex-direction:column; justify-content:flex-start;">
                     <div style="display:flex; flex-direction: row; justify-content: center;">
-                        <MdcButton Label="7"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
-                                   @onclick="@(() => NumberClick("7"))"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
-                        <MdcButton Label="8"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
-                                   @onclick="@(() => NumberClick("8"))"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
-                        <MdcButton Label="9"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
-                                   @onclick="@(() => NumberClick("9"))"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                        <MTButton Label="7"
+                                  Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                  @onclick="@(() => NumberClick("7"))"
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
+                        <MTButton Label="8"
+                                  Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                  @onclick="@(() => NumberClick("8"))"
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
+                        <MTButton Label="9"
+                                  Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                  @onclick="@(() => NumberClick("9"))"
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
                     </div>
                     <div style="display:flex; flex-direction: row; justify-content: center;">
-                        <MdcButton Label="4"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
-                                   @onclick="@(() => NumberClick("4"))"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
-                        <MdcButton Label="5"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
-                                   @onclick="@(() => NumberClick("5"))"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
-                        <MdcButton Label="6"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
-                                   @onclick="@(() => NumberClick("6"))"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                        <MTButton Label="4"
+                                  Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                  @onclick="@(() => NumberClick("4"))"
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
+                        <MTButton Label="5"
+                                  Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                  @onclick="@(() => NumberClick("5"))"
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
+                        <MTButton Label="6"
+                                  Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                  @onclick="@(() => NumberClick("6"))"
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
                     </div>
                     <div style="display:flex; flex-direction: row; justify-content: center;">
-                        <MdcButton Label="1"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
-                                   @onclick="@(() => NumberClick("1"))"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
-                        <MdcButton Label="2"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
-                                   @onclick="@(() => NumberClick("2"))"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
-                        <MdcButton Label="3"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
-                                   @onclick="@(() => NumberClick("3"))"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                        <MTButton Label="1"
+                                  Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                  @onclick="@(() => NumberClick("1"))"
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
+                        <MTButton Label="2"
+                                  Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                  @onclick="@(() => NumberClick("2"))"
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
+                        <MTButton Label="3"
+                                  Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                  @onclick="@(() => NumberClick("3"))"
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
                     </div>
                     <div style="display:flex; flex-direction: row; justify-content: center;">
-                        <MdcButton Label="0"
-                                   Style="margin: 0.75em 0.75em 0.25em 0.25em; height: 2rem; width: 2rem;"
-                                   @onclick="@(() => NumberClick("0"))"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
-                        <MdcButton Label="Backspace"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; min-width: 128px;"
-                                   @onclick="@(() => NumberClick("BKS"))"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                        <MTButton Label="0"
+                                  Style="margin: 0.75em 0.75em 0.25em 0.25em; height: 2rem; width: 2rem;"
+                                  @onclick="@(() => NumberClick("0"))"
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
+                        <MTButton Label="Backspace"
+                                  Style="margin: 0.75em 0.25em 0.25em 0.25em; height: 2rem; min-width: 128px;"
+                                  @onclick="@(() => NumberClick("BKS"))"
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
                     </div>
 
                     <div style="display:flex; flex-direction: row; justify-content: center;">
                         @if (dialogStyle == ePINDialogStyle.CreatePIN)
                         {
-                            <MdcButton Style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                                       type="submit"
-                                       Label="Create PIN"
-                                       ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                            <MTButton Style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                      type="submit"
+                                      Label="Create PIN"
+                                      ButtonStyle="MTButtonStyle.ContainedRaised" />
                         }
                         else
                         {
-                            <MdcButton Style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                                       type="submit"
-                                       Label="Enter PIN"
-                                       ButtonStyle="MdcButtonStyle.ContainedRaised"/>
+                            <MTButton Style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                      type="submit"
+                                      Label="Enter PIN"
+                                      ButtonStyle="MTButtonStyle.ContainedRaised" />
                         }
-                        <MdcButton @onclick="@CancelClick"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                                   Label="Cancel"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                        <MTButton @onclick="@CancelClick"
+                                  Style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                  Label="Cancel"
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
                     </div>
                 </div>
             </div>
@@ -127,13 +129,13 @@
         </EditForm>
     </Body>
     <Buttons></Buttons>
-</MdcDialog>
+</MTDialog>
 
 @code{
 
     public enum ePINDialogStyle { CreatePIN, EnterPIN };
 
-    [Inject] private IPmdcToastService toastService { get; set; }
+    [Inject] private IMTToastService toastService { get; set; }
 
     [Parameter] public ePINDialogStyle dialogStyle { get; set; }
     [Parameter] public string validationPIN { get; set; }
@@ -141,7 +143,7 @@
     private string dialogHeader { get; set; }
     private string lastFocus { get; set; }
     private string returnValue { get; set; }
-    private MdcDialog pinLogonDialogReference { get; set; }
+    private MTDialog pinLogonDialogReference { get; set; }
     private PINLogonDTO pinLogonDTO = new PINLogonDTO();
 
     public async Task<string> OpenPINLogonDialogAsync()
@@ -179,7 +181,7 @@
                 returnValue = "<Log on succeeded>";
 
                 toastService.ShowToast(
-                    level: PMdcToastLevel.Success,
+                    level: MTToastLevel.Success,
                     message: "Log on succeeded");
 
                 await pinLogonDialogReference.HideAsync();
@@ -187,7 +189,7 @@
             else
             {
                 toastService.ShowToast(
-                    level: PMdcToastLevel.Error,
+                    level: MTToastLevel.Error,
                     message: "Log on failed");
             }
         }
@@ -198,7 +200,7 @@
                 returnValue = "<PIN created with a value of '" + pinLogonDTO.PIN1.ToString() + "'>";
 
                 toastService.ShowToast(
-                    level: PMdcToastLevel.Success,
+                    level: MTToastLevel.Success,
                     message: "<PIN creation succeeded>");
 
                 await pinLogonDialogReference.HideAsync();
@@ -206,7 +208,7 @@
             else
             {
                 toastService.ShowToast(
-                    level: PMdcToastLevel.Error,
+                    level: MTToastLevel.Error,
                     message: "PINs do not match");
             }
         }

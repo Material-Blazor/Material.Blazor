@@ -14,21 +14,21 @@
 
 <div>
     <p>
-        <MdcButton Label="Open dialog with wrapped input components"
-                   @onclick="@OpenDialogAsync"
-                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+        <MTButton Label="Open dialog with wrapped input components"
+                  @onclick="@OpenDialogAsync"
+                  ButtonStyle="MTButtonStyle.ContainedRaised" />
     </p>
 
     <p>PIN 1: <strong>'@(LogonDTO.PIN1 ?? "")'</strong></p>
     <p>PIN 2: <strong>'@(LogonDTO.PIN2 ?? "")'</strong></p>
 
-    <MdcDialog Title="Create a new PIN"
-               @ref="DialogReference">
+    <MTDialog Title="Create a new PIN"
+              @ref="DialogReference">
         <Body>
 
             <h6>Your PIN has never been set.</h6>
             <h6>Pick a PIN, enter it, and verify the entry.</h6>
-            <PMdcDivider Padded="true" />
+            <MTDivider Padded="true" />
             <EditForm Model="@LogonDTO" OnValidSubmit="@SubmitLogon">
                 <DataAnnotationsValidator />
 
@@ -38,7 +38,7 @@
                     <ValidationMessage For=@( () => LogonDTO.PIN1 ) />
                 </div>
 
-                <div class="form-group"
+                <div class="form-group">
                     <WrappedInputComponent @bind-StringValue="@LogonDTO.PIN2"
                                            Type="password" />
                     <ValidationMessage For=@( () => LogonDTO.PIN2 ) />
@@ -46,15 +46,15 @@
 
                 <div class="form-group">
                     <div style="display:flex; flex-direction: row; justify-content: center;">
-                        <MdcButton Style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                                   Type="submit"
-                                   Label="PIN entry complete"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                        <MTButton Style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                  type="submit"
+                                  Label="PIN entry complete"
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
 
-                        <MdcButton @onclick="@CancelClick"
-                                   Style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                                   Label="Cancel"
-                                   ButtonStyle="MdcButtonStyle.ContainedRaised" />
+                        <MTButton @onclick="@CancelClick"
+                                  Style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                  Label="Cancel"
+                                  ButtonStyle="MTButtonStyle.ContainedRaised" />
                     </div>
                 </div>
             </EditForm>
@@ -62,12 +62,12 @@
         <Buttons>
         </Buttons>
 
-    </MdcDialog>
+    </MTDialog>
 </div>
 
 
 @code {
-    private MdcDialog DialogReference;
+    private MTDialog DialogReference;
 
     protected LogonDTO LogonDTO = new LogonDTO();
 

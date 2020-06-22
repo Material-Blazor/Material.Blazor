@@ -11,10 +11,12 @@
     <title>BlazorMdc Demo (Server)</title>
     <base href="~/" />
 
-    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic.min.css" crossorigin="anonymous" />
-    <link href="_content/BlazorMdc/blazormdc-fonts.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" sizes="32x32" href="_content/BlazorMdc.Demo.CommonUI//favicon.ico">
+    <link href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic.min.css" crossorigin="anonymous" rel="stylesheet" />
+    @* Do not use the bundled packages here, because it limits ability to debug *@
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.css" rel="stylesheet" />
     <link href="_content/BlazorMdc/blazormdc.css" rel="stylesheet" />
     <link href="_content/BlazorMdc.Demo.CommonUI/css/styles.css" rel="stylesheet" />
 </head>
@@ -34,6 +36,7 @@
         <a class="dismiss">🗙</a>
     </div>
 
+    @* Do not use the bundled packages here, because it limits ability to debug *@
     <script src="https://unpkg.com/material-components-web@6.0.0/dist/material-components-web.js"></script>
     <script src="_content/BlazorMdc/blazormdc.js"></script>
     <script src="_framework/blazor.server.js"></script>
