@@ -10,7 +10,7 @@ namespace BlazorMdc
     /// <summary>
     /// This is a general purpose Material Theme drawer.
     /// </summary>
-    public partial class MTDrawer : MTComponentBase
+    public partial class MTDrawer : ComponentFoundation
     {
         /// <summary>
         /// The drawer contents.

@@ -7,7 +7,7 @@ namespace BlazorMdc
     /// <summary>
     /// A Material Theme divider.
     /// </summary>
-    public partial class MTDivider : MTComponentBase
+    public partial class MTDivider : ComponentFoundation
     {
         /// <summary>
         /// Material Theme "mdc-list-divider--inset" if True.

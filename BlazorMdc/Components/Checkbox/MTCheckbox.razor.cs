@@ -12,7 +12,7 @@ namespace BlazorMdc
     /// This is a general purpose Material Theme check box accepting a boolean as a bound value. This
     /// check box does not implement indeteriminate state.
     /// </summary>
-    public partial class MTCheckbox : MTInputComponentBase<bool>
+    public partial class MTCheckbox : InputComponentFoundation<bool>
     {
         // <summary>
         /// The check box label.

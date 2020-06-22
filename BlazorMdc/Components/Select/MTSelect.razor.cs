@@ -13,7 +13,7 @@ namespace BlazorMdc
     /// <summary>
     /// A Material Theme select.
     /// </summary>
-    public partial class MTSelect<TItem> : MTValidatingInputComponentBase<TItem>, IMTDialogChild
+    public partial class MTSelect<TItem> : ValidatingInputComponentFoundation<TItem>, IMTDialogChild
     {
         /// <summary>
         /// The item list to be represented as a select
@@ -50,11 +50,11 @@ namespace BlazorMdc
         private ElementReference SelectReference { get; set; }
         private ElementReference ListboxReference { get; set; }
         private MTSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
-        private string SelectedTextId { get; set; } = MTUtilities.GenerateUniqueElementName();
-        private string LabelId { get; set; } = MTUtilities.GenerateUniqueElementName();
+        private string SelectedTextId { get; set; } = Utilities.GenerateUniqueElementName();
+        private string LabelId { get; set; } = Utilities.GenerateUniqueElementName();
         private string SelectedText { get; set; } = "";
         private string FloatingLabelClass { get; set; } = "";
-        private string AlignClass => MTUtilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
+        private string AlignClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
         private Dictionary<TItem, MTListElement<TItem>> ItemDict { get; set; }
 
 

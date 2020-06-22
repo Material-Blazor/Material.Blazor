@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BlazorMdc.Internal
 {
-    public abstract class MTComponentBase : ComponentBase
+    public abstract class ComponentFoundation : ComponentBase
     {
         private const string ClassAttrName = "class";
         private const string StyleAttrName = "style";
@@ -79,13 +79,13 @@ namespace BlazorMdc.Internal
         /// <summary>
         /// Allows a component to build or map out a group of CSS classes to be applied to the component. Use this in <see cref="OnInitialialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
         /// </summary>
-        private protected MTClassAndStyleMapper ClassMapper { get; } = new MTClassAndStyleMapper();
+        private protected ClassAndStyleMapper ClassMapper { get; } = new ClassAndStyleMapper();
 
 
         /// <summary>
         /// Allows a component to build or map out a group of HTML styles to be applied to the component. Use this in <see cref="OnInitialialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
         /// </summary>
-        private protected MTClassAndStyleMapper StyleMapper { get; } = new MTClassAndStyleMapper();
+        private protected ClassAndStyleMapper StyleMapper { get; } = new ClassAndStyleMapper();
 
 
         /// <summary>
@@ -218,7 +218,7 @@ namespace BlazorMdc.Internal
             if (reserved.Count() > 0)
             {
                 throw new ArgumentException(
-                    $"BlazorMdc: You cannot use {string.Join(", ", reserved.Select(x => $"'{x}'"))} attributes in {MTUtilities.GetTypeName(GetType())}. BlazorMdc reserves the 'class', 'style' and 'display' HTML attributes for internal use, so use the 'Class', 'Style' and 'Display' parameters instead");
+                    $"BlazorMdc: You cannot use {string.Join(", ", reserved.Select(x => $"'{x}'"))} attributes in {Utilities.GetTypeName(GetType())}. BlazorMdc reserves the 'class', 'style' and 'display' HTML attributes for internal use, so use the 'Class', 'Style' and 'Display' parameters instead");
             }
 
             if (!CascadingDefaults.ConstrainSplattableAttributes)
@@ -236,7 +236,7 @@ namespace BlazorMdc.Internal
             if (forbidden.Count() > 0)
             {
                 throw new ArgumentException(
-                    $"BlazorMdc: You cannot use {string.Join(", ", forbidden.Select(x => $"'{x}'"))} attributes in {MTUtilities.GetTypeName(GetType())}. Either remove the attribute or change 'ConstrainSplattableAttributes' or 'AllowedSplattableAttributes' in your MdcCascadingDefaults");
+                    $"BlazorMdc: You cannot use {string.Join(", ", forbidden.Select(x => $"'{x}'"))} attributes in {Utilities.GetTypeName(GetType())}. Either remove the attribute or change 'ConstrainSplattableAttributes' or 'AllowedSplattableAttributes' in your MdcCascadingDefaults");
             }
         }
 

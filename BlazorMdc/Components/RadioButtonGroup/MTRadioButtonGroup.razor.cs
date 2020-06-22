@@ -10,7 +10,7 @@ namespace BlazorMdc
     /// <summary>
     /// A group of <see cref="MdcRadioButton{TItem}"/>s displayed horizontally or vertically.
     /// </summary>
-    public partial class MTRadioButtonGroup<TItem> : MTValidatingInputComponentBase<TItem>
+    public partial class MTRadioButtonGroup<TItem> : ValidatingInputComponentFoundation<TItem>
     {
         /// <summary>
         /// The item list to be represented as radio buttons
@@ -38,7 +38,7 @@ namespace BlazorMdc
         [Parameter] public bool EnableTouchWrapper { get; set; } = true;
 
 
-        private string RadioGroupName { get; set; } = MTUtilities.GenerateUniqueElementName();
+        private string RadioGroupName { get; set; } = Utilities.GenerateUniqueElementName();
         private MTListElement<TItem>[] ItemArray { get; set; }
 
 

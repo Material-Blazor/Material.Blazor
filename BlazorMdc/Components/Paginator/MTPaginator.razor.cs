@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BlazorMdc
 {
-    public partial class MTPaginator : MTComponentBase
+    public partial class MTPaginator : ComponentFoundation
     {
         /// <summary>
         /// A list of the allowable number of items per page for the

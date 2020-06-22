@@ -10,7 +10,7 @@ namespace BlazorMdc
     /// beneath showing tabbed content.
     /// </summary>
     /// <typeparam name="TItem"></typeparam>
-    public partial class MTSlidingTabBar<TItem> : MTComponentBase
+    public partial class MTSlidingTabBar<TItem> : ComponentFoundation
     {
         private int _tabIndex;
         /// <summary>

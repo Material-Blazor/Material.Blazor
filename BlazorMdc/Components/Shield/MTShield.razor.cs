@@ -8,7 +8,7 @@ namespace BlazorMdc
     /// A shield similar to those from shield.io and used in GitHub. Implemented
     /// with HTML rather than SVG.
     /// </summary>
-    public partial class MTShield : MTComponentBase
+    public partial class MTShield : ComponentFoundation
     {
 #nullable enable annotations
         /// <summary>

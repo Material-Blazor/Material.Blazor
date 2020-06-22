@@ -97,7 +97,7 @@ namespace BlazorMdc
             if ((UnconfirmedButtons == null && ConfirmedButtons != null) ||
                 (UnconfirmedButtons != null && ConfirmedButtons == null))
             {
-                throw new ArgumentException($"BlazorMdc: UnconfirmedButtons and ConfirmedButton in {MTUtilities.GetTypeName(this.GetType())} must both be either null or not null");
+                throw new ArgumentException($"BlazorMdc: UnconfirmedButtons and ConfirmedButton in {Utilities.GetTypeName(this.GetType())} must both be either null or not null");
             }
         }
 

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace BlazorMdc.Internal
 {
-    public static class MTComponentBaseExtensions
+    public static class ComponentFoundationExtensions
     {
         public static bool ParameterIsChanged<T>(this Microsoft.AspNetCore.Components.ComponentBase cmp, ParameterView parameters,
             string parameterName, T value)

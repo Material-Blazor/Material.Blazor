@@ -10,7 +10,7 @@ namespace BlazorMdc
     /// <summary>
     /// This is a general purpose Material Theme switch.
     /// </summary>
-    public partial class MTSwitch : MTInputComponentBase<bool>
+    public partial class MTSwitch : InputComponentFoundation<bool>
     {
         /// <summary>
         /// The switch's label

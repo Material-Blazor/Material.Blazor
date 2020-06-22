@@ -10,7 +10,7 @@ namespace BlazorMdc
     /// library's CSS, while you can elect whether to include Font Awesome and Open Iconic
     /// in your app.
     /// </summary>
-    public partial class MTIcon : MTComponentBase
+    public partial class MTIcon : ComponentFoundation
     {
 #nullable enable annotations
         /// <summary>

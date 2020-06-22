@@ -9,7 +9,7 @@ namespace BlazorMdc
     /// <summary>
     /// An integer variant of <see cref="NumericDoubleField"/>.
     /// </summary>
-    public partial class MTNumericIntField : MTInputComponentBase<int>
+    public partial class MTNumericIntField : InputComponentFoundation<int>
     {
 #nullable enable annotations
         /// <summary>

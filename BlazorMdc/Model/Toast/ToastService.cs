@@ -53,7 +53,7 @@ namespace BlazorMdc.Internal
 
             if (OnAdd is null)
             {
-                throw new InvalidOperationException($"BlazorMdc: you attempted to show a toast notification from a {MTUtilities.GetTypeName(typeof(IMTToastService))} but have not placed a {MTUtilities.GetTypeName(typeof(MTToastAnchor))} component at the top of either App.razor or MainLayout.razor");
+                throw new InvalidOperationException($"BlazorMdc: you attempted to show a toast notification from a {Utilities.GetTypeName(typeof(IMTToastService))} but have not placed a {Utilities.GetTypeName(typeof(MTToastAnchor))} component at the top of either App.razor or MainLayout.razor");
             }
 
             OnAdd?.Invoke(level, settings);

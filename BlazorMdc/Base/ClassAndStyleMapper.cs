@@ -15,7 +15,7 @@ namespace BlazorMdc.Internal
     /// The Func<bool> items are enumerated and evaluated when 
     /// one of the ToXXXXString functions is called 
     /// </summary>
-    public class MTClassAndStyleMapper
+    public class ClassAndStyleMapper
     {
         internal List<Func<string>> Items = new List<Func<string>>();
         
@@ -65,7 +65,7 @@ namespace BlazorMdc.Internal
         /// <param name="m">The instance of the class</param>
         /// <param name="name"></param>The string to be unconditionally returned
         /// <returns>The instance of the class</returns>
-        public static MTClassAndStyleMapper Add(this MTClassAndStyleMapper m, string name)
+        public static ClassAndStyleMapper Add(this ClassAndStyleMapper m, string name)
         {
             m.Items.Add(() => name);
             return m;
@@ -78,7 +78,7 @@ namespace BlazorMdc.Internal
         /// <param name="name">The string to be conditionally returned</param>
         /// <param name="func">The function to be executed to determine if the string is included</param>
         /// <returns>The instance of the class</returns>
-        public static MTClassAndStyleMapper AddIf(this MTClassAndStyleMapper m, string name, Func<bool> func)
+        public static ClassAndStyleMapper AddIf(this ClassAndStyleMapper m, string name, Func<bool> func)
         {
             m.Items.Add(() => func() ? name : null);
             return m;
@@ -89,7 +89,7 @@ namespace BlazorMdc.Internal
         /// </summary>
         /// <param name="m">The instance of the class</param>
         /// <returns>The instance of the class</returns>
-        public static MTClassAndStyleMapper Clear(this MTClassAndStyleMapper m)
+        public static ClassAndStyleMapper Clear(this ClassAndStyleMapper m)
         {
             m.Items.Clear();
             return m;

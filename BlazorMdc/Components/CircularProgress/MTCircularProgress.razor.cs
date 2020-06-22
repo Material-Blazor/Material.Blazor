@@ -12,7 +12,7 @@ namespace BlazorMdc
     /// This is a general purpose Material Theme circular progress bar. Can be determinant or
     /// indeterminant. If determinant the value needs to be between 0 and 1.
     /// </summary>
-    public partial class MTCircularProgress : MTInputComponentBase<double>
+    public partial class MTCircularProgress : InputComponentFoundation<double>
     {
         private const string SVGSmallDeterminate = "<svg class=\"mdc-circular-progress__determinate-circle-graphic\" viewBox=\"0 0 24 24\" xmlns=\"http://www.w3.org/2000/svg\"><circle class=\"mdc-circular-progress__determinate-circle\" cx=\"12\" cy=\"12\" r=\"8.75\" stroke-dasharray=\"54.978\" stroke-dashoffset=\"54.978\" /></svg>";
         private const string SVGMediumDeterminate = "<svg class=\"mdc-circular-progress__determinate-circle-graphic\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\"><circle class=\"mdc-circular-progress__determinate-circle\" cx=\"16\" cy=\"16\" r=\"12.5\" stroke-dasharray=\"78.54\" stroke-dashoffset=\"78.54\" /></svg>";

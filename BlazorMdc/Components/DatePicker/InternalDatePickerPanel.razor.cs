@@ -12,7 +12,7 @@ namespace BlazorMdc.Internal
     /// <summary>
     /// For BlazorMdc internal use only.
     /// </summary>
-    public partial class InternalDatePickerPanel : MTInputComponentBase<DateTime>
+    public partial class InternalDatePickerPanel : InputComponentFoundation<DateTime>
     {
         /// <summary>
         /// Date selection criteria
@@ -75,7 +75,7 @@ namespace BlazorMdc.Internal
 
         private DateTime CachedMaxDate { get; set; }
 
-        private string CachedReportingValueText => MTUtilities.DateToString(CachedReportingValue, DateFormat);
+        private string CachedReportingValueText => Utilities.DateToString(CachedReportingValue, DateFormat);
 
         private int MonthsOffset { get; set; } = 0;
 
@@ -88,7 +88,7 @@ namespace BlazorMdc.Internal
         private bool IsFirstParametersSet { get; set; } = true;
 
 
-        private readonly string currentYearId = MTUtilities.GenerateUniqueElementName();
+        private readonly string currentYearId = Utilities.GenerateUniqueElementName();
 
         private readonly IMTIconFoundry foundry = MTIconHelper.MIFoundry(MTIconMITheme.Filled);
 

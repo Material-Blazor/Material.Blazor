@@ -12,7 +12,7 @@ namespace BlazorMdc
     /// A date picker styled to match the Material Theme date picker specification, using
     /// a modfied Material Theme select input as also applied in <see cref="MdcSelect{TItem}"/>.
     /// </summary>
-    public partial class MTDatePicker : MTInputComponentBase<DateTime>
+    public partial class MTDatePicker : InputComponentFoundation<DateTime>
     {
         /// <summary>
         /// The select style.
@@ -59,8 +59,8 @@ namespace BlazorMdc
         private bool IsOpen { get; set; } = false;
 
 
-        private readonly string key = MTUtilities.GenerateUniqueElementName();
-        private readonly string labelId = MTUtilities.GenerateUniqueElementName();
+        private readonly string key = Utilities.GenerateUniqueElementName();
+        private readonly string labelId = Utilities.GenerateUniqueElementName();
 
 
         /// <inheritdoc/>
@@ -85,7 +85,7 @@ namespace BlazorMdc
         protected void OnValueSetCallback(object sender, EventArgs e)
         {
             Panel.SetParameters(true, Value);
-            InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", Panel.ListItemReference, MTUtilities.DateToString(Value, DateFormat)).ConfigureAwait(false));
+            InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, DateFormat)).ConfigureAwait(false));
         }
 
 

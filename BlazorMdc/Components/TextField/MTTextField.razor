@@ -1,5 +1,5 @@
 ﻿@namespace BlazorMdc
-@inherits MTInputComponentBase<string>
+@inherits InputComponentFoundation<string>
 
 
 <div @ref="ElementReference"
@@ -17,7 +17,7 @@
 
     <input @ref="@InputReference"
            id="@Id"
-           class="mdc-text-field__input @MTUtilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle)) @FieldClass"
+           class="mdc-text-field__input @Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle)) @FieldClass"
            @bind="@ReportingValue"
            @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)">
 

@@ -10,13 +10,13 @@ namespace BlazorMdc
 {
     /// <summary>
     /// This is a general purpose Material Theme radio button. Accepts a generic class TItem
-    /// and displays as checked if <see cref="MTInputComponentBase{T}.Value"/> equals <see cref="TargetCheckedValue"/>.
+    /// and displays as checked if <see cref="InputComponentFoundation{T}.Value"/> equals <see cref="TargetCheckedValue"/>.
     /// </summary>
-    public partial class MTRadioButton<TItem> : MTInputComponentBase<TItem>
+    public partial class MTRadioButton<TItem> : InputComponentFoundation<TItem>
     {
         /// <summary>
-        /// <see cref="MTInputComponentBase{T}.Value"/> is set to this when the 
-        /// radio button is clicked. If the consumer sets <see cref="MTInputComponentBase{T}.Value"/>
+        /// <see cref="InputComponentFoundation{T}.Value"/> is set to this when the 
+        /// radio button is clicked. If the consumer sets <see cref="InputComponentFoundation{T}.Value"/>
         /// to this the radio state will change to checked, or cleared for any other value.
         /// </summary>
         [Parameter] public TItem TargetCheckedValue { get; set; }
@@ -42,7 +42,7 @@ namespace BlazorMdc
         [Parameter] public string RadioGroupName { get; set; }
 
 
-        private readonly string radioId = MTUtilities.GenerateUniqueElementName();
+        private readonly string radioId = Utilities.GenerateUniqueElementName();
 
 
         private ElementReference FormReference { get; set; }

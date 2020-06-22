@@ -10,7 +10,7 @@ namespace BlazorMdc
     /// <summary>
     /// A Material Theme top app bar
     /// </summary>
-    public partial class MTTopAppBar : MTComponentBase
+    public partial class MTTopAppBar : ComponentFoundation
     {
         /// <summary>
         /// App bar title.

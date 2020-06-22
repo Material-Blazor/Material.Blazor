@@ -14,7 +14,7 @@ namespace BlazorMdc
     /// A Material Theme numeric input field. This wraps <see cref="MdcTextField"/> and normally
     /// displays the numeric value as formatted text, but switches to a pure number on being selected.
     /// </summary>
-    public partial class MTNumericDoubleField : MTInputComponentBase<double>
+    public partial class MTNumericDoubleField : InputComponentFoundation<double>
     {
 #nullable enable annotations
         /// <summary>
@@ -142,7 +142,7 @@ namespace BlazorMdc
             {
                 if (HasFocus) return "";
 
-                if (!(NumericSingularFormat is null) && MTUtilities.DoubleEqual(Math.Abs(ReportingValue), 1)) return NumericSingularFormat;
+                if (!(NumericSingularFormat is null) && Utilities.DoubleEqual(Math.Abs(ReportingValue), 1)) return NumericSingularFormat;
 
                 return NumericFormat;
             }

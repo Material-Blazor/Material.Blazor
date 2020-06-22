@@ -11,7 +11,7 @@ namespace BlazorMdc
     /// <summary>
     /// This is a general purpose Material Theme menu.
     /// </summary>
-    public partial class MTMenu : MTComponentBase, IDisposable
+    public partial class MTMenu : ComponentFoundation, IDisposable
     {
         /// <summary>
         /// A render fragement as a set of <see cref="ListItem"/>s.

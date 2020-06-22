@@ -13,7 +13,7 @@ namespace BlazorMdc.Internal
     /// [CascadingParameter] EditContext as optional.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class MTInputComponentBase<T> : MTComponentBase, IMTDialogChild
+    public abstract class InputComponentFoundation<T> : ComponentFoundation, IMTDialogChild
     {
         private bool _previousParsingAttemptFailed;
         private ValidationMessageStore _parsingValidationMessages;
@@ -30,7 +30,7 @@ namespace BlazorMdc.Internal
         /// <summary>
         /// Gets a value for the component's 'id' attribute.
         /// </summary>
-        [Parameter] public string Id { get; set; } = MTUtilities.GenerateUniqueElementName();
+        [Parameter] public string Id { get; set; } = Utilities.GenerateUniqueElementName();
 
 
         private T _underlyingValue;

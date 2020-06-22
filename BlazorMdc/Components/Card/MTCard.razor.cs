@@ -10,7 +10,7 @@ namespace BlazorMdc
     /// <summary>
     /// A Material Theme card with three elements: primary, primary action buttons and action icons.
     /// </summary>
-    public partial class MTCard : MTComponentBase
+    public partial class MTCard : ComponentFoundation
     {
         /// <summary>
         /// The card style - see <see cref="BlazorMdc.MTICardStyle"/>

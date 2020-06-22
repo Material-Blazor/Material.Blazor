@@ -11,7 +11,7 @@ namespace BlazorMdc
     /// <summary>
     /// This is a general purpose Material Theme data table.
     /// </summary>
-    public partial class MTDataTable<TItem> : MTComponentBase
+    public partial class MTDataTable<TItem> : ComponentFoundation
     {
         /// <summary>
         /// Data to render in the <see cref="TableRow"/> render fragment.

@@ -7,7 +7,7 @@ namespace BlazorMdc
     /// <summary>
     /// This is a general purpose Material Theme list item.
     /// </summary>
-    public partial class MTListItem : MTComponentBase
+    public partial class MTListItem : ComponentFoundation
     {
 #nullable enable annotations
         /// <summary>

@@ -13,7 +13,7 @@ namespace BlazorMdc
     /// but not surrounding your app bars and navigation menus - you don't want those to fade in and out when
     /// your user navigates from one page to another.
     /// </summary>
-    public partial class MTAnimatedNavigation: MTComponentBase, IDisposable
+    public partial class MTAnimatedNavigation: ComponentFoundation, IDisposable
     {
         [Inject] private IMTAnimatedNavigationManager AnimatedNavigationManager { get; set; }
         [Inject] private NavigationManager NavigationManager { get; set; }

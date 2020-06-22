@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace BlazorMdc.Internal
 {
-    internal static class MTUtilities
+    internal static class Utilities
     {
         /// <summary>
         /// Compares two doubles to the tolerance of the specified number of decimal places.

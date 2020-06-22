@@ -13,7 +13,7 @@ namespace BlazorMdc
     /// and trailing icons and all standard Blazor events. Adds the "mdc-card__action--icon" class when 
     /// placed inside an <see cref="MTCard"/>.
     /// </summary>
-    public partial class MTIconButtonToggle : MTInputComponentBase<bool>
+    public partial class MTIconButtonToggle : InputComponentFoundation<bool>
     {
         [CascadingParameter] private MTCard Card { get; set; }
 

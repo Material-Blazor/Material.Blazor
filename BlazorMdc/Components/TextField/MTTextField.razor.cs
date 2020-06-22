@@ -11,7 +11,7 @@ namespace BlazorMdc
     /// <summary>
     /// A Material Theme text field.
     /// </summary>
-    public partial class MTTextField : MTInputComponentBase<string>
+    public partial class MTTextField : InputComponentFoundation<string>
     {
 #nullable enable annotations
         /// <summary>
@@ -69,7 +69,7 @@ namespace BlazorMdc
         private string FloatingLabelClass { get; set; }
 
         
-        private readonly string labelId = MTUtilities.GenerateUniqueElementName();
+        private readonly string labelId = Utilities.GenerateUniqueElementName();
         
 
         /// <inheritdoc/>

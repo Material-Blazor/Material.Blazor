@@ -12,7 +12,7 @@ namespace BlazorMdc
     /// This is a general purpose Material Theme linear progress bar. Can be determinant or
     /// indeterminant. If determinant the value needs to be between 0 and 1.
     /// </summary>
-    public partial class MTLinearProgress : MTInputComponentBase<double>
+    public partial class MTLinearProgress : InputComponentFoundation<double>
     {
         /// <summary>
         /// Makes the progress bar indeterminant if True.

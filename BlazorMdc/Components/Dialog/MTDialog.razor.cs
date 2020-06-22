@@ -14,7 +14,7 @@ namespace BlazorMdc
     /// intiate it and its embedded components. Likewise when the dialog is closed, Material Theme is permitted to close the dialog
     /// gracefully before BlazorMdc removes the markup.
     /// </summary>
-    public partial class MTDialog : MTComponentBase, IDisposable, IMTDialog
+    public partial class MTDialog : ComponentFoundation, IDisposable, IMTDialog
     {
         /// <summary>
         /// The dialog title.
@@ -65,8 +65,8 @@ namespace BlazorMdc
         private string OverflowClass => OverflowVisible ? "bmdc-dialog-overflow-visible" : "";
 
 
-        private readonly string titleId = MTUtilities.GenerateUniqueElementName();
-        private readonly string descId = MTUtilities.GenerateUniqueElementName();
+        private readonly string titleId = Utilities.GenerateUniqueElementName();
+        private readonly string descId = Utilities.GenerateUniqueElementName();
         private bool isOpen = false;
         private bool afterRenderShowAction = false;
         private bool afterDialogInitialization = false;
@@ -114,7 +114,7 @@ namespace BlazorMdc
             else
             {
                 LayoutChildren.Clear();
-                key = MTUtilities.GenerateUniqueElementName();
+                key = Utilities.GenerateUniqueElementName();
                 isOpen = true;
                 afterRenderShowAction = true;
                 StateHasChanged();

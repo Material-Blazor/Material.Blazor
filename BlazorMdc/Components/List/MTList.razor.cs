@@ -13,7 +13,7 @@ namespace BlazorMdc
     /// standards. It also implements a BlazorMdc interpretation of the specification for a three line
     /// list item.
     /// </summary>
-    public partial class MTList<TItem> : MTComponentBase
+    public partial class MTList<TItem> : ComponentFoundation
     {
         /// <summary>
         /// The list style.

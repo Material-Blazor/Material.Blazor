@@ -13,7 +13,7 @@ namespace BlazorMdc
     /// A paged data list using the "wig pig" construct allowing the consumer to free render the relevant paged data.
     /// </summary>
     /// <typeparam name="TItem"></typeparam>
-    public partial class MTPagedDataList<TItem> : MTComponentBase
+    public partial class MTPagedDataList<TItem> : ComponentFoundation
     {
         /// <summary>
         /// A CSS class to apply to the div surrounding the paged data.

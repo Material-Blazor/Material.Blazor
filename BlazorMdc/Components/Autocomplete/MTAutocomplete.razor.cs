@@ -15,7 +15,7 @@ namespace BlazorMdc
     /// An autocomplete built using an <see cref="MdcTextField"/> with the anchor and drop
     /// down list implementation from a Material Theme select.
     /// </summary>
-    public partial class MTAutocomplete : MTInputComponentBase<string>, IDisposable
+    public partial class MTAutocomplete : InputComponentFoundation<string>, IDisposable
     {
         private IEnumerable<string> selectItems;
         private IEnumerable<string> newSelectItems = null;

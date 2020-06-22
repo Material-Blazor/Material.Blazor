@@ -11,7 +11,7 @@ namespace BlazorMdc
     /// <summary>
     /// This is a general purpose Material Theme tab bar.
     /// </summary>
-    public partial class MTTabBar<TItem> : MTComponentBase
+    public partial class MTTabBar<TItem> : ComponentFoundation
     {
         private int _tabIndex;
         /// <summary>

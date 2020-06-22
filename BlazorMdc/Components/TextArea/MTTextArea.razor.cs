@@ -11,7 +11,7 @@ namespace BlazorMdc
     /// <summary>
     /// A Material Theme text field.
     /// </summary>
-    public partial class MTTextArea : MTInputComponentBase<string>
+    public partial class MTTextArea : InputComponentFoundation<string>
     {
         /// <summary>
         /// The text input style.
@@ -51,11 +51,11 @@ namespace BlazorMdc
 
         private ElementReference ElementReference { get; set; }
         private MTTextInputStyle AppliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
-        private string AppliedTextInputStyleClass => MTUtilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
+        private string AppliedTextInputStyleClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
         private string FloatingLabelClass { get; set; }
 
-        private readonly string id = MTUtilities.GenerateUniqueElementName();
-        private readonly string labelId = MTUtilities.GenerateUniqueElementName();
+        private readonly string id = Utilities.GenerateUniqueElementName();
+        private readonly string labelId = Utilities.GenerateUniqueElementName();
 
 
         /// <inheritdoc/>

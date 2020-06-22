@@ -9,7 +9,7 @@ namespace BlazorMdc.Internal
     /// <summary>
     /// For BlazorMdc internal use only.
     /// </summary>
-    public partial class InternalDatePickerDayButton : MTComponentBase
+    public partial class InternalDatePickerDayButton : ComponentFoundation
     {
         /// <summary>
         /// The currently selected date.
