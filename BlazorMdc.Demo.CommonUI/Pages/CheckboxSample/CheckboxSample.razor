@@ -7,11 +7,11 @@
 See <code>CheckboxSample.razor</code> for sources.
 
 <p>
-    <MTCheckbox Label="@labelA" @bind-Value="@isCheckedA" />
+    <MTCheckbox Label="@labelA" @bind-Value="@isCheckedA" Disabled="@DisableComponents" />
 </p>
 
 <p>
-    <MTCheckbox Label="@labelB" @bind-Value="@isCheckedB" />
+    <MTCheckbox Label="@labelB" @bind-Value="@isCheckedB" Disabled="@DisableComponents" />
 </p>
 
 <p>
@@ -19,6 +19,8 @@ See <code>CheckboxSample.razor</code> for sources.
 </p>
 
 @code {
+    [CascadingParameter(Name = "DisableComponents")] private bool DisableComponents { get; set; }
+
     bool isCheckedA;
     string labelA => "This checbox is " + (isCheckedA ? "set" : "unset");
 

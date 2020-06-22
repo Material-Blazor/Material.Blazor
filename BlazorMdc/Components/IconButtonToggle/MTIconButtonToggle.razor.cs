@@ -53,8 +53,9 @@ namespace BlazorMdc
                 .Add("mdc-icon-button")
                 .AddIf("mdc-card__action mdc-card__action--icon", () => (Card != null))
                 .AddIf("mdc-icon-button--on", () => Value);
-
+            //ForceShouldRenderToTrue = true;
             OnValueSet += OnValueSetCallback;
+            OnDisabledSet += OnDisabledSetCallback;
         }            
 
 
@@ -73,6 +74,14 @@ namespace BlazorMdc
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.setOn", ElementReference, Value));
+
+
+        /// <summary>
+        /// Callback for value the Disabled value setter.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(() => AllowNextRender = true);
 
 
         /// <inheritdoc/>
