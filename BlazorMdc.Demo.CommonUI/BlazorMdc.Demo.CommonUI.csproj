@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
 		<IsPackable>true</IsPackable>
@@ -41,10 +41,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="compilerconfig.json" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\BlazorMdc\BlazorMdc.csproj" />
 	</ItemGroup>
 
@@ -55,8 +51,20 @@
 		</None>
 	</ItemGroup>
 
-	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-	  <Exec Command="dotnet tool restore&#xD;&#xA;dotnet tool run webcompiler Styles/Styles.scss -z disable&#xD;&#xA;xcopy .\styles\*.css .\wwwroot\css&#xD;&#xA;del .\styles\*.css" />
+	<Target Name="RestoreDotnetTools" BeforeTargets="PreBuildEvent">
+		<Exec Command="dotnet tool restore" />
+	</Target>
+
+	<Target Name="CompileCss" AfterTargets="RestoreDotnetTools">
+		<Exec Command="dotnet tool run webcompiler Styles/Styles.scss -z disable" />
+	</Target>
+
+	<Target Name="CopyCss" AfterTargets="CompileCss">
+		<Exec Command="xcopy /y .\styles\*.css .\wwwroot\css" />
+	</Target>
+
+	<Target Name="DeleteCss" AfterTargets="CopyCss">
+		<Exec Command="del .\styles\*.css" />
 	</Target>
 
 </Project>
