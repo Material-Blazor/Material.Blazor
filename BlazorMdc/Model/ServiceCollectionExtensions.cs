@@ -33,7 +33,7 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Adds a BlazorMdc <see cref="IAnimatedNavigationManager"/> to the service collection to apply
+        /// Adds a BlazorMdc <see cref="IMTAnimatedNavigationManager"/> to the service collection to apply
         /// fade out/in animation to Blazor page navigation.
         /// <example>
         /// <para>You can optionally add configuration:</para>
@@ -53,7 +53,7 @@ namespace BlazorMdc
                 configuration = new MTAnimatedNaviationManagerConfiguration();
             }
 
-            return services.AddScoped<IAnimatedNavigationManager, MTAnimatedNavigationManager>(serviceProvider => new MTAnimatedNavigationManager(serviceProvider.GetRequiredService<NavigationManager>(), configuration));
+            return services.AddScoped<IMTAnimatedNavigationManager, AnimatedNavigationManager>(serviceProvider => new AnimatedNavigationManager(serviceProvider.GetRequiredService<NavigationManager>(), configuration));
         }
     }
 }

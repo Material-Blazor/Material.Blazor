@@ -7,9 +7,9 @@ using System;
 namespace BlazorMdc
 {
     /// <summary>
-    /// The internal implementation of <see cref="IAnimatedNavigationManager"/>.
+    /// The internal implementation of <see cref="IMTAnimatedNavigationManager"/>.
     /// </summary>
-    internal class MTAnimatedNavigationManager : IAnimatedNavigationManager
+    internal class AnimatedNavigationManager : IMTAnimatedNavigationManager
     {
         private readonly NavigationManager NavigationManager;
 
@@ -25,14 +25,14 @@ namespace BlazorMdc
 
 
         /// <inheritdoc/>
-        int IAnimatedNavigationManager.FadeOutTime => Configuration.AnimationTime * 4 / 10;
+        int IMTAnimatedNavigationManager.FadeOutTime => Configuration.AnimationTime * 4 / 10;
 
 
         /// <inheritdoc/>
-        int IAnimatedNavigationManager.FadeInTime => Configuration.AnimationTime * 6 / 10;
+        int IMTAnimatedNavigationManager.FadeInTime => Configuration.AnimationTime * 6 / 10;
 
 
-        public MTAnimatedNavigationManager(NavigationManager navigationManager, MTAnimatedNaviationManagerConfiguration configuration)
+        public AnimatedNavigationManager(NavigationManager navigationManager, MTAnimatedNaviationManagerConfiguration configuration)
         {
             NavigationManager = navigationManager;
             Configuration = configuration;
@@ -44,7 +44,7 @@ namespace BlazorMdc
         {
             if (NavigationComponent is null)
             {
-                throw new InvalidOperationException($"BlazorMdc: you have registered a {MTUtilities.GetTypeName(typeof(IAnimatedNavigationManager))} but have not placed a {MTUtilities.GetTypeName(typeof(MTAnimatedNavigation))} component around your markup in either App.razor or MainLayout.razor");
+                throw new InvalidOperationException($"BlazorMdc: you have registered a {MTUtilities.GetTypeName(typeof(IMTAnimatedNavigationManager))} but have not placed a {MTUtilities.GetTypeName(typeof(MTAnimatedNavigation))} component around your markup in either App.razor or MainLayout.razor");
             }
 
             if (!Configuration.ApplyAnimation)
@@ -59,14 +59,14 @@ namespace BlazorMdc
 
 
         /// <inheritdoc/>
-        void IAnimatedNavigationManager.RegisterNavigationComponent(MTAnimatedNavigation navigationComponent)
+        void IMTAnimatedNavigationManager.RegisterNavigationComponent(MTAnimatedNavigation navigationComponent)
         {
             NavigationComponent = navigationComponent;
         }
 
 
         /// <inheritdoc/>
-        void IAnimatedNavigationManager.DeregisterNavigationComponent(MTAnimatedNavigation navigationComponent)
+        void IMTAnimatedNavigationManager.DeregisterNavigationComponent(MTAnimatedNavigation navigationComponent)
         {
             if (navigationComponent.Equals(NavigationComponent))
             {

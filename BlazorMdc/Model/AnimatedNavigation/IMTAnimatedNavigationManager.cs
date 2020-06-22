@@ -26,7 +26,7 @@
     /// </code>
     /// </example>
     /// </summary>
-    public interface IAnimatedNavigationManager
+    public interface IMTAnimatedNavigationManager
     {
         /// <summary>
         /// Animation Manager configuration.
