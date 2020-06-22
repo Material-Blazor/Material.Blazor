@@ -247,9 +247,17 @@ window.BlazorMdc = {
     },
 
     switch: {
-        setChecked: function (elem, isChecked) {
-            const switchControl = mdc.switchControl.MDCSwitch.attachTo(elem);
-            switchControl.checked = isChecked;
+        init: function (elem, checked) {
+            elem._switch = mdc.switchControl.MDCSwitch.attachTo(elem);
+            elem._switch.checked = checked;
+        },
+
+        setChecked: function (elem, checked) {
+            elem._switch.checked = checked;
+        },
+
+        setDisabled: function (elem, disabled) {
+            elem._switch.disabled = disabled;
         }
     },
 

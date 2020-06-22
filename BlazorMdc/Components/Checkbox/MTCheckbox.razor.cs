@@ -41,6 +41,7 @@ namespace BlazorMdc
                 .AddIf("mdc-checkbox--disabled", () => Disabled);
 
             OnValueSet += OnValueSetCallback;
+            OnDisabledSet += OnDisabledSetCallback;
         }
 
 

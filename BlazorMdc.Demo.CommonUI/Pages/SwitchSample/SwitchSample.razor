@@ -7,12 +7,12 @@
 <p>See <code>SwitchSample.razor</code> for sources.</p>
 
 <p>
-    <MTSwitch Label="Switch 1" @bind-Value="@isCheckedA" /><span style="margin-left: 3em;">@labelA</span>
-    <MTSwitch Label="Switch 1" @bind-Value="@isCheckedA" /><span style="margin-left: 3em;">@labelA</span>
+    <MTSwitch Label="Switch 1" @bind-Value="@isCheckedA" Disabled="@DisableComponents" /><span style="margin-left: 3em;">@labelA</span>
+    <MTSwitch Label="Switch 1" @bind-Value="@isCheckedA" Disabled="@DisableComponents" /><span style="margin-left: 3em;">@labelA</span>
 </p>
 
 <p>
-    <MTSwitch Label="Switch 2" @bind-Value="@isCheckedB" /><span style="margin-left: 3em;">@labelB</span>
+    <MTSwitch Label="Switch 2" @bind-Value="@isCheckedB" Disabled="@DisableComponents" /><span style="margin-left: 3em;">@labelB</span>
 </p>
 
 <p>
@@ -20,6 +20,8 @@
 </p>
 
 @code {
+    [CascadingParameter(Name = "DisableComponents")] private bool DisableComponents { get; set; }
+
     bool isCheckedA;
     string labelA => "This switch is " + (isCheckedA ? "set" : "unset");
 
