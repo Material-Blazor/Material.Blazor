@@ -39,8 +39,8 @@ window.BlazorMdc = {
             textElem._textField.value = value;
         },
 
-        setDisabled: function (textElem, value) {
-            textElem._textField.disabled = value;
+        setDisabled: function (textElem, disabled) {
+            textElem._textField.disabled = disabled;
         }
     },
 
@@ -67,8 +67,12 @@ window.BlazorMdc = {
             }
         },
 
-        setChecked: function (elem, isChecked) {
-            elem._checkbox.checked = isChecked;
+        setChecked: function (elem, checked) {
+            elem._checkbox.checked = checked;
+        },
+
+        setDisabled: function (elem, disabled) {
+            elem._checkbox.disabled = disabled;
         }
     },
 
@@ -243,9 +247,17 @@ window.BlazorMdc = {
     },
 
     switch: {
-        setChecked: function (elem, isChecked) {
-            const switchControl = mdc.switchControl.MDCSwitch.attachTo(elem);
-            switchControl.checked = isChecked;
+        init: function (elem, checked) {
+            elem._switch = mdc.switchControl.MDCSwitch.attachTo(elem);
+            elem._switch.checked = checked;
+        },
+
+        setChecked: function (elem, checked) {
+            elem._switch.checked = checked;
+        },
+
+        setDisabled: function (elem, disabled) {
+            elem._switch.disabled = disabled;
         }
     },
 

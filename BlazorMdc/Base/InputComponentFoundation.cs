@@ -230,7 +230,7 @@ namespace BlazorMdc.Internal
 
         private void OnInitDialog()
         {
-            if (Dialog != null)
+            if (Dialog != null && !Dialog.HasInstantiated)
             {
                 Dialog.RegisterLayoutAction(this);
             }

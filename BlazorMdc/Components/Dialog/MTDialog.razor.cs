@@ -59,6 +59,12 @@ namespace BlazorMdc
         [Parameter] public bool OverflowVisible { get; set; } = false;
 
 
+        /// <summary>
+        /// True once the dialog has instantiated components for the first time.
+        /// </summary>
+        bool IMTDialog.HasInstantiated => _hasInstantiated;
+
+
         private ElementReference DialogElem { get; set; }
         private System.Collections.Generic.List<IMTDialogChild> LayoutChildren { get; set; } = new System.Collections.Generic.List<IMTDialogChild>();
         private DotNetObjectReference<MTDialog> ObjectReference { get; set; }
@@ -71,7 +77,8 @@ namespace BlazorMdc
         private bool afterRenderShowAction = false;
         private bool afterDialogInitialization = false;
         private string key = "";
-        TaskCompletionSource<string> tcs;
+        private TaskCompletionSource<string> tcs;
+        private bool _hasInstantiated = false;
 
 
         /// <inheritdoc/>
@@ -137,6 +144,7 @@ namespace BlazorMdc
             {
                 await JsRuntime.InvokeAsync<string>("BlazorMdc.dialog.hide", DialogElem);
                 isOpen = false;
+                _hasInstantiated = false;
                 StateHasChanged();
             }
             else
@@ -187,6 +195,8 @@ namespace BlazorMdc
                 {
                     child.RequestInstantiation();
                 }
+
+                _hasInstantiated = true;
 
                 StateHasChanged();
             }
