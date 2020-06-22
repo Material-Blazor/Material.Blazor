@@ -12,50 +12,50 @@
 	<div class="mdc-layout-grid__cell">
 		<h2 class="mdc-typography--headline5">Default alignment</h2>
 		<p>
-			<BMdc.Select Label="Filled"
+			<MTSelect Label="Filled"
 						 @bind-Value="@kittenBreed1"
    						 Items="stringItems"
-						 SelectInputStyle="ESelectInputStyle.Filled"
-			 			 ItemValidation="@EItemValidation.NoSelection"
+						 SelectInputStyle="MTSelectInputStyle.Filled"
+			 			 ItemValidation="@MTItemValidation.NoSelection"
 						 Disabled="@DisableComponents"/>
 		</p>
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed1 ?? "")</strong>'</p>
 
 		<p>
-            <BMdc.Select Label="Outlined"
+            <MTSelect Label="Outlined"
                          @bind-Value="@kittenBreed2"
                          Items="stringItems"
-                         SelectInputStyle="ESelectInputStyle.Outlined"
-                         ItemValidation="@EItemValidation.NoSelection"
+                         SelectInputStyle="MTSelectInputStyle.Outlined"
+                         ItemValidation="@MTItemValidation.NoSelection"
                          Disabled="@DisableComponents" />
 		</p>
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed2 ?? "")</strong>'</p>
 
 		<p>
-            <BMdc.Select Label="Default to First"
+            <MTSelect Label="Default to First"
                          @bind-Value="@kittenBreed3"
                          Items="stringItems"
-                         SelectInputStyle="ESelectInputStyle.Outlined"
-                         ItemValidation="@EItemValidation.DefaultToFirst"
+                         SelectInputStyle="MTSelectInputStyle.Outlined"
+                         ItemValidation="@MTItemValidation.DefaultToFirst"
                          Disabled="@DisableComponents" />
 
-            <BMdc.Select Label="Default to First (repeated)"
+            <MTSelect Label="Default to First (repeated)"
                          @bind-Value="@kittenBreed3"
                          Items="stringItems"
-                         SelectInputStyle="ESelectInputStyle.Outlined"
-                         ItemValidation="@EItemValidation.DefaultToFirst"
+                         SelectInputStyle="MTSelectInputStyle.Outlined"
+                         ItemValidation="@MTItemValidation.DefaultToFirst"
                          Disabled="@DisableComponents" />
 
 		</p>
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed3 ?? "")</strong>'</p>
 
 		<p>
-            <BMdc.Select Label="Colour Enumeration"
+            <MTSelect Label="Colour Enumeration"
                          @bind-Value="@colour"
                          Items="colourItems"
                          Disabled="@DisableComponents" />
 
-            <BMdc.Select Label="Colour Enumeration (repeated)"
+            <MTSelect Label="Colour Enumeration (repeated)"
                          @bind-Value="@colour"
                          Items="colourItems"
                          Disabled="@DisableComponents" />
@@ -66,57 +66,57 @@
 	<div class="mdc-layout-grid__cell">
 		<h2 class="mdc-typography--headline5">Right aligned</h2>
 		<p>
-            <BMdc.Select Label="Filled"
+            <MTSelect Label="Filled"
                          @bind-Value="@kittenBreed1"
                          Items="stringItems"
-                         SelectInputStyle="ESelectInputStyle.Filled"
-                         TextAlignStyle="ETextAlignStyle.Right"
-                         ItemValidation="@EItemValidation.NoSelection"
+                         SelectInputStyle="MTSelectInputStyle.Filled"
+                         TextAlignStyle="MTTextAlignStyle.Right"
+                         ItemValidation="MTItemValidation.NoSelection"
                          Disabled="@DisableComponents" />
 		</p>
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed1 ?? "")</strong>'</p>
 
 		<p>
-            <BMdc.Select Label="Outlined"
+            <MTSelect Label="Outlined"
                          @bind-Value="@kittenBreed2"
                          Items="stringItems"
-                         SelectInputStyle="ESelectInputStyle.Outlined"
-                         TextAlignStyle="ETextAlignStyle.Right"
-                         ItemValidation="@EItemValidation.NoSelection"
+                         SelectInputStyle="MTSelectInputStyle.Outlined"
+                         TextAlignStyle="MTTextAlignStyle.Right"
+                         ItemValidation="MTItemValidation.NoSelection"
                          Disabled="@DisableComponents" />
 		</p>
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed2 ?? "")</strong>'</p>
 
 		<p>
-            <BMdc.Select Label="Default to First"
+            <MTSelect Label="Default to First"
                          @bind-Value="@kittenBreed3"
                          Items="stringItems"
-                         SelectInputStyle="ESelectInputStyle.Outlined"
-                         TextAlignStyle="ETextAlignStyle.Right"
-                         ItemValidation="@EItemValidation.DefaultToFirst"
+                         SelectInputStyle="MTSelectInputStyle.Outlined"
+                         TextAlignStyle="MTTextAlignStyle.Right"
+                         ItemValidation="MTItemValidation.DefaultToFirst"
                          Disabled="@DisableComponents" />
 
-            <BMdc.Select Label="Default to First (repeated)"
+            <MTSelect Label="Default to First (repeated)"
                          @bind-Value="@kittenBreed3"
                          Items="stringItems"
-                         SelectInputStyle="ESelectInputStyle.Outlined"
-                         TextAlignStyle="ETextAlignStyle.Right"
-                         ItemValidation="@EItemValidation.DefaultToFirst"
+                         SelectInputStyle="MTSelectInputStyle.Outlined"
+                         TextAlignStyle="MTTextAlignStyle.Right"
+                         ItemValidation="MTItemValidation.DefaultToFirst"
                          Disabled="@DisableComponents" />
 
 		</p>
 		<p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed3 ?? "")</strong>'</p>
 
 		<p>
-            <BMdc.Select Label="Colour Enumeration"
+            <MTSelect Label="Colour Enumeration"
                          @bind-Value="@colour"
-                         TextAlignStyle="ETextAlignStyle.Right"
+                         TextAlignStyle="MTTextAlignStyle.Right"
                          Items="colourItems"
                          Disabled="@DisableComponents" />
 			
-            <BMdc.Select Label="Colour Enumeration (repeated)"
+            <MTSelect Label="Colour Enumeration (repeated)"
                          @bind-Value="@colour"
-                         TextAlignStyle="ETextAlignStyle.Right"
+                         TextAlignStyle="MTTextAlignStyle.Right"
                          Items="colourItems"
                          Disabled="@DisableComponents" />
 		</p>
@@ -134,17 +134,17 @@
     string kittenBreed3;
     Colour colour;
 
-    ListElement<string>[] stringItems = new ListElement<string>[]
+    MTListElement<string>[] stringItems = new MTListElement<string>[]
     {
-                new ListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
-                new ListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
-                new ListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+                new MTListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+                new MTListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+                new MTListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
         };
 
     enum Colour { Red, Orange, Yellow, Green, Blue, Indigo, Violet };
 
-    IEnumerable<ListElement<Colour>> colourItems => from c in (Colour[])Enum.GetValues(typeof(Colour))
-                                                    select new ListElement<Colour>
+    IEnumerable<MTListElement<Colour>> colourItems => from c in (Colour[])Enum.GetValues(typeof(Colour))
+                                                    select new MTListElement<Colour>
                                                     {
                                                         SelectedValue = c,
                                                         Label = c.ToString()

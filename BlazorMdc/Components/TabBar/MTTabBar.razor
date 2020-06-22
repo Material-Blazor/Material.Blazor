@@ -1,0 +1,39 @@
+﻿@namespace BlazorMdc
+@inherits ComponentFoundation
+@typeparam TItem
+
+
+<div @ref="ElementReference"
+     role="tablist"
+     @attributes="@AttributesToSplat()">
+
+    <div class="mdc-tab-scroller">
+        <div class="mdc-tab-scroller__scroll-area">
+            <div class="mdc-tab-scroller__scroll-content">
+                @{ int i = 0; }
+                @foreach (var item in Items)
+                {
+                    int index = i++;
+                    bool selected = (index == _tabIndex);
+                    string buttonActive = selected ? "mdc-tab--active" : "";
+                    string indicatorActive = selected ? "mdc-tab-indicator--active" : "";
+
+                    <button @key="item" class="mdc-tab @StackClass @buttonActive" role="tab" aria-selected="@selected" tabindex="-1" @onclick="(_ => OnTabClickAsync(index))">
+                        <span class="mdc-tab__content">
+                            @if (Icon != null)
+                            {
+                                @Icon(item)
+                            }
+
+                            <span class="mdc-tab__text-label">@Label(item)</span>
+                        </span>
+                        <span class="mdc-tab-indicator @indicatorActive">
+                            <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                        </span>
+                        <span class="mdc-tab__ripple"></span>
+                    </button>
+                }
+            </div>
+        </div>
+    </div>
+</div>

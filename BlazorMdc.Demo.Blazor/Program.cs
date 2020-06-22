@@ -1,5 +1,4 @@
-using BMdcModel;
-using BMdcPlus;
+using BlazorMdc;
 
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,7 +20,7 @@ namespace BlazorMdc.Demo.Blazor
                 new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             // The configuration is optional
-            builder.Services.AddToastService(new ToastServiceConfiguration()
+            builder.Services.AddMTToastService(new MTToastServiceConfiguration()
             {
                 InfoDefaultHeading = "Info",
                 SuccessDefaultHeading = "Success",
@@ -32,7 +31,7 @@ namespace BlazorMdc.Demo.Blazor
             });
 
             // The configuration is optional
-            builder.Services.AddAnimatedNavigationManager(new AnimatedNaviationManagerConfiguration()
+            builder.Services.AddMTAnimatedNavigationManager(new MTAnimatedNaviationManagerConfiguration()
             {
                 ApplyAnimation = true,
                 AnimationTime = 300

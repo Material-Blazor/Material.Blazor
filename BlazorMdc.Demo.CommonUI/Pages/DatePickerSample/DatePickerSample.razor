@@ -9,23 +9,23 @@
 <p>See <code>DatePickerSample.razor</code> for sources.</p>
 
 <p>
-    <BMdcPlus.DatePicker Label="Filled"
+    <MTDatePicker Label="Filled"
                          @bind-Value="@filled"
-                         SelectInputStyle="ESelectInputStyle.Filled"
+                         SelectInputStyle="MTSelectInputStyle.Filled"
                          MinDate="min"
                          MaxDate="max" />
 </p>
 <p style="margin-bottom: 4em;">Selected: '<strong>@filled.ToString("D")</strong>'</p>
 
 <p>
-    <BMdcPlus.DatePicker Label="Weekdays Outlined"
+    <MTDatePicker Label="Weekdays Outlined"
                          @bind-Value="@outlined"
-                         SelectInputStyle="ESelectInputStyle.Outlined"
-                         DateSelectionCriteria="EDateSelectionCriteria.WeekdaysOnly"
+                         SelectInputStyle="MTSelectInputStyle.Outlined"
+                         DateSelectionCriteria="MTDateSelectionCriteria.WeekdaysOnly"
                          MinDate="min"
                          MaxDate="max"
                          DateFormat="ddd MMM dd, yyyy" />
-    <BMdc.Button @onclick="@(() => outlined = DateTime.Today)" Label="Go to Today" />
+    <MTButton @onclick="@(() => outlined = DateTime.Today)" Label="Go to Today" />
 </p>
 <p style="margin-bottom: 20em;">Selected: '<strong>@outlined.ToString("D")</strong>'</p>
 

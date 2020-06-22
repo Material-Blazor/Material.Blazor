@@ -13,111 +13,111 @@
 }
 
 
-<p><BMdc.Button Label="Show general dialog" @onclick="@ShowDialog1"></BMdc.Button></p>
+<p><MTButton Label="Show general dialog" @onclick="@ShowDialog1"></MTButton></p>
 
 <p>Result: <strong>'@(result1 ?? "")'</strong></p>
 <p>Button result: <strong>'@(radioButtonResult1 ?? "")'</strong></p>
 
-<BMdc.Dialog @ref="@dialog1" 
-           Title="General dialog">
+<MTDialog @ref="@dialog1"
+          Title="General dialog">
     <Body>
         <p>Please choose a fruit.</p>
-        <BMdc.Checkbox @bind-Value="@checkMe" Label="Check me" />
-        <BMdcPlus.RadioButtonGroup @bind-Value="@radioButtonResult1"
-                              Items="stringItems"
-                              Vertical="true"
-                              ItemValidation="@EItemValidation.DefaultToFirst" />
+        <MTCheckbox @bind-Value="@checkMe" Label="Check me" />
+        <MTRadioButtonGroup @bind-Value="@radioButtonResult1"
+                            Items="stringItems"
+                            Vertical="true"
+                            ItemValidation="@MTItemValidation.DefaultToFirst" />
     </Body>
     <Buttons>
-        <BMdc.Button Label="Orange" DialogAction="orange"></BMdc.Button>
-        <BMdc.Button Label="Apple" DialogAction="apple" ButtonStyle="@EButtonStyle.Text"></BMdc.Button>
+        <MTButton Label="Orange" DialogAction="orange"></MTButton>
+        <MTButton Label="Apple" DialogAction="apple" ButtonStyle="@MTButtonStyle.Text"></MTButton>
     </Buttons>
-</BMdc.Dialog>
+</MTDialog>
 
 
 
-<p style="margin-top: 3rem;"><BMdc.Button Label="Show default confirmation dialog" @onclick="@ShowDialog2"></BMdc.Button></p>
+<p style="margin-top: 3rem;"><MTButton Label="Show default confirmation dialog" @onclick="@ShowDialog2"></MTButton></p>
 
 <p>Result: <strong>'@(result2 ?? "")'</strong></p>
 
-<BMdcPlus.ConfirmationDialog @ref="@dialog2" 
-                        Title="Default confirmation dialog" />
+<MTConfirmationDialog @ref="@dialog2"
+                      Title="Default confirmation dialog" />
 
 
 
-<p style="margin-top: 3rem;"><BMdc.Button Label="Show tailored confirmation dialog" @onclick="@ShowDialog3"></BMdc.Button></p>
+<p style="margin-top: 3rem;"><MTButton Label="Show tailored confirmation dialog" @onclick="@ShowDialog3"></MTButton></p>
 
 <p>Result: <strong>'@(result3 ?? "")'</strong></p>
 
-<BMdcPlus.ConfirmationDialog @ref="@dialog3" 
-                        Title="Tailored confirmation dialog" ConfirmationPhrase="overridden confirmation" 
-                        ActionPhrase="to play handball" 
-                        ConfirmationDisabled="@disableInput">
+<MTConfirmationDialog @ref="@dialog3"
+                      Title="Tailored confirmation dialog" ConfirmationPhrase="overridden confirmation"
+                      ActionPhrase="to play handball"
+                      ConfirmationDisabled="@disableInput">
     <Body>
         <p>Some markup before the confirmation message and input.</p>
-        <p><BMdc.Checkbox @bind-Value="@disableInput" Label="Disable confirmation input field" /></p>
+        <p><MTCheckbox @bind-Value="@disableInput" Label="Disable confirmation input field" /></p>
     </Body>
     <UnconfirmedButtons>
-        <BMdc.Button Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
-        <BMdc.Button Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
-        <BMdc.Button Label="Bosh" LeadingIcon="sports_handball" Disabled="true" DialogAction="bosh" ButtonStyle="EButtonStyle.ContainedRaised" />
+        <MTButton Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
+        <MTButton Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
+        <MTButton Label="Bosh" LeadingIcon="sports_handball" Disabled="true" DialogAction="bosh" ButtonStyle="MTButtonStyle.ContainedRaised" />
     </UnconfirmedButtons>
     <ConfirmedButtons>
-        <BMdc.Button Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
-        <BMdc.Button Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
-        <BMdc.Button Label="Bosh" LeadingIcon="sports_handball" DialogAction="bosh" ButtonStyle="EButtonStyle.ContainedRaised" />
+        <MTButton Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
+        <MTButton Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
+        <MTButton Label="Bosh" LeadingIcon="sports_handball" DialogAction="bosh" ButtonStyle="MTButtonStyle.ContainedRaised" />
     </ConfirmedButtons>
-</BMdcPlus.ConfirmationDialog>
+</MTConfirmationDialog>
 
 
-<p style="margin-top: 3rem;"><BMdc.Button Label="Show general dialog with scrim and escape disabled (using HideAsync)" @onclick="@ShowDialog4"></BMdc.Button></p>
+<p style="margin-top: 3rem;"><MTButton Label="Show general dialog with scrim and escape disabled (using HideAsync)" @onclick="@ShowDialog4"></MTButton></p>
 
 <p>Logical result: <strong>'@(result4 ?? "")'</strong></p>
 <p>Dialog result: <strong>'@(dialogResult4 ?? "")'</strong></p>
 
-<BMdc.Dialog @ref="@dialog4" Title="General dialog with scrim and escape disabled (using HideAsync)"
-           ScrimClickAction=""
-           EscapeKeyAction="">
+<MTDialog @ref="@dialog4" Title="General dialog with scrim and escape disabled (using HideAsync)"
+          ScrimClickAction=""
+          EscapeKeyAction="">
     <Body>
         <p>Please choose a fruit.</p>
-        <p><BMdc.Checkbox @bind-Value="@checkMe" Label="Check me" /></p>
+        <p><MTCheckbox @bind-Value="@checkMe" Label="Check me" /></p>
     </Body>
     <Buttons>
-        <BMdc.Button Label="Orange" @onclick="orangeClick"></BMdc.Button>
-        <BMdc.Button Label="Apple" @onclick="appleClick" ButtonStyle="@EButtonStyle.Text"></BMdc.Button>
+        <MTButton Label="Orange" @onclick="orangeClick"></MTButton>
+        <MTButton Label="Apple" @onclick="appleClick" ButtonStyle="@MTButtonStyle.Text"></MTButton>
     </Buttons>
-</BMdc.Dialog>
+</MTDialog>
 
 
-<p style="margin-top: 3rem;"><BMdc.Button Label="Dialog with Date Picker & OverflowVisible" @onclick="@ShowDialog5"></BMdc.Button></p>
+<p style="margin-top: 3rem;"><MTButton Label="Dialog with Date Picker & OverflowVisible" @onclick="@ShowDialog5"></MTButton></p>
 
 <p>Result: <strong>'@(date5.ToString("d") ?? "")'</strong></p>
 
-<BMdc.Dialog @ref="@dialog5" Title="Date Picker Dialog"
-           OverflowVisible="true">
+<MTDialog @ref="@dialog5" Title="Date Picker Dialog"
+          OverflowVisible="true">
     <Body>
         <p>Set the date.</p>
-        <BMdcPlus.DatePicker Label="The date" @bind-Value="@date5" SelectInputStyle="ESelectInputStyle.Outlined" MinDate="minDate" MaxDate="maxDate"></BMdcPlus.DatePicker>
+        <MTDatePicker Label="The date" @bind-Value="@date5" SelectInputStyle="MTSelectInputStyle.Outlined" MinDate="minDate" MaxDate="maxDate"></MTDatePicker>
     </Body>
     <Buttons>
-        <BMdc.Button Label="Orange" DialogAction="orange"></BMdc.Button>
-        <BMdc.Button Label="Apple" DialogAction="apple" ButtonStyle="@EButtonStyle.Text"></BMdc.Button>
+        <MTButton Label="Orange" DialogAction="orange"></MTButton>
+        <MTButton Label="Apple" DialogAction="apple" ButtonStyle="@MTButtonStyle.Text"></MTButton>
     </Buttons>
-</BMdc.Dialog>
+</MTDialog>
 
 
-<p style="margin-top: 3rem;"><BMdc.Button Label="Confirmation Dialog with Date Picker & OverflowVisible" @onclick="@ShowDialog6"></BMdc.Button></p>
+<p style="margin-top: 3rem;"><MTButton Label="Confirmation Dialog with Date Picker & OverflowVisible" @onclick="@ShowDialog6"></MTButton></p>
 
 <p>Result: <strong>'@(date6.ToString("d") ?? "")'</strong></p>
 
-<BMdcPlus.ConfirmationDialog @ref="@dialog6" 
-                        Title="Date Picker Confirmation Dialog" 
-                        OverflowVisible="true">
+<MTConfirmationDialog @ref="@dialog6"
+                      Title="Date Picker Confirmation Dialog"
+                      OverflowVisible="true">
     <Body>
         <p>Set the date.</p>
-        <BMdcPlus.DatePicker Label="The date" @bind-Value="@date6" SelectInputStyle="ESelectInputStyle.Outlined" MinDate="minDate" MaxDate="maxDate"></BMdcPlus.DatePicker>
+        <MTDatePicker Label="The date" @bind-Value="@date6" SelectInputStyle="MTSelectInputStyle.Outlined" MinDate="minDate" MaxDate="maxDate"></MTDatePicker>
     </Body>
-</BMdcPlus.ConfirmationDialog>
+</MTConfirmationDialog>
 
 
 
@@ -127,7 +127,7 @@
 @code {
     [Parameter] public bool HideHeading { get; set; }
 
-    BMdc.Dialog dialog1;
+    MTDialog dialog1;
     string result1;
     string radioButtonResult1;
     bool checkMe;
@@ -138,14 +138,14 @@
         result1 = await dialog1.ShowAsync();
     }
 
-    ListElement<string>[] stringItems = new ListElement<string>[]
+    MTListElement<string>[] stringItems = new MTListElement<string>[]
 {
-        new ListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
-        new ListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
-        new ListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
- };
+        new MTListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new MTListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new MTListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+         };
 
-    BMdcPlus.ConfirmationDialog dialog2;
+    MTConfirmationDialog dialog2;
     string result2;
 
     async Task ShowDialog2()
@@ -153,7 +153,7 @@
         result2 = await dialog2.ShowAsync();
     }
 
-    BMdcPlus.ConfirmationDialog dialog3;
+    MTConfirmationDialog dialog3;
     string result3;
 
     async Task ShowDialog3()
@@ -161,7 +161,7 @@
         result3 = await dialog3.ShowAsync();
     }
 
-    BMdc.Dialog dialog4;
+    MTDialog dialog4;
     string dialogResult4;
     string result4;
 
@@ -182,7 +182,7 @@
         result4 = "orange (via OnClick)";
     }
 
-    BMdc.Dialog dialog5;
+    MTDialog dialog5;
     DateTime minDate = new DateTime(2015, 1, 1);
     DateTime maxDate = new DateTime(2025, 12, 31);
     DateTime date5 = DateTime.Today;
@@ -192,7 +192,7 @@
         _ = await dialog5.ShowAsync();
     }
 
-    BMdcPlus.ConfirmationDialog dialog6;
+    MTConfirmationDialog dialog6;
     DateTime date6 = DateTime.Today;
 
     async Task ShowDialog6()

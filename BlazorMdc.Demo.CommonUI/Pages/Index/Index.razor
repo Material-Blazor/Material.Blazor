@@ -1,6 +1,6 @@
 ﻿@namespace BlazorMdc.Demo
 
-@inject IAnimatedNavigationManager AnimatedNavigationManager
+@inject IMTAnimatedNavigationManager AnimatedNavigationManager
 @inject DemoConfiguration DemoConfiguration
 
 @page "/"
@@ -15,11 +15,11 @@
 
 <h5 class="mdc-typography--headline5">Top App Bar</h5>
 
-<BMdcPlus.RadioButtonGroup @bind-Value="@DemoConfiguration.TopAppBarType" Items="@appBarTypes" />
+<MTRadioButtonGroup @bind-Value="@DemoConfiguration.TopAppBarType" Items="@appBarTypes" />
 
 <h5 class="mdc-typography--headline5">Animated Navigation</h5>
 
-<p><BMdc.Checkbox @bind-Value="@AnimatedNavigationManager.Configuration.ApplyAnimation" Label="Apply animiations to page navigation" /></p>
+<p><MTCheckbox @bind-Value="@AnimatedNavigationManager.Configuration.ApplyAnimation" Label="Apply animiations to page navigation" /></p>
 
 
 <p style="margin-top: 80rem;">&nbsp;</p>
@@ -27,8 +27,8 @@
 
 @code {
     
-    IEnumerable<ListElement<ETopAppBarType>> appBarTypes => from c in (ETopAppBarType[])Enum.GetValues(typeof(ETopAppBarType))
-                                                                 select new ListElement<ETopAppBarType>
+    IEnumerable<MTListElement<MTTopAppBarType>> appBarTypes => from c in (MTTopAppBarType[])Enum.GetValues(typeof(MTTopAppBarType))
+                                                                 select new MTListElement<MTTopAppBarType>
                                                                  {
                                                                      SelectedValue = c,
                                                                      Label = c.ToString(),

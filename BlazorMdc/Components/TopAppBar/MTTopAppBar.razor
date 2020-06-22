@@ -1,0 +1,22 @@
+﻿@namespace BlazorMdc
+@inherits ComponentFoundation
+
+
+<header @ref="HeaderElem"
+        id="app-bar"
+        @attributes="AttributesToSplat(SplatType.ExcludeEvents)">
+
+    <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+            <MTIconButton Class="mdc-top-app-bar__action-item--unbounded"
+                          Icon="@NavIcon"
+                          IconFoundry="@IconFoundry"
+                          @attributes="@AttributesToSplat(SplatType.EventsOnly)" />
+
+            <span class="mdc-top-app-bar__title">@Title</span>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" style="padding-right: 20px;">
+            @ChildContent
+        </section>
+    </div>
+</header>

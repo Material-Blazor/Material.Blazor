@@ -9,27 +9,55 @@
 <p>See <code>NumericFieldSample.razor</code> for sources.</p>
 
 <p style="margin-top: 3rem;">A double</p>
-<p><BMdcPlus.NumericDoubleField Label="Double 2dp" @bind-Value="@currentDouble" NumericFormat="N2" DecimalPlaces="2" TextInputStyle="ETextInputStyle.Outlined" Disabled="@DisableComponents" /></p>
+<p><MTNumericDoubleField Label="Double 2dp"
+                         @bind-Value="@currentDouble"
+                         NumericFormat="N2" DecimalPlaces="2"
+                         TextInputStyle="MTTextInputStyle.Outlined"
+                         Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@currentDouble'</strong></p>
 
 <p style="margin-top: 3rem;">A money formatted double</p>
-<p><BMdcPlus.NumericDoubleField Label="Money" @bind-Value="@currentMoney" NumericFormat="C2" DecimalPlaces="2" TextInputStyle="ETextInputStyle.Outlined" Disabled="@DisableComponents" /></p>
+<p><MTNumericDoubleField Label="Money"
+                         @bind-Value="@currentMoney"
+                         NumericFormat="C2" DecimalPlaces="2"
+                         TextInputStyle="MTTextInputStyle.Outlined"
+                         Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@currentMoney'</strong></p>
 
 <p style="margin-top: 3rem;">An integer</p>
-<p><BMdcPlus.NumericIntField Label="Integer" @bind-Value="@currentInteger" NumericFormat="N0" TextInputStyle="ETextInputStyle.Outlined" Disabled="@DisableComponents" /></p>
+<p><MTNumericIntField Label="Integer"
+                      @bind-Value="@currentInteger"
+                      NumericFormat="N0"
+                      TextInputStyle="MTTextInputStyle.Outlined"
+                      Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@currentInteger'</strong></p>
 
 <p style="margin-top: 3rem;">A percentage</p>
-<p><BMdcPlus.NumericDoubleField Label="Percent" @bind-Value="@currentPercent" NumericFormat="P2" DecimalPlaces="2" TextInputStyle="ETextInputStyle.Outlined" Magnitude="ENumericInputMagnitude.Percent" Disabled="@DisableComponents" /></p>
+<p><MTNumericDoubleField Label="Percent"
+                         @bind-Value="@currentPercent"
+                         NumericFormat="P2"
+                         DecimalPlaces="2"
+                         TextInputStyle="MTTextInputStyle.Outlined"
+                         Magnitude="MTNumericInputMagnitude.Percent"
+                         Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@currentPercent'</strong></p>
 
 <p style="margin-top: 3rem;">Basis points (not working yet)</p>
-<p><BMdcPlus.NumericDoubleField Label="Basis Points" @bind-Value="@CurrentBasisPoints" NumericFormat="#,### bp;-#,### bp" TextInputStyle="ETextInputStyle.Outlined" Magnitude="ENumericInputMagnitude.BasisPoints" Disabled="@DisableComponents" /></p>
+<p><MTNumericDoubleField Label="Basis Points"
+                         @bind-Value="@CurrentBasisPoints"
+                         NumericFormat="#,### bp;-#,### bp"
+                         TextInputStyle="MTTextInputStyle.Outlined"
+                         Magnitude="MTNumericInputMagnitude.BasisPoints"
+                         Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@CurrentBasisPoints / @CurrentBasisPoints.ToString("#,##0 bp")'</strong> - need to work on how to format basis points</p>
 
 <p style="margin-top: 3rem;">Field showing different format for singular values ('month' versus 'months')</p>
-<p><BMdcPlus.NumericIntField Label="Months" @bind-Value="@currentMonths" NumericFormat="#,##0 months;-#,##0 months" NumericSingularFormat="#,##0 month;-#,##0 month" TextInputStyle="ETextInputStyle.Outlined" Disabled="@DisableComponents" /></p>
+<p><MTNumericIntField Label="Months"
+                      @bind-Value="@currentMonths"
+                      NumericFormat="#,##0 months;-#,##0 months"
+                      NumericSingularFormat="#,##0 month;-#,##0 month"
+                      TextInputStyle="MTTextInputStyle.Outlined"
+                      Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@currentMonths'</strong></p>
 
 

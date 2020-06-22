@@ -1,4 +1,4 @@
-using BMdcModel;
+using BlazorMdc;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,7 +25,7 @@ namespace BlazorMdc.Demo.WebServer
             services.AddServerSideBlazor();
 
             // The configuration is optional
-            services.AddToastService(new ToastServiceConfiguration()
+            services.AddMTToastService(new MTToastServiceConfiguration()
             {
                 InfoDefaultHeading = "Info",
                 SuccessDefaultHeading = "Success",
@@ -36,7 +36,7 @@ namespace BlazorMdc.Demo.WebServer
             });
 
             // The configuration is optional
-            services.AddAnimatedNavigationManager(new AnimatedNaviationManagerConfiguration()
+            services.AddMTAnimatedNavigationManager(new MTAnimatedNaviationManagerConfiguration()
             {
                 ApplyAnimation = true,
                 AnimationTime = 300
