@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BlazorMdc
@@ -66,7 +67,7 @@ namespace BlazorMdc
 
 
         private ElementReference DialogElem { get; set; }
-        private System.Collections.Generic.List<IMTDialogChild> LayoutChildren { get; set; } = new System.Collections.Generic.List<IMTDialogChild>();
+        private List<IMTDialogChild> LayoutChildren { get; set; } = new List<IMTDialogChild>();
         private DotNetObjectReference<MTDialog> ObjectReference { get; set; }
         private string OverflowClass => OverflowVisible ? "bmdc-dialog-overflow-visible" : "";
 
@@ -195,6 +196,8 @@ namespace BlazorMdc
                 {
                     child.RequestInstantiation();
                 }
+
+                LayoutChildren.Clear();
 
                 _hasInstantiated = true;
 
