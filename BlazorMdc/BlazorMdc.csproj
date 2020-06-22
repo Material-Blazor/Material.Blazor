@@ -10,7 +10,7 @@
     <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <Authors />
     <Company>Dioptra</Company>
-    <Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io. This should be one of the last pre-release versions containing significant API changes as we approach full release of version 1.0.0 in the coming weeks.</Description>
+    <Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io. This version has a substantial API change whereby we have removed the "Mdc" and "PMdc" prefixes and replaced both with an "MT" prefix. We expect the API to be largely stable from now on. This is one of the last pre-release versions as we approach full release of version 1.0.0 in the coming weeks. Outstanding work is now focussed towards bug fixes/stability/quality, inline documentation exposed as a WIKI and automated build processes.</Description>
     <RepositoryUrl>https://github.com/BlazorMdc/BlazorMdc</RepositoryUrl>
   </PropertyGroup>
 
