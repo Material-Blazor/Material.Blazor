@@ -198,6 +198,7 @@ namespace BlazorMdc
                 }
 
                 LayoutChildren.Clear();
+
                 _hasInstantiated = true;
 
                 StateHasChanged();
