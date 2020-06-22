@@ -45,10 +45,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BuildWebCompiler" Version="1.12.405" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\BlazorMdc\BlazorMdc.csproj" />
   </ItemGroup>
 
