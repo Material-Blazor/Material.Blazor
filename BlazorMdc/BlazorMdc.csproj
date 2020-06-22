@@ -48,41 +48,23 @@
 			<PackagePath></PackagePath>
 		</None>
 		<None Include="bundleconfig.json" />
-		<None Include="wwwroot\Material-Components-Web\dist\material-components-icons.min.css" />
-		<None Include="wwwroot\Material-Components-Web\dist\material-components-web.min.css" />
-		<None Include="wwwroot\Material-Components-Web\dist\material-components-web.min.js" />
 	</ItemGroup>
 
-	<Target Name="RestoreDotnetTools" BeforeTargets="CompileCss">
+
+	<ItemGroup>
+	  <Folder Include="wwwroot\Material-Components-Web\dist\" />
+	</ItemGroup>
+
+	<Target Name="RestoreDotnetTools" BeforeTargets="BeforeBuild">
 		<Exec Command="dotnet tool restore" />
 	</Target>
 
-	<Target Name="CompileCss" BeforeTargets="BeforeBuild">
+	<Target Name="CompileCss" BeforeTargets="RestoreDotnetTools">
 		<Exec Command="dotnet tool run webcompiler Styles/BlazorMdc.scss -z disable" />
 	</Target>
 
-	<Target Name="CompileJs" BeforeTargets="CompileCss">
-		<Exec Command="dotnet tool run webcompiler Scripts/BlazorMdc.js -z disable" />
-	</Target>
-
-	<Target Name="CopyContentFiles" AfterTargets="CompileCss">
-
-		<ItemGroup>
-			<CssSourceFiles Include="Styles/*.css" />
-		</ItemGroup>
-
-		<Copy SourceFiles="@(CssSourceFiles)" DestinationFolder="wwwroot" />
-
-		<Delete Files="@(CssSourceFiles)" />
-
-		<ItemGroup>
-			<JsSourceFiles Include="Scripts/*.min.js" />
-		</ItemGroup>
-
-		<Copy SourceFiles="@(JsSourceFiles)" DestinationFolder="wwwroot" />
-
-		<Delete Files="@(JsSourceFiles)" />
-
+	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+		<Exec Command="dotnet tool restore&#xD;&#xA;dotnet tool run webcompiler Styles/BlazorMdc.scss -z disable&#xD;&#xA;dotnet tool run webcompiler Scripts/BlazorMdc.js -z disable&#xD;&#xA;xcopy .\styles\*.css wwwroot&#xD;&#xA;del .\styles\*.css&#xD;&#xA;xcopy .\scripts\*.js wwwroot&#xD;&#xA;del .\scripts\*.min.js" />
 	</Target>
 
 </Project>
