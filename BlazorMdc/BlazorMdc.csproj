@@ -7,11 +7,12 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<VersionPrefix>0.33.0</VersionPrefix>
 		<VersionSuffix></VersionSuffix>
-		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-		<Authors />
-		<Company>Dioptra</Company>
+		<PackageLicenseFile></PackageLicenseFile>
+		<Authors>BlazorMdc Authors</Authors>
+		<Company>BlazorMdc</Company>
 		<Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io. This version has a substantial API change whereby we have removed the "Mdc" and "PMdc" prefixes and replaced both with an "MT" prefix. We expect the API to be largely stable from now on. This is one of the last pre-release versions as we approach full release of version 1.0.0 in the coming weeks. Outstanding work is now focussed towards bug fixes/stability/quality, inline documentation exposed as a WIKI and automated build processes.</Description>
 		<RepositoryUrl>https://github.com/BlazorMdc/BlazorMdc</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_WebAssembly|AnyCPU'">
@@ -43,10 +44,6 @@
 
 
 	<ItemGroup>
-		<None Include="..\LICENSE.md">
-			<Pack>True</Pack>
-			<PackagePath></PackagePath>
-		</None>
 		<None Include="bundleconfig.json" />
 	</ItemGroup>
 
