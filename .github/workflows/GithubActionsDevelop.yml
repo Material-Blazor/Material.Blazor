@@ -31,7 +31,10 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.301
-      
+        source-url: https://nuget.pkg.github.com/BlazorMdc/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}      
+
     - name: Display CI suffix
       run: echo ${env:ciSuffix}
 
