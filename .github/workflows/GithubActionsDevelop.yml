@@ -1,0 +1,52 @@
+name: GithubActionsDevelop
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the develop branch
+on:
+  push:
+    branches: [ develop ]
+
+  pull_request:
+    branches: [ develop ]
+
+env:
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Debug_Server'
+  ciSuffix: CI.${{ github.run_number }}
+  output: ${{ github.workspace }}\package
+  project: 'BlazorMdc\BlazorMdc.csproj'
+
+jobs:
+
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it
+      uses: actions/checkout@v2
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.301
+      
+    - name: Display CI suffix
+      run: echo ${env:ciSuffix}
+
+    - name: Build
+      run: dotnet build --configuration ${env:buildConfiguration} ${env:project}
+
+    - name: Generate NuGet package
+      run: dotnet pack --configuration ${env:buildConfiguration} --no-build --output ${env:output} --version-suffix ${env:ciSuffix} ${env:project}
+
+    - name: Display package output
+      run: dir ${env:output}
+
+    - name: Display obfuscated secret
+      run: echo "The NuGet API key is:" ${{ secrets.NUGET_API_KEY }}
+
+    - name: Upload Package
+      run: dotnet nuget push ${env:output}\*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+      if: github.repository == 'BlazorMdc/BlazorMdc' && github.event_name == 'push'
