@@ -44,9 +44,6 @@ jobs:
     - name: Display package output
       run: dir ${env:output}
 
-    - name: Display obfuscated secret
-      run: echo "The NuGet API key is:" ${{ secrets.NUGET_API_KEY }}
-
     - name: Upload Package
-      run: dotnet nuget push ${env:output}\*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push ${env:output}\*.nupkg -s "github"
       if: github.repository == 'BlazorMdc/BlazorMdc' && github.event_name == 'push'

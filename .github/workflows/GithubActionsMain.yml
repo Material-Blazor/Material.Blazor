@@ -12,7 +12,6 @@ on:
 env:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release_Server'
-  ciSuffix: CI.${{ github.run_number }}
   output: ${{ github.workspace }}\package
   project: 'BlazorMdc\BlazorMdc.csproj'
 
@@ -32,14 +31,11 @@ jobs:
       with:
         dotnet-version: 3.1.301
       
-    - name: Display CI suffix
-      run: echo ${env:ciSuffix}
-
     - name: Build
       run: dotnet build --configuration ${env:buildConfiguration} ${env:project}
 
     - name: Generate NuGet package
-      run: dotnet pack --configuration ${env:buildConfiguration} --no-build --output ${env:output} --version-suffix ${env:ciSuffix} ${env:project}
+      run: dotnet pack --configuration ${env:buildConfiguration} --no-build --output ${env:output} ${env:project}
 
     - name: Display package output
       run: dir ${env:output}
