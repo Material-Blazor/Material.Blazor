@@ -48,5 +48,5 @@ jobs:
       run: dir ${env:output}
 
     - name: Upload Package
-      run: dotnet nuget push ${env:output}\*.nupkg -s https://nuget.pkg.github.com/BlazorMdc/index.json
+      run: dotnet nuget push ${env:output}\*.nupkg -k ${{secrets.GITHUB_TOKEN}} -s https://nuget.pkg.github.com/BlazorMdc/index.json
       if: github.repository == 'BlazorMdc/BlazorMdc' && github.event_name == 'push'
