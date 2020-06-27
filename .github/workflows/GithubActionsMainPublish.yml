@@ -51,6 +51,8 @@ jobs:
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it
       uses: actions/checkout@v2
+      with:
+        ref: main
 
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
