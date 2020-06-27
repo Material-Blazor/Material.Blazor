@@ -1,16 +1,12 @@
-name: GithubActionsDevelop
+name: GithubActionsMainCI
 
 on:
-  push:
-    branches: [ develop ]
-
   pull_request:
-    branches: [ develop ]
+    branches: [ main ]
 
 env:
   buildPlatform: 'Any CPU'
-  buildConfiguration: 'Debug_Server'
-  ciSuffix: CI.${{ github.run_number }}
+  buildConfiguration: 'Release_Server'
   output: ${{ github.workspace }}\package
   project: 'BlazorMdc\BlazorMdc.csproj'
 
@@ -57,22 +53,13 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.301
-        source-url: https://nuget.pkg.github.com/BlazorMdc/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}      
-
-    - name: Display CI suffix
-      run: echo ${env:ciSuffix}
-
+      
     - name: Build
       run: dotnet build --configuration ${env:buildConfiguration} ${env:project}
 
     - name: Generate NuGet package
-      run: dotnet pack --configuration ${env:buildConfiguration} --no-build --output ${env:output} --version-suffix ${env:ciSuffix} ${env:project}
+      run: dotnet pack --configuration ${env:buildConfiguration} --no-build --output ${env:output} ${env:project}
 
     - name: Display package output
       run: dir ${env:output}
 
-    - name: Upload Package
-      run: dotnet nuget push ${env:output}\*.nupkg -k ${{secrets.GITHUB_TOKEN}} -s https://nuget.pkg.github.com/BlazorMdc/index.json
-      if: github.repository == 'BlazorMdc/BlazorMdc' && github.event_name == 'push'
