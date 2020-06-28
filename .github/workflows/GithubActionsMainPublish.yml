@@ -1,4 +1,3 @@
-# Simon
 name: GithubActionsMainPublish
 
 on:
@@ -17,6 +16,10 @@ env:
 jobs:
 
   build:
+
+    runs-on: windows-latest
+
+    steps:
 
     - name: Get the branch
       id: get_branch
@@ -46,10 +49,6 @@ jobs:
       if: contains(github.ref, 'refs/tag')
 
 
-    runs-on: windows-latest
-
-    steps:
-
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it
       uses: actions/checkout@v2
       with:
@@ -70,10 +69,10 @@ jobs:
       run: dir ${env:output}
 
     - name: Display obfuscated secret
-      run: echo "The NuGet token is:" ${{ secrets.NUGET_TOKEN }}
+      run: echo "The NuGet token is:" ${{ secrets.NUGET_API_KEY }}
 
     - name: Upload Package
-      run: dotnet nuget push ${env:output}\*.nupkg -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push ${env:output}\*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
       if: github.repository == 'BlazorMdc/BlazorMdc' && github.event_name == 'push'
 
       # get_branch is used to get the entire tag
