@@ -64,7 +64,7 @@ namespace BlazorMdc.Internal
 
 
 #nullable enable annotations
-        public IconFA(MTCascadingDefaults cascadingDefaults, string iconName, MTIconFoundryFA? foundry = null)
+        public IconFA(MTCascadingDefaults cascadingDefaults, string iconName, IconFoundryFA? foundry = null)
         {
             IconName = iconName;
             Style = cascadingDefaults.AppliedIconFAStyle(foundry?.Style);

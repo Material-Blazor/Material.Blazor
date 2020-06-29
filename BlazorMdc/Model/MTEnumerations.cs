@@ -103,7 +103,7 @@
 
     /// <summary>
     /// Sets the Font Awesome style.
-    /// <para>See <see cref="MTIconHelper.FAFoundry(MTIconFAStyle?, MTIconFARelativeSize?)"/>, <seealso cref="MTIconFA"/> and <seealso cref="MTIconFoundryFA"/></para>
+    /// <para>See <see cref="MTIconHelper.FAFoundry(MTIconFAStyle?, MTIconFARelativeSize?)"/>, <seealso cref="MTIconFA"/> and <seealso cref="IconFoundryFA"/></para>
     /// <para><see cref="MTCascadingDefaults"/> has a default of <see cref="Solid"/> (all other styles except <see cref="Brands"/> require a paid-for Font Awesome PRO licence)</para>
     /// </summary>
     public enum MTIconFAStyle 
@@ -138,7 +138,7 @@
 
     /// <summary>
     /// Sets the Font Awesome relative size.
-    /// <para>See <see cref="MTIconHelper.FAFoundry(MTIconFAStyle?, MTIconFARelativeSize?)"/>, <seealso cref="MTIconFA"/> and <seealso cref="MTIconFoundryFA"/></para>
+    /// <para>See <see cref="MTIconHelper.FAFoundry(MTIconFAStyle?, MTIconFARelativeSize?)"/>, <seealso cref="MTIconFA"/> and <seealso cref="IconFoundryFA"/></para>
     /// <para><see cref="MTCascadingDefaults"/> has a default of <see cref="Regular"/></para>
     /// </summary>
     public enum MTIconFARelativeSize 

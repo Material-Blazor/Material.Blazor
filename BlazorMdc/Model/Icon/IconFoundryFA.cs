@@ -3,7 +3,7 @@
     /// <summary>
     /// Font Awesome foundry details.
     /// </summary>
-    public class MTIconFoundryFA : IMTIconFoundry
+    internal class IconFoundryFA : IMTIconFoundry
     {
         /// <inheritdoc/>
         MTIconFoundryName IMTIconFoundry.FoundryName => MTIconFoundryName.FontAwesome;
@@ -21,7 +21,7 @@
         public MTIconFARelativeSize? RelativeSize { get; }
 
 
-        public MTIconFoundryFA(MTIconFAStyle? style = null, MTIconFARelativeSize? relativesize = null)
+        public IconFoundryFA(MTIconFAStyle? style = null, MTIconFARelativeSize? relativesize = null)
         {
             Style = style;
             RelativeSize = relativesize;
