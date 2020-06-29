@@ -68,7 +68,7 @@ jobs:
       run: dotnet build --configuration ${env:buildConfiguration} ${env:project}
 
     - name: Generate NuGet package
-      run: dotnet pack --configuration ${env:buildConfiguration} --no-build --output ${env:output} --version-suffix ${env:ciSuffix} ${env:project}
+      run: dotnet pack --configuration ${env:buildConfiguration} --no-build --output ${env:output} --include-symbols --version-suffix ${env:ciSuffix} ${env:project}
 
     - name: Display package output
       run: dir ${env:output}

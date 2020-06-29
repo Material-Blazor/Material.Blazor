@@ -2,10 +2,8 @@ name: GithubActionsMainPublish
 
 on:
   push:
-    branches: [ main ]
-
-  pull_request:
-    branches: [ main ]
+    tags:
+      - '*' # Push events to matching *, i.e. 1.0, 20.15.10
 
 env:
   buildPlatform: 'Any CPU'
@@ -63,7 +61,7 @@ jobs:
       run: dotnet build --configuration ${env:buildConfiguration} ${env:project}
 
     - name: Generate NuGet package
-      run: dotnet pack --configuration ${env:buildConfiguration} --no-build --output ${env:output} -p:PackageVersion=${{steps.get_tag.outputs.tag}} ${env:project}
+      run: dotnet pack --configuration ${env:buildConfiguration} --no-build --output ${env:output} --include-symbols -p:PackageVersion=${{steps.get_tag.outputs.tag}} ${env:project}
 
     - name: Display package output
       run: dir ${env:output}
