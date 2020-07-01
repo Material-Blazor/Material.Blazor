@@ -3,7 +3,7 @@
 ************************************************/
 .bmdc-dp-menu__surface-adjust {
     overflow: visible !important;
-    display: inline-block;
+    //display: inline-block;
     pointer-events: none;
 }
 
@@ -46,6 +46,14 @@ $dp-year-pad-clear-space-right: 20px;
 
 $dp-day-button-width: $dp-button-height;
 $dp-year-button-width: ($dp-panel-width - $dp-year-pad-padding-left - $dp-year-pad-clear-space-right) / 4 - 2 * $dp-button-margin;
+
+
+/*
+    Select Anchor
+*/
+.bmdc-dp__anchor {
+    width: $dp-panel-width;
+}
 
 
 /*
