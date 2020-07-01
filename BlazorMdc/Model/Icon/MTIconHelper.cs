@@ -47,7 +47,7 @@ namespace BlazorMdc
         /// <param name="style">Optional <see cref="MTIconFAStyle"/> specifying the Font Awesome style.</param>
         /// <param name="relativeSize">Optional <see cref="MTIconFARelativeSize"/> specifying the Font Awesome relative size.</param>
         /// <returns><see cref="IMTIconFoundry"/> to be passed to a BlazorMdc component.</returns>
-        public static IMTIconFoundry FAFoundry(MTIconFAStyle? style = null, MTIconFARelativeSize? relativeSize = null) => new MTIconFoundryFA(style, relativeSize);
+        public static IMTIconFoundry FAFoundry(MTIconFAStyle? style = null, MTIconFARelativeSize? relativeSize = null) => new IconFoundryFA(style, relativeSize);
 
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace BlazorMdc
             UnderlyingIcon = iconFoundry switch
             {
                 MTIconFoundryName.MaterialIcons => new IconMI(cascadingDefaults, iconName, (IconFoundryMI?)foundry),
-                MTIconFoundryName.FontAwesome => new IconFA(cascadingDefaults, iconName, (MTIconFoundryFA?)foundry),
+                MTIconFoundryName.FontAwesome => new IconFA(cascadingDefaults, iconName, (IconFoundryFA?)foundry),
                 MTIconFoundryName.OpenIconic => new IconOI(cascadingDefaults, iconName, (IconFoundryOI?)foundry),
                 _ => throw new NotImplementedException(),
             };

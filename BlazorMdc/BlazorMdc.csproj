@@ -4,14 +4,15 @@
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<RazorLangVersion>3.0</RazorLangVersion>
 		<Configurations>Debug_WebAssembly;Debug_Server;Release_WebAssembly;Release_Server</Configurations>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<VersionPrefix>0.32.0</VersionPrefix>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<VersionPrefix>0.33.0</VersionPrefix>
 		<VersionSuffix></VersionSuffix>
-		<PackageLicenseFile>LICENSE.md</PackageLicenseFile>
-		<Authors />
-		<Company>Dioptra</Company>
+		<PackageLicenseFile></PackageLicenseFile>
+		<Authors>BlazorMdc Authors</Authors>
+		<Company>BlazorMdc</Company>
 		<Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io. This version has a substantial API change whereby we have removed the "Mdc" and "PMdc" prefixes and replaced both with an "MT" prefix. We expect the API to be largely stable from now on. This is one of the last pre-release versions as we approach full release of version 1.0.0 in the coming weeks. Outstanding work is now focussed towards bug fixes/stability/quality, inline documentation exposed as a WIKI and automated build processes.</Description>
 		<RepositoryUrl>https://github.com/BlazorMdc/BlazorMdc</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_WebAssembly|AnyCPU'">
@@ -34,6 +35,14 @@
 		<Content Remove="bundleconfig.json" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Remove="NuGet.config.sav" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="NuGet.config.sav" />
+	</ItemGroup>
+
 
 	<ItemGroup>
 		<PackageReference Include="BuildBundlerMinifier" Version="3.2.447" />
@@ -43,10 +52,6 @@
 
 
 	<ItemGroup>
-		<None Include="..\LICENSE.md">
-			<Pack>True</Pack>
-			<PackagePath></PackagePath>
-		</None>
 		<None Include="bundleconfig.json" />
 	</ItemGroup>
 
