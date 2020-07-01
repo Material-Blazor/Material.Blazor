@@ -9,8 +9,8 @@
 <p><MTTextField @bind-Value="@tabLabel1" Label="2nd Tab" /></p>
 
 <MTTabBar @bind-TabIndex="@tabIndex"
-           Items="@tabLabels"
-           Context="item">
+          Items="@tabLabels"
+          Context="item">
     <Icon>
         @{ var name = "fa-" + item; }
         <MTIcon IconName="@name" TabBar="true" IconFoundry="MTIconHelper.FAFoundry()" />
@@ -32,11 +32,11 @@
 
 
 <MTSlidingTabBar @key="@stacked"
-                       @ref="slidingTabBar"
-                       Items="@slidingTabItems"
-                       Context="item"
-                       @bind-TabIndex="@slidingTabIndex"
-                       StackIcons="@stacked">
+                 @ref="slidingTabBar"
+                 Items="@slidingTabItems"
+                 Context="item"
+                 @bind-TabIndex="@slidingTabIndex"
+                 StackIcons="@stacked">
 
     <Label>@item.IconName</Label>
     <Icon><MTIcon IconName="@item.IconName" TabBar="true" /></Icon>

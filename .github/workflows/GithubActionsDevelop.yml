@@ -57,22 +57,26 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.301
-        source-url: https://nuget.pkg.github.com/BlazorMdc/index.json
+        source-url: https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}      
+        NUGET_AUTH_TOKEN: '%NUGET_AUTH_TOKEN%'
 
     - name: Display CI suffix
       run: echo ${env:ciSuffix}
 
     - name: Build
       run: dotnet build --configuration ${env:buildConfiguration} ${env:project}
+      env:
+        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
     - name: Generate NuGet package
-      run: dotnet pack --configuration ${env:buildConfiguration} --no-build --output ${env:output} --version-suffix ${env:ciSuffix} ${env:project}
+      run: dotnet pack --configuration ${env:buildConfiguration} --no-build --output ${env:output} --include-symbols --version-suffix ${env:ciSuffix} ${env:project}
 
     - name: Display package output
       run: dir ${env:output}
 
     - name: Upload Package
-      run: dotnet nuget push ${env:output}\*.nupkg -k ${{secrets.GITHUB_TOKEN}} -s https://nuget.pkg.github.com/BlazorMdc/index.json
+      run: dotnet nuget push ${env:output}\*.nupkg -s https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      env:
+        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       if: github.repository == 'BlazorMdc/BlazorMdc' && github.event_name == 'push'
