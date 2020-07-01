@@ -89,7 +89,7 @@ window.BlazorMdc = {
 
     datePicker: {
         init: function (elem) {
-            mdc.select.MDCSelect.attachTo(elem);
+            elem._select = mdc.select.MDCSelect.attachTo(elem);
         },
 
         listItemClick: function (elem, elemText) {
@@ -100,6 +100,7 @@ window.BlazorMdc = {
         scrollToYear: function (id) {
             // Presently disabled because of undesirable overscroll-behaviour
             //var element = document.getElementById(id);
+            //element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
             //element.scrollIntoView();
         }
     },
