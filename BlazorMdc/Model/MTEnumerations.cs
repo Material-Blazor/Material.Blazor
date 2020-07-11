@@ -378,12 +378,7 @@
         /// <summary>
         /// The outlined style.
         /// </summary>
-        Outlined,
-
-        /// <summary>
-        /// The full width style (pending in Material Web Components 6.0.0 for <see cref="MdcTextArea"/>).
-        /// </summary>
-        FullWidth
+        Outlined
     }
 
 

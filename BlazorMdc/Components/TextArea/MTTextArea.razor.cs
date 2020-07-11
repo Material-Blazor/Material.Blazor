@@ -66,10 +66,15 @@ namespace BlazorMdc
             ClassMapper
                 .Add("mdc-text-field mdc-text-field--textarea")
                 .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
+                .AddIf("mdc-text-field--filled", () => AppliedTextInputStyle == MTTextInputStyle.Filled)
                 .AddIf("mdc-text-field--outlined", () => AppliedTextInputStyle == MTTextInputStyle.Outlined)
-                .AddIf("mdc-text-field--fullwidth", () => (AppliedTextInputStyle == MTTextInputStyle.FullWidth))
                 .AddIf("mdc-text-field--no-label", () => NoLabel)
                 .AddIf("mdc-text-field--disabled", () => Disabled);
+
+            if (!string.IsNullOrWhiteSpace(Label))
+            {
+                ComponentPureHtmlAttributes.Add("aria-label", Label);
+            }
 
             FloatingLabelClass = string.IsNullOrEmpty(ReportingValue) ? "" : "mdc-floating-label--float-above";
 

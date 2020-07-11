@@ -18,7 +18,7 @@
                  @onfocusout="@OnTextFocusOutAsync"
                  @attributes="@AttributesToSplat()" />
 
-    <div class="mdc-select" style="height: 0;">
+    <div class="mdc-select mdc-select--filled" style="height: 0;">
         <div class="mdc-select__anchor"
              role="button"
              aria-disabled="@Disabled"
@@ -27,7 +27,7 @@
         </div>
 
         <div @ref="@MenuReference"
-             class="mdc-select__menu mdc-menu mdc-menu-surface"
+             class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth"
              style="visibility:visible; min-height:1rem; min-width: 20rem;"
              @onfocusin="OnMenuFocusIn"
              @onfocusout="OnMenuFocusOut"
@@ -65,10 +65,8 @@
                         role="option"
                         tabindex="0"
                         @onclick="@(() => OnItemClickAsync(clickItem))">
-
-                        <span class="mdc-list-item__text bmdc-full-width">
-                            @item
-                        </span>
+                        <span class="mdc-list-item__ripple"></span>
+                        <span class="mdc-list-item__text bmdc-full-width">@item</span>
                     </li>
                 }
             </ul>

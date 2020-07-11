@@ -9,36 +9,56 @@
     <div class="mdc-select__anchor"
          role="button"
          aria-disabled="@Disabled"
-         aria-haspopup="@ListboxReference"
-         aria-labelledby="@LabelId @SelectedTextId">
+         aria-haspopup="@listboxId"
+         aria-labelledby="@labelId @selectedTextId">
 
         @if (AppliedInputStyle == MTSelectInputStyle.Filled)
         {
             <span class="mdc-select__ripple"></span>
         }
 
-        <input id="@SelectedTextId" type="text" disabled readonly class="mdc-select__selected-text @AlignClass">
-        <i class="mdc-select__dropdown-icon"></i>
+        <span id="@selectedTextId" class="mdc-select__selected-text" aria-disabled="@Disabled"></span>
+        <span class="mdc-select__dropdown-icon">
+            <svg class="mdc-select__dropdown-icon-graphic"
+                 viewBox="7 10 10 5">
+                <polygon class="mdc-select__dropdown-icon-inactive"
+                         stroke="none"
+                         fill-rule="evenodd"
+                         points="7 10 12 15 17 10">
+                </polygon>
+                <polygon class="mdc-select__dropdown-icon-active"
+                         stroke="none"
+                         fill-rule="evenodd"
+                         points="7 15 12 10 17 15">
+                </polygon>
+            </svg>
+        </span>
 
         @if (AppliedInputStyle == MTSelectInputStyle.Outlined)
         {
             <span class="mdc-notched-outline">
                 <span class="mdc-notched-outline__leading"></span>
-                <span class="mdc-notched-outline__notch">
-                    <span id="@LabelId" class="mdc-floating-label @FloatingLabelClass">@Label</span>
-                </span>
+                @if (!NoLabel)
+                { 
+                    <span class="mdc-notched-outline__notch">
+                        <span id="@labelId" class="mdc-floating-label @FloatingLabelClass">@Label</span>
+                    </span>
+                }
                 <span class="mdc-notched-outline__trailing"></span>
             </span>
         }
         else
         {
-            <span id="@LabelId" class="mdc-floating-label @FloatingLabelClass">@Label</span>
+            if (!NoLabel)
+            {
+                <span id="@labelId" class="mdc-floating-label @FloatingLabelClass">@Label</span>
+            }
             <div class="mdc-line-ripple"></div>
         }
     </div>
 
-    <div @ref="@ListboxReference" 
-         class="mdc-select__menu mdc-menu mdc-menu-surface">
+    <div id="@listboxId" 
+         class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
 
         <ul class="mdc-list">
 
@@ -55,10 +75,8 @@
                     aria-disabled="@item.Disabled"
                     role="option"
                     @onclick=@(_ => OnItemClickAsync(clickItem))>
-
-                    <span class="mdc-list-item__text bmdc-full-width">
-                        @item.Label
-                    </span>
+                    <span class="mdc-list-item__ripple"></span>
+                    <span class="mdc-list-item__text bmdc-full-width">@item.Label</span>
                 </li>
             }
         </ul>

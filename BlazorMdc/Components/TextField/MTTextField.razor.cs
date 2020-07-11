@@ -82,17 +82,12 @@ namespace BlazorMdc
                 .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
                 .AddIf("mdc-text-field--filled", () => AppliedTextInputStyle == MTTextInputStyle.Filled)
                 .AddIf("mdc-text-field--outlined", () => AppliedTextInputStyle == MTTextInputStyle.Outlined)
-                .AddIf("mdc-text-field--filled mdc-text-field--fullwidth", () => AppliedTextInputStyle == MTTextInputStyle.FullWidth)
                 .AddIf("mdc-text-field--no-label", () => NoLabel)
                 .AddIf("mdc-text-field--disabled", () => Disabled)
                 .AddIf("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
                 .AddIf("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
 
-            if (!NoLabel && AppliedTextInputStyle != MTTextInputStyle.FullWidth)
-            {
-                ComponentPureHtmlAttributes.Add("aria-labelledby", labelId);
-            }
-            else if (!string.IsNullOrWhiteSpace(Label))
+            if (!string.IsNullOrWhiteSpace(Label))
             {
                 ComponentPureHtmlAttributes.Add("aria-label", Label);
             }

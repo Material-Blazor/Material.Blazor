@@ -13,12 +13,6 @@ namespace BlazorMdc
     /// to another value and your whole application within the cascading value will change appearance. You can of course
     /// nest cascading values in the normal manner.
     /// </remarks>
-    ///// <example>
-    ///// <code>
-    ///// '<'CascadingValue Value="defaults1"'>'
-    ///// '<'/CascadingValue'>'
-    ///// </code>
-    ///// </example>
     public class MTCascadingDefaults
     {
         /*************************************************************************************************************

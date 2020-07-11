@@ -27,6 +27,12 @@ namespace BlazorMdc
 
 
         /// <summary>
+        /// Hides the label if True. Defaults to False.
+        /// </summary>
+        [Parameter] public bool NoLabel { get; set; } = false;
+
+
+        /// <summary>
         /// Date selection criteria
         /// </summary>
         [Parameter] public MTDateSelectionCriteria? DateSelectionCriteria { get; set; }
@@ -60,7 +66,12 @@ namespace BlazorMdc
 
 
         private readonly string key = Utilities.GenerateUniqueElementName();
+
         private readonly string labelId = Utilities.GenerateUniqueElementName();
+
+        private readonly string listboxId = Utilities.GenerateUniqueElementName();
+
+        private readonly string selectedTextId = Utilities.GenerateUniqueElementName();
 
 
         /// <inheritdoc/>
@@ -70,7 +81,9 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-select")
+                .AddIf("mdc-select--filled", () => AppliedInputStyle == MTSelectInputStyle.Filled)
                 .AddIf("mdc-select--outlined", () => AppliedInputStyle == MTSelectInputStyle.Outlined)
+                .AddIf("mdc-select--no-label", () => NoLabel)
                 .AddIf("mdc-select--disabled", () => Disabled);
 
             OnValueSet += OnValueSetCallback;

@@ -28,10 +28,6 @@
 <p><MTTextField Label="Outlined" @bind-Value="@currentValueOutlined" TextInputStyle="MTTextInputStyle.Outlined" LeadingIcon="account_balance_wallet" Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@(currentValueOutlined ?? "")'</strong></p>
 
-<p style="margin-top: 3rem;">Full Width style (floating labels diabled, adhering to MT style guidelines)</p>
-<p><MTTextField Label="Full Width" @bind-Value="@currentValueFullWidth" TextInputStyle="MTTextInputStyle.FullWidth" Disabled="@DisableComponents" /></p>
-<p>You typed: <strong>'@(currentValueFullWidth ?? "")'</strong></p>
-
 <p style="margin-top: 3rem;">Right aligned</p>
 <p><MTTextField Label="Right aligned" @bind-Value="@currentValueRight" TextInputStyle="MTTextInputStyle.Outlined" TextAlignStyle="MTTextAlignStyle.Right" Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@(currentValueRight ?? "")'</strong></p>
@@ -46,7 +42,6 @@
 
     string currentValueFilled;
     string currentValueOutlined;
-    string currentValueFullWidth;
     string currentValueRight;
     string currentValuePassword;
 }

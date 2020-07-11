@@ -14,9 +14,6 @@
 <p><MTTextArea Label="Outlined" @bind-Value="@currentValueOutlined" Rows="8" TextInputStyle="MTTextInputStyle.Outlined" Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@(currentValueOutlined ?? "")'</strong></p>
 
-<p><MTTextArea Label="Full Width" @bind-Value="@currentValueFullWidth" Rows="8" TextInputStyle="MTTextInputStyle.FullWidth" Disabled="@DisableComponents" /></p>
-<p>You typed: <strong>'@(currentValueFullWidth ?? "")'</strong></p>
-
 
 
 
@@ -25,5 +22,4 @@
 
     string currentValueFilled = "test";
     string currentValueOutlined;
-    string currentValueFullWidth;
 }
