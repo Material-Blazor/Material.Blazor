@@ -26,12 +26,10 @@
             --bmdc-toast-color-success: black !important;
             --bmdc-toast-color-warning: black !important;
             --bmdc-toast-color-error: black !important;
-
             --bmdc-toast-filter-info: initial !important;
             --bmdc-toast-filter-success: initial !important;
             --bmdc-toast-filter-warning: initial !important;
             --bmdc-toast-filter-error: initial !important;
-
             --bmdc-toast-background-color-info: var(--bmdc-color-lightblue-200) !important;
             --bmdc-toast-background-color-success: var(--bmdc-color-green-200) !important;
             --bmdc-toast-background-color-warning: var(--bmdc-color-amber-200) !important;
@@ -41,37 +39,39 @@
     </style>
 }
 
+<p><MTSelect @bind-Value="@toastService.Configuration.Position" Label="Toast Position" Items="@positionItems" /></p>
+
 <p><MTCheckbox @bind-Value="@overrideDefaults" Label="Change colors and border radius from default" /></p>
 
 <p><MTNumericIntField @bind-Value="@toastService.Configuration.MaxToastsShowing" Label="Max Toasts (0-10)" Min="0" Max="10" NumericFormat="N0" /></p>
 
 <p>
     <MTButton Style="background-color: var(--bmdc-toast-background-color-info);"
-               @onclick="@InfoClick"
-               Label="Info Toast"
-               ButtonStyle="@MTButtonStyle.ContainedRaised" />
+              @onclick="@InfoClick"
+              Label="Info Toast"
+              ButtonStyle="@MTButtonStyle.ContainedRaised" />
 
     <MTButton Style="background-color: var(--bmdc-toast-background-color-success);"
-               @onclick="@(() => toastService.ShowToast(
+              @onclick="@(() => toastService.ShowToast(
                               level: MTToastLevel.Success,
                               heading: "I'm a SUCCESS",
                               message: "Congratulations!" ))"
-               Label="Success Toast"
-               ButtonStyle="@MTButtonStyle.ContainedRaised" />
+              Label="Success Toast"
+              ButtonStyle="@MTButtonStyle.ContainedRaised" />
 
     <MTButton Style="background-color: var(--bmdc-toast-background-color-warning);"
-               @onclick="@(() => toastService.ShowToast(
+              @onclick="@(() => toastService.ShowToast(
                               level: MTToastLevel.Warning,
                               message: "I'm a WARNING" ))"
-               Label="Warning Toast"
-               ButtonStyle="@MTButtonStyle.ContainedRaised" />
+              Label="Warning Toast"
+              ButtonStyle="@MTButtonStyle.ContainedRaised" />
 
     <MTButton Style="background-color: var(--bmdc-toast-background-color-error);"
-               @onclick="@(() => toastService.ShowToast(
+              @onclick="@(() => toastService.ShowToast(
                               level: MTToastLevel.Error,
                               message: "I'm an ERROR" ))"
-               Label="Error Toast"
-               ButtonStyle="@MTButtonStyle.ContainedRaised" />
+              Label="Error Toast"
+              ButtonStyle="@MTButtonStyle.ContainedRaised" />
 </p>
 
 <p>Try different configuration options</p>
@@ -85,8 +85,8 @@
 <p><MTSelect Label="Timeout" @bind-Value="@timeout" Items="timeoutItems" ItemValidation="@MTItemValidation.DefaultToFirst"></MTSelect></p>
 <p>
     <MTButton @onclick="@customiseClick"
-               Label="Toast with selected options"
-               ButtonStyle="@MTButtonStyle.ContainedRaised" />
+              Label="Toast with selected options"
+              ButtonStyle="@MTButtonStyle.ContainedRaised" />
 </p>
 
 
@@ -98,16 +98,16 @@
     {
         new MTListElement<string> { SelectedValue = "", Label = "Default" },
         new MTListElement<string> { SelectedValue = "my-class", Label = "Italic" },
-    };
+            };
 
 
     MTToastCloseMethod closeMethod;
     IEnumerable<MTListElement<MTToastCloseMethod>> closeMethodItems => from c in (MTToastCloseMethod[])Enum.GetValues(typeof(MTToastCloseMethod))
-                                                                    select new MTListElement<MTToastCloseMethod>
-                                                                    {
-                                                                        SelectedValue = c,
-                                                                        Label = c.ToString()
-                                                                    };
+                                                                       select new MTListElement<MTToastCloseMethod>
+                                                                       {
+                                                                           SelectedValue = c,
+                                                                           Label = c.ToString()
+                                                                       };
 
 #nullable enable annotations
     class MyIcon
@@ -128,7 +128,7 @@
         new MTListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MTIconHelper.MIFoundry(theme: MTIconMITheme.Sharp) }, Label = "thumb_up (sharp)" },
         new MTListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = MTIconHelper.FAFoundry() }, Label = "fa-ambulance" },
         new MTListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = MTIconHelper.FAFoundry(relativeSize: MTIconFARelativeSize.ExtraSmall) }, Label = "fa-ambulance (x-small)" },
-    };
+            };
 
 
     string heading;
@@ -137,16 +137,16 @@
         new MTListElement<string> { SelectedValue = "", Label = "Default" },
         new MTListElement<string> { SelectedValue = "Run of the mill heading", Label = "Run of the mill heading" },
         new MTListElement<string> { SelectedValue = "Heading truncated and truncated and truncated and truncated", Label = "Heading that will be truncated" }
-    };
+            };
 
 
     MTToastLevel level;
     IEnumerable<MTListElement<MTToastLevel>> levelItems => from c in (MTToastLevel[])Enum.GetValues(typeof(MTToastLevel))
-                                                        select new MTListElement<MTToastLevel>
-                                                        {
-                                                            SelectedValue = c,
-                                                            Label = c.ToString()
-                                                        };
+                                                           select new MTListElement<MTToastLevel>
+                                                           {
+                                                               SelectedValue = c,
+                                                               Label = c.ToString()
+                                                           };
 
     string message;
     MTListElement<string>[] messageItems = new MTListElement<string>[]
@@ -154,7 +154,7 @@
         new MTListElement<string> { SelectedValue = "Run of the mill message", Label = "Run of the mill message" },
         new MTListElement<string> { SelectedValue = "Text <strong>bold</strong> and <u>underlined</u>", Label = "Message with markup" },
         new MTListElement<string> { SelectedValue = "Message truncated and truncated and truncated and truncated", Label = "Message that will be truncated" }
-    };
+            };
 
 
     string showIcon;
@@ -163,7 +163,7 @@
         new MTListElement<string> { SelectedValue = "", Label = "Default" },
         new MTListElement<string> { SelectedValue = "true", Label = "true" },
         new MTListElement<string> { SelectedValue = "false", Label = "false" }
-    };
+            };
 
 
     string timeout;
@@ -173,7 +173,7 @@
         new MTListElement<string> { SelectedValue = "1000", Label = "1 second" },
         new MTListElement<string> { SelectedValue = "10000", Label = "10 seconds" },
         new MTListElement<string> { SelectedValue = "60000", Label = "60 seconds" }
-    };
+            };
 
 
     protected void InfoClick()
@@ -205,4 +205,11 @@
             showIcon: appliedShowIcon,
             timeout: appliedTimeout);
     }
+
+    IEnumerable<MTListElement<MTToastPosition>> positionItems => from pos in (MTToastPosition[])Enum.GetValues(typeof(MTToastPosition))
+                                                                 select new MTListElement<MTToastPosition>
+                                                                 {
+                                                                     SelectedValue = pos,
+                                                                     Label = pos.ToString()
+                                                                 };
 }
