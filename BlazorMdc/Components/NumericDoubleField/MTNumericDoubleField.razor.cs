@@ -26,7 +26,7 @@ namespace BlazorMdc
         /// <summary>
         /// Field label.
         /// </summary>
-        [Parameter] public string Label { get; set; } = "";
+        [Parameter] public string? Label { get; set; }
 
 
         /// <summary>

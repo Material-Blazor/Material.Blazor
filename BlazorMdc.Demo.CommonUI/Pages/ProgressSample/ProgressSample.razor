@@ -17,7 +17,7 @@
 <p><MTCircularProgress CircularProgressType="@circularIndeterminate" CircularProgressSize="MTCircularProgressSize.Small" /></p>
 
 <h5 class="mdc-typography--headline5">Determinate</h5>
-<MTNumericDoubleField @bind-Value="@progress" Label="Progress (0 to 100%)" Min="0" Max="1" Magnitude="MTNumericInputMagnitude.Percent" DecimalPlaces="2" NumericFormat="P0" />
+<MTNumericDoubleField @bind-Value="@progress" Label="Progress (0 to 100%)" Min="0" Max="1" FocussedMagnitude="MTNumericInputMagnitude.Percent" DecimalPlaces="2" NumericFormat="P0" />
 
 <p>Regular:</p>
 <p><MTLinearProgress LinearProgressType="linearDeterminate" Value="@progress" BufferValue="buffer" /></p>

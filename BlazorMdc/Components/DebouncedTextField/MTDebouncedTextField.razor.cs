@@ -28,13 +28,19 @@ namespace BlazorMdc
         /// <summary>
         /// Field label.
         /// </summary>
-        [Parameter] public string Label { get; set; } = "";
+        [Parameter] public string? Label { get; set; }
 
 
         /// <summary>
-        /// Hides the label if True. Defaults to False.
+        /// Prefix text.
         /// </summary>
-        [Parameter] public bool NoLabel { get; set; } = false;
+        [Parameter] public string? Prefix { get; set; }
+
+
+        /// <summary>
+        /// Suffix text.
+        /// </summary>
+        [Parameter] public string? Suffix { get; set; }
 
 
         /// <summary>
