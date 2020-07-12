@@ -53,6 +53,7 @@ jobs:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it
       uses: actions/checkout@v2
 
+
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
@@ -75,8 +76,14 @@ jobs:
     - name: Display package output
       run: dir ${env:output}
 
+    - name: Display obfuscated secret
+      run: echo "The GitHub token is ${{ secrets.GITHUB_TOKEN }}"
+
     - name: Upload Package
       run: dotnet nuget push ${env:output}\*.nupkg -s https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       if: github.repository == 'BlazorMdc/BlazorMdc' && github.event_name == 'push'
+
+    - name: Nuget query
+      run: nuget --help
