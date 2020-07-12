@@ -30,9 +30,15 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Hides the label if True. Defaults to False.
+        /// Prefix text.
         /// </summary>
-        [Parameter] public bool NoLabel { get; set; } = false;
+        [Parameter] public string? Prefix { get; set; }
+
+
+        /// <summary>
+        /// Suffix text.
+        /// </summary>
+        [Parameter] public string? Suffix { get; set; }
 
 
         /// <summary>
@@ -70,11 +76,19 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Adjusts the value's maginitude as a number when the field is selected. Used for
+        /// Adjusts the value's maginitude as a number when the field is focussed. Used for
         /// percentages and basis points (the latter of which lacks appropriate Numeric Format in C#:
         /// this issue may not get solved.
         /// </summary>
-        [Parameter] public MTNumericInputMagnitude Magnitude { get; set; } = MTNumericInputMagnitude.Normal;
+        [Parameter] public MTNumericInputMagnitude FocussedMagnitude { get; set; } = MTNumericInputMagnitude.Normal;
+
+
+        /// <summary>
+        /// Adjusts the value's maginitude as a number when the field is unfocussed. Used for
+        /// percentages and basis points (the latter of which lacks appropriate Numeric Format in C#:
+        /// this issue may not get solved.
+        /// </summary>
+        [Parameter] public MTNumericInputMagnitude UnfocussedMagnitude { get; set; } = MTNumericInputMagnitude.Normal;
 
 
         /// <summary>
@@ -103,8 +117,9 @@ namespace BlazorMdc
 
 
         private MTTextField TextField { get; set; }
-        private double Mult { get; set; } = 1;
-        private double AppliedMult => HasFocus ? Mult : 1;
+        private double FocussedMultiplier { get; set; } = 1;
+        private double UnfocussedMultiplier { get; set; } = 1;
+        private double AppliedMultiplier => HasFocus ? FocussedMultiplier : UnfocussedMultiplier;
         private int MyDecimalPlaces { get; set; } = 0;
         private Regex Regex { get; set; }
         private string Type => HasFocus ? "number" : "text";
@@ -125,13 +140,13 @@ namespace BlazorMdc
         {
             get
             {
-                return HasFocus ? Math.Round(Convert.ToDouble(ReportingValue) * Mult, MyDecimalPlaces).ToString() : StringValue(ReportingValue);
+                return HasFocus ? Math.Round(Convert.ToDouble(ReportingValue) * AppliedMultiplier, MyDecimalPlaces).ToString() : StringValue(ReportingValue);
             }
 
             set
             {
-                var enteredVal = HasFocus ? Convert.ToDouble(Convert.ToDouble(string.IsNullOrWhiteSpace(value) ? "0" : value.Trim()) / Mult) : NumericValue(value);
-                ReportingValue = Math.Round(Math.Max(Min ?? enteredVal, Math.Min(enteredVal, Max ?? enteredVal)), MyDecimalPlaces + (int)Magnitude);
+                var enteredVal = HasFocus ? Convert.ToDouble(Convert.ToDouble(string.IsNullOrWhiteSpace(value) ? "0" : value.Trim()) / FocussedMultiplier) : NumericValue(value) / AppliedMultiplier;
+                ReportingValue = Math.Round(Math.Max(Min ?? enteredVal, Math.Min(enteredVal, Max ?? enteredVal)), MyDecimalPlaces + (int)FocussedMagnitude);
             }
         }
 
@@ -154,7 +169,8 @@ namespace BlazorMdc
         {
             bool allowSign = !(Min != null && Min >= 0);
 
-            Mult = Math.Pow(10, (int)Magnitude);
+            FocussedMultiplier = Math.Pow(10, (int)FocussedMagnitude);
+            UnfocussedMultiplier = Math.Pow(10, (int)UnfocussedMagnitude);
 
             if (DecimalPlaces <= 0)
             {
@@ -221,12 +237,12 @@ namespace BlazorMdc
         
         
         
-        private string StringValue(double? value) => (Convert.ToDouble(value) * AppliedMult).ToString(AppliedFormat);
+        private string StringValue(double? value) => (Convert.ToDouble(value) * AppliedMultiplier).ToString(AppliedFormat);
 
 
         private double NumericValue(string displayText)
         {
-            int myRounding = MyDecimalPlaces + Convert.ToInt32(Math.Log(AppliedMult));
+            int myRounding = MyDecimalPlaces + Convert.ToInt32(Math.Log(AppliedMultiplier));
 
             if (!Regex.IsMatch(displayText))
             {
@@ -236,7 +252,7 @@ namespace BlazorMdc
             double amount;
             try
             {
-                amount = Convert.ToDouble(Math.Round(Convert.ToDouble(displayText) / AppliedMult, myRounding));
+                amount = Convert.ToDouble(Math.Round(Convert.ToDouble(displayText) / AppliedMultiplier, myRounding));
             }
             catch
             {

@@ -32,12 +32,6 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Hides the label if True. Defaults to False.
-        /// </summary>
-        [Parameter] public bool NoLabel { get; set; } = false;
-
-
-        /// <summary>
         /// The number of rows to show when first rendered.
         /// </summary>
         [Parameter] public int Rows { get; set; }
@@ -55,6 +49,7 @@ namespace BlazorMdc
         private string FloatingLabelClass { get; set; }
 
         private readonly string id = Utilities.GenerateUniqueElementName();
+
         private readonly string labelId = Utilities.GenerateUniqueElementName();
 
 
@@ -68,7 +63,7 @@ namespace BlazorMdc
                 .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
                 .AddIf("mdc-text-field--filled", () => AppliedTextInputStyle == MTTextInputStyle.Filled)
                 .AddIf("mdc-text-field--outlined", () => AppliedTextInputStyle == MTTextInputStyle.Outlined)
-                .AddIf("mdc-text-field--no-label", () => NoLabel)
+                .AddIf("mdc-text-field--no-label", () => string.IsNullOrWhiteSpace(Label))
                 .AddIf("mdc-text-field--disabled", () => Disabled);
 
             if (!string.IsNullOrWhiteSpace(Label))

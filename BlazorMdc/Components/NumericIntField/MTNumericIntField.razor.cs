@@ -25,9 +25,15 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Hides the label if True. Defaults to False.
+        /// Prefix text.
         /// </summary>
-        [Parameter] public bool NoLabel { get; set; } = false;
+        [Parameter] public string? Prefix { get; set; }
+
+
+        /// <summary>
+        /// Suffix text.
+        /// </summary>
+        [Parameter] public string? Suffix { get; set; }
 
 
         /// <summary>
@@ -65,11 +71,19 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Adjusts the value's maginitude as a number when the field is selected. Used for
+        /// Adjusts the value's maginitude as a number when the field is focussed. Used for
         /// percentages and basis points (the latter of which lacks appropriate Numeric Format in C#:
         /// this issue may not get solved.
         /// </summary>
-        [Parameter] public MTNumericInputMagnitude Magnitude { get; set; } = MTNumericInputMagnitude.Normal;
+        [Parameter] public MTNumericInputMagnitude FocussedMagnitude { get; set; } = MTNumericInputMagnitude.Normal;
+
+
+        /// <summary>
+        /// Adjusts the value's maginitude as a number when the field is unfocussed. Used for
+        /// percentages and basis points (the latter of which lacks appropriate Numeric Format in C#:
+        /// this issue may not get solved.
+        /// </summary>
+        [Parameter] public MTNumericInputMagnitude UnfocussedMagnitude { get; set; } = MTNumericInputMagnitude.Normal;
 
 
         /// <summary>

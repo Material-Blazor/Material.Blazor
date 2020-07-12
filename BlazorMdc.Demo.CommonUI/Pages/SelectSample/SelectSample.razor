@@ -22,7 +22,13 @@
         <p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed1 ?? "")</strong>'</p>
 
         <p>
-            <MTSelect Label="Outlined"
+            <style>
+                .demonstrate-width {
+                    --bmdc-select-width: 300px;
+                }
+            </style>
+            <MTSelect class="demonstrate-width"
+                      Label="Outlined"
                       @bind-Value="@kittenBreed2"
                       Items="stringItems"
                       SelectInputStyle="MTSelectInputStyle.Outlined"

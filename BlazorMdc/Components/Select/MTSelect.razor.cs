@@ -36,12 +36,6 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Hides the label if True. Defaults to False.
-        /// </summary>
-        [Parameter] public bool NoLabel { get; set; } = false;
-
-
-        /// <summary>
         /// The select's <see cref="BlazorMdc.MTSelectInputStyle"/>.
         /// </summary>
         [Parameter] public MTSelectInputStyle? SelectInputStyle { get; set; }
@@ -86,7 +80,7 @@ namespace BlazorMdc
                 .Add("mdc-select")
                 .AddIf("mdc-select--filled", () => AppliedInputStyle == MTSelectInputStyle.Filled)
                 .AddIf("mdc-select--outlined", () => AppliedInputStyle == MTSelectInputStyle.Outlined)
-                .AddIf("mdc-select--no-label", () => NoLabel)
+                .AddIf("mdc-select--no-label", () => string.IsNullOrWhiteSpace(Label))
                 .AddIf("mdc-select--disabled", () => Disabled);
 
             SelectedText = (Value is null) ? "" : Items.Where(i => object.Equals(i.SelectedValue, Value)).FirstOrDefault().Label;

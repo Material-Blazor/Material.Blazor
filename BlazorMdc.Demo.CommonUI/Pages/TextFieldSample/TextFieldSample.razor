@@ -36,6 +36,10 @@
 <p><MTTextField Label="Password" @bind-Value="@currentValuePassword" TextInputStyle="MTTextInputStyle.Outlined" type="password" Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@(currentValuePassword ?? "")'</strong></p>
 
+<p style="margin-top: 3rem;">Password</p>
+<p><MTTextField Label="Prefix/Suffix" @bind-Value="@currentValuePS" Prefix="$" Suffix="%" TextInputStyle="MTTextInputStyle.Outlined" Disabled="@DisableComponents" /></p>
+<p>You typed: <strong>'@(currentValuePS ?? "")'</strong></p>
+
 
 @code {
     [CascadingParameter(Name = "DisableComponents")] private bool DisableComponents { get; set; }
@@ -44,4 +48,5 @@
     string currentValueOutlined;
     string currentValueRight;
     string currentValuePassword;
+    string currentValuePS;
 }

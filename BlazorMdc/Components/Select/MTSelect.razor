@@ -38,7 +38,7 @@
         {
             <span class="mdc-notched-outline">
                 <span class="mdc-notched-outline__leading"></span>
-                @if (!NoLabel)
+                @if (!string.IsNullOrWhiteSpace(Label))
                 { 
                     <span class="mdc-notched-outline__notch">
                         <span id="@labelId" class="mdc-floating-label @FloatingLabelClass">@Label</span>
@@ -49,7 +49,7 @@
         }
         else
         {
-            if (!NoLabel)
+            if (!string.IsNullOrWhiteSpace(Label))
             {
                 <span id="@labelId" class="mdc-floating-label @FloatingLabelClass">@Label</span>
             }

@@ -25,6 +25,11 @@
 }
 
 
+.mdc-text-field__affix {
+    user-select: none;
+}
+
+
 .mdc-drawer__content, .mdc-menu-surface, .bmdc-dp-year-pad {
     scrollbar-width: auto !important;
 }

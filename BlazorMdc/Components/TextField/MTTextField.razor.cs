@@ -29,13 +29,19 @@ namespace BlazorMdc
         /// <summary>
         /// Field label.
         /// </summary>
-        [Parameter] public string Label { get; set; } = "";
+        [Parameter] public string? Label { get; set; }
 
 
         /// <summary>
-        /// Hides the label if True. Defaults to False.
+        /// Prefix text.
         /// </summary>
-        [Parameter] public bool NoLabel { get; set; } = false;
+        [Parameter] public string? Prefix { get; set; }
+
+
+        /// <summary>
+        /// Suffix text.
+        /// </summary>
+        [Parameter] public string? Suffix { get; set; }
 
 
         /// <summary>
@@ -82,7 +88,7 @@ namespace BlazorMdc
                 .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
                 .AddIf("mdc-text-field--filled", () => AppliedTextInputStyle == MTTextInputStyle.Filled)
                 .AddIf("mdc-text-field--outlined", () => AppliedTextInputStyle == MTTextInputStyle.Outlined)
-                .AddIf("mdc-text-field--no-label", () => NoLabel)
+                .AddIf("mdc-text-field--no-label", () => string.IsNullOrWhiteSpace(Label))
                 .AddIf("mdc-text-field--disabled", () => Disabled)
                 .AddIf("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
                 .AddIf("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
