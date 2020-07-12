@@ -84,6 +84,3 @@ jobs:
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       if: github.repository == 'BlazorMdc/BlazorMdc' && github.event_name == 'push'
-
-    - name: Nuget query
-      run: nuget help
