@@ -6,14 +6,14 @@ window.BlazorMdc = {
 
         open: function (menuElem, dotNetObject) {
             menuElem._menu = menuElem._menu || mdc.menu.MDCMenu.attachTo(menuElem);
-            menuElem._menu.foundation_.setDefaultFocusState(0);
+            menuElem._menu.foundation.setDefaultFocusState(0);
 
             return new Promise(resolve => {
                 const menu = menuElem._menu;
 
                 const openedCallback = event => {
                     menu.unlisten('MDCMenuSurface:opened', openedCallback);
-                    menu.foundation_.setDefaultFocusState(1);
+                    menu.foundation.setDefaultFocusState(1);
                     resolve(event.detail.action);
                 };
 
@@ -169,7 +169,7 @@ window.BlazorMdc = {
         },
 
         click: function (elem) {
-            elem._iconButtonToggle.root_.click();
+            elem._iconButtonToggle.root.click();
         }
     },
 
@@ -270,7 +270,7 @@ window.BlazorMdc = {
         setTab: function (elem, index) {
             if (elem._tabBar) {
                 let tl = elem._tabBar.tabList_[index];
-                tl.root_.click();
+                tl.root.click();
             }
         }
     },

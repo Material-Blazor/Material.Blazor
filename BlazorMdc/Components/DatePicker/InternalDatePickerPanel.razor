@@ -5,8 +5,12 @@
 <div @attributes="@AttributesToSplat()">
 
     <ul class="mdc-list bmdc-dp-list">
-        <li @ref="@ListItemReference" class="mdc-list-item mdc-list-item--selected bmdc-dp-list-item" data-value="@CachedReportingValueText" aria-selected="true" role="option">
-            <span class="mdc-list-item__text bmdc-dp-list-item__text">@CachedReportingValueText</span>
+        <li class="mdc-list-item mdc-list-item--selected bmdc-dp-list-item"
+            data-value="@CachedReportingValueText"
+            aria-selected="true"
+            role="option">
+            <span class="mdc-list-item__ripple"></span>
+            <span @ref="@ListItemReference" class="mdc-list-item__text bmdc-dp-list-item__text">@CachedReportingValueText</span>
         </li>
     </ul>
 

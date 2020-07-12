@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Razor">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
 		<IsPackable>true</IsPackable>
@@ -55,16 +55,12 @@
 		<Exec Command="dotnet tool restore" />
 	</Target>
 
-	<Target Name="CompileCss" AfterTargets="RestoreDotnetTools">
-		<Exec Command="dotnet tool run webcompiler Styles/Styles.scss -z disable" />
+	<Target Name="CompileCss" AfterTargets="RestoreDotnetTools" BeforeTargets="PreBuildEvent">
+		<Exec Command="dotnet tool run webcompiler Styles/Styles.scss -m disable -o .\wwwroot\css -p disable -z disable" />
 	</Target>
 
-	<Target Name="CopyCss" AfterTargets="CompileCss">
-		<Exec Command="xcopy /y .\styles\*.css .\wwwroot\css" />
-	</Target>
-
-	<Target Name="DeleteCss" AfterTargets="CopyCss">
-		<Exec Command="del .\styles\*.css" />
+	<Target Name="CompileMinifiedCss" AfterTargets="CompileCss" BeforeTargets="PreBuildEvent">
+		<Exec Command="dotnet tool run webcompiler Styles/Styles.scss -m enable -o .\wwwroot\css -p disable -z disable" />
 	</Target>
 
 </Project>

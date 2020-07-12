@@ -5,7 +5,7 @@
 		<RazorLangVersion>3.0</RazorLangVersion>
 		<Configurations>Debug_WebAssembly;Debug_Server;Release_WebAssembly;Release_Server</Configurations>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<VersionPrefix>0.33.0</VersionPrefix>
+		<VersionPrefix>0.34.0</VersionPrefix>
 		<VersionSuffix></VersionSuffix>
 		<PackageLicenseFile></PackageLicenseFile>
 		<Authors>BlazorMdc Authors</Authors>
@@ -64,28 +64,22 @@
 		<Exec Command="dotnet tool restore" />
 	</Target>
 
-	<Target Name="CompileCss" AfterTargets="RestoreDotnetTools">
-		<Exec Command="dotnet tool run webcompiler Styles/BlazorMdc.scss -z disable" />
+	
+	<Target Name="CompileCss" AfterTargets="RestoreDotnetTools" BeforeTargets="PreBuildEvent">
+		<Exec Command="dotnet tool run webcompiler Styles/BlazorMdc.scss -m disable -o .\wwwroot -p disable -z disable" />
 	</Target>
 
-	<Target Name="CompileJs" AfterTargets="CompileCss">
-		<Exec Command="dotnet tool run webcompiler Scripts/BlazorMdc.js -z disable" />
+	<Target Name="CompileMinifiedCss" AfterTargets="CompileCss" BeforeTargets="PreBuildEvent">
+		<Exec Command="dotnet tool run webcompiler Styles/BlazorMdc.scss -m enable -o .\wwwroot -p disable -z disable" />
 	</Target>
 
-	<Target Name="CopyCss" AfterTargets="CompileJs">
-		<Exec Command="xcopy /y .\styles\*.css wwwroot" />
+
+	<Target Name="CompileJs" AfterTargets="CompileMinifiedCss" BeforeTargets="PreBuildEvent">
+		<Exec Command="dotnet tool run webcompiler Scripts/BlazorMdc.js -m enable -o .\wwwroot -p disable -z disable" />
 	</Target>
 
-	<Target Name="DeleteCss" AfterTargets="CopyCss">
-		<Exec Command="del .\styles\*.css" />
-	</Target>
-
-	<Target Name="CopyJs" AfterTargets="DeleteCss">
+	<Target Name="CopyJs" AfterTargets="CompileJs" BeforeTargets="PreBuildEvent">
 		<Exec Command="xcopy /y .\scripts\*.js wwwroot" />
-	</Target>
-
-	<Target Name="DeleteJs" AfterTargets="CopyJs">
-		<Exec Command="del .\scripts\*.min.js" />
 	</Target>
 
 </Project>

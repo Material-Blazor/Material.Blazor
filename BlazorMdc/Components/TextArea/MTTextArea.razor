@@ -2,40 +2,47 @@
 @inherits InputComponentFoundation<string>
 
 
-<div @ref="ElementReference"
-     @attributes="@AttributesToSplat(SplatType.ClassAndStyleOnly)">
+<label @ref="ElementReference"
+       @attributes="@AttributesToSplat(SplatType.ClassAndStyleOnly)">
     
-    @if (AppliedTextInputStyle == MTTextInputStyle.Filled || AppliedTextInputStyle == MTTextInputStyle.FullWidth)
+    @if (AppliedTextInputStyle == MTTextInputStyle.Filled)
     {
-        <div class="mdc-text-field__ripple"></div>
+        <span class="mdc-text-field__ripple"></span>
     }
 
-    <textarea id="@id"
-              class="mdc-text-field__input @AppliedTextInputStyleClass @FieldClass"
-              @bind="@ReportingValue"
-              aria-labelledby="@labelId"
-              rows="@Rows"
-              cols="@Cols"
-              disabled="@Disabled"
-              @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)" />
+    <span class="mdc-text-field__resizer">
+        <textarea id="@id"
+                  class="mdc-text-field__input @AppliedTextInputStyleClass @FieldClass"
+                  @bind="@ReportingValue"
+                  aria-labelledby="@labelId"
+                  rows="@Rows"
+                  cols="@Cols"
+                  disabled="@Disabled"
+                  @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)"></textarea>
+    </span>
 
     @if (AppliedTextInputStyle == MTTextInputStyle.Outlined)
     {
-        <div class="mdc-notched-outline">
-            <div class="mdc-notched-outline__leading"></div>
-            <div class="mdc-notched-outline__notch">
-                <label class="mdc-floating-label @FloatingLabelClass" for="@id" id="@labelId">@Label</label>
-            </div>
-            <div class="mdc-notched-outline__trailing"></div>
-        </div>
+        <span class="mdc-notched-outline">
+            <span class="mdc-notched-outline__leading"></span>
+
+            @if (!string.IsNullOrWhiteSpace(Label))
+            {
+                <span class="mdc-notched-outline__notch">
+                    <span class="mdc-floating-label @FloatingLabelClass" for="@Id" id="@labelId">@Label</span>
+                </span>
+            }
+
+            <span class="mdc-notched-outline__trailing"></span>
+        </span>
     }
     else
     {
-        @if (AppliedTextInputStyle == MTTextInputStyle.Filled)
+        @if (!string.IsNullOrWhiteSpace(Label))
         {
-            <label class="mdc-floating-label @FloatingLabelClass" for="@id" id="@labelId">@Label</label>
+            <span class="mdc-floating-label @FloatingLabelClass" for="@Id" id="@labelId">@Label</span>
         }
 
-        <div class="mdc-line-ripple"></div>
+        <span class="mdc-line-ripple"></span>
     }
-</div>
+</label>

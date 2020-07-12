@@ -60,7 +60,12 @@ namespace BlazorMdc
 
 
         private readonly string key = Utilities.GenerateUniqueElementName();
+
         private readonly string labelId = Utilities.GenerateUniqueElementName();
+
+        private readonly string listboxId = Utilities.GenerateUniqueElementName();
+
+        private readonly string selectedTextId = Utilities.GenerateUniqueElementName();
 
 
         /// <inheritdoc/>
@@ -70,7 +75,9 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-select")
+                .AddIf("mdc-select--filled", () => AppliedInputStyle == MTSelectInputStyle.Filled)
                 .AddIf("mdc-select--outlined", () => AppliedInputStyle == MTSelectInputStyle.Outlined)
+                .AddIf("mdc-select--no-label", () => string.IsNullOrWhiteSpace(Label))
                 .AddIf("mdc-select--disabled", () => Disabled);
 
             OnValueSet += OnValueSetCallback;

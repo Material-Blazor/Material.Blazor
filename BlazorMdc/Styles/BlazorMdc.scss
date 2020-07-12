@@ -17,11 +17,16 @@
 
 :root {
     --bmdc-select-scroll-margin-right: 4px;
-    --bmdc-select-scroll-width: 1.5em;
+    --bmdc-select-scroll-width: 8px;
     --bmdc-select-scroll-border-radius: 4px;
     --bmdc-select-scroll-track-color: rgba(0, 0, 0, 0);
     --bmdc-select-scroll-color: var(--bmdc-color-bluegray-400);
     --bmdc-select-scroll-color__hover: var(--bmdc-color-bluegray-700);
+}
+
+
+.mdc-text-field__affix {
+    user-select: none;
 }
 
 

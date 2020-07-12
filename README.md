@@ -15,7 +15,7 @@
 
 ## Lightweight Material Theme razor components for Blazor
 
-BlazorMdc is a lightweight [Material Theme](https://material.io/) [web development platform](https://material.io/develop/web/) (version 6.0.0) component library for [ASP.NET Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor) that is rigorously faithful to the Material Theme's design philosophy, markup and code usage. Material Theme has very specific and detailed guidance showing web designers how to build web apps with HTML, CSS and JavaScript. Since neither Blazor for WebAssembly are directly supported, Blazor developers either need to roll their own components or use a component library such as BlazorMdc. This is available at https://www.nuget.org/packages/BlazorMdc.
+BlazorMdc is a lightweight [Material Theme](https://material.io/) [web development platform](https://material.io/develop/web/) (version 7.0.0) component library for [ASP.NET Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor) that is rigorously faithful to the Material Theme's design philosophy, markup and code usage. Material Theme has very specific and detailed guidance showing web designers how to build web apps with HTML, CSS and JavaScript. Since neither Blazor for WebAssembly are directly supported, Blazor developers either need to roll their own components or use a component library such as BlazorMdc. This is available at https://www.nuget.org/packages/BlazorMdc.
 
 BlazorMdc isn't the only Blazor component library for Material Theme and we encourage developers to look at others including open source projects such as [MatBlazor](https://www.matblazor.com/), [Blazorize](https://materialdemo.blazorise.com/) and [Skclusive.Material.Component](https://github.com/skclusive/Skclusive.Material.Component), or commercial products such as those from [Telerik](https://www.telerik.com/blazor-ui), and [Syncfusion](https://blazor.syncfusion.com/); this is not an exhaustive list and there may be others. So why did we create BlazorMdc as yet another option? In building our Blazor applications using Material Theme we had some overriding objectives and to our taste this required a new library focussing on the following:
 
@@ -48,7 +48,7 @@ Reference the `BlazorMdc` namespace with `@using BlazorMdc` to your `_Imports.ra
 - If you want to use `PMdcToast` add `services.AddPMdcToast();` to your `ConfigureServices` function for Blazor Server or to the `Main()` function for Blazor WebAssembly, and
 - If you want animated page navigation using `PMdcAnimationdNavigation` add `services.AddPMdcAnimatedNavigationManager();` to `ConfigureServices`.
 
-**NOTE** - BlazorMdc works with [Material Components v6.0.0](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#600-2020-04-22).
+**NOTE** - BlazorMdc works with [Material Components v7.0.0](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#600-2020-04-22).
 
 #### Directions for using our bundled CSS and JS
 

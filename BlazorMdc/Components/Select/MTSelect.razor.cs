@@ -48,14 +48,23 @@ namespace BlazorMdc
 
 
         private ElementReference SelectReference { get; set; }
-        private ElementReference ListboxReference { get; set; }
+
         private MTSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
-        private string SelectedTextId { get; set; } = Utilities.GenerateUniqueElementName();
-        private string LabelId { get; set; } = Utilities.GenerateUniqueElementName();
+
         private string SelectedText { get; set; } = "";
+
         private string FloatingLabelClass { get; set; } = "";
+
         private string AlignClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
+
         private Dictionary<TItem, MTListElement<TItem>> ItemDict { get; set; }
+
+
+        private readonly string labelId = Utilities.GenerateUniqueElementName();
+
+        private readonly string listboxId = Utilities.GenerateUniqueElementName();
+
+        private readonly string selectedTextId = Utilities.GenerateUniqueElementName();
 
 
         /// <inheritdoc/>
@@ -69,7 +78,9 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-select")
+                .AddIf("mdc-select--filled", () => AppliedInputStyle == MTSelectInputStyle.Filled)
                 .AddIf("mdc-select--outlined", () => AppliedInputStyle == MTSelectInputStyle.Outlined)
+                .AddIf("mdc-select--no-label", () => string.IsNullOrWhiteSpace(Label))
                 .AddIf("mdc-select--disabled", () => Disabled);
 
             SelectedText = (Value is null) ? "" : Items.Where(i => object.Equals(i.SelectedValue, Value)).FirstOrDefault().Label;

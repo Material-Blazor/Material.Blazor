@@ -4,7 +4,7 @@
   "libraries": [
     {
       "provider": "unpkg",
-      "library": "material-components-web@6.0.0",
+      "library": "material-components-web@7.0.0",
       "destination": "Material-Components-Web/",
       "files": [
         "dist/material-components-web.min.css",
