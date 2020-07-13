@@ -17,7 +17,7 @@
                  @onfocusout="@OnTextFocusOutAsync"
                  @attributes="@AttributesToSplat()" />
 
-    <div class="mdc-select mdc-select--filled" style="height: 0;">
+    <div class="mdc-select mdc-select--filled">
         <div class="mdc-select__anchor"
              role="button"
              aria-disabled="@Disabled"
@@ -27,7 +27,6 @@
 
         <div @ref="@MenuReference"
              class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth"
-             style="visibility:visible; min-height:1rem; min-width: 20rem;"
              @onfocusin="OnMenuFocusIn"
              @onfocusout="OnMenuFocusOut"
              tabindex="-1">

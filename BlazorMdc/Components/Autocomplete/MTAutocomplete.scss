@@ -8,3 +8,8 @@
 .bmdc-autocomplete--blank {
     height: 0;
 }
+
+.bmdc-autocomplete .mdc-select__menu {
+    visibility: visible;
+    min-height: 1rem;
+}
