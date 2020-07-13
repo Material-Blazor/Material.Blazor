@@ -58,6 +58,8 @@ namespace BlazorMdc
 
         private bool IsOpen { get; set; } = false;
 
+        private string MenuClass => (Panel?.ShowYearPad ?? true) ? "bmdc-dp-menu__day-menu" : "bmdc-dp-menu__year-menu";
+
 
         private readonly string key = Utilities.GenerateUniqueElementName();
 

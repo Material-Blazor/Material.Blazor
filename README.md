@@ -10,8 +10,8 @@
 [![GitHub stars](https://img.shields.io/github/stars/BlazorMdc/BlazorMdc?logo=github&style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/stargazers)
 [![GitHub stars](https://img.shields.io/github/watchers/BlazorMdc/BlazorMdc?logo=github&style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/watchers)
 
-[![Build Status](https://img.shields.io/azure-devops/build/blazormdc/blazormdc/3?logo=azure-pipelines&label=azure%20main%20pipeline&style=flat-square)](https://dev.azure.com/blazormdc/blazormdc/_build/latest?definitionId=3&branchName=develop)
-[![Build Status](https://img.shields.io/azure-devops/build/blazormdc/blazormdc/2?logo=azure-pipelines&label=azure%20develop%20pipeline&style=flat-square)](https://dev.azure.com/blazormdc/blazormdc/_build/latest?definitionId=1&branchName=develop)
+![GithubActionsMainPublish](https://img.shields.io/github/workflow/status/blazormdc/blazormdc/GithubActionsMainPublish?label=actions%20main&logo=github&style=flat-square)
+![GithubActionsDevelop](https://img.shields.io/github/workflow/status/blazormdc/blazormdc/GithubActionsDevelop?label=actions%20develop&logo=github&style=flat-square)
 
 ## Lightweight Material Theme razor components for Blazor
 
@@ -154,7 +154,7 @@ The following are extra or 'plus' components that extend the strict, core Materi
 | `MTTypography` | Constants for standard Material Theme typography. |
 | `MTIconHelper` | Working with `IMTMdcIcon` and `IMdcIconFoundry` to implement `MTMIFoundry()` to specify [Material Icons](https://material.io/resources/icons/?style=baseline), and optionally `FAFoundry()` for [Font Awesome](https://fontawesome.com/icons?d=gallery) and `OIFoundry()` for [Open Iconic](https://useiconic.com/open) icons. Icon names are passed to components as a string, with an additional parameter of `IconFoundry` using utility functions from `MTIcon` to specify the foundry and its optional parameters. Your default icon foundry can be set in `MTCascadingDefaults` (which itself defaults to Material Icons) and then you can pass string names for the icon of your choice. For Font Awesome icons, omit the preceding "fas/r/l/d" because this is set as a Font Awesome foundry style and in `MTCascadingDefaults.FAIconStyle`. Font Awesome relative icon size and Material Icons theme are also similarly parameterized. BlazorMdc expects you to include Material Icons in your project (these are necessary for drop down arrows and so forth, but Font Awesome icons are discretionary depending upon your project's requirement - you do however need to use Font Awesome version 5 and Open Iconic version 1.1. |
 
-## Future Developmen
+## Future Development
 
 - Add remaining Material Theme components.
 - Add [density subsystem](https://material.io/develop/web/components/density/).

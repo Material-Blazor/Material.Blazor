@@ -5,7 +5,7 @@
 <div @ref="ElementReference"
      @attributes="@AttributesToSplat()">
 
-    <div class="mdc-select__anchor bmdc-dp-width"
+    <div class="mdc-select__anchor"
          role="button"
          aria-disabled="@Disabled"
          aria-haspopup="@listboxId"
@@ -57,7 +57,7 @@
     </div>
 
     <div id="@listboxId"
-         class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fixed bmdc-dp-width bmdc-dp-menu__surface-adjust">
+         class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fixed bmdc-dp-menu__surface-adjust @MenuClass">
         <InternalDatePickerPanel @ref="Panel"
                                  @bind-Value="@ReportingValue"
                                  DateSelectionCriteria="@DateSelectionCriteria"
