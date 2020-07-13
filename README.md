@@ -10,8 +10,8 @@
 [![GitHub stars](https://img.shields.io/github/stars/BlazorMdc/BlazorMdc?logo=github&style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/stargazers)
 [![GitHub stars](https://img.shields.io/github/watchers/BlazorMdc/BlazorMdc?logo=github&style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/watchers)
 
-[![Build Status](https://img.shields.io/azure-devops/build/blazormdc/blazormdc/3?logo=azure-pipelines&label=azure%20main%20pipeline&style=flat-square)](https://dev.azure.com/blazormdc/blazormdc/_build/latest?definitionId=3&branchName=develop)
-[![Build Status](https://img.shields.io/azure-devops/build/blazormdc/blazormdc/2?logo=azure-pipelines&label=azure%20develop%20pipeline&style=flat-square)](https://dev.azure.com/blazormdc/blazormdc/_build/latest?definitionId=1&branchName=develop)
+![GithubActionsMainPublish](https://img.shields.io/github/workflow/status/blazormdc/blazormdc/GithubActionsMainPublish?label=actions%20main&logo=github&style=flat-square)
+![GithubActionsDevelop](https://img.shields.io/github/workflow/status/blazormdc/blazormdc/GithubActionsDevelop?label=actions%20develop&logo=github&style=flat-square)
 
 ## Lightweight Material Theme razor components for Blazor
 
