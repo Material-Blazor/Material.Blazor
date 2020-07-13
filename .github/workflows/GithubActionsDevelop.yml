@@ -71,7 +71,7 @@ jobs:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
     - name: Generate NuGet package
-      run: dotnet pack --configuration ${env:buildConfiguration} --no-build --output ${env:output} -p:IncludeSymbols=false -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:project}
+      run: dotnet pack --configuration ${env:buildConfiguration} --no-build --output ${env:output} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:project}
 
     - name: Display package output
       run: dir ${env:output}
