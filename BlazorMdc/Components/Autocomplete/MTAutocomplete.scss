@@ -1,4 +1,9 @@
-﻿.bmdc-autocomplete .mdc-select,
+﻿.bmdc-autocomplete {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.bmdc-autocomplete .mdc-select,
 .bmdc-autocomplete .mdc-select__anchor,
 .bmdc-autocomplete--blank {
     height: 0;
