@@ -98,10 +98,8 @@ window.BlazorMdc = {
         },
 
         scrollToYear: function (id) {
-            // Presently disabled because of undesirable overscroll-behaviour
-            //var element = document.getElementById(id);
-            //element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-            //element.scrollIntoView();
+            var element = document.getElementById(id);
+            element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'start' });
         }
     },
 

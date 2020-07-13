@@ -66,16 +66,16 @@
 
 	
 	<Target Name="CompileCss" AfterTargets="RestoreDotnetTools" BeforeTargets="PreBuildEvent">
-		<Exec Command="dotnet tool run webcompiler Styles/BlazorMdc.scss -m disable -o .\wwwroot -p disable -z disable" />
+		<Exec Command="dotnet tool run webcompiler Styles/blazormdc.scss -m disable -o .\wwwroot -p disable -z disable" />
 	</Target>
 
 	<Target Name="CompileMinifiedCss" AfterTargets="CompileCss" BeforeTargets="PreBuildEvent">
-		<Exec Command="dotnet tool run webcompiler Styles/BlazorMdc.scss -m enable -o .\wwwroot -p disable -z disable" />
+		<Exec Command="dotnet tool run webcompiler Styles/blazormdc.scss -m enable -o .\wwwroot -p disable -z disable" />
 	</Target>
 
 
 	<Target Name="CompileJs" AfterTargets="CompileMinifiedCss" BeforeTargets="PreBuildEvent">
-		<Exec Command="dotnet tool run webcompiler Scripts/BlazorMdc.js -m enable -o .\wwwroot -p disable -z disable" />
+		<Exec Command="dotnet tool run webcompiler Scripts/blazormdc.js -m enable -o .\wwwroot -p disable -z disable" />
 	</Target>
 
 	<Target Name="CopyJs" AfterTargets="CompileJs" BeforeTargets="PreBuildEvent">

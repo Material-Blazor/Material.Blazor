@@ -53,7 +53,7 @@ namespace BlazorMdc.Internal
         private bool NextMonthDisabled => (StartOfDisplayMonth.AddMonths(1) >= MaxDate);
 
         private bool _showYearPad = false;
-        private bool ShowYearPad
+        internal bool ShowYearPad
         {
             get => _showYearPad;
             set
