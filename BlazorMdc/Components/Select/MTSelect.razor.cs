@@ -13,7 +13,7 @@ namespace BlazorMdc
     /// <summary>
     /// A Material Theme select.
     /// </summary>
-    public partial class MTSelect<TItem> : ValidatingInputComponentFoundation<TItem>, IMTDialogChild
+    public partial class MTSelect<TItem> : ValidatingInputComponentFoundation<TItem>, IMTDialogChild, IDisposable
     {
         /// <summary>
         /// The item list to be represented as a select
@@ -48,14 +48,26 @@ namespace BlazorMdc
 
 
         private ElementReference SelectReference { get; set; }
-        private ElementReference ListboxReference { get; set; }
+
         private MTSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
-        private string SelectedTextId { get; set; } = Utilities.GenerateUniqueElementName();
-        private string LabelId { get; set; } = Utilities.GenerateUniqueElementName();
+
         private string SelectedText { get; set; } = "";
+
         private string FloatingLabelClass { get; set; } = "";
+
         private string AlignClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
+
         private Dictionary<TItem, MTListElement<TItem>> ItemDict { get; set; }
+        
+        private DotNetObjectReference<MTSelect<TItem>> ObjectReference { get; set; }
+
+
+
+        private readonly string labelId = Utilities.GenerateUniqueElementName();
+
+        private readonly string listboxId = Utilities.GenerateUniqueElementName();
+
+        private readonly string selectedTextId = Utilities.GenerateUniqueElementName();
 
 
         /// <inheritdoc/>
@@ -69,7 +81,9 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-select")
+                .AddIf("mdc-select--filled", () => AppliedInputStyle == MTSelectInputStyle.Filled)
                 .AddIf("mdc-select--outlined", () => AppliedInputStyle == MTSelectInputStyle.Outlined)
+                .AddIf("mdc-select--no-label", () => string.IsNullOrWhiteSpace(Label))
                 .AddIf("mdc-select--disabled", () => Disabled);
 
             SelectedText = (Value is null) ? "" : Items.Where(i => object.Equals(i.SelectedValue, Value)).FirstOrDefault().Label;
@@ -77,12 +91,26 @@ namespace BlazorMdc
 
             OnValueSet += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
+
+            ObjectReference = DotNetObjectReference.Create(this);
         }
 
 
-        private async Task OnItemClickAsync(TItem dataValue)
+        /// <inheritdoc/>
+        public void Dispose()
         {
-            ReportingValue = dataValue;
+            GC.SuppressFinalize(this);
+            ObjectReference?.Dispose();
+        }
+
+
+        /// <summary>
+        /// For Material Theme to notify of menu item selection via JS Interop.
+        /// </summary>
+        [JSInvokable("NotifySelectedAsync")]
+        public async Task NotifySelectedAsync(int index)
+        {
+            ReportingValue = ItemDict.Values.ElementAt(index).SelectedValue;
             await Task.CompletedTask;
         }
 
@@ -104,6 +132,6 @@ namespace BlazorMdc
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.select.init", SelectReference);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.select.init", SelectReference, ObjectReference);
     }
 }

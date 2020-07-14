@@ -4,7 +4,7 @@
     <Body>
         @Body
         <p>Please type <strong>@MyConfirmationPhrase</strong> @ActionPhrase.</p>
-        <p><MTTextField @bind-Value="@EnteredText" @oninput="@OnInput" TextInputStyle="@MTTextInputStyle.FullWidth" Disabled="ConfirmationDisabled" /></p>
+        <p><MTTextField @bind-Value="@EnteredText" @oninput="@OnInput" Class="bmdc-full-width" Disabled="ConfirmationDisabled" /></p>
     </Body>
     <Buttons>
         @if (ConfirmedButtons is null || UnconfirmedButtons is null)

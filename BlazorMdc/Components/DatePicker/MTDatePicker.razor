@@ -5,32 +5,59 @@
 <div @ref="ElementReference"
      @attributes="@AttributesToSplat()">
 
-    <div class="mdc-select__anchor bmdc-dp__anchor">
+    <div class="mdc-select__anchor"
+         role="button"
+         aria-disabled="@Disabled"
+         aria-haspopup="@listboxId"
+         aria-labelledby="@labelId @selectedTextId">
+
         @if (AppliedInputStyle == MTSelectInputStyle.Filled)
         {
             <span class="mdc-select__ripple"></span>
         }
-        <input type="text" disabled readonly class="mdc-select__selected-text">
-        <i class="mdc-select__dropdown-icon"></i>
+
+        <span id="@selectedTextId" class="mdc-select__selected-text" aria-disabled="@Disabled"></span>
+        <span class="mdc-select__dropdown-icon">
+            <svg class="mdc-select__dropdown-icon-graphic"
+                 viewBox="7 10 10 5">
+                <polygon class="mdc-select__dropdown-icon-inactive"
+                         stroke="none"
+                         fill-rule="evenodd"
+                         points="7 10 12 15 17 10">
+                </polygon>
+                <polygon class="mdc-select__dropdown-icon-active"
+                         stroke="none"
+                         fill-rule="evenodd"
+                         points="7 15 12 10 17 15">
+                </polygon>
+            </svg>
+        </span>
 
         @if (AppliedInputStyle == MTSelectInputStyle.Outlined)
         {
             <span class="mdc-notched-outline">
                 <span class="mdc-notched-outline__leading"></span>
-                <span class="mdc-notched-outline__notch">
-                    <span id="@labelId" class="mdc-floating-label mdc-floating-label--float-above">@Label</span>
-                </span>
+                @if (!string.IsNullOrWhiteSpace(Label))
+                {
+                    <span class="mdc-notched-outline__notch">
+                        <span id="@labelId" class="mdc-floating-label mdc-floating-label--float-above">@Label</span>
+                    </span>
+                }
                 <span class="mdc-notched-outline__trailing"></span>
             </span>
         }
         else
         {
-            <span id="@labelId" class="mdc-floating-label mdc-floating-label--float-above">@Label</span>
+            if (!string.IsNullOrWhiteSpace(Label))
+            {
+                <span id="@labelId" class="mdc-floating-label mdc-floating-label--float-above">@Label</span>
+            }
             <div class="mdc-line-ripple"></div>
         }
     </div>
 
-    <div class="mdc-select__menu mdc-menu mdc-menu-surface bmdc-dp-menu__surface-adjust">
+    <div id="@listboxId"
+         class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fixed bmdc-dp-menu__surface-adjust @MenuClass">
         <InternalDatePickerPanel @ref="Panel"
                                  @bind-Value="@ReportingValue"
                                  DateSelectionCriteria="@DateSelectionCriteria"

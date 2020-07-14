@@ -5,12 +5,12 @@
 		<RazorLangVersion>3.0</RazorLangVersion>
 		<Configurations>Debug_WebAssembly;Debug_Server;Release_WebAssembly;Release_Server</Configurations>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<VersionPrefix>0.33.0</VersionPrefix>
+		<VersionPrefix>0.34.0</VersionPrefix>
 		<VersionSuffix></VersionSuffix>
 		<PackageLicenseFile></PackageLicenseFile>
 		<Authors>BlazorMdc Authors</Authors>
 		<Company>BlazorMdc</Company>
-		<Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io. This version has a substantial API change whereby we have removed the "Mdc" and "PMdc" prefixes and replaced both with an "MT" prefix. We expect the API to be largely stable from now on. This is one of the last pre-release versions as we approach full release of version 1.0.0 in the coming weeks. Outstanding work is now focussed towards bug fixes/stability/quality, inline documentation exposed as a WIKI and automated build processes.</Description>
+		<Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io. This version upgrades to Material Theme 7.0.0, with minor change to the numerical input components (the Magnitude parameter is now FocussedMagnitude and UnfocussedMagnitude is added). This is one of the last pre-release versions as we approach full release of version 1.0.0 in the coming weeks. Outstanding work is now focussed towards bug fixes/stability/quality, inline documentation exposed as a WIKI and automated build processes.</Description>
 		<RepositoryUrl>https://github.com/BlazorMdc/BlazorMdc</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
@@ -64,28 +64,22 @@
 		<Exec Command="dotnet tool restore" />
 	</Target>
 
-	<Target Name="CompileCss" AfterTargets="RestoreDotnetTools">
-		<Exec Command="dotnet tool run webcompiler Styles/BlazorMdc.scss -z disable" />
+	
+	<Target Name="CompileCss" AfterTargets="RestoreDotnetTools" BeforeTargets="PreBuildEvent">
+		<Exec Command="dotnet tool run webcompiler Styles/blazormdc.scss -m disable -o .\wwwroot -p disable -z disable" />
 	</Target>
 
-	<Target Name="CompileJs" AfterTargets="CompileCss">
-		<Exec Command="dotnet tool run webcompiler Scripts/BlazorMdc.js -z disable" />
+	<Target Name="CompileMinifiedCss" AfterTargets="CompileCss" BeforeTargets="PreBuildEvent">
+		<Exec Command="dotnet tool run webcompiler Styles/blazormdc.scss -m enable -o .\wwwroot -p disable -z disable" />
 	</Target>
 
-	<Target Name="CopyCss" AfterTargets="CompileJs">
-		<Exec Command="xcopy /y .\styles\*.css wwwroot" />
+
+	<Target Name="CompileJs" AfterTargets="CompileMinifiedCss" BeforeTargets="PreBuildEvent">
+		<Exec Command="dotnet tool run webcompiler Scripts/blazormdc.js -m enable -o .\wwwroot -p disable -z disable" />
 	</Target>
 
-	<Target Name="DeleteCss" AfterTargets="CopyCss">
-		<Exec Command="del .\styles\*.css" />
-	</Target>
-
-	<Target Name="CopyJs" AfterTargets="DeleteCss">
+	<Target Name="CopyJs" AfterTargets="CompileJs" BeforeTargets="PreBuildEvent">
 		<Exec Command="xcopy /y .\scripts\*.js wwwroot" />
-	</Target>
-
-	<Target Name="DeleteJs" AfterTargets="CopyJs">
-		<Exec Command="del .\scripts\*.min.js" />
 	</Target>
 
 </Project>

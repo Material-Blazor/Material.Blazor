@@ -9,55 +9,106 @@
 <p>See <code>NumericFieldSample.razor</code> for sources.</p>
 
 <p style="margin-top: 3rem;">A double</p>
-<p><MTNumericDoubleField Label="Double 2dp"
-                         @bind-Value="@currentDouble"
-                         NumericFormat="N2" DecimalPlaces="2"
-                         TextInputStyle="MTTextInputStyle.Outlined"
-                         Disabled="@DisableComponents" /></p>
+<p>
+    <MTNumericDoubleField Label="Double 2dp"
+                          @bind-Value="@currentDouble"
+                          NumericFormat="N2" DecimalPlaces="2"
+                          TextInputStyle="MTTextInputStyle.Outlined"
+                          Disabled="@DisableComponents" />
+</p>
 <p>You typed: <strong>'@currentDouble'</strong></p>
 
 <p style="margin-top: 3rem;">A money formatted double</p>
-<p><MTNumericDoubleField Label="Money"
-                         @bind-Value="@currentMoney"
-                         NumericFormat="C2" DecimalPlaces="2"
-                         TextInputStyle="MTTextInputStyle.Outlined"
-                         Disabled="@DisableComponents" /></p>
-<p>You typed: <strong>'@currentMoney'</strong></p>
+<p>
+    <MTNumericDoubleField Label="Money"
+                          @bind-Value="@currentMoney1"
+                          NumericFormat="C2"
+                          DecimalPlaces="2"
+                          TextInputStyle="MTTextInputStyle.Outlined"
+                          Disabled="@DisableComponents" />
+</p>
+<p>You typed: <strong>'@currentMoney1'</strong></p>
+
+<p style="margin-top: 3rem;">Money double with prefix</p>
+<p>
+    <MTNumericDoubleField Label="Money"
+                          Prefix="£"
+                          @bind-Value="@currentMoney2"
+                          NumericFormat="N2"
+                          DecimalPlaces="2"
+                          TextInputStyle="MTTextInputStyle.Outlined"
+                          Disabled="@DisableComponents" />
+</p>
+<p>You typed: <strong>'@currentMoney2'</strong></p>
 
 <p style="margin-top: 3rem;">An integer</p>
-<p><MTNumericIntField Label="Integer"
-                      @bind-Value="@currentInteger"
-                      NumericFormat="N0"
-                      TextInputStyle="MTTextInputStyle.Outlined"
-                      Disabled="@DisableComponents" /></p>
+<p>
+    <MTNumericIntField Label="Integer"
+                       @bind-Value="@currentInteger"
+                       NumericFormat="N0"
+                       TextInputStyle="MTTextInputStyle.Outlined"
+                       Disabled="@DisableComponents" />
+</p>
 <p>You typed: <strong>'@currentInteger'</strong></p>
 
 <p style="margin-top: 3rem;">A percentage</p>
-<p><MTNumericDoubleField Label="Percent"
-                         @bind-Value="@currentPercent"
-                         NumericFormat="P2"
-                         DecimalPlaces="2"
-                         TextInputStyle="MTTextInputStyle.Outlined"
-                         Magnitude="MTNumericInputMagnitude.Percent"
-                         Disabled="@DisableComponents" /></p>
-<p>You typed: <strong>'@currentPercent'</strong></p>
+<p>
+    <MTNumericDoubleField Label="Percent"
+                          @bind-Value="@currentPercent1"
+                          NumericFormat="P2"
+                          DecimalPlaces="2"
+                          TextInputStyle="MTTextInputStyle.Outlined"
+                          FocussedMagnitude="MTNumericInputMagnitude.Percent"
+                          Disabled="@DisableComponents" />
+</p>
+<p>You typed: <strong>'@currentPercent1'</strong></p>
+
+<p style="margin-top: 3rem;">A percentage using a suffix</p>
+<p>
+    <MTNumericDoubleField Label="Percent"
+                          Suffix="%"
+                          @bind-Value="@currentPercent2"
+                          NumericFormat="N2"
+                          DecimalPlaces="2"
+                          TextInputStyle="MTTextInputStyle.Outlined"
+                          FocussedMagnitude="MTNumericInputMagnitude.Percent"
+                          UnfocussedMagnitude="MTNumericInputMagnitude.Percent"
+                          Disabled="@DisableComponents" />
+</p>
+<p>You typed: <strong>'@currentPercent2'</strong></p>
 
 <p style="margin-top: 3rem;">Basis points (not working yet)</p>
-<p><MTNumericDoubleField Label="Basis Points"
-                         @bind-Value="@CurrentBasisPoints"
-                         NumericFormat="#,### bp;-#,### bp"
-                         TextInputStyle="MTTextInputStyle.Outlined"
-                         Magnitude="MTNumericInputMagnitude.BasisPoints"
-                         Disabled="@DisableComponents" /></p>
-<p>You typed: <strong>'@CurrentBasisPoints / @CurrentBasisPoints.ToString("#,##0 bp")'</strong> - need to work on how to format basis points</p>
+<p>
+    <MTNumericDoubleField Label="Basis Points"
+                          @bind-Value="@CurrentBasisPoints1"
+                          NumericFormat="#,### bp;-#,### bp"
+                          TextInputStyle="MTTextInputStyle.Outlined"
+                          FocussedMagnitude="MTNumericInputMagnitude.BasisPoints"
+                          Disabled="@DisableComponents" />
+</p>
+<p>You typed: <strong>'@CurrentBasisPoints1</strong> - need to work on how to format basis points</p>
+
+<p style="margin-top: 3rem;">Basis points using a suffix</p>
+<p>
+    <MTNumericDoubleField Label="Basis Points"
+                          Suffix="bp"
+                          @bind-Value="@CurrentBasisPoints2"
+                          NumericFormat="N0"
+                          TextInputStyle="MTTextInputStyle.Outlined"
+                          FocussedMagnitude="MTNumericInputMagnitude.BasisPoints"
+                          UnfocussedMagnitude="MTNumericInputMagnitude.BasisPoints"
+                          Disabled="@DisableComponents" />
+</p>
+<p>You typed: <strong>'@CurrentBasisPoints2</strong></p>
 
 <p style="margin-top: 3rem;">Field showing different format for singular values ('month' versus 'months')</p>
-<p><MTNumericIntField Label="Months"
-                      @bind-Value="@currentMonths"
-                      NumericFormat="#,##0 months;-#,##0 months"
-                      NumericSingularFormat="#,##0 month;-#,##0 month"
-                      TextInputStyle="MTTextInputStyle.Outlined"
-                      Disabled="@DisableComponents" /></p>
+<p>
+    <MTNumericIntField Label="Months"
+                       @bind-Value="@currentMonths"
+                       NumericFormat="N2"
+                       TextInputStyle="MTTextInputStyle.Outlined"
+                       Disabled="@DisableComponents" />
+</p>
 <p>You typed: <strong>'@currentMonths'</strong></p>
 
 
@@ -66,9 +117,12 @@
     [CascadingParameter(Name = "DisableComponents")] private bool DisableComponents { get; set; }
 
     double currentDouble = 0;
-    double currentMoney = 0;
+    double currentMoney1 = 0;
+    double currentMoney2 = 0;
     int currentInteger = 0;
-    double currentPercent = 0;
-    double CurrentBasisPoints = 0;
+    double currentPercent1 = 0;
+    double currentPercent2 = 0;
+    double CurrentBasisPoints1 = 0;
+    double CurrentBasisPoints2 = 0;
     int currentMonths = 0;
 }

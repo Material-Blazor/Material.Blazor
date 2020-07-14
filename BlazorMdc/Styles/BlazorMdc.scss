@@ -8,7 +8,6 @@
 @import '../Components/List/MTList.scss';
 @import '../Components/Paginator/MTPaginator.scss';
 @import '../Components/RadioButtonGroup/MTRadioButtonGroup.scss';
-@import '../Components/Select/MTSelect.scss';
 @import '../Components/Shield/MTShield.scss';
 @import '../Components/SlidingContent/MTSlidingContent.scss';
 @import '../Components/Toast/MTToast.scss';
@@ -16,21 +15,61 @@
 
 
 :root {
+    --bmdc-dialog-firefox-scrollbar-width: thin;
+    --bmdc-select-firefox-scrollbar-width: thin;
+    --bmdc-dialog-scroll-margin-right: 4px;
+    --bmdc-dialog-scroll-width: 8px;
+    --bmdc-dialog-scroll-border-radius: 4px;
     --bmdc-select-scroll-margin-right: 4px;
-    --bmdc-select-scroll-width: 1.5em;
+    --bmdc-select-scroll-width: 8px;
     --bmdc-select-scroll-border-radius: 4px;
-    --bmdc-select-scroll-track-color: rgba(0, 0, 0, 0);
-    --bmdc-select-scroll-color: var(--bmdc-color-bluegray-400);
-    --bmdc-select-scroll-color__hover: var(--bmdc-color-bluegray-700);
+    --bmdc-scroll-track-color: rgba(0, 0, 0, 0);
+    --bmdc-scroll-color: var(--bmdc-color-bluegray-400);
+    --bmdc-scroll-color__hover: var(--bmdc-color-bluegray-700);
 }
 
 
-.mdc-drawer__content, .mdc-menu-surface, .bmdc-dp-year-pad {
-    scrollbar-width: auto !important;
+.mdc-text-field__affix {
+    user-select: none;
 }
 
 
-.mdc-select, .mdc-menu-surface--anchor, .mdc-drawer {
+.bmdc-custom-scrollbars .mdc-dialog__content {
+    scrollbar-width: var(--bmdc-dialog-firefox-scrollbar-width) !important;
+}
+
+
+.bmdc-custom-scrollbars .mdc-drawer__content,
+.bmdc-custom-scrollbars .mdc-menu-surface,
+.bmdc-custom-scrollbars .bmdc-dp-year-pad {
+    scrollbar-width: var(--bmdc-select-firefox-scrollbar-width) !important;
+}
+
+
+.bmdc-custom-scrollbars .mdc-dialog {
+    ::-webkit-scrollbar {
+        width: var(--bmdc-dialog-scroll-width);
+    }
+    /* Track */
+    ::-webkit-scrollbar-track {
+        background-color: var(--bmdc-dialog-scroll-track-color);
+        margin-right: var(--bmdc-dialog-scroll-margin-right);
+    }
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: var(--bmdc-scroll-color);
+        border-radius: var(--bmdc-dialog-scroll-border-radius);
+    }
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--bmdc-scroll-color__hover);
+    }
+}
+
+
+.bmdc-custom-scrollbars .mdc-select,
+.bmdc-custom-scrollbars .mdc-menu-surface--anchor,
+.bmdc-custom-scrollbars .mdc-drawer {
     ::-webkit-scrollbar {
         width: var(--bmdc-select-scroll-width);
     }
@@ -41,12 +80,12 @@
     }
     /* Handle */
     ::-webkit-scrollbar-thumb {
-        background: var(--bmdc-select-scroll-color);
+        background: var(--bmdc-scroll-color);
         border-radius: var(--bmdc-select-scroll-border-radius);
     }
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
-        background: var(--bmdc-select-scroll-color__hover);
+        background: var(--bmdc-scroll-color__hover);
     }
 }
 

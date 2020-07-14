@@ -1,18 +1,4 @@
 ﻿/************************************************
-    Applied to PMdcDatePicker.razor
-************************************************/
-.bmdc-dp-menu__surface-adjust {
-    overflow: visible !important;
-    //display: inline-block;
-    pointer-events: none;
-}
-
-.mdc-select--activated .bmdc-dp-menu__surface-adjust {
-    pointer-events: auto !important;
-}
-
-
-/************************************************
     Applied to InternalDatePickerPanel.razor
 ************************************************/
 
@@ -46,14 +32,6 @@ $dp-year-pad-clear-space-right: 20px;
 
 $dp-day-button-width: $dp-button-height;
 $dp-year-button-width: ($dp-panel-width - $dp-year-pad-padding-left - $dp-year-pad-clear-space-right) / 4 - 2 * $dp-button-margin;
-
-
-/*
-    Select Anchor
-*/
-.bmdc-dp__anchor {
-    width: $dp-panel-width;
-}
 
 
 /*
@@ -214,4 +192,31 @@ $dp-year-pad-rows: 7;
     .mdc-button__ripple {
         border-radius: $dp-button-border-radius;
     }
+}
+
+
+/************************************************
+    Applied to MTDatePicker.razor
+************************************************/
+
+$dp-menu-day-menu-height: $dp-menu-height + 7 * ($dp-button-height + 2 * $dp-button-margin) + $dp-button-margin + $dp-day-pad-bottom-margin;
+$dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-height + 2 * $dp-button-margin) + $dp-year-pad-padding-top + $dp-year-pad-padding-bottom;
+
+.bmdc-dp-menu__surface-adjust {
+    overflow: visible !important;
+    pointer-events: none;
+    width: $dp-panel-width;
+}
+
+.mdc-select--activated .bmdc-dp-menu__surface-adjust {
+    pointer-events: auto !important;
+}
+
+
+.bmdc-dp-menu__day-menu {
+    min-height: $dp-menu-day-menu-height;
+}
+
+.bmdc-dp-menu__year-menu {
+    min-height: $dp-menu-year-menu-height;
 }

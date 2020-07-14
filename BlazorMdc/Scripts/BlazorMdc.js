@@ -1,38 +1,35 @@
 window.BlazorMdc = {
     autoComplete: {
-        init: function (textElem) {
+        init: function (textElem, menuElem, dotNetObject) {
             textElem._textField = mdc.textField.MDCTextField.attachTo(textElem);
-        },
-
-        open: function (menuElem, dotNetObject) {
-            menuElem._menu = menuElem._menu || mdc.menu.MDCMenu.attachTo(menuElem);
-            menuElem._menu.foundation_.setDefaultFocusState(0);
-
-            return new Promise(resolve => {
-                const menu = menuElem._menu;
-
-                const openedCallback = event => {
-                    menu.unlisten('MDCMenuSurface:opened', openedCallback);
-                    menu.foundation_.setDefaultFocusState(1);
-                    resolve(event.detail.action);
+            menuElem._menu = mdc.menu.MDCMenu.attachTo(menuElem);
+            //menuElem._menuSurface = mdc.menuSurface.MDCMenuSurface.attachTo(menuElem);
+            
+            return new Promise(() => {
+                menuElem._menu.foundation.handleItemAction = listItem => {
+                    menuElem._menu.open = false;
+                    dotNetObject.invokeMethodAsync('NotifySelectedAsync', listItem.innerText);
                 };
 
-                const closedCallback = event => {
-                    menu.unlisten('MDCMenuSurface:closed', closedCallback);
-                    resolve(event.detail.action);
+                menuElem._menu.foundation.adapter.handleMenuSurfaceOpened = () => {
+                    menuElem._menu.foundation.setDefaultFocusState(0);
+                };
+
+                closedCallback = () => {
                     dotNetObject.invokeMethodAsync('NotifyClosedAsync');
                 };
 
-                menu.listen('MDCMenuSurface:opened', openedCallback);
-                menu.listen('MDCMenuSurface:closed', closedCallback);
-                menu.open = true;
+                menuElem._menu.listen('MDCMenuSurface:closed', closedCallback);
             });
         },
 
+        open: function (menuElem) {
+            menuElem._menu.open = true;
+            menuElem._menu.foundation.setDefaultFocusState(0);
+        },
+
         close: function (menuElem) {
-            if (menuElem._menu) {
-                menuElem._menu.open = false;
-            }
+            menuElem._menu.open = false;
         },
 
         setValue: function (textElem, value) {
@@ -98,10 +95,8 @@ window.BlazorMdc = {
         },
 
         scrollToYear: function (id) {
-            // Presently disabled because of undesirable overscroll-behaviour
-            //var element = document.getElementById(id);
-            //element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-            //element.scrollIntoView();
+            var element = document.getElementById(id);
+            element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'start' });
         }
     },
 
@@ -169,7 +164,7 @@ window.BlazorMdc = {
         },
 
         click: function (elem) {
-            elem._iconButtonToggle.root_.click();
+            elem._iconButtonToggle.root.click();
         }
     },
 
@@ -198,19 +193,21 @@ window.BlazorMdc = {
     },
 
     menu: {
-        show: function (elem, dotNetObject) {
-            elem._menu = elem._menu || mdc.menu.MDCMenu.attachTo(elem);
+        init: function (elem, dotNetObject) {
+            elem._menu = mdc.menu.MDCMenu.attachTo(elem);
 
-            return new Promise(resolve => {
-                const menu = elem._menu;
-                const callback = event => {
-                    menu.unlisten('MDCMenuSurface:closed', callback);
-                    resolve(event.detail.action);
+            return new Promise(() => {
+                elem._menu.foundation.handleItemAction = () => {
+                    elem._menu.open = false;
                     dotNetObject.invokeMethodAsync('NotifyClosedAsync');
                 };
-                menu.listen('MDCMenuSurface:closed', callback);
-                menu.open = true;
             });
+        },
+
+        show: function (elem) {
+            if (elem._menu) {
+                elem._menu.open = true;
+            }
         },
 
         hide: function (elem) {
@@ -234,8 +231,15 @@ window.BlazorMdc = {
     },
 
     select: {
-        init: function (elem) {
-            elem._select = mdc.select.MDCSelect.attachTo(elem);
+        init: function (selectElem, dotNetObject) {
+            selectElem._select = mdc.select.MDCSelect.attachTo(selectElem);
+
+            return new Promise(() => {
+                selectElem._select.foundation.handleMenuItemAction = index => {
+                    selectElem._select.foundation.setSelectedIndex(index);
+                    dotNetObject.invokeMethodAsync('NotifySelectedAsync', index);
+                };
+            });
         },
 
         setDisabled: function (elem, value) {
@@ -270,7 +274,7 @@ window.BlazorMdc = {
         setTab: function (elem, index) {
             if (elem._tabBar) {
                 let tl = elem._tabBar.tabList_[index];
-                tl.root_.click();
+                tl.root.click();
             }
         }
     },
