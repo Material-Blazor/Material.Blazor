@@ -281,11 +281,11 @@ namespace BlazorMdc
         /// </summary>
         /// <returns></returns>
         [JSInvokable("NotifySelectedAsync")]
-        public async Task NotifySelectedAsync(int index)
+        public async Task NotifySelectedAsync(string value)
         {
-            ReportingValue = SelectInfo.SelectList.ElementAt(index);
+            ReportingValue = value;
 
-            await Task.CompletedTask;
+            await NotifyClosedAsync();
         }
 
 
@@ -294,7 +294,7 @@ namespace BlazorMdc
             if (!IsOpen || forceOpen)
             {
                 IsOpen = true;
-                await JsRuntime.InvokeAsync<string>("BlazorMdc.autoComplete.open", SelectReference);
+                await JsRuntime.InvokeAsync<string>("BlazorMdc.autoComplete.open", MenuReference);
             }
         }
 
@@ -304,12 +304,12 @@ namespace BlazorMdc
             if (IsOpen || forceClose)
             {
                 IsOpen = false;
-                await JsRuntime.InvokeAsync<string>("BlazorMdc.autoComplete.close", SelectReference);
+                await JsRuntime.InvokeAsync<string>("BlazorMdc.autoComplete.close", MenuReference);
             }
         }
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.autoComplete.init", TextField.ElementReference, SelectReference, ObjectReference);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.autoComplete.init", TextField.ElementReference, MenuReference, ObjectReference);
     }
 }

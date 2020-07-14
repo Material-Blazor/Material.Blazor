@@ -64,7 +64,6 @@
 
             @foreach (var item in ItemDict.Values)
             {
-                //var clickItem = item.SelectedValue;
                 var listClass = "mdc-list-item" + (item.SelectedValue.Equals(Value) ? " mdc-list-item--selected" : "");
                 var ariaSelected = item.SelectedValue.Equals(Value);
 

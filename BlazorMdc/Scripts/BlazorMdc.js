@@ -1,31 +1,35 @@
 window.BlazorMdc = {
     autoComplete: {
-        init: function (textElem, selectElem, dotNetObject) {
+        init: function (textElem, menuElem, dotNetObject) {
             textElem._textField = mdc.textField.MDCTextField.attachTo(textElem);
-            selectElem._select = mdc.select.MDCSelect.attachTo(selectElem);
+            menuElem._menu = mdc.menu.MDCMenu.attachTo(menuElem);
+            //menuElem._menuSurface = mdc.menuSurface.MDCMenuSurface.attachTo(menuElem);
             
             return new Promise(() => {
-                selectElem._select.foundation.handleMenuItemAction = index => {
-                    dotNetObject.invokeMethodAsync('NotifySelectedAsync', index);
+                menuElem._menu.foundation.handleItemAction = listItem => {
+                    menuElem._menu.open = false;
+                    dotNetObject.invokeMethodAsync('NotifySelectedAsync', listItem.innerText);
                 };
 
-                selectElem._select.foundation.handleMenuOpened = () => {
-                    selectElem._select.menu.foundation.setDefaultFocusState(0);
+                menuElem._menu.foundation.adapter.handleMenuSurfaceOpened = () => {
+                    menuElem._menu.foundation.setDefaultFocusState(0);
                 };
 
-                selectElem._select.foundation.handleMenuClosed = () => {
+                closedCallback = () => {
                     dotNetObject.invokeMethodAsync('NotifyClosedAsync');
                 };
+
+                menuElem._menu.listen('MDCMenuSurface:closed', closedCallback);
             });
         },
 
-        open: function (selectElem) {
-            selectElem._select.foundation.adapter.openMenu();
-            selectElem._select.menu.foundation.setDefaultFocusState(0);
+        open: function (menuElem) {
+            menuElem._menu.open = true;
+            menuElem._menu.foundation.setDefaultFocusState(0);
         },
 
-        close: function (selectElem) {
-            selectElem._select.foundation.adapter.closeMenu();
+        close: function (menuElem) {
+            menuElem._menu.open = false;
         },
 
         setValue: function (textElem, value) {
