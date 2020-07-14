@@ -346,3 +346,6 @@ healthchecksdb
 **/BlazorMdc.Demo.CommonUI/wwwroot/css/*.css
 **/BlazorMdc.MaterialComponents/material-components-web/dist/*.css
 **/BlazorMdc.MaterialComponents/material-components-web/dist/*.js
+
+# DocFx tool
+!**/DocFx/*.*
