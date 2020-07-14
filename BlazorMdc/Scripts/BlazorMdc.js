@@ -189,21 +189,21 @@ window.BlazorMdc = {
     },
 
     menu: {
-        show: function (elem, dotNetObject) {
-            elem._menu = elem._menu || mdc.menu.MDCMenu.attachTo(elem);
+        init: function (elem, dotNetObject) {
+            elem._menu = mdc.menu.MDCMenu.attachTo(elem);
 
-            return new Promise(resolve => {
-                const menu = elem._menu;
-
-                const callback = event => {
-                    menu.unlisten('MDCMenuSurface:closed', callback);
-                    resolve(event.detail.action);
+            return new Promise(() => {
+                elem._menu.foundation.handleItemAction = () => {
+                    elem._menu.open = false;
                     dotNetObject.invokeMethodAsync('NotifyClosedAsync');
                 };
-
-                menu.listen('MDCMenuSurface:closed', callback);
-                menu.open = true;
             });
+        },
+
+        show: function (elem) {
+            if (elem._menu) {
+                elem._menu.open = true;
+            }
         },
 
         hide: function (elem) {
