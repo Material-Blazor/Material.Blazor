@@ -3,8 +3,7 @@ window.BlazorMdc = {
         init: function (textElem, selectElem, dotNetObject) {
             textElem._textField = mdc.textField.MDCTextField.attachTo(textElem);
             selectElem._select = mdc.select.MDCSelect.attachTo(selectElem);
-            //selectElem._select.foundation.init();
-
+            
             return new Promise(() => {
                 selectElem._select.foundation.handleMenuItemAction = index => {
                     dotNetObject.invokeMethodAsync('NotifySelectedAsync', index);
@@ -20,7 +19,7 @@ window.BlazorMdc = {
             });
         },
 
-        open: function (selectElem, dotNetObject) {
+        open: function (selectElem) {
             selectElem._select.foundation.adapter.openMenu();
             selectElem._select.menu.foundation.setDefaultFocusState(0);
         },
@@ -231,15 +230,11 @@ window.BlazorMdc = {
         init: function (selectElem, dotNetObject) {
             selectElem._select = mdc.select.MDCSelect.attachTo(selectElem);
 
-            return new Promise(resolve => {
-                const select = selectElem._select;
-
-                const callback = event => {
-                    resolve(event.detail.action);
-                    dotNetObject.invokeMethodAsync('NotifySelectedAsync', event.detail.index);
+            return new Promise(() => {
+                selectElem._select.foundation.handleMenuItemAction = index => {
+                    selectElem._select.foundation.setSelectedIndex(index);
+                    dotNetObject.invokeMethodAsync('NotifySelectedAsync', index);
                 };
-
-                select.listen('MDCSelect:change', callback);
             });
         },
 
