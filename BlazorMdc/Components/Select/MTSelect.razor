@@ -64,7 +64,6 @@
 
             @foreach (var item in ItemDict.Values)
             {
-                var clickItem = item.SelectedValue;
                 var listClass = "mdc-list-item" + (item.SelectedValue.Equals(Value) ? " mdc-list-item--selected" : "");
                 var ariaSelected = item.SelectedValue.Equals(Value);
 
@@ -73,8 +72,8 @@
                     data-value="@item.Label"
                     aria-selected="@ariaSelected"
                     aria-disabled="@item.Disabled"
-                    role="option"
-                    @onclick=@(_ => OnItemClickAsync(clickItem))>
+                    role="option">
+
                     <span class="mdc-list-item__ripple"></span>
                     <span class="mdc-list-item__text bmdc-full-width">@item.Label</span>
                 </li>

@@ -17,42 +17,18 @@
                  @onfocusout="@OnTextFocusOutAsync"
                  @attributes="@AttributesToSplat()" />
 
-    <div class="mdc-select mdc-select--filled">
-        <div class="mdc-select__anchor"
-             role="button"
-             aria-disabled="@Disabled"
-             aria-haspopup="@MenuReference"
-             aria-labelledby="@TextField">
-        </div>
-
+    <div class="mdc-menu-surface--anchor">
         <div @ref="@MenuReference"
-             class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth"
-             @onfocusin="OnMenuFocusIn"
-             @onfocusout="OnMenuFocusOut"
-             tabindex="-1">
+                class="mdc-menu mdc-menu-surface mdc-menu-surface--fixed"
+                @onfocusin="OnMenuFocusIn"
+                @onfocusout="OnMenuFocusOut"
+                tabindex="-1">
 
             <ul class="mdc-list"
                 tabindex="-1">
 
-                @if (AllowBlankResult)
-                {
-                    var item = "";
-                    <li @key="@item"
-                        class="mdc-list-item bmdc-autocomplete--blank"
-                        data-value="@item"
-                        aria-selected="false"
-                        role="option"
-                        tabindex="-1">
-
-                        <span class="mdc-list-item__text bmdc-full-width">
-                            @item
-                        </span>
-                    </li>
-                }
-
                 @foreach (var item in SelectInfo.SelectList)
                 {
-                    var clickItem = string.Copy(item);
                     var listClass = "mdc-list-item" + (item.Equals(Value) ? " mdc-list-item--selected" : "");
                     var ariaSelected = item.Equals(Value);
 
@@ -61,8 +37,7 @@
                         data-value="@item"
                         aria-selected="@ariaSelected"
                         role="option"
-                        tabindex="0"
-                        @onclick="@(() => OnItemClickAsync(clickItem))">
+                        tabindex="0">
                         <span class="mdc-list-item__ripple"></span>
                         <span class="mdc-list-item__text bmdc-full-width">@item</span>
                     </li>
