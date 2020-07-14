@@ -232,8 +232,17 @@ window.BlazorMdc = {
     },
 
     select: {
-        init: function (elem) {
-            elem._select = mdc.select.MDCSelect.attachTo(elem);
+        init: function (selectElem, dotNetObject) {
+            selectElem._select = mdc.select.MDCSelect.attachTo(selectElem);
+
+            return new Promise(resolve => {
+                const select = selectElem._select;
+                const callback = event => {
+                    resolve(event.detail.action);
+                    dotNetObject.invokeMethodAsync('NotifySelectedAsync', event.detail.index);
+                };
+                select.listen('MDCSelect:change', callback);
+            });
         },
 
         setDisabled: function (elem, value) {

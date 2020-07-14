@@ -45,7 +45,7 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// For Material theme to notify of menu closure.
+        /// For Material Theme to notify of menu closure via JS Interop.
         /// </summary>
         [JSInvokable("NotifyClosedAsync")]
         public async Task NotifyClosedAsync()
