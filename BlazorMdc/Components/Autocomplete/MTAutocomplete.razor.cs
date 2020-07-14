@@ -118,6 +118,7 @@ namespace BlazorMdc
 
         private DotNetObjectReference<MTAutocomplete> ObjectReference { get; set; }
         private MTTextField TextField { get; set; }
+        private ElementReference SelectReference { get; set; }
         private ElementReference MenuReference { get; set; }
         private SelectionItem[] MySelectItems { get; set; }
         private SelectionInfo SelectInfo { get; set; } = new SelectionInfo();
@@ -217,7 +218,6 @@ namespace BlazorMdc
 
         private async Task OnTextChangeAsync()
         {
-            //await Task.Delay(100);
             await CloseMenuAsync(true);
 
             if (!MenuHasFocus)
@@ -253,17 +253,8 @@ namespace BlazorMdc
         }
 
 
-        private async Task OnItemClickAsync(string menuValue)
-        {
-            await CloseMenuAsync();
-            //SelectInfo = BuildSelectList(menuValue);
-            ReportingValue = menuValue.Trim();
-            SetParameters();
-        }
-
-
         /// <summary>
-        /// Called by JS Interop to notify when the drop down is closed.
+        /// For Material Theme to notify when the drop down is closed via JS Interop.
         /// </summary>
         /// <returns></returns>
         [JSInvokable("NotifyClosedAsync")]
@@ -285,12 +276,25 @@ namespace BlazorMdc
         }
 
 
+        /// <summary>
+        /// For Material Theme to notify of menu item selection via JS Interop.
+        /// </summary>
+        /// <returns></returns>
+        [JSInvokable("NotifySelectedAsync")]
+        public async Task NotifySelectedAsync(int index)
+        {
+            ReportingValue = SelectInfo.SelectList.ElementAt(index);
+
+            await Task.CompletedTask;
+        }
+
+
         private async Task OpenMenuAsync(bool forceOpen = false)
         {
             if (!IsOpen || forceOpen)
             {
                 IsOpen = true;
-                await JsRuntime.InvokeAsync<string>("BlazorMdc.autoComplete.open", MenuReference, ObjectReference);
+                await JsRuntime.InvokeAsync<string>("BlazorMdc.autoComplete.open", SelectReference);
             }
         }
 
@@ -300,12 +304,12 @@ namespace BlazorMdc
             if (IsOpen || forceClose)
             {
                 IsOpen = false;
-                await JsRuntime.InvokeAsync<string>("BlazorMdc.autoComplete.close", MenuReference, ObjectReference);
+                await JsRuntime.InvokeAsync<string>("BlazorMdc.autoComplete.close", SelectReference);
             }
         }
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.autoComplete.init", TextField.ElementReference);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.autoComplete.init", TextField.ElementReference, SelectReference, ObjectReference);
     }
 }

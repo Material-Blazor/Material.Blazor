@@ -1,38 +1,32 @@
 window.BlazorMdc = {
     autoComplete: {
-        init: function (textElem) {
+        init: function (textElem, selectElem, dotNetObject) {
             textElem._textField = mdc.textField.MDCTextField.attachTo(textElem);
-        },
+            selectElem._select = mdc.select.MDCSelect.attachTo(selectElem);
+            //selectElem._select.foundation.init();
 
-        open: function (menuElem, dotNetObject) {
-            menuElem._menu = menuElem._menu || mdc.menu.MDCMenu.attachTo(menuElem);
-            menuElem._menu.foundation.setDefaultFocusState(0);
-
-            return new Promise(resolve => {
-                const menu = menuElem._menu;
-
-                const openedCallback = event => {
-                    menu.unlisten('MDCMenuSurface:opened', openedCallback);
-                    menu.foundation.setDefaultFocusState(1);
-                    resolve(event.detail.action);
+            return new Promise(() => {
+                selectElem._select.foundation.handleMenuItemAction = index => {
+                    dotNetObject.invokeMethodAsync('NotifySelectedAsync', index);
                 };
 
-                const closedCallback = event => {
-                    menu.unlisten('MDCMenuSurface:closed', closedCallback);
-                    resolve(event.detail.action);
+                selectElem._select.foundation.handleMenuOpened = () => {
+                    selectElem._select.menu.foundation.setDefaultFocusState(0);
+                };
+
+                selectElem._select.foundation.handleMenuClosed = () => {
                     dotNetObject.invokeMethodAsync('NotifyClosedAsync');
                 };
-
-                menu.listen('MDCMenuSurface:opened', openedCallback);
-                menu.listen('MDCMenuSurface:closed', closedCallback);
-                menu.open = true;
             });
         },
 
-        close: function (menuElem) {
-            if (menuElem._menu) {
-                menuElem._menu.open = false;
-            }
+        open: function (selectElem, dotNetObject) {
+            selectElem._select.foundation.adapter.openMenu();
+            selectElem._select.menu.foundation.setDefaultFocusState(0);
+        },
+
+        close: function (selectElem) {
+            selectElem._select.foundation.adapter.closeMenu();
         },
 
         setValue: function (textElem, value) {
@@ -201,11 +195,13 @@ window.BlazorMdc = {
 
             return new Promise(resolve => {
                 const menu = elem._menu;
+
                 const callback = event => {
                     menu.unlisten('MDCMenuSurface:closed', callback);
                     resolve(event.detail.action);
                     dotNetObject.invokeMethodAsync('NotifyClosedAsync');
                 };
+
                 menu.listen('MDCMenuSurface:closed', callback);
                 menu.open = true;
             });
@@ -237,10 +233,12 @@ window.BlazorMdc = {
 
             return new Promise(resolve => {
                 const select = selectElem._select;
+
                 const callback = event => {
                     resolve(event.detail.action);
                     dotNetObject.invokeMethodAsync('NotifySelectedAsync', event.detail.index);
                 };
+
                 select.listen('MDCSelect:change', callback);
             });
         },
