@@ -1,2 +1,2 @@
-# About BlazorMdc
+# BlazorMdc Articles
 *[TBD]*
