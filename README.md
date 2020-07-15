@@ -10,8 +10,8 @@
 [![GitHub stars](https://img.shields.io/github/stars/BlazorMdc/BlazorMdc?logo=github&style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/stargazers)
 [![GitHub stars](https://img.shields.io/github/watchers/BlazorMdc/BlazorMdc?logo=github&style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/watchers)
 
-![GithubActionsMainPublish](https://img.shields.io/github/workflow/status/blazormdc/blazormdc/GithubActionsMainPublish?label=actions%20main&logo=github&style=flat-square)
-![GithubActionsDevelop](https://img.shields.io/github/workflow/status/blazormdc/blazormdc/GithubActionsDevelop?label=actions%20develop&logo=github&style=flat-square)
+[![GithubActionsMainPublish](https://img.shields.io/github/workflow/status/blazormdc/blazormdc/GithubActionsMainPublish?label=actions%20main&logo=github&style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/actions?query=workflow%3AGithubActionsMainPublish)
+[![GithubActionsDevelop](https://img.shields.io/github/workflow/status/blazormdc/blazormdc/GithubActionsDevelop?label=actions%20develop&logo=github&style=flat-square)](https://github.com/BlazorMdc/BlazorMdc/actions?query=workflow%3AGithubActionsDevelop)
 
 ## Lightweight Material Theme razor components for Blazor
 

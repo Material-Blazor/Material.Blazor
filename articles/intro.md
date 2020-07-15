@@ -1,2 +1,2 @@
 # About BlazorMdc
-**[TBD]**
+*[TBD]*
