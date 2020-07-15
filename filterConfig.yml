@@ -1,5 +1,5 @@
 apiRules:
 - exclude:
-    uidRegex: ^System\.*$
+    uidRegex: ^System\[.*]$
 - exclude:
-    uidRegex: ^Microsoft\.*$
+    uidRegex: ^Microsoft\[.*]$
