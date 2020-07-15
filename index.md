@@ -26,7 +26,7 @@ BlazorMdc isn't the only Blazor component library for Material Theme and we enco
 - Some added value components derived from core material theme components but that are not strictly material theme themselves. These include an autocomplete box, a confimration dialog and formatted numeric input fields. We also provide a date picker and paginator, each of which follow Material Theme specification in the absence of a Material Theme css/js implementation, and
 - We aim for BlazorMdc to employ best practice for Blazor development. As a starting point this should be considered as being defined per [this video from NDC London, January 2020](https://www.youtube.com/watch?v=QnBYmTpugz0). We have plenty to do to arrive at that position.
 
-Note that BlazorMdc is in the early stages of development, so there are likely to be **frequent breaking changes** until we reach version 1. This project is owned by [Dioptra](https://dioptra.tech) and is provided as-is under the terms of the [MIT license](https://github.com/BlazorMdc/BlazorMdc/blob/main/LICENSE.md).
+BlazorMdc is still pre-release however we are close to version 1. The API is stable, we do not expect breaking changes and we believe that the project performs well, although we will conduct a code review prior to release. This project is owned by [Dioptra](https://dioptra.tech) and is provided as-is under the terms of the [MIT license](https://github.com/BlazorMdc/BlazorMdc/blob/main/LICENSE.md).
 
 Note also that BlazorMdc has advanced making this documentation somewhat obsolete as we move towards automated documentation. Some of the component references here may be incorrect and we do not expect to maintain the detailed documentation found in this file for much longer.
 
@@ -38,15 +38,15 @@ BlazorMdc is forked from [Steve Sanderson's](https://blog.stevensanderson.com/) 
 
 We also want to acknowledge the work of 
 * [Vladimir Samoilenko (@SamProf on Github)](https://github.com/SamProf) for his work on [MatBlazor](https://www.matblazor.com/). MatBlazor code was referenced and some small parts of the code were copied to be part of BlazorMdc (ClassMapper and StyleMapper).
-* [Chris Sainty (@chrissainty on Github)](https://github.com/chrissainty) for his work on [Blazored/Toast](https://github.com/Blazored/Toast) which is the basis for PMdcToast.
-* [ℳisterℳagoo (@mistermag00 on Twitter)](https://github.com/SQL-MisterMagoo/) for the `@:@{` construct used in PMdcPagedDataList and [Peter Morris (@mrpmorris on Github)](https://github.com/mrpmorris) for demonstrating this with code that we forked in [Blazor University](https://blazor-university.com/), christening it the "wig pig" - head to Blazor University to see why.
+* [Chris Sainty (@chrissainty on Github)](https://github.com/chrissainty) for his work on [Blazored/Toast](https://github.com/Blazored/Toast) which is the basis for MTToast.
+* [ℳisterℳagoo (@mistermag00 on Twitter)](https://github.com/SQL-MisterMagoo/) for the `@:@{` construct used in MTPagedDataList and [Peter Morris (@mrpmorris on Github)](https://github.com/mrpmorris) for demonstrating this with code that we forked in [Blazor University](https://blazor-university.com/), christening it the "wig pig" - head to Blazor University to see why.
 
 ## Installation
 
 Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add the CSS and JS in your html (there are non-minified unbundled files for BlazorMdc.css & BlazorMds.js to reference if you need them for debugging purposes).
 Reference the `BlazorMdc` namespace with `@using BlazorMdc` to your `_Imports.razor` file. There are two optional services in BlazorMdc:
-- If you want to use `PMdcToast` add `services.AddPMdcToast();` to your `ConfigureServices` function for Blazor Server or to the `Main()` function for Blazor WebAssembly, and
-- If you want animated page navigation using `PMdcAnimationdNavigation` add `services.AddPMdcAnimatedNavigationManager();` to `ConfigureServices`.
+- If you want to use toasts via `MTToastAnchor` add `services.AddMTToastService();` to your `ConfigureServices` function for Blazor Server or to the `Main()` function for Blazor WebAssembly, and
+- If you want animated page navigation using `MTAnimationdNavigation` add `services.AddMTAnimatedNavigationManager();` to `ConfigureServices`.
 
 **NOTE** - BlazorMdc works with [Material Components v7.0.0](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#600-2020-04-22).
 
@@ -54,11 +54,11 @@ Reference the `BlazorMdc` namespace with `@using BlazorMdc` to your `_Imports.ra
 
 We bundle the Material Theme CSS and JS into BlazorMdc for your convenience along with [Material Icons](https://material.io/resources/icons/?style=baseline) which are essential for BlazorMdc. You will need to add two items to your index.html/_Host.cshtml file. Place this in the the `<head>` tag:
 ```html
-    <link href="_content/BlazorMdc/blazormdc-bundled.min.css" rel="stylesheet">
+<link href="_content/BlazorMdc/blazormdc-bundled.min.css" rel="stylesheet">
 ```
 and at the end of `<body>`:
 ```html
-    <script src="_content/BlazorMdc/blazormdc-bundled.min.js"></script>
+<script src="_content/BlazorMdc/blazormdc-bundled.min.js"></script>
 ```
 See the [Blazor WebAssembly demo index file](BlazorMdc.Demo.WebServer/Pages/index_webassembly.cshtml) and [Blazor Server demo index file](BlazorMdc.Demo.WebServer/Pages/index_server.cshtml) for examples. We also provide un-minified `blazormdc.css` and `blazormdc.js`.
 
@@ -118,11 +118,11 @@ The following is a list of core Material Theme components.
 
 ## Plus Components
 
-The following are extra or 'plus' components that extend the strict, core Material Theme `MTXxx` components with either additional functionality or in the case of `PMdcDatePicker` and `PMdcPaginator` implementing a specification that is yet to be implemented in the Material Theme CSS and JavaScript libraries.
+The following are extra or 'plus' components that extend the strict, core Material Theme `MTXxx` components with either additional functionality or in the case of `MTDatePicker` and `MTPaginator` implementing a specification that is yet to be implemented in the Material Theme CSS and JavaScript libraries.
 
 | Component | Notes |
 | :-------- | :---- |
-| `MTAnimatedNavigation` | A component used by the `IPmdcAnimatedNavigationManager` service and place in the main layout surrounding your `@Body`. This is not needed if you don't use BlazorMdc animated navigation. |
+| `MTAnimatedNavigation` | A component used by the `IMTAnimatedNavigationManager` service and place in the main layout surrounding your `@Body`. This is not needed if you don't use BlazorMdc animated navigation. |
 | `MTAutocomplete` | A [Material Text Field](https://material.io/develop/web/components/input-controls/text-field/) that drops a [menu](https://material.io/develop/web/components/menus/) for auto completion. Has parameters to allow blank results and for whitespace to be ignored in searches. Might consider forking and adapting [Blazored.Typeahead](https://github.com/Blazored/Typeahead) with MT styling. |
 | `MTConfirmationDialog` | A special purpose wrapper around `MTDialog` that makes the user type some text correctly in order to enable a button for a specific purpose. Modelled after the GitHub confirmation forms. |
 | `MTDatePicker` | An implementation of the [Material date picker specification](https://material.io/components/pickers/#specs) for the desktop. Does not implement date ranges. Date pickers are only implemented in Material Theme for Android, so we interpreted as closely as possible the specification with our own CSS. This is the only instance where we have created CSS for a component, because our goal is to use standard Material Theme styling throughout. The result seems a bit too dense and is within a couple of pixels of unstyled overflow content on the month selection menu for long month names in English; this is likely to overflow for languages with longer month names. We are therefore likely to relax the component's density, which should improve usability. We have deviated from the specification by adding an "undo" button to return to the current selected date. There is no "today" button, which is not in the Material Theme specification. |
@@ -133,18 +133,18 @@ The following are extra or 'plus' components that extend the strict, core Materi
 | `MTNumericIntField` | A wrapper for `MTpNumericDoubleField` for `int` variables. |
 | `MTPagedDataList` | A templated component for paging generic data lists using `MTPaginator`. Uses the Wig Pig nested coding pattern and can either render list items one by one or wrap a component such as `MTList` or `MTDataTable`. |
 | `MTPaginator` | An implementation of the [Material paginator specification](https://material.io/components/data-tables#behavior). |
-| `MTRadioButtonGroup` | A group of MdcRadioButtons. The ItemValidation parameter has three possible values. Exception is the default value and an exception will be raised if the Value supplied does not match one of the Values in the List parameter data. DefaultToFirst will select the first item in the list if the Value does not match. NoSelection will not pick a radiobutton when the Value is illegal. Several ArgumentExceptions can also be thrown for such things as a missing or empty List, a List that has multiple identical SelectedValues, and missing Value bindings. |
+| `MTRadioButtonGroup` | A group of `MTRadioButton`s. The ItemValidation parameter has three possible values. Exception is the default value and an exception will be raised if the Value supplied does not match one of the Values in the List parameter data. DefaultToFirst will select the first item in the list if the Value does not match. NoSelection will not pick a radiobutton when the Value is illegal. Several ArgumentExceptions can also be thrown for such things as a missing or empty List, a List that has multiple identical SelectedValues, and missing Value bindings. |
 | `MTShield` | A simple component producing an HTML shield styled after svgs from shield.io (square, flat variety) |
 | `MTSlidingContent` | A templated component to provide previous/next navigation through a series of pages with light left/right and fade in/out animation. |
 | `MTSlidingTabBar` | An `MTTabBar` augmented with content displayed in a `MTSlidingContent` |
-| `MTToastAnchor` | A port of [Blazored/Toast](https://github.com/Blazored/Toast), modified and styled à la Material Theme. Place once instance of this in your Blazor app at the top of `App.razor` or `MainLayout.razor`. Requires that you register an `IPmdcToastService` service and will throw an exception on startup if the service is not found. |
+| `MTToastAnchor` | A port of [Blazored/Toast](https://github.com/Blazored/Toast), modified and styled à la Material Theme. Place once instance of this in your Blazor app at the top of `App.razor` or `MainLayout.razor`. Requires that you register an `IMTToastService` service and will throw an exception on startup if the service is not found. |
 
 ## Services
  
 | Service | Notes |
 | :------ | :---- |
-| `IPmdcAnimatedNavigationManager` | Manages fade out/in page navigation, wrapping Blazor's `NavigationManager.NavigateTo()` function. This is purely optional and you can continue to use Blazor's navigtion if you don't want animation. |
-| `IPmdcToastService` | Manages toast notification. Requires a `PMdcToastAnchor` component and will throw an exception when you attempt to show a toast notification if this isn't found. |
+| `IMTAnimatedNavigationManager` | Manages fade out/in page navigation, wrapping Blazor's `NavigationManager.NavigateTo()` function. This is purely optional and you can continue to use Blazor's navigtion if you don't want animation. |
+| `IMTToastService` | Manages toast notification. Requires a `MTToastAnchor` component and will throw an exception when you attempt to show a toast notification if this isn't found. |
 
 ## Utilities
  
@@ -152,7 +152,7 @@ The following are extra or 'plus' components that extend the strict, core Materi
 | :------ | :---- |
 | `MTCascadingDefaults` | Allows you to set up defaults such as button style (filled, outlined etc), text area style (filled or outlined) |
 | `MTTypography` | Constants for standard Material Theme typography. |
-| `MTIconHelper` | Working with `IMTMdcIcon` and `IMdcIconFoundry` to implement `MTMIFoundry()` to specify [Material Icons](https://material.io/resources/icons/?style=baseline), and optionally `FAFoundry()` for [Font Awesome](https://fontawesome.com/icons?d=gallery) and `OIFoundry()` for [Open Iconic](https://useiconic.com/open) icons. Icon names are passed to components as a string, with an additional parameter of `IconFoundry` using utility functions from `MTIcon` to specify the foundry and its optional parameters. Your default icon foundry can be set in `MTCascadingDefaults` (which itself defaults to Material Icons) and then you can pass string names for the icon of your choice. For Font Awesome icons, omit the preceding "fas/r/l/d" because this is set as a Font Awesome foundry style and in `MTCascadingDefaults.FAIconStyle`. Font Awesome relative icon size and Material Icons theme are also similarly parameterized. BlazorMdc expects you to include Material Icons in your project (these are necessary for drop down arrows and so forth, but Font Awesome icons are discretionary depending upon your project's requirement - you do however need to use Font Awesome version 5 and Open Iconic version 1.1. |
+| `MTIconHelper` | Working with `IMTIcon` and `IMTIconFoundry` to implement `MTMIFoundry()` to specify [Material Icons](https://material.io/resources/icons/?style=baseline), and optionally `FAFoundry()` for [Font Awesome](https://fontawesome.com/icons?d=gallery) and `OIFoundry()` for [Open Iconic](https://useiconic.com/open) icons. Icon names are passed to components as a string, with an additional parameter of `IconFoundry` using utility functions from `MTIcon` to specify the foundry and its optional parameters. Your default icon foundry can be set in `MTCascadingDefaults` (which itself defaults to Material Icons) and then you can pass string names for the icon of your choice. For Font Awesome icons, omit the preceding "fas/r/l/d" because this is set as a Font Awesome foundry style and in `MTCascadingDefaults.FAIconStyle`. Font Awesome relative icon size and Material Icons theme are also similarly parameterized. BlazorMdc expects you to include Material Icons in your project (these are necessary for drop down arrows and so forth, but Font Awesome icons are discretionary depending upon your project's requirement - you do however need to use Font Awesome version 5 and Open Iconic version 1.1. |
 
 ## Future Development
 
