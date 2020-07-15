@@ -1,7 +1,7 @@
 ﻿namespace BlazorMdc
 {
     /// <summary>
-    /// A list item used by <see cref="MdcSelect{TItem}"/>, <see cref="PMdcRadioButtonGroup{TItem}"/> and <see cref="PMdcPagedDataList{TItem}"/>
+    /// A list item used by <see cref="MTSelect{TItem}"/>, <see cref="PMTRadioButtonGroup{TItem}"/> and <see cref="MTPagedDataList{TItem}"/>
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class MTListElement<T>

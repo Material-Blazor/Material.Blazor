@@ -4,21 +4,21 @@ namespace BlazorMdc
 {
     /// <summary>
     /// Interface for the BlazorMdc toast service, developed from the code base of Blazored Toast by Chris Sainty.
-    /// Works in conjunction with a <see cref="PMdcToastAnchor"/> that must be placed in either App.razor or
+    /// Works in conjunction with a <see cref="MTToastAnchor"/> that must be placed in either App.razor or
     /// MainLayout.razor to avoid an exception being thrown when you first attempt to show a toast notification.
     /// 
     /// <para>
     /// Throws a <see cref="System.InvalidOperationException"/> if
     /// <see cref="ShowToast(MTToastLevel, string, string, MTToastCloseMethod?, string, string, IMTIconFoundry?, bool?, uint?)"/>
-    /// is called without a <see cref="PMdcToastAnchor"/> component used in the app.
+    /// is called without a <see cref="MTToastAnchor"/> component used in the app.
     /// </para>
     /// <example>
     /// <para>You can optionally add configuration when you add this to the service collection:</para>
     /// <code>
-    /// services.AddPMdcToastService(new PMdcToastServiceConfiguration()
+    /// services.AddMTToastService(new MTToastServiceConfiguration()
     /// {
-    ///     Postion = PMdcToastPosition.TopRight,
-    ///     CloseMethod = PMdcToastCloseMethod.Timeout,
+    ///     Postion = MTToastPosition.TopRight,
+    ///     CloseMethod = MTToastCloseMethod.Timeout,
     ///     ... etc
     /// });
     /// </code>

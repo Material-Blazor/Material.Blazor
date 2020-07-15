@@ -8,7 +8,7 @@ using System.Linq;
 namespace BlazorMdc
 {
     /// <summary>
-    /// A group of <see cref="MdcRadioButton{TItem}"/>s displayed horizontally or vertically.
+    /// A group of <see cref="MTRadioButton{TItem}"/>s displayed horizontally or vertically.
     /// </summary>
     public partial class MTRadioButtonGroup<TItem> : ValidatingInputComponentFoundation<TItem>
     {

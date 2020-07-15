@@ -24,7 +24,7 @@ namespace BlazorMdc
          ************************************************************************************************************/
 
         /// <summary>
-        /// Determines whether <see cref="ComponentBase"/> should throw an exception for invalid 
+        /// Determines whether <see cref="Internal.ComponentFoundation"/> should throw an exception for invalid 
         /// unmatched HTML attributes passed to a component. Works with <see cref="EssentialSplattableAttributes"/>
         /// and <see cref="AllowedSplattableAttributes"/>
         /// </summary>
@@ -40,7 +40,7 @@ namespace BlazorMdc
         public readonly IEnumerable<string> EssentialSplattableAttributes = new string[] { "formnovalidate", "id", "max", "min", "role", "step", "tabindex", "type" };
 
         /// <summary>
-        /// Further attributes that can be set as allowable when <see cref="ComponentBase"/>
+        /// Further attributes that can be set as allowable when <see cref="Internal.ComponentFoundation"/>
         /// performs unmatched attribute validation. Works with <see cref="ConstrainSplattableAttributes"/>
         /// and <see cref="EssentialSplattableAttributes"/>.
         /// </summary>
@@ -127,26 +127,26 @@ namespace BlazorMdc
          ************************************************************************************************************/
 
         /// <summary>
-        /// The default style for an <see cref="MdcButton"/>, initialized to <see cref="MTButtonStyle.Text"/> if not explicitly set.
+        /// The default style for an <see cref="MTButton"/>, initialized to <see cref="MTButtonStyle.Text"/> if not explicitly set.
         /// </summary>
         public MTButtonStyle ButtonStyle { get; set; } = MTButtonStyle.Text;
 
         /// <summary>
-        /// The default style for a card action button/<see cref="MdcButton"/> in an <see cref="MdcCard"/>, initialized to <see cref="MTButtonStyle.Text"/> if not explicitly set.
+        /// The default style for a card action button/<see cref="MTButton"/> in an <see cref="MdcCard"/>, initialized to <see cref="MTButtonStyle.Text"/> if not explicitly set.
         /// </summary>
         public MTButtonStyle CardActionButtonStyle { get; set; } = MTButtonStyle.Text;
         
         /// <summary>
-        /// The default style for a dialog action button/<see cref="MdcButton"/> in an <see cref="MdcDialog"/>, initialized to <see cref="MTButtonStyle.Text"/> if not explicitly set.
+        /// The default style for a dialog action button/<see cref="MTButton"/> in an <see cref="MTDialog"/>, initialized to <see cref="MTButtonStyle.Text"/> if not explicitly set.
         /// </summary>
         public MTButtonStyle DialogActionButtonStyle { get; set; } = MTButtonStyle.Text;
 
         /// <summary>
-        /// The style to apply within an <see cref="MdcButton"/>. <see cref="MdcCard"/> and <see cref="MdcDialog"/> must
+        /// The style to apply within an <see cref="MTButton"/>. <see cref="MdcCard"/> and <see cref="MTDialog"/> must
         /// pass a reference to themselves (<c>this</c>) to reference the relevant default.
         /// </summary>
-        /// <param name="style">The style parameter passed to the <see cref="MdcButton"/></param>
-        /// <param name="card">The <see cref="MTMdcButton"/>'s card reference (null if button is not in a card)</param>
+        /// <param name="style">The style parameter passed to the <see cref="MTButton"/></param>
+        /// <param name="card">The <see cref="MTMTButton"/>'s card reference (null if button is not in a card)</param>
         /// <param name="dialog">The <see cref="MTDialog"/>'s card reference (null if button is not in a dialog)</param>
         /// <returns>The <see cref="ButtonStyle"/> to apply.</returns>
         internal MTButtonStyle AppliedStyle(MTButtonStyle? style, MTCard card, MTDialog dialog)
@@ -185,10 +185,10 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// The default style for an <see cref="MdcSelect{TItem}"/>, initialized to <see cref="MTSelectInputStyle.Filled"/> if not explicitly set.
+        /// The default style for an <see cref="MTSelect{TItem}"/>, initialized to <see cref="MTSelectInputStyle.Filled"/> if not explicitly set.
         /// </summary>
         /// <remarks>
-        /// Also applied to <seealso cref="PMdcDatePicker"/>.
+        /// Also applied to <seealso cref="MTDatePicker"/>.
         /// </remarks>
         public MTSelectInputStyle SelectInputStyle { get; set; } = MTSelectInputStyle.Filled;
 
@@ -201,33 +201,33 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// The default text alignment style for an <see cref="MdcTextField"/>, an <see cref="MdcTextArea"/> or <see cref="MdcSelect{TItem}"/>, initialized to <see cref="MTTextAlignStyle.Default"/> if not explicitly set.
+        /// The default text alignment style for an <see cref="MTTextField"/>, an <see cref="MdcTextArea"/> or <see cref="MTSelect{TItem}"/>, initialized to <see cref="MTTextAlignStyle.Default"/> if not explicitly set.
         /// </summary>
         /// <remarks>
-        /// Also applied to <seealso cref="PMdcAutocomplete"/>, <seealso cref="PMdcDebouncedTextField"/>, <seealso cref="PMdcNumericDoubleField"/> and <seealso cref="PMdcNumericIntField"/>.
+        /// Also applied to <seealso cref="MTAutocomplete"/>, <seealso cref="MTDebouncedTextField"/>, <seealso cref="MTNumericDoubleField"/> and <seealso cref="MTNumericIntField"/>.
         /// </remarks>
         public MTTextAlignStyle TextAlignStyle { get; set; } = MTTextAlignStyle.Default;
 
         /// <summary>
-        /// The text alignment style to apply to an <see cref="MdcTextField"/>, an <see cref="MdcTextArea"/> or <see cref="MdcSelect{TItem}"/>.
+        /// The text alignment style to apply to an <see cref="MTTextField"/>, an <see cref="MdcTextArea"/> or <see cref="MTSelect{TItem}"/>.
         /// </summary>
-        /// <param name="style">The text align style parameter passed to the <see cref="MdcTextField"/>, <see cref="MdcTextArea"/> or <see cref="MdcSelect{TItem}"/></param>
+        /// <param name="style">The text align style parameter passed to the <see cref="MTTextField"/>, <see cref="MdcTextArea"/> or <see cref="MTSelect{TItem}"/></param>
         /// <returns>The <see cref="TextAlignStyle"/> to apply.</returns>
         public MTTextAlignStyle AppliedStyle(MTTextAlignStyle? style = null) => (style is null) ? TextAlignStyle : (MTTextAlignStyle)style;
 
 
         /// <summary>
-        /// The default style for an <see cref="MdcTextField"/> or an <see cref="MdcTextArea"/>, initialized to <see cref="MTTextInputStyle.Filled"/> if not explicitly set.
+        /// The default style for an <see cref="MTTextField"/> or an <see cref="MdcTextArea"/>, initialized to <see cref="MTTextInputStyle.Filled"/> if not explicitly set.
         /// </summary>
         /// <remarks>
-        /// Also applied to <seealso cref="PMdcAutocomplete"/>, <seealso cref="PMdcDebouncedTextField"/>, <seealso cref="PMdcNumericDoubleField"/> and <seealso cref="PMdcNumericIntField"/>.
+        /// Also applied to <seealso cref="MTAutocomplete"/>, <seealso cref="MTDebouncedTextField"/>, <seealso cref="MTNumericDoubleField"/> and <seealso cref="MTNumericIntField"/>.
         /// </remarks>
         public MTTextInputStyle TextInputStyle { get; set; } = MTTextInputStyle.Filled;
 
         /// <summary>
-        /// The text input style to apply to an <see cref="MdcTextField"/> or an <see cref="MdcTextArea"/>.
+        /// The text input style to apply to an <see cref="MTTextField"/> or an <see cref="MdcTextArea"/>.
         /// </summary>
-        /// <param name="style">The text input style parameter passed to the <see cref="MdcTextField"/> or <see cref="MdcTextArea"/></param>
+        /// <param name="style">The text input style parameter passed to the <see cref="MTTextField"/> or <see cref="MdcTextArea"/></param>
         /// <returns>The <see cref="TextAlignStyle"/> to apply.</returns>
         internal MTTextInputStyle AppliedStyle(MTTextInputStyle? style = null) => (style is null) ? TextInputStyle : (MTTextInputStyle)style;
 
@@ -242,27 +242,27 @@ namespace BlazorMdc
          ************************************************************************************************************/
 
         /// <summary>
-        /// The default date selection criteria for a <see cref="PMdcDatePicker"/>, initialized to <see cref="MTDateSelectionCriteria.AllowAll"/> if not explicitly set.
+        /// The default date selection criteria for a <see cref="MTDatePicker"/>, initialized to <see cref="MTDateSelectionCriteria.AllowAll"/> if not explicitly set.
         /// </summary>
         public MTDateSelectionCriteria DateSelectionCriteria { get; set; } = MTDateSelectionCriteria.AllowAll;
 
         /// <summary>
-        /// The date selection criteria to apply to a <see cref="PMdcDatePicker"/>.
+        /// The date selection criteria to apply to a <see cref="MTDatePicker"/>.
         /// </summary>
-        /// <param name="criteria">The criteria style parameter passed to the <see cref="PMdcDatePicker"/></param>
+        /// <param name="criteria">The criteria style parameter passed to the <see cref="MTDatePicker"/></param>
         /// <returns>The <see cref="DateSelectionCriteria"/> to apply.</returns>
         internal MTDateSelectionCriteria AppliedDateSelectionCriteria(MTDateSelectionCriteria? criteria = null) => (criteria is null) ? DateSelectionCriteria : (MTDateSelectionCriteria)criteria;
 
 
         /// <summary>
-        /// The default debounce interval in milliseconds for a <see cref="PMdcDebouncedTextField"/>, initialized to 300 milliseconds if not explicitly set.
+        /// The default debounce interval in milliseconds for a <see cref="MTDebouncedTextField"/>, initialized to 300 milliseconds if not explicitly set.
         /// </summary>
         public int DebounceInterval { get; set; } = 300;
 
         /// <summary>
-        /// The text debounce interval in milliseconds to apply to an <see cref="PMdcDebouncedTextField"/>.
+        /// The text debounce interval in milliseconds to apply to an <see cref="MTDebouncedTextField"/>.
         /// </summary>
-        /// <param name="style">The text input style parameter passed to the <see cref="PMdcDebouncedTextField"/></param>
+        /// <param name="style">The text input style parameter passed to the <see cref="MTDebouncedTextField"/></param>
         /// <returns>The interval in milliseconds to apply.</returns>
         internal int AppliedDebounceInterval(int? debounceInterval = null) => (debounceInterval is null) ? 300 : (int)debounceInterval;
     }

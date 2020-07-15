@@ -243,7 +243,7 @@ namespace BlazorMdc.Internal
 
         /// <summary>
         /// BlazorMdc components generally *should not* override this because it handles the case where components need
-        /// to be adjusted when inside an <c>MdcDialog</c> or <c>MdcCard</c>. 
+        /// to be adjusted when inside an <c>MTDialog</c> or <c>MdcCard</c>. 
         /// </summary>
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {

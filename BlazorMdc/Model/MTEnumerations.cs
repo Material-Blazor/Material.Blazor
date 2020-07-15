@@ -191,7 +191,7 @@
 
 
     /// <summary>
-    /// Style for an <see cref="MdcButton"/> per Material Theme styling.
+    /// Style for an <see cref="MTButton"/> per Material Theme styling.
     /// <para><see cref="MTCascadingDefaults"/> has a default of <see cref="Text"/></para>
     /// </summary>
     public enum MTButtonStyle
@@ -363,9 +363,9 @@
 
 
     /// <summary>
-    /// Material Theme text field and text area input style applied to <see cref="MdcTextField"/> and <see cref="MdcTextArea"/>.
+    /// Material Theme text field and text area input style applied to <see cref="MTTextField"/> and <see cref="MdcTextArea"/>.
     /// <para>Note that Material Web Components 6.0.0 have pending implementation of <see cref="Filled"/> and <see cref="FullWidth"/> for text areas, with degraded markup results in the interim.</para>
-    /// <para>Applied also to <seealso cref="PMdcAutocomplete"/>, <seealso cref="PMdcDebouncedTextField"/>, <seealso cref="PMdcNumericDoubleField"/> and <seealso cref="PMdcNumericIntField"/></para>
+    /// <para>Applied also to <seealso cref="MTAutocomplete"/>, <seealso cref="MTDebouncedTextField"/>, <seealso cref="MTNumericDoubleField"/> and <seealso cref="MTNumericIntField"/></para>
     /// <para><see cref="MTCascadingDefaults"/> has a default of <see cref="Filled"/></para>
     /// </summary>
     public enum MTTextInputStyle 
@@ -383,8 +383,8 @@
 
 
     /// <summary>
-    /// Material Theme select input style applied to <see cref="MdcSelect{TItem}"/>.
-    /// <para>Applied also to <seealso cref="PMdcDatePicker"/></para>
+    /// Material Theme select input style applied to <see cref="MTSelect{TItem}"/>.
+    /// <para>Applied also to <seealso cref="MTDatePicker"/></para>
     /// <para><see cref="MTCascadingDefaults"/> has a default of <see cref="Filled"/></para>
     /// </summary>
     public enum MTSelectInputStyle
@@ -402,8 +402,8 @@
 
 
     /// <summary>
-    /// A helper to set the alignment of text in <see cref="MdcTextField"/>, <see cref="MdcTextArea"/> and <see cref="MdcSelect{TItem}"/>.
-    /// <para>Applied also to <seealso cref="PMdcAutocomplete"/>, <seealso cref="PMdcDebouncedTextField"/>, <seealso cref="PMdcNumericDoubleField"/> and <seealso cref="PMdcNumericIntField"/></para>
+    /// A helper to set the alignment of text in <see cref="MTTextField"/>, <see cref="MdcTextArea"/> and <see cref="MTSelect{TItem}"/>.
+    /// <para>Applied also to <seealso cref="MTAutocomplete"/>, <seealso cref="MTDebouncedTextField"/>, <seealso cref="MTNumericDoubleField"/> and <seealso cref="MTNumericIntField"/></para>
     /// <para><see cref="MTCascadingDefaults"/> has a default of <see cref="Default"/></para>
     /// </summary>
     public enum MTTextAlignStyle 
@@ -431,7 +431,7 @@
 
 
     /// <summary>
-    /// A helper to determine how a <see cref="MdcSelect{TItem}"/> or <see cref="PMdcRadioButtonGroup{TItem}"/> should handle an intial bound value not matching elements in the value list.
+    /// A helper to determine how a <see cref="MTSelect{TItem}"/> or <see cref="PMTRadioButtonGroup{TItem}"/> should handle an intial bound value not matching elements in the value list.
     /// <para><see cref="MTCascadingDefaults"/> has a default of <see cref="Exception"/></para>
     /// </summary>
     public enum MTItemValidation 
@@ -455,7 +455,7 @@
 
     // The style of MDC input: note that FullWidth is mutually exclusive with Outlined
     /// <summary>
-    /// A helper to determine the magnitude adjustment when editting values as text in <see cref="PMdcNumericDoubleField"/> and <see cref="PMdcNumericIntField">.
+    /// A helper to determine the magnitude adjustment when editting values as text in <see cref="MTNumericDoubleField"/> and <see cref="MTNumericIntField">.
     /// <para>Note that <see cref="BasisPoints"/> is pending future implementation because unlike percentages there is no native C# support for supporting formatting basis points.</para>
     /// </summary>
     public enum MTNumericInputMagnitude 
@@ -479,7 +479,7 @@
 
 
     /// <summary>
-    /// Determines the allowed selections in <see cref="PMdcDatePicker"/>
+    /// Determines the allowed selections in <see cref="MTDatePicker"/>
     /// <para><see cref="MTCascadingDefaults"/> has a default of <see cref="AllowAll"/></para>
     /// </summary>
     public enum MTDateSelectionCriteria 
@@ -502,7 +502,7 @@
 
 
     /// <summary>
-    /// Determines whether a <see cref="PMdcShield"/> displays the label (left hand element), value (right hand element) or both.
+    /// Determines whether a <see cref="MTShield"/> displays the label (left hand element), value (right hand element) or both.
     /// <para>Defaults to <see cref="LabelAndValue"/></para>
     /// </summary>
     public enum MTShieldType 

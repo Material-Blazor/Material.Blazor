@@ -125,7 +125,7 @@ namespace BlazorMdc
 
             if (!ItemsPerPageSelection.Contains(ItemsPerPage))
             {
-                throw new ArgumentException($"PMdcPaginator: Cannot set ItemsPerPage to {ItemsPerPage} from selection of {{ {ItemsPerPageSelection.Select(r => r)} }}");
+                throw new ArgumentException($"MTPaginator: Cannot set ItemsPerPage to {ItemsPerPage} from selection of {{ {ItemsPerPageSelection.Select(r => r)} }}");
             }
 
             ItemsPerPageItems = (from r in ItemsPerPageSelection
