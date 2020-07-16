@@ -1,2 +1,0 @@
-﻿# BlazorMdc Components
-*[TBD]*

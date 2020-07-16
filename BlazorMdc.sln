@@ -40,7 +40,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "articles", "articles", "{FC5AA9B0-69D8-4BD3-8210-1BB2019D47AB}"
 	ProjectSection(SolutionItems) = preProject
 		articles\article1.md = articles\article1.md
-		articles\index.md = articles\index.md
 		articles\intro.md = articles\intro.md
 		articles\toc.yml = articles\toc.yml
 	EndProjectSection

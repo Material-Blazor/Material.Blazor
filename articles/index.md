@@ -1,2 +1,0 @@
-# BlazorMdc Articles
-*[TBD]*

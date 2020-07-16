@@ -31,15 +31,13 @@
       {
         "files": [
           "articles/**/**.md",
-          "articles/toc.yml",
-          "articles/index.md"
+          "articles/toc.yml"
         ]
       },
       {
         "files": [
           "BlazorMdc/Components/**/**.md",
-          "BlazorMdc/Components/**.yml",
-          "BlazorMdc/Components/index.md"
+          "BlazorMdc/Components/toc.yml"
         ]
       }
     ],
