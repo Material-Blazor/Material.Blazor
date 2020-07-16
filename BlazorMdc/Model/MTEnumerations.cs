@@ -452,6 +452,10 @@
     }
 
 
+    ///// **** Would prefer to use the following line for the summary however this fails to produce inline documentation and causes the following DocFX warning:
+    ///// **** [20-07-16 02:56:26.727]Warning:[MetadataCommand.ExtractMetadata]Invalid triple slash comment is ignored: <!-- Badly formed XML comment ignored for member "T:BlazorMdc.MTNumericInputMagnitude" -->
+    
+    
     ///// A helper to determine the magnitude adjustment when displaying or editting values using <see cref="MTNumericDoubleField"/> and <see cref="MTNumericIntField">.
     /// <summary>
     /// A helper to determine the magnitude adjustment when displaying or editting values using numeric input fields.
