@@ -1,7 +1,7 @@
 ﻿namespace BlazorMdc
 {
     /// <summary>
-    /// Configuration for <see cref="IPmdcToastService"/>.
+    /// Configuration for <see cref="IMTToastService"/>.
     /// </summary>
     public class MTToastServiceConfiguration
     {
@@ -23,7 +23,7 @@
 
 
         /// <summary>
-        /// The close icon. Defaults to <see cref="MdcIcons.MI__close"/>.
+        /// The close icon. Defaults to <see cref="MTToastServiceConfiguration.DefaultCloseButtonIcon"/> ("close").
         /// </summary>
         public string CloseButtonIcon { get; set; } = DefaultCloseButtonIcon;
 

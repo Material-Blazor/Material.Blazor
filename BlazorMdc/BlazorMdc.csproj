@@ -8,11 +8,15 @@
 		<VersionPrefix>0.35.0</VersionPrefix>
 		<VersionSuffix></VersionSuffix>
 		<PackageLicenseFile></PackageLicenseFile>
-		<Authors>BlazorMdc Authors</Authors>
+		<Authors>Simon Ziegler of Dioptra and Mark Stega of Optimium Health</Authors>
 		<Company>BlazorMdc</Company>
-		<Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io. This version upgrades to Material Theme 7.0.0, with minor change to the numerical input components (the Magnitude parameter is now FocussedMagnitude and UnfocussedMagnitude is added). This is one of the last pre-release versions as we approach full release of version 1.0.0 in the coming weeks. Outstanding work is now focussed towards bug fixes/stability/quality, inline documentation exposed as a WIKI and automated build processes.</Description>
+		<Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io. Documentation found at https://blazormdc.github.io/BlazorMdc.</Description>
 		<RepositoryUrl>https://github.com/BlazorMdc/BlazorMdc</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReleaseNotes>This release adds an intial documentation site at https://blazormdc.github.io/BlazorMdc. We are now focussed on quality and docs ahead of releasing Version 1 in the coming weeks. We don't anticipate further breaking API changes in that timeframe.</PackageReleaseNotes>
+		<NeutralLanguage>en</NeutralLanguage>
+		<Copyright>Dioptra and Optimium Health</Copyright>
+		<PackageProjectUrl>https://blazormdc.github.io/BlazorMdc</PackageProjectUrl>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_WebAssembly|AnyCPU'">

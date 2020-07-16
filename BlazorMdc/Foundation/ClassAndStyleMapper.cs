@@ -11,9 +11,10 @@ namespace BlazorMdc.Internal
     /// <summary>
     /// The definition of ClassAndStyleMapper and ClassAndStyleMapperExtensions
     /// ultimately define a list of parameterless functions that conditionally return a string
-    /// if true, a null if false
-    /// The Func<bool> items are enumerated and evaluated when 
-    /// one of the ToXXXXString functions is called 
+    /// if true, a null if false.
+    /// <para>
+    /// The Func&lt;string&gt; items are enumerated and evaluated when either <see cref="ToClassString"/> or <see cref="ToStyleString"/> are called.
+    /// </para>
     /// </summary>
     public class ClassAndStyleMapper
     {

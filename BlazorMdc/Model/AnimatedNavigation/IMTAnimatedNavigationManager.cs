@@ -12,16 +12,15 @@
     /// </para>
     /// <para>
     /// Throws a <see cref="System.InvalidOperationException"/> if <see cref="NavigateTo(string, bool)"/>
-    /// is called without a <see cref="PMdcAnimatedNavigation"/> component used in the app.
+    /// is called without a <see cref="MTAnimatedNavigation"/> component used in the app.
     /// </para>
     /// <example>
     /// <para>You can optionally add configuration when you add this to the service collection:</para>
     /// <code>
-    /// services.AddPMdcToastService(new ToastServiceConfiguration()
+    /// services.AddMTAnimatedNavigationManager(new MTAnimatedNaviationManagerConfiguration()
     /// {
-    ///     Position = ToastPosition.TopRight,
-    ///     CloseMethod = ToastCloseMethod.Timeout,
-    ///     ... etc
+    ///     ApplyAnimation = true,
+    ///     AnimationTime = 300
     /// });
     /// </code>
     /// </example>
@@ -56,14 +55,14 @@
 
 
         /// <summary>
-        /// Called by <see cref="PMdcAnimatedNavigation"/> to register itself with the service.
+        /// Called by <see cref="MTAnimatedNavigation"/> to register itself with the service.
         /// </summary>
         /// <param name="navigationComponent"></param>
         internal void RegisterNavigationComponent(MTAnimatedNavigation navigationComponent);
 
 
         /// <summary>
-        /// Called by <see cref="PMdcAnimatedNavigation"/> to deregister itself with the service.
+        /// Called by <see cref="MTAnimatedNavigation"/> to deregister itself with the service.
         /// </summary>
         /// <param name="navigationComponent"></param>
         internal void DeregisterNavigationComponent(MTAnimatedNavigation navigationComponent);

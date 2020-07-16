@@ -1,7 +1,7 @@
 ﻿namespace BlazorMdc
 {
     /// <summary>
-    /// An interface implemented by <see cref="MdcDialog"/> to allow child components to
+    /// An interface implemented by <see cref="MTDialog"/> to allow child components to
     /// register themselves for Material Theme js instantiation.
     /// </summary>
     internal interface IMTDialog

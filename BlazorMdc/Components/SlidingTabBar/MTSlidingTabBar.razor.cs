@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace BlazorMdc
 {
     /// <summary>
-    /// An <see cref="MdcTabBar{TItem}"/> with a <see cref="PMdcSlidingContent{TItem}"/> immediately
+    /// An <see cref="MTTabBar{TItem}"/> with a <see cref="MTSlidingContent{TItem}"/> immediately
     /// beneath showing tabbed content.
     /// </summary>
     /// <typeparam name="TItem"></typeparam>

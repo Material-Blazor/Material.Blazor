@@ -10,7 +10,7 @@ namespace BlazorMdc
 {
     /// <summary>
     /// A date picker styled to match the Material Theme date picker specification, using
-    /// a modfied Material Theme select input as also applied in <see cref="MdcSelect{TItem}"/>.
+    /// a modfied Material Theme select input as also applied in <see cref="MTSelect{TItem}"/>.
     /// </summary>
     public partial class MTDatePicker : InputComponentFoundation<DateTime>
     {

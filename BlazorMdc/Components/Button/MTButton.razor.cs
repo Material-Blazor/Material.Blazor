@@ -63,7 +63,7 @@ namespace BlazorMdc
         private ElementReference ElementReference { get; set; }
 
 
-        /// <inheritdoc/>
+        /// <inheritdoc cref="ComponentBase.OnInitialized()"/>
         protected override void OnInitialized()
         {
             base.OnInitialized();

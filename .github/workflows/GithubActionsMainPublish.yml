@@ -119,3 +119,4 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.GH_PAT }}
           BRANCH: gh-pages
           FOLDER: "site" # The deployment folder should match the name of the artifact. Even though our project builds into the '_site' folder the artifact name of 'site' must be placed here.
+        if: github.repository == 'BlazorMdc/BlazorMdc'

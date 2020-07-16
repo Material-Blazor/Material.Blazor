@@ -13,6 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMdc.Demo.WebServer", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solution Items", "{9BF202BD-226D-4058-92D9-B9D0B23F96E6}"
 	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		azure-pipeline-develop.yml = azure-pipeline-develop.yml
 		azure-pipeline-main.yml = azure-pipeline-main.yml
@@ -20,15 +21,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solutio
 		ctag.cmd = ctag.cmd
 		docfx.json = docfx.json
 		.config\dotnet-tools.json = .config\dotnet-tools.json
+		filterConfig.yml = filterConfig.yml
 		.github\workflows\GithubActionsDevelop.yml = .github\workflows\GithubActionsDevelop.yml
 		.github\workflows\GithubActionsMainCI.yml = .github\workflows\GithubActionsMainCI.yml
 		.github\workflows\GithubActionsMainPublish.yml = .github\workflows\GithubActionsMainPublish.yml
 		global.json = global.json
+		index.md = index.md
 		LICENSE.md = LICENSE.md
 		README.md = README.md
+		toc.yml = toc.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMdc.MaterialComponents", "BlazorMdc.MaterialComponents\BlazorMdc.MaterialComponents.csproj", "{3212BDA0-B2EF-4A95-AB38-8F22B9D80280}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "api", "api", "{EE0A0686-5B40-4438-A48B-A30BA8386610}"
+	ProjectSection(SolutionItems) = preProject
+		api\index.md = api\index.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "articles", "articles", "{FC5AA9B0-69D8-4BD3-8210-1BB2019D47AB}"
+	ProjectSection(SolutionItems) = preProject
+		articles\intro.md = articles\intro.md
+		articles\toc.yml = articles\toc.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

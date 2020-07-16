@@ -13,7 +13,7 @@ namespace BlazorMdc
     public partial class MTCard : ComponentFoundation
     {
         /// <summary>
-        /// The card style - see <see cref="BlazorMdc.MTICardStyle"/>
+        /// The card style - see <see cref="MTCardStyle"/>
         /// </summary>
         [Parameter] public MTCardStyle? CardStyle { get; set; }
 
@@ -38,13 +38,13 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// A render fragment where you place <see cref="MdcButton"/>s as action buttons.
+        /// A render fragment where you place <see cref="MTButton"/>s as action buttons.
         /// </summary>
         [Parameter] public RenderFragment ActionButtons { get; set; }
 
 
         /// <summary>
-        /// A render fragment where you place <see cref="IconButton"/>s as action icons.
+        /// A render fragment where you place <see cref="MTIconButton"/>s as action icons.
         /// </summary>
         [Parameter] public RenderFragment ActionIcons { get; set; }
 

@@ -32,7 +32,7 @@ namespace BlazorMdc
         /// <summary>
         /// Render fragment for the dialog buttons. Note that the dialog will 
         /// return actions to the consumer when the <c>data-mdc-dialog-action</c> attribute
-        /// is set for a button: <see cref="MdcButton"/> does this via its <see cref="MdcButton.DialogAction"/>
+        /// is set for a button: <see cref="MTButton"/> does this via its <see cref="MTButton.DialogAction"/>
         /// parameter.
         /// </summary>
         [Parameter] public RenderFragment Buttons { get; set; }
@@ -117,7 +117,7 @@ namespace BlazorMdc
         {
             if (isOpen)
             {
-                throw new InvalidOperationException("Cannot show MdcDialog that is already open");
+                throw new InvalidOperationException("Cannot show MTDialog that is already open");
             }
             else
             {
@@ -150,7 +150,7 @@ namespace BlazorMdc
             }
             else
             {
-                throw new InvalidOperationException("Cannot hide MdcDialog that is not already open");
+                throw new InvalidOperationException("Cannot hide MTDialog that is not already open");
             }
         }
 

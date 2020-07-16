@@ -14,7 +14,7 @@ namespace BlazorMdc
     public partial class MTMenu : ComponentFoundation, IDisposable
     {
         /// <summary>
-        /// A render fragement as a set of <see cref="ListItem"/>s.
+        /// A render fragement as a set of <see cref="MTListItem"/>s.
         /// </summary>
         [Parameter] public RenderFragment ChildContent { get; set; }
 

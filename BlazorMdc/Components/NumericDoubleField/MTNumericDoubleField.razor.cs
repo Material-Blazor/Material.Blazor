@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace BlazorMdc
 {
     /// <summary>
-    /// A Material Theme numeric input field. This wraps <see cref="MdcTextField"/> and normally
+    /// A Material Theme numeric input field. This wraps <see cref="MTTextField"/> and normally
     /// displays the numeric value as formatted text, but switches to a pure number on being selected.
     /// </summary>
     public partial class MTNumericDoubleField : InputComponentFoundation<double>
