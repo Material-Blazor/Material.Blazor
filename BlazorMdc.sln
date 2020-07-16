@@ -45,6 +45,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "articles", "articles", "{FC
 		articles\toc.yml = articles\toc.yml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "apiSpec", "apiSpec", "{F5CE7923-2B9A-4E0C-A907-3677CBE408D6}"
+	ProjectSection(SolutionItems) = preProject
+		apiSpec\BlazorMdc_MTButton.md = apiSpec\BlazorMdc_MTButton.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_Server|Any CPU = Debug_Server|Any CPU
