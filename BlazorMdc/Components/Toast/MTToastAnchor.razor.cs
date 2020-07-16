@@ -28,7 +28,7 @@ namespace BlazorMdc
         private readonly SemaphoreSlim pendingToastsSemaphore = new SemaphoreSlim(1);
 
 
-        /// <inheritdoc/>
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
         protected override void OnInitialized()
         {
             ToastService.OnAdd += AddToast;
