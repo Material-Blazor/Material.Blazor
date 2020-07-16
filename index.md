@@ -60,7 +60,7 @@ and at the end of `<body>`:
 ```html
 <script src="_content/BlazorMdc/blazormdc-bundled.min.js"></script>
 ```
-See the [Blazor WebAssembly demo index file](BlazorMdc.Demo.WebServer/Pages/index_webassembly.cshtml) and [Blazor Server demo index file](BlazorMdc.Demo.WebServer/Pages/index_server.cshtml) for examples. We also provide un-minified `blazormdc.css` and `blazormdc.js`.
+See the [Blazor WebAssembly demo index file](https://github.com/BlazorMdc/BlazorMdc/blob/main/BlazorMdc.Demo.WebServer/Pages/index_webassembly.cshtml) and [Blazor Server demo index file](https://github.com/BlazorMdc/BlazorMdc/blob/main/BlazorMdc.Demo.WebServer/Pages/index_server.cshtml) for examples. We also provide un-minified `blazormdc.css` and `blazormdc.js`.
 
 
 ## Demonstration website

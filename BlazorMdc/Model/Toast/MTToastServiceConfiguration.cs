@@ -1,7 +1,7 @@
 ﻿namespace BlazorMdc
 {
     /// <summary>
-    /// Configuration for <see cref="IPmdcToastService"/>.
+    /// Configuration for <see cref="IMTToastService"/>.
     /// </summary>
     public class MTToastServiceConfiguration
     {

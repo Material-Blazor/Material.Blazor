@@ -17,11 +17,10 @@
     /// <example>
     /// <para>You can optionally add configuration when you add this to the service collection:</para>
     /// <code>
-    /// services.AddMTToastService(new ToastServiceConfiguration()
+    /// services.AddMTAnimatedNavigationManager(new MTAnimatedNaviationManagerConfiguration()
     /// {
-    ///     Position = ToastPosition.TopRight,
-    ///     CloseMethod = ToastCloseMethod.Timeout,
-    ///     ... etc
+    ///     ApplyAnimation = true,
+    ///     AnimationTime = 300
     /// });
     /// </code>
     /// </example>

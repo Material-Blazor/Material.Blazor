@@ -75,7 +75,7 @@ window.BlazorMdc = {
 
     circularProgress: {
         init: function (elem, progress) {
-            elem._circularProgress = mdc.circularProgress.MDCCircularProgress.attachTo(elem);
+            elem._circularProgress = mdc.circularProgress.MTCircularProgress.attachTo(elem);
             this.setProgress(elem, progress);
         },
 
@@ -170,7 +170,7 @@ window.BlazorMdc = {
 
     linearProgress: {
         init: function (elem, progress, buffer) {
-            elem._linearProgress = mdc.linearProgress.MDCLinearProgress.attachTo(elem);
+            elem._linearProgress = mdc.linearProgress.MTLinearProgress.attachTo(elem);
             this.setProgress(elem, progress, buffer);
         },
 
@@ -183,7 +183,7 @@ window.BlazorMdc = {
     list: {
         init: function (elem, keyboardInteractions, ripple) {
             if (keyboardInteractions == true) {
-                const list = mdc.list.MDCList.attachTo(elem);
+                const list = mdc.list.MTList.attachTo(elem);
 
                 if (ripple == true) {
                     list.listElements.map((elem) => mdc.ripple.MDCRipple.attachTo(elem));
@@ -300,7 +300,7 @@ window.BlazorMdc = {
 
     topAppBar: {
         init: function (elem, scrollTarget) {
-            const topAppBar = mdc.topAppBar.MDCTopAppBar.attachTo(elem);
+            const topAppBar = mdc.topAppBar.MTTopAppBar.attachTo(elem);
             if (scrollTarget) {
                 topAppBar.setScrollTarget(document.querySelector(scrollTarget));
             }

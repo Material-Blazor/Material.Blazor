@@ -5,12 +5,12 @@ using System.Linq;
 namespace BlazorMdc.Internal
 {
     /// <summary>
-    /// A DRY inspired abstract class providing <see cref="MTSelect{TItem}"/> and <see cref="PMTRadioButtonGroup{TItem}"/> with validation.
+    /// A DRY inspired abstract class providing <see cref="MTSelect{TItem}"/> and <see cref="MTRadioButtonGroup{TItem}"/> with validation.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public abstract class ValidatingInputComponentFoundation<T> : InputComponentFoundation<T>
     {
-        // This method was added in the interest of DRY and is used by MTSelect & PMTRadioButtonGroup
+        // This method was added in the interest of DRY and is used by MTSelect & MTRadioButtonGroup
         /// <summary>
         /// Validates the item list against the validation specification.
         /// </summary>

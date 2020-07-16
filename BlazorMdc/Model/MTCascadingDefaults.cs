@@ -132,7 +132,7 @@ namespace BlazorMdc
         public MTButtonStyle ButtonStyle { get; set; } = MTButtonStyle.Text;
 
         /// <summary>
-        /// The default style for a card action button/<see cref="MTButton"/> in an <see cref="MdcCard"/>, initialized to <see cref="MTButtonStyle.Text"/> if not explicitly set.
+        /// The default style for a card action button/<see cref="MTButton"/> in an <see cref="MTCard"/>, initialized to <see cref="MTButtonStyle.Text"/> if not explicitly set.
         /// </summary>
         public MTButtonStyle CardActionButtonStyle { get; set; } = MTButtonStyle.Text;
         
@@ -142,7 +142,7 @@ namespace BlazorMdc
         public MTButtonStyle DialogActionButtonStyle { get; set; } = MTButtonStyle.Text;
 
         /// <summary>
-        /// The style to apply within an <see cref="MTButton"/>. <see cref="MdcCard"/> and <see cref="MTDialog"/> must
+        /// The style to apply within an <see cref="MTButton"/>. <see cref="MTCard"/> and <see cref="MTDialog"/> must
         /// pass a reference to themselves (<c>this</c>) to reference the relevant default.
         /// </summary>
         /// <param name="style">The style parameter passed to the <see cref="MTButton"/></param>
@@ -159,27 +159,27 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// The default style for an <see cref="MdcCard"/>, initialized to <see cref="MTICardStyle.Default"/> if not explicitly set.
+        /// The default style for an <see cref="MTCard"/>, initialized to <see cref="MTCardStyle.Default"/> if not explicitly set.
         /// </summary>
         public MTCardStyle CardStyle { get; set; } = MTCardStyle.Default;
 
         /// <summary>
-        /// The style to apply to an <see cref="MdcCard"/>.
+        /// The style to apply to an <see cref="MTCard"/>.
         /// </summary>
-        /// <param name="style">The style parameter passed to the <see cref="MdcCard"/></param>
+        /// <param name="style">The style parameter passed to the <see cref="MTCard"/></param>
         /// <returns>The <see cref="CardStyle"/> to apply.</returns>
         public MTCardStyle AppliedStyle(MTCardStyle? style = null) => (style is null) ? CardStyle : (MTCardStyle)style;
 
 
         /// <summary>
-        /// The default style for an <see cref="MdcList{TItem}"/>, initialized to <see cref="MTListStyle.None"/> if not explicitly set.
+        /// The default style for an <see cref="MTList{TItem}"/>, initialized to <see cref="MTListStyle.None"/> if not explicitly set.
         /// </summary>
         public MTListStyle ListStyle { get; set; } = MTListStyle.None;
 
         /// <summary>
-        /// The style to apply to an <see cref="MdcList{TItem}"/>.
+        /// The style to apply to an <see cref="MTList{TItem}"/>.
         /// </summary>
-        /// <param name="style">The style parameter passed to the <see cref="MdcList{TItem}"/></param>
+        /// <param name="style">The style parameter passed to the <see cref="MTList{TItem}"/></param>
         /// <returns>The <see cref="ListStyle"/> to apply.</returns>
         internal MTListStyle AppliedStyle(MTListStyle? style = null) => (style is null) ? ListStyle : (MTListStyle)style;
 
@@ -193,15 +193,15 @@ namespace BlazorMdc
         public MTSelectInputStyle SelectInputStyle { get; set; } = MTSelectInputStyle.Filled;
 
         /// <summary>
-        /// The style to apply to an <see cref="MdcCard"/>.
+        /// The style to apply to an <see cref="MTCard"/>.
         /// </summary>
-        /// <param name="style">The style parameter passed to the <see cref="MdcCard"/></param>
+        /// <param name="style">The style parameter passed to the <see cref="MTCard"/></param>
         /// <returns>The <see cref="CardStyle"/> to apply.</returns>
         internal MTSelectInputStyle AppliedStyle(MTSelectInputStyle? style = null) => (style is null) ? SelectInputStyle : (MTSelectInputStyle)style;
 
 
         /// <summary>
-        /// The default text alignment style for an <see cref="MTTextField"/>, an <see cref="MdcTextArea"/> or <see cref="MTSelect{TItem}"/>, initialized to <see cref="MTTextAlignStyle.Default"/> if not explicitly set.
+        /// The default text alignment style for an <see cref="MTTextField"/>, an <see cref="MTTextArea"/> or <see cref="MTSelect{TItem}"/>, initialized to <see cref="MTTextAlignStyle.Default"/> if not explicitly set.
         /// </summary>
         /// <remarks>
         /// Also applied to <seealso cref="MTAutocomplete"/>, <seealso cref="MTDebouncedTextField"/>, <seealso cref="MTNumericDoubleField"/> and <seealso cref="MTNumericIntField"/>.
@@ -209,15 +209,15 @@ namespace BlazorMdc
         public MTTextAlignStyle TextAlignStyle { get; set; } = MTTextAlignStyle.Default;
 
         /// <summary>
-        /// The text alignment style to apply to an <see cref="MTTextField"/>, an <see cref="MdcTextArea"/> or <see cref="MTSelect{TItem}"/>.
+        /// The text alignment style to apply to an <see cref="MTTextField"/>, an <see cref="MTTextArea"/> or <see cref="MTSelect{TItem}"/>.
         /// </summary>
-        /// <param name="style">The text align style parameter passed to the <see cref="MTTextField"/>, <see cref="MdcTextArea"/> or <see cref="MTSelect{TItem}"/></param>
+        /// <param name="style">The text align style parameter passed to the <see cref="MTTextField"/>, <see cref="MTTextArea"/> or <see cref="MTSelect{TItem}"/></param>
         /// <returns>The <see cref="TextAlignStyle"/> to apply.</returns>
         public MTTextAlignStyle AppliedStyle(MTTextAlignStyle? style = null) => (style is null) ? TextAlignStyle : (MTTextAlignStyle)style;
 
 
         /// <summary>
-        /// The default style for an <see cref="MTTextField"/> or an <see cref="MdcTextArea"/>, initialized to <see cref="MTTextInputStyle.Filled"/> if not explicitly set.
+        /// The default style for an <see cref="MTTextField"/> or an <see cref="MTTextArea"/>, initialized to <see cref="MTTextInputStyle.Filled"/> if not explicitly set.
         /// </summary>
         /// <remarks>
         /// Also applied to <seealso cref="MTAutocomplete"/>, <seealso cref="MTDebouncedTextField"/>, <seealso cref="MTNumericDoubleField"/> and <seealso cref="MTNumericIntField"/>.
@@ -225,9 +225,9 @@ namespace BlazorMdc
         public MTTextInputStyle TextInputStyle { get; set; } = MTTextInputStyle.Filled;
 
         /// <summary>
-        /// The text input style to apply to an <see cref="MTTextField"/> or an <see cref="MdcTextArea"/>.
+        /// The text input style to apply to an <see cref="MTTextField"/> or an <see cref="MTTextArea"/>.
         /// </summary>
-        /// <param name="style">The text input style parameter passed to the <see cref="MTTextField"/> or <see cref="MdcTextArea"/></param>
+        /// <param name="style">The text input style parameter passed to the <see cref="MTTextField"/> or <see cref="MTTextArea"/></param>
         /// <returns>The <see cref="TextAlignStyle"/> to apply.</returns>
         internal MTTextInputStyle AppliedStyle(MTTextInputStyle? style = null) => (style is null) ? TextInputStyle : (MTTextInputStyle)style;
 

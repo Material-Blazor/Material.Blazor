@@ -13,7 +13,7 @@ namespace BlazorMdc
     public partial class MTCard : ComponentFoundation
     {
         /// <summary>
-        /// The card style - see <see cref="BlazorMdc.MTICardStyle"/>
+        /// The card style - see <see cref="MTCardStyle"/>
         /// </summary>
         [Parameter] public MTCardStyle? CardStyle { get; set; }
 
