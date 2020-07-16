@@ -23,7 +23,7 @@
 
 
         /// <summary>
-        /// The close icon. Defaults to <see cref="MdcIcons.MI__close"/>.
+        /// The close icon. Defaults to <see cref="MTToastServiceConfiguration.DefaultCloseButtonIcon"/> ("close").
         /// </summary>
         public string CloseButtonIcon { get; set; } = DefaultCloseButtonIcon;
 

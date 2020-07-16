@@ -34,7 +34,7 @@ namespace BlazorMdc
 
 
         /// <summary>
-        ///// Returns a new <see cref="MTIconHelper"> for an icon from the Material Icons foundry.
+        /// Returns a new <see cref="IMTIconFoundry"> for an icon from the Material Icons foundry.
         /// </summary>
         /// <param name="theme">Optional <see cref="MTIconMITheme"/> specifying the Material Icons theme.</param>
         /// <returns><see cref="IMTIconFoundry"/> to be passed to a BlazorMdc component.</returns>
@@ -42,7 +42,7 @@ namespace BlazorMdc
 
 
         /// <summary>
-        ///// Returns a new <see cref="MTIconHelper"> for an icon from the Font Awesome foundry.
+        /// Returns a new <see cref="IMTIconFoundry"> for an icon from the Font Awesome foundry.
         /// </summary>
         /// <param name="style">Optional <see cref="MTIconFAStyle"/> specifying the Font Awesome style.</param>
         /// <param name="relativeSize">Optional <see cref="MTIconFARelativeSize"/> specifying the Font Awesome relative size.</param>
@@ -51,7 +51,7 @@ namespace BlazorMdc
 
 
         /// <summary>
-        ///// Returns a new <see cref="MTIconHelper"> for an icon from the Open Iconic foundry.
+        /// Returns a new <see cref="IMTIconFoundry"> for an icon from the Open Iconic foundry.
         /// </summary>
         /// <returns><see cref="IMTIconFoundry"/> to be passed to a BlazorMdc component.</returns>
         public static IMTIconFoundry OIFoundry() => new IconFoundryOI();
