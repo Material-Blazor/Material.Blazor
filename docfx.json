@@ -31,22 +31,15 @@
       {
         "files": [
           "articles/**/**.md",
-          "articles/index.md",
-          "articles/toc.yml"
+          "articles/toc.yml",
+          "articles/index.md"
         ]
       },
       {
         "files": [
           "BlazorMdc/Components/**/**.md",
-          "BlazorMdc/Components/index.md",
-          "BlazorMdc/Components/toc.yml"
-        ]
-      }
-    ],
-    "resource": [
-      {
-        "files": [
-          "images/**"
+          "BlazorMdc/Components/**.yml",
+          "BlazorMdc/Components/index.md"
         ]
       }
     ],
@@ -73,6 +66,7 @@
     "keepFileLink": false,
     "cleanupCacheHistory": false,
     "disableGitFeatures": false,
+    "disableContribution": true,
     "xrefService": [
       "https://xref.docs.microsoft.com/query?uid={uid}"
     ]

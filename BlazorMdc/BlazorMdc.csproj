@@ -39,14 +39,6 @@
 		<Content Remove="bundleconfig.json" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <None Remove="NuGet.config.sav" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Content Include="NuGet.config.sav" />
-	</ItemGroup>
-
 
 	<ItemGroup>
 		<PackageReference Include="BuildBundlerMinifier" Version="3.2.447" />
