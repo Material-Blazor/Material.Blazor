@@ -452,10 +452,9 @@
     }
 
 
-    /// The style of MDC input: note that FullWidth is mutually exclusive with Outlined
+    ///// A helper to determine the magnitude adjustment when displaying or editting values using <see cref="MTNumericDoubleField"/> and <see cref="MTNumericIntField">.
     /// <summary>
-    /// A helper to determine the magnitude adjustment when editting values as text in <see cref="MTNumericDoubleField"/> and <see cref="MTNumericIntField">.
-    /// <para>Note that <see cref="BasisPoints"/> is pending future implementation because unlike percentages there is no native C# support for supporting formatting basis points.</para>
+    /// A helper to determine the magnitude adjustment when displaying or editting values using numeric input fields.
     /// </summary>
     public enum MTNumericInputMagnitude 
     {
@@ -465,13 +464,12 @@
         Normal = 0,
 
         /// <summary>
-        /// Percentages where the numeric input needs to multiply the value by 100 when editting (formatted display is handled by standard percent C# formatting).
+        /// Percentages where the numeric input needs to multiply the value by 100 when displaying or editting (formatted display can be handled by standard percent C# formatting).
         /// </summary>
         Percent = 2,
 
         /// <summary>
-        /// Basis points where the numeric input needs to multiply the value by 10 000 when editting (formatted display is not handled by standard percent C# formatting which lacks support for basis points).
-        /// <para>PENDING FUTURE IMPLEMENTATION</para>
+        /// Basis points where the numeric input needs to multiply the value by 10 000 when displaying or editting (formatted display is not handled by standard percent C# formatting which lacks support for basis points).
         /// </summary>
         BasisPoints = 4
     }
