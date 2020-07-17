@@ -2,7 +2,7 @@
   href: articles/
 
 - name: BlazorMdc Components
-  href: BlazorMdc/Components
+  href: BlazorMdc/Components/
 
 - name: Api Documentation
   href: api/
