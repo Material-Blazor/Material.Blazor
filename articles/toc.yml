@@ -6,3 +6,9 @@
 
 - name: Installation
   href: Installation.md
+
+- name: Core Components
+  href: CoreComponents.md
+
+- name: Plus Components
+  href: PlusComponents.md
