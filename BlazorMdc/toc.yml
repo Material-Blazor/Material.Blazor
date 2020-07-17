@@ -1,5 +1,11 @@
 - name: Introduction to BlazorMdc Components
   href: intro.md
 
+- name: MTAnimatedNavigation
+  href: AnimatedNavigation/MTAnimatedNavigation.razor.md
+
+- name: MTAutoComplete
+  href: AutoComplete/MTAutoComplete.razor.md
+
 - name: MTButton
   href: Button/MTButton.razor.md
