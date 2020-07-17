@@ -2,4 +2,4 @@
 
 [API Documentation](~/api/BlazorMdc.MTButton.html)
 
-[![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](~/articles/CoreComponents.html)
+[![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue?style=flat-square&logo=appveyor)](~/articles/CoreComponents.html)

@@ -2,4 +2,4 @@
 
 [API Documentation](~/api/BlazorMdc.MTAutoComplete.html)
 
-[![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=red)](~/articles/PlusComponents.html)
+[![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=red?style=flat-square&logo=appveyor)](~/articles/PlusComponents.html)
