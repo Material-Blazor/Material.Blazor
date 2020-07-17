@@ -3,3 +3,6 @@
 
 - name: Article 1
   href: article1.md
+
+- name: Article 2
+  href: article2.md
