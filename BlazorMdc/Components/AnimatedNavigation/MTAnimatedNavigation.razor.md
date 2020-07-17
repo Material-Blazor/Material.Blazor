@@ -2,5 +2,4 @@
 
 [API Documentation](~/api/BlazorMdc.MTAnimatedNavigation.html)
 
-- [ ] Core Component
-- [X] [Plus Component](~/articles/PlusComponent.html)
+[![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=red)](~/articles/PlusComponents.html)
