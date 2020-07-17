@@ -1,5 +1,5 @@
 - name: Articles
   href: articles/
 
-- name: Components
+- name: Components, Services, and Utilities
   href: BlazorMdc/Components/
