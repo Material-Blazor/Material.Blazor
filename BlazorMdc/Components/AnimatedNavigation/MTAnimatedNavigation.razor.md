@@ -2,4 +2,4 @@
 
 
 
-[API](../../api/BlazorMdc.MTAnimatedNavigation.html) 
+[API](../../../api/BlazorMdc.MTAnimatedNavigation.html) 
