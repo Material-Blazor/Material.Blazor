@@ -1,4 +1,4 @@
-﻿# BlazorMdc (1.0.0-Preview.1.10)
+﻿# BlazorMdc (1.0.0-Preview.1.11)
 
 [![NuGet version](https://img.shields.io/nuget/v/BlazorMdc?logo=nuget&label=nuget%20version&style=flat-square)](https://www.nuget.org/packages/BlazorMdc/)
 [![NuGet downloads](https://img.shields.io/nuget/dt/BlazorMdc?logo=nuget&label=nuget%20downloads&style=flat-square)](https://www.nuget.org/packages/BlazorMdc/)
@@ -43,51 +43,13 @@ We also want to acknowledge the work of
 
 ## Installation
 
-Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add the CSS and JS in your html (there are non-minified unbundled files for BlazorMdc.css & BlazorMds.js to reference if you need them for debugging purposes).
-Reference the `BlazorMdc` namespace with `@using BlazorMdc` to your `_Imports.razor` file. There are two optional services in BlazorMdc:
-- If you want to use toasts via `MTToastAnchor` add `services.AddMTToastService();` to your `ConfigureServices` function for Blazor Server or to the `Main()` function for Blazor WebAssembly, and
-- If you want animated page navigation using `MTAnimationdNavigation` add `services.AddMTAnimatedNavigationManager();` to `ConfigureServices`.
+[See the Installation article](articles/Installation.md)
 
-**NOTE** - BlazorMdc works with [Material Components v7.0.0](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#600-2020-04-22).
+## Demonstration
 
-#### Directions for using our bundled CSS and JS
-
-We bundle the Material Theme CSS and JS into BlazorMdc for your convenience along with [Material Icons](https://material.io/resources/icons/?style=baseline) which are essential for BlazorMdc. You will need to add two items to your index.html/_Host.cshtml file. Place this in the the `<head>` tag:
-```html
-<link href="_content/BlazorMdc/blazormdc-bundled.min.css" rel="stylesheet">
-```
-and at the end of `<body>`:
-```html
-<script src="_content/BlazorMdc/blazormdc-bundled.min.js"></script>
-```
-See the [Blazor WebAssembly demo index file](https://github.com/BlazorMdc/BlazorMdc/blob/main/BlazorMdc.Demo.WebServer/Pages/index_webassembly.cshtml) and [Blazor Server demo index file](https://github.com/BlazorMdc/BlazorMdc/blob/main/BlazorMdc.Demo.WebServer/Pages/index_server.cshtml) for examples. We also provide un-minified `blazormdc.css` and `blazormdc.js`.
+[See the Demonstration article](articles/Demonstration.md)
 
 
-## Demonstration website
-
-We are not yet hosting a demonstration, but you can fork and download this project yourself. If you so so, set your default project to `BlazorMdc.Demo.WebServer`.
-
-## Demonstration from local build
-
-If you have cloned the repository and are building from source there is a project 'BlazorMDC.Demo.WebServer' that should be selected as the startup project.
- 
-Note that we compile, bundle and minify SASS/CSS and JS. In Visual Studio you will need to install the   [Bundler Minifier](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.BundlerMinifier) and [Web Compiler](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.WebCompiler)  extensions.
-
-If you are experimenting with different versions of the Material Design Components you will need to build the BlazorMDC.MaterialComponents project. You need to install `libman` if you haven't already:
-```console
-dotnet tool install -g Microsoft.Web.LibraryManager.Cli
-```
-
-There are four implemented solution configurations:
-
-| Configuration | Notes |
-| :------------ | :---- |
-| `Debug_WebAssembly` | This is a debug build. It defines two constants, DEBUG, and BlazorWebAssembly. It executes using WebAssembly. |
-| `Debug_Server` | Also a debug build, defines DEBUG and BlazorServer. It executes in the context of the web server and the the client being displayed through a SignalR connection. |
-| `Release_WebAssembly` | The same as `Debug_WebAssembly` but built as release and replacing the DEBUG constant with RELEASE. |
-| `Release_Server` | The same as `Debug_Server` but built as release and replacing the DEBUG constant with RELEASE. |
-
-The home page of the demonstration application shows the execution environment as well as the build mode.
 
 ## Components
 

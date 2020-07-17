@@ -1,6 +1,12 @@
 - name: Introduction to BlazorMdc Components
   href: intro.md
 
+- name: BlazorMdc namespace
+  href : ../../api/BlazorMdc.html
+
+- name: BlazorMdc.Internal namespace
+  href : ../../api/BlazorMdc.Internal.html
+
 - name: MTAnimatedNavigation
   href: AnimatedNavigation/MTAnimatedNavigation.razor.md
 

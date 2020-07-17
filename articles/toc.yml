@@ -1,8 +1,8 @@
 - name: Introduction
   href: intro.md
 
-- name: Article 1
-  href: article1.md
+- name: Demonstration
+  href: Demonstration.md
 
-- name: Article 2
-  href: article2.md
+- name: Installation
+  href: Installation.md
