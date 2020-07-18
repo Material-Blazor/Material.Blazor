@@ -4,7 +4,7 @@ title: MTAnimatedNavigation
 ---
 ## MTAnimatedNavigation
 
-A component used by the `IMTAnimatedNavigationManager` service and place in the main layout surrounding your `@Body`. This is not needed if you don't use BlazorMdc animated navigation.
+An anchor component used by the `IMTAnimatedNavigationManager` service and place in the main layout surrounding your `@Body`. This is not needed if you don't use BlazorMdc animated navigation.
 
 &nbsp;
 

@@ -10,5 +10,5 @@ Blazor MDC has services for both Toast notifications and an animated page naviga
 
 | Service | Notes |
 | :------ | :---- |
-| [`IMTAnimatedNavigationManager`](~/BlazorMdc/Components/AnimatedNavigationManager/IMTAnimatedNavigationManager.razor.html) | Manages fade out/in page navigation, wrapping Blazor's `NavigationManager.NavigateTo()` function. Requires a [`MTAnimatedNavigation`](~/BlazorMdc/Components/AnimatedNavigation/MTAnimatedNavigation.razor.html) component. This is purely optional and you can continue to use Blazor's navigtion if you don't want animation. |
-| [`IIMToastService`](~/BlazorMdc/Components/ToastService/IMTToastService.razor.html) | Manages toast notification. Requires a [`MTToastAnchor`](~/BlazorMdc/Components/ToastAnchor/MTToastAnchor.razor.html) component and will throw an exception when you attempt to show a toast notification if this isn't found. |
+| [`IMTAnimatedNavigationManager`](xref:S.IMTAnimatedNavigationManager) | Manages fade out/in page navigation, wrapping Blazor's `NavigationManager.NavigateTo()` function. Requires a [`MTAnimatedNavigation`](xref:C.MTAnimatedNavigation) component. This is purely optional and you can continue to use Blazor's navigtion if you don't want animation. |
+| [`IIMToastService`](xref:S.IMTToastService) | Manages toast notification. Requires a [`MTToastAnchor`](xref:C.MTToastAnchor) component and will throw an exception when you attempt to show a toast notification if this isn't found. |

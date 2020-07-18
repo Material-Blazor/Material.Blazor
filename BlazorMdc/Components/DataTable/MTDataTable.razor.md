@@ -2,7 +2,7 @@
 uid: C.MTDataTable
 title: MTDataTable
 ---
-## MTDataTable
+## MTDataTable<TItem>
 
 A [Material Data Table](https://material.io/develop/web/components/data-tables/) built using render fragments. It features:
 
@@ -14,4 +14,4 @@ A [Material Data Table](https://material.io/develop/web/components/data-tables/)
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](xref:A.CoreComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MTDataTable&color=brightgreen)](xref:BlazorMdc.MTDataTable)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MTDataTable&color=brightgreen)](xref:BlazorMdc.MTDataTable`1)

@@ -9,8 +9,8 @@ A [Material Card](https://material.io/develop/web/components/cards/) built using
 - Card style of Raised or Outlined;
 - A Primary render fragment for non clickable content;
 - A PrimaryAction render fragment for clickable content;
-- An ActionButtons render fragment for [MTButton](~/BlazorMdc/Components/Button/MTButton.razor.html)s to the lower left;
-- An ActionIcons rendre fragment for [MTIconButton](~/BlazorMdc/Components/IconButton/MTIconButton.razor.html)s to the lower right; and
+- An ActionButtons render fragment for [MTButton](xref:C.MTButton)s to the lower left;
+- An ActionIcons rendre fragment for [MTIconButton](xref:C.MTIconButton)s to the lower right; and
 - An AutoStyled boolean option helper to style padding inside the card.
 
 &nbsp;

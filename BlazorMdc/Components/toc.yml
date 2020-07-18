@@ -2,43 +2,46 @@
   href: intro.md
 
 - name: BlazorMdc namespace
-  href : ../../api/BlazorMdc.html
+  topicUid: BlazorMdc
 
 - name: BlazorMdc.Internal namespace
-  href : ../../api/BlazorMdc.Internal.html
+  topicUid: BlazorMdc.Internal
 
 - name: MTAnimatedNavigation
-  href: AnimatedNavigation/MTAnimatedNavigation.razor.md
+  topicUid: C.MTAnimatedNavigation
 
-- name: MTAutoComplete
-  href: AutoComplete/MTAutoComplete.razor.md
+- name: MTAutocomplete
+  topicUid: C.MTAutocomplete
 
 - name: MTButton
-  href: Button/MTButton.razor.md
+  topicUid: C.MTButton
 
 - name: MTCard
-  href: Card/MTCard.razor.md
+  topicUid: C.MTCard
 
 - name: MTCheckbox
-  href: Checkbox/MTCheckbox.razor.md
+  topicUid: C.MTCheckbox
 
 - name: MTCircularProgress
-  href: CircularProgress/MTCircularProgress.razor.md
+  topicUid: C.MTCircularProgress
+
+- name: MTDataTable
+  topicUid: C.MTDataTable
 
 - name: MTDialog
-  href: Dialog/MTDialog.razor.md
+  topicUid: C.MTDialog
 
 - name: MTDivider
-  href: Divider/MTDivider.razor.md
+  topicUid: C.MTDivider
 
 - name: MTIcon
-  href: Icon/MTIcon.razor.md
+  topicUid: C.MTIcon
 
 - name: MTIconButton
-  href: IconButton/MTIconButton.razor.md
+  topicUid: C.MTIconButton
 
 - name: MTIconButtonToggle
-  href: IconButtonToggle/MTIconButtonToggle.razor.md
+  topicUid: C.MTIconButtonToggle
 
 - name: MTLinearProgress
-  href: LinearProgress/MTLinearProgress.razor.md
+  topicUid: C.MTLinearProgress
