@@ -13,30 +13,27 @@ env:
   ciSuffix1: CI.${{ github.run_number }}
   ciSuffix: Preview.1.${{ github.run_number }}
   output: ${{ github.workspace }}\package
-  project: 'BlazorMdc\BlazorMdc.csproj'
+  project: 'BlazorMdc/BlazorMdc.csproj'
 
 jobs:
 
   buildanddeploy:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
 
     - name: Get the branch
       id: get_branch
       run: echo ::set-output name=branch::${GITHUB_REF/refs\/heads\//}
-      shell: bash
 
     - name: Get the pullrequest
       id: get_pullrequest
       run: echo ::set-output name=pullrequest::${GITHUB_REF/refs\/pull\//}
-      shell: bash
 
     - name: Get the tag
       id: get_tag
       run: echo ::set-output name=tag::${GITHUB_REF/refs\/tags\//}
-      shell: bash
 
     - name: Show branch name Ꙫ
       run: echo "GitHub indicates that this is a branch push request of ${{steps.get_branch.outputs.branch}}"
@@ -64,27 +61,22 @@ jobs:
         NUGET_AUTH_TOKEN: '%NUGET_AUTH_TOKEN%'
 
     - name: Display CI suffix Ꙫ
-      run: echo ${env:ciSuffix}
-
-    - name: Build 🔧
-      run: dotnet build --configuration ${env:buildConfiguration} ${env:project}
-      env:
-        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      run: echo $ciSuffix
 
     - name: Generate NuGet package 🔧
-      run: dotnet pack --configuration ${env:buildConfiguration} --no-build --output ${env:output} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:project}
+      run: dotnet pack --configuration $buildConfiguration --output $output -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix $ciSuffix $project
 
     - name: Display package output Ꙫ
-      run: dir ${env:output}
+      run: ls $output
 
     - name: Display obfuscated secret Ꙫ
       run: echo "The GitHub token is ${{ secrets.GITHUB_TOKEN }}"
 
     - name: Upload Package 🚀
-      run: nuget push ${env:output}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      run: nuget push output/*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-      if: github.repository == 'BlazorMdc/BlazorMdc' && github.event_name == 'push'
+      if: ((github.actor == 'BlazorMdc') && (github.event_name == 'push'))
 
     - name: Create documentation
       run: .\docfx\docfx docfx.json
@@ -92,36 +84,10 @@ jobs:
         DOCFX_SOURCE_BRANCH_NAME: ${{steps.get_branch.outputs.branch}}
       if: contains(github.ref, 'refs/heads')
 
-    - name: Upload Artifacts 🔺 # The project is then uploaded as an artifact named 'site'.
-      uses: actions/upload-artifact@v1
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
-        name: site
-        path: _site
-      if: contains(github.ref, 'refs/heads')
-
-  deployghpages:
-    needs: [buildanddeploy] # The second job must depend on the first one to complete before running, and uses ubuntu-latest instead of windows.
-
-    runs-on: ubuntu-latest
-
-    steps:
-
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-        if: contains(github.ref, 'refs/heads')
-
-      - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
-        uses: actions/download-artifact@v1
-        with:
-          name: site
-        if: contains(github.ref, 'refs/heads')
-
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          ACCESS_TOKEN: ${{ secrets.GH_PAT }}
-          BRANCH: gh-pages
-          FOLDER: "site" # The deployment folder should match the name of the artifact. Even though our project builds into the '_site' folder the artifact name of 'site' must be placed here.
-        if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
+        ACCESS_TOKEN: ${{ secrets.GH_PAT }}
+        BRANCH: gh-pages
+        FOLDER: "_site/wwwroot"
+      if: (contains(github.ref, 'refs/heads') && (github.actor != 'BlazorMdc'))
