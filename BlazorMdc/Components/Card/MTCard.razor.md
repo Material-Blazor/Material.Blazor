@@ -13,6 +13,9 @@ A [Material Card](https://material.io/develop/web/components/cards/) built using
 - An ActionIcons rendre fragment for [MTIconButton](~/BlazorMdc/Components/IconButton/MTIconButton.razor.html)s to the lower right; and
 - An AutoStyled boolean option helper to style padding inside the card.
 
-See [API Documentation](~/api/BlazorMdc.MTCard.html)
+&nbsp;
 
-[![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](~/articles/CoreComponents.html)
+&nbsp;
+
+[![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](xref:A.CoreComponents)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MTCard&color=brightgreen)](xref:BlazorMdc.MTCard)

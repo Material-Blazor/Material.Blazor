@@ -12,6 +12,9 @@ A [Material Dialog](https://material.io/develop/web/components/dialogs/) using a
 - Action text for when the scrim is clicked or the Escape button pressed - setting these to empty strings disables the relevant action forcing the user to close the dialog with a button press;
 - An optional helper boolean to set the dialog overflow CSS attribute to "visible".
 
-See [API Documentation](~/api/BlazorMdc.MTDialog.html)
+&nbsp;
 
-[![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](~/articles/CoreComponents.html)
+&nbsp;
+
+[![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](xref:A.CoreComponents)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MTDialog&color=brightgreen)](xref:BlazorMdc.MTDialog)

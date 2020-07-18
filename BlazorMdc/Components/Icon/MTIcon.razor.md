@@ -8,4 +8,9 @@ An icon component that generates HTML markup for an icon either for the default 
 
 See [API Documentation](~/api/BlazorMdc.MTIcon.html)
 
-[![Components](https://img.shields.io/static/v1?label=Components&message=Plus&color=red)](~/articles/PlusComponents.html)
+&nbsp;
+
+&nbsp;
+
+[![Components](https://img.shields.io/static/v1?label=Components&message=Plus&color=red)](xref:A.PlusComponents)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MTIcon&color=brightgreen)](xref:BlazorMdc.MTIcon)

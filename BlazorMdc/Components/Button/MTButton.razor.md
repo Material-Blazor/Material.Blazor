@@ -11,6 +11,9 @@ A [Material Button](https://material.io/develop/web/components/buttons/) with th
 - Icon foundry specification; and
 - A string code to return as a dialog action.
 
-See [API Documentation](~/api/BlazorMdc.MTButton.html)
+&nbsp;
 
-[![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](~/articles/CoreComponents.html)
+&nbsp;
+
+[![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](xref:A.CoreComponents)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MTButton&color=brightgreen)](xref:BlazorMdc.MTButton)
