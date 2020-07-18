@@ -39,6 +39,14 @@
 		<Content Remove="bundleconfig.json" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Remove="Components\Card\MTCard.razor.md" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Components\Card\MTCard.razor.md" />
+	</ItemGroup>
+
 
 	<ItemGroup>
 		<PackageReference Include="BuildBundlerMinifier" Version="3.2.447" />

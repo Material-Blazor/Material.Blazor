@@ -1,5 +1,11 @@
-﻿`MTAutocomplete` is a [Material Text Field](https://material.io/develop/web/components/input-controls/text-field/) that drops a [menu](https://material.io/develop/web/components/menus/) for auto completion. Has parameters to allow blank results and for whitespace to be ignored in searches. Might consider forking and adapting [Blazored.Typeahead](https://github.com/Blazored/Typeahead) with MT styling. 
+﻿---
+uid: C.MTAutocomplete
+title: MTAutocomplete
+---
+## MTAutocomplete
 
-[API Documentation](~/api/BlazorMdc.MTAutoComplete.html)
+A [Material Text Field](https://material.io/develop/web/components/input-controls/text-field/) that drops a [menu](https://material.io/develop/web/components/menus/) for auto completion. Has parameters to allow blank results and for whitespace to be ignored in searches. Might consider forking and adapting [Blazored.Typeahead](https://github.com/Blazored/Typeahead) with MT styling. 
 
-[![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=red?style=flat-square&logo=appveyor)](~/articles/PlusComponents.html)
+See [API Documentation](~/api/BlazorMdc.MTAutoComplete.html)
+
+[![Components](https://img.shields.io/static/v1?label=Components&message=Plus&color=red)](~/articles/PlusComponents.html)

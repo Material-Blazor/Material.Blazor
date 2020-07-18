@@ -1,6 +1,12 @@
+---
+uid: A.Utilities
+title: Utilities
+---
 ## Utilities
 
 The following are utilities for cascading app defaults through nested components and managing icon foundries.
+
+### Utilities List
 
 | Utility | Notes |
 | :------ | :---- |

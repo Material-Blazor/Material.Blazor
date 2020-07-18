@@ -42,7 +42,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "articles", "articles", "{FC
 		articles\CoreComponents.md = articles\CoreComponents.md
 		articles\Demonstration.md = articles\Demonstration.md
 		articles\Installation.md = articles\Installation.md
-		articles\intro.md = articles\intro.md
 		articles\PlusComponents.md = articles\PlusComponents.md
 		articles\Services.md = articles\Services.md
 		articles\toc.yml = articles\toc.yml

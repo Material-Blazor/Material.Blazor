@@ -1,3 +1,7 @@
+---
+uid: A.Installation
+title: Installation
+---
 ## Installation
 
 Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add the CSS and JS in your html (there are non-minified unbundled files for BlazorMdc.css & BlazorMds.js to reference if you need them for debugging purposes).
@@ -18,5 +22,3 @@ and at the end of `<body>`:
 <script src="_content/BlazorMdc/blazormdc-bundled.min.js"></script>
 ```
 See the [Blazor WebAssembly demo index file](https://github.com/BlazorMdc/BlazorMdc/blob/main/BlazorMdc.Demo.WebServer/Pages/index_webassembly.cshtml) and [Blazor Server demo index file](https://github.com/BlazorMdc/BlazorMdc/blob/main/BlazorMdc.Demo.WebServer/Pages/index_server.cshtml) for examples. We also provide un-minified `blazormdc.css` and `blazormdc.js`.
-
-

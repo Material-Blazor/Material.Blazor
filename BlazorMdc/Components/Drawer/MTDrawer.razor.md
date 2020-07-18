@@ -1,0 +1,16 @@
+﻿---
+uid: C.MTDrawer
+title: MTDrawer
+---
+## MTDrawer
+
+A [Material Drawer](https://material.io/develop/web/components/drawers/) using a render fragment for content. It features:
+
+- Render fragment content;
+- A boolean indicator for whether the drawer is open or closed on startup;
+- Another indicator for whether the drawer is dismissible;
+- An ability to notify the drawer that navigation has occurred and whether to close on navigation.
+
+See [API Documentation](~/api/BlazorMdc.MTDrawer.html)
+
+[![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](~/articles/CoreComponents.html)

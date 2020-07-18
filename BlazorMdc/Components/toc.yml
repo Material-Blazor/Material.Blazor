@@ -15,3 +15,30 @@
 
 - name: MTButton
   href: Button/MTButton.razor.md
+
+- name: MTCard
+  href: Card/MTCard.razor.md
+
+- name: MTCheckbox
+  href: Checkbox/MTCheckbox.razor.md
+
+- name: MTCircularProgress
+  href: CircularProgress/MTCircularProgress.razor.md
+
+- name: MTDialog
+  href: Dialog/MTDialog.razor.md
+
+- name: MTDivider
+  href: Divider/MTDivider.razor.md
+
+- name: MTIcon
+  href: Icon/MTIcon.razor.md
+
+- name: MTIconButton
+  href: IconButton/MTIconButton.razor.md
+
+- name: MTIconButtonToggle
+  href: IconButtonToggle/MTIconButtonToggle.razor.md
+
+- name: MTLinearProgress
+  href: LinearProgress/MTLinearProgress.razor.md
