@@ -53,11 +53,10 @@ We also want to acknowledge the work of
 
 [See the Components/Services/Utilities documentation](BlazorMdc/Components/Intro.md)
 
-## Future Development
+## Future Work
 
 - Add remaining Material Theme components.
 - Add [density subsystem](https://material.io/develop/web/components/density/).
-- Complete implementation of current components, in particular those points noted above as not being implemented.
-- Target best practice (per notes in introduction) and perform quality audit.
+- Target best practice (per notes in introduction) and perform further quality audit.
 - Build nullable numeric input in addition to current non nullables.
-- Follow [Material Theme framework standards](https://material.io/develop/web/docs/framework-integration/).
+- Continually review and follow [Material Theme framework standards](https://material.io/develop/web/docs/framework-integration/).
