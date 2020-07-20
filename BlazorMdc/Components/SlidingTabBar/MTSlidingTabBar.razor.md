@@ -2,4 +2,4 @@
 uid: C.MTSlidingTabBar
 title: MTSlidingTabBar
 ---
-## MTSlidingTabBar
+## MTSlidingTabBar<TItem>

@@ -2,4 +2,4 @@
 uid: C.MTPagedDataList
 title: MTPagedDataList
 ---
-## MTPagedDataList}
+## MTPagedDataList<TItem>
