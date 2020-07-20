@@ -120,12 +120,15 @@
 		<Exec Command="dotnet tool run webcompiler Scripts/blazormdc.js -m enable -o .\wwwroot -p disable -z disable" />
 	</Target>
 
+	<ItemGroup>
+		<JsSourceFiles Include=".\scripts\*.js"/>
+	</ItemGroup>
+
 	<Target Name="CopyJs" AfterTargets="CompileJs" BeforeTargets="PreBuildEvent">
 		<!--<Exec Command="xcopy /y .\scripts\*.js wwwroot" />-->
 		<Copy
-			SourceFiles=".\scripts\*.js"
+			SourceFiles="@(JsSourceFiles)"
 			DestinationFolder="wwwroot"
 		/>
 	</Target>
-
 </Project>
