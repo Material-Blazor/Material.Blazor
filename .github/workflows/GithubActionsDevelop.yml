@@ -67,7 +67,6 @@ jobs:
       run: dotnet pack --configuration $buildConfiguration --output $output -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix $ciSuffix $project
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-      shell: pwsh
 
     - name: Display package output Ꙫ
       run: ls $output
