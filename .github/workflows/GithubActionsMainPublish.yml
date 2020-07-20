@@ -1,4 +1,4 @@
-﻿﻿name: GithubActionsMainPublish
+﻿name: GithubActionsMainPublish
 
 on:
   push:
@@ -13,7 +13,7 @@ env:
 
 jobs:
 
-  buildanddeploy:
+  build:
 
     runs-on: windows-latest
 
