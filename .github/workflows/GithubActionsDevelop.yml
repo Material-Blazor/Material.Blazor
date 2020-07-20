@@ -12,7 +12,7 @@ env:
   buildConfiguration: 'Debug_Server'
   ciSuffix1: CI.${{ github.run_number }}
   ciSuffix: Preview.1.${{ github.run_number }}
-  output: ${{ github.workspace }}\package
+  output: ${{ github.workspace }}/package
   project: 'BlazorMdc/BlazorMdc.csproj'
   docRoot: '_site'
 
