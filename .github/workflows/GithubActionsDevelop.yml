@@ -68,8 +68,8 @@ jobs:
 #      env:
 #        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
-    - name: Display package output Ꙫ
-      run: ls $output
+#    - name: Display package output Ꙫ
+#      run: ls $output
 
     - name: Display obfuscated secret Ꙫ
       run: echo "The GitHub token is ${{ secrets.GITHUB_TOKEN }}"
