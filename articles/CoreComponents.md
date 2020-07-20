@@ -15,7 +15,7 @@ the markup specification. We term these "Core Components. Blazor MDC also has no
 | [MTCard](xref:C.MTCard) | A [Material Card](https://material.io/develop/web/components/cards/). |
 | [MTCheckbox](xref:C.MTCheckbox) | A [Material Checkbox](https://material.io/develop/web/components/input-controls/checkboxes/). Implements a two state on/off checkbox, but not yet an indeterminate variety. |
 | [MTCircularProgress](xref:C.MTCircularProgress) | A [Material Circular Progress indicator](https://material.io/develop/web/components/progress-indicator/). |
-| [MTDataTable<TItem>](xref:C.MTDataTable<TItem>) | A [Material Data Table](https://material.io/develop/web/components/data-tables/) without row selection. |
+| [MTDataTable<TItem>](xref:C.MTDataTable) | A [Material Data Table](https://material.io/develop/web/components/data-tables/) without row selection. |
 | [MTDialog](xref:C.MTDialog) | A [Material Dialog](https://material.io/develop/web/components/dialogs/). Can set scrim and escape button actions. |
 | [MTDrawer](xref:C.MTDrawer) | A [Material Drawer](https://material.io/develop/web/components/drawers/). |
 | [MTIconButton](xref:C.MTIconButton) | A [Material Icon Button](https://material.io/develop/web/components/buttons/icon-buttons/). |
