@@ -121,7 +121,11 @@
 	</Target>
 
 	<Target Name="CopyJs" AfterTargets="CompileJs" BeforeTargets="PreBuildEvent">
-		<Exec Command="xcopy /y .\scripts\*.js wwwroot" />
+		<!--<Exec Command="xcopy /y .\scripts\*.js wwwroot" />-->
+		<Copy
+			SourceFiles=".\scripts\*.js"
+			DestinationFolder="wwwroot"
+		/>
 	</Target>
 
 </Project>
