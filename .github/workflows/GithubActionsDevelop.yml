@@ -71,7 +71,7 @@ jobs:
 #      shell: pwsh
 
     - name: Display package output Ꙫ
-      run: pwd; echo "ls -alt"; ls -alt; echo "ls -alt $output"; ls -alt $output
+      run: pwd; echo "ls -alt"; ls -alt #; echo "ls -alt $output"; ls -alt $output
 #      run: ls $output
 
     - name: Display obfuscated secret Ꙫ
