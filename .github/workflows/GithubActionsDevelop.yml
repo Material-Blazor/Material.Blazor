@@ -69,7 +69,7 @@ jobs:
 #        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
     - name: Display package output Ꙫ
-      run: pwd
+      run: pwd; ls -alt
 #      run: ls $output
 
     - name: Display obfuscated secret Ꙫ
