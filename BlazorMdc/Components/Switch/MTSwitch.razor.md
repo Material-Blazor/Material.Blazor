@@ -6,9 +6,7 @@ title: MTSwitch
 
 ### Summary
 
-### Details
-
-- xxx
+A simple two state [Material Switch](https://material.io/develop/web/components/input-controls/switches/) with a boolean value.
 
 &nbsp;
 

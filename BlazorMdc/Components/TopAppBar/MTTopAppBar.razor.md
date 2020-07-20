@@ -6,9 +6,14 @@ title: MTTopAppBar
 
 ### Summary
 
+A [Material Top App Bar](https://material.io/develop/web/components/top-app-bar/).
+
 ### Details
 
-- xxx
+- Placed in `MainLayout.razor` and wraps around the `@Body` render fragment;
+- Applies the suite of Material Theme top app bar varieties;
+- Has a navigation icon and a title; and
+- Icons and other action items can be placed to the right of the top app bar with standard [Material Top App Bar HTML markup](https://material.io/develop/web/components/top-app-bar/).
 
 &nbsp;
 

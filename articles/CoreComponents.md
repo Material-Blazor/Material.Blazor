@@ -27,6 +27,6 @@ the markup specification. We term these "Core Components. Blazor MDC also has no
 | [MTSelect](xref:C.MTSelect) | A [Material Select Menu](https://material.io/develop/web/components/input-controls/select-menus/). |
 | [MTSwitch](xref:C.MTSwitch) | A [Material Switch](https://material.io/develop/web/components/input-controls/switches/). |
 | [MTTabBar](xref:C.MTTabBar) | A [Material Tab Bar](https://material.io/develop/web/components/tabs/tab-bar/). |
-| [MTTextArea](xref:C.MTTextArea) | A [Material Text Field](https://material.io/develop/web/components/input-controls/text-field/) expressed as a text area. Implements the full width variety, but still needs to disable floating labels in this instance to follow MT guidelines - indeed full width fields with a floating label render poorly. |
+| [MTTextArea](xref:C.MTTextArea) | A [Material Text Field](https://material.io/develop/web/components/input-controls/text-field/) expressed as a text area. |
 | [MTTextField](xref:C.MTTextField) | A [Material Text Field](https://material.io/develop/web/components/input-controls/text-field/). Does not implement the full width variety. |
 | [MTTopAppBar](xref:C.MTTopAppBar) | A [Material Top App Bar](https://material.io/develop/web/components/top-app-bar/). |

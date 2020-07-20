@@ -7,7 +7,7 @@ title: MTNumericDoubleField
 ### Summary
 
 An [MTTextField](xref:C.MTTextField) designed for numeric value input with a formatted display while the field lacks focus (format is turned off with focus for efficient data entry).
-Has the capacity to scale order of magnitude for percentage or basis point (1/100th of a percent) data input and display. Has the following properties
+Has the capacity to scale order of magnitude for percentage or [basis points](https://en.wikipedia.org/wiki/Basis_point) (1/100th of a percent) data input and display. Has the following properties
 
 ### Detail
 
