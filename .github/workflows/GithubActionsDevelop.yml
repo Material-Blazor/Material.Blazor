@@ -93,7 +93,7 @@ jobs:
       with:
         args: docfx.json
 
-   - name: Simon's Step Ꙫ
+    - name: Simon's Step Ꙫ
       run: pwd; ls -alt
       
     - name: Deploy 🚀
