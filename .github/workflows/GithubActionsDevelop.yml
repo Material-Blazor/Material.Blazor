@@ -82,7 +82,7 @@ jobs:
       if: ((github.actor == 'BlazorMdc') && (github.event_name == 'push'))
 
     - name: Create documentation
-      run: .\docfx\docfx docfx.json
+      run: .\DocFx\docfx.exe docfx.json
       env:
         DOCFX_SOURCE_BRANCH_NAME: ${{steps.get_branch.outputs.branch}}
       if: contains(github.ref, 'refs/heads')
