@@ -5,7 +5,7 @@ title: CoreComponents
 ## Core Components
 
 Material Theme closely specifies the HTML markup for its [core components](https://material.io/develop/web). Blazor MDC implements many of these and aheres rigorously to 
-the markup specification. We term these "Core Components. Blazor MDC also has non core [Plus Components](xref:PlusComponents).
+the markup specification. We term these "Core Components. Blazor MDC also has non core [Plus Components](xref:A.PlusComponents).
 
 ### Component List
 
@@ -23,7 +23,6 @@ the markup specification. We term these "Core Components. Blazor MDC also has no
 | [MTLinearProgress](xref:C.MTLinearProgress) | A [Material Linear Progress bar](https://material.io/develop/web/components/progress-indicator/). |
 | [MTList](xref:C.MTList) | A [Material List](https://material.io/develop/web/components/lists/). Implements Material Theme Web Components one and two line lists, plus a BlazorMdc interpretation of a three line list. |
 | [MTMenu](xref:C.MTMenu) | A [Material Menu](https://material.io/develop/web/components/menus/). Does not implement sub menus. May redesign parameterization. |
-| [MTNavLink](xref:C.MTNavLink) | A [Material List Item](https://material.io/develop/web/components/menus/) wrapping a Blazor `NavLink`. |
 | [MTRadioButton](xref:C.MTRadioButton) | A [Material Radio Button](https://material.io/develop/web/components/input-controls/radio-buttons/). |
 | [MTSelect](xref:C.MTSelect) | A [Material Select Menu](https://material.io/develop/web/components/input-controls/select-menus/). |
 | [MTSwitch](xref:C.MTSwitch) | A [Material Switch](https://material.io/develop/web/components/input-controls/switches/). |

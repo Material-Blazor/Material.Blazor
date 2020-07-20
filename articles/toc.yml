@@ -1,17 +1,17 @@
 - name: Demonstration
-  href: Demonstration.md
+  topicUid: A.Demonstration
 
 - name: Installation
-  href: Installation.md
+  topicUid: A.Installation
 
 - name: Core Components
-  href: CoreComponents.md
+  topicUid: A.CoreComponents
 
 - name: Plus Components
-  href: PlusComponents.md
+  topicUid: A.PlusComponents
 
 - name: Utilities
-  href: Utilities.md
+  topicUid: A.Utilities
 
 - name: Services
-  href: Services.md
+  topicUid: A.Services

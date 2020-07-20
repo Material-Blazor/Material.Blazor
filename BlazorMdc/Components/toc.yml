@@ -7,6 +7,12 @@
 - name: BlazorMdc.Internal namespace
   topicUid: BlazorMdc.Internal
 
+- name: IMTAnimatedNavigationManager
+  topicUid: S.IMTAnimatedNavigationManager
+
+- name: IMTToastService
+  topicUid: S.IMTToastService
+
 - name: MTAnimatedNavigation
   topicUid: C.MTAnimatedNavigation
 
@@ -18,6 +24,9 @@
 
 - name: MTCard
   topicUid: C.MTCard
+
+- name: MTCascadingDefaults
+  topicUid: U.MTCascadingDefaults
 
 - name: MTCheckbox
   topicUid: C.MTCheckbox
@@ -37,6 +46,9 @@
 - name: MTIcon
   topicUid: C.MTIcon
 
+- name: MTIconHelper
+  topicUid: U.MTIconHelper
+
 - name: MTIconButton
   topicUid: C.MTIconButton
 
@@ -51,3 +63,51 @@
 
 - name: MTMenu
   topicUid: C.MTMenu
+
+- name: MTNumericDoubleField
+  topicUid: C.MTNumericDoubleField
+
+- name: MTNumericIntField
+  topicUid: C.MTNumericIntField
+
+- name: MTPagedDataList
+  topicUid: C.MTPagedDataList
+
+- name: MTPaginator
+  topicUid: C.MTPaginator
+
+- name: MTRadioButton
+  topicUid: C.MTRadioButton
+
+- name: MTRadioButtonGroup
+  topicUid: C.MTRadioButtonGroup
+
+- name: MTSelect
+  topicUid: C.MTSelect
+
+- name: MTShield
+  topicUid: C.MTShield
+
+- name: MTSlidingContent
+  topicUid: C.MTSlidingContent
+
+- name: MTSlidingTabBar
+  topicUid: C.MTSlidingTabBar
+
+- name: MTSwitch
+  topicUid: C.MTSwitch
+
+- name: MTTabBar
+  topicUid: C.MTTabBar
+
+- name: MTTextArea
+  topicUid: C.MTTextArea
+
+- name: MTTextField
+  topicUid: C.MTTextField
+
+- name: MTToastAnchor
+  topicUid: C.MTToastAnchor
+
+- name: MTTopAppBar
+  topicUid: C.MTTopAppBar

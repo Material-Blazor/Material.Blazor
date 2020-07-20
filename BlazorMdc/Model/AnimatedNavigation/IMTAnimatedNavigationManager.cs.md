@@ -1,5 +1,5 @@
 ﻿---
-uid: S.IMTAnimatedNaviagationManager
-title: IMTAnimatedNaviagationManager
+uid: S.IMTAnimatedNavigationManager
+title: IMTAnimatedNavigationManager
 ---
-## IMTAnimatedNaviagationManager
+## IMTAnimatedNavigationManager

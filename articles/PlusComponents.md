@@ -4,14 +4,14 @@ title: PlusComponents
 ---
 ## Plus Components
 
-Material Theme closely specifies component HTML markup. Blazor MDC implements many of these as [Core Components](xref:CoreComponents). Blazor MDC also 
+Material Theme closely specifies component HTML markup. Blazor MDC implements many of these as [Core Components](xref:A.CoreComponents). Blazor MDC also 
 implements further Blazor/Material Theme hybrid components that we term "Plus Components".
 
 ### Component List
 
 | Component | Notes |
 | :-------- | :---- |
-| [MTAnimatedNavigation](xref:C.MTAnimatedNavigation) | An component used by the [IMTAnimatedNavigationManager](xref:C.IMTAnimatedNavigationManager) service. |
+| [MTAnimatedNavigation](xref:C.MTAnimatedNavigation) | An component used by the [IMTAnimatedNavigationManager](xref:S.IMTAnimatedNavigationManager) service. |
 | [MTAutocomplete](xref:C.MTAutocomplete) | An autocomplete comprising a text field and a menu. |
 | [MTConfirmationDialog](xref:C.MTConfirmationDialog) | A special purpose wrapper around `MTDialog` that makes the user type some text correctly in order to enable a button for a specific purpose. Modelled after the GitHub confirmation forms. |
 | [MTDatePicker](xref:C.MTDatePicker) | An implementation of the [Material date picker specification](https://material.io/components/pickers/#specs) for the desktop. |
@@ -26,4 +26,4 @@ implements further Blazor/Material Theme hybrid components that we term "Plus Co
 | [MTShield](xref:C.MTShield) | A simple component producing an HTML shield styled after svgs from shield.io (square, flat variety) |
 | [MTSlidingContent](xref:C.MTSlidingContent) | A templated component to provide previous/next navigation through a series of pages with light left/right and fade in/out animation. |
 | [MTSlidingTabBar](xref:C.MTSlidingTabBar) | An `MTTabBar` augmented with content displayed in a `MTSlidingContent` |
-| [MTToastAnchor](xref:C.MTToastAnchor) | A port of [Blazored/Toast](https://github.com/Blazored/Toast), modified and styled à la Material Theme. Place once instance of this in your Blazor app at the top of `App.razor` or `MainLayout.razor`. Requires that you register an [IIMToastService](xref:C.ToastService/IMTToastService) service and will throw an exception on startup if the service is not found. |
+| [MTToastAnchor](xref:C.MTToastAnchor) | A port of [Blazored/Toast](https://github.com/Blazored/Toast), modified and styled for Material Theme. Place once instance of this in your Blazor app at the top of `App.razor` or `MainLayout.razor`. Requires that you register an [IIMToastService](xref:S.IMTToastService) service and will throw an exception on startup if the service is not found. |

@@ -1,5 +1,5 @@
-﻿<h3>MTTopAppBar.razor</h3>
-
-@code {
-
-}
+﻿---
+uid: C.MTTopAppBar
+title: MTTopAppBar
+---
+## MTTopAppBar

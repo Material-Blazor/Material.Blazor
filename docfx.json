@@ -31,8 +31,9 @@
       },
       {
         "files": [
-          "BlazorMdc/Components/**/**.md",
-          "BlazorMdc/Components/toc.yml"
+          "BlazorMdc/**/**.md",
+          "BlazorMdc/**/**/**.md",
+          "BlazorMdc/**/toc.yml"
         ]
       },
       {
