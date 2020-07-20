@@ -14,6 +14,7 @@ env:
   ciSuffix: Preview.1.${{ github.run_number }}
   output: ${{ github.workspace }}\package
   project: 'BlazorMdc/BlazorMdc.csproj'
+  docRoot: '_site'
 
 jobs:
 
@@ -63,13 +64,14 @@ jobs:
     - name: Display CI suffix Ꙫ
       run: echo $ciSuffix
 
-#    - name: Generate NuGet package 🔧
-#      run: dotnet pack --configuration $buildConfiguration --output $output -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix $ciSuffix $project
-#      env:
-#        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+    - name: Generate NuGet package 🔧
+      run: dotnet pack --configuration $buildConfiguration --output $output -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix $ciSuffix $project
+      env:
+        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      shell: pwsh
 
     - name: Display package output Ꙫ
-      run: pwd; ls -alt
+      run: pwd; echo "ls -alt"; ls -alt; echo "ls -alt $output"; ls -alt $output
 #      run: ls $output
 
     - name: Display obfuscated secret Ꙫ
@@ -81,14 +83,7 @@ jobs:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       if: ((github.actor == 'BlazorMdc') && (github.event_name == 'push'))
 
-#    - name: Create documentation
-#      run: .\DocFx\docfx.exe docfx.json
-#      env:
-#        DOCFX_SOURCE_BRANCH_NAME: ${{steps.get_branch.outputs.branch}}
-#      if: contains(github.ref, 'refs/heads')
-#      shell: pwsh
-
-    - name: Build Documentation
+    - name: Build Documentation 📕
       uses: nikeee/docfx-action@v1.0.0
       with:
         args: docfx.json
@@ -101,5 +96,5 @@ jobs:
       with:
         ACCESS_TOKEN: ${{ secrets.GH_PAT }}
         BRANCH: gh-pages
-        FOLDER: "_site/wwwroot"
+        FOLDER: ${{ env.docRoot }}
       if: (contains(github.ref, 'refs/heads') && (github.actor != 'BlazorMdc'))
