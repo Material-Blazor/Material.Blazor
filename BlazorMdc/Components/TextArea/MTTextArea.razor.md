@@ -6,11 +6,12 @@ title: MTTextArea
 
 ### Summary
 
-A [Material Text Field](https://material.io/develop/web/components/input-controls/text-field/) expressed as a text area. Implements the full width variety, but still needs to disable floating labels in this instance to follow MT guidelines - indeed full width fields with a floating label render poorly.
+A [Material Text Field](https://material.io/develop/web/components/input-controls/text-field/) expressed as a text area.
 
 ### Details
 
-- xxx
+- Similar to [MTTextField](xref:C.MTTextField), bit lacking prefix, suffix or leading and trailing icons;
+- Can set the initial number of rows and columns to display.
 
 &nbsp;
 
