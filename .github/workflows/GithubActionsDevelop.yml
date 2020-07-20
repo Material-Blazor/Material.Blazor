@@ -81,14 +81,19 @@ jobs:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       if: ((github.actor == 'BlazorMdc') && (github.event_name == 'push'))
 
-    - name: Create documentation
-      run: .\DocFx\docfx.exe docfx.json
-      env:
-        DOCFX_SOURCE_BRANCH_NAME: ${{steps.get_branch.outputs.branch}}
-      if: contains(github.ref, 'refs/heads')
-      shell: pwsh
+#    - name: Create documentation
+#      run: .\DocFx\docfx.exe docfx.json
+#      env:
+#        DOCFX_SOURCE_BRANCH_NAME: ${{steps.get_branch.outputs.branch}}
+#      if: contains(github.ref, 'refs/heads')
+#      shell: pwsh
 
-    - name: Simon's Step Ꙫ
+    - name: Build Documentation
+      uses: nikeee/docfx-action@v1.0.0
+      with:
+        args: docfx.json
+
+   - name: Simon's Step Ꙫ
       run: pwd; ls -alt
       
     - name: Deploy 🚀
