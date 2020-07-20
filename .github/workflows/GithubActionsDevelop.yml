@@ -85,6 +85,7 @@ jobs:
       env:
         DOCFX_SOURCE_BRANCH_NAME: ${{steps.get_branch.outputs.branch}}
       if: contains(github.ref, 'refs/heads')
+      shell: pwsh
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
