@@ -2,9 +2,13 @@
 uid: C.MTButton
 title: MTButton
 ---
-## MTButton
+# MTButton
+
+### Summary
 
 A [Material Button](https://material.io/develop/web/components/buttons/) with the following properties:
+
+### Details
 
 - Text, Outlined, Filled or Raised styles;
 - Leading and trailing icons;

@@ -2,7 +2,9 @@
 uid: C.MTIconButtonToggle
 title: MTIconButtonToggle
 ---
-## MTIconButtonToggle
+# MTIconButtonToggle
+
+### Summary
 
 A toggle variant of the [Material Icon Button](https://material.io/develop/web/components/buttons/icon-buttons/) that accepts on and off icons, an optional icon foundry and two way binds to a boolean.
 

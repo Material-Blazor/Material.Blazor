@@ -2,7 +2,9 @@
 uid: C.MTCheckbox
 title: MTCheckbox
 ---
-## MTCheckbox
+# MTCheckbox
+
+### Summary
 
 A simple two state [Material Checkbox](https://material.io/develop/web/components/input-controls/checkboxes/) with a boolean value.
 

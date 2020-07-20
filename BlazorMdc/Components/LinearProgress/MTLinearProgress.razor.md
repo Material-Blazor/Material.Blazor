@@ -2,7 +2,9 @@
 uid: C.MTLinearProgress
 title: MTLinearProgress
 ---
-## MTLinearProgress
+# MTLinearProgress
+
+### Summary
 
 A [Material Linear Progress bar](https://material.io/develop/web/components/progress-indicator/) with both determinate and indeterminate states plus values for level of progress and buffering level.
 

@@ -2,7 +2,9 @@
 uid: C.MTConfirmationDialog
 title: MTConfirmationDialog
 ---
-## MTConfirmationDialog
+# MTConfirmationDialog
+
+### Summary
 
 An extended [Material Dialog](https://material.io/develop/web/components/dialogs/) which adds a random six digit confirmation code (or a custom one you provide) and a text box to enable an action button.
 The confirmation dialog requires two near identical action button render fragments: one is for the unconfirmed state and the other for the confirmed state. Both render fragments should be identical, except that

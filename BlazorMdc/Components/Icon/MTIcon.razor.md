@@ -2,7 +2,9 @@
 uid: C.MTIcon
 title: MTIcon
 ---
-## MTIcon
+# MTIcon
+
+### Summary
 
 An icon component that generates HTML markup for an icon either for the default foundry
 

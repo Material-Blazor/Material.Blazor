@@ -2,7 +2,9 @@
 uid: C.MTIconButton
 title: MTIconButton
 ---
-## MTIconButton
+# MTIconButton
+
+### Summary
 
 A [Material Icon Button](https://material.io/develop/web/components/buttons/icon-buttons/) that accepts an icon and an optional icon foundry.
 

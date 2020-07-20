@@ -2,9 +2,13 @@
 uid: C.MTDataTable
 title: MTDataTable
 ---
-## MTDataTable<TItem>
+# MTDataTable&lt;TItem&gt;
+
+### Summary
 
 A [Material Data Table](https://material.io/develop/web/components/data-tables/) built using render fragments. It features:
+
+### Details
 
 - A Table Header render fragment, which requires correct HTML/CSS markup for the table's header; and
 - An IEnumerable of Table Row render fragments, also requiring correct HTML/CSS markup.

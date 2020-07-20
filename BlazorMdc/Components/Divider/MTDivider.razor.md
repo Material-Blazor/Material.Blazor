@@ -2,7 +2,9 @@
 uid: C.MTDivider
 title: MTDivider
 ---
-## MTDivider
+# MTDivider
+
+### Summary
 
 A Material Divider which is a horizonal rule with boolean indicators for the material inset and padded CSS classes.
 

@@ -2,9 +2,13 @@
 uid: C.MTList
 title: MTList
 ---
-## MTList<TItem>
+# MTList&lt;TItem&gt;
+
+### Summary
 
 A [Material List](https://material.io/develop/web/components/lists/). Uses render fragments to implement Material Theme Web Components one and two line lists, plus a BlazorMdc interpretation of a three line list. It features:
+
+### Details
 
 - A title line render fragment;
 - IEnumerable render fragments for the first, second and third lines of each list item;
@@ -19,4 +23,4 @@ A [Material List](https://material.io/develop/web/components/lists/). Uses rende
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](xref:A.CoreComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MTCard&color=brightgreen)](xref:BlazorMdc.MTList`1)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MTList&color=brightgreen)](xref:BlazorMdc.MTList`1)

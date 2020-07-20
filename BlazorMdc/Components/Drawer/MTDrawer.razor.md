@@ -2,9 +2,13 @@
 uid: C.MTDrawer
 title: MTDrawer
 ---
-## MTDrawer
+# MTDrawer
+
+### Summary
 
 A [Material Drawer](https://material.io/develop/web/components/drawers/) using a render fragment for content. It features:
+
+### Details
 
 - Render fragment content;
 - A boolean indicator for whether the drawer is open or closed on startup;

@@ -2,7 +2,9 @@
 uid: C.MTDebouncedTextField
 title: MTDebouncedTextField
 ---
-## MTDebouncedTextField
+# MTDebouncedTextField
+
+### Summary
 
 A debounced variant of the [MTTextField](xref:C.MTTextField). Allows the debounce interval in milliseconds to be set, defaulting to 300ms.
 

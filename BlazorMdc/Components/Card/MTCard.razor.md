@@ -2,9 +2,13 @@
 uid: C.MTCard
 title: MTCard
 ---
-## MTCard
+# MTCard
+
+### Summary
 
 A [Material Card](https://material.io/develop/web/components/cards/) built using render fragments. It features:
+
+### Details
 
 - Card style of Raised or Outlined;
 - A Primary render fragment for non clickable content;

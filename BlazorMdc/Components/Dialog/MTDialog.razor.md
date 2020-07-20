@@ -2,9 +2,13 @@
 uid: C.MTDialog
 title: MTDialog
 ---
-## MTDialog
+# MTDialog
+
+### Summary
 
 A [Material Dialog](https://material.io/develop/web/components/dialogs/) using a render fragment for content. It features:
+
+### Details
 
 - A string Title;
 - A render fragment body;
