@@ -34,7 +34,7 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Returns a new <see cref="MTIconHelper"> for a Material Icons icon.
+        /// Returns a new Material Icons foundry.
         /// </summary>
         /// <param name="theme">Optional <see cref="MTIconMITheme"/> specifying the Material Icons theme.</param>
         /// <returns><see cref="IMTIconFoundry"/> to be passed to a BlazorMdc component.</returns>
@@ -42,7 +42,7 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Returns a new <see cref="MTIconHelper"> for a Font Awesome icon.
+        /// Returns a new Font Awesome foundry.
         /// </summary>
         /// <param name="style">Optional <see cref="MTIconFAStyle"/> specifying the Font Awesome style.</param>
         /// <param name="relativeSize">Optional <see cref="MTIconFARelativeSize"/> specifying the Font Awesome relative size.</param>
@@ -51,19 +51,13 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Returns a new <see cref="MTIconHelper"> for a Open Iconic icon.
+        /// Returns a Open Iconic foundry.
         /// </summary>
         /// <returns><see cref="IMTIconFoundry"/> to be passed to a BlazorMdc component.</returns>
         public static IMTIconFoundry OIFoundry() => new IconFoundryOI();
 
 
 #nullable enable annotations
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="cascadingDefaults"></param>
-        /// <param name="iconName"></param>
-        /// <param name="foundry"></param>
         internal MTIconHelper(MTCascadingDefaults cascadingDefaults, string iconName, IMTIconFoundry? foundry = null)
         {
             if (cascadingDefaults is null)

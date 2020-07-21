@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace BlazorMdc
 {
     /// <summary>
-    /// An autocomplete built using an <see cref="MdcTextField"/> with the anchor and drop
+    /// An autocomplete built using an <see cref="MTTextField"/> with the anchor and drop
     /// down list implementation from a Material Theme select.
     /// </summary>
     public partial class MTAutocomplete : InputComponentFoundation<string>, IDisposable
@@ -137,7 +137,7 @@ namespace BlazorMdc
         }
 
 
-        /// <inheritdoc/>
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
         public void Dispose()
         {
             GC.SuppressFinalize(this);

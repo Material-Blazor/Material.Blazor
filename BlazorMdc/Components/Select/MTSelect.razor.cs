@@ -96,7 +96,7 @@ namespace BlazorMdc
         }
 
 
-        /// <inheritdoc/>
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
         public void Dispose()
         {
             GC.SuppressFinalize(this);

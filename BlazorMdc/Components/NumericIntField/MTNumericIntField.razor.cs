@@ -7,7 +7,7 @@ using System;
 namespace BlazorMdc
 {
     /// <summary>
-    /// An integer variant of <see cref="NumericDoubleField"/>.
+    /// An integer variant of <see cref="MTNumericDoubleField"/>.
     /// </summary>
     public partial class MTNumericIntField : InputComponentFoundation<int>
     {

@@ -4,7 +4,7 @@ window.BlazorMdc = {
             textElem._textField = mdc.textField.MDCTextField.attachTo(textElem);
             menuElem._menu = mdc.menu.MDCMenu.attachTo(menuElem);
             //menuElem._menuSurface = mdc.menuSurface.MDCMenuSurface.attachTo(menuElem);
-            
+
             return new Promise(() => {
                 menuElem._menu.foundation.handleItemAction = listItem => {
                     menuElem._menu.open = false;
@@ -102,6 +102,7 @@ window.BlazorMdc = {
 
     dataTable: {
         init: function (elem) {
+            //This will only become necessary once Blazor MDC allows row selection, see: https://material.io/develop/web/components/data-tables
             //mdc.dataTable.MDCDataTable.attachTo(elem);
         }
     },

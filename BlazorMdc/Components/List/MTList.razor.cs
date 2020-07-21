@@ -84,7 +84,7 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Shows an <see cref="ListDivider"/> between list items if True. Defaults to False.
+        /// Shows a <see cref="MTListDivider"/> between list items if True. Defaults to False.
         /// </summary>
         [Parameter] public bool ShowSeparators { get; set; } = false;
 

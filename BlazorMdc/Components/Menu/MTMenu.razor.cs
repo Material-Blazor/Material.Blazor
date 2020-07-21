@@ -14,7 +14,7 @@ namespace BlazorMdc
     public partial class MTMenu : ComponentFoundation, IDisposable
     {
         /// <summary>
-        /// A render fragement as a set of <see cref="ListItem"/>s.
+        /// A render fragement as a set of <see cref="MTListItem"/>s.
         /// </summary>
         [Parameter] public RenderFragment ChildContent { get; set; }
 
@@ -24,7 +24,7 @@ namespace BlazorMdc
         private bool IsOpen { get; set; } = false;
 
 
-        /// <inheritdoc/>
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
         protected override void OnInitialized()
         {
             base.OnInitialized();
@@ -36,7 +36,7 @@ namespace BlazorMdc
         }
 
 
-        /// <inheritdoc/>
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
         public void Dispose()
         {
             GC.SuppressFinalize(this);
