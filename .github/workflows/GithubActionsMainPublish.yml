@@ -13,7 +13,7 @@ env:
 
 jobs:
 
-  build:
+  buildanddeploy:
 
     runs-on: windows-latest
 
@@ -55,7 +55,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.301
+        dotnet-version: 3.1.302
       
     - name: Build 🔧
       run: dotnet build --configuration ${env:buildConfiguration} ${env:project}

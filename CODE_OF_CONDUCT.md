@@ -1,3 +1,7 @@
+---
+uid: A.CodeOfConduct
+title: CodeOfConduct
+---
 # Contributor Covenant Code of Conduct
 
 ## Our Pledge

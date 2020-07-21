@@ -1,2 +1,26 @@
-- name: Introduction
-  href: intro.md
+- name: Installation
+  topicUid: A.Installation
+
+- name: Demonstration
+  topicUid: A.Demonstration
+
+- name: Core Components
+  topicUid: A.CoreComponents
+
+- name: Plus Components
+  topicUid: A.PlusComponents
+
+- name: Utilities
+  topicUid: A.Utilities
+
+- name: Services
+  topicUid: A.Services
+
+- name: Blazor MDC Principles
+  topicUid: A.Principles
+
+- name: MIT License
+  topicUid: A.License
+
+- name: Code of Conduct
+  topicUid: A.CodeOfConduct

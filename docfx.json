@@ -10,6 +10,7 @@
         }
       ],
       "dest": "api",
+      "disableContribution": true,
       "disableGitFeatures": false,
       "disableDefaultFilter": false
     }
@@ -18,23 +19,27 @@
     "content": [
       {
         "files": [
-          "api/**.yml",
-          "api/index.md"
+          "toc.yml",
+          "*.md"
         ]
       },
       {
         "files": [
-          "articles/**.md",
-          "articles/**/toc.yml",
-          "toc.yml",
-          "*.md"
+          "articles/**/**.md",
+          "articles/toc.yml"
         ]
-      }
-    ],
-    "resource": [
+      },
       {
         "files": [
-          "images/**"
+          "BlazorMdc/**/**.md",
+          "BlazorMdc/**/**/**.md",
+          "BlazorMdc/**/toc.yml"
+        ]
+      },
+      {
+        "files": [
+          "api/**.yml",
+          "api/index.md"
         ]
       }
     ],
@@ -61,6 +66,7 @@
     "keepFileLink": false,
     "cleanupCacheHistory": false,
     "disableGitFeatures": false,
+    "disableContribution": true,
     "xrefService": [
       "https://xref.docs.microsoft.com/query?uid={uid}"
     ]

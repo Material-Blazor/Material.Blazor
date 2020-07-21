@@ -10,7 +10,7 @@ on:
 env:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug_Server'
-  ciSuffix: CI.${{ github.run_number }}
+  ciSuffix: Preview.1.${{ github.run_number }}   #CI.${{ github.run_number }}
   output: ${{ github.workspace }}\package
   project: 'BlazorMdc\BlazorMdc.csproj'
 
@@ -57,7 +57,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.301
+        dotnet-version: 3.1.302
         source-url: https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: '%NUGET_AUTH_TOKEN%'
