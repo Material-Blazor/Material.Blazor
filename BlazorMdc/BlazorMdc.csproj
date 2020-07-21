@@ -125,8 +125,16 @@
 		<JsSourceFiles Include=".\scripts\*.js" />
 	</ItemGroup>
 
-	<Target Name="CopyJs" AfterTargets="CompileJs" BeforeTargets="PreBuildEvent">
-		<!--<Exec Command="xcopy /y .\scripts\*.js wwwroot" />-->
-		<Copy SourceFiles="@(JsSourceFiles)" DestinationFolder="wwwroot" />
-	</Target>
+  <Target Name="CopyJs" AfterTargets="CompileJs" BeforeTargets="PreBuildEvent">
+    <Copy SourceFiles="@(JsSourceFiles)" DestinationFolder="wwwroot" />
+  </Target>
+
+  <ItemGroup>
+    <BundleFiles Include=".\wwwroot\blazormdc-bundled.*" />
+  </ItemGroup>
+
+  <Target Name="DeleteBundles" AfterTargets="CopyJs" BeforeTargets="PreBuildEvent">
+    <Delete Files="@(BundleFiles)" />
+  </Target>
+
 </Project>
