@@ -15,7 +15,7 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// A reference to the registered <see cref="PMdcAnimatedNavigation"/>.
+        /// A reference to the registered <see cref="MTAnimatedNavigation"/>.
         /// </summary>
         internal MTAnimatedNavigation NavigationComponent { get; set; } = null;
         

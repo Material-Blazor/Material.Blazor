@@ -8,14 +8,14 @@ namespace BlazorMdc
     public static class ServiceCollectionExtensions
     {
         /// <summary>
-        /// Adds a BlazorMdc <see cref="IPMdcToastService"/> to the service collection to manage toast messages.
+        /// Adds a BlazorMdc <see cref="IMTToastService"/> to the service collection to manage toast messages.
         /// <example>
         /// <para>You can optionally add configuration:</para>
         /// <code>
-        /// services.AddPMdcToastService(new PMdcToastServiceConfiguration()
+        /// services.AddMTToastService(new MTToastServiceConfiguration()
         /// {
-        ///     Postion = PMdcToastPosition.TopRight,
-        ///     CloseMethod = PMdcToastCloseMethod.Timeout,
+        ///     Postion = MTToastPosition.TopRight,
+        ///     CloseMethod = MTToastCloseMethod.Timeout,
         ///     ... etc
         /// });
         /// </code>
@@ -38,7 +38,7 @@ namespace BlazorMdc
         /// <example>
         /// <para>You can optionally add configuration:</para>
         /// <code>
-        /// services.AddPMdcAnimatedNavigationManager(new PMdcAnimatedNaviationManagerConfiguration()
+        /// services.AddMTAnimatedNavigationManager(new MTAnimatedNaviationManagerConfiguration()
         /// {
         ///     ApplyAnimation = true,
         ///     AnimationTime = 300   /* milliseconds */
