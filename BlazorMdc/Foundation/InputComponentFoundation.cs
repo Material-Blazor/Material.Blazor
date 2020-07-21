@@ -241,7 +241,7 @@ namespace BlazorMdc.Internal
         }
 
 
-        /// <inheritdoc />
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
         public override async Task SetParametersAsync(ParameterView parameters)
         {
             parameters.SetParameterProperties(this);

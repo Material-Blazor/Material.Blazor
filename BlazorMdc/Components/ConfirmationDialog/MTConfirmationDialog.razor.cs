@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace BlazorMdc
 {
     /// <summary>
-    /// A confirmation dialog requiring the user to type in either a generated six digit sequence or a string provided in <see cref="InputText"/>.
+    /// A confirmation dialog requiring the user to type in either a generated six digit sequence or a string provided in <see cref="ConfirmationPhrase"/>.
     /// The consumer can elect to use standard "OK" and "Cancel" buttons by leaving <see cref="UnconfirmedButtons"/> and <see cref="ConfirmedButtons"/>
     /// null, in which case the "OK" button gives the dialog an action result of <see cref="ConfirmActionResult"/>, or <see cref="CancelActionResult"/>
     /// for the "Cancel" button.

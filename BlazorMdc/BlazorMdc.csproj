@@ -5,14 +5,19 @@
 		<RazorLangVersion>3.0</RazorLangVersion>
 		<Configurations>Debug_WebAssembly;Debug_Server;Release_WebAssembly;Release_Server</Configurations>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<VersionPrefix>0.34.0</VersionPrefix>
+		<VersionPrefix>1.0.0</VersionPrefix>
 		<VersionSuffix></VersionSuffix>
 		<PackageLicenseFile></PackageLicenseFile>
-		<Authors>BlazorMdc Authors</Authors>
-		<Company>BlazorMdc</Company>
-		<Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io. This version upgrades to Material Theme 7.0.0, with minor change to the numerical input components (the Magnitude parameter is now FocussedMagnitude and UnfocussedMagnitude is added). This is one of the last pre-release versions as we approach full release of version 1.0.0 in the coming weeks. Outstanding work is now focussed towards bug fixes/stability/quality, inline documentation exposed as a WIKI and automated build processes.</Description>
+		<Authors>Simon Ziegler of Dioptra and Mark Stega of Optimium Health</Authors>
+		<Company>Blazor MDC</Company>
+		<Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io. API and other documentation can be found at https://docs.blazormdc.com.</Description>
 		<RepositoryUrl>https://github.com/BlazorMdc/BlazorMdc</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReleaseNotes>This is the first version 1 pre-release. The Blazor MDC API is now stable and will not suffer breaking changes until a future version 2.</PackageReleaseNotes>
+		<NeutralLanguage>en</NeutralLanguage>
+		<Copyright>Dioptra and Optimium Health</Copyright>
+		<PackageProjectUrl>https://blazormdc.com</PackageProjectUrl>
+		<Product>Blazor MDC</Product>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_WebAssembly|AnyCPU'">
@@ -36,11 +41,49 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Remove="NuGet.config.sav" />
+	  <None Remove="Components\Card\MTCard.razor.md" />
+	  <None Remove="Components\List\MTList.razor.md" />
+	  <None Remove="Components\Menu\MTMenu.razor.md" />
+	  <None Remove="Components\NumericDoubleField\MTNumericDoubleField.razor.md" />
+	  <None Remove="Components\NumericIntField\MTNumericIntField.razor.md" />
+	  <None Remove="Components\PagedDataList\MTPagedDataList.razor.md" />
+	  <None Remove="Components\Paginator\MTPaginator.razor.md" />
+	  <None Remove="Components\RadioButtonGroup\MTRadioButtonGroup.razor.md" />
+	  <None Remove="Components\RadioButton\MTRadioButton.razor.md" />
+	  <None Remove="Components\Select\MTSelect.razor.md" />
+	  <None Remove="Components\Shield\MTShield.razor.md" />
+	  <None Remove="Components\SlidingTabBar\MTSlidingTabBar.razor.md" />
+	  <None Remove="Components\Switch\MTSwitch.razor.md" />
+	  <None Remove="Components\TabBar\MTTabBar.razor.md" />
+	  <None Remove="Components\TextArea\MTTextArea.razor.md" />
+	  <None Remove="Components\TextField\MTTextField.razor.md" />
+	  <None Remove="Components\Toast\MTToastAnchor.razor.md" />
+	  <None Remove="Components\TopAppBar\MTTopAppBar.razor.md" />
+	  <None Remove="Model\Icon\MTIconHelper.cs.md" />
+	  <None Remove="Model\MTCascadingDefaults.cs.md" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="NuGet.config.sav" />
+	  <Content Include="Components\Card\MTCard.razor.md" />
+	  <Content Include="Components\List\MTList.razor.md" />
+	  <Content Include="Components\Menu\MTMenu.razor.md" />
+	  <Content Include="Components\NumericDoubleField\MTNumericDoubleField.razor.md" />
+	  <Content Include="Components\NumericIntField\MTNumericIntField.razor.md" />
+	  <Content Include="Components\PagedDataList\MTPagedDataList.razor.md" />
+	  <Content Include="Components\Paginator\MTPaginator.razor.md" />
+	  <Content Include="Components\RadioButtonGroup\MTRadioButtonGroup.razor.md" />
+	  <Content Include="Components\RadioButton\MTRadioButton.razor.md" />
+	  <Content Include="Components\Select\MTSelect.razor.md" />
+	  <Content Include="Components\Shield\MTShield.razor.md" />
+	  <Content Include="Components\SlidingTabBar\MTSlidingTabBar.razor.md" />
+	  <Content Include="Components\Switch\MTSwitch.razor.md" />
+	  <Content Include="Components\TabBar\MTTabBar.razor.md" />
+	  <Content Include="Components\TextArea\MTTextArea.razor.md" />
+	  <Content Include="Components\TextField\MTTextField.razor.md" />
+	  <Content Include="Components\Toast\MTToastAnchor.razor.md" />
+	  <Content Include="Components\TopAppBar\MTTopAppBar.razor.md" />
+	  <Content Include="Model\Icon\MTIconHelper.cs.md" />
+	  <Content Include="Model\MTCascadingDefaults.cs.md" />
 	</ItemGroup>
 
 
@@ -78,8 +121,12 @@
 		<Exec Command="dotnet tool run webcompiler Scripts/blazormdc.js -m enable -o .\wwwroot -p disable -z disable" />
 	</Target>
 
-	<Target Name="CopyJs" AfterTargets="CompileJs" BeforeTargets="PreBuildEvent">
-		<Exec Command="xcopy /y .\scripts\*.js wwwroot" />
-	</Target>
+	<ItemGroup>
+		<JsSourceFiles Include=".\scripts\*.js" />
+	</ItemGroup>
 
+	<Target Name="CopyJs" AfterTargets="CompileJs" BeforeTargets="PreBuildEvent">
+		<!--<Exec Command="xcopy /y .\scripts\*.js wwwroot" />-->
+		<Copy SourceFiles="@(JsSourceFiles)" DestinationFolder="wwwroot" />
+	</Target>
 </Project>

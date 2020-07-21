@@ -77,7 +77,7 @@ namespace BlazorMdc
         private int StateNextIndex { get; set; } = -1;
 
 
-        /// <inheritdoc/>
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
         protected override void OnInitialized()
         {
             base.OnInitialized();
@@ -87,7 +87,7 @@ namespace BlazorMdc
         }
 
 
-        /// <inheritdoc/>
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
         protected override void OnParametersSet()
         {
             base.OnParametersSet();
@@ -114,7 +114,7 @@ namespace BlazorMdc
         }
 
 
-        /// <inheritdoc/>
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
         protected override bool ShouldRender()
         {
             if (AllowNextRender)

@@ -72,7 +72,7 @@ namespace BlazorMdc
 
             if (string.IsNullOrEmpty(RadioGroupName))
             {
-                throw new ArgumentException("RadioGroupName is a required parameter in MdcRadioButton.");
+                throw new ArgumentException("RadioGroupName is a required parameter in MTRadioButton.");
             }
 
             if (EnableTouchWrapper)

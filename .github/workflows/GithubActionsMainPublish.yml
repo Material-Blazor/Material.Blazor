@@ -55,7 +55,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.301
+        dotnet-version: 3.1.302
       
     - name: Build 🔧
       run: dotnet build --configuration ${env:buildConfiguration} ${env:project}
@@ -119,3 +119,4 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.GH_PAT }}
           BRANCH: gh-pages
           FOLDER: "site" # The deployment folder should match the name of the artifact. Even though our project builds into the '_site' folder the artifact name of 'site' must be placed here.
+        if: github.repository == 'BlazorMdc/BlazorMdc'

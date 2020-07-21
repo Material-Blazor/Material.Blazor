@@ -113,7 +113,7 @@ namespace BlazorMdc
         private string PositionTextString(int pageNumber) => $"{pageNumber * ItemsPerPage + 1:G0}-{Math.Min(ItemCount, (pageNumber + 1) * ItemsPerPage):G0} of {ItemCount:G0}";
 
 
-        /// <inheritdoc/>
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
         protected override void OnInitialized()
         {
             base.OnInitialized();
@@ -125,7 +125,7 @@ namespace BlazorMdc
 
             if (!ItemsPerPageSelection.Contains(ItemsPerPage))
             {
-                throw new ArgumentException($"PMdcPaginator: Cannot set ItemsPerPage to {ItemsPerPage} from selection of {{ {ItemsPerPageSelection.Select(r => r)} }}");
+                throw new ArgumentException($"MTPaginator: Cannot set ItemsPerPage to {ItemsPerPage} from selection of {{ {ItemsPerPageSelection.Select(r => r)} }}");
             }
 
             ItemsPerPageItems = (from r in ItemsPerPageSelection
@@ -137,7 +137,7 @@ namespace BlazorMdc
         }
 
 
-        /// <inheritdoc/>
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
         protected override void OnAfterRender(bool firstRender)
         {
             base.OnAfterRender(firstRender);

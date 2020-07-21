@@ -29,7 +29,7 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Indicates if True that the icons is to be rendered in an <see cref="MdcTabBar{TItem}"/>,
+        /// Indicates if True that the icons is to be rendered in an <see cref="MTTabBar{TItem}"/>,
         /// adding the "mdc-tab__icon" CSS class.
         /// </summary>
         [Parameter] public bool TabBar { get; set; }

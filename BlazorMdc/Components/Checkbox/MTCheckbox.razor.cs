@@ -14,7 +14,7 @@ namespace BlazorMdc
     /// </summary>
     public partial class MTCheckbox : InputComponentFoundation<bool>
     {
-        // <summary>
+        /// <summary>
         /// The check box label.
         /// </summary>
         [Parameter] public string Label { get; set; }

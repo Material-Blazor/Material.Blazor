@@ -1,0 +1,62 @@
+---
+uid: A.Installation
+title: Installation
+---
+# Installation
+
+Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add the CSS and JS in your html (there are non-minified unbundled files for BlazorMdc.css & BlazorMds.js to reference if you need them for debugging purposes).
+Reference the `BlazorMdc` namespace with `@using BlazorMdc` to your `_Imports.razor` file. There are two optional services in BlazorMdc:
+- If you want to use toasts via `MTToastAnchor` add `services.AddMTToastService();` to your `ConfigureServices` function for Blazor Server or to the `Main()` function for Blazor WebAssembly, and
+- If you want animated page navigation using `MTAnimationdNavigation` add `services.AddMTAnimatedNavigationManager();` to `ConfigureServices`.
+
+### Directions for using Blazor MDC bundled CSS and JS
+
+***This is the recommended way to install Blazor MDC.***
+
+We bundle the Material Theme CSS and JS into BlazorMdc for your convenience along with [Material Icons](https://material.io/resources/icons/?style=baseline) which are essential for BlazorMdc. You will need to add two items to your index.html/_Host.cshtml file. Place this in the the `<head>` tag:
+
+```html
+<link href="_content/BlazorMdc/blazormdc-bundled.min.css" rel="stylesheet">
+```
+
+and at the end of `<body>`:
+
+```html
+<script src="_content/BlazorMdc/blazormdc-bundled.min.js"></script>
+```
+
+Add the BlazorMdc namespace to your project by appending `@using BlazorMdc` to the end of your project's _Imports.razor file. Do not use components from the BlazorMdc.Internal namespace: as the name
+implies these are intended for internal use by Blazor MDC, however Blazor has no mechanism for internally restricted Blazor components to mirror the `internal` directive for a C# class.
+
+### Alternative using unbundled CSS and JS
+
+If you want, you can directly reference the Material Theme CSS and JS from the unpkg CDN (or download it for yourself). Again we package a reference to Material Icons. You will to add five items to your index.html/_Host.cshtml. Place this in the <head>` tag:
+
+```html
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+<link href="https://unpkg.com/material-components-web@7.0.0/dist/material-components-web.css" rel="stylesheet" />
+<link href="_content/BlazorMdc/blazormdc.css" rel="stylesheet" />
+```
+
+and at the end of `<body>`:
+
+```html
+<script src="https://unpkg.com/material-components-web@7.0.0/dist/material-components-web.js"></script>
+<script src="_content/BlazorMdc/blazormdc.js"></script>
+```
+
+We also provide minified `blazormdc.css.min` and `blazormdc.js.min`. Add the BlazorMdc namespace to your project as above.
+
+### Package versions
+
+Blazor MDC works with the following package versions:
+
+- [Material Components v7.0.0](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#600-2020-04-22);
+- [Font Awesome Icons version 5](https://fontawesome.com/changelog/latest) are optional and can be included in your HTML `<head>` with the CDN link:
+    ```html
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+    ```
+- [Open Iconic Icons version 1.1](https://useiconic.com/open) are also optional and can be included in your HTML `<head>` with the CDN link:
+    ```html
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic.min.css" crossorigin="anonymous" rel="stylesheet" />
+    ```

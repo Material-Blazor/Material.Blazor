@@ -126,7 +126,7 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Selects the text field - used by <see cref="PMdcNumericDoubleField"/>.
+        /// Selects the text field - used by <see cref="MTNumericDoubleField"/>.
         /// </summary>
         /// <returns></returns>
         internal async Task Select() => await JsRuntime.InvokeAsync<object>("BlazorMdc.textField.select", InputReference);

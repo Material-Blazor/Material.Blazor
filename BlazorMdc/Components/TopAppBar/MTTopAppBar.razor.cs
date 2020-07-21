@@ -54,7 +54,7 @@ namespace BlazorMdc
         private ElementReference HeaderElem { get; set; }
 
 
-        /// <inheritdoc/>
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
         protected override void OnInitialized()
         {
             base.OnInitialized();
