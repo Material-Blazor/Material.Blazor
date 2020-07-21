@@ -40,7 +40,9 @@ Some components need either to be initialized after a dialog has opened (with it
 If so, it does one of two things:
 
 1. If the dialog has not been opened, rather than initializing after the component's first render, it registers a callback with the dialog, so the dialog can initialize it after opening; or
-1. If the dialog is already open, the component intializes immediately after it has first rendered. 
+1. If the dialog is already open, the component intializes immediately after it has first rendered.
+
+This mechanism is also handled in the Blazor MDC's internal `InputComponentFoundation` abstract class.
 
 ### Namespaces
 
