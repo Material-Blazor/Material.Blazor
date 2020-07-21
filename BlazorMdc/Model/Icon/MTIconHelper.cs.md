@@ -15,11 +15,11 @@ A helper class returning icon foundries for icons in use across Blazor MDC compo
   - Font Awesome Icons via `MTIconHelper.FAFoundry(Nullable<MTIconFAStyle>, Nullable<MTIconFARelativeSize>)`; and
   - Open Iconic Icons via `MTIconHelper.OIFoundry()`;
 - Material Icons are included in the Blazor MDC bundled CSS;
-- Font Awesome Icons (version 5) are optional and can be included in your HTML `<head>` with the CDN link:
+- [Font Awesome Icons version 5](https://fontawesome.com/changelog/latest) are optional and can be included in your HTML `<head>` with the CDN link:
     ```html
-    <link href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
     ```
-- Open Iconic Icons (version 1.1) are also optional and can be included in your HTML `<head>` with the CDN link:
+- [Open Iconic Icons version 1.1](https://useiconic.com/open) are also optional and can be included in your HTML `<head>` with the CDN link:
     ```html
     <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic.min.css" crossorigin="anonymous" rel="stylesheet" />
     ```

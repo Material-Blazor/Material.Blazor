@@ -2,7 +2,7 @@
 uid: A.Demonstration
 title: Demonstration
 ---
-## Demonstration website
+# Demonstration website
 
 We are not yet hosting a demonstration, but you can fork and download this project yourself. If you so so, set your default project to `BlazorMdc.Demo.WebServer`.
 

@@ -4,7 +4,7 @@ window.BlazorMdc = {
             textElem._textField = mdc.textField.MDCTextField.attachTo(textElem);
             menuElem._menu = mdc.menu.MDCMenu.attachTo(menuElem);
             //menuElem._menuSurface = mdc.menuSurface.MDCMenuSurface.attachTo(menuElem);
-            
+
             return new Promise(() => {
                 menuElem._menu.foundation.handleItemAction = listItem => {
                     menuElem._menu.open = false;
@@ -75,7 +75,7 @@ window.BlazorMdc = {
 
     circularProgress: {
         init: function (elem, progress) {
-            elem._circularProgress = mdc.circularProgress.MTCircularProgress.attachTo(elem);
+            elem._circularProgress = mdc.circularProgress.MDCCircularProgress.attachTo(elem);
             this.setProgress(elem, progress);
         },
 
@@ -86,7 +86,7 @@ window.BlazorMdc = {
 
     datePicker: {
         init: function (elem) {
-            elem._select = mdc.select.MTSelect.attachTo(elem);
+            elem._select = mdc.select.MDCSelect.attachTo(elem);
         },
 
         listItemClick: function (elem, elemText) {
@@ -102,30 +102,31 @@ window.BlazorMdc = {
 
     dataTable: {
         init: function (elem) {
+            //This will only become necessary once Blazor MDC allows row selection, see: https://material.io/develop/web/components/data-tables
             //mdc.dataTable.MDCDataTable.attachTo(elem);
         }
     },
 
     dialog: {
         show: function (elem, dotNetObject, escapeKeyAction, scrimClickAction) {
-            elem._dialog = elem._dialog || mdc.dialog.MTDialog.attachTo(elem);
+            elem._dialog = elem._dialog || mdc.dialog.MDCDialog.attachTo(elem);
             elem._dotNetObject = dotNetObject;
 
             return new Promise(resolve => {
                 const dialog = elem._dialog;
 
                 const openedCallback = event => {
-                    dialog.unlisten('MTDialog:opened', openedCallback);
+                    dialog.unlisten('MDCDialog:opened', openedCallback);
                     dotNetObject.invokeMethodAsync('NotifyOpenedAsync');
                 };
 
                 const closingCallback = event => {
-                    dialog.unlisten('MTDialog:closing', closingCallback);
+                    dialog.unlisten('MDCDialog:closing', closingCallback);
                     resolve(event.detail.action);
                 };
 
-                dialog.listen('MTDialog:opened', openedCallback);
-                dialog.listen('MTDialog:closing', closingCallback);
+                dialog.listen('MDCDialog:opened', openedCallback);
+                dialog.listen('MDCDialog:closing', closingCallback);
                 dialog.escapeKeyAction = escapeKeyAction;
                 dialog.scrimClickAction = scrimClickAction;
                 dialog.open();
@@ -170,7 +171,7 @@ window.BlazorMdc = {
 
     linearProgress: {
         init: function (elem, progress, buffer) {
-            elem._linearProgress = mdc.linearProgress.MTLinearProgress.attachTo(elem);
+            elem._linearProgress = mdc.linearProgress.MDCLinearProgress.attachTo(elem);
             this.setProgress(elem, progress, buffer);
         },
 
@@ -183,7 +184,7 @@ window.BlazorMdc = {
     list: {
         init: function (elem, keyboardInteractions, ripple) {
             if (keyboardInteractions == true) {
-                const list = mdc.list.MTList.attachTo(elem);
+                const list = mdc.list.MDCList.attachTo(elem);
 
                 if (ripple == true) {
                     list.listElements.map((elem) => mdc.ripple.MDCRipple.attachTo(elem));
@@ -232,7 +233,7 @@ window.BlazorMdc = {
 
     select: {
         init: function (selectElem, dotNetObject) {
-            selectElem._select = mdc.select.MTSelect.attachTo(selectElem);
+            selectElem._select = mdc.select.MDCSelect.attachTo(selectElem);
 
             return new Promise(() => {
                 selectElem._select.foundation.handleMenuItemAction = index => {
@@ -268,7 +269,7 @@ window.BlazorMdc = {
 
     tabBar: {
         init: function (elem) {
-            elem._tabBar = mdc.tabBar.MTTabBar.attachTo(elem);
+            elem._tabBar = mdc.tabBar.MDCTabBar.attachTo(elem);
         },
 
         setTab: function (elem, index) {
@@ -300,7 +301,7 @@ window.BlazorMdc = {
 
     topAppBar: {
         init: function (elem, scrollTarget) {
-            const topAppBar = mdc.topAppBar.MTTopAppBar.attachTo(elem);
+            const topAppBar = mdc.topAppBar.MDCTopAppBar.attachTo(elem);
             if (scrollTarget) {
                 topAppBar.setScrollTarget(document.querySelector(scrollTarget));
             }
