@@ -77,7 +77,7 @@ namespace BlazorMdc.Internal
 
 
         /// <summary>
-        /// Gets the associated <see cref="Microsoft.AspNetCore.Components.Forms.EditContext"/>.
+        /// Gets the associated EditContext.
         /// </summary>
         protected EditContext EditContext { get; private set; }
 

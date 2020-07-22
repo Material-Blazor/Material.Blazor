@@ -4,6 +4,7 @@
 [![NuGet downloads](https://img.shields.io/nuget/dt/BlazorMdc?logo=nuget&label=nuget%20downloads&style=flat-square)](https://www.nuget.org/packages/BlazorMdc/)
 [![Gitter](https://img.shields.io/gitter/room/BlazorMdc/community?logo=gitter&style=flat-square)](https://gitter.im/BlazorMdc/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
+<br />
 
 >[!TIP]
 >Visit our website at https://blazormdc.com which is being developed as a new Blazor MDC demonstration.
