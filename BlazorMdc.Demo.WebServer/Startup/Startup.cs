@@ -1,4 +1,5 @@
 using BlazorMdc;
+using BlazorMdc.Demo.Blazor;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -22,27 +23,12 @@ namespace BlazorMdc.Demo.WebServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+
+#if BlazorServer
             services.AddServerSideBlazor();
+#endif
 
-            // The configuration is optional
-            services.AddMTToastService(new MTToastServiceConfiguration()
-            {
-                InfoDefaultHeading = "Info",
-                SuccessDefaultHeading = "Success",
-                WarningDefaultHeading = "Warning",
-                ErrorDefaultHeading = "Error",
-                Timeout = 5000,
-                MaxToastsShowing = 5
-            });
-
-            // The configuration is optional
-            services.AddMTAnimatedNavigationManager(new MTAnimatedNaviationManagerConfiguration()
-            {
-                ApplyAnimation = true,
-                AnimationTime = 300
-            });
-
-            services.AddScoped<DemoConfiguration>();
+            ClientServices.Inject(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

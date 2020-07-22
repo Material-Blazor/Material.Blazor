@@ -57,17 +57,11 @@ jobs:
       with:
         dotnet-version: 3.1.302
       
-    - name: Build 🔧
-      run: dotnet build --configuration ${env:buildConfiguration} ${env:project}
-
     - name: Generate NuGet package 🔧
-      run: dotnet pack --configuration ${env:buildConfiguration} --no-build --output ${env:output} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:PackageVersion=${{steps.get_tag.outputs.tag}} ${env:project}
+      run: dotnet pack --configuration ${env:buildConfiguration} --output ${env:output} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:PackageVersion=${{steps.get_tag.outputs.tag}} ${env:project}
 
     - name: Display package output Ꙫ
       run: dir ${env:output}
-
-    - name: Display obfuscated secret 🛎️
-      run: echo "The NuGet token is ${{ secrets.NUGET_API_KEY }}"
 
     - name: Upload Package 🚀
       run: dotnet nuget push ${env:output}\*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json

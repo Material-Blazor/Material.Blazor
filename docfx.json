@@ -58,7 +58,8 @@
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [
-      "default"
+      "default",
+      "templates/blazormdc"
     ],
     "postProcessors": [],
     "markdownEngineName": "markdig",
