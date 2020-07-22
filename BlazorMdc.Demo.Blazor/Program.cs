@@ -16,28 +16,10 @@ namespace BlazorMdc.Demo.Blazor
             var builder = WebAssemblyHostBuilder.CreateDefault(args);
             builder.RootComponents.Add<App>("app");
 
-            builder.Services.AddSingleton(
-                new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+            builder.Services.AddTransient(
+                sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            // The configuration is optional
-            builder.Services.AddMTToastService(new MTToastServiceConfiguration()
-            {
-                InfoDefaultHeading = "Info",
-                SuccessDefaultHeading = "Success",
-                WarningDefaultHeading = "Warning",
-                ErrorDefaultHeading = "Error",
-                Timeout = 5000,
-                MaxToastsShowing = 5
-            });
-
-            // The configuration is optional
-            builder.Services.AddMTAnimatedNavigationManager(new MTAnimatedNaviationManagerConfiguration()
-            {
-                ApplyAnimation = true,
-                AnimationTime = 300
-            });
-
-            builder.Services.AddScoped<DemoConfiguration>();
+            ClientServices.Inject(builder.Services);
 
             await builder.Build().RunAsync();
         }
