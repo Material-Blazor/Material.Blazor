@@ -50,6 +50,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "articles", "articles", "{FC
 		articles\Utilities.md = articles\Utilities.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{28F2336A-4F00-4ED8-A4BD-1320D747E5EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "blazormdc", "blazormdc", "{EED2C306-6ADE-4CF6-9E39-F6AA5B18EE79}"
+	ProjectSection(SolutionItems) = preProject
+		templates\blazormdc\favicon.ico = templates\blazormdc\favicon.ico
+		templates\blazormdc\logo.svg = templates\blazormdc\logo.svg
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "partials", "partials", "{B72A91BC-0A58-4930-A7AD-2889B9B418F0}"
+	ProjectSection(SolutionItems) = preProject
+		templates\blazormdc\partials\head.tmpl.partial = templates\blazormdc\partials\head.tmpl.partial
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "styles", "styles", "{1514BC3A-EB36-4F8A-8AE1-03FB9D2F1552}"
+	ProjectSection(SolutionItems) = preProject
+		templates\blazormdc\styles\docfx.vendor.css = templates\blazormdc\styles\docfx.vendor.css
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_Server|Any CPU = Debug_Server|Any CPU
@@ -97,6 +115,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EED2C306-6ADE-4CF6-9E39-F6AA5B18EE79} = {28F2336A-4F00-4ED8-A4BD-1320D747E5EA}
+		{B72A91BC-0A58-4930-A7AD-2889B9B418F0} = {EED2C306-6ADE-4CF6-9E39-F6AA5B18EE79}
+		{1514BC3A-EB36-4F8A-8AE1-03FB9D2F1552} = {EED2C306-6ADE-4CF6-9E39-F6AA5B18EE79}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6EFB30DD-ABFD-4A38-96E1-D309BB538E62}
