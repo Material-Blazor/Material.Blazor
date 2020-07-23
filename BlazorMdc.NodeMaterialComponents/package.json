@@ -1,0 +1,9 @@
+{
+  "name": "blazor-mdc.node-material-components",
+  "version": "0.0.0",
+  "description": "BlazorMdc.NodeMaterialComponents",
+  "main": "server.js",
+  "author": {
+    "name": ""
+  }
+}
