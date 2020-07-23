@@ -32,8 +32,11 @@
     "material-components-web": "^7.0.0"
   },
   "-vs-binding": {
-    "ProjectOpened": [
-      "dev"
+    "BeforeBuild": [
+      "install"
+    ],
+    "AfterBuild": [
+      "development"
     ]
   }
 }
