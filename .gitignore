@@ -340,7 +340,6 @@ ASALocalRun/
 healthchecksdb
 
 #Generated CSS and JS files
-**/BlazorMdc/wwwroot/*.css
 **/BlazorMdc/wwwroot/*.js
 !**/BlazorMdc/wwwroot/material-components-web/dist/material-components-*.*
 **/BlazorMdc.Demo.CommonUI/wwwroot/css/*.css

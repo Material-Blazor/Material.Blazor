@@ -4,6 +4,7 @@
   "description": "BlazorMdc.NodeMaterialComponents",
   "main": "server.js",
   "scripts": {
+    "clean-css": "rmdir /S /Q Material-Components-Web",
     "copy": "xcopy /y Material-Components-Web\\dist\\*.css ..\\BlazorMdc\\wwwroot",
     "dev": "npm run development",
     "delete": "del /q Material-Components-Web\\dist\\blazormdc-bundled.css",
@@ -38,6 +39,7 @@
       "install"
     ],
     "AfterBuild": [
+      "clean-css",
       "prod",
       "prod-rename-1",
       "prod-rename-2",
