@@ -61,13 +61,13 @@
 	</Target>
 
 	
-	<Target Name="CompileCss" AfterTargets="RestoreDotnetTools" BeforeTargets="PreBuildEvent">
+	<!--<Target Name="CompileCss" AfterTargets="RestoreDotnetTools" BeforeTargets="PreBuildEvent">
 		<Exec Command="dotnet tool run webcompiler Styles/blazormdc.scss -m disable -o .\wwwroot -p disable -z disable" />
 	</Target>
 
 	<Target Name="CompileMinifiedCss" AfterTargets="CompileCss" BeforeTargets="PreBuildEvent">
 		<Exec Command="dotnet tool run webcompiler Styles/blazormdc.scss -m enable -o .\wwwroot -p disable -z disable" />
-	</Target>
+	</Target>-->
 
 
 	<Target Name="CompileJs" AfterTargets="CompileMinifiedCss" BeforeTargets="PreBuildEvent">
