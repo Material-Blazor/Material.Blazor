@@ -339,13 +339,14 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 
-#Generated CSS files
+#Generated CSS and JS files
 **/BlazorMdc/wwwroot/*.css
 **/BlazorMdc/wwwroot/*.js
 !**/BlazorMdc/wwwroot/material-components-web/dist/material-components-*.*
 **/BlazorMdc.Demo.CommonUI/wwwroot/css/*.css
 **/BlazorMdc.MaterialComponents/material-components-web/dist/*.css
 **/BlazorMdc.MaterialComponents/material-components-web/dist/*.js
+**/BlazorMdc.NodeMaterialComponents/material-components-web/dist/*.*
 
 # DocFx tool
 !**/DocFx/*.*
