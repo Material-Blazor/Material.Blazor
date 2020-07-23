@@ -29,16 +29,20 @@
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="main.scss">
+    <Content Include="blazormdc-bundled.scss">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="blazormdc.scss">
       <SubType>Code</SubType>
     </Content>
     <Content Include="package-lock.json" />
     <Content Include="server.js" />
     <Content Include="package.json" />
     <Content Include="README.md" />
-    <Content Include="webpack.mix.js">
+    <Content Include="webpack.dev.js">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="webpack.prod.js" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>
