@@ -6,7 +6,7 @@ title: MTCheckbox
 
 ### Summary
 
-A simple two state [Material Checkbox](https://material.io/develop/web/components/input-controls/checkboxes/) with a boolean value.
+A simple two state [Material Checkbox](https://material.io/develop/web/components/input-controls/checkboxes/) with a boolean value. Applies the [density subsystem](xref:A.Density).
 
 &nbsp;
 

@@ -15,8 +15,9 @@ A [Material List](https://material.io/develop/web/components/lists/). Uses rende
 - Icon IEnumerable render fragments that can be ignorred and suppressed with a boolean switch;
 - IEnumerable avatar list render fragment;
 - IEnumerable actions render fragment;
-- Indicators for dense layout, dividers between items, whether keyboard interactions and ripple are activated, and whether lines two or three of each item are hidden; and
-- Click, KeyDown, MouseDown and TouchStart event handlers that return the index of the item receiving user interaction.
+- Indicators for dense layout, dividers between items, whether keyboard interactions and ripple are activated, and whether lines two or three of each item are hidden;
+- Click, KeyDown, MouseDown and TouchStart event handlers that return the index of the item receiving user interaction;
+- Applies [density subsystem](xref:A.Density).
 
 &nbsp;
 

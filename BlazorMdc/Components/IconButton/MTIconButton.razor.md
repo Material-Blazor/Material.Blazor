@@ -6,7 +6,7 @@ title: MTIconButton
 
 ### Summary
 
-A [Material Icon Button](https://material.io/develop/web/components/buttons/icon-buttons/) that accepts an icon and an optional icon foundry.
+A [Material Icon Button](https://material.io/develop/web/components/buttons/icon-buttons/) that accepts an icon and an optional icon foundry. Applies [density subsystem](xref:A.Density).
 
 &nbsp;
 

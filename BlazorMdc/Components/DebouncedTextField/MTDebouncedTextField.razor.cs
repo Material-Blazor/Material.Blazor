@@ -65,6 +65,12 @@ namespace BlazorMdc
 
 
         /// <summary>
+        /// The text field's density.
+        /// </summary>
+        [Parameter] public MTDensity? Density { get; set; }
+
+
+        /// <summary>
         /// Debounce interval in milliseconds.
         /// </summary>
         [Parameter] public int? DebounceInterval { get; set; }

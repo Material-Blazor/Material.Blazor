@@ -1,0 +1,30 @@
+﻿@use "@material/icon-button";
+
+.mdc-icon-button {
+    &.dense--5 {
+        @include icon-button.density(-5);
+    }
+
+    &.dense--4 {
+        @include icon-button.density(-4);
+    }
+
+    &.dense--3,
+    &.dense-compact {
+        @include icon-button.density(-3);
+    }
+
+    &.dense--2,
+    &.dense-comfortable {
+        @include icon-button.density(-2);
+    }
+
+    &.dense--1 {
+        @include icon-button.density(-1);
+    }
+
+    &.dense--0,
+    &.dense-default {
+        @include icon-button.density(0);
+    }
+}

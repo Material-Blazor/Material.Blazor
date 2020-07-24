@@ -10,8 +10,9 @@ A [Material Data Table](https://material.io/develop/web/components/data-tables/)
 
 ### Details
 
-- A Table Header render fragment, which requires correct HTML/CSS markup for the table's header; and
-- An IEnumerable of Table Row render fragments, also requiring correct HTML/CSS markup.
+- A Table Header render fragment, which requires correct HTML/CSS markup for the table's header;
+- An IEnumerable of Table Row render fragments, also requiring correct HTML/CSS markup; and
+- Applies [density subsystem](xref:A.Density).
 
 &nbsp;
 

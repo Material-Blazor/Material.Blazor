@@ -41,7 +41,15 @@ namespace BlazorMdc
 #nullable restore annotations
 
 
+        /// <summary>
+        /// The button's density.
+        /// </summary>
+        [Parameter] public MTDensity? Density { get; set; }
+
+
         private ElementReference ElementReference { get; set; }
+
+        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedIconButtonDensity(Density));
 
 
         /// <inheritdoc/>
@@ -51,9 +59,10 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-icon-button")
+                .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-card__action mdc-card__action--icon", () => (Card != null))
                 .AddIf("mdc-icon-button--on", () => Value);
-            //ForceShouldRenderToTrue = true;
+            
             OnValueSet += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
         }            

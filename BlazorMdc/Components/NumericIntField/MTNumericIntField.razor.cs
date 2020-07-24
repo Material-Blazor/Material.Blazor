@@ -58,6 +58,12 @@ namespace BlazorMdc
 
 
         /// <summary>
+        /// The numeric field's density.
+        /// </summary>
+        [Parameter] public MTDensity? Density { get; set; }
+
+
+        /// <summary>
         /// Format to apply to the numeric value when the field is not selected.
         /// </summary>
         [Parameter] public string NumericFormat { get; set; }

@@ -11,8 +11,9 @@ A [Material Tab Bar](https://material.io/develop/web/components/tabs/tab-bar/), 
 ### Details
 
 - Accepts an IEnumerable of tab labels and (optional) icons;
-- Two-way binds the tab index number; and
-- Takes a boolean to indicate whether icons are stacked vertically above labels or not.
+- Two-way binds the tab index number;
+- Takes a boolean to indicate whether icons are stacked vertically above labels or not; and
+- Applies [density subsystem](xref:A.Density).
 
 &nbsp;
 

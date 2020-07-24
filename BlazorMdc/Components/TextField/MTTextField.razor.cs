@@ -63,6 +63,12 @@ namespace BlazorMdc
         /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
         /// </summary>
         [Parameter] public IMTIconFoundry? IconFoundry { get; set; }
+
+
+        /// <summary>
+        /// The text field's density.
+        /// </summary>
+        [Parameter] public MTDensity? Density { get; set; }
 #nullable restore annotations
 
 
@@ -76,7 +82,9 @@ namespace BlazorMdc
 
         
         private readonly string labelId = Utilities.GenerateUniqueElementName();
-        
+
+        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedTextFieldDensity(Density));
+
 
         /// <inheritdoc/>
         protected override void OnInitialized()
@@ -85,6 +93,7 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-text-field")
+                .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
                 .AddIf("mdc-text-field--filled", () => AppliedTextInputStyle == MTTextInputStyle.Filled)
                 .AddIf("mdc-text-field--outlined", () => AppliedTextInputStyle == MTTextInputStyle.Outlined)

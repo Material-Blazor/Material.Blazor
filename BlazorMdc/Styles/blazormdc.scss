@@ -1,17 +1,24 @@
-@import '_colors.scss';
+@use '_colors.scss';
 
-@import '../Components/Autocomplete/MTAutocomplete.scss';
-@import '../Components/AnimatedNavigation/MTAnimatedNavigation.scss';
-@import '../Components/Card/MTCard.scss';
-@import '../Components/DatePicker/MTDatePicker.scss';
-@import '../Components/Dialog/MTDialog.scss';
-@import '../Components/List/MTList.scss';
-@import '../Components/Paginator/MTPaginator.scss';
-@import '../Components/RadioButtonGroup/MTRadioButtonGroup.scss';
-@import '../Components/Shield/MTShield.scss';
-@import '../Components/SlidingContent/MTSlidingContent.scss';
-@import '../Components/Toast/MTToast.scss';
-@import '../Components/TopAppBar/MTTopAppBar.scss';
+@use '../Components/Autocomplete/MTAutocomplete.scss';
+@use '../Components/Button/MTButton.scss';
+@use '../Components/Checkbox/MTCheckbox.scss';
+@use '../Components/AnimatedNavigation/MTAnimatedNavigation.scss';
+@use '../Components/Card/MTCard.scss';
+@use '../Components/DatePicker/MTDatePicker.scss';
+@use '../Components/Dialog/MTDialog.scss';
+@use '../Components/IconButton/MTIconButton.scss';
+@use '../Components/List/MTList.scss';
+@use '../Components/Paginator/MTPaginator.scss';
+@use '../Components/RadioButton/MTRadioButton.scss';
+@use '../Components/RadioButtonGroup/MTRadioButtonGroup.scss';
+@use '../Components/Shield/MTShield.scss';
+@use '../Components/SlidingContent/MTSlidingContent.scss';
+@use '../Components/Select/MTSelect.scss';
+@use '../Components/Switch/MTSwitch.scss';
+@use '../Components/TextField/MTTextField.scss';
+@use '../Components/Toast/MTToast.scss';
+@use '../Components/TopAppBar/MTTopAppBar.scss';
 
 
 :root {
@@ -39,14 +46,16 @@
 }
 
 
-.bmdc-custom-scrollbars .mdc-drawer__content,
+.bmdc-custom-scrollbars {
+/*.bmdc-custom-scrollbars .mdc-drawer__content,
 .bmdc-custom-scrollbars .mdc-menu-surface,
-.bmdc-custom-scrollbars .bmdc-dp-year-pad {
+.bmdc-custom-scrollbars .bmdc-dp-year-pad {*/
     scrollbar-width: var(--bmdc-select-firefox-scrollbar-width) !important;
 }
 
 
-.bmdc-custom-scrollbars .mdc-dialog {
+.bmdc-custom-scrollbars {
+//.bmdc-custom-scrollbars .mdc-dialog {
     ::-webkit-scrollbar {
         width: var(--bmdc-dialog-scroll-width);
     }
@@ -67,27 +76,27 @@
 }
 
 
-.bmdc-custom-scrollbars .mdc-select,
+/*.bmdc-custom-scrollbars .mdc-select,
 .bmdc-custom-scrollbars .mdc-menu-surface--anchor,
 .bmdc-custom-scrollbars .mdc-drawer {
     ::-webkit-scrollbar {
         width: var(--bmdc-select-scroll-width);
-    }
+    }*/
     /* Track */
-    ::-webkit-scrollbar-track {
+    /*::-webkit-scrollbar-track {
         background-color: var(--bmdc-select-scroll-track-color);
         margin-right: var(--bmdc-select-scroll-margin-right);
-    }
+    }*/
     /* Handle */
-    ::-webkit-scrollbar-thumb {
+    /*::-webkit-scrollbar-thumb {
         background: var(--bmdc-scroll-color);
         border-radius: var(--bmdc-select-scroll-border-radius);
-    }
+    }*/
     /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
+    /*::-webkit-scrollbar-thumb:hover {
         background: var(--bmdc-scroll-color__hover);
     }
-}
+}*/
 
 
 

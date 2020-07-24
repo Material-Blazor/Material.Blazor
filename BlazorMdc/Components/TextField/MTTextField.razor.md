@@ -13,8 +13,9 @@ A fully-featured implementation of the suite of [Material Text Fields](https://m
 - Two-way binds a text Value parameter;
 - Implements the filled and outlined but not the full width Material Theme text field varieties;
 - Allows prefix or suffix text to be set;
-- Allows leading and trailing icons to be set, with the ability to set the icon foundry; and
-- Responds properly to the HTML `<input>` `type` attribute, including the "password" variant for hidden/revealable passwords.
+- Allows leading and trailing icons to be set, with the ability to set the icon foundry;
+- Responds properly to the HTML `<input>` `type` attribute, including the "password" variant for hidden/revealable passwords; and
+- Applies [density subsystem](xref:A.Density).
 
 &nbsp;
 

@@ -1,0 +1,24 @@
+﻿@use "@material/radio";
+
+.mdc-radio {
+    &.dense--5,
+    &.dense--4,
+    &.dense--3,
+    &.dense-compact {
+        @include radio.density(-3);
+    }
+
+    &.dense--2,
+    &.dense-comfortable {
+        @include radio.density(-2);
+    }
+
+    &.dense--1 {
+        @include radio.density(-1);
+    }
+
+    &.dense--0,
+    &.dense-default {
+        @include radio.density(0);
+    }
+}
