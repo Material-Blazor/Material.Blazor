@@ -6,10 +6,15 @@ title: DevelopmentEnvironment
 
 *Awaits content.*
 
-Need to describe:
+---
+
+will need to describe:
 
 - gh pages
 - gh pat
 - gh theme
 - node js development for visual studio 2019
-- maybe npm installation (but we think the previous line brings npm in)
+- build bundle minifier (Mads Kristensen)
+- NPM Task runner (Mads Kristensen)
+- may want markdown editter
+- we follow gitflow for PRs

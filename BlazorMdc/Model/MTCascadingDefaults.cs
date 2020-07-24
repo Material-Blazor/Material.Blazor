@@ -277,9 +277,20 @@ namespace BlazorMdc
          ************************************************************************************************************/
 
         /// <summary>
-        /// The default density for an <see cref="MTButton"/>, initialized to <see cref="MTDensity.Default"/> if not explicitly set.
+        /// The default density for an all components. Any individual component density that is set overrides theme density.
         /// </summary>
-        public MTDensity ButtonDensity { get; set; } = MTDensity.Default;
+        public MTDensity ThemeDensity { get; set; } = MTDensity.Default;
+
+
+        private MTDensity? _buttonDensity = null;
+        /// <summary>
+        /// The default density for an <see cref="MTButton"/>, defaults to <see cref="ThemeDensity"/> if not explicitly set.
+        /// </summary>
+        public MTDensity ButtonDensity
+        {
+            get => _buttonDensity ?? ThemeDensity;
+            set => _buttonDensity = value;
+        }
 
         /// <summary>
         /// The density to apply to an <see cref="MTButton"/>.
@@ -290,10 +301,15 @@ namespace BlazorMdc
 
 
 
+        private MTDensity? _checkboxDensity = null;
         /// <summary>
-        /// The default density for an <see cref="MTCheckbox"/>, initialized to <see cref="MTDensity.Default"/> if not explicitly set.
+        /// The default density for an <see cref="MTCheckbox"/>, defaults to <see cref="ThemeDensity"/> if not explicitly set.
         /// </summary>
-        public MTDensity CheckboxDensity { get; set; } = MTDensity.Default;
+        public MTDensity CheckboxDensity
+        {
+            get => _checkboxDensity ?? ThemeDensity;
+            set => _checkboxDensity = value;
+        }
 
         /// <summary>
         /// The density to apply to an <see cref="MTCheckbox"/>.
@@ -304,10 +320,15 @@ namespace BlazorMdc
 
 
 
+        private MTDensity? _iconButtonDensity = null;
         /// <summary>
-        /// The default density for an <see cref="MTIconButton"/> or <see cref="MTIconButtonToggle"/>, initialized to <see cref="MTDensity.Default"/> if not explicitly set.
+        /// The default density for an <see cref="MTIconButton"/> or <see cref="MTIconButtonToggle"/>, defaults to <see cref="ThemeDensity"/> if not explicitly set.
         /// </summary>
-        public MTDensity IconButtonDensity { get; set; } = MTDensity.Default;
+        public MTDensity IconButtonDensity
+        {
+            get => _iconButtonDensity ?? ThemeDensity;
+            set => _iconButtonDensity = value;
+        }
 
         /// <summary>
         /// The density to apply to an <see cref="MTIconButton"/>.
@@ -318,10 +339,15 @@ namespace BlazorMdc
 
 
 
+        private MTDensity? _radioButtonDensity = null;
         /// <summary>
-        /// The default density for an <see cref="MTRadioButton{TItem}"/> or <see cref="MTRadioButtonGroup{TItem}"/>, initialized to <see cref="MTDensity.Default"/> if not explicitly set.
+        /// The default density for an <see cref="MTRadioButton{TItem}"/> or <see cref="MTRadioButtonGroup{TItem}"/>, defaults to <see cref="ThemeDensity"/> if not explicitly set.
         /// </summary>
-        public MTDensity RadioButtonDensity { get; set; } = MTDensity.Default;
+        public MTDensity RadioButtonDensity
+        {
+            get => _radioButtonDensity ?? ThemeDensity;
+            set => _radioButtonDensity = value;
+        }
 
         /// <summary>
         /// The density to apply to an <see cref="MTRadioButton{TItem}"/> or <see cref="MTRadioButtonGroup{TItem}"/>.
@@ -332,10 +358,15 @@ namespace BlazorMdc
 
 
 
+        private MTDensity? _selectDensity = null;
         /// <summary>
-        /// The default density for an <see cref="MTSelect{TItem}"/>, initialized to <see cref="MTDensity.Default"/> if not explicitly set.
+        /// The default density for an <see cref="MTSelect{TItem}"/>, defaults to <see cref="ThemeDensity"/> if not explicitly set.
         /// </summary>
-        public MTDensity SelectDensity { get; set; } = MTDensity.Default;
+        public MTDensity SelectDensity
+        {
+            get => _selectDensity ?? ThemeDensity;
+            set => _selectDensity = value;
+        }
 
         /// <summary>
         /// The density to apply to an <see cref="MTSelect{TItem}"/>.
@@ -346,10 +377,15 @@ namespace BlazorMdc
 
 
 
+        private MTDensity? _switchDensity = null;
         /// <summary>
-        /// The default density for an <see cref="MTSwitch"/>, initialized to <see cref="MTDensity.Default"/> if not explicitly set.
+        /// The default density for an <see cref="MTSwitch"/>, defaults to <see cref="ThemeDensity"/> if not explicitly set.
         /// </summary>
-        public MTDensity SwitchDensity { get; set; } = MTDensity.Default;
+        public MTDensity SwitchDensity
+        {
+            get => _switchDensity ?? ThemeDensity;
+            set => _switchDensity = value;
+        }
 
         /// <summary>
         /// The density to apply to an <see cref="MTSwitch"/>.
@@ -360,11 +396,16 @@ namespace BlazorMdc
 
 
 
+        private MTDensity? _textFieldDensity = null;
         /// <summary>
         /// The default density for an <see cref="MTTextField"/>, <see cref="MTTextArea"/>, <see cref="MTAutocomplete"/>, <see cref="MTDebouncedTextField"/>, 
-        /// <see cref="MTNumericDoubleField"/> or <see cref="MTNumericIntField"/>, initialized to <see cref="MTDensity.Default"/> if not explicitly set.
+        /// <see cref="MTNumericDoubleField"/> or <see cref="MTNumericIntField"/>, defaults to <see cref="ThemeDensity"/> if not explicitly set.
         /// </summary>
-        public MTDensity TextFieldDensity { get; set; } = MTDensity.Default;
+        public MTDensity TextFieldDensity
+        {
+            get => _textFieldDensity ?? ThemeDensity;
+            set => _textFieldDensity = value;
+        }
 
         /// <summary>
         /// The density to apply to an an <see cref="MTTextField"/>, <see cref="MTTextArea"/>, <see cref="MTAutocomplete"/>, <see cref="MTDebouncedTextField"/>, 
