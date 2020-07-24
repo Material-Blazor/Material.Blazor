@@ -34,7 +34,6 @@
     "sass-loader": "^8.0.2",
     "ts-loader": "^7.0.5",
     "typescript": "^3.9.3",
-    "url-loader": "^4.1.0",
     "vue-template-compiler": "^2.6.11"
   },
   "-vs-binding": {
