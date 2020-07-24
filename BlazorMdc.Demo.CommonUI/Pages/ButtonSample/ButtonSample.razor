@@ -16,9 +16,9 @@ See <code>ButtonSample.razor</code> for sources.
 
 <p>
     <MTButton Label="Contained unelevated" ButtonStyle="@MTButtonStyle.ContainedUnelevated" @onclick="@LogMessage" Disabled="@DisableComponents"/>
-    <MTButton Label="Dense -1" Class="dense--1" ButtonStyle="@MTButtonStyle.ContainedUnelevated" @onclick="@LogMessage" Disabled="@DisableComponents"/>
-    <MTButton Label="Dense -2" Class="dense--2" ButtonStyle="@MTButtonStyle.ContainedUnelevated" @onclick="@LogMessage" Disabled="@DisableComponents"/>
-    <MTButton Label="Dense -3" Class="dense--3" ButtonStyle="@MTButtonStyle.ContainedUnelevated" @onclick="@LogMessage" Disabled="@DisableComponents"/>
+    <MTButton Label="Dense -1" Density="@MTDensity.Minus1" ButtonStyle="@MTButtonStyle.ContainedUnelevated" @onclick="@LogMessage" Disabled="@DisableComponents"/>
+    <MTButton Label="Dense -2" Density="@MTDensity.Minus2" ButtonStyle="@MTButtonStyle.ContainedUnelevated" @onclick="@LogMessage" Disabled="@DisableComponents"/>
+    <MTButton Label="Dense -3" Density="@MTDensity.Minus3" ButtonStyle="@MTButtonStyle.ContainedUnelevated" @onclick="@LogMessage" Disabled="@DisableComponents"/>
 </p>
 
 <p>

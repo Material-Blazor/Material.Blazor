@@ -12,7 +12,8 @@ title: MTRadioButton
 
 - Accepts a label and an indication as to whether the radio button is in a Material Theme touch wrapper;
 - Takes a radio group name, which is used as a common `name` attribute in the HTML `<input>` component to tell Material Theme which other radio buttons to group this button with;
-- Has a generic data type of TItem and a "target checked value" that is applied to the two-way bound Value parameter when the radio button is selected;
+- Has a generic data type of TItem and a "target checked value" that is applied to the two-way bound Value parameter when the radio button is selected; and
+- Applies [density subsystem](xref:A.Density).
 
 &nbsp;
 

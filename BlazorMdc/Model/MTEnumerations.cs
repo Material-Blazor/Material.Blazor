@@ -579,7 +579,7 @@
     /// Determines where toasts are positioned.
     /// <para>Defaults to <see cref="BottomRight"/></para>
     /// </summary>
-    public enum MTToastPosition 
+    public enum MTToastPosition
     {
         /// <summary>
         /// Top left positioning, newest toasts on top.
@@ -610,5 +610,53 @@
         /// Bottom center positioning, newest toasts on the bottom.
         /// </summary>
         BottomCenter
+    }
+
+
+    /// <summary>
+    /// Determines the density of a component
+    /// <para>Defaults to <see cref="Default"/></para>
+    /// </summary>
+    public enum MTDensity
+    {
+        /// <summary>
+        /// Density level -5.
+        /// </summary>
+        Minus5,
+
+        /// <summary>
+        /// Density level -4.
+        /// </summary>
+        Minus4,
+
+        /// <summary>
+        /// Density level -3.
+        /// </summary>
+        Minus3,
+
+        /// <summary>
+        /// Compact density, equal to -3.
+        /// </summary>
+        Compact,
+
+        /// <summary>
+        /// Density level -2.
+        /// </summary>
+        Minus2,
+
+        /// <summary>
+        /// Comfortable density, equal to -2.
+        /// </summary>
+        Comfortable,
+
+        /// <summary>
+        /// Density level -1.
+        /// </summary>
+        Minus1,
+
+        /// <summary>
+        /// Default density / zero.
+        /// </summary>
+        Default
     }
 }
