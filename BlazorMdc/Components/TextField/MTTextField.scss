@@ -1,0 +1,47 @@
+﻿@use "@material/textfield";
+
+.mdc-text-field {
+    &.dense--5,
+    &.dense--4 {
+        @include textfield.density(-4);
+        @include textfield.outlined-density(-4);
+        @include textfield.outlined-with-leading-icon-density(-4);
+        @include textfield.filled-textarea-density(-4);
+        @include textfield.outlined-textarea-density(-4);
+    }
+
+    &.dense--3,
+    &.dense-compact {
+        @include textfield.density(-3);
+        @include textfield.outlined-density(-3);
+        @include textfield.outlined-with-leading-icon-density(-3);
+        @include textfield.filled-textarea-density(-3);
+        @include textfield.outlined-textarea-density(-3);
+    }
+
+    &.dense--2,
+    &.dense-comfortable {
+        @include textfield.density(-2);
+        @include textfield.outlined-density(-2);
+        @include textfield.outlined-with-leading-icon-density(-2);
+        @include textfield.filled-textarea-density(-2);
+        @include textfield.outlined-textarea-density(-2);
+    }
+
+    &.dense--1 {
+        @include textfield.density(-1);
+        @include textfield.outlined-density(-1);
+        @include textfield.outlined-with-leading-icon-density(-1);
+        @include textfield.filled-textarea-density(-1);
+        @include textfield.outlined-textarea-density(-1);
+    }
+
+    &.dense--0,
+    &.dense-default {
+        @include textfield.density(0);
+        @include textfield.outlined-density(0);
+        @include textfield.outlined-with-leading-icon-density(0);
+        @include textfield.filled-textarea-density(0);
+        @include textfield.outlined-textarea-density(0);
+    }
+}

@@ -29,6 +29,12 @@ namespace BlazorMdc
 
 
         /// <summary>
+        /// The radio button's density.
+        /// </summary>
+        [Parameter] public MTDensity? Density { get; set; }
+
+
+        /// <summary>
         /// Enables the Material Theme touch wrapper.
         /// </summary>
         [Parameter] public bool EnableTouchWrapper { get; set; } = true;
@@ -49,6 +55,8 @@ namespace BlazorMdc
         private ElementReference RadioButtonReference { get; set; }
         private string ButtonContainerClass { get; set; }
         private string DisabledClass { get; set; } = "";
+
+        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedRadioButtonDensity(Density));
 
 
         /// <inheritdoc/>
@@ -82,6 +90,11 @@ namespace BlazorMdc
             else
             {
                 ButtonContainerClass = "mdc-radio";
+            }
+
+            if (DensityInfo.ApplyCssClass)
+            {
+                ButtonContainerClass += $" {DensityInfo.CssClassName}";
             }
 
             if (Disabled)

@@ -78,6 +78,12 @@ namespace BlazorMdc
 
 
         /// <summary>
+        /// The autcomplete field's density.
+        /// </summary>
+        [Parameter] public MTDensity? Density { get; set; }
+
+
+        /// <summary>
         /// Ignores whitespace when searching the items list.
         /// </summary>
         [Parameter] public bool IgnoreWhitespace { get; set; } = false;

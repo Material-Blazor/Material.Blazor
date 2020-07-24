@@ -18,7 +18,15 @@ namespace BlazorMdc
         [Parameter] public string Label { get; set; } = "On/off";
 
 
+        /// <summary>
+        /// The switch's density.
+        /// </summary>
+        [Parameter] public MTDensity? Density { get; set; }
+
+
         private ElementReference ElementReference { get; set; }
+
+        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedSwitchDensity(Density));
 
 
         /// <inheritdoc/>
@@ -28,6 +36,7 @@ namespace BlazorMdc
             
             ClassMapper
                 .Add("mdc-switch")
+                .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-switch--disabled", () => Disabled)
                 .AddIf("mdc-switch--checked", () => ReportingValue);
 

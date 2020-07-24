@@ -43,6 +43,12 @@ namespace BlazorMdc
         [Parameter] public int Cols { get; set; }
 
 
+        /// <summary>
+        /// The text area's density.
+        /// </summary>
+        [Parameter] public MTDensity? Density { get; set; }
+
+
         private ElementReference ElementReference { get; set; }
         private MTTextInputStyle AppliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
         private string AppliedTextInputStyleClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
@@ -52,6 +58,8 @@ namespace BlazorMdc
 
         private readonly string labelId = Utilities.GenerateUniqueElementName();
 
+        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedTextFieldDensity(Density));
+
 
         /// <inheritdoc/>
         protected override void OnInitialized()
@@ -60,6 +68,7 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-text-field mdc-text-field--textarea")
+                .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
                 .AddIf("mdc-text-field--filled", () => AppliedTextInputStyle == MTTextInputStyle.Filled)
                 .AddIf("mdc-text-field--outlined", () => AppliedTextInputStyle == MTTextInputStyle.Outlined)

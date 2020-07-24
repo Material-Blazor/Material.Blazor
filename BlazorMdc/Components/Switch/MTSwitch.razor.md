@@ -6,7 +6,7 @@ title: MTSwitch
 
 ### Summary
 
-A simple two state [Material Switch](https://material.io/develop/web/components/input-controls/switches/) with a boolean value.
+A simple two state [Material Switch](https://material.io/develop/web/components/input-controls/switches/) with a boolean value. Applies [density subsystem](xref:A.Density).
 
 &nbsp;
 

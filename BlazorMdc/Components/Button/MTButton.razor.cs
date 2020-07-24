@@ -27,6 +27,12 @@ namespace BlazorMdc
 
 
         /// <summary>
+        /// The button's density.
+        /// </summary>
+        [Parameter] public MTDensity? Density { get; set; }
+
+
+        /// <summary>
         /// The button's label.
         /// </summary>
         [Parameter] public string Label { get; set; }
@@ -62,6 +68,8 @@ namespace BlazorMdc
 
         private ElementReference ElementReference { get; set; }
 
+        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedButtonDensity(Density));
+
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
         protected override void OnInitialized()
@@ -70,6 +78,7 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-button")
+                .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-button--raised", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MTButtonStyle.ContainedRaised)
                 .AddIf("mdc-button--unelevated", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MTButtonStyle.ContainedUnelevated)
                 .AddIf("mdc-button--outlined", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MTButtonStyle.Outlined)

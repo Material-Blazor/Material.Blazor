@@ -11,7 +11,8 @@ A [Material Text Field](https://material.io/develop/web/components/input-control
 ### Details
 
 - Similar to [MTTextField](xref:C.MTTextField), bit lacking prefix, suffix or leading and trailing icons;
-- Can set the initial number of rows and columns to display.
+- Can set the initial number of rows and columns to display; and
+- Applies [density subsystem](xref:A.Density).
 
 &nbsp;
 

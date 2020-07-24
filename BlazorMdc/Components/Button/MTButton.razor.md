@@ -12,8 +12,9 @@ A [Material Button](https://material.io/develop/web/components/buttons/) with th
 
 - Text, Outlined, Filled or Raised styles;
 - Leading and trailing icons;
-- Icon foundry specification; and
-- A string code to return as a dialog action.
+- Icon foundry specification;
+- A string code to return as a dialog action; and
+- Applies [density subsystem](xref:A.Density).
 
 &nbsp;
 

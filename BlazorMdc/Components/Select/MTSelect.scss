@@ -1,0 +1,42 @@
+﻿@use "@material/select";
+
+.mdc-select {
+    &.dense--5,
+    &.dense--4 {
+        @include select.filled-density(-4);
+        @include select.filled-with-leading-icon-density(-4);
+        @include select.outlined-density(-4);
+        @include select.outlined-with-leading-icon-density(-4);
+    }
+
+    &.dense--3,
+    &.dense-compact {
+        @include select.filled-density(-3);
+        @include select.filled-with-leading-icon-density(-3);
+        @include select.outlined-density(-3);
+        @include select.outlined-with-leading-icon-density(-3);
+    }
+
+    &.dense--2,
+    &.dense-comfortable {
+        @include select.filled-density(-2);
+        @include select.filled-with-leading-icon-density(-2);
+        @include select.outlined-density(-2);
+        @include select.outlined-with-leading-icon-density(-2);
+    }
+
+    &.dense--1 {
+        @include select.filled-density(-1);
+        @include select.filled-with-leading-icon-density(-1);
+        @include select.outlined-density(-1);
+        @include select.outlined-with-leading-icon-density(-1);
+    }
+
+    &.dense--0,
+    &.dense-default {
+        @include select.filled-density(0);
+        @include select.filled-with-leading-icon-density(0);
+        @include select.outlined-density(0);
+        @include select.outlined-with-leading-icon-density(0);
+    }
+}

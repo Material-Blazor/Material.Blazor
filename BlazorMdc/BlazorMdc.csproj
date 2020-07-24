@@ -41,9 +41,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="BuildBundlerMinifier" Version="3.2.447" />
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.5" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.5" />
+		<PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.6" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.6" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -83,33 +83,33 @@
 	</Target>
 
 	
-	<Target Name="CompileCss" AfterTargets="RestoreDotnetTools" BeforeTargets="PreBuildEvent">
+	<!--<Target Name="CompileCss" AfterTargets="RestoreDotnetTools" BeforeTargets="PreBuildEvent">
 		<Exec Command="dotnet tool run webcompiler Styles/blazormdc.scss -m disable -o .\wwwroot -p disable -z disable" />
 	</Target>
 
 	<Target Name="CompileMinifiedCss" AfterTargets="CompileCss" BeforeTargets="PreBuildEvent">
 		<Exec Command="dotnet tool run webcompiler Styles/blazormdc.scss -m enable -o .\wwwroot -p disable -z disable" />
-	</Target>
+	</Target>-->
 
-
-	<Target Name="CompileJs" AfterTargets="CompileMinifiedCss" BeforeTargets="PreBuildEvent">
-		<Exec Command="dotnet tool run webcompiler Scripts/blazormdc.js -m enable -o .\wwwroot -p disable -z disable" />
-	</Target>
 
 	<ItemGroup>
 		<JsSourceFiles Include=".\scripts\*.js" />
 	</ItemGroup>
 
-  <Target Name="CopyJs" AfterTargets="CompileJs" BeforeTargets="PreBuildEvent">
-    <Copy SourceFiles="@(JsSourceFiles)" DestinationFolder="wwwroot" />
-  </Target>
+	<Target Name="CopyJs" AfterTargets="RestoreDotnetTools" BeforeTargets="PreBuildEvent">
+		<Copy SourceFiles="@(JsSourceFiles)" DestinationFolder="wwwroot" />
+	</Target>
 
-  <ItemGroup>
-    <BundleFiles Include=".\wwwroot\blazormdc-bundled.*" />
-  </ItemGroup>
+	<ItemGroup>
+		<JsBundleFiles Include=".\wwwroot\blazormdc-bundled*js" />
+	</ItemGroup>
 
-  <Target Name="DeleteBundles" AfterTargets="CopyJs" BeforeTargets="PreBuildEvent">
-    <Delete Files="@(BundleFiles)" />
-  </Target>
+	<Target Name="DeleteJsBundles" AfterTargets="CopyJs" BeforeTargets="PreBuildEvent">
+		<Delete Files="@(JsBundleFiles)" />
+	</Target>
+
+	<Target Name="CompileJs" AfterTargets="DeleteJsBundles" BeforeTargets="PreBuildEvent">
+		<Exec Command="dotnet tool run webcompiler Scripts/blazormdc.js -m enable -o .\wwwroot -p disable -z disable" />
+	</Target>
 
 </Project>

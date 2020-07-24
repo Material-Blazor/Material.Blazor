@@ -45,7 +45,18 @@
 
 <MTRadioButtonGroup @bind-Value="@kittenBreed"
                     Items="stringItems"
-                    ItemValidation="@MTItemValidation.DefaultToFirst" />
+                    ItemValidation="@MTItemValidation.DefaultToFirst" 
+                    Density="@MTDensity.Minus1"/>
+
+<MTRadioButtonGroup @bind-Value="@kittenBreed"
+                    Items="stringItems"
+                    ItemValidation="@MTItemValidation.DefaultToFirst" 
+                    Density="@MTDensity.Minus2"/>
+
+<MTRadioButtonGroup @bind-Value="@kittenBreed"
+                    Items="stringItems"
+                    ItemValidation="@MTItemValidation.DefaultToFirst" 
+                    Density="@MTDensity.Minus3"/>
 
 <p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed ?? "")</strong>'</p>
 

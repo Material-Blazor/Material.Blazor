@@ -25,7 +25,10 @@
                                 @Icon(item)
                             }
 
-                            <span class="mdc-tab__text-label">@Label(item)</span>
+                            @if (Label != null)
+                            {
+                                <span class="mdc-tab__text-label">@Label(item)</span>
+                            }
                         </span>
                         <span class="mdc-tab-indicator @indicatorActive">
                             <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>

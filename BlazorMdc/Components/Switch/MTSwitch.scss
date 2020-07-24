@@ -1,0 +1,30 @@
+﻿@use "@material/switch";
+
+.mdc-switch {
+    &.dense--5 {
+        @include switch.density(-5);
+    }
+
+    &.dense--4 {
+        @include switch.density(-4);
+    }
+
+    &.dense--3,
+    &.dense-compact {
+        @include switch.density(-3);
+    }
+
+    &.dense--2,
+    &.dense-comfortable {
+        @include switch.density(-2);
+    }
+
+    &.dense--1 {
+        @include switch.density(-1);
+    }
+
+    &.dense--0,
+    &.dense-default {
+        @include switch.density(0);
+    }
+}
