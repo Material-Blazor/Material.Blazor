@@ -7,7 +7,26 @@
 @inject IJSRuntime jsRuntime
 
 
-@if (Icon is null)
+@if (Icon is null && Label is null)
+{
+    <MTTabBar @bind-TabIndex="@TabIndex"
+              Items="@Items"
+              Context="item"
+              StackIcons="@StackIcons">
+
+    </MTTabBar>
+}
+else if (Label is null)
+{
+    <MTTabBar @bind-TabIndex="@TabIndex"
+              Items="@Items"
+              Context="item"
+              StackIcons="@StackIcons">
+
+        <Icon>@Icon(item)</Icon>
+    </MTTabBar>
+}
+else if (Icon is null)
 {
     <MTTabBar @bind-TabIndex="@TabIndex"
               Items="@Items"
