@@ -1,0 +1,24 @@
+﻿@use "@material/checkbox";
+
+.mdc-checkbox {
+    &.dense--5,
+    &.dense--4,
+    &.dense--3,
+    &.dense-compact {
+        @include checkbox.density(-3);
+    }
+
+    &.dense--2,
+    &.dense-comfortable {
+        @include checkbox.density(-2);
+    }
+
+    &.dense--1 {
+        @include checkbox.density(-1);
+    }
+
+    &.dense--0,
+    &.dense-default {
+        @include checkbox.density(0);
+    }
+}
