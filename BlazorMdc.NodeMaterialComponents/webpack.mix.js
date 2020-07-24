@@ -40,7 +40,7 @@ mix
                                     includePaths: ['node_modules'],
                                 },
                             },
-                        },
+                        }
                     ]
                 }
             ]
