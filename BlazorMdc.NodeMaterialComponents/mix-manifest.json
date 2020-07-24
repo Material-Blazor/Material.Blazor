@@ -1,4 +1,4 @@
 {
-    "/Material-Components-Web/dist/blazormdc.css": "/Material-Components-Web/dist/blazormdc.css",
-    "/Material-Components-Web/dist/blazormdc-bundled.css": "/Material-Components-Web/dist/blazormdc-bundled.css"
+    "/dist/blazormdc.css": "/dist/blazormdc.css",
+    "/dist/blazormdc-bundled.css": "/dist/blazormdc-bundled.css"
 }

@@ -12,9 +12,9 @@ const mix = require('laravel-mix');
  */
 
 mix
-    //.ts("ts/index.ts", "Material-Components-Web/dist")
-    .sass('blazormdc.scss', 'Material-Components-Web/dist')
-    .sass('blazormdc-bundled.scss', 'Material-Components-Web/dist')
+    //.ts("ts/index.ts", "dist")
+    .sass('blazormdc.scss', 'dist')
+    .sass('blazormdc-bundled.scss', 'dist')
     .webpackConfig({
         module: {
             rules: [

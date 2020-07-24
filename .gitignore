@@ -345,7 +345,7 @@ healthchecksdb
 **/BlazorMdc.Demo.CommonUI/wwwroot/css/*.css
 **/BlazorMdc.MaterialComponents/material-components-web/dist/*.css
 **/BlazorMdc.MaterialComponents/material-components-web/dist/*.js
-**/BlazorMdc.NodeMaterialComponents/material-components-web/dist/*.*
+**/BlazorMdc.NodeMaterialComponents/dist/*.*
 **/BlazorMdc.NodeMaterialComponents/downloads/*.*
 
 # DocFx tool
