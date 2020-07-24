@@ -22,6 +22,12 @@ namespace BlazorMdc
 
 
         /// <summary>
+        /// The select's density.
+        /// </summary>
+        [Parameter] public MTDensity? Density { get; set; }
+
+
+        /// <summary>
         /// The form of validation to apply when Value is first set, deciding whether to accept
         /// a value outside the <see cref="Items"/> list, replace it with the first list item or
         /// to throw an exception (the default).
@@ -61,6 +67,8 @@ namespace BlazorMdc
         
         private DotNetObjectReference<MTSelect<TItem>> ObjectReference { get; set; }
 
+        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedSelectDensity(Density));
+
 
 
         private readonly string labelId = Utilities.GenerateUniqueElementName();
@@ -81,6 +89,7 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-select")
+                .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-select--filled", () => AppliedInputStyle == MTSelectInputStyle.Filled)
                 .AddIf("mdc-select--outlined", () => AppliedInputStyle == MTSelectInputStyle.Outlined)
                 .AddIf("mdc-select--no-label", () => string.IsNullOrWhiteSpace(Label))

@@ -52,10 +52,16 @@ See <code>ButtonSample.razor</code> for sources.
 
 <p>
     An icon button -> <MTIconButton Icon="access_alarms" @onclick="@LogMessage" Disabled="@DisableComponents"/>
+    <MTIconButton Icon="access_alarms" Density="@MTDensity.Minus1" @onclick="@LogMessage" Disabled="@DisableComponents"/>
+    <MTIconButton Icon="access_alarms" Density="@MTDensity.Minus2" @onclick="@LogMessage" Disabled="@DisableComponents"/>
+    <MTIconButton Icon="access_alarms" Density="@MTDensity.Minus3" @onclick="@LogMessage" Disabled="@DisableComponents"/>
 </p>
 
 <p>
     A font awesome icon button -> <MTIconButton Icon="fa-frog" IconFoundry="MTIconHelper.FAFoundry()" @onclick="@LogMessage" Disabled="@DisableComponents"/>
+    <MTIconButton Icon="fa-frog" IconFoundry="MTIconHelper.FAFoundry()" Density="@MTDensity.Minus1" @onclick="@LogMessage" Disabled="@DisableComponents"/>
+    <MTIconButton Icon="fa-frog" IconFoundry="MTIconHelper.FAFoundry()" Density="@MTDensity.Minus2" @onclick="@LogMessage" Disabled="@DisableComponents"/>
+    <MTIconButton Icon="fa-frog" IconFoundry="MTIconHelper.FAFoundry()" Density="@MTDensity.Minus3" @onclick="@LogMessage" Disabled="@DisableComponents"/>
 </p>
 
 <div style="padding: 1rem; background-color: lightgray;">

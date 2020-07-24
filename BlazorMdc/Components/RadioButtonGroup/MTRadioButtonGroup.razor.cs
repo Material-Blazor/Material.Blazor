@@ -19,6 +19,12 @@ namespace BlazorMdc
 
 
         /// <summary>
+        /// The radio button's density.
+        /// </summary>
+        [Parameter] public MTDensity? Density { get; set; }
+
+
+        /// <summary>
         /// Stack the radio buttons vertically if True, otherwise default horizontal placement.
         /// </summary>
         [Parameter] public bool Vertical { get; set; } = false;

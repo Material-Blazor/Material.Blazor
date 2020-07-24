@@ -21,6 +21,12 @@ namespace BlazorMdc
 
 
         /// <summary>
+        /// The checkbox's density.
+        /// </summary>
+        [Parameter] public MTDensity? Density { get; set; }
+
+
+        /// <summary>
         /// Set to True if this is in a form.
         /// </summary>
         [Parameter] public bool IsFormField { get; set; }
@@ -30,6 +36,8 @@ namespace BlazorMdc
         private ElementReference ElementReference { get; set; }
         private ElementReference FormReference { get; set; }
 
+        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedCheckboxDensity(Density));
+
 
         /// <inheritdoc/>
         protected override void OnInitialized()
@@ -38,6 +46,7 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-checkbox mdc-checkbox--touch")
+                .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-checkbox--disabled", () => Disabled);
 
             OnValueSet += OnValueSetCallback;
