@@ -22,12 +22,6 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// The select's density.
-        /// </summary>
-        [Parameter] public MTDensity? Density { get; set; }
-
-
-        /// <summary>
         /// The form of validation to apply when Value is first set, deciding whether to accept
         /// a value outside the <see cref="Items"/> list, replace it with the first list item or
         /// to throw an exception (the default).
@@ -53,9 +47,32 @@ namespace BlazorMdc
         [Parameter] public MTTextAlignStyle? TextAlignStyle { get; set; }
 
 
+        /// <summary>
+        /// The leading icon's name. No leading icon shown if not set.
+        /// </summary>
+        [Parameter] public string? LeadingIcon { get; set; }
+
+
+        /// <summary>
+        /// The foundry to use for both leading and trailing icons.
+        /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
+        /// </summary>
+        [Parameter] public IMTIconFoundry? IconFoundry { get; set; }
+
+
+        /// <summary>
+        /// The select's density.
+        /// </summary>
+        [Parameter] public MTDensity? Density { get; set; }
+
+
         private ElementReference SelectReference { get; set; }
 
         private MTSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
+
+        private MTDensity AppliedDensity => CascadingDefaults.AppliedSelectDensity(Density);
 
         private string SelectedText { get; set; } = "";
 
@@ -64,10 +81,35 @@ namespace BlazorMdc
         private string AlignClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
 
         private Dictionary<TItem, MTListElement<TItem>> ItemDict { get; set; }
-        
+
         private DotNetObjectReference<MTSelect<TItem>> ObjectReference { get; set; }
 
-        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedSelectDensity(Density));
+        private MTCascadingDefaults.DensityInfo DensityInfo
+        {
+            get
+            {
+                var d = CascadingDefaults.GetDensityInfo(AppliedDensity);
+
+                var suffix = AppliedInputStyle == MTSelectInputStyle.Filled ? "--filled" : "--outlined";
+                suffix += string.IsNullOrWhiteSpace(LeadingIcon) ? "" : "-with-leading-icon";
+
+                d.CssClassName += suffix;
+
+                return d;
+            }
+        }
+
+        private readonly List<MTDensity> HighlyDense = new() { MTDensity.Minus5, MTDensity.Minus4, MTDensity.Minus3, MTDensity.Compact, MTDensity.Minus2, MTDensity.Comfortable };
+
+        private bool ShowLabel
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(Label)) return false;
+                if (AppliedInputStyle == MTSelectInputStyle.Filled && HighlyDense.Contains(AppliedDensity)) return false;
+                return true;
+            }
+        }
 
 
 
@@ -92,7 +134,8 @@ namespace BlazorMdc
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-select--filled", () => AppliedInputStyle == MTSelectInputStyle.Filled)
                 .AddIf("mdc-select--outlined", () => AppliedInputStyle == MTSelectInputStyle.Outlined)
-                .AddIf("mdc-select--no-label", () => string.IsNullOrWhiteSpace(Label))
+                .AddIf("mdc-select--no-label", () => !ShowLabel)
+                .AddIf("mdc-select--with-leading-icon", () => !string.IsNullOrWhiteSpace(LeadingIcon))
                 .AddIf("mdc-select--disabled", () => Disabled);
 
             SelectedText = (Value is null) ? "" : Items.Where(i => object.Equals(i.SelectedValue, Value)).FirstOrDefault().Label;
