@@ -6,18 +6,21 @@
 
 <p>See <code>ListSample.razor</code> for sources.</p>
 
+<p>List type:</p>
+<p>
+    <MTRadioButtonGroup @bind-Value="@ListType"
+                        Items="@ListTypes"
+                        EnableTouchWrapper="true" />
+</p>
+
 <p>Density for one line lists:</p>
 <p>
     <MTRadioButtonGroup @bind-Value="@SingleLineDensity"
-                        Items="densityItmes"
+                        Items="@DensityItems"
                         EnableTouchWrapper="true" />
 </p>
 
 <p>Other parameters:</p>
-<p><MTSwitch @bind-Value="@Dense" Label="Regular density" /></p>
-
-<p><MTSwitch @bind-Value="@AvatarList" Label="Avatar list" /></p>
-
 <p><MTSwitch @bind-Value="@hideLineTwo" Label="Hide line two" /></p>
 
 <p><MTSwitch @bind-Value="@hideLineThree" Label="Hide line three" /></p>
@@ -28,9 +31,8 @@
             ShowSeparators="true"
             KeyboardInteractions="true"
             Ripple="true"
-            AvatarList="AvatarList"
+            ListType="@ListType"
             SingleLineDensity="@SingleLineDensity"
-            Dense="Dense"
             HideLineTwo="@hideLineTwo"
             HideLineThree="@hideLineThree"
             OnClick="OnClick"
@@ -53,9 +55,8 @@
             ShowSeparators="true"
             KeyboardInteractions="true"
             Ripple="true"
-            AvatarList="AvatarList"
+            ListType="@ListType"
             SingleLineDensity="@SingleLineDensity"
-            Dense="Dense"
             HideLineTwo="@hideLineTwo"
             HideLineThree="@hideLineThree"
             OnClick="OnClick"
@@ -79,9 +80,8 @@
             ShowSeparators="true"
             KeyboardInteractions="true"
             Ripple="true"
-            AvatarList="AvatarList"
+            ListType="@ListType"
             SingleLineDensity="@SingleLineDensity"
-            Dense="Dense"
             HideLineTwo="@hideLineTwo"
             HideLineThree="@hideLineThree"
             OnClick="OnClick"
@@ -103,13 +103,22 @@
 <p>Clicked index: '@clickedIndex'</p>
 
 @code {
-    IEnumerable<MTListElement<MTDensity>> densityItmes => from d in (MTDensity[])Enum.GetValues(typeof(MTDensity))
+    IEnumerable<MTListElement<MTDensity>> DensityItems => from d in (MTDensity[])Enum.GetValues(typeof(MTDensity))
                                                           select new MTListElement<MTDensity>
                                                           {
                                                               SelectedValue = d,
                                                               Label = d.ToString(),
                                                               Disabled = false
                                                           };
+
+
+    IEnumerable<MTListElement<MTListType>> ListTypes => from t in (MTListType[])Enum.GetValues(typeof(MTListType))
+                                                        select new MTListElement<MTListType>
+                                                        {
+                                                            SelectedValue = t,
+                                                            Label = t.ToString(),
+                                                            Disabled = false
+                                                        };
 
 
 
@@ -132,12 +141,10 @@
 
 
     private MTDensity SingleLineDensity { get; set; } = MTDensity.Default;
+    private MTListType ListType { get; set; } = MTListType.Regular;
     private int clickedIndex;
     private bool hideLineTwo = false;
     private bool hideLineThree = false;
-    private bool AvatarList = true;
-    private bool Dense = true;
-
 
     private void OnClick(int index)
     {

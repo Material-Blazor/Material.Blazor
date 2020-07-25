@@ -202,6 +202,19 @@ namespace BlazorMdc
 
 
         /// <summary>
+        /// The default type for an <see cref="MTList{TItem}"/>, initialized to <see cref="MTListType.Regular"/> if not explicitly set.
+        /// </summary>
+        public MTListType ListType { get; set; } = MTListType.Regular;
+
+        /// <summary>
+        /// The style to apply to an <see cref="MTList{TItem}"/>.
+        /// </summary>
+        /// <param name="style">The style parameter passed to the <see cref="MTList{TItem}"/></param>
+        /// <returns>The <see cref="MTListStyle"/> to apply.</returns>
+        internal MTListType AppliedListType(MTListType? type = null) => type ?? ListType;
+
+
+        /// <summary>
         /// The default style for an <see cref="MTSelect{TItem}"/>, initialized to <see cref="MTSelectInputStyle.Filled"/> if not explicitly set.
         /// </summary>
         /// <remarks>
@@ -313,7 +326,7 @@ namespace BlazorMdc
         /// The density to apply to an <see cref="MTButton"/>.
         /// </summary>
         /// <param name="density">The density parameter passed to the <see cref="MTButton"/></param>
-        /// <returns>The <see cref="ButtonStyle"/> to apply.</returns>
+        /// <returns></returns>
         internal MTDensity AppliedButtonDensity(MTDensity? density) => density ?? ButtonDensity;
 
 
@@ -332,8 +345,27 @@ namespace BlazorMdc
         /// The density to apply to an <see cref="MTCheckbox"/>.
         /// </summary>
         /// <param name="density">The density parameter passed to the <see cref="MTCheckbox"/></param>
-        /// <returns>The <see cref="ButtonStyle"/> to apply.</returns>
+        /// <returns></returns>
         internal MTDensity AppliedCheckboxDensity(MTDensity? density) => density ?? CheckboxDensity;
+
+
+
+        private MTDensity? _dataTableDensity = null;
+        /// <summary>
+        /// The default density for an <see cref="MTDataTable{TItem}"/>, defaults to <see cref="ThemeDensity"/> if not explicitly set.
+        /// </summary>
+        public MTDensity DataTableDensity
+        {
+            get => _dataTableDensity ?? ThemeDensity;
+            set => _dataTableDensity = value;
+        }
+
+        /// <summary>
+        /// The density to apply to an <see cref="MTDataTable{TItem}"/>.
+        /// </summary>
+        /// <param name="density">The density parameter passed to the <see cref="MTDataTable{TItem}"/></param>
+        /// <returns></returns>
+        internal MTDensity AppliedDataTableDensity(MTDensity? density) => density ?? DataTableDensity;
 
 
 
@@ -351,7 +383,7 @@ namespace BlazorMdc
         /// The density to apply to an <see cref="MTIconButton"/>.
         /// </summary>
         /// <param name="density">The density parameter passed to the <see cref="MTIconButton"/></param>
-        /// <returns>The <see cref="ButtonStyle"/> to apply.</returns>
+        /// <returns></returns>
         internal MTDensity AppliedIconButtonDensity(MTDensity? density) => density ?? IconButtonDensity;
 
 
@@ -370,7 +402,7 @@ namespace BlazorMdc
         /// The single density to apply to an <see cref="MTList{TItem}"/>.
         /// </summary>
         /// <param name="density">The density parameter passed to the <see cref="MTList{TItem}"/></param>
-        /// <returns>The <see cref="ButtonStyle"/> to apply.</returns>
+        /// <returns></returns>
         internal MTDensity AppliedListSingleLineDensity(MTDensity? density) => density ?? IconButtonDensity;
 
 
@@ -389,7 +421,7 @@ namespace BlazorMdc
         /// The density to apply to an <see cref="MTRadioButton{TItem}"/> or <see cref="MTRadioButtonGroup{TItem}"/>.
         /// </summary>
         /// <param name="density">The density parameter passed to the <see cref="MTRadioButton{TItem}"/></param>
-        /// <returns>The <see cref="ButtonStyle"/> to apply.</returns>
+        /// <returns></returns>
         internal MTDensity AppliedRadioButtonDensity(MTDensity? density) => density ?? RadioButtonDensity;
 
 
@@ -408,7 +440,7 @@ namespace BlazorMdc
         /// The density to apply to an <see cref="MTSelect{TItem}"/>.
         /// </summary>
         /// <param name="density">The density parameter passed to the <see cref="MTSelect{TItem}"/></param>
-        /// <returns>The <see cref="ButtonStyle"/> to apply.</returns>
+        /// <returns></returns>
         internal MTDensity AppliedSelectDensity(MTDensity? density) => density ?? SelectDensity;
 
 
@@ -427,8 +459,27 @@ namespace BlazorMdc
         /// The density to apply to an <see cref="MTSwitch"/>.
         /// </summary>
         /// <param name="density">The density parameter passed to the <see cref="MTSwitch"/></param>
-        /// <returns>The <see cref="ButtonStyle"/> to apply.</returns>
+        /// <returns></returns>
         internal MTDensity AppliedSwitchDensity(MTDensity? density) => density ?? SwitchDensity;
+
+
+
+        private MTDensity? _tabBarDensity = null;
+        /// <summary>
+        /// The default density for an <see cref="MTTabBar{TItem}"/>, defaults to <see cref="ThemeDensity"/> if not explicitly set.
+        /// </summary>
+        public MTDensity TabBarDensity
+        {
+            get => _tabBarDensity ?? ThemeDensity;
+            set => _tabBarDensity = value;
+        }
+
+        /// <summary>
+        /// The density to apply to an <see cref="MTTabBar{TItem}"/>.
+        /// </summary>
+        /// <param name="density">The density parameter passed to the <see cref="MTTabBar{TItem}"/></param>
+        /// <returns></returns>
+        internal MTDensity AppliedTabBarDensity(MTDensity? density) => density ?? TabBarDensity;
 
 
 
@@ -448,7 +499,7 @@ namespace BlazorMdc
         /// <see cref="MTNumericDoubleField"/> or <see cref="MTNumericIntField"/>, initialized to <see cref="MTDensity.Default"/>.
         /// </summary>
         /// <param name="density">The density parameter passed to the <see cref="MTTextField"/></param>
-        /// <returns>The <see cref="ButtonStyle"/> to apply.</returns>
+        /// <returns></returns>
         internal MTDensity AppliedTextFieldDensity(MTDensity? density) => density ?? TextFieldDensity;
 
 

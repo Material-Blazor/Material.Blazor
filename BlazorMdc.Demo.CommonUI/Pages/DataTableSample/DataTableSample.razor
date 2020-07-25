@@ -18,9 +18,18 @@
     }
 </style>
 
+<p>Density:</p>
+<p>
+    <MTRadioButtonGroup @bind-Value="@Density"
+                        Items="@DensityItems"
+                        EnableTouchWrapper="true" />
+</p>
+
 <MTDataTable Items="@biscuits"
-              Context="item"
-              Class="full-width">
+             Context="item"
+             Class="full-width"
+             Density="@Density"
+             @key="@Density">
     <TableHeader>
         <th class="mdc-data-table__header-cell header-bold" role="columnheader" scope="col">Biscuit</th>
         <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric header-bold" role="columnheader" scope="col">Price</th>
@@ -51,4 +60,14 @@
         new Biscuit() { Name = "Bourbon", Price = 0.99, Review = "Kids will leave the biscuit and eat the chocolate cream" },
         new Biscuit() { Name = "Maryland", Price = 0.78, Review = "Try not to eat a pack in one go" }
     };
+
+    IEnumerable<MTListElement<MTDensity>> DensityItems => from d in (MTDensity[])Enum.GetValues(typeof(MTDensity))
+                                                          select new MTListElement<MTDensity>
+                                                          {
+                                                              SelectedValue = d,
+                                                              Label = d.ToString(),
+                                                              Disabled = false
+                                                          };
+
+    private MTDensity Density { get; set; } = MTDensity.Default;
 }

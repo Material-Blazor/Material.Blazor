@@ -32,11 +32,13 @@ Material Theme has a [density subsystem](xref:A.Density) which applies to some c
 | [ThemeDensity](xref:BlazorMdc.MTCascadingDefaults.ThemeDensity) | A default for all components unless over-ridden by first one of the cascading default parameters below or second a component's own `Density` parameter. |
 | [ButtonDensity](xref:BlazorMdc.MTCascadingDefaults.ButtonDensity) | [MTButton](xref:C.MTButton). |
 | [CheckboxDensity](xref:BlazorMdc.MTCascadingDefaults.CheckboxDensity) | [MTCheckbox](xref:C.MTCheckbox). |
+| [DataTableDensity](xref:BlazorMdc.MTCascadingDefaults.DataTableDensity) | [MTDataTable](xref:C.MTDataTable). |
 | [IconButtonDensity](xref:BlazorMdc.MTCascadingDefaults.IconButtonDensity) | [MTIconButton](xref:C.MTIconButton) and [MTIconButtonToggle](xref:C.MTIconButtonToggle). |
-| [ListDensity](xref:BlazorMdc.MTCascadingDefaults.ListDensity) | [MTList](xref:C.MTList). |
+| [ListSingleLineDensity](xref:BlazorMdc.MTCascadingDefaults.ListSingleLineDensity) | [MTList](xref:C.MTList). |
 | [RadioButtonDensity](xref:BlazorMdc.MTCascadingDefaults.RadioButtonDensity) | [MTRadioButton](xref:C.MTRadioButton) and [MTRadioButtonGroup](xref:C.MTRadioButtonGroup). |
 | [SelectDensity](xref:BlazorMdc.MTCascadingDefaults.SelectDensity) | [MTSelect](xref:C.MTSelect). |
 | [SwitchDensity](xref:BlazorMdc.MTCascadingDefaults.SwitchDensity) | [MTSwitch](xref:C.MTSwitch). |
+| [TabBarDensity](xref:BlazorMdc.MTCascadingDefaults.TabBarDensity) | [MTTabBar](xref:C.MTTabBar). |
 | [TextFieldDensity](xref:BlazorMdc.MTCascadingDefaults.TextFieldDensity) | [MTTextField](xref:C.MTTextField), [MTTextArea](xref:C.MTTextArea), [MTAutocomplete](xref:C.MTAutocomplete), [MTDebouncedTextField](xref:C.MTDebouncedTextField), [MTNumericDoubleField](xref:C.MTNumericDoubleField) and [MTNumericIntField](xref:C.MTNumericIntField). |
 
 The order of priority for applying density is *first/highest* a component's `Density` parameter, *second* a component oriented cascading default (lines two onwards in the table above), 
@@ -51,6 +53,7 @@ then *third/last* `ThemeDensity` from cascading defaults. If either cascading de
 | [DialogActionButtonStyle](xref:BlazorMdc.MTCascadingDefaults.DialogActionButtonStyle) | Style for [MTButton](xref:C.MTButton)s used for [MTDialog](xref:C.MTDialog) actions. Defaults to `MTButtonStyle.Text`. |
 | [CardStyle](xref:BlazorMdc.MTCascadingDefaults.CardStyle) | Style for [MTCard](xref:C.MTCard). Defaults to `MTCardStyle.Default`. |
 | [ListStyle](xref:BlazorMdc.MTCascadingDefaults.ListStyle) | Style for [MTList](xref:C.MTList). Defaults to `MTListStyle.None`. |
+| [ListType](xref:BlazorMdc.MTCascadingDefaults.ListType) | Style for [MTList](xref:C.MTList). Defaults to `MTListType.Regular`. |
 | [SelectInputStyle](xref:BlazorMdc.MTCascadingDefaults.SelectInputStyle) | Style for [MTSelect](xref:C.MTSelect) and [MTDatePicker](xref:C.MTDatePicker). Defaults to `MTSelectInputStyle.Filled`. |
 | [TextAlignStyle](xref:BlazorMdc.MTCascadingDefaults.TextAlignStyle) | Text alignment for [MTSelect](xref:C.MTSelect), [MTTextField](xref:C.MTTextField), [MTTextArea](xref:C.MTTextArea), [MTAutocomplete](xref:C.MTAutocomplete), [MTDebouncedTextField](xref:C.MTDebouncedTextField), [MTNumericDoubleField](xref:C.MTNumericDoubleField) and [MTNumericIntField](xref:C.MTNumericIntField). Defaults to `MTTextAlignStyle.Default` / left aligned for ltr input and vice versa. |
 | [TextInputStyle](xref:BlazorMdc.MTCascadingDefaults.TextInputStyle) | Style for [MTTextField](xref:C.MTTextField), [MTTextArea](xref:C.MTTextArea), [MTAutocomplete](xref:C.MTAutocomplete), [MTDebouncedTextField](xref:C.MTDebouncedTextField), [MTNumericDoubleField](xref:C.MTNumericDoubleField) and [MTNumericIntField](xref:C.MTNumericIntField). Defaults to `MTTextInputStyle.Filled`. |

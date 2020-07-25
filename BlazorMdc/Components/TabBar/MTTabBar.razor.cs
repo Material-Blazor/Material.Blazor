@@ -70,11 +70,29 @@ namespace BlazorMdc
         [Parameter] public RenderFragment<TItem> Icon { get; set; }
 
 
+        /// <summary>
+        /// The tab bar's density.
+        /// </summary>
+        [Parameter] public MTDensity? Density { get; set; }
+
+
         private string StackClass => StackIcons ? "mdc-tab--stacked" : "";
         private ElementReference ElementReference { get; set; }
         private bool HasRendered { get; set; } = false;
         private bool AllowNextRender { get; set; } = false;
         private int StateNextIndex { get; set; } = -1;
+
+        private MTCascadingDefaults.DensityInfo DensityInfo
+        {
+            get
+            {
+                var d = CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedTabBarDensity(Density));
+
+                d.CssClassName += StackIcons ? "--stacked" : "--unstacked";
+
+                return d;
+            }
+        }
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
@@ -83,7 +101,8 @@ namespace BlazorMdc
             base.OnInitialized();
 
             ClassMapper
-                .Add("mdc-tab-bar");
+                .Add("mdc-tab-bar")
+                .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass);
         }
 
 
