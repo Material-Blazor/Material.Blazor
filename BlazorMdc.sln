@@ -67,6 +67,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "partials", "partials", "{B7
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "styles", "styles", "{1514BC3A-EB36-4F8A-8AE1-03FB9D2F1552}"
+	ProjectSection(SolutionItems) = preProject
+		templates\blazormdc\styles\main.css = templates\blazormdc\styles\main.css
+	EndProjectSection
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "BlazorMdc.NodeMaterialComponents", "BlazorMdc.NodeMaterialComponents\BlazorMdc.NodeMaterialComponents.njsproj", "{CF1D9242-D02E-4AE2-84E1-3CA677BD28BF}"
 EndProject
