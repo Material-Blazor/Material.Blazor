@@ -6,7 +6,7 @@ title: MTTextField
 
 ### Summary
 
-A fully-featured implementation of the suite of [Material Text Fields](https://material.io/develop/web/components/input-controls/text-field/).
+A fully-featured implementation of the suite of [Material Text Fields](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-textfield#text-field).
 
 ### Details
 

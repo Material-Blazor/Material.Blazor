@@ -6,7 +6,7 @@ title: MTRadioButton
 
 ### Summary
 
- A [Material Radio Button](https://material.io/develop/web/components/input-controls/radio-buttons/).
+ A [Material Radio Button](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-radio#selection-controls-radio-buttons).
 
 ### Details
 

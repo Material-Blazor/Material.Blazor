@@ -1,0 +1,29 @@
+@media (min-width:1400px){.container{width:1370px}
+}
+
+
+/* a {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    padding-bottom: .25rem;
+    color: var(--app-text-color);
+    text-decoration: none;
+}
+
+    a::after {
+        content: "";
+        background: #1e88e5;
+        opacity: 0.2;
+        position: absolute;
+        left: -2px;
+        bottom: 3px;
+        width: calc(100% + 4px);
+        height: 4px;
+        z-index: -1;
+        transition: 0.15s ease;
+    }
+
+    a:hover:after {
+        height: calc(100% - 3px);
+    } */

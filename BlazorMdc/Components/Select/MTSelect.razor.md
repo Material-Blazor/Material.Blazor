@@ -6,7 +6,7 @@ title: MTSelect
 
 ### Summary
 
-A [Material Select Menu](https://material.io/develop/web/components/input-controls/select-menus/).
+A [Material Select Menu](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-select#select-menus).
 
 ### Details
 
