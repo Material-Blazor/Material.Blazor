@@ -92,6 +92,7 @@
 	</Target>-->
 
 
+
 	<ItemGroup>
 		<JsSourceFiles Include=".\scripts\*.js" />
 	</ItemGroup>
