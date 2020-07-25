@@ -47,9 +47,9 @@ a specified density of minus 5 will actually display with a density of minus 3.
 | [MTSelect](xref:C.MTSelect) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :x: |
 | [MTSwitch](xref:C.MTSwitch) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | [MTTabBar](xref:C.MTTabBar) | TBD | TBD | TBD | TBD | TBD | TBD |
-| [MTTextArea](xref:C.MTTextArea) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| [MTTextArea](xref:C.MTTextArea) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :x: |
 | [MTTextField](xref:C.MTTextField) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :x: |
 
 <br />
 
-**1<a name="fn1"></a>**: Filled text fields and selects with density of -2 or below ignore labels because there is too little room for their display. This is [required by Material Theme](https://github.com/material-components/material-components-web/issues/6264#issuecomment-663699893)
+**1<a name="fn1"></a>**: Filled text fields, text areas and selects with density of -2 or below hide lables with `display: none;` due to a lack of space. Labels remain in the DOM for aria reference.

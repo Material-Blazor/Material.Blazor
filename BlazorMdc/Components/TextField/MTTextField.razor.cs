@@ -86,8 +86,6 @@ namespace BlazorMdc
         
         private readonly string labelId = Utilities.GenerateUniqueElementName();
 
-        //private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(AppliedDensity);
-
         private MTCascadingDefaults.DensityInfo DensityInfo
         {
             get
@@ -103,17 +101,7 @@ namespace BlazorMdc
             }
         }
 
-        private readonly List<MTDensity> HighlyDense = new() { MTDensity.Minus5, MTDensity.Minus4, MTDensity.Minus3, MTDensity.Compact, MTDensity.Minus2, MTDensity.Comfortable };
-
-        private bool ShowLabel
-        {
-            get
-            {
-                if (string.IsNullOrWhiteSpace(Label)) return false;
-                if (AppliedInputStyle == MTTextInputStyle.Filled && HighlyDense.Contains(AppliedDensity)) return false;
-                return true;
-            }
-        }
+        private bool ShowLabel => !string.IsNullOrWhiteSpace(Label);
 
 
         /// <inheritdoc/>

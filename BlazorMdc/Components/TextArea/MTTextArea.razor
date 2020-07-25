@@ -4,8 +4,8 @@
 
 <label @ref="ElementReference"
        @attributes="@AttributesToSplat(SplatType.ClassAndStyleOnly)">
-    
-    @if (AppliedTextInputStyle == MTTextInputStyle.Filled)
+
+    @if (AppliedInputStyle == MTTextInputStyle.Filled)
     {
         <span class="mdc-text-field__ripple"></span>
     }
@@ -21,12 +21,12 @@
                   @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)"></textarea>
     </span>
 
-    @if (AppliedTextInputStyle == MTTextInputStyle.Outlined)
+    @if (AppliedInputStyle == MTTextInputStyle.Outlined)
     {
         <span class="mdc-notched-outline">
             <span class="mdc-notched-outline__leading"></span>
 
-            @if (!string.IsNullOrWhiteSpace(Label))
+            @if (ShowLabel)
             {
                 <span class="mdc-notched-outline__notch">
                     <span class="mdc-floating-label @FloatingLabelClass" for="@Id" id="@labelId">@Label</span>
@@ -38,7 +38,7 @@
     }
     else
     {
-        @if (!string.IsNullOrWhiteSpace(Label))
+        @if (ShowLabel)
         {
             <span class="mdc-floating-label @FloatingLabelClass" for="@Id" id="@labelId">@Label</span>
         }

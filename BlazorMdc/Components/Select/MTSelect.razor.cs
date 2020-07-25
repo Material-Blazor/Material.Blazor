@@ -99,17 +99,7 @@ namespace BlazorMdc
             }
         }
 
-        private readonly List<MTDensity> HighlyDense = new() { MTDensity.Minus5, MTDensity.Minus4, MTDensity.Minus3, MTDensity.Compact, MTDensity.Minus2, MTDensity.Comfortable };
-
-        private bool ShowLabel
-        {
-            get
-            {
-                if (string.IsNullOrWhiteSpace(Label)) return false;
-                if (AppliedInputStyle == MTSelectInputStyle.Filled && HighlyDense.Contains(AppliedDensity)) return false;
-                return true;
-            }
-        }
+        private bool ShowLabel => !string.IsNullOrWhiteSpace(Label);
 
 
 

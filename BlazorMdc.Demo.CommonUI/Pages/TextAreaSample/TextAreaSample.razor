@@ -8,20 +8,21 @@
 
 <p>See <code>TextAreaSample.razor</code> for sources.</p>
 
-<p><MTTextArea Label="Filled" @bind-Value="@currentValueFilled" Rows="8" TextInputStyle="MTTextInputStyle.Filled" Disabled="@DisableComponents" /></p>
+<p><MTTextArea Label="Filled" @bind-Value="@currentValueFilled" Rows="3" TextInputStyle="MTTextInputStyle.Filled" Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@(currentValueFilled ?? "")'</strong></p>
 
-<p><MTTextArea Label="Outlined" @bind-Value="@currentValueOutlined" Rows="8" TextInputStyle="MTTextInputStyle.Outlined" Disabled="@DisableComponents" /></p>
+<p><MTTextArea Label="Outlined" @bind-Value="@currentValueOutlined" Rows="3" TextInputStyle="MTTextInputStyle.Outlined" Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@(currentValueOutlined ?? "")'</strong></p>
 
-<p><MTTextArea Label="Density Minus 1" @bind-Value="@currentValueDensityM1" Rows="8" TextInputStyle="MTTextInputStyle.Outlined" Disabled="@DisableComponents" /></p>
-<p>You typed: <strong>'@(currentValueDensityM1 ?? "")'</strong></p>
+<p><MTTextArea Label="Density Minus 1" Density="@MTDensity.Minus1" Rows="3" TextInputStyle="MTTextInputStyle.Filled" Disabled="@DisableComponents" /></p>
+<p><MTTextArea Label="Density Minus 2" Density="@MTDensity.Minus2" Rows="3" TextInputStyle="MTTextInputStyle.Filled" Disabled="@DisableComponents" /></p>
+<p><MTTextArea Label="Density Minus 3" Density="@MTDensity.Minus3" Rows="3" TextInputStyle="MTTextInputStyle.Filled" Disabled="@DisableComponents" /></p>
+<p><MTTextArea Label="Density Minus 4" Density="@MTDensity.Minus4" Rows="3" TextInputStyle="MTTextInputStyle.Filled" Disabled="@DisableComponents" /></p>
 
-<p><MTTextArea Label="Density Minus 2" @bind-Value="@currentValueDensityM2" Rows="8" TextInputStyle="MTTextInputStyle.Outlined" Disabled="@DisableComponents" /></p>
-<p>You typed: <strong>'@(currentValueDensityM2 ?? "")'</strong></p>
-
-<p><MTTextArea Label="Density Minus 3" @bind-Value="@currentValueDensityM3" Rows="8" TextInputStyle="MTTextInputStyle.Outlined" Disabled="@DisableComponents" /></p>
-<p>You typed: <strong>'@(currentValueDensityM3 ?? "")'</strong></p>
+<p><MTTextArea Label="Density Minus 1" Density="@MTDensity.Minus1" Rows="3" TextInputStyle="MTTextInputStyle.Outlined" Disabled="@DisableComponents" /></p>
+<p><MTTextArea Label="Density Minus 2" Density="@MTDensity.Minus2" Rows="3" TextInputStyle="MTTextInputStyle.Outlined" Disabled="@DisableComponents" /></p>
+<p><MTTextArea Label="Density Minus 3" Density="@MTDensity.Minus3" Rows="3" TextInputStyle="MTTextInputStyle.Outlined" Disabled="@DisableComponents" /></p>
+<p><MTTextArea Label="Density Minus 4" Density="@MTDensity.Minus4" Rows="3" TextInputStyle="MTTextInputStyle.Outlined" Disabled="@DisableComponents" /></p>
 
 
 
@@ -31,7 +32,4 @@
 
     string currentValueFilled = "test";
     string currentValueOutlined;
-    string currentValueDensityM1;
-    string currentValueDensityM2;
-    string currentValueDensityM3;
 }
