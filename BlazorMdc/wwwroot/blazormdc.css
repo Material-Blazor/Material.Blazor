@@ -649,6 +649,78 @@
   flex-direction: row;
 }
 
+.mdc-data-table.dense--5 .mdc-data-table__cell,
+.mdc-data-table.dense--4 .mdc-data-table__cell {
+  height: 36px;
+}
+
+.mdc-data-table.dense--5 .mdc-data-table__pagination,
+.mdc-data-table.dense--4 .mdc-data-table__pagination {
+  min-height: 36px;
+}
+
+.mdc-data-table.dense--5 .mdc-data-table__header-cell,
+.mdc-data-table.dense--4 .mdc-data-table__header-cell {
+  height: 40px;
+}
+
+.mdc-data-table.dense--3 .mdc-data-table__cell,
+.mdc-data-table.dense-compact .mdc-data-table__cell {
+  height: 40px;
+}
+
+.mdc-data-table.dense--3 .mdc-data-table__pagination,
+.mdc-data-table.dense-compact .mdc-data-table__pagination {
+  min-height: 40px;
+}
+
+.mdc-data-table.dense--3 .mdc-data-table__header-cell,
+.mdc-data-table.dense-compact .mdc-data-table__header-cell {
+  height: 44px;
+}
+
+.mdc-data-table.dense--2 .mdc-data-table__cell,
+.mdc-data-table.dense-comfortable .mdc-data-table__cell {
+  height: 44px;
+}
+
+.mdc-data-table.dense--2 .mdc-data-table__pagination,
+.mdc-data-table.dense-comfortable .mdc-data-table__pagination {
+  min-height: 44px;
+}
+
+.mdc-data-table.dense--2 .mdc-data-table__header-cell,
+.mdc-data-table.dense-comfortable .mdc-data-table__header-cell {
+  height: 48px;
+}
+
+.mdc-data-table.dense--1 .mdc-data-table__cell {
+  height: 48px;
+}
+
+.mdc-data-table.dense--1 .mdc-data-table__pagination {
+  min-height: 48px;
+}
+
+.mdc-data-table.dense--1 .mdc-data-table__header-cell {
+  height: 52px;
+}
+
+.mdc-data-table.dense--0 .mdc-data-table__cell,
+.mdc-data-table.dense-default .mdc-data-table__cell {
+  height: 52px;
+}
+
+.mdc-data-table.dense--0 .mdc-data-table__pagination,
+.mdc-data-table.dense-default .mdc-data-table__pagination {
+  min-height: 52px;
+}
+
+.mdc-data-table.dense--0 .mdc-data-table__header-cell,
+.mdc-data-table.dense-default .mdc-data-table__header-cell {
+  height: 56px;
+}
+
 /************************************************
     Applied to InternalDatePickerPanel.razor
 ************************************************/
@@ -878,6 +950,30 @@
   width: 48px;
   height: 48px;
   padding: 12px;
+}
+
+.mdc-list.dense--5 .mdc-list-item,
+.mdc-list.dense--4 .mdc-list-item {
+  height: 32px;
+}
+
+.mdc-list.dense--3 .mdc-list-item,
+.mdc-list.dense-compact .mdc-list-item {
+  height: 36px;
+}
+
+.mdc-list.dense--2 .mdc-list-item,
+.mdc-list.dense-comfortable .mdc-list-item {
+  height: 40px;
+}
+
+.mdc-list.dense--1 .mdc-list-item {
+  height: 44px;
+}
+
+.mdc-list.dense--0 .mdc-list-item,
+.mdc-list.dense-default .mdc-list-item {
+  height: 48px;
 }
 
 .bmdc-list--three-line .mdc-list-item__text {
@@ -3365,6 +3461,54 @@
 .mdc-switch.dense-default .mdc-switch__native-control {
   width: 68px;
   height: 48px;
+}
+
+.mdc-tab-bar.dense--5--unstacked .mdc-tab,
+.mdc-tab-bar.dense--4--unstacked .mdc-tab {
+  height: 32px;
+}
+
+.mdc-tab-bar.dense--3--unstacked .mdc-tab,
+.mdc-tab-bar.dense-compact--unstacked .mdc-tab {
+  height: 36px;
+}
+
+.mdc-tab-bar.dense--2--unstacked .mdc-tab,
+.mdc-tab-bar.dense-comfortable--unstacked .mdc-tab {
+  height: 40px;
+}
+
+.mdc-tab-bar.dense--1--unstacked .mdc-tab {
+  height: 44px;
+}
+
+.mdc-tab-bar.dense--0--unstacked .mdc-tab,
+.mdc-tab-bar.dense-default--unstacked .mdc-tab {
+  height: 48px;
+}
+
+.mdc-tab-bar.dense--5--stacked .mdc-tab--stacked,
+.mdc-tab-bar.dense--4--stacked .mdc-tab--stacked {
+  height: 56px;
+}
+
+.mdc-tab-bar.dense--3--stacked .mdc-tab--stacked,
+.mdc-tab-bar.dense-compact--stacked .mdc-tab--stacked {
+  height: 60px;
+}
+
+.mdc-tab-bar.dense--2--stacked .mdc-tab--stacked,
+.mdc-tab-bar.dense-comfortable--stacked .mdc-tab--stacked {
+  height: 64px;
+}
+
+.mdc-tab-bar.dense--1--stacked .mdc-tab--stacked {
+  height: 68px;
+}
+
+.mdc-tab-bar.dense--0--stacked .mdc-tab--stacked,
+.mdc-tab-bar.dense-default--stacked .mdc-tab--stacked {
+  height: 72px;
 }
 
 .mdc-text-field.dense--5--tf--filled,

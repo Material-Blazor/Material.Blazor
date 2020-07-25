@@ -1,0 +1,54 @@
+﻿@use "@material/tab-bar";
+
+
+.mdc-tab-bar {
+    &.dense--5--unstacked,
+    &.dense--4--unstacked {
+        @include tab-bar.density(-4);
+    }
+
+    &.dense--3--unstacked,
+    &.dense-compact--unstacked {
+        @include tab-bar.density(-3);
+    }
+
+    &.dense--2--unstacked,
+    &.dense-comfortable--unstacked {
+        @include tab-bar.density(-2);
+    }
+
+    &.dense--1--unstacked {
+        @include tab-bar.density(-1);
+    }
+
+    &.dense--0--unstacked,
+    &.dense-default--unstacked {
+        @include tab-bar.density(0);
+    }
+}
+
+.mdc-tab-bar {
+    &.dense--5--stacked,
+    &.dense--4--stacked {
+        @include tab-bar.stacked-density(-4);
+    }
+
+    &.dense--3--stacked,
+    &.dense-compact--stacked {
+        @include tab-bar.stacked-density(-3);
+    }
+
+    &.dense--2--stacked,
+    &.dense-comfortable--stacked {
+        @include tab-bar.stacked-density(-2);
+    }
+
+    &.dense--1--stacked {
+        @include tab-bar.stacked-density(-1);
+    }
+
+    &.dense--0--stacked,
+    &.dense-default--stacked {
+        @include tab-bar.stacked-density(0);
+    }
+}

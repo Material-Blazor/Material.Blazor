@@ -114,9 +114,15 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Sets the dense Material Theme class if true.  Defaults to False.
+        /// Sets the dense Material Theme class if true.  Defaults to False. Ignored if <see cref="AvatarList"/> is true.
         /// </summary>
         [Parameter] public bool Dense { get; set; } = false;
+
+
+        /// <summary>
+        /// The lists's density if it is a single line list. Ignored if <see cref="Dense"/> is true and <see cref="AvatarList"/> is false.
+        /// </summary>
+        [Parameter] public MTDensity? SingleLineDensity { get; set; }
 
 
         /// <summary>
@@ -139,6 +145,9 @@ namespace BlazorMdc
 
 
         private ElementReference ElementReference { get; set; }
+
+        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedListSingleLineDensity(SingleLineDensity));
+
         private int NumberOfLines { get; set; }
         private bool HasLineTwo { get; set; }
         private bool HasLineThree { get; set; }
@@ -151,11 +160,12 @@ namespace BlazorMdc
         {
             ClassMapper
                 .Add("mdc-list")
+                .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass && NumberOfLines == 1 && (AvatarList || !Dense))
                 .AddIf("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(ListStyle) == MTListStyle.Outlined))
                 .AddIf("mdc-list--two-line", () => (NumberOfLines == 2))
                 .AddIf("bmdc-list--three-line", () => (NumberOfLines == 3))
                 .AddIf("mdc-list--non-interactive", () => NonInteractive)
-                .AddIf("mdc-list--dense", () => Dense)
+                .AddIf("mdc-list--dense", () => Dense && ! AvatarList)
                 .AddIf("mdc-list--avatar-list", () => AvatarList);
         }
 

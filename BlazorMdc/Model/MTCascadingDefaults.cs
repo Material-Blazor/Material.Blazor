@@ -356,6 +356,25 @@ namespace BlazorMdc
 
 
 
+        private MTDensity? _listSingleLineDensity = null;
+        /// <summary>
+        /// The default single line density for an <see cref="MTList{TItem}"/>, defaults to <see cref="ThemeDensity"/> if not explicitly set.
+        /// </summary>
+        public MTDensity ListSingleLineDensity
+        {
+            get => _listSingleLineDensity ?? ThemeDensity;
+            set => _listSingleLineDensity = value;
+        }
+
+        /// <summary>
+        /// The single density to apply to an <see cref="MTList{TItem}"/>.
+        /// </summary>
+        /// <param name="density">The density parameter passed to the <see cref="MTList{TItem}"/></param>
+        /// <returns>The <see cref="ButtonStyle"/> to apply.</returns>
+        internal MTDensity AppliedListSingleLineDensity(MTDensity? density) => density ?? IconButtonDensity;
+
+
+
         private MTDensity? _radioButtonDensity = null;
         /// <summary>
         /// The default density for an <see cref="MTRadioButton{TItem}"/> or <see cref="MTRadioButtonGroup{TItem}"/>, defaults to <see cref="ThemeDensity"/> if not explicitly set.

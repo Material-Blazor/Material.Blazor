@@ -33,6 +33,7 @@ Material Theme has a [density subsystem](xref:A.Density) which applies to some c
 | [ButtonDensity](xref:BlazorMdc.MTCascadingDefaults.ButtonDensity) | [MTButton](xref:C.MTButton). |
 | [CheckboxDensity](xref:BlazorMdc.MTCascadingDefaults.CheckboxDensity) | [MTCheckbox](xref:C.MTCheckbox). |
 | [IconButtonDensity](xref:BlazorMdc.MTCascadingDefaults.IconButtonDensity) | [MTIconButton](xref:C.MTIconButton) and [MTIconButtonToggle](xref:C.MTIconButtonToggle). |
+| [ListDensity](xref:BlazorMdc.MTCascadingDefaults.ListDensity) | [MTList](xref:C.MTList). |
 | [RadioButtonDensity](xref:BlazorMdc.MTCascadingDefaults.RadioButtonDensity) | [MTRadioButton](xref:C.MTRadioButton) and [MTRadioButtonGroup](xref:C.MTRadioButtonGroup). |
 | [SelectDensity](xref:BlazorMdc.MTCascadingDefaults.SelectDensity) | [MTSelect](xref:C.MTSelect). |
 | [SwitchDensity](xref:BlazorMdc.MTCascadingDefaults.SwitchDensity) | [MTSwitch](xref:C.MTSwitch). |
