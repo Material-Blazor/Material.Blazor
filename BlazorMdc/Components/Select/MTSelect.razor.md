@@ -17,6 +17,7 @@ A [Material Select Menu](https://material.io/develop/web/components/input-contro
   - "DefaultToFirst" will select the first item in the list if the Value does not match; or
   - "NoSelection" will not pick a radiobutton when the Value is illegal;
 - Several ArgumentExceptions can also be thrown for such things as a missing or empty List, a List that has multiple identical SelectedValues, and missing Value bindings.
+- Applies [density subsystem](xref:A.Density) - note that filled selects with denisty of -2 or less ignore labels by design within Material Theme.
 
 &nbsp;
 

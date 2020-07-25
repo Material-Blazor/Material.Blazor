@@ -27,6 +27,9 @@ density of minus 3.
 
 ### Components Applying Density Subsystem
 
+Applicable density levels are shown with a :heavy_check_mark:. Those with a :x: will display the most dense option available. For instance an [MTButton](xref:C.MTButton) with
+a specified density of minus 5 will actually display with a density of minus 3.
+
 | Component |   0 |  -1 |  -2 |  -3 |  -4 |  -5 |
 | :-------- | :-: | :-: | :-: | :-: | :-: | :-: |
 | [MTAutocomplete](xref:C.MTAutocomplete) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
@@ -41,8 +44,12 @@ density of minus 3.
 | [MTNumericIntField](xref:C.MTNumericIntField) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
 | [MTRadioButton](xref:C.MTRadioButton) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
 | [MTRadioButtonGroup](xref:C.MTRadioButtonGroup) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
-| [MTSelect](xref:C.MTSelect) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| [MTSelect](xref:C.MTSelect) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :x: |
 | [MTSwitch](xref:C.MTSwitch) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | [MTTabBar](xref:C.MTTabBar) | TBD | TBD | TBD | TBD | TBD | TBD |
 | [MTTextArea](xref:C.MTTextArea) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
-| [MTTextField](xref:C.MTTextField) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| [MTTextField](xref:C.MTTextField) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :x: |
+
+<br />
+
+**1<a name="fn1"></a>**: Filled text fields and selects with density of -2 or below ignore labels because there is too little room for their display. This is [required by Material Theme](https://github.com/material-components/material-components-web/issues/6264#issuecomment-663699893)

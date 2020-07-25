@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BlazorMdc
@@ -72,8 +73,10 @@ namespace BlazorMdc
 #nullable restore annotations
 
 
-        private MTTextInputStyle AppliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
-        
+        private MTTextInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
+
+        private MTDensity AppliedDensity => CascadingDefaults.AppliedTextFieldDensity(Density);
+
         internal ElementReference ElementReference { get; set; }
         
         private ElementReference InputReference { get; set; }
@@ -83,7 +86,34 @@ namespace BlazorMdc
         
         private readonly string labelId = Utilities.GenerateUniqueElementName();
 
-        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedTextFieldDensity(Density));
+        //private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(AppliedDensity);
+
+        private MTCascadingDefaults.DensityInfo DensityInfo
+        {
+            get
+            {
+                var d = CascadingDefaults.GetDensityInfo(AppliedDensity);
+
+                var suffix = AppliedInputStyle == MTTextInputStyle.Filled ? "--tf--filled" : "--tf--outlined";
+                suffix += string.IsNullOrWhiteSpace(LeadingIcon) ? "" : "-with-leading-icon";
+
+                d.CssClassName += suffix;
+
+                return d;
+            }
+        }
+
+        private readonly List<MTDensity> HighlyDense = new() { MTDensity.Minus5, MTDensity.Minus4, MTDensity.Minus3, MTDensity.Compact, MTDensity.Minus2, MTDensity.Comfortable };
+
+        private bool ShowLabel
+        {
+            get
+            {
+                if (string.IsNullOrWhiteSpace(Label)) return false;
+                if (AppliedInputStyle == MTTextInputStyle.Filled && HighlyDense.Contains(AppliedDensity)) return false;
+                return true;
+            }
+        }
 
 
         /// <inheritdoc/>
@@ -95,9 +125,9 @@ namespace BlazorMdc
                 .Add("mdc-text-field")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
-                .AddIf("mdc-text-field--filled", () => AppliedTextInputStyle == MTTextInputStyle.Filled)
-                .AddIf("mdc-text-field--outlined", () => AppliedTextInputStyle == MTTextInputStyle.Outlined)
-                .AddIf("mdc-text-field--no-label", () => string.IsNullOrWhiteSpace(Label))
+                .AddIf("mdc-text-field--filled", () => AppliedInputStyle == MTTextInputStyle.Filled)
+                .AddIf("mdc-text-field--outlined", () => AppliedInputStyle == MTTextInputStyle.Outlined)
+                .AddIf("mdc-text-field--no-label", () => !ShowLabel)
                 .AddIf("mdc-text-field--disabled", () => Disabled)
                 .AddIf("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
                 .AddIf("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
