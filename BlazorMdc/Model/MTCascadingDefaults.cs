@@ -39,6 +39,7 @@ namespace BlazorMdc
         /// </remarks>
         public readonly IEnumerable<string> EssentialSplattableAttributes = new string[] { "formnovalidate", "id", "max", "min", "role", "step", "tabindex", "type" };
 
+
         /// <summary>
         /// Further attributes that can be set as allowable when <see cref="Internal.ComponentFoundation"/>
         /// performs unmatched attribute validation. Works with <see cref="ConstrainSplattableAttributes"/>
@@ -52,9 +53,18 @@ namespace BlazorMdc
         /// </summary>
         internal IEnumerable<string> AppliedAllowedSplattableAttributes => EssentialSplattableAttributes.Union(AllowedSplattableAttributes.Select(x => x.ToLower())).Distinct();
 
+
+        /// <summary>
+        /// Defines how radio button groups and selects validate mismtatch between item lists and initial value.
+        /// </summary>
         public MTItemValidation ItemValidation { get; set; } = MTItemValidation.Exception;
-        internal MTItemValidation AppliedItemValidationSelect(MTItemValidation? criteria = null) => criteria ?? ItemValidation;
-        internal MTItemValidation AppliedItemValidationRadioButtonGroup(MTItemValidation? criteria = null) => criteria ?? ItemValidation;
+
+        /// <summary>
+        /// The applied item validation for selects and radio button groups.
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
+        internal MTItemValidation AppliedItemValidation(MTItemValidation? criteria = null) => criteria ?? ItemValidation;
 
 
 
@@ -104,6 +114,7 @@ namespace BlazorMdc
         /// <returns>The <see cref="IconFAStyle"/> to apply.</returns>
         internal MTIconFAStyle AppliedIconFAStyle(MTIconFAStyle? iconFAStyle = null) => iconFAStyle ?? IconFAStyle ;
 
+
         /// <summary>
         /// The default Font Awesome relative size, initialized to <see cref="MTIconFARelativeSize.Regular"/> if not explicitly set.
         /// </summary>
@@ -148,7 +159,7 @@ namespace BlazorMdc
         /// <param name="style">The style parameter passed to the <see cref="MTButton"/></param>
         /// <param name="card">The <see cref="MTMTButton"/>'s card reference (null if button is not in a card)</param>
         /// <param name="dialog">The <see cref="MTDialog"/>'s card reference (null if button is not in a dialog)</param>
-        /// <returns>The <see cref="ButtonStyle"/> to apply.</returns>
+        /// <returns>The <see cref="MTButtonStyle"/> to apply.</returns>
         internal MTButtonStyle AppliedStyle(MTButtonStyle? style, MTCard card, MTDialog dialog)
         {
             if (style != null) return (MTButtonStyle)style;
@@ -167,8 +178,8 @@ namespace BlazorMdc
         /// The style to apply to an <see cref="MTCard"/>.
         /// </summary>
         /// <param name="style">The style parameter passed to the <see cref="MTCard"/></param>
-        /// <returns>The <see cref="CardStyle"/> to apply.</returns>
-        public MTCardStyle AppliedStyle(MTCardStyle? style = null) => style ?? CardStyle;
+        /// <returns>The <see cref="MTCardStyle"/> to apply.</returns>
+        internal MTCardStyle AppliedStyle(MTCardStyle? style = null) => style ?? CardStyle;
 
 
         /// <summary>
@@ -180,8 +191,21 @@ namespace BlazorMdc
         /// The style to apply to an <see cref="MTList{TItem}"/>.
         /// </summary>
         /// <param name="style">The style parameter passed to the <see cref="MTList{TItem}"/></param>
-        /// <returns>The <see cref="ListStyle"/> to apply.</returns>
+        /// <returns>The <see cref="MTListStyle"/> to apply.</returns>
         internal MTListStyle AppliedStyle(MTListStyle? style = null) => style ?? ListStyle;
+
+
+        /// <summary>
+        /// The default type for an <see cref="MTList{TItem}"/>, initialized to <see cref="MTListType.Regular"/> if not explicitly set.
+        /// </summary>
+        public MTListType ListType { get; set; } = MTListType.Regular;
+
+        /// <summary>
+        /// The style to apply to an <see cref="MTList{TItem}"/>.
+        /// </summary>
+        /// <param name="style">The style parameter passed to the <see cref="MTList{TItem}"/></param>
+        /// <returns>The <see cref="MTListStyle"/> to apply.</returns>
+        internal MTListType AppliedType(MTListType? type = null) => type ?? ListType;
 
 
         /// <summary>
@@ -193,10 +217,10 @@ namespace BlazorMdc
         public MTSelectInputStyle SelectInputStyle { get; set; } = MTSelectInputStyle.Filled;
 
         /// <summary>
-        /// The style to apply to an <see cref="MTCard"/>.
+        /// The style to apply to an <see cref="MTSelect{TItem}"/>.
         /// </summary>
-        /// <param name="style">The style parameter passed to the <see cref="MTCard"/></param>
-        /// <returns>The <see cref="CardStyle"/> to apply.</returns>
+        /// <param name="style">The style parameter passed to the <see cref="MTSelect{TItem}"/></param>
+        /// <returns>The <see cref="MTSelectInputStyle"/> to apply.</returns>
         internal MTSelectInputStyle AppliedStyle(MTSelectInputStyle? style = null) => style ?? SelectInputStyle;
 
 
@@ -212,8 +236,8 @@ namespace BlazorMdc
         /// The text alignment style to apply to an <see cref="MTTextField"/>, an <see cref="MTTextArea"/> or <see cref="MTSelect{TItem}"/>.
         /// </summary>
         /// <param name="style">The text align style parameter passed to the <see cref="MTTextField"/>, <see cref="MTTextArea"/> or <see cref="MTSelect{TItem}"/></param>
-        /// <returns>The <see cref="TextAlignStyle"/> to apply.</returns>
-        public MTTextAlignStyle AppliedStyle(MTTextAlignStyle? style = null) => style ?? TextAlignStyle;
+        /// <returns>The <see cref="MTTextAlignStyle"/> to apply.</returns>
+        internal MTTextAlignStyle AppliedStyle(MTTextAlignStyle? style = null) => style ?? TextAlignStyle;
 
 
         /// <summary>
@@ -228,7 +252,7 @@ namespace BlazorMdc
         /// The text input style to apply to an <see cref="MTTextField"/> or an <see cref="MTTextArea"/>.
         /// </summary>
         /// <param name="style">The text input style parameter passed to the <see cref="MTTextField"/> or <see cref="MTTextArea"/></param>
-        /// <returns>The <see cref="TextAlignStyle"/> to apply.</returns>
+        /// <returns>The <see cref="MTTextInputStyle"/> to apply.</returns>
         internal MTTextInputStyle AppliedStyle(MTTextInputStyle? style = null) => style ?? TextInputStyle;
 
 
@@ -250,7 +274,7 @@ namespace BlazorMdc
         /// The date selection criteria to apply to a <see cref="MTDatePicker"/>.
         /// </summary>
         /// <param name="criteria">The criteria style parameter passed to the <see cref="MTDatePicker"/></param>
-        /// <returns>The <see cref="DateSelectionCriteria"/> to apply.</returns>
+        /// <returns>The <see cref="MTDateSelectionCriteria"/> to apply.</returns>
         internal MTDateSelectionCriteria AppliedDateSelectionCriteria(MTDateSelectionCriteria? criteria = null) => criteria ?? DateSelectionCriteria;
 
 
@@ -296,7 +320,7 @@ namespace BlazorMdc
         /// The density to apply to an <see cref="MTButton"/>.
         /// </summary>
         /// <param name="density">The density parameter passed to the <see cref="MTButton"/></param>
-        /// <returns>The <see cref="ButtonStyle"/> to apply.</returns>
+        /// <returns></returns>
         internal MTDensity AppliedButtonDensity(MTDensity? density) => density ?? ButtonDensity;
 
 
@@ -315,8 +339,27 @@ namespace BlazorMdc
         /// The density to apply to an <see cref="MTCheckbox"/>.
         /// </summary>
         /// <param name="density">The density parameter passed to the <see cref="MTCheckbox"/></param>
-        /// <returns>The <see cref="ButtonStyle"/> to apply.</returns>
+        /// <returns></returns>
         internal MTDensity AppliedCheckboxDensity(MTDensity? density) => density ?? CheckboxDensity;
+
+
+
+        private MTDensity? _dataTableDensity = null;
+        /// <summary>
+        /// The default density for an <see cref="MTDataTable{TItem}"/>, defaults to <see cref="ThemeDensity"/> if not explicitly set.
+        /// </summary>
+        public MTDensity DataTableDensity
+        {
+            get => _dataTableDensity ?? ThemeDensity;
+            set => _dataTableDensity = value;
+        }
+
+        /// <summary>
+        /// The density to apply to an <see cref="MTDataTable{TItem}"/>.
+        /// </summary>
+        /// <param name="density">The density parameter passed to the <see cref="MTDataTable{TItem}"/></param>
+        /// <returns></returns>
+        internal MTDensity AppliedDataTableDensity(MTDensity? density) => density ?? DataTableDensity;
 
 
 
@@ -334,8 +377,27 @@ namespace BlazorMdc
         /// The density to apply to an <see cref="MTIconButton"/>.
         /// </summary>
         /// <param name="density">The density parameter passed to the <see cref="MTIconButton"/></param>
-        /// <returns>The <see cref="ButtonStyle"/> to apply.</returns>
+        /// <returns></returns>
         internal MTDensity AppliedIconButtonDensity(MTDensity? density) => density ?? IconButtonDensity;
+
+
+
+        private MTDensity? _listSingleLineDensity = null;
+        /// <summary>
+        /// The default single line density for an <see cref="MTList{TItem}"/>, defaults to <see cref="ThemeDensity"/> if not explicitly set.
+        /// </summary>
+        public MTDensity ListSingleLineDensity
+        {
+            get => _listSingleLineDensity ?? ThemeDensity;
+            set => _listSingleLineDensity = value;
+        }
+
+        /// <summary>
+        /// The single density to apply to an <see cref="MTList{TItem}"/>.
+        /// </summary>
+        /// <param name="density">The density parameter passed to the <see cref="MTList{TItem}"/></param>
+        /// <returns></returns>
+        internal MTDensity AppliedListSingleLineDensity(MTDensity? density) => density ?? IconButtonDensity;
 
 
 
@@ -353,7 +415,7 @@ namespace BlazorMdc
         /// The density to apply to an <see cref="MTRadioButton{TItem}"/> or <see cref="MTRadioButtonGroup{TItem}"/>.
         /// </summary>
         /// <param name="density">The density parameter passed to the <see cref="MTRadioButton{TItem}"/></param>
-        /// <returns>The <see cref="ButtonStyle"/> to apply.</returns>
+        /// <returns></returns>
         internal MTDensity AppliedRadioButtonDensity(MTDensity? density) => density ?? RadioButtonDensity;
 
 
@@ -372,7 +434,7 @@ namespace BlazorMdc
         /// The density to apply to an <see cref="MTSelect{TItem}"/>.
         /// </summary>
         /// <param name="density">The density parameter passed to the <see cref="MTSelect{TItem}"/></param>
-        /// <returns>The <see cref="ButtonStyle"/> to apply.</returns>
+        /// <returns></returns>
         internal MTDensity AppliedSelectDensity(MTDensity? density) => density ?? SelectDensity;
 
 
@@ -391,8 +453,27 @@ namespace BlazorMdc
         /// The density to apply to an <see cref="MTSwitch"/>.
         /// </summary>
         /// <param name="density">The density parameter passed to the <see cref="MTSwitch"/></param>
-        /// <returns>The <see cref="ButtonStyle"/> to apply.</returns>
+        /// <returns></returns>
         internal MTDensity AppliedSwitchDensity(MTDensity? density) => density ?? SwitchDensity;
+
+
+
+        private MTDensity? _tabBarDensity = null;
+        /// <summary>
+        /// The default density for an <see cref="MTTabBar{TItem}"/>, defaults to <see cref="ThemeDensity"/> if not explicitly set.
+        /// </summary>
+        public MTDensity TabBarDensity
+        {
+            get => _tabBarDensity ?? ThemeDensity;
+            set => _tabBarDensity = value;
+        }
+
+        /// <summary>
+        /// The density to apply to an <see cref="MTTabBar{TItem}"/>.
+        /// </summary>
+        /// <param name="density">The density parameter passed to the <see cref="MTTabBar{TItem}"/></param>
+        /// <returns></returns>
+        internal MTDensity AppliedTabBarDensity(MTDensity? density) => density ?? TabBarDensity;
 
 
 
@@ -412,7 +493,7 @@ namespace BlazorMdc
         /// <see cref="MTNumericDoubleField"/> or <see cref="MTNumericIntField"/>, initialized to <see cref="MTDensity.Default"/>.
         /// </summary>
         /// <param name="density">The density parameter passed to the <see cref="MTTextField"/></param>
-        /// <returns>The <see cref="ButtonStyle"/> to apply.</returns>
+        /// <returns></returns>
         internal MTDensity AppliedTextFieldDensity(MTDensity? density) => density ?? TextFieldDensity;
 
 

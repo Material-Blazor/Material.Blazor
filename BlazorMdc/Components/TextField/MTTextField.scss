@@ -1,47 +1,163 @@
 ﻿@use "@material/textfield";
 
+
 .mdc-text-field {
-    &.dense--5,
-    &.dense--4 {
+    &.dense--5--tf--filled,
+    &.dense--4--tf--filled {
         @include textfield.density(-4);
+    }
+
+    &.dense--3--tf--filled,
+    &.dense-compact--tf--filled {
+        @include textfield.density(-3);
+    }
+
+    &.dense--2--tf--filled,
+    &.dense-comfortable--tf--filled {
+        @include textfield.density(-2);
+    }
+
+    &.dense--1--tf--filled {
+        @include textfield.density(-1);
+    }
+
+    &.dense--0--tf--filled,
+    &.dense-default--tf--filled {
+        @include textfield.density(0);
+    }
+}
+
+
+.mdc-text-field {
+    &.dense--5--tf--filled-with-leading-icon,
+    &.dense--4--tf--filled-with-leading-icon {
+        @include textfield.density(-4);
+    }
+
+    &.dense--3--tf--filled-with-leading-icon,
+    &.dense-compact--tf--filled-with-leading-icon {
+        @include textfield.density(-3);
+    }
+
+    &.dense--2--tf--filled-with-leading-icon,
+    &.dense-comfortable--tf--filled-with-leading-icon {
+        @include textfield.density(-2);
+    }
+
+    &.dense--1--tf--filled-with-leading-icon {
+        @include textfield.density(-1);
+    }
+
+    &.dense--0--tf--filled-with-leading-icon,
+    &.dense-default--tf--filled-with-leading-icon {
+        @include textfield.density(0);
+    }
+}
+
+
+.mdc-text-field {
+    &.dense--5--tf--outlined,
+    &.dense--4--tf--outlined {
         @include textfield.outlined-density(-4);
+    }
+
+    &.dense--3--tf--outlined,
+    &.dense-compact--tf--outlined {
+        @include textfield.outlined-density(-3);
+    }
+
+    &.dense--2--tf--outlined,
+    &.dense-comfortable--tf--outlined {
+        @include textfield.outlined-density(-2);
+    }
+
+    &.dense--1--tf--outlined {
+        @include textfield.outlined-density(-1);
+    }
+
+    &.dense--0--tf--outlined,
+    &.dense-default--tf--outlined {
+        @include textfield.outlined-density(0);
+    }
+}
+
+
+.mdc-text-field {
+    &.dense--5--tf--outlined-with-leading-icon,
+    &.dense--4--tf--outlined-with-leading-icon {
         @include textfield.outlined-with-leading-icon-density(-4);
+    }
+
+    &.dense--3--tf--outlined-with-leading-icon,
+    &.dense-compact--tf--outlined-with-leading-icon {
+        @include textfield.outlined-with-leading-icon-density(-3);
+    }
+
+    &.dense--2--tf--outlined-with-leading-icon,
+    &.dense-comfortable--tf--outlined-with-leading-icon {
+        @include textfield.outlined-with-leading-icon-density(-2);
+    }
+
+    &.dense--1--tf--outlined-with-leading-icon {
+        @include textfield.outlined-with-leading-icon-density(-1);
+    }
+
+    &.dense--0--tf--outlined-with-leading-icon,
+    &.dense-default--tf--outlined-with-leading-icon {
+        @include textfield.outlined-with-leading-icon-density(0);
+    }
+}
+
+
+.mdc-text-field {
+    &.dense--5--ta--filled,
+    &.dense--4--ta--filled {
         @include textfield.filled-textarea-density(-4);
+    }
+
+    &.dense--3--ta--filled,
+    &.dense-compact--ta--filled {
+        @include textfield.filled-textarea-density(-3);
+    }
+
+    &.dense--2--ta--filled,
+    &.dense-comfortable--ta--filled {
+        @include textfield.filled-textarea-density(-2);
+    }
+
+    &.dense--1--ta--filled {
+        @include textfield.filled-textarea-density(-1);
+    }
+
+    &.dense--0--ta--filled,
+    &.dense-default--ta--filled {
+        @include textfield.filled-textarea-density(0);
+    }
+}
+
+
+.mdc-text-field {
+    &.dense--5--ta--outlined,
+    &.dense--4--ta--outlined {
         @include textfield.outlined-textarea-density(-4);
     }
 
-    &.dense--3,
-    &.dense-compact {
-        @include textfield.density(-3);
-        @include textfield.outlined-density(-3);
-        @include textfield.outlined-with-leading-icon-density(-3);
-        @include textfield.filled-textarea-density(-3);
+    &.dense--3--ta--outlined,
+    &.dense-compact--ta--outlined {
         @include textfield.outlined-textarea-density(-3);
     }
 
-    &.dense--2,
-    &.dense-comfortable {
-        @include textfield.density(-2);
-        @include textfield.outlined-density(-2);
-        @include textfield.outlined-with-leading-icon-density(-2);
-        @include textfield.filled-textarea-density(-2);
+    &.dense--2--ta--outlined,
+    &.dense-comfortable--ta--outlined {
         @include textfield.outlined-textarea-density(-2);
     }
 
-    &.dense--1 {
-        @include textfield.density(-1);
-        @include textfield.outlined-density(-1);
-        @include textfield.outlined-with-leading-icon-density(-1);
-        @include textfield.filled-textarea-density(-1);
+    &.dense--1--ta--outlined {
         @include textfield.outlined-textarea-density(-1);
     }
 
-    &.dense--0,
-    &.dense-default {
-        @include textfield.density(0);
-        @include textfield.outlined-density(0);
-        @include textfield.outlined-with-leading-icon-density(0);
-        @include textfield.filled-textarea-density(0);
+    &.dense--0--ta--outlined,
+    &.dense-default--ta--outlined {
         @include textfield.outlined-textarea-density(0);
     }
 }

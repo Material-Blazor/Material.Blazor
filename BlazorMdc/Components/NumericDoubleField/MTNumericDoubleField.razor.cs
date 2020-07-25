@@ -19,6 +19,7 @@ namespace BlazorMdc
 #nullable enable annotations
         /// <summary>
         /// The text input style.
+        /// <para>Overrides <see cref="MTCascadingDefaults.TextInputStyle"/></para>
         /// </summary>
         [Parameter] public MTTextInputStyle? TextInputStyle { get; set; }
 
@@ -58,6 +59,7 @@ namespace BlazorMdc
         /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
         /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
         /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
+        /// <para>Overrides <see cref="MTCascadingDefaults.IconFoundryName"/></para>
         /// </summary>
         [Parameter] public IMTIconFoundry? IconFoundry { get; set; }
 

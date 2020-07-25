@@ -6,7 +6,7 @@ title: MTDataTable
 
 ### Summary
 
-A [Material Data Table](https://material.io/develop/web/components/data-tables/) built using render fragments. It features:
+A [Material Data Table](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-data-table#data-tables) built using render fragments. It features:
 
 ### Details
 

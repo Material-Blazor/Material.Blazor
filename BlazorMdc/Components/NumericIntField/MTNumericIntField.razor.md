@@ -6,7 +6,7 @@ title: MTNumericIntField
 
 ### Summary
 
-An integer variant of [MTNumericDoubleField](xref:C.MTNumericDoubleField).
+An integer variant of [MTNumericDoubleField](xref:C.MTNumericDoubleField). Applies [density subsystem](xref:A.Density) - note that filled text fields with denisty of -2 or less ignore labels by design within Material Theme.
 
 &nbsp;
 

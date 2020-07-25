@@ -16,6 +16,7 @@ namespace BlazorMdc
     {
         /// <summary>
         /// The select style.
+        /// <para>Overrides <see cref="MTCascadingDefaults.SelectInputStyle"/></para>
         /// </summary>
         [Parameter] public MTSelectInputStyle? SelectInputStyle { get; set; }
 

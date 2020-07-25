@@ -31,7 +31,15 @@ namespace BlazorMdc
         [Parameter] public RenderFragment<TItem> TableRow { get; set; }
 
 
+        /// <summary>
+        /// The data table's density.
+        /// </summary>
+        [Parameter] public MTDensity? Density { get; set; }
+
+
         private ElementReference ElementReference { get; set; }
+
+        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedDataTableDensity(Density));
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
@@ -40,7 +48,8 @@ namespace BlazorMdc
             base.OnInitialized();
 
             ClassMapper
-                .Add("mdc-data-table");
+                .Add("mdc-data-table")
+                .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass);
         }
 
 

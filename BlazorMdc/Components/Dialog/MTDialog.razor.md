@@ -6,7 +6,7 @@ title: MTDialog
 
 ### Summary
 
-A [Material Dialog](https://material.io/develop/web/components/dialogs/) using a render fragment for content. It features:
+A [Material Dialog](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-dialog#dialogs) using a render fragment for content. It features:
 
 ### Details
 

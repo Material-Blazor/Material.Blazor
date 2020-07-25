@@ -44,6 +44,7 @@ namespace BlazorMdc
 
         /// <summary>
         /// The Material Icons theme.
+        /// <para>Overrides <see cref="MTCascadingDefaults.IconMITheme"/></para>
         /// </summary>
         public MTIconMITheme Theme { get; }
 

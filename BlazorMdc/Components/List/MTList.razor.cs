@@ -17,8 +17,16 @@ namespace BlazorMdc
     {
         /// <summary>
         /// The list style.
+        /// <para>Overrides <see cref="MTCascadingDefaults.ListStyle"/></para>
         /// </summary>
         [Parameter] public MTListStyle? ListStyle { get; set; }
+
+
+        /// <summary>
+        /// The list type.
+        /// <para>Overrides <see cref="MTCascadingDefaults.ListType"/></para>
+        /// </summary>
+        [Parameter] public MTListType? ListType { get; set; }
 
 
         /// <summary>
@@ -114,15 +122,9 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Sets the dense Material Theme class if true.  Defaults to False.
+        /// The lists's density if it is a single line list. Ignored if <see cref="ListType"/> is <see cref="MTListType.Dense"/>
         /// </summary>
-        [Parameter] public bool Dense { get; set; } = false;
-
-
-        /// <summary>
-        /// Sets the avatar list Material Theme class if true. Defaults to False. 
-        /// </summary>
-        [Parameter] public bool AvatarList { get; set; } = false;
+        [Parameter] public MTDensity? SingleLineDensity { get; set; }
 
 
         /// <summary>
@@ -139,6 +141,13 @@ namespace BlazorMdc
 
 
         private ElementReference ElementReference { get; set; }
+
+        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedListSingleLineDensity(SingleLineDensity));
+
+        private MTListStyle AppliedListStyle => CascadingDefaults.AppliedStyle(ListStyle);
+
+        private MTListType AppliedListType => CascadingDefaults.AppliedType(ListType);
+
         private int NumberOfLines { get; set; }
         private bool HasLineTwo { get; set; }
         private bool HasLineThree { get; set; }
@@ -151,12 +160,13 @@ namespace BlazorMdc
         {
             ClassMapper
                 .Add("mdc-list")
-                .AddIf("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(ListStyle) == MTListStyle.Outlined))
+                .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass && NumberOfLines == 1 && AppliedListType != MTListType.Dense)
+                .AddIf("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(AppliedListStyle) == MTListStyle.Outlined))
                 .AddIf("mdc-list--two-line", () => (NumberOfLines == 2))
                 .AddIf("bmdc-list--three-line", () => (NumberOfLines == 3))
                 .AddIf("mdc-list--non-interactive", () => NonInteractive)
-                .AddIf("mdc-list--dense", () => Dense)
-                .AddIf("mdc-list--avatar-list", () => AvatarList);
+                .AddIf("mdc-list--dense", () => AppliedListType == MTListType.Dense)
+                .AddIf("mdc-list--avatar-list", () => AppliedListType == MTListType.Avatar);
         }
 
         /// <inheritdoc/>

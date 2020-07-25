@@ -6,50 +6,61 @@
 
 <p>See <code>TabBarSample.razor</code> for sources.</p>
 
+<p>Density:</p>
+<p>
+    <MTRadioButtonGroup @bind-Value="@Density"
+                        Items="@DensityItems"
+                        EnableTouchWrapper="true" />
+</p>
+
 <p><MTTextField @bind-Value="@tabLabel1" Label="2nd Tab" /></p>
 
-<MTTabBar @bind-TabIndex="@tabIndex"
-          Items="@tabLabels"
-          Context="item">
-    <Icon>
-        @{ var name = "fa-" + item; }
-        <MTIcon IconName="@name" TabBar="true" IconFoundry="MTIconHelper.FAFoundry()" />
-    </Icon>
-    <Label>@item</Label>
-</MTTabBar>
+<div @key="@Density">
+    <MTTabBar @bind-TabIndex="@tabIndex"
+              Items="@tabLabels"
+              Context="item"
+              Density="@Density">
+        <Icon>
+            @{ var name = "fa-" + item; }
+            <MTIcon IconName="@name" TabBar="true" IconFoundry="MTIconHelper.FAFoundry()" />
+        </Icon>
+        <Label>@item</Label>
+    </MTTabBar>
 
-<p>Clicked tab: @tabLabels[tabIndex]</p>
-
-
-
-<MTDivider Style="margin: 3rem 0 3rem 0;"></MTDivider>
-
-<p><MTSwitch @bind-Value="@stacked" Label="Stack Icons" /></p>
-
-<p>Current tab index: @slidingTabIndex</p>
-
-<p style="margin-bottom: 2em;"><MTButton Label="Got to Alarm" @onclick="@ButtonClickAsync" /></p>
+    <p>Clicked tab: @tabLabels[tabIndex]</p>
 
 
-<MTSlidingTabBar @key="@stacked"
-                 @ref="slidingTabBar"
-                 Items="@slidingTabItems"
-                 Context="item"
-                 @bind-TabIndex="@slidingTabIndex"
-                 StackIcons="@stacked">
 
-    <Label>@item.IconName</Label>
-    <Icon><MTIcon IconName="@item.IconName" TabBar="true" /></Icon>
-    <Content>
-        <h3 class="mdc-typography--headline6">@item.IconName.ToUpper()</h3>
-        <p class="mdc-typography">@item.Text</p>
+    <MTDivider Style="margin: 3rem 0 3rem 0;"></MTDivider>
 
-        @if (item.IconName == "home")
-        {
-            <DialogSample HideHeading="true" />
-        }
-    </Content>
-</MTSlidingTabBar>
+    <p><MTSwitch @bind-Value="@stacked" Label="Stack Icons" /></p>
+
+    <p>Current tab index: @slidingTabIndex</p>
+
+    <p style="margin-bottom: 2em;"><MTButton Label="Got to Alarm" @onclick="@ButtonClickAsync" /></p>
+
+
+    <MTSlidingTabBar @key="@stacked"
+                     @ref="slidingTabBar"
+                     Items="@slidingTabItems"
+                     Context="item"
+                     @bind-TabIndex="@slidingTabIndex"
+                     StackIcons="@stacked"
+                     Density="@Density">
+
+        <Label>@item.IconName</Label>
+        <Icon><MTIcon IconName="@item.IconName" TabBar="true" /></Icon>
+        <Content>
+            <h3 class="mdc-typography--headline6">@item.IconName.ToUpper()</h3>
+            <p class="mdc-typography">@item.Text</p>
+
+            @if (item.IconName == "home")
+            {
+                <DialogSample HideHeading="true" />
+            }
+        </Content>
+    </MTSlidingTabBar>
+</div>
 
 
 @code {
@@ -107,4 +118,14 @@
         StateHasChanged();
         await Task.CompletedTask;
     }
+
+    IEnumerable<MTListElement<MTDensity>> DensityItems => from d in (MTDensity[])Enum.GetValues(typeof(MTDensity))
+                                                          select new MTListElement<MTDensity>
+                                                          {
+                                                              SelectedValue = d,
+                                                              Label = d.ToString(),
+                                                              Disabled = false
+                                                          };
+
+    private MTDensity Density { get; set; } = MTDensity.Default;
 }

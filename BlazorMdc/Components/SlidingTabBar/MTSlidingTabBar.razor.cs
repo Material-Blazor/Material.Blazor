@@ -65,5 +65,11 @@ namespace BlazorMdc
         /// Content render fragments under the tab bar.
         /// </summary>
         [Parameter] public RenderFragment<TItem> Content { get; set; }
+
+
+        /// <summary>
+        /// The tab bar's density.
+        /// </summary>
+        [Parameter] public MTDensity? Density { get; set; }
     }
 }

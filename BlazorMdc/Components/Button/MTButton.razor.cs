@@ -22,6 +22,7 @@ namespace BlazorMdc
 #nullable enable annotations
         /// <summary>
         /// The button's Material Theme style - see <see cref="BlazorMdc.MTButtonStyle"/>.
+        /// <para>Overrides <see cref="MTCascadingDefaults.ButtonStyle"/>, <see cref="MTCascadingDefaults.CardActionButtonStyle"/> or <see cref="MTCascadingDefaults.DialogActionButtonStyle"/> as relevant.</para>
         /// </summary>
         [Parameter] public MTButtonStyle? ButtonStyle { get; set; }
 
@@ -55,6 +56,7 @@ namespace BlazorMdc
         /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
         /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
         /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
+        /// <para>Overrides <see cref="MTCascadingDefaults.IconFoundryName"/></para>
         /// </summary>
         [Parameter] public IMTIconFoundry? IconFoundry { get; set; }
 

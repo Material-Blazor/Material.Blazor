@@ -6,92 +6,129 @@
 
 <p>See <code>ListSample.razor</code> for sources.</p>
 
-<p><MTSwitch @bind-Value="@dense" Label="Set for dense" /></p>
+<p>List type:</p>
+<p>
+    <MTRadioButtonGroup @bind-Value="@ListType"
+                        Items="@ListTypes"
+                        EnableTouchWrapper="true" />
+</p>
+
+<p>Density for one line lists:</p>
+<p>
+    <MTRadioButtonGroup @bind-Value="@SingleLineDensity"
+                        Items="@DensityItems"
+                        EnableTouchWrapper="true" />
+</p>
+
+<p>Other parameters:</p>
 <p><MTSwitch @bind-Value="@hideLineTwo" Label="Hide line two" /></p>
+
 <p><MTSwitch @bind-Value="@hideLineThree" Label="Hide line three" /></p>
 
-<MTList Items="@displayedProducts"
-        Context="product"
-        ShowSeparators="true"
-        KeyboardInteractions="true"
-        Ripple="true"
-        AvatarList="true"
-        Dense="@dense"
-        HideLineTwo="@hideLineTwo"
-        HideLineThree="@hideLineThree"
-        OnClick="OnClick"
-        ListStyle="MTListStyle.Outlined">
+<div @key="@SingleLineDensity">
+    <MTList Items="@displayedProducts"
+            Context="product"
+            ShowSeparators="true"
+            KeyboardInteractions="true"
+            Ripple="true"
+            ListType="@ListType"
+            SingleLineDensity="@SingleLineDensity"
+            HideLineTwo="@hideLineTwo"
+            HideLineThree="@hideLineThree"
+            OnClick="OnClick"
+            ListStyle="MTListStyle.Outlined">
 
-    <Icon>shop</Icon>
-    <Title>@product.DisplayName</Title>
-    <Actions>
-        <div style="width: 10rem">
-            <MTSwitch @bind-Value="@product.IsInStock"
-                      Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
-        </div>
-    </Actions>
-</MTList>
+        <Icon>shop</Icon>
+        <Title>@product.DisplayName</Title>
+        <Actions>
+            <div style="width: 10rem">
+                <MTSwitch @bind-Value="@product.IsInStock"
+                          Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
+            </div>
+        </Actions>
+    </MTList>
 
-<p></p>
+    <p></p>
 
-<MTList Items="@displayedProducts"
-        Context="product"
-        ShowSeparators="true"
-        KeyboardInteractions="true"
-        Ripple="true"
-        AvatarList="true"
-        Dense="@dense"
-        HideLineTwo="@hideLineTwo"
-        HideLineThree="@hideLineThree"
-        OnClick="OnClick"
-        ListStyle="MTListStyle.Outlined">
+    <MTList Items="@displayedProducts"
+            Context="product"
+            ShowSeparators="true"
+            KeyboardInteractions="true"
+            Ripple="true"
+            ListType="@ListType"
+            SingleLineDensity="@SingleLineDensity"
+            HideLineTwo="@hideLineTwo"
+            HideLineThree="@hideLineThree"
+            OnClick="OnClick"
+            ListStyle="MTListStyle.Outlined">
 
-    <Icon>shop</Icon>
-    <Title>@product.DisplayName</Title>
-    <LineTwo>@product.LineTwo</LineTwo>
-    <Actions>
-        <div style="width: 10rem">
-            <MTSwitch @bind-Value="@product.IsInStock"
-                      Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
-        </div>
-    </Actions>
-</MTList>
+        <Icon>shop</Icon>
+        <Title>@product.DisplayName</Title>
+        <LineTwo>@product.LineTwo</LineTwo>
+        <Actions>
+            <div style="width: 10rem">
+                <MTSwitch @bind-Value="@product.IsInStock"
+                          Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
+            </div>
+        </Actions>
+    </MTList>
 
-<p></p>
+    <p></p>
 
-<MTList Items="@displayedProducts"
-        Context="product"
-        ShowSeparators="true"
-        KeyboardInteractions="true"
-        Ripple="true"
-        AvatarList="true"
-        Dense="@dense"
-        HideLineTwo="@hideLineTwo"
-        HideLineThree="@hideLineThree"
-        OnClick="OnClick"
-        ListStyle="@MTListStyle.Outlined">
+    <MTList Items="@displayedProducts"
+            Context="product"
+            ShowSeparators="true"
+            KeyboardInteractions="true"
+            Ripple="true"
+            ListType="@ListType"
+            SingleLineDensity="@SingleLineDensity"
+            HideLineTwo="@hideLineTwo"
+            HideLineThree="@hideLineThree"
+            OnClick="OnClick"
+            ListStyle="@MTListStyle.Outlined">
 
-    <Icon>shop</Icon>
-    <Title>@product.DisplayName</Title>
-    <LineTwo>@product.LineTwo</LineTwo>
-    <LineThree>@product.LineThree</LineThree>
-    <Actions>
-        <div style="width: 10rem">
-            <MTSwitch @bind-Value="@product.IsInStock"
-                      Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
-        </div>
-    </Actions>
-</MTList>
+        <Icon>shop</Icon>
+        <Title>@product.DisplayName</Title>
+        <LineTwo>@product.LineTwo</LineTwo>
+        <LineThree>@product.LineThree</LineThree>
+        <Actions>
+            <div style="width: 10rem">
+                <MTSwitch @bind-Value="@product.IsInStock"
+                          Label="@(product.IsInStock ? "In stock" : "Out of stock")" />
+            </div>
+        </Actions>
+    </MTList>
+</div>
 
 <p>Clicked index: '@clickedIndex'</p>
 
 @code {
+    IEnumerable<MTListElement<MTDensity>> DensityItems => from d in (MTDensity[])Enum.GetValues(typeof(MTDensity))
+                                                          select new MTListElement<MTDensity>
+                                                          {
+                                                              SelectedValue = d,
+                                                              Label = d.ToString(),
+                                                              Disabled = false
+                                                          };
+
+
+    IEnumerable<MTListElement<MTListType>> ListTypes => from t in (MTListType[])Enum.GetValues(typeof(MTListType))
+                                                        select new MTListElement<MTListType>
+                                                        {
+                                                            SelectedValue = t,
+                                                            Label = t.ToString(),
+                                                            Disabled = false
+                                                        };
+
+
+
     IEnumerable<Product> displayedProducts = new System.Collections.Generic.List<Product>
 {
         new Product { ProductId = 1, DisplayName = "Curly-wurly straw", LineTwo = "Amaze your friends with this cheap plastic tube", LineThree = "Line three", IsInStock = true },
         new Product { ProductId = 2, DisplayName = "Pepsi Connoisseur (12mo subscription)", LineTwo = "Covers all developments in the world of Pepsi™", LineThree = "Line three", IsInStock = false },
         new Product { ProductId = 3, DisplayName = "Recarbonator Pro", LineTwo = "Revitalize your old beverages in just hours", LineThree = "Line three", IsInStock = true },
     };
+
 
     public class Product
     {
@@ -102,8 +139,10 @@
         public bool IsInStock { get; set; }
     }
 
+
+    private MTDensity SingleLineDensity { get; set; } = MTDensity.Default;
+    private MTListType ListType { get; set; } = MTListType.Regular;
     private int clickedIndex;
-    private bool dense = false;
     private bool hideLineTwo = false;
     private bool hideLineThree = false;
 

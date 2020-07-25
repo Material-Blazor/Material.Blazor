@@ -6,7 +6,7 @@ title: MTIconButtonToggle
 
 ### Summary
 
-A toggle variant of the [Material Icon Button](https://material.io/develop/web/components/buttons/icon-buttons/) that accepts on and off icons, an optional icon foundry and two way binds to a boolean.
+A toggle variant of the [Material Icon Button](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-icon-button#icon-buttons) that accepts on and off icons, an optional icon foundry and two way binds to a boolean.
  pplies [density subsystem](xref:A.Density).
 
 &nbsp;

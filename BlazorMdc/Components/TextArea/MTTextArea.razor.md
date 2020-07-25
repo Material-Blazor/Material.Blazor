@@ -6,7 +6,7 @@ title: MTTextArea
 
 ### Summary
 
-A [Material Text Field](https://material.io/develop/web/components/input-controls/text-field/) expressed as a text area.
+A [Material Text Field](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-textfield#text-field) expressed as a text area.
 
 ### Details
 
