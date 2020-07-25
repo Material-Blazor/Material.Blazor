@@ -39,6 +39,7 @@ namespace BlazorMdc
         /// </remarks>
         public readonly IEnumerable<string> EssentialSplattableAttributes = new string[] { "formnovalidate", "id", "max", "min", "role", "step", "tabindex", "type" };
 
+
         /// <summary>
         /// Further attributes that can be set as allowable when <see cref="Internal.ComponentFoundation"/>
         /// performs unmatched attribute validation. Works with <see cref="ConstrainSplattableAttributes"/>
@@ -52,8 +53,24 @@ namespace BlazorMdc
         /// </summary>
         internal IEnumerable<string> AppliedAllowedSplattableAttributes => EssentialSplattableAttributes.Union(AllowedSplattableAttributes.Select(x => x.ToLower())).Distinct();
 
+
+        /// <summary>
+        /// Defines how radio button groups and selects validate mismtatch between item lists and initial value.
+        /// </summary>
         public MTItemValidation ItemValidation { get; set; } = MTItemValidation.Exception;
+
+        /// <summary>
+        /// The applied item validation for selects.
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
         internal MTItemValidation AppliedItemValidationSelect(MTItemValidation? criteria = null) => criteria ?? ItemValidation;
+
+        /// <summary>
+        /// The applied item validation for radio button groups.
+        /// </summary>
+        /// <param name="criteria"></param>
+        /// <returns></returns>
         internal MTItemValidation AppliedItemValidationRadioButtonGroup(MTItemValidation? criteria = null) => criteria ?? ItemValidation;
 
 
@@ -148,7 +165,7 @@ namespace BlazorMdc
         /// <param name="style">The style parameter passed to the <see cref="MTButton"/></param>
         /// <param name="card">The <see cref="MTMTButton"/>'s card reference (null if button is not in a card)</param>
         /// <param name="dialog">The <see cref="MTDialog"/>'s card reference (null if button is not in a dialog)</param>
-        /// <returns>The <see cref="ButtonStyle"/> to apply.</returns>
+        /// <returns>The <see cref="MTButtonStyle"/> to apply.</returns>
         internal MTButtonStyle AppliedStyle(MTButtonStyle? style, MTCard card, MTDialog dialog)
         {
             if (style != null) return (MTButtonStyle)style;
@@ -167,8 +184,8 @@ namespace BlazorMdc
         /// The style to apply to an <see cref="MTCard"/>.
         /// </summary>
         /// <param name="style">The style parameter passed to the <see cref="MTCard"/></param>
-        /// <returns>The <see cref="CardStyle"/> to apply.</returns>
-        public MTCardStyle AppliedStyle(MTCardStyle? style = null) => style ?? CardStyle;
+        /// <returns>The <see cref="MTCardStyle"/> to apply.</returns>
+        internal MTCardStyle AppliedStyle(MTCardStyle? style = null) => style ?? CardStyle;
 
 
         /// <summary>
@@ -180,7 +197,7 @@ namespace BlazorMdc
         /// The style to apply to an <see cref="MTList{TItem}"/>.
         /// </summary>
         /// <param name="style">The style parameter passed to the <see cref="MTList{TItem}"/></param>
-        /// <returns>The <see cref="ListStyle"/> to apply.</returns>
+        /// <returns>The <see cref="MTListStyle"/> to apply.</returns>
         internal MTListStyle AppliedStyle(MTListStyle? style = null) => style ?? ListStyle;
 
 
@@ -193,10 +210,10 @@ namespace BlazorMdc
         public MTSelectInputStyle SelectInputStyle { get; set; } = MTSelectInputStyle.Filled;
 
         /// <summary>
-        /// The style to apply to an <see cref="MTCard"/>.
+        /// The style to apply to an <see cref="MTSelect{TItem}"/>.
         /// </summary>
-        /// <param name="style">The style parameter passed to the <see cref="MTCard"/></param>
-        /// <returns>The <see cref="CardStyle"/> to apply.</returns>
+        /// <param name="style">The style parameter passed to the <see cref="MTSelect{TItem}"/></param>
+        /// <returns>The <see cref="MTSelectInputStyle"/> to apply.</returns>
         internal MTSelectInputStyle AppliedStyle(MTSelectInputStyle? style = null) => style ?? SelectInputStyle;
 
 
@@ -212,8 +229,8 @@ namespace BlazorMdc
         /// The text alignment style to apply to an <see cref="MTTextField"/>, an <see cref="MTTextArea"/> or <see cref="MTSelect{TItem}"/>.
         /// </summary>
         /// <param name="style">The text align style parameter passed to the <see cref="MTTextField"/>, <see cref="MTTextArea"/> or <see cref="MTSelect{TItem}"/></param>
-        /// <returns>The <see cref="TextAlignStyle"/> to apply.</returns>
-        public MTTextAlignStyle AppliedStyle(MTTextAlignStyle? style = null) => style ?? TextAlignStyle;
+        /// <returns>The <see cref="MTTextAlignStyle"/> to apply.</returns>
+        internal MTTextAlignStyle AppliedStyle(MTTextAlignStyle? style = null) => style ?? TextAlignStyle;
 
 
         /// <summary>
@@ -228,7 +245,7 @@ namespace BlazorMdc
         /// The text input style to apply to an <see cref="MTTextField"/> or an <see cref="MTTextArea"/>.
         /// </summary>
         /// <param name="style">The text input style parameter passed to the <see cref="MTTextField"/> or <see cref="MTTextArea"/></param>
-        /// <returns>The <see cref="TextAlignStyle"/> to apply.</returns>
+        /// <returns>The <see cref="MTTextInputStyle"/> to apply.</returns>
         internal MTTextInputStyle AppliedStyle(MTTextInputStyle? style = null) => style ?? TextInputStyle;
 
 
@@ -250,7 +267,7 @@ namespace BlazorMdc
         /// The date selection criteria to apply to a <see cref="MTDatePicker"/>.
         /// </summary>
         /// <param name="criteria">The criteria style parameter passed to the <see cref="MTDatePicker"/></param>
-        /// <returns>The <see cref="DateSelectionCriteria"/> to apply.</returns>
+        /// <returns>The <see cref="MTDateSelectionCriteria"/> to apply.</returns>
         internal MTDateSelectionCriteria AppliedDateSelectionCriteria(MTDateSelectionCriteria? criteria = null) => criteria ?? DateSelectionCriteria;
 
 
