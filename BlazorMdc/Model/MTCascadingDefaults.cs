@@ -60,18 +60,11 @@ namespace BlazorMdc
         public MTItemValidation ItemValidation { get; set; } = MTItemValidation.Exception;
 
         /// <summary>
-        /// The applied item validation for selects.
+        /// The applied item validation for selects and radio button groups.
         /// </summary>
         /// <param name="criteria"></param>
         /// <returns></returns>
-        internal MTItemValidation AppliedItemValidationSelect(MTItemValidation? criteria = null) => criteria ?? ItemValidation;
-
-        /// <summary>
-        /// The applied item validation for radio button groups.
-        /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
-        internal MTItemValidation AppliedItemValidationRadioButtonGroup(MTItemValidation? criteria = null) => criteria ?? ItemValidation;
+        internal MTItemValidation AppliedItemValidation(MTItemValidation? criteria = null) => criteria ?? ItemValidation;
 
 
 
@@ -120,6 +113,7 @@ namespace BlazorMdc
         /// <param name="iconFAStyle">The style parameter passed to the component</param>
         /// <returns>The <see cref="IconFAStyle"/> to apply.</returns>
         internal MTIconFAStyle AppliedIconFAStyle(MTIconFAStyle? iconFAStyle = null) => iconFAStyle ?? IconFAStyle ;
+
 
         /// <summary>
         /// The default Font Awesome relative size, initialized to <see cref="MTIconFARelativeSize.Regular"/> if not explicitly set.
@@ -211,7 +205,7 @@ namespace BlazorMdc
         /// </summary>
         /// <param name="style">The style parameter passed to the <see cref="MTList{TItem}"/></param>
         /// <returns>The <see cref="MTListStyle"/> to apply.</returns>
-        internal MTListType AppliedListType(MTListType? type = null) => type ?? ListType;
+        internal MTListType AppliedType(MTListType? type = null) => type ?? ListType;
 
 
         /// <summary>

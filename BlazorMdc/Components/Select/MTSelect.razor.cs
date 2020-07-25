@@ -25,6 +25,7 @@ namespace BlazorMdc
         /// The form of validation to apply when Value is first set, deciding whether to accept
         /// a value outside the <see cref="Items"/> list, replace it with the first list item or
         /// to throw an exception (the default).
+        /// <para>Overrides <see cref="MTCascadingDefaults.ItemValidation"/></para>
         /// </summary>
         [Parameter] public MTItemValidation? ItemValidation { get; set; }
 
@@ -37,12 +38,14 @@ namespace BlazorMdc
 
         /// <summary>
         /// The select's <see cref="BlazorMdc.MTSelectInputStyle"/>.
+        /// <para>Overrides <see cref="MTCascadingDefaults.SelectInputStyle"/></para>
         /// </summary>
         [Parameter] public MTSelectInputStyle? SelectInputStyle { get; set; }
 
 
         /// <summary>
         /// The select's <see cref="BlazorMdc.MTTextAlignStyle"/>.
+        /// <para>Overrides <see cref="MTCascadingDefaults.TextAlignStyle"/></para>
         /// </summary>
         [Parameter] public MTTextAlignStyle? TextAlignStyle { get; set; }
 
@@ -58,6 +61,7 @@ namespace BlazorMdc
         /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
         /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
         /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
+        /// <para>Overrides <see cref="MTCascadingDefaults.IconFoundryName"/></para>
         /// </summary>
         [Parameter] public IMTIconFoundry? IconFoundry { get; set; }
 
@@ -117,7 +121,7 @@ namespace BlazorMdc
 
             ItemDict = Items.ToDictionary(i => i.SelectedValue);
 
-            ReportingValue = ValidateItemList(ItemDict.Values, CascadingDefaults.AppliedItemValidationSelect(ItemValidation));
+            ReportingValue = ValidateItemList(ItemDict.Values, CascadingDefaults.AppliedItemValidation(ItemValidation));
 
             ClassMapper
                 .Add("mdc-select")

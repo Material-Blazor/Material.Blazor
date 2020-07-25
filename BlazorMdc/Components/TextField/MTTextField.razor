@@ -22,7 +22,7 @@
 
         <input @ref="@InputReference"
                id="@Id"
-               class="mdc-text-field__input @Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle)) @FieldClass"
+               class="mdc-text-field__input @AppliedTextInputStyleClass @FieldClass"
                type="text"
                @bind="@ReportingValue"
                @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)">

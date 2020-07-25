@@ -16,12 +16,14 @@ namespace BlazorMdc
     {
         /// <summary>
         /// The text input style.
+        /// <para>Overrides <see cref="MTCascadingDefaults.TextInputStyle"/></para>
         /// </summary>
         [Parameter] public MTTextInputStyle? TextInputStyle { get; set; }
 
 
         /// <summary>
         /// The text alignment style.
+        /// <para>Overrides <see cref="MTCascadingDefaults.TextAlignStyle"/></para>
         /// </summary>
         [Parameter] public MTTextAlignStyle? TextAlignStyle { get; set; }
 

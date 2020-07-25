@@ -65,7 +65,7 @@ namespace BlazorMdc
                 cascadingDefaults = new MTCascadingDefaults();
             }
 
-            MTIconFoundryName iconFoundry = (foundry is null) ? cascadingDefaults.IconFoundryName : foundry.FoundryName;
+            MTIconFoundryName iconFoundry = cascadingDefaults.AppliedIconFoundryName(foundry?.FoundryName);
 
             UnderlyingIcon = iconFoundry switch
             {

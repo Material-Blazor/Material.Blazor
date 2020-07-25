@@ -17,12 +17,14 @@ namespace BlazorMdc
     {
         /// <summary>
         /// The list style.
+        /// <para>Overrides <see cref="MTCascadingDefaults.ListStyle"/></para>
         /// </summary>
         [Parameter] public MTListStyle? ListStyle { get; set; }
 
 
         /// <summary>
         /// The list type.
+        /// <para>Overrides <see cref="MTCascadingDefaults.ListType"/></para>
         /// </summary>
         [Parameter] public MTListType? ListType { get; set; }
 
@@ -142,6 +144,10 @@ namespace BlazorMdc
 
         private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedListSingleLineDensity(SingleLineDensity));
 
+        private MTListStyle AppliedListStyle => CascadingDefaults.AppliedStyle(ListStyle);
+
+        private MTListType AppliedListType => CascadingDefaults.AppliedType(ListType);
+
         private int NumberOfLines { get; set; }
         private bool HasLineTwo { get; set; }
         private bool HasLineThree { get; set; }
@@ -154,13 +160,13 @@ namespace BlazorMdc
         {
             ClassMapper
                 .Add("mdc-list")
-                .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass && NumberOfLines == 1 && ListType != MTListType.Dense)
-                .AddIf("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(ListStyle) == MTListStyle.Outlined))
+                .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass && NumberOfLines == 1 && AppliedListType != MTListType.Dense)
+                .AddIf("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(AppliedListStyle) == MTListStyle.Outlined))
                 .AddIf("mdc-list--two-line", () => (NumberOfLines == 2))
                 .AddIf("bmdc-list--three-line", () => (NumberOfLines == 3))
                 .AddIf("mdc-list--non-interactive", () => NonInteractive)
-                .AddIf("mdc-list--dense", () => ListType == MTListType.Dense)
-                .AddIf("mdc-list--avatar-list", () => ListType == MTListType.Avatar);
+                .AddIf("mdc-list--dense", () => AppliedListType == MTListType.Dense)
+                .AddIf("mdc-list--avatar-list", () => AppliedListType == MTListType.Avatar);
         }
 
         /// <inheritdoc/>
