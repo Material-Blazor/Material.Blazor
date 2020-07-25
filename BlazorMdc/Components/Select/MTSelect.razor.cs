@@ -15,6 +15,7 @@ namespace BlazorMdc
     /// </summary>
     public partial class MTSelect<TItem> : ValidatingInputComponentFoundation<TItem>, IMTDialogChild, IDisposable
     {
+#nullable enable annotations
         /// <summary>
         /// The item list to be represented as a select
         /// </summary>
@@ -70,6 +71,7 @@ namespace BlazorMdc
         /// The select's density.
         /// </summary>
         [Parameter] public MTDensity? Density { get; set; }
+#nullable restore annotations
 
 
         private ElementReference SelectReference { get; set; }
