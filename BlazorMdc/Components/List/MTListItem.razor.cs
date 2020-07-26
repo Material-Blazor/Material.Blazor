@@ -54,13 +54,13 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-list-item")
-                .AddIf("mdc-list-item--disabled bmdc-list-item--disabled", () => Disabled);
+                .AddIf("mdc-list-item--disabled bmdc-list-item--disabled", () => AppliedDisabled);
         }
 
 
         private void InternalClickHandler()
         {
-            if (!Disabled)
+            if (!AppliedDisabled)
             {
                 OnClick.InvokeAsync(NavigationReference);
             }

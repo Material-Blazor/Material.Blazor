@@ -37,7 +37,7 @@ namespace BlazorMdc
             ClassMapper
                 .Add("mdc-switch")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
-                .AddIf("mdc-switch--disabled", () => Disabled)
+                .AddIf("mdc-switch--disabled", () => AppliedDisabled)
                 .AddIf("mdc-switch--checked", () => ReportingValue);
 
             OnValueSet += OnValueSetCallback;
@@ -58,7 +58,7 @@ namespace BlazorMdc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.switch.setDisabled", ElementReference, Disabled));
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.switch.setDisabled", ElementReference, AppliedDisabled));
 
 
         /// <inheritdoc/>

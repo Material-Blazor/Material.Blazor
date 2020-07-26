@@ -97,7 +97,7 @@ namespace BlazorMdc
                 ButtonContainerClass += $" {DensityInfo.CssClassName}";
             }
 
-            if (Disabled)
+            if (AppliedDisabled)
             {
                 DisabledClass = "mdc-radio--disabled";
             }

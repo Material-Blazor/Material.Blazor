@@ -138,6 +138,19 @@ namespace BlazorMdc
          ************************************************************************************************************/
 
         /// <summary>
+        /// The default disabled state.
+        /// </summary>
+        public bool Disabled { get; set; } = false;
+
+        /// <summary>
+        /// The disabled state to apply.
+        /// </summary>
+        /// <param name="disabled">The retuqire disabled state</param>
+        /// <returns>The <see cref="MTCardStyle"/> to apply.</returns>
+        internal bool AppliedDisabled(bool? disabled = null) => disabled ?? Disabled;
+
+
+        /// <summary>
         /// The default style for an <see cref="MTButton"/>, initialized to <see cref="MTButtonStyle.Text"/> if not explicitly set.
         /// </summary>
         public MTButtonStyle ButtonStyle { get; set; } = MTButtonStyle.Text;
@@ -530,6 +543,11 @@ namespace BlazorMdc
                     _ => throw new System.NotImplementedException(),
                 }
             };
+        }
+
+        public MTCascadingDefaults Clone()
+        {
+            throw new NotImplementedException();
         }
     }
 }
