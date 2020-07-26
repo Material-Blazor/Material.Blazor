@@ -23,39 +23,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Content Remove="libman.json" />
+	  <Content Remove="bundleconfig.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Web.LibraryManager.Build" Version="2.1.76" />
+		<Folder Include="Properties\" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Material-Components-Web\dist\" />
+	  <None Include="bundleconfig.json" />
 	</ItemGroup>
-
-	<ItemGroup>
-		<None Include="libman.json" />
-	</ItemGroup>
-
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="copy .\material-components-web\dist\*.min.* ..\blazormdc\wwwroot\material-components-web\dist\" />
-	</Target>
-
-	<Target Name="RestoreDotnetTools" BeforeTargets="PreBuildEvent">
-		<Exec Command="dotnet tool restore" />
-	</Target>
-
-	<Target Name="CompileCss" AfterTargets="RestoreDotnetTools">
-		<Exec Command="dotnet tool run webcompiler Styles/material-components-icons.scss -z disable" />
-	</Target>
-
-	<Target Name="CopyCss" AfterTargets="CompileCss">
-		<Exec Command="xcopy /y .\styles\*.css .\material-components-web\dist\" />
-	</Target>
-
-	<Target Name="DeleteCss" AfterTargets="CopyCss">
-		<Exec Command="del .\styles\*.css" />
-	</Target>
 
 </Project>

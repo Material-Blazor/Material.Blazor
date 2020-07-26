@@ -1,0 +1,53 @@
+{
+  "name": "blazor-mdc.node-material-components",
+  "version": "0.0.0",
+  "description": "Acquire MaterialComponents for BlazorMdc",
+  "main": "server.js",
+  "scripts": {
+    "clean-wwwroot": "@if exist wwwroot rd /s /q wwwroot",
+    "build-scss-bmdcb": "dart-sass Styles\\blazormdc-bundled.scss wwwroot\\Bundles\\blazormdc-bundled.css",
+    "minify-css-bmdcb": "cleancss --level 1 --format breaksWith=lf --output wwwroot\\Bundles\\blazormdc-bundled.min.css wwwroot\\Bundles\\blazormdc-bundled.css",
+    "delete-css-bmdcb": "del /q wwwroot\\Bundles\\blazormdc-bundled.css",
+    "build-scss-matf": "dart-sass Styles\\material-components-icons.scss wwwroot\\Material-Components-Web\\dist\\material-components-icons.css",
+    "minify-css-matf": "cleancss --level 1 --format breaksWith=lf --output wwwroot\\Material-Components-Web\\dist\\material-components-icons.min.css wwwroot\\Material-Components-Web\\dist\\material-components-icons.css",
+    "delete-css-matf": "del /q wwwroot\\Material-Components-Web\\dist\\material-components-icons.css",
+    "build-scss-bmdc": "dart-sass Styles\\blazormdc.scss wwwroot\\blazormdc.css",
+    "minify-css-bmdc": "cleancss --level 1 --format breaksWith=lf --output wwwroot\\blazormdc.min.css wwwroot\\blazormdc.css",
+    "copy-material-css": "copy node_modules\\material-components-web\\dist\\material-components-web.min.css wwwroot\\Material-Components-Web\\dist\\*",
+    "copy-material-js": "copy node_modules\\material-components-web\\dist\\material-components-web.min.js wwwroot\\Material-Components-Web\\dist\\*",
+    "build-ts": "",
+    "minify-js": "",
+    "copy-all": "xcopy /s /q /y wwwroot\\*.* ..\\BlazorMdc\\wwwroot",
+    "build": ""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "clean-css-cli": "^4.3.0",
+    "material-components-web": "7.0.0",
+    "dart-sass": "^1.25.0",
+    "typescript": "^3.9.7"
+  },
+  "-vs-binding": {
+    "BeforeBuild": [
+      "install"
+    ],
+    "AfterBuild": [
+      "clean-wwwroot",
+      "build-scss-bmdcb",
+      "minify-css-bmdcb",
+      "delete-css-bmdcb",
+      "build-scss-matf",
+      "minify-css-matf",
+      "delete-css-matf",
+      "build-scss-bmdc",
+      "minify-css-bmdc",
+      "copy-material-css",
+      "copy-material-js",
+      "build-ts",
+      "minify-js",
+      "copy-all"
+    ]
+  }
+}
