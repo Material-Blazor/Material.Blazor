@@ -48,6 +48,7 @@ then *third/last* `ThemeDensity` from cascading defaults. If either cascading de
 
 | Property | Used In |
 | :------- | :------ |
+| [Disabled](xref:BlazorMdc.MTCascadingDefaults.Disabled) | Sets the default `Disabled` state for all component, overridden by component `Disabled` parameters. |
 | [ButtonStyle](xref:BlazorMdc.MTCascadingDefaults.ButtonStyle) | Style for general [MTButton](xref:C.MTButton)s. Defaults to `MTButtonStyle.Text`. |
 | [CardActionButtonStyle](xref:BlazorMdc.MTCascadingDefaults.CardActionButtonStyle) | Style for [MTButton](xref:C.MTButton)s used for [MTCard](xref:C.MTCard) actions. Defaults to `MTButtonStyle.Text`. |
 | [DialogActionButtonStyle](xref:BlazorMdc.MTCascadingDefaults.DialogActionButtonStyle) | Style for [MTButton](xref:C.MTButton)s used for [MTDialog](xref:C.MTDialog) actions. Defaults to `MTButtonStyle.Text`. |
