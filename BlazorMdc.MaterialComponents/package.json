@@ -5,16 +5,26 @@
   "main": "server.js",
   "scripts": {
     "clean-wwwroot": "@if exist wwwroot rd /s /q wwwroot",
-    "build-scss-matf": "powershell.exe -Command \"New-Item -Path '.' -Name 'wwwroot' -ItemType 'directory'; New-Item -Path 'wwwroot' -Name 'Material-Components-Web' -ItemType 'directory'; New-Item -Path 'wwwroot\\Material-Components-Web' -Name 'dist' -ItemType 'directory'; Invoke-WebRequest -Uri 'https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp' -OutFile '.\\wwwroot\\Material-Components-Web\\dist\\material-components-icons.css'\"",
-    "minify-css-matf": "cleancss --level 1 --format breaksWith=lf --output wwwroot\\Material-Components-Web\\dist\\material-components-icons.min.css wwwroot\\Material-Components-Web\\dist\\material-components-icons.css",
-    "delete-css-matf": "del /q wwwroot\\Material-Components-Web\\dist\\material-components-icons.css",
+
+    "build-scss-matfont": "powershell.exe -Command \"New-Item -Path '.' -Name 'wwwroot' -ItemType 'directory'; New-Item -Path 'wwwroot' -Name 'Material-Components-Web' -ItemType 'directory'; New-Item -Path 'wwwroot\\Material-Components-Web' -Name 'dist' -ItemType 'directory'; Invoke-WebRequest -Uri 'https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp' -OutFile '.\\wwwroot\\Material-Components-Web\\dist\\material-components-icons.css'\"",
+    "minify-css-matfont": "cleancss --level 1 --format breaksWith=lf --output wwwroot\\Material-Components-Web\\dist\\material-components-icons.min.css wwwroot\\Material-Components-Web\\dist\\material-components-icons.css",
+    "delete-css-matfont": "del /q wwwroot\\Material-Components-Web\\dist\\material-components-icons.css",
+
     "build-scss-bmdc": "dart-sass --load-path=node_modules Styles\\blazormdc.scss wwwroot\\blazormdc.css",
     "minify-css-bmdc": "cleancss --level 1 --format breaksWith=lf --output wwwroot\\blazormdc.min.css wwwroot\\blazormdc.css",
+
+    "build-scss-bundle": "dart-sass --load-path=node_modules Styles\\blazormdc-material-bundle.scss wwwroot\\Material-Components-Web\\dist\\blazormdc-materail-bundle.css",
+    "minify-css-bundle": "cleancss --level 1 --format breaksWith=lf --output wwwroot\\Material-Components-Web\\dist\\blazormdc-material-bundle.min.css wwwroot\\Material-Components-Web\\dist\\blazormdc-material-bundle.css",
+    "delete-css-bundle": "del /q wwwroot\\Material-Components-Web\\dist\\blazormdc-bundle.css",
+
     "copy-material-css": "copy node_modules\\material-components-web\\dist\\material-components-web.min.css wwwroot\\Material-Components-Web\\dist\\*",
     "copy-material-js": "copy node_modules\\material-components-web\\dist\\material-components-web.min.js wwwroot\\Material-Components-Web\\dist\\*",
+
     "build-ts": "",
     "minify-js": "",
+
     "copy-all": "xcopy /s /q /y wwwroot\\*.* ..\\BlazorMdc\\wwwroot",
+
     "build": ""
   },
   "keywords": [],

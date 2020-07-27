@@ -1,19 +1,5 @@
 [
   {
-    "outputFileName": "wwwroot/bundles/blazormdc-bundled.min.css",
-    "inputFiles": [
-      "wwwroot/material-components-web/dist/material-components-icons.min.css",
-      "wwwroot/material-components-web/dist/material-components-web.min.css",
-      "wwwroot/blazormdc.css"
-    ],
-    "minify": {
-      "enabled": true,
-      "renameLocals": true
-    },
-    "sourceMap": false
-
-  },
-  {
     "outputFileName": "wwwroot/bundles/blazormdc-bundled.min.js",
     "inputFiles": [
       "wwwroot/material-components-web/dist/material-components-web.min.js",

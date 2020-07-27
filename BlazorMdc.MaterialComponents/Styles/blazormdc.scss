@@ -1,19 +1,2 @@
-@use '../BlazorMdc/Styles/blazormdc.scss';
-@use './wwwroot/Material-Components-Web/material-components-icons.min.css';
-
-.mdc-text-field__affix {
-    user-select: none;
-}
-
-
-.bmdc-custom-scrollbars .mdc-dialog__content {
-    scrollbar-width: var(--bmdc-dialog-firefox-scrollbar-width) !important;
-}
-
-
-.bmdc-custom-scrollbars {
-    /*.bmdc-custom-scrollbars .mdc-drawer__content,
-.bmdc-custom-scrollbars .mdc-menu-surface,
-.bmdc-custom-scrollbars .bmdc-dp-year-pad {*/
-    scrollbar-width: var(--bmdc-select-firefox-scrollbar-width) !important;
-}
+@use '../../BlazorMdc/Styles/blazormdc.scss';
+@use '../wwwroot/Material-Components-Web/material-components-icons.min.css';
