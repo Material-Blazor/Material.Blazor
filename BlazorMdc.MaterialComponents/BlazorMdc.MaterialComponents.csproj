@@ -23,19 +23,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Content Remove="bundleconfig.json" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<Folder Include="Properties\" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <None Include="bundleconfig.json" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
 	</ItemGroup>
 
 </Project>

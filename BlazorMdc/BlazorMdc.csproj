@@ -38,58 +38,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Content Remove="bundleconfig.json" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
 		<PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.6" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.6" />
 	</ItemGroup>
-
-
-	<ItemGroup>
-		<None Include="bundleconfig.json" />
-	</ItemGroup>
-
-
-	<ItemGroup>
-	  <Folder Include="wwwroot\Bundles\" />
-	  <Folder Include="wwwroot\Material-Components-Web\dist\" />
-	</ItemGroup>
-
-	<Target Name="RestoreDotnetTools" BeforeTargets="PreBuildEvent">
-		<Exec Command="dotnet tool restore" />
-	</Target>
-
-	
-	<!--<Target Name="CompileCss" AfterTargets="RestoreDotnetTools" BeforeTargets="PreBuildEvent">
-		<Exec Command="dotnet tool run webcompiler Styles/blazormdc.scss -m disable -o .\wwwroot -p disable -z disable" />
-	</Target>
-
-	<Target Name="CompileMinifiedCss" AfterTargets="CompileCss" BeforeTargets="PreBuildEvent">
-		<Exec Command="dotnet tool run webcompiler Styles/blazormdc.scss -m enable -o .\wwwroot -p disable -z disable" />
-	</Target>-->
-
-
-	<ItemGroup>
-		<JsSourceFiles Include=".\scripts\*.js" />
-	</ItemGroup>
-
-	<Target Name="CopyJs" AfterTargets="RestoreDotnetTools">
-		<Copy SourceFiles="@(JsSourceFiles)" DestinationFolder="wwwroot" />
-	</Target>
-
-	<ItemGroup>
-		<JsBundleFiles Include=".\wwwroot\blazormdc-bundled*js" />
-	</ItemGroup>
-
-	<Target Name="DeleteJsBundles" AfterTargets="CopyJs">
-		<Delete Files="@(JsBundleFiles)" />
-	</Target>
-
-	<Target Name="CompileJs" AfterTargets="DeleteJsBundles">
-		<Exec Command="dotnet tool run webcompiler Scripts/blazormdc.js -m enable -o .\wwwroot -p disable -z disable" />
-	</Target>
 
 </Project>
