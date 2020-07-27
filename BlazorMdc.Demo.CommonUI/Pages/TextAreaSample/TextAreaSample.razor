@@ -24,6 +24,8 @@
 <p><MTTextArea Label="Density Minus 3" Density="@MTDensity.Minus3" Rows="3" TextInputStyle="MTTextInputStyle.Outlined" Disabled="@DisableComponents" /></p>
 <p><MTTextArea Label="Density Minus 4" Density="@MTDensity.Minus4" Rows="3" TextInputStyle="MTTextInputStyle.Outlined" Disabled="@DisableComponents" /></p>
 
+<p><MTTextArea Label="Density Minus 3" @bind-Value="@currentValueDensityM3" Rows="8" TextInputStyle="MTTextInputStyle.Outlined" Disabled="@DisableComponents" /></p>
+<p>You typed: <strong>'@(currentValueDensityM3 ?? "")'</strong></p>
 
 
 
@@ -32,4 +34,7 @@
 
     string currentValueFilled = "test";
     string currentValueOutlined;
+    string currentValueDensityM1;
+    string currentValueDensityM2;
+    string currentValueDensityM3;
 }

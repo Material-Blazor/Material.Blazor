@@ -95,7 +95,7 @@
 
 
 	<ItemGroup>
-		<JsSourceFiles Include=".\scripts\*.js" />
+		<JsBundleFiles Include=".\wwwroot\blazormdc-bundled*js" />
 	</ItemGroup>
 
 	<Target Name="CopyJs" AfterTargets="RestoreDotnetTools">
