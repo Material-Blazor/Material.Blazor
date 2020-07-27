@@ -151,7 +151,7 @@
         <MTList Items="@dataList5.CurrentPage"
                  Context="person"
                  ShowSeparators="true"
-                 AvatarList="true"
+                 ListType="@MTListType.Avatar"
                  ListStyle="MTListStyle.Outlined">
 
             <Icon>shop</Icon>
@@ -185,10 +185,10 @@
 
         <div class="my-half-list">
             <MTList Items="@leftList"
-                     Context="person"
-                     ShowSeparators="true"
-                     AvatarList="true"
-                     ListStyle="MTListStyle.Outlined">
+                    Context="person"
+                    ShowSeparators="true"
+                    ListType="@MTListType.Avatar"
+                    ListStyle="MTListStyle.Outlined">
 
                 <Icon>shop</Icon>
                 <Title>@person.FamilyName</Title>
@@ -198,10 +198,10 @@
 
         <div class="my-half-list">
             <MTList Items="@rightList"
-                     Context="person"
-                     ShowSeparators="true"
-                     AvatarList="true"
-                     ListStyle="MTListStyle.Outlined">
+                    Context="person"
+                    ShowSeparators="true"
+                    ListType="@MTListType.Avatar"
+                    ListStyle="MTListStyle.Outlined">
 
                 <Icon>shop</Icon>
                 <Title>@person.FamilyName</Title>
