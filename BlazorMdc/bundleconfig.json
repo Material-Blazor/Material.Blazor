@@ -1,12 +1,4 @@
 [
-  //{
-  //  "outputFileName": "wwwroot/blazormdc-bundled.min.css",
-  //  "inputFiles": [
-  //      "wwwroot/material-components-web/dist/material-components-icons.min.css",
-  //      "wwwroot/material-components-web/dist/material-components-web.min.css",
-  //      "wwwroot/blazormdc.css"
-  //  ]
-  //},
   {
     "outputFileName": "wwwroot/blazormdc-bundled.min.js",
     "inputFiles": [

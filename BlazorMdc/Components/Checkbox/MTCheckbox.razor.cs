@@ -36,7 +36,7 @@ namespace BlazorMdc
         private ElementReference ElementReference { get; set; }
         private ElementReference FormReference { get; set; }
 
-        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedCheckboxDensity(Density));
+        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityCssClass(CascadingDefaults.AppliedCheckboxDensity(Density));
 
 
         /// <inheritdoc/>
@@ -47,7 +47,7 @@ namespace BlazorMdc
             ClassMapper
                 .Add("mdc-checkbox mdc-checkbox--touch")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
-                .AddIf("mdc-checkbox--disabled", () => Disabled);
+                .AddIf("mdc-checkbox--disabled", () => AppliedDisabled);
 
             OnValueSet += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
@@ -67,7 +67,7 @@ namespace BlazorMdc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.checkBox.setDisabled", ElementReference, Disabled));
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.checkBox.setDisabled", ElementReference, AppliedDisabled));
 
 
         /// <inheritdoc/>

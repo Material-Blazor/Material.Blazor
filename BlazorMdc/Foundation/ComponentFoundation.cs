@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
 using System;
@@ -18,7 +17,7 @@ namespace BlazorMdc.Internal
         private readonly string[] ReservedAttributes = { ClassAttrName, StyleAttrName, DisabledAttributeName };
         private readonly string[] EventAttributeNames = { "onfocus", "onblur", "onfocusin", "onfocusout", "onmouseover", "onmouseout", "onmousemove", "onmousedown", "onmouseup", "onclick", "ondblclick", "onwheel", "onmousewheel", "oncontextmenu", "ondrag", "ondragend", "ondragenter", "ondragleave", "ondragover", "ondragstart", "ondrop", "onkeydown", "onkeyup", "onkeypress", "onchange", "oninput", "oninvalid", "onreset", "onselect", "onselectstart", "onselectionchange", "onsubmit", "onbeforecopy", "onbeforecut", "onbeforepaste", "oncopy", "oncut", "onpaste", "ontouchcancel", "ontouchend", "ontouchmove", "ontouchstart", "ontouchenter", "ontouchleave", "ongotpointercapture", "onlostpointercapture", "onpointercancel", "onpointerdown", "onpointerenter", "onpointerleave", "onpointermove", "onpointerout", "onpointerover", "onpointerup", "oncanplay", "oncanplaythrough", "oncuechange", "ondurationchange", "onemptied", "onpause", "onplay", "onplaying", "onratechange", "onseeked", "onseeking", "onstalled", "onstop", "onsuspend", "ontimeupdate", "onvolumechange", "onwaiting", "onloadstart", "ontimeout", "onabort", "onload", "onloadend", "onprogress", "onerror", "onactivate", "onbeforeactivate", "onbeforedeactivate", "ondeactivate", "onended", "onfullscreenchange", "onfullscreenerror", "onloadeddata", "onloadedmetadata", "onpointerlockchange", "onpointerlockerror", "onreadystatechange", "onscroll" };
         private readonly string[] AriaAttributeNames = { "aria-activedescendant", "aria-atomic", "aria-autocomplete", "aria-busy", "aria-checked", "aria-controls", "aria-describedat", "aria-describedby", "aria-disabled", "aria-dropeffect", "aria-expanded", "aria-flowto", "aria-grabbed", "aria-haspopup", "aria-hidden", "aria-invalid", "aria-label", "aria-labelledby", "aria-level", "aria-live", "aria-multiline", "aria-multiselectable", "aria-orientation", "aria-owns", "aria-posinset", "aria-pressed", "aria-readonly", "aria-relevant", "aria-required", "aria-selected", "aria-setsize", "aria-sort", "aria-valuemax", "aria-valuemin", "aria-valuenow", "aria-valuetext" };
-        private bool disabled = false;
+        private bool? disabled = null;
 
         [Inject] private protected IJSRuntime JsRuntime { get; set; }
 
@@ -49,12 +48,12 @@ namespace BlazorMdc.Internal
         /// <summary>
         /// Gets whether the component is disabled.
         /// </summary>
-        [Parameter] public bool Disabled
+        [Parameter] public bool? Disabled
         { 
             get => disabled;
             set
             {
-                if (disabled != value)
+                if (disabled == null && value != null && disabled != value)
                 {
                     disabled = value;
                     OnDisabledSet?.Invoke(this, null);
@@ -63,8 +62,11 @@ namespace BlazorMdc.Internal
         }
 
 
+        internal bool AppliedDisabled => CascadingDefaults.AppliedDisabled(Disabled);
+
+
         /// <summary>
-        /// Derived components can use this to get a callback from the <see cref="Disabled"/> setter when the consumer changes the value.
+        /// Derived components can use this to get a callback from the <see cref="AppliedDisabled"/> setter when the consumer changes the value.
         /// This allows a component to take action with Material Theme js to update the DOM to reflect the data change visually. 
         /// </summary>
         protected event EventHandler OnDisabledSet;
@@ -115,7 +117,7 @@ namespace BlazorMdc.Internal
                     }
                 }
 
-                if (Disabled) allAttributes.Add(DisabledAttributeName, Disabled);
+                if (AppliedDisabled) allAttributes.Add(DisabledAttributeName, AppliedDisabled);
 
                 if (splatType == SplatType.ExcludeClassAndStyle) return allAttributes;
 
