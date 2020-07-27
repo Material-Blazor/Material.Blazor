@@ -73,7 +73,6 @@ namespace BlazorMdc
         [Parameter] public MTDensity? Density { get; set; }
 #nullable restore annotations
 
-
         private ElementReference SelectReference { get; set; }
 
         private MTSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);

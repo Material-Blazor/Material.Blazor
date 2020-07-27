@@ -47,6 +47,28 @@
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.6" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Content Include="Components\Card\MTCard.razor.md" />
+	  <Content Include="Components\List\MTList.razor.md" />
+	  <Content Include="Components\Menu\MTMenu.razor.md" />
+	  <Content Include="Components\NumericDoubleField\MTNumericDoubleField.razor.md" />
+	  <Content Include="Components\NumericIntField\MTNumericIntField.razor.md" />
+	  <Content Include="Components\PagedDataList\MTPagedDataList.razor.md" />
+	  <Content Include="Components\Paginator\MTPaginator.razor.md" />
+	  <Content Include="Components\RadioButtonGroup\MTRadioButtonGroup.razor.md" />
+	  <Content Include="Components\RadioButton\MTRadioButton.razor.md" />
+	  <Content Include="Components\Select\MTSelect.razor.md" />
+	  <Content Include="Components\Shield\MTShield.razor.md" />
+	  <Content Include="Components\SlidingTabBar\MTSlidingTabBar.razor.md" />
+	  <Content Include="Components\Switch\MTSwitch.razor.md" />
+	  <Content Include="Components\TabBar\MTTabBar.razor.md" />
+	  <Content Include="Components\TextArea\MTTextArea.razor.md" />
+	  <Content Include="Components\TextField\MTTextField.razor.md" />
+	  <Content Include="Components\Toast\MTToastAnchor.razor.md" />
+	  <Content Include="Components\TopAppBar\MTTopAppBar.razor.md" />
+	  <Content Include="Model\Icon\MTIconHelper.cs.md" />
+	  <Content Include="Model\MTCascadingDefaults.cs.md" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<None Include="bundleconfig.json" />
@@ -69,6 +91,7 @@
 	<Target Name="CompileMinifiedCss" AfterTargets="CompileCss" BeforeTargets="PreBuildEvent">
 		<Exec Command="dotnet tool run webcompiler Styles/blazormdc.scss -m enable -o .\wwwroot -p disable -z disable" />
 	</Target>-->
+
 
 
 	<ItemGroup>

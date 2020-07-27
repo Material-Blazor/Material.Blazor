@@ -249,6 +249,19 @@ namespace BlazorMdc
 
         private MTSelectInputStyle _selectInputStyle = MTSelectInputStyle.Filled;
         /// <summary>
+        /// The default type for an <see cref="MTList{TItem}"/>, initialized to <see cref="MTListType.Regular"/> if not explicitly set.
+        /// </summary>
+        public MTListType ListType { get; set; } = MTListType.Regular;
+
+        /// <summary>
+        /// The style to apply to an <see cref="MTList{TItem}"/>.
+        /// </summary>
+        /// <param name="style">The style parameter passed to the <see cref="MTList{TItem}"/></param>
+        /// <returns>The <see cref="MTListStyle"/> to apply.</returns>
+        internal MTListType AppliedType(MTListType? type = null) => type ?? ListType;
+
+
+        /// <summary>
         /// The default style for an <see cref="MTSelect{TItem}"/>, initialized to <see cref="MTSelectInputStyle.Filled"/> if not explicitly set.
         /// </summary>
         /// <remarks>
