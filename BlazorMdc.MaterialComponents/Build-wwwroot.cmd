@@ -4,13 +4,10 @@ call npm run clean-wwwroot
 call npm run build-scss-matf
 call npm run minify-css-matf
 call npm run delete-css-matf
-call npm run build-scss-bmdcb
-@echo call npm run minify-css-bmdcb
-@echo call npm run delete-css-bmdcb
-@echo call npm run build-scss-bmdc
-@echo call npm run minify-css-bmdc
-@echo call npm run copy-material-css
-@echo call npm run copy-material-js
+call npm run build-scss-bmdc
+call npm run minify-css-bmdc
+call npm run copy-material-css
+call npm run copy-material-js
 @echo call npm run build-ts
 @echo call npm run minify-js
 @echo call npm run copy-all
