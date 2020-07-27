@@ -94,7 +94,7 @@ namespace BlazorMdc
         {
             get
             {
-                var d = CascadingDefaults.GetDensityInfo(AppliedDensity);
+                var d = CascadingDefaults.GetDensityCssClass(AppliedDensity);
 
                 var suffix = AppliedInputStyle == MTSelectInputStyle.Filled ? "--filled" : "--outlined";
                 suffix += string.IsNullOrWhiteSpace(LeadingIcon) ? "" : "-with-leading-icon";

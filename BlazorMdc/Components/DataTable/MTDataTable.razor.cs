@@ -39,7 +39,7 @@ namespace BlazorMdc
 
         private ElementReference ElementReference { get; set; }
 
-        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedDataTableDensity(Density));
+        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityCssClass(CascadingDefaults.AppliedDataTableDensity(Density));
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc

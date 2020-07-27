@@ -67,7 +67,7 @@ namespace BlazorMdc
         {
             get
             {
-                var d = CascadingDefaults.GetDensityInfo(AppliedDensity);
+                var d = CascadingDefaults.GetDensityCssClass(AppliedDensity);
 
                 d.CssClassName += AppliedInputStyle == MTTextInputStyle.Filled ? "--ta--filled" : "--ta--outlined";
 

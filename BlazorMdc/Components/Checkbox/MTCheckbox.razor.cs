@@ -36,7 +36,7 @@ namespace BlazorMdc
         private ElementReference ElementReference { get; set; }
         private ElementReference FormReference { get; set; }
 
-        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedCheckboxDensity(Density));
+        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityCssClass(CascadingDefaults.AppliedCheckboxDensity(Density));
 
 
         /// <inheritdoc/>
