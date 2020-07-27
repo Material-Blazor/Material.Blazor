@@ -30,12 +30,14 @@ namespace BlazorMdc.Internal
 
         /// <summary>
         /// The Font Awesome style.
+        /// <para>Overrides <see cref="MTCascadingDefaults.IconFAStyle"/></para>
         /// </summary>
         public MTIconFAStyle Style { get; }
 
 
         /// <summary>
         /// The Font Awesome relative size.
+        /// <para>Overrides <see cref="MTCascadingDefaults.IconFARelativeSize"/></para>
         /// </summary>
         public MTIconFARelativeSize RelativeSize { get; }
 

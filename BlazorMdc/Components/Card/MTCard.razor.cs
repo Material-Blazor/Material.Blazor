@@ -14,6 +14,7 @@ namespace BlazorMdc
     {
         /// <summary>
         /// The card style - see <see cref="MTCardStyle"/>
+        /// <para>Overrides <see cref="MTCascadingDefaults.CardStyle"/></para>
         /// </summary>
         [Parameter] public MTCardStyle? CardStyle { get; set; }
 

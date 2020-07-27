@@ -34,6 +34,7 @@ namespace BlazorMdc
         /// The form of validation to apply when Value is first set, deciding whether to accept
         /// a value outside the <see cref="Items"/> list, replace it with the first list item or
         /// to throw an exception (the default).
+        /// <para>Overrides <see cref="MTCascadingDefaults.ItemValidation"/></para>
         /// </summary>
         [Parameter] public MTItemValidation? ItemValidation { get; set; }
 
@@ -55,7 +56,7 @@ namespace BlazorMdc
 
             ItemArray = Items.ToArray();
 
-            MTItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidationRadioButtonGroup(ItemValidation);
+            MTItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidation(ItemValidation);
 
             ForceShouldRenderToTrue = true;
 

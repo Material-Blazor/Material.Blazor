@@ -41,6 +41,15 @@
           "api/**.yml",
           "api/index.md"
         ]
+      },
+
+    ],
+    "resource": [
+      {
+        "files": [
+          "images/**.png",
+          "images/**.jpg"
+        ]
       }
     ],
     "overwrite": [

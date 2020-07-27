@@ -18,6 +18,7 @@
 		<Copyright>Dioptra and Optimium Health</Copyright>
 		<PackageProjectUrl>https://blazormdc.com</PackageProjectUrl>
 		<Product>Blazor MDC</Product>
+		<LangVersion>preview</LangVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_WebAssembly|AnyCPU'">
@@ -92,11 +93,12 @@
 	</Target>-->
 
 
+
 	<ItemGroup>
-		<JsSourceFiles Include=".\scripts\*.js" />
+		<JsBundleFiles Include=".\wwwroot\blazormdc-bundled*js" />
 	</ItemGroup>
 
-	<Target Name="CopyJs" AfterTargets="RestoreDotnetTools" BeforeTargets="PreBuildEvent">
+	<Target Name="CopyJs" AfterTargets="RestoreDotnetTools">
 		<Copy SourceFiles="@(JsSourceFiles)" DestinationFolder="wwwroot" />
 	</Target>
 
@@ -104,11 +106,11 @@
 		<JsBundleFiles Include=".\wwwroot\blazormdc-bundled*js" />
 	</ItemGroup>
 
-	<Target Name="DeleteJsBundles" AfterTargets="CopyJs" BeforeTargets="PreBuildEvent">
+	<!--<Target Name="DeleteJsBundles" AfterTargets="CopyJs">
 		<Delete Files="@(JsBundleFiles)" />
-	</Target>
+	</Target>-->
 
-	<Target Name="CompileJs" AfterTargets="DeleteJsBundles" BeforeTargets="PreBuildEvent">
+	<Target Name="CompileJs" AfterTargets="DeleteJsBundles">
 		<Exec Command="dotnet tool run webcompiler Scripts/blazormdc.js -m enable -o .\wwwroot -p disable -z disable" />
 	</Target>
 

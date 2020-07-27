@@ -8,7 +8,7 @@
 
     <div class="mdc-select__anchor"
          role="button"
-         aria-disabled="@Disabled"
+         aria-disabled="@AppliedDisabled"
          aria-haspopup="@listboxId"
          aria-labelledby="@labelId @selectedTextId">
 
@@ -17,7 +17,12 @@
             <span class="mdc-select__ripple"></span>
         }
 
-        <span id="@selectedTextId" class="mdc-select__selected-text" aria-disabled="@Disabled"></span>
+        @if (!string.IsNullOrWhiteSpace(LeadingIcon))
+        {
+            <MTIcon IconName="@LeadingIcon" IconFoundry="@IconFoundry" Class="mdc-select__icon" tabindex="-1" role="button" />
+        }
+
+        <span id="@selectedTextId" class="mdc-select__selected-text" aria-disabled="@AppliedDisabled"></span>
         <span class="mdc-select__dropdown-icon">
             <svg class="mdc-select__dropdown-icon-graphic"
                  viewBox="7 10 10 5">
@@ -38,8 +43,8 @@
         {
             <span class="mdc-notched-outline">
                 <span class="mdc-notched-outline__leading"></span>
-                @if (!string.IsNullOrWhiteSpace(Label))
-                { 
+                @if (ShowLabel)
+                {
                     <span class="mdc-notched-outline__notch">
                         <span id="@labelId" class="mdc-floating-label @FloatingLabelClass">@Label</span>
                     </span>
@@ -49,7 +54,7 @@
         }
         else
         {
-            if (!string.IsNullOrWhiteSpace(Label))
+            if (ShowLabel)
             {
                 <span id="@labelId" class="mdc-floating-label @FloatingLabelClass">@Label</span>
             }

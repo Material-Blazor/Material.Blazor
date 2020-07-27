@@ -129,6 +129,15 @@
                       ItemValidation="MTItemValidation.DefaultToFirst"
                       Disabled="@DisableComponents" />
 
+            <MTSelect Label="Default to First (repeated)"
+                      @bind-Value="@kittenBreed3"
+                      Items="stringItems"
+                      Density="@MTDensity.Minus4"
+                      SelectInputStyle="MTSelectInputStyle.Outlined"
+                      TextAlignStyle="MTTextAlignStyle.Right"
+                      ItemValidation="MTItemValidation.DefaultToFirst"
+                      Disabled="@DisableComponents" />
+
         </p>
         <p style="margin-bottom: 4em;">Selected: '<strong>@(kittenBreed3 ?? "")</strong>'</p>
 
@@ -158,6 +167,13 @@
                       TextAlignStyle="MTTextAlignStyle.Right"
                       Items="colourItems"
                       Density="@MTDensity.Minus3"
+                      Disabled="@DisableComponents" />
+
+            <MTSelect Label="Colour Enumeration (repeated)"
+                      @bind-Value="@colour"
+                      TextAlignStyle="MTTextAlignStyle.Right"
+                      Items="colourItems"
+                      Density="@MTDensity.Minus4"
                       Disabled="@DisableComponents" />
         </p>
         <p style="margin-bottom: 4em;">Selected: '<strong>@(colour.ToString())</strong>'</p>

@@ -12,7 +12,9 @@
     <MTTabBar @bind-TabIndex="@TabIndex"
               Items="@Items"
               Context="item"
-              StackIcons="@StackIcons">
+              StackIcons="@StackIcons"
+              Disabled="@AppliedDisabled"
+              Density="@Density">
 
     </MTTabBar>
 }
@@ -21,7 +23,9 @@ else if (Label is null)
     <MTTabBar @bind-TabIndex="@TabIndex"
               Items="@Items"
               Context="item"
-              StackIcons="@StackIcons">
+              StackIcons="@StackIcons"
+              Disabled="@AppliedDisabled"
+              Density="@Density">
 
         <Icon>@Icon(item)</Icon>
     </MTTabBar>
@@ -31,7 +35,9 @@ else if (Icon is null)
     <MTTabBar @bind-TabIndex="@TabIndex"
               Items="@Items"
               Context="item"
-              StackIcons="@StackIcons">
+              StackIcons="@StackIcons"
+              Disabled="@AppliedDisabled"
+              Density="@Density">
 
         <Label>@Label(item)</Label>
     </MTTabBar>
@@ -41,7 +47,9 @@ else
     <MTTabBar @bind-TabIndex="@TabIndex"
               Items="@Items"
               Context="item"
-              StackIcons="@StackIcons">
+              StackIcons="@StackIcons"
+              Disabled="@AppliedDisabled"
+              Density="@Density">
 
         <Label>@Label(item)</Label>
         <Icon>@Icon(item)</Icon>

@@ -7,6 +7,7 @@ BlazorMdc is a lightweight [Material Theme](https://material.io/) [web developme
 - Visit our website at https://blazormdc.com;
 - View the project API documentation at https://docs.blazormdc.com; and
 - Blazor MDC is available at https://www.nuget.org/packages/BlazorMdc.
+- If you intend to submit pull requests please note that we use Git Flow with `develop` and `main` branches. You can read [detailed development environment instructions](https://docs.blazormdc.com/articles/DevelopmentEnvironment.html) on our docs site.
 
 <br />
 <br />

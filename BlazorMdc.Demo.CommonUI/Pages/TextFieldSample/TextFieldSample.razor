@@ -40,17 +40,17 @@
 <p><MTTextField Label="Prefix/Suffix" @bind-Value="@currentValuePS" Prefix="$" Suffix="%" TextInputStyle="MTTextInputStyle.Outlined" Disabled="@DisableComponents" /></p>
 <p>You typed: <strong>'@(currentValuePS ?? "")'</strong></p>
 
-<p style="margin-top: 3rem;">Filled style</p>
-<p><MTTextField Label="Density Minus 1" Density="@MTDensity.Minus1" @bind-Value="@currentValueDensityM1" TextInputStyle="MTTextInputStyle.Outlined" TrailingIcon="account_balance_wallet" Disabled="@DisableComponents" /></p>
-<p>You typed: <strong>'@(currentValueDensityM1 ?? "")'</strong></p>
+<p style="margin-top: 3rem;">Filled Density</p>
+<p><MTTextField Label="Density Minus 1" Density="@MTDensity.Minus1" TextInputStyle="MTTextInputStyle.Filled" LeadingIcon="account_balance_wallet" Disabled="@DisableComponents" /></p>
+<p><MTTextField Label="Density Minus 2" Density="@MTDensity.Minus2" TextInputStyle="MTTextInputStyle.Filled" LeadingIcon="account_balance_wallet" Disabled="@DisableComponents" /></p>
+<p><MTTextField Label="Density Minus 3" Density="@MTDensity.Minus3" TextInputStyle="MTTextInputStyle.Filled" LeadingIcon="account_balance_wallet" Disabled="@DisableComponents" /></p>
+<p><MTTextField Label="Density Minus 4" Density="@MTDensity.Minus4" TextInputStyle="MTTextInputStyle.Filled" LeadingIcon="account_balance_wallet" Disabled="@DisableComponents" /></p>
 
-<p style="margin-top: 3rem;">Filled style</p>
-<p><MTTextField Label="Density Minus 2" Density="@MTDensity.Minus2" @bind-Value="@currentValueDensityM2" TextInputStyle="MTTextInputStyle.Outlined" TrailingIcon="account_balance_wallet" Disabled="@DisableComponents" /></p>
-<p>You typed: <strong>'@(currentValueDensityM2 ?? "")'</strong></p>
-
-<p style="margin-top: 3rem;">Filled style</p>
-<p><MTTextField Label="Density Minus 3" Density="@MTDensity.Minus3" @bind-Value="@currentValueDensityM3" TextInputStyle="MTTextInputStyle.Outlined" TrailingIcon="account_balance_wallet" Disabled="@DisableComponents" /></p>
-<p>You typed: <strong>'@(currentValueDensityM3 ?? "")'</strong></p>
+<p style="margin-top: 3rem;">Outlined Density</p>
+<p><MTTextField Label="Density Minus 1" Density="@MTDensity.Minus1" TextInputStyle="MTTextInputStyle.Outlined" LeadingIcon="account_balance_wallet" Disabled="@DisableComponents" /></p>
+<p><MTTextField Label="Density Minus 2" Density="@MTDensity.Minus2" TextInputStyle="MTTextInputStyle.Outlined" LeadingIcon="account_balance_wallet" Disabled="@DisableComponents" /></p>
+<p><MTTextField Label="Density Minus 3" Density="@MTDensity.Minus3" TextInputStyle="MTTextInputStyle.Outlined" LeadingIcon="account_balance_wallet" Disabled="@DisableComponents" /></p>
+<p><MTTextField Label="Density Minus 4" Density="@MTDensity.Minus4" TextInputStyle="MTTextInputStyle.Outlined" LeadingIcon="account_balance_wallet" Disabled="@DisableComponents" /></p>
 
 
 @code {

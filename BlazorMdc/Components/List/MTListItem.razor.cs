@@ -33,6 +33,8 @@ namespace BlazorMdc
         /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
         /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
         /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
+        /// <para>Overrides <see cref="MTCascadingDefaults.IconFoundryName"/></para>
+        /// <para>Overrides <see cref="MTCascadingDefaults.IconFoundryName"/></para>
         /// </summary>
         [Parameter] public IMTIconFoundry? IconFoundry { get; set; }
 
@@ -52,13 +54,13 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-list-item")
-                .AddIf("mdc-list-item--disabled bmdc-list-item--disabled", () => Disabled);
+                .AddIf("mdc-list-item--disabled bmdc-list-item--disabled", () => AppliedDisabled);
         }
 
 
         private void InternalClickHandler()
         {
-            if (!Disabled)
+            if (!AppliedDisabled)
             {
                 OnClick.InvokeAsync(NavigationReference);
             }

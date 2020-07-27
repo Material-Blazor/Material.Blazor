@@ -29,6 +29,7 @@ namespace BlazorMdc
         /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
         /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
         /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
+        /// <para>Overrides <see cref="MTCascadingDefaults.IconFoundryName"/></para>
         /// </summary>
         [Parameter] public IMTIconFoundry? IconFoundry { get; set; }
 #nullable restore annotations
@@ -42,7 +43,7 @@ namespace BlazorMdc
 
         private ElementReference ElementReference { get; set; }
 
-        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedIconButtonDensity(Density));
+        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityCssClass(CascadingDefaults.AppliedIconButtonDensity(Density));
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc

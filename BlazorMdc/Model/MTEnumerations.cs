@@ -326,6 +326,29 @@
 
 
     /// <summary>
+    /// Type for an <see cref="MTList{TItem}"/>.
+    /// <para><see cref="MTCascadingDefaults"/> has a default of <see cref="Regular"/></para>
+    /// </summary>
+    public enum MTListType
+    {
+        /// <summary>
+        /// A regular list. This is the <see cref="MTCascadingDefaults"/> default.
+        /// </summary>
+        Regular,
+
+        /// <summary>
+        /// Applies the mdc-list--dense CSS class.
+        /// </summary>
+        Dense,
+
+        /// <summary>
+        /// Applies the mdc-list--avatar CSS class.
+        /// </summary>
+        Avatar
+    }
+
+
+    /// <summary>
     /// Material Theme top app bar type applied to an <see cref="MTTopAppBar"/>.
     /// </summary>
     public enum MTTopAppBarType

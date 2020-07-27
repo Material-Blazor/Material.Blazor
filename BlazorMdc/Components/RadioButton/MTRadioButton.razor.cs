@@ -56,7 +56,7 @@ namespace BlazorMdc
         private string ButtonContainerClass { get; set; }
         private string DisabledClass { get; set; } = "";
 
-        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedRadioButtonDensity(Density));
+        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityCssClass(CascadingDefaults.AppliedRadioButtonDensity(Density));
 
 
         /// <inheritdoc/>
@@ -97,7 +97,7 @@ namespace BlazorMdc
                 ButtonContainerClass += $" {DensityInfo.CssClassName}";
             }
 
-            if (Disabled)
+            if (AppliedDisabled)
             {
                 DisabledClass = "mdc-radio--disabled";
             }

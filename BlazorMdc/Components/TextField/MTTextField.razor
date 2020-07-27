@@ -5,7 +5,7 @@
     <label @ref="ElementReference"
            @attributes="@AttributesToSplat(SplatType.ClassAndStyleOnly)">
 
-        @if (AppliedTextInputStyle == MTTextInputStyle.Filled)
+        @if (AppliedInputStyle == MTTextInputStyle.Filled)
         {
             <span class="mdc-text-field__ripple"></span>
         }
@@ -22,7 +22,7 @@
 
         <input @ref="@InputReference"
                id="@Id"
-               class="mdc-text-field__input @Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle)) @FieldClass"
+               class="mdc-text-field__input @AppliedTextInputStyleClass @FieldClass"
                type="text"
                @bind="@ReportingValue"
                @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)">
@@ -37,12 +37,12 @@
             <MTIcon IconName="@TrailingIcon" IconFoundry="@IconFoundry" Class="mdc-text-field__icon mdc-text-field__icon--trailing" tabindex="-1" role="button" />
         }
 
-        @if (AppliedTextInputStyle == MTTextInputStyle.Outlined)
+        @if (AppliedInputStyle == MTTextInputStyle.Outlined)
         {
             <span class="mdc-notched-outline">
                 <span class="mdc-notched-outline__leading"></span>
 
-                @if (!string.IsNullOrWhiteSpace(Label))
+                @if (ShowLabel)
                 {
                     <span class="mdc-notched-outline__notch">
                         <span class="mdc-floating-label @FloatingLabelClass" for="@Id" id="@labelId">@Label</span>
@@ -54,7 +54,7 @@
         }
         else
         {
-            @if (!string.IsNullOrWhiteSpace(Label))
+            @if (ShowLabel)
             {
                 <span class="mdc-floating-label @FloatingLabelClass" for="@Id" id="@labelId">@Label</span>
             }

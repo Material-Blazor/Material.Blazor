@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace BlazorMdc
@@ -16,12 +17,14 @@ namespace BlazorMdc
 #nullable enable annotations
         /// <summary>
         /// The text input style.
+        /// <para>Overrides <see cref="MTCascadingDefaults.TextInputStyle"/></para>
         /// </summary>
         [Parameter] public MTTextInputStyle? TextInputStyle { get; set; }
 
 
         /// <summary>
         /// The text alignment style.
+        /// <para>Overrides <see cref="MTCascadingDefaults.TextAlignStyle"/></para>
         /// </summary>
         [Parameter] public MTTextAlignStyle? TextAlignStyle { get; set; }
 
@@ -61,6 +64,7 @@ namespace BlazorMdc
         /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
         /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
         /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
+        /// <para>Overrides <see cref="MTCascadingDefaults.IconFoundryName"/></para>
         /// </summary>
         [Parameter] public IMTIconFoundry? IconFoundry { get; set; }
 
@@ -72,8 +76,12 @@ namespace BlazorMdc
 #nullable restore annotations
 
 
-        private MTTextInputStyle AppliedTextInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
+        private MTTextInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
+
+        private string AppliedTextInputStyleClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
         
+        private MTDensity AppliedDensity => CascadingDefaults.AppliedTextFieldDensity(Density);
+
         internal ElementReference ElementReference { get; set; }
         
         private ElementReference InputReference { get; set; }
@@ -83,7 +91,22 @@ namespace BlazorMdc
         
         private readonly string labelId = Utilities.GenerateUniqueElementName();
 
-        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedTextFieldDensity(Density));
+        private MTCascadingDefaults.DensityInfo DensityInfo
+        {
+            get
+            {
+                var d = CascadingDefaults.GetDensityCssClass(AppliedDensity);
+
+                var suffix = AppliedInputStyle == MTTextInputStyle.Filled ? "--tf--filled" : "--tf--outlined";
+                suffix += string.IsNullOrWhiteSpace(LeadingIcon) ? "" : "-with-leading-icon";
+
+                d.CssClassName += suffix;
+
+                return d;
+            }
+        }
+
+        private bool ShowLabel => !string.IsNullOrWhiteSpace(Label);
 
 
         /// <inheritdoc/>
@@ -95,10 +118,10 @@ namespace BlazorMdc
                 .Add("mdc-text-field")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
-                .AddIf("mdc-text-field--filled", () => AppliedTextInputStyle == MTTextInputStyle.Filled)
-                .AddIf("mdc-text-field--outlined", () => AppliedTextInputStyle == MTTextInputStyle.Outlined)
-                .AddIf("mdc-text-field--no-label", () => string.IsNullOrWhiteSpace(Label))
-                .AddIf("mdc-text-field--disabled", () => Disabled)
+                .AddIf("mdc-text-field--filled", () => AppliedInputStyle == MTTextInputStyle.Filled)
+                .AddIf("mdc-text-field--outlined", () => AppliedInputStyle == MTTextInputStyle.Outlined)
+                .AddIf("mdc-text-field--no-label", () => !ShowLabel)
+                .AddIf("mdc-text-field--disabled", () => AppliedDisabled)
                 .AddIf("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
                 .AddIf("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
 
@@ -127,7 +150,7 @@ namespace BlazorMdc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.textField.setDisabled", ElementReference, Disabled));
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.textField.setDisabled", ElementReference, AppliedDisabled));
 
 
         /// <inheritdoc/>
