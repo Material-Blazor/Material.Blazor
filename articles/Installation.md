@@ -45,7 +45,7 @@ and at the end of `<body>`:
 <script src="_content/BlazorMdc/blazormdc.js"></script>
 ```
 
-We also provide minified `blazormdc.css.min` and `blazormdc.js.min`. Add the BlazorMdc namespace to your project as above.
+We also provide minified `blazormdc.min.css` and `blazormdc.min.js`. Add the BlazorMdc namespace to your project as above.
 
 ### Package versions
 

@@ -10,7 +10,6 @@ call npm run build-bundle
 call npm run minify-bundle-css
 call npm run build-bmdc-ts
 call npm run minify-bundle-js
-call npm run clean-bmdc-min
 call npm run copy-all
 call npm run build-bmdcdemo
 dir wip /s
