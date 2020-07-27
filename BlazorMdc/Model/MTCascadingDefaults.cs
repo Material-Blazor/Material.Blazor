@@ -59,13 +59,7 @@ namespace BlazorMdc
         internal IEnumerable<string> AppliedAllowedSplattableAttributes => EssentialSplattableAttributes.Union(AllowedSplattableAttributes.Select(x => x.ToLower())).Distinct();
 
 
-        /// <summary>
-        /// The applied item validation for selects and radio button groups.
-        /// </summary>
-        /// <param name="criteria"></param>
-        /// <returns></returns>
-        internal MTItemValidation AppliedItemValidation(MTItemValidation? criteria = null) => criteria ?? ItemValidation;
-
+        
         private MTItemValidation _itemValidation = MTItemValidation.Exception;
         /// <summary>
         /// Defines how radio button groups and selects validate mismtatch between item lists and initial value.
