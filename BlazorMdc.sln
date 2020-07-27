@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solutio
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
+		ConvertUTF16toUTF8.ps = ConvertUTF16toUTF8.ps
 		ctag.cmd = ctag.cmd
 		docfx.json = docfx.json
 		.config\dotnet-tools.json = .config\dotnet-tools.json
@@ -71,8 +72,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "styles", "styles", "{1514BC
 		templates\blazormdc\styles\main.css = templates\blazormdc\styles\main.css
 	EndProjectSection
 EndProject
-Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "BlazorMdc.NodeMaterialComponents", "BlazorMdc.NodeMaterialComponents\BlazorMdc.NodeMaterialComponents.njsproj", "{CF1D9242-D02E-4AE2-84E1-3CA677BD28BF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_Server|Any CPU = Debug_Server|Any CPU
@@ -117,10 +116,6 @@ Global
 		{3212BDA0-B2EF-4A95-AB38-8F22B9D80280}.Debug_WebAssembly|Any CPU.ActiveCfg = Debug_WebAssembly|Any CPU
 		{3212BDA0-B2EF-4A95-AB38-8F22B9D80280}.Release_Server|Any CPU.ActiveCfg = Release_Server|Any CPU
 		{3212BDA0-B2EF-4A95-AB38-8F22B9D80280}.Release_WebAssembly|Any CPU.ActiveCfg = Release_WebAssembly|Any CPU
-		{CF1D9242-D02E-4AE2-84E1-3CA677BD28BF}.Debug_Server|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF1D9242-D02E-4AE2-84E1-3CA677BD28BF}.Debug_WebAssembly|Any CPU.ActiveCfg = Debug|Any CPU
-		{CF1D9242-D02E-4AE2-84E1-3CA677BD28BF}.Release_Server|Any CPU.ActiveCfg = Release|Any CPU
-		{CF1D9242-D02E-4AE2-84E1-3CA677BD28BF}.Release_WebAssembly|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
