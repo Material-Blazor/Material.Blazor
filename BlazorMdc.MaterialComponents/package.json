@@ -10,11 +10,13 @@
     "minify-matfont": "cleancss --level 1 --format breaksWith=lf --output wip\\material-components-icons.min.css wip\\material-components-icons.css",
     "build-bmdc": "dart-sass --load-path=node_modules --no-source-map ..\\BlazorMdc\\Styles\\blazormdc.scss wwwroot\\blazormdc.css",
     "minify-bmdc": "cleancss --level 1 --format breaksWith=lf --output wwwroot\\blazormdc.min.css wwwroot\\blazormdc.css",
+    "clean-bmdc-min": "del wwwroot\\blazormdc.min.css",
     "build-bundle": "dart-sass --load-path=node_modules --no-source-map Styles\\blazormdc-material-bundle.scss wip\\blazormdc-material-bundle.css",
     "minify-bundle-css": "cleancss --level 1 --format breaksWith=lf --output wwwroot\\blazormdc-material-bundle.min.css wip\\blazormdc-material-bundle.css",
-    "build-bmdc-ts": "tsc ..\\BlazorMdc\\Scripts\\blazormdc.ts",
-    "minify-bundle-js": "terser ..\\BlazorMdc\\Scripts\\blazormdc.js node_modules\\material-components-web\\dist\\material-components-web.js --output wwwroot\\blazormdc-material-bundle.js.min",
-    "copy-all": "xcopy /s /q /y wwwroot\\*.* ..\\BlazorMdc\\wwwroot"
+    "build-bmdc-ts": "tsc",
+    "minify-bundle-js": "terser wwwroot\\blazormdc.js node_modules\\material-components-web\\dist\\material-components-web.js --output wwwroot\\blazormdc-material-bundle.min.js",
+    "copy-all": "xcopy /s /q /y wwwroot\\*.* ..\\BlazorMdc\\wwwroot",
+    "build-bmdcdemo": "dart-sass --load-path=node_modules --no-source-map ..\\BlazorMdc.Demo.CommonUI\\Styles\\styles.scss ..\\BlazorMdc.Demo.CommonUI\\wwwroot\\css\\styles.css"
   },
   "keywords": [],
   "author": "",
