@@ -54,6 +54,7 @@
 
 
 	<ItemGroup>
+	  <Folder Include="wwwroot\Bundles\" />
 	  <Folder Include="wwwroot\Material-Components-Web\dist\" />
 	</ItemGroup>
 
