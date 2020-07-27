@@ -23,12 +23,6 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// The select's density.
-        /// </summary>
-        [Parameter] public MTDensity? Density { get; set; }
-
-
-        /// <summary>
         /// The form of validation to apply when Value is first set, deciding whether to accept
         /// a value outside the <see cref="Items"/> list, replace it with the first list item or
         /// to throw an exception (the default).
