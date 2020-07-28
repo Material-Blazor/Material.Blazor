@@ -48,6 +48,7 @@ then *third/last* `ThemeDensity` from cascading defaults. If either cascading de
 
 | Property | Used In |
 | :------- | :------ |
+| [Disabled](xref:BlazorMdc.MTCascadingDefaults.Disabled) | Sets the default `Disabled` state for all component, overridden by component `Disabled` parameters. |
 | [ButtonStyle](xref:BlazorMdc.MTCascadingDefaults.ButtonStyle) | Style for general [MTButton](xref:C.MTButton)s. Defaults to `MTButtonStyle.Text`. |
 | [CardActionButtonStyle](xref:BlazorMdc.MTCascadingDefaults.CardActionButtonStyle) | Style for [MTButton](xref:C.MTButton)s used for [MTCard](xref:C.MTCard) actions. Defaults to `MTButtonStyle.Text`. |
 | [DialogActionButtonStyle](xref:BlazorMdc.MTCascadingDefaults.DialogActionButtonStyle) | Style for [MTButton](xref:C.MTButton)s used for [MTDialog](xref:C.MTDialog) actions. Defaults to `MTButtonStyle.Text`. |
@@ -71,3 +72,24 @@ in an exception being thrown. Blazor MDC also has several ways of handling when 
 | [EssentialSplattableAttributes](xref:BlazorMdc.MTCascadingDefaults.EssentialSplattableAttributes) | A readonly list of HTML attributes that Blazor MDC requires for operation. Includes: `formnovalidate`, `id`, `max`, `min`, `role`, `step`, `tabindex` and `type`. Note that all aria attributes (e.g. `aria-disabled`) and event attibutes (e.g. `onclick`) are all allowed in addition to this list. |
 | [AllowedSplattableAttributes](xref:BlazorMdc.MTCascadingDefaults.AllowedSplattableAttributes) | A list of HTML attributes that you can assign for Blazor MDC to allow without throwing an exception . |
 | [ItemValidation](xref:BlazorMdc.MTCascadingDefaults.ItemValidation) | Validation method applied to [MTSelect](xref:C.MTSelect) and [MTRadioButtonGroup](xref:C.MTRadioButtonGroup). |
+
+### Forcing a Blazor Re-Render with the Version Property
+
+Whenever a property of [MTCascadingDefaults](xref:BlazorMdc.MTCascadingDefaults) is updated, the [Version](xref:BlazorMdc.MTCascadingDefaults.Version) property
+is incremented. You can use [Version](xref:BlazorMdc.MTCascadingDefaults.Version) to force a Blazor component, or block of components within a `<div>` to 
+re-render as a result of updated cascading defaults.
+
+In the following example if `ThemeDensity`, `ButtonDensity`, `TextFieldDensity`, `ButtonStyle`, `TextFieldStyle` etc change in `myCascadingDefaults`, the
+button and text field will re-render the next time Blazor renders the page.
+
+```html
+<div @key="@myCascadingDefaults.Version">
+    <MTButton Label="A Button!" />
+
+    <MTTextField Label="A Text Field!" />
+</div>
+
+@code {
+    [CascadingParameter] private MTCascadingDefaults myCascadingDefaults { get; set; }
+}
+```

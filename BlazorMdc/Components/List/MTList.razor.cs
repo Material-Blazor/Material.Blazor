@@ -142,7 +142,7 @@ namespace BlazorMdc
 
         private ElementReference ElementReference { get; set; }
 
-        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedListSingleLineDensity(SingleLineDensity));
+        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityCssClass(CascadingDefaults.AppliedListSingleLineDensity(SingleLineDensity));
 
         private MTListStyle AppliedListStyle => CascadingDefaults.AppliedStyle(ListStyle);
 

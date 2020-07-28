@@ -86,7 +86,7 @@ namespace BlazorMdc
         {
             get
             {
-                var d = CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedTabBarDensity(Density));
+                var d = CascadingDefaults.GetDensityCssClass(CascadingDefaults.AppliedTabBarDensity(Density));
 
                 d.CssClassName += StackIcons ? "--stacked" : "--unstacked";
 

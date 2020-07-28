@@ -95,7 +95,7 @@ namespace BlazorMdc
         {
             get
             {
-                var d = CascadingDefaults.GetDensityInfo(AppliedDensity);
+                var d = CascadingDefaults.GetDensityCssClass(AppliedDensity);
 
                 var suffix = AppliedInputStyle == MTTextInputStyle.Filled ? "--tf--filled" : "--tf--outlined";
                 suffix += string.IsNullOrWhiteSpace(LeadingIcon) ? "" : "-with-leading-icon";
@@ -121,7 +121,7 @@ namespace BlazorMdc
                 .AddIf("mdc-text-field--filled", () => AppliedInputStyle == MTTextInputStyle.Filled)
                 .AddIf("mdc-text-field--outlined", () => AppliedInputStyle == MTTextInputStyle.Outlined)
                 .AddIf("mdc-text-field--no-label", () => !ShowLabel)
-                .AddIf("mdc-text-field--disabled", () => Disabled)
+                .AddIf("mdc-text-field--disabled", () => AppliedDisabled)
                 .AddIf("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
                 .AddIf("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
 
@@ -150,7 +150,7 @@ namespace BlazorMdc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.textField.setDisabled", ElementReference, Disabled));
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.textField.setDisabled", ElementReference, AppliedDisabled));
 
 
         /// <inheritdoc/>

@@ -50,7 +50,7 @@ namespace BlazorMdc
 
         private ElementReference ElementReference { get; set; }
 
-        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityInfo(CascadingDefaults.AppliedIconButtonDensity(Density));
+        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityCssClass(CascadingDefaults.AppliedIconButtonDensity(Density));
 
 
         /// <inheritdoc/>

@@ -81,7 +81,7 @@ namespace BlazorMdc
                 .AddIf("mdc-select--filled", () => AppliedInputStyle == MTSelectInputStyle.Filled)
                 .AddIf("mdc-select--outlined", () => AppliedInputStyle == MTSelectInputStyle.Outlined)
                 .AddIf("mdc-select--no-label", () => string.IsNullOrWhiteSpace(Label))
-                .AddIf("mdc-select--disabled", () => Disabled);
+                .AddIf("mdc-select--disabled", () => AppliedDisabled);
 
             OnValueSet += OnValueSetCallback;
         }
