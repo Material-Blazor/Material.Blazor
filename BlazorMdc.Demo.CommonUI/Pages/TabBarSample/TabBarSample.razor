@@ -16,7 +16,9 @@
 <p><MTTextField @bind-Value="@tabLabel1" Label="2nd Tab" /></p>
 
 <div @key="@Density">
-    <MTTabBar @bind-TabIndex="@tabIndex"
+    <p style="margin-bottom: 2em;"><MTButton Label="Got to Dog" @onclick="@TabButtonClick" /></p>
+
+    <MTTabBar @bind-Value="@tabIndex"
               Items="@tabLabels"
               Context="item"
               Density="@Density">
@@ -37,29 +39,29 @@
 
     <p>Current tab index: @slidingTabIndex</p>
 
-    <p style="margin-bottom: 2em;"><MTButton Label="Got to Alarm" @onclick="@ButtonClickAsync" /></p>
+    <p style="margin-bottom: 2em;"><MTButton Label="Got to Alarm" @onclick="@SlidingButtonClick" /></p>
 
 
     <MTSlidingTabBar @key="@stacked"
-                     @ref="slidingTabBar"
-                     Items="@slidingTabItems"
-                     Context="item"
-                     @bind-TabIndex="@slidingTabIndex"
-                     StackIcons="@stacked"
-                     Density="@Density">
+                         @ref="slidingTabBar"
+                         Items="@slidingTabItems"
+                         Context="item"
+                         @bind-Value="@slidingTabIndex"
+                         StackIcons="@stacked"
+                         Density="@Density">
 
-        <Label>@item.IconName</Label>
-        <Icon><MTIcon IconName="@item.IconName" TabBar="true" /></Icon>
-        <Content>
-            <h3 class="mdc-typography--headline6">@item.IconName.ToUpper()</h3>
-            <p class="mdc-typography">@item.Text</p>
+            <Label>@item.IconName</Label>
+            <Icon><MTIcon IconName="@item.IconName" TabBar="true" /></Icon>
+            <Content>
+                <h3 class="mdc-typography--headline6">@item.IconName.ToUpper()</h3>
+                <p class="mdc-typography">@item.Text</p>
 
-            @if (item.IconName == "home")
-            {
-                <DialogSample HideHeading="true" />
-            }
-        </Content>
-    </MTSlidingTabBar>
+                @if (item.IconName == "home")
+                {
+                    <DialogSample HideHeading="true" />
+                }
+            </Content>
+        </MTSlidingTabBar>
 </div>
 
 
@@ -112,12 +114,11 @@
         base.OnInitialized();
     }
 
-    private async Task ButtonClickAsync()
-    {
-        slidingTabIndex = 1;
-        StateHasChanged();
-        await Task.CompletedTask;
-    }
+
+    private void TabButtonClick() => tabIndex = 1;
+
+    private void SlidingButtonClick() => slidingTabIndex = 1;
+
 
     IEnumerable<MTListElement<MTDensity>> DensityItems => from d in (MTDensity[])Enum.GetValues(typeof(MTDensity))
                                                           select new MTListElement<MTDensity>

@@ -268,15 +268,21 @@ window.BlazorMdc = {
     },
 
     tabBar: {
-        init: function (elem) {
+        init: function (elem, dotNetObject) {
             elem._tabBar = mdc.tabBar.MDCTabBar.attachTo(elem);
+
+            return new Promise(() => {
+                activatedCallback = () => {
+                    let index = elem._tabBar.foundation.adapter.getFocusedTabIndex();
+                    dotNetObject.invokeMethodAsync('NotifyActivatedAsync', index);
+                };
+
+                elem._tabBar.listen('MDCTabBar:activated', activatedCallback);
+            });
         },
 
-        setTab: function (elem, index) {
-            if (elem._tabBar) {
-                let tl = elem._tabBar.tabList_[index];
-                tl.root.click();
-            }
+        activateTab: function (elem, index) {
+            elem._tabBar.activateTab(index);
         }
     },
 

@@ -2,7 +2,7 @@
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -11,38 +11,8 @@ namespace BlazorMdc
     /// <summary>
     /// This is a general purpose Material Theme tab bar.
     /// </summary>
-    public partial class MTTabBar<TItem> : ComponentFoundation
+    public partial class MTTabBar<TItem> : InputComponentFoundation<int>, IDisposable
     {
-        private int _tabIndex;
-        /// <summary>
-        /// The tab index.
-        /// </summary>
-        [Parameter]
-        public int TabIndex
-        {
-            get => _tabIndex;
-
-            set
-            {
-                if (!HasRendered)
-                {
-                    _tabIndex = value;
-                }
-                else if (value != _tabIndex)
-                {
-                    SetTabIndex(value);
-                    _tabIndex = value;
-                }
-            }
-        }
-
-
-        /// <summary>
-        /// The change event callback for <see cref="TabIndex"/>.
-        /// </summary>
-        [Parameter] public EventCallback<int> TabIndexChanged { get; set; }
-
-
         /// <summary>
         /// Stack icons vertically if True, otherwise icons are leading.
         /// </summary>
@@ -76,11 +46,9 @@ namespace BlazorMdc
         [Parameter] public MTDensity? Density { get; set; }
 
 
+        private DotNetObjectReference<MTTabBar<TItem>> ObjectReference { get; set; }
         private string StackClass => StackIcons ? "mdc-tab--stacked" : "";
         private ElementReference ElementReference { get; set; }
-        private bool HasRendered { get; set; } = false;
-        private bool AllowNextRender { get; set; } = false;
-        private int StateNextIndex { get; set; } = -1;
 
         private MTCascadingDefaults.DensityInfo DensityInfo
         {
@@ -100,65 +68,45 @@ namespace BlazorMdc
         {
             base.OnInitialized();
 
+            ObjectReference = DotNetObjectReference.Create(this);
+
             ClassMapper
                 .Add("mdc-tab-bar")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass);
+            ForceShouldRenderToTrue = true;
+            OnValueSet += OnValueSetCallback;
         }
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
-        protected override void OnParametersSet()
+        public void Dispose()
         {
-            base.OnParametersSet();
-
-            AllowNextRender = true;
+            GC.SuppressFinalize(this);
+            ObjectReference?.Dispose();
         }
 
 
-        private async Task OnTabClickAsync(int index)
+        /// <summary>
+        /// For Material Theme to notify when a tab is clicked via JS Interop.
+        /// </summary>
+        /// <returns></returns>
+        [JSInvokable("NotifyActivatedAsync")]
+        public async Task NotifyActivatedAsync(int index)
         {
-            if (index != TabIndex)
-            {
-                _tabIndex = index;
-                await TabIndexChanged.InvokeAsync(index).ConfigureAwait(false);
-            }
+            ReportingValue = index;
+
+            await Task.CompletedTask;
         }
 
 
-        public void SetTabIndex(int index)
-        {
-            StateNextIndex = index;
-            AllowNextRender = true;
-            StateHasChanged();
-        }
+        /// <summary>
+        /// Callback for value the value setter.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.tabBar.activateTab", ElementReference, Value).ConfigureAwait(false));
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
-        protected override bool ShouldRender()
-        {
-            if (AllowNextRender)
-            {
-                AllowNextRender = false;
-                return true;
-            }
-
-            return false;
-        }
-
-
-        /// <inheritdoc/>
-        protected async override Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (firstRender)
-            {
-                await JsRuntime.InvokeAsync<object>("BlazorMdc.tabBar.init", ElementReference);
-                HasRendered = true;
-            }
-            else if (StateNextIndex >= 0)
-            {
-                await JsRuntime.InvokeAsync<object>("BlazorMdc.tabBar.setTab", ElementReference, StateNextIndex);
-                StateNextIndex = -1;
-            }
-        }
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.tabBar.init", ElementReference, ObjectReference).ConfigureAwait(false);
     }
 }

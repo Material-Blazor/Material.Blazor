@@ -2,14 +2,12 @@
 
 @typeparam TItem
 
-@inherits ComponentFoundation
-
-@inject IJSRuntime jsRuntime
+@inherits InputComponentFoundation<int>
 
 
 @if (Icon is null && Label is null)
 {
-    <MTTabBar @bind-TabIndex="@TabIndex"
+    <MTTabBar @bind-Value="@Value"
               Items="@Items"
               Context="item"
               StackIcons="@StackIcons"
@@ -20,7 +18,7 @@
 }
 else if (Label is null)
 {
-    <MTTabBar @bind-TabIndex="@TabIndex"
+    <MTTabBar @bind-Value="@Value"
               Items="@Items"
               Context="item"
               StackIcons="@StackIcons"
@@ -32,7 +30,7 @@ else if (Label is null)
 }
 else if (Icon is null)
 {
-    <MTTabBar @bind-TabIndex="@TabIndex"
+    <MTTabBar @bind-Value="@Value"
               Items="@Items"
               Context="item"
               StackIcons="@StackIcons"
@@ -44,7 +42,7 @@ else if (Icon is null)
 }
 else
 {
-    <MTTabBar @bind-TabIndex="@TabIndex"
+    <MTTabBar @bind-Value="@Value"
               Items="@Items"
               Context="item"
               StackIcons="@StackIcons"
@@ -58,7 +56,7 @@ else
 
 
 <MTSlidingContent Items="@Items"
-                  ItemIndex="@TabIndex"
+                  ItemIndex="@Value"
                   Context="item">
 
     <Content>

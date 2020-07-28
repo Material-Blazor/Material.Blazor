@@ -12,6 +12,7 @@ A [Material Tab Bar](https://github.com/material-components/material-components-
 
 - Accepts an IEnumerable of tab labels and (optional) icons;
 - Two-way binds the tab index number;
+- **Ignores the `Disabled` attribute**
 - Takes a boolean to indicate whether icons are stacked vertically above labels or not; and
 - Applies [density subsystem](xref:A.Density).
 
