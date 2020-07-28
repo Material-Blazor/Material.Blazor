@@ -13,9 +13,10 @@
     "build-bundle": "dart-sass --load-path=node_modules --no-source-map Styles\\blazormdc-material-bundle.scss wip\\blazormdc-material-bundle.css",
     "minify-bundle-css": "cleancss --level 1 --format breaksWith=lf --output wwwroot\\blazormdc-material-bundle.min.css wip\\blazormdc-material-bundle.css",
     "build-bmdc-ts": "tsc",
-    "minify-bundle-js": "terser wwwroot\\blazormdc.js node_modules\\material-components-web\\dist\\material-components-web.js --compress --mangle --ecma 2016 --output wwwroot\\blazormdc-material-bundle.min.js",
-    "copy-all": "xcopy /s /q /y wwwroot\\*.* ..\\BlazorMdc\\wwwroot",
-    "build-bmdcdemo": "dart-sass --load-path=node_modules --no-source-map ..\\BlazorMdc.Demo.CommonUI\\Styles\\styles.scss ..\\BlazorMdc.Demo.CommonUI\\wwwroot\\css\\styles.css"
+    "minify-bmdc-js": "terser wwwroot\\blazormdc.js --compress --mangle --ecma 2016 --output wwwroot\\blazormdc.min.js",
+    "minify-bundle-js": "terser wwwroot\\blazormdc.js node_modules\\material-components-web\\dist\\material-components-web.min.js --compress --mangle --ecma 2016 --output wwwroot\\blazormdc-material-bundle.min.js",
+    "build-bmdcdemo": "dart-sass --load-path=node_modules --no-source-map ..\\BlazorMdc.Demo.CommonUI\\Styles\\styles.scss ..\\BlazorMdc.Demo.CommonUI\\wwwroot\\css\\styles.css",
+    "build": ""
   },
   "keywords": [],
   "author": "",
@@ -29,20 +30,20 @@
   },
   "-vs-binding": {
     "BeforeBuild": [
-      "install"
-    ],
-    "AfterBuild": [
+      "install",
+      "clean-wip",
       "clean-wwwroot",
-      "build-scss-matf",
-      "minify-css-matf",
-      "delete-css-matf",
-      "build-scss-bmdc",
-      "minify-css-bmdc",
-      "copy-material-css",
-      "copy-material-js",
-      "build-ts",
-      "minify-js",
-      "copy-all"
+      "build-matfont",
+      "minify-matfont",
+      "build-bmdc",
+      "minify-bmdc",
+      "build-bundle",
+      "minify-bundle-css",
+      "build-bmdc-ts",
+      "minify-bmdc-js",
+      "minify-bundle-js",
+      "build-bmdcdemo",
+      "clean-wip"
     ]
   }
 }
