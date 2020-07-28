@@ -22,11 +22,9 @@ We have developed Blazor MDC using Visual Studio 2019 on Windows, and have not t
 
 ### Configuring Visual Studio
 
-- To build the Blazor project you need to be using the latest version of Visual Studio and to include the "ASP.NET and web development" Workload using Visual Studio Installer.:
+- To build the Blazor project you need to be using the latest version of Visual Studio 2019 and to include the "ASP.NET and web development" Workload using Visual Studio Installer.:
     <img src="/images/vs-config.png" alt="Visual Studio Workloads"></img>
-- Blazor MDC uses SASS for styling and uses Material Components Web SASS mixins. If you want to compile these from the `BlazorMdc.NodeMaterialComponents" project, you will also need to install the "Node.js development" Visual Studio Workload (see picture above). Note that Node is *big* and running the node project build will download over 100MB of data.
+- Blazor MDC uses SASS for styling and uses Material Components Web SASS mixins. You will also need to install "Node.js".  Note that npm packages are  *voluminous* and running the build will download over 80MB of data in the BlazorMdc\BlazorMdc\node_modules directory.
 - There are some Visual Studio extensions that you need or may want:
-  - Web Compiler is essential for building Blazor MDC.
-  - NPM Task Runner is essential for building the `BlazorMdc.NodeMaterialComponents` project if you want to modify the SASS files.
   - We like Markdown Editor, which will help you improve this page.
    <img src="/images/vs-extensions.png" alt="Visual Studio Extensions"></img>

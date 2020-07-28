@@ -16,13 +16,13 @@ Reference the `BlazorMdc` namespace with `@using BlazorMdc` to your `_Imports.ra
 We bundle the Material Theme CSS and JS into BlazorMdc for your convenience along with [Material Icons](https://material.io/resources/icons/?style=baseline) which are essential for BlazorMdc. You will need to add two items to your index.html/_Host.cshtml file. Place this in the the `<head>` tag:
 
 ```html
-<link href="_content/BlazorMdc/blazormdc-bundled.min.css" rel="stylesheet">
+<link href="_content/BlazorMdc/blazormdc-material-bundle.min.css" rel="stylesheet">
 ```
 
 and at the end of `<body>`:
 
 ```html
-<script src="_content/BlazorMdc/blazormdc-bundled.min.js"></script>
+<script src="_content/BlazorMdc/blazormdc-material-bundle.min.js"></script>
 ```
 
 Add the BlazorMdc namespace to your project by appending `@using BlazorMdc` to the end of your project's _Imports.razor file. Do not use components from the BlazorMdc.Internal namespace: as the name
@@ -45,7 +45,7 @@ and at the end of `<body>`:
 <script src="_content/BlazorMdc/blazormdc.js"></script>
 ```
 
-We also provide minified `blazormdc.css.min` and `blazormdc.js.min`. Add the BlazorMdc namespace to your project as above.
+We also provide minified `blazormdc.min.css` and `blazormdc.min.js`. Add the BlazorMdc namespace to your project as above.
 
 ### Package versions
 
