@@ -73,7 +73,7 @@ namespace BlazorMdc
             ClassMapper
                 .Add("mdc-tab-bar")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass);
-            ForceShouldRenderToTrue = true;
+            
             OnValueSet += OnValueSetCallback;
         }
 
