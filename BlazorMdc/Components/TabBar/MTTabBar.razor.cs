@@ -104,7 +104,13 @@ namespace BlazorMdc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.tabBar.activateTab", ElementReference, Value).ConfigureAwait(false));
+        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => 
+        {
+            // MTTabBar has the capacity for bounce after a user presses a tab, calling NotifyActivatedAsync.
+            // This 1ms delay seems to fix the bounce.
+            await Task.Delay(1);
+            await JsRuntime.InvokeAsync<object>("BlazorMdc.tabBar.activateTab", ElementReference, Value).ConfigureAwait(false); 
+        });
 
 
         private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.tabBar.init", ElementReference, ObjectReference).ConfigureAwait(false);

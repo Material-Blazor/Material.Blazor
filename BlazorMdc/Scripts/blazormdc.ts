@@ -282,9 +282,11 @@ window.BlazorMdc = {
         },
 
         activateTab: function (elem, index) {
-            elem._tabBar.unlisten('MDCTabBar:activated', elem._callback);
-            elem._tabBar.tabList_[index].root.click();
-            elem._tabBar.listen('MDCTabBar:activated', elem._callback);
+            if (elem._tabBar.tabList_[index].active != true) {
+                elem._tabBar.unlisten('MDCTabBar:activated', elem._callback);
+                elem._tabBar.activateTab(index);
+                elem._tabBar.listen('MDCTabBar:activated', elem._callback);
+            }
         }
     },
 
