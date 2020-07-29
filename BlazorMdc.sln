@@ -68,6 +68,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "styles", "styles", "{1514BC
 		templates\blazormdc\styles\main.css = templates\blazormdc\styles\main.css
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{5AF96DDC-150A-4287-B299-F33253610526}"
+	ProjectSection(SolutionItems) = preProject
+		images\gh-account-settings-1.png = images\gh-account-settings-1.png
+		images\gh-account-settings-2.png = images\gh-account-settings-2.png
+		images\gh-account-settings-3.png = images\gh-account-settings-3.png
+		images\gh-account-settings-4.png = images\gh-account-settings-4.png
+		images\gh-account-settings-5.png = images\gh-account-settings-5.png
+		images\vs-config.png = images\vs-config.png
+		images\vs-extensions.png = images\vs-extensions.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_Server|Any CPU = Debug_Server|Any CPU

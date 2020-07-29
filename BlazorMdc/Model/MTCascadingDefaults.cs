@@ -160,7 +160,7 @@ namespace BlazorMdc
         /// <summary>
         /// The disabled state to apply.
         /// </summary>
-        /// <param name="disabled">The retuqire disabled state</param>
+        /// <param name="disabled">The required disabled state</param>
         /// <returns>The <see cref="MTCardStyle"/> to apply.</returns>
         internal bool AppliedDisabled(bool? disabled = null) => disabled ?? Disabled;
 
