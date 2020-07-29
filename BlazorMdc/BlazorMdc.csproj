@@ -38,6 +38,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Content Remove="package-lock.json" />
+	  <Content Remove="package.json" />
+	  <Content Remove="tsconfig.json" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.6" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.6" />
 	</ItemGroup>
@@ -47,9 +53,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Update="package.json">
+	  <None Include="package-lock.json" />
+	  <None Include="package.json">
 	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-	  </Content>
+	  </None>
+	  <None Include="tsconfig.json" />
 	</ItemGroup>
 
   <Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">

@@ -34,6 +34,7 @@ namespace BlazorMdc.Internal
 
 
         private T _underlyingValue;
+        private T _debouncedUnderlyingValue = default;
         /// <summary>
         /// Gets or sets the value of the input. This should be used with two-way binding.
         /// </summary>
@@ -48,12 +49,40 @@ namespace BlazorMdc.Internal
                 if (!EqualityComparer<T>.Default.Equals(value, _underlyingValue))
                 {
                     _underlyingValue = value;
-                   
-                    if (_hasInstantiated) OnValueSet?.Invoke(this, null);
+
+                    if (_hasInstantiated) InvokeAsync(async () => await DebouncedOnValueSet());
                 }
             }
         }
 
+
+        private object _lockable = "";
+        /// <summary>
+        /// Inserts a 1ms delay to debounce Blazor's two-way binding, which can cause infinite bounce
+        /// issues with Material Theme's potential for a JS feedback loop when Blazor occasionally
+        /// bounces binding.
+        /// </summary>
+        /// <returns></returns>
+        private async Task DebouncedOnValueSet()
+        {
+            await Task.Delay(1);
+
+            bool invokeUpdate = false;
+
+            lock (_lockable)
+            {
+                if (!EqualityComparer<T>.Default.Equals(_debouncedUnderlyingValue, _underlyingValue))
+                {
+                    _debouncedUnderlyingValue = _underlyingValue;
+                    invokeUpdate = true;
+                }
+            }
+
+            if (invokeUpdate)
+            {
+                OnValueSet?.Invoke(this, null);
+            }
+        }
 
         /// <summary>
         /// Derived components can use this to get a callback from the <see cref="Value"/> setter when the consumer changes the value.
@@ -103,6 +132,7 @@ namespace BlazorMdc.Internal
                 var hasChanged = !EqualityComparer<T>.Default.Equals(value, _underlyingValue);
                 if (hasChanged)
                 {
+                    _debouncedUnderlyingValue = value;
                     _underlyingValue = value;
                     _ = ValueChanged.InvokeAsync(value);
                     EditContext?.NotifyFieldChanged(FieldIdentifier);
