@@ -13,7 +13,7 @@
 		<Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io. API and other documentation can be found at https://docs.blazormdc.com.</Description>
 		<RepositoryUrl>https://github.com/BlazorMdc/BlazorMdc</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageReleaseNotes>This is the first version 1 pre-release. The Blazor MDC API is now stable and will not suffer breaking changes until a future version 2.</PackageReleaseNotes>
+		<PackageReleaseNotes>We have a breaking change to the names of the bundled CSS and JS - please see docs.blazormdc.com in the installation section.</PackageReleaseNotes>
 		<NeutralLanguage>en</NeutralLanguage>
 		<Copyright>Dioptra and Optimium Health</Copyright>
 		<PackageProjectUrl>https://blazormdc.com</PackageProjectUrl>
@@ -38,80 +38,30 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Content Remove="bundleconfig.json" />
+	  <Content Remove="package-lock.json" />
+	  <Content Remove="package.json" />
+	  <Content Remove="tsconfig.json" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
 		<PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.6" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.6" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Content Include="Components\Card\MTCard.razor.md" />
-	  <Content Include="Components\List\MTList.razor.md" />
-	  <Content Include="Components\Menu\MTMenu.razor.md" />
-	  <Content Include="Components\NumericDoubleField\MTNumericDoubleField.razor.md" />
-	  <Content Include="Components\NumericIntField\MTNumericIntField.razor.md" />
-	  <Content Include="Components\PagedDataList\MTPagedDataList.razor.md" />
-	  <Content Include="Components\Paginator\MTPaginator.razor.md" />
-	  <Content Include="Components\RadioButtonGroup\MTRadioButtonGroup.razor.md" />
-	  <Content Include="Components\RadioButton\MTRadioButton.razor.md" />
-	  <Content Include="Components\Select\MTSelect.razor.md" />
-	  <Content Include="Components\Shield\MTShield.razor.md" />
-	  <Content Include="Components\SlidingTabBar\MTSlidingTabBar.razor.md" />
-	  <Content Include="Components\Switch\MTSwitch.razor.md" />
-	  <Content Include="Components\TabBar\MTTabBar.razor.md" />
-	  <Content Include="Components\TextArea\MTTextArea.razor.md" />
-	  <Content Include="Components\TextField\MTTextField.razor.md" />
-	  <Content Include="Components\Toast\MTToastAnchor.razor.md" />
-	  <Content Include="Components\TopAppBar\MTTopAppBar.razor.md" />
-	  <Content Include="Model\Icon\MTIconHelper.cs.md" />
-	  <Content Include="Model\MTCascadingDefaults.cs.md" />
+	  <Folder Include="wwwroot\" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="bundleconfig.json" />
+	  <None Include="package-lock.json" />
+	  <None Include="package.json">
+	    <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+	  </None>
+	  <None Include="tsconfig.json" />
 	</ItemGroup>
 
-
-	<ItemGroup>
-	  <Folder Include="wwwroot\Material-Components-Web\dist\" />
-	</ItemGroup>
-
-	<Target Name="RestoreDotnetTools" BeforeTargets="PreBuildEvent">
-		<Exec Command="dotnet tool restore" />
-	</Target>
-
-	
-	<!--<Target Name="CompileCss" AfterTargets="RestoreDotnetTools" BeforeTargets="PreBuildEvent">
-		<Exec Command="dotnet tool run webcompiler Styles/blazormdc.scss -m disable -o .\wwwroot -p disable -z disable" />
-	</Target>
-
-	<Target Name="CompileMinifiedCss" AfterTargets="CompileCss" BeforeTargets="PreBuildEvent">
-		<Exec Command="dotnet tool run webcompiler Styles/blazormdc.scss -m enable -o .\wwwroot -p disable -z disable" />
-	</Target>-->
-
-
-
-	<ItemGroup>
-		<JsBundleFiles Include=".\wwwroot\blazormdc-bundled*js" />
-	</ItemGroup>
-
-	<Target Name="CopyJs" AfterTargets="RestoreDotnetTools">
-		<Copy SourceFiles="@(JsSourceFiles)" DestinationFolder="wwwroot" />
-	</Target>
-
-	<ItemGroup>
-		<JsBundleFiles Include=".\wwwroot\blazormdc-bundled*js" />
-	</ItemGroup>
-
-	<!--<Target Name="DeleteJsBundles" AfterTargets="CopyJs">
-		<Delete Files="@(JsBundleFiles)" />
-	</Target>-->
-
-	<Target Name="CompileJs" AfterTargets="DeleteJsBundles">
-		<Exec Command="dotnet tool run webcompiler Scripts/blazormdc.js -m enable -o .\wwwroot -p disable -z disable" />
-	</Target>
+  <Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">
+    <Exec Command="Build-wwwroot.cmd" />
+  </Target>
 
 </Project>
