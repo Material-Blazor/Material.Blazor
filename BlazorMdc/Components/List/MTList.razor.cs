@@ -2,7 +2,7 @@
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -154,6 +154,7 @@ namespace BlazorMdc
         private string TitleClass { get; set; }
         private string LineTwoClass { get; set; }
         private string LineThreeClass { get; set; }
+        private string ListItemClass => "mdc-list-item__text bmdc-full-width" + (AppliedDisabled ? " mdc-list-item--disabled" : "");
 
 
         protected override void OnInitialized()
@@ -208,7 +209,15 @@ namespace BlazorMdc
         }
 
 
+        /// <summary>
+        /// Callback for value the Disabled value setter. MTList is a special case where Blazor MDC re-renders the component when Disabled is set.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.list.init", ElementReference, (KeyboardInteractions && !AppliedDisabled), Ripple));
+
+
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.list.init", ElementReference, KeyboardInteractions, Ripple);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.list.init", ElementReference, (KeyboardInteractions && !AppliedDisabled), Ripple);
     }
 }
