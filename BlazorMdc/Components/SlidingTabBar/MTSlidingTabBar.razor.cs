@@ -10,33 +10,8 @@ namespace BlazorMdc
     /// beneath showing tabbed content.
     /// </summary>
     /// <typeparam name="TItem"></typeparam>
-    public partial class MTSlidingTabBar<TItem> : ComponentFoundation
+    public partial class MTSlidingTabBar<TItem> : InputComponentFoundation<int>
     {
-        private int _tabIndex;
-        /// <summary>
-        /// The tab index.
-        /// </summary>
-        [Parameter]
-        public int TabIndex
-        {
-            get => _tabIndex;
-
-            set
-            {
-                if (value != _tabIndex)
-                {
-                    _tabIndex = value;
-                    TabIndexChanged.InvokeAsync(value);
-                }
-            }
-        }
-
-        /// <summary>
-        /// The change event callback for <see cref="TabIndex"/>.
-        /// </summary>
-        [Parameter] public EventCallback<int> TabIndexChanged { get; set; }
-
-
         /// <summary>
         /// Stack icons vertically if True, otherwise icons are leading.
         /// </summary>
@@ -71,5 +46,14 @@ namespace BlazorMdc
         /// The tab bar's density.
         /// </summary>
         [Parameter] public MTDensity? Density { get; set; }
+
+
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+
+            ForceShouldRenderToTrue = true;
+        }
     }
 }

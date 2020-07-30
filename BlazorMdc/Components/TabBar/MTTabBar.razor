@@ -1,5 +1,5 @@
 ﻿@namespace BlazorMdc
-@inherits ComponentFoundation
+@inherits InputComponentFoundation<int>
 @typeparam TItem
 
 
@@ -14,11 +14,17 @@
                 @foreach (var item in Items)
                 {
                     int index = i++;
-                    bool selected = (index == _tabIndex);
+                    bool selected = (index == Value);
+                    int tabIndex = selected ? 0 : -1;
                     string buttonActive = selected ? "mdc-tab--active" : "";
                     string indicatorActive = selected ? "mdc-tab-indicator--active" : "";
 
-                    <button @key="item" class="mdc-tab @StackClass @buttonActive" role="tab" aria-selected="@selected" tabindex="-1" @onclick="(_ => OnTabClickAsync(index))">
+                    <button @key="item" 
+                            class="mdc-tab @StackClass @buttonActive" 
+                            role="tab" 
+                            aria-selected="@selected" 
+                            tabindex="@tabIndex">
+
                         <span class="mdc-tab__content">
                             @if (Icon != null)
                             {

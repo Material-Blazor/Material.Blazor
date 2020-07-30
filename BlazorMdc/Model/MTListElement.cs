@@ -21,6 +21,6 @@
         /// <summary>
         /// Determines whether the list item is to be disabled
         /// </summary>
-        public bool Disabled { get; set; } = false;
+        public bool? Disabled { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -71,20 +71,20 @@ namespace BlazorMdc
         /// An @onclick event handler returning the index of the relevant list item.
         /// </summary>
         [Parameter] public EventCallback<int> OnClick { get; set; }
-        
-        
+
+
         /// <summary>
         /// An @onmousedown event handler returning the index of the relevant list item.
         /// </summary>
         [Parameter] public EventCallback<int> OnMouseDown { get; set; }
-        
-        
+
+
         /// <summary>
         /// An @onkeydown event handler returning the index of the relevant list item.
         /// </summary>
         [Parameter] public EventCallback<int> OnKeyDown { get; set; }
-        
-        
+
+
         /// <summary>
         /// An @ontouchstart event handler returning the index of the relevant list item.
         /// </summary>
@@ -154,6 +154,7 @@ namespace BlazorMdc
         private string TitleClass { get; set; }
         private string LineTwoClass { get; set; }
         private string LineThreeClass { get; set; }
+        private string ListItemClass => "mdc-list-item__text bmdc-full-width" + (AppliedDisabled ? " mdc-list-item--disabled" : "");
 
 
         protected override void OnInitialized()
@@ -187,16 +188,36 @@ namespace BlazorMdc
         }
 
 
-        private async Task OnItemClickAsync(int index) => await OnClick.InvokeAsync(index);
+        private async Task OnItemClickAsync(int index)
+        { 
+            if (KeyboardInteractions && !AppliedDisabled) await OnClick.InvokeAsync(index); 
+        }
 
-        private async Task OnItemMouseDownAsync(int index) => await OnMouseDown.InvokeAsync(index);
+        private async Task OnItemMouseDownAsync(int index)
+        {
+            if (KeyboardInteractions && !AppliedDisabled) await OnMouseDown.InvokeAsync(index);
+        }
 
-        private async Task OnItemKeyDownAsync(int index) => await OnKeyDown.InvokeAsync(index);
+        private async Task OnItemKeyDownAsync(int index)
+        {
+            if (KeyboardInteractions && !AppliedDisabled) await OnKeyDown.InvokeAsync(index);
+        }
 
-        private async Task OnItemTouchStartAsync(int index) => await OnTouchStart.InvokeAsync(index);
+        private async Task OnItemTouchStartAsync(int index)
+        {
+            if (KeyboardInteractions && !AppliedDisabled) await OnTouchStart.InvokeAsync(index);
+        }
+
+
+        /// <summary>
+        /// Callback for value the Disabled value setter. MTList is a special case where Blazor MDC re-renders the component when Disabled is set.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.list.init", ElementReference, (KeyboardInteractions && !AppliedDisabled), Ripple));
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.list.init", ElementReference, KeyboardInteractions, Ripple);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.list.init", ElementReference, (KeyboardInteractions && !AppliedDisabled), Ripple);
     }
 }
