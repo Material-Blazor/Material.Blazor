@@ -71,20 +71,20 @@ namespace BlazorMdc
         /// An @onclick event handler returning the index of the relevant list item.
         /// </summary>
         [Parameter] public EventCallback<int> OnClick { get; set; }
-        
-        
+
+
         /// <summary>
         /// An @onmousedown event handler returning the index of the relevant list item.
         /// </summary>
         [Parameter] public EventCallback<int> OnMouseDown { get; set; }
-        
-        
+
+
         /// <summary>
         /// An @onkeydown event handler returning the index of the relevant list item.
         /// </summary>
         [Parameter] public EventCallback<int> OnKeyDown { get; set; }
-        
-        
+
+
         /// <summary>
         /// An @ontouchstart event handler returning the index of the relevant list item.
         /// </summary>
@@ -187,13 +187,25 @@ namespace BlazorMdc
         }
 
 
-        private async Task OnItemClickAsync(int index) => await OnClick.InvokeAsync(index);
+        private async Task OnItemClickAsync(int index)
+        { 
+            if (KeyboardInteractions && !AppliedDisabled) await OnClick.InvokeAsync(index); 
+        }
 
-        private async Task OnItemMouseDownAsync(int index) => await OnMouseDown.InvokeAsync(index);
+        private async Task OnItemMouseDownAsync(int index)
+        {
+            if (KeyboardInteractions && !AppliedDisabled) await OnMouseDown.InvokeAsync(index);
+        }
 
-        private async Task OnItemKeyDownAsync(int index) => await OnKeyDown.InvokeAsync(index);
+        private async Task OnItemKeyDownAsync(int index)
+        {
+            if (KeyboardInteractions && !AppliedDisabled) await OnKeyDown.InvokeAsync(index);
+        }
 
-        private async Task OnItemTouchStartAsync(int index) => await OnTouchStart.InvokeAsync(index);
+        private async Task OnItemTouchStartAsync(int index)
+        {
+            if (KeyboardInteractions && !AppliedDisabled) await OnTouchStart.InvokeAsync(index);
+        }
 
 
         /// <inheritdoc/>

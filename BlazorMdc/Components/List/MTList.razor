@@ -35,6 +35,11 @@
                 <span class="mdc-list-item__graphic material-icons" aria-hidden="true">@Icon(item)</span>
             }
 
+            @if (KeyboardInteractions && Ripple)
+            {
+                <span class="mdc-list-item__ripple"></span>
+            }
+
             <span class="mdc-list-item__text bmdc-full-width">
                 <span class="@TitleClass">@Title(item)</span>
 
