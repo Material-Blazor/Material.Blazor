@@ -53,7 +53,7 @@ namespace BlazorMdc.Internal
             get => disabled;
             set
             {
-                if (disabled == null && value != null && disabled != value)
+                if (disabled != value)
                 {
                     disabled = value;
                     OnDisabledSet?.Invoke(this, null);
