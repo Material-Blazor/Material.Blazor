@@ -25,11 +25,12 @@
 <p><MTTextArea Label="Density Minus 4" Density="@MTDensity.Minus4" Rows="3" TextInputStyle="MTTextInputStyle.Outlined" Disabled="@DisableComponents" /></p>
 
 
-
-
 @code {
     [CascadingParameter(Name = "DisableComponents")] private bool DisableComponents { get; set; }
 
     string currentValueFilled = "test";
     string currentValueOutlined;
+    string currentValueDensityM1;
+    string currentValueDensityM2;
+    string currentValueDensityM3;
 }
