@@ -46,7 +46,7 @@ namespace BlazorMdc.Internal
 
 
         /// <summary>
-        /// Gets whether the component is disabled.
+        /// Indicates whether the component is disabled.
         /// </summary>
         [Parameter] public bool? Disabled
         { 
