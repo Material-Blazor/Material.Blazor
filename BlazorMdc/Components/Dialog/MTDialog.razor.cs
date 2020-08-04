@@ -128,6 +128,7 @@ namespace BlazorMdc
                 StateHasChanged();
                 tcs = new TaskCompletionSource<string>();
                 var ret = await tcs.Task;
+                _hasInstantiated = false;
                 return ret;
             }
         }

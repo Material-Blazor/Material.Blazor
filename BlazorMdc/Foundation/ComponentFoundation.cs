@@ -90,12 +90,16 @@ namespace BlazorMdc.Internal
             var htmlAttributes = new Dictionary<string, object>(ComponentPureHtmlAttributes);
             var eventAttributes = new Dictionary<string, object>();
             var requiredAttributes = new Dictionary<string, object>();
+            
+            var unmatchedClass = UnmatchedAttributes?.Where(a => a.Key.ToLower() == "class").FirstOrDefault().Value ?? "";
+            var unmatchedStyle = UnmatchedAttributes?.Where(a => a.Key.ToLower() == "style").FirstOrDefault().Value ?? "";
+            var otherUnmatchedAttributes = UnmatchedAttributes?.Where(a => a.Key.ToLower() != "class" && a.Key.ToLower() != "style");
 
             if (splatType != SplatType.ClassAndStyleOnly)
             {
-                if (UnmatchedAttributes != null)
+                if (otherUnmatchedAttributes != null)
                 {
-                    foreach (var item in UnmatchedAttributes)
+                    foreach (var item in otherUnmatchedAttributes)
                     {
                         allAttributes.Add(item.Key.ToLower(), item.Value);
                     }
@@ -118,8 +122,8 @@ namespace BlazorMdc.Internal
                 if (splatType == SplatType.EventsOnly) return eventAttributes;
             }
 
-            var classString = ClassMapper.ToClassString().Trim();
-            var styleString = StyleMapper.ToStyleString().Trim();
+            var classString = (ClassMapper.ToClassString() + " " + unmatchedClass).Trim();
+            var styleString = (StyleMapper.ToStyleString() + " " + unmatchedStyle).Trim();
 
             if (!string.IsNullOrWhiteSpace(classString)) classAndStyle.Add("class", classString);
             if (!string.IsNullOrWhiteSpace(styleString)) classAndStyle.Add("style", styleString);
