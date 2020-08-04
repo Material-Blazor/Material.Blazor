@@ -12,7 +12,7 @@
 
         @if (!string.IsNullOrWhiteSpace(LeadingIcon))
         {
-            <MTIcon IconName="@LeadingIcon" IconFoundry="@IconFoundry" Class="mdc-text-field__icon mdc-text-field__icon--leading" tabindex="-1" role="button" />
+            <MTIcon IconName="@LeadingIcon" IconFoundry="@IconFoundry" class="mdc-text-field__icon mdc-text-field__icon--leading" tabindex="-1" role="button" />
         }
 
         @if (!string.IsNullOrWhiteSpace(Prefix))
@@ -34,7 +34,7 @@
 
         @if (!string.IsNullOrWhiteSpace(TrailingIcon))
         {
-            <MTIcon IconName="@TrailingIcon" IconFoundry="@IconFoundry" Class="mdc-text-field__icon mdc-text-field__icon--trailing" tabindex="-1" role="button" />
+            <MTIcon IconName="@TrailingIcon" IconFoundry="@IconFoundry" class="mdc-text-field__icon mdc-text-field__icon--trailing" tabindex="-1" role="button" />
         }
 
         @if (AppliedInputStyle == MTTextInputStyle.Outlined)

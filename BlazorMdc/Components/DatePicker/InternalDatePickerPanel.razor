@@ -17,15 +17,15 @@
     <div class="bmdc-dp-menu">
         <div class="bmdc-dp-menu__left">
             <span>@MonthText</span>
-            <MTIconButtonToggle @bind-Value="@ShowYearPad" Class="bmdc-dp-menu__icon-button" IconOn="arrow_drop_up" IconOff="arrow_drop_down" IconFoundry="@foundry" />
+            <MTIconButtonToggle @bind-Value="@ShowYearPad" class="bmdc-dp-menu__icon-button" IconOn="arrow_drop_up" IconOff="arrow_drop_down" IconFoundry="@foundry" />
         </div>
 
         @if (!ShowYearPad)
         {
             <div class="bmdc-dp-menu__right">
-                <MTIconButton @onclick="@OnPreviousMonthClick" Class="bmdc-dp-menu__icon-button" Icon="chevron_left" IconFoundry="@foundry" Disabled="@PreviousMonthDisabled" />
-                <MTIconButton @onclick="@OnShowCurrentDateClick" Class="bmdc-dp-menu__icon-button spaced" Icon="undo" IconFoundry="@foundry" />
-                <MTIconButton @onclick="@OnNextMonthClick" Class="bmdc-dp-menu__icon-button spaced" Icon="chevron_right" IconFoundry="@foundry" Disabled="@NextMonthDisabled" />
+                <MTIconButton @onclick="@OnPreviousMonthClick" class="bmdc-dp-menu__icon-button" Icon="chevron_left" IconFoundry="@foundry" Disabled="@PreviousMonthDisabled" />
+                <MTIconButton @onclick="@OnShowCurrentDateClick" class="bmdc-dp-menu__icon-button spaced" Icon="undo" IconFoundry="@foundry" />
+                <MTIconButton @onclick="@OnNextMonthClick" class="bmdc-dp-menu__icon-button spaced" Icon="chevron_right" IconFoundry="@foundry" Disabled="@NextMonthDisabled" />
             </div>
         }
     </div>
