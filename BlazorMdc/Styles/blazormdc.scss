@@ -24,6 +24,8 @@
 @use '../Components/Toast/MTToast.scss';
 @use '../Components/TopAppBar/MTTopAppBar.scss';
 
+@use 'sass:color';
+
 
 :root {
     --bmdc-dialog-firefox-scrollbar-width: thin;
@@ -35,8 +37,8 @@
     --bmdc-select-scroll-width: 8px;
     --bmdc-select-scroll-border-radius: 4px;
     --bmdc-scroll-track-color: rgba(0, 0, 0, 0);
-    --bmdc-scroll-color: var(--bmdc-color-bluegray-400);
-    --bmdc-scroll-color__hover: var(--bmdc-color-bluegray-700);
+    --bmdc-scroll-color: var(--mdc-theme-primary);
+    --bmdc-scroll-color__hover: var(--mdc-theme-primary);
 }
 
 

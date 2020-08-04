@@ -10,8 +10,8 @@ namespace BlazorMdc.Internal
 {
     public abstract class ComponentFoundation : ComponentBase
     {
-        private const string ClassAttrName = "class";
-        private const string StyleAttrName = "style";
+        private const string ClassAttrName = "classx";
+        private const string StyleAttrName = "stylex";
         private const string DisabledAttributeName = "disabled";
 
         private readonly string[] ReservedAttributes = { ClassAttrName, StyleAttrName, DisabledAttributeName };
@@ -30,19 +30,6 @@ namespace BlazorMdc.Internal
         /// </summary>
         [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object> UnmatchedAttributes { get; set; }
 
-
-        /// <summary>
-        /// Specifies one or more additional class names for the component.
-        /// </summary>
-        [Parameter]
-        public string Class { get; set; } = "";
-
-
-        /// <summary>
-        /// Specifies one or more additional styles for the component.
-        /// </summary>
-        [Parameter]
-        public string Style { get; set; } = "";
 
 
         /// <summary>
@@ -134,8 +121,8 @@ namespace BlazorMdc.Internal
                 if (splatType == SplatType.EventsOnly) return eventAttributes;
             }
 
-            var classString = (ClassMapper.ToClassString() + " " + Class).Trim();
-            var styleString = (StyleMapper.ToStyleString() + " " + Style).Trim();
+            var classString = ClassMapper.ToClassString();
+            var styleString = StyleMapper.ToStyleString();
 
             if (!string.IsNullOrWhiteSpace(classString)) classAndStyle.Add(ClassAttrName, classString);
             if (!string.IsNullOrWhiteSpace(styleString)) classAndStyle.Add(StyleAttrName, styleString);
