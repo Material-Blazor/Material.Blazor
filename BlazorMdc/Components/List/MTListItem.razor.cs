@@ -29,6 +29,12 @@ namespace BlazorMdc
 
 
         /// <summary>
+        /// Determined whether the list item is in an menu and is in the selected state
+        /// </summary>
+        [Parameter] public bool IsSelectedMenuItem { get; set; }
+
+
+        /// <summary>
         /// The foundry to use for both leading and trailing icons.
         /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
         /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
@@ -54,6 +60,7 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-list-item")
+                .AddIf("mdc-menu-item--selected", () => IsSelectedMenuItem)
                 .AddIf("mdc-list-item--disabled bmdc-list-item--disabled", () => AppliedDisabled);
         }
 
