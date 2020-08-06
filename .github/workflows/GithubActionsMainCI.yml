@@ -65,8 +65,13 @@ jobs:
     - name: Display CI suffix Ꙫ
       run: echo ${env:ciSuffix}
 
+    - name: Build 🔧
+      run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:project}
+      env:
+        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
     - name: Generate NuGet package 🔧
-      run: dotnet pack --configuration ${env:buildConfiguration} --output ${env:output} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:project}
+      run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:output} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:project}
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
