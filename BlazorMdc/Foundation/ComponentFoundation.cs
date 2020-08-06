@@ -18,7 +18,7 @@ namespace BlazorMdc.Internal
         [Inject] private protected IJSRuntime JsRuntime { get; set; }
 
 
-        [CascadingParameter] protected MTCascadingDefaults CascadingDefaults { get; set; } = new();
+        [CascadingParameter] protected MTCascadingDefaults CascadingDefaults { get; set; } = new MTCascadingDefaults();
         
 
         /// <summary>
@@ -65,13 +65,13 @@ namespace BlazorMdc.Internal
         /// <summary>
         /// Allows a component to build or map out a group of CSS classes to be applied to the component. Use this in <see cref="OnInitialialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
         /// </summary>
-        private protected ClassAndStyleMapper ClassMapper { get; } = new();
+        private protected ClassAndStyleMapper ClassMapper { get; } = new ClassAndStyleMapper();
 
 
         /// <summary>
         /// Allows a component to build or map out a group of HTML styles to be applied to the component. Use this in <see cref="OnInitialialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
         /// </summary>
-        private protected ClassAndStyleMapper StyleMapper { get; } = new();
+        private protected ClassAndStyleMapper StyleMapper { get; } = new ClassAndStyleMapper();
 
 
         /// <summary>

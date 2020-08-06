@@ -18,7 +18,6 @@
 		<Copyright>Dioptra and Optimium Health</Copyright>
 		<PackageProjectUrl>https://blazormdc.com</PackageProjectUrl>
 		<Product>Blazor MDC</Product>
-		<LangVersion>preview</LangVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_WebAssembly|AnyCPU'">
