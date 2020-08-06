@@ -11,7 +11,7 @@ env:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug_Server'
   ciSuffix: CI.${{ github.run_number }}
-  output: ${{ github.workspace }}\package
+  output: ${{ github.workspace }}\_site
   project: 'BlazorMdc\BlazorMdc.csproj'
 
 jobs:

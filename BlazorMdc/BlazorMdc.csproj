@@ -80,7 +80,6 @@
 		<Exec Command="npm run minify-bmdc-js" />
 		<Exec Command="npm run minify-bundle-js" />
 		<Exec Command="npm run build-bmdcdemo" />
-		<Exec Command="dir wip"/>
 		<RemoveDir Directories="wip" />
 	</Target>
 
