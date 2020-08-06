@@ -46,12 +46,12 @@
 <p><MTNumericIntField @bind-Value="@toastService.Configuration.MaxToastsShowing" Label="Max Toasts (0-10)" Min="0" Max="10" NumericFormat="N0" /></p>
 
 <p>
-    <MTButton Style="background-color: var(--bmdc-toast-background-color-info);"
+    <MTButton style="background-color: var(--bmdc-toast-background-color-info);"
               @onclick="@InfoClick"
               Label="Info Toast"
               ButtonStyle="@MTButtonStyle.ContainedRaised" />
 
-    <MTButton Style="background-color: var(--bmdc-toast-background-color-success);"
+    <MTButton style="background-color: var(--bmdc-toast-background-color-success);"
               @onclick="@(() => toastService.ShowToast(
                               level: MTToastLevel.Success,
                               heading: "I'm a SUCCESS",
@@ -59,14 +59,14 @@
               Label="Success Toast"
               ButtonStyle="@MTButtonStyle.ContainedRaised" />
 
-    <MTButton Style="background-color: var(--bmdc-toast-background-color-warning);"
+    <MTButton style="background-color: var(--bmdc-toast-background-color-warning);"
               @onclick="@(() => toastService.ShowToast(
                               level: MTToastLevel.Warning,
                               message: "I'm a WARNING" ))"
               Label="Warning Toast"
               ButtonStyle="@MTButtonStyle.ContainedRaised" />
 
-    <MTButton Style="background-color: var(--bmdc-toast-background-color-error);"
+    <MTButton style="background-color: var(--bmdc-toast-background-color-error);"
               @onclick="@(() => toastService.ShowToast(
                               level: MTToastLevel.Error,
                               message: "I'm an ERROR" ))"

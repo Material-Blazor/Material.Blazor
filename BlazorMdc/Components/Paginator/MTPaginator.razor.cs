@@ -37,24 +37,24 @@ namespace BlazorMdc
         }
 
 
-        private int _itemsPerPage = 0;
+        private int BackingItemsPerPage
+        {
+            get => ItemsPerPage;
+            set
+            {
+                if (value != ItemsPerPage)
+                {
+                    ItemsPerPage = value;
+                    ItemsPerPageChanged.InvokeAsync(value);
+                    BackingPageNumber = PageNumber; // Forces a clamp
+                }
+            }
+        }
         /// <summary>
         /// The number of items per page as selected by the user.
         /// </summary>
         [Parameter]
-        public int ItemsPerPage
-        {
-            get => _itemsPerPage;
-            set
-            {
-                if (value != _itemsPerPage)
-                {
-                    _itemsPerPage = value;
-                    _ = ItemsPerPageChanged.InvokeAsync(value);
-                    PageNumber = _pageNumber; // Forces a clamp
-                }
-            }
-        }
+        public int ItemsPerPage { get; set; } = 0;
 
 
         /// <summary>
@@ -63,35 +63,34 @@ namespace BlazorMdc
         [Parameter] public EventCallback<int> ItemsPerPageChanged { get; set; }
 
 
-        private int _pageNumber = 0;
-        /// <summary>
-        /// The current page number selected by the user.
-        /// </summary>
-        [Parameter]
-        public int PageNumber
+        private int BackingPageNumber
         {
-            get => _pageNumber;
+            get => PageNumber;
             set
             {
                 if (ItemsPerPage == 0)
                 {
-                    _pageNumber = value;
-                    if (HasRendered)
-                        _ = PageNumberChanged.InvokeAsync(value);
+                    PageNumber = value;
+                    if (HasRendered) PageNumberChanged.InvokeAsync(value);
                 }
                 else
                 {
                     var clampedValue = Math.Clamp(value, 0, MaxPageNumber);
 
-                    if (clampedValue != _pageNumber)
+                    if (clampedValue != PageNumber)
                     {
-                        _pageNumber = clampedValue;
-                        if (HasRendered)
-                            _ = PageNumberChanged.InvokeAsync(value);
+                        PageNumber = clampedValue;
+                        if (HasRendered) PageNumberChanged.InvokeAsync(value);
                     }
                 }
             }
         }
+        /// <summary>
+        /// The current page number selected by the user.
+        /// </summary>
+        [Parameter]
+        public int PageNumber { get; set; } = 0;
+
 
         /// <summary>
         /// Two way binding callback for <see cref="PageNumber"/>
@@ -152,7 +151,6 @@ namespace BlazorMdc
             {
                 _ = await Menu.ToggleAsync();
                 ToggleOn = false;
-                StateHasChanged();
             }
         }
 
@@ -160,22 +158,20 @@ namespace BlazorMdc
         private void OnMenuItemClick(int itemsPerPage)
         {
             double ratio = (double)ItemsPerPage / (double)itemsPerPage;
-            ItemsPerPage = itemsPerPage;
-            PageNumber = Convert.ToInt32(PageNumber * ratio);
+            BackingItemsPerPage = itemsPerPage;
+            BackingPageNumber = Convert.ToInt32(PageNumber * ratio);
         }
 
 
         private void OnPreviousClick()
         {
-            PageNumber = Math.Max(PageNumber - 1, 0);
-            StateHasChanged();
+            BackingPageNumber = Math.Max(PageNumber - 1, 0);
         }
 
 
         private void OnNextClick()
         {
-            PageNumber = Math.Min(PageNumber + 1, MaxPageNumber);
-            StateHasChanged();
+            BackingPageNumber = Math.Min(PageNumber + 1, MaxPageNumber);
         }
     }
 }

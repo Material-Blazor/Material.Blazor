@@ -11,16 +11,16 @@
 
     <div class="mdc-menu-surface--anchor">
         <MTMenu @ref="menu">
-            <MTListItem Text="One" LeadingIcon="home" NavigationReference="One" OnClick="OnClickHandler" />
-            <MTListItem Text="Two" NavigationReference="Two" OnClick="OnClickHandler" />
-            <MTListItem Text="Three" LeadingIcon="shield" IconFoundry="MTIconHelper.OIFoundry()" NavigationReference="Three" OnClick="OnClickHandler" />
+            <MTListItem Label="One" LeadingIcon="home" @onclick="@(() => OnClickHandler("One"))" />
+            <MTListItem Label="Two" @onclick="@(() => OnClickHandler("Two"))" />
+            <MTListItem Label="Three" LeadingIcon="shield" IconFoundry="MTIconHelper.OIFoundry()" @onclick="@(() => OnClickHandler("Three"))" />
             <MTListDivider />
             <MTMenuSelectionGroup>
-                <MTListItem Text="Four" LeadingIcon="done" NavigationReference="Four" OnClick="OnClickHandler" />
-                <MTListItem Text="Five" LeadingIcon="done" NavigationReference="Five" OnClick="OnClickHandler" />
+                <MTListItem Label="Four" LeadingIcon="done" @onclick="@(() => OnClickHandler("Four"))" />
+                <MTListItem Label="Five" LeadingIcon="done" @onclick="@(() => OnClickHandler("Five"))" />
             </MTMenuSelectionGroup>
             <MTListDivider />
-            <MTListItem Text="Six (disabled)" Disabled="true" NavigationReference="Six" OnClick="OnClickHandler" />
+            <MTListItem Label="Six (disabled)" Disabled="true" @onclick="@(() => OnClickHandler("Six"))" />
         </MTMenu>
     </div>
 </div>

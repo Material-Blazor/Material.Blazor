@@ -10,11 +10,7 @@ namespace BlazorMdc.Internal
 {
     public abstract class ComponentFoundation : ComponentBase
     {
-        private const string ClassAttrName = "class";
-        private const string StyleAttrName = "style";
-        private const string DisabledAttributeName = "disabled";
-
-        private readonly string[] ReservedAttributes = { ClassAttrName, StyleAttrName, DisabledAttributeName };
+        private readonly string[] ReservedAttributes = { "disabled" };
         private readonly string[] EventAttributeNames = { "onfocus", "onblur", "onfocusin", "onfocusout", "onmouseover", "onmouseout", "onmousemove", "onmousedown", "onmouseup", "onclick", "ondblclick", "onwheel", "onmousewheel", "oncontextmenu", "ondrag", "ondragend", "ondragenter", "ondragleave", "ondragover", "ondragstart", "ondrop", "onkeydown", "onkeyup", "onkeypress", "onchange", "oninput", "oninvalid", "onreset", "onselect", "onselectstart", "onselectionchange", "onsubmit", "onbeforecopy", "onbeforecut", "onbeforepaste", "oncopy", "oncut", "onpaste", "ontouchcancel", "ontouchend", "ontouchmove", "ontouchstart", "ontouchenter", "ontouchleave", "ongotpointercapture", "onlostpointercapture", "onpointercancel", "onpointerdown", "onpointerenter", "onpointerleave", "onpointermove", "onpointerout", "onpointerover", "onpointerup", "oncanplay", "oncanplaythrough", "oncuechange", "ondurationchange", "onemptied", "onpause", "onplay", "onplaying", "onratechange", "onseeked", "onseeking", "onstalled", "onstop", "onsuspend", "ontimeupdate", "onvolumechange", "onwaiting", "onloadstart", "ontimeout", "onabort", "onload", "onloadend", "onprogress", "onerror", "onactivate", "onbeforeactivate", "onbeforedeactivate", "ondeactivate", "onended", "onfullscreenchange", "onfullscreenerror", "onloadeddata", "onloadedmetadata", "onpointerlockchange", "onpointerlockerror", "onreadystatechange", "onscroll" };
         private readonly string[] AriaAttributeNames = { "aria-activedescendant", "aria-atomic", "aria-autocomplete", "aria-busy", "aria-checked", "aria-controls", "aria-describedat", "aria-describedby", "aria-disabled", "aria-dropeffect", "aria-expanded", "aria-flowto", "aria-grabbed", "aria-haspopup", "aria-hidden", "aria-invalid", "aria-label", "aria-labelledby", "aria-level", "aria-live", "aria-multiline", "aria-multiselectable", "aria-orientation", "aria-owns", "aria-posinset", "aria-pressed", "aria-readonly", "aria-relevant", "aria-required", "aria-selected", "aria-setsize", "aria-sort", "aria-valuemax", "aria-valuemin", "aria-valuenow", "aria-valuetext" };
         private bool? disabled = null;
@@ -23,7 +19,7 @@ namespace BlazorMdc.Internal
 
 
         [CascadingParameter] protected MTCascadingDefaults CascadingDefaults { get; set; } = new MTCascadingDefaults();
-
+        
 
         /// <summary>
         /// Gets or sets a collection of additional attributes that will be applied to the created element.
@@ -31,25 +27,13 @@ namespace BlazorMdc.Internal
         [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object> UnmatchedAttributes { get; set; }
 
 
-        /// <summary>
-        /// Specifies one or more additional class names for the component.
-        /// </summary>
-        [Parameter]
-        public string Class { get; set; } = "";
-
-
-        /// <summary>
-        /// Specifies one or more additional styles for the component.
-        /// </summary>
-        [Parameter]
-        public string Style { get; set; } = "";
-
-
+        
         /// <summary>
         /// Indicates whether the component is disabled.
         /// </summary>
-        [Parameter] public bool? Disabled
-        { 
+        [Parameter]
+        public bool? Disabled
+        {
             get => disabled;
             set
             {
@@ -106,18 +90,22 @@ namespace BlazorMdc.Internal
             var htmlAttributes = new Dictionary<string, object>(ComponentPureHtmlAttributes);
             var eventAttributes = new Dictionary<string, object>();
             var requiredAttributes = new Dictionary<string, object>();
+            
+            var unmatchedClass = UnmatchedAttributes?.Where(a => a.Key.ToLower() == "class").FirstOrDefault().Value ?? "";
+            var unmatchedStyle = UnmatchedAttributes?.Where(a => a.Key.ToLower() == "style").FirstOrDefault().Value ?? "";
+            var otherUnmatchedAttributes = UnmatchedAttributes?.Where(a => a.Key.ToLower() != "class" && a.Key.ToLower() != "style");
 
             if (splatType != SplatType.ClassAndStyleOnly)
             {
-                if (UnmatchedAttributes != null)
+                if (otherUnmatchedAttributes != null)
                 {
-                    foreach (var item in UnmatchedAttributes)
+                    foreach (var item in otherUnmatchedAttributes)
                     {
                         allAttributes.Add(item.Key.ToLower(), item.Value);
                     }
                 }
 
-                if (AppliedDisabled) allAttributes.Add(DisabledAttributeName, AppliedDisabled);
+                if (AppliedDisabled) allAttributes.Add("disabled", AppliedDisabled);
 
                 if (splatType == SplatType.ExcludeClassAndStyle) return allAttributes;
 
@@ -134,15 +122,22 @@ namespace BlazorMdc.Internal
                 if (splatType == SplatType.EventsOnly) return eventAttributes;
             }
 
-            var classString = (ClassMapper.ToClassString() + " " + Class).Trim();
-            var styleString = (StyleMapper.ToStyleString() + " " + Style).Trim();
+            var classString = (ClassMapper.ToClassString() + " " + unmatchedClass).Trim();
+            var styleString = (StyleMapper.ToStyleString() + " " + unmatchedStyle).Trim();
 
-            if (!string.IsNullOrWhiteSpace(classString)) classAndStyle.Add(ClassAttrName, classString);
-            if (!string.IsNullOrWhiteSpace(styleString)) classAndStyle.Add(StyleAttrName, styleString);
+            if (!string.IsNullOrWhiteSpace(classString)) classAndStyle.Add("class", classString);
+            if (!string.IsNullOrWhiteSpace(styleString)) classAndStyle.Add("style", styleString);
 
             foreach (var item in classAndStyle)
             {
-                allAttributes.Add(item.Key, item.Value);
+                if (allAttributes.ContainsKey(item.Key))
+                {
+                    allAttributes[item.Key] += " " + item.Value;
+                }
+                else
+                {
+                    allAttributes.Add(item.Key, item.Value);
+                }
             }
 
             if (splatType == SplatType.ClassAndStyleOnly)
@@ -158,7 +153,14 @@ namespace BlazorMdc.Internal
             {
                 foreach (var item in classAndStyle)
                 {
-                    requiredAttributes.Add(item.Key, item.Value);
+                    if (requiredAttributes.ContainsKey(item.Key))
+                    {
+                        requiredAttributes[item.Key] += " " + item.Value;
+                    }
+                    else
+                    {
+                        requiredAttributes.Add(item.Key, item.Value);
+                    }
                 }
             }
 
@@ -166,7 +168,14 @@ namespace BlazorMdc.Internal
             {
                 foreach (var item in htmlAttributes)
                 {
-                    requiredAttributes.Add(item.Key, item.Value);
+                    if (requiredAttributes.ContainsKey(item.Key))
+                    {
+                        requiredAttributes[item.Key] += " " + item.Value;
+                    }
+                    else
+                    {
+                        requiredAttributes.Add(item.Key, item.Value);
+                    }
                 }
             }
 
@@ -220,7 +229,7 @@ namespace BlazorMdc.Internal
             if (reserved.Count() > 0)
             {
                 throw new ArgumentException(
-                    $"BlazorMdc: You cannot use {string.Join(", ", reserved.Select(x => $"'{x}'"))} attributes in {Utilities.GetTypeName(GetType())}. BlazorMdc reserves the 'class', 'style' and 'display' HTML attributes for internal use, so use the 'Class', 'Style' and 'Display' parameters instead");
+                    $"BlazorMdc: You cannot use {string.Join(", ", reserved.Select(x => $"'{x}'"))} attributes in {Utilities.GetTypeName(GetType())}. BlazorMdc reserves the 'display' HTML attributes for internal use; use the 'Display' parameter instead");
             }
 
             if (!CascadingDefaults.ConstrainSplattableAttributes)
@@ -238,7 +247,7 @@ namespace BlazorMdc.Internal
             if (forbidden.Count() > 0)
             {
                 throw new ArgumentException(
-                    $"BlazorMdc: You cannot use {string.Join(", ", forbidden.Select(x => $"'{x}'"))} attributes in {Utilities.GetTypeName(GetType())}. Either remove the attribute or change 'ConstrainSplattableAttributes' or 'AllowedSplattableAttributes' in your MdcCascadingDefaults");
+                    $"BlazorMdc: You cannot use {string.Join(", ", forbidden.Select(x => $"'{x}'"))} attributes in {Utilities.GetTypeName(GetType())}. Either remove the attribute or change 'ConstrainSplattableAttributes' or 'AllowedSplattableAttributes' in your MTCascadingDefaults");
             }
         }
 

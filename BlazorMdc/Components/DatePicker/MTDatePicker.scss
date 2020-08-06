@@ -4,25 +4,25 @@
 
 /*
     The structure of this file is designed to be driven entirely from
-    $dp-button-height. The panel width and height will flex to accommodate
+    $dp-button-size. The panel width and height will flex to accommodate
     that, as will day and year buttons. Icon buttons for the to pmenu are 
     the only other parameter that needs to be set to effect a resize.
     Setting these values to 28px and 24px respectively makes the date picker
     conform to the detailed Material Theme specification.
 */
-$dp-button-height: 28px;
+$dp-button-size: 32px;
 $dp-menu-icon-button-size: 24px;
 
 
 /*
     General purpose definitions
 */
-$dp-button-border-radius: $dp-button-height / 2;
+$dp-button-border-radius: $dp-button-size / 2;
 $dp-button-margin: 2px;
 $dp-day-pad-horizontal-margin: 16px;
 $dp-day-pad-bottom-margin: 8px;
 
-$dp-panel-width: 7 * ($dp-button-height + 2 * $dp-button-margin) + 2 * $dp-day-pad-horizontal-margin;
+$dp-panel-width: 7 * ($dp-button-size + 2 * $dp-button-margin) + 2 * $dp-day-pad-horizontal-margin;
 
 $dp-year-pad-padding-top: 4px;
 $dp-year-pad-padding-right: 0;
@@ -30,7 +30,7 @@ $dp-year-pad-padding-bottom: 8px;
 $dp-year-pad-padding-left: 12px;
 $dp-year-pad-clear-space-right: 20px;
 
-$dp-day-button-width: $dp-button-height;
+$dp-day-button-width: $dp-button-size;
 $dp-year-button-width: ($dp-panel-width - $dp-year-pad-padding-left - $dp-year-pad-clear-space-right) / 4 - 2 * $dp-button-margin;
 
 
@@ -111,7 +111,7 @@ $dp-menu-icon-button-margin: 4px;
 */
 
 $dp-day-pad-weekdays-margin-bottom: 8px;
-$dp-day-pad-weekdays-size: $dp-button-height + $dp-button-margin;
+$dp-day-pad-weekdays-size: $dp-button-size + $dp-button-margin;
 
 .bmdc-dp-day-pad {
     display: flex;
@@ -150,13 +150,14 @@ $dp-day-pad-weekdays-size: $dp-button-height + $dp-button-margin;
 
 
 .bmdc-dp-day-pad__button {
-    height: $dp-button-height;
-    width: $dp-day-button-width;
-    min-width: $dp-day-button-width;
-    max-width: $dp-day-button-width;
-    border-radius: $dp-button-border-radius;
-    margin: $dp-button-margin;
-    padding: 0;
+    height: $dp-button-size !important;
+    min-height: $dp-button-size !important;
+    max-height: $dp-button-size !important;
+    width: $dp-day-button-width !important;
+    min-width: $dp-day-button-width !important;
+    max-width: $dp-day-button-width !important;
+    margin: $dp-button-margin !important;
+    padding: 0 !important;
 
     .mdc-button__ripple {
         border-radius: $dp-button-border-radius;
@@ -177,17 +178,18 @@ $dp-year-pad-rows: 7;
     user-select: none;
     overflow-x: hidden;
     overflow-y: scroll;
-    max-height: $dp-year-pad-rows * ($dp-button-height + 2 * $dp-button-margin);
+    max-height: $dp-year-pad-rows * ($dp-button-size + 2 * $dp-button-margin);
 }
 
 .bmdc-dp-year-pad__button {
-    height: $dp-button-height;
-    width: $dp-year-button-width;
-    min-width: $dp-year-button-width;
-    max-width: $dp-year-button-width;
-    border-radius: $dp-button-border-radius;
-    margin: $dp-button-margin;
-    padding: 0;
+    height: $dp-button-size !important;
+    min-height: $dp-button-size !important;
+    max-height: $dp-button-size !important;
+    width: $dp-year-button-width !important;
+    min-width: $dp-year-button-width !important;
+    max-width: $dp-year-button-width !important;
+    margin: $dp-button-margin !important;
+    padding: 0 !important;
 
     .mdc-button__ripple {
         border-radius: $dp-button-border-radius;
@@ -199,8 +201,8 @@ $dp-year-pad-rows: 7;
     Applied to MTDatePicker.razor
 ************************************************/
 
-$dp-menu-day-menu-height: $dp-menu-height + 7 * ($dp-button-height + 2 * $dp-button-margin) + $dp-button-margin + $dp-day-pad-bottom-margin;
-$dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-height + 2 * $dp-button-margin) + $dp-year-pad-padding-top + $dp-year-pad-padding-bottom;
+$dp-menu-day-menu-height: $dp-menu-height + 7 * ($dp-button-size + 2 * $dp-button-margin) + $dp-button-margin + $dp-day-pad-bottom-margin;
+$dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-size + 2 * $dp-button-margin) + $dp-year-pad-padding-top + $dp-year-pad-padding-bottom;
 
 .bmdc-dp-menu__surface-adjust {
     overflow: visible !important;

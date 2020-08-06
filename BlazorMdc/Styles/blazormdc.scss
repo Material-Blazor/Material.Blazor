@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 @use "../wip/material-components-icons.min.css";
 
 @use '_colors.scss';
@@ -24,19 +26,16 @@
 @use '../Components/Toast/MTToast.scss';
 @use '../Components/TopAppBar/MTTopAppBar.scss';
 
+@use 'sass:color';
+
 
 :root {
-    --bmdc-dialog-firefox-scrollbar-width: thin;
-    --bmdc-select-firefox-scrollbar-width: thin;
-    --bmdc-dialog-scroll-margin-right: 4px;
-    --bmdc-dialog-scroll-width: 8px;
-    --bmdc-dialog-scroll-border-radius: 4px;
-    --bmdc-select-scroll-margin-right: 4px;
-    --bmdc-select-scroll-width: 8px;
-    --bmdc-select-scroll-border-radius: 4px;
+    --bmdc-scroll-color: var(--mdc-theme-primary);
     --bmdc-scroll-track-color: rgba(0, 0, 0, 0);
-    --bmdc-scroll-color: var(--bmdc-color-bluegray-400);
-    --bmdc-scroll-color__hover: var(--bmdc-color-bluegray-700);
+    --bmdc-scrollbar-width: thin;
+    --bmdc-scroll-webkit-margin-right: 4px;
+    --bmdc-scroll-webkit-width: 8px;
+    --bmdc-scroll-webkit-border-radius: 4px;
 }
 
 
@@ -45,64 +44,31 @@
 }
 
 
-.bmdc-custom-scrollbars .mdc-dialog__content {
-    scrollbar-width: var(--bmdc-dialog-firefox-scrollbar-width) !important;
-}
-
-
 .bmdc-custom-scrollbars {
-/*.bmdc-custom-scrollbars .mdc-drawer__content,
-.bmdc-custom-scrollbars .mdc-menu-surface,
-.bmdc-custom-scrollbars .bmdc-dp-year-pad {*/
-    scrollbar-width: var(--bmdc-select-firefox-scrollbar-width) !important;
-}
+    scrollbar-width: var(--bmdc-scrollbar-width);
+    scrollbar-color: var(--bmdc-scroll-color) var(--bmdc-scroll-track-color);
 
-
-.bmdc-custom-scrollbars {
-//.bmdc-custom-scrollbars .mdc-dialog {
+    /* Scrollbar width */
     ::-webkit-scrollbar {
-        width: var(--bmdc-dialog-scroll-width);
+        width: var(--bmdc-scroll-webkit-width);
+        height: var(--bmdc-scroll-webkit-width);
     }
     /* Track */
     ::-webkit-scrollbar-track {
-        background-color: var(--bmdc-dialog-scroll-track-color);
-        margin-right: var(--bmdc-dialog-scroll-margin-right);
+        background-color: var(--bmdc-scroll-track-color);
+        margin-right: var(--bmdc-scroll-webkit-margin-right);
     }
     /* Handle */
     ::-webkit-scrollbar-thumb {
         background: var(--bmdc-scroll-color);
-        border-radius: var(--bmdc-dialog-scroll-border-radius);
-    }
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-        background: var(--bmdc-scroll-color__hover);
+        border-radius: var(--bmdc-scroll-webkit-border-radius);
     }
 }
 
-
-/*.bmdc-custom-scrollbars .mdc-select,
-.bmdc-custom-scrollbars .mdc-menu-surface--anchor,
-.bmdc-custom-scrollbars .mdc-drawer {
-    ::-webkit-scrollbar {
-        width: var(--bmdc-select-scroll-width);
-    }*/
-    /* Track */
-    /*::-webkit-scrollbar-track {
-        background-color: var(--bmdc-select-scroll-track-color);
-        margin-right: var(--bmdc-select-scroll-margin-right);
-    }*/
-    /* Handle */
-    /*::-webkit-scrollbar-thumb {
-        background: var(--bmdc-scroll-color);
-        border-radius: var(--bmdc-select-scroll-border-radius);
-    }*/
-    /* Handle on hover */
-    /*::-webkit-scrollbar-thumb:hover {
-        background: var(--bmdc-scroll-color__hover);
-    }
-}*/
-
-
+.bmdc-custom-scrollbars * {
+    scrollbar-width: inherit;
+    scrollbar-color: inherit;
+}
 
 
 .bmdc-align-left {

@@ -11,21 +11,21 @@ namespace BlazorMdc
     {
 #nullable enable annotations
         /// <summary>
-        /// The list item's text
+        /// The list item's label
         /// </summary>
-        [Parameter] public string Text { get; set; }
-
-
-        /// <summary>
-        /// The navigation reference string to be returned by <see cref="OnClick"/>
-        /// </summary>
-        [Parameter] public string NavigationReference { get; set; } = "";
+        [Parameter] public string Label { get; set; }
 
 
         /// <summary>
         /// The leading icon's name. No leading icon shown if not set.
         /// </summary>
         [Parameter] public string? LeadingIcon { get; set; }
+
+
+        /// <summary>
+        /// Determined whether the list item is in an menu and is in the selected state
+        /// </summary>
+        [Parameter] public bool IsSelectedMenuItem { get; set; }
 
 
         /// <summary>
@@ -37,13 +37,6 @@ namespace BlazorMdc
         /// <para>Overrides <see cref="MTCascadingDefaults.IconFoundryName"/></para>
         /// </summary>
         [Parameter] public IMTIconFoundry? IconFoundry { get; set; }
-
-
-        /// <summary>
-        /// Callback returnng the <see cref="NavigationReference"/> when the
-        /// list item receives an @onclick event.
-        /// </summary>
-        [Parameter] public EventCallback<string> OnClick { get; set; }
 #nullable restore annotations
 
 
@@ -54,16 +47,8 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-list-item")
+                .AddIf("mdc-menu-item--selected", () => IsSelectedMenuItem)
                 .AddIf("mdc-list-item--disabled bmdc-list-item--disabled", () => AppliedDisabled);
-        }
-
-
-        private void InternalClickHandler()
-        {
-            if (!AppliedDisabled)
-            {
-                OnClick.InvokeAsync(NavigationReference);
-            }
         }
     }
 }

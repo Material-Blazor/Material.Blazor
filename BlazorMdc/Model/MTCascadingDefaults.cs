@@ -40,7 +40,7 @@ namespace BlazorMdc
         /// <remarks>
         /// Includes "formnovalidate", "id", "max", "min", "role", "step", "tabindex" and "type"
         /// </remarks>
-        public readonly IEnumerable<string> EssentialSplattableAttributes = new string[] { "formnovalidate", "id", "max", "min", "role", "step", "tabindex", "type" };
+        public readonly IEnumerable<string> EssentialSplattableAttributes = new string[] { "class", "style", "formnovalidate", "id", "max", "min", "role", "step", "tabindex", "type" };
 
 
 

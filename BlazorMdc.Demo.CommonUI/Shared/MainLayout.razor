@@ -10,35 +10,35 @@
 <MTDrawer @ref="@sidebar"
           IsDismissible="true">
     <div class="mdc-list">
-        <MTListItem NavigationReference="" LeadingIcon="home" Text="Home" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="" LeadingIcon="home" Text="Home (Disabled)" OnClick="@ListItemClickHandler" Disabled="true" />
-        <MTListItem NavigationReference="autocomplete" LeadingIcon="keyboard" Text="Autocomplete" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="button" LeadingIcon="touch_app" Text="Button" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="card" LeadingIcon="dashboard" Text="Card" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="cascadingdefaults" LeadingIcon="web" Text="CascadingDefaults" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="checkbox" LeadingIcon="check_box" Text="Checkbox" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="datatable" LeadingIcon="table_chart" Text="Data Table" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="datepicker" LeadingIcon="date_range" Text="Date Picker" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="debouncedtextfield" LeadingIcon="search" Text="Debounced Text Field" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="dialog" LeadingIcon="picture_in_picture" Text="Dialog" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="form" LeadingIcon="ballot" Text="Form" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="list" LeadingIcon="list" Text="List" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="menu" LeadingIcon="menu" Text="Menu" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="miscellaneous" LeadingIcon="text_format" Text="Miscellaneous" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="numericfield" LeadingIcon="money" Text="Numeric Field" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="pageddatalist" LeadingIcon="view_list" Text="Paged Data List" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="paginator" LeadingIcon="pages" Text="Paginator" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="progress" LeadingIcon="access_time" Text="Progress" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="radiobuttons" LeadingIcon="radio_button_checked" Text="Radio Buttons" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="select" LeadingIcon="arrow_drop_down" Text="Select" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="slidingcontent" LeadingIcon="compare_arrows" Text="Sliding Content" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="switch" LeadingIcon="toggle_on" Text="Switch" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="tabbar" LeadingIcon="tab" Text="Tab Bar" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="textarea" LeadingIcon="assignment" Text="Text Area" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="textfield" LeadingIcon="text_format" Text="Text Field" OnClick="@ListItemClickHandler" />
-        <MTListItem NavigationReference="toast" LeadingIcon="textsms" Text="Toast" OnClick="@ListItemClickHandler" />
+        <MTListItem LeadingIcon="home" Label="Home" @onclick="@(() => ListItemClickHandler(""))" />
+        <MTListItem LeadingIcon="home" Label="Home (Disabled)" @onclick="@(() => ListItemClickHandler(""))" Disabled="true" />
+        <MTListItem LeadingIcon="keyboard" Label="Autocomplete" @onclick="@(() => ListItemClickHandler("autocomplete"))" />
+        <MTListItem LeadingIcon="touch_app" Label="Button" @onclick="@(() => ListItemClickHandler("button"))" />
+        <MTListItem LeadingIcon="dashboard" Label="Card" @onclick="@(() => ListItemClickHandler("card"))" />
+        <MTListItem LeadingIcon="web" Label="CascadingDefaults" @onclick="@(() => ListItemClickHandler("cascadingdefaults"))" />
+        <MTListItem LeadingIcon="check_box" Label="Checkbox" @onclick="@(() => ListItemClickHandler("checkbox"))" />
+        <MTListItem LeadingIcon="table_chart" Label="Data Table" @onclick="@(() => ListItemClickHandler("datatable"))" />
+        <MTListItem LeadingIcon="date_range" Label="Date Picker" @onclick="@(() => ListItemClickHandler("datepicker"))" />
+        <MTListItem LeadingIcon="search" Label="Debounced Text Field" @onclick="@(() => ListItemClickHandler("debouncedtextfield"))" />
+        <MTListItem LeadingIcon="picture_in_picture" Label="Dialog" @onclick="@(() => ListItemClickHandler("dialog"))" />
+        <MTListItem LeadingIcon="ballot" Label="Form" @onclick="@(() => ListItemClickHandler("form"))" />
+        <MTListItem LeadingIcon="list" Label="List" @onclick="@(() => ListItemClickHandler("list"))" />
+        <MTListItem LeadingIcon="menu" Label="Menu" @onclick="@(() => ListItemClickHandler("menu"))" />
+        <MTListItem LeadingIcon="text_format" Label="Miscellaneous" @onclick="@(() => ListItemClickHandler("miscellaneous"))" />
+        <MTListItem LeadingIcon="money" Label="Numeric Field" @onclick="@(() => ListItemClickHandler("numericfield"))" />
+        <MTListItem LeadingIcon="view_list" Label="Paged Data List" @onclick="@(() => ListItemClickHandler("pageddatalist"))" />
+        <MTListItem LeadingIcon="pages" Label="Paginator" @onclick="@(() => ListItemClickHandler("paginator"))" />
+        <MTListItem LeadingIcon="access_time" Label="Progress" @onclick="@(() => ListItemClickHandler("progress"))" />
+        <MTListItem LeadingIcon="radio_button_checked" Label="Radio Buttons" @onclick="@(() => ListItemClickHandler("radiobuttons"))" />
+        <MTListItem LeadingIcon="arrow_drop_down" Label="Select" @onclick="@(() => ListItemClickHandler("select"))" />
+        <MTListItem LeadingIcon="compare_arrows" Label="Sliding Content" @onclick="@(() => ListItemClickHandler("slidingcontent"))" />
+        <MTListItem LeadingIcon="toggle_on" Label="Switch" @onclick="@(() => ListItemClickHandler("switch"))" />
+        <MTListItem LeadingIcon="tab" Label="Tab Bar" @onclick="@(() => ListItemClickHandler("tabbar"))" />
+        <MTListItem LeadingIcon="assignment" Label="Text Area" @onclick="@(() => ListItemClickHandler("textarea"))" />
+        <MTListItem LeadingIcon="text_format" Label="Text Field" @onclick="@(() => ListItemClickHandler("textfield"))" />
+        <MTListItem LeadingIcon="textsms" Label="Toast" @onclick="@(() => ListItemClickHandler("toast"))" />
         <MTListDivider />
-        <MTListItem NavigationReference="wrappedinput" LeadingIcon="menu" Text="Wrapped input component" OnClick="@ListItemClickHandler" />
+        <MTListItem LeadingIcon="menu" Label="Wrapped input component" @onclick="@(() => ListItemClickHandler("wrappedinput"))" />
     </div>
 </MTDrawer>
 
@@ -48,7 +48,7 @@
                  NavIcon="menu"
                  ScrollTarget="#main-content"
                  TopAppBarType="@DemoConfiguration.TopAppBarType"
-                 Class="mdc-top-app-bar--short-has-action-item">
+                 class="mdc-top-app-bar--short-has-action-item">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
             <MTIconButtonToggle @bind-Value="@AnimatedNavigationManager.Configuration.ApplyAnimation" IconOn="directions_run" IconOff="airline_seat_individual_suite" @onmouseup="@MouseUp" />
             <MTIconButtonToggle @bind-Value="@disableComponents" IconOn="pause_circle_outline" IconOff="play_circle_outline" @onmouseup="@MouseUp" />

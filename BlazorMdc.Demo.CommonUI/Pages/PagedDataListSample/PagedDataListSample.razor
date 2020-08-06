@@ -37,7 +37,7 @@
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">No templates</h2>
 
-<MTPagedDataList Class="my-container"
+<MTPagedDataList class="my-container"
                    PaginatorClass="my-float-right"
                    @bind-ItemsPerPage="@itemsPerPage1"
                    @bind-PageNumber="@pageNumber1"
@@ -47,11 +47,11 @@
 
 
 
-<MTDivider Style="margin: 2rem 0 1rem 0;" />
+<MTDivider style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">ItemTemplate only</h2>
 
-<MTPagedDataList Class="my-container"
+<MTPagedDataList class="my-container"
                    PaginatorClass="my-float-right"
                    @bind-ItemsPerPage="@itemsPerPage2"
                    @bind-PageNumber="@pageNumber2"
@@ -67,11 +67,11 @@
 
 
 
-<MTDivider Style="margin: 2rem 0 1rem 0;" />
+<MTDivider style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">ListTemplate and ItemTemplate</h2>
 
-<MTPagedDataList Class="my-container"
+<MTPagedDataList class="my-container"
                    PaginatorClass="my-float-right"
                    @bind-ItemsPerPage="@itemsPerPage3"
                    @bind-PageNumber="@pageNumber3"
@@ -103,12 +103,12 @@
 
 
 
-<MTDivider Style="margin: 2rem 0 1rem 0;" />
+<MTDivider style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">ListTemplate and MdcDataTable</h2>
 
 <MTPagedDataList @ref="dataList4"
-                   Class="my-container"
+                   class="my-container"
                    PaginatorClass="my-float-right"
                    @bind-ItemsPerPage="@itemsPerPage4"
                    @bind-PageNumber="@pageNumber4"
@@ -118,7 +118,7 @@
     <ListTemplate Context="listOfPeople">
         <MTDataTable Items="@dataList4.CurrentPage"
                       Context="person"
-                      Class="my-full-width">
+                      class="my-full-width">
             <TableHeader>
                 <th class="mdc-data-table__header-cell my-header-bold" role="columnheader" scope="col">Salutation</th>
                 <th class="mdc-data-table__header-cell my-header-bold" role="columnheader" scope="col">Given Name</th>
@@ -135,12 +135,12 @@
 
 
 
-<MTDivider Style="margin: 2rem 0 1rem 0;" />
+<MTDivider style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">ListTemplate and MTList</h2>
 
 <MTPagedDataList @ref="dataList5"
-                   Class="my-container"
+                   class="my-container"
                    PaginatorClass="my-float-right"
                    @bind-ItemsPerPage="@itemsPerPage5"
                    @bind-PageNumber="@pageNumber5"
@@ -163,12 +163,12 @@
 
 
 
-<MTDivider Style="margin: 2rem 0 1rem 0;" />
+<MTDivider style="margin: 2rem 0 1rem 0;" />
 
 <h2 class="mdc-typography--headline6" style="margin-bottom: 1rem;">ListTemplate and Two x MTList</h2>
 
 <MTPagedDataList @ref="dataList6"
-                   Class="my-container"
+                   class="my-container"
                    ListTemplateClass="my-container"
                    PaginatorClass="my-float-right"
                    @bind-ItemsPerPage="@itemsPerPage6"

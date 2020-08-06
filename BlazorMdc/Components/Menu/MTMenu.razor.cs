@@ -30,7 +30,7 @@ namespace BlazorMdc
             base.OnInitialized();
             
             ClassMapper
-                .Add("mdc-menu mdc-menu-surface");
+                .Add("mdc-menu mdc-menu-surface mdc-menu-surface--fixed");
 
             ObjectReference = DotNetObjectReference.Create(this);
         }

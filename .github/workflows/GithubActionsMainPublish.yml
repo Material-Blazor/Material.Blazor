@@ -8,7 +8,7 @@ on:
 env:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release_Server'
-  output: ${{ github.workspace }}\package
+  output: ${{ github.workspace }}\_site
   project: 'BlazorMdc\BlazorMdc.csproj'
 
 jobs:
@@ -57,8 +57,11 @@ jobs:
       with:
         dotnet-version: 3.1.302
       
+    - name: Build 🔧
+      run: dotnet build --configuration ${env:buildConfiguration} -p:PackageVersion=${{steps.get_tag.outputs.tag}} ${env:project}
+
     - name: Generate NuGet package 🔧
-      run: dotnet pack --configuration ${env:buildConfiguration} --output ${env:output} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:PackageVersion=${{steps.get_tag.outputs.tag}} ${env:project}
+      run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:output} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:PackageVersion=${{steps.get_tag.outputs.tag}} ${env:project}
 
     - name: Display package output Ꙫ
       run: dir ${env:output}

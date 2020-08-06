@@ -5,13 +5,18 @@ $position-text-spacing: 6px;
 
 .bmdc-paginator {
     display: inline-flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: left;
     box-sizing: content-box;
-    height: $paginator-height;
-    line-height: $paginator-height;
     font-weight: bold;
     user-select: none;
+}
+
+
+.bmdc-paginator-group {
+    display: flex;
+    line-height: $paginator-height;
+    flex-flow: row nowrap;
 }
 
 
@@ -26,4 +31,9 @@ $position-text-spacing: 6px;
 .bmdc-paginator__position-text-hidden {
     height: 0;
     overflow: hidden;
+}
+
+
+.bmdc-paginator .mdc-icon-button {
+    margin: 0 !important;
 }
