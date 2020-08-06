@@ -63,7 +63,7 @@
 	</ItemGroup>
 
 	<!--<Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent" Inputs="@(InputsComponentsScss);@(InputsStylesScss);@(InputsScriptsJs)" Outputs="@(OutputsWwwroot)">-->
-	<!--<Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">	
+	<Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">	
 		<RemoveDir Directories="wip" />
 		<RemoveDir Directories="wwwroot" />
 		<Exec Command="npm install" />
@@ -82,6 +82,6 @@
 		<Exec Command="npm run minify-bundle-js" />
 		<Exec Command="npm run build-bmdcdemo" />
 		<RemoveDir Directories="wip" />
-	</Target>-->
+	</Target>
 
 </Project>
