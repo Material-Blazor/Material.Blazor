@@ -46,28 +46,30 @@ namespace BlazorMdc
         [Parameter] public RenderFragment<RenderFragment> ListTemplate { get; set; }
 
 
-        private int _pageNumber;
-        /// <summary>
-        /// The page number.
-        /// </summary>
-        [Parameter] public int PageNumber
+        private int BackingPageNumber
         {
-            get => _pageNumber;
+            get => PageNumber;
             set
             {
-                if (value != _pageNumber)
+                if (value != PageNumber)
                 {
+                    var oldValue = PageNumber;
+                    PageNumber = value;
+
                     if (hasRendered)
                     {
-                        InvokeAsync(() => OnPageNumberChange(value));
-                    }
-                    else
-                    {
-                        _pageNumber = value;
+                        PageNumberChanged.InvokeAsync(value);
+                        InvokeAsync(() => OnPageNumberChange(oldValue, value));
                     }
                 }
             }
         }
+
+        /// <summary>
+        /// The page number.
+        /// </summary>
+        [Parameter] public int PageNumber { get; set; }
+
 
         /// <summary>
         /// Change handler for <see cref="PageNumber"/>.
@@ -75,23 +77,23 @@ namespace BlazorMdc
         [Parameter] public EventCallback<int> PageNumberChanged { get; set; }
 
 
-        private int _itemsPerPage;
-        /// <summary>
-        /// The number of items per page.
-        /// </summary>
-        [Parameter] public int ItemsPerPage
+        private int BackingItemsPerPage
         {
-            get => _itemsPerPage;
+            get => ItemsPerPage;
             set
             {
-                if (value != _itemsPerPage)
+                if (value != ItemsPerPage)
                 {
-                    _itemsPerPage = value;
-                    if (hasRendered)
-                        _ = ItemsPerPageChanged.InvokeAsync(value);
+                    ItemsPerPage = value;
+                    if (hasRendered) ItemsPerPageChanged.InvokeAsync(value);
                 }
             }
         }
+
+        /// <summary>
+        /// The number of items per page.
+        /// </summary>
+        [Parameter] public int ItemsPerPage { get; set; }
 
         /// <summary>
         /// Change handler for <see cref="ItemsPerPage"/>.
@@ -110,31 +112,26 @@ namespace BlazorMdc
         public IEnumerable<TItem> CurrentPage => CheckedData.Skip(PageNumber * ItemsPerPage).Take(ItemsPerPage);
 
 
-        private async Task OnPageNumberChange(int newPageNumber)
+        private async Task OnPageNumberChange(int oldPageNumber, int newPageNumber)
         {
-            if (newPageNumber != _pageNumber)
+            string nextClass;
+            if (newPageNumber < oldPageNumber)
             {
-                string nextClass;
-                if (newPageNumber < _pageNumber)
-                {
-                    nextClass = MTSlidingContent<object>.InFromLeft;
-                    contentClass = MTSlidingContent<object>.OutToRight;
-                }
-                else
-                {
-                    nextClass = MTSlidingContent<object>.InFromRight;
-                    contentClass = MTSlidingContent<object>.OutToLeft;
-                }
-
-                await Task.Delay(100);
-
-                //isHidden = true;
-                contentClass = nextClass;
-                _pageNumber = newPageNumber;
-                isHidden = false;
-
-                StateHasChanged();
+                nextClass = MTSlidingContent<object>.InFromLeft;
+                contentClass = MTSlidingContent<object>.OutToRight;
             }
+            else
+            {
+                nextClass = MTSlidingContent<object>.InFromRight;
+                contentClass = MTSlidingContent<object>.OutToLeft;
+            }
+
+            await Task.Delay(100);
+
+            contentClass = nextClass;
+            isHidden = false;
+
+            StateHasChanged();
         }
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc

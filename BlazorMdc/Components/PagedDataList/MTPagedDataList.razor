@@ -15,7 +15,7 @@
     </div>
 
     <div class="@PaginatorClass">
-        <MTPaginator @bind-ItemsPerPage="@ItemsPerPage" @bind-PageNumber="@PageNumber" ItemsPerPageSelection="@ItemsPerPageSelection" ItemCount="@Data.Count()"></MTPaginator>
+        <MTPaginator @bind-ItemsPerPage="@BackingItemsPerPage" @bind-PageNumber="@BackingPageNumber" ItemsPerPageSelection="@ItemsPerPageSelection" ItemCount="@Data.Count()"></MTPaginator>
     </div>
 </div>
 
