@@ -14,7 +14,7 @@
                     <MTMenu @ref="Menu">
                         @foreach (var itemsPerPage in ItemsPerPageSelection)
                         {
-                            <MTListItem @key="@itemsPerPage" Text="@itemsPerPage.ToString("G0")" OnClick="@(_ => OnMenuItemClick(itemsPerPage))" />
+                            <MTListItem @key="@itemsPerPage" Label="@itemsPerPage.ToString("G0")" @onclick="@(() => OnMenuItemClick(itemsPerPage))" />
                         }
                     </MTMenu>
                 </div>

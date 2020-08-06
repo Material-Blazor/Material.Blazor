@@ -3,8 +3,7 @@
 
 
 <li role="menuitem"
-    @attributes="@AttributesToSplat()"
-    @onclick="InternalClickHandler">
+    @attributes="@AttributesToSplat()">
 
     @if (LeadingIcon != null)
     {
@@ -13,5 +12,5 @@
         </span>
     }
 
-    <span class="mdc-list-item__text">@Text</span>
+    <span class="mdc-list-item__text">@Label</span>
 </li>
