@@ -2,11 +2,13 @@
 @inherits InputComponentFoundation<bool>
 
 
-<button @ref="@ElementReference"
-        @attributes="@AttributesToSplat(SplatType.All)"
-        type="button"
-        @onclick="@ToggleOnClick">
+<div @attributes="@AttributesToSplat(SplatType.EventsOnly)">
+    <button @ref="@ElementReference"
+            @attributes="@AttributesToSplat(SplatType.ExcludeEvents)"
+            type="button"
+            @onclick="@ToggleOnClick">
 
-    <MTIcon IconName="@IconOn" IconFoundry="@IconFoundry" class="mdc-icon-button__icon mdc-icon-button__icon--on bmdc-dp-menu__icon-button" />
-    <MTIcon IconName="@IconOff" IconFoundry="@IconFoundry" class="mdc-icon-button__icon bmdc-dp-menu__icon-button" />
-</button>
+        <MTIcon IconName="@IconOn" IconFoundry="@IconFoundry" class="mdc-icon-button__icon mdc-icon-button__icon--on bmdc-dp-menu__icon-button" />
+        <MTIcon IconName="@IconOff" IconFoundry="@IconFoundry" class="mdc-icon-button__icon bmdc-dp-menu__icon-button" />
+    </button>
+</div>

@@ -18,8 +18,8 @@ namespace BlazorMdc.Internal
         [Inject] private protected IJSRuntime JsRuntime { get; set; }
 
 
-        [CascadingParameter] protected MTCascadingDefaults CascadingDefaults { get; set; } = new MTCascadingDefaults();
-
+        [CascadingParameter] protected MTCascadingDefaults CascadingDefaults { get; set; } = new();
+        
 
         /// <summary>
         /// Gets or sets a collection of additional attributes that will be applied to the created element.
@@ -65,13 +65,13 @@ namespace BlazorMdc.Internal
         /// <summary>
         /// Allows a component to build or map out a group of CSS classes to be applied to the component. Use this in <see cref="OnInitialialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
         /// </summary>
-        private protected ClassAndStyleMapper ClassMapper { get; } = new ClassAndStyleMapper();
+        private protected ClassAndStyleMapper ClassMapper { get; } = new();
 
 
         /// <summary>
         /// Allows a component to build or map out a group of HTML styles to be applied to the component. Use this in <see cref="OnInitialialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
         /// </summary>
-        private protected ClassAndStyleMapper StyleMapper { get; } = new ClassAndStyleMapper();
+        private protected ClassAndStyleMapper StyleMapper { get; } = new();
 
 
         /// <summary>
@@ -247,7 +247,7 @@ namespace BlazorMdc.Internal
             if (forbidden.Count() > 0)
             {
                 throw new ArgumentException(
-                    $"BlazorMdc: You cannot use {string.Join(", ", forbidden.Select(x => $"'{x}'"))} attributes in {Utilities.GetTypeName(GetType())}. Either remove the attribute or change 'ConstrainSplattableAttributes' or 'AllowedSplattableAttributes' in your MdcCascadingDefaults");
+                    $"BlazorMdc: You cannot use {string.Join(", ", forbidden.Select(x => $"'{x}'"))} attributes in {Utilities.GetTypeName(GetType())}. Either remove the attribute or change 'ConstrainSplattableAttributes' or 'AllowedSplattableAttributes' in your MTCascadingDefaults");
             }
         }
 

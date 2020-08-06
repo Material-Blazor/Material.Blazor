@@ -49,10 +49,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="wwwroot\" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<None Include="package-lock.json" />
 		<None Include="package.json">
 			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
@@ -60,7 +56,14 @@
 		<None Include="tsconfig.json" />
 	</ItemGroup>
 
-	<Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">
+	<ItemGroup>
+		<InputsComponentsScss Include="Components\**\*.scss" />
+		<InputsStylesScss Include="Styles\*.scss" />
+		<InputsScriptsJs Include="Scripts\*.js" />
+	</ItemGroup>
+
+	<!--<Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent" Inputs="@(InputsComponentsScss);@(InputsStylesScss);@(InputsScriptsJs)" Outputs="@(OutputsWwwroot)">-->
+	<!--<Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">	
 		<RemoveDir Directories="wip" />
 		<RemoveDir Directories="wwwroot" />
 		<Exec Command="npm install" />
@@ -74,10 +77,11 @@
 		<Exec Command="npm run minify-bundle-css" />
 		<Exec Command="npm run build-bmdc-ts" />
 		<Copy SourceFiles="Scripts\blazormdc.ts" DestinationFiles="wwwroot\blazormdc.js" />
+		<Touch Files="wwwroot\blazormdc.js" />
 		<Exec Command="npm run minify-bmdc-js" />
 		<Exec Command="npm run minify-bundle-js" />
 		<Exec Command="npm run build-bmdcdemo" />
 		<RemoveDir Directories="wip" />
-	</Target>
+	</Target>-->
 
 </Project>
