@@ -21,6 +21,16 @@ See <code>CheckboxSample.razor</code> for sources.
     <MTCheckbox Label="Disabled" @bind-Value="@isCheckedC" Disabled="true" />
 </p>
 
+<p>
+    <MTCheckbox Label="Indeterminate" @bind-Value="@isCheckedD" @bind-IsIndeterminate="@isIndeterminate" />
+</p>
+
+<p>
+    <MTButton Label="Toggle Indeterminate" @onclick="@(() => isIndeterminate = !isIndeterminate)" />
+    &nbsp;
+    @isIndeterminate
+</p>
+
 @code {
     [CascadingParameter(Name = "DisableComponents")] private bool DisableComponents { get; set; }
 
@@ -31,5 +41,7 @@ See <code>CheckboxSample.razor</code> for sources.
     string labelB => "This checbox is " + (isCheckedB ? "set" : "unset");
 
     bool isCheckedC;
+    bool isCheckedD;
+    bool isIndeterminate = true;
 }
 

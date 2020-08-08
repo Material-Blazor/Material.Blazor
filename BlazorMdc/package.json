@@ -9,7 +9,7 @@
     "minify-bmdc": "cleancss --level 1 --format breaksWith=lf --output wwwroot\\blazormdc.min.css wwwroot\\blazormdc.css",
     "build-bundle": "dart-sass --load-path=node_modules --no-source-map Styles\\blazormdc-material-bundle.scss wip\\blazormdc-material-bundle.css",
     "minify-bundle-css": "cleancss --level 1 --format breaksWith=lf --output wwwroot\\blazormdc-material-bundle.min.css wip\\blazormdc-material-bundle.css",
-    "build-bmdc-ts": "copy scripts\\blazormdc.ts wwwroot\\blazormdc.js",
+    "build-bmdc-ts": "copy scripts\\blazormdc.js wwwroot\\blazormdc.js",
     "build-bmdc-ts-realbutcausesfailure": "tsc",
     "minify-bmdc-js": "terser wwwroot\\blazormdc.js --compress --mangle --ecma 2016 --output wwwroot\\blazormdc.min.js",
     "minify-bundle-js": "terser wwwroot\\blazormdc.js node_modules\\material-components-web\\dist\\material-components-web.min.js --compress --mangle --ecma 2016 --output wwwroot\\blazormdc-material-bundle.min.js",

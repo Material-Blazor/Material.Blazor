@@ -26,11 +26,45 @@ namespace BlazorMdc
         [Parameter] public MTDensity? Density { get; set; }
 
 
+        private bool _isIndetermimate;
+        /// <summary>
+        /// Set to True if the checkbox is indeterminate.
+        /// </summary>
+        [Parameter] public bool IsIndeterminate
+        {
+            get => _isIndetermimate;
+            set
+            {
+                if (value != _isIndetermimate)
+                {
+                    _isIndetermimate = value;
+                    InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.checkBox.setIndeterminate", ElementReference, _isIndetermimate));
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets a callback that updates the bound value.
+        /// </summary>
+        [Parameter] public EventCallback<bool> IsIndeterminateChanged { get; set; }
+
+
         /// <summary>
         /// Set to True if this is in a form.
         /// </summary>
         [Parameter] public bool IsFormField { get; set; }
 
+
+        private bool CheckedValue
+        {
+            get => ReportingValue;
+            set
+            {
+                _isIndetermimate = false;
+                IsIndeterminateChanged.InvokeAsync(false);
+                ReportingValue = value;
+            }
+        }
 
         private string FormFieldClass => (IsFormField || !(string.IsNullOrWhiteSpace(Label))) ? "mdc-form-field" : "";
         private ElementReference ElementReference { get; set; }
@@ -48,6 +82,8 @@ namespace BlazorMdc
                 .Add("mdc-checkbox mdc-checkbox--touch")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-checkbox--disabled", () => AppliedDisabled);
+
+            ComponentSetAttributes.Add("data-indeterminate", true);
 
             OnValueSet += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
@@ -71,6 +107,6 @@ namespace BlazorMdc
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.checkBox.init", ElementReference, FormReference, ReportingValue, IsFormField);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.checkBox.init", ElementReference, FormReference, ReportingValue, IsIndeterminate, IsFormField);
     }
 }
