@@ -81,9 +81,8 @@ namespace BlazorMdc
             ClassMapper
                 .Add("mdc-checkbox mdc-checkbox--touch")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
+                .AddIf("mdc-checkbox--selected", () => Value)
                 .AddIf("mdc-checkbox--disabled", () => AppliedDisabled);
-
-            ComponentSetAttributes.Add("data-indeterminate", true);
 
             OnValueSet += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;

@@ -50,7 +50,14 @@ namespace BlazorMdc.Internal
                 {
                     _underlyingValue = value;
 
-                    if (_hasInstantiated) InvokeAsync(async () => await DebouncedOnValueSet());
+                    if (_hasInstantiated)
+                    {
+                        InvokeAsync(async () => await DebouncedOnValueSet());
+                    }
+                    else
+                    {
+                        _debouncedUnderlyingValue = value;
+                    }
                 }
             }
         }
