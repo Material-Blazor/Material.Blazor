@@ -85,7 +85,7 @@ serviceCollection.AddMTServices(
 );
 ```
 
-The two configuratoins are optional - see [MTToastServiceConfiguration](xref:BlazorMdc.api.MTToastServiceConfiguration) and [MTAnimatedNaviationManagerConfiguration](xref:BlazorMdc.api.MTAnimatedNaviationManagerConfiguration).
+The two configuratoins are optional - see [MTToastServiceConfiguration](xref:BlazorMdc.MTToastServiceConfiguration) and [MTAnimatedNaviationManagerConfiguration](xref:BlazorMdc.MTAnimatedNaviationManagerConfiguration).
 
 When you use the services you must also place an anchor component at the top of `MainLayout.razor`, which must not be inside any other components or divs:
 
