@@ -7,7 +7,7 @@
 
 @if (Icon is null && Label is null)
 {
-    <MTTabBar @bind-Value="@Value"
+    <MTTabBar @bind-Value="@ReportingValue"
               Items="@Items"
               Context="item"
               StackIcons="@StackIcons"
@@ -18,7 +18,7 @@
 }
 else if (Label is null)
 {
-    <MTTabBar @bind-Value="@Value"
+    <MTTabBar @bind-Value="@ReportingValue"
               Items="@Items"
               Context="item"
               StackIcons="@StackIcons"
@@ -30,7 +30,7 @@ else if (Label is null)
 }
 else if (Icon is null)
 {
-    <MTTabBar @bind-Value="@Value"
+    <MTTabBar @bind-Value="@ReportingValue"
               Items="@Items"
               Context="item"
               StackIcons="@StackIcons"
@@ -42,7 +42,7 @@ else if (Icon is null)
 }
 else
 {
-    <MTTabBar @bind-Value="@Value"
+    <MTTabBar @bind-Value="@ReportingValue"
               Items="@Items"
               Context="item"
               StackIcons="@StackIcons"
