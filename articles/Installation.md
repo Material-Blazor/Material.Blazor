@@ -90,5 +90,5 @@ The two configuratoins are optional - see [MTToastServiceConfiguration](xref:Bla
 When you use the services you must also place an anchor component at the top of `MainLayout.razor`, which must not be inside any other components or divs:
 
 ```html
-    <MTAnchor />
+<MTAnchor />
 ```
