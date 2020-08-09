@@ -4,13 +4,13 @@
   "description": "Node build steps for BlazorMdc",
   "main": "server.js",
   "scripts": {
-    "build-bmdc": "dart-sass --load-path=node_modules --no-source-map Styles\\blazormdc.scss wwwroot\\blazormdc.css",
-    "minify-bmdc": "cleancss --level 1 --format breaksWith=lf --output wwwroot\\blazormdc.min.css wwwroot\\blazormdc.css",
-    "build-bundle": "dart-sass --load-path=node_modules --no-source-map Styles\\blazormdc-material-bundle.scss wip\\blazormdc-material-bundle.css",
+    "build-bmdc-css": "dart-sass --load-path=node_modules --no-source-map Styles\\blazormdc.scss wwwroot\\blazormdc.css",
+    "minify-bmdc-css": "cleancss --level 1 --format breaksWith=lf --output wwwroot\\blazormdc.min.css wwwroot\\blazormdc.css",
+    "build-bundle-css": "dart-sass --load-path=node_modules --no-source-map Styles\\blazormdc-material-bundle.scss wip\\blazormdc-material-bundle.css",
     "minify-bundle-css": "cleancss --level 1 --format breaksWith=lf --output wwwroot\\blazormdc-material-bundle.min.css wip\\blazormdc-material-bundle.css",
-    "build-bmdc-ts": "copy scripts\\blazormdc.js wwwroot\\blazormdc.js",
+    "build-bmdc-js": "terser scripts\\blazormdc.js node_modules\\@material\\tooltip\\dist\\mdc.tooltip.js --output wwwroot\\blazormdc.js",
     "build-bmdc-ts-realbutcausesfailure": "tsc",
-    "minify-bmdc-js": "terser wwwroot\\blazormdc.js --compress --mangle --ecma 2016 --output wwwroot\\blazormdc.min.js",
+    "minify-bmdc-js": "terser wwwroot\\blazormdc.js node_modules\\@material\\tooltip\\dist\\mdc.tooltip.js --compress --mangle --ecma 2016 --output wwwroot\\blazormdc.min.js",
     "minify-bundle-js": "terser wwwroot\\blazormdc.js node_modules\\material-components-web\\dist\\material-components-web.js node_modules\\@material\\tooltip\\dist\\mdc.tooltip.js --compress --mangle --ecma 2016 --output wwwroot\\blazormdc-material-bundle.min.js",
     "build-bmdcdemo": "dart-sass --load-path=node_modules --no-source-map ..\\BlazorMdc.Demo.CommonUI\\Styles\\styles.scss ..\\BlazorMdc.Demo.CommonUI\\wwwroot\\css\\styles.css"
   },
