@@ -11,7 +11,7 @@
     "build-bmdc-ts": "copy scripts\\blazormdc.js wwwroot\\blazormdc.js",
     "build-bmdc-ts-realbutcausesfailure": "tsc",
     "minify-bmdc-js": "terser wwwroot\\blazormdc.js --compress --mangle --ecma 2016 --output wwwroot\\blazormdc.min.js",
-    "minify-bundle-js": "terser wwwroot\\blazormdc.js node_modules\\material-components-web\\dist\\material-components-web.min.js --compress --mangle --ecma 2016 --output wwwroot\\blazormdc-material-bundle.min.js",
+    "minify-bundle-js": "terser wwwroot\\blazormdc.js node_modules\\material-components-web\\dist\\material-components-web.js node_modules\\@material\\tooltip\\dist\\mdc.tooltip.js --compress --mangle --ecma 2016 --output wwwroot\\blazormdc-material-bundle.min.js",
     "build-bmdcdemo": "dart-sass --load-path=node_modules --no-source-map ..\\BlazorMdc.Demo.CommonUI\\Styles\\styles.scss ..\\BlazorMdc.Demo.CommonUI\\wwwroot\\css\\styles.css"
   },
   "keywords": [],

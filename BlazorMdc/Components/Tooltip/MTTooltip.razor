@@ -1,6 +1,15 @@
 ﻿@namespace BlazorMdc
 
 
-<div aria-describedby="@id">
-    @Target
-</div>
+@if (TooltipType == MTTooltipType.Span)
+{
+    <span aria-describedby="@id">
+        @Target
+    </span>
+}
+else
+{
+    <div aria-describedby="@id">
+        @Target
+    </div>
+}

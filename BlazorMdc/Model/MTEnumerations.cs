@@ -640,6 +640,24 @@
     /// Determines the density of a component
     /// <para>Defaults to <see cref="Default"/></para>
     /// </summary>
+    public enum MTTooltipType
+    {
+        /// <summary>
+        /// Uses a &lt;span&gt; element for a tooltip - the default.
+        /// </summary>
+        Span,
+
+        /// <summary>
+        /// Uses a &lt;div&gt; element for a tooltip - the default.
+        /// </summary>
+        Div
+    }
+
+
+    /// <summary>
+    /// Determines the density of a component
+    /// <para>Defaults to <see cref="Default"/></para>
+    /// </summary>
     public enum MTDensity
     {
         /// <summary>

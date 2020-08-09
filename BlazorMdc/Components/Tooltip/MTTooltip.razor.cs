@@ -22,6 +22,13 @@ namespace BlazorMdc
 
 
 
+        /// <summary>
+        /// The tooltip's content.
+        /// </summary>
+        [Parameter] public MTTooltipType TooltipType { get; set; } = MTTooltipType.Span;
+
+
+
         private readonly Guid id = Guid.NewGuid();
         private bool disposedValue;
 
