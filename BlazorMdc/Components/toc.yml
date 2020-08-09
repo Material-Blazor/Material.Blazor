@@ -13,6 +13,9 @@
 - name: IMTToastService
   topicUid: S.IMTToastService
 
+- name: MTAnchor
+  topicUid: C.MTAnchor
+
 - name: MTAnimatedNavigation
   topicUid: C.MTAnimatedNavigation
 
@@ -106,8 +109,8 @@
 - name: MTTextField
   topicUid: C.MTTextField
 
-- name: MTToastAnchor
-  topicUid: C.MTToastAnchor
+- name: MTTooltip
+  topicUid: C.MTTooltip
 
 - name: MTTopAppBar
   topicUid: C.MTTopAppBar

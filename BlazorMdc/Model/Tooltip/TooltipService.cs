@@ -35,7 +35,7 @@ namespace BlazorMdc.Internal
         {
             if (OnAdd is null)
             {
-                throw new InvalidOperationException($"BlazorMdc: you attempted to add a tooltip from a {Utilities.GetTypeName(typeof(IMTTooltipService))} but have not placed a {Utilities.GetTypeName(typeof(MTTooltipAnchor))} component at the top of either App.razor or MainLayout.razor");
+                throw new InvalidOperationException($"BlazorMdc: you attempted to add a tooltip from a {Utilities.GetTypeName(typeof(IMTTooltipService))} but have not placed a {Utilities.GetTypeName(typeof(MTAnchor))} component at the top of either App.razor or MainLayout.razor");
             }
 
             OnAdd?.Invoke(id, content);
@@ -48,7 +48,7 @@ namespace BlazorMdc.Internal
         {
             if (OnRemove is null)
             {
-                throw new InvalidOperationException($"BlazorMdc: you attempted to remove a tooltip from a {Utilities.GetTypeName(typeof(IMTTooltipService))} but have not placed a {Utilities.GetTypeName(typeof(MTTooltipAnchor))} component at the top of either App.razor or MainLayout.razor");
+                throw new InvalidOperationException($"BlazorMdc: you attempted to remove a tooltip from a {Utilities.GetTypeName(typeof(IMTTooltipService))} but have not placed a {Utilities.GetTypeName(typeof(MTAnchor))} component at the top of either App.razor or MainLayout.razor");
             }
 
             OnRemove?.Invoke(id);

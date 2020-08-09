@@ -51,7 +51,7 @@ We also provide minified `blazormdc.min.css` and `blazormdc.min.js`. Add the Bla
 
 Blazor MDC works with the following package versions:
 
-- [Material Components v7.0.0](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#600-2020-04-22);
+- [Material Components v7.0.0](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#700-2020-06-23);
 - [Font Awesome Icons version 5](https://fontawesome.com/changelog/latest) are optional and can be included in your HTML `<head>` with the CDN link:
     ```html
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
@@ -60,3 +60,35 @@ Blazor MDC works with the following package versions:
     ```html
     <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic.min.css" crossorigin="anonymous" rel="stylesheet" />
     ```
+
+### Services and Anchor
+
+Blazor MDC has three services for the animated navigation manager, toasts and tooltips. If you want to use these you must register the services with
+
+```csharp
+serviceCollection.AddMTServices(
+    toastServiceConfiguration: new MTToastServiceConfiguration()
+    {
+        InfoDefaultHeading = "Info",
+        SuccessDefaultHeading = "Success",
+        WarningDefaultHeading = "Warning",
+        ErrorDefaultHeading = "Error",
+        Timeout = 5000,
+        MaxToastsShowing = 5
+    },
+
+    animatedNavigationManagerConfiguration: new MTAnimatedNaviationManagerConfiguration()
+    {
+        ApplyAnimation = true,
+        AnimationTime = 300
+    }
+);
+```
+
+The two configuratoins are optional - see [MTToastServiceConfiguration](xref:BlazorMdc.api.MTToastServiceConfiguration) and [MTAnimatedNaviationManagerConfiguration](xref:BlazorMdc.api.MTAnimatedNaviationManagerConfiguration).
+
+When you use the services you must also place an anchor component at the top of `MainLayout.razor`, which must not be inside any other components or divs:
+
+```html
+    <MTAnchor />
+```

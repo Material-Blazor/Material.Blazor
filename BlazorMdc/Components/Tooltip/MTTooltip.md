@@ -10,8 +10,9 @@ A [Material Tooltip](https://github.com/material-components/material-components-
 
 ### Details
 
--  Adds a tooltip to its render fragment
--  Requires that you register an [IIMToastService](xref:S.IMTTooltipService) service and will throw an exception on startup if the service is not found.
+-  Takes a render fragment for a tooltip target and another for the tooltip content;
+-  The target can be held in either a span or a div depending upon the value of [TooltipType](xref:BlazorMdc.MTTooltip.TooltipType)
+-  Requires service registration and use of [MTAnchor](xref:C.MTAnchor).
 
 &nbsp;
 

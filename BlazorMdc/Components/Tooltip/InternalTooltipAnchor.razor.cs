@@ -1,6 +1,4 @@
-﻿using BlazorMdc.Internal;
-
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
@@ -8,14 +6,14 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BlazorMdc
+namespace BlazorMdc.Internal
 {
     /// <summary>
     /// An anchor component that displays tooltips taht you add, and using 
     /// <see cref="IMTTooltipService"/>.
     /// Place this component at the top of either App.razor or MainLayout.razor.
     /// </summary>
-    public partial class MTTooltipAnchor : ComponentFoundation
+    public partial class InternalTooltipAnchor : ComponentFoundation
     {
         [Inject] private IMTTooltipService TooltipService { get; set; }
 

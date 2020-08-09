@@ -1,16 +1,16 @@
 ﻿---
-uid: S.IMTToastService
-title: IMTToastService
+uid: S.IMTTooltipService
+title: IMTTooltipService
 ---
-# IMTToastService
+# IMTTooltipService
 
 ### Summary
 
-Manages toast notification. 
+Manages tooltips. 
 
 ### Details
 
-- Requires a [MTToastAnchor](xref:C.MTToastAnchor) component and will throw an exception when you attempt to show a toast notification if this isn't found; and
+- Requires a [MTAnchor](xref:C.MTAnchor) component and will throw an exception when you attempt to show a toast notification if this isn't found; and
 - Accepts an optional [MTToastServiceConfiguration](xref:BlazorMdc.MTToastServiceConfiguration).
 
 &nbsp;
