@@ -34,6 +34,10 @@
           "BlazorMdc/**/**.md",
           "BlazorMdc/**/**/**.md",
           "BlazorMdc/**/toc.yml"
+        ],
+        "exclude": [
+          "BlazorMdc/node_modules/**/**.md",
+          "BlazorMdc/node_modules/**/**.toc"
         ]
       },
       {

@@ -29,4 +29,5 @@ the markup specification. We term these "Core Components. Blazor MDC also has no
 | [MTTabBar](xref:C.MTTabBar) | A [Material Tab Bar](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-tab-bar#tab-bar). |
 | [MTTextArea](xref:C.MTTextArea) | A [Material Text Field](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-textfield#text-field) expressed as a text area. |
 | [MTTextField](xref:C.MTTextField) | A [Material Text Field](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-textfield#text-field). |
+| [MTTooltip](xref:C.MTTooltip) | A [Material Tooltip](https://github.com/material-components/material-components-web/tree/master/packages/mdc-tooltip#tooltip). |
 | [MTTopAppBar](xref:C.MTTopAppBar) | A [Material Top App Bar](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-top-app-bar#top-app-bar). |
