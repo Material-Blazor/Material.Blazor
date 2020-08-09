@@ -17,6 +17,8 @@ namespace BlazorMdc.Demo.Blazor
                 MaxToastsShowing = 5
             });
 
+            serviceCollection.AddMTTooltipService();
+
             // The configuration is optional
             serviceCollection.AddMTAnimatedNavigationManager(new MTAnimatedNaviationManagerConfiguration()
             {

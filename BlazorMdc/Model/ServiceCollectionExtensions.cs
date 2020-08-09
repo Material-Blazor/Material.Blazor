@@ -33,6 +33,15 @@ namespace BlazorMdc
 
 
         /// <summary>
+        /// Adds a BlazorMdc <see cref="IMTTooltipService"/> to the service collection to manage tooltips.
+        /// </summary>
+        public static IServiceCollection AddMTTooltipService(this IServiceCollection services)
+        {
+            return services.AddScoped<IMTTooltipService, TooltipService>(serviceProvider => new TooltipService());
+        }
+
+
+        /// <summary>
         /// Adds a BlazorMdc <see cref="IMTAnimatedNavigationManager"/> to the service collection to apply
         /// fade out/in animation to Blazor page navigation.
         /// <example>

@@ -75,7 +75,6 @@
 		<DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" DestinationFolder="wip" DestinationFileName="material-components-icons.css">
 			<Output TaskParameter="DownloadedFile" ItemName="Content" />
 		</DownloadFile>
-		<Exec Command="npm run minify-matfont" />
 		<Exec Command="npm run build-bmdc" />
 		<Exec Command="npm run minify-bmdc" />
 		<Exec Command="npm run build-bundle" />

@@ -19,7 +19,16 @@
 
 <h5 class="mdc-typography--headline5">Animated Navigation</h5>
 
-<p><MTCheckbox @bind-Value="@AnimatedNavigationManager.Configuration.ApplyAnimation" Label="Apply animiations to page navigation" /></p>
+<p>
+    <MTTooltip>
+        <Target>
+            <MTCheckbox @bind-Value="@AnimatedNavigationManager.Configuration.ApplyAnimation" Label="Apply animiations to page navigation" />
+        </Target>
+        <Content>
+            Tooltip contents
+        </Content>
+    </MTTooltip>
+</p>
 
 
 <p style="margin-top: 80rem;">&nbsp;</p>
