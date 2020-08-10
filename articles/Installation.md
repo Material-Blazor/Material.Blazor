@@ -93,3 +93,18 @@ When you use the services you must also place an anchor component at the top of 
 ```html
 <MTAnchor />
 ```
+
+### Binding
+
+BlazorMDC components support the EditForm environment. To that end BlazorMDC uses the 
+```csharp
+FieldIdentifier.Create(ValueExpression) 
+```
+construct. This means that values to be bound are limited to fields and properties. As am example, should you try to bind to an array element as in
+```html
+<Component @bind-Value="@boolArray[0]" />
+```
+you will be met with a runtime error of
+
+Error: System.ArgumentException: The provided expression contains a SimpleBinaryExpression which is not supported. FieldIdentifier only supports simple member accessors (fields, properties) of an object.
+
