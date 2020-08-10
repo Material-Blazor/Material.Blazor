@@ -51,15 +51,35 @@ namespace BlazorMdc
         [Parameter] public string DateFormat { get; set; } = "D";
 
 
+        /// <summary>
+        /// The select's density.
+        /// </summary>
+        [Parameter] public MTDensity? Density { get; set; }
+
+
         private ElementReference ElementReference { get; set; }
 
         private InternalDatePickerPanel Panel { get; set; }
 
         private MTSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
 
+        private MTDensity AppliedDensity => CascadingDefaults.AppliedSelectDensity(Density);
+
         private bool IsOpen { get; set; } = false;
 
         private string MenuClass => (Panel?.ShowYearPad ?? true) ? "bmdc-dp-menu__day-menu" : "bmdc-dp-menu__year-menu";
+
+        private MTCascadingDefaults.DensityInfo DensityInfo
+        {
+            get
+            {
+                var d = CascadingDefaults.GetDensityCssClass(AppliedDensity);
+
+                d.CssClassName += AppliedInputStyle == MTSelectInputStyle.Filled ? "--filled" : "--outlined";
+
+                return d;
+            }
+        }
 
 
         private readonly string key = Utilities.GenerateUniqueElementName();
@@ -78,6 +98,7 @@ namespace BlazorMdc
 
             ClassMapper
                 .Add("mdc-select")
+                .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-select--filled", () => AppliedInputStyle == MTSelectInputStyle.Filled)
                 .AddIf("mdc-select--outlined", () => AppliedInputStyle == MTSelectInputStyle.Outlined)
                 .AddIf("mdc-select--no-label", () => string.IsNullOrWhiteSpace(Label))
