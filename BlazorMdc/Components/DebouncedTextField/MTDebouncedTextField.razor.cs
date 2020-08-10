@@ -10,7 +10,7 @@ namespace BlazorMdc
     /// <summary>
     /// A Material Theme debounced text field.
     /// </summary>
-    public partial class MTDebouncedTextField : InputComponentFoundation<string>, IDisposable
+    public partial class MTDebouncedTextField : InputComponentFoundation<string>
     {
 #nullable enable annotations
         /// <summary>
@@ -94,7 +94,23 @@ namespace BlazorMdc
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
-        public void Dispose() => Timer?.Dispose();
+        private bool _disposed = false;
+        protected override void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                Timer?.Dispose();
+            }
+
+            _disposed = true;
+
+            base.Dispose(disposing);
+        }
 
 
         private void OnTextInput(ChangeEventArgs eventArgs)

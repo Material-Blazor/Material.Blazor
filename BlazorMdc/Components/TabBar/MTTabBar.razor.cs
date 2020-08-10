@@ -11,7 +11,7 @@ namespace BlazorMdc
     /// <summary>
     /// This is a general purpose Material Theme tab bar.
     /// </summary>
-    public partial class MTTabBar<TItem> : InputComponentFoundation<int>, IDisposable
+    public partial class MTTabBar<TItem> : InputComponentFoundation<int>
     {
         /// <summary>
         /// Stack icons vertically if True, otherwise icons are leading.
@@ -78,11 +78,22 @@ namespace BlazorMdc
         }
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
-        public void Dispose()
+        private bool _disposed = false;
+        protected override void Dispose(bool disposing)
         {
-            GC.SuppressFinalize(this);
-            ObjectReference?.Dispose();
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                ObjectReference?.Dispose();
+            }
+
+            _disposed = true;
+
+            base.Dispose(disposing);
         }
 
 

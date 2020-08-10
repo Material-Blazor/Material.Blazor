@@ -11,7 +11,7 @@ namespace BlazorMdc
     /// <summary>
     /// This is a general purpose Material Theme menu.
     /// </summary>
-    public partial class MTMenu : ComponentFoundation, IDisposable
+    public partial class MTMenu : ComponentFoundation
     {
         /// <summary>
         /// A render fragement as a set of <see cref="MTListItem"/>s.
@@ -36,11 +36,22 @@ namespace BlazorMdc
         }
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
-        public void Dispose()
+        private bool _disposed = false;
+        protected override void Dispose(bool disposing)
         {
-            GC.SuppressFinalize(this);
-            ObjectReference?.Dispose();
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                ObjectReference?.Dispose();
+            }
+
+            _disposed = true;
+
+            base.Dispose(disposing);
         }
 
 

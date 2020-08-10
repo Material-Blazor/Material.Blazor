@@ -97,20 +97,26 @@ namespace BlazorMdc.Internal
         private protected virtual async Task InitializeMdcComponent() => await Task.CompletedTask;
 
 
-        private bool disposedValue;
+
+        ~ComponentFoundation() => Dispose(false);
+
+
+        private bool _disposed;
         protected virtual void Dispose(bool disposing)
         {
-            if (!disposedValue)
+            if (_disposed)
             {
-                if (disposing && !string.IsNullOrWhiteSpace(Tooltip))
-                {
-                    TooltipService.RemoveTooltip(TooltipId);
-                }
-
-                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
-                // TODO: set large fields to null
-                disposedValue = true;
+                return;
             }
+            
+            if (disposing && !string.IsNullOrWhiteSpace(Tooltip))
+            {
+                TooltipService.RemoveTooltip(TooltipId);
+            }
+
+            // TODO: free unmanaged resources (unmanaged objects) and override finalizer
+            // TODO: set large fields to null
+            _disposed = true;
         }
 
 

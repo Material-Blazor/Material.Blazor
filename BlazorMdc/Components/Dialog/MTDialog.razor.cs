@@ -15,7 +15,7 @@ namespace BlazorMdc
     /// intiate it and its embedded components. Likewise when the dialog is closed, Material Theme is permitted to close the dialog
     /// gracefully before BlazorMdc removes the markup.
     /// </summary>
-    public partial class MTDialog : ComponentFoundation, IDisposable, IMTDialog
+    public partial class MTDialog : ComponentFoundation, IMTDialog
     {
         /// <summary>
         /// The dialog title.
@@ -94,10 +94,22 @@ namespace BlazorMdc
         }
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
-        public void Dispose()
+        private bool _disposed = false;
+        protected override void Dispose(bool disposing)
         {
-            ObjectReference?.Dispose();
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                ObjectReference?.Dispose();
+            }
+
+            _disposed = true;
+
+            base.Dispose(disposing);
         }
 
 
