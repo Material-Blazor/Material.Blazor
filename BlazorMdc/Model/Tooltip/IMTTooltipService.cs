@@ -19,7 +19,14 @@ namespace BlazorMdc
         /// <summary>
         /// A event that will be invoked when adding a tooltip
         /// </summary>
-        internal event Action<Guid, RenderFragment> OnAdd;
+        internal event Action<Guid, RenderFragment> OnAddRenderFragment;
+
+
+
+        /// <summary>
+        /// A event that will be invoked when adding a tooltip
+        /// </summary>
+        internal event Action<Guid, MarkupString> OnAddMarkupString;
 
 
 
@@ -36,6 +43,15 @@ namespace BlazorMdc
         /// <param name="id"></param>
         /// <param name="content"></param>
         void AddTooltip(Guid id, RenderFragment content);
+
+
+
+        /// <summary>
+        /// Adds a tooltip.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="content"></param>
+        void AddTooltip(Guid id, MarkupString content);
 
 
 

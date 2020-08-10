@@ -63,7 +63,8 @@ Blazor MDC works with the following package versions:
 
 ### Services and Anchor
 
-Blazor MDC has three services for the animated navigation manager, toasts and tooltips. If you want to use these you must register the services with
+Blazor MDC has three services for the animated navigation manager, toasts and tooltips. We strongly advise you to use these in your project
+because regular component tooltips will fail if you don't, although they are optional. To register the services:
 
 ```csharp
 serviceCollection.AddMTServices(

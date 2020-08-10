@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BlazorMdc.Internal
 {
-    public abstract class ComponentFoundation : ComponentBase
+    public abstract class ComponentFoundation : ComponentBase, IDisposable
     {
         private readonly string[] ReservedAttributes = { "disabled" };
         private readonly string[] EventAttributeNames = { "onfocus", "onblur", "onfocusin", "onfocusout", "onmouseover", "onmouseout", "onmousemove", "onmousedown", "onmouseup", "onclick", "ondblclick", "onwheel", "onmousewheel", "oncontextmenu", "ondrag", "ondragend", "ondragenter", "ondragleave", "ondragover", "ondragstart", "ondrop", "onkeydown", "onkeyup", "onkeypress", "onchange", "oninput", "oninvalid", "onreset", "onselect", "onselectstart", "onselectionchange", "onsubmit", "onbeforecopy", "onbeforecut", "onbeforepaste", "oncopy", "oncut", "onpaste", "ontouchcancel", "ontouchend", "ontouchmove", "ontouchstart", "ontouchenter", "ontouchleave", "ongotpointercapture", "onlostpointercapture", "onpointercancel", "onpointerdown", "onpointerenter", "onpointerleave", "onpointermove", "onpointerout", "onpointerover", "onpointerup", "oncanplay", "oncanplaythrough", "oncuechange", "ondurationchange", "onemptied", "onpause", "onplay", "onplaying", "onratechange", "onseeked", "onseeking", "onstalled", "onstop", "onsuspend", "ontimeupdate", "onvolumechange", "onwaiting", "onloadstart", "ontimeout", "onabort", "onload", "onloadend", "onprogress", "onerror", "onactivate", "onbeforeactivate", "onbeforedeactivate", "ondeactivate", "onended", "onfullscreenchange", "onfullscreenerror", "onloadeddata", "onloadedmetadata", "onpointerlockchange", "onpointerlockerror", "onreadystatechange", "onscroll" };
@@ -17,6 +17,7 @@ namespace BlazorMdc.Internal
         private bool? disabled = null;
 
         [Inject] private protected IJSRuntime JsRuntime { get; set; }
+        [Inject] private protected IMTTooltipService TooltipService { get; set; }
 
 
         [CascadingParameter] protected MTCascadingDefaults CascadingDefaults { get; set; } = new MTCascadingDefaults();
@@ -29,18 +30,11 @@ namespace BlazorMdc.Internal
 
 
 
-        /// <summary>
-        /// Attributes for splatting to be set by a component's OnInitialized() function.
-        /// </summary>
-        private protected IDictionary<string, object> ComponentSetAttributes { get; set; } = new Dictionary<string, object>();
-
-
 
         /// <summary>
         /// Indicates whether the component is disabled.
         /// </summary>
-        [Parameter]
-        public bool? Disabled
+        [Parameter] public bool? Disabled
         {
             get => disabled;
             set
@@ -54,7 +48,22 @@ namespace BlazorMdc.Internal
         }
 
 
-        internal bool AppliedDisabled => CascadingDefaults.AppliedDisabled(Disabled);
+        /// <summary>
+        /// A markup capable tooltip.
+        /// </summary>
+        [Parameter] public string Tooltip { get; set; }
+
+
+        /// <summary>
+        /// Tooltip id for aria-describedby attribute.
+        /// </summary>
+        private Guid TooltipId { get; set; } = Guid.NewGuid();
+
+
+        /// <summary>
+        /// Attributes for splatting to be set by a component's OnInitialized() function.
+        /// </summary>
+        private protected IDictionary<string, object> ComponentSetAttributes { get; set; } = new Dictionary<string, object>();        internal bool AppliedDisabled => CascadingDefaults.AppliedDisabled(Disabled);
 
 
         /// <summary>
@@ -88,6 +97,35 @@ namespace BlazorMdc.Internal
         private protected virtual async Task InitializeMdcComponent() => await Task.CompletedTask;
 
 
+        private bool disposedValue;
+        /// <inheritdoc/>
+        /// <param name="disposing"></param>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing && !string.IsNullOrWhiteSpace(Tooltip))
+                {
+                    TooltipService.RemoveTooltip(TooltipId);
+                }
+
+                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
+                // TODO: set large fields to null
+                disposedValue = true;
+            }
+        }
+
+
+        /// <inheritdoc/>
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
+        }
+
+
+
         /// <summary>
         /// Attributes ready for splatting in components. Guaranteed not null, unlike UnmatchedAttributes. Default parameter is <see cref="SplatType.All".
         /// </summary>
@@ -101,12 +139,18 @@ namespace BlazorMdc.Internal
 
             var unmatchedClass = UnmatchedAttributes?.Where(a => a.Key.ToLower() == "class").FirstOrDefault().Value ?? "";
             var unmatchedStyle = UnmatchedAttributes?.Where(a => a.Key.ToLower() == "style").FirstOrDefault().Value ?? "";
-            var nonStylisticAttributes = UnmatchedAttributes?.Where(a => a.Key.ToLower() != "class" && a.Key.ToLower() != "style") ?? new Dictionary<string, object>();
+            var nonStylisticAttributes = new Dictionary<string, object>(UnmatchedAttributes?.Where(a => a.Key.ToLower() != "class" && a.Key.ToLower() != "style") ?? new Dictionary<string, object>());
 
             // merge ComponentSetAttributes into the dictionary
             nonStylisticAttributes = nonStylisticAttributes.Union(ComponentSetAttributes)
                     .GroupBy(g => g.Key)
                     .ToDictionary(pair => pair.Key, pair => pair.First().Value);
+
+            if (!string.IsNullOrWhiteSpace(Tooltip))
+            {
+                nonStylisticAttributes.Add("aria-describedby", TooltipId.ToString());
+                TooltipService.AddTooltip(TooltipId, new MarkupString(Tooltip));
+            }
 
             if (splatType != SplatType.ClassAndStyleOnly)
             {

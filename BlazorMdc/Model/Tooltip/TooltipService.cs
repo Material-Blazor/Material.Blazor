@@ -8,17 +8,28 @@ namespace BlazorMdc.Internal
     /// </summary>
     internal class TooltipService : IMTTooltipService
     {
-        private event Action<Guid, RenderFragment> OnAdd;
+        private event Action<Guid, RenderFragment> OnAddRenderFragment;
+        private event Action<Guid, MarkupString> OnAddMarkupString;
 
         /// <inheritdoc/>
-        event Action<Guid, RenderFragment> IMTTooltipService.OnAdd
+        event Action<Guid, RenderFragment> IMTTooltipService.OnAddRenderFragment
         {
-            add => OnAdd += value;
-            remove => OnAdd -= value;
+            add => OnAddRenderFragment += value;
+            remove => OnAddRenderFragment -= value;
         }
 
 
 
+        /// <inheritdoc/>
+        event Action<Guid, MarkupString> IMTTooltipService.OnAddMarkupString
+        {
+            add => OnAddMarkupString += value;
+            remove => OnAddMarkupString -= value;
+        }
+
+
+
+        /// <inheritdoc/>
         private event Action<Guid> OnRemove;
 
         /// <inheritdoc/>
@@ -33,12 +44,25 @@ namespace BlazorMdc.Internal
         /// <inheritdoc/>
         public void AddTooltip(Guid id, RenderFragment content)
         {
-            if (OnAdd is null)
+            if (OnAddRenderFragment is null)
             {
                 throw new InvalidOperationException($"BlazorMdc: you attempted to add a tooltip from a {Utilities.GetTypeName(typeof(IMTTooltipService))} but have not placed a {Utilities.GetTypeName(typeof(MTAnchor))} component at the top of either App.razor or MainLayout.razor");
             }
 
-            OnAdd?.Invoke(id, content);
+            OnAddRenderFragment?.Invoke(id, content);
+        }
+
+
+
+        /// <inheritdoc/>
+        public void AddTooltip(Guid id, MarkupString content)
+        {
+            if (OnAddMarkupString is null)
+            {
+                throw new InvalidOperationException($"BlazorMdc: you attempted to add a tooltip from a {Utilities.GetTypeName(typeof(IMTTooltipService))} but have not placed a {Utilities.GetTypeName(typeof(MTAnchor))} component at the top of either App.razor or MainLayout.razor");
+            }
+
+            OnAddMarkupString?.Invoke(id, content);
         }
 
 
