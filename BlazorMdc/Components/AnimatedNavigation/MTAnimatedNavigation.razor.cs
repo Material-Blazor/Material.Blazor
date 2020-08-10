@@ -13,7 +13,7 @@ namespace BlazorMdc
     /// but not surrounding your app bars and navigation menus - you don't want those to fade in and out when
     /// your user navigates from one page to another.
     /// </summary>
-    public partial class MTAnimatedNavigation: ComponentFoundation, IDisposable
+    public partial class MTAnimatedNavigation: ComponentFoundation
     {
         [Inject] private IMTAnimatedNavigationManager AnimatedNavigationManager { get; set; }
         [Inject] private NavigationManager NavigationManager { get; set; }
@@ -48,10 +48,22 @@ namespace BlazorMdc
         }
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
-        public void Dispose()
+        private bool _disposed = false;
+        protected override void Dispose(bool disposing)
         {
-            AnimatedNavigationManager.DeregisterNavigationComponent(this);
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                AnimatedNavigationManager.DeregisterNavigationComponent(this);
+            }
+
+            _disposed = true;
+
+            base.Dispose(disposing);
         }
 
 

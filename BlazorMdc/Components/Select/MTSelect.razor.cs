@@ -13,7 +13,7 @@ namespace BlazorMdc
     /// <summary>
     /// A Material Theme select.
     /// </summary>
-    public partial class MTSelect<TItem> : ValidatingInputComponentFoundation<TItem>, IMTDialogChild, IDisposable
+    public partial class MTSelect<TItem> : ValidatingInputComponentFoundation<TItem>, IMTDialogChild
     {
 #nullable enable annotations
         /// <summary>
@@ -144,11 +144,22 @@ namespace BlazorMdc
         }
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
-        public void Dispose()
+        private bool _disposed = false;
+        protected override void Dispose(bool disposing)
         {
-            GC.SuppressFinalize(this);
-            ObjectReference?.Dispose();
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                ObjectReference?.Dispose();
+            }
+
+            _disposed = true;
+
+            base.Dispose(disposing);
         }
 
 
