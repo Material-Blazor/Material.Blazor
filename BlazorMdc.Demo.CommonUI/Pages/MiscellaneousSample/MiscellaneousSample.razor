@@ -15,12 +15,18 @@
         --bmdc-shield-label-background: var(--bmdc-color-blue-700);
         --bmdc-shield-value-background: var(--bmdc-color-green-700);
     }
+
+    .bmdc-shield {
+        margin: 3px 0;
+    }
 </style>
 
 <div style="display: flex; flex-flow: column nowrap">
-    <MTShield style="margin-bottom: 6px;" Label="label one" Value="value one" />
-    <MTShield style="margin-bottom: 6px;" Label="label two" Value="value two" LabelClass="my-label-two" ValueClass="my-label-two" />
-    <MTShield Label="label three" Value="value three" LabelIcon="edit" ValueIcon="edit" />
+    <p>
+        <MTShield Label="label one" Value="value one" />
+        <MTShield Label="label two" Value="value two" LabelClass="my-label-two" ValueClass="my-label-two" />
+        <MTShield Label="label three" Value="value three" LabelIcon="edit" ValueIcon="edit" />
+    </p>
 </div>
 
 <h5 class="mdc-typography--headline5">Tooltips</h5>

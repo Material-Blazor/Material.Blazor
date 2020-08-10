@@ -1,7 +1,6 @@
 ﻿$shield-height: 20px;
-$shield-line-height: 20px;
 $shield-font-family: "Verdana","Geneva","DejaVu Sans","sans-serif";
-$shield-font-size: 9pt;
+$shield-font-size: 10pt;
 $shield-icon-font-size: 10pt;
 $shield-inner-padding: 4px;
 $shield-outer-padding: 4px;
@@ -18,43 +17,52 @@ $shield-icon-right-margin: 3px;
 .bmdc-shield {
     user-select: none;
     -webkit-user-select: none;
-    display: flex;
+    display: inline-flex;
     flex-flow: row nowrap;
+    align-items: center;
     height: $shield-height;
-    line-height: $shield-line-height;
+    line-height: $shield-height;
     font-family: $shield-font-family;
     font-size: $shield-font-size;
     margin: 0;
     padding: 0;
     border: 0;
     white-space: nowrap;
+    vertical-align: middle
 }
 
-.bmdc-shield--icon {
+.bmdc-shield span, .bmdc-shield i {
+    height: $shield-height;
+    max-height: $shield-height;
+}
+
+.bmdc-shield i {
     font-size: $shield-icon-font-size;
-    line-height: $shield-line-height;
+    line-height: $shield-height;
     margin: 0 $shield-icon-right-margin 0 $shield-icon-left-margin;
 }
 
 .bmdc-shield--label {
-    display: flex;
+    display: inline-flex;
     flex-flow: row nowrap;
+    align-items: center;
     color: var(--bmdc-shield-label-color);
     background: var(--bmdc-shield-label-background);
     height: $shield-height;
-    line-height: $shield-line-height;
+    line-height: $shield-height;
     margin: 0;
     padding: 0 $shield-inner-padding 0 $shield-outer-padding;
     border: 0;
 }
 
 .bmdc-shield--value {
-    display: flex;
+    display: inline-flex;
     flex-flow: row nowrap;
+    align-items: center;
     color: var(--bmdc-shield-value-color);
     background: var(--bmdc-shield-value-background);
     height: $shield-height;
-    line-height: $shield-line-height;
+    line-height: $shield-height;
     margin: 0;
     padding: 0 $shield-outer-padding 0 $shield-inner-padding;
     border: 0;
