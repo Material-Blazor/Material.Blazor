@@ -45,7 +45,8 @@ and at the end of `<body>`:
 <script src="_content/BlazorMdc/blazormdc.js"></script>
 ```
 
-We also provide minified `blazormdc.min.css` and `blazormdc.min.js`. Add the BlazorMdc namespace to your project as above.
+We also provide minified `blazormdc.min.css` and `blazormdc.min.js`. Add the BlazorMdc namespace to your project as above. These will be needed
+if you want to create your own theme using Material Theme SASS mixins - we have done this for [blazormc.com](https://blazormdc.com)
 
 ### Package versions
 
@@ -93,3 +94,22 @@ When you use the services you must also place an anchor component at the top of 
 ```html
 <MTAnchor />
 ```
+
+### Binding
+
+BlazorMDC components support the EditForm environment. To that end BlazorMDC uses the 
+
+```csharp
+FieldIdentifier.Create(ValueExpression) 
+```
+
+construct. This means that values to be bound are limited to fields and properties. As an example, should you try to bind to an array element as in
+
+```html
+<Component @bind-Value="@boolArray[0]" />
+```
+
+you will be met with a runtime error of
+
+`Error: System.ArgumentException: The provided expression contains a SimpleBinaryExpression which is not supported. FieldIdentifier only supports simple member accessors (fields, properties) of an object.`
+

@@ -2,32 +2,32 @@
 @inherits ComponentFoundation
 
 
-<div @attributes="AttributesToSplat()">
+<span @attributes="AttributesToSplat()">
     @if (ShieldType != MTShieldType.ValueOnly)
     {
-        <div class="bmdc-shield--label @LabelClass" style="@LabelStyle">
+        <span class="bmdc-shield--label @LabelClass" style="@LabelStyle">
             @if (!string.IsNullOrWhiteSpace(LabelIcon))
             {
-                <div>
-                    <MTIcon IconName="@LabelIcon" IconFoundry="@IconFoundry" class="bmdc-shield--icon" />
-                </div>
+                <span>
+                    <MTIcon IconName="@LabelIcon" IconFoundry="@IconFoundry" />
+                </span>
             }
 
-            <div>@Label</div>
-        </div>
+            <span>@Label</span>
+        </span>
     }
 
     @if (ShieldType != MTShieldType.LabelOnly)
     {
-        <div class="bmdc-shield--value @ValueClass" style="@ValueStyle">
+        <span class="bmdc-shield--value @ValueClass" style="@ValueStyle">
             @if (!string.IsNullOrWhiteSpace(ValueIcon))
             {
-                <div>
-                    <MTIcon IconName="@ValueIcon" IconFoundry="@IconFoundry" class="bmdc-shield--icon" />
-                </div>
+                <span>
+                    <MTIcon IconName="@ValueIcon" IconFoundry="@IconFoundry" />
+                </span>
             }
             
-            <div>@Value</div>
-        </div>
+            <span>@Value</span>
+        </span>
     }
-</div>
+</span>
