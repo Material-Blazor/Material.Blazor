@@ -98,8 +98,6 @@ namespace BlazorMdc.Internal
 
 
         private bool disposedValue;
-        /// <inheritdoc/>
-        /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
@@ -116,7 +114,6 @@ namespace BlazorMdc.Internal
         }
 
 
-        /// <inheritdoc/>
         public void Dispose()
         {
             // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
