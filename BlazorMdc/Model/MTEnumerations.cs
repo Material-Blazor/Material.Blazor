@@ -638,7 +638,7 @@
 
     /// <summary>
     /// Determines the density of a component
-    /// <para>Defaults to <see cref="Default"/></para>
+    /// <para>Defaults to <see cref="Span"/></para>
     /// </summary>
     public enum MTTooltipType
     {

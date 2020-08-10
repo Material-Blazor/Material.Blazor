@@ -23,7 +23,13 @@ namespace BlazorMdc.Internal
         /// <summary>
         /// The tooltip's content.
         /// </summary>
-        public RenderFragment Content { get; set; }
+        public RenderFragment RenderFragmentContent { get; set; }
+
+
+        /// <summary>
+        /// The tooltip's content.
+        /// </summary>
+        public MarkupString MarkupStringContent { get; set; }
 
 
         /// <summary>

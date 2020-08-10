@@ -15,9 +15,6 @@ namespace BlazorMdc.Internal
     /// </summary>
     public partial class InternalTooltipAnchor : ComponentFoundation
     {
-        [Inject] private IMTTooltipService TooltipService { get; set; }
-
-
         private List<TooltipInstance> Tooltips { get; set; } = new List<TooltipInstance>();
         
 
@@ -27,7 +24,8 @@ namespace BlazorMdc.Internal
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
         protected override void OnInitialized()
         {
-            TooltipService.OnAdd += AddTooltip;
+            TooltipService.OnAddRenderFragment += AddTooltipRenderFragment;
+            TooltipService.OnAddMarkupString += AddTooltipMarkupString;
             TooltipService.OnRemove += RemoveTooltip;
         }
 
@@ -38,7 +36,7 @@ namespace BlazorMdc.Internal
         /// </summary>
         /// <param name="id"></param>
         /// <param name="content"></param>
-        private void AddTooltip(Guid id, RenderFragment content)
+        private void AddTooltipRenderFragment(Guid id, RenderFragment content)
         {
             InvokeAsync(async () =>
             {
@@ -46,7 +44,41 @@ namespace BlazorMdc.Internal
                 {
                     Id = id,
                     TimeStamp = DateTime.Now,
-                    Content = content,
+                    RenderFragmentContent = content,
+                    Initiated = false
+                };
+
+                await semaphore.WaitAsync();
+
+                try
+                {
+                    Tooltips.Add(instance);
+                }
+                finally
+                {
+                    semaphore.Release();
+                }
+
+                StateHasChanged();
+            });
+        }
+
+
+
+        /// <summary>
+        /// Adds a tooltip to the anchor.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="content"></param>
+        private void AddTooltipMarkupString(Guid id, MarkupString content)
+        {
+            InvokeAsync(async () =>
+            {
+                var instance = new TooltipInstance
+                {
+                    Id = id,
+                    TimeStamp = DateTime.Now,
+                    MarkupStringContent = content,
                     Initiated = false
                 };
 
