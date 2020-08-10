@@ -172,17 +172,17 @@ namespace BlazorMdc
         /// </summary>
         public MTButtonStyle ButtonStyle { get => _buttonStyle; set => SetParameter(ref _buttonStyle, value); }
 
-        private MTButtonStyle _cardButtonStyle = MTButtonStyle.Text;
+        private MTButtonStyle? _cardButtonStyle = null;
         /// <summary>
-        /// The default style for a card action button/<see cref="MTButton"/> in an <see cref="MTCard"/>, initialized to <see cref="MTButtonStyle.Text"/> if not explicitly set.
+        /// The default style for a card action button/<see cref="MTButton"/> in an <see cref="MTCard"/>, returns the value of <see cref="ButtonStyle"/> if not explicitly set.
         /// </summary>
-        public MTButtonStyle CardActionButtonStyle { get => _cardButtonStyle; set => SetParameter(ref _cardButtonStyle, value); }
+        public MTButtonStyle CardActionButtonStyle { get => _cardButtonStyle ?? ButtonStyle; set => SetParameter(ref _cardButtonStyle, value); }
 
-        private MTButtonStyle _dialogButtonStyle = MTButtonStyle.Text;
+        private MTButtonStyle? _dialogButtonStyle = null;
         /// <summary>
-        /// The default style for a dialog action button/<see cref="MTButton"/> in an <see cref="MTDialog"/>, initialized to <see cref="MTButtonStyle.Text"/> if not explicitly set.
+        /// The default style for a dialog action button/<see cref="MTButton"/> in an <see cref="MTDialog"/>, returns the value of <see cref="ButtonStyle"/> if not explicitly set.
         /// </summary>
-        public MTButtonStyle DialogActionButtonStyle { get => _dialogButtonStyle; set => SetParameter(ref _dialogButtonStyle, value); }
+        public MTButtonStyle DialogActionButtonStyle { get => _dialogButtonStyle ?? ButtonStyle; set => SetParameter(ref _dialogButtonStyle, value); }
 
         /// <summary>
         /// The style to apply within an <see cref="MTButton"/>. <see cref="MTCard"/> and <see cref="MTDialog"/> must
