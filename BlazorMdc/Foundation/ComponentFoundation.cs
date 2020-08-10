@@ -97,7 +97,6 @@ namespace BlazorMdc.Internal
         private protected virtual async Task InitializeMdcComponent() => await Task.CompletedTask;
 
 
-
         ~ComponentFoundation() => Dispose(false);
 
 
