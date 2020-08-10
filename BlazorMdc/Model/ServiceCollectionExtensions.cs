@@ -2,11 +2,29 @@
 
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
+using System.Runtime.CompilerServices;
 
 namespace BlazorMdc
 {
     public static class ServiceCollectionExtensions
     {
+        /// <summary>
+        /// Adds Toast, Tooltip and Animated Navigation Manager services for Blazor MDC. This is required for any app that uses one or more
+        /// of these components. The two configurations are optional.
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="toastServiceConfiguration"></param>
+        /// <param name="animatedNavigationManagerConfiguration"></param>
+        /// <returns></returns>
+        public static IServiceCollection AddMTServices(this IServiceCollection services, MTToastServiceConfiguration toastServiceConfiguration = null, MTAnimatedNaviationManagerConfiguration animatedNavigationManagerConfiguration = null)
+        {
+            return services
+                .AddMTToastService( toastServiceConfiguration)
+                .AddMTAnimatedNavigationManager(animatedNavigationManagerConfiguration)
+                .AddMTTooltipService();
+        }
+
+
         /// <summary>
         /// Adds a BlazorMdc <see cref="IMTToastService"/> to the service collection to manage toast messages.
         /// <example>
@@ -21,7 +39,7 @@ namespace BlazorMdc
         /// </code>
         /// </example>
         /// </summary>
-        public static IServiceCollection AddMTToastService(this IServiceCollection services, MTToastServiceConfiguration configuration = null)
+        private static IServiceCollection AddMTToastService(this IServiceCollection services, MTToastServiceConfiguration configuration = null)
         {
             if (configuration == null)
             {
@@ -29,6 +47,15 @@ namespace BlazorMdc
             }
 
             return services.AddScoped<IMTToastService, ToastService>(serviceProvider => new ToastService(configuration));
+        }
+
+
+        /// <summary>
+        /// Adds a BlazorMdc <see cref="IMTTooltipService"/> to the service collection to manage tooltips.
+        /// </summary>
+        private static IServiceCollection AddMTTooltipService(this IServiceCollection services)
+        {
+            return services.AddScoped<IMTTooltipService, TooltipService>(serviceProvider => new TooltipService());
         }
 
 
@@ -46,7 +73,7 @@ namespace BlazorMdc
         /// </code>
         /// </example>
         /// </summary>
-        public static IServiceCollection AddMTAnimatedNavigationManager(this IServiceCollection services, MTAnimatedNaviationManagerConfiguration configuration = null)
+        private static IServiceCollection AddMTAnimatedNavigationManager(this IServiceCollection services, MTAnimatedNaviationManagerConfiguration configuration = null)
         {
             if (configuration == null)
             {

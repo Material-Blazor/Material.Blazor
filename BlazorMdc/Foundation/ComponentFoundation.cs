@@ -3,6 +3,7 @@ using Microsoft.JSInterop;
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,7 +20,7 @@ namespace BlazorMdc.Internal
 
 
         [CascadingParameter] protected MTCascadingDefaults CascadingDefaults { get; set; } = new MTCascadingDefaults();
-        
+
 
         /// <summary>
         /// Gets or sets a collection of additional attributes that will be applied to the created element.
@@ -27,7 +28,14 @@ namespace BlazorMdc.Internal
         [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object> UnmatchedAttributes { get; set; }
 
 
-        
+
+        /// <summary>
+        /// Attributes for splatting to be set by a component's OnInitialized() function.
+        /// </summary>
+        private protected IDictionary<string, object> ComponentSetAttributes { get; set; } = new Dictionary<string, object>();
+
+
+
         /// <summary>
         /// Indicates whether the component is disabled.
         /// </summary>
@@ -90,20 +98,21 @@ namespace BlazorMdc.Internal
             var htmlAttributes = new Dictionary<string, object>(ComponentPureHtmlAttributes);
             var eventAttributes = new Dictionary<string, object>();
             var requiredAttributes = new Dictionary<string, object>();
-            
+
             var unmatchedClass = UnmatchedAttributes?.Where(a => a.Key.ToLower() == "class").FirstOrDefault().Value ?? "";
             var unmatchedStyle = UnmatchedAttributes?.Where(a => a.Key.ToLower() == "style").FirstOrDefault().Value ?? "";
-            var otherUnmatchedAttributes = UnmatchedAttributes?.Where(a => a.Key.ToLower() != "class" && a.Key.ToLower() != "style");
+            var nonStylisticAttributes = UnmatchedAttributes?.Where(a => a.Key.ToLower() != "class" && a.Key.ToLower() != "style") ?? new Dictionary<string, object>();
+
+            // merge ComponentSetAttributes into the dictionary
+            nonStylisticAttributes = nonStylisticAttributes.Union(ComponentSetAttributes)
+                    .GroupBy(g => g.Key)
+                    .ToDictionary(pair => pair.Key, pair => pair.First().Value);
 
             if (splatType != SplatType.ClassAndStyleOnly)
             {
-                if (otherUnmatchedAttributes != null)
-                {
-                    foreach (var item in otherUnmatchedAttributes)
-                    {
-                        allAttributes.Add(item.Key.ToLower(), item.Value);
-                    }
-                }
+                allAttributes = allAttributes.Union(nonStylisticAttributes)
+                    .GroupBy(g => g.Key)
+                    .ToDictionary(pair => pair.Key, pair => pair.First().Value);
 
                 if (AppliedDisabled) allAttributes.Add("disabled", AppliedDisabled);
 

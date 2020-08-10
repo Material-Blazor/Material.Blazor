@@ -54,9 +54,10 @@ window.BlazorMdc = {
     },
 
     checkBox: {
-        init: function (elem, formFieldElem, isChecked, isFormField) {
+        init: function (elem, formFieldElem, checked, indeterminate, isFormField) {
             elem._checkbox = mdc.checkbox.MDCCheckbox.attachTo(elem);
-            elem._checkbox.checked = isChecked;
+            elem._checkbox.checked = checked;
+            elem._checkbox.indeterminate = indeterminate;  
 
             if (isFormField) {
                 elem._formField = mdc.formField.MDCFormField.attachTo(formFieldElem);
@@ -66,6 +67,10 @@ window.BlazorMdc = {
 
         setChecked: function (elem, checked) {
             elem._checkbox.checked = checked;
+        },
+
+        setIndeterminate: function (elem, indeterminate) {
+            elem._checkbox.indeterminate = indeterminate;
         },
 
         setDisabled: function (elem, disabled) {
@@ -307,6 +312,14 @@ window.BlazorMdc = {
         }
     },
 
+    tooltip: {
+        init: function (elems) {
+            for (let i = 0; i < elems.length; i++) {
+                mdc.tooltip.MDCTooltip.attachTo(elems[i]);
+            }
+        }
+    },
+
     topAppBar: {
         init: function (elem, scrollTarget) {
             const topAppBar = mdc.topAppBar.MDCTopAppBar.attachTo(elem);
@@ -314,5 +327,5 @@ window.BlazorMdc = {
                 topAppBar.setScrollTarget(document.querySelector(scrollTarget));
             }
         }
-    },
+    }
 };

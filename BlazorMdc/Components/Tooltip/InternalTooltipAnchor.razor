@@ -1,0 +1,17 @@
+﻿@namespace BlazorMdc.Internal
+@inherits ComponentFoundation
+
+
+@if (Tooltips.Any())
+{
+    <div>
+        @foreach (var tooltip in Tooltips.OrderBy(x => x.TimeStamp))
+        {
+            <div @key="@tooltip" @ref="@tooltip.ElementReference" id="@tooltip.Id" class="mdc-tooltip" role="tooltip" aria-hidden="true" style="z-index: 1000;">
+                <div class="mdc-tooltip__surface">
+                    @tooltip.Content
+                </div>
+            </div>
+        }
+    </div>
+}

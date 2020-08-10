@@ -19,14 +19,20 @@
 
 <h5 class="mdc-typography--headline5">Animated Navigation</h5>
 
-<p><MTCheckbox @bind-Value="@AnimatedNavigationManager.Configuration.ApplyAnimation" Label="Apply animiations to page navigation" /></p>
+<p>
+    <MTTooltip>
+        <Target>
+            <span><MTCheckbox @bind-Value="@AnimatedNavigationManager.Configuration.ApplyAnimation" Label="Apply animiations to page navigation" /></span>
+    </Target>
+        <Content>
+            Applies and disapplies animated navigation
+        </Content>
+    </MTTooltip>
+</p>
 
-
-<p style="margin-top: 80rem;">&nbsp;</p>
 
 
 @code {
-    
     IEnumerable<MTListElement<MTTopAppBarType>> appBarTypes => from c in (MTTopAppBarType[])Enum.GetValues(typeof(MTTopAppBarType))
                                                                  select new MTListElement<MTTopAppBarType>
                                                                  {

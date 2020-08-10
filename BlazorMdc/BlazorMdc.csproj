@@ -58,10 +58,16 @@
 	<ItemGroup>
 		<InputsComponentsScss Include="Components\**\*.scss" />
 		<InputsStylesScss Include="Styles\*.scss" />
-		<InputsScriptsJs Include="Scripts\*.js" />
+		<InputsComponentsTs Include="Components\**\*.js" />
+		<InputsScriptsTs Include="Scripts\*.js" />
+		<OutputsCss Include="wwwroot\blazormdc.css;wwwroot\blazormdc.min.css;wwwroot\blazormdc-material-bundle.min.css" />
+		<OutputsJs Include="wwwroot\blazormdc.js;wwwroot\blazormdc.min.js;wwwroot\blazormdc-material-bundle.min.js" />
 	</ItemGroup>
 
-	<!--<Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent" Inputs="@(InputsComponentsScss);@(InputsStylesScss);@(InputsScriptsJs)" Outputs="@(OutputsWwwroot)">-->
+	<!--<Target Name="BuildScriptsAndStyles" 
+			BeforeTargets="PreBuildEvent" 
+			Inputs="@(InputsComponentsScss);@(InputsStylesScss);@(InputsComponentsTs);@(InputsScriptsTs)"
+			Outputs="@(OutputsCss);@(OutputsJs)">-->
 	<Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">	
 		<RemoveDir Directories="wip" />
 		<RemoveDir Directories="wwwroot" />
@@ -69,14 +75,13 @@
 		<DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" DestinationFolder="wip" DestinationFileName="material-components-icons.css">
 			<Output TaskParameter="DownloadedFile" ItemName="Content" />
 		</DownloadFile>
-		<Exec Command="npm run minify-matfont" />
-		<Exec Command="npm run build-bmdc" />
-		<Exec Command="npm run minify-bmdc" />
-		<Exec Command="npm run build-bundle" />
+		<Exec Command="npm run build-bmdc-css" />
+		<Exec Command="npm run minify-bmdc-css" />
+		<Exec Command="npm run build-bundle-css" />
 		<Exec Command="npm run minify-bundle-css" />
-		<Exec Command="npm run build-bmdc-ts" />
-		<Copy SourceFiles="Scripts\blazormdc.ts" DestinationFiles="wwwroot\blazormdc.js" />
-		<Touch Files="wwwroot\blazormdc.js" />
+		<!--<Copy SourceFiles="Scripts\blazormdc.js" DestinationFiles="wwwroot\blazormdc.js" />
+		<Touch Files="wwwroot\blazormdc.js" />-->
+		<Exec Command="npm run build-bmdc-js" />
 		<Exec Command="npm run minify-bmdc-js" />
 		<Exec Command="npm run minify-bundle-js" />
 		<Exec Command="npm run build-bmdcdemo" />

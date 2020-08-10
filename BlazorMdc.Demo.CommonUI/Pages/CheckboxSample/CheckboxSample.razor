@@ -21,6 +21,36 @@ See <code>CheckboxSample.razor</code> for sources.
     <MTCheckbox Label="Disabled" @bind-Value="@isCheckedC" Disabled="true" />
 </p>
 
+<p>
+    <MTCheckbox Label="Indeterminate" @bind-Value="@isCheckedD" @bind-IsIndeterminate="@isIndeterminate" />
+</p>
+
+<p>
+    <MTButton Label="Toggle Indeterminate" @onclick="@(() => isIndeterminate = !isIndeterminate)" />
+    &nbsp;
+    @isIndeterminate
+</p>
+
+<div>
+    <MTCheckbox Label="All Winter Wear" @bind-Value="@AllWinterWear" IsIndeterminate="@AllWinterWearIndeterminate" />
+</div>
+<div>
+    <ul style="list-style-type: none;">
+        <li>
+            <MTCheckbox Label="Gloves" @bind-Value="@Gloves" />
+        </li>
+        <li>
+            <MTCheckbox Label="Hat" @bind-Value="@Hat" />
+        </li>
+        <li>
+            <MTCheckbox Label="Coat" @bind-Value="@Coat" />
+        </li>
+        <li>
+            <MTCheckbox Label="Boots" @bind-Value="@Boots" />
+        </li>
+    </ul>
+</div>
+
 @code {
     [CascadingParameter(Name = "DisableComponents")] private bool DisableComponents { get; set; }
 
@@ -31,5 +61,34 @@ See <code>CheckboxSample.razor</code> for sources.
     string labelB => "This checbox is " + (isCheckedB ? "set" : "unset");
 
     bool isCheckedC;
+    bool isCheckedD;
+    bool isIndeterminate = true;
+
+
+    bool[] WinterWear = { false, true, true, false };
+    bool Gloves { get => WinterWear[0]; set => WinterWear[0] = value; }
+    bool Hat { get => WinterWear[1]; set => WinterWear[1] = value; }
+    bool Coat{ get => WinterWear[2]; set => WinterWear[2] = value; }
+    bool Boots { get => WinterWear[3]; set => WinterWear[3] = value; }
+
+    bool _hat = true;
+    bool _coat = true;
+    bool _boots = false;
+
+    bool AllWinterWear
+    {
+        get => WinterWear.Where(x => !x).Count() == 0;
+        set
+        {
+            for (int i = 0; i < WinterWear.Length; i++)
+            {
+                WinterWear[i] = value;
+            }
+
+            StateHasChanged();
+        }
+    }
+
+    bool AllWinterWearIndeterminate => WinterWear.Where(x => !x).Count() > 0 && WinterWear.Where(x => x).Count() > 0;
 }
 

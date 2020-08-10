@@ -1,6 +1,7 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 
-@use "../wip/material-components-icons.min.css";
+@use "../wip/material-components-icons.css";
+@use "../node_modules/@material/tooltip/dist/mdc.tooltip.css";
 
 @use '_colors.scss';
 
@@ -36,11 +37,6 @@
     --bmdc-scroll-webkit-margin-right: 4px;
     --bmdc-scroll-webkit-width: 8px;
     --bmdc-scroll-webkit-border-radius: 4px;
-}
-
-
-.mdc-text-field__affix {
-    user-select: none;
 }
 
 

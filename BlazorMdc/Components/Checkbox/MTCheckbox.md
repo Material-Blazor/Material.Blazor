@@ -6,7 +6,11 @@ title: MTCheckbox
 
 ### Summary
 
-A simple two state [Material Checkbox](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-checkbox#selection-controls-checkboxes) with a boolean value. Applies the [density subsystem](xref:A.Density).
+A [Material Checkbox](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-checkbox#selection-controls-checkboxes).
+
+- Accepts a boolean value;
+- Accepts a boolean for determination of indeterminate state; and
+- Applies the [density subsystem](xref:A.Density).
 
 &nbsp;
 

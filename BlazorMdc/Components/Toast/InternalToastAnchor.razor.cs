@@ -1,20 +1,17 @@
-﻿using BlazorMdc.Internal;
-
-using Microsoft.AspNetCore.Components;
-
+﻿using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
-namespace BlazorMdc
+namespace BlazorMdc.Internal
 {
     /// <summary>
     /// An anchor component that displays toast notification that you display via
     /// <see cref="IMTToastService.ShowToast(MTToastLevel, string, string, MTToastCloseMethod?, string, string, IMTIconFoundry?, bool?, uint?)"/>.
     /// Place this component at the top of either App.razor or MainLayout.razor.
     /// </summary>
-    public partial class MTToastAnchor : ComponentFoundation
+    public partial class InternalToastAnchor : ComponentFoundation
     {
         [Inject] private IMTToastService ToastService { get; set; }
 
@@ -35,6 +32,12 @@ namespace BlazorMdc
         }
 
 
+
+        /// <summary>
+        /// Adds a toast to the anchor, enqueuing it ready for future display if the maximum number of toasts has been reached.
+        /// </summary>
+        /// <param name="level"></param>
+        /// <param name="settings"></param>
         private void AddToast(MTToastLevel level, MTToastSettings settings)
         {
             InvokeAsync(async () =>
@@ -103,6 +106,11 @@ namespace BlazorMdc
         }
 
 
+
+        /// <summary>
+        /// Closes a toast and removes it from the anchor, with a fade out routine.
+        /// </summary>
+        /// <param name="toastId"></param>
         public void CloseToast(Guid toastId)
         {
             InvokeAsync(async () =>

@@ -10,7 +10,7 @@ namespace BlazorMdc
     /// <para>
     /// Throws a <see cref="System.InvalidOperationException"/> if
     /// <see cref="ShowToast(MTToastLevel, string, string, MTToastCloseMethod?, string, string, IMTIconFoundry?, bool?, uint?)"/>
-    /// is called without a <see cref="MTToastAnchor"/> component used in the app.
+    /// is called without an <see cref="MTToastAnchor"/> component used in the app.
     /// </para>
     /// <example>
     /// <para>You can optionally add configuration when you add this to the service collection:</para>
@@ -31,10 +31,14 @@ namespace BlazorMdc
         /// </summary>
         public MTToastServiceConfiguration Configuration { get; set; }
 
+
+
         /// <summary>
         /// A event that will be invoked when showing a toast
         /// </summary>
         internal event Action<MTToastLevel, MTToastSettings> OnAdd;
+
+
 
         /// <summary>
         /// Shows a toast using the supplied settings
