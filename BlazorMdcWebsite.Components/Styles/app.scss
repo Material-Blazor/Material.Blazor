@@ -1,0 +1,136 @@
+﻿@mixin app-classes($background-color, $link-background-color, $link-hover-color, $link-background-opacity) {
+    /*
+        App layout styling
+    */
+    body {
+        height: 100vh;
+        margin: 0 !important;
+        background-color: $background-color;
+    }
+
+    app {
+        display: flex;
+        height: 100%;
+    }
+
+    .mdc-drawer {
+        border-radius: 0;
+    }
+
+    .mdc-drawer-app-content {
+        flex: auto;
+        overflow: auto;
+    }
+
+    .main-content {
+        overflow: auto;
+        height: 100%;
+    }
+
+    .max-width-content {
+        max-width: 1280px;
+        margin: 0 auto;
+    }
+
+    .mdc-top-app-bar-content {
+        display: flex;
+        align-items: center;
+        margin-right: 2rem;
+    }
+
+    .mdc-top-app-bar-content i.material-icons {
+        margin-right: 8px
+    }
+
+    .app-bar {
+        position: absolute !important;
+    }
+    /*
+        Blazor Error UI
+    */
+    #blazor-error-ui {
+        background: lightyellow;
+        bottom: 0;
+        box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+        display: none;
+        left: 0;
+        padding: 0.6rem 1.25rem 0.7rem 1.25rem;
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+    }
+
+    #blazor-error-ui .dismiss {
+        cursor: pointer;
+        position: absolute;
+        right: 0.75rem;
+        top: 0.5rem;
+    }
+    /*
+        Splash screen
+    */
+    .splash-screen {
+        display: grid;
+        --mdc-theme-primary: #bbb;
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .splash-content {
+        display: flex;
+        flex-flow: column nowrap;
+        align-self: center;
+        justify-self: center;
+        align-items: center;
+        color: var(--mdc-theme-primary);
+        font-weight: bold;
+    }
+
+    .splash-content .mdc-circular-progress {
+        margin-top: 24px;
+        display: block;
+    }
+    /*
+        General styling
+    */
+    .point-list li {
+        margin-bottom: 12px;
+    }
+
+    .dr-table .mdc-data-table__header-cell {
+        font-weight: bold;
+    }
+    /*
+        Dynamic link underlining
+    */
+    a {
+        position: relative;
+        z-index: 1;
+        display: inline-flex;
+        padding-bottom: .25rem;
+        color: inherit;
+        text-decoration: none;
+        transition: 0.15s ease;
+    }
+
+    a:hover {
+        color: $link-hover-color;
+    }
+
+    a::after {
+        content: "";
+        background: $link-background-color;
+        opacity: $link-background-opacity;
+        position: absolute;
+        left: -2px;
+        bottom: 3px;
+        width: calc(100% + 4px);
+        height: 4px;
+        z-index: -1;
+        transition: 0.15s ease;
+    }
+
+    a:hover:after {
+        height: 100%;
+    }
+}

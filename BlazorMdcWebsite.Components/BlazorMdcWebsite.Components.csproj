@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Remove="package-lock.json" />
+		<Content Remove="package.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="package-lock.json" />
+		<None Include="package.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="BlazorMdc" Version="1.0.0-Preview.9" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.0-preview.7.20365.19" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.0-preview.7.20365.19" PrivateAssets="all" />
+		<PackageReference Include="System.Net.Http.Json" Version="5.0.0-preview.7.20364.11" />
+	</ItemGroup>
+
+	<!-- Use dart-sass to generate .css and .min.css files -->
+	<Target Name="BuildStyles" AfterTargets="Build">
+		<RemoveDir Directories="wwwroot\\css" />
+		<Exec Command="npm install" />
+		<Exec Command="npm run build-mt-default" />
+		<Exec Command="npm run minify-mt-default" />
+		<Exec Command="npm run build-blue-square" />
+		<Exec Command="npm run minify-blue-square" />
+		<Exec Command="npm run build-red-round" />
+		<Exec Command="npm run minify-red-round" />
+		<Exec Command="npm run build-varied" />
+		<Exec Command="npm run minify-varied" />
+	</Target>
+
+</Project>
