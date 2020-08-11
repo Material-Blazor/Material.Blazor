@@ -38,7 +38,7 @@ namespace BlazorMdc
                 if (value != _isIndetermimate)
                 {
                     _isIndetermimate = value;
-                    InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.checkBox.setIndeterminate", ElementReference, _isIndetermimate));
+                    InvokeAsync(() => JsRuntime.InvokeVoidAsync("BlazorMdc.checkBox.setIndeterminate", ElementReference, _isIndetermimate));
                 }
             }
         }
@@ -94,7 +94,7 @@ namespace BlazorMdc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.checkBox.setChecked", ElementReference, Value));
+        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("BlazorMdc.checkBox.setChecked", ElementReference, Value));
 
 
         /// <summary>
@@ -102,10 +102,10 @@ namespace BlazorMdc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.checkBox.setDisabled", ElementReference, AppliedDisabled));
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("BlazorMdc.checkBox.setDisabled", ElementReference, AppliedDisabled));
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.checkBox.init", ElementReference, FormReference, ReportingValue, IsIndeterminate, IsFormField);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("BlazorMdc.checkBox.init", ElementReference, FormReference, ReportingValue, IsIndeterminate, IsFormField);
     }
 }

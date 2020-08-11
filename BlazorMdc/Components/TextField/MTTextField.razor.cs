@@ -142,7 +142,7 @@ namespace BlazorMdc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.textField.setValue", ElementReference, Value));
+        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("BlazorMdc.textField.setValue", ElementReference, Value));
 
 
         /// <summary>
@@ -150,17 +150,17 @@ namespace BlazorMdc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.textField.setDisabled", ElementReference, AppliedDisabled));
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("BlazorMdc.textField.setDisabled", ElementReference, AppliedDisabled));
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.textField.init", ElementReference);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("BlazorMdc.textField.init", ElementReference);
 
 
         /// <summary>
         /// Selects the text field - used by <see cref="MTNumericDoubleField"/>.
         /// </summary>
         /// <returns></returns>
-        internal async Task Select() => await JsRuntime.InvokeAsync<object>("BlazorMdc.textField.select", InputReference);
+        internal async Task Select() => await JsRuntime.InvokeVoidAsync("BlazorMdc.textField.select", InputReference);
     }
 }

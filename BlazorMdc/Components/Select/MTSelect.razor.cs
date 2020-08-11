@@ -179,7 +179,7 @@ namespace BlazorMdc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.select.setIndex", SelectReference, ItemDict.Keys.ToList().IndexOf(Value)));
+        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("BlazorMdc.select.setIndex", SelectReference, ItemDict.Keys.ToList().IndexOf(Value)));
 
 
         /// <summary>
@@ -187,10 +187,10 @@ namespace BlazorMdc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.select.setDisabled", SelectReference, AppliedDisabled));
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("BlazorMdc.select.setDisabled", SelectReference, AppliedDisabled));
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.select.init", SelectReference, ObjectReference);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("BlazorMdc.select.init", SelectReference, ObjectReference);
     }
 }

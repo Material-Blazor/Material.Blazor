@@ -89,6 +89,6 @@ namespace BlazorMdc
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.button.init", ElementReference);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("BlazorMdc.button.init", ElementReference);
     }
 }

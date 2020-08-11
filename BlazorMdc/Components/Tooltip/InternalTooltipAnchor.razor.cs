@@ -138,7 +138,7 @@ namespace BlazorMdc.Internal
                         orderby t.TimeStamp
                         select t.ElementReference).ToArray();
 
-            await JsRuntime.InvokeAsync<object>("BlazorMdc.tooltip.init", refs);
+            await JsRuntime.InvokeVoidAsync("BlazorMdc.tooltip.init", refs);
 
             foreach (var t in Tooltips.Where(t => !t.Initiated))
             {
