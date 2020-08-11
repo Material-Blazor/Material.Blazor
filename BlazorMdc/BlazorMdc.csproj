@@ -38,6 +38,7 @@
 		<None Include="tsconfig.json" />
 	</ItemGroup>
 
+<!-- Unfinished dependency issue
 	<ItemGroup>
 		<InputsComponentsScss Include="Components\**\*.scss" />
 		<InputsStylesScss Include="Styles\*.scss" />
@@ -47,10 +48,11 @@
 		<OutputsJs Include="wwwroot\blazormdc.js;wwwroot\blazormdc.min.js;wwwroot\blazormdc-material-bundle.min.js" />
 	</ItemGroup>
 
-	<!--<Target Name="BuildScriptsAndStyles" 
+	<Target Name="BuildScriptsAndStyles" 
 			BeforeTargets="PreBuildEvent" 
 			Inputs="@(InputsComponentsScss);@(InputsStylesScss);@(InputsComponentsTs);@(InputsScriptsTs)"
 			Outputs="@(OutputsCss);@(OutputsJs)">-->
+  
 	<Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">
     <Exec Command="docker build -t blazormdc_static_assets -f npm.df ." />
     <Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
