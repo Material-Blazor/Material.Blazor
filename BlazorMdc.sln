@@ -15,6 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solutio
 		filterConfig.yml = filterConfig.yml
 		.github\workflows\GithubActionsMainCI.yml = .github\workflows\GithubActionsMainCI.yml
 		.github\workflows\GithubActionsMainPublish.yml = .github\workflows\GithubActionsMainPublish.yml
+		.github\workflows\GithubActionsMainPublishOld.yml = .github\workflows\GithubActionsMainPublishOld.yml
 		index.md = index.md
 		LICENSE.md = LICENSE.md
 		README.md = README.md

@@ -9,12 +9,12 @@ on:
 
 env:
   buildPlatform: 'Any CPU'
-  buildConfiguration: 'Debug_Server'
+  buildConfiguration: 'Debug'
   ciSuffix: CI.${{ github.run_number }}
   outputDocFx: ${{ github.workspace }}\site-docfx
   outputBmdc: ${{ github.workspace }}\site-bmdc
   outputWeb: ${{ github.workspace }}\site-web
-  ProjectBmdc: 'BlazorMdc/BlazorMdc.csproj'
+  projectBmdc: 'BlazorMdc/BlazorMdc.csproj'
   projectWeb: 'BlazorMdcWebsite.WebAssembly/BlazorMdcWebsite.WebAssembly.csproj'
 
 jobs:
@@ -87,7 +87,7 @@ jobs:
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v1
       with:
-        name: site-ghpages
+        name: site-docfx
       if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
 
     - name: Deploy 🚀
@@ -95,7 +95,7 @@ jobs:
       with:
         ACCESS_TOKEN: ${{ secrets.GH_PAT }}
         BRANCH: gh-pages
-        FOLDER: "site-ghpages" # The deployment folder should match the name of the artifact.
+        FOLDER: "site-docfx" # The deployment folder should match the name of the artifact.
       if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
 
 
@@ -113,12 +113,12 @@ jobs:
       run: echo "CI suffix is $ciSuffix"
 
     - name: Build 🔧
-      run: dotnet build --configuration $buildConfiguration --version-suffix $ciSuffix $ProjectBmdc
+      run: dotnet build --configuration $buildConfiguration --version-suffix $ciSuffix $projectBmdc
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
     - name: Generate NuGet package 🔧
-      run: dotnet pack --no-build --configuration $buildConfiguration --output $outputBmdc -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix $ciSuffix $ProjectBmdc
+      run: dotnet pack --no-build --configuration $buildConfiguration --output $outputBmdc -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix $ciSuffix $projectBmdc
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
