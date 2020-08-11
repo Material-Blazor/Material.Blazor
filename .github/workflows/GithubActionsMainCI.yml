@@ -12,9 +12,10 @@ env:
   buildConfiguration: 'Debug_Server'
   ciSuffix: CI.${{ github.run_number }}
   outputDocFx: ${{ github.workspace }}\site-docfx
-  outputNuget: ${{ github.workspace }}\site-nuget
+  outputBmdc: ${{ github.workspace }}\site-bmdc
   outputWeb: ${{ github.workspace }}\site-web
-  project: 'BlazorMdc\BlazorMdc.csproj'
+  ProjectBmdc: 'BlazorMdc/BlazorMdc.csproj'
+  projectWeb: 'BlazorMdcWebsite.WebAssembly/BlazorMdcWebsite.WebAssembly.csproj'
 
 jobs:
 
@@ -112,23 +113,23 @@ jobs:
       run: echo "CI suffix is $ciSuffix"
 
     - name: Build 🔧
-      run: dotnet build --configuration $buildConfiguration --version-suffix $ciSuffix $project
+      run: dotnet build --configuration $buildConfiguration --version-suffix $ciSuffix $ProjectBmdc
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
     - name: Generate NuGet package 🔧
-      run: dotnet pack --no-build --configuration $buildConfiguration --output $outputNuget -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix $ciSuffix $project
+      run: dotnet pack --no-build --configuration $buildConfiguration --output $outputBmdc -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix $ciSuffix $ProjectBmdc
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
     - name: Display package output Ꙫ
-      run: ls $outputNuget
+      run: ls $outputBmdc
 
     - name: Display obfuscated secret Ꙫ
       run: echo "The GitHub token is ${{ secrets.GITHUB_TOKEN }}"
 
     - name: Upload Package 🚀
-      run: nuget push $outputnuget\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      run: nuget push $outputBmdc\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       if: ((github.repository == 'BlazorMdc/BlazorMdc') && (github.event_name == 'push'))
@@ -178,10 +179,10 @@ jobs:
         dotnet-version: 5.0.100-preview.7.20366.6
 
     - name: Build 🔧
-      run: dotnet build --configuration $buildConfiguration $project
+      run: dotnet build --configuration $buildConfiguration $projectWeb
 
     - name: Publish 🔧
-      run: dotnet publish --no-build --configuration $buildConfiguration --output $outputWeb $project
+      run: dotnet publish --no-build --configuration $buildConfiguration --output $outputWeb $projectWeb
 
 #Do the href rewrite if we aren't publishing to the 'real' BlazorMdcWebsite
 
