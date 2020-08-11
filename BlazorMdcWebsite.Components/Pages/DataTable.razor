@@ -1,0 +1,90 @@
+﻿@page "/datatable"
+
+
+<style>
+    .overflow-auto {
+        overflow: auto;
+        width: 100%;
+    }
+
+    .my-data-table {
+        min-width: 100%;
+    }
+
+        .my-data-table > th {
+            font-weight: bold;
+        }
+</style>
+
+
+
+<DemonstrationPageLayout ComponentNames=@(new string[] { "DataTable" })
+                         Title="Data Table Demonstration"
+                         DemoComponent="@this"
+                         MaterialIOPages="@(new string[] { "mdc-data-table#data-tables" })"
+                         MinDensity="MTDensity.Minus4">
+    <Description>
+        <p>
+            Demonstrates a data table. Blazor MDC presently only implements "Standard" data tables without row interaction.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-12">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        A Standard Data Table
+                    </h2>
+
+                    <div class="overflow-auto">
+                        <p>
+                            <MTDataTable Items="@Biscuits"
+                                         Context="item"
+                                         class="my-data-table">
+                                <TableHeader>
+                                    <th class="mdc-data-table__header-cell header-bold" role="columnheader" scope="col">Biscuit</th>
+                                    <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric header-bold" role="columnheader" scope="col">Price</th>
+                                    <th class="mdc-data-table__header-cell header-bold" role="columnheader" scope="col">Review</th>
+                                </TableHeader>
+                                <TableRow>
+                                    <td class="mdc-data-table__cell">@item.Name</td>
+                                    <td class="mdc-data-table__cell mdc-data-table__cell--numeric">@item.Price.ToString("C2")</td>
+                                    <td class="mdc-data-table__cell">@item.Review</td>
+                                </TableRow>
+                            </MTDataTable>
+                        </p>
+                    </div>
+                </Primary>
+            </MTCard>
+        </div>
+    </PageContent>
+</DemonstrationPageLayout>
+
+
+
+@code {
+    private class Biscuit
+    {
+        public string Name { get; set; }
+        public double Price { get; set; }
+        public string Review { get; set; }
+    }
+
+    private Biscuit[] Biscuits =
+    {
+        new Biscuit() { Name = "Hobnob", Price = 1.56, Review = "For oat lovers" },
+        new Biscuit() { Name = "Rich Tea", Price = 1.32, Review = "To be dunked" },
+        new Biscuit() { Name = "Digestive", Price = 2.12, Review = "The classic" },
+        new Biscuit() { Name = "Bourbon", Price = 0.99, Review = "Kids will leave the biscuit and eat the chocolate cream" },
+        new Biscuit() { Name = "Maryland", Price = 0.78, Review = "Try not to eat a pack in one go" }
+    };
+
+    IEnumerable<MTListElement<MTDensity>> DensityItems => from d in (MTDensity[])Enum.GetValues(typeof(MTDensity))
+                                                          select new MTListElement<MTDensity>
+                                                          {
+                                                              SelectedValue = d,
+                                                              Label = d.ToString(),
+                                                              Disabled = false
+                                                          };
+}

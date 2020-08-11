@@ -1,0 +1,94 @@
+﻿@page "/progress"
+
+
+<DemonstrationPageLayout ComponentNames=@(new string[] { "LinearProgress", "CircularProgress" })
+                         Title="Linear & Circular Demonstration"
+                         DemoComponent="@this"
+                         MaterialIOPages="@(new string[] { "mdc-linear-progress#linear-progress", "mdc-circular-progress#circular-progress" })">
+    <Description>
+        <p>
+            Demonstrates linear and circular progress indicators.
+        </p>
+    </Description>
+
+    <Controls>
+        <p>
+            <MTRadioButtonGroup @bind-Value="@ProgressLevel"
+                                Items="@ProgressLevels"
+                                EnableTouchWrapper="true" />
+        </p>
+
+        <p><MTSwitch @bind-Value="@ShowProgress" Label="Show Progress Indicators" /></p>
+    </Controls>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        Linear Progress
+                    </h2>
+
+                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Indeterminate, determinate without buffer, determinate with buffer and reversed determinate without and with buffer.
+                    </h3>
+
+                    <p><MTLinearProgress LinearProgressType="@LinearIndeterminate" /></p>
+                    <p><MTLinearProgress LinearProgressType="@LinearDeterminate" Value="@ProgressLevel" /></p>
+                    <p><MTLinearProgress LinearProgressType="@LinearDeterminate" Value="@ProgressLevel" BufferValue="@BufferLevel" /></p>
+                    <p><MTLinearProgress LinearProgressType="@LinearReversed" Value="@ProgressLevel" /></p>
+                    <p><MTLinearProgress LinearProgressType="@LinearReversed" Value="@ProgressLevel" BufferValue="@BufferLevel" /></p>
+                </Primary>
+            </MTCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        Circular Progress
+                    </h2>
+
+                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Small, medium and large indeterminate and determinate.
+                    </h3>
+
+                    <p>
+                        <MTCircularProgress CircularProgressType="@CircularIndeterminate" />
+                        <MTCircularProgress CircularProgressType="@CircularIndeterminate" CircularProgressSize="MTCircularProgressSize.Medium" />
+                        <MTCircularProgress CircularProgressType="@CircularIndeterminate" CircularProgressSize="MTCircularProgressSize.Small" />
+                    </p>
+
+                    <p>
+                        <MTCircularProgress Value="@ProgressLevel" CircularProgressType="@CircularDeterminate" />
+                        <MTCircularProgress Value="@ProgressLevel" CircularProgressType="@CircularDeterminate" CircularProgressSize="MTCircularProgressSize.Medium" />
+                        <MTCircularProgress Value="@ProgressLevel" CircularProgressType="@CircularDeterminate" CircularProgressSize="MTCircularProgressSize.Small" />
+                    </p>
+                </Primary>
+            </MTCard>
+        </div>
+    </PageContent>
+</DemonstrationPageLayout>
+
+
+@code {
+    MTListElement<double>[] ProgressLevels = new MTListElement<double>[]
+    {
+        new MTListElement<double> { SelectedValue = 0.2, Label = "20% Progress" },
+        new MTListElement<double> { SelectedValue = 0.5, Label = "50% Progress" },
+        new MTListElement<double> { SelectedValue = 0.8, Label = "80% Progress" }
+    };
+
+    private double ProgressLevel { get; set; } = 0.2;
+    double? BufferLevel => ProgressLevel + (1 - ProgressLevel) / 3;
+
+    private bool ShowProgress { get; set; } = true;
+
+    MTLinearProgressType LinearIndeterminate => ShowProgress ? MTLinearProgressType.Indeterminate : MTLinearProgressType.Closed;
+    MTLinearProgressType LinearDeterminate => ShowProgress ? MTLinearProgressType.Determinate : MTLinearProgressType.Closed;
+    MTLinearProgressType LinearReversed => ShowProgress ? MTLinearProgressType.ReversedDeterminate : MTLinearProgressType.Closed;
+
+    MTCircularProgressType CircularIndeterminate => ShowProgress ? MTCircularProgressType.Indeterminate : MTCircularProgressType.Closed;
+    MTCircularProgressType CircularDeterminate => ShowProgress ? MTCircularProgressType.Determinate : MTCircularProgressType.Closed;
+}

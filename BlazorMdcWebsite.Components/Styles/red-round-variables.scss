@@ -1,0 +1,18 @@
+﻿@use '@material/theme/color-palette' as cp;
+
+$mdc-theme-primary: cp.$red-800;
+$mdc-theme-secondary: cp.$cyan-300;
+$mdc-theme-background: cp.$grey-200;
+
+$mdc-typography-font-family: unquote("Merriweather, serif");
+$mdc-typography-styles-button: ( font-size: 14px, font-weight: 400, letter-spacing: 0.05em, );
+
+$mdc-typography-styles-headline1: ( font-family: unquote("Shrikhand, serif") );
+$mdc-typography-styles-headline2: ( font-family: unquote("Shrikhand, serif") );
+$mdc-typography-styles-headline3: ( font-family: unquote("Shrikhand, serif") );
+$mdc-typography-styles-headline4: ( font-family: unquote("Shrikhand, serif") );
+$mdc-typography-styles-headline5: ( font-family: unquote("Shrikhand, serif") );
+$mdc-typography-styles-headline6: ( font-family: unquote("Shrikhand, serif") );
+
+$mdc-shape-small-component-radius: 50%;
+$mdc-shape-large-component-radius: 50%;
