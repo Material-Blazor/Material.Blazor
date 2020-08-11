@@ -8,9 +8,9 @@ on:
 env:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  outputDocFx: ${{ github.workspace }}\site-docfx
-  outputBmdc: ${{ github.workspace }}\site-bmdc
-  outputWeb: ${{ github.workspace }}\site-web
+  outputDocFx: ${{ github.workspace }}/site-docfx
+  outputBmdc: ${{ github.workspace }}/site-bmdc
+  outputWeb: ${{ github.workspace }}/site-web
   projectBmdc: 'BlazorMdc/BlazorMdc.csproj'
   projectWeb: 'BlazorMdcWebsite.WebAssembly/BlazorMdcWebsite.WebAssembly.csproj'
 

@@ -11,9 +11,9 @@ env:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
   ciSuffix: CI.${{ github.run_number }}
-  outputDocFx: ${{ github.workspace }}\site-docfx
-  outputBmdc: ${{ github.workspace }}\site-bmdc
-  outputWeb: ${{ github.workspace }}\site-web
+  outputDocFx: ${{ github.workspace }}/site-docfx
+  outputBmdc: ${{ github.workspace }}/site-bmdc
+  outputWeb: ${{ github.workspace }}/site-web
   projectBmdc: 'BlazorMdc/BlazorMdc.csproj'
   projectWeb: 'BlazorMdcWebsite.WebAssembly/BlazorMdcWebsite.WebAssembly.csproj'
 
@@ -129,7 +129,7 @@ jobs:
       run: echo "The GitHub token is ${{ secrets.GITHUB_TOKEN }}"
 
     - name: Upload Package 🚀
-      run: nuget push $outputBmdc\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      run: nuget push $outputBmdc/*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       if: ((github.repository == 'BlazorMdc/BlazorMdc') && (github.event_name == 'push'))
