@@ -124,7 +124,6 @@ jobs:
       if: github.repository == 'BlazorMdc/BlazorMdc' && github.event_name == 'push'
 
 
-#there are no dependencies for this job so it can run in parallel with the first two
 #this has to be a separate job because of the differnt dnc environment
 
   buildblazormdcwebsite:

@@ -33,7 +33,7 @@ jobs:
       run: .\docfx\docfx docfx.json
       env:
         DOCFX_SOURCE_BRANCH_NAME: ${{steps.get_branch.outputs.branch}}
-      if: (contains(github.ref, 'refs/heads'))
+#      if: (contains(github.ref, 'refs/heads'))
 
     - name: Upload Artifacts 🔺 # The project is then uploaded as an artifact named 'site'.
       uses: actions/upload-artifact@v1
@@ -127,7 +127,7 @@ jobs:
       run: echo "The GitHub token is ${{ secrets.GITHUB_TOKEN }}"
 
     - name: Upload Package 🚀
-      run: nuget push $outputBmdc/*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      run: dotnet nuget push $outputBmdc/*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 #      if: ((github.repository == 'BlazorMdc/BlazorMdc') && (github.event_name == 'push'))
@@ -200,4 +200,4 @@ jobs:
         BRANCH: gh-pages
         FOLDER: "siteweb/wwwroot"
         REPOSITORY_NAME: '${{github.repository_owner}}/BlazorMdcWebsite'
-      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
+#      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
