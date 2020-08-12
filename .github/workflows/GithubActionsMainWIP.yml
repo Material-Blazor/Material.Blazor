@@ -49,13 +49,13 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
-      if: (github.repository != 'BlazorMdc/BlazorMdc'))
+      if: (github.repository != 'BlazorMdc/BlazorMdc')
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v1
       with:
         name: SiteDocFx
-      if: (github.repository != 'BlazorMdc/BlazorMdc'))
+      if: (github.repository != 'BlazorMdc/BlazorMdc')
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
@@ -63,7 +63,7 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.GH_PAT }}
         BRANCH: gh-pages
         FOLDER: "SiteDocFx" # The deployment folder should match the name of the artifact.
-      if: (github.repository != 'BlazorMdc/BlazorMdc'))
+      if: (github.repository != 'BlazorMdc/BlazorMdc')
 
 
   buildblazormdc:
@@ -186,7 +186,7 @@ jobs:
       with:
         html_path: "siteWeb/wwwroot/index.html"
         base_href: "/BlazorMdcWebsite/"
-      if: (github.repository != 'BlazorMdc/BlazorMdc'))
+      if: (github.repository != 'BlazorMdc/BlazorMdc')
 
 # deploy to the cloned BlazorMdcWebsite depending on where we are doing the build
 
@@ -197,4 +197,4 @@ jobs:
         BRANCH: gh-pages
         FOLDER: "siteWeb/wwwroot"
         REPOSITORY_NAME: '${{github.repository_owner}}/BlazorMdcWebsite'
-      if: (github.repository != 'BlazorMdc/BlazorMdc'))
+      if: (github.repository != 'BlazorMdc/BlazorMdc')
