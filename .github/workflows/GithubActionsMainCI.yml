@@ -11,10 +11,10 @@ env:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
   ciSuffix: CI.${{ github.run_number }}
-  outputDocFx: ${{ github.workspace }}/site-docfx
-  outputBmdc: ${{ github.workspace }}/site-bmdc
-  outputWeb: ${{ github.workspace }}/site-web
-  outputWebPrefix: 'site-web'
+  outputDocFx: ${{ github.workspace }}/sitedocfx
+  outputBmdc: ${{ github.workspace }}/sitebmdc
+  outputWeb: ${{ github.workspace }}/siteweb
+  outputWebPrefix: 'siteweb'
   projectBmdc: 'BlazorMdc/BlazorMdc.csproj'
   projectWeb: 'BlazorMdcWebsite.WebAssembly/BlazorMdcWebsite.WebAssembly.csproj'
 
@@ -38,9 +38,9 @@ jobs:
     - name: Upload Artifacts 🔺 # The project is then uploaded as an artifact named 'site'.
       uses: actions/upload-artifact@v1
       with:
-        name: site-docfx
-        path: site-docfx
-      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
+        name: sitedocfx
+        path: sitedocfx
+#      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
 
 
   deploydocfx:
@@ -55,16 +55,16 @@ jobs:
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v1
       with:
-        name: site-docfx
-      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
+        name: sitedocfx
+#      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         ACCESS_TOKEN: ${{ secrets.GH_PAT }}
         BRANCH: gh-pages
-        FOLDER: "site-docfx" # The deployment folder should match the name of the artifact.
-      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
+        FOLDER: "sitedocfx" # The deployment folder should match the name of the artifact.
+#      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
 
 
   buildblazormdc:
@@ -130,7 +130,7 @@ jobs:
       run: nuget push $outputBmdc/*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-      if: ((github.repository == 'BlazorMdc/BlazorMdc') && (github.event_name == 'push'))
+#      if: ((github.repository == 'BlazorMdc/BlazorMdc') && (github.event_name == 'push'))
 
 
 #there are no dependencies for this job so it can run in parallel with the first two
@@ -187,7 +187,7 @@ jobs:
     - name: Base Href Rewrite 👉
       uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       with:
-        html_path: "site-web/wwwroot/index.html"
+        html_path: "siteweb/wwwroot/index.html"
         base_href: "/BlazorMdcWebsite/"
 #      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
 
@@ -198,6 +198,6 @@ jobs:
       with:
         ACCESS_TOKEN: ${{ secrets.GH_PAT }}
         BRANCH: gh-pages
-        FOLDER: "site-web/wwwroot"
+        FOLDER: "siteweb/wwwroot"
         REPOSITORY_NAME: '${{github.repository_owner}}/BlazorMdcWebsite'
 #      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
