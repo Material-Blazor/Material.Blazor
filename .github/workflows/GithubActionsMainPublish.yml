@@ -16,6 +16,9 @@ env:
 
 jobs:
 
+############################################################################################################
+#Build & Deploy DocFx pages (2 jobs)
+############################################################################################################
   builddocfx:
 
     runs-on: windows-latest
@@ -63,6 +66,9 @@ jobs:
       if: (contains(github.ref, 'refs/heads'))
 
 
+############################################################################################################
+#Build & Deploy BlazorMdc Nuget package (1 job)
+############################################################################################################
   buildblazormdc:
     runs-on: ubuntu-latest
 
@@ -124,8 +130,10 @@ jobs:
       if: github.repository == 'BlazorMdc/BlazorMdc' && github.event_name == 'push'
 
 
-#this has to be a separate job because of the differnt dnc environment
-
+############################################################################################################
+#Build & Deploy BlazorMdcWebsite (1 job)
+#At the moment this has to be a separate job because of the different dnc environments (3.1 & 5.0 preview)
+############################################################################################################
   buildblazormdcwebsite:
 
     runs-on: ubuntu-latest
