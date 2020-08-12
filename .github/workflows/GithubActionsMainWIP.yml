@@ -11,10 +11,9 @@ env:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
   ciSuffix: CI.${{ github.run_number }}
-  outputDocFx: ${{ github.workspace }}/sitedocfx
-  outputBmdc: ${{ github.workspace }}/sitebmdc
-  outputWeb: ${{ github.workspace }}/siteweb
-  outputWebPrefix: 'siteweb'
+  outputDocFx: ${{ github.workspace }}/siteDocFx
+  outputBmdc: ${{ github.workspace }}/siteBmdc
+  outputWeb: ${{ github.workspace }}/siteWeb
   projectBmdc: 'BlazorMdc/BlazorMdc.csproj'
   projectWeb: 'BlazorMdcWebsite.WebAssembly/BlazorMdcWebsite.WebAssembly.csproj'
 
@@ -127,7 +126,7 @@ jobs:
       run: echo "The GitHub token is ${{ secrets.GITHUB_TOKEN }}"
 
     - name: Upload Package 🚀
-      run: dotnet nuget push $outputBmdc/*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      run: dotnet nuget push $outputBmdc/*.nupkg -s https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 #      if: ((github.repository == 'BlazorMdc/BlazorMdc') && (github.event_name == 'push'))
@@ -187,17 +186,17 @@ jobs:
     - name: Base Href Rewrite 👉
       uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       with:
-        html_path: "siteweb/wwwroot/index.html"
+        html_path: "siteWeb/wwwroot/index.html"
         base_href: "/BlazorMdcWebsite/"
 #      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
 
-# deploy either to the SZ or MS Website depending on where we are doing the build
+# deploy to the cloned BlazorMdcWebsite depending on where we are doing the build
 
     - name: Deploy to BlazorMdcWebsite 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         ACCESS_TOKEN: ${{ secrets.GH_PAT }}
         BRANCH: gh-pages
-        FOLDER: "siteweb/wwwroot"
+        FOLDER: "siteWeb/wwwroot"
         REPOSITORY_NAME: '${{github.repository_owner}}/BlazorMdcWebsite'
 #      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
