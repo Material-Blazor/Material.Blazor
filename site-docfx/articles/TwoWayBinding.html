@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>TwoWayBinding </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="TwoWayBinding ">
+    <meta name="generator" content="docfx 2.56.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-173249047-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+  
+      gtag('config', 'UA-173249047-2');
+    </script>
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="A.TwoWayBinding">
+<h1 id="blazor-mdcs-two-way-binding-approach">Blazor MDC's Two Way Binding Approach</h1>
+
+<p>Blazor MDC takes an unusual approach to two way binding and rendering. Most components return <code>ShouldRender() =&gt; false;</code>. This is
+to resolve an inherent conflict between how Blazor re-renders components when bound parameters are updated by their consumers and
+how a JavaScript framework such as <a href="https://github.com/material-components/material-components-web">Material Components Web (&quot;MCW&quot;)</a> works.</p>
+<p>In a pure Blazor world, Blazor takes care of rendering and re-rendering for you. In doing so it overwrites the relevant part of the
+DOM. In a pure Material Theme world on the other hand, you mark your page up once and then call some initiation JavaScript on your
+material web components, from which point Material Theme manipulates the DOM with user interaction. Let's consider an empty text field.</p>
+<p>This article explains how Blazor's natural rendering mechanism and MCW are in contention and what we do to manage
+this gracefully.</p>
+<h2 id="how-mcw-manipulates-the-dom">How MCW Manipulates the DOM</h2>
+<p>Consider an empty outlined text field before and after a user gives it focus as below. Note how the label floats up and how both it and
+the border gain color:</p>
+<p><img src="/images/text-field-focus.png" alt="Text Field Gaining Focus"></p>
+<p>The text field's markup however has three distinct state. First what any app environment (including your app using Blazor MDC) marks
+up in a page, then what this becomes once the text field has been initiated and manipulated by MCW and lastly
+how its state after receiving focus. The transition between the last two is animated by MCW.</p>
+<ol>
+<li>Uninitiated markup
+<pre><code class="lang-html">&lt;label class=&quot;mdc-text-field mdc-text-field--outlined&quot; &gt;
+    &lt;input id=&quot;my-text-field&quot; class=&quot;mdc-text-field__input&quot; type=&quot;text&quot; aria-label=&quot;Outlined Style&quot;&gt;
+    &lt;span class=&quot;mdc-notched-outline&quot;&gt;
+        &lt;span class=&quot;mdc-notched-outline__leading&quot;&gt;&lt;/span&gt;
+        &lt;span class=&quot;mdc-notched-outline__notch&quot;&gt;
+            &lt;span class=&quot;mdc-floating-label &quot; for=&quot;my-text-field&quot;&gt;Outlined Style&lt;/span&gt;
+        &lt;/span&gt;
+        &lt;span class=&quot;mdc-notched-outline__trailing&quot;&gt;&lt;/span&gt;
+    &lt;/span&gt;
+&lt;/label&gt;
+</code></pre>
+</li>
+<li>Markup post initiation - <em>all changes made by MCW</em>
+<pre><code class="lang-html">&lt;label class=&quot;mdc-text-field mdc-text-field--outlined&quot;&gt;
+    &lt;input id=&quot;my-text-field&quot; class=&quot;mdc-text-field__input&quot; type=&quot;text&quot; aria-label=&quot;Outlined Style&quot;&gt;
+    &lt;span class=&quot;mdc-notched-outline mdc-notched-outline--upgraded&quot;&gt;
+        &lt;span class=&quot;mdc-notched-outline__leading&quot;&gt;&lt;/span&gt;
+        &lt;span class=&quot;mdc-notched-outline__notch&quot;&gt;
+            &lt;span class=&quot;mdc-floating-label &quot; for=&quot;my-text-field&quot; style&gt;Outlined Style&lt;/span&gt;
+        &lt;/span&gt;
+        &lt;span class=&quot;mdc-notched-outline__trailing&quot;&gt;&lt;/span&gt;
+    &lt;/span&gt;
+&lt;/label&gt;
+</code></pre>
+</li>
+<li>Markup with focus - <em>all changes made by MCW</em>
+<pre><code class="lang-html">&lt;label class=&quot;mdc-text-field mdc-text-field--outlined mdc-text-field--focused mdc-text-field--label-floating&quot;&gt;
+    &lt;input id=&quot;my-text-field&quot; class=&quot;mdc-text-field__input&quot; type=&quot;text&quot; aria-label=&quot;Outlined Style&quot;&gt;
+    &lt;span class=&quot;mdc-notched-outline mdc-notched-outline--upgraded mdc-notched-outline--notched&quot;&gt;
+        &lt;span class=&quot;mdc-notched-outline__leading&quot;&gt;&lt;/span&gt;
+        &lt;span class=&quot;mdc-notched-outline__notch&quot;&gt;
+            &lt;span class=&quot;mdc-floating-label mdc-floating-label--float-above&quot; for=&quot;my-text-field&quot; style=&quot;width: 87.5px;&quot;&gt;Outlined Style&lt;/span&gt;
+        &lt;/span&gt;
+        &lt;span class=&quot;mdc-notched-outline__trailing&quot;&gt;&lt;/span&gt;
+    &lt;/span&gt;
+&lt;/label&gt;
+</code></pre>
+</li>
+</ol>
+<p>What we see from this is that if Blazor MDC were to allow Blazor to re-render, this would be with markup similar to 1. above and
+MCW will then fail to manipulate the DOM correctly thereafter - we know this because we tried.</p>
+<h2 id="handling-two-way-binding">Handling Two Way Binding</h2>
+<p>When we first identified this issue during Blazor MDC's development we realized that our Blazor code needed to first render a
+new component and then immediately after initiating it step out of MCW's way by applying <code>ShouldRender() =&gt; false;</code>
+in <code>InputComponentFoundation</code>. To begin with this is all we did and so subsequent attempts by the consumer (your project)
+to update Value were ignored, which is an unacceptable result. Fortunately each MCW component has a rich
+JavaScript library that includes both the ability to set a value in the future and to be notified of that value being changed by
+the user. We make use of this in our two way binding for the <code>Value</code> parameter, and do something similar for the <code>Disabled</code>
+parameter.</p>
+<p>The principle is like this:</p>
+<p><img src="/images/two-way-bind-flow.png" alt="Two Way Binding Flow"></p>
+<p>Each component inheriting from <code>InputComponentFoundation</code> implements this mechanism separately calling the JavaScript provided
+by MCW for that component:</p>
+<ul>
+<li>Overrides <code>OnValueSet</code> from <code>InputComponentFoundation</code> to call the relevant MCW code via JSInterop;</li>
+<li>Registers a JSInterop callback with MCW for notification of value changes;</li>
+<li>Overrides <code>OnDisabledSet</code> from <code>ComponentFoundation</code> for to either call MCW via JSInterop to set the disabled state or to do so directly via Blazor binding as relevant; and</li>
+<li><em>Does not</em> bind Value to any elements in the razor markup.</li>
+</ul>
+<p>Without this careful mechanism Blazor and MCW can enter an infinite positive feedback loop of values bouncing from current to previous value.</p>
+<h2 id="debouncing">Debouncing</h2>
+<p>One last thing. We noticed that in some situations Blazor bounces two way bound values - this has been noted in an
+<a href="https://github.com/dotnet/aspnetcore/issues/22159">ASP.NET GitHub Issue</a>. We have found that before calling a component's
+<code>OnValueSet</code> override, we need a 1 millisecond debounce in <code>InputComponentFoundation</code> to prevent another infinite positive
+feedback bounce loop.</p>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/simonziegler/BlazorMdc/blob/feature/docs/articles/TwoWayBinding.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

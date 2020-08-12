@@ -24,6 +24,9 @@
 
 - name: Blazor MDC Principles
   topicUid: A.Principles
+  
+- name: Two Way Binding
+  topicUid: A.TwoWayBinding
 
 - name: Development Environment
   topicUid: A.DevelopmentEnvironment

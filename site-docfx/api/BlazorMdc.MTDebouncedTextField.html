@@ -1,0 +1,673 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class MTDebouncedTextField
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class MTDebouncedTextField
+   ">
+    <meta name="generator" content="docfx 2.56.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-173249047-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+  
+      gtag('config', 'UA-173249047-2');
+    </script>
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="BlazorMdc.MTDebouncedTextField">
+  
+  
+  <h1 id="BlazorMdc_MTDebouncedTextField" data-uid="BlazorMdc.MTDebouncedTextField" class="text-break">Class MTDebouncedTextField
+  </h1>
+  <div class="markdown level0 summary"><p>A Material Theme debounced text field.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase">ComponentBase</a></div>
+    <div class="level2"><a class="xref" href="BlazorMdc.Internal.ComponentFoundation.html">ComponentFoundation</a></div>
+    <div class="level3"><a class="xref" href="BlazorMdc.Internal.InputComponentFoundation-1.html">InputComponentFoundation</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</div>
+    <div class="level4"><span class="xref">MTDebouncedTextField</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.icomponent">IComponent</a></div>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.ihandleevent">IHandleEvent</a></div>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.ihandleafterrender">IHandleAfterRender</a></div>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.InputComponentFoundation-1.html#BlazorMdc_Internal_InputComponentFoundation_1__instantiate">InputComponentFoundation&lt;String&gt;._instantiate</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.InputComponentFoundation-1.html#BlazorMdc_Internal_InputComponentFoundation_1__hasInstantiated">InputComponentFoundation&lt;String&gt;._hasInstantiated</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.InputComponentFoundation-1.html#BlazorMdc_Internal_InputComponentFoundation_1_Id">InputComponentFoundation&lt;String&gt;.Id</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.InputComponentFoundation-1.html#BlazorMdc_Internal_InputComponentFoundation_1_Value">InputComponentFoundation&lt;String&gt;.Value</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.InputComponentFoundation-1.html#BlazorMdc_Internal_InputComponentFoundation_1_OnValueSet">InputComponentFoundation&lt;String&gt;.OnValueSet</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.InputComponentFoundation-1.html#BlazorMdc_Internal_InputComponentFoundation_1_ValueChanged">InputComponentFoundation&lt;String&gt;.ValueChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.InputComponentFoundation-1.html#BlazorMdc_Internal_InputComponentFoundation_1_ValueExpression">InputComponentFoundation&lt;String&gt;.ValueExpression</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.InputComponentFoundation-1.html#BlazorMdc_Internal_InputComponentFoundation_1_EditContext">InputComponentFoundation&lt;String&gt;.EditContext</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.InputComponentFoundation-1.html#BlazorMdc_Internal_InputComponentFoundation_1_FieldIdentifier">InputComponentFoundation&lt;String&gt;.FieldIdentifier</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.InputComponentFoundation-1.html#BlazorMdc_Internal_InputComponentFoundation_1_ReportingValueAsString">InputComponentFoundation&lt;String&gt;.ReportingValueAsString</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.InputComponentFoundation-1.html#BlazorMdc_Internal_InputComponentFoundation_1_FormatValueToString__0_">InputComponentFoundation&lt;String&gt;.FormatValueToString(String)</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.InputComponentFoundation-1.html#BlazorMdc_Internal_InputComponentFoundation_1_TryParseValueFromString_System_String__0__System_String__">InputComponentFoundation&lt;String&gt;.TryParseValueFromString(String, String, String)</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.InputComponentFoundation-1.html#BlazorMdc_Internal_InputComponentFoundation_1_FieldClass">InputComponentFoundation&lt;String&gt;.FieldClass</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.InputComponentFoundation-1.html#BlazorMdc_Internal_InputComponentFoundation_1_OnInitializedAsync">InputComponentFoundation&lt;String&gt;.OnInitializedAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.InputComponentFoundation-1.html#BlazorMdc_Internal_InputComponentFoundation_1_SetParametersAsync_Microsoft_AspNetCore_Components_ParameterView_">InputComponentFoundation&lt;String&gt;.SetParametersAsync(ParameterView)</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.InputComponentFoundation-1.html#BlazorMdc_Internal_InputComponentFoundation_1_ShouldRender">InputComponentFoundation&lt;String&gt;.ShouldRender()</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.InputComponentFoundation-1.html#BlazorMdc_Internal_InputComponentFoundation_1_OnAfterRenderAsync_System_Boolean_">InputComponentFoundation&lt;String&gt;.OnAfterRenderAsync(Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.ComponentFoundation.html#BlazorMdc_Internal_ComponentFoundation_CascadingDefaults">ComponentFoundation.CascadingDefaults</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.ComponentFoundation.html#BlazorMdc_Internal_ComponentFoundation_UnmatchedAttributes">ComponentFoundation.UnmatchedAttributes</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.ComponentFoundation.html#BlazorMdc_Internal_ComponentFoundation_Disabled">ComponentFoundation.Disabled</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.ComponentFoundation.html#BlazorMdc_Internal_ComponentFoundation_Tooltip">ComponentFoundation.Tooltip</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.ComponentFoundation.html#BlazorMdc_Internal_ComponentFoundation_OnDisabledSet">ComponentFoundation.OnDisabledSet</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.ComponentFoundation.html#BlazorMdc_Internal_ComponentFoundation_Dispose">ComponentFoundation.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.ComponentFoundation.html#BlazorMdc_Internal_ComponentFoundation_OnParametersSet">ComponentFoundation.OnParametersSet()</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.ComponentFoundation.html#BlazorMdc_Internal_ComponentFoundation_OnParametersSetAsync">ComponentFoundation.OnParametersSetAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.buildrendertree#Microsoft_AspNetCore_Components_ComponentBase_BuildRenderTree_Microsoft_AspNetCore_Components_Rendering_RenderTreeBuilder_">ComponentBase.BuildRenderTree(RenderTreeBuilder)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.statehaschanged#Microsoft_AspNetCore_Components_ComponentBase_StateHasChanged">ComponentBase.StateHasChanged()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.onafterrender#Microsoft_AspNetCore_Components_ComponentBase_OnAfterRender_System_Boolean_">ComponentBase.OnAfterRender(Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.invokeasync#Microsoft_AspNetCore_Components_ComponentBase_InvokeAsync_System_Action_">ComponentBase.InvokeAsync(Action)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.invokeasync#Microsoft_AspNetCore_Components_ComponentBase_InvokeAsync_System_Func_System_Threading_Tasks_Task__">ComponentBase.InvokeAsync(Func&lt;Task&gt;)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.microsoft-aspnetcore-components-icomponent-attach#Microsoft_AspNetCore_Components_ComponentBase_Microsoft_AspNetCore_Components_IComponent_Attach_Microsoft_AspNetCore_Components_RenderHandle_">ComponentBase.IComponent.Attach(RenderHandle)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.microsoft-aspnetcore-components-ihandleevent-handleeventasync#Microsoft_AspNetCore_Components_ComponentBase_Microsoft_AspNetCore_Components_IHandleEvent_HandleEventAsync_Microsoft_AspNetCore_Components_EventCallbackWorkItem_System_Object_">ComponentBase.IHandleEvent.HandleEventAsync(EventCallbackWorkItem, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.componentbase.microsoft-aspnetcore-components-ihandleafterrender-onafterrenderasync#Microsoft_AspNetCore_Components_ComponentBase_Microsoft_AspNetCore_Components_IHandleAfterRender_OnAfterRenderAsync">ComponentBase.IHandleAfterRender.OnAfterRenderAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_">Object.Equals(Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gethashcode#System_Object_GetHashCode">Object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.memberwiseclone#System_Object_MemberwiseClone">Object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.tostring#System_Object_ToString">Object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="BlazorMdc.html">BlazorMdc</a></h6>
+  <h6><strong>Assembly</strong>: BlazorMdc.dll</h6>
+  <h5 id="BlazorMdc_MTDebouncedTextField_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class MTDebouncedTextField : InputComponentFoundation&lt;string&gt;, IComponent, IHandleEvent, IHandleAfterRender, IDisposable, IMTDialogChild</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/simonziegler/BlazorMdc/new/feature/docs/apiSpec/new?filename=BlazorMdc_MTDebouncedTextField_DebounceInterval.md&amp;value=---%0Auid%3A%20BlazorMdc.MTDebouncedTextField.DebounceInterval%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/simonziegler/BlazorMdc/blob/feature/docs/BlazorMdc/Components/DebouncedTextField/MTDebouncedTextField.razor.cs/#L79">View Source</a>
+  </span>
+  <a id="BlazorMdc_MTDebouncedTextField_DebounceInterval_" data-uid="BlazorMdc.MTDebouncedTextField.DebounceInterval*"></a>
+  <h4 id="BlazorMdc_MTDebouncedTextField_DebounceInterval" data-uid="BlazorMdc.MTDebouncedTextField.DebounceInterval">DebounceInterval</h4>
+  <div class="markdown level1 summary"><p>Debounce interval in milliseconds.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Parameter]
+public int? DebounceInterval { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/simonziegler/BlazorMdc/new/feature/docs/apiSpec/new?filename=BlazorMdc_MTDebouncedTextField_Density.md&amp;value=---%0Auid%3A%20BlazorMdc.MTDebouncedTextField.Density%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/simonziegler/BlazorMdc/blob/feature/docs/BlazorMdc/Components/DebouncedTextField/MTDebouncedTextField.razor.cs/#L73">View Source</a>
+  </span>
+  <a id="BlazorMdc_MTDebouncedTextField_Density_" data-uid="BlazorMdc.MTDebouncedTextField.Density*"></a>
+  <h4 id="BlazorMdc_MTDebouncedTextField_Density" data-uid="BlazorMdc.MTDebouncedTextField.Density">Density</h4>
+  <div class="markdown level1 summary"><p>The text field's density.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Parameter]
+public MTDensity? Density { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="BlazorMdc.MTDensity.html">MTDensity</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/simonziegler/BlazorMdc/new/feature/docs/apiSpec/new?filename=BlazorMdc_MTDebouncedTextField_IconFoundry.md&amp;value=---%0Auid%3A%20BlazorMdc.MTDebouncedTextField.IconFoundry%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/simonziegler/BlazorMdc/blob/feature/docs/BlazorMdc/Components/DebouncedTextField/MTDebouncedTextField.razor.cs/#L67">View Source</a>
+  </span>
+  <a id="BlazorMdc_MTDebouncedTextField_IconFoundry_" data-uid="BlazorMdc.MTDebouncedTextField.IconFoundry*"></a>
+  <h4 id="BlazorMdc_MTDebouncedTextField_IconFoundry" data-uid="BlazorMdc.MTDebouncedTextField.IconFoundry">IconFoundry</h4>
+  <div class="markdown level1 summary"><p>The foundry to use for both leading and trailing icons.</p>
+<p><code>IconFoundry=&quot;IconHelper.MIIcon()&quot;</code></p>
+<p><code>IconFoundry=&quot;IconHelper.FAIcon()&quot;</code></p>
+<p><code>IconFoundry=&quot;IconHelper.OIIcon()&quot;</code></p>
+<p>Overrides <a class="xref" href="BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_IconFoundryName">IconFoundryName</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Parameter]
+public IMTIconFoundry IconFoundry { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="BlazorMdc.IMTIconFoundry.html">IMTIconFoundry</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/simonziegler/BlazorMdc/new/feature/docs/apiSpec/new?filename=BlazorMdc_MTDebouncedTextField_Label.md&amp;value=---%0Auid%3A%20BlazorMdc.MTDebouncedTextField.Label%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/simonziegler/BlazorMdc/blob/feature/docs/BlazorMdc/Components/DebouncedTextField/MTDebouncedTextField.razor.cs/#L33">View Source</a>
+  </span>
+  <a id="BlazorMdc_MTDebouncedTextField_Label_" data-uid="BlazorMdc.MTDebouncedTextField.Label*"></a>
+  <h4 id="BlazorMdc_MTDebouncedTextField_Label" data-uid="BlazorMdc.MTDebouncedTextField.Label">Label</h4>
+  <div class="markdown level1 summary"><p>Field label.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Parameter]
+public string Label { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/simonziegler/BlazorMdc/new/feature/docs/apiSpec/new?filename=BlazorMdc_MTDebouncedTextField_LeadingIcon.md&amp;value=---%0Auid%3A%20BlazorMdc.MTDebouncedTextField.LeadingIcon%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/simonziegler/BlazorMdc/blob/feature/docs/BlazorMdc/Components/DebouncedTextField/MTDebouncedTextField.razor.cs/#L51">View Source</a>
+  </span>
+  <a id="BlazorMdc_MTDebouncedTextField_LeadingIcon_" data-uid="BlazorMdc.MTDebouncedTextField.LeadingIcon*"></a>
+  <h4 id="BlazorMdc_MTDebouncedTextField_LeadingIcon" data-uid="BlazorMdc.MTDebouncedTextField.LeadingIcon">LeadingIcon</h4>
+  <div class="markdown level1 summary"><p>The leading icon's name. No leading icon shown if not set.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Parameter]
+public string LeadingIcon { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/simonziegler/BlazorMdc/new/feature/docs/apiSpec/new?filename=BlazorMdc_MTDebouncedTextField_Prefix.md&amp;value=---%0Auid%3A%20BlazorMdc.MTDebouncedTextField.Prefix%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/simonziegler/BlazorMdc/blob/feature/docs/BlazorMdc/Components/DebouncedTextField/MTDebouncedTextField.razor.cs/#L39">View Source</a>
+  </span>
+  <a id="BlazorMdc_MTDebouncedTextField_Prefix_" data-uid="BlazorMdc.MTDebouncedTextField.Prefix*"></a>
+  <h4 id="BlazorMdc_MTDebouncedTextField_Prefix" data-uid="BlazorMdc.MTDebouncedTextField.Prefix">Prefix</h4>
+  <div class="markdown level1 summary"><p>Prefix text.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Parameter]
+public string Prefix { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/simonziegler/BlazorMdc/new/feature/docs/apiSpec/new?filename=BlazorMdc_MTDebouncedTextField_Suffix.md&amp;value=---%0Auid%3A%20BlazorMdc.MTDebouncedTextField.Suffix%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/simonziegler/BlazorMdc/blob/feature/docs/BlazorMdc/Components/DebouncedTextField/MTDebouncedTextField.razor.cs/#L45">View Source</a>
+  </span>
+  <a id="BlazorMdc_MTDebouncedTextField_Suffix_" data-uid="BlazorMdc.MTDebouncedTextField.Suffix*"></a>
+  <h4 id="BlazorMdc_MTDebouncedTextField_Suffix" data-uid="BlazorMdc.MTDebouncedTextField.Suffix">Suffix</h4>
+  <div class="markdown level1 summary"><p>Suffix text.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Parameter]
+public string Suffix { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/simonziegler/BlazorMdc/new/feature/docs/apiSpec/new?filename=BlazorMdc_MTDebouncedTextField_TextAlignStyle.md&amp;value=---%0Auid%3A%20BlazorMdc.MTDebouncedTextField.TextAlignStyle%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/simonziegler/BlazorMdc/blob/feature/docs/BlazorMdc/Components/DebouncedTextField/MTDebouncedTextField.razor.cs/#L27">View Source</a>
+  </span>
+  <a id="BlazorMdc_MTDebouncedTextField_TextAlignStyle_" data-uid="BlazorMdc.MTDebouncedTextField.TextAlignStyle*"></a>
+  <h4 id="BlazorMdc_MTDebouncedTextField_TextAlignStyle" data-uid="BlazorMdc.MTDebouncedTextField.TextAlignStyle">TextAlignStyle</h4>
+  <div class="markdown level1 summary"><p>The text alignment style.</p>
+<p>Overrides <a class="xref" href="BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_TextAlignStyle">TextAlignStyle</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Parameter]
+public MTTextAlignStyle? TextAlignStyle { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="BlazorMdc.MTTextAlignStyle.html">MTTextAlignStyle</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/simonziegler/BlazorMdc/new/feature/docs/apiSpec/new?filename=BlazorMdc_MTDebouncedTextField_TextInputStyle.md&amp;value=---%0Auid%3A%20BlazorMdc.MTDebouncedTextField.TextInputStyle%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/simonziegler/BlazorMdc/blob/feature/docs/BlazorMdc/Components/DebouncedTextField/MTDebouncedTextField.razor.cs/#L20">View Source</a>
+  </span>
+  <a id="BlazorMdc_MTDebouncedTextField_TextInputStyle_" data-uid="BlazorMdc.MTDebouncedTextField.TextInputStyle*"></a>
+  <h4 id="BlazorMdc_MTDebouncedTextField_TextInputStyle" data-uid="BlazorMdc.MTDebouncedTextField.TextInputStyle">TextInputStyle</h4>
+  <div class="markdown level1 summary"><p>The text input style.</p>
+<p>Overrides <a class="xref" href="BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_TextInputStyle">TextInputStyle</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Parameter]
+public MTTextInputStyle? TextInputStyle { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="BlazorMdc.MTTextInputStyle.html">MTTextInputStyle</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/simonziegler/BlazorMdc/new/feature/docs/apiSpec/new?filename=BlazorMdc_MTDebouncedTextField_TrailingIcon.md&amp;value=---%0Auid%3A%20BlazorMdc.MTDebouncedTextField.TrailingIcon%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/simonziegler/BlazorMdc/blob/feature/docs/BlazorMdc/Components/DebouncedTextField/MTDebouncedTextField.razor.cs/#L57">View Source</a>
+  </span>
+  <a id="BlazorMdc_MTDebouncedTextField_TrailingIcon_" data-uid="BlazorMdc.MTDebouncedTextField.TrailingIcon*"></a>
+  <h4 id="BlazorMdc_MTDebouncedTextField_TrailingIcon" data-uid="BlazorMdc.MTDebouncedTextField.TrailingIcon">TrailingIcon</h4>
+  <div class="markdown level1 summary"><p>The trailing icon's name. No leading icon shown if not set.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[Parameter]
+public string TrailingIcon { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/simonziegler/BlazorMdc/new/feature/docs/apiSpec/new?filename=BlazorMdc_MTDebouncedTextField_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20BlazorMdc.MTDebouncedTextField.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/simonziegler/BlazorMdc/blob/feature/docs/BlazorMdc/Components/DebouncedTextField/MTDebouncedTextField.razor.cs/#L98">View Source</a>
+  </span>
+  <a id="BlazorMdc_MTDebouncedTextField_Dispose_" data-uid="BlazorMdc.MTDebouncedTextField.Dispose*"></a>
+  <h4 id="BlazorMdc_MTDebouncedTextField_Dispose_System_Boolean_" data-uid="BlazorMdc.MTDebouncedTextField.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">disposing</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="BlazorMdc.Internal.ComponentFoundation.html#BlazorMdc_Internal_ComponentFoundation_Dispose_System_Boolean_">ComponentFoundation.Dispose(Boolean)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/simonziegler/BlazorMdc/new/feature/docs/apiSpec/new?filename=BlazorMdc_MTDebouncedTextField_OnInitialized.md&amp;value=---%0Auid%3A%20BlazorMdc.MTDebouncedTextField.OnInitialized%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/simonziegler/BlazorMdc/blob/feature/docs/BlazorMdc/Components/DebouncedTextField/MTDebouncedTextField.razor.cs/#L89">View Source</a>
+  </span>
+  <a id="BlazorMdc_MTDebouncedTextField_OnInitialized_" data-uid="BlazorMdc.MTDebouncedTextField.OnInitialized*"></a>
+  <h4 id="BlazorMdc_MTDebouncedTextField_OnInitialized" data-uid="BlazorMdc.MTDebouncedTextField.OnInitialized">OnInitialized()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnInitialized()</code></pre>
+  </div>
+  <h5 class="overrides">Overrides</h5>
+  <div><span class="xref">BlazorMdc.Internal.InputComponentFoundation&lt;System.String&gt;.OnInitialized()</span></div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.icomponent">Microsoft.AspNetCore.Components.IComponent</a>
+  </div>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.ihandleevent">Microsoft.AspNetCore.Components.IHandleEvent</a>
+  </div>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.ihandleafterrender">Microsoft.AspNetCore.Components.IHandleAfterRender</a>
+  </div>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="BlazorMdc.Internal.ComponentFoundationExtensions.html#BlazorMdc_Internal_ComponentFoundationExtensions_ParameterIsChanged__1_Microsoft_AspNetCore_Components_ComponentBase_Microsoft_AspNetCore_Components_ParameterView_System_String___0_">ComponentFoundationExtensions.ParameterIsChanged&lt;T&gt;(ComponentBase, ParameterView, String, T)</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/simonziegler/BlazorMdc/new/feature/docs/apiSpec/new?filename=BlazorMdc_MTDebouncedTextField.md&amp;value=---%0Auid%3A%20BlazorMdc.MTDebouncedTextField%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/simonziegler/BlazorMdc/blob/feature/docs/BlazorMdc/Components/DebouncedTextField/MTDebouncedTextField.razor.cs/#L13" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
