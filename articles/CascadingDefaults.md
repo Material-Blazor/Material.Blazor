@@ -11,7 +11,7 @@ an optional parameter is not supplied to a component.
 
 This section describes the usage of properties in [MTCascadingDefaults](xref:U.MTCascadingDefaults).
 
-### Icons
+## Icons
 
 The following properties are used for displaying icons. Blazor MDC components all render icons using the [MTIcon](xref:C.MTIcon) component which renders any of Material Icons, Font
 Awesome of Open Iconic icons and their respective variants. Any component that uses icons accepts an optional `IconFoundry` parameter, which 
@@ -23,7 +23,7 @@ Awesome of Open Iconic icons and their respective variants. Any component that u
 | [IconFAStyle](xref:BlazorMdc.MTCascadingDefaults.IconFAStyle) | The default Font Awesome style. |
 | [IconFARelativeSize](xref:BlazorMdc.MTCascadingDefaults.IconFARelativeSize) | The default Font Awesome relative size. |
 
-### Density Subsystem
+## Density Subsystem
 
 Material Theme has a [density subsystem](xref:A.Density) which applies to some components. When a component Density parameter is not set the folliwng cascading defaults apply:
 
@@ -44,7 +44,7 @@ Material Theme has a [density subsystem](xref:A.Density) which applies to some c
 The order of priority for applying density is *first/highest* a component's `Density` parameter, *second* a component oriented cascading default (lines two onwards in the table above), 
 then *third/last* `ThemeDensity` from cascading defaults. If either cascading defaults are not supplied or densities are not set, the default is [MTDensity.Default](xref:BlazorMdc.MTDensity.Default).
 
-### General Properties
+## General Properties
 
 | Property | Used In |
 | :------- | :------ |
@@ -61,7 +61,7 @@ then *third/last* `ThemeDensity` from cascading defaults. If either cascading de
 | [DateSelectionCriteria](xref:BlazorMdc.MTCascadingDefaults.DateSelectionCriteria) | Selection criteria for dates in [MTDatePicker](xref:C.MTDatePicker). Defaults to `MTDateSelectionCriteria.AllowAll`. |
 | [DebounceInterval](xref:BlazorMdc.MTCascadingDefaults.DebounceInterval) | Debounce interval for [MTDebouncedTextField](xref:C.MTDebouncedTextField). Defaults to `300", meaning 300 milliseconds. |
 
-### Attribute Splatting and Data Validation
+## Attribute Splatting and Data Validation
 
 Blazor MDC makes extensive use of attribute splatting. As a measure to help library users identify erroneous attributes cascading defautls allow you to specify that unassigned attributes should result
 in an exception being thrown. Blazor MDC also has several ways of handling when a select or radio button group receives a two-way bound value that is not in its item list.
@@ -73,7 +73,7 @@ in an exception being thrown. Blazor MDC also has several ways of handling when 
 | [AllowedSplattableAttributes](xref:BlazorMdc.MTCascadingDefaults.AllowedSplattableAttributes) | A list of HTML attributes that you can assign for Blazor MDC to allow without throwing an exception . |
 | [ItemValidation](xref:BlazorMdc.MTCascadingDefaults.ItemValidation) | Validation method applied to [MTSelect](xref:C.MTSelect) and [MTRadioButtonGroup](xref:C.MTRadioButtonGroup). |
 
-### Forcing a Blazor Re-Render with the Version Property
+## Forcing a Blazor Re-Render with the Version Property
 
 Whenever a property of [MTCascadingDefaults](xref:BlazorMdc.MTCascadingDefaults) is updated, the [Version](xref:BlazorMdc.MTCascadingDefaults.Version) property
 is incremented. You can use [Version](xref:BlazorMdc.MTCascadingDefaults.Version) to force a Blazor component, or block of components within a `<div>` to 

@@ -7,7 +7,7 @@ title: CoreComponents
 Material Theme closely specifies the HTML markup for its [core components](https://material.io/develop/web). Blazor MDC implements many of these and aheres rigorously to 
 the markup specification. We term these "Core Components. Blazor MDC also has non core [Plus Components](xref:A.PlusComponents).
 
-### Component List
+## Component List
 
 | Component | Notes |
 | :-------- | :---- |

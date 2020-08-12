@@ -6,7 +6,7 @@ title: Services
 
 Blazor MDC has services for both Toast notifications and an animated page navigation manager. These services and their functionality are optional.
 
-### Services List
+## Services List
 
 | Service | Notes |
 | :------ | :---- |

@@ -4,7 +4,7 @@ title: MTSwitch
 ---
 # MTSwitch
 
-### Summary
+## Summary
 
 A simple two state [Material Switch](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-switch#selection-controls-switches) with a boolean value. Applies [density subsystem](xref:A.Density).
 

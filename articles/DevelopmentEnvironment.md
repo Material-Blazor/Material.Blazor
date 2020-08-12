@@ -6,7 +6,7 @@ title: DevelopmentEnvironment
 
 We have developed Blazor MDC using Visual Studio 2019 on Windows, and have not tested any other development environment.
 
-### Forking the repo
+## Forking the repo
 
 - You can fork Blazor MDC from https://github.com/BlazorMdc/BlazorMdc. If you intend to submit pull requests please note that we use Git Flow with `develop` and `main` branches.
 - The repo has Github Actions for `develop` and `main`. In your forked repo, [`GithubActionsDevelop`](https://github.com/BlazorMdc/BlazorMdc/blob/develop/.github/workflows/GithubActionsDevelop.yml) will attempt to publish the documentation to your GitHub pages:
@@ -20,7 +20,7 @@ We have developed Blazor MDC using Visual Studio 2019 on Windows, and have not t
   <img src="/images/gh-account-settings-5.png" alt="GitHub Account Settings"></img>
   - The docs should now publish next time you push to your `develop` branch on GitHub.
 
-### Configuring Visual Studio
+## Configuring Visual Studio
 
 - To build the Blazor project you need to be using the latest version of Visual Studio 2019 and to include the "ASP.NET and web development" Workload using Visual Studio Installer.:
     <img src="/images/vs-config.png" alt="Visual Studio Workloads"></img>

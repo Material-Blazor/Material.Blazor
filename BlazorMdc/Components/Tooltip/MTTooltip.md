@@ -4,11 +4,11 @@ title: MTTooltip
 ---
 # MTTooltip
 
-### Summary
+## Summary
 
 A [Material Tooltip](https://github.com/material-components/material-components-web/tree/master/packages/mdc-tooltip#tooltip).
 
-### Details
+## Details
 
 -  Takes a render fragment for a tooltip target and another for the tooltip content;
 -  The target can be held in either a span or a div depending upon the value of [TooltipType](xref:BlazorMdc.MTTooltip.TooltipType)

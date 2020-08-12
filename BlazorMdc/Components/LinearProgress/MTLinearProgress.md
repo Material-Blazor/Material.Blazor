@@ -4,7 +4,7 @@ title: MTLinearProgress
 ---
 # MTLinearProgress
 
-### Summary
+## Summary
 
 A [Material Linear Progress bar](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-linear-progress#linear-progress) with both determinate and indeterminate states plus values for level of progress and buffering level.
 

@@ -4,11 +4,11 @@ title: MTIconHelper
 ---
 # MTIconHelper
 
-### Summary
+## Summary
 
 A helper class returning icon foundries for icons in use across Blazor MDC components.
 
-### Details
+## Details
 
 - Has [three static methods (click for API documentation)](xref:BlazorMdc.MTIconHelper#methods) to return one of the following three icon foundries for any `IconFoundry` component parameter:
   - Material Icons via `MTIconHelper.MIFoundry(Nullable<MTIconMITheme>)`;

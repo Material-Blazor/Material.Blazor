@@ -4,7 +4,7 @@ title: MTCheckbox
 ---
 # MTCheckbox
 
-### Summary
+## Summary
 
 A [Material Checkbox](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-checkbox#selection-controls-checkboxes).
 

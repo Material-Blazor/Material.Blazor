@@ -4,11 +4,11 @@ title: IMTTooltipService
 ---
 # IMTTooltipService
 
-### Summary
+## Summary
 
 Manages tooltips. 
 
-### Details
+## Details
 
 - Requires a [MTAnchor](xref:C.MTAnchor) component and will throw an exception when you attempt to show a toast notification if this isn't found; and
 - Accepts an optional [MTToastServiceConfiguration](xref:BlazorMdc.MTToastServiceConfiguration).
