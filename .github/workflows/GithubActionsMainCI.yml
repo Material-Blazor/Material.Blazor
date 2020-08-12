@@ -187,9 +187,9 @@ jobs:
     - name: Base Href Rewrite 👉
       uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       with:
-        html_path: "$outputWebPrefix/wwwroot/index.html"
+        html_path: "${{outputWebPrefix}}/wwwroot/index.html"
         base_href: "/BlazorMdcWebsite/"
-      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
+#      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
 
 # deploy either to the SZ or MS Website depending on where we are doing the build
 
@@ -200,4 +200,4 @@ jobs:
         BRANCH: gh-pages
         FOLDER: "$outputWebPrefix/wwwroot"
         REPOSITORY_NAME: '${{github.repository_owner}}/BlazorMdcWebsite'
-      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
+#      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
