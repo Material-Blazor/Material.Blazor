@@ -190,20 +190,11 @@ jobs:
 
 # deploy either to the SZ or MS Website depending on where we are doing the build
 
-    - name: Deploy OHI 🚀
+    - name: Deploy to BlazorMdcWebsite 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         ACCESS_TOKEN: ${{ secrets.GH_PAT }}
         BRANCH: gh-pages
         FOLDER: "$outputWebPrefix/wwwroot"
-        REPOSITORY_NAME: 'OptimiumHealth/BlazorMdcWebsite'
-      if: (contains(github.ref, 'refs/heads') && (github.repository == 'OptimiumHealth/BlazorMdc'))
-
-    - name: Deploy SZ 🚀
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      with:
-        ACCESS_TOKEN: ${{ secrets.GH_PAT }}
-        BRANCH: gh-pages
-        FOLDER: "$outputWebPrefix/wwwroot"
-        REPOSITORY_NAME: 'SimonZiegler/BlazorMdcWebsite'
-      if: (contains(github.ref, 'refs/heads') && (github.repository == 'SimonZiegler/BlazorMdc'))
+        REPOSITORY_NAME: '${{github.repository_owner}}/BlazorMdcWebsite'
+      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
