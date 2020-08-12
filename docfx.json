@@ -67,7 +67,7 @@
         ]
       }
     ],
-    "dest": "site-docfx",
+    "dest": "siteDocFx",
     "globalMetadataFiles": [],
     "fileMetadataFiles": [],
     "template": [
