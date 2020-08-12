@@ -110,7 +110,7 @@ jobs:
         dotnet-version: 3.1.302
         source-url: https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
-        NUGET_AUTH_TOKEN: '%NUGET_AUTH_TOKEN%'
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}        
 
     - name: Display CI suffix Ꙫ
       run: echo "CI suffix is $ciSuffix"
@@ -137,10 +137,14 @@ jobs:
 #        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 #      if: (github.repository != 'BlazorMdc/BlazorMdc')
 #
+#    - name: Upload Package 🚀
+#      run: dotnet nuget push $outputBmdc/*.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+#      env:
+#        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+#      if: (github.repository != 'BlazorMdc/BlazorMdc')
+#
     - name: Upload Package 🚀
-      run: dotnet nuget push $outputBmdc/*.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
-      env:
-        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      run: dotnet nuget push $outputBmdc/*.nupkg --skip-duplicate --no-symbols true
       if: (github.repository != 'BlazorMdc/BlazorMdc')
 
 
