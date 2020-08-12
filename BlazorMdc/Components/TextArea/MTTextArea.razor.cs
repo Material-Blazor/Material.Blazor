@@ -109,7 +109,7 @@ namespace BlazorMdc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.textField.setValue", ElementReference, Value));
+        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("BlazorMdc.textField.setValue", ElementReference, Value));
 
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace BlazorMdc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.textField.setDisabled", ElementReference, AppliedDisabled));
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("BlazorMdc.textField.setDisabled", ElementReference, AppliedDisabled));
 
 
         /// <inheritdoc/>
@@ -127,6 +127,6 @@ namespace BlazorMdc
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.textField.init", ElementReference);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("BlazorMdc.textField.init", ElementReference);
     }
 }

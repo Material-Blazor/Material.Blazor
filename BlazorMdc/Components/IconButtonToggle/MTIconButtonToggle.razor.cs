@@ -83,7 +83,7 @@ namespace BlazorMdc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.setOn", ElementReference, Value));
+        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("BlazorMdc.iconButtonToggle.setOn", ElementReference, Value));
 
 
         /// <summary>
@@ -95,6 +95,6 @@ namespace BlazorMdc
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.iconButtonToggle.init", ElementReference);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("BlazorMdc.iconButtonToggle.init", ElementReference);
     }
 }
