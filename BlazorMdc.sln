@@ -40,6 +40,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "articles", "articles", "{FC
 		Principles.md = Principles.md
 		articles\Services.md = articles\Services.md
 		articles\toc.yml = articles\toc.yml
+		articles\TwoWayBinding.md = articles\TwoWayBinding.md
 		articles\Utilities.md = articles\Utilities.md
 	EndProjectSection
 EndProject
@@ -77,6 +78,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMdcWebsite.Server", "BlazorMdcWebsite.Server\BlazorMdcWebsite.Server.csproj", "{E49274B8-0D30-4370-A4F8-B4AE3BE9736D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorMdcWebsite.WebAssembly", "BlazorMdcWebsite.WebAssembly\BlazorMdcWebsite.WebAssembly.csproj", "{D727FCA4-2E0E-4D93-9B04-116D66B6FC6B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "miscellaneous", "miscellaneous", "{3B4E51D1-30F6-4020-BE17-47E054650958}"
+	ProjectSection(SolutionItems) = preProject
+		miscellaneous\two-way-bind-flow.docx = miscellaneous\two-way-bind-flow.docx
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

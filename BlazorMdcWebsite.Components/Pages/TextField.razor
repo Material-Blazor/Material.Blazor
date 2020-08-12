@@ -16,6 +16,66 @@
     </Description>
 
     <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        Text Field Styles
+                    </h2>
+
+                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Default and explicit text field styles.
+                    </h3>
+
+                    <p><MTTextField Label="Default (Filled) Style" @bind-Value="@DefaultStyle" /></p>
+                    <p><MTTextField Label="Explicit Filled Style" @bind-Value="@FilledStyle" TextInputStyle="MTTextInputStyle.Filled" /></p>
+                    <p><MTTextField Label="Outlined Style" @bind-Value="@OutlinedStyle" TextInputStyle="MTTextInputStyle.Outlined" /></p>
+                </Primary>
+            </MTCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        Icons
+                    </h2>
+
+                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Leading and trailing icons - both using icons from the Material Icons, Font Awesome and Open Iconic foundries.
+                    </h3>
+
+                    <p><MTTextField Label="Leading Icon" LeadingIcon="print" IconFoundry="@MTIconHelper.MIFoundry(MTIconMITheme.TwoTone)" TextInputStyle="MTTextInputStyle.Filled" /></p>
+                    <p><MTTextField Label="Trailing Icon" TrailingIcon="import_contacts" IconFoundry="@MTIconHelper.MIFoundry(MTIconMITheme.Round)" TextInputStyle="MTTextInputStyle.Filled" /></p>
+                    <p><MTTextField Label="Leading Icon" LeadingIcon="fa-car-crash" IconFoundry="@MTIconHelper.FAFoundry()" TextInputStyle="MTTextInputStyle.Outlined" /></p>
+                    <p><MTTextField Label="Trailing Icon" TrailingIcon="microphone" IconFoundry="@MTIconHelper.OIFoundry()" TextInputStyle="MTTextInputStyle.Outlined" /></p>
+                </Primary>
+            </MTCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        Prefix and Suffix
+                    </h2>
+
+                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Prefix and Suffix text applied within fields.
+                    </h3>
+
+                    <p><MTTextField Label="Prefix" Prefix="$" TextInputStyle="MTTextInputStyle.Filled" /></p>
+                    <p><MTTextField Label="Suffix" Suffix="%" TextInputStyle="MTTextInputStyle.Filled" /></p>
+                    <p><MTTextField Label="Prefix" Prefix="$" TextInputStyle="MTTextInputStyle.Outlined" /></p>
+                    <p><MTTextField Label="Suffix" Suffix="%" TextInputStyle="MTTextInputStyle.Outlined" /></p>
+                </Primary>
+            </MTCard>
+        </div>
+
 
 
         <div class="mdc-layout-grid__cell--span-4">
