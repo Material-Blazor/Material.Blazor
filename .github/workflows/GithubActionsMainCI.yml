@@ -14,7 +14,7 @@ env:
   outputDocFx: ${{ github.workspace }}/site-docfx
   outputBmdc: ${{ github.workspace }}/site-bmdc
   outputWeb: ${{ github.workspace }}/site-web
-  outputWebHTML: site-web/wwwroot/index.html
+  outputWebPrefix: 'site-web'
   projectBmdc: 'BlazorMdc/BlazorMdc.csproj'
   projectWeb: 'BlazorMdcWebsite.WebAssembly/BlazorMdcWebsite.WebAssembly.csproj'
 
@@ -43,9 +43,31 @@ jobs:
       if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
 
 
-  buildblazormdc:
+  deploydocfx:
     needs: [builddocfx] # The second job must depend on the first one to complete before running, and uses ubuntu-latest instead of windows.
 
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v2
+
+    - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
+      uses: actions/download-artifact@v1
+      with:
+        name: site-docfx
+      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
+
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        ACCESS_TOKEN: ${{ secrets.GH_PAT }}
+        BRANCH: gh-pages
+        FOLDER: "site-docfx" # The deployment folder should match the name of the artifact.
+      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
+
+
+  buildblazormdc:
     runs-on: ubuntu-latest
 
     steps:
@@ -75,29 +97,6 @@ jobs:
     - name: Show Tag name Ꙫ
       run: echo "GitHub indicates that this is a tag creation with ${{steps.get_tag.outputs.tag}}"
       if: contains(github.ref, 'refs/tag')
-
-
-#repository checkout is a constant
-
-    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v2
-
-
-#deploy docfx pages
-
-    - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
-      uses: actions/download-artifact@v1
-      with:
-        name: site-docfx
-      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
-
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      with:
-        ACCESS_TOKEN: ${{ secrets.GH_PAT }}
-        BRANCH: gh-pages
-        FOLDER: "site-docfx" # The deployment folder should match the name of the artifact.
-      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
 
 
 #build and deploy BlazorMdc
@@ -190,7 +189,7 @@ jobs:
     - name: Base Href Rewrite 👉
       uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       with:
-        html_path: "site-web/wwwroot/index.html"
+        html_path: "$outputWebPrefix/wwwroot/index.html"
         base_href: "/BlazorMdcWebsite/"
       if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
 
@@ -201,7 +200,7 @@ jobs:
       with:
         ACCESS_TOKEN: ${{ secrets.GH_PAT }}
         BRANCH: gh-pages
-        FOLDER: "$outputWeb/wwwroot"
+        FOLDER: "$outputWebPrefix/wwwroot"
         REPOSITORY_NAME: 'OptimiumHealth/BlazorMdcWebsite'
       if: (contains(github.ref, 'refs/heads') && (github.repository == 'OptimiumHealth/BlazorMdc'))
 
@@ -210,6 +209,6 @@ jobs:
       with:
         ACCESS_TOKEN: ${{ secrets.GH_PAT }}
         BRANCH: gh-pages
-        FOLDER: "$outputWeb/wwwroot"
+        FOLDER: "$outputWebPrefix/wwwroot"
         REPOSITORY_NAME: 'SimonZiegler/BlazorMdcWebsite'
       if: (contains(github.ref, 'refs/heads') && (github.repository == 'SimonZiegler/BlazorMdc'))
