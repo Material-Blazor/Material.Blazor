@@ -82,13 +82,13 @@ namespace BlazorMdc.Internal
         /// <summary>
         /// Allows a component to build or map out a group of CSS classes to be applied to the component. Use this in <see cref="OnInitialialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
         /// </summary>
-        private protected ClassAndStyleMapper ClassMapper { get; } = new ClassAndStyleMapper();
+        private protected ClassMapper ClassMapper { get; } = new ClassMapper();
 
 
         /// <summary>
         /// Allows a component to build or map out a group of HTML styles to be applied to the component. Use this in <see cref="OnInitialialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
         /// </summary>
-        private protected ClassAndStyleMapper StyleMapper { get; } = new ClassAndStyleMapper();
+        private protected StyleMapper StyleMapper { get; } = new StyleMapper();
 
 
         /// <summary>
@@ -177,8 +177,8 @@ namespace BlazorMdc.Internal
                 if (splatType == SplatType.EventsOnly) return eventAttributes;
             }
 
-            var classString = (ClassMapper.ToClassString() + " " + unmatchedClass).Trim();
-            var styleString = (StyleMapper.ToStyleString() + " " + unmatchedStyle).Trim();
+            var classString = (ClassMapper.ToString() + " " + unmatchedClass).Trim();
+            var styleString = (StyleMapper.ToString() + " " + unmatchedStyle).Trim();
 
             if (!string.IsNullOrWhiteSpace(classString)) classAndStyle.Add("class", classString);
             if (!string.IsNullOrWhiteSpace(styleString)) classAndStyle.Add("style", styleString);
