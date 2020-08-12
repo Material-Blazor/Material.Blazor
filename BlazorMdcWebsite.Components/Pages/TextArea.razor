@@ -1,0 +1,102 @@
+﻿@page "/textarea"
+
+@inject IMTToastService ToastService
+
+
+<DemonstrationPageLayout ComponentNames=@(new string[] { "TextArea" })
+                         Title="Text Area Demonstration"
+                         DemoComponent="@this"
+                         MaterialIOPages="@(new string[] { "mdc-textfield#text-field" })"
+                         MinDensity="MTDensity.Minus4"
+                         RequiresDisableSelection="true">
+    <Description>
+        <p>
+            Filled and outlined text fields with icon usage, class and style application and finally density.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        Default Style
+                    </h2>
+
+                    <p><MTTextArea Label="Filled" @bind-Value="@DefaultStyle" Rows="3" /></p>
+                </Primary>
+            </MTCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        Filled Style
+                    </h2>
+
+                    <p><MTTextArea Label="Filled" @bind-Value="@FilledStyle" Rows="3" TextInputStyle="MTTextInputStyle.Filled" /></p>
+                </Primary>
+            </MTCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        Outlined Style
+                    </h2>
+
+                    <p><MTTextArea Label="Filled" @bind-Value="@OutlinedStyle" Rows="3" TextInputStyle="MTTextInputStyle.Outlined" /></p>
+                </Primary>
+            </MTCard>
+        </div>
+    </PageContent>
+</DemonstrationPageLayout>
+
+
+@code {
+    private string _defaultStyle;
+    private string DefaultStyle
+    {
+        get => _defaultStyle;
+        set
+        {
+            _defaultStyle = value;
+
+            ToastService.ShowToast(heading: "Default Style", message: $"Value: '{_defaultStyle}'", level: MTToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private string _filledStyle;
+    private string FilledStyle
+    {
+        get => _filledStyle;
+        set
+        {
+            _filledStyle = value;
+
+            ToastService.ShowToast(heading: "Filled Style", message: $"Value: '{_filledStyle}", level: MTToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private string _outlinedStyle;
+    private string OutlinedStyle
+    {
+        get => _outlinedStyle;
+        set
+        {
+            _outlinedStyle = value;
+
+            ToastService.ShowToast(heading: "Outlined Style", message: $"Value: '{_outlinedStyle}", level: MTToastLevel.Success, showIcon: false);
+        }
+    }
+}

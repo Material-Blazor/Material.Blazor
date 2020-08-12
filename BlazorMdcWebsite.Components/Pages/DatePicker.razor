@@ -1,0 +1,100 @@
+﻿@page "/datepicker"
+
+@inject IMTToastService ToastService
+
+
+
+<DemonstrationPageLayout ComponentNames=@(new string[] { "DatePicker" })
+                         Title="Date Picker Demonstration"
+                         DemoComponent="@this"
+                         RequiresDisableSelection="true"
+                         MinDensity="MTDensity.Minus4">
+    <Description>
+        <p>
+            The Date Picker is a Plus components, using Blazor MDC's implementation of the <a href="https://material.io/components/pickers" target="_blank">Material Date Picker</a>.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        Button Styles
+                    </h2>
+
+                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Default and explicit button styles.
+                    </h3>
+
+                    <p>
+                        <MTDatePicker Label="Filled"
+                                      @bind-Value="@Filled"
+                                      SelectInputStyle="MTSelectInputStyle.Filled"
+                                      MinDate="@Min"
+                                      MaxDate="@Max" />
+                    </p>
+                </Primary>
+            </MTCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        Button Styles
+                    </h2>
+
+                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Default and explicit button styles.
+                    </h3>
+
+                    <p>
+                        <MTDatePicker Label="Weekdays Outlined"
+                                      @bind-Value="@Outlined"
+                                      SelectInputStyle="MTSelectInputStyle.Outlined"
+                                      DateSelectionCriteria="MTDateSelectionCriteria.WeekdaysOnly"
+                                      MinDate="@Min"
+                                      MaxDate="@Max"
+                                      DateFormat="ddd MMM dd, yyyy" />
+                    </p>
+                </Primary>
+            </MTCard>
+        </div>
+    </PageContent>
+</DemonstrationPageLayout>
+
+
+
+@code {
+    private DateTime _filled = DateTime.Today.AddMonths(1);
+    private DateTime Filled
+    {
+        get => _filled;
+        set
+        {
+            _filled = value;
+
+            ToastService.ShowToast(heading: "Filled Date Picker", message: $"Value: {_filled.ToLongDateString()}", level: MTToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private DateTime _outlined = DateTime.Today.AddMonths(1);
+    private DateTime Outlined
+    {
+        get => _outlined;
+        set
+        {
+            _outlined = value;
+
+            ToastService.ShowToast(heading: "Outlined Date Picker", message: $"Value: {_outlined.ToLongDateString()}", level: MTToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private DateTime Min { get; set; } = new DateTime(2019, 12, 14);
+    private DateTime Max { get; set; } = new DateTime(2097, 6, 14);
+}

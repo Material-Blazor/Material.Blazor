@@ -1,0 +1,227 @@
+﻿@page "/checkbox-switch"
+
+@inject IMTToastService ToastService
+
+
+
+<DemonstrationPageLayout ComponentNames=@(new string[] { "Checkbox", "Switch" })
+                         Title="Checkbox & Switch Demonstration"
+                         DemoComponent="@this"
+                         MaterialIOPages="@(new string[] { "mdc-checkbox#selection-controls-checkboxes", "mdc-switch#selection-controls-switches" })"
+                         MinDensity="MTDensity.Minus5"
+                         RequiresDisableSelection="true">
+    <Description>
+        <p>
+            Demonstrates checkboxes and switches.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        Basic component demo
+                    </h2>
+
+                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Simple checkbox and switch.
+                    </h3>
+
+                    <p><MTCheckbox @bind-Value="@CheckboxState" Label="Simple Checkbox" /></p>
+                    <p><MTSwitch @bind-Value="@SwitchState" Label="Simple Switch" /></p>
+                </Primary>
+            </MTCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        Two-Way Binding
+                    </h2>
+
+                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows two-way binding.
+                    </h3>
+
+                    <p><MTCheckbox @bind-Value="@ToggleTwoWayBindingState" Label="Bound Checkbox" /></p>
+                    <p><MTSwitch @bind-Value="@ToggleTwoWayBindingState" Label="Bound Switch" /></p>
+                </Primary>
+            </MTCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        Indeterminate Checkbox
+                    </h2>
+
+                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows a simple lone indeterminate checkbox plus a grouped indeterminate implementation.
+                    </h3>
+
+                    <p>
+                        <MTButton Label="Toggle Indeterminate" @onclick="@(() => IsIndeterminate = !IsIndeterminate)" />
+                        <MTCheckbox Label="Indeterminate" @bind-Value="@IndeterminateCheckboxValue" @bind-IsIndeterminate="@IsIndeterminate" />
+                    </p>
+
+                    <p>
+                        Value: @IndeterminateCheckboxValue, Indeterminate State: @IsIndeterminate
+                    </p>
+
+                    <p>
+                        <MTDivider />
+                    </p>
+
+                    <p>
+                        <MTCheckbox Label="All Winter Wear" @bind-Value="@AllWinterWear" IsIndeterminate="@AllWinterWearIndeterminate" />
+                    </p>
+                    <p>
+                        <ul style="list-style-type: none;">
+                            <li>
+                                <MTCheckbox Label="Gloves" @bind-Value="@Gloves" />
+                            </li>
+                            <li>
+                                <MTCheckbox Label="Hat" @bind-Value="@Hat" />
+                            </li>
+                            <li>
+                                <MTCheckbox Label="Coat" @bind-Value="@Coat" />
+                            </li>
+                            <li>
+                                <MTCheckbox Label="Boots" @bind-Value="@Boots" />
+                            </li>
+                        </ul>
+                    </p>
+                </Primary>
+            </MTCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        Checkbox Density
+                    </h2>
+
+                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows density subsystem from default to minus 3.
+                    </h3>
+
+                    <p><MTCheckbox Label="Default Density" Density="@MTDensity.Default" /></p>
+                    <p><MTCheckbox Label="Density Minus 1" Density="@MTDensity.Minus1" /></p>
+                    <p><MTCheckbox Label="Density Minus 2" Density="@MTDensity.Minus2" /></p>
+                    <p><MTCheckbox Label="Density Minus 3" Density="@MTDensity.Minus3" /></p>
+                </Primary>
+            </MTCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        Switch Density
+                    </h2>
+
+                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows density subsystem from default to minus 5.
+                    </h3>
+
+                    <p><MTSwitch Label="Default Density" Density="@MTDensity.Default" /></p>
+                    <p><MTSwitch Label="Density Minus 1" Density="@MTDensity.Minus1" /></p>
+                    <p><MTSwitch Label="Density Minus 2" Density="@MTDensity.Minus2" /></p>
+                    <p><MTSwitch Label="Density Minus 3" Density="@MTDensity.Minus3" /></p>
+                    <p><MTSwitch Label="Density Minus 4" Density="@MTDensity.Minus3" /></p>
+                    <p><MTSwitch Label="Density Minus 5" Density="@MTDensity.Minus3" /></p>
+                </Primary>
+            </MTCard>
+        </div>
+    </PageContent>
+</DemonstrationPageLayout>
+
+
+
+@code {
+    private bool _checkboxState;
+    private bool CheckboxState
+    {
+        get => _checkboxState;
+        set
+        {
+            _checkboxState = value;
+
+            ToastService.ShowToast(heading: "Checkbox Clicked", message: $"Value: {_checkboxState}", level: MTToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private bool _switchState;
+    private bool SwitchState
+    {
+        get => _switchState;
+        set
+        {
+            _switchState = value;
+
+            ToastService.ShowToast(heading: "Switch Clicked", message: $"Value: {_switchState}", level: MTToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private bool _toggleTwoWayBindingState;
+    private bool ToggleTwoWayBindingState
+    {
+        get => _toggleTwoWayBindingState;
+        set
+        {
+            _toggleTwoWayBindingState = value;
+
+            ToastService.ShowToast(heading: "Toggle Icon Button Clicked", message: $"Two way binding Value: {_toggleTwoWayBindingState}", level: MTToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private void ButtonClick(string notification)
+    {
+        ToastService.ShowToast(heading: "Button Clicked", message: notification, level: MTToastLevel.Success, showIcon: false);
+    }
+
+
+    private bool IndeterminateCheckboxValue { get; set; } = false;
+    private bool IsIndeterminate { get; set; } = true;
+
+
+    private bool[] WinterWear = { false, true, true, false };
+    private bool Gloves { get => WinterWear[0]; set => WinterWear[0] = value; }
+    private bool Hat { get => WinterWear[1]; set => WinterWear[1] = value; }
+    private bool Coat { get => WinterWear[2]; set => WinterWear[2] = value; }
+    private bool Boots { get => WinterWear[3]; set => WinterWear[3] = value; }
+
+    private bool AllWinterWear
+    {
+        get => WinterWear.Where(x => !x).Count() == 0;
+        set
+        {
+            for (int i = 0; i < WinterWear.Length; i++)
+            {
+                WinterWear[i] = value;
+            }
+
+            StateHasChanged();
+        }
+    }
+
+    private bool AllWinterWearIndeterminate => WinterWear.Where(x => !x).Count() > 0 && WinterWear.Where(x => x).Count() > 0;
+}

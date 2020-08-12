@@ -1,0 +1,106 @@
+﻿<div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+    <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell--span-12">
+            <MTCard AutoStyled="true" CardStyle="@MTCardStyle.Outlined">
+                <Primary>
+                    <h6 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle1">
+                        Buttons, Checkboxes and Switches
+                    </h6>
+
+                    <p><MTButton Label="Button" /></p>
+                    <p><MTIconButton Icon="@IconButtonIconName" /></p>
+                    <p><MTCheckbox Label="Checkbox" /></p>
+                    <p><MTSwitch Label="Switch" /></p>
+                </Primary>
+            </MTCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <MTCard AutoStyled="true" CardStyle="@MTCardStyle.Outlined">
+                <Primary>
+                    <h6 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle1">
+                        Text Field, Select and Date Picker
+                    </h6>
+
+                    <p><MTTextField Label="Text Field" @bind-Value="@TextFieldDefault" /></p>
+                    <p><MTSelect Label="Select" @bind-Value="@SelectDefault" Items="@Items" ItemValidation="@MTItemValidation.NoSelection" /></p>
+                    <p><MTDatePicker Label="Date" @bind-Value="@DateDefault" MinDate="@Min" MaxDate="@Max" DateFormat="MMM d, yyyy" /></p>
+                </Primary>
+            </MTCard>
+        </div>
+    </div>
+</div>
+
+<div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+    <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell--span-12">
+            <MTCard AutoStyled="true" CardStyle="@MTCardStyle.Outlined">
+                <Primary>
+                    <h6 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle1">
+                        List and Card
+                    </h6>
+
+                    <p>
+                        <MTList Items="@Products"
+                                Context="product"
+                                KeyboardInteractions="true"
+                                Ripple="true">
+
+                            <Icon><MTIcon IconName="@StoreIconName" /></Icon>
+                            <Title>@product.DisplayName</Title>
+                        </MTList>
+                    </p>
+
+                    <p>
+                        <MTCard AutoStyled="true">
+                            <Primary>
+                                <h4 class="mdc-typography--headline6">Card</h4>
+                            </Primary>
+                        </MTCard>
+                    </p>
+                </Primary>
+            </MTCard>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    [Parameter] public string IconButtonIconName { get; set; }
+    [Parameter] public string StoreIconName { get; set; }
+
+
+    private string SelectDefault { get; set; }
+    private string TextFieldDefault { get; set; }
+    private DateTime DateDefault { get; set; } = new DateTime(2020, 2, 29);
+    private DateTime Min { get; set; } = new DateTime(2019, 1, 1);
+    private DateTime Max { get; set; } = new DateTime(2078, 12, 31);
+
+
+    private MTListElement<string>[] Items = new MTListElement<string>[]
+    {
+        new MTListElement<string> { SelectedValue = "", Label = "" },
+        new MTListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new MTListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new MTListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+        };
+
+
+    private IEnumerable<Product> Products = new System.Collections.Generic.List<Product>
+{
+        new Product { ProductId = 1, DisplayName = "Curly-wurly straw", LineTwo = "Amaze your friends with this cheap plastic tube", LineThree = "Line three", IsInStock = true },
+        new Product { ProductId = 2, DisplayName = "Pepsi Connoisseur (12mo subscription)", LineTwo = "Covers all developments in the world of Pepsi™", LineThree = "Line three", IsInStock = false },
+        new Product { ProductId = 3, DisplayName = "Recarbonator Pro", LineTwo = "Revitalize your old beverages in just hours", LineThree = "Line three", IsInStock = true },
+    };
+
+
+    public class Product
+    {
+        public int ProductId { get; set; }
+        public string DisplayName { get; set; }
+        public string LineTwo { get; set; }
+        public string LineThree { get; set; }
+        public bool IsInStock { get; set; }
+    }
+}
