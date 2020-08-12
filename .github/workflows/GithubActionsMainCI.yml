@@ -190,7 +190,7 @@ jobs:
     - name: Base Href Rewrite 👉
       uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       with:
-        html_path: "$outputWebHTML"
+        html_path: "site-web/wwwroot/index.html"
         base_href: "/BlazorMdcWebsite/"
       if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
 

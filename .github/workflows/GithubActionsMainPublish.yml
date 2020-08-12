@@ -85,7 +85,7 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: site-docfx
-      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
+      if: (contains(github.ref, 'refs/heads'))
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
@@ -93,7 +93,7 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.GH_PAT }}
         BRANCH: gh-pages
         FOLDER: "site-docfx" # The deployment folder should match the name of the artifact.
-      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
+      if: (contains(github.ref, 'refs/heads'))
 
 
 #build and deploy BlazorMdc
@@ -106,16 +106,13 @@ jobs:
       env:
         NUGET_AUTH_TOKEN: '%NUGET_AUTH_TOKEN%'
 
-    - name: Display CI suffix Ꙫ
-      run: echo "CI suffix is $ciSuffix"
-
     - name: Build 🔧
-      run: dotnet build --configuration $buildConfiguration --version-suffix $ciSuffix $projectBmdc
+      run: dotnet build --configuration $buildConfiguration -p:PackageVersion=${{steps.get_tag.outputs.tag}} $projectBmdc
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
     - name: Generate NuGet package 🔧
-      run: dotnet pack --no-build --configuration $buildConfiguration --output $outputBmdc -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix $ciSuffix $projectBmdc
+      run: dotnet pack --no-build --configuration $buildConfiguration --output $outputBmdc -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:PackageVersion=${{steps.get_tag.outputs.tag}} $projectBmdc
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
@@ -126,10 +123,8 @@ jobs:
       run: echo "The GitHub token is ${{ secrets.GITHUB_TOKEN }}"
 
     - name: Upload Package 🚀
-      run: nuget push $outputBmdc\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
-      env:
-        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-      if: ((github.repository == 'BlazorMdc/BlazorMdc') && (github.event_name == 'push'))
+      run: dotnet nuget push $outputBMDC\*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+      if: github.repository == 'BlazorMdc/BlazorMdc' && github.event_name == 'push'
 
 
 #there are no dependencies for this job so it can run in parallel with the first two
@@ -181,31 +176,13 @@ jobs:
     - name: Publish 🔧
       run: dotnet publish --no-build --configuration $buildConfiguration --output $outputWeb $projectWeb
 
-#Do the href rewrite if we aren't publishing to the 'real' BlazorMdcWebsite
+# deploy to the BmdcWebsite (We deployed to the forked websites in the CI build process)
 
-    - name: Base Href Rewrite 👉
-      uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
-      with:
-        html_path: '$outputWeb/wwwroot/index.html'
-        base_href: '/BlazorMdcWebsite/'
-      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
-
-# deploy either to the SZ or MS Website depending on where we are doing the build
-
-    - name: Deploy OHI 🚀
+    - name: Deploy BlazorMdcWebsite 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         ACCESS_TOKEN: ${{ secrets.GH_PAT }}
         BRANCH: gh-pages
         FOLDER: "$outputWeb/wwwroot"
-        REPOSITORY_NAME: 'OptimiumHealth/BlazorMdcWebsite'
-      if: (contains(github.ref, 'refs/heads') && (github.repository == 'OptimiumHealth/BlazorMdc'))
-
-    - name: Deploy SZ 🚀
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      with:
-        ACCESS_TOKEN: ${{ secrets.GH_PAT }}
-        BRANCH: gh-pages
-        FOLDER: "$outputWeb/wwwroot"
-        REPOSITORY_NAME: 'SimonZiegler/BlazorMdcWebsite'
-      if: (contains(github.ref, 'refs/heads') && (github.repository == 'SimonZiegler/BlazorMdc'))
+        REPOSITORY_NAME: 'BlazorMdc/BlazorMdcWebsite'
+      if: (contains(github.ref, 'refs/heads') && (github.repository == 'BlazorMdc/BlazorMdc'))
