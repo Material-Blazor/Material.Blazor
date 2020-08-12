@@ -135,11 +135,13 @@ jobs:
 #      run: dotnet nuget push $outputBmdc/*.nupkg -s https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
 #      env:
 #        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+#      if: (github.repository != 'BlazorMdc/BlazorMdc')
 #
     - name: Upload Package 🚀
       run: dotnet nuget push $outputBmdc/*.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      if: (github.repository != 'BlazorMdc/BlazorMdc')
 
 
 ############################################################################################################
