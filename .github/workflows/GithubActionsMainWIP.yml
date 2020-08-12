@@ -200,4 +200,6 @@ jobs:
         BRANCH: gh-pages
         FOLDER: "siteweb/wwwroot"
         REPOSITORY_NAME: '${{github.repository_owner}}/BlazorMdcWebsite'
-#      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
+        FOLDER: "$outputWebPrefix/wwwroot"
+        REPOSITORY_NAME: '${{github.repository_owner}}/BlazorMdcWebsite'
+      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
