@@ -1,4 +1,4 @@
-﻿name: GithubActionsMainCI
+﻿name: GithubActionsMainWIP
 
 on:
   push:
