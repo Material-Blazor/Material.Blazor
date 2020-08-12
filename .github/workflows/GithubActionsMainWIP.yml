@@ -38,7 +38,7 @@ jobs:
       with:
         name: siteDocFx
         path: siteDocFx
-      if: (github.repository != 'BlazorMdc/BlazorMdc'))
+      if: (github.repository != 'BlazorMdc/BlazorMdc')
 
 
   deploydocfx:
