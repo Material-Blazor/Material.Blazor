@@ -14,6 +14,7 @@ env:
   outputDocFx: ${{ github.workspace }}/site-docfx
   outputBmdc: ${{ github.workspace }}/site-bmdc
   outputWeb: ${{ github.workspace }}/site-web
+  outputWebHTML: ${{ github.workspace }}/site-web/wwwroot/index.html
   projectBmdc: 'BlazorMdc/BlazorMdc.csproj'
   projectWeb: 'BlazorMdcWebsite.WebAssembly/BlazorMdcWebsite.WebAssembly.csproj'
 
@@ -189,7 +190,7 @@ jobs:
     - name: Base Href Rewrite 👉
       uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       with:
-        html_path: "$outputWeb/wwwroot/index.html"
+        html_path: $outputWebHTML
         base_href: "/BlazorMdcWebsite/"
       if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
 
