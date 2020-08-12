@@ -32,14 +32,13 @@ jobs:
       run: .\docfx\docfx docfx.json
       env:
         DOCFX_SOURCE_BRANCH_NAME: ${{steps.get_branch.outputs.branch}}
-#      if: (contains(github.ref, 'refs/heads'))
 
     - name: Upload Artifacts 🔺 # The project is then uploaded as an artifact named 'site'.
       uses: actions/upload-artifact@v1
       with:
-        name: sitedocfx
-        path: sitedocfx
-#      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
+        name: siteDocFx
+        path: siteDocFx
+      if: (github.repository != 'BlazorMdc/BlazorMdc'))
 
 
   deploydocfx:
@@ -50,20 +49,21 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
+      if: (github.repository != 'BlazorMdc/BlazorMdc'))
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v1
       with:
-        name: sitedocfx
-#      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
+        name: SiteDocFx
+      if: (github.repository != 'BlazorMdc/BlazorMdc'))
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         ACCESS_TOKEN: ${{ secrets.GH_PAT }}
         BRANCH: gh-pages
-        FOLDER: "sitedocfx" # The deployment folder should match the name of the artifact.
-#      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
+        FOLDER: "SiteDocFx" # The deployment folder should match the name of the artifact.
+      if: (github.repository != 'BlazorMdc/BlazorMdc'))
 
 
   buildblazormdc:
@@ -129,10 +129,8 @@ jobs:
       run: dotnet nuget push $outputBmdc/*.nupkg -s https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-#      if: ((github.repository == 'BlazorMdc/BlazorMdc') && (github.event_name == 'push'))
 
 
-#there are no dependencies for this job so it can run in parallel with the first two
 #this has to be a separate job because of the differnt dnc environment
 
   buildblazormdcwebsite:
@@ -188,7 +186,7 @@ jobs:
       with:
         html_path: "siteWeb/wwwroot/index.html"
         base_href: "/BlazorMdcWebsite/"
-#      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
+      if: (github.repository != 'BlazorMdc/BlazorMdc'))
 
 # deploy to the cloned BlazorMdcWebsite depending on where we are doing the build
 
@@ -199,4 +197,4 @@ jobs:
         BRANCH: gh-pages
         FOLDER: "siteWeb/wwwroot"
         REPOSITORY_NAME: '${{github.repository_owner}}/BlazorMdcWebsite'
-#      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
+      if: (github.repository != 'BlazorMdc/BlazorMdc'))
