@@ -8,10 +8,9 @@ on:
 env:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  outputDocFx: ${{ github.workspace }}/site-docfx
-  outputBmdc: ${{ github.workspace }}/site-bmdc
-  outputWeb: ${{ github.workspace }}/site-web
-  outputWebPrefix: 'site-web'
+  outputDocFx: ${{ github.workspace }}/sitedocfx
+  outputBmdc: ${{ github.workspace }}/sitebmdc
+  outputWeb: ${{ github.workspace }}/siteweb
   projectBmdc: 'BlazorMdc/BlazorMdc.csproj'
   projectWeb: 'BlazorMdcWebsite.WebAssembly/BlazorMdcWebsite.WebAssembly.csproj'
 
@@ -35,8 +34,8 @@ jobs:
     - name: Upload Artifacts 🔺 # The project is then uploaded as an artifact named 'site'.
       uses: actions/upload-artifact@v1
       with:
-        name: site-docfx
-        path: site-docfx
+        name: sitedocfx
+        path: sitedocfx
       if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
 
 
@@ -52,7 +51,7 @@ jobs:
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v1
       with:
-        name: site-docfx
+        name: sitedocfx
       if: (contains(github.ref, 'refs/heads'))
 
     - name: Deploy 🚀
@@ -60,7 +59,7 @@ jobs:
       with:
         ACCESS_TOKEN: ${{ secrets.GH_PAT }}
         BRANCH: gh-pages
-        FOLDER: "site-docfx" # The deployment folder should match the name of the artifact.
+        FOLDER: "sitedocfx" # The deployment folder should match the name of the artifact.
       if: (contains(github.ref, 'refs/heads'))
 
 
@@ -181,6 +180,6 @@ jobs:
       with:
         ACCESS_TOKEN: ${{ secrets.GH_PAT }}
         BRANCH: gh-pages
-        FOLDER: "$outputWebPrefix/wwwroot"
+        FOLDER: "siteweb/wwwroot"
         REPOSITORY_NAME: 'BlazorMdc/BlazorMdcWebsite'
       if: (contains(github.ref, 'refs/heads') && (github.repository == 'BlazorMdc/BlazorMdc'))
