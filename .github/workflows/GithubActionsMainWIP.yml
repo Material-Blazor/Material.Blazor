@@ -10,7 +10,7 @@ on:
 env:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
-  ciSuffix: CI.${{ github.run_number }}
+  ciSuffix: CIB.${{ github.run_number }}
   outputDocFx: ${{ github.workspace }}/siteDocFx
   outputBmdc: ${{ github.workspace }}/siteBmdc
   outputWeb: ${{ github.workspace }}/siteWeb
