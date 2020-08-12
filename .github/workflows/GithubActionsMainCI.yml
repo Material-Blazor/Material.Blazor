@@ -49,9 +49,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v2
-
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v1
       with:
@@ -71,8 +68,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
-# identify the trigger of the run
 
     - name: Get the branch
       id: get_branch
@@ -98,8 +93,8 @@ jobs:
       run: echo "GitHub indicates that this is a tag creation with ${{steps.get_tag.outputs.tag}}"
       if: contains(github.ref, 'refs/tag')
 
-
-#build and deploy BlazorMdc
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v2
 
     - name: Setup .NET Core 🛎️
       uses: actions/setup-dotnet@v1
