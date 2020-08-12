@@ -187,7 +187,7 @@ jobs:
     - name: Base Href Rewrite 👉
       uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       with:
-        html_path: "${{outputWebPrefix}}/wwwroot/index.html"
+        html_path: "site-web/wwwroot/index.html"
         base_href: "/BlazorMdcWebsite/"
 #      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
 
@@ -198,6 +198,6 @@ jobs:
       with:
         ACCESS_TOKEN: ${{ secrets.GH_PAT }}
         BRANCH: gh-pages
-        FOLDER: "$outputWebPrefix/wwwroot"
+        FOLDER: "site-web/wwwroot"
         REPOSITORY_NAME: '${{github.repository_owner}}/BlazorMdcWebsite'
 #      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
