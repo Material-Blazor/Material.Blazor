@@ -132,7 +132,7 @@ jobs:
       run: ls $outputBmdc
 
     - name: Upload Package 🚀
-      run: dotnet nuget push $outputBmdc/*.nupkg --skip-duplicate --no-symbols true
+      run: dotnet nuget push $outputBmdc/*.nupkg --skip-duplicate --no-symbols
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
