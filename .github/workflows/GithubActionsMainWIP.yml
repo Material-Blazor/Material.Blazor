@@ -137,7 +137,7 @@ jobs:
     - name: Display package output Ꙫ
       run: ls $outputBmdc
 
-    -name Tanaka push
+    - name Tanaka push
       uses: tanaka-takayoshi/nuget-publish-to-github-packages-action@v2.1
       with:
         nupkg-path:  './siteBmdc/*.nupkg'
