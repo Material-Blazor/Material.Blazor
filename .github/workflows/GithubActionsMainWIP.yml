@@ -180,6 +180,9 @@ jobs:
     - name: Display package output Ꙫ
       run: dir ${env:outputBmdc}
 
+    - name: Display obfuscated secret Ꙫ
+      run: echo "The GitHub token is ${{ secrets.GITHUB_TOKEN }}"
+
     - name: Upload Package 🚀
       run: nuget push ${env:outputBmdc}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
