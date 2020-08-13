@@ -81,8 +81,8 @@ jobs:
 
 
 ############################################################################################################
-#Build & Deploy BlazorMdc Nuget package (2 jobs)
-#Why two jobs? Because it proved highly impossible to figure out Ubuntu 'NuGet push'
+#Build & Deploy BlazorMdc Nuget package (1 job)
+#Why Windows? Because it proved highly impossible to figure out Ubuntu 'NuGet push'
 ############################################################################################################
   buildblazormdc:
     runs-on: ubuntu-latest
@@ -124,12 +124,6 @@ jobs:
     - name: Upload Package 🚀
       run: dotnet nuget push $outputBMDC/*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
       if: (github.repository == 'BlazorMdc/BlazorMdc')
-
-  deployblazormdc:
-    needs: [buildblazormdc] # The second job must depend on the first one to complete before running, and uses ubuntu-latest instead of windows.
-
-    runs-on: windows-latest-latest
-
 
 
 ############################################################################################################
