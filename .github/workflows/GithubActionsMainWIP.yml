@@ -156,7 +156,7 @@ jobs:
       shell: bash
 
     - name: Echo ciSuffix
-      run: echo "CI suffix is ${env:ciSuffix"}
+      run: echo "CI suffix is ${env:ciSuffix}"
 
     - name: Get the branch
       id: get_branch
