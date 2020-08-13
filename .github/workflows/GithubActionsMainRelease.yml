@@ -1,4 +1,10 @@
-﻿name: GithubActionsMainPublish
+﻿name: GithubActionsMainRelease
+
+############################################################################################################
+#All of thes jobs runs commands only on a tag push in the BlazorMdc\BlazorMdc repository
+#The publishing actions in forked repositories were handled by the WIP workflow
+#An 'ExitWorkflow' action is sorely needed
+############################################################################################################
 
 on:
   push:
@@ -25,21 +31,26 @@ jobs:
 
     steps:
 
+    - name: Show Tag name Ꙫ
+      run: echo "GitHub indicates that this is a tag creation with ${GITHUB_REF/refs\/tags\//}"
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
+
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Create documentation 🔧
       run: .\docfx\docfx docfx.json
       env:
         DOCFX_SOURCE_BRANCH_NAME: ${{steps.get_branch.outputs.branch}}
-      if: (contains(github.ref, 'refs/heads'))
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Upload Artifacts 🔺 # The project is then uploaded as an artifact named 'site'.
       uses: actions/upload-artifact@v1
       with:
         name: sitedocfx
         path: sitedocfx
-      if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
 
 
   deploydocfx:
@@ -50,12 +61,13 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v1
       with:
         name: sitedocfx
-      if: (contains(github.ref, 'refs/heads'))
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
@@ -63,7 +75,7 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.GH_PAT }}
         BRANCH: gh-pages
         FOLDER: "sitedocfx" # The deployment folder should match the name of the artifact.
-      if: (contains(github.ref, 'refs/heads'))
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
 
 
 ############################################################################################################
@@ -74,60 +86,39 @@ jobs:
 
     steps:
 
-    - name: Get the branch
-      id: get_branch
-      run: echo ::set-output name=branch::${GITHUB_REF/refs\/heads\//}
-
-    - name: Get the pullrequest
-      id: get_pullrequest
-      run: echo ::set-output name=pullrequest::${GITHUB_REF/refs\/pull\//}
-
-    - name: Get the tag
-      id: get_tag
-      run: echo ::set-output name=tag::${GITHUB_REF/refs\/tags\//}
-
-    - name: Show branch name Ꙫ
-      run: echo "GitHub indicates that this is a branch push request of ${{steps.get_branch.outputs.branch}}"
-      if: contains(github.ref, 'refs/heads')
-
-    - name: Show PR name Ꙫ
-      run: echo "GitHub indicates that this is a pull request called ${{steps.get_pullrequest.outputs.pullrequest}}"
-      if: contains(github.ref, 'refs/pull')
-
     - name: Show Tag name Ꙫ
-      run: echo "GitHub indicates that this is a tag creation with ${{steps.get_tag.outputs.tag}}"
-      if: contains(github.ref, 'refs/tag')
+      run: echo "GitHub indicates that this is a tag creation with ${GITHUB_REF/refs\/tags\//}"
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Setup .NET Core 🛎️
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.302
-        source-url: https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
-      env:
-        NUGET_AUTH_TOKEN: '%NUGET_AUTH_TOKEN%'
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Build 🔧
       run: dotnet build --configuration $buildConfiguration -p:PackageVersion=${{steps.get_tag.outputs.tag}} $projectBmdc
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Generate NuGet package 🔧
       run: dotnet pack --no-build --configuration $buildConfiguration --output $outputBmdc -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:PackageVersion=${{steps.get_tag.outputs.tag}} $projectBmdc
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Display package output Ꙫ
       run: ls $outputBmdc
-
-    - name: Display obfuscated secret Ꙫ
-      run: echo "The GitHub token is ${{ secrets.GITHUB_TOKEN }}"
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Upload Package 🚀
       run: dotnet nuget push $outputBMDC\*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
-      if: github.repository == 'BlazorMdc/BlazorMdc' && github.event_name == 'push'
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
 
 
 ############################################################################################################
@@ -140,45 +131,29 @@ jobs:
 
     steps:
 
-    - name: Get the branch
-      id: get_branch
-      run: echo ::set-output name=branch::${GITHUB_REF/refs\/heads\//}
-
-    - name: Get the pullrequest
-      id: get_pullrequest
-      run: echo ::set-output name=pullrequest::${GITHUB_REF/refs\/pull\//}
-
-    - name: Get the tag
-      id: get_tag
-      run: echo ::set-output name=tag::${GITHUB_REF/refs\/tags\//}
-
-    - name: Show branch name Ꙫ
-      run: echo "GitHub indicates that this is a branch push request of ${{steps.get_branch.outputs.branch}}"
-      if: contains(github.ref, 'refs/heads')
-
-    - name: Show PR name Ꙫ
-      run: echo "GitHub indicates that this is a pull request called ${{steps.get_pullrequest.outputs.pullrequest}}"
-      if: contains(github.ref, 'refs/pull')
-
     - name: Show Tag name Ꙫ
-      run: echo "GitHub indicates that this is a tag creation with ${{steps.get_tag.outputs.tag}}"
-      if: contains(github.ref, 'refs/tag')
+      run: echo "GitHub indicates that this is a tag creation with ${GITHUB_REF/refs\/tags\//}"
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
 
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
 
 
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.100-preview.7.20366.6
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Build 🔧
       run: dotnet build --configuration $buildConfiguration $projectWeb
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Publish 🔧
       run: dotnet publish --no-build --configuration $buildConfiguration --output $outputWeb $projectWeb
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
 
 # deploy to the BmdcWebsite (We deployed to the forked websites in the CI build process)
 
@@ -189,4 +164,4 @@ jobs:
         BRANCH: gh-pages
         FOLDER: "siteweb/wwwroot"
         REPOSITORY_NAME: 'BlazorMdc/BlazorMdcWebsite'
-      if: (contains(github.ref, 'refs/heads') && (github.repository == 'BlazorMdc/BlazorMdc'))
+      if: (github.repository == 'BlazorMdc/BlazorMdc')

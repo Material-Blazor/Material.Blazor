@@ -4,6 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using BlazorMdc;
+using BlazorMdcWebsite.Components;
 
 namespace BlazorMdcWebsite.Server
 {
@@ -24,18 +25,9 @@ namespace BlazorMdcWebsite.Server
             services.AddServerSideBlazor();
 
             services.AddMTServices(
-                toastServiceConfiguration: new MTToastServiceConfiguration()
-                {
-                    CloseMethod = MTToastCloseMethod.TimeoutAndCloseButton,
-                    Position = MTToastPosition.TopRight
-                },
-
-                animatedNavigationManagerConfiguration: new MTAnimatedNaviationManagerConfiguration()
-                {
-                    ApplyAnimation = true,
-                    AnimationTime = 300
-                }
-                );
+                animatedNavigationManagerConfiguration: Utilities.GetDefaultAnimatedNavigationManagerConfiguration(),
+                toastServiceConfiguration: Utilities.GetDefaultToastServiceConfiguration()
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -10,7 +10,6 @@ on:
 env:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
-  ciSuffix: CI.${{ github.run_number }}
   outputDocFx: ${{ github.workspace }}/siteDocFx
   outputBmdc: ${{ github.workspace }}/siteBmdc
   outputWeb: ${{ github.workspace }}/siteWeb
@@ -30,11 +29,13 @@ jobs:
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
+      if: (github.repository != 'BlazorMdc/BlazorMdc')
 
     - name: Create documentation 🔧
       run: .\docfx\docfx docfx.json
       env:
         DOCFX_SOURCE_BRANCH_NAME: ${{steps.get_branch.outputs.branch}}
+      if: (github.repository != 'BlazorMdc/BlazorMdc')
 
     - name: Upload Artifacts 🔺 # The project is then uploaded as an artifact named 'site'.
       uses: actions/upload-artifact@v1
@@ -76,6 +77,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Set ciSuffix as env variable
+      run: echo "::set-env name=ciSuffix::CI.$(date +'%Y%m%d.%H%M')"
+
+    - name: Echo ciSuffix
+      run: echo "CI suffix is $ciSuffix"
 
     - name: Get the branch
       id: get_branch
@@ -110,10 +116,7 @@ jobs:
         dotnet-version: 3.1.302
         source-url: https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
-        NUGET_AUTH_TOKEN: '%NUGET_AUTH_TOKEN%'
-
-    - name: Display CI suffix Ꙫ
-      run: echo "CI suffix is $ciSuffix"
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}        
 
     - name: Build 🔧
       run: dotnet build --configuration $buildConfiguration --version-suffix $ciSuffix $projectBmdc
@@ -128,20 +131,8 @@ jobs:
     - name: Display package output Ꙫ
       run: ls $outputBmdc
 
-    - name: Display obfuscated secret Ꙫ
-      run: echo "The GitHub token is ${{ secrets.GITHUB_TOKEN }}"
-
-#    - name: Upload Package 🚀
-#      run: dotnet nuget push $outputBmdc/*.nupkg -s https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
-#      env:
-#        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-#      if: (github.repository != 'BlazorMdc/BlazorMdc')
-#
     - name: Upload Package 🚀
-      run: dotnet nuget push $outputBmdc/*.nupkg -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
-      env:
-        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-      if: (github.repository != 'BlazorMdc/BlazorMdc')
+      run: dotnet nuget push $outputBmdc/*.nupkg --skip-duplicate --no-symbols true
 
 
 ############################################################################################################

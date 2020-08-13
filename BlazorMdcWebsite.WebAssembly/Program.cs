@@ -18,18 +18,9 @@ namespace BlazorMdcWebsite.WebAssembly
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             builder.Services.AddMTServices(
-                toastServiceConfiguration: new MTToastServiceConfiguration()
-                {
-                    CloseMethod = MTToastCloseMethod.TimeoutAndCloseButton,
-                    Position = MTToastPosition.TopRight
-                },
-
-                animatedNavigationManagerConfiguration: new MTAnimatedNaviationManagerConfiguration()
-                {
-                    ApplyAnimation = true,
-                    AnimationTime = 300
-                }
-                );
+                animatedNavigationManagerConfiguration: Utilities.GetDefaultAnimatedNavigationManagerConfiguration(),
+                toastServiceConfiguration: Utilities.GetDefaultToastServiceConfiguration()
+            );
 
             await builder.Build().RunAsync();
         }
