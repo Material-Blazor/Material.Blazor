@@ -145,10 +145,10 @@ jobs:
 #        gh-user:     '${{github.actor}}'
 #        token:       ${{secrets.GITHUB_TOKEN}}
 
-  - name: Upload Package 🚀
-    run: nuget push $outputBmdc/*.nupkg --skip-duplicate true --no-symbols true --source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
-    env:
-      NUGET_AUTH_TOKEN: "${{secrets.GITHUB_TOKEN}}"
+    - name: Upload Package 🚀
+      run: nuget push $outputBmdc/*.nupkg --skip-duplicate true --no-symbols true --source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      env:
+        NUGET_AUTH_TOKEN: "${{secrets.GITHUB_TOKEN}}"
 
 
 ############################################################################################################
