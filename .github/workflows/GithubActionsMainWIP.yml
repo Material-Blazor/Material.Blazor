@@ -79,8 +79,8 @@ jobs:
       - name: Set ciSuffix2 as env variable
         run: echo "::set-env name=ciSuffix2::CI.$(date +'%Y-%m-%dT%H:%M:%S')"
 
-      - name: Echo 'new' ciSuffix2
-        run: echo $ciSuffix2
+      - name: Echo ciSuffix2
+        run: echo "$ciSuffix2"
 
     - name: Get the branch
       id: get_branch
@@ -132,9 +132,6 @@ jobs:
 
     - name: Display package output Ꙫ
       run: ls $outputBmdc
-
-    - name: Display obfuscated secret Ꙫ
-      run: echo "The GitHub token is ${{ secrets.GITHUB_TOKEN }}"
 
     - name: Upload Package 🚀
       run: dotnet nuget push $outputBmdc/*.nupkg --skip-duplicate --no-symbols true
