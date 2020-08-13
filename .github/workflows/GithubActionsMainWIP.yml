@@ -85,15 +85,15 @@ jobs:
 
     - name: Get the branch
       id: get_branch
-      run: echo ::set-output name=branch::${{GITHUB_REF/refs\/heads\//}}
+      run: echo ::set-output name=branch::${GITHUB_REF/refs\/heads\//}
 
     - name: Get the pullrequest
       id: get_pullrequest
-      run: echo ::set-output name=pullrequest::${{GITHUB_REF/refs\/pull\//}}
+      run: echo ::set-output name=pullrequest::${GITHUB_REF/refs\/pull\//}
 
     - name: Get the tag
       id: get_tag
-      run: echo ::set-output name=tag::${{GITHUB_REF/refs\/tags\//}}
+      run: echo ::set-output name=tag::${GITHUB_REF/refs\/tags\//}
 
     - name: Show branch name Ꙫ
       run: echo "GitHub indicates that this is a branch push request of ${{steps.get_branch.outputs.branch}}"
@@ -149,15 +149,15 @@ jobs:
 
     - name: Get the branch
       id: get_branch
-      run: echo ::set-output name=branch::${{GITHUB_REF/refs\/heads\//}}
+      run: echo ::set-output name=branch::${GITHUB_REF/refs\/heads\//}
 
     - name: Get the pullrequest
       id: get_pullrequest
-      run: echo ::set-output name=pullrequest::${{GITHUB_REF/refs\/pull\//}}
+      run: echo ::set-output name=pullrequest::${GITHUB_REF/refs\/pull\//}
 
     - name: Get the tag
       id: get_tag
-      run: echo ::set-output name=tag::${{GITHUB_REF/refs\/tags\//}}
+      run: echo ::set-output name=tag::${GITHUB_REF/refs\/tags\//}
 
     - name: Show branch name Ꙫ
       run: echo "GitHub indicates that this is a branch push request of ${{steps.get_branch.outputs.branch}}"

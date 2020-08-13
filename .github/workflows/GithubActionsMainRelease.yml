@@ -87,7 +87,7 @@ jobs:
     steps:
 
     - name: Set Version as env variable
-      run: echo "::set-env name=Version::${{GITHUB_REF/refs\/tags\//}}"
+      run: echo "::set-env name=Version::${GITHUB_REF/refs\/tags\//}"
 
     - name: Echo Version
       run: echo "Version is $Version"
@@ -105,13 +105,13 @@ jobs:
     - name: Build 🔧
       run: dotnet build --configuration $buildConfiguration -p:PackageVersion=$Version $projectBmdc
       env:
-        NUGET_AUTH_TOKEN: "${{secrets.GITHUB_TOKEN}}"
+        NUGET_AUTH_TOKEN: "${secrets.GITHUB_TOKEN}"
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Generate NuGet package 🔧
       run: dotnet pack --no-build --configuration $buildConfiguration --output $outputBmdc -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:PackageVersion=$Version $projectBmdc
       env:
-        NUGET_AUTH_TOKEN: "${{secrets.GITHUB_TOKEN}}"
+        NUGET_AUTH_TOKEN: "${secrets.GITHUB_TOKEN}"
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Display package output Ꙫ
@@ -134,7 +134,7 @@ jobs:
     steps:
 
     - name: Show Tag name Ꙫ
-      run: echo "GitHub indicates that this is a tag creation with ${{GITHUB_REF/refs\/tags\//}}"
+      run: echo "GitHub indicates that this is a tag creation with ${GITHUB_REF/refs\/tags\//}"
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
 
