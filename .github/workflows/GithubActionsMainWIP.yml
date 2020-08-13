@@ -150,7 +150,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: BMDC-1.0.0-$ciSuffix
-        path: $siteBmdc
+        path: siteBmdc
       if: (github.repository != 'BlazorMdc/BlazorMdc')
 
 
