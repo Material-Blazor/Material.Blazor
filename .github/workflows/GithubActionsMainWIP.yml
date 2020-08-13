@@ -146,6 +146,7 @@ jobs:
 #      env:
 #        NUGET_AUTH_TOKEN: "${{secrets.GITHUB_TOKEN}}"
 
+  buildblazormdc:
     runs-on: windows-latest
 
     steps:
@@ -217,13 +218,14 @@ jobs:
       run: nuget push ${env:output}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-      if: github.repository == 'BlazorMdc/BlazorMdc' && github.event_name == 'push'
+#      if: github.repository == 'BlazorMdc/BlazorMdc' && github.event_name == 'push'
 
 
 
 ############################################################################################################
 #Build & Deploy BlazorMdcWebsite (1 job)
 #At the moment this has to be a separate job because of the different dnc environments (3.1 & 5.0 preview)
+#   Not to mention Windows vs Ubuntu bcause of the 'nuGet push' issue on Ubuntu
 ############################################################################################################
   buildblazormdcwebsite:
 

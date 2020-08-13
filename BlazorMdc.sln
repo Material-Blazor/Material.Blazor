@@ -37,6 +37,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "articles", "articles", "{FC
 		articles\Density.md = articles\Density.md
 		articles\DevelopmentEnvironment.md = articles\DevelopmentEnvironment.md
 		articles\Installation.md = articles\Installation.md
+		articles\Introduction.md = articles\Introduction.md
 		articles\PlusComponents.md = articles\PlusComponents.md
 		Principles.md = Principles.md
 		articles\Services.md = articles\Services.md
