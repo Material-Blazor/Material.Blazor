@@ -14,6 +14,7 @@ env:
   outputBmdc: ${{github.workspace}}/siteBmdc
   outputWeb: ${{github.workspace}}/siteWeb
   projectBmdc: 'BlazorMdc/BlazorMdc.csproj'
+  projectBmdcWin: 'BlazorMdc\BlazorMdc.csproj'
   projectWeb: 'BlazorMdcWebsite.WebAssembly/BlazorMdcWebsite.WebAssembly.csproj'
 
 jobs:
@@ -180,11 +181,14 @@ jobs:
     - name: Display package output Ꙫ
       run: dir ${env:outputBmdc}
 
+    - name: Display package output Ꙫ
+      run: dir ${env:outputBmdcWin}
+
     - name: Display obfuscated secret Ꙫ
       run: echo "The GitHub token is ${{ secrets.GITHUB_TOKEN }}"
 
     - name: Upload Package 🚀
-      run: nuget push ${env:outputBmdc}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      run: nuget push ${env:outputBmdcWin}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
