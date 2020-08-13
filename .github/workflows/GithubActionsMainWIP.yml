@@ -12,9 +12,9 @@ env:
   buildConfiguration: 'Debug'
   outputDocFx: ${{github.workspace}}/siteDocFx
   outputBmdc: ${{github.workspace}}/siteBmdc
+  outputBmdcWin: ${{github.workspace}}\siteBmdc
   outputWeb: ${{github.workspace}}/siteWeb
   projectBmdc: 'BlazorMdc/BlazorMdc.csproj'
-  projectBmdcWin: 'BlazorMdc\BlazorMdc.csproj'
   projectWeb: 'BlazorMdcWebsite.WebAssembly/BlazorMdcWebsite.WebAssembly.csproj'
 
 jobs:
