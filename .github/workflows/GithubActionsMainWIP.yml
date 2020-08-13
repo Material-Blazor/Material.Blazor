@@ -121,7 +121,7 @@ jobs:
     - name: Build 🔧
       run: dotnet build --configuration $buildConfiguration --version-suffix $ciSuffix $projectBmdc
       env:
-        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        NUGET_AUTH_TOKEN: "%NUGET_AUTH_TOKEN%"
 
     - name: Generate NuGet package 🔧
       run: dotnet pack --no-build --configuration $buildConfiguration --output $outputBmdc -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix $ciSuffix $projectBmdc
@@ -133,6 +133,8 @@ jobs:
 
     - name: Upload Package 🚀
       run: dotnet nuget push $outputBmdc/*.nupkg --skip-duplicate --no-symbols true
+      env:
+        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
 
 ############################################################################################################
