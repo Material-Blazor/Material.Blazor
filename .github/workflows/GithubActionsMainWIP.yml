@@ -116,8 +116,14 @@ jobs:
         dotnet-version: 3.1.302
         source-url: https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}        
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
+#    - name: Setup NuGet
+#      uses: NuGet/setup-nuget@v1.0.2
+#      with:
+#        nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+#        nuget-version: latest
+ 
     - name: Build 🔧
       run: dotnet build --configuration $buildConfiguration --version-suffix $ciSuffix $projectBmdc
       env:
@@ -131,10 +137,18 @@ jobs:
     - name: Display package output Ꙫ
       run: ls $outputBmdc
 
-    - name: Upload Package 🚀
-      run: nuget push $outputBmdc/*.nupkg --skip-duplicate true --no-symbols true --source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
-      env:
-        NUGET_AUTH_TOKEN: "${{secrets.GITHUB_TOKEN}}"
+    -name Tanaka push
+      uses: tanaka-takayoshi/nuget-publish-to-github-packages-action@v2.1
+      with:
+        nupkg-path:  './siteBmdc/*.nupkg'
+        repo-owner:  'BlazorMdc'
+        gh-user:     'BlazorMdc'
+        token:       ${{secrets.GITHUB_TOKEN}}
+
+#  - name: Upload Package 🚀
+#      run: nuget push $outputBmdc/*.nupkg --skip-duplicate true --no-symbols true --source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+#      env:
+#        NUGET_AUTH_TOKEN: "${{secrets.GITHUB_TOKEN}}"
 
 
 ############################################################################################################
