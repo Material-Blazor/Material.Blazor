@@ -76,6 +76,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Set ciSuffix2 as env variable
+        run: echo "::set-env name=ciSuffix2::CI.$(date +'%Y-%m-%dT%H:%M:%S')"
+
+      - name: Echo 'new' ciSuffix2
+        run: echo $ciSuffix2
 
     - name: Get the branch
       id: get_branch
