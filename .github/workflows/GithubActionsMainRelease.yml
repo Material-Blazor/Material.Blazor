@@ -14,9 +14,9 @@ on:
 env:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  outputDocFx: ${{ github.workspace }}/site-docfx
-  outputBmdc: ${{ github.workspace }}/site-bmdc
-  outputWeb: ${{ github.workspace }}/site-web
+  outputDocFx: ${{ github.workspace }}/siteDocFx
+  outputBmdc: ${{ github.workspace }}/siteBmdc
+  outputWeb: ${{ github.workspace }}/siteWeb
   projectBmdc: 'BlazorMdc/BlazorMdc.csproj'
   projectWeb: 'BlazorMdcWebsite.WebAssembly/BlazorMdcWebsite.WebAssembly.csproj'
 
@@ -48,8 +48,8 @@ jobs:
     - name: Upload Artifacts 🔺 # The project is then uploaded as an artifact named 'site'.
       uses: actions/upload-artifact@v1
       with:
-        name: sitedocfx
-        path: sitedocfx
+        name: siteDocFx
+        path: siteDocFx
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
 
@@ -66,7 +66,7 @@ jobs:
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v1
       with:
-        name: sitedocfx
+        name: siteDocFx
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Deploy 🚀
@@ -74,7 +74,7 @@ jobs:
       with:
         ACCESS_TOKEN: ${{ secrets.GH_PAT }}
         BRANCH: gh-pages
-        FOLDER: "sitedocfx" # The deployment folder should match the name of the artifact.
+        FOLDER: "siteDocFx" # The deployment folder should match the name of the artifact.
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
 
@@ -86,9 +86,11 @@ jobs:
 
     steps:
 
-    - name: Show Tag name Ꙫ
-      run: echo "GitHub indicates that this is a tag creation with ${GITHUB_REF/refs\/tags\//}"
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+    - name: Set Version as env variable
+      run: echo "::set-env name=Version::${GITHUB_REF/refs\/tags\//}"
+
+    - name: Echo Version
+      run: echo "Version is $Version"
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
@@ -101,19 +103,15 @@ jobs:
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Build 🔧
-      run: dotnet build --configuration $buildConfiguration -p:PackageVersion=${{steps.get_tag.outputs.tag}} $projectBmdc
+      run: dotnet build --configuration $buildConfiguration -p:PackageVersion=$Version $projectBmdc
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Generate NuGet package 🔧
-      run: dotnet pack --no-build --configuration $buildConfiguration --output $outputBmdc -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:PackageVersion=${{steps.get_tag.outputs.tag}} $projectBmdc
+      run: dotnet pack --no-build --configuration $buildConfiguration --output $outputBmdc -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:PackageVersion=$Version $projectBmdc
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
-
-    - name: Display package output Ꙫ
-      run: ls $outputBmdc
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Upload Package 🚀
