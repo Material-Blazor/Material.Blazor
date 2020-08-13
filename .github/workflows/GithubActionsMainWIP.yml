@@ -10,7 +10,6 @@ on:
 env:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
-  ciSuffix: CIB.${{ github.run_number }}
   outputDocFx: ${{ github.workspace }}/siteDocFx
   outputBmdc: ${{ github.workspace }}/siteBmdc
   outputWeb: ${{ github.workspace }}/siteWeb
@@ -78,11 +77,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Set ciSuffix2 as env variable
-      run: echo "::set-env name=ciSuffix2::CI.$(date +'%Y-%m-%dT%H:%M:%S')"
+    - name: Set ciSuffix as env variable
+      run: echo "::set-env name=ciSuffix2::CI.$(date +'%Y%m%d.%H%M')"
 
-    - name: Echo ciSuffix2
-      run: echo "$ciSuffix2"
+    - name: Echo ciSuffix
+      run: echo "CI suffix is $ciSuffix"
 
     - name: Get the branch
       id: get_branch
@@ -118,9 +117,6 @@ jobs:
         source-url: https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}        
-
-    - name: Display CI suffix Ꙫ
-      run: echo "CI suffix is $ciSuffix"
 
     - name: Build 🔧
       run: dotnet build --configuration $buildConfiguration --version-suffix $ciSuffix $projectBmdc
