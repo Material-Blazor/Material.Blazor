@@ -116,7 +116,7 @@ jobs:
         dotnet-version: 3.1.302
         source-url: https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        NUGET_AUTH_TOKEN: '%NUGET_AUTH_TOKEN%'
 
 #    - name: Setup NuGet
 #      uses: NuGet/setup-nuget@v1.0.2
@@ -127,7 +127,7 @@ jobs:
     - name: Build 🔧
       run: dotnet build --configuration $buildConfiguration --version-suffix $ciSuffix $projectBmdc
       env:
-        NUGET_AUTH_TOKEN: "%NUGET_AUTH_TOKEN%"
+        NUGET_AUTH_TOKEN: "${{secrets.GITHUB_TOKEN}}"
 
     - name: Generate NuGet package 🔧
       run: dotnet pack --no-build --configuration $buildConfiguration --output $outputBmdc -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix $ciSuffix $projectBmdc
@@ -142,7 +142,7 @@ jobs:
       with:
         nupkg-path:  './siteBmdc/*.nupkg'
         repo-owner:  'BlazorMdc'
-        gh-user:     'BlazorMdc'
+        gh-user:     '${{github.actor}}'
         token:       ${{secrets.GITHUB_TOKEN}}
 
 #  - name: Upload Package 🚀
