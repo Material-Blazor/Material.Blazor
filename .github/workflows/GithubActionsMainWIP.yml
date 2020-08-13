@@ -20,6 +20,8 @@ jobs:
 
 ############################################################################################################
 #Build & Deploy DocFx pages (2 jobs)
+#Why two jobs? The build of DocFx is on Windows because we haven't figured out how to create DocFx output
+#     on Ubuntu.
 ############################################################################################################
   builddocfx:
 
@@ -146,9 +148,9 @@ jobs:
 #        token:       ${{secrets.GITHUB_TOKEN}}
 
     - name: Upload Package 🚀
-      run: nuget push $outputBmdc/*.nupkg --skip-duplicate true --no-symbols true --source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
-      env:
-        NUGET_AUTH_TOKEN: "${{secrets.GITHUB_TOKEN}}"
+      run: nuget push $outputBmdc/*.nupkg --source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+#      env:
+#        NUGET_AUTH_TOKEN: "${{secrets.GITHUB_TOKEN}}"
 
 
 ############################################################################################################

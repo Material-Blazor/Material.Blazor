@@ -39,7 +39,7 @@ We have developed Blazor MDC using Visual Studio 2019 on Windows, and have not t
 These workflows are responsible for publishing three artifacts:
 * The BlazorMdc DocFx pages in the BlazorMdc repository gh-pages branch.
 * The BlazorMdc NuGet package either as a GitHub package or a NuGet.org package.
-* The BlazorMdc Website gh-pages as gh-pages in the BlazorMdcWebsite repository.
+* The BlazorMdc Website as gh-pages in the BlazorMdcWebsite repository.
 
 #### WIP Workflow
 
@@ -47,7 +47,7 @@ This workflow runs whenever a pull request is created, updated, or pushed.
 
 ##### Forked repository
 
-Regardless of the trigger, all three artifacts are published. The DocFx pages reside locally in the forked repository, the NuGet package is identified as a CI build & published to NuGet packages in the forked repository, and the Website is published into the gh-pages branch of a BlazorMdc repository with the same owner as the forked BlazorMdc repository.
+Regardless of the trigger, all three artifacts are published. The DocFx pages reside locally in the forked repository, the NuGet package is identified as a CI build & published to NuGet packages in the forked repository, and the Website is published into the gh-pages branch of a BlazorMdcWebsite repository with the same owner as the forked BlazorMdc repository.
 
 ##### BlazorMdc\BlazorMdc repository
 
