@@ -114,6 +114,10 @@ jobs:
         NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
+    - name: Display package output Ꙫ
+      run: ls $outputBmdc
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
+
     - name: Upload Package 🚀
       run: dotnet nuget push $outputBMDC/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
       if: (github.repository == 'BlazorMdc/BlazorMdc')
