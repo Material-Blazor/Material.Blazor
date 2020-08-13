@@ -73,9 +73,10 @@ jobs:
 
 
 ############################################################################################################
-#Build & Deploy BlazorMdc Nuget package (1 job)
-#Because we couldn't figure out how to successfully 'nuget push' on Ubuntu after more than
-#    2 man days of effort we simply upload the nuget packages as an artifact
+#Build & Deploy BlazorMdc Nuget package (2 jobs)
+#Why two jobs? Because we couldn't figure out how to successfully 'nuget push' on Ubuntu after more than
+#    2 man days of effort. Instead we simply upload the nuget packages as an artifact and then run a Windows job
+#    to deploy to GitHub Packages
 ############################################################################################################
   buildblazormdc:
     runs-on: ubuntu-latest
@@ -149,9 +150,37 @@ jobs:
     - name: Upload Artifacts 🔺
       uses: actions/upload-artifact@v1
       with:
-        name: BMDC-1.0.0-$ciSuffix
+        name: siteBmdc
         path: siteBmdc
       if: (github.repository != 'BlazorMdc/BlazorMdc')
+
+
+  deployblazormdc:
+    needs: [buildblazormdc] # The second job must depend on the first one to complete before running, and uses ubuntu-latest instead of windows.
+
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v2
+
+    - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteBmdc' folder.
+      uses: actions/download-artifact@v1
+      with:
+        name: siteBmdc
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.302
+
+    - name: Display package output Ꙫ
+      run: dir ${env:outputBmdc}
+
+    - name: Upload Package 🚀
+      run: nuget push ${env:outputBmdc}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      env:
+        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
 
 
