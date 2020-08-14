@@ -3,6 +3,7 @@ WORKDIR wip
 COPY package.json .
 RUN npm install
 RUN wget "https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" > material-components-icons.css
+RUN cat material-components-icons.css
 COPY . .
 RUN npm run build-bmdc-css
 RUN npm run minify-bmdc-css
