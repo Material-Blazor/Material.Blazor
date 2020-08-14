@@ -74,7 +74,7 @@ namespace BlazorMdc
         {
             if (firstRender && PrimaryAction != null)
             {
-                await JsRuntime.InvokeAsync<object>("BlazorMdc.cardPrimaryAction.init", PrimaryActionReference);
+                await JsRuntime.InvokeVoidAsync("BlazorMdc.cardPrimaryAction.init", PrimaryActionReference);
             }
         }
     }

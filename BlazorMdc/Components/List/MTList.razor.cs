@@ -214,10 +214,10 @@ namespace BlazorMdc
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.list.init", ElementReference, (KeyboardInteractions && !AppliedDisabled), Ripple));
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("BlazorMdc.list.init", ElementReference, (KeyboardInteractions && !AppliedDisabled), Ripple));
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.list.init", ElementReference, (KeyboardInteractions && !AppliedDisabled), Ripple);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("BlazorMdc.list.init", ElementReference, (KeyboardInteractions && !AppliedDisabled), Ripple);
     }
 }

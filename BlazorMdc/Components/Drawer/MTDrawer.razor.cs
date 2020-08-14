@@ -70,7 +70,7 @@ namespace BlazorMdc
         public void Toggle(bool open)
         {
             isOpen = open;
-            InvokeAsync(async () => await InitializeMdcComponent());
+            InvokeAsync(() => InitializeMdcComponent());
         }
 
 
@@ -88,6 +88,6 @@ namespace BlazorMdc
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.drawer.toggle", DrawerElem, isOpen);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("BlazorMdc.drawer.toggle", DrawerElem, isOpen);
     }
 }

@@ -116,11 +116,11 @@ namespace BlazorMdc
         protected void OnValueSetCallback(object sender, EventArgs e)
         {
             Panel.SetParameters(true, Value);
-            InvokeAsync(async () => await JsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, DateFormat)).ConfigureAwait(false));
+            InvokeAsync(() => JsRuntime.InvokeVoidAsync("BlazorMdc.datePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, DateFormat)).ConfigureAwait(false));
         }
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.init", ElementReference);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("BlazorMdc.datePicker.init", ElementReference);
     }
 }

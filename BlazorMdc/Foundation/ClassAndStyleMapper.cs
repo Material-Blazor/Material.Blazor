@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BlazorMdc.Internal
 {
@@ -19,13 +20,13 @@ namespace BlazorMdc.Internal
     public class ClassAndStyleMapper
     {
         internal List<Func<string>> Items = new List<Func<string>>();
-        
+
         /// <summary>
         /// Executes the defined functions, returning a concatenation of the results
         /// separated by a space
         /// </summary>
         /// <returns>string</returns>
-        public string ToClassString()
+        protected string ToClassString()
         {
             return ToString(" ");
         }
@@ -35,28 +36,27 @@ namespace BlazorMdc.Internal
         /// separated by a semicolon and a space
         /// </summary>
         /// <returns>string</returns>
-        public string ToStyleString()
+        protected string ToStyleString()
         {
             return ToString("; ");
         }
 
-        private string ToString(string prefix)
+        private string ToString(string separator)
         {
-            var returnValue = "";
-            var prefixInUse = "";
-            foreach (Func<string> f in Items)
-            {
-                var eval = f();
-                if (eval != null)
-                {
-                    returnValue += prefixInUse + eval;
-                    prefixInUse = prefix;
-                }
-            }
-            return returnValue;
+            return string.Join(separator,
+                Items.Select(i => i())   // evaluate each item
+                .Where(v => v != null)); // consider only non-null values
         }
     }
+    public class ClassMapper : ClassAndStyleMapper
+    {
+        public override string ToString() => ToClassString();
+    }
 
+    public class StyleMapper : ClassAndStyleMapper
+    {
+        public override string ToString() => ToStyleString();
+    }
 
     public static class ClassAndStyleMapperExtensions
     {

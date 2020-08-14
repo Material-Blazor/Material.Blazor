@@ -69,6 +69,6 @@ namespace BlazorMdc
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.topAppBar.init", HeaderElem, ScrollTarget);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("BlazorMdc.topAppBar.init", HeaderElem, ScrollTarget);
     }
 }

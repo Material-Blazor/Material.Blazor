@@ -54,6 +54,6 @@ namespace BlazorMdc
 
 
         /// <inheritdoc/>
-        private protected async override Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.dataTable.init", ElementReference);
+        private protected async override Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("BlazorMdc.dataTable.init", ElementReference);
     }
 }

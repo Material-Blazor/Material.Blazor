@@ -330,6 +330,6 @@ namespace BlazorMdc
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeAsync<object>("BlazorMdc.autoComplete.init", TextField.ElementReference, MenuReference, ObjectReference);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("BlazorMdc.autoComplete.init", TextField.ElementReference, MenuReference, ObjectReference);
     }
 }

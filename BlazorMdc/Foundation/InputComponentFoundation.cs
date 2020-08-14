@@ -52,7 +52,7 @@ namespace BlazorMdc.Internal
 
                     if (_hasInstantiated)
                     {
-                        InvokeAsync(async () => await DebouncedOnValueSet());
+                        InvokeAsync(() => DebouncedOnValueSet());
                     }
                     else
                     {

@@ -3,7 +3,6 @@
 	<PropertyGroup>
 		<TargetFramework>netstandard2.1</TargetFramework>
 		<RazorLangVersion>3.0</RazorLangVersion>
-		<Configurations>Debug_WebAssembly;Debug_Server;Release_WebAssembly;Release_Server</Configurations>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<VersionPrefix>1.0.0</VersionPrefix>
 		<VersionSuffix></VersionSuffix>
@@ -18,22 +17,6 @@
 		<Copyright>Dioptra and Optimium Health</Copyright>
 		<PackageProjectUrl>https://blazormdc.com</PackageProjectUrl>
 		<Product>Blazor MDC</Product>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_WebAssembly|AnyCPU'">
-		<DefineConstants>BlazorWebAssembly;DEBUG;</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_Server|AnyCPU'">
-		<DefineConstants>BlazorServer;DEBUG;</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_WebAssembly|AnyCPU'">
-		<DefineConstants>BlazorWebAssembly;RELEASE;</DefineConstants>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release_Server|AnyCPU'">
-		<DefineConstants>BlazorServer;RELEASE</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -55,6 +38,7 @@
 		<None Include="tsconfig.json" />
 	</ItemGroup>
 
+<!-- Unfinished dependency issue
 	<ItemGroup>
 		<InputsComponentsScss Include="Components\**\*.scss" />
 		<InputsStylesScss Include="Styles\*.scss" />
@@ -64,28 +48,20 @@
 		<OutputsJs Include="wwwroot\blazormdc.js;wwwroot\blazormdc.min.js;wwwroot\blazormdc-material-bundle.min.js" />
 	</ItemGroup>
 
-	<!--<Target Name="BuildScriptsAndStyles" 
+	<Target Name="BuildScriptsAndStyles" 
 			BeforeTargets="PreBuildEvent" 
 			Inputs="@(InputsComponentsScss);@(InputsStylesScss);@(InputsComponentsTs);@(InputsScriptsTs)"
 			Outputs="@(OutputsCss);@(OutputsJs)">-->
-	<Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">	
-		<RemoveDir Directories="wip" />
-		<RemoveDir Directories="wwwroot" />
-		<Exec Command="npm install" />
-		<DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" DestinationFolder="wip" DestinationFileName="material-components-icons.css">
-			<Output TaskParameter="DownloadedFile" ItemName="Content" />
-		</DownloadFile>
-		<Exec Command="npm run build-bmdc-css" />
-		<Exec Command="npm run minify-bmdc-css" />
-		<Exec Command="npm run build-bundle-css" />
-		<Exec Command="npm run minify-bundle-css" />
-		<!--<Copy SourceFiles="Scripts\blazormdc.js" DestinationFiles="wwwroot\blazormdc.js" />
-		<Touch Files="wwwroot\blazormdc.js" />-->
-		<Exec Command="npm run build-bmdc-js" />
-		<Exec Command="npm run minify-bmdc-js" />
-		<Exec Command="npm run minify-bundle-js" />
-		<Exec Command="npm run build-bmdcdemo" />
-		<RemoveDir Directories="wip" />
+  
+	<Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">
+    <Exec Command="docker build -t blazormdc_static_assets -f npm.df ." />
+    <Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
+    <Exec Command="docker run --rm blazormdc_static_assets cat blazormdc.js > wwwroot/blazormdc.js" />
+    <Exec Command="docker run --rm blazormdc_static_assets cat blazormdc.css > wwwroot/blazormdc.css" />
+    <Exec Command="docker run --rm blazormdc_static_assets cat blazormdc.min.js > wwwroot/blazormdc.min.js" />
+    <Exec Command="docker run --rm blazormdc_static_assets cat blazormdc.min.css > wwwroot/blazormdc.min.css" />
+    <Exec Command="docker run --rm blazormdc_static_assets cat blazormdc-material-bundle.min.js > wwwroot/blazormdc-material-bundle.min.js" />
+    <Exec Command="docker run --rm blazormdc_static_assets cat blazormdc-material-bundle.min.css > wwwroot/blazormdc-material-bundle.min.css" />
 	</Target>
 
 </Project>

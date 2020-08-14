@@ -1,0 +1,16 @@
+npm.df
+npm.df.dockerignore
+**/*.cs
+**/*.razor
+**/*.yml
+**/*.md
+**/*.xml
+**/*.txt
+**/*LICENSE
+**/*.csproj
+obj
+bin
+**/*.markdown
+**/*.html
+**/*.ps1
+**/*.targets

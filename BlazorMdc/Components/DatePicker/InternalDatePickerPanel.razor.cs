@@ -170,7 +170,7 @@ namespace BlazorMdc.Internal
             CachedReportingValue = Value;
             MonthsOffset = 0;
             SetParameters(true);
-            await JsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.listItemClick", ListItemReference, CachedReportingValueText);
+            await JsRuntime.InvokeVoidAsync("BlazorMdc.datePicker.listItemClick", ListItemReference, CachedReportingValueText);
         }
 
 
@@ -210,7 +210,7 @@ namespace BlazorMdc.Internal
             {
                 ScrollToYear = false;
 
-                await JsRuntime.InvokeAsync<object>("BlazorMdc.datePicker.scrollToYear", currentYearId);
+                await JsRuntime.InvokeVoidAsync("BlazorMdc.datePicker.scrollToYear", currentYearId);
             }
         }
     }
