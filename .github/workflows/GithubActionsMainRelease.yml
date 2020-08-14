@@ -34,7 +34,7 @@ jobs:
     steps:
 
     - name: Show Tag name Ꙫ
-      run: echo "GitHub indicates that this is a tag creation with ${{GITHUB_REF/refs\/tags\//}}"
+      run: echo "GitHub indicates that this is a tag creation with ${GITHUB_REF/refs\/tags\//}"
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
