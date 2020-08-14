@@ -38,8 +38,8 @@ We have developed Blazor MDC using Visual Studio 2019 on Windows, and have not t
 
 These workflows are responsible for publishing three artifacts:
 * The BlazorMdc DocFx pages in the BlazorMdc repository gh-pages branch.
-* The BlazorMdc NuGet package either as a GitHub package or a NuGet.org package.
-* The BlazorMdc Website as gh-pages in the BlazorMdcWebsite repository.
+* The BlazorMdc NuGet package hosted as a GitHub package (Release) or a NuGet.org (CI).
+* The BlazorMdc Website in the BlazorMdcWebsite repository gh-pages branch.
 
 #### WIP Workflow
 

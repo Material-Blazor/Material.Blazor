@@ -1,13 +1,13 @@
-﻿name: GithubActionsMainWIPOld
+﻿name: GithubActionsMainWIP
 
-# Preview 8
+# OLD - Preview 8
 
 on:
   push:
-    branches: [ mainxyzzy ]
+    branches: [ main ]
 
   pull_request:
-    branches: [ mainxyzzy ]
+    branches: [ main ]
 
 env:
   buildPlatform: 'Any CPU'

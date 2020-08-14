@@ -1,11 +1,11 @@
-﻿name: GithubActionsMainReleaseOld
+﻿name: GithubActionsMainRelease
 
-# Preview 9
+# OLD Preview 9
 
 on:
   push:
     tags:
-      - 'xyzzywqekmf3429058-128374102672103867' # Push events to matching xyzzy...
+      - '*' # Push events matching any tag
 
 env:
   buildPlatform: 'Any CPU'
