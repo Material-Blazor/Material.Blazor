@@ -20,7 +20,9 @@ env:
 jobs:
 
 ############################################################################################################
-#Build DocFx pages (2 jobs), second job publishes to gh-pages
+#Build & Deploy DocFx pages (2 jobs)
+#Why two jobs? The build of DocFx is on Windows because we haven't figured out how to create DocFx output
+#     on Ubuntu.
 ############################################################################################################
   builddocfx:
 
@@ -46,68 +48,8 @@ jobs:
       if: (github.repository != 'BlazorMdc/BlazorMdc')
 
 
-############################################################################################################
-#Build BlazorMdcWebsite (2 jobs), second job publishes to gh-pages
-#This has to be a separate job from BuildBlazorMdc because of the different dnc environments (3.1 & 5.0 preview)
-############################################################################################################
-  buildblazormdcwebsite:
-
-    runs-on: ubuntu-latest
-
-    steps:
-
-    - name: Get the branch
-      id: get_branch
-      run: echo ::set-output name=branch::${GITHUB_REF/refs\/heads\//}
-
-    - name: Get the pullrequest
-      id: get_pullrequest
-      run: echo ::set-output name=pullrequest::${GITHUB_REF/refs\/pull\//}
-
-    - name: Get the tag
-      id: get_tag
-      run: echo ::set-output name=tag::${GITHUB_REF/refs\/tags\//}
-
-    - name: Show branch name Ꙫ
-      run: echo "GitHub indicates that this is a branch push request of ${{steps.get_branch.outputs.branch}}"
-      if: contains(github.ref, 'refs/heads')
-
-    - name: Show PR name Ꙫ
-      run: echo "GitHub indicates that this is a pull request called ${{steps.get_pullrequest.outputs.pullrequest}}"
-      if: contains(github.ref, 'refs/pull')
-
-    - name: Show Tag name Ꙫ
-      run: echo "GitHub indicates that this is a tag creation with ${{steps.get_tag.outputs.tag}}"
-      if: contains(github.ref, 'refs/tag')
-
-
-    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v2
-
-
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.100-preview.7.20366.6
-
-    - name: Build 🔧
-      run: dotnet build --configuration $buildConfiguration $projectWeb
-
-    - name: Publish 🔧
-      run: dotnet publish --no-build --configuration $buildConfiguration --output $outputWeb $projectWeb
-
-    - name: Upload Artifacts 🔺 # The project is then uploaded as an artifact named 'siteWeb'.
-      uses: actions/upload-artifact@v1
-      with:
-        name: siteWeb
-        path: siteWeb
-      if: (github.repository != 'BlazorMdc/BlazorMdc')
-
-############################################################################################################
-#Deploy gh-pages
-############################################################################################################
-  deployghpages:
-    needs: [builddocfx,buildblazormdcwebsite] # This job must depend on the two build jobs to complete before running, and uses ubuntu-latest instead of windows.
+  deploydocfx:
+    needs: [builddocfx] # The second job must depend on the first one to complete before running, and uses ubuntu-latest instead of windows.
 
     runs-on: ubuntu-latest
 
@@ -122,38 +64,13 @@ jobs:
         name: SiteDocFx
       if: (github.repository != 'BlazorMdc/BlazorMdc')
 
-    - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
-      uses: actions/download-artifact@v1
-      with:
-        name: SiteWeb
-      if: (github.repository != 'BlazorMdc/BlazorMdc')
-
-#Do the href rewrite if we aren't publishing to the 'real' BlazorMdcWebsite
-
-    - name: Base Href Rewrite 👉
-      uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
-      with:
-        html_path: "siteWeb/wwwroot/index.html"
-        base_href: "/BlazorMdcWebsite/"
-      if: (github.repository != 'BlazorMdc/BlazorMdc') && false
-
-# deploy to the cloned BlazorMdcWebsite depending on where we are doing the build
-
-    - name: Deploy to BlazorMdcWebsite 🚀
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      with:
-        ACCESS_TOKEN: ${{secrets.GH_PAT}}
-        BRANCH: gh-pages
-        FOLDER: "siteWeb/wwwroot"
-      if: (github.repository != 'BlazorMdc/BlazorMdc') && false
-
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
         ACCESS_TOKEN: ${{secrets.GH_PAT}}
         BRANCH: gh-pages
         FOLDER: "SiteDocFx" # The deployment folder should match the name of the artifact.
-      if: (github.repository != 'BlazorMdc/BlazorMdc') && false
+      if: (github.repository != 'BlazorMdc/BlazorMdc')
 
 
 ############################################################################################################
@@ -210,7 +127,7 @@ jobs:
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v1.0.2
       with:
-        nuget-api-key: ${{ secrets.GH_PAT }}
+        nuget-api-key: ${{ secrets.NUGET_AUTH_TOKEN }}
         nuget-version: latest
  
     - name: Build 🔧
@@ -227,10 +144,10 @@ jobs:
       run: ls $outputBmdc
 
 #    - name: Upload Package 🚀
-#      run: nuget push $outputBmdc/*.nupkg -source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+#      run: nuget push $outputBmdc/*.nupkg --source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
 #      env:
-#        NUGET_AUTH_TOKEN: "${{secrets.GH_PAT}}"
-#
+#        NUGET_AUTH_TOKEN: "${{secrets.GITHUB_TOKEN}}"
+
     - name: Upload Artifacts 🔺
       uses: actions/upload-artifact@v1
       with:
@@ -286,3 +203,72 @@ jobs:
 
 
 
+############################################################################################################
+#Build & Deploy BlazorMdcWebsite (1 job)
+#At the moment this has to be a separate job because of the different dnc environments (3.1 & 5.0 preview)
+############################################################################################################
+  buildblazormdcwebsite:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Get the branch
+      id: get_branch
+      run: echo ::set-output name=branch::${GITHUB_REF/refs\/heads\//}
+
+    - name: Get the pullrequest
+      id: get_pullrequest
+      run: echo ::set-output name=pullrequest::${GITHUB_REF/refs\/pull\//}
+
+    - name: Get the tag
+      id: get_tag
+      run: echo ::set-output name=tag::${GITHUB_REF/refs\/tags\//}
+
+    - name: Show branch name Ꙫ
+      run: echo "GitHub indicates that this is a branch push request of ${{steps.get_branch.outputs.branch}}"
+      if: contains(github.ref, 'refs/heads')
+
+    - name: Show PR name Ꙫ
+      run: echo "GitHub indicates that this is a pull request called ${{steps.get_pullrequest.outputs.pullrequest}}"
+      if: contains(github.ref, 'refs/pull')
+
+    - name: Show Tag name Ꙫ
+      run: echo "GitHub indicates that this is a tag creation with ${{steps.get_tag.outputs.tag}}"
+      if: contains(github.ref, 'refs/tag')
+
+
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v2
+
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.100-preview.7.20366.6
+
+    - name: Build 🔧
+      run: dotnet build --configuration $buildConfiguration $projectWeb
+
+    - name: Publish 🔧
+      run: dotnet publish --no-build --configuration $buildConfiguration --output $outputWeb $projectWeb
+
+#Do the href rewrite if we aren't publishing to the 'real' BlazorMdcWebsite
+
+    - name: Base Href Rewrite 👉
+      uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
+      with:
+        html_path: "siteWeb/wwwroot/index.html"
+        base_href: "/BlazorMdcWebsite/"
+      if: (github.repository != 'BlazorMdc/BlazorMdc')
+
+# deploy to the cloned BlazorMdcWebsite depending on where we are doing the build
+
+    - name: Deploy to BlazorMdcWebsite 🚀
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        ACCESS_TOKEN: ${{secrets.GH_PAT}}
+        BRANCH: gh-pages
+        FOLDER: "siteWeb/wwwroot"
+        REPOSITORY_NAME: '${{github.repository_owner}}/BlazorMdcWebsite'
+      if: (github.repository != 'BlazorMdc/BlazorMdc')
