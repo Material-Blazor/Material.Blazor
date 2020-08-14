@@ -210,7 +210,7 @@ jobs:
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v1.0.2
       with:
-        nuget-api-key: ${{ secrets.NUGET_AUTH_TOKEN }}
+        nuget-api-key: ${{ secrets.GH_PAT }}
         nuget-version: latest
  
     - name: Build 🔧
@@ -227,7 +227,7 @@ jobs:
       run: ls $outputBmdc
 
     - name: Upload Package 🚀
-      run: nuget push $outputBmdc/*.nupkg --source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      run: nuget push $outputBmdc/*.nupkg -s https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: "${{secrets.GH_PAT}}"
 
