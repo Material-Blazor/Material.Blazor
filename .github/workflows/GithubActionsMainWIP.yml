@@ -193,7 +193,7 @@ jobs:
       run: nuget push ${env:outputBmdcWin}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GH_PAT }}"
-#      if: github.repository == 'BlazorMdc/BlazorMdc' && github.event_name == 'push'
+      if: (((github.repository == 'BlazorMdc/BlazorMdc') && (github.event_name == 'push')) || (github.repository != 'BlazorMdc/BlazorMdc'))
 
 
 
