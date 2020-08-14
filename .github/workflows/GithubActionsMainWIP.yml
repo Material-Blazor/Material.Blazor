@@ -189,11 +189,16 @@ jobs:
     - name: Display obfuscated secret Ꙫ
       run: echo "The GH_PAT token is ${{ secrets.GH_PAT }}"
 
+# We'd like to push to a forked repository; The push appears to work but the packages are not visible
+# Pending a service response we only do the push of the CI build in the bmdc/bmdc repository
+# The commented 'if' can replace the current 'if' when this is resolved
+
     - name: Upload Package 🚀
       run: nuget push ${env:outputBmdcWin}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: "${{ secrets.GH_PAT }}"
-      if: (((github.repository == 'BlazorMdc/BlazorMdc') && (github.event_name == 'push')) || (github.repository != 'BlazorMdc/BlazorMdc'))
+      if: ((github.repository == 'BlazorMdc/BlazorMdc') && (github.event_name == 'push'))
+#      if: (((github.repository == 'BlazorMdc/BlazorMdc') && (github.event_name == 'push')) || (github.repository != 'BlazorMdc/BlazorMdc'))
 
 
 

@@ -49,6 +49,8 @@ This workflow runs whenever a pull request is created, updated, or pushed.
 
 Regardless of the trigger, all three artifacts are published. The DocFx pages reside locally in the forked repository, the NuGet package is identified as a CI build & published to NuGet packages in the forked repository, and the Website is published into the gh-pages branch of a BlazorMdcWebsite repository with the same owner as the forked BlazorMdc repository.
 
+NOTE -- An issue exists when publishing the CI package to a forked repository in that the publish appears to work but the packages are not visible. For this reason (pending a service request response) the publish of the CI package is temporarily disabled.
+
 ##### BlazorMdc\BlazorMdc repository
 
 Regardless of the trigger, the WebSite & DocFx pages are not built. On a Push trigger the the BlazorMdc Nuget package identified as a CI build is built and then published to the BlazorMdc repository . It is up to a developer to have checked the publishing results of the documentation and website in the forked repository prior to initiating a release workflow.
