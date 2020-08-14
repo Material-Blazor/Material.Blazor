@@ -82,7 +82,6 @@ jobs:
 
 ############################################################################################################
 #Build & Deploy BlazorMdc Nuget package (1 job)
-#Why Windows? Because it proved highly impossible to figure out Ubuntu 'NuGet push'
 ############################################################################################################
   buildblazormdc:
     runs-on: ubuntu-latest
@@ -142,10 +141,11 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${GITHUB_REF/refs\/heads\//}
-        release_name: Release $Version
+        tag_name: ${{GITHUB_REF}}
+        release_name: Release ${{Version}}
         draft: false
         prerelease: false
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
 
 
 ############################################################################################################
