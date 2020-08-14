@@ -125,6 +125,18 @@ jobs:
       run: dotnet nuget push $outputBmdc/*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
+    - name: Display GITHUB_REF Ꙫ
+      run: echo "${GITHUB_REF/refs\/heads\//}"
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
+
+    - name: Display tag name Ꙫ
+      run: echo "${GITHUB_REF/refs\/heads\//}"
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
+
+    - name: Display release name Ꙫ
+      run: echo "Release $Version"
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
+
     - name: Create Release
       uses: actions/create-release@v1
       env:
