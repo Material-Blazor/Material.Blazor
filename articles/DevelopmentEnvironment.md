@@ -51,7 +51,7 @@ Regardless of the trigger, all three artifacts are published. The DocFx pages re
 
 ##### BlazorMdc\BlazorMdc repository
 
-Regardless of the trigger, only the the BlazorMdc Nuget package identified as a CI build is built and then published to the BlazorMdc repository . It is up to a developer to have checked the publishing results of the documentation and website in the forked repository prior to initiating a release workflow.
+Regardless of the trigger, the WebSite & DocFx pages are not built. On a Push trigger the the BlazorMdc Nuget package identified as a CI build is built and then published to the BlazorMdc repository . It is up to a developer to have checked the publishing results of the documentation and website in the forked repository prior to initiating a release workflow.
 
 #### Release Workflow
 
