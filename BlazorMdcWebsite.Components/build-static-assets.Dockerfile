@@ -12,4 +12,3 @@ RUN npm run minify-red-round
 RUN npm run build-varied
 RUN npm run minify-varied
 WORKDIR /wip/wwwroot/css
-RUN ls
