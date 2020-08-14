@@ -10,9 +10,10 @@ on:
 env:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
-  outputDocFx: ${{ github.workspace }}/siteDocFx
-  outputBmdc: ${{ github.workspace }}/siteBmdc
-  outputWeb: ${{ github.workspace }}/siteWeb
+  outputDocFx: ${{github.workspace}}/siteDocFx
+  outputBmdc: ${{github.workspace}}/siteBmdc
+  outputBmdcWin: ${{github.workspace}}\siteBmdc
+  outputWeb: ${{github.workspace}}/siteWeb
   projectBmdc: 'BlazorMdc/BlazorMdc.csproj'
   projectWeb: 'BlazorMdcWebsite.WebAssembly/BlazorMdcWebsite.WebAssembly.csproj'
 
@@ -20,6 +21,8 @@ jobs:
 
 ############################################################################################################
 #Build & Deploy DocFx pages (2 jobs)
+#Why two jobs? The build of DocFx is on Windows because we haven't figured out how to create DocFx output
+#     on Ubuntu.
 ############################################################################################################
   builddocfx:
 
@@ -64,21 +67,24 @@ jobs:
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
-        ACCESS_TOKEN: ${{ secrets.GH_PAT }}
+        ACCESS_TOKEN: ${{secrets.GH_PAT}}
         BRANCH: gh-pages
         FOLDER: "SiteDocFx" # The deployment folder should match the name of the artifact.
       if: (github.repository != 'BlazorMdc/BlazorMdc')
 
 
 ############################################################################################################
-#Build & Deploy BlazorMdc Nuget package (1 job)
+#Build & Deploy BlazorMdc Nuget package (2 jobs)
+#Why two jobs? Because we couldn't figure out how to successfully 'nuget push' on Ubuntu after more than
+#    2 man days of effort. Instead we simply upload the nuget packages as an artifact and then run a Windows job
+#    to deploy to GitHub Packages
 ############################################################################################################
   buildblazormdc:
     runs-on: ubuntu-latest
 
     steps:
     - name: Set ciSuffix as env variable
-      run: echo "::set-env name=ciSuffix::CI.$(date +'%Y%m%d.%H%M')"
+      run: echo "::set-env name=ciSuffix::CI.$(date +'%Y-%m-%d.%H%M')"
 
     - name: Echo ciSuffix
       run: echo "CI suffix is $ciSuffix"
@@ -116,23 +122,80 @@ jobs:
         dotnet-version: 3.1.302
         source-url: https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}        
+        NUGET_AUTH_TOKEN: '%NUGET_AUTH_TOKEN%'
 
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.2
+      with:
+        nuget-api-key: ${{ secrets.NUGET_AUTH_TOKEN }}
+        nuget-version: latest
+ 
     - name: Build 🔧
       run: dotnet build --configuration $buildConfiguration --version-suffix $ciSuffix $projectBmdc
       env:
-        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        NUGET_AUTH_TOKEN: "${{secrets.GITHUB_TOKEN}}"
 
     - name: Generate NuGet package 🔧
       run: dotnet pack --no-build --configuration $buildConfiguration --output $outputBmdc -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix $ciSuffix $projectBmdc
       env:
-        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        NUGET_AUTH_TOKEN: "${{secrets.GITHUB_TOKEN}}"
 
     - name: Display package output Ꙫ
       run: ls $outputBmdc
 
+#    - name: Upload Package 🚀
+#      run: nuget push $outputBmdc/*.nupkg --source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+#      env:
+#        NUGET_AUTH_TOKEN: "${{secrets.GITHUB_TOKEN}}"
+
+    - name: Upload Artifacts 🔺
+      uses: actions/upload-artifact@v1
+      with:
+        name: siteBmdc
+        path: siteBmdc
+
+
+  deployblazormdc:
+    needs: [buildblazormdc] # The second job must depend on the first one to complete before running, and uses ubuntu-latest instead of windows.
+
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v2
+
+    - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteBmdc' folder.
+      uses: actions/download-artifact@v1
+      with:
+        name: siteBmdc
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.302
+        source-url: https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      env:
+        NUGET_AUTH_TOKEN: '%NUGET_AUTH_TOKEN%'
+
+    - name: Display package output Ꙫ
+      run: dir ${env:outputBmdc}
+
+    - name: Display package output Ꙫ
+      run: dir ${env:outputBmdcWin}
+
+    - name: Display obfuscated secret Ꙫ
+      run: echo "The GitHub token is ${{ secrets.GITHUB_TOKEN }}"
+
+    - name: Display obfuscated secret Ꙫ
+      run: echo "The GH_PAT token is ${{ secrets.GH_PAT }}"
+
     - name: Upload Package 🚀
-      run: dotnet nuget push $outputBmdc/*.nupkg --skip-duplicate --no-symbols true
+      run: nuget push ${env:outputBmdcWin}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      env:
+        NUGET_AUTH_TOKEN: "${{ secrets.GH_PAT }}"
+      if: (((github.repository == 'BlazorMdc/BlazorMdc') && (github.event_name == 'push')) || (github.repository != 'BlazorMdc/BlazorMdc'))
+
+
 
 
 ############################################################################################################
@@ -199,7 +262,7 @@ jobs:
     - name: Deploy to BlazorMdcWebsite 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
-        ACCESS_TOKEN: ${{ secrets.GH_PAT }}
+        ACCESS_TOKEN: ${{secrets.GH_PAT}}
         BRANCH: gh-pages
         FOLDER: "siteWeb/wwwroot"
         REPOSITORY_NAME: '${{github.repository_owner}}/BlazorMdcWebsite'

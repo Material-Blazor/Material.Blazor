@@ -14,9 +14,9 @@ on:
 env:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  outputDocFx: ${{ github.workspace }}/siteDocFx
-  outputBmdc: ${{ github.workspace }}/siteBmdc
-  outputWeb: ${{ github.workspace }}/siteWeb
+  outputDocFx: ${{github.workspace}}/siteDocFx
+  outputBmdc: ${{github.workspace}}/siteBmdc
+  outputWeb: ${{github.workspace}}/siteWeb
   projectBmdc: 'BlazorMdc/BlazorMdc.csproj'
   projectWeb: 'BlazorMdcWebsite.WebAssembly/BlazorMdcWebsite.WebAssembly.csproj'
 
@@ -24,6 +24,8 @@ jobs:
 
 ############################################################################################################
 #Build & Deploy DocFx pages (2 jobs)
+#Why two jobs? The build of DocFx is on Windows because we haven't figured out how to create DocFx output
+#     on Ubuntu
 ############################################################################################################
   builddocfx:
 
@@ -32,7 +34,7 @@ jobs:
     steps:
 
     - name: Show Tag name Ꙫ
-      run: echo "GitHub indicates that this is a tag creation with ${GITHUB_REF/refs\/tags\//}"
+      run: echo "GitHub indicates that this is a tag creation with ${{GITHUB_REF/refs\/tags\//}}"
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -72,7 +74,7 @@ jobs:
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
-        ACCESS_TOKEN: ${{ secrets.GH_PAT }}
+        ACCESS_TOKEN: ${{secrets.GH_PAT}}
         BRANCH: gh-pages
         FOLDER: "siteDocFx" # The deployment folder should match the name of the artifact.
       if: (github.repository == 'BlazorMdc/BlazorMdc')
@@ -80,6 +82,7 @@ jobs:
 
 ############################################################################################################
 #Build & Deploy BlazorMdc Nuget package (1 job)
+#Why Windows? Because it proved highly impossible to figure out Ubuntu 'NuGet push'
 ############################################################################################################
   buildblazormdc:
     runs-on: ubuntu-latest
@@ -105,17 +108,21 @@ jobs:
     - name: Build 🔧
       run: dotnet build --configuration $buildConfiguration -p:PackageVersion=$Version $projectBmdc
       env:
-        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        NUGET_AUTH_TOKEN: "${secrets.GITHUB_TOKEN}"
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Generate NuGet package 🔧
       run: dotnet pack --no-build --configuration $buildConfiguration --output $outputBmdc -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:PackageVersion=$Version $projectBmdc
       env:
-        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        NUGET_AUTH_TOKEN: "${secrets.GITHUB_TOKEN}"
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
+
+    - name: Display package output Ꙫ
+      run: ls $outputBmdc
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Upload Package 🚀
-      run: dotnet nuget push $outputBMDC/*.nupkg -k ${{ secrets.NUGET_API_KEY }} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push $outputBMDC/*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
 
@@ -158,7 +165,7 @@ jobs:
     - name: Deploy BlazorMdcWebsite 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
-        ACCESS_TOKEN: ${{ secrets.GH_PAT }}
+        ACCESS_TOKEN: ${{secrets.GH_PAT}}
         BRANCH: gh-pages
         FOLDER: "siteweb/wwwroot"
         REPOSITORY_NAME: 'BlazorMdc/BlazorMdcWebsite'

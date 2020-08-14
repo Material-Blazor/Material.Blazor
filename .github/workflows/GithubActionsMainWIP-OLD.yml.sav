@@ -1,0 +1,130 @@
+﻿name: GithubActionsMainWIP
+
+# OLD - Preview 8
+
+on:
+  push:
+    branches: [ main ]
+
+  pull_request:
+    branches: [ main ]
+
+env:
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Debug_Server'
+  ciSuffix: CI.${{ github.run_number }}
+  output: ${{ github.workspace }}\_site
+  project: 'BlazorMdc\BlazorMdc.csproj'
+
+jobs:
+
+  buildanddeploy:
+
+    runs-on: windows-latest
+
+    steps:
+
+    - name: Get the branch
+      id: get_branch
+      run: echo ::set-output name=branch::${GITHUB_REF/refs\/heads\//}
+      shell: bash
+
+    - name: Get the pullrequest
+      id: get_pullrequest
+      run: echo ::set-output name=pullrequest::${GITHUB_REF/refs\/pull\//}
+      shell: bash
+
+    - name: Get the tag
+      id: get_tag
+      run: echo ::set-output name=tag::${GITHUB_REF/refs\/tags\//}
+      shell: bash
+
+    - name: Show branch name Ꙫ
+      run: echo "GitHub indicates that this is a branch push request of ${{steps.get_branch.outputs.branch}}"
+      if: contains(github.ref, 'refs/heads')
+
+    - name: Show PR name Ꙫ
+      run: echo "GitHub indicates that this is a pull request called ${{steps.get_pullrequest.outputs.pullrequest}}"
+      if: contains(github.ref, 'refs/pull')
+
+    - name: Show Tag name Ꙫ
+      run: echo "GitHub indicates that this is a tag creation with ${{steps.get_tag.outputs.tag}}"
+      if: contains(github.ref, 'refs/tag')
+
+
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v2
+
+
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.302
+        source-url: https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      env:
+        NUGET_AUTH_TOKEN: '%NUGET_AUTH_TOKEN%'
+
+    - name: Display CI suffix Ꙫ
+      run: echo ${env:ciSuffix}
+
+    - name: Build 🔧
+      run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:project}
+      env:
+        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+    - name: Generate NuGet package 🔧
+      run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:output} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:project}
+      env:
+        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+
+    - name: Display package output Ꙫ
+      run: dir ${env:output}
+
+    - name: Display obfuscated secret Ꙫ
+      run: echo "The GitHub token is ${{ secrets.GITHUB_TOKEN }}"
+
+    - name: Upload Package 🚀
+      run: nuget push ${env:output}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      env:
+        NUGET_AUTH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+      if: github.repository == 'BlazorMdc/BlazorMdc' && github.event_name == 'push'
+
+    - name: Create documentation
+      run: .\docfx\docfx docfx.json
+      env:
+        DOCFX_SOURCE_BRANCH_NAME: ${{steps.get_branch.outputs.branch}}
+      if: contains(github.ref, 'refs/heads')
+
+    - name: Upload Artifacts 🔺 # The project is then uploaded as an artifact named 'site'.
+      uses: actions/upload-artifact@v1
+      with:
+        name: site
+        path: _site
+        if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
+
+  deployghpages:
+    needs: [buildanddeploy] # The second job must depend on the first one to complete before running, and uses ubuntu-latest instead of windows.
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+        if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
+
+      - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
+        uses: actions/download-artifact@v1
+        with:
+          name: site
+        if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.GH_PAT }}
+          BRANCH: gh-pages
+          FOLDER: "site" # The deployment folder should match the name of the artifact. Even though our project builds into the '_site' folder the artifact name of 'site' must be placed here.
+        if: (contains(github.ref, 'refs/heads') && (github.repository != 'BlazorMdc/BlazorMdc'))
