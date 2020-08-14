@@ -54,7 +54,7 @@
 			Outputs="@(OutputsCss);@(OutputsJs)">-->
   
 	<Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">
-    <Exec Command="docker build -t blazormdc_static_assets -f npm.df ." />
+    <Exec Command="docker build -t blazormdc_static_assets -f build-static-assets.Dockerfile ." />
     <Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
     <Exec Command="docker run --rm blazormdc_static_assets cat blazormdc.js > wwwroot/blazormdc.js" />
     <Exec Command="docker run --rm blazormdc_static_assets cat blazormdc.css > wwwroot/blazormdc.css" />
