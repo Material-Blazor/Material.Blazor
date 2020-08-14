@@ -186,6 +186,9 @@ jobs:
     - name: Display obfuscated secret Ꙫ
       run: echo "The GitHub token is ${{ secrets.GITHUB_TOKEN }}"
 
+    - name: Display obfuscated secret Ꙫ
+      run: echo "The GH_PAT token is ${{ secrets.GH_PAT }}"
+
     - name: Upload Package 🚀
       run: nuget push ${env:outputBmdcWin}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
