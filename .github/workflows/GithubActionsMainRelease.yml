@@ -122,8 +122,18 @@ jobs:
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Upload Package 🚀
-      run: dotnet nuget push $outputBMDC/*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push $outputBmdc/*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
       if: (github.repository == 'BlazorMdc/BlazorMdc')
+
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${GITHUB_REF/refs\/heads\//}
+        release_name: Release $Version
+        draft: false
+        prerelease: false
 
 
 ############################################################################################################
