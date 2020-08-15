@@ -4,11 +4,11 @@ title: MTCard
 ---
 # MTCard
 
-### Summary
+## Summary
 
 A [Material Card](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-card#cards) built using render fragments. It features:
 
-### Details
+## Details
 
 - Card style of Raised or Outlined;
 - A Primary render fragment for non clickable content;

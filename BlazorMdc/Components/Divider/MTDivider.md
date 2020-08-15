@@ -4,7 +4,7 @@ title: MTDivider
 ---
 # MTDivider
 
-### Summary
+## Summary
 
 A Material Divider which is a horizonal rule with boolean indicators for the material inset and padded CSS classes.
 

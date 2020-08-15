@@ -4,11 +4,11 @@ title: MTRadioButtonGroup
 ---
 # MTRadioButtonGroup&lt;TItem&gt;
 
-### Summary
+## Summary
 
 A group of [MTRadioButtons](xref:C.MTRadioButton).
 
-### Details
+## Details
 
 - Groups a set of [MTRadioButtons](xref:C.MTRadioButton) together;
 - Allows for horizontal or vertical alignment;

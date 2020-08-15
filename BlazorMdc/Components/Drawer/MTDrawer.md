@@ -4,11 +4,11 @@ title: MTDrawer
 ---
 # MTDrawer
 
-### Summary
+## Summary
 
 A [Material Drawer](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-drawer#navigation-drawers) using a render fragment for content. It features:
 
-### Details
+## Details
 
 - Render fragment content;
 - A boolean indicator for whether the drawer is open or closed on startup;

@@ -4,7 +4,7 @@ title: MTMenu
 ---
 # MTMenu
 
-### Summary
+## Summary
 
 A [Material Menu](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-menu#menus), where the entire menu content is a render fragment.
 

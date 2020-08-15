@@ -4,11 +4,11 @@ title: MTRadioButton
 ---
 # MTRadioButton&lt;TItem&gt;
 
-### Summary
+## Summary
 
  A [Material Radio Button](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-radio#selection-controls-radio-buttons).
 
-### Details
+## Details
 
 - Accepts a label and an indication as to whether the radio button is in a Material Theme touch wrapper;
 - Takes a radio group name, which is used as a common `name` attribute in the HTML `<input>` component to tell Material Theme which other radio buttons to group this button with;

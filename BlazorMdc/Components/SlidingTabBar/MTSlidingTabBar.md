@@ -4,12 +4,12 @@ title: MTSlidingTabBar
 ---
 # MTSlidingTabBar&lt;TItem&gt;
 
-### Summary
+## Summary
 
 A combination of a simple [MTTabBar](xref:C.MTTabBar) with an [MTSlidingContent](xref:C.MTSlidingContent) to provide an all-in-one tab bar
 solution that uses navigation animation cues to inform the user of navigation events.
 
-### Details
+## Details
 
 - Takes input relvant to each of [MTTabBar](xref:C.MTTabBar) and [MTSlidingContent](xref:C.MTSlidingContent) for the tab titles/icons and tab panel contents.
 

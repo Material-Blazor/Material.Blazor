@@ -14,7 +14,7 @@ We built Blazor MDC with the following principles in mind:
 - Some added value components derived from core material theme components but that are not strictly material theme themselves. These include an autocomplete box, a confimration dialog and formatted numeric input fields. We also provide a date picker and paginator, each of which follow Material Theme specification in the absence of a Material Theme css/js implementation, and
 - We aim for Blazor MDC to employ best practice for Blazor development. As a starting point this should be considered as being defined per [this video from NDC London, January 2020](https://www.youtube.com/watch?v=QnBYmTpugz0).
 
-### Managing interaction between Blazor and Material Theme JS
+## Managing interaction between Blazor and Material Theme JS
 
 Blazor does not have access to the DOM and updates components by re-rendering them. Material Theme on the other hand, as a comprehensive JavaScript library, updates components by directly changing
 DOM elements once components have been registered with Material Theme. These differing approaches cause conflicts if not properly managed, severely degrading the user experience. Imagine for example
@@ -33,7 +33,7 @@ abstract class.
 This is an unusual approach for a Blazor component library, but it is the key methodology that makes Material Theme components behave precisely as they should. Blazor MDC then does the hard work
 of encapsulating this and transforming it into a native blazor experience for the libary's consumer.
 
-### Component Intialization
+## Component Intialization
 
 All Material Theme components need to make intiialization calls to the Material Theme JavaScript libraries. There is a special case where this needs to be delayed: dialogs (see [MT documentation](https://material.io/develop/web/components/dialogs)).
 Some components need either to be initialized after a dialog has opened (with its transition), or to be re laid out. Blazor MDC takes an approach where every component can detect whether it is in a dialog.
@@ -44,7 +44,7 @@ If so, it does one of two things:
 
 This mechanism is also handled in the Blazor MDC's internal `InputComponentFoundation` abstract class.
 
-### Namespaces
+## Namespaces
 
 Blazor MDC has two namespaces:
 

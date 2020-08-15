@@ -4,11 +4,11 @@ title: MTButton
 ---
 # MTButton
 
-### Summary
+## Summary
 
 A [Material Button](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-button#buttons) with the following properties:
 
-### Details
+## Details
 
 - Text, Outlined, Filled or Raised styles;
 - Leading and trailing icons;

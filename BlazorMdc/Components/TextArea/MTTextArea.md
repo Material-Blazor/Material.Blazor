@@ -4,11 +4,11 @@ title: MTTextArea
 ---
 # MTTextArea
 
-### Summary
+## Summary
 
 A [Material Text Field](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-textfield#text-field) expressed as a text area.
 
-### Details
+## Details
 
 - Similar to [MTTextField](xref:C.MTTextField), bit lacking prefix, suffix or leading and trailing icons;
 - Can set the initial number of rows and columns to display; and

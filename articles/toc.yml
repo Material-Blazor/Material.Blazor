@@ -34,5 +34,10 @@
 - name: Services
   topicUid: A.Services
 
+- name: Blazor MDC Principles
+  topicUid: A.Principles
+  
+- name: Two Way Binding
+  topicUid: A.TwoWayBinding
 - name: Utilities
   topicUid: A.Utilities

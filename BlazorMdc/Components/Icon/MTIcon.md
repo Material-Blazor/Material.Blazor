@@ -4,11 +4,11 @@ title: MTIcon
 ---
 # MTIcon
 
-### Summary
+## Summary
 
 An icon component that generates HTML markup for an icon either for the default foundry for the one specified.
 
-### Details
+## Details
 
 - The Material Icons foundry is supplied by Google and referenced in the Blazor MDC bundled CSS.
 - You can also use Font Awesome version 5 and Open Iconic version 1.1 icon foundtries, for which you will need to reference CDN or local CSS files.

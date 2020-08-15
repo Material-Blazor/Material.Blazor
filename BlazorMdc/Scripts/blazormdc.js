@@ -61,7 +61,7 @@ window.BlazorMdc = {
 
             if (isFormField) {
                 elem._formField = mdc.formField.MDCFormField.attachTo(formFieldElem);
-                elem._formField.input = checkbox;
+                elem._formField.input = elem._checkbox;
             }
         },
 

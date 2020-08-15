@@ -307,6 +307,11 @@
 }
 
 
+pre code {
+    overflow: auto !important;
+    white-space: pre !important;
+}
+
 /* a {
     position: relative;
     z-index: 1;

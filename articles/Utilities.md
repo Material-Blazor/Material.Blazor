@@ -6,7 +6,7 @@ title: Utilities
 
 The following are utilities for cascading app defaults through nested components and managing icon foundries.
 
-### Utilities List
+## Utilities List
 
 | Utility | Notes |
 | :------ | :---- |

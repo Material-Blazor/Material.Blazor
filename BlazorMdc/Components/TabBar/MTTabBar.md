@@ -4,11 +4,11 @@ title: MTTabBar
 ---
 # MTTabBar&lt;TItem&gt;
 
-### Summary
+## Summary
 
 A [Material Tab Bar](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-tab-bar#tab-bar), including scroll function for when the tab bar is wider than the viewport.
 
-### Details
+## Details
 
 - Accepts an IEnumerable of tab labels and (optional) icons;
 - Two-way binds the tab index number;

@@ -9,7 +9,7 @@ Reference the `BlazorMdc` namespace with `@using BlazorMdc` to your `_Imports.ra
 - If you want to use toasts via `MTToastAnchor` add `services.AddMTToastService();` to your `ConfigureServices` function for Blazor Server or to the `Main()` function for Blazor WebAssembly, and
 - If you want animated page navigation using `MTAnimationdNavigation` add `services.AddMTAnimatedNavigationManager();` to `ConfigureServices`.
 
-### Directions for using Blazor MDC bundled CSS and JS
+## Directions for using Blazor MDC bundled CSS and JS
 
 ***This is the recommended way to install Blazor MDC.***
 
@@ -28,7 +28,7 @@ and at the end of `<body>`:
 Add the BlazorMdc namespace to your project by appending `@using BlazorMdc` to the end of your project's _Imports.razor file. Do not use components from the BlazorMdc.Internal namespace: as the name
 implies these are intended for internal use by Blazor MDC, however Blazor has no mechanism for internally restricted Blazor components to mirror the `internal` directive for a C# class.
 
-### Alternative using unbundled CSS and JS
+## Alternative using unbundled CSS and JS
 
 If you want, you can directly reference the Material Theme CSS and JS from the unpkg CDN (or download it for yourself). Again we package a reference to Material Icons. You will to add five items to your index.html/_Host.cshtml. Place this in the <head>` tag:
 
@@ -48,7 +48,7 @@ and at the end of `<body>`:
 We also provide minified `blazormdc.min.css` and `blazormdc.min.js`. Add the BlazorMdc namespace to your project as above. These will be needed
 if you want to create your own theme using Material Theme SASS mixins - we have done this for [blazormc.com](https://blazormdc.com)
 
-### Package versions
+## Package versions
 
 Blazor MDC works with the following package versions:
 
@@ -62,7 +62,7 @@ Blazor MDC works with the following package versions:
     <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic.min.css" crossorigin="anonymous" rel="stylesheet" />
     ```
 
-### Services and Anchor
+## Services and Anchor
 
 Blazor MDC has three services for the animated navigation manager, toasts and tooltips. We strongly advise you to use these in your project
 because regular component tooltips will fail if you don't, although they are optional. To register the services:
@@ -95,7 +95,7 @@ When you use the services you must also place an anchor component at the top of 
 <MTAnchor />
 ```
 
-### Binding
+## Binding
 
 BlazorMDC components support the EditForm environment. To that end BlazorMDC uses the 
 

@@ -1,4 +1,4 @@
-## Components, Services, and Utilities
+# Components, Services, and Utilities
 
 This section has articles for each of the Blazor MDC [Core Components](xref:A.CoreComponents), [Plus Components](xref:A.PlusComponents), [Utilities](xref:A.Utilities) and [Services](xref:A.Services).
 There is also links to the comprehensive API reference automatically generated from the Blazor MDC codebase's triple slash comments For each of the `BlazorMdc` and `BlazorMdc.Internal` namespaces.

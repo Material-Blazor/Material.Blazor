@@ -66,7 +66,7 @@ namespace BlazorMdc
             }
         }
 
-        private string FormFieldClass => (IsFormField || !(string.IsNullOrWhiteSpace(Label))) ? "mdc-form-field" : "";
+        private string FormFieldClass => (true || IsFormField || !(string.IsNullOrWhiteSpace(Label))) ? "mdc-form-field" : "";
         private ElementReference ElementReference { get; set; }
         private ElementReference FormReference { get; set; }
 
