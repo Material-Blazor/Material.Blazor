@@ -80,7 +80,6 @@ jobs:
       run: echo "GitHub indicates that this is a tag creation with ${{steps.get_tag.outputs.tag}}"
       if: contains(github.ref, 'refs/tag')
 
-
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
 
@@ -119,32 +118,33 @@ jobs:
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v1
       with:
-        name: SiteDocFx
+        name: siteDocFx
       if: (github.repository != 'BlazorMdc/BlazorMdc')
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v1
       with:
-        name: SiteWeb
+        name: siteWeb
       if: (github.repository != 'BlazorMdc/BlazorMdc')
+
+    - name: Show Tag name Ꙫ
+      run: mv siteWeb siteDocFx/website
+      if: (github.repository != 'BlazorMdc/BlazorMdc'
+
+
+# I'm pretty certain that you can do one mkdir & one copy command (these are the rough Windows commands)
+# mkdir siteDocFx/wwwroot
+# xcopy SiteWeb\wwwroot\*.* SiteDoxFx\wwwroot\*.* /s
+#
+# The base href rewrite needs to be checked but the publish should be OK
 
 #Do the href rewrite if we aren't publishing to the 'real' BlazorMdcWebsite
 
     - name: Base Href Rewrite 👉
       uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       with:
-        html_path: "siteWeb/wwwroot/index.html"
-        base_href: "/BlazorMdcWebsite/"
-      if: (github.repository != 'BlazorMdc/BlazorMdc') && false
-
-# deploy to the cloned BlazorMdcWebsite depending on where we are doing the build
-
-    - name: Deploy to BlazorMdcWebsite 🚀
-      uses: JamesIves/github-pages-deploy-action@releases/v3
-      with:
-        ACCESS_TOKEN: ${{secrets.GH_PAT}}
-        BRANCH: gh-pages
-        FOLDER: "siteWeb/wwwroot"
+        html_path: "siteDocFx/website/index.html"
+        base_href: "/BlazorMdc/website/"
       if: (github.repository != 'BlazorMdc/BlazorMdc') && false
 
     - name: Deploy 🚀
@@ -152,7 +152,7 @@ jobs:
       with:
         ACCESS_TOKEN: ${{secrets.GH_PAT}}
         BRANCH: gh-pages
-        FOLDER: "SiteDocFx" # The deployment folder should match the name of the artifact.
+        FOLDER: "siteDocFx"
       if: (github.repository != 'BlazorMdc/BlazorMdc') && false
 
 
@@ -282,7 +282,3 @@ jobs:
         NUGET_AUTH_TOKEN: "${{ secrets.GH_PAT }}"
       if: ((github.repository == 'BlazorMdc/BlazorMdc') && (github.event_name == 'push'))
 #      if: (((github.repository == 'BlazorMdc/BlazorMdc') && (github.event_name == 'push')) || (github.repository != 'BlazorMdc/BlazorMdc'))
-
-
-
-
