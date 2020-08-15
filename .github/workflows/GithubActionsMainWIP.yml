@@ -129,7 +129,7 @@ jobs:
 
     - name: Show Tag name Ꙫ
       run: mv siteWeb siteDocFx/website
-      if: (github.repository != 'BlazorMdc/BlazorMdc'
+      if: (github.repository != 'BlazorMdc/BlazorMdc')
 
 
 # I'm pretty certain that you can do one mkdir & one copy command (these are the rough Windows commands)
