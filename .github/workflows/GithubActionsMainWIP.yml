@@ -128,7 +128,7 @@ jobs:
       if: (github.repository != 'BlazorMdc/BlazorMdc')
 
     - name: Move Blazor MDC to website directory under docs Ꙫ
-      run: mv siteWeb siteDocFx/website
+      run: mv siteWeb/wwwroot siteDocFx
       if: (github.repository != 'BlazorMdc/BlazorMdc')
 
 
@@ -143,8 +143,8 @@ jobs:
     - name: Base Href Rewrite 👉
       uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       with:
-        html_path: "siteDocFx/website/index.html"
-        base_href: "/BlazorMdc/website/"
+        html_path: "siteDocFx/wwwroot/index.html"
+        base_href: "/BlazorMdc/wwwroot/"
       if: (github.repository != 'BlazorMdc/BlazorMdc')
 
     - name: Deploy 🚀
