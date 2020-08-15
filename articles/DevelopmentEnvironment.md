@@ -12,27 +12,27 @@ We have developed Blazor MDC using Visual Studio 2019 on Windows, and have not t
 - You can fork Blazor MDC from https://github.com/BlazorMdc/BlazorMdc and BlazorMdcWebsite from https://github.com/BlazorMdc/BlazorMdcWebSite. If you intend to submit pull requests please note that we use a`main` branch and accept feature branches created from `main`. PRs are only made to the BlazorMdc repository.
 - The repo has Github Actions for `main`. In your forked repo, [`GithubActionsDevelop`](https://github.com/BlazorMdc/BlazorMdc/blob/develop/.github/workflows/GithubActionsMainWIP.yml) will attempt to publish the documentation to your GitHub pages and the website to the forked repo BlazorMdcWebsite GitHub pages:
   - If you want this to publish to `<repository owner>/github.io/BlazorMdc`, you will need to set up a Personal Access Token with write access to your repos - PATS are set up by clicking your icon at the top right on GitHub, then Settings and Developer Settings in the navigation menu to the left. <<SIMON - NEED IMAGES>>
-  <img src="/images/gh-account-settings-1.png" alt="GitHub Account Settings"></img>
-  <img src="/images/gh-account-settings-2.png" alt="GitHub Account Settings"></img>
-  <img src="/images/gh-account-settings-3.png" alt="GitHub Account Settings"></img>
+  <img src="../images/gh-account-settings-1.png" alt="GitHub Account Settings"></img>
+  <img src="../images/gh-account-settings-2.png" alt="GitHub Account Settings"></img>
+  <img src="../images/gh-account-settings-3.png" alt="GitHub Account Settings"></img>
   - Next go to the Settings of your forked repo and add a secret called "GH_PAT" using the contents of the PAT that you created in the previous step.
 <<SIMON - NEED IMAGE>>
-  <img src="/images/gh-account-settings-4.png" alt="GitHub Account Settings"></img>
+  <img src="../images/gh-account-settings-4.png" alt="GitHub Account Settings"></img>
   - Now go to the main settings for your forked repo and scroll down until the "GitHub Pages" section. Select the "gh-pages branch" as the Source and click the Theme button - you *must* select a theme on the next page.
 <<SIMON - NEED IMAGE>>
-  <img src="/images/gh-account-settings-5.png" alt="GitHub Account Settings"></img>
+  <img src="../images/gh-account-settings-5.png" alt="GitHub Account Settings"></img>
   - The docs should now publish next time you push to your `develop` branch on GitHub.
 
 ### Configuring the development environment
 
 - To build the Blazor project you need to be using the latest preview version of Visual Studio 2019. This can be found at [https://visualstudio.microsoft.com/vs/preview/](https://visualstudio.microsoft.com/vs/preview/). The Community Edition is sufficient. During the installation you must include the "ASP.NET and web development" Workload using Visual Studio Installer.:
 <<SIMON - NEED IMAGE>>
-    <img src="/images/vs-config.png" alt="Visual Studio Workloads"></img>
+    <img src="../images/vs-config.png" alt="Visual Studio Workloads"></img>
 - Blazor MDC uses SASS for styling and uses Material Components Web SASS mixins. You will also need to install "Docker". Docker for Windows can be found at [https://docs.docker.com/docker-for-windows/install/](https://docs.docker.com/docker-for-windows/install/). Docker for Mac can be found at [https://docs.docker.com/docker-for-mac/install/](https://docs.docker.com/docker-for-mac/install/). Docker will be responsible for using npm to build and minify resources from within Docker virtual images.  Note that npm packages are  *voluminous* and running the build will download over 160MB of data in the Docker directory.
 - There are some Visual Studio extensions that you need or may want:
   - We like Markdown Editor, which will help you improve this page.
 <<SIMON - NEED IMAGE>>
-   <img src="/images/vs-extensions.png" alt="Visual Studio Extensions"></img>
+   <img src="../images/vs-extensions.png" alt="Visual Studio Extensions"></img>
 
 ### CI and Release GitHub Action workflows
 

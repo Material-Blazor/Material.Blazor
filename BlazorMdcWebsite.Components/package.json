@@ -5,13 +5,13 @@
   "main": "server.js",
   "scripts": {
     "build-blue-square": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/blue-square-theme.scss wwwroot/css/blue-square-theme.css",
-    "minify-blue-square": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/blue-square-theme.scss wwwroot/css/blue-square-theme.min.css",
+    "build-min-blue-square": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/blue-square-theme.scss wwwroot/css/blue-square-theme.min.css",
     "build-red-round": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/red-round-theme.scss wwwroot/css/red-round-theme.css",
-    "minify-red-round": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/red-round-theme.scss wwwroot/css/red-round-theme.min.css",
+    "build-min-red-round": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/red-round-theme.scss wwwroot/css/red-round-theme.min.css",
     "build-varied": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/varied-theme.scss wwwroot/css/varied-theme.css",
-    "minify-varied": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/varied-theme.scss wwwroot/css/varied-theme.min.css",
+    "build-min-varied": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/varied-theme.scss wwwroot/css/varied-theme.min.css",
     "build-mt-default": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/mt-default-theme.scss wwwroot/css/mt-default-theme.css",
-    "minify-mt-default": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/mt-default-theme.scss wwwroot/css/mt-default-theme.min.css"
+    "build-min-mt-default": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/mt-default-theme.scss wwwroot/css/mt-default-theme.min.css"
   },
   "keywords": [],
   "author": "",
