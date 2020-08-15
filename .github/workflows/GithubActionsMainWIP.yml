@@ -127,7 +127,7 @@ jobs:
         name: siteWeb
       if: (github.repository != 'BlazorMdc/BlazorMdc')
 
-    - name: Show Tag name Ꙫ
+    - name: Move Blazor MDC to website directory under docs Ꙫ
       run: mv siteWeb siteDocFx/website
       if: (github.repository != 'BlazorMdc/BlazorMdc')
 
@@ -145,7 +145,7 @@ jobs:
       with:
         html_path: "siteDocFx/website/index.html"
         base_href: "/BlazorMdc/website/"
-      if: (github.repository != 'BlazorMdc/BlazorMdc') && false
+      if: (github.repository != 'BlazorMdc/BlazorMdc')
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
@@ -153,7 +153,7 @@ jobs:
         ACCESS_TOKEN: ${{secrets.GH_PAT}}
         BRANCH: gh-pages
         FOLDER: "siteDocFx"
-      if: (github.repository != 'BlazorMdc/BlazorMdc') && false
+      if: (github.repository != 'BlazorMdc/BlazorMdc')
 
 
 ############################################################################################################
