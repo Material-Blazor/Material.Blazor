@@ -7,7 +7,7 @@
 <br />
 
 >[!TIP]
->Visit our website at https://blazormdc.com which is being developed as a new Blazor MDC demonstration.
+>Visit our website at https://blazormdc.com for a full Blazor MDC demonstration.
 
 ## Lightweight Material Theme razor components for Blazor
 
@@ -19,7 +19,8 @@ Blazor MDC isn't the only Blazor component library for Material Theme and we enc
 - Lightweight components that require the minimal possible setup or boilerplate Blazor coding and without intensive startup processing;
 - An entirely native Blazor experience for Blazor MDC's consumer, using JavaScript Interop within Blazor MDC only where absolutely necessary, such as when initializing individual components to apply things like ripple and drop down menu functionality from the Material JavaScript libraries in the same manner as required for any other Material Theme web application;
 - A balanced approach (or at least what we think is balanced) to component customization: enough to be functional but keeping things to the point and maintainable;
-- A native Material Theme HTML/CSS experience where a developer wants and expects to use Material Theme's HTML Markup and CSS. Blazor MDC keeps out of a developer's way when she wants to follow Material Theme's guidance rigorously and take full advantage of its theming capability. This requires you to manage your layout because Blazor MDC does not attempt to give you layout shortcuts. This is so you can decide what layout system to use? Material Theme, Bootstrap or as you wish. Other libraries take a different approach, and if you have a different requirement you may want to consider other options;
+- A native Material Theme HTML/CSS experience where a developer wants and expects to use Material Theme's HTML Markup and CSS. Blazor MDC keeps out of a developer's way when she wants to follow Material Theme's guidance rigorously and take full advantage of its theming capability. This requires you to manage your layout because Blazor MDC does not attempt to give you layout shortcuts. This is so you can decide what layout system to use - Material Theme, Bootstrap or whatever you want. We just do components. Other libraries take a different approach, and if you have a different requirement you may want to consider other options;
+- We do like theming per Material Theme however and you'll find different themes [on our website](https://blazormdc.com). Click the button on the top right of the top app bar. See the code base (same repo as this) to see how we did it.
 - Some added value components derived from core material theme components but that are not strictly material theme themselves. These include an autocomplete box, a confimration dialog and formatted numeric input fields. We also provide a date picker and paginator, each of which follow Material Theme specification in the absence of a Material Theme css/js implementation; and
 - We aim for Blazor MDC to employ best practice for Blazor development. As a starting point this should be considered as being defined per [this video from NDC London, January 2020](https://www.youtube.com/watch?v=QnBYmTpugz0).
 
@@ -36,21 +37,9 @@ We also want to acknowledge the work of
 
 [See the Installation article](articles/Installation.md)
 
-## Demonstration
-
-[See the Demonstration article](articles/Demonstration.md)
-
 ## Components, Services, and Utilities
 
 [See the Components/Services/Utilities documentation](BlazorMdc/Components/Intro.md)
-
-## Future Work
-
-- Add remaining Material Theme components.
-- Add [density subsystem](https://material.io/develop/web/components/density/).
-- Target best practice (per notes in introduction) and perform further quality audit.
-- Build nullable numeric input in addition to current non nullables.
-- Continually review and follow [Material Theme framework standards](https://material.io/develop/web/docs/framework-integration/).
 
 <br />
 <br />

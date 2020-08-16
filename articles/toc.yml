@@ -10,9 +10,6 @@
 - name: Core Components
   topicUid: A.CoreComponents
 
-- name: Demonstration
-  topicUid: A.Demonstration
-
 - name: Development Environment
   topicUid: A.DevelopmentEnvironment
 

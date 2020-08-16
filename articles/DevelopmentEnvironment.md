@@ -6,7 +6,7 @@ title: DevelopmentEnvironment
 
 We have developed Blazor MDC using Visual Studio 2019 on Windows, and have not tested any other development environment. However, the CI builds run on Ubuntu so for routine development a Linux environment should be quite acceptable.
 
-### Forking the repos
+## Forking the repos
 
 - For the full development environmment you need to for two repositories. These are BlazorMdc & BlazorMdcWebsite. See the section below labeled 'GitHub Actions' for an explanantion of the second repository requirement.
 - You can fork Blazor MDC from https://github.com/BlazorMdc/BlazorMdc and BlazorMdcWebsite from https://github.com/BlazorMdc/BlazorMdcWebSite. If you intend to submit pull requests please note that we use a`main` branch and accept feature branches created from `main`. PRs are only made to the BlazorMdc repository.
@@ -23,7 +23,7 @@ We have developed Blazor MDC using Visual Studio 2019 on Windows, and have not t
   <img src="../images/gh-account-settings-5.png" alt="GitHub Account Settings"></img>
   - The docs should now publish next time you push to your `develop` branch on GitHub.
 
-### Configuring the development environment
+## Configuring the development environment
 
 - To build the Blazor project you need to be using the latest preview version of Visual Studio 2019. This can be found at [https://visualstudio.microsoft.com/vs/preview/](https://visualstudio.microsoft.com/vs/preview/). The Community Edition is sufficient. During the installation you must include the "ASP.NET and web development" Workload using Visual Studio Installer.:
 <<SIMON - NEED IMAGE>>
@@ -34,34 +34,34 @@ We have developed Blazor MDC using Visual Studio 2019 on Windows, and have not t
 <<SIMON - NEED IMAGE>>
    <img src="../images/vs-extensions.png" alt="Visual Studio Extensions"></img>
 
-### CI and Release GitHub Action workflows
+## CI and Release GitHub Action workflows
 
 These workflows are responsible for publishing three artifacts:
 * The BlazorMdc DocFx pages in the BlazorMdc repository gh-pages branch.
 * The BlazorMdc NuGet package hosted as a GitHub package (Release) or a NuGet.org (CI).
 * The BlazorMdc Website in the BlazorMdcWebsite repository gh-pages branch.
 
-#### WIP Workflow
+### WIP Workflow
 
 This workflow runs whenever a pull request is created, updated, or pushed.
 
-##### Forked repository
+#### Forked repository
 
 Regardless of the trigger, all three artifacts are published. The DocFx pages reside locally in the forked repository, the NuGet package is identified as a CI build & published to NuGet packages in the forked repository, and the Website is published into the gh-pages branch of a BlazorMdcWebsite repository with the same owner as the forked BlazorMdc repository.
 
 NOTE -- An issue exists when publishing the CI package to a forked repository in that the publish appears to work but the packages are not visible. For this reason (pending a service request response) the publish of the CI package is temporarily disabled.
 
-##### BlazorMdc\BlazorMdc repository
+#### BlazorMdc\BlazorMdc repository
 
 Regardless of the trigger, the WebSite & DocFx pages are not built. On a Push trigger the the BlazorMdc Nuget package identified as a CI build is built and then published to the BlazorMdc repository . It is up to a developer to have checked the publishing results of the documentation and website in the forked repository prior to initiating a release workflow.
 
-#### Release Workflow
+### Release Workflow
 
-##### Forked repository
+#### Forked repository
 
 Upon creation of a tag no actions are performed in the multiple jobs. At the current time we see no reason to create releases in the forked repositories.
 
-##### BlazorMdc\BlazorMdc repository
+#### BlazorMdc\BlazorMdc repository
 
 All three artifacts are produced. The documentation is in the BlazorMdc\BlazorMdc\gh-pages branch.
 The BlazorMdc NuGet package is published to NuGet.org. The Website is in the BlazorMdc\BlazorMdcWebsite\gh-pages branch.

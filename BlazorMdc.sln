@@ -32,7 +32,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "articles", "articles", "{FC
 	ProjectSection(SolutionItems) = preProject
 		articles\CascadingDefaults.md = articles\CascadingDefaults.md
 		articles\CoreComponents.md = articles\CoreComponents.md
-		articles\Demonstration.md = articles\Demonstration.md
 		articles\Density.md = articles\Density.md
 		articles\DevelopmentEnvironment.md = articles\DevelopmentEnvironment.md
 		articles\Installation.md = articles\Installation.md

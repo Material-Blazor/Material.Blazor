@@ -68,7 +68,7 @@ in an exception being thrown. Blazor MDC also has several ways of handling when 
 
 | Property | Usage |
 | :------- | :---- |
-| [ConstrainSplattableAttributes](xref:BlazorMdc.MTCascadingDefaults.ConstrainSplattableAttributes) | If set to `true`, which is the default, components throw an exception when unassigned attributes are used in razor markup. |
+| [ConstrainSplattableAttributes](xref:BlazorMdc.MTCascadingDefaults.ConstrainSplattableAttributes) | If set to `true`, which is the default, components throw an exception when unassigned attributes are used in razor markup. Defaults to `false`. |
 | [EssentialSplattableAttributes](xref:BlazorMdc.MTCascadingDefaults.EssentialSplattableAttributes) | A readonly list of HTML attributes that Blazor MDC requires for operation. Includes: `formnovalidate`, `id`, `max`, `min`, `role`, `step`, `tabindex` and `type`. Note that all aria attributes (e.g. `aria-disabled`) and event attibutes (e.g. `onclick`) are all allowed in addition to this list. |
 | [AllowedSplattableAttributes](xref:BlazorMdc.MTCascadingDefaults.AllowedSplattableAttributes) | A list of HTML attributes that you can assign for Blazor MDC to allow without throwing an exception . |
 | [ItemValidation](xref:BlazorMdc.MTCascadingDefaults.ItemValidation) | Validation method applied to [MTSelect](xref:C.MTSelect) and [MTRadioButtonGroup](xref:C.MTRadioButtonGroup). |

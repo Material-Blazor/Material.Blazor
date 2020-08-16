@@ -25,7 +25,7 @@ namespace BlazorMdc
          * 
          ************************************************************************************************************/
 
-        private bool _constrainSplattableAttributes = true;
+        private bool _constrainSplattableAttributes = false;
         /// <summary>
         /// Determines whether <see cref="Internal.ComponentFoundation"/> should throw an exception for invalid 
         /// unmatched HTML attributes passed to a component. Works with <see cref="EssentialSplattableAttributes"/>
