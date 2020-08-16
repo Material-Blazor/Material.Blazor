@@ -167,7 +167,7 @@ jobs:
 
     steps:
     - name: Set ciSuffix as env variable
-      run: echo "::set-env name=ciSuffix::CI.$(date +'%Y-%m-%d.%H%M')"
+      run: echo "::set-env name=ciSuffix::CI.$(date +'%Y-%m-%d--%H%M')"
 
     - name: Echo ciSuffix
       run: echo "CI suffix is $ciSuffix"
