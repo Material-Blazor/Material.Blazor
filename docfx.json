@@ -54,7 +54,8 @@
           "images/**.png",
           "images/**.jpg",
           ".nojekyll",
-          "404.html"
+          "404.html",
+          "websiteOrDocs.html"
         ]
       }
     ],
