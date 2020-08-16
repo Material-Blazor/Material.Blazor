@@ -4,7 +4,7 @@ title: Introduction
 ---
 # Introduction
 
-Welcome to the BlazorMdc Articles. We strongly recommend with [Installation](xref:A.Installation) & continuing with [Development Environment](xref:A.DevelopmentEnvironment).
+Welcome to the BlazorMdc Articles. We strongly recommend starting with [Installation](xref:A.Installation) & continuing with [Development Environment](xref:A.DevelopmentEnvironment).
 
 - [Cascading Defaults](xref:A.CascadingDefaults) is a mechanism for setting non-CSS defaults through Blazor Cascading Values.
 - [Blazor MDC Principles](xref:A.Principles) are core principles for how we developed Blazor MDC and how you should use it.
