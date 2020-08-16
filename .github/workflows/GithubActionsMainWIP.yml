@@ -128,17 +128,8 @@ jobs:
       if: (github.repository != 'BlazorMdc/BlazorMdc')
 
     - name: Configure deployment directory structure Ꙫ
-      run: mkdir deployroot; mv siteWeb/wwwroot deployroot/website; mv siteDocFx deployroot/docs; mv deployroot/docs/websiteOrDocs.html deployroot/index.html; cp deployroot/docs/{.nojekyll,404.html} deployroot
+      run: mkdir deployroot; mv siteWeb/wwwroot deployroot/website; mv siteDocFx deployroot/docs; mv deployroot/docs/forked-html.txt deployroot/index.html; cp deployroot/docs/{.nojekyll,404.html} deployroot
       if: (github.repository != 'BlazorMdc/BlazorMdc')
-
-
-# I'm pretty certain that you can do one mkdir & one copy command (these are the rough Windows commands)
-# mkdir siteDocFx/wwwroot
-# xcopy SiteWeb\wwwroot\*.* SiteDoxFx\wwwroot\*.* /s
-#
-# The base href rewrite needs to be checked but the publish should be OK
-
-#Do the href rewrite if we aren't publishing to the 'real' BlazorMdcWebsite
 
     - name: Base Href Rewrite 👉
       uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
@@ -226,11 +217,6 @@ jobs:
     - name: Display package output Ꙫ
       run: ls $outputBmdc
 
-#    - name: Upload Package 🚀
-#      run: nuget push $outputBmdc/*.nupkg -source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
-#      env:
-#        NUGET_AUTH_TOKEN: "${{secrets.GH_PAT}}"
-#
     - name: Upload Artifacts 🔺
       uses: actions/upload-artifact@v1
       with:
