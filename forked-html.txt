@@ -4,8 +4,6 @@
 <head>
     <meta charset="utf-8" />
     <title>Blazor MDC</title>
-    <meta http-equiv="refresh" content="0;url=https://blazormdc.com" />      
-    <link rel="canonical" href="https://blazormdc.com" />
     <link id="app-style" href="website/_content/BlazorMdcWebsite.Components/css/blue-square-theme.min.css" rel="stylesheet">
     <link href="website/_content/BlazorMdc/blazormdc.min.css" rel="stylesheet">
 </head>
