@@ -128,7 +128,7 @@ jobs:
       if: (github.repository != 'BlazorMdc/BlazorMdc')
 
     - name: Move Blazor MDC to website directory under docs Ꙫ
-      run: mkdir deployroot; mv siteWeb/wwwroot deployroot/website; mv siteDocFx  deployroot/docs; mv deployroot/docs/websiteOrDocs.html deployroot/index.html
+      run: mkdir deployroot; mv siteWeb/wwwroot deployroot/website; mv siteDocFx  deployroot/docs; mv deployroot/docs/websiteOrDocs.html deployroot/index.html; cp deployroot/docs/.jekyll deployroot; cp deployroot/docs/404.html deployroot
       if: (github.repository != 'BlazorMdc/BlazorMdc')
 
 

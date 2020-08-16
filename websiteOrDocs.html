@@ -3,9 +3,19 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>Blazor MDC</title>
+    <link id="app-style" href="website/_content/BlazorMdcWebsite.Components/css/blue-square-theme.min.css" rel="stylesheet">
+    <link href="website/_content/BlazorMdc/blazormdc.min.css" rel="stylesheet">
 </head>
-<body>
-    Go to either the <a href="website">Blazor MDC website</a> or our <a href="docs/index.html">documentation site</a>.
+<body class="mdc-typography bmdc-custom-scrollbars">
+    <main class="main-content" id="main-content">
+        <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell--span-12">
+                    <p>Go to either the <a href="website">Blazor MDC website</a> or our <a href="docs/index.html">documentation site</a>.</p>
+                </div>
+            </div>
+        </div>
+    </main>
 </body>
 </html>
