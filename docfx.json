@@ -55,7 +55,7 @@
           "images/**.jpg",
           ".nojekyll",
           "404.html",
-          "websiteOrDocs.html"
+          "*html.txt"
         ]
       }
     ],

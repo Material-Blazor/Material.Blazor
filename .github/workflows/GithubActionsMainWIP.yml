@@ -69,15 +69,15 @@ jobs:
       run: echo ::set-output name=tag::${GITHUB_REF/refs\/tags\//}
 
     - name: Show branch name Ꙫ
-      run: echo "GitHub indicates that this is a branch push request of ${{steps.get_branch.outputs.branch}}"
+      run: echo GitHub indicates that this is a branch push request of ${{steps.get_branch.outputs.branch}}
       if: contains(github.ref, 'refs/heads')
 
     - name: Show PR name Ꙫ
-      run: echo "GitHub indicates that this is a pull request called ${{steps.get_pullrequest.outputs.pullrequest}}"
+      run: echo GitHub indicates that this is a pull request called ${{steps.get_pullrequest.outputs.pullrequest}}
       if: contains(github.ref, 'refs/pull')
 
     - name: Show Tag name Ꙫ
-      run: echo "GitHub indicates that this is a tag creation with ${{steps.get_tag.outputs.tag}}"
+      run: echo GitHub indicates that this is a tag creation with ${{steps.get_tag.outputs.tag}}
       if: contains(github.ref, 'refs/tag')
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -134,8 +134,8 @@ jobs:
     - name: Base Href Rewrite 👉
       uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       with:
-        html_path: "deployroot/website/index.html"
-        base_href: "/BlazorMdc/website/"
+        html_path: 'deployroot/website/index.html'
+        base_href: '/BlazorMdc/website/'
       if: (github.repository != 'BlazorMdc/BlazorMdc')
 
     - name: Deploy 🚀
@@ -143,12 +143,12 @@ jobs:
       with:
         ACCESS_TOKEN: ${{secrets.GH_PAT}}
         BRANCH: gh-pages
-        FOLDER: "deployroot"
+        FOLDER: 'deployroot'
       if: (github.repository != 'BlazorMdc/BlazorMdc')
 
 
 ############################################################################################################
-#Build & Deploy BlazorMdc Nuget package (2 jobs)
+# Build & Deploy BlazorMdc Nuget package (2 jobs)
 #Why two jobs? Because we couldn't figure out how to successfully 'nuget push' on Ubuntu after more than
 #    2 man days of effort. Instead we simply upload the nuget packages as an artifact and then run a Windows job
 #    to deploy to GitHub Packages
@@ -158,10 +158,10 @@ jobs:
 
     steps:
     - name: Set ciSuffix as env variable
-      run: echo "::set-env name=ciSuffix::CI.$(date +'%Y-%m-%d--%H%M')"
+      run: echo '::set-env name=ciSuffix::CI.$(date +'%Y-%m-%d--%H%M')'
 
     - name: Echo ciSuffix
-      run: echo "CI suffix is $ciSuffix"
+      run: echo 'CI suffix is $ciSuffix'
 
     - name: Get the branch
       id: get_branch
@@ -176,15 +176,15 @@ jobs:
       run: echo ::set-output name=tag::${GITHUB_REF/refs\/tags\//}
 
     - name: Show branch name Ꙫ
-      run: echo "GitHub indicates that this is a branch push request of ${{steps.get_branch.outputs.branch}}"
+      run: echo GitHub indicates that this is a branch push request of ${{steps.get_branch.outputs.branch}}
       if: contains(github.ref, 'refs/heads')
 
     - name: Show PR name Ꙫ
-      run: echo "GitHub indicates that this is a pull request called ${{steps.get_pullrequest.outputs.pullrequest}}"
+      run: echo GitHub indicates that this is a pull request called ${{steps.get_pullrequest.outputs.pullrequest}}
       if: contains(github.ref, 'refs/pull')
 
     - name: Show Tag name Ꙫ
-      run: echo "GitHub indicates that this is a tag creation with ${{steps.get_tag.outputs.tag}}"
+      run: echo GitHub indicates that this is a tag creation with ${{steps.get_tag.outputs.tag}}
       if: contains(github.ref, 'refs/tag')
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
@@ -207,12 +207,12 @@ jobs:
     - name: Build 🔧
       run: dotnet build --configuration $buildConfiguration --version-suffix $ciSuffix $projectBmdc
       env:
-        NUGET_AUTH_TOKEN: "${{secrets.GITHUB_TOKEN}}"
+        NUGET_AUTH_TOKEN: '${{secrets.GITHUB_TOKEN}}'
 
     - name: Generate NuGet package 🔧
       run: dotnet pack --no-build --configuration $buildConfiguration --output $outputBmdc -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix $ciSuffix $projectBmdc
       env:
-        NUGET_AUTH_TOKEN: "${{secrets.GITHUB_TOKEN}}"
+        NUGET_AUTH_TOKEN: '${{secrets.GITHUB_TOKEN}}'
 
     - name: Display package output Ꙫ
       run: ls $outputBmdc
@@ -223,7 +223,12 @@ jobs:
         name: siteBmdc
         path: siteBmdc
 
-
+############################################################################################################
+#Build & Deploy BlazorMdc Nuget package (2 jobs)
+#Why two jobs? Because we couldn't figure out how to successfully 'nuget push' on Ubuntu after more than
+#    2 man days of effort. Instead we simply upload the nuget packages as an artifact and then run a Windows job
+#    to deploy to GitHub Packages
+############################################################################################################
   deployblazormdc:
     needs: [buildblazormdc] # The second job must depend on the first one to complete before running, and uses ubuntu-latest instead of windows.
 
@@ -253,10 +258,10 @@ jobs:
       run: dir ${env:outputBmdcWin}
 
     - name: Display obfuscated secret Ꙫ
-      run: echo "The GitHub token is ${{ secrets.GITHUB_TOKEN }}"
+      run: echo The GitHub token is ${{ secrets.GITHUB_TOKEN }}
 
     - name: Display obfuscated secret Ꙫ
-      run: echo "The GH_PAT token is ${{ secrets.GH_PAT }}"
+      run: echo The GH_PAT token is ${{ secrets.GH_PAT }}
 
 # We'd like to push to a forked repository; The push appears to work but the packages are not visible
 # Pending a service response we only do the push of the CI build in the bmdc/bmdc repository
@@ -265,6 +270,6 @@ jobs:
     - name: Upload Package 🚀
       run: nuget push ${env:outputBmdcWin}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
-        NUGET_AUTH_TOKEN: "${{ secrets.GH_PAT }}"
+        NUGET_AUTH_TOKEN: '${{ secrets.GH_PAT }}'
       if: ((github.repository == 'BlazorMdc/BlazorMdc') && (github.event_name == 'push'))
 #      if: (((github.repository == 'BlazorMdc/BlazorMdc') && (github.event_name == 'push')) || (github.repository != 'BlazorMdc/BlazorMdc'))
