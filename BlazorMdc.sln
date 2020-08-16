@@ -48,8 +48,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "blazormdc", "blazormdc", "{EED2C306-6ADE-4CF6-9E39-F6AA5B18EE79}"
 	ProjectSection(SolutionItems) = preProject
-		templates\blazormdc\.nojekyll = templates\blazormdc\.nojekyll
-		templates\blazormdc\404.html = templates\blazormdc\404.html
 		templates\blazormdc\favicon.ico = templates\blazormdc\favicon.ico
 		templates\blazormdc\logo.svg = templates\blazormdc\logo.svg
 	EndProjectSection
