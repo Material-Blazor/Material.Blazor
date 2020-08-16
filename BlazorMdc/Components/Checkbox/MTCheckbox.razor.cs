@@ -49,12 +49,6 @@ namespace BlazorMdc
         [Parameter] public EventCallback<bool> IsIndeterminateChanged { get; set; }
 
 
-        /// <summary>
-        /// Set to True if this is in a form.
-        /// </summary>
-        [Parameter] public bool IsFormField { get; set; }
-
-
         private bool CheckedValue
         {
             get => ReportingValue;
@@ -66,7 +60,6 @@ namespace BlazorMdc
             }
         }
 
-        private string FormFieldClass => (true || IsFormField || !(string.IsNullOrWhiteSpace(Label))) ? "mdc-form-field" : "";
         private ElementReference ElementReference { get; set; }
         private ElementReference FormReference { get; set; }
 
@@ -106,6 +99,6 @@ namespace BlazorMdc
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("BlazorMdc.checkBox.init", ElementReference, FormReference, ReportingValue, IsIndeterminate, IsFormField);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("BlazorMdc.checkBox.init", ElementReference, FormReference, ReportingValue, IsIndeterminate);
     }
 }
