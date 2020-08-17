@@ -29,9 +29,11 @@ namespace BlazorMdcWebsite.Components.Pages
             Runtime = RuntimeInformation.FrameworkDescription.ToString();
         }
 
-        private async Task NavigateToDocsAsync()
+
+
+        private void NavigateToDocs()
         {
-            await JSRuntime.InvokeAsync<object>("open", "https://docs.blazormdc.com", "_blank");
+            ANManager.NavigateTo("/docs", true);
         }
 
 
