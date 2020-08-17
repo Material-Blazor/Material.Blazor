@@ -9,10 +9,10 @@
 		<PackageLicenseFile></PackageLicenseFile>
 		<Authors>Simon Ziegler of Dioptra and Mark Stega of Optimium Health</Authors>
 		<Company>Blazor MDC</Company>
-		<Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io. API and other documentation can be found at https://docs.blazormdc.com.</Description>
+		<Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io. API and other documentation can be found at https://blazormdc.com/docs.</Description>
 		<RepositoryUrl>https://github.com/BlazorMdc/BlazorMdc</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageReleaseNotes>We have a breaking change to the names of the bundled CSS and JS - please see docs.blazormdc.com in the installation section.</PackageReleaseNotes>
+		<PackageReleaseNotes>We have a breaking change to the names of the bundled CSS and JS - please see blazormdc.com/docs in the installation section.</PackageReleaseNotes>
 		<NeutralLanguage>en</NeutralLanguage>
 		<Copyright>Dioptra and Optimium Health</Copyright>
 		<PackageProjectUrl>https://blazormdc.com</PackageProjectUrl>

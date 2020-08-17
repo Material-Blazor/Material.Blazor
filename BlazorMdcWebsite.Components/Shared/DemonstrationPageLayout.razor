@@ -129,8 +129,8 @@
         for (int i = 0; i < ComponentNames.Length; i++)
         {
             var apiSuffix = (IsGeneric == null || !IsGeneric[i]) ? "" : "-1";
-            articleText += prefix + $"<a href=\"https://docs.blazormdc.com/BlazorMdc/Components/{ComponentNames[i]}/MT{ComponentNames[i]}.razor.html\" target=\"_blank\">MT{ComponentNames[i]} article</a>";
-            apiDocText += prefix + $"<a href=\"https://docs.blazormdc.com/api/BlazorMdc.MT{ComponentNames[i]}{apiSuffix}.html\" target=\"_blank\">MT{ComponentNames[i]} API docs</a>";
+            articleText += prefix + $"<a href=\"https://blazormdc.com/docs/BlazorMdc/Components/{ComponentNames[i]}/MT{ComponentNames[i]}.razor.html\" target=\"_blank\">MT{ComponentNames[i]} article</a>";
+            apiDocText += prefix + $"<a href=\"https://blazormdc.com/docs/api/BlazorMdc.MT{ComponentNames[i]}{apiSuffix}.html\" target=\"_blank\">MT{ComponentNames[i]} API docs</a>";
             prefix = ", ";
         }
 
