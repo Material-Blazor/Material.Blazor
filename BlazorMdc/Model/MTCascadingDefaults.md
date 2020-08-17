@@ -4,11 +4,11 @@ title: MTCascadingDefaults
 ---
 # MTCascadingDefaults
 
-### Summary
+## Summary
 
 A set of cascading defaults for different components in the Blazor MDC suite.
 
-### Details
+## Details
 
 - Used as a cascading value;
 - Cascading defaults are optional, and if omitted, Blazor MDC defaults are applied - [see API Documentation](xref:BlazorMdc.MTCascadingDefaults) for details; and

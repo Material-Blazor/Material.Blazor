@@ -4,11 +4,11 @@ title: MTSelect
 ---
 # MTSelect&lt;TItem&gt;
 
-### Summary
+## Summary
 
 A [Material Select Menu](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-select#select-menus).
 
-### Details
+## Details
 
 - Accepts an `IEnumerable<Titem>` of selectable items;
 - Can be styled as either a filled or outlined Material Theme select;

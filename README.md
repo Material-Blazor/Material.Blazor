@@ -1,4 +1,4 @@
-﻿# BlazorMdc (pre-release)
+﻿# Blazor MDC
 
 ## Lightweight Material Theme razor components for Blazor
 

@@ -38,6 +38,10 @@
 		<None Include="tsconfig.json" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="wwwroot\" />
+	</ItemGroup>
+
 <!-- Unfinished dependency issue
 	<ItemGroup>
 		<InputsComponentsScss Include="Components\**\*.scss" />
@@ -54,14 +58,14 @@
 			Outputs="@(OutputsCss);@(OutputsJs)">-->
   
 	<Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">
-    <Exec Command="docker build -t blazormdc_static_assets -f build-static-assets.Dockerfile ." />
-    <Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
-    <Exec Command="docker run --rm blazormdc_static_assets cat blazormdc.js > wwwroot/blazormdc.js" />
-    <Exec Command="docker run --rm blazormdc_static_assets cat blazormdc.css > wwwroot/blazormdc.css" />
-    <Exec Command="docker run --rm blazormdc_static_assets cat blazormdc.min.js > wwwroot/blazormdc.min.js" />
-    <Exec Command="docker run --rm blazormdc_static_assets cat blazormdc.min.css > wwwroot/blazormdc.min.css" />
-    <Exec Command="docker run --rm blazormdc_static_assets cat blazormdc-material-bundle.min.js > wwwroot/blazormdc-material-bundle.min.js" />
-    <Exec Command="docker run --rm blazormdc_static_assets cat blazormdc-material-bundle.min.css > wwwroot/blazormdc-material-bundle.min.css" />
+		<Exec Command="docker build -t blazormdc_static_assets -f build-static-assets.Dockerfile ." />
+		<Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
+		<Exec Command="docker run --rm blazormdc_static_assets cat blazormdc.js &gt; wwwroot/blazormdc.js" />
+		<Exec Command="docker run --rm blazormdc_static_assets cat blazormdc.css &gt; wwwroot/blazormdc.css" />
+		<Exec Command="docker run --rm blazormdc_static_assets cat blazormdc.min.js &gt; wwwroot/blazormdc.min.js" />
+		<Exec Command="docker run --rm blazormdc_static_assets cat blazormdc.min.css &gt; wwwroot/blazormdc.min.css" />
+		<Exec Command="docker run --rm blazormdc_static_assets cat blazormdc-material-bundle.min.js &gt; wwwroot/blazormdc-material-bundle.min.js" />
+		<Exec Command="docker run --rm blazormdc_static_assets cat blazormdc-material-bundle.min.css &gt; wwwroot/blazormdc-material-bundle.min.css" />
 	</Target>
 
 </Project>

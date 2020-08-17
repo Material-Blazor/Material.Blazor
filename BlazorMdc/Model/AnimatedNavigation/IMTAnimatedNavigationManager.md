@@ -4,11 +4,11 @@ title: IMTAnimatedNavigationManager
 ---
 # IMTAnimatedNavigationManager
 
-### Summary
+## Summary
 
 Manages fade out/in page navigation, wrapping Blazor's `NavigationManager.NavigateTo()` function.
 
-### Details
+## Details
 
 - Requires a [MTAnimatedNavigation](xref:C.MTAnimatedNavigation) component;
 - This is purely optional and you can continue to use Blazor's navigtion if you don't want animation;

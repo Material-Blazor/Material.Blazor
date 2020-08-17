@@ -4,11 +4,11 @@ title: MTDataTable
 ---
 # MTDataTable&lt;TItem&gt;
 
-### Summary
+## Summary
 
 A [Material Data Table](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-data-table#data-tables) built using render fragments. It features:
 
-### Details
+## Details
 
 - A Table Header render fragment, which requires correct HTML/CSS markup for the table's header;
 - An IEnumerable of Table Row render fragments, also requiring correct HTML/CSS markup; and

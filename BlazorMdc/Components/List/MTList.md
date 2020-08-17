@@ -4,11 +4,11 @@ title: MTList
 ---
 # MTList&lt;TItem&gt;
 
-### Summary
+## Summary
 
 A [Material List](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-list#lists). Uses render fragments to implement Material Theme Web Components one and two line lists, plus a BlazorMdc interpretation of a three line list. It features:
 
-### Details
+## Details
 
 - A title line render fragment;
 - IEnumerable render fragments for the first, second and third lines of each list item;

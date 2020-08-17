@@ -54,15 +54,13 @@ window.BlazorMdc = {
     },
 
     checkBox: {
-        init: function (elem, formFieldElem, checked, indeterminate, isFormField) {
+        init: function (elem, formFieldElem, checked, indeterminate) {
             elem._checkbox = mdc.checkbox.MDCCheckbox.attachTo(elem);
             elem._checkbox.checked = checked;
             elem._checkbox.indeterminate = indeterminate;  
 
-            if (isFormField) {
-                elem._formField = mdc.formField.MDCFormField.attachTo(formFieldElem);
-                elem._formField.input = checkbox;
-            }
+            elem._formField = mdc.formField.MDCFormField.attachTo(formFieldElem);
+            elem._formField.input = elem._checkbox;
         },
 
         setChecked: function (elem, checked) {

@@ -4,7 +4,7 @@ title: MTDatePicker
 ---
 # MTDatePicker
 
-### Summary
+## Summary
 
 A Blazor MDC implementation of the [Material Theme date picker specification](https://material.io/components/pickers).
 An implementation of the [Material date picker specification](https://material.io/components/pickers/#specs) for the desktop. Does not implement date ranges.

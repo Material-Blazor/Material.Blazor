@@ -4,11 +4,11 @@ title: MTTextField
 ---
 # MTTextField
 
-### Summary
+## Summary
 
 A fully-featured implementation of the suite of [Material Text Fields](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-textfield#text-field).
 
-### Details
+## Details
 
 - Two-way binds a text Value parameter;
 - Implements the filled and outlined but not the full width Material Theme text field varieties;

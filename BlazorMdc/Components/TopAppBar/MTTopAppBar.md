@@ -4,11 +4,11 @@ title: MTTopAppBar
 ---
 # MTTopAppBar
 
-### Summary
+## Summary
 
 A [Material Top App Bar](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-top-app-bar#top-app-bar).
 
-### Details
+## Details
 
 - Placed in `MainLayout.razor` and wraps around the `@Body` render fragment;
 - Applies the suite of Material Theme top app bar varieties;

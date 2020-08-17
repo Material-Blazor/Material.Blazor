@@ -6,9 +6,9 @@ title: MTShield
 
 A simple component producing an HTML shield styled after svgs from shield.io (square, flat variety).
 
-### Summary
+## Summary
 
-### Details
+## Details
 
 - Accepts a label and value (left and right respectively) along with option class, style and icon for each;
 - Allows application of an icon foundry; and

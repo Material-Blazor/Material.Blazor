@@ -52,7 +52,10 @@
       {
         "files": [
           "images/**.png",
-          "images/**.jpg"
+          "images/**.jpg",
+          ".nojekyll",
+          "404.html",
+          "*html.txt"
         ]
       }
     ],
@@ -63,7 +66,7 @@
         ],
         "exclude": [
           "obj/**",
-          "_site/**"
+          "siteDocFx/**"
         ]
       }
     ],
