@@ -1,0 +1,198 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>PlusComponents </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="PlusComponents ">
+    <meta name="generator" content="docfx 2.56.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-173249047-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+  
+      gtag('config', 'UA-173249047-2');
+    </script>
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="A.PlusComponents">
+<h1 id="plus-components">Plus Components</h1>
+
+<p>Material Theme closely specifies component HTML markup. Blazor MDC implements many of these as <a class="xref" href="CoreComponents.html">Core Components</a>. Blazor MDC also
+implements further Blazor/Material Theme hybrid components that we term &quot;Plus Components&quot;.</p>
+<h2 id="component-list">Component List</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Component</th>
+<th style="text-align: left;">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/Anchor/MTAnchor.html">MTAnchor</a></td>
+<td style="text-align: left;">Anchor for a port of <a href="https://github.com/Blazored/Toast">Blazored/Toast</a> and <a href="https://github.com/material-components/material-components-web/tree/master/packages/mdc-tooltip#tooltip">Material Tooltips</a> modified and styled for Material Theme. Place once instance of this in your Blazor app at the top of <code>App.razor</code> or <code>MainLayout.razor</code>. Requires that you register an <a class="xref" href="../BlazorMdc/Model/Toast/IMTToastService.html">IIMToastService</a> service and will throw an exception on startup if the service is not found.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/AnimatedNavigation/MTAnimatedNavigation.html">MTAnimatedNavigation</a></td>
+<td style="text-align: left;">An component used by the <a class="xref" href="../BlazorMdc/Model/AnimatedNavigation/IMTAnimatedNavigationManager.html">IMTAnimatedNavigationManager</a> service.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/Autocomplete/MTAutoComplete.html">MTAutocomplete</a></td>
+<td style="text-align: left;">An autocomplete comprising a text field and a menu.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/ConfirmationDialog/MTConfirmationDialog.html">MTConfirmationDialog</a></td>
+<td style="text-align: left;">A special purpose wrapper around <a class="xref" href="../BlazorMdc/Components/Dialog/MTDialog.html">MTDialog</a> that makes the user type some text correctly in order to enable a button for a specific purpose. Modelled after the GitHub confirmation forms.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/DatePicker/MTDatePicker.html">MTDatePicker</a></td>
+<td style="text-align: left;">An implementation of the <a href="https://material.io/components/pickers/#specs">Material date picker specification</a> for the desktop.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/DebouncedTextField/MTDebouncedTextField.html">MTDebouncedTextField</a></td>
+<td style="text-align: left;">A debounced version of <a class="xref" href="../BlazorMdc/Components/TextField/MTTextField.html">MTTextField</a></td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/Divider/MTDivider.html">MTDivider</a></td>
+<td style="text-align: left;">Implements a list divider by wrapping <code>hr</code> and gives the option of inset and padded. This uses the mdc-list-divider styles.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/Icon/MTIcon.html">MTIcon</a></td>
+<td style="text-align: left;">Displays an icon from the specified icon foundry or the default foundry from <a class="xref" href="../BlazorMdc/Model/MTCascadingDefaults.html">MTCascadingDefaults</a>. See also <a class="xref" href="../BlazorMdc/Model/Icon/MTIconHelper.html">MTIconHelper</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/NumericDoubleField/MTNumericDoubleField.html">MTNumericDoubleField</a></td>
+<td style="text-align: left;">Wraps <a class="xref" href="../BlazorMdc/Components/TextField/MTTextField.html">MTTextField</a> to format numeric entry of a double.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/NumericIntField/MTNumericIntField.html">MTNumericIntField</a></td>
+<td style="text-align: left;">A wrapper for <code>MTpNumericDoubleField</code> for <code>int</code> variables.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/PagedDataList/MTPagedDataList.html">MTPagedDataList</a></td>
+<td style="text-align: left;">A templated component for paging generic data lists using <a class="xref" href="../BlazorMdc/Components/Paginator/MTPaginator.html">MTPaginator</a> and applying transitions with <a class="xref" href="../BlazorMdc/Components/SlidingContent/MTSlidingContent.html">MTSlidingContent</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/Paginator/MTPaginator.html">MTPaginator</a></td>
+<td style="text-align: left;">An implementation of the <a href="https://material.io/components/data-tables#behavior">Material paginator specification</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/RadioButtonGroup/MTRadioButtonGroup.html">MTRadioButtonGroup</a></td>
+<td style="text-align: left;">A group of <a class="xref" href="../BlazorMdc/Components/RadioButton/MTRadioButton.html">MTRadioButtons</a>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/Shield/MTShield.html">MTShield</a></td>
+<td style="text-align: left;">A simple component producing an HTML shield styled after svgs from shield.io (square, flat variety)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/SlidingContent/MTSlidingContent.html">MTSlidingContent</a></td>
+<td style="text-align: left;">A templated component to provide previous/next navigation through a series of pages with light left/right and fade in/out animation.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/SlidingTabBar/MTSlidingTabBar.html">MTSlidingTabBar</a></td>
+<td style="text-align: left;">An <code>MTTabBar</code> augmented with content displayed in a <code>MTSlidingContent</code></td>
+</tr>
+</tbody>
+</table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/articles/PlusComponents.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

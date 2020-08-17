@@ -1,0 +1,15 @@
+{
+  "name": "BlazorMdcWebsite.WebAssembly",
+  "short_name": "BlazorMdcWebsite.WebAssembly",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#03173d",
+  "icons": [
+    {
+      "src": "_content/BlazorMdcWebsite.Components/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

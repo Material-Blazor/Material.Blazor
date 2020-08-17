@@ -1,0 +1,851 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class InputComponentFoundation&lt;T&gt;
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class InputComponentFoundation&lt;T&gt;
+   ">
+    <meta name="generator" content="docfx 2.56.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-173249047-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+  
+      gtag('config', 'UA-173249047-2');
+    </script>
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="BlazorMdc.Internal.InputComponentFoundation`1">
+  
+  
+  <h1 id="BlazorMdc_Internal_InputComponentFoundation_1" data-uid="BlazorMdc.Internal.InputComponentFoundation`1" class="text-break">Class InputComponentFoundation&lt;T&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>This is like InputBase from Microsoft.AspNetCore.Components.Forms, except that it treats
+[CascadingParameter] EditContext as optional.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><a class="xref" href="BlazorMdc.Internal.ComponentFoundation.html">ComponentFoundation</a></div>
+    <div class="level2"><span class="xref">InputComponentFoundation&lt;T&gt;</span></div>
+      <div class="level3"><a class="xref" href="BlazorMdc.Internal.InternalDatePickerPanel.html">InternalDatePickerPanel</a></div>
+      <div class="level3"><a class="xref" href="BlazorMdc.Internal.ValidatingInputComponentFoundation-1.html">ValidatingInputComponentFoundation&lt;T&gt;</a></div>
+      <div class="level3"><a class="xref" href="BlazorMdc.MTAutocomplete.html">MTAutocomplete</a></div>
+      <div class="level3"><a class="xref" href="BlazorMdc.MTCheckbox.html">MTCheckbox</a></div>
+      <div class="level3"><a class="xref" href="BlazorMdc.MTCircularProgress.html">MTCircularProgress</a></div>
+      <div class="level3"><a class="xref" href="BlazorMdc.MTDatePicker.html">MTDatePicker</a></div>
+      <div class="level3"><a class="xref" href="BlazorMdc.MTDebouncedTextField.html">MTDebouncedTextField</a></div>
+      <div class="level3"><a class="xref" href="BlazorMdc.MTIconButtonToggle.html">MTIconButtonToggle</a></div>
+      <div class="level3"><a class="xref" href="BlazorMdc.MTLinearProgress.html">MTLinearProgress</a></div>
+      <div class="level3"><a class="xref" href="BlazorMdc.MTNumericDoubleField.html">MTNumericDoubleField</a></div>
+      <div class="level3"><a class="xref" href="BlazorMdc.MTNumericIntField.html">MTNumericIntField</a></div>
+      <div class="level3"><a class="xref" href="BlazorMdc.MTRadioButton-1.html">MTRadioButton&lt;TItem&gt;</a></div>
+      <div class="level3"><a class="xref" href="BlazorMdc.MTSlidingTabBar-1.html">MTSlidingTabBar&lt;TItem&gt;</a></div>
+      <div class="level3"><a class="xref" href="BlazorMdc.MTSwitch.html">MTSwitch</a></div>
+      <div class="level3"><a class="xref" href="BlazorMdc.MTTabBar-1.html">MTTabBar&lt;TItem&gt;</a></div>
+      <div class="level3"><a class="xref" href="BlazorMdc.MTTextArea.html">MTTextArea</a></div>
+      <div class="level3"><a class="xref" href="BlazorMdc.MTTextField.html">MTTextField</a></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.ComponentFoundation.html#BlazorMdc_Internal_ComponentFoundation_CascadingDefaults">ComponentFoundation.CascadingDefaults</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.ComponentFoundation.html#BlazorMdc_Internal_ComponentFoundation_UnmatchedAttributes">ComponentFoundation.UnmatchedAttributes</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.ComponentFoundation.html#BlazorMdc_Internal_ComponentFoundation_Disabled">ComponentFoundation.Disabled</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.ComponentFoundation.html#BlazorMdc_Internal_ComponentFoundation_Tooltip">ComponentFoundation.Tooltip</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.ComponentFoundation.html#BlazorMdc_Internal_ComponentFoundation_OnDisabledSet">ComponentFoundation.OnDisabledSet</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.ComponentFoundation.html#BlazorMdc_Internal_ComponentFoundation_Dispose_System_Boolean_">ComponentFoundation.Dispose(Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.ComponentFoundation.html#BlazorMdc_Internal_ComponentFoundation_Dispose">ComponentFoundation.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.ComponentFoundation.html#BlazorMdc_Internal_ComponentFoundation_OnParametersSet">ComponentFoundation.OnParametersSet()</a>
+    </div>
+    <div>
+      <a class="xref" href="BlazorMdc.Internal.ComponentFoundation.html#BlazorMdc_Internal_ComponentFoundation_OnParametersSetAsync">ComponentFoundation.OnParametersSetAsync()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="BlazorMdc.Internal.html">BlazorMdc.Internal</a></h6>
+  <h6><strong>Assembly</strong>: BlazorMdc.dll</h6>
+  <h5 id="BlazorMdc_Internal_InputComponentFoundation_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class InputComponentFoundation&lt;T&gt; : ComponentFoundation, IDisposable, IMTDialogChild</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="fields">Fields
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BlazorMdc/BlazorMdc/new/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/apiSpec/new?filename=BlazorMdc_Internal_InputComponentFoundation_1__hasInstantiated.md&amp;value=---%0Auid%3A%20BlazorMdc.Internal.InputComponentFoundation%601._hasInstantiated%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/BlazorMdc/Foundation/InputComponentFoundation.cs/#L23">View Source</a>
+  </span>
+  <h4 id="BlazorMdc_Internal_InputComponentFoundation_1__hasInstantiated" data-uid="BlazorMdc.Internal.InputComponentFoundation`1._hasInstantiated">_hasInstantiated</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool _hasInstantiated</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BlazorMdc/BlazorMdc/new/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/apiSpec/new?filename=BlazorMdc_Internal_InputComponentFoundation_1__instantiate.md&amp;value=---%0Auid%3A%20BlazorMdc.Internal.InputComponentFoundation%601._instantiate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/BlazorMdc/Foundation/InputComponentFoundation.cs/#L22">View Source</a>
+  </span>
+  <h4 id="BlazorMdc_Internal_InputComponentFoundation_1__instantiate" data-uid="BlazorMdc.Internal.InputComponentFoundation`1._instantiate">_instantiate</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected bool _instantiate</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BlazorMdc/BlazorMdc/new/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/apiSpec/new?filename=BlazorMdc_Internal_InputComponentFoundation_1_EditContext.md&amp;value=---%0Auid%3A%20BlazorMdc.Internal.InputComponentFoundation%601.EditContext%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/BlazorMdc/Foundation/InputComponentFoundation.cs/#L118">View Source</a>
+  </span>
+  <a id="BlazorMdc_Internal_InputComponentFoundation_1_EditContext_" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.EditContext*"></a>
+  <h4 id="BlazorMdc_Internal_InputComponentFoundation_1_EditContext" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.EditContext">EditContext</h4>
+  <div class="markdown level1 summary"><p>Gets the associated EditContext.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected EditContext EditContext { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EditContext</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BlazorMdc/BlazorMdc/new/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/apiSpec/new?filename=BlazorMdc_Internal_InputComponentFoundation_1_FieldClass.md&amp;value=---%0Auid%3A%20BlazorMdc.Internal.InputComponentFoundation%601.FieldClass%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/BlazorMdc/Foundation/InputComponentFoundation.cs/#L242">View Source</a>
+  </span>
+  <a id="BlazorMdc_Internal_InputComponentFoundation_1_FieldClass_" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.FieldClass*"></a>
+  <h4 id="BlazorMdc_Internal_InputComponentFoundation_1_FieldClass" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.FieldClass">FieldClass</h4>
+  <div class="markdown level1 summary"><p>Gets a string that indicates the status of the field being edited. This will include
+some combination of &quot;modified&quot;, &quot;valid&quot;, or &quot;invalid&quot;, depending on the status of the field.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string FieldClass { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BlazorMdc/BlazorMdc/new/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/apiSpec/new?filename=BlazorMdc_Internal_InputComponentFoundation_1_FieldIdentifier.md&amp;value=---%0Auid%3A%20BlazorMdc.Internal.InputComponentFoundation%601.FieldIdentifier%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/BlazorMdc/Foundation/InputComponentFoundation.cs/#L124">View Source</a>
+  </span>
+  <a id="BlazorMdc_Internal_InputComponentFoundation_1_FieldIdentifier_" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.FieldIdentifier*"></a>
+  <h4 id="BlazorMdc_Internal_InputComponentFoundation_1_FieldIdentifier" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.FieldIdentifier">FieldIdentifier</h4>
+  <div class="markdown level1 summary"><p>Gets the <a class="xref" href="BlazorMdc.Internal.InputComponentFoundation-1.html#BlazorMdc_Internal_InputComponentFoundation_1_FieldIdentifier">FieldIdentifier</a> for the bound value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected FieldIdentifier FieldIdentifier { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">FieldIdentifier</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BlazorMdc/BlazorMdc/new/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/apiSpec/new?filename=BlazorMdc_Internal_InputComponentFoundation_1_Id.md&amp;value=---%0Auid%3A%20BlazorMdc.Internal.InputComponentFoundation%601.Id%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/BlazorMdc/Foundation/InputComponentFoundation.cs/#L33">View Source</a>
+  </span>
+  <a id="BlazorMdc_Internal_InputComponentFoundation_1_Id_" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.Id*"></a>
+  <h4 id="BlazorMdc_Internal_InputComponentFoundation_1_Id" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.Id">Id</h4>
+  <div class="markdown level1 summary"><p>Gets a value for the component's 'id' attribute.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Id { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BlazorMdc/BlazorMdc/new/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/apiSpec/new?filename=BlazorMdc_Internal_InputComponentFoundation_1_ReportingValueAsString.md&amp;value=---%0Auid%3A%20BlazorMdc.Internal.InputComponentFoundation%601.ReportingValueAsString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/BlazorMdc/Foundation/InputComponentFoundation.cs/#L155">View Source</a>
+  </span>
+  <a id="BlazorMdc_Internal_InputComponentFoundation_1_ReportingValueAsString_" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.ReportingValueAsString*"></a>
+  <h4 id="BlazorMdc_Internal_InputComponentFoundation_1_ReportingValueAsString" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.ReportingValueAsString">ReportingValueAsString</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the current value of the input, represented as a string.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected string ReportingValueAsString { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BlazorMdc/BlazorMdc/new/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/apiSpec/new?filename=BlazorMdc_Internal_InputComponentFoundation_1_Value.md&amp;value=---%0Auid%3A%20BlazorMdc.Internal.InputComponentFoundation%601.Value%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/BlazorMdc/Foundation/InputComponentFoundation.cs/#L44">View Source</a>
+  </span>
+  <a id="BlazorMdc_Internal_InputComponentFoundation_1_Value_" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.Value*"></a>
+  <h4 id="BlazorMdc_Internal_InputComponentFoundation_1_Value" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.Value">Value</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the value of the input. This should be used with two-way binding.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T Value { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="BlazorMdc_Internal_InputComponentFoundation_1_Value_examples">Examples</h5>
+  <p>@bind-Value=&amp;quot;@model.PropertyName&amp;quot;</p>
+
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BlazorMdc/BlazorMdc/new/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/apiSpec/new?filename=BlazorMdc_Internal_InputComponentFoundation_1_ValueChanged.md&amp;value=---%0Auid%3A%20BlazorMdc.Internal.InputComponentFoundation%601.ValueChanged%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/BlazorMdc/Foundation/InputComponentFoundation.cs/#L106">View Source</a>
+  </span>
+  <a id="BlazorMdc_Internal_InputComponentFoundation_1_ValueChanged_" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.ValueChanged*"></a>
+  <h4 id="BlazorMdc_Internal_InputComponentFoundation_1_ValueChanged" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.ValueChanged">ValueChanged</h4>
+  <div class="markdown level1 summary"><p>Gets or sets a callback that updates the bound value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public EventCallback&lt;T&gt; ValueChanged { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventCallback</span>&lt;T&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BlazorMdc/BlazorMdc/new/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/apiSpec/new?filename=BlazorMdc_Internal_InputComponentFoundation_1_ValueExpression.md&amp;value=---%0Auid%3A%20BlazorMdc.Internal.InputComponentFoundation%601.ValueExpression%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/BlazorMdc/Foundation/InputComponentFoundation.cs/#L112">View Source</a>
+  </span>
+  <a id="BlazorMdc_Internal_InputComponentFoundation_1_ValueExpression_" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.ValueExpression*"></a>
+  <h4 id="BlazorMdc_Internal_InputComponentFoundation_1_ValueExpression" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.ValueExpression">ValueExpression</h4>
+  <div class="markdown level1 summary"><p>Gets or sets an expression that identifies the bound value.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Expression&lt;Func&lt;T&gt;&gt; ValueExpression { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;T&gt;&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BlazorMdc/BlazorMdc/new/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/apiSpec/new?filename=BlazorMdc_Internal_InputComponentFoundation_1_FormatValueToString__0_.md&amp;value=---%0Auid%3A%20BlazorMdc.Internal.InputComponentFoundation%601.FormatValueToString(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/BlazorMdc/Foundation/InputComponentFoundation.cs/#L222">View Source</a>
+  </span>
+  <a id="BlazorMdc_Internal_InputComponentFoundation_1_FormatValueToString_" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.FormatValueToString*"></a>
+  <h4 id="BlazorMdc_Internal_InputComponentFoundation_1_FormatValueToString__0_" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.FormatValueToString(`0)">FormatValueToString(T)</h4>
+  <div class="markdown level1 summary"><p>Formats the value as a string. Derived classes can override this to determine the formating used for <a class="xref" href="BlazorMdc.Internal.InputComponentFoundation-1.html#BlazorMdc_Internal_InputComponentFoundation_1_ReportingValueAsString">ReportingValueAsString</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual string FormatValueToString(T value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The value to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><p>A string representation of the value.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BlazorMdc/BlazorMdc/new/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/apiSpec/new?filename=BlazorMdc_Internal_InputComponentFoundation_1_OnAfterRenderAsync_System_Boolean_.md&amp;value=---%0Auid%3A%20BlazorMdc.Internal.InputComponentFoundation%601.OnAfterRenderAsync(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/BlazorMdc/Foundation/InputComponentFoundation.cs/#L348">View Source</a>
+  </span>
+  <a id="BlazorMdc_Internal_InputComponentFoundation_1_OnAfterRenderAsync_" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.OnAfterRenderAsync*"></a>
+  <h4 id="BlazorMdc_Internal_InputComponentFoundation_1_OnAfterRenderAsync_System_Boolean_" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.OnAfterRenderAsync(System.Boolean)">OnAfterRenderAsync(Boolean)</h4>
+  <div class="markdown level1 summary"><p>BlazorMdc components descending from MdcInputComponentBase <em><em>must not</em></em> override OnAfterRenderAsync(bool).</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task OnAfterRenderAsync(bool firstRender)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">firstRender</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="BlazorMdc.Internal.ComponentFoundation.html#BlazorMdc_Internal_ComponentFoundation_OnAfterRenderAsync_System_Boolean_">ComponentFoundation.OnAfterRenderAsync(Boolean)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BlazorMdc/BlazorMdc/new/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/apiSpec/new?filename=BlazorMdc_Internal_InputComponentFoundation_1_OnInitialized.md&amp;value=---%0Auid%3A%20BlazorMdc.Internal.InputComponentFoundation%601.OnInitialized%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/BlazorMdc/Foundation/InputComponentFoundation.cs/#L249">View Source</a>
+  </span>
+  <a id="BlazorMdc_Internal_InputComponentFoundation_1_OnInitialized_" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.OnInitialized*"></a>
+  <h4 id="BlazorMdc_Internal_InputComponentFoundation_1_OnInitialized" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.OnInitialized">OnInitialized()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnInitialized()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BlazorMdc/BlazorMdc/new/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/apiSpec/new?filename=BlazorMdc_Internal_InputComponentFoundation_1_OnInitializedAsync.md&amp;value=---%0Auid%3A%20BlazorMdc.Internal.InputComponentFoundation%601.OnInitializedAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/BlazorMdc/Foundation/InputComponentFoundation.cs/#L260">View Source</a>
+  </span>
+  <a id="BlazorMdc_Internal_InputComponentFoundation_1_OnInitializedAsync_" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.OnInitializedAsync*"></a>
+  <h4 id="BlazorMdc_Internal_InputComponentFoundation_1_OnInitializedAsync" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.OnInitializedAsync">OnInitializedAsync()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task OnInitializedAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BlazorMdc/BlazorMdc/new/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/apiSpec/new?filename=BlazorMdc_Internal_InputComponentFoundation_1_SetParametersAsync_ParameterView_.md&amp;value=---%0Auid%3A%20BlazorMdc.Internal.InputComponentFoundation%601.SetParametersAsync(ParameterView)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/BlazorMdc/Foundation/InputComponentFoundation.cs/#L282">View Source</a>
+  </span>
+  <a id="BlazorMdc_Internal_InputComponentFoundation_1_SetParametersAsync_" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.SetParametersAsync*"></a>
+  <h4 id="BlazorMdc_Internal_InputComponentFoundation_1_SetParametersAsync_ParameterView_" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.SetParametersAsync(ParameterView)">SetParametersAsync(ParameterView)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public override Task SetParametersAsync(ParameterView parameters)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">ParameterView</span></td>
+        <td><span class="parametername">parameters</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BlazorMdc/BlazorMdc/new/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/apiSpec/new?filename=BlazorMdc_Internal_InputComponentFoundation_1_ShouldRender.md&amp;value=---%0Auid%3A%20BlazorMdc.Internal.InputComponentFoundation%601.ShouldRender%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/BlazorMdc/Foundation/InputComponentFoundation.cs/#L333">View Source</a>
+  </span>
+  <a id="BlazorMdc_Internal_InputComponentFoundation_1_ShouldRender_" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.ShouldRender*"></a>
+  <h4 id="BlazorMdc_Internal_InputComponentFoundation_1_ShouldRender" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.ShouldRender">ShouldRender()</h4>
+  <div class="markdown level1 summary"><p>BlazorMdc components descending from MdcInputComponentBase <em><em>must not</em></em> override ShouldRender().</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override bool ShouldRender()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BlazorMdc/BlazorMdc/new/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/apiSpec/new?filename=BlazorMdc_Internal_InputComponentFoundation_1_TryParseValueFromString_System_String__0__System_String__.md&amp;value=---%0Auid%3A%20BlazorMdc.Internal.InputComponentFoundation%601.TryParseValueFromString(System.String%2C%600%40%2CSystem.String%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/BlazorMdc/Foundation/InputComponentFoundation.cs/#L234">View Source</a>
+  </span>
+  <a id="BlazorMdc_Internal_InputComponentFoundation_1_TryParseValueFromString_" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.TryParseValueFromString*"></a>
+  <h4 id="BlazorMdc_Internal_InputComponentFoundation_1_TryParseValueFromString_System_String__0__System_String__" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.TryParseValueFromString(System.String,`0@,System.String@)">TryParseValueFromString(String, out T, out String)</h4>
+  <div class="markdown level1 summary"><p>Parses a string to create an instance of <code data-dev-comment-type="typeparamref" class="typeparamref">T</code>. Derived classes can override this to change how
+<a class="xref" href="BlazorMdc.Internal.InputComponentFoundation-1.html#BlazorMdc_Internal_InputComponentFoundation_1_ReportingValueAsString">ReportingValueAsString</a> interprets incoming values.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected virtual bool TryParseValueFromString(string value, out T result, out string validationErrorMessage)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">value</span></td>
+        <td><p>The string value to be parsed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><span class="parametername">result</span></td>
+        <td><p>An instance of <code data-dev-comment-type="typeparamref" class="typeparamref">T</code>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">validationErrorMessage</span></td>
+        <td><p>If the value could not be parsed, provides a validation error message.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><p>True if the value could be parsed; otherwise false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="events">Events
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/BlazorMdc/BlazorMdc/new/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/apiSpec/new?filename=BlazorMdc_Internal_InputComponentFoundation_1_OnValueSet.md&amp;value=---%0Auid%3A%20BlazorMdc.Internal.InputComponentFoundation%601.OnValueSet%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/BlazorMdc/Foundation/InputComponentFoundation.cs/#L100">View Source</a>
+  </span>
+  <h4 id="BlazorMdc_Internal_InputComponentFoundation_1_OnValueSet" data-uid="BlazorMdc.Internal.InputComponentFoundation`1.OnValueSet">OnValueSet</h4>
+  <div class="markdown level1 summary"><p>Derived components can use this to get a callback from the <a class="xref" href="BlazorMdc.Internal.InputComponentFoundation-1.html#BlazorMdc_Internal_InputComponentFoundation_1_Value">Value</a> setter when the consumer changes the value.
+This allows a component to take action with Material Theme js to update the DOM to reflect the data change visually. An
+example is a select where the relevant list item needs to be automatically clicked to get Material Theme to update
+the value shown in the <code>&lt;input&gt;</code> HTML tag.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected event EventHandler OnValueSet</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/BlazorMdc/BlazorMdc/new/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/apiSpec/new?filename=BlazorMdc_Internal_InputComponentFoundation_1.md&amp;value=---%0Auid%3A%20BlazorMdc.Internal.InputComponentFoundation%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/e5b26a4125f144d6b402a5b761168bb7c1cedd8b/BlazorMdc/Foundation/InputComponentFoundation.cs/#L16" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
