@@ -211,8 +211,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{Version}}
-        release_name: Release ${{Version}}
+        tag_name: $Version
+        release_name: Release $Version
         draft: false
         prerelease: false
       if: (github.repository == 'BlazorMdc/BlazorMdc')
