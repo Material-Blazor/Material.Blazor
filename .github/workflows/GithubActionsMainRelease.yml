@@ -151,13 +151,13 @@ jobs:
 ############################################################################################################
 #Build & Deploy BlazorMdc Nuget package (1 job)
 ############################################################################################################
-  buildblazormdc:
+  buildanddeployblazormdc:
     runs-on: ubuntu-latest
 
     steps:
 
     - name: Set Version as env variable
-      run: "echo ::set-env name=Version::${GITHUB_REF/refs\/tags\//}"
+      run: echo "::set-env name=Version::${GITHUB_REF/refs\/tags\//}"
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Echo Version
