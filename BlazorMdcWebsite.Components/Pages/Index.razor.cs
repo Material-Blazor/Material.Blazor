@@ -9,7 +9,7 @@ namespace BlazorMdcWebsite.Components.Pages
 {
     public partial class Index
     {
-        [Inject] IJSRuntime JSRuntime { get; set; }
+        [Inject] IJSRuntime JsRuntime { get; set; }
         [Inject] IMTAnimatedNavigationManager ANManager { get; set; }
 
 #if DEBUG
@@ -31,9 +31,10 @@ namespace BlazorMdcWebsite.Components.Pages
 
 
 
-        private void NavigateToDocs()
+        private async Task NavigateToDocsAsync()
         {
-            ANManager.NavigateTo("/docs", true);
+            var baseURI = await JsRuntime.InvokeAsync<object>("BlazorMdcWebsite.baseHref.getBaseURI");
+            ANManager.NavigateTo($"{baseURI}docs", true);
         }
 
 
