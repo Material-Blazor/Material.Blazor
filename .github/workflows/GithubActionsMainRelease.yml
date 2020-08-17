@@ -199,7 +199,7 @@ jobs:
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Display tag name Ꙫ
-      run: "echo ${GITHUB_REF/refs\/heads\//}"
+      run: echo "${GITHUB_REF/refs\/heads\//}"
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Display release name Ꙫ
