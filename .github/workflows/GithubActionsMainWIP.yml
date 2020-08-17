@@ -20,7 +20,9 @@ env:
 jobs:
 
 ############################################################################################################
-#Build DocFx pages (2 jobs), second job publishes to gh-pages
+#Build DocFx pages (1st of 2 jobs), second job publishes to gh-pages
+#
+# Why Windows? Lack of guidance on running docfx under Linus
 ############################################################################################################
   builddocfx:
 
@@ -47,7 +49,7 @@ jobs:
 
 
 ############################################################################################################
-#Build BlazorMdcWebsite (2 jobs), second job publishes to gh-pages
+#Build BlazorMdcWebsite (1st of 2 jobs), second job publishes to gh-pages
 #This has to be a separate job from BuildBlazorMdc because of the different dnc environments (3.1 & 5.0 preview)
 ############################################################################################################
   buildblazormdcwebsite:
@@ -148,20 +150,21 @@ jobs:
 
 
 ############################################################################################################
-# Build & Deploy BlazorMdc Nuget package (2 jobs)
-#Why two jobs? Because we couldn't figure out how to successfully 'nuget push' on Ubuntu after more than
-#    2 man days of effort. Instead we simply upload the nuget packages as an artifact and then run a Windows job
-#    to deploy to GitHub Packages
+# Build & Deploy BlazorMdc Nuget package (1st of 2 jobs)
+#
+# Why two jobs? Because we couldn't figure out how to successfully 'nuget push' on Ubuntu after more than
+# 2 man days of effort. Instead we simply upload the nuget packages as an artifact and then run a Windows job
+# to deploy to GitHub Packages
 ############################################################################################################
   buildblazormdc:
     runs-on: ubuntu-latest
 
     steps:
     - name: Set ciSuffix as env variable
-      run: echo '::set-env name=ciSuffix::CI.$(date +'%Y-%m-%d--%H%M')'
+      run: echo "::set-env name=ciSuffix::CI.${date +'%Y-%m-%d--%H%M'}"
 
     - name: Echo ciSuffix
-      run: echo 'CI suffix is $ciSuffix'
+      run: echo "CI suffix is $ciSuffix"
 
     - name: Get the branch
       id: get_branch
@@ -224,10 +227,11 @@ jobs:
         path: siteBmdc
 
 ############################################################################################################
-#Build & Deploy BlazorMdc Nuget package (2 jobs)
-#Why two jobs? Because we couldn't figure out how to successfully 'nuget push' on Ubuntu after more than
-#    2 man days of effort. Instead we simply upload the nuget packages as an artifact and then run a Windows job
-#    to deploy to GitHub Packages
+#Build & Deploy BlazorMdc Nuget package (2nd of 2 jobs)
+#
+# Why two jobs? Because we couldn't figure out how to successfully 'nuget push' on Ubuntu after more than
+# 2 man days of effort. Instead we simply upload the nuget packages as an artifact and then run a Windows job
+# to deploy to GitHub Packages
 ############################################################################################################
   deployblazormdc:
     needs: [buildblazormdc] # The second job must depend on the first one to complete before running, and uses ubuntu-latest instead of windows.
