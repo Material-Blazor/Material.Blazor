@@ -136,7 +136,7 @@ jobs:
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Configure deployment directory structure Ꙫ
-      run: mkdir deployroot; mv siteWeb/wwwroot deployroot/website; mv siteDocFx deployroot/docs; mv deployroot/docs/blazormdc-html.txt deployroot/index.html; cp deployroot/docs/{.nojekyll,404.html} deployroot
+      run: mv siteWeb/wwwroot deployroot; mv siteDocFx deployroot/docs
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Deploy 🚀
