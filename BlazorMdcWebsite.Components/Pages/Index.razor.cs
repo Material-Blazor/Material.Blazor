@@ -1,4 +1,6 @@
 ﻿using BlazorMdc;
+using BlazorMdc.Model;
+
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
@@ -29,8 +31,7 @@ namespace BlazorMdcWebsite.Components.Pages
             OSArchitecture = RuntimeInformation.OSArchitecture.ToString();
             OSDescription = RuntimeInformation.OSDescription.ToString();
             Runtime = RuntimeInformation.FrameworkDescription.ToString();
-            Version = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
-
+            Version = new Version().GetBlazorMdcVersion();
         }
 
 
