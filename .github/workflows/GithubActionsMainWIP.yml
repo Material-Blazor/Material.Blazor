@@ -52,7 +52,7 @@ jobs:
 #Build BlazorMdcWebsite (1st of 2 jobs), second job publishes to gh-pages
 #This has to be a separate job from BuildBlazorMdc because of the different dnc environments (3.1 & 5.0 preview)
 ############################################################################################################
-  buildblazormdcwebsite:
+  buildwebsite:
 
     runs-on: ubuntu-latest
 
@@ -108,7 +108,7 @@ jobs:
 #Deploy gh-pages
 ############################################################################################################
   deployghpages:
-    needs: [builddocfx,buildblazormdcwebsite] # This job must depend on the two build jobs to complete before running, and uses ubuntu-latest instead of windows.
+    needs: [builddocfx,buildwebsite] # This job must depend on the two build jobs to complete before running, and uses ubuntu-latest instead of windows.
 
     runs-on: ubuntu-latest
 

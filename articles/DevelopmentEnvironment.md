@@ -9,14 +9,14 @@ We have developed Blazor MDC using Visual Studio 2019 on Windows, and have not t
 ## Forking the repos
 
 - The full development environmment is in the Blazor MDC GitHub repository that you can fork from https://github.com/BlazorMdc/BlazorMdc. If you intend to submit pull requests please note that we use a`main` branch and accept feature branches created from `main`.
-- The repo has Github Actions for `main`. In your forked repo, [`GithubActionsMainWIP`](https://github.com/BlazorMdc/BlazorMdc/blob/develop/.github/workflows/GithubActionsMainWIP.yml) will attempt to publish the documentation and this website to your GitHub pages and the website to the forked repo GitHub pages:
+- The repo has Github Actions for `main`. In your forked repo, [`GithubActionsMainWIP`](https://github.com/BlazorMdc/BlazorMdc/blob/develop/.github/workflows/GithubActionsMainWIP.yml) will attempt to publish the documentation and this website to your GitHub pages:
   - If you want this to publish to `<repository owner>/github.io/BlazorMdc`, you will need to set up a Personal Access Token with write access to your repos - PATS are set up by clicking your icon at the top right on GitHub, then Settings and Developer Settings in the navigation menu to the left.
   <img src="../images/gh-account-settings-1.png" alt="GitHub Account Settings"></img>
   <img src="../images/gh-account-settings-2.png" alt="GitHub Account Settings"></img>
   <img src="../images/gh-account-settings-3.png" alt="GitHub Account Settings"></img>
   - Next go to the Settings of your forked repo and add a secret called "GH_PAT" using the contents of the PAT that you created in the previous step.
   <img src="../images/gh-account-settings-4.png" alt="GitHub Account Settings"></img>
-  - Now go to the main settings for your forked repo and scroll down until the "GitHub Pages" section. Select the "gh-pages branch" as the Source and click the Theme button - you *must* select a theme on the next page.
+  - Now go to the main settings for your forked repo and scroll down until the "GitHub Pages" section. Select the "gh-pages branch" as the Source.
   <img src="../images/gh-account-settings-5.png" alt="GitHub Account Settings"></img>
   - The docs should now publish next time you push to your `develop` branch on GitHub.
 
