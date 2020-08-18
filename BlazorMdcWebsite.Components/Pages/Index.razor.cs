@@ -38,10 +38,10 @@ namespace BlazorMdcWebsite.Components.Pages
             Runtime = RuntimeInformation.FrameworkDescription.ToString();
         }
 
-        protected override async Task OnInitializedAsync()
+        protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            await base.OnInitializedAsync();
-            BaseURI = (string) await JsRuntime.InvokeAsync<object>("BlazorMdcWebsite.baseHref.getBaseURI");
+            await base.OnAfterRenderAsync(firstRender);
+            var baseURI = await JsRuntime.InvokeAsync<object>("BlazorMdcWebsite.baseHref.getBaseURI");
         }
 
 
