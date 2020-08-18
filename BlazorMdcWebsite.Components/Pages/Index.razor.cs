@@ -21,15 +21,6 @@ namespace BlazorMdcWebsite.Components.Pages
         private string OSArchitecture { get; set; }
         private string OSDescription { get; set; }
         private string Runtime { get; set; }
-        private string BaseURI { get; set; }
-
-        private string DocsTarget
-        {
-            get
-            {
-                return BaseURI + "docs";
-            }
-        }
 
         public Index()
         {
@@ -38,17 +29,11 @@ namespace BlazorMdcWebsite.Components.Pages
             Runtime = RuntimeInformation.FrameworkDescription.ToString();
         }
 
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+
+        private async Task NavigateToDocsAsync()
         {
-            await base.OnAfterRenderAsync(firstRender);
             var baseURI = await JsRuntime.InvokeAsync<object>("BlazorMdcWebsite.baseHref.getBaseURI");
-        }
-
-
-
-        private void NavigateToDocs()
-        {
-            AnimatedNavigationManager.NavigateTo($"{BaseURI}docs", true);
+            AnimatedNavigationManager.NavigateTo($"{baseURI}docs", true);
         }
 
 

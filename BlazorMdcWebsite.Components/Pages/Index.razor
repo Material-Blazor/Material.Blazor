@@ -15,9 +15,6 @@
                         for <a href="https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor" target="_blank">Blazor</a> apps bringing a comprehensive, lightweight suite of <a href="https://material.io" target="_blank">Material Theme</a> components.
                     </li>
                     <li>
-                        Full documention is at <a href=@DocsTarget target="_blank">blazormdc.com/docs</a>.
-                    </li>
-                    <li>
                         Use the <a href="https://www.nuget.org/packages/BlazorMdc/" target="_blank">nuget package</a> - use the version 1.0.0 latest pre-release.
                     </li>
                     <li>
@@ -47,7 +44,7 @@
 
 
 <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
-    <MTCard class="bmdc-basic-with-text-over-media xlink-card" @onclick="@NavigateToDocs">
+    <MTCard class="bmdc-basic-with-text-over-media xlink-card" @onclick="@NavigateToDocsAsync">
         <PrimaryAction>
             <div class="mdc-card__media mdc-card__media--16-9 bmdc-card__media" style="background-image: url('_content/BlazorMdcWebsite.Components/images/book-shelves.jpg');">
                 <div class="mdc-card__media-content bmdc-card__media-content">
