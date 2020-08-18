@@ -10,7 +10,7 @@ namespace BlazorMdcWebsite.Components.Pages
     public partial class Index
     {
         [Inject] IJSRuntime JsRuntime { get; set; }
-        [Inject] IMTAnimatedNavigationManager ANManager { get; set; }
+        [Inject] IMTAnimatedNavigationManager AnimatedNavigationManager { get; set; }
 
 #if DEBUG
         private string BuildMode { get; set; } = "debug";
@@ -21,6 +21,15 @@ namespace BlazorMdcWebsite.Components.Pages
         private string OSArchitecture { get; set; }
         private string OSDescription { get; set; }
         private string Runtime { get; set; }
+        private string BaseURI { get; set; }
+
+        private string DocsTarget
+        {
+            get
+            {
+                return BaseURI + "docs";
+            }
+        }
 
         public Index()
         {
@@ -29,19 +38,24 @@ namespace BlazorMdcWebsite.Components.Pages
             Runtime = RuntimeInformation.FrameworkDescription.ToString();
         }
 
-
-
-        private async Task NavigateToDocsAsync()
+        protected override async Task OnInitializedAsync()
         {
-            var baseURI = await JsRuntime.InvokeAsync<object>("BlazorMdcWebsite.baseHref.getBaseURI");
-            ANManager.NavigateTo($"{baseURI}docs", true);
+            await base.OnInitializedAsync();
+            BaseURI = (string) await JsRuntime.InvokeAsync<object>("BlazorMdcWebsite.baseHref.getBaseURI");
+        }
+
+
+
+        private void NavigateToDocs()
+        {
+            AnimatedNavigationManager.NavigateTo($"{BaseURI}docs", true);
         }
 
 
 
         private void NavigateToButton()
         {
-            ANManager.NavigateTo("/button");
+            AnimatedNavigationManager.NavigateTo("button");
         }
     }
 }

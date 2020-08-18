@@ -9,7 +9,7 @@ We have developed Blazor MDC using Visual Studio 2019 on Windows, and have not t
 ## Forking the repos
 
 - The full development environmment is in the Blazor MDC GitHub repository that you can fork from https://github.com/BlazorMdc/BlazorMdc. If you intend to submit pull requests please note that we use a`main` branch and accept feature branches created from `main`.
-- The repo has Github Actions for `main`. In your forked repo, [`GithubActionsMainWIP`](https://github.com/BlazorMdc/BlazorMdc/blob/develop/.github/workflows/GithubActionsMainWIP.yml) will attempt to publish the documentation and this website to your GitHub pages and the website to the forked repo GitHub pages:
+- The repo has Github Actions for `main`. In your forked repo, [`GithubActionsMainWIP`](https://github.com/BlazorMdc/BlazorMdc/blob/develop/.github/workflows/GithubActionsMainWIP.yml) will attempt to publish the documentation and this website to your GitHub pages:
   - If you want this to publish to `<repository owner>/github.io/BlazorMdc`, you will need to set up a Personal Access Token with write access to your repos - PATS are set up by clicking your icon at the top right on GitHub, then Settings and Developer Settings in the navigation menu to the left.
   <img src="../images/gh-account-settings-1.png" alt="GitHub Account Settings"></img>
   <img src="../images/gh-account-settings-2.png" alt="GitHub Account Settings"></img>
