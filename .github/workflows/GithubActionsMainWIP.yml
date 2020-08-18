@@ -58,6 +58,12 @@ jobs:
 
     steps:
 
+    - name: Set ciSuffix as env variable
+      run: echo "::set-env name=ciSuffix::CI.$(date +'%Y-%m-%d--%H%M')"
+
+    - name: Echo ciSuffix
+      run: echo "CI suffix is $ciSuffix"
+
     - name: Get the branch
       id: get_branch
       run: echo ::set-output name=branch::${GITHUB_REF/refs\/heads\//}
@@ -92,10 +98,10 @@ jobs:
         dotnet-version: 5.0.100-preview.7.20366.6
 
     - name: Build 🔧
-      run: dotnet build --configuration $buildConfiguration $projectWeb
+      run: dotnet build --configuration $buildConfiguration --version-suffix $ciSuffix $projectWeb
 
     - name: Publish 🔧
-      run: dotnet publish --no-build --configuration $buildConfiguration --output $outputWeb $projectWeb
+      run: dotnet publish --no-build --configuration $buildConfiguration --output $outputWeb --version-suffix $ciSuffix $projectWeb
 
     - name: Upload Artifacts 🔺 # The project is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v1
