@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
@@ -21,12 +22,15 @@ namespace BlazorMdcWebsite.Components.Pages
         private string OSArchitecture { get; set; }
         private string OSDescription { get; set; }
         private string Runtime { get; set; }
+        private string Version { get; set; }
 
         public Index()
         {
             OSArchitecture = RuntimeInformation.OSArchitecture.ToString();
             OSDescription = RuntimeInformation.OSDescription.ToString();
             Runtime = RuntimeInformation.FrameworkDescription.ToString();
+            Version = Assembly.GetEntryAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
+
         }
 
 
