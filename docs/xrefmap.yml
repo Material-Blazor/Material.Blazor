@@ -1145,6 +1145,31 @@ references:
   fullName.vb: BlazorMdc.Internal.ValidatingInputComponentFoundation(Of T).ValidateItemList
   nameWithType: ValidatingInputComponentFoundation<T>.ValidateItemList
   nameWithType.vb: ValidatingInputComponentFoundation(Of T).ValidateItemList
+- uid: BlazorMdc.Model
+  name: BlazorMdc.Model
+  href: api/BlazorMdc.Model.html
+  commentId: N:BlazorMdc.Model
+  fullName: BlazorMdc.Model
+  nameWithType: BlazorMdc.Model
+- uid: BlazorMdc.Model.Version
+  name: Version
+  href: api/BlazorMdc.Model.Version.html
+  commentId: T:BlazorMdc.Model.Version
+  fullName: BlazorMdc.Model.Version
+  nameWithType: Version
+- uid: BlazorMdc.Model.Version.GetBlazorMdcVersion
+  name: GetBlazorMdcVersion()
+  href: api/BlazorMdc.Model.Version.html#BlazorMdc_Model_Version_GetBlazorMdcVersion
+  commentId: M:BlazorMdc.Model.Version.GetBlazorMdcVersion
+  fullName: BlazorMdc.Model.Version.GetBlazorMdcVersion()
+  nameWithType: Version.GetBlazorMdcVersion()
+- uid: BlazorMdc.Model.Version.GetBlazorMdcVersion*
+  name: GetBlazorMdcVersion
+  href: api/BlazorMdc.Model.Version.html#BlazorMdc_Model_Version_GetBlazorMdcVersion_
+  commentId: Overload:BlazorMdc.Model.Version.GetBlazorMdcVersion
+  isSpec: "True"
+  fullName: BlazorMdc.Model.Version.GetBlazorMdcVersion
+  nameWithType: Version.GetBlazorMdcVersion
 - uid: BlazorMdc.MTAnimatedNaviationManagerConfiguration
   name: MTAnimatedNaviationManagerConfiguration
   href: api/BlazorMdc.MTAnimatedNaviationManagerConfiguration.html
