@@ -1,9 +1,9 @@
 ﻿name: GithubActionsMainRelease
 
 ############################################################################################################
-#All of thes jobs runs commands only on a tag push in the BlazorMdc\BlazorMdc repository
-#The publishing actions in forked repositories were handled by the WIP workflow
-#An 'ExitWorkflow' action is sorely needed
+# All of thes jobs runs commands only on a tag push in the BlazorMdc\BlazorMdc repository
+# The publishing actions in forked repositories were handled by the WIP workflow
+# An 'ExitWorkflow' action is sorely needed
 ############################################################################################################
 
 on:
@@ -61,6 +61,14 @@ jobs:
 
     steps:
 
+    - name: Set Version as env variable
+      run: echo "::set-env name=Version::${GITHUB_REF/refs\/tags\//}"
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
+
+    - name: Echo Version
+      run: echo "Version is $Version"
+      if: (github.repository == 'BlazorMdc/BlazorMdc')
+
     - name: Get the branch
       id: get_branch
       run: echo ::set-output name=branch::${GITHUB_REF/refs\/heads\//}
@@ -96,11 +104,11 @@ jobs:
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Build 🔧
-      run: dotnet build --configuration $buildConfiguration $projectWeb
+      run: dotnet build --configuration $buildConfiguration -p:InformationalVersion=$Version $projectWeb
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Publish 🔧
-      run: dotnet publish --no-build --configuration $buildConfiguration --output $outputWeb $projectWeb
+      run: dotnet publish --no-build --configuration $buildConfiguration --output $outputWeb -p:InformationalVersion=$Version $projectWeb
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Upload Artifacts 🔺 # The project is then uploaded as an artifact named 'siteWeb'.
@@ -175,13 +183,13 @@ jobs:
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Build 🔧
-      run: dotnet build --configuration $buildConfiguration -p:PackageVersion=$Version $projectBmdc
+      run: dotnet build --configuration $buildConfiguration -p:PackageVersion=$Version -p:InformationalVersion=$Version $projectBmdc
       env:
         NUGET_AUTH_TOKEN: "${secrets.GITHUB_TOKEN}"
       if: (github.repository == 'BlazorMdc/BlazorMdc')
 
     - name: Generate NuGet package 🔧
-      run: dotnet pack --no-build --configuration $buildConfiguration --output $outputBmdc -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:PackageVersion=$Version $projectBmdc
+      run: dotnet pack --no-build --configuration $buildConfiguration --output $outputBmdc -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:PackageVersion=$Version -p:InformationalVersion=$Version $projectBmdc
       env:
         NUGET_AUTH_TOKEN: "${secrets.GITHUB_TOKEN}"
       if: (github.repository == 'BlazorMdc/BlazorMdc')

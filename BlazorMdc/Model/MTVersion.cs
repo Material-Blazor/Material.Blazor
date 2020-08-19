@@ -5,9 +5,13 @@ using System.Text;
 
 namespace BlazorMdc.Model
 {
-    public class Version
+    public static class MTVersion
     {
-        public string GetBlazorMdcVersion()
+        /// <summary>
+        /// Returns a string with the value of the InformationalVersion
+        /// </summary>
+        /// <returns></returns>
+        public static string BlazorMdcVersion()
         {
             return Assembly.GetExecutingAssembly().GetCustomAttribute<AssemblyInformationalVersionAttribute>().InformationalVersion;
         }
