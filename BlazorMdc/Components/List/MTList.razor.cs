@@ -64,7 +64,6 @@ namespace BlazorMdc
         /// The actions render fragment.
         /// </summary>
         [Parameter] public RenderFragment<TItem> Actions { get; set; }
-        //[Parameter] public RenderFragment<TItem> ContextMenu { get; set; }
 
 
         /// <summary>

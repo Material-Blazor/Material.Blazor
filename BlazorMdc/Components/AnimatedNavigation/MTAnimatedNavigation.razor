@@ -18,10 +18,16 @@
 
 
     <div class="@PageClass">
-        @ChildContent
+        @if (ChildContent != null)
+        {
+            @ChildContent
+        }
     </div>
 }
 else
 {
-    @ChildContent
+    @if (ChildContent != null)
+    {
+        @ChildContent
+    }
 }

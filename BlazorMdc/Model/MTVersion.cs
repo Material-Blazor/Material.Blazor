@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
+﻿using System.Reflection;
 
-namespace BlazorMdc.Model
+namespace BlazorMdc
 {
     public static class MTVersion
     {
