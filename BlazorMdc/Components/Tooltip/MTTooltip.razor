@@ -4,12 +4,18 @@
 @if (TooltipType == MTTooltipType.Span)
 {
     <span aria-describedby="@id">
-        @Target
+        @if (Target != null)
+        {
+            @Target
+        }
     </span>
 }
 else
 {
     <div aria-describedby="@id">
-        @Target
+        @if (Target != null)
+        {
+            @Target
+        }
     </div>
 }

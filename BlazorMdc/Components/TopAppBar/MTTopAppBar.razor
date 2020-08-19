@@ -16,7 +16,10 @@
             <span class="mdc-top-app-bar__title">@Title</span>
         </section>
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" style="padding-right: 20px;">
-            @ChildContent
+            @if (ChildContent != null)
+            {
+                @ChildContent
+            }
         </section>
     </div>
 </header>

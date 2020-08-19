@@ -42,14 +42,17 @@
             }
 
             <span class="mdc-list-item__text bmdc-full-width @ListItemClass " disabled="@AppliedDisabled">
+                @if (Title != null)
+                {
                 <span class="@TitleClass">@Title(item)</span>
+                }
 
-                @if (HasLineTwo)
+                @if (HasLineTwo && (LineTwo != null))
                 {
                     <span class="@LineTwoClass">@LineTwo(item)</span>
                 }
 
-                @if (HasLineThree)
+                @if (HasLineThree && (LineThree != null))
                 {
                     <span class="@LineThreeClass">@LineThree(item)</span>
                 }

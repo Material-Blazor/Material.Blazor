@@ -5,6 +5,9 @@
 
 <div class="@VisibilityClass">
     <div class="@ContentClass">
-        @Content(CurrentItem)
+        @if (Content != null)
+        {
+            @Content(CurrentItem)
+        }
     </div>
 </div>

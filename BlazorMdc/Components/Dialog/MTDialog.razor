@@ -14,9 +14,12 @@
             <div class="mdc-dialog__container">
                 <div class="mdc-dialog__surface @OverflowClass">
                     <h2 id="@titleId" class="mdc-dialog__title">@Title</h2>
-                    
+
                     <div id="@descId" class="mdc-dialog__content @OverflowClass">
-                        @Body
+                        @if (Body != null)
+                        {
+                            @Body
+                        }
                     </div>
 
                     @if (Buttons != null)

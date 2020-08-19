@@ -8,7 +8,10 @@
 
     <div class="mdc-drawer__content">
         <CascadingValue Value="@this">
-            @ChildContent
+            @if (ChildContent != null)
+            {
+                @ChildContent
+            }
         </CascadingValue>
     </div>
 

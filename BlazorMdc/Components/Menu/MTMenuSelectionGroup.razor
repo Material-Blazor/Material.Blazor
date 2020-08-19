@@ -2,6 +2,9 @@
 
 <li>
     <ul class="mdc-menu__selection-group">
-        @ChildContent
+        @if (ChildContent != null)
+        {
+            @ChildContent
+        }
     </ul>
 </li>
