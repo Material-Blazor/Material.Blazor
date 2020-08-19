@@ -1151,25 +1151,25 @@ references:
   commentId: N:BlazorMdc.Model
   fullName: BlazorMdc.Model
   nameWithType: BlazorMdc.Model
-- uid: BlazorMdc.Model.Version
-  name: Version
-  href: api/BlazorMdc.Model.Version.html
-  commentId: T:BlazorMdc.Model.Version
-  fullName: BlazorMdc.Model.Version
-  nameWithType: Version
-- uid: BlazorMdc.Model.Version.GetBlazorMdcVersion
-  name: GetBlazorMdcVersion()
-  href: api/BlazorMdc.Model.Version.html#BlazorMdc_Model_Version_GetBlazorMdcVersion
-  commentId: M:BlazorMdc.Model.Version.GetBlazorMdcVersion
-  fullName: BlazorMdc.Model.Version.GetBlazorMdcVersion()
-  nameWithType: Version.GetBlazorMdcVersion()
-- uid: BlazorMdc.Model.Version.GetBlazorMdcVersion*
-  name: GetBlazorMdcVersion
-  href: api/BlazorMdc.Model.Version.html#BlazorMdc_Model_Version_GetBlazorMdcVersion_
-  commentId: Overload:BlazorMdc.Model.Version.GetBlazorMdcVersion
+- uid: BlazorMdc.Model.MTVersion
+  name: MTVersion
+  href: api/BlazorMdc.Model.MTVersion.html
+  commentId: T:BlazorMdc.Model.MTVersion
+  fullName: BlazorMdc.Model.MTVersion
+  nameWithType: MTVersion
+- uid: BlazorMdc.Model.MTVersion.BlazorMdcVersion
+  name: BlazorMdcVersion()
+  href: api/BlazorMdc.Model.MTVersion.html#BlazorMdc_Model_MTVersion_BlazorMdcVersion
+  commentId: M:BlazorMdc.Model.MTVersion.BlazorMdcVersion
+  fullName: BlazorMdc.Model.MTVersion.BlazorMdcVersion()
+  nameWithType: MTVersion.BlazorMdcVersion()
+- uid: BlazorMdc.Model.MTVersion.BlazorMdcVersion*
+  name: BlazorMdcVersion
+  href: api/BlazorMdc.Model.MTVersion.html#BlazorMdc_Model_MTVersion_BlazorMdcVersion_
+  commentId: Overload:BlazorMdc.Model.MTVersion.BlazorMdcVersion
   isSpec: "True"
-  fullName: BlazorMdc.Model.Version.GetBlazorMdcVersion
-  nameWithType: Version.GetBlazorMdcVersion
+  fullName: BlazorMdc.Model.MTVersion.BlazorMdcVersion
+  nameWithType: MTVersion.BlazorMdcVersion
 - uid: BlazorMdc.MTAnimatedNaviationManagerConfiguration
   name: MTAnimatedNaviationManagerConfiguration
   href: api/BlazorMdc.MTAnimatedNaviationManagerConfiguration.html
