@@ -29,7 +29,9 @@
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
-        gtag('config', 'UA-173249047-1');
+        gtag('config', 'UA-173249047-1', {
+            cookie_flags: 'max-age=7200;secure;samesite=none'
+        });
     </script>
 </head>
 

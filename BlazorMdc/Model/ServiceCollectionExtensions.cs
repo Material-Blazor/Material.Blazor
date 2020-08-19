@@ -1,8 +1,6 @@
 ﻿using BlazorMdc.Internal;
-
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
-using System.Runtime.CompilerServices;
 
 namespace BlazorMdc
 {
