@@ -70,5 +70,7 @@ namespace BlazorMdc.Internal
             return dateTime.ToString(format);
         }
 #nullable restore annotations
+
+
     }
 }

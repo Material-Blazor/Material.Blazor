@@ -31,7 +31,7 @@ namespace BlazorMdcWebsite.Components.Pages
             OSArchitecture = RuntimeInformation.OSArchitecture.ToString();
             OSDescription = RuntimeInformation.OSDescription.ToString();
             Runtime = RuntimeInformation.FrameworkDescription.ToString();
-            Version = new Version().GetBlazorMdcVersion();
+            Version = MTVersion.BlazorMdcVersion();
         }
 
 
