@@ -1,4 +1,4 @@
-﻿name: GithubActionsMainRelease
+﻿name: GithubActionsRelease
 
 ############################################################################################################
 # All of thes jobs runs commands only on a tag push in the BlazorMdc\BlazorMdc repository

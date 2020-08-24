@@ -8,6 +8,7 @@
           IsDismissible="true">
     <div class="mdc-list">
         <MTListItem LeadingIcon="home" Label="Home" @onclick="@(() => ListItemClickHandler(""))" />
+        <MTListItem LeadingIcon="anchor" Label="Anchor" @onclick="@(() => ListItemClickHandler("anchor"))" />
         <MTListItem LeadingIcon="touch_app" Label="Button" @onclick="@(() => ListItemClickHandler("button"))" />
         <MTListItem LeadingIcon="dashboard" Label="Card" @onclick="@(() => ListItemClickHandler("card"))" />
         <MTListItem LeadingIcon="web" Label="Cascading Defaults" @onclick="@(() => ListItemClickHandler("cascadingdefaults"))" />
