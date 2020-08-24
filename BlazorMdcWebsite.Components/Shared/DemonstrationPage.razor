@@ -150,7 +150,7 @@
             {
                 Title = "Material Theme Page",
                 Content = materialPage
-            }); ; ;
+            });
         }
 
         Densities = new MTListElement<MTDensity>[]
@@ -161,6 +161,6 @@
             new MTListElement<MTDensity> {SelectedValue = MTDensity.Minus3, Label = "Minus 3", Disabled = MinDensity > MTDensity.Minus3 },
             new MTListElement<MTDensity> {SelectedValue = MTDensity.Minus4, Label = "Minus 4", Disabled = MinDensity > MTDensity.Minus4 },
             new MTListElement<MTDensity> {SelectedValue = MTDensity.Minus5, Label = "Minus 5", Disabled = MinDensity > MTDensity.Minus5 },
-            }.Where(d => d.Disabled != true);
+                }.Where(d => d.Disabled != true);
     }
 }
