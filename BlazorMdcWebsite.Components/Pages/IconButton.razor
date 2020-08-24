@@ -58,20 +58,6 @@
 
 
 @code {
-    private bool _toggleTwoWayBindingState;
-    private bool ToggleTwoWayBindingState
-    {
-        get => _toggleTwoWayBindingState;
-        set
-        {
-            _toggleTwoWayBindingState = value;
-
-            ToastService.ShowToast(heading: "Toggle Icon Button Clicked", message: $"Two way binding Value: {_toggleTwoWayBindingState}", level: MTToastLevel.Success, showIcon: false);
-        }
-    }
-
-
-
     private void ButtonClick(string notification)
     {
         ToastService.ShowToast(heading: "Button Clicked", message: notification, level: MTToastLevel.Success, showIcon: false);
