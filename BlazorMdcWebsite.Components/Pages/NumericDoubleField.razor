@@ -1,18 +1,19 @@
-﻿@page "/specialtextfield"
+﻿@page "/MumericDoublefield"
 
 @inject IMTToastService ToastService
 
 @using System.Runtime.InteropServices
 
 
-<DemonstrationPageLayout ComponentNames=@(new string[] { "NumericDoubleField", "NumericIntField" })
-                         Title="Special Text Field Demonstration"
+<DemonstrationPage ComponentName="NumericDoubleField"
+                         Title="Numeric Double Field Demonstration"
                          DemoComponent="@this"
                          MinDensity="MTDensity.Minus4"
                          RequiresDisableSelection="true">
     <Description>
         <p>
-            Shows numeric double and int text fields, each of which are Plus components. Each of these can display as Filled or Outlined and with
+            Shows numeric double fields, which are Plus components.
+            Each of these can display as Filled or Outlined and with
             the full variety of icon foundries. These are used across the page but it we don't attempt to show each variant everywhere - see the Text Field demo for this.
         </p>
     </Description>
@@ -26,7 +27,7 @@
                     </h2>
 
                     <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        A range of numeric integer fields using formats for non focussed input.
+                        A range of numeric double fields using formats for non focussed input.
                     </h3>
 
                     <p>
@@ -51,13 +52,6 @@
                                               NumericFormat="N2"
                                               DecimalPlaces="2"
                                               TextInputStyle="MTTextInputStyle.Outlined" />
-                    </p>
-
-                    <p>
-                        <MTNumericIntField Label="Integer"
-                                           @bind-Value="@Integer"
-                                           NumericFormat="N0"
-                                           TextInputStyle="MTTextInputStyle.Outlined" />
                     </p>
                 </Primary>
             </MTCard>
@@ -111,7 +105,7 @@
             </MTCard>
         </div>
     </PageContent>
-</DemonstrationPageLayout>
+</DemonstrationPage>
 
 
 @code {
@@ -155,19 +149,6 @@
         }
     }
 
-
-
-    private int _integer;
-    private int Integer
-    {
-        get => _integer;
-        set
-        {
-            _integer = value;
-
-            ToastService.ShowToast(heading: "Integer numeric", message: $"Value: '{_integer.ToString("N0")}'", level: MTToastLevel.Success, showIcon: false);
-        }
-    }
 
 
     private double _percentByFormat;

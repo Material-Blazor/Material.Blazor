@@ -1,17 +1,18 @@
-﻿@page "/tabbar"
+﻿@page "/slidingtabbar"
 
 @inject IMTToastService ToastService
 
 
-<DemonstrationPage ComponentName="TabBar"
-                   Title="Tab Bar Demonstration"
+<DemonstrationPage ComponentName="SlidingTabBar"
+                   Title="Sliding Tab Bar Demonstration"
                    DemoComponent="@this"
                    MaterialIOPage="mdc-tab-bar#tab-bar"
                    IsGeneric="true"
                    MinDensity="MTDensity.Minus4">
     <Description>
         <p>
-            Demonstrates the core Tab Bar component.
+            Demonstrates the Sliding Tab Bar, which is a <a href="https://blazormdc.com/docs/articles/PlusComponents.html" target="_blank">Blazor MDC Plus Component</a>.
+            The Sliding Tab Bar uses the <a href="/tabbar">Sliding Content </a> Plus Component to manage transitions as tabs are selected.
         </p>
     </Description>
 
@@ -27,35 +28,39 @@
                     <MTCard AutoStyled="true">
                         <Primary>
                             <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
-                                Regular Tab Bar
+                                Sliding Tab Bar
                             </h2>
 
                             <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
-                                Demonstrates a regular tab bar for which you need to control tabbed content. This example uses the Font Awesome foundry for icons.
+                                Demonstrates Blazor MDC's sliding tab bar which gives the user subtle feedback on content change as tabs are selected.
                             </h3>
 
-                            <p style="margin-bottom: 2em;"><MTButton Label="Go to Dog" @onclick="@DogButtonClick" /></p>
+                            <p style="margin-bottom: 2em;"><MTButton Label="Go to Alarm" @onclick="@AlarmButtonClick" /></p>
 
                             <p>
-                                <MTTabBar @bind-Value="@TabIndex"
-                                          Items="@TabLabels"
-                                          Context="item"
-                                          StackIcons="@StackIcons">
-
-                                    <Icon>
-                                        @{ var name = "fa-" + item; }
-                                        <MTIcon IconName="@name" TabBar="true" IconFoundry="MTIconHelper.FAFoundry()" />
-                                    </Icon>
+                                <MTSlidingTabBar @ref="@SlidingTabBarRef"
+                                                 @bind-Value="@SlidingTabIndex"
+                                                 Items="@SlidingTabItems"
+                                                 Context="item"
+                                                 StackIcons="@StackIcons">
 
                                     <Label>
-                                        @item
+                                        @item.IconName
                                     </Label>
-                                </MTTabBar>
+
+                                    <Icon>
+                                        <MTIcon IconName="@item.IconName" TabBar="true" />
+                                    </Icon>
+
+                                    <Content>
+                                        <h3 class="mdc-typography--headline6">@item.IconName.ToUpper()</h3>
+                                        <p class="mdc-typography">@item.Text</p>
+                                    </Content>
+                                </MTSlidingTabBar>
                             </p>
                         </Primary>
                     </MTCard>
                 </div>
-
             </div>
         </div>
     </PageContent>
@@ -63,26 +68,10 @@
 
 
 @code {
-    private int _tabIndex = 0;
-    private int TabIndex
-    {
-        get => _tabIndex;
-        set
-        {
-            if (value != _tabIndex)
-            {
-                _tabIndex = value;
-
-                ToastService.ShowToast(heading: "Tab Clicked", message: $"Item {_tabIndex} / {TabLabels[_tabIndex]}", level: MTToastLevel.Success, showIcon: false);
-            }
-        }
-    }
-
-
     private bool StackIcons { get; set; } = false;
 
 
-    private MTSlidingTabBar<SlidingTabItem> SlidingTabBar { get; set; }
+    private MTSlidingTabBar<SlidingTabItem> SlidingTabBarRef { get; set; }
     private int SlidingTabIndex { get; set; } = 5;
 
 
@@ -119,9 +108,6 @@
         public string IconName;
         public string Text;
     }
-
-
-    private void DogButtonClick() => TabIndex = 1;
 
 
     private void AlarmButtonClick() => SlidingTabIndex = 1;
