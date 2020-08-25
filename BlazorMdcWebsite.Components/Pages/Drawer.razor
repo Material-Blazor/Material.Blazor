@@ -1,11 +1,11 @@
-﻿@page "/AnimatedNavigationManager"
+﻿@page "/Drawer"
 
 @inject IMTToastService ToastService
 
 
 
-<DemonstrationPage ComponentName="AnimatedNavigationManager"
-                   Title="Animated Navigation Manager"
+<DemonstrationPage ComponentName="Drawer"
+                   Title="Drawer"
                    DemoComponent="@this">
     <Description>
         <p>
@@ -18,16 +18,15 @@
             <MTCard AutoStyled="true">
                 <Primary>
                     <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
-                        AnimatedNavigationManager
+                        Drawer
                     </h2>
 
                     <p>
-                        The AnimatedNavigationManager is a visual component. You encapsulate the content that you wish to animate
-                        upon a navigation event.
+                        The Drawer is a visual component. You encapsulate the content that you wish to show and hide as a group.
+                        Typically this is a menu, but any components can be included.
                     </p>
                     <p>
-                        This website uses the AnimatedNavigationManager in its MainLayout.razor and can be observed in the 
-                        transitions between the various demo pages.
+                        This website uses the Drawer in its MainLayout.razor and can be observed as the menu when invoked.
                     </p>
                 </Primary>
             </MTCard>

@@ -16,16 +16,16 @@
 
 
 
-<DemonstrationPageLayout ComponentNames=@(new string[] { "List" })
-                         Title="List Demonstration"
-                         DemoComponent="@this"
-                         MaterialIOPages="@(new string[] { "mdc-list#lists" })"
-                         MinDensity="MTDensity.Minus4"
-                         RequiresDisableSelection="true"
-                         IsGeneric="@(new bool[] { true })">
+<DemonstrationPage ComponentName="List"
+                   Title="List Demonstration"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-list#lists"
+                   MinDensity="MTDensity.Minus4"
+                   RequiresDisableSelection="true"
+                   IsGeneric="true">
     <Description>
         <p>
-            Demonstrates a data table. Blazor MDC presently only implements "Standard" data tables without row interaction.
+            Demonstrates lists.
         </p>
     </Description>
 
@@ -170,7 +170,7 @@
             </MTCard>
         </div>
     </PageContent>
-</DemonstrationPageLayout>
+</DemonstrationPage>
 
 
 
@@ -186,7 +186,7 @@
 
 
     private IEnumerable<Product> SingleLineProducts = new System.Collections.Generic.List<Product>
-    {
+{
         new Product { ProductId = 1, DisplayName = "Curly-wurly straw", LineTwo = "Amaze your friends with this cheap plastic tube", LineThree = "Line three", IsInStock = true },
         new Product { ProductId = 2, DisplayName = "Pepsi Connoisseur (12mo subscription)", LineTwo = "Covers all developments in the world of Pepsi™", LineThree = "Line three", IsInStock = false },
         new Product { ProductId = 3, DisplayName = "Recarbonator Pro", LineTwo = "Revitalize your old beverages in just hours", LineThree = "Line three", IsInStock = true },
@@ -194,7 +194,7 @@
 
 
     private IEnumerable<Product> TwoLineProducts = new System.Collections.Generic.List<Product>
-    {
+{
         new Product { ProductId = 1, DisplayName = "Curly-wurly straw", LineTwo = "Amaze your friends with this cheap plastic tube", LineThree = "Line three", IsInStock = true },
         new Product { ProductId = 2, DisplayName = "Pepsi Connoisseur (12mo subscription)", LineTwo = "Covers all developments in the world of Pepsi™", LineThree = "Line three", IsInStock = false },
         new Product { ProductId = 3, DisplayName = "Recarbonator Pro", LineTwo = "Revitalize your old beverages in just hours", LineThree = "Line three", IsInStock = true },
@@ -202,7 +202,7 @@
 
 
     private IEnumerable<Product> ThreeLineProducts = new System.Collections.Generic.List<Product>
-    {
+{
         new Product { ProductId = 1, DisplayName = "Curly-wurly straw", LineTwo = "Amaze your friends with this cheap plastic tube", LineThree = "Line three", IsInStock = true },
         new Product { ProductId = 2, DisplayName = "Pepsi Connoisseur (12mo subscription)", LineTwo = "Covers all developments in the world of Pepsi™", LineThree = "Line three", IsInStock = false },
         new Product { ProductId = 3, DisplayName = "Recarbonator Pro", LineTwo = "Revitalize your old beverages in just hours", LineThree = "Line three", IsInStock = true },

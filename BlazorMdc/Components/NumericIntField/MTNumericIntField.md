@@ -13,4 +13,4 @@ An integer variant of [MTNumericDoubleField](xref:C.MTNumericDoubleField). Appli
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Plus&color=red)](xref:A.PlusComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MTNumericDoubleField&color=brightgreen)](xref:BlazorMdc.MTNumericDoubleField)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MTNumericIntField&color=brightgreen)](xref:BlazorMdc.MTNumericIntField)

@@ -3,12 +3,12 @@
 @inject IMTToastService ToastService
 
 
-<DemonstrationPageLayout ComponentNames=@(new string[] { "TabBar" })
-                         Title="Tab Bar Demonstration"
-                         DemoComponent="@this"
-                         MaterialIOPages="@(new string[] { "mdc-tab-bar#tab-bar" })"
-                         IsGeneric="@(new bool[] { true })"
-                         MinDensity="MTDensity.Minus4">
+<DemonstrationPage ComponentName="TabBar"
+                   Title="Tab Bar Demonstration"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-tab-bar#tab-bar"
+                   IsGeneric="true"
+                   MinDensity="MTDensity.Minus4">
     <Description>
         <p>
             Demonstrates the core Tab Bar component along with the Sliding Tab Bar, which is a <a href="https://blazormdc.com/docs/articles/PlusComponents.html" target="_blank">Blazor MDC Plus Component</a>.
@@ -80,16 +80,16 @@
                                     <Label>
                                         @item.IconName
                                     </Label>
-                                    
+
                                     <Icon>
                                         <MTIcon IconName="@item.IconName" TabBar="true" />
                                     </Icon>
-                                    
+
                                     <Content>
                                         <h3 class="mdc-typography--headline6">@item.IconName.ToUpper()</h3>
-                                        <p class="mdc-typography">@item.Text</p>
-                                    </Content>
-                                </MTSlidingTabBar>
+                            <p class="mdc-typography">@item.Text</p>
+                            </Content>
+                            </MTSlidingTabBar>
                             </p>
                         </Primary>
                     </MTCard>
@@ -97,7 +97,7 @@
             </div>
         </div>
     </PageContent>
-</DemonstrationPageLayout>
+</DemonstrationPage>
 
 
 @code {

@@ -18,11 +18,11 @@
 
 
 
-<DemonstrationPageLayout ComponentNames=@(new string[] { "DataTable" })
-                         Title="Data Table Demonstration"
-                         DemoComponent="@this"
-                         MaterialIOPages="@(new string[] { "mdc-data-table#data-tables" })"
-                         MinDensity="MTDensity.Minus4">
+<DemonstrationPage ComponentName="DataTable"
+                   Title="Data Table Demonstration"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-data-table#data-tables"
+                   MinDensity="MTDensity.Minus4">
     <Description>
         <p>
             Demonstrates a data table. Blazor MDC presently only implements "Standard" data tables without row interaction.
@@ -59,7 +59,7 @@
             </MTCard>
         </div>
     </PageContent>
-</DemonstrationPageLayout>
+</DemonstrationPage>
 
 
 

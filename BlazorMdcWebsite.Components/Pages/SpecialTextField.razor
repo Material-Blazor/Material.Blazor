@@ -5,77 +5,19 @@
 @using System.Runtime.InteropServices
 
 
-<DemonstrationPageLayout ComponentNames=@(new string[] { "Autocomplete", "DebouncedTextField", "NumericDoubleField", "NumericIntField" })
+<DemonstrationPageLayout ComponentNames=@(new string[] { "NumericDoubleField", "NumericIntField" })
                          Title="Special Text Field Demonstration"
                          DemoComponent="@this"
                          MinDensity="MTDensity.Minus4"
                          RequiresDisableSelection="true">
     <Description>
         <p>
-            Shows debounced text fields, autcompletes and numeric text fields, each of which are Plus components. Each of these can display as Filled or Outlined and with
+            Shows numeric double and int text fields, each of which are Plus components. Each of these can display as Filled or Outlined and with
             the full variety of icon foundries. These are used across the page but it we don't attempt to show each variant everywhere - see the Text Field demo for this.
         </p>
     </Description>
 
     <PageContent>
-        <div class="mdc-layout-grid__cell--span-4">
-            <MTCard AutoStyled="true">
-                <Primary>
-                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
-                        Autocompletes
-                    </h2>
-
-                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        Three varieties - one disallowing blank selection, one allowing, and the last ignoring whitespace in searches.
-                    </h3>
-
-                    @if (IsWebAssembly)
-                    {
-                        <p>
-                            Autocompletes are disabled on this site because it is running on WebAssembly. This is because of a <a href="https://github.com/mono/linker/issues/1408" target="_blank">bug in the Mono linker</a> affecting MTAutocomplete and its use of Regex.
-                            You can test Autocompletes by <a href="https://github.com/simonziegler/BlazorMdcWebsite/" target="_blank">forking this repo</a> and running the Blazor Server project where this message is replaced with working Autocompletes.
-                        </p>
-                    }
-                    else
-                    {
-                        <p><MTAutocomplete @bind-Value="@Autocomplete1" Label="Blanks disallowed" TextInputStyle="MTTextInputStyle.Filled" SelectItems="@Fruits" LeadingIcon="alarm" AllowBlankResult="false" /></p>
-                        <p><MTAutocomplete @bind-Value="@Autocomplete2" Label="Blanks allowed" TextInputStyle="MTTextInputStyle.Outlined" SelectItems="@Fruits" AllowBlankResult="true" TrailingIcon="fa-dragon" IconFoundry="MTIconHelper.FAFoundry(relativeSize: MTIconFARelativeSize.Large)" /></p>
-                        <p><MTAutocomplete @bind-Value="@Autocomplete3" Label="Whitespace ignored" TextInputStyle="MTTextInputStyle.Filled" SelectItems="@Fruits" AllowBlankResult="true" IgnoreWhitespace="true" /></p>
-                    }
-                </Primary>
-            </MTCard>
-        </div>
-
-
-
-        <div class="mdc-layout-grid__cell--span-4">
-            <MTCard AutoStyled="true">
-                <Primary>
-                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
-                        Debounced text field
-                    </h2>
-
-                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        Set the debounce period you want.
-                    </h3>
-
-                    <p><MTRadioButtonGroup @bind-Value="@DebouncePeriod" Items="DebouncePeriods" ItemValidation="@MTItemValidation.DefaultToFirst" /></p>
-
-                    <p>
-                        <MTDebouncedTextField Label="Debounced Text"
-                                              @bind-Value="@Debounced"
-                                              TextInputStyle="MTTextInputStyle.Outlined"
-                                              LeadingIcon="account_balance_wallet"
-                                              DebounceInterval="DebouncePeriod" />
-                    </p>
-
-                    <p>Debounced text: <em>'@Debounced'</em></p>
-                </Primary>
-            </MTCard>
-        </div>
-
-
-
         <div class="mdc-layout-grid__cell--span-4">
             <MTCard AutoStyled="true">
                 <Primary>
@@ -173,75 +115,6 @@
 
 
 @code {
-    string[] Fruits = { "Avocado", "Banana", "Blackberry", "Blueberry", "Cantaloupe", "Cherry", "Clementine", "Dragonfruit", "Fig", "Grape", "Guava", "Honeydew", "Huckleberry", "Jujube", "Kiwi", "Kumquat", "Lime", "Nectarine", "Orange", "Papaya", "Passion Fruit", "Pineapple", "Plum", "Pomegranate", "Raspberry", "Satsuma", "Strawberry", "Tangerine", "Tomato", "Watermelon" };
-
-    private MTListElement<int>[] DebouncePeriods = new MTListElement<int>[]
-    {
-        new MTListElement<int> { SelectedValue = 300, Label = "300 ms" },
-        new MTListElement<int> { SelectedValue = 500, Label = "500 ms" },
-        new MTListElement<int> { SelectedValue = 1000, Label = "1,000 ms" }
-        };
-
-
-
-    private string _autocomplete1;
-    private string Autocomplete1
-    {
-        get => _autocomplete1;
-        set
-        {
-            _autocomplete1 = value;
-
-            ToastService.ShowToast(heading: "Autocomplete blanks disallowed", message: $"Value: '{_autocomplete1}'", level: MTToastLevel.Success, showIcon: false);
-        }
-    }
-
-
-
-    private string _autocomplete2;
-    private string Autocomplete2
-    {
-        get => _autocomplete2;
-        set
-        {
-            _autocomplete2 = value;
-
-            ToastService.ShowToast(heading: "Autocomplete blanks allowed", message: $"Value: '{_autocomplete2}'", level: MTToastLevel.Success, showIcon: false);
-        }
-    }
-
-
-
-    private string _autocomplete3;
-    private string Autocomplete3
-    {
-        get => _autocomplete3;
-        set
-        {
-            _autocomplete3 = value;
-
-            ToastService.ShowToast(heading: "Autocomplete whitespace ignored", message: $"Value: '{_autocomplete3}'", level: MTToastLevel.Success, showIcon: false);
-        }
-    }
-
-
-
-    private string _debounced = "Initial Value";
-    private string Debounced
-    {
-        get => _debounced;
-        set
-        {
-            _debounced = value;
-
-            ToastService.ShowToast(heading: "Debounced text field", message: $"Value: '{_debounced}'", level: MTToastLevel.Success, showIcon: false);
-        }
-    }
-
-    private int DebouncePeriod { get; set; } = 300;
-
-
-
     private double _double;
     private double Double
     {

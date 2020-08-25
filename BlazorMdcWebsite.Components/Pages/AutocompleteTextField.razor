@@ -1,0 +1,100 @@
+﻿@page "/autocompletetextfield"
+
+@inject IMTToastService ToastService
+
+@using System.Runtime.InteropServices
+
+
+<DemonstrationPage ComponentName="AutocompleteTextField"
+                   Title="Autocomplete Text Field Demonstration"
+                   DemoComponent="@this"
+                   MinDensity="MTDensity.Minus4"
+                   RequiresDisableSelection="true">
+    <Description>
+        <p>
+            Shows autocomplete text fields which are Plus components.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        Autocompletes
+                    </h2>
+
+                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Three varieties - one disallowing blank selection, one allowing, and the last ignoring whitespace in searches.
+                    </h3>
+
+                    @if (IsWebAssembly)
+                    {
+                        <p>
+                            Autocompletes are disabled on this site because it is running on WebAssembly. This is because of a <a href="https://github.com/mono/linker/issues/1408" target="_blank">bug in the Mono linker</a> affecting MTAutocomplete and its use of Regex.
+                            You can test Autocompletes by <a href="https://github.com/simonziegler/BlazorMdcWebsite/" target="_blank">forking this repo</a> and running the Blazor Server project where this message is replaced with working Autocompletes.
+                        </p>
+                    }
+                    else
+                    {
+                        <p><MTAutocompleteTextField @bind-Value="@Autocomplete1" Label="Blanks disallowed" TextInputStyle="MTTextInputStyle.Filled" SelectItems="@Fruits" LeadingIcon="alarm" AllowBlankResult="false" /></p>
+                        <p><MTAutocompleteTextField @bind-Value="@Autocomplete2" Label="Blanks allowed" TextInputStyle="MTTextInputStyle.Outlined" SelectItems="@Fruits" AllowBlankResult="true" TrailingIcon="fa-dragon" IconFoundry="MTIconHelper.FAFoundry(relativeSize: MTIconFARelativeSize.Large)" /></p>
+                        <p><MTAutocompleteTextField @bind-Value="@Autocomplete3" Label="Whitespace ignored" TextInputStyle="MTTextInputStyle.Filled" SelectItems="@Fruits" AllowBlankResult="true" IgnoreWhitespace="true" /></p>
+                    }
+                </Primary>
+            </MTCard>
+        </div>
+
+
+
+    </PageContent>
+</DemonstrationPage>
+
+
+@code {
+    string[] Fruits = { "Avocado", "Banana", "Blackberry", "Blueberry", "Cantaloupe", "Cherry", "Clementine", "Dragonfruit", "Fig", "Grape", "Guava", "Honeydew", "Huckleberry", "Jujube", "Kiwi", "Kumquat", "Lime", "Nectarine", "Orange", "Papaya", "Passion Fruit", "Pineapple", "Plum", "Pomegranate", "Raspberry", "Satsuma", "Strawberry", "Tangerine", "Tomato", "Watermelon" };
+
+    private string _autocomplete1;
+    private string Autocomplete1
+    {
+        get => _autocomplete1;
+        set
+        {
+            _autocomplete1 = value;
+
+            ToastService.ShowToast(heading: "Autocomplete blanks disallowed", message: $"Value: '{_autocomplete1}'", level: MTToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private string _autocomplete2;
+    private string Autocomplete2
+    {
+        get => _autocomplete2;
+        set
+        {
+            _autocomplete2 = value;
+
+            ToastService.ShowToast(heading: "Autocomplete blanks allowed", message: $"Value: '{_autocomplete2}'", level: MTToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private string _autocomplete3;
+    private string Autocomplete3
+    {
+        get => _autocomplete3;
+        set
+        {
+            _autocomplete3 = value;
+
+            ToastService.ShowToast(heading: "Autocomplete whitespace ignored", message: $"Value: '{_autocomplete3}'", level: MTToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private bool IsWebAssembly => (RuntimeInformation.OSArchitecture == Architecture.Wasm) && false;
+}

@@ -33,9 +33,9 @@
 }
 
 
-<DemonstrationPageLayout ComponentNames=@(new string[] { "Toast" })
-                         Title="Toast Demonstration"
-                         DemoComponent="@this">
+<DemonstrationPage ComponentName="Toast"
+                   Title="Toast Demonstration"
+                   DemoComponent="@this">
     <Description>
         <p>
             Demonstrates toast variations.
@@ -119,28 +119,28 @@
                                 Shows how toasts can be tailored through the ShowToast method call.
                             </h3>
                         </div>
-                        <div class="mdc-layout-grid__cell--span-4">                   
+                        <div class="mdc-layout-grid__cell--span-4">
                             <MTSelect Label="Additional css class" @bind-Value="@CssClass" Items="CssClassItems" ItemValidation="@MTItemValidation.DefaultToFirst" SelectInputStyle="@MTSelectInputStyle.Outlined" />
                         </div>
-                        <div class="mdc-layout-grid__cell--span-4">                            
+                        <div class="mdc-layout-grid__cell--span-4">
                             <MTSelect Label="Close method" @bind-Value="@CloseMethod" Items="closeMethodItems" SelectInputStyle="@MTSelectInputStyle.Outlined" />
                         </div>
-                        <div class="mdc-layout-grid__cell--span-4">                            
+                        <div class="mdc-layout-grid__cell--span-4">
                             <MTSelect Label="Heading" @bind-Value="@Heading" Items="headingItems" ItemValidation="@MTItemValidation.DefaultToFirst" SelectInputStyle="@MTSelectInputStyle.Outlined" />
                         </div>
-                        <div class="mdc-layout-grid__cell--span-4">                            
+                        <div class="mdc-layout-grid__cell--span-4">
                             <MTSelect Label="Icon" @bind-Value="@Icon" Items="iconItems" ItemValidation="@MTItemValidation.DefaultToFirst" SelectInputStyle="@MTSelectInputStyle.Outlined" />
                         </div>
-                        <div class="mdc-layout-grid__cell--span-4">                            
+                        <div class="mdc-layout-grid__cell--span-4">
                             <MTSelect Label="Level" @bind-Value="@Level" Items="levelItems" SelectInputStyle="@MTSelectInputStyle.Outlined" />
                         </div>
-                        <div class="mdc-layout-grid__cell--span-4">                            
+                        <div class="mdc-layout-grid__cell--span-4">
                             <MTSelect Label="Message" @bind-Value="@Message" Items="messageItems" ItemValidation="@MTItemValidation.DefaultToFirst" SelectInputStyle="@MTSelectInputStyle.Outlined" />
                         </div>
-                        <div class="mdc-layout-grid__cell--span-4">                            
+                        <div class="mdc-layout-grid__cell--span-4">
                             <MTSelect Label="Show icon" @bind-Value="@ShowIcon" Items="showIconItems" ItemValidation="@MTItemValidation.DefaultToFirst" SelectInputStyle="@MTSelectInputStyle.Outlined" />
                         </div>
-                        <div class="mdc-layout-grid__cell--span-4">                            
+                        <div class="mdc-layout-grid__cell--span-4">
                             <MTSelect Label="Timeout" @bind-Value="@Timeout" Items="timeoutItems" ItemValidation="@MTItemValidation.DefaultToFirst" SelectInputStyle="@MTSelectInputStyle.Outlined" />
                         </div>
 
@@ -154,7 +154,7 @@
             </MTCard>
         </div>
     </PageContent>
-</DemonstrationPageLayout>
+</DemonstrationPage>
 
 
 
@@ -174,7 +174,7 @@
     {
         new MTListElement<string> { SelectedValue = "", Label = "Default" },
         new MTListElement<string> { SelectedValue = "italic-class", Label = "Italic" },
-    };
+        };
 
 
     private MTToastCloseMethod CloseMethod { get; set; }
@@ -191,7 +191,7 @@
         new MTListElement<string> { SelectedValue = "", Label = "Default" },
         new MTListElement<string> { SelectedValue = "Run of the mill heading", Label = "Run of the mill heading" },
         new MTListElement<string> { SelectedValue = "Heading truncated and truncated and truncated and truncated", Label = "Heading that will be truncated" }
-    };
+        };
 
 
 #nullable enable annotations
@@ -213,7 +213,7 @@
         new MTListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MTIconHelper.MIFoundry(theme: MTIconMITheme.Sharp) }, Label = "thumb_up (sharp)" },
         new MTListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = MTIconHelper.FAFoundry() }, Label = "fa-ambulance" },
         new MTListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = MTIconHelper.FAFoundry(relativeSize: MTIconFARelativeSize.ExtraSmall) }, Label = "fa-ambulance (x-small)" },
-    };
+        };
 
 
     private MTToastLevel Level { get; set; }
@@ -231,7 +231,7 @@
         new MTListElement<string> { SelectedValue = "Run of the mill message", Label = "Run of the mill message" },
         new MTListElement<string> { SelectedValue = "Text <strong>bold</strong> and <u>underlined</u>", Label = "Message with markup" },
         new MTListElement<string> { SelectedValue = "Message truncated and truncated and truncated and truncated", Label = "Message that will be truncated" }
-    };
+        };
 
 
     private string ShowIcon { get; set; }
@@ -240,7 +240,7 @@
         new MTListElement<string> { SelectedValue = "", Label = "Default" },
         new MTListElement<string> { SelectedValue = "true", Label = "true" },
         new MTListElement<string> { SelectedValue = "false", Label = "false" }
-    };
+        };
 
 
     private string Timeout { get; set; }
@@ -250,7 +250,7 @@
         new MTListElement<string> { SelectedValue = "1000", Label = "1 second" },
         new MTListElement<string> { SelectedValue = "10000", Label = "10 seconds" },
         new MTListElement<string> { SelectedValue = "60000", Label = "60 seconds" }
-    };
+        };
 
 
     private void CustomiseClick()
