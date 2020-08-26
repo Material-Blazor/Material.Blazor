@@ -1,15 +1,15 @@
-﻿@page "/AnimatedNavigationManager"
+﻿@page "/TopAppBar"
 
 @inject IMTToastService ToastService
 
 
 
-<DemonstrationPage ComponentName="AnimatedNavigationManager"
-                   Title="Animated Navigation Manager"
+<DemonstrationPage ComponentName="TopAppBar"
+                   Title="Top App Bar"
                    DemoComponent="@this">
     <Description>
         <p>
-            Anchor component.
+            TopAppBar component.
         </p>
     </Description>
 
@@ -18,16 +18,16 @@
             <MTCard AutoStyled="true">
                 <Primary>
                     <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
-                        AnimatedNavigationManager
+                        TopAppBar
                     </h2>
 
                     <p>
-                        The AnimatedNavigationManager is a visual component. You encapsulate the content that you wish to animate
-                        upon a navigation event.
+                        The TopAppBar is a visual component. It is typicall placed in the main layout file before the inclusion 
+                        of the body.
                     </p>
                     <p>
-                        This website uses the AnimatedNavigationManager in its MainLayout.razor and can be observed in the 
-                        transitions between the various demo pages.
+                        This website uses the TopAppBat in its MainLayout.razor and can be observed in action 
+                        when scrolling any vertically lengthy demo pages like RadioButtonGroup.
                     </p>
                 </Primary>
             </MTCard>

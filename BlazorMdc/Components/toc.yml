@@ -7,8 +7,8 @@
 - name: BlazorMdc.Internal namespace
   topicUid: BlazorMdc.Internal
 
-- name: IMTAnimatedNavigationManager
-  topicUid: S.IMTAnimatedNavigationManager
+- name: IMTAnimatedNavigationService
+  topicUid: S.IMTAnimatedNavigationService
 
 - name: IMTToastService
   topicUid: S.IMTToastService

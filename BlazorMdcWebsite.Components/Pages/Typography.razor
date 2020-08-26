@@ -1,70 +1,9 @@
-﻿@page "/miscellaneous"
+﻿@page "/typography"
 
 
-<style>
-    .my-label-two {
-        --bmdc-shield-label-color: var(--bmdc-color-orange-100);
-        --bmdc-shield-value-color: var(--bmdc-color-orange-100);
-        --bmdc-shield-label-background: var(--bmdc-color-blue-700);
-        --bmdc-shield-value-background: var(--bmdc-color-green-700);
-    }
-</style>
-
-
-<DemonstrationPageLayout Title="Miscellaneous Items Demonstration">
+<DemonstrationPage Title="Typography Demonstration"
+                   DemoComponent="@this">
     <PageContent>
-        <div class="mdc-layout-grid__cell--span-12">
-            <MTCard AutoStyled="true">
-                <Primary>
-                    <div class="mdc-layout-grid__inner">
-                        <div class="mdc-layout-grid__cell--span-12">
-                            <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
-                                shields and tooltips
-                            </h2>
-
-                            <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
-                                The icons are provided tooltip text as a component parameter, and the paragraphs use MTTooltip.
-                            </h3>
-                        </div>
-                        <div class="mdc-layout-grid__cell--span-12">
-                            <p>
-                                <MTShield Label="label one" Value="value one" Tooltip="Plain shield" />
-                                <MTShield Label="label two" Value="value two" LabelClass="my-label-two" ValueClass="my-label-two" Tooltip="LabelClass and ValueClass set" />
-                                <MTShield Label="label three" Value="value three" LabelIcon="edit" ValueIcon="edit" Tooltip="With icons" />
-                            </p>
-                        </div>
-
-                        <div class="mdc-layout-grid__cell--span-12">
-                            <p>
-                                <MTTooltip TooltipType="@MTTooltipType.Span">
-                                    <Target>
-                                        <span style="background-color: var(--bmdc-color-red-100);">Toolip applied with TooltipType="MTTooltipType.Span" using the whole paragraph as the target.</span>
-                                    </Target>
-                                    <Content>
-                                        &lt;
-                                        <strong>MTTooltip TooltipType</strong>="MTTooltipType.
-                                        <em><u>Span</u></em>"&gt;
-                                    </Content>
-                                </MTTooltip>
-                            </p>
-
-                            <MTTooltip TooltipType="@MTTooltipType.Div">
-                                <Target>
-                                    <p style="background-color: var(--bmdc-color-red-100);">Toolip applied with TooltipType="MTTooltipType.Div" using the whole paragraph as the target.</p>
-                                </Target>
-                                <Content>
-                                    &lt;
-                                    <strong>MTTooltip TooltipType</strong>="MTTooltipType.
-                                    <em><u>Div</u></em>"&gt;
-                                </Content>
-                            </MTTooltip>
-                        </div>
-                    </div>
-                </Primary>
-            </MTCard>
-        </div>
-
-
         <div class="mdc-layout-grid__cell--span-12">
             <MTCard AutoStyled="true">
                 <Primary>
@@ -195,4 +134,4 @@
             </MTCard>
         </div>
     </PageContent>
-</DemonstrationPageLayout>
+</DemonstrationPage>

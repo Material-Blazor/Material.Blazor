@@ -12,7 +12,7 @@ implements further Blazor/Material Theme hybrid components that we term "Plus Co
 | Component | Notes |
 | :-------- | :---- |
 | [MTAnchor](xref:C.MTAnchor) | Anchor for a port of [Blazored/Toast](https://github.com/Blazored/Toast) and [Material Tooltips](https://github.com/material-components/material-components-web/tree/master/packages/mdc-tooltip#tooltip) modified and styled for Material Theme. Place once instance of this in your Blazor app at the top of `App.razor` or `MainLayout.razor`. Requires that you register an [IIMToastService](xref:S.IMTToastService) service and will throw an exception on startup if the service is not found. |
-| [MTAnimatedNavigation](xref:C.MTAnimatedNavigation) | An component used by the [IMTAnimatedNavigationManager](xref:S.IMTAnimatedNavigationManager) service. |
+| [MTAnimatedNavigation](xref:C.MTAnimatedNavigation) | An component used by the [IMTAnimatedNavigationService](xref:S.IMTAnimatedNavigationService) service. |
 | [MTAutocomplete](xref:C.MTAutocomplete) | An autocomplete comprising a text field and a menu. |
 | [MTConfirmationDialog](xref:C.MTConfirmationDialog) | A special purpose wrapper around [MTDialog](xref:C.MTDialog) that makes the user type some text correctly in order to enable a button for a specific purpose. Modelled after the GitHub confirmation forms. |
 | [MTDatePicker](xref:C.MTDatePicker) | An implementation of the [Material date picker specification](https://material.io/components/pickers/#specs) for the desktop. |

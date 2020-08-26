@@ -1,6 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
-@inject IMTAnimatedNavigationManager AnimatedNavigationManager
+@inject IMTAnimatedNavigationService AnimatedNavigationService
 @inject IJSRuntime JsRuntime
 
 <MTDrawer @ref="@Drawer"
@@ -10,7 +10,7 @@
         <MTListItem LeadingIcon="home" Label="Home" @onclick="@(() => ListItemClickHandler(""))" />
         <MTListItem LeadingIcon="anchor" Label="Anchor" @onclick="@(() => ListItemClickHandler("anchor"))" />
         <MTListItem LeadingIcon="short_text" Label="Autocomplete Text Field" @onclick="@(() => ListItemClickHandler("autocompletetextfield"))" />
-        <MTListItem LeadingIcon="swap_horiz" Label="Animated Navigation Manager" @onclick="@(() => ListItemClickHandler("animatednavigationmanager"))" />
+        <MTListItem LeadingIcon="swap_horiz" Label="Animated Navigation" @onclick="@(() => ListItemClickHandler("animatednavigation"))" />
         <MTListItem LeadingIcon="touch_app" Label="Button" @onclick="@(() => ListItemClickHandler("button"))" />
         <MTListItem LeadingIcon="dashboard" Label="Card" @onclick="@(() => ListItemClickHandler("card"))" />
         <MTListItem LeadingIcon="web" Label="Cascading Defaults" @onclick="@(() => ListItemClickHandler("cascadingdefaults"))" />
@@ -29,19 +29,24 @@
         <MTListItem LeadingIcon="access_time" Label="Linear Progress" @onclick="@(() => ListItemClickHandler("linearprogress"))" />
         <MTListItem LeadingIcon="list" Label="List" @onclick="@(() => ListItemClickHandler("list"))" />
         <MTListItem LeadingIcon="menu" Label="Menu" @onclick="@(() => ListItemClickHandler("menu"))" />
-        <MTListItem LeadingIcon="text_format" Label="Miscellaneous" @onclick="@(() => ListItemClickHandler("miscellaneous"))" />
         <MTListItem LeadingIcon="money" Label="Numeric Double Field" @onclick="@(() => ListItemClickHandler("numericdoublefield"))" />
         <MTListItem LeadingIcon="exposure_zero" Label="Numeric Int Field" @onclick="@(() => ListItemClickHandler("numericintfield"))" />
-        <MTListItem LeadingIcon="import_contacts" Label="Pagination" @onclick="@(() => ListItemClickHandler("pagination"))" />
+        <MTListItem LeadingIcon="import_contacts" Label="Paged Data List" @onclick="@(() => ListItemClickHandler("pageddatalist"))" />
+        <MTListItem LeadingIcon="import_contacts" Label="Paginator" @onclick="@(() => ListItemClickHandler("paginator"))" />
         <MTListItem LeadingIcon="radio_button_checked" Label="Radio Button" @onclick="@(() => ListItemClickHandler("radiobutton"))" />
+        <MTListItem LeadingIcon="radio_button_checked" Label="Radio Button Group" @onclick="@(() => ListItemClickHandler("radiobuttongroup"))" />
         <MTListItem LeadingIcon="arrow_drop_down" Label="Select" @onclick="@(() => ListItemClickHandler("select"))" />
+        <MTListItem LeadingIcon="preview" Label="Shield" @onclick="@(() => ListItemClickHandler("shield"))" />
         <MTListItem LeadingIcon="compare_arrows" Label="Sliding Content" @onclick="@(() => ListItemClickHandler("slidingcontent"))" />
-        <MTListItem LeadingIcon="slide_show" Label="Sliding Tab Bar" @onclick="@(() => ListItemClickHandler("slidingtabbar"))" />
+        <MTListItem LeadingIcon="slideshow" Label="Sliding Tab Bar" @onclick="@(() => ListItemClickHandler("slidingtabbar"))" />
         <MTListItem LeadingIcon="switch_left" Label="Switch" @onclick="@(() => ListItemClickHandler("switch"))" />
         <MTListItem LeadingIcon="tab" Label="Tab Bar" @onclick="@(() => ListItemClickHandler("tabbar"))" />
         <MTListItem LeadingIcon="assignment" Label="Text Area" @onclick="@(() => ListItemClickHandler("textarea"))" />
         <MTListItem LeadingIcon="text_format" Label="Text Field" @onclick="@(() => ListItemClickHandler("textfield"))" />
         <MTListItem LeadingIcon="textsms" Label="Toast" @onclick="@(() => ListItemClickHandler("toast"))" />
+        <MTListItem LeadingIcon="live_help" Label="Tooltip" @onclick="@(() => ListItemClickHandler("tooltip"))" />
+        <MTListItem LeadingIcon="border_top" Label="Top App Bar" @onclick="@(() => ListItemClickHandler("topappbar"))" />
+        <MTListItem LeadingIcon="http" Label="Typography" @onclick="@(() => ListItemClickHandler("typography"))" />
     </div>
 </MTDrawer>
 
@@ -83,6 +88,7 @@
                         </div>
                     </div>
                 </MTAnimatedNavigation>
+
             </CascadingValue>
         </div>
     </main>
@@ -114,7 +120,7 @@
     private void ListItemClickHandler(string NavigationReference)
     {
         Drawer.NotifyNavigation();
-        AnimatedNavigationManager.NavigateTo(NavigationReference);
+        AnimatedNavigationService.NavigateTo(NavigationReference);
     }
 
     private void SideBarToggle()

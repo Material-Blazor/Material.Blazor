@@ -1,7 +1,7 @@
 ﻿namespace BlazorMdc
 {
     /// <summary>
-    /// Interface for the animated navigation manager service. Animated navigations augment
+    /// Interface for the animated navigation service. Animated navigations augment
     /// Blazor's NavigationManager with minor animation.
     /// <para>
     /// First the current page fades out for 40% of the animation period, followed by a call to
@@ -17,7 +17,7 @@
     /// <example>
     /// <para>You can optionally add configuration when you add this to the service collection:</para>
     /// <code>
-    /// services.AddMTAnimatedNavigationManager(new MTAnimatedNaviationManagerConfiguration()
+    /// services.AddMTAnimatedNavigationService(new MTAnimatedNaviationManagerConfiguration()
     /// {
     ///     ApplyAnimation = true,
     ///     AnimationTime = 300
@@ -25,12 +25,12 @@
     /// </code>
     /// </example>
     /// </summary>
-    public interface IMTAnimatedNavigationManager
+    public interface IMTAnimatedNavigationService
     {
         /// <summary>
-        /// Animation Manager configuration.
+        /// Animated Navigation Service configuration.
         /// </summary>
-        public MTAnimatedNaviationManagerConfiguration Configuration { get; set; }
+        public MTAnimatedNavigationServiceConfiguration Configuration { get; set; }
 
 
         /// <summary>
