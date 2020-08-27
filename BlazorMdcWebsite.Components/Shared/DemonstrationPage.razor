@@ -110,7 +110,7 @@
 
     private IEnumerable<MTListElement<MTDensity>> Densities { get; set; }
 
-    private bool NeedsTable => ((ComponentName != null)||(DetailedArticle != null));
+    private bool NeedsTable => ((ComponentName != null)||(DetailedArticle != null)||(DemoComponent != null));
 
 
     protected override void OnInitialized()
