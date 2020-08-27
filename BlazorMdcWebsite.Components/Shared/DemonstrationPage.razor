@@ -7,7 +7,7 @@
             <div class="bmdc-card__secondary">
                 @Description
 
-                @if (HasComponents)
+                @if (NeedsTable)
                 {
                     <p style="overflow: auto;">
                         <MTDataTable Items="@Items"
@@ -20,7 +20,7 @@
 
                             <TableRow>
                                 <td class="mdc-data-table__cell">@item.Title</td>
-                                <td class="mdc-data-table__cell">@item.ConentMarkup</td>
+                                <td class="mdc-data-table__cell">@item.ContentMarkup</td>
                             </TableRow>
                         </MTDataTable>
                     </p>
@@ -67,25 +67,27 @@
 @code {
     [CascadingParameter(Name = "MaterialDocRef")] private string MaterialDocRef { get; set; }
 
-    [Parameter] public string Title { get; set; }
-
-    [Parameter] public RenderFragment Description { get; set; }
+    [Parameter] public string ComponentName { get; set; }
 
     [Parameter] public RenderFragment Controls { get; set; }
 
-    [Parameter] public RenderFragment PageContent { get; set; }
-
-    [Parameter] public string ComponentName { get; set; }
-
     [Parameter] public ComponentBase DemoComponent { get; set; }
 
-    [Parameter] public string MaterialIOPage { get; set; }
+    [Parameter] public RenderFragment Description { get; set; }
+
+    [Parameter] public string DetailedArticle { get; set; }
 
     [Parameter] public bool IsGeneric { get; set; } = false;
 
+    [Parameter] public string MaterialIOPage { get; set; }
+
     [Parameter] public MTDensity MinDensity { get; set; } = MTDensity.Default;
 
+    [Parameter] public RenderFragment PageContent { get; set; }
+
     [Parameter] public bool RequiresDisableSelection { get; set; } = false;
+
+    [Parameter] public string Title { get; set; }
 
 
     private MTCascadingDefaults CascadingDefaults { get; set; } = new MTCascadingDefaults()
@@ -100,7 +102,7 @@
         public string Title { get; set; }
         public string Content { get; set; }
 
-        public MarkupString ConentMarkup => new MarkupString(Content);
+        public MarkupString ContentMarkup => new MarkupString(Content);
     }
 
 
@@ -108,39 +110,53 @@
 
     private IEnumerable<MTListElement<MTDensity>> Densities { get; set; }
 
-    private bool HasComponents => ComponentName != null;
+    private bool NeedsTable => ((ComponentName != null)||(DetailedArticle != null));
 
 
     protected override void OnInitialized()
     {
         Items = new List<ReferenceItem>();
 
-        if (!HasComponents)
+        if (!NeedsTable)
         {
             return;
         }
 
-        var apiSuffix = (!IsGeneric) ? "" : "-1";
-        var articleText = $"<a href=\"https://blazormdc.com/docs/BlazorMdc/Components/{ComponentName}/MT{ComponentName}.razor.html\" target=\"_blank\">MT{ComponentName} article</a>";
-        var apiDocText = $"<a href=\"https://blazormdc.com/docs/api/BlazorMdc.MT{ComponentName}{apiSuffix}.html\" target=\"_blank\">MT{ComponentName} API docs</a>";
-
-        Items.Add(new ReferenceItem
+        if (ComponentName != null)
         {
-            Title = "Documentation Article",
-            Content = articleText
-        });
+            Items.Add(new ReferenceItem
+            {
+                Title = "Component Documentation",
+                Content = $"<a href=\"https://blazormdc.com/docs/BlazorMdc/Components/{ComponentName}/MT{ComponentName}.html\" target=\"_blank\">MT{ComponentName}.md</a>"
+            });
 
-        Items.Add(new ReferenceItem
-        {
-            Title = "API Documentation",
-            Content = apiDocText
-        });
+            var apiSuffix = (!IsGeneric) ? "" : "-1";
+            var apiText = $"<a href=\"https://blazormdc.com/docs/api/BlazorMdc.MT{ComponentName}{apiSuffix}.html\" target=\"_blank\">MT{ComponentName} API docs</a>";
 
-        Items.Add(new ReferenceItem
+            Items.Add(new ReferenceItem
+            {
+                Title = "API Documentation",
+                Content = apiText
+            });
+        }
+
+        if (DetailedArticle != null)
         {
-            Title = "Source for This Page",
-            Content = $"<a href=\"https://github.com/BlazorMdc/BlazorMdcWebsite/blob/main/BlazorMdcWebsite.Components/Pages/{DemoComponent.GetType().Name}.razor\" target=\"_blank\">GitHub source page link</a>"
-        });
+            Items.Add(new ReferenceItem
+            {
+                Title = "In Depth Documentation",
+                Content = $"<a href=\"https://blazormdc.com/docs/Articles/{DetailedArticle}.html\" target=\"_blank\">{DetailedArticle}</a>"
+            });
+        }
+
+        if (DemoComponent != null)
+        {
+            Items.Add(new ReferenceItem
+            {
+                Title = "Source for This Page",
+                Content = $"<a href=\"https://github.com/BlazorMdc/BlazorMdc/blob/main/BlazorMdcWebsite.Components/Pages/{DemoComponent.GetType().Name}.razor\" target=\"_blank\">GitHub source page link</a>"
+            });
+        }
 
         if (MaterialIOPage != null)
         {
@@ -161,6 +177,6 @@
             new MTListElement<MTDensity> {SelectedValue = MTDensity.Minus3, Label = "Minus 3", Disabled = MinDensity > MTDensity.Minus3 },
             new MTListElement<MTDensity> {SelectedValue = MTDensity.Minus4, Label = "Minus 4", Disabled = MinDensity > MTDensity.Minus4 },
             new MTListElement<MTDensity> {SelectedValue = MTDensity.Minus5, Label = "Minus 5", Disabled = MinDensity > MTDensity.Minus5 },
-                }.Where(d => d.Disabled != true);
+         }.Where(d => d.Disabled != true);
     }
 }

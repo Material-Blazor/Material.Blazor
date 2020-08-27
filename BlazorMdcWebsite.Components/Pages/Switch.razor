@@ -25,7 +25,7 @@
                     </h2>
 
                     <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        Simple switch.
+                        Simple switch. Notice that density only affects the halo when selecting a switch.
                     </h3>
 
                     <p><MTSwitch @bind-Value="@SwitchState" Label="Simple Switch" /></p>
@@ -50,6 +50,8 @@
                     </h3>
 
                     <p><MTSwitch @bind-Value="@ToggleTwoWayBindingState" Label="Bound Switch" /></p>
+
+                    <p><MTCheckbox @bind-Value="@ToggleTwoWayBindingState" Label="Bound Checkbox" /></p>
                 </Primary>
             </MTCard>
         </div>

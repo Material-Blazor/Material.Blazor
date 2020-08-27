@@ -8,7 +8,7 @@
                    Title="Checkbox Demonstration"
                    DemoComponent="@this"
                    MaterialIOPage="mdc-checkbox#selection-controls-checkboxes"
-                   MinDensity="MTDensity.Minus5"
+                   MinDensity="MTDensity.Minus3"
                    RequiresDisableSelection="true">
     <Description>
         <p>
@@ -47,6 +47,8 @@
                     </h3>
 
                     <p><MTCheckbox @bind-Value="@ToggleTwoWayBindingState" Label="Bound Checkbox" /></p>
+
+                    <p><MTSwitch @bind-Value="@ToggleTwoWayBindingState" Label="Bound Switch" /></p>
                 </Primary>
             </MTCard>
         </div>

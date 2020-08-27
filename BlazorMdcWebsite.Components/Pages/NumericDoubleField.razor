@@ -1,4 +1,4 @@
-﻿@page "/MumericDoublefield"
+﻿@page "/NumericDoublefield"
 
 @inject IMTToastService ToastService
 
@@ -27,7 +27,7 @@
                     </h2>
 
                     <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        A range of numeric double fields using formats for non focussed input.
+                        A range of numeric double fields using formats for non focused input.
                     </h3>
 
                     <p>
@@ -76,7 +76,7 @@
                                               @bind-Value="@PercentByFormat"
                                               NumericFormat="P2"
                                               DecimalPlaces="2"
-                                              FocussedMagnitude="MTNumericInputMagnitude.Percent"
+                                              FocusedMagnitude="MTNumericInputMagnitude.Percent"
                                               TextInputStyle="MTTextInputStyle.Outlined" />
                     </p>
 
@@ -86,8 +86,8 @@
                                               NumericFormat="N2"
                                               DecimalPlaces="2"
                                               Suffix="%"
-                                              FocussedMagnitude="MTNumericInputMagnitude.Percent"
-                                              UnfocussedMagnitude="MTNumericInputMagnitude.Percent"
+                                              FocusedMagnitude="MTNumericInputMagnitude.Percent"
+                                              UnfocusedMagnitude="MTNumericInputMagnitude.Percent"
                                               TextInputStyle="MTTextInputStyle.Outlined" />
                     </p>
 
@@ -97,8 +97,8 @@
                                               NumericFormat="N0"
                                               DecimalPlaces="0"
                                               Suffix="bp"
-                                              FocussedMagnitude="MTNumericInputMagnitude.BasisPoints"
-                                              UnfocussedMagnitude="MTNumericInputMagnitude.BasisPoints"
+                                              FocusedMagnitude="MTNumericInputMagnitude.BasisPoints"
+                                              UnfocusedMagnitude="MTNumericInputMagnitude.BasisPoints"
                                               TextInputStyle="MTTextInputStyle.Outlined" />
                     </p>
                 </Primary>

@@ -22,12 +22,14 @@
                 <Primary>
                     <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
                         Debounced text field
-                        Each of these can display as Filled or Outlined and with
-                        the full variety of icon foundries. These are used across the page but it we don't attempt to show each variant everywhere - see the Text Field demo for this.
                     </h2>
 
                     <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        Set the debounce period you want.
+                        <p>
+                            Each of these can display as Filled or Outlined and with
+                            the full variety of icon foundries. These are used across the page but it we don't attempt to show each variant everywhere - see the Text Field demo for this.
+                        </p>
+                        <p>Set the debounce period you want.</p>
                     </h3>
 
                     <p><MTRadioButtonGroup @bind-Value="@DebouncePeriod" Items="DebouncePeriods" ItemValidation="@MTItemValidation.DefaultToFirst" /></p>

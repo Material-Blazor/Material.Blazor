@@ -24,16 +24,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solutio
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "articles", "articles", "{FC5AA9B0-69D8-4BD3-8210-1BB2019D47AB}"
 	ProjectSection(SolutionItems) = preProject
+		articles\AnimatedNavigation.md = articles\AnimatedNavigation.md
 		articles\CascadingDefaults.md = articles\CascadingDefaults.md
 		articles\CoreComponents.md = articles\CoreComponents.md
 		articles\Density.md = articles\Density.md
 		articles\DevelopmentEnvironment.md = articles\DevelopmentEnvironment.md
+		articles\Icon.md = articles\Icon.md
 		articles\Installation.md = articles\Installation.md
 		articles\Introduction.md = articles\Introduction.md
 		articles\PlusComponents.md = articles\PlusComponents.md
 		articles\Principles.md = articles\Principles.md
 		articles\Services.md = articles\Services.md
+		articles\Toast.md = articles\Toast.md
 		articles\toc.yml = articles\toc.yml
+		articles\Tooltip.md = articles\Tooltip.md
 		articles\TwoWayBinding.md = articles\TwoWayBinding.md
 		articles\Utilities.md = articles\Utilities.md
 	EndProjectSection
