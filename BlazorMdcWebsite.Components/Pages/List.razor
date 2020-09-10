@@ -151,7 +151,8 @@
                                     HideLineTwo="@HideLineTwo"
                                     HideLineThree="@HideLineThree"
                                     OnClick="OnThreeLineClick"
-                                    ListStyle="MTListStyle.Outlined">
+                                    ListStyle="MTListStyle.Outlined"
+                                    GetKeysFunc="@((item) => item.ProductId)">
 
                                 <Icon><MTIcon IconName="local_grocery_store" /></Icon>
                                 <Title>@product.DisplayName</Title>

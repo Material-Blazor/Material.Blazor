@@ -1,8 +1,6 @@
 ﻿using BlazorMdc.Internal;
-
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -125,17 +123,17 @@ namespace BlazorMdc
 #nullable restore annotations
 
 
+        private bool IsOpen { get; set; } = false;
         private DotNetObjectReference<MTAutocompleteTextField> ObjectReference { get; set; }
-        private MTTextField TextField { get; set; }
-        private ElementReference SelectReference { get; set; }
+        private bool MenuHasFocus { get; set; } = false;
         private ElementReference MenuReference { get; set; }
         private SelectionItem[] MySelectItems { get; set; }
         private SelectionInfo SelectInfo { get; set; } = new SelectionInfo();
-        private bool IsOpen { get; set; } = false;
-        private bool MenuHasFocus { get; set; } = false;
+        private ElementReference SelectReference { get; set; }
+        private MTTextField TextField { get; set; }
 
 
-        /// <inheritdoc/>
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
         protected override void OnInitialized()
         {
             base.OnInitialized();
@@ -143,6 +141,15 @@ namespace BlazorMdc
             ObjectReference = DotNetObjectReference.Create(this);
 
             ForceShouldRenderToTrue = true;
+        }
+
+
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        protected override void OnParametersSet()
+        {
+            base.OnParametersSet();
+
+            SetParameters();
         }
 
 
@@ -164,14 +171,6 @@ namespace BlazorMdc
             base.Dispose(disposing);
         }
 
-
-        /// <inheritdoc/>
-        protected override void OnParametersSet()
-        {
-            base.OnParametersSet();
-
-            SetParameters();
-        }
 
 
         private void SetParameters()

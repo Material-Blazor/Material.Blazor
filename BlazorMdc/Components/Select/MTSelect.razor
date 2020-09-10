@@ -72,7 +72,7 @@
                 var listClass = "mdc-list-item" + (item.SelectedValue.Equals(Value) ? " mdc-list-item--selected" : "");
                 var ariaSelected = item.SelectedValue.Equals(Value);
 
-                <li @key="@item"
+                <li @key="@KeyGenerator(item.SelectedValue)"
                     class="@listClass @AlignClass"
                     data-value="@item.Label"
                     aria-selected="@ariaSelected"

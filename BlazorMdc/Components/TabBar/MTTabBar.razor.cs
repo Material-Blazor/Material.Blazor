@@ -20,6 +20,13 @@ namespace BlazorMdc
 
 
         /// <summary>
+        /// A function delegate to return the parameters for <c>@key</c> attributes. If unused
+        /// "fake" keys set to GUIDs will be used.
+        /// </summary>
+        [Parameter] public Func<TItem, object> GetKeysFunc { get; set; }
+
+
+        /// <summary>
         /// The list of items for the tab bar.
         /// </summary>
         [Parameter] public IEnumerable<TItem> Items { get; set; }
@@ -46,9 +53,10 @@ namespace BlazorMdc
         [Parameter] public MTDensity? Density { get; set; }
 
 
-        private DotNetObjectReference<MTTabBar<TItem>> ObjectReference { get; set; }
-        private string StackClass => StackIcons ? "mdc-tab--stacked" : "";
         private ElementReference ElementReference { get; set; }
+        private DotNetObjectReference<MTTabBar<TItem>> ObjectReference { get; set; }
+        private Func<TItem, object> KeyGenerator { get; set; }
+        private string StackClass => StackIcons ? "mdc-tab--stacked" : "";
 
         private MTCascadingDefaults.DensityInfo DensityInfo
         {
@@ -75,6 +83,15 @@ namespace BlazorMdc
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass);
             
             OnValueSet += OnValueSetCallback;
+        }
+
+
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        protected override void OnParametersSet()
+        {
+            base.OnParametersSet();
+
+            KeyGenerator = GetKeysFunc ?? delegate (TItem item) { return item; };
         }
 
 

@@ -1,8 +1,7 @@
 ﻿using BlazorMdc.Internal;
-
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -13,6 +12,13 @@ namespace BlazorMdc
     /// </summary>
     public partial class MTDataTable<TItem> : ComponentFoundation
     {
+        /// <summary>
+        /// A function delegate to return the parameters for <c>@key</c> attributes. If unused
+        /// "fake" keys set to GUIDs will be used.
+        /// </summary>
+        [Parameter] public Func<TItem, object> GetKeysFunc { get; set; }
+
+
         /// <summary>
         /// Data to render in the <see cref="TableRow"/> render fragment.
         /// </summary>
@@ -37,9 +43,9 @@ namespace BlazorMdc
         [Parameter] public MTDensity? Density { get; set; }
 
 
-        private ElementReference ElementReference { get; set; }
-
         private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityCssClass(CascadingDefaults.AppliedDataTableDensity(Density));
+        private ElementReference ElementReference { get; set; }
+        private Func<TItem, object> KeyGenerator { get; set; }
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
@@ -50,6 +56,15 @@ namespace BlazorMdc
             ClassMapper
                 .Add("mdc-data-table")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass);
+        }
+
+
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        protected override void OnParametersSet()
+        {
+            base.OnParametersSet();
+
+            KeyGenerator = GetKeysFunc ?? delegate (TItem item) { return item; };
         }
 
 

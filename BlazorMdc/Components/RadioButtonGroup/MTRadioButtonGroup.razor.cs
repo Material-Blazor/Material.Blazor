@@ -1,7 +1,6 @@
 ﻿using BlazorMdc.Internal;
-
 using Microsoft.AspNetCore.Components;
-
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,6 +11,13 @@ namespace BlazorMdc
     /// </summary>
     public partial class MTRadioButtonGroup<TItem> : ValidatingInputComponentFoundation<TItem>
     {
+        /// <summary>
+        /// A function delegate to return the parameters for <c>@key</c> attributes. If unused
+        /// "fake" keys set to GUIDs will be used.
+        /// </summary>
+        [Parameter] public Func<TItem, object> GetKeysFunc { get; set; }
+
+
         /// <summary>
         /// The item list to be represented as radio buttons
         /// </summary>
@@ -45,11 +51,12 @@ namespace BlazorMdc
         [Parameter] public bool EnableTouchWrapper { get; set; } = true;
 
 
-        private string RadioGroupName { get; set; } = Utilities.GenerateUniqueElementName();
         private MTListElement<TItem>[] ItemArray { get; set; }
+        private Func<TItem, object> KeyGenerator { get; set; }
+        private string RadioGroupName { get; set; } = Utilities.GenerateUniqueElementName();
 
 
-        /// <inheritdoc/>
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
         protected override void OnInitialized()
         {
             base.OnInitialized();
@@ -63,6 +70,15 @@ namespace BlazorMdc
             ReportingValue = ValidateItemList(ItemArray, appliedItemValidation);
 
             ClassMapper.AddIf("bmdc-mdc-radio-group-vertical", () => Vertical);
+        }
+
+
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        protected override void OnParametersSet()
+        {
+            base.OnParametersSet();
+
+            KeyGenerator = GetKeysFunc ?? delegate (TItem item) { return item; };
         }
     }
 }

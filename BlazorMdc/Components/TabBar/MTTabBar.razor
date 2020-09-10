@@ -19,7 +19,7 @@
                     string buttonActive = selected ? "mdc-tab--active" : "";
                     string indicatorActive = selected ? "mdc-tab-indicator--active" : "";
 
-                    <button @key="item" 
+                    <button @key="@KeyGenerator(item)" 
                             class="mdc-tab @StackClass @buttonActive" 
                             role="tab" 
                             aria-selected="@selected" 

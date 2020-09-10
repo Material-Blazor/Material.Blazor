@@ -7,7 +7,7 @@
 
     @foreach (var item in ItemArray)
     {
-        <MTRadioButton @key="@item"
+        <MTRadioButton @key="@KeyGenerator(item.SelectedValue)"
                        @bind-Value="@ReportingValue"
                        TItem="TItem"
                        Disabled="@item.Disabled"

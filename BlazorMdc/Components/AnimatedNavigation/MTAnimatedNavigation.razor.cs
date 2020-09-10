@@ -1,8 +1,5 @@
 ﻿using BlazorMdc.Internal;
-
 using Microsoft.AspNetCore.Components;
-
-using System;
 using System.Threading.Tasks;
 
 namespace BlazorMdc
@@ -29,8 +26,8 @@ namespace BlazorMdc
         private const string FadeOut = "bmdc-navigation-fade-out";
 
 
-        private MarkupString FadeInAnimation => (MarkupString)$"animation: bmdcNavFadeIn ease {AnimatedNavigationService.FadeOutTime * 10:D}ms;";
-        private MarkupString FadeInAnimationWebkit => (MarkupString)$"-webkit-animation: bmdcNavFadeIn ease {AnimatedNavigationService.FadeOutTime * 10:D}ms;";
+        private MarkupString FadeInAnimation => (MarkupString)$"animation: bmdcNavFadeIn ease {AnimatedNavigationService.FadeInTime * 10:D}ms;";
+        private MarkupString FadeInAnimationWebkit => (MarkupString)$"-webkit-animation: bmdcNavFadeIn ease {AnimatedNavigationService.FadeInTime * 10:D}ms;";
 
         private MarkupString FadeOutAnimation => (MarkupString)$"animation: bmdcNavFadeOut ease {AnimatedNavigationService.FadeOutTime * 10:D}ms;";
         private MarkupString FadeOutAnimationWebkit => (MarkupString)$"-webkit-animation: bmdcNavFadeOut ease {AnimatedNavigationService.FadeOutTime * 10:D}ms;";

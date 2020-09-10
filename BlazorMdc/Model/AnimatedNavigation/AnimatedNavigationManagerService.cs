@@ -1,9 +1,6 @@
 ﻿using BlazorMdc.Internal;
-
 using Microsoft.AspNetCore.Components;
-
 using System;
-using System.Dynamic;
 
 namespace BlazorMdc
 {

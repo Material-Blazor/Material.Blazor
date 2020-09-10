@@ -41,6 +41,6 @@
         /// <summary>
         /// Sets the animation sequence time in milliseconds (default 500).
         /// </summary>
-        public int AnimationTime { get; set; }
+        public int AnimationTime { get; set; } = DefaultAnimationTime;
     }
 }

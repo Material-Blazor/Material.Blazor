@@ -17,6 +17,13 @@ namespace BlazorMdc
     {
 #nullable enable annotations
         /// <summary>
+        /// A function delegate to return the parameters for <c>@key</c> attributes. If unused
+        /// "fake" keys set to GUIDs will be used.
+        /// </summary>
+        [Parameter] public Func<TItem, object> GetKeysFunc { get; set; }
+
+
+        /// <summary>
         /// The item list to be represented as a select
         /// </summary>
         [Parameter] public IEnumerable<MTListElement<TItem>> Items { get; set; }
@@ -74,21 +81,22 @@ namespace BlazorMdc
 #nullable restore annotations
 
 
-        private ElementReference SelectReference { get; set; }
+        private readonly string labelId = Utilities.GenerateUniqueElementName();
+        private readonly string listboxId = Utilities.GenerateUniqueElementName();
+        private readonly string selectedTextId = Utilities.GenerateUniqueElementName();
 
-        private MTSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
-
-        private MTDensity AppliedDensity => CascadingDefaults.AppliedSelectDensity(Density);
-
-        private string SelectedText { get; set; } = "";
-
-        private string FloatingLabelClass { get; set; } = "";
 
         private string AlignClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
-
+        private MTDensity AppliedDensity => CascadingDefaults.AppliedSelectDensity(Density);
+        private MTSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
+        private string FloatingLabelClass { get; set; } = "";
         private Dictionary<TItem, MTListElement<TItem>> ItemDict { get; set; }
-
+        private Func<TItem, object> KeyGenerator { get; set; }
         private DotNetObjectReference<MTSelect<TItem>> ObjectReference { get; set; }
+        private ElementReference SelectReference { get; set; }
+        private string SelectedText { get; set; } = "";
+        private bool ShowLabel => !string.IsNullOrWhiteSpace(Label);
+
 
         private MTCascadingDefaults.DensityInfo DensityInfo
         {
@@ -105,18 +113,8 @@ namespace BlazorMdc
             }
         }
 
-        private bool ShowLabel => !string.IsNullOrWhiteSpace(Label);
 
-
-
-        private readonly string labelId = Utilities.GenerateUniqueElementName();
-
-        private readonly string listboxId = Utilities.GenerateUniqueElementName();
-
-        private readonly string selectedTextId = Utilities.GenerateUniqueElementName();
-
-
-        /// <inheritdoc/>
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
         protected override void OnInitialized()
         {
             base.OnInitialized();
@@ -141,6 +139,15 @@ namespace BlazorMdc
             OnDisabledSet += OnDisabledSetCallback;
 
             ObjectReference = DotNetObjectReference.Create(this);
+        }
+
+
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        protected override void OnParametersSet()
+        {
+            base.OnParametersSet();
+
+            KeyGenerator = GetKeysFunc ?? delegate (TItem item) { return item; };
         }
 
 

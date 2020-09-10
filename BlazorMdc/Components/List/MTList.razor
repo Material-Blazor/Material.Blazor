@@ -23,7 +23,7 @@
             <li role="separator" class="mdc-list-divider"></li>
         }
 
-        <li @key="@item"
+        <li @key="@KeyGenerator(item)"
             class="mdc-list-item"
             tabindex="@tabIndex"
             @onclick="@(() => OnItemClickAsync(clickIndex))"
@@ -44,7 +44,7 @@
             <span class="mdc-list-item__text bmdc-full-width @ListItemClass " disabled="@AppliedDisabled">
                 @if (Title != null)
                 {
-                <span class="@TitleClass">@Title(item)</span>
+                    <span class="@TitleClass">@Title(item)</span>
                 }
 
                 @if (HasLineTwo && (LineTwo != null))
