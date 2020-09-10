@@ -15,7 +15,7 @@ namespace BlazorMdc.Internal
     /// </summary>
     public partial class InternalTooltipAnchor : ComponentFoundation
     {
-        private List<TooltipInstance> Tooltips { get; set; } = new List<TooltipInstance>();
+        private Dictionary<Guid, TooltipInstance> Tooltips { get; set; } = new Dictionary<Guid, TooltipInstance>();
         
 
         private readonly SemaphoreSlim semaphore = new SemaphoreSlim(1);
@@ -40,19 +40,19 @@ namespace BlazorMdc.Internal
         {
             InvokeAsync(async () =>
             {
-                var instance = new TooltipInstance
-                {
-                    Id = id,
-                    TimeStamp = DateTime.Now,
-                    RenderFragmentContent = content,
-                    Initiated = false
-                };
-
                 await semaphore.WaitAsync();
 
                 try
                 {
-                    Tooltips.Add(instance);
+                    var instance = new TooltipInstance
+                    {
+                        Id = id,
+                        TimeStamp = DateTime.Now,
+                        RenderFragmentContent = content,
+                        Initiated = false
+                    };
+
+                    Tooltips.TryAdd(id, instance);
                 }
                 finally
                 {
@@ -74,19 +74,19 @@ namespace BlazorMdc.Internal
         {
             InvokeAsync(async () =>
             {
-                var instance = new TooltipInstance
-                {
-                    Id = id,
-                    TimeStamp = DateTime.Now,
-                    MarkupStringContent = content,
-                    Initiated = false
-                };
-
                 await semaphore.WaitAsync();
 
                 try
                 {
-                    Tooltips.Add(instance);
+                    var instance = new TooltipInstance
+                    {
+                        Id = id,
+                        TimeStamp = DateTime.Now,
+                        MarkupStringContent = content,
+                        Initiated = false
+                    };
+
+                    Tooltips.TryAdd(id, instance);
                 }
                 finally
                 {
@@ -112,14 +112,10 @@ namespace BlazorMdc.Internal
 
                 try
                 {
-                    var instance = Tooltips.SingleOrDefault(x => x.Id == id);
-
-                    if (instance is null)
+                    if (Tooltips.TryGetValue(id, out var instance))
                     {
-                        return;
+                        Tooltips.Remove(id);
                     }
-
-                    Tooltips.Remove(instance);
                 }
                 finally
                 {
@@ -133,14 +129,14 @@ namespace BlazorMdc.Internal
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            var refs = (from t in Tooltips
+            var refs = (from t in Tooltips.Values
                         where !t.Initiated
                         orderby t.TimeStamp
                         select t.ElementReference).ToArray();
 
             await JsRuntime.InvokeVoidAsync("BlazorMdc.tooltip.init", refs);
 
-            foreach (var t in Tooltips.Where(t => !t.Initiated))
+            foreach (var t in Tooltips.Values.Where(t => !t.Initiated))
             {
                 t.Initiated = true;
             }
