@@ -1,10 +1,11 @@
 ﻿@page "/cascadingdefaults"
 
 
-<DemonstrationPageLayout ComponentNames=@(new string[] { "CascadingDefaults" })
-                         Title="Cascading Defaults Demonstration"
-                         DemoComponent="@this">
+<DemonstrationPage Title="Cascading Defaults Demonstration"
+                   DemoComponent="@this"
+                   DetailedArticle="CascadingDefaults">
     <Description>
+        <h2>Non-component</h2>
         <p>
             Repeats the same block of components with differing values in an MTCascadingDefaults cascading value, showing a wide variety of options but not fully comprehensive.
         </p>
@@ -98,7 +99,7 @@
             </MTCard>
         </div>
     </PageContent>
-</DemonstrationPageLayout>
+</DemonstrationPage>
 
 
 

@@ -84,19 +84,19 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Adjusts the value's maginitude as a number when the field is focussed. Used for
+        /// Adjusts the value's maginitude as a number when the field is focused. Used for
         /// percentages and basis points (the latter of which lacks appropriate Numeric Format in C#:
         /// this issue may not get solved.
         /// </summary>
-        [Parameter] public MTNumericInputMagnitude FocussedMagnitude { get; set; } = MTNumericInputMagnitude.Normal;
+        [Parameter] public MTNumericInputMagnitude FocusedMagnitude { get; set; } = MTNumericInputMagnitude.Normal;
 
 
         /// <summary>
-        /// Adjusts the value's maginitude as a number when the field is unfocussed. Used for
+        /// Adjusts the value's maginitude as a number when the field is unfocused. Used for
         /// percentages and basis points (the latter of which lacks appropriate Numeric Format in C#:
         /// this issue may not get solved.
         /// </summary>
-        [Parameter] public MTNumericInputMagnitude UnfocussedMagnitude { get; set; } = MTNumericInputMagnitude.Normal;
+        [Parameter] public MTNumericInputMagnitude UnfocusedMagnitude { get; set; } = MTNumericInputMagnitude.Normal;
 
 
         /// <summary>
@@ -125,9 +125,9 @@ namespace BlazorMdc
 
 
         private MTTextField TextField { get; set; }
-        private double FocussedMultiplier { get; set; } = 1;
-        private double UnfocussedMultiplier { get; set; } = 1;
-        private double AppliedMultiplier => HasFocus ? FocussedMultiplier : UnfocussedMultiplier;
+        private double FocusedMultiplier { get; set; } = 1;
+        private double UnfocusedMultiplier { get; set; } = 1;
+        private double AppliedMultiplier => HasFocus ? FocusedMultiplier : UnfocusedMultiplier;
         private int MyDecimalPlaces { get; set; } = 0;
         private Regex Regex { get; set; }
         private string Type => HasFocus ? "number" : "text";
@@ -153,8 +153,8 @@ namespace BlazorMdc
 
             set
             {
-                var enteredVal = HasFocus ? Convert.ToDouble(Convert.ToDouble(string.IsNullOrWhiteSpace(value) ? "0" : value.Trim()) / FocussedMultiplier) : NumericValue(value) / AppliedMultiplier;
-                ReportingValue = Math.Round(Math.Max(Min ?? enteredVal, Math.Min(enteredVal, Max ?? enteredVal)), MyDecimalPlaces + (int)FocussedMagnitude);
+                var enteredVal = HasFocus ? Convert.ToDouble(Convert.ToDouble(string.IsNullOrWhiteSpace(value) ? "0" : value.Trim()) / FocusedMultiplier) : NumericValue(value) / AppliedMultiplier;
+                ReportingValue = Math.Round(Math.Max(Min ?? enteredVal, Math.Min(enteredVal, Max ?? enteredVal)), MyDecimalPlaces + (int)FocusedMagnitude);
             }
         }
 
@@ -177,8 +177,8 @@ namespace BlazorMdc
         {
             bool allowSign = !(Min != null && Min >= 0);
 
-            FocussedMultiplier = Math.Pow(10, (int)FocussedMagnitude);
-            UnfocussedMultiplier = Math.Pow(10, (int)UnfocussedMagnitude);
+            FocusedMultiplier = Math.Pow(10, (int)FocusedMagnitude);
+            UnfocusedMultiplier = Math.Pow(10, (int)UnfocusedMagnitude);
 
             if (DecimalPlaces <= 0)
             {

@@ -19,4 +19,4 @@ A [Material Data Table](https://github.com/material-components/material-componen
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](xref:A.CoreComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MTDataTable&color=brightgreen)](xref:BlazorMdc.MTDataTable`1)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MTDataTable&color=brightgreen)](xref:BlazorMdc.MTDataTable)

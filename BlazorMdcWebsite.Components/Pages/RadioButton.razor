@@ -3,13 +3,13 @@
 @inject IMTToastService ToastService
 
 
-<DemonstrationPageLayout ComponentNames=@(new string[] { "RadioButton", "RadioButtonGroup" })
-                         Title="Radio Button Demonstration"
-                         DemoComponent="@this"
-                         MaterialIOPages="@(new string[] { "mdc-radio#selection-controls-radio-buttons" })"
-                         IsGeneric="@(new bool[] { true, true })"
-                         MinDensity="MTDensity.Minus3"
-                         RequiresDisableSelection="true">
+<DemonstrationPage ComponentName="RadioButton"
+                   Title="Radio Button Demonstration"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-radio#selection-controls-radio-buttons"
+                   IsGeneric="true"
+                   MinDensity="MTDensity.Minus3"
+                   RequiresDisableSelection="true">
     <Description>
         <p>
             Individual and grouped radio buttons.
@@ -26,7 +26,7 @@
 
                     <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
                         Radio Buttons are rendered individually and grouped by id. The second line demonstrates two-way binding.
-                        Bound data is an <code>enum</code>. Radio button groups are a plus component.
+                        Bound data is an <code>enum</code>.
                     </h3>
 
                     <p>
@@ -55,95 +55,8 @@
                 </Primary>
             </MTCard>
         </div>
-
-
-
-        <div class="mdc-layout-grid__cell--span-12">
-            <MTCard AutoStyled="true">
-                <Primary>
-                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
-                        Horizontal radio button group
-                    </h2>
-
-                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        A radio button group presented horizontally.
-                    </h3>
-
-                    <p>
-                        <MTRadioButtonGroup @bind-Value="@HorizontalGroup"
-                                            Items="@KittenBreeds"
-                                            ItemValidation="@MTItemValidation.DefaultToFirst" />
-                    </p>
-                </Primary>
-            </MTCard>
-        </div>
-
-
-
-        <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
-            <MTCard AutoStyled="true">
-                <Primary>
-                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
-                        Vertical radio button group
-                    </h2>
-
-                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        A radio button group presented vertically.
-                    </h3>
-
-                    <p>
-                        <MTRadioButtonGroup @bind-Value="@Colour"
-                                            Items="@ColourItems"
-                                            Vertical="true"
-                                            EnableTouchWrapper="false" />
-                    </p>
-                </Primary>
-            </MTCard>
-        </div>
-
-
-
-        <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
-            <MTCard AutoStyled="true">
-                <Primary>
-                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
-                        Density
-                    </h2>
-
-                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        Density subsystem from default to minus 3.
-                    </h3>
-
-                    <p style="display: flex; flex-flow: column nowrap;">
-                        <MTRadioButton @bind-Value="@Density"
-                                       TargetCheckedValue=@MTDensity.Default
-                                       Label="Default Density"
-                                       Density="MTDensity.Default"
-                                       RadioGroupName="density-group" />
-
-                        <MTRadioButton @bind-Value="@Density"
-                                       TargetCheckedValue=@MTDensity.Minus1
-                                       Label="Density Minus 1"
-                                       Density=@MTDensity.Minus1
-                                       RadioGroupName="density-group" />
-
-                        <MTRadioButton @bind-Value="@Density"
-                                       TargetCheckedValue=@MTDensity.Minus2
-                                       Label="Density Minus 2"
-                                       Density=@MTDensity.Minus2
-                                       RadioGroupName="density-group" />
-
-                        <MTRadioButton @bind-Value="@Density"
-                                       TargetCheckedValue=@MTDensity.Minus3
-                                       Label="Density Minus 3"
-                                       Density=@MTDensity.Minus3
-                                       RadioGroupName="density-group" />
-                    </p>
-                </Primary>
-            </MTCard>
-        </div>
     </PageContent>
-</DemonstrationPageLayout>
+</DemonstrationPage>
 
 
 @code {
@@ -161,50 +74,5 @@
             ToastService.ShowToast(heading: "Individual radio buttons", message: $"Value: '{_animal.ToString()}'", level: MTToastLevel.Success, showIcon: false);
         }
     }
-
-
-    MTListElement<string>[] KittenBreeds = new MTListElement<string>[]
-    {
-        new MTListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
-        new MTListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
-        new MTListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
-    };
-
-
-    private string _horizontalGroup;
-    private string HorizontalGroup
-    {
-        get => _horizontalGroup;
-        set
-        {
-            _horizontalGroup = value;
-
-            ToastService.ShowToast(heading: "Horizontal radio group", message: $"Value: '{_horizontalGroup}'", level: MTToastLevel.Success, showIcon: false);
-        }
-    }
-
-
-    enum ColorEnum { Red, Orange, Yellow, Green, Blue, Indigo, Violet };
-    IEnumerable<MTListElement<ColorEnum>> ColourItems => from c in (ColorEnum[])Enum.GetValues(typeof(ColorEnum))
-                                                         select new MTListElement<ColorEnum>
-                                                         {
-                                                             SelectedValue = c,
-                                                             Label = c.ToString() + ((c == ColorEnum.Blue) ? " (disabled)" : ""),
-                                                             Disabled = (c == ColorEnum.Blue) ? true : (bool?)null
-                                                         };
-
-    private ColorEnum _color = ColorEnum.Orange;
-    private ColorEnum Colour
-    {
-        get => _color;
-        set
-        {
-            _color = value;
-
-            ToastService.ShowToast(heading: "Vertical radio group", message: $"Value: '{_color.ToString()}'", level: MTToastLevel.Success, showIcon: false);
-        }
-    }
-
-
     private MTDensity Density = MTDensity.Default;
 }

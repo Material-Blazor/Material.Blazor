@@ -1,0 +1,115 @@
+﻿@page "/iconbuttontoggle"
+
+@inject IMTToastService ToastService
+
+
+
+<DemonstrationPage ComponentName="IconButtonToggle"
+                   Title="Icon Button Toggle Demonstration"
+                   DemoComponent="@this"
+                   MinDensity="MTDensity.Minus3"
+                   RequiresDisableSelection="true">
+    <Description>
+        <p>
+            Shows a toggle icon button and density.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        Icon Button Toggle
+                    </h2>
+
+                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Toggle icon bottons using a Font Awesome icon.
+                    </h3>
+
+                    <p><MTIconButtonToggle @bind-Value="@ToggleState" IconOn="fa-dog" IconOff="fa-cat" IconFoundry="@MTIconHelper.FAFoundry()" /></p>
+                    <p><MTIconButtonToggle @bind-Value="@ToggleState" IconOn="fa-dog" IconOff="fa-cat" IconFoundry="@MTIconHelper.FAFoundry()" /></p>
+                    <p><MTIconButtonToggle @bind-Value="@ToggleState" IconOn="fa-dog" IconOff="fa-cat" IconFoundry="@MTIconHelper.FAFoundry()" /></p>
+                    <p><MTIconButtonToggle @bind-Value="@ToggleState" IconOn="fa-dog" IconOff="fa-cat" IconFoundry="@MTIconHelper.FAFoundry()" /></p>
+                </Primary>
+            </MTCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        Icon Button Toggle Two-Way Binding
+                    </h2>
+
+                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows two-way binding for toggle buttons using Open Iconic icons.
+                    </h3>
+
+                    <p><MTIconButtonToggle @bind-Value="@ToggleTwoWayBindingState" IconOn="check" IconOff="minus" IconFoundry="@MTIconHelper.OIFoundry()" /></p>
+                    <p><MTIconButtonToggle @bind-Value="@ToggleTwoWayBindingState" IconOn="check" IconOff="minus" IconFoundry="@MTIconHelper.OIFoundry()" /></p>
+                </Primary>
+            </MTCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        Icon Button Toggle Density
+                    </h2>
+
+                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows density subsystem from default to minus 3, with FontAwesome Icons fonts.
+                    </h3>
+
+                    <p><MTIconButtonToggle @bind-Value="@ToggleState" IconOn="fa-dog" IconOff="fa-cat" IconFoundry="@MTIconHelper.FAFoundry()" Density="@MTDensity.Default" @onclick="@(() => ButtonClick("Icon Button Toggle Default Density"))" /></p>
+                    <p><MTIconButtonToggle @bind-Value="@ToggleState" IconOn="fa-dog" IconOff="fa-cat" IconFoundry="@MTIconHelper.FAFoundry()" Density="@MTDensity.Minus1" @onclick="@(() => ButtonClick("Icon Button Toggle Density Minus 1"))" /></p>
+                    <p><MTIconButtonToggle @bind-Value="@ToggleState" IconOn="fa-dog" IconOff="fa-cat" IconFoundry="@MTIconHelper.FAFoundry()" Density="@MTDensity.Minus2" @onclick="@(() => ButtonClick("Icon Button Toggle Density Minus 2"))" /></p>
+                    <p><MTIconButtonToggle @bind-Value="@ToggleState" IconOn="fa-dog" IconOff="fa-cat" IconFoundry="@MTIconHelper.FAFoundry()" Density="@MTDensity.Minus3" @onclick="@(() => ButtonClick("Icon Button Toggle Density Minus 3"))" /></p>
+                </Primary>
+            </MTCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private bool _toggleTwoWayBindingState;
+    private bool ToggleTwoWayBindingState
+    {
+        get => _toggleTwoWayBindingState;
+        set
+        {
+            _toggleTwoWayBindingState = value;
+
+            ToastService.ShowToast(heading: "Toggle Icon Button Clicked", message: $"Two way binding Value: {_toggleTwoWayBindingState}", level: MTToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private bool _toggleState;
+    private bool ToggleState
+    {
+        get => _toggleState;
+        set
+        {
+            _toggleState = value;
+
+            ToastService.ShowToast(heading: "Toggle Icon Button Clicked", message: $"Value: {_toggleState} / {(_toggleState ? "Dog" : "Cat")}", level: MTToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private void ButtonClick(string notification)
+    {
+        ToastService.ShowToast(heading: "Button Clicked", message: notification, level: MTToastLevel.Success, showIcon: false);
+    }
+}

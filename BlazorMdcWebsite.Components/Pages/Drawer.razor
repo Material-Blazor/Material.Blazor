@@ -1,0 +1,72 @@
+﻿@page "/Drawer"
+
+@inject IMTToastService ToastService
+
+
+
+<DemonstrationPage ComponentName="Drawer"
+                   Title="Drawer"
+                   DemoComponent="@this">
+    <Description>
+        <p>
+            Anchor component.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        Drawer
+                    </h2>
+
+                    <p>
+                        The Drawer is a visual component. You encapsulate the content that you wish to show and hide as a group.
+                        Typically this is a menu, but any components can be included.
+                    </p>
+                    <p>
+                        This website uses the Drawer in its MainLayout.razor and can be observed as the menu when invoked.
+                    </p>
+                </Primary>
+            </MTCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private bool _toggleState;
+    private bool ToggleState
+    {
+        get => _toggleState;
+        set
+        {
+            _toggleState = value;
+
+            ToastService.ShowToast(heading: "Toggle Icon Button Clicked", message: $"Value: {_toggleState} / {(_toggleState ? "Dog" : "Cat")}", level: MTToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private bool _toggleTwoWayBindingState;
+    private bool ToggleTwoWayBindingState
+    {
+        get => _toggleTwoWayBindingState;
+        set
+        {
+            _toggleTwoWayBindingState = value;
+
+            ToastService.ShowToast(heading: "Toggle Icon Button Clicked", message: $"Two way binding Value: {_toggleTwoWayBindingState}", level: MTToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private void ButtonClick(string notification)
+    {
+        ToastService.ShowToast(heading: "Button Clicked", message: notification, level: MTToastLevel.Success, showIcon: false);
+    }
+}

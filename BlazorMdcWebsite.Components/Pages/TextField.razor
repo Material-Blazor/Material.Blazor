@@ -3,12 +3,12 @@
 @inject IMTToastService ToastService
 
 
-<DemonstrationPageLayout ComponentNames=@(new string[] { "TextField" })
-                         Title="Text Field Demonstration"
-                         DemoComponent="@this"
-                         MaterialIOPages="@(new string[] { "mdc-textfield#text-field" })"
-                         MinDensity="MTDensity.Minus4"
-                         RequiresDisableSelection="true">
+<DemonstrationPage ComponentName="TextField"
+                   Title="Text Field Demonstration"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-textfield#text-field"
+                   MinDensity="MTDensity.Minus4"
+                   RequiresDisableSelection="true">
     <Description>
         <p>
             Filled and outlined text fields with icon usage, class and style application and finally density.
@@ -200,7 +200,7 @@
             </MTCard>
         </div>
     </PageContent>
-</DemonstrationPageLayout>
+</DemonstrationPage>
 
 
 @code {

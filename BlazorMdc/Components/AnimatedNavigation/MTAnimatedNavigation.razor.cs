@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 namespace BlazorMdc
 {
     /// <summary>
-    /// This component works with <see cref="IMTAnimatedNavigationManager"/> to navigate your page navigation.
+    /// This component works with <see cref="IMTAnimatedNavigationService"/> to navigate your page navigation.
     /// Place this component around your app's entire @Body render fragment (potentially in MainLayout.razor),
     /// but not surrounding your app bars and navigation menus - you don't want those to fade in and out when
     /// your user navigates from one page to another.
     /// </summary>
     public partial class MTAnimatedNavigation: ComponentFoundation
     {
-        [Inject] private IMTAnimatedNavigationManager AnimatedNavigationManager { get; set; }
+        [Inject] private IMTAnimatedNavigationService AnimatedNavigationService { get; set; }
         [Inject] private NavigationManager NavigationManager { get; set; }
 
 
@@ -29,11 +29,11 @@ namespace BlazorMdc
         private const string FadeOut = "bmdc-navigation-fade-out";
 
 
-        private MarkupString FadeInAnimation => (MarkupString)$"animation: bmdcNavFadeIn ease {AnimatedNavigationManager.FadeOutTime * 10:D}ms;";
-        private MarkupString FadeInAnimationWebkit => (MarkupString)$"-webkit-animation: bmdcNavFadeIn ease {AnimatedNavigationManager.FadeOutTime * 10:D}ms;";
+        private MarkupString FadeInAnimation => (MarkupString)$"animation: bmdcNavFadeIn ease {AnimatedNavigationService.FadeOutTime * 10:D}ms;";
+        private MarkupString FadeInAnimationWebkit => (MarkupString)$"-webkit-animation: bmdcNavFadeIn ease {AnimatedNavigationService.FadeOutTime * 10:D}ms;";
 
-        private MarkupString FadeOutAnimation => (MarkupString)$"animation: bmdcNavFadeOut ease {AnimatedNavigationManager.FadeOutTime * 10:D}ms;";
-        private MarkupString FadeOutAnimationWebkit => (MarkupString)$"-webkit-animation: bmdcNavFadeOut ease {AnimatedNavigationManager.FadeOutTime * 10:D}ms;";
+        private MarkupString FadeOutAnimation => (MarkupString)$"animation: bmdcNavFadeOut ease {AnimatedNavigationService.FadeOutTime * 10:D}ms;";
+        private MarkupString FadeOutAnimationWebkit => (MarkupString)$"-webkit-animation: bmdcNavFadeOut ease {AnimatedNavigationService.FadeOutTime * 10:D}ms;";
 
 
         private string PageClass { get; set; } = "";
@@ -44,7 +44,7 @@ namespace BlazorMdc
         {
             base.OnInitialized();
 
-            AnimatedNavigationManager.RegisterNavigationComponent(this);
+            AnimatedNavigationService.RegisterNavigationComponent(this);
         }
 
 
@@ -58,7 +58,7 @@ namespace BlazorMdc
 
             if (disposing)
             {
-                AnimatedNavigationManager.DeregisterNavigationComponent(this);
+                AnimatedNavigationService.DeregisterNavigationComponent(this);
             }
 
             _disposed = true;
@@ -98,7 +98,7 @@ namespace BlazorMdc
 
             await Task.CompletedTask;
 
-            await Task.Delay(AnimatedNavigationManager.FadeOutTime);
+            await Task.Delay(AnimatedNavigationService.FadeOutTime);
 
             return null;
         }

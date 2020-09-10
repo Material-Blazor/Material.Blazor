@@ -1,6 +1,9 @@
 - name: Introduction
   topicUid: A.Introduction
 
+- name: AnimatedNavigation
+  topicUid: A.AnimatedNavigation
+
 - name: Blazor MDC Principles
   topicUid: A.Principles
 
@@ -19,6 +22,9 @@
 - name: Density
   topicUid: A.Density
 
+- name: Icon
+  topicUid: A.Icon
+
 - name: Installation
   topicUid: A.Installation
 
@@ -28,9 +34,18 @@
 - name: Plus Components
   topicUid: A.PlusComponents
 
+- name: Release Notes
+  topicUid: A.ReleaseNotes
+
 - name: Services
   topicUid: A.Services
   
+- name: Toast
+  topicUid: A.Toast
+
+- name: Tooltip
+  topicUid: A.Tooltip
+
 - name: Two Way Binding
   topicUid: A.TwoWayBinding
 

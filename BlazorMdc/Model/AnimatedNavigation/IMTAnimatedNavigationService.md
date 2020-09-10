@@ -1,8 +1,8 @@
 ﻿---
-uid: S.IMTAnimatedNavigationManager
-title: IMTAnimatedNavigationManager
+uid: S.IMTAnimatedNavigationService
+title: IMTAnimatedNavigationService
 ---
-# IMTAnimatedNavigationManager
+# IMTAnimatedNavigationService
 
 ## Summary
 
@@ -12,11 +12,11 @@ Manages fade out/in page navigation, wrapping Blazor's `NavigationManager.Naviga
 
 - Requires a [MTAnimatedNavigation](xref:C.MTAnimatedNavigation) component;
 - This is purely optional and you can continue to use Blazor's navigtion if you don't want animation;
-- Accepts an optional [MTAnimatedNaviationManagerConfiguration](xref:BlazorMdc.MTAnimatedNaviationManagerConfiguration).
+- Accepts an optional [MTAnimatedNavigationServiceConfiguration](xref:BlazorMdc.MTAnimatedServiceConfiguration).
 
 &nbsp;
 
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=See&message=Services&color=purple)](xref:A.Services)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=IMTAnimatedNavigationManager&color=brightgreen)](xref:BlazorMdc.IMTAnimatedNavigationManager)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=IMTAnimatedNavigationService&color=brightgreen)](xref:BlazorMdc.IMTAnimatedNavigationService)

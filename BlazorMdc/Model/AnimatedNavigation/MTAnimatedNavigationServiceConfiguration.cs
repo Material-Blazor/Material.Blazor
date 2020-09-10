@@ -1,9 +1,9 @@
 ﻿namespace BlazorMdc
 {
     /// <summary>
-    /// Configuration for <see cref="IMTAnimatedNavigationManager"/>.
+    /// Configuration for <see cref="IMTAnimatedNavigationService"/>.
     /// </summary>
-    public class MTAnimatedNaviationManagerConfiguration
+    public class MTAnimatedNavigationServiceConfiguration
     {
         public const bool DefaultApplyAnimation = false;
         public const int DefaultAnimationTime = 500;
@@ -12,7 +12,7 @@
         /// <summary>
         /// A reference to the animated navigation manager service.
         /// </summary>
-        internal AnimatedNavigationManager AnimatedNavigationManager { get; set; }
+        internal AnimatedNavigationService AnimatedNavigationManager { get; set; }
 
 
         private bool _applyAnimation = DefaultApplyAnimation;

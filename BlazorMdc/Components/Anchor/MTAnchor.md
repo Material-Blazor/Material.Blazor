@@ -6,12 +6,13 @@ title: MTAnchor
 
 ## Summary
 
-An anchor component for toasts and tooltips, based on a port of [Blazored/Toast](https://github.com/Blazored/Toast), modified and styled for Material Theme.
+An anchor component for toasts and tooltips (based on a port of [Blazored/Toast](https://github.com/Blazored/Toast)).
 
 ## Details
 
--  Place once instance of this in your Blazor app at the top of `App.razor`or `MainLayout.razor`; and
--  Requires that you register services by calling [services.AddMtServices()](xref:BlazorMdc.ServiceCollectionExtensions.AddMTServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,BlazorMdc.MTToastServiceConfiguration,BlazorMdc.MTAnimatedNaviationManagerConfiguration)) service and will throw an exception on startup if the service is not found.
+-  Place once instance of this in your Blazor app in `App.razor` or in your layout component page that is used for all application components that use toasts and tooltips.
+-  Register services by calling [services.AddMtServices()](xref:BlazorMdc.ServiceCollectionExtensions.AddMTServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,BlazorMdc.MTToastServiceConfiguration,BlazorMdc.MTAnimatedNaviationServiceConfiguration)).
+- The anchor will throw an exception on startup if the services registered by AddMTServices are not found.
 
 &nbsp;
 
