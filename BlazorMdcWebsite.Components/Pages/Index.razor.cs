@@ -11,7 +11,7 @@ namespace BlazorMdcWebsite.Components.Pages
     public partial class Index
     {
         [Inject] IJSRuntime JsRuntime { get; set; }
-        [Inject] IMTAnimatedNavigationService AnimatedNavigationService { get; set; }
+        [Inject] IMTAnimatedNavigationManager AnimatedNavigationService { get; set; }
 
 #if DEBUG
         private string BuildMode { get; set; } = "debug";

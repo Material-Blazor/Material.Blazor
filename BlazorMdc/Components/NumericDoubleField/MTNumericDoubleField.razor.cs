@@ -1,7 +1,7 @@
 ﻿using BlazorMdc.Internal;
 
 using Microsoft.AspNetCore.Components;
-
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -129,18 +129,17 @@ namespace BlazorMdc
         private double UnfocusedMultiplier { get; set; } = 1;
         private double AppliedMultiplier => HasFocus ? FocusedMultiplier : UnfocusedMultiplier;
         private int MyDecimalPlaces { get; set; } = 0;
+        private string NextType { get; set; } = "";
         private Regex Regex { get; set; }
-        private string Type => HasFocus ? "number" : "text";
         private Dictionary<string, object> MyAttributes { get; set; }
 
 
-        /// <summary>
-        /// ///////////Need to fix this.
-        /// </summary>
+        ///// <summary>
+        ///// Need to fix this.
+        ///// </summary>
         //private bool myFormNoValidate => hasFocus ? true : FormNoValidate;
 
 
-        private bool PrevHasFocus { get; set; } = false;
         private bool HasFocus { get; set; } = false;
 
 
@@ -202,7 +201,7 @@ namespace BlazorMdc
             BuildMyAttributes();
         }
 
-
+        
         private void BuildMyAttributes()
         {
             MyAttributes = (from a in AttributesToSplat()
@@ -220,19 +219,21 @@ namespace BlazorMdc
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await base.OnAfterRenderAsync(firstRender);
-
-            if (HasFocus == true && PrevHasFocus == false)
+            
+            if (!string.IsNullOrWhiteSpace(NextType))
             {
-                await TextField.Select();
+                await TextField.SetType(NextType);
+                NextType = "";
             }
-
-            PrevHasFocus = HasFocus;
         }
 
 
         private void OnFocusIn()
         {
             HasFocus = true;
+            NextType = "number";
+            TextField.SelectAllText = true;
+            TextField.AllowNextRender = true;
             BuildMyAttributes();
         }
 
@@ -240,9 +241,14 @@ namespace BlazorMdc
         private void OnFocusOut()
         {
             HasFocus = false;
+            NextType = "text";
+            TextField.SelectAllText = false;
+            TextField.AllowNextRender = true;
             BuildMyAttributes();
         }
-        
+
+
+        private void StopForceSelect() => TextField.SelectAllText = false;        
         
         
         private string StringValue(double? value) => (Convert.ToDouble(value) * AppliedMultiplier).ToString(AppliedFormat);

@@ -10,7 +10,7 @@ Manages fade out/in page navigation, wrapping Blazor's `NavigationManager.Naviga
 
 ## Details
 
-- Requires a [MTAnimatedNavigation](xref:C.MTAnimatedNavigation) component;
+- Requires a [MTAnchor](xref:C.MTAnchor) component;
 - This is purely optional and you can continue to use Blazor's navigtion if you don't want animation;
 - Accepts an optional [MTAnimatedNavigationServiceConfiguration](xref:BlazorMdc.MTAnimatedServiceConfiguration).
 

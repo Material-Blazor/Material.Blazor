@@ -14,7 +14,7 @@ namespace BlazorMdc
         /// <param name="toastServiceConfiguration"></param>
         /// <param name="animatedNavigationServiceConfiguration"></param>
         /// <returns></returns>
-        public static IServiceCollection AddMTServices(this IServiceCollection services, MTToastServiceConfiguration toastServiceConfiguration = null, MTAnimatedNavigationServiceConfiguration animatedNavigationServiceConfiguration = null)
+        public static IServiceCollection AddMTServices(this IServiceCollection services, MTToastServiceConfiguration toastServiceConfiguration = null, MTAnimatedNavigationManagerServiceConfiguration animatedNavigationServiceConfiguration = null)
         {
             return services
                 .AddMTToastService( toastServiceConfiguration)
@@ -58,7 +58,7 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Adds a BlazorMdc <see cref="IMTAnimatedNavigationService"/> to the service collection to apply
+        /// Adds a BlazorMdc <see cref="IMTAnimatedNavigationManager"/> to the service collection to apply
         /// fade out/in animation to Blazor page navigation.
         /// <example>
         /// <para>You can optionally add configuration:</para>
@@ -71,14 +71,14 @@ namespace BlazorMdc
         /// </code>
         /// </example>
         /// </summary>
-        private static IServiceCollection AddMTAnimatedNavigationService(this IServiceCollection services, MTAnimatedNavigationServiceConfiguration configuration = null)
+        private static IServiceCollection AddMTAnimatedNavigationService(this IServiceCollection services, MTAnimatedNavigationManagerServiceConfiguration configuration = null)
         {
             if (configuration == null)
             {
-                configuration = new MTAnimatedNavigationServiceConfiguration();
+                configuration = new MTAnimatedNavigationManagerServiceConfiguration();
             }
 
-            return services.AddScoped<IMTAnimatedNavigationService, AnimatedNavigationService>(serviceProvider => new AnimatedNavigationService(serviceProvider.GetRequiredService<NavigationManager>(), configuration));
+            return services.AddScoped<IMTAnimatedNavigationManager, AnimatedNavigationManagerService>(serviceProvider => new AnimatedNavigationManagerService(serviceProvider.GetRequiredService<NavigationManager>(), configuration));
         }
     }
 }

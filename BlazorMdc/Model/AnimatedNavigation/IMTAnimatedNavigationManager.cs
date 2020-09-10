@@ -25,12 +25,12 @@
     /// </code>
     /// </example>
     /// </summary>
-    public interface IMTAnimatedNavigationService
+    public interface IMTAnimatedNavigationManager
     {
         /// <summary>
         /// Animated Navigation Service configuration.
         /// </summary>
-        public MTAnimatedNavigationServiceConfiguration Configuration { get; set; }
+        public MTAnimatedNavigationManagerServiceConfiguration Configuration { get; set; }
 
 
         /// <summary>

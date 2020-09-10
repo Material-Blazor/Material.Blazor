@@ -211,7 +211,7 @@ namespace BlazorMdc.Internal
         /// <summary>
         /// Allows <see cref="ShouldRender()"/> to return "true" for the next render only.
         /// </summary>
-        private protected bool AllowNextRender = false;
+        internal bool AllowNextRender = false;
 
 
         /// <summary>

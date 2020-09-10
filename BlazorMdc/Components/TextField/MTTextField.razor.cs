@@ -76,16 +76,24 @@ namespace BlazorMdc
 #nullable restore annotations
 
 
-        private MTTextInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
-
-        private string AppliedTextInputStyleClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
-        
-        private MTDensity AppliedDensity => CascadingDefaults.AppliedTextFieldDensity(Density);
-
+        /// <summary>
+        /// The <code>@ref</code> reference for the top level <code>&lt;label&gt;</code> code block with
+        /// class <code>mdc-text-field</code>
+        /// </summary>
         internal ElementReference ElementReference { get; set; }
-        
+
+
+        /// <summary>
+        /// Used by <see cref="MTNumericDoubleField"/> to force the text field to select
+        /// all text in the <code>&lt;input&gt;</code> code block.
+        /// </summary>
+        internal bool SelectAllText { get; set; } = false;
+
+
+        private MTTextInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
+        private string AppliedTextInputStyleClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
+        private MTDensity AppliedDensity => CascadingDefaults.AppliedTextFieldDensity(Density);
         private ElementReference InputReference { get; set; }
-        
         private string FloatingLabelClass { get; set; }
 
         
@@ -137,6 +145,17 @@ namespace BlazorMdc
         }
 
 
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            await base.OnAfterRenderAsync(firstRender);
+
+            if (SelectAllText)
+            {
+                await Select();
+            }
+        }
+
+
         /// <summary>
         /// Callback for value the value setter.
         /// </summary>
@@ -162,5 +181,12 @@ namespace BlazorMdc
         /// </summary>
         /// <returns></returns>
         internal async Task Select() => await JsRuntime.InvokeVoidAsync("BlazorMdc.textField.select", InputReference);
+
+
+        /// <summary>
+        /// Selects the text field - used by <see cref="MTNumericDoubleField"/>.
+        /// </summary>
+        /// <returns></returns>
+        internal async Task SetType(string value) => await JsRuntime.InvokeVoidAsync("BlazorMdc.textField.setType", InputReference, value);
     }
 }

@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 namespace BlazorMdc
 {
     /// <summary>
-    /// This component works with <see cref="IMTAnimatedNavigationService"/> to navigate your page navigation.
+    /// This component works with <see cref="IMTAnimatedNavigationManager"/> to navigate your page navigation.
     /// Place this component around your app's entire @Body render fragment (potentially in MainLayout.razor),
     /// but not surrounding your app bars and navigation menus - you don't want those to fade in and out when
     /// your user navigates from one page to another.
     /// </summary>
     public partial class MTAnimatedNavigation: ComponentFoundation
     {
-        [Inject] private IMTAnimatedNavigationService AnimatedNavigationService { get; set; }
+        [Inject] private IMTAnimatedNavigationManager AnimatedNavigationService { get; set; }
         [Inject] private NavigationManager NavigationManager { get; set; }
 
 
