@@ -1,0 +1,71 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<RazorLangVersion>3.0</RazorLangVersion>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<VersionPrefix>1.0.0</VersionPrefix>
+		<VersionSuffix></VersionSuffix>
+		<PackageLicenseFile></PackageLicenseFile>
+		<Authors>Simon Ziegler of Dioptra and Mark Stega of Optimium Health</Authors>
+		<Company>Blazor MDC</Company>
+		<Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io. API and other documentation can be found at https://material.blazor.com/docs.</Description>
+		<RepositoryUrl>https://github.com/material.blazor/material.blazor</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReleaseNotes>We have a breaking change to the names of the bundled CSS and JS - please see material.blazor.com/docs in the installation section.</PackageReleaseNotes>
+		<NeutralLanguage>en</NeutralLanguage>
+		<Copyright>Dioptra and Optimium Health</Copyright>
+		<PackageProjectUrl>https://material.blazor.com</PackageProjectUrl>
+		<Product>Blazor MDC</Product>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Remove="package-lock.json" />
+		<Content Remove="package.json" />
+		<Content Remove="tsconfig.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.6" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.6" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="package-lock.json" />
+		<None Include="package.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</None>
+		<None Include="tsconfig.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="wwwroot\" />
+	</ItemGroup>
+
+<!-- Unfinished dependency issue
+	<ItemGroup>
+		<InputsComponentsScss Include="Components\**\*.scss" />
+		<InputsStylesScss Include="Styles\*.scss" />
+		<InputsComponentsTs Include="Components\**\*.js" />
+		<InputsScriptsTs Include="Scripts\*.js" />
+		<OutputsCss Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css;wwwroot\material.blazor-material-bundle.min.css" />
+		<OutputsJs Include="wwwroot\material.blazor.js;wwwroot\material.blazor.min.js;wwwroot\material.blazor-material-bundle.min.js" />
+	</ItemGroup>
+
+	<Target Name="BuildScriptsAndStyles" 
+			BeforeTargets="PreBuildEvent" 
+			Inputs="@(InputsComponentsScss);@(InputsStylesScss);@(InputsComponentsTs);@(InputsScriptsTs)"
+			Outputs="@(OutputsCss);@(OutputsJs)">-->
+  
+	<Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">
+		<Exec Command="docker build -t mb_static_assets -f build-static-assets.Dockerfile ." />
+		<Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
+		<Exec Command="docker run --rm mb_static_assets cat material.blazor.js &gt; wwwroot/material.blazor.js" />
+		<Exec Command="docker run --rm mb_static_assets cat material.blazor.css &gt; wwwroot/material.blazor.css" />
+		<Exec Command="docker run --rm mb_static_assets cat material.blazor.min.js &gt; wwwroot/material.blazor.min.js" />
+		<Exec Command="docker run --rm mb_static_assets cat material.blazor.min.css &gt; wwwroot/material.blazor.min.css" />
+		<Exec Command="docker run --rm mb_static_assets cat material.blazor-material-bundle.min.js &gt; wwwroot/material.blazor-material-bundle.min.js" />
+		<Exec Command="docker run --rm mb_static_assets cat material.blazor-material-bundle.min.css &gt; wwwroot/material.blazor-material-bundle.min.css" />
+	</Target>
+
+</Project>

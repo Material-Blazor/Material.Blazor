@@ -1,0 +1,106 @@
+﻿<div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+    <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true" CardStyle="@MBCardStyle.Outlined">
+                <Primary>
+                    <h6 class="mb-card__subtitle mdc-typography mdc-typography--subtitle1">
+                        Buttons, Checkboxes and Switches
+                    </h6>
+
+                    <p><MBButton Label="Button" /></p>
+                    <p><MBIconButton Icon="@IconButtonIconName" /></p>
+                    <p><MBCheckbox Label="Checkbox" /></p>
+                    <p><MBSwitch Label="Switch" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true" CardStyle="@MBCardStyle.Outlined">
+                <Primary>
+                    <h6 class="mb-card__subtitle mdc-typography mdc-typography--subtitle1">
+                        Text Field, Select and Date Picker
+                    </h6>
+
+                    <p><MBTextField Label="Text Field" @bind-Value="@TextFieldDefault" /></p>
+                    <p><MBSelect Label="Select" @bind-Value="@SelectDefault" Items="@Items" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                    <p><MBDatePicker Label="Date" @bind-Value="@DateDefault" MinDate="@Min" MaxDate="@Max" DateFormat="MMM d, yyyy" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+    </div>
+</div>
+
+<div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+    <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true" CardStyle="@MBCardStyle.Outlined">
+                <Primary>
+                    <h6 class="mb-card__subtitle mdc-typography mdc-typography--subtitle1">
+                        List and Card
+                    </h6>
+
+                    <p>
+                        <MBList Items="@Products"
+                                Context="product"
+                                KeyboardInteractions="true"
+                                Ripple="true">
+
+                            <Icon><MBIcon IconName="@StoreIconName" /></Icon>
+                            <Title>@product.DisplayName</Title>
+                        </MBList>
+                    </p>
+
+                    <p>
+                        <MBCard AutoStyled="true">
+                            <Primary>
+                                <h4 class="mdc-typography--headline6">Card</h4>
+                            </Primary>
+                        </MBCard>
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    [Parameter] public string IconButtonIconName { get; set; }
+    [Parameter] public string StoreIconName { get; set; }
+
+
+    private string SelectDefault { get; set; }
+    private string TextFieldDefault { get; set; }
+    private DateTime DateDefault { get; set; } = new DateTime(2020, 2, 29);
+    private DateTime Min { get; set; } = new DateTime(2019, 1, 1);
+    private DateTime Max { get; set; } = new DateTime(2078, 12, 31);
+
+
+    private MBListElement<string>[] Items = new MBListElement<string>[]
+    {
+        new MBListElement<string> { SelectedValue = "", Label = "" },
+        new MBListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new MBListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new MBListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+        };
+
+
+    private IEnumerable<Product> Products = new System.Collections.Generic.List<Product>
+{
+        new Product { ProductId = 1, DisplayName = "Curly-wurly straw", LineTwo = "Amaze your friends with this cheap plastic tube", LineThree = "Line three", IsInStock = true },
+        new Product { ProductId = 2, DisplayName = "Pepsi Connoisseur (12mo subscription)", LineTwo = "Covers all developments in the world of Pepsi™", LineThree = "Line three", IsInStock = false },
+        new Product { ProductId = 3, DisplayName = "Recarbonator Pro", LineTwo = "Revitalize your old beverages in just hours", LineThree = "Line three", IsInStock = true },
+    };
+
+
+    public class Product
+    {
+        public int ProductId { get; set; }
+        public string DisplayName { get; set; }
+        public string LineTwo { get; set; }
+        public string LineThree { get; set; }
+        public bool IsInStock { get; set; }
+    }
+}

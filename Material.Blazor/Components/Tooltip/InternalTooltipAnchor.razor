@@ -1,0 +1,24 @@
+﻿@namespace Material.Blazor.Internal
+@inherits ComponentFoundation
+
+
+@if (Tooltips.Any())
+{
+    <div>
+        @foreach (var tooltip in Tooltips.Values.OrderBy(x => x.TimeStamp))
+        {
+            <div @key="@tooltip.Id" @ref="@tooltip.ElementReference" id="@tooltip.Id" class="mdc-tooltip" role="tooltip" aria-hidden="true" style="z-index: 1000;">
+                <div class="mdc-tooltip__surface">
+                    @if (tooltip.RenderFragmentContent == null)
+                    {
+                        @tooltip.MarkupStringContent;
+                    }
+                    else
+                    {
+                        @tooltip.RenderFragmentContent;
+                    }
+                </div>
+            </div>
+        }
+    </div>
+}

@@ -1,0 +1,263 @@
+﻿@page "/textfield"
+
+@inject IMBToastService ToastService
+
+
+<DemonstrationPage ComponentName="TextField"
+                   Title="Text Field Demonstration"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-textfield#text-field"
+                   MinDensity="MBDensity.Minus4"
+                   RequiresDisableSelection="true">
+    <Description>
+        <p>
+            Filled and outlined text fields with icon usage, class and style application and finally density.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Text Field Styles
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Default and explicit text field styles.
+                    </h3>
+
+                    <p><MBTextField Label="Default (Filled) Style" @bind-Value="@DefaultStyle" /></p>
+                    <p><MBTextField Label="Explicit Filled Style" @bind-Value="@FilledStyle" TextInputStyle="MBTextInputStyle.Filled" /></p>
+                    <p><MBTextField Label="Outlined Style" @bind-Value="@OutlinedStyle" TextInputStyle="MBTextInputStyle.Outlined" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Icons
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Leading and trailing icons - both using icons from the Material Icons, Font Awesome and Open Iconic foundries.
+                    </h3>
+
+                    <p><MBTextField Label="Leading Icon" LeadingIcon="print" IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.TwoTone)" TextInputStyle="MBTextInputStyle.Filled" /></p>
+                    <p><MBTextField Label="Trailing Icon" TrailingIcon="import_contacts" IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.Round)" TextInputStyle="MBTextInputStyle.Filled" /></p>
+                    <p><MBTextField Label="Leading Icon" LeadingIcon="fa-car-crash" IconFoundry="@MBIconHelper.FAFoundry()" TextInputStyle="MBTextInputStyle.Outlined" /></p>
+                    <p><MBTextField Label="Trailing Icon" TrailingIcon="microphone" IconFoundry="@MBIconHelper.OIFoundry()" TextInputStyle="MBTextInputStyle.Outlined" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Prefix and Suffix
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Prefix and Suffix text applied within fields.
+                    </h3>
+
+                    <p><MBTextField Label="Prefix" Prefix="$" TextInputStyle="MBTextInputStyle.Filled" /></p>
+                    <p><MBTextField Label="Suffix" Suffix="%" TextInputStyle="MBTextInputStyle.Filled" /></p>
+                    <p><MBTextField Label="Prefix" Prefix="$" TextInputStyle="MBTextInputStyle.Outlined" /></p>
+                    <p><MBTextField Label="Suffix" Suffix="%" TextInputStyle="MBTextInputStyle.Outlined" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <style>
+                        .text-green {
+                            background-color: var(--mb-color-light-green-600) !important;
+                        }
+                    </style>
+
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Class and Style
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Background color set by CSS class and style attributes.
+                    </h3>
+
+                    <p><MBTextField Label="Green by class" class="text-green" /></p>
+                    <p><MBTextField Label="Amber by style" style="background-color: var(--mb-color-amber-800);" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Contents Alignment
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Left, center and right aligned text (not the same as right-to-left script).
+                    </h3>
+
+                    <p><MBTextField Label="Left Aligned" TextAlignStyle="@MBTextAlignStyle.Left" /></p>
+                    <p><MBTextField Label="Centered" TextAlignStyle="@MBTextAlignStyle.Center" /></p>
+                    <p><MBTextField Label="Right Aligned" TextAlignStyle="@MBTextAlignStyle.Right" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Passwords
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Standard HTML input obscuring with <code>type="password"</code>
+                    </h3>
+
+                    <p><MBTextField Label="Password" type="password" @bind-Value="@Password" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Two Way Binding
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows two way binding for text fields.
+                    </h3>
+
+                    <p><MBTextField Label="First Linked Field" @bind-Value="@TwoWayBinding" /></p>
+                    <p><MBTextField Label="Second Linked Field" @bind-Value="@TwoWayBinding" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Filled Density
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Filled density subsystem from default to minus 4.
+                    </h3>
+
+                    <p><MBTextField Label="Default Density" Density="@MBDensity.Default" TextInputStyle="MBTextInputStyle.Filled" /></p>
+                    <p><MBTextField Label="Density Minus 1" Density="@MBDensity.Minus1" TextInputStyle="MBTextInputStyle.Filled" /></p>
+                    <p><MBTextField Label="Density Minus 2" Density="@MBDensity.Minus2" TextInputStyle="MBTextInputStyle.Filled" /></p>
+                    <p><MBTextField Label="Density Minus 3" Density="@MBDensity.Minus3" TextInputStyle="MBTextInputStyle.Filled" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Outlined Density
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Outlined density subsystem from default to minus 4.
+                    </h3>
+
+                    <p><MBTextField Label="Default Density" Density="@MBDensity.Default" TextInputStyle="MBTextInputStyle.Outlined" /></p>
+                    <p><MBTextField Label="Density Minus 1" Density="@MBDensity.Minus1" TextInputStyle="MBTextInputStyle.Outlined" /></p>
+                    <p><MBTextField Label="Density Minus 2" Density="@MBDensity.Minus2" TextInputStyle="MBTextInputStyle.Outlined" /></p>
+                    <p><MBTextField Label="Density Minus 3" Density="@MBDensity.Minus3" TextInputStyle="MBTextInputStyle.Outlined" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+@code {
+    private string _defaultStyle;
+    private string DefaultStyle
+    {
+        get => _defaultStyle;
+        set
+        {
+            _defaultStyle = value;
+
+            ToastService.ShowToast(heading: "Default Style", message: $"Value: '{_defaultStyle}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private string _filledStyle;
+    private string FilledStyle
+    {
+        get => _filledStyle;
+        set
+        {
+            _filledStyle = value;
+
+            ToastService.ShowToast(heading: "Filled Style", message: $"Value: '{_filledStyle}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private string _outlinedStyle;
+    private string OutlinedStyle
+    {
+        get => _outlinedStyle;
+        set
+        {
+            _outlinedStyle = value;
+
+            ToastService.ShowToast(heading: "Outlined Style", message: $"Value: '{_outlinedStyle}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private string _password;
+    private string Password
+    {
+        get => _password;
+        set
+        {
+            _password = value;
+
+            ToastService.ShowToast(heading: "Your Revealed Password", message: $"Value: '{_password}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private string TwoWayBinding { get; set; }
+}

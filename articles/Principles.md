@@ -35,7 +35,7 @@ of encapsulating this and transforming it into a native blazor experience for th
 
 ## Component Intialization
 
-All Material Theme components need to make intiialization calls to the Material Theme JavaScript libraries. There is a special case where this needs to be delayed: dialogs (see [MT documentation](https://material.io/develop/web/components/dialogs)).
+All Material Theme components need to make intiialization calls to the Material Theme JavaScript libraries. There is a special case where this needs to be delayed: dialogs (see [MB documentation](https://material.io/develop/web/components/dialogs)).
 Some components need either to be initialized after a dialog has opened (with its transition), or to be re laid out. Blazor MDC takes an approach where every component can detect whether it is in a dialog.
 If so, it does one of two things:
 
@@ -48,5 +48,5 @@ This mechanism is also handled in the Blazor MDC's internal `InputComponentFound
 
 Blazor MDC has two namespaces:
 
-- `BlazorMdc` is the only namespace that you should use. You can add `@using BlazorMdc` to your project's _Imports.razor file.
+- `BlazorMdc` is the only namespace that you should use. You can add `@using Material.Blazor` to your project's _Imports.razor file.
 - There is also a `BlazorMdc.Internal` namespace that you should not use. We use this namespace for some components that are intended only for internal use in Blazor MDC, however Blazor has no mechanism to restrict components to internal usage (mirroring the C# "internal" directive).

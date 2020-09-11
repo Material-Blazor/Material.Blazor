@@ -8,47 +8,47 @@ title: Density
 
 Material Theme specifies a [density subsystem](https://material.io/develop/web/components/density), applied using SASS mixins. Blazor MDC handles density through component parameters and
 cascading defaults. This parameterization is applied to Material Theme components via CSS classes prepared by Blazor MDC from the SASS mixins. Density is specified by the
-[MTDensity enumeration](xref:BlazorMdc.MTDensity), and can be controlled both with Cascading Defaults and direct component parameters.
+[MBDensity enumeration](xref:BlazorMdc.MBDensity), and can be controlled both with Cascading Defaults and direct component parameters.
 
 ## Density Levels
 
 Density is specified by having components rendered increasingly dense as a density number reduces from zero to minus 5. Some components render all density levels, others only a subset, stopping
-at either minus three or minus four. In these cases if you specify a something more dense, the densest available rendering will be supplied. For instance `MTButton` with density of minus 5 will render with
+at either minus three or minus four. In these cases if you specify a something more dense, the densest available rendering will be supplied. For instance `MBButton` with density of minus 5 will render with
 density of minus 3.
 
 | Density Level | Enumeration |
 | :-----------: | :---------- |
-| 0 | `MTDensity.Default` |
-| -1 | `MTDensity.Minus1` |
-| -2 | `MTDensity.Minus2` and `MTDensity.Comfortable` |
-| -3 | `MTDensity.Minus3` and `MTDensity.Compact` |
-| -4 | `MTDensity.Minus4` |
-| -5 | `MTDensity.Minus5` |
+| 0 | `MBDensity.Default` |
+| -1 | `MBDensity.Minus1` |
+| -2 | `MBDensity.Minus2` and `MBDensity.Comfortable` |
+| -3 | `MBDensity.Minus3` and `MBDensity.Compact` |
+| -4 | `MBDensity.Minus4` |
+| -5 | `MBDensity.Minus5` |
 
 ## Components Applying Density Subsystem
 
-Applicable density levels are shown with a :heavy_check_mark:. Those with a :x: will display the most dense option available. For instance an [MTButton](xref:C.MTButton) with
+Applicable density levels are shown with a :heavy_check_mark:. Those with a :x: will display the most dense option available. For instance an [MBButton](xref:C.MBButton) with
 a specified density of minus 5 will actually display with a density of minus 3.
 
 | Component |   0 |  -1 |  -2 |  -3 |  -4 |  -5 |
 | :-------- | :-: | :-: | :-: | :-: | :-: | :-: |
-| [MTAutocompleteTextField](xref:C.MTAutocompleteTextField) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
-| [MTButton](xref:C.MTButton) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
-| [MTCheckbox](xref:C.MTCheckbox) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
-| [MTDataTable<TItem>](xref:C.MTDataTable) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
-| [MTDebouncedTextField](xref:C.MTDebouncedTextField) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
-| [MTIconButton](xref:C.MTIconButton) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| [MTIconButtonToggle](xref:C.MTIconButtonToggle) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| [MTList](xref:C.MTList) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
-| [MTNumericDoubleField](xref:C.MTNumericDoubleField) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
-| [MTNumericIntField](xref:C.MTNumericIntField) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
-| [MTRadioButton](xref:C.MTRadioButton) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
-| [MTRadioButtonGroup](xref:C.MTRadioButtonGroup) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
-| [MTSelect](xref:C.MTSelect) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :x: |
-| [MTSwitch](xref:C.MTSwitch) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
-| [MTTabBar](xref:C.MTTabBar) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
-| [MTTextArea](xref:C.MTTextArea) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :x: |
-| [MTTextField](xref:C.MTTextField) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :x: |
+| [MBAutocompleteTextField](xref:C.MBAutocompleteTextField) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| [MBButton](xref:C.MBButton) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
+| [MBCheckbox](xref:C.MBCheckbox) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
+| [MBDataTable<TItem>](xref:C.MBDataTable) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| [MBDebouncedTextField](xref:C.MBDebouncedTextField) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| [MBIconButton](xref:C.MBIconButton) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| [MBIconButtonToggle](xref:C.MBIconButtonToggle) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| [MBList](xref:C.MBList) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| [MBNumericDoubleField](xref:C.MBNumericDoubleField) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| [MBNumericIntField](xref:C.MBNumericIntField) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| [MBRadioButton](xref:C.MBRadioButton) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
+| [MBRadioButtonGroup](xref:C.MBRadioButtonGroup) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
+| [MBSelect](xref:C.MBSelect) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :x: |
+| [MBSwitch](xref:C.MBSwitch) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
+| [MBTabBar](xref:C.MBTabBar) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| [MBTextArea](xref:C.MBTextArea) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :x: |
+| [MBTextField](xref:C.MBTextField) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :x: |
 
 <br />
 

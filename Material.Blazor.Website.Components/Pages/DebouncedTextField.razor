@@ -1,0 +1,76 @@
+﻿@page "/debouncedtextfield"
+
+@inject IMBToastService ToastService
+
+@using System.Runtime.InteropServices
+
+
+<DemonstrationPage ComponentName="DebouncedTextField"
+                   Title="Debounced Text Field Demonstration"
+                   DemoComponent="@this"
+                   MinDensity="MBDensity.Minus4"
+                   RequiresDisableSelection="true">
+    <Description>
+        <p>
+            Shows debounced text field which is a Plus component.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Debounced text field
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        <p>
+                            Each of these can display as Filled or Outlined and with
+                            the full variety of icon foundries. These are used across the page but it we don't attempt to show each variant everywhere - see the Text Field demo for this.
+                        </p>
+                        <p>Set the debounce period you want.</p>
+                    </h3>
+
+                    <p><MBRadioButtonGroup @bind-Value="@DebouncePeriod" Items="DebouncePeriods" ItemValidation="@MBItemValidation.DefaultToFirst" /></p>
+
+                    <p>
+                        <MBDebouncedTextField Label="Debounced Text"
+                                              @bind-Value="@Debounced"
+                                              TextInputStyle="MBTextInputStyle.Outlined"
+                                              LeadingIcon="account_balance_wallet"
+                                              DebounceInterval="DebouncePeriod" />
+                    </p>
+
+                    <p>Debounced text: <em>'@Debounced'</em></p>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+@code {
+    private MBListElement<int>[] DebouncePeriods = new MBListElement<int>[]
+    {
+        new MBListElement<int> { SelectedValue = 300, Label = "300 ms" },
+        new MBListElement<int> { SelectedValue = 500, Label = "500 ms" },
+        new MBListElement<int> { SelectedValue = 1000, Label = "1,000 ms" }
+            };
+
+
+
+    private string _debounced = "Initial Value";
+    private string Debounced
+    {
+        get => _debounced;
+        set
+        {
+            _debounced = value;
+
+            ToastService.ShowToast(heading: "Debounced text field", message: $"Value: '{_debounced}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+    private int DebouncePeriod { get; set; } = 300;
+}

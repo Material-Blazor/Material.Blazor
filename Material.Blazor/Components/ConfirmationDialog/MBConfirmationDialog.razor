@@ -1,0 +1,27 @@
+﻿@namespace Material.Blazor
+
+<MBDialog @ref="@Dialog" Title="@Title" OverflowVisible="@OverflowVisible">
+    <Body>
+        @Body
+        <p>Please type <strong>@MyConfirmationPhrase</strong> @ActionPhrase.</p>
+        <p><MBTextField @bind-Value="@EnteredText" @oninput="@OnInput" class="mb-full-width" Disabled="ConfirmationDisabled" /></p>
+    </Body>
+    <Buttons>
+        @if (ConfirmedButtons is null || UnconfirmedButtons is null)
+        {
+            <MBButton Label="OK" LeadingIcon="@("check")" DialogAction="@ConfirmActionResult" Disabled="@(!Confirmed)" />
+            <MBButton Label="Cancel" LeadingIcon="@("cancel")" DialogAction="@CancelActionResult" ButtonStyle="MBButtonStyle.Text" />
+        }
+        else
+        {
+            if (Confirmed)
+            {
+                @ConfirmedButtons
+            }
+            else
+            {
+                @UnconfirmedButtons
+            }
+        }
+    </Buttons>
+</MBDialog>

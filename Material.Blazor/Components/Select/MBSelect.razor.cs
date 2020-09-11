@@ -1,0 +1,203 @@
+﻿using Material.Blazor.Internal;
+
+using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Material.Blazor
+{
+    /// <summary>
+    /// A Material Theme select.
+    /// </summary>
+    public partial class MBSelect<TItem> : ValidatingInputComponentFoundation<TItem>, IMBDialogChild
+    {
+#nullable enable annotations
+        /// <summary>
+        /// A function delegate to return the parameters for <c>@key</c> attributes. If unused
+        /// "fake" keys set to GUIDs will be used.
+        /// </summary>
+        [Parameter] public Func<TItem, object> GetKeysFunc { get; set; }
+
+
+        /// <summary>
+        /// The item list to be represented as a select
+        /// </summary>
+        [Parameter] public IEnumerable<MBListElement<TItem>> Items { get; set; }
+
+
+        /// <summary>
+        /// The form of validation to apply when Value is first set, deciding whether to accept
+        /// a value outside the <see cref="Items"/> list, replace it with the first list item or
+        /// to throw an exception (the default).
+        /// <para>Overrides <see cref="MBCascadingDefaults.ItemValidation"/></para>
+        /// </summary>
+        [Parameter] public MBItemValidation? ItemValidation { get; set; }
+
+
+        /// <summary>
+        /// The select's label.
+        /// </summary>
+        [Parameter] public string Label { get; set; }
+
+
+        /// <summary>
+        /// The select's <see cref="BlazorMdc.MBSelectInputStyle"/>.
+        /// <para>Overrides <see cref="MBCascadingDefaults.SelectInputStyle"/></para>
+        /// </summary>
+        [Parameter] public MBSelectInputStyle? SelectInputStyle { get; set; }
+
+
+        /// <summary>
+        /// The select's <see cref="BlazorMdc.MBTextAlignStyle"/>.
+        /// <para>Overrides <see cref="MBCascadingDefaults.TextAlignStyle"/></para>
+        /// </summary>
+        [Parameter] public MBTextAlignStyle? TextAlignStyle { get; set; }
+
+
+        /// <summary>
+        /// The leading icon's name. No leading icon shown if not set.
+        /// </summary>
+        [Parameter] public string? LeadingIcon { get; set; }
+
+
+        /// <summary>
+        /// The foundry to use for both leading and trailing icons.
+        /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
+        /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
+        /// <para>Overrides <see cref="MBCascadingDefaults.IconFoundryName"/></para>
+        /// </summary>
+        [Parameter] public IMBIconFoundry? IconFoundry { get; set; }
+
+
+        /// <summary>
+        /// The select's density.
+        /// </summary>
+        [Parameter] public MBDensity? Density { get; set; }
+#nullable restore annotations
+
+
+        private readonly string labelId = Utilities.GenerateUniqueElementName();
+        private readonly string listboxId = Utilities.GenerateUniqueElementName();
+        private readonly string selectedTextId = Utilities.GenerateUniqueElementName();
+
+
+        private string AlignClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
+        private MBDensity AppliedDensity => CascadingDefaults.AppliedSelectDensity(Density);
+        private MBSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
+        private string FloatingLabelClass { get; set; } = "";
+        private Dictionary<TItem, MBListElement<TItem>> ItemDict { get; set; }
+        private Func<TItem, object> KeyGenerator { get; set; }
+        private DotNetObjectReference<MBSelect<TItem>> ObjectReference { get; set; }
+        private ElementReference SelectReference { get; set; }
+        private string SelectedText { get; set; } = "";
+        private bool ShowLabel => !string.IsNullOrWhiteSpace(Label);
+
+
+        private MBCascadingDefaults.DensityInfo DensityInfo
+        {
+            get
+            {
+                var d = CascadingDefaults.GetDensityCssClass(AppliedDensity);
+
+                var suffix = AppliedInputStyle == MBSelectInputStyle.Filled ? "--filled" : "--outlined";
+                suffix += string.IsNullOrWhiteSpace(LeadingIcon) ? "" : "-with-leading-icon";
+
+                d.CssClassName += suffix;
+
+                return d;
+            }
+        }
+
+
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+
+            ItemDict = Items.ToDictionary(i => i.SelectedValue);
+
+            ReportingValue = ValidateItemList(ItemDict.Values, CascadingDefaults.AppliedItemValidation(ItemValidation));
+
+            ClassMapper
+                .Add("mdc-select")
+                .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
+                .AddIf("mdc-select--filled", () => AppliedInputStyle == MBSelectInputStyle.Filled)
+                .AddIf("mdc-select--outlined", () => AppliedInputStyle == MBSelectInputStyle.Outlined)
+                .AddIf("mdc-select--no-label", () => !ShowLabel)
+                .AddIf("mdc-select--with-leading-icon", () => !string.IsNullOrWhiteSpace(LeadingIcon))
+                .AddIf("mdc-select--disabled", () => AppliedDisabled);
+
+            SelectedText = (Value is null) ? "" : Items.Where(i => object.Equals(i.SelectedValue, Value)).FirstOrDefault().Label;
+            FloatingLabelClass = string.IsNullOrWhiteSpace(SelectedText) ? "" : "mdc-floating-label--float-above";
+
+            OnValueSet += OnValueSetCallback;
+            OnDisabledSet += OnDisabledSetCallback;
+
+            ObjectReference = DotNetObjectReference.Create(this);
+        }
+
+
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        protected override void OnParametersSet()
+        {
+            base.OnParametersSet();
+
+            KeyGenerator = GetKeysFunc ?? delegate (TItem item) { return item; };
+        }
+
+
+        private bool _disposed = false;
+        protected override void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                ObjectReference?.Dispose();
+            }
+
+            _disposed = true;
+
+            base.Dispose(disposing);
+        }
+
+
+        /// <summary>
+        /// For Material Theme to notify of menu item selection via JS Interop.
+        /// </summary>
+        [JSInvokable("NotifySelectedAsync")]
+        public async Task NotifySelectedAsync(int index)
+        {
+            ReportingValue = ItemDict.Values.ElementAt(index).SelectedValue;
+            await Task.CompletedTask;
+        }
+
+
+        /// <summary>
+        /// Callback for value the value setter.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("BlazorMdc.select.setIndex", SelectReference, ItemDict.Keys.ToList().IndexOf(Value)));
+
+
+        /// <summary>
+        /// Callback for value the Disabled value setter.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("BlazorMdc.select.setDisabled", SelectReference, AppliedDisabled));
+
+
+        /// <inheritdoc/>
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("BlazorMdc.select.init", SelectReference, ObjectReference);
+    }
+}

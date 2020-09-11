@@ -1,0 +1,33 @@
+﻿@namespace Material.Blazor
+@inherits ComponentFoundation
+
+
+<span @attributes="AttributesToSplat()">
+    @if (ShieldType != MBShieldType.ValueOnly)
+    {
+        <span class="mb-shield--label @LabelClass" style="@LabelStyle">
+            @if (!string.IsNullOrWhiteSpace(LabelIcon))
+            {
+                <span>
+                    <MBIcon IconName="@LabelIcon" IconFoundry="@IconFoundry" />
+                </span>
+            }
+
+            <span>@Label</span>
+        </span>
+    }
+
+    @if (ShieldType != MBShieldType.LabelOnly)
+    {
+        <span class="mb-shield--value @ValueClass" style="@ValueStyle">
+            @if (!string.IsNullOrWhiteSpace(ValueIcon))
+            {
+                <span>
+                    <MBIcon IconName="@ValueIcon" IconFoundry="@IconFoundry" />
+                </span>
+            }
+            
+            <span>@Value</span>
+        </span>
+    }
+</span>

@@ -1,0 +1,16 @@
+﻿@namespace Material.Blazor
+@inherits ComponentFoundation
+
+
+<li role="menuitem"
+    @attributes="@AttributesToSplat()">
+
+    @if (LeadingIcon != null)
+    {
+        <span class="mdc-list-item__graphic mdc-menu__selection-group-icon">
+            <MBIcon IconName="@LeadingIcon" IconFoundry="@IconFoundry" />
+        </span>
+    }
+
+    <span class="mdc-list-item__text">@Label</span>
+</li>
