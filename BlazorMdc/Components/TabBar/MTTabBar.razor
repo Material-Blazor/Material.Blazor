@@ -28,7 +28,9 @@
                         <span class="mdc-tab__content">
                             @if (Icon != null)
                             {
-                                @Icon(item)
+                                <CascadingValue Value="@tabBarIdentifierObject" Name="@TabBarIdentifier">
+                                    @Icon(item)
+                                </CascadingValue>
                             }
 
                             @if (Label != null)

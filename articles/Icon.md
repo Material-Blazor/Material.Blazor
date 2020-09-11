@@ -14,11 +14,9 @@ for Font Awesome and Open Iconic separately if you want to use them - see the [I
 
 ## Using MTIcon
 
-MTIcon's two principal parameters are IconName (required) and IconFoundry (optional). Examples of icon name are "alarm" for Material
+MTIcon's two parameters are IconName (required) and IconFoundry (optional). Examples of icon name are "alarm" for Material
 Icons, "fa-bell" for Font Awesome and "audio" for Open Iconic. If you don't provide IconFoundry your default foundry will be used. The default 
 is either Material Icons or a [default that you set with cascading defaults](xref:A.CascadingDefaults#icons).
-
-A third parameter is a boolean value TabBar. Set this to true if you are placing an icon in a tab bar so that further styling can be added.
 
 ## Setting the Icon Foundry
 

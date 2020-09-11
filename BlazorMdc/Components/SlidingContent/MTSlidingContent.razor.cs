@@ -117,7 +117,7 @@ namespace BlazorMdc
         /// <inheritdoc/>
         protected override void OnAfterRender(bool firstRender)
         {
-            base.OnAfterRender();
+            base.OnAfterRender(firstRender);
 
             if (firstRender)
             {

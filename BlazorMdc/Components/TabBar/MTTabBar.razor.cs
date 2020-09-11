@@ -14,6 +14,13 @@ namespace BlazorMdc
     public partial class MTTabBar<TItem> : InputComponentFoundation<int>
     {
         /// <summary>
+        /// A constant string to identify a cascading value to <see cref="MTIcon"/>, so that the
+        /// icon can apply styling for use in a tab bar.
+        /// </summary>
+        internal const string TabBarIdentifier = "adc2d67b-9dfc-4e0c-b411-438707a248dc";
+
+
+        /// <summary>
         /// Stack icons vertically if True, otherwise icons are leading.
         /// </summary>
         [Parameter] public bool StackIcons { get; set; }
@@ -40,8 +47,7 @@ namespace BlazorMdc
 
         /// <summary>
         /// Icon render fragments requiring correct icon markup including the "mdc-tab__icon"
-        /// CSS class. As a helper you can render with <see cref="MTIcon"/> with <see cref="MTIcon.TabBar"/>
-        /// set to true. Note that Material Icons always render properly, while some wider Font Awesome
+        /// CSS class. Note that Material Icons always render properly, while some wider Font Awesome
         /// icons for instance render too close to the tab text.
         /// </summary>
         [Parameter] public RenderFragment<TItem> Icon { get; set; }
@@ -52,6 +58,8 @@ namespace BlazorMdc
         /// </summary>
         [Parameter] public MTDensity? Density { get; set; }
 
+        
+        private readonly object tabBarIdentifierObject = new object();
 
         private ElementReference ElementReference { get; set; }
         private DotNetObjectReference<MTTabBar<TItem>> ObjectReference { get; set; }
