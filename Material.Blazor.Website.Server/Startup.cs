@@ -4,7 +4,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Material.Blazor;
-using Material.BlazorWebsite.Components;
+using Material.Blazor.Website.Components;
 using Serilog;
 
 namespace Material.BlazorWebsite.Server
