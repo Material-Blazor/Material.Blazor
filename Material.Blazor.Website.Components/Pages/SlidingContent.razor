@@ -1,0 +1,88 @@
+﻿@page "/slidingcontent"
+
+@inject IMBToastService ToastService
+
+
+
+<DemonstrationPage ComponentName="SlidingContent"
+                   Title="Sliding Content Demonstration"
+                   DemoComponent="@this"
+                   IsGeneric="true">
+    <Description>
+        <p>
+            Demonstrates Sliding Content, which is a <a href="https://blazormdc.com/docs/articles/PlusComponents.html" target="_blank">Blazor MDC Plus Component</a>. Sliding content is
+            designed to give a user subtle animated feedback when paging through content. This component is used by both the <a href="/tabbar">Sliding Tab Bar</a> and
+            <a href="/pageddatalist">Paged Data List</a> plus components.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Sliding Content
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        "Previous" and "Next" buttons navigate panels, and the "Move to Paragraph 4" button is self explanatory.
+                    </h3>
+
+                    <MBSlidingContent @ref="@Content"
+                                      Items="@items"
+                                      @bind-ItemIndex="@Index"
+                                      Context="item">
+
+                        <Content>
+                            <h3 class="mdc-typography--headline6">@item.Title</h3>
+                            <p>@item.Text</p>
+                        </Content>
+                    </MBSlidingContent>
+
+                    <p @key="@Index">
+                        <MBButton Label="Previous" LeadingIcon="chevron_left" @onclick="@(() => Index--)" ButtonStyle="MBButtonStyle.ContainedRaised" Disabled="@DisablePrevious" />
+                        <MBButton Label="Next" TrailingIcon="chevron_right" @onclick="@(() => Index++)" ButtonStyle="MBButtonStyle.ContainedRaised" Disabled="@DisableNext" />
+                    </p>
+
+                    <p><MBButton Label="Move to Paragraph 4" @onclick="@(() => Index = 3)" ButtonStyle="MBButtonStyle.ContainedRaised" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private MBSlidingContent<Item> Content;
+    private bool DisablePrevious => Index == 0;
+    private bool DisableNext => Index == items.Length - 1;
+
+    private int _index = 2;
+    private int Index
+    {
+        get => _index;
+        set
+        {
+            _index = value;
+            StateHasChanged();
+        }
+    }
+
+
+    private Item[] items =
+    {
+        new Item() { Title="Paragraph 1", Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque lobortis tortor, quis vestibulum libero faucibus ac. Aenean pretium, risus vel pulvinar bibendum, enim felis iaculis elit, a elementum metus nunc sed massa. Vivamus eros elit, faucibus auctor scelerisque eu, tincidunt quis turpis. Fusce fermentum quis odio molestie tincidunt. Morbi auctor mattis nibh, laoreet aliquet tellus congue a. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam vitae nunc tempor, scelerisque ligula sit amet, posuere massa. Nullam vitae arcu imperdiet, accumsan mi iaculis, eleifend purus. Etiam lacinia massa a orci elementum, faucibus euismod eros varius. Vivamus efficitur erat ac lacus mattis malesuada. Morbi semper ac erat sit amet sollicitudin. Morbi elit mi, malesuada eu sem ut, lacinia condimentum augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis et vestibulum risus, id venenatis quam. Fusce ultricies luctus ullamcorper. Phasellus laoreet egestas justo, eget consectetur risus." },
+        new Item() { Title="Paragraph 2", Text = "Curabitur nulla nibh, ultrices et tincidunt eget, consequat vel risus. Morbi luctus laoreet neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla orci ante, pellentesque eu fermentum sed, gravida ornare metus. Sed elit purus, vehicula nec elit vitae, vulputate gravida purus. Sed quis ligula diam. Morbi fringilla arcu eget commodo placerat. Nullam a nisl sodales, tempor sapien non, consequat leo. Maecenas vehicula diam leo, aliquet egestas massa pulvinar ut. Aenean semper enim urna, in eleifend mi hendrerit feugiat. Mauris ut viverra ligula, nec interdum ligula. In in finibus tortor, ac accumsan tellus." },
+        new Item() { Title="Paragraph 3", Text = "Duis lorem sem, mollis at faucibus ut, viverra eu dolor. Nulla facilisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus euismod arcu eu lectus pellentesque, sed consequat purus bibendum. Nulla facilisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in ligula rutrum, interdum turpis ut, pellentesque massa. Nulla laoreet efficitur libero, a euismod justo. Cras tincidunt non diam eu imperdiet. Integer quis tincidunt tortor. Nullam facilisis nec justo id faucibus. Nam pharetra accumsan pretium. Nunc ac justo non lacus accumsan euismod a ut enim." },
+        new Item() { Title="Paragraph 4", Text = "Donec et ex sit amet ante facilisis tempor vitae ac ipsum. Morbi vulputate ac nunc vitae gravida. Duis nisi metus, lacinia quis massa id, elementum fermentum odio. Vivamus eu justo nunc. Duis sit amet dictum velit, vel finibus erat. Duis lobortis sodales lectus. Nullam sit amet varius leo." },
+        new Item() { Title="Paragraph 5", Text = "Etiam nec erat a augue pulvinar luctus eu eu elit. Aliquam vehicula tellus arcu, sit amet efficitur sapien interdum viverra. In hac habitasse platea dictumst. Vestibulum eget odio nec orci semper condimentum. Aliquam congue ante quis sodales egestas. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam velit leo, porta a rutrum nec, pulvinar a neque. Maecenas egestas eleifend purus, id porttitor est. Duis eu lobortis erat. Sed semper tempus turpis, id scelerisque lorem. Quisque auctor mi enim. Aenean in ultrices dui." },
+    };
+
+
+    private class Item
+    {
+        public string Title;
+        public string Text;
+    }
+}

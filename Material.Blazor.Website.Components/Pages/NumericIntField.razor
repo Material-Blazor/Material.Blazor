@@ -1,0 +1,58 @@
+﻿@page "/numericintfield"
+
+@inject IMBToastService ToastService
+
+@using System.Runtime.InteropServices
+
+
+<DemonstrationPage ComponentName="NumericIntField"
+                   Title="Numeric Int Field Demonstration"
+                   DemoComponent="@this"
+                   MinDensity="MBDensity.Minus4"
+                   RequiresDisableSelection="true">
+    <Description>
+        <p>
+            Shows numeric int text field, a Plus component.
+            Each of these can display as Filled or Outlined and with
+            the full variety of icon foundries. These are used across the page but it we don't attempt to show each variant everywhere - see the Text Field demo for this.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Standard Formatted Numerics
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        A range of numeric integer fields using formats for non focused input.
+                    </h3>
+
+                    <p>
+                        <MBNumericIntField Label="Integer"
+                                           @bind-Value="@Integer"
+                                           NumericFormat="N0"
+                                           TextInputStyle="MBTextInputStyle.Outlined" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+@code {
+    private int _integer;
+    private int Integer
+    {
+        get => _integer;
+        set
+        {
+            _integer = value;
+
+            ToastService.ShowToast(heading: "Integer numeric", message: $"Value: '{_integer.ToString("N0")}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+}

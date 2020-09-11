@@ -11,11 +11,11 @@ env:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Debug'
   outputDocFx: ${{github.workspace}}/siteDocFx
-  outputBmdc: ${{github.workspace}}/siteBmdc
-  outputBmdcWin: ${{github.workspace}}\siteBmdc
+  outputMB: ${{github.workspace}}/siteMB
+  outputMBWin: ${{github.workspace}}\siteMB
   outputWeb: ${{github.workspace}}/siteWeb
-  projectBmdc: 'BlazorMdc/BlazorMdc.csproj'
-  projectWeb: 'BlazorMdcWebsite.WebAssembly/BlazorMdcWebsite.WebAssembly.csproj'
+  projectMB: 'Material.Blazor/Material.Blazor.csproj'
+  projectWeb: 'Material.Blazor.Website.WebAssembly/Material.Blazor.Website.WebAssembly.csproj'
 
 jobs:
 
@@ -32,20 +32,20 @@ jobs:
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
-      if: (github.repository != 'BlazorMdc/BlazorMdc')
+      if: (github.repository != 'Material-Blazor/Material.Blazor')
 
     - name: Create documentation 🔧
       run: .\docfx\docfx docfx.json
       env:
         DOCFX_SOURCE_BRANCH_NAME: ${{steps.get_branch.outputs.branch}}
-      if: (github.repository != 'BlazorMdc/BlazorMdc')
+      if: (github.repository != 'Material-Blazor/Material.Blazor')
 
     - name: Upload Artifacts 🔺 # The project is then uploaded as an artifact named 'site'.
       uses: actions/upload-artifact@v1
       with:
         name: siteDocFx
         path: siteDocFx
-      if: (github.repository != 'BlazorMdc/BlazorMdc')
+      if: (github.repository != 'Material-Blazor/Material.Blazor')
 
 
 ############################################################################################################
@@ -108,7 +108,7 @@ jobs:
       with:
         name: siteWeb
         path: siteWeb
-      if: (github.repository != 'BlazorMdc/BlazorMdc')
+      if: (github.repository != 'Material-Blazor/Material.Blazor')
 
 ############################################################################################################
 #Deploy gh-pages
@@ -121,30 +121,30 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
-      if: (github.repository != 'BlazorMdc/BlazorMdc')
+      if: (github.repository != 'Material-Blazor/Material.Blazor')
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v1
       with:
         name: siteDocFx
-      if: (github.repository != 'BlazorMdc/BlazorMdc')
+      if: (github.repository != 'Material-Blazor/Material.Blazor')
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v1
       with:
         name: siteWeb
-      if: (github.repository != 'BlazorMdc/BlazorMdc')
+      if: (github.repository != 'Material-Blazor/Material.Blazor')
 
     - name: Configure deployment directory structure Ꙫ
       run: mv siteWeb/wwwroot deployroot; mv siteDocFx deployroot/docs
-      if: (github.repository != 'BlazorMdc/BlazorMdc')
+      if: (github.repository != 'Material-Blazor/Material.Blazor')
 
     - name: Base Href Rewrite 👉
       uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       with:
         html_path: 'deployroot/index.html'
         base_href: '/BlazorMdc/'
-      if: (github.repository != 'BlazorMdc/BlazorMdc')
+      if: (github.repository != 'Material-Blazor/Material.Blazor')
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
@@ -152,7 +152,7 @@ jobs:
         ACCESS_TOKEN: ${{secrets.GH_PAT}}
         BRANCH: gh-pages
         FOLDER: 'deployroot'
-      if: (github.repository != 'BlazorMdc/BlazorMdc')
+      if: (github.repository != 'Material-Blazor/Material.Blazor')
 
 
 ############################################################################################################
@@ -214,23 +214,23 @@ jobs:
         nuget-version: latest
  
     - name: Build 🔧
-      run: dotnet build --configuration $buildConfiguration --version-suffix $ciSuffix $projectBmdc
+      run: dotnet build --configuration $buildConfiguration --version-suffix $ciSuffix $projectMB
       env:
         NUGET_AUTH_TOKEN: '${{secrets.GITHUB_TOKEN}}'
 
     - name: Generate NuGet package 🔧
-      run: dotnet pack --no-build --configuration $buildConfiguration --output $outputBmdc -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix $ciSuffix $projectBmdc
+      run: dotnet pack --no-build --configuration $buildConfiguration --output $outputMB -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix $ciSuffix $projectMB
       env:
         NUGET_AUTH_TOKEN: '${{secrets.GITHUB_TOKEN}}'
 
     - name: Display package output Ꙫ
-      run: ls $outputBmdc
+      run: ls $outputMB
 
     - name: Upload Artifacts 🔺
       uses: actions/upload-artifact@v1
       with:
-        name: siteBmdc
-        path: siteBmdc
+        name: siteMB
+        path: siteMB
 
 ############################################################################################################
 #Build & Deploy BlazorMdc Nuget package (2nd of 2 jobs)
@@ -248,10 +248,10 @@ jobs:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
 
-    - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteBmdc' folder.
+    - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteMB' folder.
       uses: actions/download-artifact@v1
       with:
-        name: siteBmdc
+        name: siteMB
 
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
@@ -262,10 +262,10 @@ jobs:
         NUGET_AUTH_TOKEN: '%NUGET_AUTH_TOKEN%'
 
     - name: Display package output Ꙫ
-      run: dir ${env:outputBmdc}
+      run: dir ${env:outputMB}
 
     - name: Display package output Ꙫ
-      run: dir ${env:outputBmdcWin}
+      run: dir ${env:outputMBWin}
 
     - name: Display obfuscated secret Ꙫ
       run: echo The GitHub token is ${{ secrets.GITHUB_TOKEN }}
@@ -278,8 +278,8 @@ jobs:
 # The commented 'if' can replace the current 'if' when this is resolved
 
     - name: Upload Package 🚀
-      run: nuget push ${env:outputBmdcWin}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      run: nuget push ${env:outputMBWin}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: '${{ secrets.GH_PAT }}'
-      if: ((github.repository == 'BlazorMdc/BlazorMdc') && (github.event_name == 'push'))
-#      if: (((github.repository == 'BlazorMdc/BlazorMdc') && (github.event_name == 'push')) || (github.repository != 'BlazorMdc/BlazorMdc'))
+      if: ((github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push'))
+#      if: (((github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push')) || (github.repository != 'Material-Blazor/Material.Blazor'))

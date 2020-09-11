@@ -15,10 +15,10 @@ env:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   outputDocFx: ${{github.workspace}}/siteDocFx
-  outputBmdc: ${{github.workspace}}/siteBmdc
+  outputMB: ${{github.workspace}}/siteMB
   outputWeb: ${{github.workspace}}/siteWeb
-  projectBmdc: 'BlazorMdc/BlazorMdc.csproj'
-  projectWeb: 'BlazorMdcWebsite.WebAssembly/BlazorMdcWebsite.WebAssembly.csproj'
+  projectMB: 'Material.Blazor/Material.Blazor.csproj'
+  projectWeb: 'Material.Blazor.Website.WebAssembly/Material.Blazor.Website.WebAssembly.csproj'
 
 jobs:
 
@@ -35,20 +35,20 @@ jobs:
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Create documentation 🔧
       run: .\docfx\docfx docfx.json
       env:
         DOCFX_SOURCE_BRANCH_NAME: ${{steps.get_branch.outputs.branch}}
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Upload Artifacts 🔺 # The project is then uploaded as an artifact named 'site'.
       uses: actions/upload-artifact@v1
       with:
         name: siteDocFx
         path: siteDocFx
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
 
 ############################################################################################################
@@ -63,11 +63,11 @@ jobs:
 
     - name: Set Version as env variable
       run: echo "::set-env name=Version::${GITHUB_REF/refs\/tags\//}"
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Echo Version
       run: echo "Version is $Version"
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Get the branch
       id: get_branch
@@ -95,28 +95,28 @@ jobs:
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.100-preview.8.20417.9
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Build 🔧
       run: dotnet build --configuration $buildConfiguration -p:InformationalVersion=$Version $projectWeb
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Publish 🔧
       run: dotnet publish --no-build --configuration $buildConfiguration --output $outputWeb -p:InformationalVersion=$Version $projectWeb
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Upload Artifacts 🔺 # The project is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v1
       with:
         name: siteWeb
         path: siteWeb
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
 ############################################################################################################
 #Deploy gh-pages
@@ -129,23 +129,23 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v1
       with:
         name: siteDocFx
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v1
       with:
         name: siteWeb
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Configure deployment directory structure Ꙫ
       run: mv siteWeb/wwwroot deployroot; mv siteDocFx deployroot/docs
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
@@ -153,7 +153,7 @@ jobs:
         ACCESS_TOKEN: ${{secrets.GH_PAT}}
         BRANCH: gh-pages
         FOLDER: 'deployroot'
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
 
 ############################################################################################################
@@ -166,51 +166,51 @@ jobs:
 
     - name: Set Version as env variable
       run: echo "::set-env name=Version::${GITHUB_REF/refs\/tags\//}"
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Echo Version
       run: echo "Version is $Version"
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Setup .NET Core 🛎️
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.302
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Build 🔧
-      run: dotnet build --configuration $buildConfiguration -p:PackageVersion=$Version -p:InformationalVersion=$Version $projectBmdc
+      run: dotnet build --configuration $buildConfiguration -p:PackageVersion=$Version -p:InformationalVersion=$Version $projectMB
       env:
         NUGET_AUTH_TOKEN: "${secrets.GITHUB_TOKEN}"
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Generate NuGet package 🔧
-      run: dotnet pack --no-build --configuration $buildConfiguration --output $outputBmdc -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:PackageVersion=$Version -p:InformationalVersion=$Version $projectBmdc
+      run: dotnet pack --no-build --configuration $buildConfiguration --output $outputMB -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:PackageVersion=$Version -p:InformationalVersion=$Version $projectMB
       env:
         NUGET_AUTH_TOKEN: "${secrets.GITHUB_TOKEN}"
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Display package output Ꙫ
-      run: ls $outputBmdc
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      run: ls $outputMB
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Upload Package 🚀
-      run: dotnet nuget push $outputBmdc/*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      run: dotnet nuget push $outputMB/*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Get the branch
       id: get_branch
       run: echo ::set-output name=branch::${GITHUB_REF/refs\/heads\//}
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Get the tag
       id: get_tag
       run: echo ::set-output name=tag::${GITHUB_REF/refs\/tags\//}
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Create Release
       uses: actions/create-release@v1
@@ -221,4 +221,4 @@ jobs:
         release_name: Release ${{steps.get_tag.outputs.tag}}
         draft: false
         prerelease: false
-      if: (github.repository == 'BlazorMdc/BlazorMdc')
+      if: (github.repository == 'Material-Blazor/Material.Blazor')

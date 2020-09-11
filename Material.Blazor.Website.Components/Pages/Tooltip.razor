@@ -1,0 +1,76 @@
+﻿@page "/tooltip"
+
+
+<style>
+    .my-label-two {
+        --mb-shield-label-color: var(--mb-color-orange-100);
+        --mb-shield-value-color: var(--mb-color-orange-100);
+        --mb-shield-label-background: var(--mb-color-blue-700);
+        --mb-shield-value-background: var(--mb-color-green-700);
+    }
+</style>
+
+
+<DemonstrationPage ComponentName="Tooltip"
+                   Title="Tooltip Demonstration"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-tooltip#tooltip"
+                   DetailedArticle="Tooltip">
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                                Tooltips
+                            </h2>
+
+                            <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                                The shields are provided tooltip text as a component parameter
+                            </h3>
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <p>
+                                <MBShield Label="label one" Value="value one" Tooltip="Plain shield" />
+                                <MBShield Label="label two" Value="value two" LabelClass="my-label-two" ValueClass="my-label-two" Tooltip="LabelClass and ValueClass set" />
+                                <MBShield Label="label three" Value="value three" LabelIcon="edit" ValueIcon="edit" Tooltip="With icons" />
+                            </p>
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                                The span and paragraph are the targets of two Tooltips, one of type span the other of type div.
+                            </h3>
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <p>
+                                <MBTooltip TooltipType="@MBTooltipType.Span">
+                                    <Target>
+                                        <span style="background-color: var(--mb-color-red-100);">Tooltip applied with TooltipType="MBTooltipType.Span" using the whole paragraph as the target.</span>
+                                    </Target>
+                                    <Content>
+                                        &lt;
+                                        <strong>MBTooltip TooltipType</strong>="MBTooltipType.
+                                        <em><u>Span</u></em>"&gt;
+                                    </Content>
+                                </MBTooltip>
+                            </p>
+
+                            <MBTooltip TooltipType="@MBTooltipType.Div">
+                                <Target>
+                                    <p style="background-color: var(--mb-color-red-100);">Tooltip applied with TooltipType="MBTooltipType.Div" using the whole div as the target.</p>
+                                </Target>
+                                <Content>
+                                    &lt;
+                                    <strong>MBTooltip TooltipType</strong>="MBTooltipType.
+                                    <em><u>Div</u></em>"&gt;
+                                </Content>
+                            </MBTooltip>
+                        </div>
+                    </div>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>

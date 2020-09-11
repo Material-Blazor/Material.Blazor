@@ -1,0 +1,14 @@
+﻿@namespace Material.Blazor
+@inherits InputComponentFoundation<bool>
+
+
+<div @attributes="@AttributesToSplat(SplatType.EventsOnly)">
+    <button @ref="@ElementReference"
+            @attributes="@AttributesToSplat(SplatType.ExcludeEvents)"
+            type="button"
+            @onclick="@ToggleOnClick">
+
+        <MBIcon IconName="@IconOn" IconFoundry="@IconFoundry" class="mdc-icon-button__icon mdc-icon-button__icon--on mb-dp-menu__icon-button" />
+        <MBIcon IconName="@IconOff" IconFoundry="@IconFoundry" class="mdc-icon-button__icon mb-dp-menu__icon-button" />
+    </button>
+</div>

@@ -1,0 +1,22 @@
+﻿@namespace Material.Blazor
+@inherits InputComponentFoundation<int>
+
+
+<MBNumericDoubleField @attributes="@AttributesToSplat()"
+                      TextInputStyle="TextInputStyle"
+                      Label="@Label"
+                      Prefix="@Prefix"
+                      Suffix="@Suffix"
+                      LeadingIcon="@LeadingIcon"
+                      TrailingIcon="@TrailingIcon"
+                      IconFoundry="@IconFoundry"
+                      Density="@Density"
+                      NumericFormat="@NumericFormat"
+                      NumericSingularFormat="@NumericSingularFormat"
+                      FocusedMagnitude="@FocusedMagnitude"
+                      UnfocusedMagnitude="@UnfocusedMagnitude"
+                      Min="@Min"
+                      Max="@Max"
+                      DecimalPlaces="0"
+                      Disabled="@AppliedDisabled"
+                      @bind-Value="@DblVal" />

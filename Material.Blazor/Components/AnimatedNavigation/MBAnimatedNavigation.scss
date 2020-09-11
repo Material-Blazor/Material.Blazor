@@ -1,0 +1,69 @@
+﻿.mb-navigation-fade-in, .mb-navigation-fade-out {
+    width: inherit;
+    height: inherit;
+    overflow-x: inherit;
+    overflow-y: inherit;
+}
+
+
+@-webkit-keyframes mbNavFadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+@keyframes mbNavFadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+@-webkit-keyframes mbNavFadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+
+
+@keyframes mbNavFadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    10% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

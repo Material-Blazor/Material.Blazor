@@ -1,0 +1,153 @@
+﻿@page "/paginator"
+
+@inject IMBToastService ToastService
+
+
+<style>
+    .my-float-right {
+        float: right;
+    }
+
+    .my-float-right .mb-paginator {
+        justify-content: flex-end;
+    }
+</style>
+
+<DemonstrationPage ComponentName="Paginator"
+                   Title="Paginator Demonstration"
+                   DemoComponent="@this"
+                   IsGeneric="false">
+    <Description>
+        <p>
+            Demonstrates both a simple paginator, which ia a Blazor MDC Plus component. The paginator is a Blazor MDC implementation of the
+            Material Theme paginator spec.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Paginator
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        A simple paginator with two way binding to page number and number of items per page.
+                    </h3>
+
+                    <p>
+                        <MBPaginator class="my-float-right"
+                                     @bind-ItemsPerPage="@PaginatorItemsPerPage"
+                                     @bind-PageNumber="@PaginatorPageNumber"
+                                     ItemsPerPageSelection="@PaginatorItemsPerPageSelection"
+                                     ItemCount="@PaginatorItems.Length" />
+                    </p>
+
+                    <p>
+                        Selected items: <span style="color: var(--mb-color-blue-800);">@string.Join(" / ", PaginatorSelection)</span>
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private int[] PaginatorItemsPerPageSelection { get; set; } = { 2, 4, 6 };
+
+    private string[] PaginatorItems { get; set; } = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty" };
+    private int PaginatorItemsPerPage { get; set; } = 6;
+    private int p = 0;
+    private int PaginatorPageNumber// { get; set; }
+    {
+        get => p;
+        set
+        {
+            p = value;
+            ToastService.ShowToast(heading: "Page Change", message: $"Page: {p}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+    private IEnumerable<string> PaginatorSelection => PaginatorItems.Skip(PaginatorItemsPerPage * PaginatorPageNumber).Take(PaginatorItemsPerPage);
+
+
+
+    private readonly string[] colorNames = { "Red", "Pink", "Purple", "Deep Purple", "Indigo", "Blue", "Light Blue", "Cyan", "Teal", "Green", "Light Green", "Lime", "Yellow", "Amber", "Orange", "Deep Orange", "Brown", "Grey", "Blue Grey" };
+    private readonly string[] intensities = { "50", "100", "200", "300", "400", "500", "600", "700", "800", "900" };
+    private int[] ColorsItemsPerPageSelection { get; set; } = { 4, 8, 16 };
+    private int ColorsPageNumber { get; set; }
+    private int ColorsItemsPerPage { get; set; } = 4;
+
+    private class ColorSpec
+    {
+        public string ColorName { get; set; }
+        public string Intensity { get; set; }
+
+        public string Style => $"background-color: var(--mb-color-{ColorName.ToLower().Replace(" ", "-")}-{Intensity}); color: var(--mb-color-on-{ColorName.ToLower().Replace(" ", "-")}-{Intensity});";
+    }
+
+    private MBPagedDataList<ColorSpec> ColorsPagedDataList { get; set; }
+    private List<ColorSpec> Colors { get; set; } = new();
+
+
+    private class Person
+    {
+        public string Salutation { get; set; }
+        public string GivenName { get; set; }
+        public string FamilyName { get; set; }
+
+        public override string ToString()
+        {
+            return $"ToString(): {Salutation} {GivenName} {FamilyName}";
+        }
+    }
+
+    private Person[] People =
+    {
+        new Person() { Salutation = "Prof", GivenName = "Marie", FamilyName = "Curie" },
+        new Person() { Salutation = "Prof", GivenName = "Albert", FamilyName = "Einstein" },
+        new Person() { Salutation = "Prof", GivenName = "Andrew", FamilyName = "Huxley" },
+        new Person() { Salutation = "Mr", GivenName = "Bob", FamilyName = "Dylan" },
+        new Person() { Salutation = "Mr", GivenName = "Barack", FamilyName = "Obama" },
+        new Person() { Salutation = "Ms", GivenName = "Nadine", FamilyName = "Gordimer" },
+        new Person() { Salutation = "Mr", GivenName = "Muhammad", FamilyName = "Yunus" },
+        new Person() { Salutation = "RtHon", GivenName = "Lord", FamilyName = "Rayleigh" },
+        new Person() { Salutation = "Ms", GivenName = "Grazia", FamilyName = "Deledda" },
+        new Person() { Salutation = "Mr", GivenName = "Jean-Paul", FamilyName = "Sartre" },
+        new Person() { Salutation = "Prof", GivenName = "Esther", FamilyName = "Duflo" },
+        new Person() { Salutation = "Prof", GivenName = "Yoshinori", FamilyName = "Ohsumi" },
+        new Person() { Salutation = "Prof", GivenName = "Robert", FamilyName = "Merton" },
+        new Person() { Salutation = "Prof", GivenName = "Barbara", FamilyName = "McClintock" },
+        new Person() { Salutation = "Mr", GivenName = "Boris", FamilyName = "Pasternak" },
+        new Person() { Salutation = "Mr", GivenName = "Willy", FamilyName = "Brandt" },
+        new Person() { Salutation = "Mr", GivenName = "Isaac", FamilyName = "Bashevis Singer" },
+        new Person() { Salutation = "Ms", GivenName = "Olga", FamilyName = "Tokarczuk" },
+        new Person() { Salutation = "Mr", GivenName = "Günter", FamilyName = "Grass" },
+        new Person() { Salutation = "Mr", GivenName = "John", FamilyName = "Hume" },
+    };
+
+    private int[] PersonItemsPerPageSelection = { 2, 4, 6 };
+
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        foreach (var n in colorNames)
+        {
+            foreach (var i in intensities)
+            {
+                Colors.Add(new ColorSpec()
+                {
+                    ColorName = n,
+                    Intensity = i
+                });
+
+            }
+        }
+    }
+}

@@ -1,0 +1,115 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29827.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Material.Blazor", "Material.Blazor\Material.Blazor.csproj", "{18F89AD9-B647-4928-9C88-6FE17D96355A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solution Items", "{9BF202BD-226D-4058-92D9-B9D0B23F96E6}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
+		ctag.cmd = ctag.cmd
+		docfx.json = docfx.json
+		filterConfig.yml = filterConfig.yml
+		.github\workflows\GithubActionsRelease.yml = .github\workflows\GithubActionsRelease.yml
+		.github\workflows\GithubActionsWIP.yml = .github\workflows\GithubActionsWIP.yml
+		index.md = index.md
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+		ServeDocs.cmd = ServeDocs.cmd
+		toc.yml = toc.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "articles", "articles", "{FC5AA9B0-69D8-4BD3-8210-1BB2019D47AB}"
+	ProjectSection(SolutionItems) = preProject
+		articles\AnimatedNavigation.md = articles\AnimatedNavigation.md
+		articles\CascadingDefaults.md = articles\CascadingDefaults.md
+		articles\CoreComponents.md = articles\CoreComponents.md
+		articles\Density.md = articles\Density.md
+		articles\DevelopmentEnvironment.md = articles\DevelopmentEnvironment.md
+		articles\Icon.md = articles\Icon.md
+		articles\Installation.md = articles\Installation.md
+		articles\Introduction.md = articles\Introduction.md
+		articles\PlusComponents.md = articles\PlusComponents.md
+		articles\Principles.md = articles\Principles.md
+		ReleaseNotes.md = ReleaseNotes.md
+		articles\Services.md = articles\Services.md
+		articles\Toast.md = articles\Toast.md
+		articles\toc.yml = articles\toc.yml
+		articles\Tooltip.md = articles\Tooltip.md
+		articles\TwoWayBinding.md = articles\TwoWayBinding.md
+		articles\Utilities.md = articles\Utilities.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{28F2336A-4F00-4ED8-A4BD-1320D747E5EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "blazormdc", "blazormdc", "{EED2C306-6ADE-4CF6-9E39-F6AA5B18EE79}"
+	ProjectSection(SolutionItems) = preProject
+		templates\blazormdc\favicon.ico = templates\blazormdc\favicon.ico
+		templates\blazormdc\logo.svg = templates\blazormdc\logo.svg
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "partials", "partials", "{B72A91BC-0A58-4930-A7AD-2889B9B418F0}"
+	ProjectSection(SolutionItems) = preProject
+		templates\blazormdc\partials\head.tmpl.partial = templates\blazormdc\partials\head.tmpl.partial
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "styles", "styles", "{1514BC3A-EB36-4F8A-8AE1-03FB9D2F1552}"
+	ProjectSection(SolutionItems) = preProject
+		templates\blazormdc\styles\main.css = templates\blazormdc\styles\main.css
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{5AF96DDC-150A-4287-B299-F33253610526}"
+	ProjectSection(SolutionItems) = preProject
+		images\gh-account-settings-1.png = images\gh-account-settings-1.png
+		images\gh-account-settings-2.png = images\gh-account-settings-2.png
+		images\gh-account-settings-3.png = images\gh-account-settings-3.png
+		images\gh-account-settings-4.png = images\gh-account-settings-4.png
+		images\gh-account-settings-5.png = images\gh-account-settings-5.png
+		images\vs-config.png = images\vs-config.png
+		images\vs-extensions.png = images\vs-extensions.png
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Material.Blazor.Website.Components", "Material.Blazor.Website.Components\Material.Blazor.Website.Components.csproj", "{132194FB-1561-4F16-9AD7-36312EF79D95}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Material.Blazor.Website.Server", "Material.Blazor.Website.Server\Material.Blazor.Website.Server.csproj", "{E49274B8-0D30-4370-A4F8-B4AE3BE9736D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Material.Blazor.Website.WebAssembly", "Material.Blazor.Website.WebAssembly\Material.Blazor.Website.WebAssembly.csproj", "{D727FCA4-2E0E-4D93-9B04-116D66B6FC6B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{18F89AD9-B647-4928-9C88-6FE17D96355A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18F89AD9-B647-4928-9C88-6FE17D96355A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18F89AD9-B647-4928-9C88-6FE17D96355A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18F89AD9-B647-4928-9C88-6FE17D96355A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{132194FB-1561-4F16-9AD7-36312EF79D95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{132194FB-1561-4F16-9AD7-36312EF79D95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{132194FB-1561-4F16-9AD7-36312EF79D95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{132194FB-1561-4F16-9AD7-36312EF79D95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E49274B8-0D30-4370-A4F8-B4AE3BE9736D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E49274B8-0D30-4370-A4F8-B4AE3BE9736D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E49274B8-0D30-4370-A4F8-B4AE3BE9736D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E49274B8-0D30-4370-A4F8-B4AE3BE9736D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D727FCA4-2E0E-4D93-9B04-116D66B6FC6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D727FCA4-2E0E-4D93-9B04-116D66B6FC6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D727FCA4-2E0E-4D93-9B04-116D66B6FC6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D727FCA4-2E0E-4D93-9B04-116D66B6FC6B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EED2C306-6ADE-4CF6-9E39-F6AA5B18EE79} = {28F2336A-4F00-4ED8-A4BD-1320D747E5EA}
+		{B72A91BC-0A58-4930-A7AD-2889B9B418F0} = {EED2C306-6ADE-4CF6-9E39-F6AA5B18EE79}
+		{1514BC3A-EB36-4F8A-8AE1-03FB9D2F1552} = {EED2C306-6ADE-4CF6-9E39-F6AA5B18EE79}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6EFB30DD-ABFD-4A38-96E1-D309BB538E62}
+	EndGlobalSection
+EndGlobal

@@ -5,7 +5,7 @@ title: Installation
 # Installation
 
 Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add the CSS and JS in your html (there are non-minified unbundled files for BlazorMdc.css & BlazorMds.js to reference if you need them for debugging purposes).
-Reference the `BlazorMdc` namespace with `@using BlazorMdc` to your `_Imports.razor` file. 
+Reference the `BlazorMdc` namespace with `@using Material.Blazor` to your `_Imports.razor` file. 
 
 ## Directions for using Blazor MDC bundled CSS and JS
 
@@ -23,7 +23,7 @@ and at the end of `<body>`:
 <script src="_content/BlazorMdc/blazormdc-material-bundle.min.js"></script>
 ```
 
-Add the BlazorMdc namespace to your project by appending `@using BlazorMdc` to the end of your project's _Imports.razor file. Do not use components from the BlazorMdc.Internal namespace: as the name
+Add the BlazorMdc namespace to your project by appending `@using Material.Blazor` to the end of your project's _Imports.razor file. Do not use components from the BlazorMdc.Internal namespace: as the name
 implies these are intended for internal use by Blazor MDC, however Blazor has no mechanism for internally restricted Blazor components to mirror the `internal` directive for a C# class.
 
 ## Alternative using unbundled CSS and JS
@@ -66,8 +66,8 @@ Blazor MDC has three services for animated navigation, toasts, and tooltips. We 
 because regular component tooltips will fail if you don't, although they are optional. To register the services:
 
 ```csharp
-services.AddMTServices(
-    toastServiceConfiguration: new MTToastServiceConfiguration()
+services.AddMBServices(
+    toastServiceConfiguration: new MBToastServiceConfiguration()
     {
         InfoDefaultHeading = "Info",
         SuccessDefaultHeading = "Success",
@@ -77,7 +77,7 @@ services.AddMTServices(
         MaxToastsShowing = 5
     },
 
-    animatedNavigationServiceConfiguration: new MTAnimatedNavigationManagerServiceConfiguration()
+    animatedNavigationServiceConfiguration: new MBAnimatedNavigationManagerServiceConfiguration()
     {
         ApplyAnimation = true,
         AnimationTime = 300
@@ -85,12 +85,12 @@ services.AddMTServices(
 );
 ```
 
-The two configurations are optional - see [MTToastServiceConfiguration](xref:BlazorMdc.MTToastServiceConfiguration) and [MTAnimatedNavigationManagerServiceConfiguration](xref:BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration).
+The two configurations are optional - see [MBToastServiceConfiguration](xref:BlazorMdc.MBToastServiceConfiguration) and [MBAnimatedNavigationManagerServiceConfiguration](xref:BlazorMdc.MBAnimatedNavigationManagerServiceConfiguration).
 
 When you use the services you must also place an anchor component at the top of `App.razor` - this must not be inside any other components or divs:
 
 ```html
-<MTAnchor />
+<MBAnchor />
 ```
 
 ## Binding

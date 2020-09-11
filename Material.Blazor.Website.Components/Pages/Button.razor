@@ -1,0 +1,114 @@
+﻿@page "/button"
+
+@inject IMBToastService ToastService
+
+
+
+<DemonstrationPage ComponentName="Button"
+                         Title="Button Demonstration"
+                         DemoComponent="@this"
+                         MaterialIOPage="mdc-button#buttons"
+                         MinDensity="MBDensity.Minus3"
+                         RequiresDisableSelection="true">
+    <Description>
+        <p>
+            Shows regular button styles, icon usage, class and style, &amp; density application.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Button Styles
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Default and explicit button styles.
+                    </h3>
+
+                    <p><MBButton Label="Default (Text) Style" @onclick="@(() => ButtonClick("Default Style"))" /></p>
+                    <p><MBButton Label="Explicit Text Style" ButtonStyle="@MBButtonStyle.Text" @onclick="@(() => ButtonClick("Text Style"))" /></p>
+                    <p><MBButton Label="Outlined Style" ButtonStyle="@MBButtonStyle.Outlined" @onclick="@(() => ButtonClick("Outlined Style"))" /></p>
+                    <p><MBButton Label="Contained Style" ButtonStyle="@MBButtonStyle.ContainedUnelevated" @onclick="@(() => ButtonClick("Contained Style"))" /></p>
+                    <p><MBButton Label="Contained Raised Style" ButtonStyle="@MBButtonStyle.ContainedRaised" @onclick="@(() => ButtonClick("Contained Raised Style"))" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Icons
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Leading and trailing icons - both using the default Material Icons.
+                    </h3>
+
+                    <p><MBButton Label="Leading Icon" LeadingIcon="flight_takeoff" ButtonStyle="@MBButtonStyle.Outlined" @onclick="@(() => ButtonClick("Leading Icon"))" /></p>
+                    <p><MBButton Label="Trailing Icon" TrailingIcon="flight_land" ButtonStyle="@MBButtonStyle.Outlined" @onclick="@(() => ButtonClick("Trailing Icon"))" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <style>
+                        .button-green {
+                            --mdc-theme-primary: var(--mb-color-light-green-600) !important;
+                        }
+                    </style>
+
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Class and Style
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Applying CSS class and HTML style attributes.
+                    </h3>
+
+                    <p><MBButton Label="Green by class" class="button-green" ButtonStyle="@MBButtonStyle.ContainedUnelevated" @onclick="@(() => ButtonClick("Green by class"))" /></p>
+                    <p><MBButton Label="Amber by style" style="--mdc-theme-primary: var(--mb-color-amber-800);" ButtonStyle="@MBButtonStyle.ContainedUnelevated" @onclick="@(() => ButtonClick("Amber by style"))" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Button Density
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows density subsystem from default to minus 3.
+                    </h3>
+
+                    <p><MBButton Label="Default Density" Density="@MBDensity.Default" ButtonStyle="@MBButtonStyle.ContainedUnelevated" @onclick="@(() => ButtonClick("Button Default Density"))" /></p>
+                    <p><MBButton Label="Density Minus 1" Density="@MBDensity.Minus1" ButtonStyle="@MBButtonStyle.ContainedUnelevated" @onclick="@(() => ButtonClick("Button Density Minus 1"))" /></p>
+                    <p><MBButton Label="Density Minus 2" Density="@MBDensity.Minus2" ButtonStyle="@MBButtonStyle.ContainedUnelevated" @onclick="@(() => ButtonClick("Button Density Minus 2"))" /></p>
+                    <p><MBButton Label="Density Minus 3" Density="@MBDensity.Minus3" ButtonStyle="@MBButtonStyle.ContainedUnelevated" @onclick="@(() => ButtonClick("Button Density Minus 3"))" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private void ButtonClick(string notification)
+    {
+        ToastService.ShowToast(heading: "Button Clicked", message: notification, level: MBToastLevel.Success, showIcon: false);
+    }
+}

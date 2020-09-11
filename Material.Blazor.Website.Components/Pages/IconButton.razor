@@ -1,0 +1,65 @@
+﻿@page "/iconbutton"
+
+@inject IMBToastService ToastService
+
+
+
+<DemonstrationPage ComponentName="IconButton"
+                   Title="Icon Button Demonstration"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-icon-button#icon-buttons"
+                   MinDensity="MBDensity.Minus3"
+                   RequiresDisableSelection="true">
+    <Description>
+        <p>
+            Shows an icon button and density.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Icon Button
+                    </h2>
+
+                    <p><MBIconButton Icon="access_alarms" @onclick="@(() => ButtonClick("Icon Button"))" /></p>
+                    <p><MBIconButton Icon="fa-dog" IconFoundry="@MBIconHelper.FAFoundry()" @onclick="@(() => ButtonClick("Icon Button"))" /></p>
+                    <p><MBIconButton Icon="fa-cat" IconFoundry="@MBIconHelper.FAFoundry()" @onclick="@(() => ButtonClick("Icon Button"))" /></p>
+                    <p><MBIconButton Icon="fa-horse" IconFoundry="@MBIconHelper.FAFoundry()" @onclick="@(() => ButtonClick("Icon Button"))" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Icon Button Density
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows density subsystem from default to minus 3, with alternative Material Icons fonts.
+                    </h3>
+
+                    <p><MBIconButton Icon="access_alarms" Density="@MBDensity.Default" @onclick="@(() => ButtonClick("Icon Button Default Density"))" IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.Outlined)" /></p>
+                    <p><MBIconButton Icon="access_alarms" Density="@MBDensity.Minus1" @onclick="@(() => ButtonClick("Icon Button Density Minus 1"))" IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.Round)" /></p>
+                    <p><MBIconButton Icon="access_alarms" Density="@MBDensity.Minus2" @onclick="@(() => ButtonClick("Icon Button Density Minus 2"))" IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.Sharp)" /></p>
+                    <p><MBIconButton Icon="access_alarms" Density="@MBDensity.Minus3" @onclick="@(() => ButtonClick("Icon Button Density Minus 3"))" IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.TwoTone)" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private void ButtonClick(string notification)
+    {
+        ToastService.ShowToast(heading: "Button Clicked", message: notification, level: MBToastLevel.Success, showIcon: false);
+    }
+}

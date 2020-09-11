@@ -1,0 +1,16 @@
+﻿@namespace Material.Blazor
+@inherits InputComponentFoundation<string>
+
+
+<MBTextField @attributes="AttributesToSplat()"
+             Label="@Label"
+             Prefix="@Prefix"
+             Suffix="@Suffix"
+             LeadingIcon="@LeadingIcon"
+             TrailingIcon="@TrailingIcon"
+             IconFoundry="@IconFoundry"
+             Density="@Density"
+             TextInputStyle="@TextInputStyle"
+             TextAlignStyle="@TextAlignStyle"
+             @oninput="@OnTextInput"
+             Disabled=@AppliedDisabled />

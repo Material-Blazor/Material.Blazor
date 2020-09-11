@@ -1,0 +1,21 @@
+﻿@namespace Material.Blazor
+
+
+@if (TooltipType == MBTooltipType.Span)
+{
+    <span aria-describedby="@id">
+        @if (Target != null)
+        {
+            @Target
+        }
+    </span>
+}
+else
+{
+    <div aria-describedby="@id">
+        @if (Target != null)
+        {
+            @Target
+        }
+    </div>
+}
