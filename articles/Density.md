@@ -32,7 +32,7 @@ a specified density of minus 5 will actually display with a density of minus 3.
 
 | Component |   0 |  -1 |  -2 |  -3 |  -4 |  -5 |
 | :-------- | :-: | :-: | :-: | :-: | :-: | :-: |
-| [MTAutocomplete](xref:C.MTAutocomplete) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| [MTAutocompleteTextField](xref:C.MTAutocompleteTextField) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
 | [MTButton](xref:C.MTButton) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
 | [MTCheckbox](xref:C.MTCheckbox) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
 | [MTDataTable<TItem>](xref:C.MTDataTable) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |

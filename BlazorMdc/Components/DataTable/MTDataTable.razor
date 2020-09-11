@@ -19,7 +19,7 @@
             {
                 @foreach (var item in Items)
                 {
-                    <tr @key="@TableRow(item)" class="mdc-data-table__row">
+                    <tr @key="@KeyGenerator(item)" class="mdc-data-table__row">
                         @TableRow(item)
                     </tr>
                 }

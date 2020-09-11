@@ -7,12 +7,12 @@
             <div class="bmdc-card__secondary">
                 @Description
 
-                @if (HasComponents)
+                @if (NeedsTable)
                 {
                     <p style="overflow: auto;">
                         <MTDataTable Items="@Items"
-                                        Context="item"
-                                        class="dr-table">
+                                     Context="item"
+                                     class="dr-table">
                             <TableHeader>
                                 <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Reference</th>
                                 <th class="mdc-data-table__header-cell" role="columnheader" scope="col">Link Source</th>
@@ -20,7 +20,7 @@
 
                             <TableRow>
                                 <td class="mdc-data-table__cell">@item.Title</td>
-                                <td class="mdc-data-table__cell">@item.ConentMarkup</td>
+                                <td class="mdc-data-table__cell">@item.ContentMarkup</td>
                             </TableRow>
                         </MTDataTable>
                     </p>
@@ -49,12 +49,12 @@
 
 
 
-@*  Using a key of the defaults' version number forces a complete re-render 
-    of the block when defaults change, however components don't check for 
+@*  Using a key of the defaults' version number forces a complete re-render
+    of the block when defaults change, however components don't check for
     updates to defaults because we use IsFixed="true" *@
 
 <div @key="@CascadingDefaults.Version"
-        class="mdc-layout-grid__cell--span-12">
+     class="mdc-layout-grid__cell--span-12">
 
     <div class="mdc-layout-grid__inner">
         <CascadingValue Value="@CascadingDefaults" IsFixed="true">
@@ -67,27 +67,27 @@
 @code {
     [CascadingParameter(Name = "MaterialDocRef")] private string MaterialDocRef { get; set; }
 
-    [Parameter] public string Title { get; set; }
-
-    [Parameter] public RenderFragment Description { get; set; }
+    [Parameter] public string ComponentName { get; set; }
 
     [Parameter] public RenderFragment Controls { get; set; }
 
-    [Parameter] public RenderFragment PageContent { get; set; }
-
-    [Parameter] public string[] ComponentNames { get; set; }
-
     [Parameter] public ComponentBase DemoComponent { get; set; }
 
-    [Parameter] public string[] MaterialIOPages { get; set; }
+    [Parameter] public RenderFragment Description { get; set; }
 
-#nullable enable annotations
-    [Parameter] public bool[]? IsGeneric { get; set; } = null;
-#nullable restore annotations
+    [Parameter] public string DetailedArticle { get; set; }
+
+    [Parameter] public bool IsGeneric { get; set; } = false;
+
+    [Parameter] public string MaterialIOPage { get; set; }
 
     [Parameter] public MTDensity MinDensity { get; set; } = MTDensity.Default;
 
+    [Parameter] public RenderFragment PageContent { get; set; }
+
     [Parameter] public bool RequiresDisableSelection { get; set; } = false;
+
+    [Parameter] public string Title { get; set; }
 
 
     private MTCascadingDefaults CascadingDefaults { get; set; } = new MTCascadingDefaults()
@@ -102,7 +102,7 @@
         public string Title { get; set; }
         public string Content { get; set; }
 
-        public MarkupString ConentMarkup => new MarkupString(Content);
+        public MarkupString ContentMarkup => new MarkupString(Content);
     }
 
 
@@ -110,62 +110,63 @@
 
     private IEnumerable<MTListElement<MTDensity>> Densities { get; set; }
 
-    private bool HasComponents => ComponentNames != null && ComponentNames.Count() > 0;
+    private bool NeedsTable => ((ComponentName != null)||(DetailedArticle != null)||(DemoComponent != null));
 
 
     protected override void OnInitialized()
     {
         Items = new List<ReferenceItem>();
 
-        if (!HasComponents)
+        if (!NeedsTable)
         {
             return;
         }
 
-        var articleText = "";
-        var apiDocText = "";
-        var prefix = "";
-
-        for (int i = 0; i < ComponentNames.Length; i++)
+        if (ComponentName != null)
         {
-            var apiSuffix = (IsGeneric == null || !IsGeneric[i]) ? "" : "-1";
-            articleText += prefix + $"<a href=\"https://blazormdc.com/docs/BlazorMdc/Components/{ComponentNames[i]}/MT{ComponentNames[i]}.razor.html\" target=\"_blank\">MT{ComponentNames[i]} article</a>";
-            apiDocText += prefix + $"<a href=\"https://blazormdc.com/docs/api/BlazorMdc.MT{ComponentNames[i]}{apiSuffix}.html\" target=\"_blank\">MT{ComponentNames[i]} API docs</a>";
-            prefix = ", ";
-        }
-
-        Items.Add(new ReferenceItem {
-            Title = "Documentation Article",
-            Content = articleText
-        });
-
-        Items.Add(new ReferenceItem {
-            Title = "API Documentation",
-            Content = apiDocText
-        });
-
-        Items.Add(new ReferenceItem {
-            Title = "Source for This Page",
-            Content = $"<a href=\"https://github.com/BlazorMdc/BlazorMdcWebsite/blob/main/BlazorMdcWebsite.Components/Pages/{DemoComponent.GetType().Name}.razor\" target=\"_blank\">GitHub source page link</a>"
-        });
-
-        if (MaterialIOPages != null && MaterialIOPages.Where(page => !string.IsNullOrWhiteSpace(page)).Count() > 0)
-        {
-            //var title = "Material Theme Pages";
-            var materialPages = "";
-            prefix = "";
-
-            foreach (var page in MaterialIOPages.Where(page => !string.IsNullOrWhiteSpace(page)))
+            Items.Add(new ReferenceItem
             {
-                materialPages += prefix + $"<a href=\"{MaterialDocRef + page}\" target=\"_blank\">{page.Split("#")[0]}</a>";
-                prefix = ", ";
-            }
+                Title = "Component Documentation",
+                Content = $"<a href=\"https://blazormdc.com/docs/BlazorMdc/Components/{ComponentName}/MT{ComponentName}.html\" target=\"_blank\">MT{ComponentName}.md</a>"
+            });
+
+            var apiSuffix = (!IsGeneric) ? "" : "-1";
+            var apiText = $"<a href=\"https://blazormdc.com/docs/api/BlazorMdc.MT{ComponentName}{apiSuffix}.html\" target=\"_blank\">MT{ComponentName} API docs</a>";
 
             Items.Add(new ReferenceItem
             {
-                Title = "Material Theme Pages",
-                Content = materialPages
-            }); ; ;
+                Title = "API Documentation",
+                Content = apiText
+            });
+        }
+
+        if (DetailedArticle != null)
+        {
+            Items.Add(new ReferenceItem
+            {
+                Title = "In Depth Documentation",
+                Content = $"<a href=\"https://blazormdc.com/docs/Articles/{DetailedArticle}.html\" target=\"_blank\">{DetailedArticle}</a>"
+            });
+        }
+
+        if (DemoComponent != null)
+        {
+            Items.Add(new ReferenceItem
+            {
+                Title = "Source for This Page",
+                Content = $"<a href=\"https://github.com/BlazorMdc/BlazorMdc/blob/main/BlazorMdcWebsite.Components/Pages/{DemoComponent.GetType().Name}.razor\" target=\"_blank\">GitHub source page link</a>"
+            });
+        }
+
+        if (MaterialIOPage != null)
+        {
+            var materialPage = $"<a href=\"{MaterialDocRef + MaterialIOPage}\" target=\"_blank\">{MaterialIOPage.Split("#")[0]}</a>";
+
+            Items.Add(new ReferenceItem
+            {
+                Title = "Material Theme Page",
+                Content = materialPage
+            });
         }
 
         Densities = new MTListElement<MTDensity>[]
@@ -176,6 +177,6 @@
             new MTListElement<MTDensity> {SelectedValue = MTDensity.Minus3, Label = "Minus 3", Disabled = MinDensity > MTDensity.Minus3 },
             new MTListElement<MTDensity> {SelectedValue = MTDensity.Minus4, Label = "Minus 4", Disabled = MinDensity > MTDensity.Minus4 },
             new MTListElement<MTDensity> {SelectedValue = MTDensity.Minus5, Label = "Minus 5", Disabled = MinDensity > MTDensity.Minus5 },
-        }.Where(d => d.Disabled != true);
+         }.Where(d => d.Disabled != true);
     }
 }

@@ -4,9 +4,9 @@ namespace BlazorMdcWebsite.Components
 {
     public static class Utilities
     {
-        public static MTAnimatedNaviationManagerConfiguration GetDefaultAnimatedNavigationManagerConfiguration()
+        public static MTAnimatedNavigationManagerServiceConfiguration GetDefaultAnimatedNavigationServiceConfiguration()
         {
-            return new MTAnimatedNaviationManagerConfiguration()
+            return new MTAnimatedNavigationManagerServiceConfiguration()
             {
                 ApplyAnimation = true,
                 AnimationTime = 300

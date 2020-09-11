@@ -12,6 +12,8 @@ namespace BlazorMdc
     /// </summary>
     public partial class MTIcon : ComponentFoundation
     {
+        [CascadingParameter(Name = MTTabBar<object>.TabBarIdentifier)] private object TabBarIdentifier { get; set; }
+
 #nullable enable annotations
         /// <summary>
         /// The icon name.
@@ -27,13 +29,6 @@ namespace BlazorMdc
         /// <para>Overrides <see cref="MTCascadingDefaults.IconFoundryName"/></para>
         /// </summary>
         [Parameter] public IMTIconFoundry? IconFoundry { get; set; }
-
-
-        /// <summary>
-        /// Indicates if True that the icons is to be rendered in an <see cref="MTTabBar{TItem}"/>,
-        /// adding the "mdc-tab__icon" CSS class.
-        /// </summary>
-        [Parameter] public bool TabBar { get; set; }
 #nullable restore annotations
 
 
@@ -55,7 +50,7 @@ namespace BlazorMdc
             ClassMapper
                 .Clear()
                 .Add(IconHelper.Class)
-                .AddIf("mdc-tab__icon", () => TabBar);
+                .AddIf("mdc-tab__icon", () => TabBarIdentifier != null);
         }
     }
 }

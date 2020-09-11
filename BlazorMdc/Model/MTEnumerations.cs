@@ -387,7 +387,7 @@
 
     /// <summary>
     /// Material Theme text field and text area input style applied to <see cref="MTTextField"/> and <see cref="MTTextArea"/>.
-    /// <para>Applied also to <seealso cref="MTAutocomplete"/>, <seealso cref="MTDebouncedTextField"/>, <seealso cref="MTNumericDoubleField"/> and <seealso cref="MTNumericIntField"/></para>
+    /// <para>Applied also to <seealso cref="MTAutocompleteTextField"/>, <seealso cref="MTDebouncedTextField"/>, <seealso cref="MTNumericDoubleField"/> and <seealso cref="MTNumericIntField"/></para>
     /// <para><see cref="MTCascadingDefaults"/> has a default of <see cref="Filled"/></para>
     /// </summary>
     public enum MTTextInputStyle 
@@ -425,7 +425,7 @@
 
     /// <summary>
     /// A helper to set the alignment of text in <see cref="MTTextField"/>, <see cref="MTTextArea"/> and <see cref="MTSelect{TItem}"/>.
-    /// <para>Applied also to <seealso cref="MTAutocomplete"/>, <seealso cref="MTDebouncedTextField"/>, <seealso cref="MTNumericDoubleField"/> and <seealso cref="MTNumericIntField"/></para>
+    /// <para>Applied also to <seealso cref="MTAutocompleteTextField"/>, <seealso cref="MTDebouncedTextField"/>, <seealso cref="MTNumericDoubleField"/> and <seealso cref="MTNumericIntField"/></para>
     /// <para><see cref="MTCascadingDefaults"/> has a default of <see cref="Default"/></para>
     /// </summary>
     public enum MTTextAlignStyle 

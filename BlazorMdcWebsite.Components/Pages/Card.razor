@@ -4,11 +4,11 @@
 
 
 
-<DemonstrationPageLayout ComponentNames=@(new string[] { "Card" })
-                         Title="Card Demonstration"
-                         DemoComponent="@this"
-                         MaterialIOPages="@(new string[] { "mdc-card#cards" })"
-                         RequiresDisableSelection="true">
+<DemonstrationPage ComponentName="Card"
+                   Title="Card Demonstration"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-card#cards"
+                   RequiresDisableSelection="true">
     <Description>
         <p>
             Demonstrates cards, with a focus on actions. The demonstration website already makes substantial use of varying card types. Note that cards cannot be disabled, although buttons on the cards can.
@@ -141,7 +141,7 @@
             </MTCard>
         </div>
     </PageContent>
-</DemonstrationPageLayout>
+</DemonstrationPage>
 
 
 

@@ -7,18 +7,18 @@ namespace BlazorMdc
     public static class ServiceCollectionExtensions
     {
         /// <summary>
-        /// Adds Toast, Tooltip and Animated Navigation Manager services for Blazor MDC. This is required for any app that uses one or more
+        /// Adds Toast, Tooltip and Animated Navigation services for Blazor MDC. This is required for any app that uses one or more
         /// of these components. The two configurations are optional.
         /// </summary>
         /// <param name="services"></param>
         /// <param name="toastServiceConfiguration"></param>
-        /// <param name="animatedNavigationManagerConfiguration"></param>
+        /// <param name="animatedNavigationManagerServiceConfiguration"></param>
         /// <returns></returns>
-        public static IServiceCollection AddMTServices(this IServiceCollection services, MTToastServiceConfiguration toastServiceConfiguration = null, MTAnimatedNaviationManagerConfiguration animatedNavigationManagerConfiguration = null)
+        public static IServiceCollection AddMTServices(this IServiceCollection services, MTToastServiceConfiguration toastServiceConfiguration = null, MTAnimatedNavigationManagerServiceConfiguration animatedNavigationManagerServiceConfiguration = null)
         {
             return services
                 .AddMTToastService( toastServiceConfiguration)
-                .AddMTAnimatedNavigationManager(animatedNavigationManagerConfiguration)
+                .AddMTAnimatedNavigationService(animatedNavigationManagerServiceConfiguration)
                 .AddMTTooltipService();
         }
 
@@ -63,7 +63,7 @@ namespace BlazorMdc
         /// <example>
         /// <para>You can optionally add configuration:</para>
         /// <code>
-        /// services.AddMTAnimatedNavigationManager(new MTAnimatedNaviationManagerConfiguration()
+        /// services.AddMTAnimatedNavigationService(new MTAnimatedNaviationServiceConfiguration()
         /// {
         ///     ApplyAnimation = true,
         ///     AnimationTime = 300   /* milliseconds */
@@ -71,14 +71,14 @@ namespace BlazorMdc
         /// </code>
         /// </example>
         /// </summary>
-        private static IServiceCollection AddMTAnimatedNavigationManager(this IServiceCollection services, MTAnimatedNaviationManagerConfiguration configuration = null)
+        private static IServiceCollection AddMTAnimatedNavigationService(this IServiceCollection services, MTAnimatedNavigationManagerServiceConfiguration configuration = null)
         {
             if (configuration == null)
             {
-                configuration = new MTAnimatedNaviationManagerConfiguration();
+                configuration = new MTAnimatedNavigationManagerServiceConfiguration();
             }
 
-            return services.AddScoped<IMTAnimatedNavigationManager, AnimatedNavigationManager>(serviceProvider => new AnimatedNavigationManager(serviceProvider.GetRequiredService<NavigationManager>(), configuration));
+            return services.AddScoped<IMTAnimatedNavigationManager, AnimatedNavigationManagerService>(serviceProvider => new AnimatedNavigationManagerService(serviceProvider.GetRequiredService<NavigationManager>(), configuration));
         }
     }
 }

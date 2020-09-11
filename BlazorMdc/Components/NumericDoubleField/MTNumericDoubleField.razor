@@ -2,10 +2,8 @@
 
 @inherits InputComponentFoundation<double>
 
-@using System.Text.RegularExpressions
 
-
-<MTTextField @ref="TextField"
+<MTTextField @ref="@TextField"
              @attributes="@MyAttributes"
              step="@(Math.Pow(10, -MyDecimalPlaces).ToString())"
              min="@Min"
@@ -22,4 +20,7 @@
              TextAlignStyle="@MTTextAlignStyle.Right"
              Disabled="@AppliedDisabled"
              @onfocusin="@OnFocusIn"
-             @onfocusout="@OnFocusOut" />
+             @onfocusout="@OnFocusOut"
+             @onkeydown="@StopForceSelect"
+             @onmousedown="@StopForceSelect"
+             @ontouchstart="@StopForceSelect" />

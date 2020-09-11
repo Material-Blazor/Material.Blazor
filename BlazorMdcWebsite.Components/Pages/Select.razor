@@ -3,13 +3,13 @@
 @inject IMTToastService ToastService
 
 
-<DemonstrationPageLayout ComponentNames=@(new string[] { "Select" })
-                         Title="Select Demonstration"
-                         DemoComponent="@this"
-                         MaterialIOPages="@(new string[] { "mdc-select#select-menus" })"
-                         IsGeneric="@(new bool[] { true })"
-                         MinDensity="MTDensity.Minus4"
-                         RequiresDisableSelection="true">
+<DemonstrationPage ComponentName="Select"
+                   Title="Select Demonstration"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-select#select-menus"
+                   IsGeneric="true"
+                   MinDensity="MTDensity.Minus4"
+                   RequiresDisableSelection="true">
     <Description>
         <p>
             Filled and outlined text fields with icon usage, class and style application and finally density.
@@ -136,7 +136,7 @@
             </MTCard>
         </div>
     </PageContent>
-</DemonstrationPageLayout>
+</DemonstrationPage>
 
 
 @code {
@@ -145,7 +145,7 @@
         new MTListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MTListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
         new MTListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
-    };
+        };
 
 
     private string _defaultStyle;

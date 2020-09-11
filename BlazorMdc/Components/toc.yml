@@ -20,7 +20,7 @@
   topicUid: C.MTAnimatedNavigation
 
 - name: MTAutocomplete
-  topicUid: C.MTAutocomplete
+  topicUid: C.MTAutocompleteTextField
 
 - name: MTButton
   topicUid: C.MTButton

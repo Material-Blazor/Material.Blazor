@@ -20,25 +20,37 @@ namespace BlazorMdc
         /// </summary>
         [Parameter] public string ListTemplateClass { get; set; } = "";
 
+
         /// <summary>
         /// A class for the paginator.
         /// </summary>
         [Parameter] public string PaginatorClass { get; set; } = "";
+
 
         /// <summary>
         /// A list of allowable numbers of items per page for the paginator.
         /// </summary>
         [Parameter] public IEnumerable<int> ItemsPerPageSelection { get; set; }
 
+
+        /// <summary>
+        /// A function delegate to return the parameters for <c>@key</c> attributes. If unused
+        /// "fake" keys set to GUIDs will be used.
+        /// </summary>
+        [Parameter] public Func<TItem, object> GetKeysFunc { get; set; }
+
+
         /// <summary>
         /// The pageable data.
         /// </summary>
         [Parameter] public IEnumerable<TItem> Data { get; set; }
 
+
         /// <summary>
         /// The wig pig item renderfragment.
         /// </summary>
         [Parameter] public RenderFragment<TItem> ItemTemplate { get; set; }
+
 
         /// <summary>
         /// The wig pig list renderfragment.
@@ -56,7 +68,7 @@ namespace BlazorMdc
                     var oldValue = PageNumber;
                     PageNumber = value;
 
-                    if (hasRendered)
+                    if (HasRendered)
                     {
                         PageNumberChanged.InvokeAsync(value);
                         InvokeAsync(() => OnPageNumberChange(oldValue, value));
@@ -85,7 +97,7 @@ namespace BlazorMdc
                 if (value != ItemsPerPage)
                 {
                     ItemsPerPage = value;
-                    if (hasRendered) ItemsPerPageChanged.InvokeAsync(value);
+                    if (HasRendered) ItemsPerPageChanged.InvokeAsync(value);
                 }
             }
         }
@@ -101,15 +113,12 @@ namespace BlazorMdc
         [Parameter] public EventCallback<int> ItemsPerPageChanged { get; set; }
 
 
-        private string contentClass = "";
-        
-        private bool hasRendered = false;
-
-        private bool isHidden = false;
-        
         private IEnumerable<TItem> CheckedData => Data ?? Array.Empty<TItem>();
-        
+        private string ContentClass { get; set; } = "";
         public IEnumerable<TItem> CurrentPage => CheckedData.Skip(PageNumber * ItemsPerPage).Take(ItemsPerPage);
+        private bool HasRendered { get; set; } = false;
+        private bool IsHidden { get; set; } = false;
+        private Func<TItem, object> KeyGenerator { get; set; }
 
 
         private async Task OnPageNumberChange(int oldPageNumber, int newPageNumber)
@@ -118,21 +127,22 @@ namespace BlazorMdc
             if (newPageNumber < oldPageNumber)
             {
                 nextClass = MTSlidingContent<object>.InFromLeft;
-                contentClass = MTSlidingContent<object>.OutToRight;
+                ContentClass = MTSlidingContent<object>.OutToRight;
             }
             else
             {
                 nextClass = MTSlidingContent<object>.InFromRight;
-                contentClass = MTSlidingContent<object>.OutToLeft;
+                ContentClass = MTSlidingContent<object>.OutToLeft;
             }
 
             await Task.Delay(100);
 
-            contentClass = nextClass;
-            isHidden = false;
+            ContentClass = nextClass;
+            IsHidden = false;
 
             StateHasChanged();
         }
+
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
         protected override void OnInitialized()
@@ -140,8 +150,8 @@ namespace BlazorMdc
             base.OnInitialized();
 
             ClassMapper
-                .AddIf(MTSlidingContent<object>.Hidden, () => isHidden)
-                .AddIf(MTSlidingContent<object>.Visible, () => !isHidden);
+                .AddIf(MTSlidingContent<object>.Hidden, () => IsHidden)
+                .AddIf(MTSlidingContent<object>.Visible, () => !IsHidden);
         }
 
 
@@ -150,7 +160,7 @@ namespace BlazorMdc
         {
             base.OnAfterRender(firstRender);
 
-            hasRendered = true;
+            HasRendered = true;
         }
     }
 }

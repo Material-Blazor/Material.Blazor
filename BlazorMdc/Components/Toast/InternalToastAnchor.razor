@@ -9,7 +9,7 @@
         {
             var toastId = toast.Id;
 
-            <div @key="toast" class="mdc-elevation--z5 bmdc-toast @toast.Settings.ContainerLevelClass @toast.Settings.StatusClass @toast.Settings.AppliedCssClass">
+            <div @key="@toastId" class="mdc-elevation--z5 bmdc-toast @toast.Settings.ContainerLevelClass @toast.Settings.StatusClass @toast.Settings.AppliedCssClass">
 
                 @if (toast.Settings.AppliedShowIcon)
                 {

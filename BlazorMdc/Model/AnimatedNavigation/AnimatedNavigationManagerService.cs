@@ -1,7 +1,5 @@
 ﻿using BlazorMdc.Internal;
-
 using Microsoft.AspNetCore.Components;
-
 using System;
 
 namespace BlazorMdc
@@ -9,9 +7,12 @@ namespace BlazorMdc
     /// <summary>
     /// The internal implementation of <see cref="IMTAnimatedNavigationManager"/>.
     /// </summary>
-    internal class AnimatedNavigationManager : IMTAnimatedNavigationManager
+    internal class AnimatedNavigationManagerService : IMTAnimatedNavigationManager
     {
-        private readonly NavigationManager NavigationManager;
+        /// <summary>
+        /// The Blazor <see cref="NavigationManager"/>.
+        /// </summary>
+        public NavigationManager NavigationManager { get; private set; }
 
 
         /// <summary>
@@ -21,7 +22,7 @@ namespace BlazorMdc
         
 
         /// <inheritdoc/>
-        public MTAnimatedNaviationManagerConfiguration Configuration { get; set; } = new MTAnimatedNaviationManagerConfiguration();
+        public MTAnimatedNavigationManagerServiceConfiguration Configuration { get; set; } = new MTAnimatedNavigationManagerServiceConfiguration();
 
 
         /// <inheritdoc/>
@@ -32,7 +33,7 @@ namespace BlazorMdc
         int IMTAnimatedNavigationManager.FadeInTime => Configuration.AnimationTime * 6 / 10;
 
 
-        public AnimatedNavigationManager(NavigationManager navigationManager, MTAnimatedNaviationManagerConfiguration configuration)
+        public AnimatedNavigationManagerService(NavigationManager navigationManager, MTAnimatedNavigationManagerServiceConfiguration configuration)
         {
             NavigationManager = navigationManager;
             Configuration = configuration;

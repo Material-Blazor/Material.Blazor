@@ -6,6 +6,9 @@ title: Introduction
 
 Welcome to the BlazorMdc Articles. We strongly recommend starting with [Installation](xref:A.Installation) & continuing with [Development Environment](xref:A.DevelopmentEnvironment).
 
+The documentation can only take you so far, and we strongly recommend that you examine relevant code from our website, which both demonstrates Blazor MDC and serves as a reference
+installation. Every demonstration page on the website includes a link to its source on GitHub.
+
 - [Cascading Defaults](xref:A.CascadingDefaults) is a mechanism for setting non-CSS defaults through Blazor Cascading Values.
 - [Blazor MDC Principles](xref:A.Principles) are core principles for how we developed Blazor MDC and how you should use it.
 - [Core Components](xref:A.CoreComponents) lists Blazor MDC "core" components which are strict implementations of [Material Components Web](https://github.com/material-components/material-components-web) components.

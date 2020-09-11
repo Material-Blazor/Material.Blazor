@@ -30,6 +30,13 @@ namespace BlazorMdc
 
 
         /// <summary>
+        /// A function delegate to return the parameters for <c>@key</c> attributes. If unused
+        /// "fake" keys set to GUIDs will be used.
+        /// </summary>
+        [Parameter] public Func<TItem, object> GetKeysFunc { get; set; }
+
+
+        /// <summary>
         /// The items to display in the list.
         /// </summary>
         [Parameter] public IEnumerable<TItem> Items { get; set; }
@@ -139,25 +146,25 @@ namespace BlazorMdc
 
 
 
-        private ElementReference ElementReference { get; set; }
-
-        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityCssClass(CascadingDefaults.AppliedListSingleLineDensity(SingleLineDensity));
-
         private MTListStyle AppliedListStyle => CascadingDefaults.AppliedStyle(ListStyle);
-
         private MTListType AppliedListType => CascadingDefaults.AppliedType(ListType);
-
+        private ElementReference ElementReference { get; set; }
+        private MTCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityCssClass(CascadingDefaults.AppliedListSingleLineDensity(SingleLineDensity));
         private int NumberOfLines { get; set; }
         private bool HasLineTwo { get; set; }
         private bool HasLineThree { get; set; }
+        private Func<TItem, object> KeyGenerator { get; set; }
         private string TitleClass { get; set; }
         private string LineTwoClass { get; set; }
         private string LineThreeClass { get; set; }
         private string ListItemClass => "mdc-list-item__text bmdc-full-width" + (AppliedDisabled ? " mdc-list-item--disabled" : "");
 
 
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
         protected override void OnInitialized()
         {
+            base.OnInitialized();
+
             ClassMapper
                 .Add("mdc-list")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass && NumberOfLines == 1 && AppliedListType != MTListType.Dense)
@@ -169,7 +176,8 @@ namespace BlazorMdc
                 .AddIf("mdc-list--avatar-list", () => AppliedListType == MTListType.Avatar);
         }
 
-        /// <inheritdoc/>
+
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
         protected override void OnParametersSet()
         {
             base.OnParametersSet();
@@ -184,6 +192,8 @@ namespace BlazorMdc
             TitleClass = (NumberOfLines == 1) ? "" : "mdc-list-item__primary-text";
             LineTwoClass = "mdc-list-item__secondary-text bmdc-full-width";
             LineThreeClass = "mdc-list-item__secondary-text" + ((NumberOfLines == 3) ? " line-three" : "") + " bmdc-full-width";
+
+            KeyGenerator = GetKeysFunc ?? delegate(TItem item) { return item; };
         }
 
 

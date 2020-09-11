@@ -41,14 +41,17 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Shows a toast using the supplied settings
+        /// Shows a toast using the supplied settings. Only the level and message parameters are required, with
+        /// the remainder haveing defaults specified by the <see cref="MTToastServiceConfiguration"/> that you can supply
+        /// when registering services. Failing that Blazor MDC provides defaults.
         /// </summary>
-        /// <param name="closeMethod">close method</param>
-        /// <param name="cssClass">additional css applied to toast</param>
-        /// <param name="heading">Text used in the heading of the toast</param>
-        /// <param name="icon">Icon name</param>
         /// <param name="level">Severity of the toast (info, error, etc)</param>
         /// <param name="message">Body text in the toast</param>
+        /// <param name="heading">Text used in the heading of the toast</param>
+        /// <param name="closeMethod">close method</param>
+        /// <param name="cssClass">additional css applied to toast</param>
+        /// <param name="iconName">Icon name</param>
+        /// <param name="iconFoundry">The icon's foundry</param>
         /// <param name="showIcon">Show or hide icon</param>
         /// <param name="timeout">Length of time before autodismiss</param>
 #nullable enable annotations

@@ -3,13 +3,13 @@
 @inject IMTToastService ToastService
 
 
-<DemonstrationPageLayout ComponentNames=@(new string[] { "Menu" })
-                         Title="Menu Demonstration"
-                         DemoComponent="@this"
-                         MaterialIOPages="@(new string[] { "mdc-menu#menus" })">
+<DemonstrationPage ComponentName="Menu"
+                   Title="Menu Demonstration"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-menu#menus">
     <Description>
         <p>
-            Demonstrates a menus.
+            Demonstrates a menu.
         </p>
     </Description>
 
@@ -51,7 +51,7 @@
             </MTCard>
         </div>
     </PageContent>
-</DemonstrationPageLayout>
+</DemonstrationPage>
 
 
 

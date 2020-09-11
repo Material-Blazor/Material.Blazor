@@ -6,7 +6,7 @@ title: MTList
 
 ## Summary
 
-A [Material List](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-list#lists). Uses render fragments to implement Material Theme Web Components one and two line lists, plus a BlazorMdc interpretation of a three line list. It features:
+A partial implementation of a [Material List](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-list#lists). Uses render fragments to implement Material Theme Web Components one and two line lists, plus a BlazorMdc interpretation of a three line list. It features:
 
 ## Details
 
@@ -18,6 +18,23 @@ A [Material List](https://github.com/material-components/material-components-web
 - Indicators for dense layout, dividers between items, whether keyboard interactions and ripple are activated, and whether lines two or three of each item are hidden;
 - Click, KeyDown, MouseDown and TouchStart event handlers that return the index of the item receiving user interaction;
 - Applies [density subsystem](xref:A.Density).
+
+## Assisting Blazor Rendering with `@key`
+
+- MTList renders similar table rows with a `foreach` loop;
+- In general each item rendered in a loop in Blazor should be supplied with a unique object via the `@key` attribute - see [Blazor University](https://blazor-university.com/components/render-trees/optimising-using-key/);
+- MTList by default uses each item in the `Items` parameter as the key, however you can override this. Blazor MDC does this because we have had instances where Blazor crashes with the default key giving an exception message such as "The given key 'MyObject' was not present";
+- You can provide a function delegate to the `GetKeysFunc` parameter - we have used two variants of this:
+  - First to get a unique `Id` property that happens to be in our item's class: `GetKeysFunc="@((item) => item.Id)"`; and
+  - Second using a "fake key" where we create a GUID to act as the key: `GetKeysFunc="@((item) => Guid.NewGuid())"`.
+  - You can see an example of this in the [MTList demonstration website page's code](https://github.com/BlazorMdc/BlazorMdc/blob/main/BlazorMdcWebsite.Components/Pages/List.razor#L155).
+
+## Partial Implementation
+
+MTList does not implement:
+
+- Multi-select
+- Checkbox
 
 &nbsp;
 

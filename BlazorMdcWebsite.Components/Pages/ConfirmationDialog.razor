@@ -1,0 +1,135 @@
+﻿@page "/confirmationdialog"
+
+
+@inject IMTToastService ToastService
+
+
+
+<DemonstrationPage ComponentName="ConfirmationDialog"
+                   Title="ConfirmationDialog Demonstration"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-dialog#dialogs"
+                   MinDensity="MTDensity.Minus4">
+    <Description>
+        <p>
+            ConfirmationDialog samples. Click each card to launch a dialog.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true" @onclick="@ShowDialog2Async">
+                <PrimaryAction>
+                    <div class="bmdc-card__primary">
+                        <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                            Default Confirmation Dialog
+                        </h2>
+                        <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
+                            Launches a confirmation dialog using its default confirmation of a random six digit number.
+                        </h3>
+                    </div>
+                </PrimaryAction>
+            </MTCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true" @onclick="@ShowDialog3Async">
+                <PrimaryAction>
+                    <div class="bmdc-card__primary">
+                        <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                            Tailored Confirmation Dialog
+                        </h2>
+                        <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
+                            A confirmation dialog with a tailored security confirmation string.
+                        </h3>
+                    </div>
+                </PrimaryAction>
+            </MTCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true" @onclick="@ShowDialog6Async">
+                <PrimaryAction>
+                    <div class="bmdc-card__primary">
+                        <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                            Date Picker Dialog
+                        </h2>
+                        <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
+                            Shows that a date picker's popup menu is able to render outside of a confirmation dialog <code>&lt;div&gt;</code> block.
+                        </h3>
+                    </div>
+                </PrimaryAction>
+            </MTCard>
+        </div>
+
+
+    </PageContent>
+</DemonstrationPage>
+
+
+<MTConfirmationDialog @ref="@Dialog2"
+                      Title="Default confirmation dialog" />
+
+
+<MTConfirmationDialog @ref="@Dialog3"
+                      Title="Tailored confirmation dialog" ConfirmationPhrase="overridden confirmation"
+                      ActionPhrase="to play handball"
+                      ConfirmationDisabled="@DisableInput">
+    <Body>
+        <p>Some markup before the confirmation message and input.</p>
+        <p><MTCheckbox @bind-Value="@DisableInput" Label="Disable confirmation input field" /></p>
+    </Body>
+    <UnconfirmedButtons>
+        <MTButton Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
+        <MTButton Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
+        <MTButton Label="Bosh" LeadingIcon="sports_handball" Disabled="true" DialogAction="bosh" ButtonStyle="MTButtonStyle.ContainedRaised" />
+    </UnconfirmedButtons>
+    <ConfirmedButtons>
+        <MTButton Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
+        <MTButton Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
+        <MTButton Label="Bosh" LeadingIcon="sports_handball" DialogAction="bosh" ButtonStyle="MTButtonStyle.ContainedRaised" />
+    </ConfirmedButtons>
+</MTConfirmationDialog>
+
+
+<MTConfirmationDialog @ref="@Dialog6"
+                      Title="Date Picker Confirmation Dialog"
+                      OverflowVisible="true">
+    <Body>
+        <p>Set the date.</p>
+        <MTDatePicker Label="The date" @bind-Value="@Date6" SelectInputStyle="MTSelectInputStyle.Outlined" MinDate="@MinDate" MaxDate="@MaxDate"></MTDatePicker>
+    </Body>
+</MTConfirmationDialog>
+
+
+@code {
+    private bool DisableInput { get; set; } = false;
+    private MTConfirmationDialog Dialog2 { get; set; }
+    private MTConfirmationDialog Dialog3 { get; set; }
+    private MTConfirmationDialog Dialog6 { get; set; }
+
+    private async Task ShowDialog2Async()
+    {
+        var result = await Dialog2.ShowAsync();
+        ToastService.ShowToast(heading: "Dialog 2 Result", message: $"Value: '{result}'", level: MTToastLevel.Success, showIcon: false);
+    }
+
+    private async Task ShowDialog3Async()
+    {
+        var result = await Dialog3.ShowAsync();
+        ToastService.ShowToast(heading: "Dialog 3 Result", message: $"Value: '{result}'", level: MTToastLevel.Success, showIcon: false);
+    }
+
+    private DateTime MinDate { get; set; } = new DateTime(2015, 1, 1);
+    private DateTime MaxDate { get; set; } = new DateTime(2025, 12, 31);
+
+    private DateTime Date6 { get; set; } = DateTime.Today;
+
+    private async Task ShowDialog6Async()
+    {
+        var result = await Dialog6.ShowAsync();
+        ToastService.ShowToast(heading: "Dialog 6 Result", message: $"Value: '{result}'", level: MTToastLevel.Success, showIcon: false);
+    }
+}

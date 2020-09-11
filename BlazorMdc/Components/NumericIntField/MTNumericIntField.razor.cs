@@ -79,19 +79,19 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Adjusts the value's maginitude as a number when the field is focussed. Used for
+        /// Adjusts the value's maginitude as a number when the field is focused. Used for
         /// percentages and basis points (the latter of which lacks appropriate Numeric Format in C#:
         /// this issue may not get solved.
         /// </summary>
-        [Parameter] public MTNumericInputMagnitude FocussedMagnitude { get; set; } = MTNumericInputMagnitude.Normal;
+        [Parameter] public MTNumericInputMagnitude FocusedMagnitude { get; set; } = MTNumericInputMagnitude.Normal;
 
 
         /// <summary>
-        /// Adjusts the value's maginitude as a number when the field is unfocussed. Used for
+        /// Adjusts the value's maginitude as a number when the field is unfocused. Used for
         /// percentages and basis points (the latter of which lacks appropriate Numeric Format in C#:
         /// this issue may not get solved.
         /// </summary>
-        [Parameter] public MTNumericInputMagnitude UnfocussedMagnitude { get; set; } = MTNumericInputMagnitude.Normal;
+        [Parameter] public MTNumericInputMagnitude UnfocusedMagnitude { get; set; } = MTNumericInputMagnitude.Normal;
 
 
         /// <summary>

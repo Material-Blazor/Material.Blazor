@@ -1,4 +1,4 @@
-﻿@page "/pagination"
+﻿@page "/pageddatalist"
 
 @inject IMTToastService ToastService
 
@@ -32,46 +32,18 @@
     }
 </style>
 
-<DemonstrationPageLayout ComponentNames=@(new string[] { "Paginator", "PagedDataList" })
-                         Title="Pagination Demonstration"
-                         DemoComponent="@this"
-                         IsGeneric="@(new bool[] { false, true })">
+<DemonstrationPage ComponentName="PagedDataList"
+                   Title="Paged Data List Demonstration"
+                   DemoComponent="@this"
+                   IsGeneric="true">
     <Description>
         <p>
-            Demonstrates both a simple paginator and a paged data list, both of which are Blazor MDC Plus components. The paginator is a Blazor MDC implementation of the
-            Material Theme paginator spec. The paged data list is a complex component that uses the paginator, sliding content and a nested render fragment construct
+            Demonstrates a paged data list, which is a Blazor MDC Plus component. The paged data list is a complex component that uses the MTPaginator, MTSlidingContent and a nested render fragment construct
             to allow you to render sophisticated paginated elements.
         </p>
     </Description>
 
     <PageContent>
-        <div class="mdc-layout-grid__cell--span-12">
-            <MTCard AutoStyled="true">
-                <Primary>
-                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
-                        Paginator
-                    </h2>
-
-                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        A simple paginator with two way binding to page number and number of items per page.
-                    </h3>
-
-                    <p>
-                        <MTPaginator class="my-float-right"
-                                     @bind-ItemsPerPage="@PaginatorItemsPerPage"
-                                     @bind-PageNumber="@PaginatorPageNumber"
-                                     ItemsPerPageSelection="@PaginatorItemsPerPageSelection"
-                                     ItemCount="@PaginatorItems.Length" />
-                    </p>
-
-                    <p>
-                        Selected items: <span style="color: var(--bmdc-color-blue-800);">@string.Join(" / ", PaginatorSelection)</span>
-                    </p>
-                </Primary>
-            </MTCard>
-        </div>
-
-
         <div class="mdc-layout-grid__cell--span-12">
             <MTCard AutoStyled="true">
                 <Primary>
@@ -325,7 +297,7 @@
             </MTCard>
         </div>
     </PageContent>
-</DemonstrationPageLayout>
+</DemonstrationPage>
 
 
 

@@ -5,7 +5,7 @@
 
 <div @attributes="AttributesToSplat()">
 
-    <div class="@contentClass @ListTemplateClass">
+    <div class="@ContentClass @ListTemplateClass">
         @ListTemplate(@:@{
             foreach (TItem item in CurrentPage)
             {
@@ -21,28 +21,28 @@
 
 
 @code {
-
-        /// <inheritdoc/>
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
     protected override void OnParametersSet()
     {
+        KeyGenerator = GetKeysFunc ?? delegate (TItem item) { return item; };
 
         if (ItemTemplate == null)
         {
-            ItemTemplate = (item) =>@:@{
-        <li @key=item>@item.ToString()</li>}
+            ItemTemplate = (item) => @:@{
+                <li @key="@KeyGenerator(item)">@item.ToString()</li>}
             ;
-    }
+        }
 
-    if (ListTemplate == null)
-    {
-        ListTemplate = _ => @:@{
-        <ul>
-            @foreach (TItem item in CurrentPage)
-            {
-                @ItemTemplate(item)
-            }
-        </ul>}
-        ;
-            }
+        if (ListTemplate == null)
+        {
+            ListTemplate = _ => @:@{
+            <ul>
+                @foreach (TItem item in CurrentPage)
+                {
+                    @ItemTemplate(item)
+                }
+            </ul>}
+            ;
         }
     }
+}

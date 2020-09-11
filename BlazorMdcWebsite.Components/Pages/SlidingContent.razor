@@ -4,14 +4,14 @@
 
 
 
-<DemonstrationPageLayout ComponentNames=@(new string[] { "SlidingContent" })
-                         Title="Sliding Content Demonstration"
-                         DemoComponent="@this"
-                         IsGeneric="@(new bool[] { true })">
+<DemonstrationPage ComponentName="SlidingContent"
+                   Title="Sliding Content Demonstration"
+                   DemoComponent="@this"
+                   IsGeneric="true">
     <Description>
         <p>
             Demonstrates Sliding Content, which is a <a href="https://blazormdc.com/docs/articles/PlusComponents.html" target="_blank">Blazor MDC Plus Component</a>. Sliding content is
-            designed to give a user subtle animated feedback when paging through content. This component is used by both the <a href="/tabbar">Sliding Tab Bar</a> and 
+            designed to give a user subtle animated feedback when paging through content. This component is used by both the <a href="/tabbar">Sliding Tab Bar</a> and
             <a href="/pageddatalist">Paged Data List</a> plus components.
         </p>
     </Description>
@@ -49,7 +49,7 @@
             </MTCard>
         </div>
     </PageContent>
-</DemonstrationPageLayout>
+</DemonstrationPage>
 
 
 

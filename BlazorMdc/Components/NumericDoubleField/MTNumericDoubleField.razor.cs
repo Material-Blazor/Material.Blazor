@@ -1,7 +1,7 @@
 ﻿using BlazorMdc.Internal;
 
 using Microsoft.AspNetCore.Components;
-
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -84,19 +84,19 @@ namespace BlazorMdc
 
 
         /// <summary>
-        /// Adjusts the value's maginitude as a number when the field is focussed. Used for
+        /// Adjusts the value's maginitude as a number when the field is focused. Used for
         /// percentages and basis points (the latter of which lacks appropriate Numeric Format in C#:
         /// this issue may not get solved.
         /// </summary>
-        [Parameter] public MTNumericInputMagnitude FocussedMagnitude { get; set; } = MTNumericInputMagnitude.Normal;
+        [Parameter] public MTNumericInputMagnitude FocusedMagnitude { get; set; } = MTNumericInputMagnitude.Normal;
 
 
         /// <summary>
-        /// Adjusts the value's maginitude as a number when the field is unfocussed. Used for
+        /// Adjusts the value's maginitude as a number when the field is unfocused. Used for
         /// percentages and basis points (the latter of which lacks appropriate Numeric Format in C#:
         /// this issue may not get solved.
         /// </summary>
-        [Parameter] public MTNumericInputMagnitude UnfocussedMagnitude { get; set; } = MTNumericInputMagnitude.Normal;
+        [Parameter] public MTNumericInputMagnitude UnfocusedMagnitude { get; set; } = MTNumericInputMagnitude.Normal;
 
 
         /// <summary>
@@ -125,22 +125,21 @@ namespace BlazorMdc
 
 
         private MTTextField TextField { get; set; }
-        private double FocussedMultiplier { get; set; } = 1;
-        private double UnfocussedMultiplier { get; set; } = 1;
-        private double AppliedMultiplier => HasFocus ? FocussedMultiplier : UnfocussedMultiplier;
+        private double FocusedMultiplier { get; set; } = 1;
+        private double UnfocusedMultiplier { get; set; } = 1;
+        private double AppliedMultiplier => HasFocus ? FocusedMultiplier : UnfocusedMultiplier;
         private int MyDecimalPlaces { get; set; } = 0;
+        private string NextType { get; set; } = "";
         private Regex Regex { get; set; }
-        private string Type => HasFocus ? "number" : "text";
         private Dictionary<string, object> MyAttributes { get; set; }
 
 
-        /// <summary>
-        /// ///////////Need to fix this.
-        /// </summary>
+        ///// <summary>
+        ///// Need to fix this.
+        ///// </summary>
         //private bool myFormNoValidate => hasFocus ? true : FormNoValidate;
 
 
-        private bool PrevHasFocus { get; set; } = false;
         private bool HasFocus { get; set; } = false;
 
 
@@ -153,8 +152,8 @@ namespace BlazorMdc
 
             set
             {
-                var enteredVal = HasFocus ? Convert.ToDouble(Convert.ToDouble(string.IsNullOrWhiteSpace(value) ? "0" : value.Trim()) / FocussedMultiplier) : NumericValue(value) / AppliedMultiplier;
-                ReportingValue = Math.Round(Math.Max(Min ?? enteredVal, Math.Min(enteredVal, Max ?? enteredVal)), MyDecimalPlaces + (int)FocussedMagnitude);
+                var enteredVal = HasFocus ? Convert.ToDouble(Convert.ToDouble(string.IsNullOrWhiteSpace(value) ? "0" : value.Trim()) / FocusedMultiplier) : NumericValue(value) / AppliedMultiplier;
+                ReportingValue = Math.Round(Math.Max(Min ?? enteredVal, Math.Min(enteredVal, Max ?? enteredVal)), MyDecimalPlaces + (int)FocusedMagnitude);
             }
         }
 
@@ -175,10 +174,12 @@ namespace BlazorMdc
         /// <inheritdoc/>
         protected override void OnInitialized()
         {
+            base.OnInitialized();
+
             bool allowSign = !(Min != null && Min >= 0);
 
-            FocussedMultiplier = Math.Pow(10, (int)FocussedMagnitude);
-            UnfocussedMultiplier = Math.Pow(10, (int)UnfocussedMagnitude);
+            FocusedMultiplier = Math.Pow(10, (int)FocusedMagnitude);
+            UnfocusedMultiplier = Math.Pow(10, (int)UnfocusedMagnitude);
 
             if (DecimalPlaces <= 0)
             {
@@ -202,7 +203,7 @@ namespace BlazorMdc
             BuildMyAttributes();
         }
 
-
+        
         private void BuildMyAttributes()
         {
             MyAttributes = (from a in AttributesToSplat()
@@ -220,19 +221,21 @@ namespace BlazorMdc
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await base.OnAfterRenderAsync(firstRender);
-
-            if (HasFocus == true && PrevHasFocus == false)
+            
+            if (!string.IsNullOrWhiteSpace(NextType))
             {
-                await TextField.Select();
+                await TextField.SetType(NextType);
+                NextType = "";
             }
-
-            PrevHasFocus = HasFocus;
         }
 
 
         private void OnFocusIn()
         {
             HasFocus = true;
+            NextType = "number";
+            TextField.SelectAllText = true;
+            TextField.AllowNextRender = true;
             BuildMyAttributes();
         }
 
@@ -240,9 +243,14 @@ namespace BlazorMdc
         private void OnFocusOut()
         {
             HasFocus = false;
+            NextType = "text";
+            TextField.SelectAllText = false;
+            TextField.AllowNextRender = true;
             BuildMyAttributes();
         }
-        
+
+
+        private void StopForceSelect() => TextField.SelectAllText = false;        
         
         
         private string StringValue(double? value) => (Convert.ToDouble(value) * AppliedMultiplier).ToString(AppliedFormat);

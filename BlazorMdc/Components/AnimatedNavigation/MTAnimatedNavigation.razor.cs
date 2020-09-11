@@ -1,8 +1,5 @@
 ﻿using BlazorMdc.Internal;
-
 using Microsoft.AspNetCore.Components;
-
-using System;
 using System.Threading.Tasks;
 
 namespace BlazorMdc
@@ -15,7 +12,7 @@ namespace BlazorMdc
     /// </summary>
     public partial class MTAnimatedNavigation: ComponentFoundation
     {
-        [Inject] private IMTAnimatedNavigationManager AnimatedNavigationManager { get; set; }
+        [Inject] private IMTAnimatedNavigationManager AnimatedNavigationService { get; set; }
         [Inject] private NavigationManager NavigationManager { get; set; }
 
 
@@ -29,11 +26,11 @@ namespace BlazorMdc
         private const string FadeOut = "bmdc-navigation-fade-out";
 
 
-        private MarkupString FadeInAnimation => (MarkupString)$"animation: bmdcNavFadeIn ease {AnimatedNavigationManager.FadeOutTime * 10:D}ms;";
-        private MarkupString FadeInAnimationWebkit => (MarkupString)$"-webkit-animation: bmdcNavFadeIn ease {AnimatedNavigationManager.FadeOutTime * 10:D}ms;";
+        private MarkupString FadeInAnimation => (MarkupString)$"animation: bmdcNavFadeIn ease {AnimatedNavigationService.FadeInTime * 10:D}ms;";
+        private MarkupString FadeInAnimationWebkit => (MarkupString)$"-webkit-animation: bmdcNavFadeIn ease {AnimatedNavigationService.FadeInTime * 10:D}ms;";
 
-        private MarkupString FadeOutAnimation => (MarkupString)$"animation: bmdcNavFadeOut ease {AnimatedNavigationManager.FadeOutTime * 10:D}ms;";
-        private MarkupString FadeOutAnimationWebkit => (MarkupString)$"-webkit-animation: bmdcNavFadeOut ease {AnimatedNavigationManager.FadeOutTime * 10:D}ms;";
+        private MarkupString FadeOutAnimation => (MarkupString)$"animation: bmdcNavFadeOut ease {AnimatedNavigationService.FadeOutTime * 10:D}ms;";
+        private MarkupString FadeOutAnimationWebkit => (MarkupString)$"-webkit-animation: bmdcNavFadeOut ease {AnimatedNavigationService.FadeOutTime * 10:D}ms;";
 
 
         private string PageClass { get; set; } = "";
@@ -44,7 +41,7 @@ namespace BlazorMdc
         {
             base.OnInitialized();
 
-            AnimatedNavigationManager.RegisterNavigationComponent(this);
+            AnimatedNavigationService.RegisterNavigationComponent(this);
         }
 
 
@@ -58,7 +55,7 @@ namespace BlazorMdc
 
             if (disposing)
             {
-                AnimatedNavigationManager.DeregisterNavigationComponent(this);
+                AnimatedNavigationService.DeregisterNavigationComponent(this);
             }
 
             _disposed = true;
@@ -98,7 +95,7 @@ namespace BlazorMdc
 
             await Task.CompletedTask;
 
-            await Task.Delay(AnimatedNavigationManager.FadeOutTime);
+            await Task.Delay(AnimatedNavigationService.FadeOutTime);
 
             return null;
         }

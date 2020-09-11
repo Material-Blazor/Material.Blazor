@@ -1,0 +1,134 @@
+﻿@page "/switch"
+
+@inject IMTToastService ToastService
+
+
+
+<DemonstrationPage ComponentName="Switch"
+                   Title="Switch Demonstration"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-switch#selection-controls-switches"
+                   MinDensity="MTDensity.Minus5"
+                   RequiresDisableSelection="true">
+    <Description>
+        <p>
+            Demonstrates switches.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        Basic component demo
+                    </h2>
+
+                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Simple switch. Notice that density only affects the halo when selecting a switch.
+                    </h3>
+
+                    <p><MTSwitch @bind-Value="@SwitchState" Label="Simple Switch" /></p>
+                    <p><MTSwitch @bind-Value="@SwitchState" Label="Simple Switch" /></p>
+                    <p><MTSwitch @bind-Value="@SwitchState" Label="Simple Switch" /></p>
+                    <p><MTSwitch @bind-Value="@SwitchState" Label="Simple Switch" /></p>
+                </Primary>
+            </MTCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        Two-Way Binding
+                    </h2>
+
+                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows two-way binding.
+                    </h3>
+
+                    <p><MTSwitch @bind-Value="@ToggleTwoWayBindingState" Label="Bound Switch" /></p>
+
+                    <p><MTCheckbox @bind-Value="@ToggleTwoWayBindingState" Label="Bound Checkbox" /></p>
+                </Primary>
+            </MTCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MTCard AutoStyled="true">
+                <Primary>
+                    <h2 class="bmdc-card__title mdc-typography mdc-typography--headline6">
+                        Switch Density
+                    </h2>
+
+                    <h3 class="bmdc-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows density subsystem from default to minus 5.
+                    </h3>
+
+                    <p><MTSwitch Label="Default Density" Density="@MTDensity.Default" /></p>
+                    <p><MTSwitch Label="Density Minus 1" Density="@MTDensity.Minus1" /></p>
+                    <p><MTSwitch Label="Density Minus 2" Density="@MTDensity.Minus2" /></p>
+                    <p><MTSwitch Label="Density Minus 3" Density="@MTDensity.Minus3" /></p>
+                    <p><MTSwitch Label="Density Minus 4" Density="@MTDensity.Minus3" /></p>
+                    <p><MTSwitch Label="Density Minus 5" Density="@MTDensity.Minus3" /></p>
+                </Primary>
+            </MTCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private bool _checkboxState;
+    private bool CheckboxState
+    {
+        get => _checkboxState;
+        set
+        {
+            _checkboxState = value;
+
+            ToastService.ShowToast(heading: "Checkbox Clicked", message: $"Value: {_checkboxState}", level: MTToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private bool _switchState;
+    private bool SwitchState
+    {
+        get => _switchState;
+        set
+        {
+            _switchState = value;
+
+            ToastService.ShowToast(heading: "Switch Clicked", message: $"Value: {_switchState}", level: MTToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private bool _toggleTwoWayBindingState;
+    private bool ToggleTwoWayBindingState
+    {
+        get => _toggleTwoWayBindingState;
+        set
+        {
+            _toggleTwoWayBindingState = value;
+
+            ToastService.ShowToast(heading: "Toggle Icon Button Clicked", message: $"Two way binding Value: {_toggleTwoWayBindingState}", level: MTToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private void ButtonClick(string notification)
+    {
+        ToastService.ShowToast(heading: "Button Clicked", message: notification, level: MTToastLevel.Success, showIcon: false);
+    }
+
+}

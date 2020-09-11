@@ -63,7 +63,7 @@ namespace BlazorMdc
         /// <summary>
         /// True once the dialog has instantiated components for the first time.
         /// </summary>
-        bool IMTDialog.HasInstantiated => _hasInstantiated;
+        bool IMTDialog.HasInstantiated => hasInstantiated;
 
 
         private ElementReference DialogElem { get; set; }
@@ -72,14 +72,16 @@ namespace BlazorMdc
         private string OverflowClass => OverflowVisible ? "bmdc-dialog-overflow-visible" : "";
 
 
-        private readonly string titleId = Utilities.GenerateUniqueElementName();
         private readonly string descId = Utilities.GenerateUniqueElementName();
-        private bool isOpen = false;
-        private bool afterRenderShowAction = false;
-        private bool afterDialogInitialization = false;
-        private string key = "";
-        private TaskCompletionSource<string> tcs;
-        private bool _hasInstantiated = false;
+        private readonly string titleId = Utilities.GenerateUniqueElementName();
+
+        private bool hasInstantiated = false;
+
+        private bool AfterDialogInitialization { get; set; } = false;
+        private bool AfterRenderShowAction { get; set; } = false;
+        private bool IsOpen { get; set; } = false;
+        private string Key { get; set; } = "";
+        private TaskCompletionSource<string> Tcs { get; set; }
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
@@ -127,20 +129,20 @@ namespace BlazorMdc
         /// <returns>The action string resulting form dialog closure</returns>
         public async Task<string> ShowAsync()
         {
-            if (isOpen)
+            if (IsOpen)
             {
                 throw new InvalidOperationException("Cannot show MTDialog that is already open");
             }
             else
             {
                 LayoutChildren.Clear();
-                key = Utilities.GenerateUniqueElementName();
-                isOpen = true;
-                afterRenderShowAction = true;
+                Key = Utilities.GenerateUniqueElementName();
+                IsOpen = true;
+                AfterRenderShowAction = true;
                 StateHasChanged();
-                tcs = new TaskCompletionSource<string>();
-                var ret = await tcs.Task;
-                _hasInstantiated = false;
+                Tcs = new TaskCompletionSource<string>();
+                var ret = await Tcs.Task;
+                hasInstantiated = false;
                 return ret;
             }
         }
@@ -154,11 +156,11 @@ namespace BlazorMdc
         /// <returns></returns>
         public async Task HideAsync()
         {
-            if (isOpen)
+            if (IsOpen)
             {
                 await JsRuntime.InvokeAsync<string>("BlazorMdc.dialog.hide", DialogElem);
-                isOpen = false;
-                _hasInstantiated = false;
+                IsOpen = false;
+                hasInstantiated = false;
                 StateHasChanged();
             }
             else
@@ -171,7 +173,7 @@ namespace BlazorMdc
         [JSInvokable("NotifyOpenedAsync")]
         public async Task NotifyOpenedAsync()
         {
-            afterDialogInitialization = true;
+            AfterDialogInitialization = true;
             StateHasChanged();
             await Task.CompletedTask;
         }
@@ -185,25 +187,25 @@ namespace BlazorMdc
         /// <returns></returns>
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            base.OnAfterRender(firstRender);
+            await base.OnAfterRenderAsync(firstRender);
 
-            if (afterRenderShowAction)
+            if (AfterRenderShowAction)
             {
                 try
                 {
-                    afterRenderShowAction = false;
-                    tcs.SetResult(await JsRuntime.InvokeAsync<string>("BlazorMdc.dialog.show", DialogElem, ObjectReference, EscapeKeyAction, ScrimClickAction));
-                    isOpen = false;
+                    AfterRenderShowAction = false;
+                    Tcs.SetResult(await JsRuntime.InvokeAsync<string>("BlazorMdc.dialog.show", DialogElem, ObjectReference, EscapeKeyAction, ScrimClickAction));
+                    IsOpen = false;
                     StateHasChanged();
                 }
                 catch
                 {
-                    tcs?.SetCanceled();
+                    Tcs?.SetCanceled();
                 }
             }
-            else if (afterDialogInitialization)
+            else if (AfterDialogInitialization)
             {
-                afterDialogInitialization = false;
+                AfterDialogInitialization = false;
 
                 foreach (var child in LayoutChildren)
                 {
@@ -212,7 +214,7 @@ namespace BlazorMdc
 
                 LayoutChildren.Clear();
 
-                _hasInstantiated = true;
+                hasInstantiated = true;
 
                 StateHasChanged();
             }

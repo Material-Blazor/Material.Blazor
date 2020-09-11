@@ -307,6 +307,10 @@ window.BlazorMdc = {
 
         setDisabled: function (elem, value) {
             elem._textField.disabled = value;
+        },
+
+        setType: function (inputElem, value) {
+            inputElem.setAttribute("type", value);
         }
     },
 

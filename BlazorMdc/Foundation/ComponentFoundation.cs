@@ -151,7 +151,6 @@ namespace BlazorMdc.Internal
             if (!string.IsNullOrWhiteSpace(Tooltip))
             {
                 nonStylisticAttributes.Add("aria-describedby", TooltipId.ToString());
-                TooltipService.AddTooltip(TooltipId, new MarkupString(Tooltip));
             }
 
             if (splatType != SplatType.ClassAndStyleOnly)
@@ -316,6 +315,11 @@ namespace BlazorMdc.Internal
             if (firstRender)
             {
                 await InitializeMdcComponent();
+                
+                if (!string.IsNullOrWhiteSpace(Tooltip))
+                {
+                    TooltipService.AddTooltip(TooltipId, new MarkupString(Tooltip));
+                }
             }
         }
     }

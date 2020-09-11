@@ -11,7 +11,7 @@ namespace BlazorMdcWebsite.Components.Pages
     public partial class Index
     {
         [Inject] IJSRuntime JsRuntime { get; set; }
-        [Inject] IMTAnimatedNavigationManager AnimatedNavigationManager { get; set; }
+        [Inject] IMTAnimatedNavigationManager AnimatedNavigationService { get; set; }
 
 #if DEBUG
         private string BuildMode { get; set; } = "debug";
@@ -36,14 +36,14 @@ namespace BlazorMdcWebsite.Components.Pages
         private async Task NavigateToDocsAsync()
         {
             var baseURI = await JsRuntime.InvokeAsync<object>("BlazorMdcWebsite.baseHref.getBaseURI");
-            AnimatedNavigationManager.NavigateTo($"{baseURI}docs", true);
+            AnimatedNavigationService.NavigateTo($"{baseURI}docs", true);
         }
 
 
 
         private void NavigateToButton()
         {
-            AnimatedNavigationManager.NavigateTo("button");
+            AnimatedNavigationService.NavigateTo("button");
         }
     }
 }

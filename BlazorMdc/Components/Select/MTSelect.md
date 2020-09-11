@@ -19,6 +19,16 @@ A [Material Select Menu](https://github.com/material-components/material-compone
 - Several ArgumentExceptions can also be thrown for such things as a missing or empty List, a List that has multiple identical SelectedValues, and missing Value bindings.
 - Applies [density subsystem](xref:A.Density) - note that filled selects with denisty of -2 or less ignore labels by design within Material Theme.
 
+## Assisting Blazor Rendering with `@key`
+
+- MTSelect renders similar table rows with a `foreach` loop;
+- In general each item rendered in a loop in Blazor should be supplied with a unique object via the `@key` attribute - see [Blazor University](https://blazor-university.com/components/render-trees/optimising-using-key/);
+- MTSelect by default uses the `SelectedValue` property of each item in the `Items` parameter as the key, however you can override this. Blazor MDC does this because we have had instances where Blazor crashes with the default key giving an exception message such as "The given key 'MyObject' was not present";
+- You can provide a function delegate to the `GetKeysFunc` parameter - we have used two variants of this:
+  - First to get a unique `Id` property that happens to be in our item's class: `GetKeysFunc="@((item) => item.Id)"`; and
+  - Second using a "fake key" where we create a GUID to act as the key: `GetKeysFunc="@((item) => Guid.NewGuid())"`.
+  - You can see an example of this in the [MTList demonstration website page's code](https://github.com/BlazorMdc/BlazorMdc/blob/main/BlazorMdcWebsite.Components/Pages/List.razor#L155).
+
 &nbsp;
 
 &nbsp;

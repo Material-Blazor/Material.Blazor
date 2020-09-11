@@ -3,7 +3,7 @@
     /// <summary>
     /// Configuration for <see cref="IMTAnimatedNavigationManager"/>.
     /// </summary>
-    public class MTAnimatedNaviationManagerConfiguration
+    public class MTAnimatedNavigationManagerServiceConfiguration
     {
         public const bool DefaultApplyAnimation = false;
         public const int DefaultAnimationTime = 500;
@@ -12,7 +12,7 @@
         /// <summary>
         /// A reference to the animated navigation manager service.
         /// </summary>
-        internal AnimatedNavigationManager AnimatedNavigationManager { get; set; }
+        internal AnimatedNavigationManagerService AnimatedNavigationManager { get; set; }
 
 
         private bool _applyAnimation = DefaultApplyAnimation;
@@ -41,6 +41,6 @@
         /// <summary>
         /// Sets the animation sequence time in milliseconds (default 500).
         /// </summary>
-        public int AnimationTime { get; set; }
+        public int AnimationTime { get; set; } = DefaultAnimationTime;
     }
 }

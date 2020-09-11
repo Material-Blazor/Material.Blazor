@@ -121,12 +121,6 @@ namespace BlazorMdc
 
 
         /// <inheritdoc/>
-        protected override void OnParametersSet()
-        {
-        }
-
-
-        /// <inheritdoc/>
         private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("BlazorMdc.textField.init", ElementReference);
     }
 }

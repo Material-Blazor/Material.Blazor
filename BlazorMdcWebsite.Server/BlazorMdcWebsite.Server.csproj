@@ -5,6 +5,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\BlazorMdcWebsite.Components\BlazorMdcWebsite.Components.csproj" />
 	</ItemGroup>
 
