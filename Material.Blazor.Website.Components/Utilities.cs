@@ -1,6 +1,6 @@
 ﻿using Material.Blazor;
 
-namespace Material.BlazorWebsite.Components
+namespace Material.Blazor.Website.Components
 {
     public static class Utilities
     {

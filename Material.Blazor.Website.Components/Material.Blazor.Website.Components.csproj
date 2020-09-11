@@ -44,23 +44,23 @@
 			Outputs="@(OutputsCss);@(OutputsJs)">-->
 
 	<Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">
-		<Exec Command="docker build -t blazormdcweb_static_assets -f build-static-assets.Dockerfile ." />
+		<Exec Command="docker build -t mbw_static_assets -f build-static-assets.Dockerfile ." />
 
 		<Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
 		<Exec Command="mkdir wwwroot/css" IgnoreExitCode="true" />
 		<Exec Command="mkdir wwwroot\css" IgnoreExitCode="true" />
 
-		<Exec Command="docker run --rm blazormdcweb_static_assets cat blue-square-theme.css &gt; wwwroot/css/blue-square-theme.css" />
-		<Exec Command="docker run --rm blazormdcweb_static_assets cat blue-square-theme.min.css &gt; wwwroot/css/blue-square-theme.min.css" />
+		<Exec Command="docker run --rm mbw_static_assets cat blue-square-theme.css &gt; wwwroot/css/blue-square-theme.css" />
+		<Exec Command="docker run --rm mbw_static_assets cat blue-square-theme.min.css &gt; wwwroot/css/blue-square-theme.min.css" />
 
-		<Exec Command="docker run --rm blazormdcweb_static_assets cat mt-default-theme.css &gt; wwwroot/css/mt-default-theme.css" />
-		<Exec Command="docker run --rm blazormdcweb_static_assets cat mt-default-theme.min.css &gt; wwwroot/css/mt-default-theme.min.css" />
+		<Exec Command="docker run --rm mbw_static_assets cat mt-default-theme.css &gt; wwwroot/css/mt-default-theme.css" />
+		<Exec Command="docker run --rm mbw_static_assets cat mt-default-theme.min.css &gt; wwwroot/css/mt-default-theme.min.css" />
 
-		<Exec Command="docker run --rm blazormdcweb_static_assets cat red-round-theme.css &gt; wwwroot/css/red-round-theme.css" />
-		<Exec Command="docker run --rm blazormdcweb_static_assets cat red-round-theme.min.css &gt; wwwroot/css/red-round-theme.min.css" />
+		<Exec Command="docker run --rm mbw_static_assets cat red-round-theme.css &gt; wwwroot/css/red-round-theme.css" />
+		<Exec Command="docker run --rm mbw_static_assets cat red-round-theme.min.css &gt; wwwroot/css/red-round-theme.min.css" />
 
-		<Exec Command="docker run --rm blazormdcweb_static_assets cat varied-theme.css &gt; wwwroot/css/varied-theme.css" />
-		<Exec Command="docker run --rm blazormdcweb_static_assets cat varied-theme.min.css &gt; wwwroot/css/varied-theme.min.css" />
+		<Exec Command="docker run --rm mbw_static_assets cat varied-theme.css &gt; wwwroot/css/varied-theme.css" />
+		<Exec Command="docker run --rm mbw_static_assets cat varied-theme.min.css &gt; wwwroot/css/varied-theme.min.css" />
 	</Target>
 
 </Project>

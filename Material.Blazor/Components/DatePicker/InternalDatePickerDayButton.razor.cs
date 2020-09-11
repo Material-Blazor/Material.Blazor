@@ -70,14 +70,14 @@ namespace Material.Blazor.Internal
 
                 switch (criteria)
                 {
-                    case BlazorMdc.MBDateSelectionCriteria.WeekendsOnly:
+                    case MBDateSelectionCriteria.WeekendsOnly:
                         if ((DisplayDate.DayOfWeek != DayOfWeek.Sunday) && (DisplayDate.DayOfWeek != DayOfWeek.Saturday))
                         {
                             return true;
                         }
                         break;
 
-                    case BlazorMdc.MBDateSelectionCriteria.WeekdaysOnly:
+                    case MBDateSelectionCriteria.WeekdaysOnly:
                         if ((DisplayDate.DayOfWeek == DayOfWeek.Sunday) || (DisplayDate.DayOfWeek == DayOfWeek.Saturday))
                         {
                             return true;
