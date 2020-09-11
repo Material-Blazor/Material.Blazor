@@ -81,11 +81,7 @@
 <h1 id="installation">Installation</h1>
 
 <p>Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add the CSS and JS in your html (there are non-minified unbundled files for BlazorMdc.css &amp; BlazorMds.js to reference if you need them for debugging purposes).
-Reference the <code>BlazorMdc</code> namespace with <code>@using BlazorMdc</code> to your <code>_Imports.razor</code> file. There are two optional services in BlazorMdc:</p>
-<ul>
-<li>If you want to use toasts via <code>MTToastAnchor</code> add <code>services.AddMTToastService();</code> to your <code>ConfigureServices</code> function for Blazor Server or to the <code>Main()</code> function for Blazor WebAssembly, and</li>
-<li>If you want animated page navigation using <code>MTAnimationdNavigation</code> add <code>services.AddMTAnimatedNavigationManager();</code> to <code>ConfigureServices</code>.</li>
-</ul>
+Reference the <code>BlazorMdc</code> namespace with <code>@using BlazorMdc</code> to your <code>_Imports.razor</code> file.</p>
 <h2 id="directions-for-using-blazor-mdc-bundled-css-and-js">Directions for using Blazor MDC bundled CSS and JS</h2>
 <p><em><strong>This is the recommended way to install Blazor MDC.</strong></em></p>
 <p>We bundle the Material Theme CSS and JS into BlazorMdc for your convenience along with <a href="https://material.io/resources/icons/?style=baseline">Material Icons</a> which are essential for BlazorMdc. You will need to add two items to your index.html/_Host.cshtml file. Place this in the the <code>&lt;head&gt;</code> tag:</p>
@@ -122,9 +118,9 @@ if you want to create your own theme using Material Theme SASS mixins - we have 
 </li>
 </ul>
 <h2 id="services-and-anchor">Services and Anchor</h2>
-<p>Blazor MDC has three services for the animated navigation manager, toasts and tooltips. We strongly advise you to use these in your project
+<p>Blazor MDC has three services for animated navigation, toasts, and tooltips. We strongly advise you to use these in your project
 because regular component tooltips will fail if you don't, although they are optional. To register the services:</p>
-<pre><code class="lang-csharp">serviceCollection.AddMTServices(
+<pre><code class="lang-csharp">services.AddMTServices(
     toastServiceConfiguration: new MTToastServiceConfiguration()
     {
         InfoDefaultHeading = &quot;Info&quot;,
@@ -135,15 +131,15 @@ because regular component tooltips will fail if you don't, although they are opt
         MaxToastsShowing = 5
     },
 
-    animatedNavigationManagerConfiguration: new MTAnimatedNaviationManagerConfiguration()
+    animatedNavigationServiceConfiguration: new MTAnimatedNavigationManagerServiceConfiguration()
     {
         ApplyAnimation = true,
         AnimationTime = 300
     }
 );
 </code></pre>
-<p>The two configuratoins are optional - see <a class="xref" href="../api/BlazorMdc.MTToastServiceConfiguration.html">MTToastServiceConfiguration</a> and <a class="xref" href="../api/BlazorMdc.MTAnimatedNaviationManagerConfiguration.html">MTAnimatedNaviationManagerConfiguration</a>.</p>
-<p>When you use the services you must also place an anchor component at the top of <code>MainLayout.razor</code>, which must not be inside any other components or divs:</p>
+<p>The two configurations are optional - see <a class="xref" href="../api/BlazorMdc.MTToastServiceConfiguration.html">MTToastServiceConfiguration</a> and <a class="xref" href="../api/BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.html">MTAnimatedNavigationManagerServiceConfiguration</a>.</p>
+<p>When you use the services you must also place an anchor component at the top of <code>App.razor</code> - this must not be inside any other components or divs:</p>
 <pre><code class="lang-html">&lt;MTAnchor /&gt;
 </code></pre>
 <h2 id="binding">Binding</h2>
@@ -163,7 +159,7 @@ because regular component tooltips will fail if you don't, although they are opt
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/96285ab8f8d6ad900ed1fa1479b786b39f74f9bb/articles/Installation.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/371733c454b3448fb89e0b6931556820cf13609c/articles/Installation.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

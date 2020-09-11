@@ -88,16 +88,16 @@
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
-      <h4><a class="xref" href="BlazorMdc.MTAnimatedNaviationManagerConfiguration.html">MTAnimatedNaviationManagerConfiguration</a></h4>
-      <section><p>Configuration for <a class="xref" href="BlazorMdc.IMTAnimatedNavigationManager.html">IMTAnimatedNavigationManager</a>.</p>
-</section>
       <h4><a class="xref" href="BlazorMdc.MTAnimatedNavigation.html">MTAnimatedNavigation</a></h4>
       <section><p>This component works with <a class="xref" href="BlazorMdc.IMTAnimatedNavigationManager.html">IMTAnimatedNavigationManager</a> to navigate your page navigation.
 Place this component around your app's entire @Body render fragment (potentially in MainLayout.razor),
 but not surrounding your app bars and navigation menus - you don't want those to fade in and out when
 your user navigates from one page to another.</p>
 </section>
-      <h4><a class="xref" href="BlazorMdc.MTAutocomplete.html">MTAutocomplete</a></h4>
+      <h4><a class="xref" href="BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.html">MTAnimatedNavigationManagerServiceConfiguration</a></h4>
+      <section><p>Configuration for <a class="xref" href="BlazorMdc.IMTAnimatedNavigationManager.html">IMTAnimatedNavigationManager</a>.</p>
+</section>
+      <h4><a class="xref" href="BlazorMdc.MTAutocompleteTextField.html">MTAutocompleteTextField</a></h4>
       <section><p>An autocomplete built using an <a class="xref" href="BlazorMdc.MTTextField.html">MTTextField</a> with the anchor and drop
 down list implementation from a Material Theme select.</p>
 </section>
@@ -259,12 +259,14 @@ the <a class="xref" href="BlazorMdc.MTToastServiceConfiguration.html">MTToastSer
       <h4><a class="xref" href="BlazorMdc.MTTopAppBar.html">MTTopAppBar</a></h4>
       <section><p>A Material Theme top app bar</p>
 </section>
+      <h4><a class="xref" href="BlazorMdc.MTVersion.html">MTVersion</a></h4>
+      <section></section>
       <h4><a class="xref" href="BlazorMdc.ServiceCollectionExtensions.html">ServiceCollectionExtensions</a></h4>
       <section></section>
     <h3 id="interfaces">Interfaces
   </h3>
       <h4><a class="xref" href="BlazorMdc.IMTAnimatedNavigationManager.html">IMTAnimatedNavigationManager</a></h4>
-      <section><p>Interface for the animated navigation manager service. Animated navigations augment
+      <section><p>Interface for the animated navigation service. Animated navigations augment
 Blazor's NavigationManager with minor animation.</p>
 <p>
 First the current page fades out for 40% of the animation period, followed by a call to
@@ -279,7 +281,7 @@ is called without a <a class="xref" href="BlazorMdc.MTAnimatedNavigation.html">M
 </p>
 <example>
 <p>You can optionally add configuration when you add this to the service collection:</p>
-<pre><code>services.AddMTAnimatedNavigationManager(new MTAnimatedNaviationManagerConfiguration()
+<pre><code>services.AddMTAnimatedNavigationService(new MTAnimatedNaviationManagerConfiguration()
 {
     ApplyAnimation = true,
     AnimationTime = 300
@@ -384,12 +386,12 @@ is called without an <a class="xref" href="BlazorMdc.MTToastAnchor.html">MTToast
 </section>
       <h4><a class="xref" href="BlazorMdc.MTTextAlignStyle.html">MTTextAlignStyle</a></h4>
       <section><p>A helper to set the alignment of text in <a class="xref" href="BlazorMdc.MTTextField.html">MTTextField</a>, <a class="xref" href="BlazorMdc.MTTextArea.html">MTTextArea</a> and <a class="xref" href="BlazorMdc.MTSelect-1.html">MTSelect&lt;TItem&gt;</a>.</p>
-<p>Applied also to <a class="xref" href="BlazorMdc.MTAutocomplete.html">MTAutocomplete</a>, <a class="xref" href="BlazorMdc.MTDebouncedTextField.html">MTDebouncedTextField</a>, <a class="xref" href="BlazorMdc.MTNumericDoubleField.html">MTNumericDoubleField</a> and <a class="xref" href="BlazorMdc.MTNumericIntField.html">MTNumericIntField</a></p>
+<p>Applied also to <a class="xref" href="BlazorMdc.MTAutocompleteTextField.html">MTAutocompleteTextField</a>, <a class="xref" href="BlazorMdc.MTDebouncedTextField.html">MTDebouncedTextField</a>, <a class="xref" href="BlazorMdc.MTNumericDoubleField.html">MTNumericDoubleField</a> and <a class="xref" href="BlazorMdc.MTNumericIntField.html">MTNumericIntField</a></p>
 <p><a class="xref" href="BlazorMdc.MTCascadingDefaults.html">MTCascadingDefaults</a> has a default of <a class="xref" href="BlazorMdc.MTTextAlignStyle.html#BlazorMdc_MTTextAlignStyle_Default">Default</a></p>
 </section>
       <h4><a class="xref" href="BlazorMdc.MTTextInputStyle.html">MTTextInputStyle</a></h4>
       <section><p>Material Theme text field and text area input style applied to <a class="xref" href="BlazorMdc.MTTextField.html">MTTextField</a> and <a class="xref" href="BlazorMdc.MTTextArea.html">MTTextArea</a>.</p>
-<p>Applied also to <a class="xref" href="BlazorMdc.MTAutocomplete.html">MTAutocomplete</a>, <a class="xref" href="BlazorMdc.MTDebouncedTextField.html">MTDebouncedTextField</a>, <a class="xref" href="BlazorMdc.MTNumericDoubleField.html">MTNumericDoubleField</a> and <a class="xref" href="BlazorMdc.MTNumericIntField.html">MTNumericIntField</a></p>
+<p>Applied also to <a class="xref" href="BlazorMdc.MTAutocompleteTextField.html">MTAutocompleteTextField</a>, <a class="xref" href="BlazorMdc.MTDebouncedTextField.html">MTDebouncedTextField</a>, <a class="xref" href="BlazorMdc.MTNumericDoubleField.html">MTNumericDoubleField</a> and <a class="xref" href="BlazorMdc.MTNumericIntField.html">MTNumericIntField</a></p>
 <p><a class="xref" href="BlazorMdc.MTCascadingDefaults.html">MTCascadingDefaults</a> has a default of <a class="xref" href="BlazorMdc.MTTextInputStyle.html#BlazorMdc_MTTextInputStyle_Filled">Filled</a></p>
 </section>
       <h4><a class="xref" href="BlazorMdc.MTToastCloseMethod.html">MTToastCloseMethod</a></h4>

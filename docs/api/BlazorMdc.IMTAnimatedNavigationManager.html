@@ -84,7 +84,7 @@
   
   <h1 id="BlazorMdc_IMTAnimatedNavigationManager" data-uid="BlazorMdc.IMTAnimatedNavigationManager" class="text-break">Interface IMTAnimatedNavigationManager
   </h1>
-  <div class="markdown level0 summary"><p>Interface for the animated navigation manager service. Animated navigations augment
+  <div class="markdown level0 summary"><p>Interface for the animated navigation service. Animated navigations augment
 Blazor's NavigationManager with minor animation.</p>
 <p>
 First the current page fades out for 40% of the animation period, followed by a call to
@@ -99,7 +99,7 @@ is called without a <a class="xref" href="BlazorMdc.MTAnimatedNavigation.html">M
 </p>
 <example>
 <p>You can optionally add configuration when you add this to the service collection:</p>
-<pre><code>services.AddMTAnimatedNavigationManager(new MTAnimatedNaviationManagerConfiguration()
+<pre><code>services.AddMTAnimatedNavigationService(new MTAnimatedNaviationManagerConfiguration()
 {
     ApplyAnimation = true,
     AnimationTime = 300
@@ -117,19 +117,19 @@ is called without a <a class="xref" href="BlazorMdc.MTAnimatedNavigation.html">M
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/BlazorMdc/BlazorMdc/new/96285ab8f8d6ad900ed1fa1479b786b39f74f9bb/apiSpec/new?filename=BlazorMdc_IMTAnimatedNavigationManager_Configuration.md&amp;value=---%0Auid%3A%20BlazorMdc.IMTAnimatedNavigationManager.Configuration%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/BlazorMdc/BlazorMdc/new/371733c454b3448fb89e0b6931556820cf13609c/apiSpec/new?filename=BlazorMdc_IMTAnimatedNavigationManager_Configuration.md&amp;value=---%0Auid%3A%20BlazorMdc.IMTAnimatedNavigationManager.Configuration%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/96285ab8f8d6ad900ed1fa1479b786b39f74f9bb/BlazorMdc/Model/AnimatedNavigation/IMTAnimatedNavigationManager.cs/#L33">View Source</a>
+    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/371733c454b3448fb89e0b6931556820cf13609c/BlazorMdc/Model/AnimatedNavigation/IMTAnimatedNavigationManager.cs/#L33">View Source</a>
   </span>
   <a id="BlazorMdc_IMTAnimatedNavigationManager_Configuration_" data-uid="BlazorMdc.IMTAnimatedNavigationManager.Configuration*"></a>
   <h4 id="BlazorMdc_IMTAnimatedNavigationManager_Configuration" data-uid="BlazorMdc.IMTAnimatedNavigationManager.Configuration">Configuration</h4>
-  <div class="markdown level1 summary"><p>Animation Manager configuration.</p>
+  <div class="markdown level1 summary"><p>Animated Navigation Service configuration.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">MTAnimatedNaviationManagerConfiguration Configuration { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">MTAnimatedNavigationManagerServiceConfiguration Configuration { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -141,7 +141,7 @@ is called without a <a class="xref" href="BlazorMdc.MTAnimatedNavigation.html">M
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="BlazorMdc.MTAnimatedNaviationManagerConfiguration.html">MTAnimatedNaviationManagerConfiguration</a></td>
+        <td><a class="xref" href="BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.html">MTAnimatedNavigationManagerServiceConfiguration</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -150,10 +150,10 @@ is called without a <a class="xref" href="BlazorMdc.MTAnimatedNavigation.html">M
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/BlazorMdc/BlazorMdc/new/96285ab8f8d6ad900ed1fa1479b786b39f74f9bb/apiSpec/new?filename=BlazorMdc_IMTAnimatedNavigationManager_NavigateTo_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20BlazorMdc.IMTAnimatedNavigationManager.NavigateTo(System.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/BlazorMdc/BlazorMdc/new/371733c454b3448fb89e0b6931556820cf13609c/apiSpec/new?filename=BlazorMdc_IMTAnimatedNavigationManager_NavigateTo_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20BlazorMdc.IMTAnimatedNavigationManager.NavigateTo(System.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/96285ab8f8d6ad900ed1fa1479b786b39f74f9bb/BlazorMdc/Model/AnimatedNavigation/IMTAnimatedNavigationManager.cs/#L54">View Source</a>
+    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/371733c454b3448fb89e0b6931556820cf13609c/BlazorMdc/Model/AnimatedNavigation/IMTAnimatedNavigationManager.cs/#L54">View Source</a>
   </span>
   <a id="BlazorMdc_IMTAnimatedNavigationManager_NavigateTo_" data-uid="BlazorMdc.IMTAnimatedNavigationManager.NavigateTo*"></a>
   <h4 id="BlazorMdc_IMTAnimatedNavigationManager_NavigateTo_System_String_System_Boolean_" data-uid="BlazorMdc.IMTAnimatedNavigationManager.NavigateTo(System.String,System.Boolean)">NavigateTo(String, Boolean)</h4>
@@ -196,10 +196,10 @@ is called without a <a class="xref" href="BlazorMdc.MTAnimatedNavigation.html">M
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/BlazorMdc/BlazorMdc/new/96285ab8f8d6ad900ed1fa1479b786b39f74f9bb/apiSpec/new?filename=BlazorMdc_IMTAnimatedNavigationManager.md&amp;value=---%0Auid%3A%20BlazorMdc.IMTAnimatedNavigationManager%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/BlazorMdc/BlazorMdc/new/371733c454b3448fb89e0b6931556820cf13609c/apiSpec/new?filename=BlazorMdc_IMTAnimatedNavigationManager.md&amp;value=---%0Auid%3A%20BlazorMdc.IMTAnimatedNavigationManager%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/96285ab8f8d6ad900ed1fa1479b786b39f74f9bb/BlazorMdc/Model/AnimatedNavigation/IMTAnimatedNavigationManager.cs/#L28" class="contribution-link">View Source</a>
+                    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/371733c454b3448fb89e0b6931556820cf13609c/BlazorMdc/Model/AnimatedNavigation/IMTAnimatedNavigationManager.cs/#L28" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

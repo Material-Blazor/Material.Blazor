@@ -1,6 +1,9 @@
 ### YamlMime:XRefMap
 sorted: true
 references:
+- uid: A.AnimatedNavigation
+  name: AnimatedNavigation
+  href: articles/AnimatedNavigation.html
 - uid: A.CascadingDefaults
   name: CascadingDefaults
   href: articles/CascadingDefaults.html
@@ -19,6 +22,9 @@ references:
 - uid: A.DevelopmentEnvironment
   name: DevelopmentEnvironment
   href: articles/DevelopmentEnvironment.html
+- uid: A.Icon
+  name: Icon
+  href: articles/Icon.html
 - uid: A.Installation
   name: Installation
   href: articles/Installation.html
@@ -34,9 +40,18 @@ references:
 - uid: A.Principles
   name: Principles
   href: articles/Principles.html
+- uid: A.ReleaseNotes
+  name: ReleaseNotes
+  href: ReleaseNotes.html
 - uid: A.Services
   name: Services
   href: articles/Services.html
+- uid: A.Toast
+  name: Toast
+  href: articles/Toast.html
+- uid: A.Tooltip
+  name: Tooltip
+  href: articles/Tooltip.html
 - uid: A.TwoWayBinding
   name: TwoWayBinding
   href: articles/TwoWayBinding.html
@@ -1145,75 +1160,6 @@ references:
   fullName.vb: BlazorMdc.Internal.ValidatingInputComponentFoundation(Of T).ValidateItemList
   nameWithType: ValidatingInputComponentFoundation<T>.ValidateItemList
   nameWithType.vb: ValidatingInputComponentFoundation(Of T).ValidateItemList
-- uid: BlazorMdc.Model
-  name: BlazorMdc.Model
-  href: api/BlazorMdc.Model.html
-  commentId: N:BlazorMdc.Model
-  fullName: BlazorMdc.Model
-  nameWithType: BlazorMdc.Model
-- uid: BlazorMdc.Model.MTVersion
-  name: MTVersion
-  href: api/BlazorMdc.Model.MTVersion.html
-  commentId: T:BlazorMdc.Model.MTVersion
-  fullName: BlazorMdc.Model.MTVersion
-  nameWithType: MTVersion
-- uid: BlazorMdc.Model.MTVersion.BlazorMdcVersion
-  name: BlazorMdcVersion()
-  href: api/BlazorMdc.Model.MTVersion.html#BlazorMdc_Model_MTVersion_BlazorMdcVersion
-  commentId: M:BlazorMdc.Model.MTVersion.BlazorMdcVersion
-  fullName: BlazorMdc.Model.MTVersion.BlazorMdcVersion()
-  nameWithType: MTVersion.BlazorMdcVersion()
-- uid: BlazorMdc.Model.MTVersion.BlazorMdcVersion*
-  name: BlazorMdcVersion
-  href: api/BlazorMdc.Model.MTVersion.html#BlazorMdc_Model_MTVersion_BlazorMdcVersion_
-  commentId: Overload:BlazorMdc.Model.MTVersion.BlazorMdcVersion
-  isSpec: "True"
-  fullName: BlazorMdc.Model.MTVersion.BlazorMdcVersion
-  nameWithType: MTVersion.BlazorMdcVersion
-- uid: BlazorMdc.MTAnimatedNaviationManagerConfiguration
-  name: MTAnimatedNaviationManagerConfiguration
-  href: api/BlazorMdc.MTAnimatedNaviationManagerConfiguration.html
-  commentId: T:BlazorMdc.MTAnimatedNaviationManagerConfiguration
-  fullName: BlazorMdc.MTAnimatedNaviationManagerConfiguration
-  nameWithType: MTAnimatedNaviationManagerConfiguration
-- uid: BlazorMdc.MTAnimatedNaviationManagerConfiguration.AnimationTime
-  name: AnimationTime
-  href: api/BlazorMdc.MTAnimatedNaviationManagerConfiguration.html#BlazorMdc_MTAnimatedNaviationManagerConfiguration_AnimationTime
-  commentId: P:BlazorMdc.MTAnimatedNaviationManagerConfiguration.AnimationTime
-  fullName: BlazorMdc.MTAnimatedNaviationManagerConfiguration.AnimationTime
-  nameWithType: MTAnimatedNaviationManagerConfiguration.AnimationTime
-- uid: BlazorMdc.MTAnimatedNaviationManagerConfiguration.AnimationTime*
-  name: AnimationTime
-  href: api/BlazorMdc.MTAnimatedNaviationManagerConfiguration.html#BlazorMdc_MTAnimatedNaviationManagerConfiguration_AnimationTime_
-  commentId: Overload:BlazorMdc.MTAnimatedNaviationManagerConfiguration.AnimationTime
-  isSpec: "True"
-  fullName: BlazorMdc.MTAnimatedNaviationManagerConfiguration.AnimationTime
-  nameWithType: MTAnimatedNaviationManagerConfiguration.AnimationTime
-- uid: BlazorMdc.MTAnimatedNaviationManagerConfiguration.ApplyAnimation
-  name: ApplyAnimation
-  href: api/BlazorMdc.MTAnimatedNaviationManagerConfiguration.html#BlazorMdc_MTAnimatedNaviationManagerConfiguration_ApplyAnimation
-  commentId: P:BlazorMdc.MTAnimatedNaviationManagerConfiguration.ApplyAnimation
-  fullName: BlazorMdc.MTAnimatedNaviationManagerConfiguration.ApplyAnimation
-  nameWithType: MTAnimatedNaviationManagerConfiguration.ApplyAnimation
-- uid: BlazorMdc.MTAnimatedNaviationManagerConfiguration.ApplyAnimation*
-  name: ApplyAnimation
-  href: api/BlazorMdc.MTAnimatedNaviationManagerConfiguration.html#BlazorMdc_MTAnimatedNaviationManagerConfiguration_ApplyAnimation_
-  commentId: Overload:BlazorMdc.MTAnimatedNaviationManagerConfiguration.ApplyAnimation
-  isSpec: "True"
-  fullName: BlazorMdc.MTAnimatedNaviationManagerConfiguration.ApplyAnimation
-  nameWithType: MTAnimatedNaviationManagerConfiguration.ApplyAnimation
-- uid: BlazorMdc.MTAnimatedNaviationManagerConfiguration.DefaultAnimationTime
-  name: DefaultAnimationTime
-  href: api/BlazorMdc.MTAnimatedNaviationManagerConfiguration.html#BlazorMdc_MTAnimatedNaviationManagerConfiguration_DefaultAnimationTime
-  commentId: F:BlazorMdc.MTAnimatedNaviationManagerConfiguration.DefaultAnimationTime
-  fullName: BlazorMdc.MTAnimatedNaviationManagerConfiguration.DefaultAnimationTime
-  nameWithType: MTAnimatedNaviationManagerConfiguration.DefaultAnimationTime
-- uid: BlazorMdc.MTAnimatedNaviationManagerConfiguration.DefaultApplyAnimation
-  name: DefaultApplyAnimation
-  href: api/BlazorMdc.MTAnimatedNaviationManagerConfiguration.html#BlazorMdc_MTAnimatedNaviationManagerConfiguration_DefaultApplyAnimation
-  commentId: F:BlazorMdc.MTAnimatedNaviationManagerConfiguration.DefaultApplyAnimation
-  fullName: BlazorMdc.MTAnimatedNaviationManagerConfiguration.DefaultApplyAnimation
-  nameWithType: MTAnimatedNaviationManagerConfiguration.DefaultApplyAnimation
 - uid: BlazorMdc.MTAnimatedNavigation
   name: MTAnimatedNavigation
   href: api/BlazorMdc.MTAnimatedNavigation.html
@@ -1259,220 +1205,264 @@ references:
   isSpec: "True"
   fullName: BlazorMdc.MTAnimatedNavigation.OnInitialized
   nameWithType: MTAnimatedNavigation.OnInitialized
-- uid: BlazorMdc.MTAutocomplete
-  name: MTAutocomplete
-  href: api/BlazorMdc.MTAutocomplete.html
-  commentId: T:BlazorMdc.MTAutocomplete
-  fullName: BlazorMdc.MTAutocomplete
-  nameWithType: MTAutocomplete
-- uid: BlazorMdc.MTAutocomplete.AllowBlankResult
-  name: AllowBlankResult
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_AllowBlankResult
-  commentId: P:BlazorMdc.MTAutocomplete.AllowBlankResult
-  fullName: BlazorMdc.MTAutocomplete.AllowBlankResult
-  nameWithType: MTAutocomplete.AllowBlankResult
-- uid: BlazorMdc.MTAutocomplete.AllowBlankResult*
-  name: AllowBlankResult
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_AllowBlankResult_
-  commentId: Overload:BlazorMdc.MTAutocomplete.AllowBlankResult
+- uid: BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration
+  name: MTAnimatedNavigationManagerServiceConfiguration
+  href: api/BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.html
+  commentId: T:BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration
+  fullName: BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration
+  nameWithType: MTAnimatedNavigationManagerServiceConfiguration
+- uid: BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.AnimationTime
+  name: AnimationTime
+  href: api/BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.html#BlazorMdc_MTAnimatedNavigationManagerServiceConfiguration_AnimationTime
+  commentId: P:BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.AnimationTime
+  fullName: BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.AnimationTime
+  nameWithType: MTAnimatedNavigationManagerServiceConfiguration.AnimationTime
+- uid: BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.AnimationTime*
+  name: AnimationTime
+  href: api/BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.html#BlazorMdc_MTAnimatedNavigationManagerServiceConfiguration_AnimationTime_
+  commentId: Overload:BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.AnimationTime
   isSpec: "True"
-  fullName: BlazorMdc.MTAutocomplete.AllowBlankResult
-  nameWithType: MTAutocomplete.AllowBlankResult
-- uid: BlazorMdc.MTAutocomplete.Density
-  name: Density
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_Density
-  commentId: P:BlazorMdc.MTAutocomplete.Density
-  fullName: BlazorMdc.MTAutocomplete.Density
-  nameWithType: MTAutocomplete.Density
-- uid: BlazorMdc.MTAutocomplete.Density*
-  name: Density
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_Density_
-  commentId: Overload:BlazorMdc.MTAutocomplete.Density
+  fullName: BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.AnimationTime
+  nameWithType: MTAnimatedNavigationManagerServiceConfiguration.AnimationTime
+- uid: BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.ApplyAnimation
+  name: ApplyAnimation
+  href: api/BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.html#BlazorMdc_MTAnimatedNavigationManagerServiceConfiguration_ApplyAnimation
+  commentId: P:BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.ApplyAnimation
+  fullName: BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.ApplyAnimation
+  nameWithType: MTAnimatedNavigationManagerServiceConfiguration.ApplyAnimation
+- uid: BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.ApplyAnimation*
+  name: ApplyAnimation
+  href: api/BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.html#BlazorMdc_MTAnimatedNavigationManagerServiceConfiguration_ApplyAnimation_
+  commentId: Overload:BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.ApplyAnimation
   isSpec: "True"
-  fullName: BlazorMdc.MTAutocomplete.Density
-  nameWithType: MTAutocomplete.Density
-- uid: BlazorMdc.MTAutocomplete.Dispose(System.Boolean)
+  fullName: BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.ApplyAnimation
+  nameWithType: MTAnimatedNavigationManagerServiceConfiguration.ApplyAnimation
+- uid: BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.DefaultAnimationTime
+  name: DefaultAnimationTime
+  href: api/BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.html#BlazorMdc_MTAnimatedNavigationManagerServiceConfiguration_DefaultAnimationTime
+  commentId: F:BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.DefaultAnimationTime
+  fullName: BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.DefaultAnimationTime
+  nameWithType: MTAnimatedNavigationManagerServiceConfiguration.DefaultAnimationTime
+- uid: BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.DefaultApplyAnimation
+  name: DefaultApplyAnimation
+  href: api/BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.html#BlazorMdc_MTAnimatedNavigationManagerServiceConfiguration_DefaultApplyAnimation
+  commentId: F:BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.DefaultApplyAnimation
+  fullName: BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.DefaultApplyAnimation
+  nameWithType: MTAnimatedNavigationManagerServiceConfiguration.DefaultApplyAnimation
+- uid: BlazorMdc.MTAutocompleteTextField
+  name: MTAutocompleteTextField
+  href: api/BlazorMdc.MTAutocompleteTextField.html
+  commentId: T:BlazorMdc.MTAutocompleteTextField
+  fullName: BlazorMdc.MTAutocompleteTextField
+  nameWithType: MTAutocompleteTextField
+- uid: BlazorMdc.MTAutocompleteTextField.AllowBlankResult
+  name: AllowBlankResult
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_AllowBlankResult
+  commentId: P:BlazorMdc.MTAutocompleteTextField.AllowBlankResult
+  fullName: BlazorMdc.MTAutocompleteTextField.AllowBlankResult
+  nameWithType: MTAutocompleteTextField.AllowBlankResult
+- uid: BlazorMdc.MTAutocompleteTextField.AllowBlankResult*
+  name: AllowBlankResult
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_AllowBlankResult_
+  commentId: Overload:BlazorMdc.MTAutocompleteTextField.AllowBlankResult
+  isSpec: "True"
+  fullName: BlazorMdc.MTAutocompleteTextField.AllowBlankResult
+  nameWithType: MTAutocompleteTextField.AllowBlankResult
+- uid: BlazorMdc.MTAutocompleteTextField.Density
+  name: Density
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_Density
+  commentId: P:BlazorMdc.MTAutocompleteTextField.Density
+  fullName: BlazorMdc.MTAutocompleteTextField.Density
+  nameWithType: MTAutocompleteTextField.Density
+- uid: BlazorMdc.MTAutocompleteTextField.Density*
+  name: Density
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_Density_
+  commentId: Overload:BlazorMdc.MTAutocompleteTextField.Density
+  isSpec: "True"
+  fullName: BlazorMdc.MTAutocompleteTextField.Density
+  nameWithType: MTAutocompleteTextField.Density
+- uid: BlazorMdc.MTAutocompleteTextField.Dispose(System.Boolean)
   name: Dispose(Boolean)
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_Dispose_System_Boolean_
-  commentId: M:BlazorMdc.MTAutocomplete.Dispose(System.Boolean)
-  fullName: BlazorMdc.MTAutocomplete.Dispose(System.Boolean)
-  nameWithType: MTAutocomplete.Dispose(Boolean)
-- uid: BlazorMdc.MTAutocomplete.Dispose*
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_Dispose_System_Boolean_
+  commentId: M:BlazorMdc.MTAutocompleteTextField.Dispose(System.Boolean)
+  fullName: BlazorMdc.MTAutocompleteTextField.Dispose(System.Boolean)
+  nameWithType: MTAutocompleteTextField.Dispose(Boolean)
+- uid: BlazorMdc.MTAutocompleteTextField.Dispose*
   name: Dispose
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_Dispose_
-  commentId: Overload:BlazorMdc.MTAutocomplete.Dispose
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_Dispose_
+  commentId: Overload:BlazorMdc.MTAutocompleteTextField.Dispose
   isSpec: "True"
-  fullName: BlazorMdc.MTAutocomplete.Dispose
-  nameWithType: MTAutocomplete.Dispose
-- uid: BlazorMdc.MTAutocomplete.IconFoundry
+  fullName: BlazorMdc.MTAutocompleteTextField.Dispose
+  nameWithType: MTAutocompleteTextField.Dispose
+- uid: BlazorMdc.MTAutocompleteTextField.IconFoundry
   name: IconFoundry
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_IconFoundry
-  commentId: P:BlazorMdc.MTAutocomplete.IconFoundry
-  fullName: BlazorMdc.MTAutocomplete.IconFoundry
-  nameWithType: MTAutocomplete.IconFoundry
-- uid: BlazorMdc.MTAutocomplete.IconFoundry*
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_IconFoundry
+  commentId: P:BlazorMdc.MTAutocompleteTextField.IconFoundry
+  fullName: BlazorMdc.MTAutocompleteTextField.IconFoundry
+  nameWithType: MTAutocompleteTextField.IconFoundry
+- uid: BlazorMdc.MTAutocompleteTextField.IconFoundry*
   name: IconFoundry
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_IconFoundry_
-  commentId: Overload:BlazorMdc.MTAutocomplete.IconFoundry
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_IconFoundry_
+  commentId: Overload:BlazorMdc.MTAutocompleteTextField.IconFoundry
   isSpec: "True"
-  fullName: BlazorMdc.MTAutocomplete.IconFoundry
-  nameWithType: MTAutocomplete.IconFoundry
-- uid: BlazorMdc.MTAutocomplete.IgnoreWhitespace
+  fullName: BlazorMdc.MTAutocompleteTextField.IconFoundry
+  nameWithType: MTAutocompleteTextField.IconFoundry
+- uid: BlazorMdc.MTAutocompleteTextField.IgnoreWhitespace
   name: IgnoreWhitespace
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_IgnoreWhitespace
-  commentId: P:BlazorMdc.MTAutocomplete.IgnoreWhitespace
-  fullName: BlazorMdc.MTAutocomplete.IgnoreWhitespace
-  nameWithType: MTAutocomplete.IgnoreWhitespace
-- uid: BlazorMdc.MTAutocomplete.IgnoreWhitespace*
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_IgnoreWhitespace
+  commentId: P:BlazorMdc.MTAutocompleteTextField.IgnoreWhitespace
+  fullName: BlazorMdc.MTAutocompleteTextField.IgnoreWhitespace
+  nameWithType: MTAutocompleteTextField.IgnoreWhitespace
+- uid: BlazorMdc.MTAutocompleteTextField.IgnoreWhitespace*
   name: IgnoreWhitespace
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_IgnoreWhitespace_
-  commentId: Overload:BlazorMdc.MTAutocomplete.IgnoreWhitespace
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_IgnoreWhitespace_
+  commentId: Overload:BlazorMdc.MTAutocompleteTextField.IgnoreWhitespace
   isSpec: "True"
-  fullName: BlazorMdc.MTAutocomplete.IgnoreWhitespace
-  nameWithType: MTAutocomplete.IgnoreWhitespace
-- uid: BlazorMdc.MTAutocomplete.Label
+  fullName: BlazorMdc.MTAutocompleteTextField.IgnoreWhitespace
+  nameWithType: MTAutocompleteTextField.IgnoreWhitespace
+- uid: BlazorMdc.MTAutocompleteTextField.Label
   name: Label
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_Label
-  commentId: P:BlazorMdc.MTAutocomplete.Label
-  fullName: BlazorMdc.MTAutocomplete.Label
-  nameWithType: MTAutocomplete.Label
-- uid: BlazorMdc.MTAutocomplete.Label*
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_Label
+  commentId: P:BlazorMdc.MTAutocompleteTextField.Label
+  fullName: BlazorMdc.MTAutocompleteTextField.Label
+  nameWithType: MTAutocompleteTextField.Label
+- uid: BlazorMdc.MTAutocompleteTextField.Label*
   name: Label
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_Label_
-  commentId: Overload:BlazorMdc.MTAutocomplete.Label
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_Label_
+  commentId: Overload:BlazorMdc.MTAutocompleteTextField.Label
   isSpec: "True"
-  fullName: BlazorMdc.MTAutocomplete.Label
-  nameWithType: MTAutocomplete.Label
-- uid: BlazorMdc.MTAutocomplete.LeadingIcon
+  fullName: BlazorMdc.MTAutocompleteTextField.Label
+  nameWithType: MTAutocompleteTextField.Label
+- uid: BlazorMdc.MTAutocompleteTextField.LeadingIcon
   name: LeadingIcon
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_LeadingIcon
-  commentId: P:BlazorMdc.MTAutocomplete.LeadingIcon
-  fullName: BlazorMdc.MTAutocomplete.LeadingIcon
-  nameWithType: MTAutocomplete.LeadingIcon
-- uid: BlazorMdc.MTAutocomplete.LeadingIcon*
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_LeadingIcon
+  commentId: P:BlazorMdc.MTAutocompleteTextField.LeadingIcon
+  fullName: BlazorMdc.MTAutocompleteTextField.LeadingIcon
+  nameWithType: MTAutocompleteTextField.LeadingIcon
+- uid: BlazorMdc.MTAutocompleteTextField.LeadingIcon*
   name: LeadingIcon
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_LeadingIcon_
-  commentId: Overload:BlazorMdc.MTAutocomplete.LeadingIcon
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_LeadingIcon_
+  commentId: Overload:BlazorMdc.MTAutocompleteTextField.LeadingIcon
   isSpec: "True"
-  fullName: BlazorMdc.MTAutocomplete.LeadingIcon
-  nameWithType: MTAutocomplete.LeadingIcon
-- uid: BlazorMdc.MTAutocomplete.MatchFromItemStart
+  fullName: BlazorMdc.MTAutocompleteTextField.LeadingIcon
+  nameWithType: MTAutocompleteTextField.LeadingIcon
+- uid: BlazorMdc.MTAutocompleteTextField.MatchFromItemStart
   name: MatchFromItemStart
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_MatchFromItemStart
-  commentId: P:BlazorMdc.MTAutocomplete.MatchFromItemStart
-  fullName: BlazorMdc.MTAutocomplete.MatchFromItemStart
-  nameWithType: MTAutocomplete.MatchFromItemStart
-- uid: BlazorMdc.MTAutocomplete.MatchFromItemStart*
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_MatchFromItemStart
+  commentId: P:BlazorMdc.MTAutocompleteTextField.MatchFromItemStart
+  fullName: BlazorMdc.MTAutocompleteTextField.MatchFromItemStart
+  nameWithType: MTAutocompleteTextField.MatchFromItemStart
+- uid: BlazorMdc.MTAutocompleteTextField.MatchFromItemStart*
   name: MatchFromItemStart
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_MatchFromItemStart_
-  commentId: Overload:BlazorMdc.MTAutocomplete.MatchFromItemStart
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_MatchFromItemStart_
+  commentId: Overload:BlazorMdc.MTAutocompleteTextField.MatchFromItemStart
   isSpec: "True"
-  fullName: BlazorMdc.MTAutocomplete.MatchFromItemStart
-  nameWithType: MTAutocomplete.MatchFromItemStart
-- uid: BlazorMdc.MTAutocomplete.NotifyClosedAsync
+  fullName: BlazorMdc.MTAutocompleteTextField.MatchFromItemStart
+  nameWithType: MTAutocompleteTextField.MatchFromItemStart
+- uid: BlazorMdc.MTAutocompleteTextField.NotifyClosedAsync
   name: NotifyClosedAsync()
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_NotifyClosedAsync
-  commentId: M:BlazorMdc.MTAutocomplete.NotifyClosedAsync
-  fullName: BlazorMdc.MTAutocomplete.NotifyClosedAsync()
-  nameWithType: MTAutocomplete.NotifyClosedAsync()
-- uid: BlazorMdc.MTAutocomplete.NotifyClosedAsync*
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_NotifyClosedAsync
+  commentId: M:BlazorMdc.MTAutocompleteTextField.NotifyClosedAsync
+  fullName: BlazorMdc.MTAutocompleteTextField.NotifyClosedAsync()
+  nameWithType: MTAutocompleteTextField.NotifyClosedAsync()
+- uid: BlazorMdc.MTAutocompleteTextField.NotifyClosedAsync*
   name: NotifyClosedAsync
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_NotifyClosedAsync_
-  commentId: Overload:BlazorMdc.MTAutocomplete.NotifyClosedAsync
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_NotifyClosedAsync_
+  commentId: Overload:BlazorMdc.MTAutocompleteTextField.NotifyClosedAsync
   isSpec: "True"
-  fullName: BlazorMdc.MTAutocomplete.NotifyClosedAsync
-  nameWithType: MTAutocomplete.NotifyClosedAsync
-- uid: BlazorMdc.MTAutocomplete.NotifySelectedAsync(System.String)
+  fullName: BlazorMdc.MTAutocompleteTextField.NotifyClosedAsync
+  nameWithType: MTAutocompleteTextField.NotifyClosedAsync
+- uid: BlazorMdc.MTAutocompleteTextField.NotifySelectedAsync(System.String)
   name: NotifySelectedAsync(String)
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_NotifySelectedAsync_System_String_
-  commentId: M:BlazorMdc.MTAutocomplete.NotifySelectedAsync(System.String)
-  fullName: BlazorMdc.MTAutocomplete.NotifySelectedAsync(System.String)
-  nameWithType: MTAutocomplete.NotifySelectedAsync(String)
-- uid: BlazorMdc.MTAutocomplete.NotifySelectedAsync*
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_NotifySelectedAsync_System_String_
+  commentId: M:BlazorMdc.MTAutocompleteTextField.NotifySelectedAsync(System.String)
+  fullName: BlazorMdc.MTAutocompleteTextField.NotifySelectedAsync(System.String)
+  nameWithType: MTAutocompleteTextField.NotifySelectedAsync(String)
+- uid: BlazorMdc.MTAutocompleteTextField.NotifySelectedAsync*
   name: NotifySelectedAsync
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_NotifySelectedAsync_
-  commentId: Overload:BlazorMdc.MTAutocomplete.NotifySelectedAsync
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_NotifySelectedAsync_
+  commentId: Overload:BlazorMdc.MTAutocompleteTextField.NotifySelectedAsync
   isSpec: "True"
-  fullName: BlazorMdc.MTAutocomplete.NotifySelectedAsync
-  nameWithType: MTAutocomplete.NotifySelectedAsync
-- uid: BlazorMdc.MTAutocomplete.OnInitialized
+  fullName: BlazorMdc.MTAutocompleteTextField.NotifySelectedAsync
+  nameWithType: MTAutocompleteTextField.NotifySelectedAsync
+- uid: BlazorMdc.MTAutocompleteTextField.OnInitialized
   name: OnInitialized()
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_OnInitialized
-  commentId: M:BlazorMdc.MTAutocomplete.OnInitialized
-  fullName: BlazorMdc.MTAutocomplete.OnInitialized()
-  nameWithType: MTAutocomplete.OnInitialized()
-- uid: BlazorMdc.MTAutocomplete.OnInitialized*
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_OnInitialized
+  commentId: M:BlazorMdc.MTAutocompleteTextField.OnInitialized
+  fullName: BlazorMdc.MTAutocompleteTextField.OnInitialized()
+  nameWithType: MTAutocompleteTextField.OnInitialized()
+- uid: BlazorMdc.MTAutocompleteTextField.OnInitialized*
   name: OnInitialized
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_OnInitialized_
-  commentId: Overload:BlazorMdc.MTAutocomplete.OnInitialized
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_OnInitialized_
+  commentId: Overload:BlazorMdc.MTAutocompleteTextField.OnInitialized
   isSpec: "True"
-  fullName: BlazorMdc.MTAutocomplete.OnInitialized
-  nameWithType: MTAutocomplete.OnInitialized
-- uid: BlazorMdc.MTAutocomplete.OnParametersSet
+  fullName: BlazorMdc.MTAutocompleteTextField.OnInitialized
+  nameWithType: MTAutocompleteTextField.OnInitialized
+- uid: BlazorMdc.MTAutocompleteTextField.OnParametersSet
   name: OnParametersSet()
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_OnParametersSet
-  commentId: M:BlazorMdc.MTAutocomplete.OnParametersSet
-  fullName: BlazorMdc.MTAutocomplete.OnParametersSet()
-  nameWithType: MTAutocomplete.OnParametersSet()
-- uid: BlazorMdc.MTAutocomplete.OnParametersSet*
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_OnParametersSet
+  commentId: M:BlazorMdc.MTAutocompleteTextField.OnParametersSet
+  fullName: BlazorMdc.MTAutocompleteTextField.OnParametersSet()
+  nameWithType: MTAutocompleteTextField.OnParametersSet()
+- uid: BlazorMdc.MTAutocompleteTextField.OnParametersSet*
   name: OnParametersSet
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_OnParametersSet_
-  commentId: Overload:BlazorMdc.MTAutocomplete.OnParametersSet
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_OnParametersSet_
+  commentId: Overload:BlazorMdc.MTAutocompleteTextField.OnParametersSet
   isSpec: "True"
-  fullName: BlazorMdc.MTAutocomplete.OnParametersSet
-  nameWithType: MTAutocomplete.OnParametersSet
-- uid: BlazorMdc.MTAutocomplete.SelectItems
+  fullName: BlazorMdc.MTAutocompleteTextField.OnParametersSet
+  nameWithType: MTAutocompleteTextField.OnParametersSet
+- uid: BlazorMdc.MTAutocompleteTextField.SelectItems
   name: SelectItems
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_SelectItems
-  commentId: P:BlazorMdc.MTAutocomplete.SelectItems
-  fullName: BlazorMdc.MTAutocomplete.SelectItems
-  nameWithType: MTAutocomplete.SelectItems
-- uid: BlazorMdc.MTAutocomplete.SelectItems*
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_SelectItems
+  commentId: P:BlazorMdc.MTAutocompleteTextField.SelectItems
+  fullName: BlazorMdc.MTAutocompleteTextField.SelectItems
+  nameWithType: MTAutocompleteTextField.SelectItems
+- uid: BlazorMdc.MTAutocompleteTextField.SelectItems*
   name: SelectItems
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_SelectItems_
-  commentId: Overload:BlazorMdc.MTAutocomplete.SelectItems
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_SelectItems_
+  commentId: Overload:BlazorMdc.MTAutocompleteTextField.SelectItems
   isSpec: "True"
-  fullName: BlazorMdc.MTAutocomplete.SelectItems
-  nameWithType: MTAutocomplete.SelectItems
-- uid: BlazorMdc.MTAutocomplete.TextAlignStyle
+  fullName: BlazorMdc.MTAutocompleteTextField.SelectItems
+  nameWithType: MTAutocompleteTextField.SelectItems
+- uid: BlazorMdc.MTAutocompleteTextField.TextAlignStyle
   name: TextAlignStyle
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_TextAlignStyle
-  commentId: P:BlazorMdc.MTAutocomplete.TextAlignStyle
-  fullName: BlazorMdc.MTAutocomplete.TextAlignStyle
-  nameWithType: MTAutocomplete.TextAlignStyle
-- uid: BlazorMdc.MTAutocomplete.TextAlignStyle*
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_TextAlignStyle
+  commentId: P:BlazorMdc.MTAutocompleteTextField.TextAlignStyle
+  fullName: BlazorMdc.MTAutocompleteTextField.TextAlignStyle
+  nameWithType: MTAutocompleteTextField.TextAlignStyle
+- uid: BlazorMdc.MTAutocompleteTextField.TextAlignStyle*
   name: TextAlignStyle
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_TextAlignStyle_
-  commentId: Overload:BlazorMdc.MTAutocomplete.TextAlignStyle
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_TextAlignStyle_
+  commentId: Overload:BlazorMdc.MTAutocompleteTextField.TextAlignStyle
   isSpec: "True"
-  fullName: BlazorMdc.MTAutocomplete.TextAlignStyle
-  nameWithType: MTAutocomplete.TextAlignStyle
-- uid: BlazorMdc.MTAutocomplete.TextInputStyle
+  fullName: BlazorMdc.MTAutocompleteTextField.TextAlignStyle
+  nameWithType: MTAutocompleteTextField.TextAlignStyle
+- uid: BlazorMdc.MTAutocompleteTextField.TextInputStyle
   name: TextInputStyle
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_TextInputStyle
-  commentId: P:BlazorMdc.MTAutocomplete.TextInputStyle
-  fullName: BlazorMdc.MTAutocomplete.TextInputStyle
-  nameWithType: MTAutocomplete.TextInputStyle
-- uid: BlazorMdc.MTAutocomplete.TextInputStyle*
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_TextInputStyle
+  commentId: P:BlazorMdc.MTAutocompleteTextField.TextInputStyle
+  fullName: BlazorMdc.MTAutocompleteTextField.TextInputStyle
+  nameWithType: MTAutocompleteTextField.TextInputStyle
+- uid: BlazorMdc.MTAutocompleteTextField.TextInputStyle*
   name: TextInputStyle
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_TextInputStyle_
-  commentId: Overload:BlazorMdc.MTAutocomplete.TextInputStyle
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_TextInputStyle_
+  commentId: Overload:BlazorMdc.MTAutocompleteTextField.TextInputStyle
   isSpec: "True"
-  fullName: BlazorMdc.MTAutocomplete.TextInputStyle
-  nameWithType: MTAutocomplete.TextInputStyle
-- uid: BlazorMdc.MTAutocomplete.TrailingIcon
+  fullName: BlazorMdc.MTAutocompleteTextField.TextInputStyle
+  nameWithType: MTAutocompleteTextField.TextInputStyle
+- uid: BlazorMdc.MTAutocompleteTextField.TrailingIcon
   name: TrailingIcon
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_TrailingIcon
-  commentId: P:BlazorMdc.MTAutocomplete.TrailingIcon
-  fullName: BlazorMdc.MTAutocomplete.TrailingIcon
-  nameWithType: MTAutocomplete.TrailingIcon
-- uid: BlazorMdc.MTAutocomplete.TrailingIcon*
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_TrailingIcon
+  commentId: P:BlazorMdc.MTAutocompleteTextField.TrailingIcon
+  fullName: BlazorMdc.MTAutocompleteTextField.TrailingIcon
+  nameWithType: MTAutocompleteTextField.TrailingIcon
+- uid: BlazorMdc.MTAutocompleteTextField.TrailingIcon*
   name: TrailingIcon
-  href: api/BlazorMdc.MTAutocomplete.html#BlazorMdc_MTAutocomplete_TrailingIcon_
-  commentId: Overload:BlazorMdc.MTAutocomplete.TrailingIcon
+  href: api/BlazorMdc.MTAutocompleteTextField.html#BlazorMdc_MTAutocompleteTextField_TrailingIcon_
+  commentId: Overload:BlazorMdc.MTAutocompleteTextField.TrailingIcon
   isSpec: "True"
-  fullName: BlazorMdc.MTAutocomplete.TrailingIcon
-  nameWithType: MTAutocomplete.TrailingIcon
+  fullName: BlazorMdc.MTAutocompleteTextField.TrailingIcon
+  nameWithType: MTAutocompleteTextField.TrailingIcon
 - uid: BlazorMdc.MTButton
   name: MTButton
   href: api/BlazorMdc.MTButton.html
@@ -2311,19 +2301,6 @@ references:
   isSpec: "True"
   fullName: BlazorMdc.MTCircularProgress.OnInitialized
   nameWithType: MTCircularProgress.OnInitialized
-- uid: BlazorMdc.MTCircularProgress.OnParametersSet
-  name: OnParametersSet()
-  href: api/BlazorMdc.MTCircularProgress.html#BlazorMdc_MTCircularProgress_OnParametersSet
-  commentId: M:BlazorMdc.MTCircularProgress.OnParametersSet
-  fullName: BlazorMdc.MTCircularProgress.OnParametersSet()
-  nameWithType: MTCircularProgress.OnParametersSet()
-- uid: BlazorMdc.MTCircularProgress.OnParametersSet*
-  name: OnParametersSet
-  href: api/BlazorMdc.MTCircularProgress.html#BlazorMdc_MTCircularProgress_OnParametersSet_
-  commentId: Overload:BlazorMdc.MTCircularProgress.OnParametersSet
-  isSpec: "True"
-  fullName: BlazorMdc.MTCircularProgress.OnParametersSet
-  nameWithType: MTCircularProgress.OnParametersSet
 - uid: BlazorMdc.MTCircularProgress.OnValueSetCallback(System.Object,System.EventArgs)
   name: OnValueSetCallback(Object, EventArgs)
   href: api/BlazorMdc.MTCircularProgress.html#BlazorMdc_MTCircularProgress_OnValueSetCallback_System_Object_System_EventArgs_
@@ -2572,6 +2549,23 @@ references:
   fullName.vb: BlazorMdc.MTDataTable(Of TItem).Density
   nameWithType: MTDataTable<TItem>.Density
   nameWithType.vb: MTDataTable(Of TItem).Density
+- uid: BlazorMdc.MTDataTable`1.GetKeysFunc
+  name: GetKeysFunc
+  href: api/BlazorMdc.MTDataTable-1.html#BlazorMdc_MTDataTable_1_GetKeysFunc
+  commentId: P:BlazorMdc.MTDataTable`1.GetKeysFunc
+  fullName: BlazorMdc.MTDataTable<TItem>.GetKeysFunc
+  fullName.vb: BlazorMdc.MTDataTable(Of TItem).GetKeysFunc
+  nameWithType: MTDataTable<TItem>.GetKeysFunc
+  nameWithType.vb: MTDataTable(Of TItem).GetKeysFunc
+- uid: BlazorMdc.MTDataTable`1.GetKeysFunc*
+  name: GetKeysFunc
+  href: api/BlazorMdc.MTDataTable-1.html#BlazorMdc_MTDataTable_1_GetKeysFunc_
+  commentId: Overload:BlazorMdc.MTDataTable`1.GetKeysFunc
+  isSpec: "True"
+  fullName: BlazorMdc.MTDataTable<TItem>.GetKeysFunc
+  fullName.vb: BlazorMdc.MTDataTable(Of TItem).GetKeysFunc
+  nameWithType: MTDataTable<TItem>.GetKeysFunc
+  nameWithType.vb: MTDataTable(Of TItem).GetKeysFunc
 - uid: BlazorMdc.MTDataTable`1.Items
   name: Items
   href: api/BlazorMdc.MTDataTable-1.html#BlazorMdc_MTDataTable_1_Items
@@ -2606,6 +2600,23 @@ references:
   fullName.vb: BlazorMdc.MTDataTable(Of TItem).OnInitialized
   nameWithType: MTDataTable<TItem>.OnInitialized
   nameWithType.vb: MTDataTable(Of TItem).OnInitialized
+- uid: BlazorMdc.MTDataTable`1.OnParametersSet
+  name: OnParametersSet()
+  href: api/BlazorMdc.MTDataTable-1.html#BlazorMdc_MTDataTable_1_OnParametersSet
+  commentId: M:BlazorMdc.MTDataTable`1.OnParametersSet
+  fullName: BlazorMdc.MTDataTable<TItem>.OnParametersSet()
+  fullName.vb: BlazorMdc.MTDataTable(Of TItem).OnParametersSet()
+  nameWithType: MTDataTable<TItem>.OnParametersSet()
+  nameWithType.vb: MTDataTable(Of TItem).OnParametersSet()
+- uid: BlazorMdc.MTDataTable`1.OnParametersSet*
+  name: OnParametersSet
+  href: api/BlazorMdc.MTDataTable-1.html#BlazorMdc_MTDataTable_1_OnParametersSet_
+  commentId: Overload:BlazorMdc.MTDataTable`1.OnParametersSet
+  isSpec: "True"
+  fullName: BlazorMdc.MTDataTable<TItem>.OnParametersSet
+  fullName.vb: BlazorMdc.MTDataTable(Of TItem).OnParametersSet
+  nameWithType: MTDataTable<TItem>.OnParametersSet
+  nameWithType.vb: MTDataTable(Of TItem).OnParametersSet
 - uid: BlazorMdc.MTDataTable`1.TableHeader
   name: TableHeader
   href: api/BlazorMdc.MTDataTable-1.html#BlazorMdc_MTDataTable_1_TableHeader
@@ -3358,19 +3369,6 @@ references:
   isSpec: "True"
   fullName: BlazorMdc.MTIcon.OnParametersSet
   nameWithType: MTIcon.OnParametersSet
-- uid: BlazorMdc.MTIcon.TabBar
-  name: TabBar
-  href: api/BlazorMdc.MTIcon.html#BlazorMdc_MTIcon_TabBar
-  commentId: P:BlazorMdc.MTIcon.TabBar
-  fullName: BlazorMdc.MTIcon.TabBar
-  nameWithType: MTIcon.TabBar
-- uid: BlazorMdc.MTIcon.TabBar*
-  name: TabBar
-  href: api/BlazorMdc.MTIcon.html#BlazorMdc_MTIcon_TabBar_
-  commentId: Overload:BlazorMdc.MTIcon.TabBar
-  isSpec: "True"
-  fullName: BlazorMdc.MTIcon.TabBar
-  nameWithType: MTIcon.TabBar
 - uid: BlazorMdc.MTIconButton
   name: MTIconButton
   href: api/BlazorMdc.MTIconButton.html
@@ -3880,19 +3878,6 @@ references:
   isSpec: "True"
   fullName: BlazorMdc.MTLinearProgress.OnInitialized
   nameWithType: MTLinearProgress.OnInitialized
-- uid: BlazorMdc.MTLinearProgress.OnParametersSet
-  name: OnParametersSet()
-  href: api/BlazorMdc.MTLinearProgress.html#BlazorMdc_MTLinearProgress_OnParametersSet
-  commentId: M:BlazorMdc.MTLinearProgress.OnParametersSet
-  fullName: BlazorMdc.MTLinearProgress.OnParametersSet()
-  nameWithType: MTLinearProgress.OnParametersSet()
-- uid: BlazorMdc.MTLinearProgress.OnParametersSet*
-  name: OnParametersSet
-  href: api/BlazorMdc.MTLinearProgress.html#BlazorMdc_MTLinearProgress_OnParametersSet_
-  commentId: Overload:BlazorMdc.MTLinearProgress.OnParametersSet
-  isSpec: "True"
-  fullName: BlazorMdc.MTLinearProgress.OnParametersSet
-  nameWithType: MTLinearProgress.OnParametersSet
 - uid: BlazorMdc.MTLinearProgress.OnValueSetCallback(System.Object,System.EventArgs)
   name: OnValueSetCallback(Object, EventArgs)
   href: api/BlazorMdc.MTLinearProgress.html#BlazorMdc_MTLinearProgress_OnValueSetCallback_System_Object_System_EventArgs_
@@ -3962,6 +3947,23 @@ references:
   fullName.vb: BlazorMdc.MTList(Of TItem).Actions
   nameWithType: MTList<TItem>.Actions
   nameWithType.vb: MTList(Of TItem).Actions
+- uid: BlazorMdc.MTList`1.GetKeysFunc
+  name: GetKeysFunc
+  href: api/BlazorMdc.MTList-1.html#BlazorMdc_MTList_1_GetKeysFunc
+  commentId: P:BlazorMdc.MTList`1.GetKeysFunc
+  fullName: BlazorMdc.MTList<TItem>.GetKeysFunc
+  fullName.vb: BlazorMdc.MTList(Of TItem).GetKeysFunc
+  nameWithType: MTList<TItem>.GetKeysFunc
+  nameWithType.vb: MTList(Of TItem).GetKeysFunc
+- uid: BlazorMdc.MTList`1.GetKeysFunc*
+  name: GetKeysFunc
+  href: api/BlazorMdc.MTList-1.html#BlazorMdc_MTList_1_GetKeysFunc_
+  commentId: Overload:BlazorMdc.MTList`1.GetKeysFunc
+  isSpec: "True"
+  fullName: BlazorMdc.MTList<TItem>.GetKeysFunc
+  fullName.vb: BlazorMdc.MTList(Of TItem).GetKeysFunc
+  nameWithType: MTList<TItem>.GetKeysFunc
+  nameWithType.vb: MTList(Of TItem).GetKeysFunc
 - uid: BlazorMdc.MTList`1.HideLineThree
   name: HideLineThree
   href: api/BlazorMdc.MTList-1.html#BlazorMdc_MTList_1_HideLineThree
@@ -4650,19 +4652,19 @@ references:
   isSpec: "True"
   fullName: BlazorMdc.MTNumericDoubleField.Density
   nameWithType: MTNumericDoubleField.Density
-- uid: BlazorMdc.MTNumericDoubleField.FocussedMagnitude
-  name: FocussedMagnitude
-  href: api/BlazorMdc.MTNumericDoubleField.html#BlazorMdc_MTNumericDoubleField_FocussedMagnitude
-  commentId: P:BlazorMdc.MTNumericDoubleField.FocussedMagnitude
-  fullName: BlazorMdc.MTNumericDoubleField.FocussedMagnitude
-  nameWithType: MTNumericDoubleField.FocussedMagnitude
-- uid: BlazorMdc.MTNumericDoubleField.FocussedMagnitude*
-  name: FocussedMagnitude
-  href: api/BlazorMdc.MTNumericDoubleField.html#BlazorMdc_MTNumericDoubleField_FocussedMagnitude_
-  commentId: Overload:BlazorMdc.MTNumericDoubleField.FocussedMagnitude
+- uid: BlazorMdc.MTNumericDoubleField.FocusedMagnitude
+  name: FocusedMagnitude
+  href: api/BlazorMdc.MTNumericDoubleField.html#BlazorMdc_MTNumericDoubleField_FocusedMagnitude
+  commentId: P:BlazorMdc.MTNumericDoubleField.FocusedMagnitude
+  fullName: BlazorMdc.MTNumericDoubleField.FocusedMagnitude
+  nameWithType: MTNumericDoubleField.FocusedMagnitude
+- uid: BlazorMdc.MTNumericDoubleField.FocusedMagnitude*
+  name: FocusedMagnitude
+  href: api/BlazorMdc.MTNumericDoubleField.html#BlazorMdc_MTNumericDoubleField_FocusedMagnitude_
+  commentId: Overload:BlazorMdc.MTNumericDoubleField.FocusedMagnitude
   isSpec: "True"
-  fullName: BlazorMdc.MTNumericDoubleField.FocussedMagnitude
-  nameWithType: MTNumericDoubleField.FocussedMagnitude
+  fullName: BlazorMdc.MTNumericDoubleField.FocusedMagnitude
+  nameWithType: MTNumericDoubleField.FocusedMagnitude
 - uid: BlazorMdc.MTNumericDoubleField.IconFoundry
   name: IconFoundry
   href: api/BlazorMdc.MTNumericDoubleField.html#BlazorMdc_MTNumericDoubleField_IconFoundry
@@ -4845,19 +4847,19 @@ references:
   isSpec: "True"
   fullName: BlazorMdc.MTNumericDoubleField.TrailingIcon
   nameWithType: MTNumericDoubleField.TrailingIcon
-- uid: BlazorMdc.MTNumericDoubleField.UnfocussedMagnitude
-  name: UnfocussedMagnitude
-  href: api/BlazorMdc.MTNumericDoubleField.html#BlazorMdc_MTNumericDoubleField_UnfocussedMagnitude
-  commentId: P:BlazorMdc.MTNumericDoubleField.UnfocussedMagnitude
-  fullName: BlazorMdc.MTNumericDoubleField.UnfocussedMagnitude
-  nameWithType: MTNumericDoubleField.UnfocussedMagnitude
-- uid: BlazorMdc.MTNumericDoubleField.UnfocussedMagnitude*
-  name: UnfocussedMagnitude
-  href: api/BlazorMdc.MTNumericDoubleField.html#BlazorMdc_MTNumericDoubleField_UnfocussedMagnitude_
-  commentId: Overload:BlazorMdc.MTNumericDoubleField.UnfocussedMagnitude
+- uid: BlazorMdc.MTNumericDoubleField.UnfocusedMagnitude
+  name: UnfocusedMagnitude
+  href: api/BlazorMdc.MTNumericDoubleField.html#BlazorMdc_MTNumericDoubleField_UnfocusedMagnitude
+  commentId: P:BlazorMdc.MTNumericDoubleField.UnfocusedMagnitude
+  fullName: BlazorMdc.MTNumericDoubleField.UnfocusedMagnitude
+  nameWithType: MTNumericDoubleField.UnfocusedMagnitude
+- uid: BlazorMdc.MTNumericDoubleField.UnfocusedMagnitude*
+  name: UnfocusedMagnitude
+  href: api/BlazorMdc.MTNumericDoubleField.html#BlazorMdc_MTNumericDoubleField_UnfocusedMagnitude_
+  commentId: Overload:BlazorMdc.MTNumericDoubleField.UnfocusedMagnitude
   isSpec: "True"
-  fullName: BlazorMdc.MTNumericDoubleField.UnfocussedMagnitude
-  nameWithType: MTNumericDoubleField.UnfocussedMagnitude
+  fullName: BlazorMdc.MTNumericDoubleField.UnfocusedMagnitude
+  nameWithType: MTNumericDoubleField.UnfocusedMagnitude
 - uid: BlazorMdc.MTNumericInputMagnitude
   name: MTNumericInputMagnitude
   href: api/BlazorMdc.MTNumericInputMagnitude.html
@@ -4901,19 +4903,19 @@ references:
   isSpec: "True"
   fullName: BlazorMdc.MTNumericIntField.Density
   nameWithType: MTNumericIntField.Density
-- uid: BlazorMdc.MTNumericIntField.FocussedMagnitude
-  name: FocussedMagnitude
-  href: api/BlazorMdc.MTNumericIntField.html#BlazorMdc_MTNumericIntField_FocussedMagnitude
-  commentId: P:BlazorMdc.MTNumericIntField.FocussedMagnitude
-  fullName: BlazorMdc.MTNumericIntField.FocussedMagnitude
-  nameWithType: MTNumericIntField.FocussedMagnitude
-- uid: BlazorMdc.MTNumericIntField.FocussedMagnitude*
-  name: FocussedMagnitude
-  href: api/BlazorMdc.MTNumericIntField.html#BlazorMdc_MTNumericIntField_FocussedMagnitude_
-  commentId: Overload:BlazorMdc.MTNumericIntField.FocussedMagnitude
+- uid: BlazorMdc.MTNumericIntField.FocusedMagnitude
+  name: FocusedMagnitude
+  href: api/BlazorMdc.MTNumericIntField.html#BlazorMdc_MTNumericIntField_FocusedMagnitude
+  commentId: P:BlazorMdc.MTNumericIntField.FocusedMagnitude
+  fullName: BlazorMdc.MTNumericIntField.FocusedMagnitude
+  nameWithType: MTNumericIntField.FocusedMagnitude
+- uid: BlazorMdc.MTNumericIntField.FocusedMagnitude*
+  name: FocusedMagnitude
+  href: api/BlazorMdc.MTNumericIntField.html#BlazorMdc_MTNumericIntField_FocusedMagnitude_
+  commentId: Overload:BlazorMdc.MTNumericIntField.FocusedMagnitude
   isSpec: "True"
-  fullName: BlazorMdc.MTNumericIntField.FocussedMagnitude
-  nameWithType: MTNumericIntField.FocussedMagnitude
+  fullName: BlazorMdc.MTNumericIntField.FocusedMagnitude
+  nameWithType: MTNumericIntField.FocusedMagnitude
 - uid: BlazorMdc.MTNumericIntField.IconFoundry
   name: IconFoundry
   href: api/BlazorMdc.MTNumericIntField.html#BlazorMdc_MTNumericIntField_IconFoundry
@@ -5070,19 +5072,19 @@ references:
   isSpec: "True"
   fullName: BlazorMdc.MTNumericIntField.TrailingIcon
   nameWithType: MTNumericIntField.TrailingIcon
-- uid: BlazorMdc.MTNumericIntField.UnfocussedMagnitude
-  name: UnfocussedMagnitude
-  href: api/BlazorMdc.MTNumericIntField.html#BlazorMdc_MTNumericIntField_UnfocussedMagnitude
-  commentId: P:BlazorMdc.MTNumericIntField.UnfocussedMagnitude
-  fullName: BlazorMdc.MTNumericIntField.UnfocussedMagnitude
-  nameWithType: MTNumericIntField.UnfocussedMagnitude
-- uid: BlazorMdc.MTNumericIntField.UnfocussedMagnitude*
-  name: UnfocussedMagnitude
-  href: api/BlazorMdc.MTNumericIntField.html#BlazorMdc_MTNumericIntField_UnfocussedMagnitude_
-  commentId: Overload:BlazorMdc.MTNumericIntField.UnfocussedMagnitude
+- uid: BlazorMdc.MTNumericIntField.UnfocusedMagnitude
+  name: UnfocusedMagnitude
+  href: api/BlazorMdc.MTNumericIntField.html#BlazorMdc_MTNumericIntField_UnfocusedMagnitude
+  commentId: P:BlazorMdc.MTNumericIntField.UnfocusedMagnitude
+  fullName: BlazorMdc.MTNumericIntField.UnfocusedMagnitude
+  nameWithType: MTNumericIntField.UnfocusedMagnitude
+- uid: BlazorMdc.MTNumericIntField.UnfocusedMagnitude*
+  name: UnfocusedMagnitude
+  href: api/BlazorMdc.MTNumericIntField.html#BlazorMdc_MTNumericIntField_UnfocusedMagnitude_
+  commentId: Overload:BlazorMdc.MTNumericIntField.UnfocusedMagnitude
   isSpec: "True"
-  fullName: BlazorMdc.MTNumericIntField.UnfocussedMagnitude
-  nameWithType: MTNumericIntField.UnfocussedMagnitude
+  fullName: BlazorMdc.MTNumericIntField.UnfocusedMagnitude
+  nameWithType: MTNumericIntField.UnfocusedMagnitude
 - uid: BlazorMdc.MTPagedDataList`1
   name: MTPagedDataList<TItem>
   href: api/BlazorMdc.MTPagedDataList-1.html
@@ -5126,6 +5128,23 @@ references:
   fullName.vb: BlazorMdc.MTPagedDataList(Of TItem).Data
   nameWithType: MTPagedDataList<TItem>.Data
   nameWithType.vb: MTPagedDataList(Of TItem).Data
+- uid: BlazorMdc.MTPagedDataList`1.GetKeysFunc
+  name: GetKeysFunc
+  href: api/BlazorMdc.MTPagedDataList-1.html#BlazorMdc_MTPagedDataList_1_GetKeysFunc
+  commentId: P:BlazorMdc.MTPagedDataList`1.GetKeysFunc
+  fullName: BlazorMdc.MTPagedDataList<TItem>.GetKeysFunc
+  fullName.vb: BlazorMdc.MTPagedDataList(Of TItem).GetKeysFunc
+  nameWithType: MTPagedDataList<TItem>.GetKeysFunc
+  nameWithType.vb: MTPagedDataList(Of TItem).GetKeysFunc
+- uid: BlazorMdc.MTPagedDataList`1.GetKeysFunc*
+  name: GetKeysFunc
+  href: api/BlazorMdc.MTPagedDataList-1.html#BlazorMdc_MTPagedDataList_1_GetKeysFunc_
+  commentId: Overload:BlazorMdc.MTPagedDataList`1.GetKeysFunc
+  isSpec: "True"
+  fullName: BlazorMdc.MTPagedDataList<TItem>.GetKeysFunc
+  fullName.vb: BlazorMdc.MTPagedDataList(Of TItem).GetKeysFunc
+  nameWithType: MTPagedDataList<TItem>.GetKeysFunc
+  nameWithType.vb: MTPagedDataList(Of TItem).GetKeysFunc
 - uid: BlazorMdc.MTPagedDataList`1.ItemsPerPage
   name: ItemsPerPage
   href: api/BlazorMdc.MTPagedDataList-1.html#BlazorMdc_MTPagedDataList_1_ItemsPerPage
@@ -5611,6 +5630,23 @@ references:
   fullName.vb: BlazorMdc.MTRadioButtonGroup(Of TItem).EnableTouchWrapper
   nameWithType: MTRadioButtonGroup<TItem>.EnableTouchWrapper
   nameWithType.vb: MTRadioButtonGroup(Of TItem).EnableTouchWrapper
+- uid: BlazorMdc.MTRadioButtonGroup`1.GetKeysFunc
+  name: GetKeysFunc
+  href: api/BlazorMdc.MTRadioButtonGroup-1.html#BlazorMdc_MTRadioButtonGroup_1_GetKeysFunc
+  commentId: P:BlazorMdc.MTRadioButtonGroup`1.GetKeysFunc
+  fullName: BlazorMdc.MTRadioButtonGroup<TItem>.GetKeysFunc
+  fullName.vb: BlazorMdc.MTRadioButtonGroup(Of TItem).GetKeysFunc
+  nameWithType: MTRadioButtonGroup<TItem>.GetKeysFunc
+  nameWithType.vb: MTRadioButtonGroup(Of TItem).GetKeysFunc
+- uid: BlazorMdc.MTRadioButtonGroup`1.GetKeysFunc*
+  name: GetKeysFunc
+  href: api/BlazorMdc.MTRadioButtonGroup-1.html#BlazorMdc_MTRadioButtonGroup_1_GetKeysFunc_
+  commentId: Overload:BlazorMdc.MTRadioButtonGroup`1.GetKeysFunc
+  isSpec: "True"
+  fullName: BlazorMdc.MTRadioButtonGroup<TItem>.GetKeysFunc
+  fullName.vb: BlazorMdc.MTRadioButtonGroup(Of TItem).GetKeysFunc
+  nameWithType: MTRadioButtonGroup<TItem>.GetKeysFunc
+  nameWithType.vb: MTRadioButtonGroup(Of TItem).GetKeysFunc
 - uid: BlazorMdc.MTRadioButtonGroup`1.Items
   name: Items
   href: api/BlazorMdc.MTRadioButtonGroup-1.html#BlazorMdc_MTRadioButtonGroup_1_Items
@@ -5662,6 +5698,23 @@ references:
   fullName.vb: BlazorMdc.MTRadioButtonGroup(Of TItem).OnInitialized
   nameWithType: MTRadioButtonGroup<TItem>.OnInitialized
   nameWithType.vb: MTRadioButtonGroup(Of TItem).OnInitialized
+- uid: BlazorMdc.MTRadioButtonGroup`1.OnParametersSet
+  name: OnParametersSet()
+  href: api/BlazorMdc.MTRadioButtonGroup-1.html#BlazorMdc_MTRadioButtonGroup_1_OnParametersSet
+  commentId: M:BlazorMdc.MTRadioButtonGroup`1.OnParametersSet
+  fullName: BlazorMdc.MTRadioButtonGroup<TItem>.OnParametersSet()
+  fullName.vb: BlazorMdc.MTRadioButtonGroup(Of TItem).OnParametersSet()
+  nameWithType: MTRadioButtonGroup<TItem>.OnParametersSet()
+  nameWithType.vb: MTRadioButtonGroup(Of TItem).OnParametersSet()
+- uid: BlazorMdc.MTRadioButtonGroup`1.OnParametersSet*
+  name: OnParametersSet
+  href: api/BlazorMdc.MTRadioButtonGroup-1.html#BlazorMdc_MTRadioButtonGroup_1_OnParametersSet_
+  commentId: Overload:BlazorMdc.MTRadioButtonGroup`1.OnParametersSet
+  isSpec: "True"
+  fullName: BlazorMdc.MTRadioButtonGroup<TItem>.OnParametersSet
+  fullName.vb: BlazorMdc.MTRadioButtonGroup(Of TItem).OnParametersSet
+  nameWithType: MTRadioButtonGroup<TItem>.OnParametersSet
+  nameWithType.vb: MTRadioButtonGroup(Of TItem).OnParametersSet
 - uid: BlazorMdc.MTRadioButtonGroup`1.Vertical
   name: Vertical
   href: api/BlazorMdc.MTRadioButtonGroup-1.html#BlazorMdc_MTRadioButtonGroup_1_Vertical
@@ -5722,6 +5775,23 @@ references:
   fullName.vb: BlazorMdc.MTSelect(Of TItem).Dispose
   nameWithType: MTSelect<TItem>.Dispose
   nameWithType.vb: MTSelect(Of TItem).Dispose
+- uid: BlazorMdc.MTSelect`1.GetKeysFunc
+  name: GetKeysFunc
+  href: api/BlazorMdc.MTSelect-1.html#BlazorMdc_MTSelect_1_GetKeysFunc
+  commentId: P:BlazorMdc.MTSelect`1.GetKeysFunc
+  fullName: BlazorMdc.MTSelect<TItem>.GetKeysFunc
+  fullName.vb: BlazorMdc.MTSelect(Of TItem).GetKeysFunc
+  nameWithType: MTSelect<TItem>.GetKeysFunc
+  nameWithType.vb: MTSelect(Of TItem).GetKeysFunc
+- uid: BlazorMdc.MTSelect`1.GetKeysFunc*
+  name: GetKeysFunc
+  href: api/BlazorMdc.MTSelect-1.html#BlazorMdc_MTSelect_1_GetKeysFunc_
+  commentId: Overload:BlazorMdc.MTSelect`1.GetKeysFunc
+  isSpec: "True"
+  fullName: BlazorMdc.MTSelect<TItem>.GetKeysFunc
+  fullName.vb: BlazorMdc.MTSelect(Of TItem).GetKeysFunc
+  nameWithType: MTSelect<TItem>.GetKeysFunc
+  nameWithType.vb: MTSelect(Of TItem).GetKeysFunc
 - uid: BlazorMdc.MTSelect`1.IconFoundry
   name: IconFoundry
   href: api/BlazorMdc.MTSelect-1.html#BlazorMdc_MTSelect_1_IconFoundry
@@ -5858,6 +5928,23 @@ references:
   fullName.vb: BlazorMdc.MTSelect(Of TItem).OnInitialized
   nameWithType: MTSelect<TItem>.OnInitialized
   nameWithType.vb: MTSelect(Of TItem).OnInitialized
+- uid: BlazorMdc.MTSelect`1.OnParametersSet
+  name: OnParametersSet()
+  href: api/BlazorMdc.MTSelect-1.html#BlazorMdc_MTSelect_1_OnParametersSet
+  commentId: M:BlazorMdc.MTSelect`1.OnParametersSet
+  fullName: BlazorMdc.MTSelect<TItem>.OnParametersSet()
+  fullName.vb: BlazorMdc.MTSelect(Of TItem).OnParametersSet()
+  nameWithType: MTSelect<TItem>.OnParametersSet()
+  nameWithType.vb: MTSelect(Of TItem).OnParametersSet()
+- uid: BlazorMdc.MTSelect`1.OnParametersSet*
+  name: OnParametersSet
+  href: api/BlazorMdc.MTSelect-1.html#BlazorMdc_MTSelect_1_OnParametersSet_
+  commentId: Overload:BlazorMdc.MTSelect`1.OnParametersSet
+  isSpec: "True"
+  fullName: BlazorMdc.MTSelect<TItem>.OnParametersSet
+  fullName.vb: BlazorMdc.MTSelect(Of TItem).OnParametersSet
+  nameWithType: MTSelect<TItem>.OnParametersSet
+  nameWithType.vb: MTSelect(Of TItem).OnParametersSet
 - uid: BlazorMdc.MTSelect`1.OnValueSetCallback(System.Object,System.EventArgs)
   name: OnValueSetCallback(Object, EventArgs)
   href: api/BlazorMdc.MTSelect-1.html#BlazorMdc_MTSelect_1_OnValueSetCallback_System_Object_System_EventArgs_
@@ -6254,6 +6341,23 @@ references:
   fullName.vb: BlazorMdc.MTSlidingTabBar(Of TItem).Density
   nameWithType: MTSlidingTabBar<TItem>.Density
   nameWithType.vb: MTSlidingTabBar(Of TItem).Density
+- uid: BlazorMdc.MTSlidingTabBar`1.GetKeysFunc
+  name: GetKeysFunc
+  href: api/BlazorMdc.MTSlidingTabBar-1.html#BlazorMdc_MTSlidingTabBar_1_GetKeysFunc
+  commentId: P:BlazorMdc.MTSlidingTabBar`1.GetKeysFunc
+  fullName: BlazorMdc.MTSlidingTabBar<TItem>.GetKeysFunc
+  fullName.vb: BlazorMdc.MTSlidingTabBar(Of TItem).GetKeysFunc
+  nameWithType: MTSlidingTabBar<TItem>.GetKeysFunc
+  nameWithType.vb: MTSlidingTabBar(Of TItem).GetKeysFunc
+- uid: BlazorMdc.MTSlidingTabBar`1.GetKeysFunc*
+  name: GetKeysFunc
+  href: api/BlazorMdc.MTSlidingTabBar-1.html#BlazorMdc_MTSlidingTabBar_1_GetKeysFunc_
+  commentId: Overload:BlazorMdc.MTSlidingTabBar`1.GetKeysFunc
+  isSpec: "True"
+  fullName: BlazorMdc.MTSlidingTabBar<TItem>.GetKeysFunc
+  fullName.vb: BlazorMdc.MTSlidingTabBar(Of TItem).GetKeysFunc
+  nameWithType: MTSlidingTabBar<TItem>.GetKeysFunc
+  nameWithType.vb: MTSlidingTabBar(Of TItem).GetKeysFunc
 - uid: BlazorMdc.MTSlidingTabBar`1.Icon
   name: Icon
   href: api/BlazorMdc.MTSlidingTabBar-1.html#BlazorMdc_MTSlidingTabBar_1_Icon
@@ -6453,6 +6557,23 @@ references:
   fullName.vb: BlazorMdc.MTTabBar(Of TItem).Dispose
   nameWithType: MTTabBar<TItem>.Dispose
   nameWithType.vb: MTTabBar(Of TItem).Dispose
+- uid: BlazorMdc.MTTabBar`1.GetKeysFunc
+  name: GetKeysFunc
+  href: api/BlazorMdc.MTTabBar-1.html#BlazorMdc_MTTabBar_1_GetKeysFunc
+  commentId: P:BlazorMdc.MTTabBar`1.GetKeysFunc
+  fullName: BlazorMdc.MTTabBar<TItem>.GetKeysFunc
+  fullName.vb: BlazorMdc.MTTabBar(Of TItem).GetKeysFunc
+  nameWithType: MTTabBar<TItem>.GetKeysFunc
+  nameWithType.vb: MTTabBar(Of TItem).GetKeysFunc
+- uid: BlazorMdc.MTTabBar`1.GetKeysFunc*
+  name: GetKeysFunc
+  href: api/BlazorMdc.MTTabBar-1.html#BlazorMdc_MTTabBar_1_GetKeysFunc_
+  commentId: Overload:BlazorMdc.MTTabBar`1.GetKeysFunc
+  isSpec: "True"
+  fullName: BlazorMdc.MTTabBar<TItem>.GetKeysFunc
+  fullName.vb: BlazorMdc.MTTabBar(Of TItem).GetKeysFunc
+  nameWithType: MTTabBar<TItem>.GetKeysFunc
+  nameWithType.vb: MTTabBar(Of TItem).GetKeysFunc
 - uid: BlazorMdc.MTTabBar`1.Icon
   name: Icon
   href: api/BlazorMdc.MTTabBar-1.html#BlazorMdc_MTTabBar_1_Icon
@@ -6538,6 +6659,23 @@ references:
   fullName.vb: BlazorMdc.MTTabBar(Of TItem).OnInitialized
   nameWithType: MTTabBar<TItem>.OnInitialized
   nameWithType.vb: MTTabBar(Of TItem).OnInitialized
+- uid: BlazorMdc.MTTabBar`1.OnParametersSet
+  name: OnParametersSet()
+  href: api/BlazorMdc.MTTabBar-1.html#BlazorMdc_MTTabBar_1_OnParametersSet
+  commentId: M:BlazorMdc.MTTabBar`1.OnParametersSet
+  fullName: BlazorMdc.MTTabBar<TItem>.OnParametersSet()
+  fullName.vb: BlazorMdc.MTTabBar(Of TItem).OnParametersSet()
+  nameWithType: MTTabBar<TItem>.OnParametersSet()
+  nameWithType.vb: MTTabBar(Of TItem).OnParametersSet()
+- uid: BlazorMdc.MTTabBar`1.OnParametersSet*
+  name: OnParametersSet
+  href: api/BlazorMdc.MTTabBar-1.html#BlazorMdc_MTTabBar_1_OnParametersSet_
+  commentId: Overload:BlazorMdc.MTTabBar`1.OnParametersSet
+  isSpec: "True"
+  fullName: BlazorMdc.MTTabBar<TItem>.OnParametersSet
+  fullName.vb: BlazorMdc.MTTabBar(Of TItem).OnParametersSet
+  nameWithType: MTTabBar<TItem>.OnParametersSet
+  nameWithType.vb: MTTabBar(Of TItem).OnParametersSet
 - uid: BlazorMdc.MTTabBar`1.OnValueSetCallback(System.Object,System.EventArgs)
   name: OnValueSetCallback(Object, EventArgs)
   href: api/BlazorMdc.MTTabBar-1.html#BlazorMdc_MTTabBar_1_OnValueSetCallback_System_Object_System_EventArgs_
@@ -6673,19 +6811,6 @@ references:
   isSpec: "True"
   fullName: BlazorMdc.MTTextArea.OnInitialized
   nameWithType: MTTextArea.OnInitialized
-- uid: BlazorMdc.MTTextArea.OnParametersSet
-  name: OnParametersSet()
-  href: api/BlazorMdc.MTTextArea.html#BlazorMdc_MTTextArea_OnParametersSet
-  commentId: M:BlazorMdc.MTTextArea.OnParametersSet
-  fullName: BlazorMdc.MTTextArea.OnParametersSet()
-  nameWithType: MTTextArea.OnParametersSet()
-- uid: BlazorMdc.MTTextArea.OnParametersSet*
-  name: OnParametersSet
-  href: api/BlazorMdc.MTTextArea.html#BlazorMdc_MTTextArea_OnParametersSet_
-  commentId: Overload:BlazorMdc.MTTextArea.OnParametersSet
-  isSpec: "True"
-  fullName: BlazorMdc.MTTextArea.OnParametersSet
-  nameWithType: MTTextArea.OnParametersSet
 - uid: BlazorMdc.MTTextArea.OnValueSetCallback(System.Object,System.EventArgs)
   name: OnValueSetCallback(Object, EventArgs)
   href: api/BlazorMdc.MTTextArea.html#BlazorMdc_MTTextArea_OnValueSetCallback_System_Object_System_EventArgs_
@@ -6796,6 +6921,19 @@ references:
   isSpec: "True"
   fullName: BlazorMdc.MTTextField.LeadingIcon
   nameWithType: MTTextField.LeadingIcon
+- uid: BlazorMdc.MTTextField.OnAfterRenderAsync(System.Boolean)
+  name: OnAfterRenderAsync(Boolean)
+  href: api/BlazorMdc.MTTextField.html#BlazorMdc_MTTextField_OnAfterRenderAsync_System_Boolean_
+  commentId: M:BlazorMdc.MTTextField.OnAfterRenderAsync(System.Boolean)
+  fullName: BlazorMdc.MTTextField.OnAfterRenderAsync(System.Boolean)
+  nameWithType: MTTextField.OnAfterRenderAsync(Boolean)
+- uid: BlazorMdc.MTTextField.OnAfterRenderAsync*
+  name: OnAfterRenderAsync
+  href: api/BlazorMdc.MTTextField.html#BlazorMdc_MTTextField_OnAfterRenderAsync_
+  commentId: Overload:BlazorMdc.MTTextField.OnAfterRenderAsync
+  isSpec: "True"
+  fullName: BlazorMdc.MTTextField.OnAfterRenderAsync
+  nameWithType: MTTextField.OnAfterRenderAsync
 - uid: BlazorMdc.MTTextField.OnDisabledSetCallback(System.Object,System.EventArgs)
   name: OnDisabledSetCallback(Object, EventArgs)
   href: api/BlazorMdc.MTTextField.html#BlazorMdc_MTTextField_OnDisabledSetCallback_System_Object_System_EventArgs_
@@ -7658,18 +7796,37 @@ references:
   commentId: F:BlazorMdc.MTTopAppBarType.Standard
   fullName: BlazorMdc.MTTopAppBarType.Standard
   nameWithType: MTTopAppBarType.Standard
+- uid: BlazorMdc.MTVersion
+  name: MTVersion
+  href: api/BlazorMdc.MTVersion.html
+  commentId: T:BlazorMdc.MTVersion
+  fullName: BlazorMdc.MTVersion
+  nameWithType: MTVersion
+- uid: BlazorMdc.MTVersion.BlazorMdcVersion
+  name: BlazorMdcVersion()
+  href: api/BlazorMdc.MTVersion.html#BlazorMdc_MTVersion_BlazorMdcVersion
+  commentId: M:BlazorMdc.MTVersion.BlazorMdcVersion
+  fullName: BlazorMdc.MTVersion.BlazorMdcVersion()
+  nameWithType: MTVersion.BlazorMdcVersion()
+- uid: BlazorMdc.MTVersion.BlazorMdcVersion*
+  name: BlazorMdcVersion
+  href: api/BlazorMdc.MTVersion.html#BlazorMdc_MTVersion_BlazorMdcVersion_
+  commentId: Overload:BlazorMdc.MTVersion.BlazorMdcVersion
+  isSpec: "True"
+  fullName: BlazorMdc.MTVersion.BlazorMdcVersion
+  nameWithType: MTVersion.BlazorMdcVersion
 - uid: BlazorMdc.ServiceCollectionExtensions
   name: ServiceCollectionExtensions
   href: api/BlazorMdc.ServiceCollectionExtensions.html
   commentId: T:BlazorMdc.ServiceCollectionExtensions
   fullName: BlazorMdc.ServiceCollectionExtensions
   nameWithType: ServiceCollectionExtensions
-- uid: BlazorMdc.ServiceCollectionExtensions.AddMTServices(IServiceCollection,BlazorMdc.MTToastServiceConfiguration,BlazorMdc.MTAnimatedNaviationManagerConfiguration)
-  name: AddMTServices(IServiceCollection, MTToastServiceConfiguration, MTAnimatedNaviationManagerConfiguration)
-  href: api/BlazorMdc.ServiceCollectionExtensions.html#BlazorMdc_ServiceCollectionExtensions_AddMTServices_IServiceCollection_BlazorMdc_MTToastServiceConfiguration_BlazorMdc_MTAnimatedNaviationManagerConfiguration_
-  commentId: M:BlazorMdc.ServiceCollectionExtensions.AddMTServices(IServiceCollection,BlazorMdc.MTToastServiceConfiguration,BlazorMdc.MTAnimatedNaviationManagerConfiguration)
-  fullName: BlazorMdc.ServiceCollectionExtensions.AddMTServices(IServiceCollection, BlazorMdc.MTToastServiceConfiguration, BlazorMdc.MTAnimatedNaviationManagerConfiguration)
-  nameWithType: ServiceCollectionExtensions.AddMTServices(IServiceCollection, MTToastServiceConfiguration, MTAnimatedNaviationManagerConfiguration)
+- uid: BlazorMdc.ServiceCollectionExtensions.AddMTServices(IServiceCollection,BlazorMdc.MTToastServiceConfiguration,BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration)
+  name: AddMTServices(IServiceCollection, MTToastServiceConfiguration, MTAnimatedNavigationManagerServiceConfiguration)
+  href: api/BlazorMdc.ServiceCollectionExtensions.html#BlazorMdc_ServiceCollectionExtensions_AddMTServices_IServiceCollection_BlazorMdc_MTToastServiceConfiguration_BlazorMdc_MTAnimatedNavigationManagerServiceConfiguration_
+  commentId: M:BlazorMdc.ServiceCollectionExtensions.AddMTServices(IServiceCollection,BlazorMdc.MTToastServiceConfiguration,BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration)
+  fullName: BlazorMdc.ServiceCollectionExtensions.AddMTServices(IServiceCollection, BlazorMdc.MTToastServiceConfiguration, BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration)
+  nameWithType: ServiceCollectionExtensions.AddMTServices(IServiceCollection, MTToastServiceConfiguration, MTAnimatedNavigationManagerServiceConfiguration)
 - uid: BlazorMdc.ServiceCollectionExtensions.AddMTServices*
   name: AddMTServices
   href: api/BlazorMdc.ServiceCollectionExtensions.html#BlazorMdc_ServiceCollectionExtensions_AddMTServices_
@@ -7683,9 +7840,9 @@ references:
 - uid: C.MTAnimatedNavigation
   name: MTAnimatedNavigation
   href: BlazorMdc/Components/AnimatedNavigation/MTAnimatedNavigation.html
-- uid: C.MTAutocomplete
-  name: MTAutocomplete
-  href: BlazorMdc/Components/Autocomplete/MTAutoComplete.html
+- uid: C.MTAutocompleteTextField
+  name: MTAutocompleteTextField
+  href: BlazorMdc/Components/AutocompleteTextField/MTAutoCompleteTextField.html
 - uid: C.MTButton
   name: MTButton
   href: BlazorMdc/Components/Button/MTButton.html
