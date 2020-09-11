@@ -12,7 +12,8 @@
               Context="item"
               StackIcons="@StackIcons"
               Disabled="@AppliedDisabled"
-              Density="@Density">
+              Density="@Density"
+              GetKeysFunc="@GetKeysFunc">
 
     </MTTabBar>
 }
@@ -23,7 +24,8 @@ else if (Label is null)
               Context="item"
               StackIcons="@StackIcons"
               Disabled="@AppliedDisabled"
-              Density="@Density">
+              Density="@Density"
+              GetKeysFunc="@GetKeysFunc">
 
         <Icon>@Icon(item)</Icon>
     </MTTabBar>
@@ -35,7 +37,8 @@ else if (Icon is null)
               Context="item"
               StackIcons="@StackIcons"
               Disabled="@AppliedDisabled"
-              Density="@Density">
+              Density="@Density"
+              GetKeysFunc="@GetKeysFunc">
 
         <Label>@Label(item)</Label>
     </MTTabBar>
@@ -47,7 +50,8 @@ else
               Context="item"
               StackIcons="@StackIcons"
               Disabled="@AppliedDisabled"
-              Density="@Density">
+              Density="@Density"
+              GetKeysFunc="@GetKeysFunc">
 
         <Label>@Label(item)</Label>
         <Icon>@Icon(item)</Icon>

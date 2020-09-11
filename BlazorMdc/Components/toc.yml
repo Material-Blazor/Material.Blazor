@@ -7,8 +7,8 @@
 - name: BlazorMdc.Internal namespace
   topicUid: BlazorMdc.Internal
 
-- name: IMTAnimatedNavigationService
-  topicUid: S.IMTAnimatedNavigationService
+- name: IMTAnimatedNavigationManager
+  topicUid: S.IMTAnimatedNavigationManager
 
 - name: IMTToastService
   topicUid: S.IMTToastService
@@ -20,7 +20,7 @@
   topicUid: C.MTAnimatedNavigation
 
 - name: MTAutocomplete
-  topicUid: C.MTAutocomplete
+  topicUid: C.MTAutocompleteTextField
 
 - name: MTButton
   topicUid: C.MTButton

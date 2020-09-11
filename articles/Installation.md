@@ -66,7 +66,7 @@ Blazor MDC has three services for animated navigation, toasts, and tooltips. We 
 because regular component tooltips will fail if you don't, although they are optional. To register the services:
 
 ```csharp
-serviceCollection.AddMTServices(
+services.AddMTServices(
     toastServiceConfiguration: new MTToastServiceConfiguration()
     {
         InfoDefaultHeading = "Info",
@@ -77,7 +77,7 @@ serviceCollection.AddMTServices(
         MaxToastsShowing = 5
     },
 
-    animatedNavigationServiceConfiguration: new MTAnimatedNavigationServiceConfiguration()
+    animatedNavigationServiceConfiguration: new MTAnimatedNavigationManagerServiceConfiguration()
     {
         ApplyAnimation = true,
         AnimationTime = 300
@@ -85,9 +85,9 @@ serviceCollection.AddMTServices(
 );
 ```
 
-The two configurations are optional - see [MTToastServiceConfiguration](xref:BlazorMdc.MTToastServiceConfiguration) and [MTAnimatedNavigationServiceConfiguration](xref:BlazorMdc.MTAnimatedNavigationServiceConfiguration).
+The two configurations are optional - see [MTToastServiceConfiguration](xref:BlazorMdc.MTToastServiceConfiguration) and [MTAnimatedNavigationManagerServiceConfiguration](xref:BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration).
 
-When you use the services you must also place an anchor component at the top of `MainLayout.razor`, which must not be inside any other components or divs:
+When you use the services you must also place an anchor component at the top of `App.razor` - this must not be inside any other components or divs:
 
 ```html
 <MTAnchor />

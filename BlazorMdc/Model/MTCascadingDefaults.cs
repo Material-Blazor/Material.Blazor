@@ -270,7 +270,7 @@ namespace BlazorMdc
         /// The default text alignment style for an <see cref="MTTextField"/>, an <see cref="MTTextArea"/> or <see cref="MTSelect{TItem}"/>, initialized to <see cref="MTTextAlignStyle.Default"/> if not explicitly set.
         /// </summary>
         /// <remarks>
-        /// Also applied to <seealso cref="MTAutocomplete"/>, <seealso cref="MTDebouncedTextField"/>, <seealso cref="MTNumericDoubleField"/> and <seealso cref="MTNumericIntField"/>.
+        /// Also applied to <seealso cref="MTAutocompleteTextField"/>, <seealso cref="MTDebouncedTextField"/>, <seealso cref="MTNumericDoubleField"/> and <seealso cref="MTNumericIntField"/>.
         /// </remarks>
         public MTTextAlignStyle TextAlignStyle { get => _textAlignStyle; set => SetParameter(ref _textAlignStyle, value); }
 
@@ -288,7 +288,7 @@ namespace BlazorMdc
         /// The default style for an <see cref="MTTextField"/> or an <see cref="MTTextArea"/>, initialized to <see cref="MTTextInputStyle.Filled"/> if not explicitly set.
         /// </summary>
         /// <remarks>
-        /// Also applied to <seealso cref="MTAutocomplete"/>, <seealso cref="MTDebouncedTextField"/>, <seealso cref="MTNumericDoubleField"/> and <seealso cref="MTNumericIntField"/>.
+        /// Also applied to <seealso cref="MTAutocompleteTextField"/>, <seealso cref="MTDebouncedTextField"/>, <seealso cref="MTNumericDoubleField"/> and <seealso cref="MTNumericIntField"/>.
         /// </remarks>
         public MTTextInputStyle TextInputStyle { get => _textInputStyle; set => SetParameter(ref _textInputStyle, value); }
 
@@ -491,13 +491,13 @@ namespace BlazorMdc
 
         private MTDensity? _textFieldDensity = null;
         /// <summary>
-        /// The default density for an <see cref="MTTextField"/>, <see cref="MTTextArea"/>, <see cref="MTAutocomplete"/>, <see cref="MTDebouncedTextField"/>, 
+        /// The default density for an <see cref="MTTextField"/>, <see cref="MTTextArea"/>, <see cref="MTAutocompleteTextField"/>, <see cref="MTDebouncedTextField"/>, 
         /// <see cref="MTNumericDoubleField"/> or <see cref="MTNumericIntField"/>, defaults to <see cref="ThemeDensity"/> if not explicitly set.
         /// </summary>
         public MTDensity TextFieldDensity { get => _textFieldDensity ?? ThemeDensity; set => SetParameter(ref _textFieldDensity, value); }
 
         /// <summary>
-        /// The density to apply to an an <see cref="MTTextField"/>, <see cref="MTTextArea"/>, <see cref="MTAutocomplete"/>, <see cref="MTDebouncedTextField"/>, 
+        /// The density to apply to an an <see cref="MTTextField"/>, <see cref="MTTextArea"/>, <see cref="MTAutocompleteTextField"/>, <see cref="MTDebouncedTextField"/>, 
         /// <see cref="MTNumericDoubleField"/> or <see cref="MTNumericIntField"/>, initialized to <see cref="MTDensity.Default"/>.
         /// </summary>
         /// <param name="density">The density parameter passed to the <see cref="MTTextField"/></param>

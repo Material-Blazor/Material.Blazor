@@ -26,7 +26,7 @@ namespace BlazorMdcWebsite.Server
             services.AddServerSideBlazor();
 
             services.AddMTServices(
-                animatedNavigationServiceConfiguration: Utilities.GetDefaultAnimatedNavigationServiceConfiguration(),
+                animatedNavigationManagerServiceConfiguration: Utilities.GetDefaultAnimatedNavigationServiceConfiguration(),
                 toastServiceConfiguration: Utilities.GetDefaultToastServiceConfiguration()
             );
         }

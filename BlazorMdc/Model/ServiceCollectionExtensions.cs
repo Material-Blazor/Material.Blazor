@@ -12,13 +12,13 @@ namespace BlazorMdc
         /// </summary>
         /// <param name="services"></param>
         /// <param name="toastServiceConfiguration"></param>
-        /// <param name="animatedNavigationServiceConfiguration"></param>
+        /// <param name="animatedNavigationManagerServiceConfiguration"></param>
         /// <returns></returns>
-        public static IServiceCollection AddMTServices(this IServiceCollection services, MTToastServiceConfiguration toastServiceConfiguration = null, MTAnimatedNavigationManagerServiceConfiguration animatedNavigationServiceConfiguration = null)
+        public static IServiceCollection AddMTServices(this IServiceCollection services, MTToastServiceConfiguration toastServiceConfiguration = null, MTAnimatedNavigationManagerServiceConfiguration animatedNavigationManagerServiceConfiguration = null)
         {
             return services
                 .AddMTToastService( toastServiceConfiguration)
-                .AddMTAnimatedNavigationService(animatedNavigationServiceConfiguration)
+                .AddMTAnimatedNavigationService(animatedNavigationManagerServiceConfiguration)
                 .AddMTTooltipService();
         }
 

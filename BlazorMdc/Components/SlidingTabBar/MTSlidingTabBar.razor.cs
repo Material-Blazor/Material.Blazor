@@ -1,6 +1,7 @@
 ﻿using BlazorMdc.Internal;
 
 using Microsoft.AspNetCore.Components;
+using System;
 using System.Collections.Generic;
 
 namespace BlazorMdc
@@ -16,6 +17,13 @@ namespace BlazorMdc
         /// Stack icons vertically if True, otherwise icons are leading.
         /// </summary>
         [Parameter] public bool StackIcons { get; set; }
+
+
+        /// <summary>
+        /// A function delegate to return the parameters for <c>@key</c> attributes. If unused
+        /// "fake" keys set to GUIDs will be used.
+        /// </summary>
+        [Parameter] public Func<TItem, object> GetKeysFunc { get; set; }
 
 
         /// <summary>

@@ -6,7 +6,7 @@ title: MTAnimatedNavigation
 
 ## Summary
 
-An component used by the `IMTAnimatedNavigationService`. Typically you enclose the @Body in your main layout within the component. See the documentation for `IMTAnimatedNavigationSerice` for details on configurable seetings.
+An component used by the `IMTAnimatedNavigationManager`. Typically you enclose the '@Body' in your MainLayout.razor within the component. See the [Animated Navigation](xref:A.AnimatedNavigation) article for usage details.
 
 &nbsp;
 
