@@ -117,6 +117,8 @@ namespace BlazorMdc
         /// <inheritdoc/>
         protected override void OnAfterRender(bool firstRender)
         {
+            base.OnAfterRender();
+
             if (firstRender)
             {
                 HasRendered = true;

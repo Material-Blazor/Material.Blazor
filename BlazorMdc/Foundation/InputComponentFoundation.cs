@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace BlazorMdc.Internal
@@ -278,7 +279,10 @@ namespace BlazorMdc.Internal
         }
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc.
+        // This implementation of SetParametersAsync is largely untouched from our original fork of Steve Sanderson's
+        // RazoComponents.MaterialDesign repo. To be honest we're not entirely sure what it does but we are leaving it
+        // alone given Steve's provenance.
         public override async Task SetParametersAsync(ParameterView parameters)
         {
             parameters.SetParameterProperties(this);

@@ -163,6 +163,8 @@ namespace BlazorMdc
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
         protected override void OnInitialized()
         {
+            base.OnInitialized();
+
             ClassMapper
                 .Add("mdc-list")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass && NumberOfLines == 1 && AppliedListType != MTListType.Dense)

@@ -72,6 +72,8 @@ namespace BlazorMdc
         /// </summary>
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
+            await base.OnAfterRenderAsync(firstRender);
+
             if (firstRender && PrimaryAction != null)
             {
                 await JsRuntime.InvokeVoidAsync("BlazorMdc.cardPrimaryAction.init", PrimaryActionReference);

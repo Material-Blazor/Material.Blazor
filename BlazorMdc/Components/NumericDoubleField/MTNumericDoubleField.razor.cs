@@ -174,6 +174,8 @@ namespace BlazorMdc
         /// <inheritdoc/>
         protected override void OnInitialized()
         {
+            base.OnInitialized();
+
             bool allowSign = !(Min != null && Min >= 0);
 
             FocusedMultiplier = Math.Pow(10, (int)FocusedMagnitude);

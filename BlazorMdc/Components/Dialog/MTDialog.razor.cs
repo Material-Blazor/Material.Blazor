@@ -187,7 +187,7 @@ namespace BlazorMdc
         /// <returns></returns>
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            base.OnAfterRender(firstRender);
+            await base.OnAfterRenderAsync(firstRender);
 
             if (AfterRenderShowAction)
             {

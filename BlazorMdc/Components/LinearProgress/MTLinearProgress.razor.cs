@@ -71,13 +71,6 @@ namespace BlazorMdc
         }
 
 
-        /// <inheritdoc/>
-        protected override void OnParametersSet()
-        {
-            base.OnParametersSet();
-        }
-
-
         /// <summary>
         /// Callback for value the value setter.
         /// </summary>
