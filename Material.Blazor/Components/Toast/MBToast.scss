@@ -126,7 +126,7 @@ $icon-horizontal-padding: 12px;
 }
 
 
-@keyframes bmdcToastFadeOut {
+@keyframes mbToastFadeOut {
     0% {
         opacity: 1;
         max-height: $toast-height;
@@ -155,7 +155,7 @@ $icon-horizontal-padding: 12px;
     }
 }
 
-@-webkit-keyframes bmdcToastFadeOut {
+@-webkit-keyframes mbToastFadeOut {
     0% {
         opacity: 1;
         max-height: $toast-height;
