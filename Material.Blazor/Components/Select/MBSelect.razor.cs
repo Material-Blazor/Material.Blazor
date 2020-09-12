@@ -45,14 +45,14 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// The select's <see cref="BlazorMdc.MBSelectInputStyle"/>.
+        /// The select's <see cref="MBSelectInputStyle"/>.
         /// <para>Overrides <see cref="MBCascadingDefaults.SelectInputStyle"/></para>
         /// </summary>
         [Parameter] public MBSelectInputStyle? SelectInputStyle { get; set; }
 
 
         /// <summary>
-        /// The select's <see cref="BlazorMdc.MBTextAlignStyle"/>.
+        /// The select's <see cref="MBTextAlignStyle"/>.
         /// <para>Overrides <see cref="MBCascadingDefaults.TextAlignStyle"/></para>
         /// </summary>
         [Parameter] public MBTextAlignStyle? TextAlignStyle { get; set; }
@@ -114,7 +114,7 @@ namespace Material.Blazor
         }
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override void OnInitialized()
         {
             base.OnInitialized();
@@ -142,7 +142,7 @@ namespace Material.Blazor
         }
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override void OnParametersSet()
         {
             base.OnParametersSet();

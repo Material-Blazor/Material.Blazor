@@ -279,7 +279,7 @@ namespace Material.Blazor.Internal
         }
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc.
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor.
         // This implementation of SetParametersAsync is largely untouched from our original fork of Steve Sanderson's
         // RazoComponents.MaterialDesign repo. To be honest we're not entirely sure what it does but we are leaving it
         // alone given Steve's provenance.

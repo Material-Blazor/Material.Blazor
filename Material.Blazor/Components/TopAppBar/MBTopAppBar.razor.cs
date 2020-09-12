@@ -47,7 +47,7 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Top app bar type. See <see cref="BlazorMdc.MBTopAppBarType"/>
+        /// Top app bar type. See <see cref="MBTopAppBarType"/>
         /// </summary>
         [Parameter] public MBTopAppBarType TopAppBarType { get; set; } = MBTopAppBarType.Standard;
 
@@ -55,7 +55,7 @@ namespace Material.Blazor
         private ElementReference HeaderElem { get; set; }
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override void OnInitialized()
         {
             base.OnInitialized();
