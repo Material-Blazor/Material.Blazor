@@ -219,7 +219,7 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Callback for value the Disabled value setter. MBList is a special case where Blazor MDC re-renders the component when Disabled is set.
+        /// Callback for value the Disabled value setter. MBList is a special case where Material.Blazor re-renders the component when Disabled is set.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

@@ -19,4 +19,4 @@ A simple component producing an HTML shield styled after svgs from shield.io (sq
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Plus&color=red)](xref:A.PlusComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBShield&color=brightgreen)](xref:BlazorMdc.MBShield)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBShield&color=brightgreen)](xref:Material.Blazor.MBShield)

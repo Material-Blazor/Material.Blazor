@@ -14,4 +14,4 @@ Applies [density subsystem](xref:A.Density) - note that filled text fields with 
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Plus&color=red)](xref:A.PlusComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBAutocompleteTextField&color=brightgreen)](xref:BlazorMdc.MBAutocompleteTextField)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBAutocompleteTextField&color=brightgreen)](xref:Material.Blazor.MBAutocompleteTextField)

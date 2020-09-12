@@ -20,4 +20,4 @@ A [Material Drawer](https://github.com/material-components/material-components-w
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](xref:A.CoreComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBDrawer&color=brightgreen)](xref:BlazorMdc.MBDrawer)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBDrawer&color=brightgreen)](xref:Material.Blazor.MBDrawer)

@@ -13,7 +13,7 @@ namespace Material.Blazor
     /// to another value and your whole application within the cascading value will change appearance. You can of course
     /// nest cascading values in the normal manner. Exposes a property <see cref="Version"/> that is incremented each time another
     /// property is updated; <see cref="Version"/> can be used with an `@key(CascadingDefaults.Version)` attribute to force components
-    /// to re-render when cascading defaults have updated. See <see href="https://blazormdc.com/docs/articles/CascadingDefaults.html"/>.
+    /// to re-render when cascading defaults have updated. See <see href="https://material-blazor.com/docs/articles/CascadingDefaults.html"/>.
     /// </remarks>
     public class MBCascadingDefaults
     {

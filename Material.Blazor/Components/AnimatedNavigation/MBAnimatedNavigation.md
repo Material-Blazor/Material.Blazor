@@ -13,4 +13,4 @@ An component used by the `IMBAnimatedNavigationManager`. Typically you enclose t
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Plus&color=red)](xref:A.PlusComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBAnimatedNavigation&color=brightgreen)](xref:BlazorMdc.MBAnimatedNavigation)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBAnimatedNavigation&color=brightgreen)](xref:Material.Blazor.MBAnimatedNavigation)

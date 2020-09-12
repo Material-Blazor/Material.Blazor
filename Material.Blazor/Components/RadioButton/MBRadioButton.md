@@ -20,4 +20,4 @@ title: MBRadioButton
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](xref:A.CoreComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBRadioButton&color=brightgreen)](xref:BlazorMdc.MBRadioButton`1)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBRadioButton&color=brightgreen)](xref:Material.Blazor.MBRadioButton`1)

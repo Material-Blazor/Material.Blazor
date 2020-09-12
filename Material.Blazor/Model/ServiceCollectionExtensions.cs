@@ -7,7 +7,7 @@ namespace Material.Blazor
     public static class ServiceCollectionExtensions
     {
         /// <summary>
-        /// Adds Toast, Tooltip and Animated Navigation services for Blazor MDC. This is required for any app that uses one or more
+        /// Adds Toast, Tooltip and Animated Navigation services for Material.Blazor. This is required for any app that uses one or more
         /// of these components. The two configurations are optional.
         /// </summary>
         /// <param name="services"></param>

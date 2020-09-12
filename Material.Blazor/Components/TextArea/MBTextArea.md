@@ -19,4 +19,4 @@ A [Material Text Field](https://github.com/material-components/material-componen
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](xref:A.CoreComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBTextArea&color=brightgreen)](xref:BlazorMdc.MBTextArea)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBTextArea&color=brightgreen)](xref:Material.Blazor.MBTextArea)

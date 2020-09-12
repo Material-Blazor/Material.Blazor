@@ -20,4 +20,4 @@ that users can find UX confusing without such cues.
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Plus&color=red)](xref:A.PlusComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBSlidingContent&color=brightgreen)](xref:BlazorMdc.MBSlidingContent`1)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBSlidingContent&color=brightgreen)](xref:Material.Blazor.MBSlidingContent`1)

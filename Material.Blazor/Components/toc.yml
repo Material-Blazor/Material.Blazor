@@ -1,11 +1,11 @@
-- name: Introduction to BlazorMdc Components
+- name: Introduction to Material.Blazor Components
   href: intro.md
 
-- name: BlazorMdc namespace
-  topicUid: BlazorMdc
+- name: Material.Blazor namespace
+  topicUid: Material.Blazor
 
-- name: BlazorMdc.Internal namespace
-  topicUid: BlazorMdc.Internal
+- name: Material.Blazor.Internal namespace
+  topicUid: Material.Blazor.Internal
 
 - name: IMBAnimatedNavigationManager
   topicUid: S.IMBAnimatedNavigationManager

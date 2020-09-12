@@ -12,7 +12,7 @@ have included tooltips early. Tooltips are driven by [IMBTooltipService](xref:S.
 
 ## Using Toolips with Components
 
-All Blazor MDC components have a `Tooltip` string parameter. This parameter accepts markup, so you can use `Tooltip="a tooltip"`
+All Material.Blazor components have a `Tooltip` string parameter. This parameter accepts markup, so you can use `Tooltip="a tooltip"`
 or `Tooltip="<span style='color: lightblue;'>a colored tooltip</span>"`.
 
 ## Standalone Tooltips

@@ -24,7 +24,7 @@ Surround @Body with the component thus:
 </MBAnimatedNavigation>
 ```
 
-The Blazor MDC website uses the following code to animate everything except for the top app bar and drawer:
+The Material.Blazor website uses the following code to animate everything except for the top app bar and drawer:
 
 ```html
 <MBAnimatedNavigation>

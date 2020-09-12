@@ -105,7 +105,7 @@ window.BlazorMdc = {
 
     dataTable: {
         init: function (elem) {
-            //This will only become necessary once Blazor MDC allows row selection, see: https://material.io/develop/web/components/data-tables
+            //This will only become necessary once Material.Blazor allows row selection, see: https://material.io/develop/web/components/data-tables
             //mdc.dataTable.MDCDataTable.attachTo(elem);
         }
     },

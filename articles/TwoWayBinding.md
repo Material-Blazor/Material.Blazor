@@ -2,9 +2,9 @@
 uid: A.TwoWayBinding
 title: TwoWayBinding
 ---
-# Blazor MDC's Two Way Binding Approach
+# Material.Blazor's Two Way Binding Approach
 
-Blazor MDC takes an unusual approach to two way binding and rendering. Most components return `ShouldRender() => false;`. This is
+Material.Blazor takes an unusual approach to two way binding and rendering. Most components return `ShouldRender() => false;`. This is
 to resolve an inherent conflict between how Blazor re-renders components when bound parameters are updated by their consumers and
 how a JavaScript framework such as [Material Components Web ("MCW")](https://github.com/material-components/material-components-web) works.
 
@@ -22,7 +22,7 @@ the border gain color:
 
 <img src="../images/text-field-focus.png" alt="Text Field Gaining Focus"></img>
 
-The text field's markup however has three distinct state. First what any app environment (including your app using Blazor MDC) marks
+The text field's markup however has three distinct state. First what any app environment (including your app using Material.Blazor) marks
 up in a page, then what this becomes once the text field has been initiated and manipulated by MCW and lastly 
 how its state after receiving focus. The transition between the last two is animated by MCW.
 
@@ -66,12 +66,12 @@ how its state after receiving focus. The transition between the last two is anim
     </label>
     ```
 
-What we see from this is that if Blazor MDC were to allow Blazor to re-render, this would be with markup similar to 1. above and
+What we see from this is that if Material.Blazor were to allow Blazor to re-render, this would be with markup similar to 1. above and
 MCW will then fail to manipulate the DOM correctly thereafter - we know this because we tried.
 
 ## Handling Two Way Binding
 
-When we first identified this issue during Blazor MDC's development we realized that our Blazor code needed to first render a
+When we first identified this issue during Material.Blazor's development we realized that our Blazor code needed to first render a
 new component and then immediately after initiating it step out of MCW's way by applying `ShouldRender() => false;` 
 in `InputComponentFoundation`. To begin with this is all we did and so subsequent attempts by the consumer (your project) 
 to update Value were ignored, which is an unacceptable result. Fortunately each MCW component has a rich 
