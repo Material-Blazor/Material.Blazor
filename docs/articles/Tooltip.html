@@ -82,25 +82,25 @@
 
 <h2 id="summary">Summary</h2>
 <p>The Material Components Web framework will provide tooltips in the upcoming version 8.0.0. We decided to jump the gun and
-have included tooltips early. Tooltips are driven by <a class="xref" href="../BlazorMdc/Model/Tooltip/IMTTooltipService.html">IMTTooltipService</a> which is registered by calling
-<code>services.AddMTServices();</code>, and are anchored by <a class="xref" href="../BlazorMdc/Components/Anchor/MTAnchor.html">MTAnchor</a>.</p>
+have included tooltips early. Tooltips are driven by <a class="xref" href="../Material.Blazor/Model/Tooltip/IMBTooltipService.html">IMBTooltipService</a> which is registered by calling
+<code>services.AddMBServices();</code>, and are anchored by <a class="xref" href="../Material.Blazor/Components/Anchor/MBAnchor.html">MBAnchor</a>.</p>
 <h2 id="using-toolips-with-components">Using Toolips with Components</h2>
-<p>All Blazor MDC components have a <code>Tooltip</code> string parameter. This parameter accepts markup, so you can use <code>Tooltip=&quot;a tooltip&quot;</code>
+<p>All Material.Blazor components have a <code>Tooltip</code> string parameter. This parameter accepts markup, so you can use <code>Tooltip=&quot;a tooltip&quot;</code>
 or <code>Tooltip=&quot;&lt;span style='color: lightblue;'&gt;a colored tooltip&lt;/span&gt;&quot;</code>.</p>
 <h2 id="standalone-tooltips">Standalone Tooltips</h2>
-<p>The <a class="xref" href="../BlazorMdc/Components/Tooltip/MTTooltip.html">MTTooltip</a> component gives you flexible tooltips that take two renderfragments: Target to render
+<p>The <a class="xref" href="../Material.Blazor/Components/Tooltip/MBTooltip.html">MBTooltip</a> component gives you flexible tooltips that take two renderfragments: Target to render
 in your page and Content for the tooltip's content, e.g.:</p>
-<pre><code class="lang-html">&lt;MTTooltip TooltipType=&quot;@MTTooltipType.Span&quot;&gt;
+<pre><code class="lang-html">&lt;MBTooltip TooltipType=&quot;@MBTooltipType.Span&quot;&gt;
     &lt;Target&gt;
-        &lt;span style=&quot;background-color: var(--bmdc-color-red-100);&quot;&gt;This is the target span to be displayed in your razor page.&lt;/span&gt;
+        &lt;span style=&quot;background-color: var(--mb-color-red-100);&quot;&gt;This is the target span to be displayed in your razor page.&lt;/span&gt;
     &lt;/Target&gt;
     &lt;Content&gt;
         this is a &lt;strong&gt;span&lt;/strong&gt; type of tooltip
     &lt;/Content&gt;
-&lt;/MTTooltip&gt;
+&lt;/MBTooltip&gt;
 </code></pre>
-<p>This tooltip surrounds your <code>&lt;Target&gt;</code> with either a span or div depending on whether the <code>TooltipType</code> is <code>MTTooltipType.Span</code> or
-<code>MTTooltipType.Div</code> respectively.</p>
+<p>This tooltip surrounds your <code>&lt;Target&gt;</code> with either a span or div depending on whether the <code>TooltipType</code> is <code>MBTooltipType.Span</code> or
+<code>MBTooltipType.Div</code> respectively.</p>
 </article>
           </div>
           
@@ -109,7 +109,7 @@ in your page and Content for the tooltip's content, e.g.:</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/371733c454b3448fb89e0b6931556820cf13609c/articles/Tooltip.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/articles/Tooltip.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

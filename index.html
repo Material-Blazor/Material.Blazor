@@ -4,15 +4,15 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Blazor MDC</title>
+    <title>Material.Blazor</title>
     <base href="/" />
     <link href="manifest.json" rel="manifest">
-    <link href="_content/BlazorMdcWebsite.Components/icon-512.png" rel="apple-touch-icon" sizes="512x512">
-    <link href="_content/BlazorMdcWebsite.Components/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
-    <link href="_content/BlazorMdcWebsite.Components/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
+    <link href="_content/Material.Blazor.Website.Components/icon-512.png" rel="apple-touch-icon" sizes="512x512">
+    <link href="_content/Material.Blazor.Website.Components/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
+    <link href="_content/Material.Blazor.Website.Components/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
     <link href="/site.webmanifest" rel="manifest">
-    <link id="app-style" href="_content/BlazorMdcWebsite.Components/css/blue-square-theme.min.css" rel="stylesheet">
-    <link href="_content/BlazorMdc/blazormdc.min.css" rel="stylesheet">
+    <link id="app-style" href="_content/Material.Blazor.Website.Components/css/blue-square-theme.min.css" rel="stylesheet">
+    <link href="_content/Material.Blazor/material.blazor.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700" rel="stylesheet">
@@ -35,12 +35,12 @@
     </script>
 </head>
 
-<body class="mdc-typography bmdc-custom-scrollbars">
+<body class="mdc-typography mb-custom-scrollbars">
     <app>
         <div class="splash-screen">
             <div class="splash-content">
                 <h1 class="mdc-typography-headline2">
-                    Blazor MDC
+                    Material.Blazor
                 </h1>
 
                 <h2 class="mdc-typography-headline4">
@@ -117,11 +117,11 @@
 
     <script src="_framework/blazor.webassembly.js"></script>
     <!--    <script>navigator.serviceWorker.register('service-worker.js');</script>-->
-    <script src="_content/BlazorMdc/blazormdc-material-bundle.min.js"></script>
-    <script src="_content/BlazorMdcWebsite.Components/js/app.js"></script>
+    <script src="_content/Material.Blazor/material.blazor.material-bundle.min.js"></script>
+    <script src="_content/Material.Blazor.Website.Components/js/app.js"></script>
 
     <script>
-        BlazorMdc.circularProgress.init(document.querySelector('.splash-progress'), 0.4);
+        Material.Blazor.circularProgress.init(document.querySelector('.splash-progress'), 0.4);
     </script>
 </body>
 </html>

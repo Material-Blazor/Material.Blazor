@@ -83,18 +83,18 @@
 <h2 id="summary">Summary</h2>
 <p>The animated navigation manager is an optional service that adds a simple fade out/fade in animation to page navigation. The service
 itself consumes the <code>INavigationManager</code> service to achieve this, and exposes it's reference to that service. To use animated navigations,
-surround your <code>@Body</code> renderfragment in <code>MainLayout.razor</code> with the <a class="xref" href="../BlazorMdc/Components/AnimatedNavigation/MTAnimatedNavigation.html">MTAnimatedNavigation</a> component.</p>
-<p>While calling <code>services.AddMTServices( ... );</code> will add the animated navigation manager service, you do not need to use it and can continue
+surround your <code>@Body</code> renderfragment in <code>MainLayout.razor</code> with the <a class="xref" href="../Material.Blazor/Components/AnimatedNavigation/MBAnimatedNavigation.html">MBAnimatedNavigation</a> component.</p>
+<p>While calling <code>services.AddMBServices( ... );</code> will add the animated navigation manager service, you do not need to use it and can continue
 to navigate with the <code>INavigationManager</code> service if you prefer. If you do use animated navigation, you can configure the animation time in milliseconds
 and whether to animate in the service configuration as described in the <a class="xref" href="Installation.html">Installation</a> article.</p>
-<h2 id="using-the-mtanimatednavigation-component">Using the MTAnimatedNavigation Component</h2>
+<h2 id="using-the-mbanimatednavigation-component">Using the MBAnimatedNavigation Component</h2>
 <p>Surround @Body with the component thus:</p>
-<pre><code class="lang-html">&lt;MTAnimatedNavigation&gt;
+<pre><code class="lang-html">&lt;MBAnimatedNavigation&gt;
     @Body
-&lt;/MTAnimatedNavigation&gt;
+&lt;/MBAnimatedNavigation&gt;
 </code></pre>
-<p>The Blazor MDC website uses the following code to animate everything except for the top app bar and drawer:</p>
-<pre><code class="lang-html">&lt;MTAnimatedNavigation&gt;
+<p>The Material.Blazor website uses the following code to animate everything except for the top app bar and drawer:</p>
+<pre><code class="lang-html">&lt;MBAnimatedNavigation&gt;
     &lt;div class=&quot;mdc-top-app-bar--dense-fixed-adjust&quot;&gt;
         &lt;div class=&quot;main-content&quot;&gt;
             &lt;div class=&quot;mdc-layout-grid&quot;&gt;
@@ -104,7 +104,7 @@ and whether to animate in the service configuration as described in the <a class
             &lt;/div&gt;
         &lt;/div&gt;
     &lt;/div&gt;
-&lt;/MTAnimatedNavigation&gt;
+&lt;/MBAnimatedNavigation&gt;
 </code></pre>
 </article>
           </div>
@@ -114,7 +114,7 @@ and whether to animate in the service configuration as described in the <a class
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/371733c454b3448fb89e0b6931556820cf13609c/articles/AnimatedNavigation.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/articles/AnimatedNavigation.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

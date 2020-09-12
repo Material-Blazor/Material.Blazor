@@ -81,12 +81,12 @@
 <h1 id="density">Density</h1>
 
 <h2 id="summary">Summary</h2>
-<p>Material Theme specifies a <a href="https://material.io/develop/web/components/density">density subsystem</a>, applied using SASS mixins. Blazor MDC handles density through component parameters and
-cascading defaults. This parameterization is applied to Material Theme components via CSS classes prepared by Blazor MDC from the SASS mixins. Density is specified by the
-<a class="xref" href="../api/BlazorMdc.MTDensity.html">MTDensity enumeration</a>, and can be controlled both with Cascading Defaults and direct component parameters.</p>
+<p>Material Theme specifies a <a href="https://material.io/develop/web/components/density">density subsystem</a>, applied using SASS mixins. Material.Blazor handles density through component parameters and
+cascading defaults. This parameterization is applied to Material Theme components via CSS classes prepared by Material.Blazor from the SASS mixins. Density is specified by the
+<a class="xref" href="../api/Material.Blazor.MBDensity.html">MBDensity enumeration</a>, and can be controlled both with Cascading Defaults and direct component parameters.</p>
 <h2 id="density-levels">Density Levels</h2>
 <p>Density is specified by having components rendered increasingly dense as a density number reduces from zero to minus 5. Some components render all density levels, others only a subset, stopping
-at either minus three or minus four. In these cases if you specify a something more dense, the densest available rendering will be supplied. For instance <code>MTButton</code> with density of minus 5 will render with
+at either minus three or minus four. In these cases if you specify a something more dense, the densest available rendering will be supplied. For instance <code>MBButton</code> with density of minus 5 will render with
 density of minus 3.</p>
 <table>
 <thead>
@@ -98,32 +98,32 @@ density of minus 3.</p>
 <tbody>
 <tr>
 <td style="text-align: center;">0</td>
-<td style="text-align: left;"><code>MTDensity.Default</code></td>
+<td style="text-align: left;"><code>MBDensity.Default</code></td>
 </tr>
 <tr>
 <td style="text-align: center;">-1</td>
-<td style="text-align: left;"><code>MTDensity.Minus1</code></td>
+<td style="text-align: left;"><code>MBDensity.Minus1</code></td>
 </tr>
 <tr>
 <td style="text-align: center;">-2</td>
-<td style="text-align: left;"><code>MTDensity.Minus2</code> and <code>MTDensity.Comfortable</code></td>
+<td style="text-align: left;"><code>MBDensity.Minus2</code> and <code>MBDensity.Comfortable</code></td>
 </tr>
 <tr>
 <td style="text-align: center;">-3</td>
-<td style="text-align: left;"><code>MTDensity.Minus3</code> and <code>MTDensity.Compact</code></td>
+<td style="text-align: left;"><code>MBDensity.Minus3</code> and <code>MBDensity.Compact</code></td>
 </tr>
 <tr>
 <td style="text-align: center;">-4</td>
-<td style="text-align: left;"><code>MTDensity.Minus4</code></td>
+<td style="text-align: left;"><code>MBDensity.Minus4</code></td>
 </tr>
 <tr>
 <td style="text-align: center;">-5</td>
-<td style="text-align: left;"><code>MTDensity.Minus5</code></td>
+<td style="text-align: left;"><code>MBDensity.Minus5</code></td>
 </tr>
 </tbody>
 </table>
 <h2 id="components-applying-density-subsystem">Components Applying Density Subsystem</h2>
-<p>Applicable density levels are shown with a ✔️. Those with a ❌ will display the most dense option available. For instance an <a class="xref" href="../BlazorMdc/Components/Button/MTButton.html">MTButton</a> with
+<p>Applicable density levels are shown with a ✔️. Those with a ❌ will display the most dense option available. For instance an <a class="xref" href="../Material.Blazor/Components/Button/MBButton.html">MBButton</a> with
 a specified density of minus 5 will actually display with a density of minus 3.</p>
 <table>
 <thead>
@@ -139,7 +139,7 @@ a specified density of minus 5 will actually display with a density of minus 3.<
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/AutocompleteTextField/MTAutoCompleteTextField.html">MTAutocompleteTextField</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/AutocompleteTextField/MBAutoCompleteTextField.html">MBAutocompleteTextField</a></td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
@@ -148,7 +148,7 @@ a specified density of minus 5 will actually display with a density of minus 3.<
 <td style="text-align: center;">❌</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/Button/MTButton.html">MTButton</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/Button/MBButton.html">MBButton</a></td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
@@ -157,7 +157,7 @@ a specified density of minus 5 will actually display with a density of minus 3.<
 <td style="text-align: center;">❌</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/Checkbox/MTCheckbox.html">MTCheckbox</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/Checkbox/MBCheckbox.html">MBCheckbox</a></td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
@@ -166,7 +166,7 @@ a specified density of minus 5 will actually display with a density of minus 3.<
 <td style="text-align: center;">❌</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/DataTable/MTDataTable.html">MTDataTable<titem></titem></a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/DataTable/MBDataTable.html">MBDataTable<titem></titem></a></td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
@@ -175,7 +175,7 @@ a specified density of minus 5 will actually display with a density of minus 3.<
 <td style="text-align: center;">❌</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/DebouncedTextField/MTDebouncedTextField.html">MTDebouncedTextField</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/DebouncedTextField/MBDebouncedTextField.html">MBDebouncedTextField</a></td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
@@ -184,7 +184,7 @@ a specified density of minus 5 will actually display with a density of minus 3.<
 <td style="text-align: center;">❌</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/IconButton/MTIconButton.html">MTIconButton</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/IconButton/MBIconButton.html">MBIconButton</a></td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
@@ -193,7 +193,7 @@ a specified density of minus 5 will actually display with a density of minus 3.<
 <td style="text-align: center;">✔️</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/IconButtonToggle/MTIconButtonToggle.html">MTIconButtonToggle</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/IconButtonToggle/MBIconButtonToggle.html">MBIconButtonToggle</a></td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
@@ -202,7 +202,7 @@ a specified density of minus 5 will actually display with a density of minus 3.<
 <td style="text-align: center;">✔️</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/List/MTList.html">MTList</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/List/MBList.html">MBList</a></td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
@@ -211,7 +211,7 @@ a specified density of minus 5 will actually display with a density of minus 3.<
 <td style="text-align: center;">❌</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/NumericDoubleField/MTNumericDoubleField.html">MTNumericDoubleField</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/NumericDoubleField/MBNumericDoubleField.html">MBNumericDoubleField</a></td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
@@ -220,7 +220,7 @@ a specified density of minus 5 will actually display with a density of minus 3.<
 <td style="text-align: center;">❌</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/NumericIntField/MTNumericIntField.html">MTNumericIntField</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/NumericIntField/MBNumericIntField.html">MBNumericIntField</a></td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
@@ -229,7 +229,7 @@ a specified density of minus 5 will actually display with a density of minus 3.<
 <td style="text-align: center;">❌</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/RadioButton/MTRadioButton.html">MTRadioButton</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/RadioButton/MBRadioButton.html">MBRadioButton</a></td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
@@ -238,7 +238,7 @@ a specified density of minus 5 will actually display with a density of minus 3.<
 <td style="text-align: center;">❌</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/RadioButtonGroup/MTRadioButtonGroup.html">MTRadioButtonGroup</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/RadioButtonGroup/MBRadioButtonGroup.html">MBRadioButtonGroup</a></td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
@@ -247,7 +247,7 @@ a specified density of minus 5 will actually display with a density of minus 3.<
 <td style="text-align: center;">❌</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/Select/MTSelect.html">MTSelect</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/Select/MBSelect.html">MBSelect</a></td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️<a href="#fn1"><sup>1</sup></a></td>
@@ -256,7 +256,7 @@ a specified density of minus 5 will actually display with a density of minus 3.<
 <td style="text-align: center;">❌</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/Switch/MTSwitch.html">MTSwitch</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/Switch/MBSwitch.html">MBSwitch</a></td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
@@ -265,7 +265,7 @@ a specified density of minus 5 will actually display with a density of minus 3.<
 <td style="text-align: center;">✔️</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/TabBar/MTTabBar.html">MTTabBar</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/TabBar/MBTabBar.html">MBTabBar</a></td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
@@ -274,7 +274,7 @@ a specified density of minus 5 will actually display with a density of minus 3.<
 <td style="text-align: center;">❌</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/TextArea/MTTextArea.html">MTTextArea</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/TextArea/MBTextArea.html">MBTextArea</a></td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️<a href="#fn1"><sup>1</sup></a></td>
@@ -283,7 +283,7 @@ a specified density of minus 5 will actually display with a density of minus 3.<
 <td style="text-align: center;">❌</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/TextField/MTTextField.html">MTTextField</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/TextField/MBTextField.html">MBTextField</a></td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️</td>
 <td style="text-align: center;">✔️<a href="#fn1"><sup>1</sup></a></td>
@@ -303,7 +303,7 @@ a specified density of minus 5 will actually display with a density of minus 3.<
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/371733c454b3448fb89e0b6931556820cf13609c/articles/Density.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/articles/Density.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

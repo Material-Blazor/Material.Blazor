@@ -80,7 +80,7 @@
             <article class="content wrap" id="_content" data-uid="A.PlusComponents">
 <h1 id="plus-components">Plus Components</h1>
 
-<p>Material Theme closely specifies component HTML markup. Blazor MDC implements many of these as <a class="xref" href="CoreComponents.html">Core Components</a>. Blazor MDC also
+<p>Material Theme closely specifies component HTML markup. Material.Blazor implements many of these as <a class="xref" href="CoreComponents.html">Core Components</a>. Material.Blazor also
 implements further Blazor/Material Theme hybrid components that we term &quot;Plus Components&quot;.</p>
 <h2 id="component-list">Component List</h2>
 <table>
@@ -92,68 +92,68 @@ implements further Blazor/Material Theme hybrid components that we term &quot;Pl
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/Anchor/MTAnchor.html">MTAnchor</a></td>
-<td style="text-align: left;">Anchor for a port of <a href="https://github.com/Blazored/Toast">Blazored/Toast</a> and <a href="https://github.com/material-components/material-components-web/tree/master/packages/mdc-tooltip#tooltip">Material Tooltips</a> modified and styled for Material Theme. Place once instance of this in your Blazor app at the top of <code>App.razor</code> or <code>MainLayout.razor</code>. Requires that you register an <a class="xref" href="../BlazorMdc/Model/Toast/IMTToastService.html">IIMToastService</a> service and will throw an exception on startup if the service is not found.</td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/Anchor/MBAnchor.html">MBAnchor</a></td>
+<td style="text-align: left;">Anchor for a port of <a href="https://github.com/Blazored/Toast">Blazored/Toast</a> and <a href="https://github.com/material-components/material-components-web/tree/master/packages/mdc-tooltip#tooltip">Material Tooltips</a> modified and styled for Material Theme. Place once instance of this in your Blazor app at the top of <code>App.razor</code> or <code>MainLayout.razor</code>. Requires that you register an <a class="xref" href="../Material.Blazor/Model/Toast/IMBToastService.html">IIMBoastService</a> service and will throw an exception on startup if the service is not found.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/AnimatedNavigation/MTAnimatedNavigation.html">MTAnimatedNavigation</a></td>
-<td style="text-align: left;">An component used by the <a class="xref" href="../BlazorMdc/Model/AnimatedNavigation/IMTAnimatedNavigationManager.html">IMTAnimatedNavigationService</a> service.</td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/AnimatedNavigation/MBAnimatedNavigation.html">MBAnimatedNavigation</a></td>
+<td style="text-align: left;">An component used by the <a class="xref" href="../Material.Blazor/Model/AnimatedNavigation/IMBAnimatedNavigationManager.html">IMBAnimatedNavigationService</a> service.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/AutocompleteTextField/MTAutoCompleteTextField.html">MTAutocompleteTextField</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/AutocompleteTextField/MBAutoCompleteTextField.html">MBAutocompleteTextField</a></td>
 <td style="text-align: left;">An autocomplete comprising a text field and a menu.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/ConfirmationDialog/MTConfirmationDialog.html">MTConfirmationDialog</a></td>
-<td style="text-align: left;">A special purpose wrapper around <a class="xref" href="../BlazorMdc/Components/Dialog/MTDialog.html">MTDialog</a> that makes the user type some text correctly in order to enable a button for a specific purpose. Modelled after the GitHub confirmation forms.</td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/ConfirmationDialog/MBConfirmationDialog.html">MBConfirmationDialog</a></td>
+<td style="text-align: left;">A special purpose wrapper around <a class="xref" href="../Material.Blazor/Components/Dialog/MBDialog.html">MBDialog</a> that makes the user type some text correctly in order to enable a button for a specific purpose. Modelled after the GitHub confirmation forms.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/DatePicker/MTDatePicker.html">MTDatePicker</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/DatePicker/MBDatePicker.html">MBDatePicker</a></td>
 <td style="text-align: left;">An implementation of the <a href="https://material.io/components/pickers/#specs">Material date picker specification</a> for the desktop.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/DebouncedTextField/MTDebouncedTextField.html">MTDebouncedTextField</a></td>
-<td style="text-align: left;">A debounced version of <a class="xref" href="../BlazorMdc/Components/TextField/MTTextField.html">MTTextField</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/DebouncedTextField/MBDebouncedTextField.html">MBDebouncedTextField</a></td>
+<td style="text-align: left;">A debounced version of <a class="xref" href="../Material.Blazor/Components/TextField/MBTextField.html">MBTextField</a></td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/Divider/MTDivider.html">MTDivider</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/Divider/MBDivider.html">MBDivider</a></td>
 <td style="text-align: left;">Implements a list divider by wrapping <code>hr</code> and gives the option of inset and padded. This uses the mdc-list-divider styles.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/Icon/MTIcon.html">MTIcon</a></td>
-<td style="text-align: left;">Displays an icon from the specified icon foundry or the default foundry from <a class="xref" href="../BlazorMdc/Model/MTCascadingDefaults.html">MTCascadingDefaults</a>. See also <a class="xref" href="../BlazorMdc/Model/Icon/MTIconHelper.html">MTIconHelper</a>.</td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/Icon/MBIcon.html">MBIcon</a></td>
+<td style="text-align: left;">Displays an icon from the specified icon foundry or the default foundry from <a class="xref" href="../Material.Blazor/Model/MBCascadingDefaults.html">MBCascadingDefaults</a>. See also <a class="xref" href="../Material.Blazor/Model/Icon/MBIconHelper.html">MBIconHelper</a>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/NumericDoubleField/MTNumericDoubleField.html">MTNumericDoubleField</a></td>
-<td style="text-align: left;">Wraps <a class="xref" href="../BlazorMdc/Components/TextField/MTTextField.html">MTTextField</a> to format numeric entry of a double.</td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/NumericDoubleField/MBNumericDoubleField.html">MBNumericDoubleField</a></td>
+<td style="text-align: left;">Wraps <a class="xref" href="../Material.Blazor/Components/TextField/MBTextField.html">MBTextField</a> to format numeric entry of a double.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/NumericIntField/MTNumericIntField.html">MTNumericIntField</a></td>
-<td style="text-align: left;">A wrapper for <code>MTpNumericDoubleField</code> for <code>int</code> variables.</td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/NumericIntField/MBNumericIntField.html">MBNumericIntField</a></td>
+<td style="text-align: left;">A wrapper for <code>MBpNumericDoubleField</code> for <code>int</code> variables.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/PagedDataList/MTPagedDataList.html">MTPagedDataList</a></td>
-<td style="text-align: left;">A templated component for paging generic data lists using <a class="xref" href="../BlazorMdc/Components/Paginator/MTPaginator.html">MTPaginator</a> and applying transitions with <a class="xref" href="../BlazorMdc/Components/SlidingContent/MTSlidingContent.html">MTSlidingContent</a>.</td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/PagedDataList/MBPagedDataList.html">MBPagedDataList</a></td>
+<td style="text-align: left;">A templated component for paging generic data lists using <a class="xref" href="../Material.Blazor/Components/Paginator/MBPaginator.html">MBPaginator</a> and applying transitions with <a class="xref" href="../Material.Blazor/Components/SlidingContent/MBSlidingContent.html">MBSlidingContent</a>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/Paginator/MTPaginator.html">MTPaginator</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/Paginator/MBPaginator.html">MBPaginator</a></td>
 <td style="text-align: left;">An implementation of the <a href="https://material.io/components/data-tables#behavior">Material paginator specification</a>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/RadioButtonGroup/MTRadioButtonGroup.html">MTRadioButtonGroup</a></td>
-<td style="text-align: left;">A group of <a class="xref" href="../BlazorMdc/Components/RadioButton/MTRadioButton.html">MTRadioButtons</a>.</td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/RadioButtonGroup/MBRadioButtonGroup.html">MBRadioButtonGroup</a></td>
+<td style="text-align: left;">A group of <a class="xref" href="../Material.Blazor/Components/RadioButton/MBRadioButton.html">MBRadioButtons</a>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/Shield/MTShield.html">MTShield</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/Shield/MBShield.html">MBShield</a></td>
 <td style="text-align: left;">A simple component producing an HTML shield styled after svgs from shield.io (square, flat variety)</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/SlidingContent/MTSlidingContent.html">MTSlidingContent</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/SlidingContent/MBSlidingContent.html">MBSlidingContent</a></td>
 <td style="text-align: left;">A templated component to provide previous/next navigation through a series of pages with light left/right and fade in/out animation.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/SlidingTabBar/MTSlidingTabBar.html">MTSlidingTabBar</a></td>
-<td style="text-align: left;">An <code>MTTabBar</code> augmented with content displayed in a <code>MTSlidingContent</code></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/SlidingTabBar/MBSlidingTabBar.html">MBSlidingTabBar</a></td>
+<td style="text-align: left;">An <code>MBTabBar</code> augmented with content displayed in a <code>MBSlidingContent</code></td>
 </tr>
 </tbody>
 </table>
@@ -165,7 +165,7 @@ implements further Blazor/Material Theme hybrid components that we term &quot;Pl
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/371733c454b3448fb89e0b6931556820cf13609c/articles/PlusComponents.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/articles/PlusComponents.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

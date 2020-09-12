@@ -80,13 +80,13 @@
             <article class="content wrap" id="_content" data-uid="A.CascadingDefaults">
 <h1 id="cascading-defaults">Cascading Defaults</h1>
 
-<p>Blazor MDC uses a system of cascading defaults using <a class="xref" href="../BlazorMdc/Model/MTCascadingDefaults.html">MTCascadingDefaults</a> to control defaults for things such as button style and density, text field
-style and so on. The <code>MTCascadingDefaults</code> class is supplied to components held within a <code>&lt;CascadingValue&gt;</code> tag. Cascading defaults can be nested (the most recent)
-takes precedence as for any cascading value, and if no cascading defaults are supplied, a default scheme is applied by Blazor MDC. Cascading defaults apply when
+<p>Material.Blazor uses a system of cascading defaults using <a class="xref" href="../Material.Blazor/Model/MBCascadingDefaults.html">MBCascadingDefaults</a> to control defaults for things such as button style and density, text field
+style and so on. The <code>MBCascadingDefaults</code> class is supplied to components held within a <code>&lt;CascadingValue&gt;</code> tag. Cascading defaults can be nested (the most recent)
+takes precedence as for any cascading value, and if no cascading defaults are supplied, a default scheme is applied by Material.Blazor. Cascading defaults apply when
 an optional parameter is not supplied to a component.</p>
-<p>This section describes the usage of properties in <a class="xref" href="../BlazorMdc/Model/MTCascadingDefaults.html">MTCascadingDefaults</a>.</p>
+<p>This section describes the usage of properties in <a class="xref" href="../Material.Blazor/Model/MBCascadingDefaults.html">MBCascadingDefaults</a>.</p>
 <h2 id="icons">Icons</h2>
-<p>The following properties are used for displaying icons. Blazor MDC components all render icons using the <a class="xref" href="../BlazorMdc/Components/Icon/MTIcon.html">MTIcon</a> component which renders any of Material Icons, Font
+<p>The following properties are used for displaying icons. Material.Blazor components all render icons using the <a class="xref" href="../Material.Blazor/Components/Icon/MBIcon.html">MBIcon</a> component which renders any of Material Icons, Font
 Awesome of Open Iconic icons and their respective variants. Any component that uses icons accepts an optional <code>IconFoundry</code> parameter, which</p>
 <table>
 <thead>
@@ -97,19 +97,19 @@ Awesome of Open Iconic icons and their respective variants. Any component that u
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_IconFoundryName">IconFoundryName</a></td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_IconFoundryName">IconFoundryName</a></td>
 <td style="text-align: left;">The default icon foundry.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_IconMITheme">IconMITheme</a></td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_IconMITheme">IconMITheme</a></td>
 <td style="text-align: left;">The default Material Icons theme.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_IconFAStyle">IconFAStyle</a></td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_IconFAStyle">IconFAStyle</a></td>
 <td style="text-align: left;">The default Font Awesome style.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_IconFARelativeSize">IconFARelativeSize</a></td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_IconFARelativeSize">IconFARelativeSize</a></td>
 <td style="text-align: left;">The default Font Awesome relative size.</td>
 </tr>
 </tbody>
@@ -125,53 +125,53 @@ Awesome of Open Iconic icons and their respective variants. Any component that u
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_ThemeDensity">ThemeDensity</a></td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_ThemeDensity">ThemeDensity</a></td>
 <td style="text-align: left;">A default for all components unless over-ridden by first one of the cascading default parameters below or second a component's own <code>Density</code> parameter.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_ButtonDensity">ButtonDensity</a></td>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/Button/MTButton.html">MTButton</a>.</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_ButtonDensity">ButtonDensity</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/Button/MBButton.html">MBButton</a>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_CheckboxDensity">CheckboxDensity</a></td>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/Checkbox/MTCheckbox.html">MTCheckbox</a>.</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_CheckboxDensity">CheckboxDensity</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/Checkbox/MBCheckbox.html">MBCheckbox</a>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_DataTableDensity">DataTableDensity</a></td>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/DataTable/MTDataTable.html">MTDataTable</a>.</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_DataTableDensity">DataTableDensity</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/DataTable/MBDataTable.html">MBDataTable</a>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_IconButtonDensity">IconButtonDensity</a></td>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/IconButton/MTIconButton.html">MTIconButton</a> and <a class="xref" href="../BlazorMdc/Components/IconButtonToggle/MTIconButtonToggle.html">MTIconButtonToggle</a>.</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_IconButtonDensity">IconButtonDensity</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/IconButton/MBIconButton.html">MBIconButton</a> and <a class="xref" href="../Material.Blazor/Components/IconButtonToggle/MBIconButtonToggle.html">MBIconButtonToggle</a>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_ListSingleLineDensity">ListSingleLineDensity</a></td>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/List/MTList.html">MTList</a>.</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_ListSingleLineDensity">ListSingleLineDensity</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/List/MBList.html">MBList</a>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_RadioButtonDensity">RadioButtonDensity</a></td>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/RadioButton/MTRadioButton.html">MTRadioButton</a> and <a class="xref" href="../BlazorMdc/Components/RadioButtonGroup/MTRadioButtonGroup.html">MTRadioButtonGroup</a>.</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_RadioButtonDensity">RadioButtonDensity</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/RadioButton/MBRadioButton.html">MBRadioButton</a> and <a class="xref" href="../Material.Blazor/Components/RadioButtonGroup/MBRadioButtonGroup.html">MBRadioButtonGroup</a>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_SelectDensity">SelectDensity</a></td>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/Select/MTSelect.html">MTSelect</a>.</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_SelectDensity">SelectDensity</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/Select/MBSelect.html">MBSelect</a>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_SwitchDensity">SwitchDensity</a></td>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/Switch/MTSwitch.html">MTSwitch</a>.</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_SwitchDensity">SwitchDensity</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/Switch/MBSwitch.html">MBSwitch</a>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_TabBarDensity">TabBarDensity</a></td>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/TabBar/MTTabBar.html">MTTabBar</a>.</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_TabBarDensity">TabBarDensity</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/TabBar/MBTabBar.html">MBTabBar</a>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_TextFieldDensity">TextFieldDensity</a></td>
-<td style="text-align: left;"><a class="xref" href="../BlazorMdc/Components/TextField/MTTextField.html">MTTextField</a>, <a class="xref" href="../BlazorMdc/Components/TextArea/MTTextArea.html">MTTextArea</a>, <a class="xref" href="../BlazorMdc/Components/AutocompleteTextField/MTAutoCompleteTextField.html">MTAutocompleteTextField</a>, <a class="xref" href="../BlazorMdc/Components/DebouncedTextField/MTDebouncedTextField.html">MTDebouncedTextField</a>, <a class="xref" href="../BlazorMdc/Components/NumericDoubleField/MTNumericDoubleField.html">MTNumericDoubleField</a> and <a class="xref" href="../BlazorMdc/Components/NumericIntField/MTNumericIntField.html">MTNumericIntField</a>.</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_TextFieldDensity">TextFieldDensity</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Components/TextField/MBTextField.html">MBTextField</a>, <a class="xref" href="../Material.Blazor/Components/TextArea/MBTextArea.html">MBTextArea</a>, <a class="xref" href="../Material.Blazor/Components/AutocompleteTextField/MBAutoCompleteTextField.html">MBAutocompleteTextField</a>, <a class="xref" href="../Material.Blazor/Components/DebouncedTextField/MBDebouncedTextField.html">MBDebouncedTextField</a>, <a class="xref" href="../Material.Blazor/Components/NumericDoubleField/MBNumericDoubleField.html">MBNumericDoubleField</a> and <a class="xref" href="../Material.Blazor/Components/NumericIntField/MBNumericIntField.html">MBNumericIntField</a>.</td>
 </tr>
 </tbody>
 </table>
 <p>The order of priority for applying density is <em>first/highest</em> a component's <code>Density</code> parameter, <em>second</em> a component oriented cascading default (lines two onwards in the table above),
-then <em>third/last</em> <code>ThemeDensity</code> from cascading defaults. If either cascading defaults are not supplied or densities are not set, the default is <a class="xref" href="../api/BlazorMdc.MTDensity.html#BlazorMdc_MTDensity_Default">MTDensity.Default</a>.</p>
+then <em>third/last</em> <code>ThemeDensity</code> from cascading defaults. If either cascading defaults are not supplied or densities are not set, the default is <a class="xref" href="../api/Material.Blazor.MBDensity.html#Material_Blazor_MBDensity_Default">MBDensity.Default</a>.</p>
 <h2 id="general-properties">General Properties</h2>
 <table>
 <thead>
@@ -182,58 +182,58 @@ then <em>third/last</em> <code>ThemeDensity</code> from cascading defaults. If e
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_Disabled">Disabled</a></td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_Disabled">Disabled</a></td>
 <td style="text-align: left;">Sets the default <code>Disabled</code> state for all component, overridden by component <code>Disabled</code> parameters.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_ButtonStyle">ButtonStyle</a></td>
-<td style="text-align: left;">Style for general <a class="xref" href="../BlazorMdc/Components/Button/MTButton.html">MTButton</a>s. Defaults to <code>MTButtonStyle.Text</code>.</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_ButtonStyle">ButtonStyle</a></td>
+<td style="text-align: left;">Style for general <a class="xref" href="../Material.Blazor/Components/Button/MBButton.html">MBButton</a>s. Defaults to <code>MBButtonStyle.Text</code>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_CardActionButtonStyle">CardActionButtonStyle</a></td>
-<td style="text-align: left;">Style for <a class="xref" href="../BlazorMdc/Components/Button/MTButton.html">MTButton</a>s used for <a class="xref" href="../BlazorMdc/Components/Card/MTCard.html">MTCard</a> actions. Defaults to <code>MTButtonStyle.Text</code>.</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_CardActionButtonStyle">CardActionButtonStyle</a></td>
+<td style="text-align: left;">Style for <a class="xref" href="../Material.Blazor/Components/Button/MBButton.html">MBButton</a>s used for <a class="xref" href="../Material.Blazor/Components/Card/MBCard.html">MBCard</a> actions. Defaults to <code>MBButtonStyle.Text</code>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_DialogActionButtonStyle">DialogActionButtonStyle</a></td>
-<td style="text-align: left;">Style for <a class="xref" href="../BlazorMdc/Components/Button/MTButton.html">MTButton</a>s used for <a class="xref" href="../BlazorMdc/Components/Dialog/MTDialog.html">MTDialog</a> actions. Defaults to <code>MTButtonStyle.Text</code>.</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_DialogActionButtonStyle">DialogActionButtonStyle</a></td>
+<td style="text-align: left;">Style for <a class="xref" href="../Material.Blazor/Components/Button/MBButton.html">MBButton</a>s used for <a class="xref" href="../Material.Blazor/Components/Dialog/MBDialog.html">MBDialog</a> actions. Defaults to <code>MBButtonStyle.Text</code>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_CardStyle">CardStyle</a></td>
-<td style="text-align: left;">Style for <a class="xref" href="../BlazorMdc/Components/Card/MTCard.html">MTCard</a>. Defaults to <code>MTCardStyle.Default</code>.</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_CardStyle">CardStyle</a></td>
+<td style="text-align: left;">Style for <a class="xref" href="../Material.Blazor/Components/Card/MBCard.html">MBCard</a>. Defaults to <code>MBCardStyle.Default</code>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_ListStyle">ListStyle</a></td>
-<td style="text-align: left;">Style for <a class="xref" href="../BlazorMdc/Components/List/MTList.html">MTList</a>. Defaults to <code>MTListStyle.None</code>.</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_ListStyle">ListStyle</a></td>
+<td style="text-align: left;">Style for <a class="xref" href="../Material.Blazor/Components/List/MBList.html">MBList</a>. Defaults to <code>MBListStyle.None</code>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_ListType">ListType</a></td>
-<td style="text-align: left;">Style for <a class="xref" href="../BlazorMdc/Components/List/MTList.html">MTList</a>. Defaults to <code>MTListType.Regular</code>.</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_ListType">ListType</a></td>
+<td style="text-align: left;">Style for <a class="xref" href="../Material.Blazor/Components/List/MBList.html">MBList</a>. Defaults to <code>MBListType.Regular</code>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_SelectInputStyle">SelectInputStyle</a></td>
-<td style="text-align: left;">Style for <a class="xref" href="../BlazorMdc/Components/Select/MTSelect.html">MTSelect</a> and <a class="xref" href="../BlazorMdc/Components/DatePicker/MTDatePicker.html">MTDatePicker</a>. Defaults to <code>MTSelectInputStyle.Filled</code>.</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_SelectInputStyle">SelectInputStyle</a></td>
+<td style="text-align: left;">Style for <a class="xref" href="../Material.Blazor/Components/Select/MBSelect.html">MBSelect</a> and <a class="xref" href="../Material.Blazor/Components/DatePicker/MBDatePicker.html">MBDatePicker</a>. Defaults to <code>MBSelectInputStyle.Filled</code>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_TextAlignStyle">TextAlignStyle</a></td>
-<td style="text-align: left;">Text alignment for <a class="xref" href="../BlazorMdc/Components/Select/MTSelect.html">MTSelect</a>, <a class="xref" href="../BlazorMdc/Components/TextField/MTTextField.html">MTTextField</a>, <a class="xref" href="../BlazorMdc/Components/TextArea/MTTextArea.html">MTTextArea</a>, <a class="xref" href="../BlazorMdc/Components/AutocompleteTextField/MTAutoCompleteTextField.html">MTAutocompleteTextField</a>, <a class="xref" href="../BlazorMdc/Components/DebouncedTextField/MTDebouncedTextField.html">MTDebouncedTextField</a>, <a class="xref" href="../BlazorMdc/Components/NumericDoubleField/MTNumericDoubleField.html">MTNumericDoubleField</a> and <a class="xref" href="../BlazorMdc/Components/NumericIntField/MTNumericIntField.html">MTNumericIntField</a>. Defaults to <code>MTTextAlignStyle.Default</code> / left aligned for ltr input and vice versa.</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_TextAlignStyle">TextAlignStyle</a></td>
+<td style="text-align: left;">Text alignment for <a class="xref" href="../Material.Blazor/Components/Select/MBSelect.html">MBSelect</a>, <a class="xref" href="../Material.Blazor/Components/TextField/MBTextField.html">MBTextField</a>, <a class="xref" href="../Material.Blazor/Components/TextArea/MBTextArea.html">MBTextArea</a>, <a class="xref" href="../Material.Blazor/Components/AutocompleteTextField/MBAutoCompleteTextField.html">MBAutocompleteTextField</a>, <a class="xref" href="../Material.Blazor/Components/DebouncedTextField/MBDebouncedTextField.html">MBDebouncedTextField</a>, <a class="xref" href="../Material.Blazor/Components/NumericDoubleField/MBNumericDoubleField.html">MBNumericDoubleField</a> and <a class="xref" href="../Material.Blazor/Components/NumericIntField/MBNumericIntField.html">MBNumericIntField</a>. Defaults to <code>MBTextAlignStyle.Default</code> / left aligned for ltr input and vice versa.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_TextInputStyle">TextInputStyle</a></td>
-<td style="text-align: left;">Style for <a class="xref" href="../BlazorMdc/Components/TextField/MTTextField.html">MTTextField</a>, <a class="xref" href="../BlazorMdc/Components/TextArea/MTTextArea.html">MTTextArea</a>, <a class="xref" href="../BlazorMdc/Components/AutocompleteTextField/MTAutoCompleteTextField.html">MTAutocompleteTextField</a>, <a class="xref" href="../BlazorMdc/Components/DebouncedTextField/MTDebouncedTextField.html">MTDebouncedTextField</a>, <a class="xref" href="../BlazorMdc/Components/NumericDoubleField/MTNumericDoubleField.html">MTNumericDoubleField</a> and <a class="xref" href="../BlazorMdc/Components/NumericIntField/MTNumericIntField.html">MTNumericIntField</a>. Defaults to <code>MTTextInputStyle.Filled</code>.</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_TextInputStyle">TextInputStyle</a></td>
+<td style="text-align: left;">Style for <a class="xref" href="../Material.Blazor/Components/TextField/MBTextField.html">MBTextField</a>, <a class="xref" href="../Material.Blazor/Components/TextArea/MBTextArea.html">MBTextArea</a>, <a class="xref" href="../Material.Blazor/Components/AutocompleteTextField/MBAutoCompleteTextField.html">MBAutocompleteTextField</a>, <a class="xref" href="../Material.Blazor/Components/DebouncedTextField/MBDebouncedTextField.html">MBDebouncedTextField</a>, <a class="xref" href="../Material.Blazor/Components/NumericDoubleField/MBNumericDoubleField.html">MBNumericDoubleField</a> and <a class="xref" href="../Material.Blazor/Components/NumericIntField/MBNumericIntField.html">MBNumericIntField</a>. Defaults to <code>MBTextInputStyle.Filled</code>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_DateSelectionCriteria">DateSelectionCriteria</a></td>
-<td style="text-align: left;">Selection criteria for dates in <a class="xref" href="../BlazorMdc/Components/DatePicker/MTDatePicker.html">MTDatePicker</a>. Defaults to <code>MTDateSelectionCriteria.AllowAll</code>.</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_DateSelectionCriteria">DateSelectionCriteria</a></td>
+<td style="text-align: left;">Selection criteria for dates in <a class="xref" href="../Material.Blazor/Components/DatePicker/MBDatePicker.html">MBDatePicker</a>. Defaults to <code>MBDateSelectionCriteria.AllowAll</code>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_DebounceInterval">DebounceInterval</a></td>
-<td style="text-align: left;">Debounce interval for <a class="xref" href="../BlazorMdc/Components/DebouncedTextField/MTDebouncedTextField.html">MTDebouncedTextField</a>. Defaults to `300&quot;, meaning 300 milliseconds.</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_DebounceInterval">DebounceInterval</a></td>
+<td style="text-align: left;">Debounce interval for <a class="xref" href="../Material.Blazor/Components/DebouncedTextField/MBDebouncedTextField.html">MBDebouncedTextField</a>. Defaults to `300&quot;, meaning 300 milliseconds.</td>
 </tr>
 </tbody>
 </table>
 <h2 id="attribute-splatting-and-data-validation">Attribute Splatting and Data Validation</h2>
-<p>Blazor MDC makes extensive use of attribute splatting. As a measure to help library users identify erroneous attributes cascading defautls allow you to specify that unassigned attributes should result
-in an exception being thrown. Blazor MDC also has several ways of handling when a select or radio button group receives a two-way bound value that is not in its item list.</p>
+<p>Material.Blazor makes extensive use of attribute splatting. As a measure to help library users identify erroneous attributes cascading defautls allow you to specify that unassigned attributes should result
+in an exception being thrown. Material.Blazor also has several ways of handling when a select or radio button group receives a two-way bound value that is not in its item list.</p>
 <table>
 <thead>
 <tr>
@@ -243,37 +243,37 @@ in an exception being thrown. Blazor MDC also has several ways of handling when 
 </thead>
 <tbody>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_ConstrainSplattableAttributes">ConstrainSplattableAttributes</a></td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_ConstrainSplattableAttributes">ConstrainSplattableAttributes</a></td>
 <td style="text-align: left;">If set to <code>true</code>, which is the default, components throw an exception when unassigned attributes are used in razor markup. Defaults to <code>false</code>.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_EssentialSplattableAttributes">EssentialSplattableAttributes</a></td>
-<td style="text-align: left;">A readonly list of HTML attributes that Blazor MDC requires for operation. Includes: <code>formnovalidate</code>, <code>id</code>, <code>max</code>, <code>min</code>, <code>role</code>, <code>step</code>, <code>tabindex</code> and <code>type</code>. Note that all aria attributes (e.g. <code>aria-disabled</code>) and event attibutes (e.g. <code>onclick</code>) are all allowed in addition to this list.</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_EssentialSplattableAttributes">EssentialSplattableAttributes</a></td>
+<td style="text-align: left;">A readonly list of HTML attributes that Material.Blazor requires for operation. Includes: <code>formnovalidate</code>, <code>id</code>, <code>max</code>, <code>min</code>, <code>role</code>, <code>step</code>, <code>tabindex</code> and <code>type</code>. Note that all aria attributes (e.g. <code>aria-disabled</code>) and event attibutes (e.g. <code>onclick</code>) are all allowed in addition to this list.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_AllowedSplattableAttributes">AllowedSplattableAttributes</a></td>
-<td style="text-align: left;">A list of HTML attributes that you can assign for Blazor MDC to allow without throwing an exception .</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_AllowedSplattableAttributes">AllowedSplattableAttributes</a></td>
+<td style="text-align: left;">A list of HTML attributes that you can assign for Material.Blazor to allow without throwing an exception .</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_ItemValidation">ItemValidation</a></td>
-<td style="text-align: left;">Validation method applied to <a class="xref" href="../BlazorMdc/Components/Select/MTSelect.html">MTSelect</a> and <a class="xref" href="../BlazorMdc/Components/RadioButtonGroup/MTRadioButtonGroup.html">MTRadioButtonGroup</a>.</td>
+<td style="text-align: left;"><a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_ItemValidation">ItemValidation</a></td>
+<td style="text-align: left;">Validation method applied to <a class="xref" href="../Material.Blazor/Components/Select/MBSelect.html">MBSelect</a> and <a class="xref" href="../Material.Blazor/Components/RadioButtonGroup/MBRadioButtonGroup.html">MBRadioButtonGroup</a>.</td>
 </tr>
 </tbody>
 </table>
 <h2 id="forcing-a-blazor-re-render-with-the-version-property">Forcing a Blazor Re-Render with the Version Property</h2>
-<p>Whenever a property of <a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html">MTCascadingDefaults</a> is updated, the <a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_Version">Version</a> property
-is incremented. You can use <a class="xref" href="../api/BlazorMdc.MTCascadingDefaults.html#BlazorMdc_MTCascadingDefaults_Version">Version</a> to force a Blazor component, or block of components within a <code>&lt;div&gt;</code> to
+<p>Whenever a property of <a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html">MBCascadingDefaults</a> is updated, the <a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_Version">Version</a> property
+is incremented. You can use <a class="xref" href="../api/Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_Version">Version</a> to force a Blazor component, or block of components within a <code>&lt;div&gt;</code> to
 re-render as a result of updated cascading defaults.</p>
 <p>In the following example if <code>ThemeDensity</code>, <code>ButtonDensity</code>, <code>TextFieldDensity</code>, <code>ButtonStyle</code>, <code>TextFieldStyle</code> etc change in <code>myCascadingDefaults</code>, the
 button and text field will re-render the next time Blazor renders the page.</p>
 <pre><code class="lang-html">&lt;div @key=&quot;@myCascadingDefaults.Version&quot;&gt;
-    &lt;MTButton Label=&quot;A Button!&quot; /&gt;
+    &lt;MBButton Label=&quot;A Button!&quot; /&gt;
 
-    &lt;MTTextField Label=&quot;A Text Field!&quot; /&gt;
+    &lt;MBTextField Label=&quot;A Text Field!&quot; /&gt;
 &lt;/div&gt;
 
 @code {
-    [CascadingParameter] private MTCascadingDefaults myCascadingDefaults { get; set; }
+    [CascadingParameter] private MBCascadingDefaults myCascadingDefaults { get; set; }
 }
 </code></pre>
 </article>
@@ -284,7 +284,7 @@ button and text field will re-render the next time Blazor renders the page.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/371733c454b3448fb89e0b6931556820cf13609c/articles/CascadingDefaults.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/articles/CascadingDefaults.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

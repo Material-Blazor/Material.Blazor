@@ -80,32 +80,32 @@
             <article class="content wrap" id="_content" data-uid="A.Installation">
 <h1 id="installation">Installation</h1>
 
-<p>Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add the CSS and JS in your html (there are non-minified unbundled files for BlazorMdc.css &amp; BlazorMds.js to reference if you need them for debugging purposes).
-Reference the <code>BlazorMdc</code> namespace with <code>@using BlazorMdc</code> to your <code>_Imports.razor</code> file.</p>
-<h2 id="directions-for-using-blazor-mdc-bundled-css-and-js">Directions for using Blazor MDC bundled CSS and JS</h2>
-<p><em><strong>This is the recommended way to install Blazor MDC.</strong></em></p>
-<p>We bundle the Material Theme CSS and JS into BlazorMdc for your convenience along with <a href="https://material.io/resources/icons/?style=baseline">Material Icons</a> which are essential for BlazorMdc. You will need to add two items to your index.html/_Host.cshtml file. Place this in the the <code>&lt;head&gt;</code> tag:</p>
-<pre><code class="lang-html">&lt;link href=&quot;_content/BlazorMdc/blazormdc-material-bundle.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+<p>Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add the CSS and JS in your html (there are non-minified unbundled files for Material.Blazor.css &amp; BlazorMds.js to reference if you need them for debugging purposes).
+Reference the <code>Material.Blazor</code> namespace with <code>@using Material.Blazor</code> to your <code>_Imports.razor</code> file.</p>
+<h2 id="directions-for-using-materialblazor-bundled-css-and-js">Directions for using Material.Blazor bundled CSS and JS</h2>
+<p><em><strong>This is the recommended way to install Material.Blazor.</strong></em></p>
+<p>We bundle the Material Theme CSS and JS into Material.Blazor for your convenience along with <a href="https://material.io/resources/icons/?style=baseline">Material Icons</a> which are essential for Material.Blazor. You will need to add two items to your index.html/_Host.cshtml file. Place this in the the <code>&lt;head&gt;</code> tag:</p>
+<pre><code class="lang-html">&lt;link href=&quot;_content/Material-Blazor/material.blazor.material-bundle.min.css&quot; rel=&quot;stylesheet&quot;&gt;
 </code></pre>
 <p>and at the end of <code>&lt;body&gt;</code>:</p>
-<pre><code class="lang-html">&lt;script src=&quot;_content/BlazorMdc/blazormdc-material-bundle.min.js&quot;&gt;&lt;/script&gt;
+<pre><code class="lang-html">&lt;script src=&quot;_content/Material-Blazor/material.blazor.material-bundle.min.js&quot;&gt;&lt;/script&gt;
 </code></pre>
-<p>Add the BlazorMdc namespace to your project by appending <code>@using BlazorMdc</code> to the end of your project's _Imports.razor file. Do not use components from the BlazorMdc.Internal namespace: as the name
-implies these are intended for internal use by Blazor MDC, however Blazor has no mechanism for internally restricted Blazor components to mirror the <code>internal</code> directive for a C# class.</p>
+<p>Add the <code>Material.Blazor</code> namespace to your project by appending <code>@using Material.Blazor</code> to the end of your project's _Imports.razor file. Do not use components from the <code>Material.Blazor.Internal</code> namespace: as the name
+implies these are intended for internal use by Material.Blazor, however Blazor has no mechanism for internally restricted Blazor components to mirror the <code>internal</code> directive for a C# class.</p>
 <h2 id="alternative-using-unbundled-css-and-js">Alternative using unbundled CSS and JS</h2>
 <p>If you want, you can directly reference the Material Theme CSS and JS from the unpkg CDN (or download it for yourself). Again we package a reference to Material Icons. You will to add five items to your index.html/_Host.cshtml. Place this in the <head>` tag:<p>
 <pre><code class="lang-html">&lt;link href=&quot;https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp&quot; rel=&quot;stylesheet&quot;&gt;
 &lt;link href=&quot;https://unpkg.com/material-components-web@7.0.0/dist/material-components-web.css&quot; rel=&quot;stylesheet&quot; /&gt;
-&lt;link href=&quot;_content/BlazorMdc/blazormdc.css&quot; rel=&quot;stylesheet&quot; /&gt;
+&lt;link href=&quot;_content/Material-Blazor/material.blazor.css&quot; rel=&quot;stylesheet&quot; /&gt;
 </code></pre>
 <p>and at the end of <code>&lt;body&gt;</code>:</p>
 <pre><code class="lang-html">&lt;script src=&quot;https://unpkg.com/material-components-web@7.0.0/dist/material-components-web.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;_content/BlazorMdc/blazormdc.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;_content/Material-Blazor/material.blazor.js&quot;&gt;&lt;/script&gt;
 </code></pre>
-<p>We also provide minified <code>blazormdc.min.css</code> and <code>blazormdc.min.js</code>. Add the BlazorMdc namespace to your project as above. These will be needed
-if you want to create your own theme using Material Theme SASS mixins - we have done this for <a href="https://blazormdc.com">blazormc.com</a></p>
+<p>We also provide minified <code>material.blazor.min.css</code> and <code>material.blazor.min.js</code>. Add the <code>Material.Blazor</code> namespace to your project as above. These will be needed
+if you want to create your own theme using Material Theme SASS mixins - we have done this for <a href="https://material-blazor.com">material-blazor.com</a></p>
 <h2 id="package-versions">Package versions</h2>
-<p>Blazor MDC works with the following package versions:</p>
+<p>Material.Blazor works with the following package versions:</p>
 <ul>
 <li><a href="https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#700-2020-06-23">Material Components v7.0.0</a>;</li>
 <li><a href="https://fontawesome.com/changelog/latest">Font Awesome Icons version 5</a> are optional and can be included in your HTML <code>&lt;head&gt;</code> with the CDN link:
@@ -118,10 +118,10 @@ if you want to create your own theme using Material Theme SASS mixins - we have 
 </li>
 </ul>
 <h2 id="services-and-anchor">Services and Anchor</h2>
-<p>Blazor MDC has three services for animated navigation, toasts, and tooltips. We strongly advise you to use these in your project
+<p>Material.Blazor has three services for animated navigation, toasts, and tooltips. We strongly advise you to use these in your project
 because regular component tooltips will fail if you don't, although they are optional. To register the services:</p>
-<pre><code class="lang-csharp">services.AddMTServices(
-    toastServiceConfiguration: new MTToastServiceConfiguration()
+<pre><code class="lang-csharp">services.AddMBServices(
+    toastServiceConfiguration: new MBToastServiceConfiguration()
     {
         InfoDefaultHeading = &quot;Info&quot;,
         SuccessDefaultHeading = &quot;Success&quot;,
@@ -131,19 +131,19 @@ because regular component tooltips will fail if you don't, although they are opt
         MaxToastsShowing = 5
     },
 
-    animatedNavigationServiceConfiguration: new MTAnimatedNavigationManagerServiceConfiguration()
+    animatedNavigationServiceConfiguration: new MBAnimatedNavigationManagerServiceConfiguration()
     {
         ApplyAnimation = true,
         AnimationTime = 300
     }
 );
 </code></pre>
-<p>The two configurations are optional - see <a class="xref" href="../api/BlazorMdc.MTToastServiceConfiguration.html">MTToastServiceConfiguration</a> and <a class="xref" href="../api/BlazorMdc.MTAnimatedNavigationManagerServiceConfiguration.html">MTAnimatedNavigationManagerServiceConfiguration</a>.</p>
+<p>The two configurations are optional - see <a class="xref" href="../api/Material.Blazor.MBToastServiceConfiguration.html">MBToastServiceConfiguration</a> and <a class="xref" href="../api/Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.html">MBAnimatedNavigationManagerServiceConfiguration</a>.</p>
 <p>When you use the services you must also place an anchor component at the top of <code>App.razor</code> - this must not be inside any other components or divs:</p>
-<pre><code class="lang-html">&lt;MTAnchor /&gt;
+<pre><code class="lang-html">&lt;MBAnchor /&gt;
 </code></pre>
 <h2 id="binding">Binding</h2>
-<p>BlazorMDC components support the EditForm environment. To that end BlazorMDC uses the</p>
+<p>Material.Blazor components support the EditForm environment. To that end Material.Blazor uses the</p>
 <pre><code class="lang-csharp">FieldIdentifier.Create(ValueExpression) 
 </code></pre>
 <p>construct. This means that values to be bound are limited to fields and properties. As an example, should you try to bind to an array element as in</p>
@@ -159,7 +159,7 @@ because regular component tooltips will fail if you don't, although they are opt
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/371733c454b3448fb89e0b6931556820cf13609c/articles/Installation.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/articles/Installation.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

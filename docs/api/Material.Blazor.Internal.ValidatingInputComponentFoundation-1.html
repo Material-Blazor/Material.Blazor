@@ -1,0 +1,326 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class ValidatingInputComponentFoundation&lt;T&gt;
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class ValidatingInputComponentFoundation&lt;T&gt;
+   ">
+    <meta name="generator" content="docfx 2.56.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-173249047-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+  
+      gtag('config', 'UA-173249047-2');
+    </script>
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Material.Blazor.Internal.ValidatingInputComponentFoundation`1">
+  
+  
+  <h1 id="Material_Blazor_Internal_ValidatingInputComponentFoundation_1" data-uid="Material.Blazor.Internal.ValidatingInputComponentFoundation`1" class="text-break">Class ValidatingInputComponentFoundation&lt;T&gt;
+  </h1>
+  <div class="markdown level0 summary"><p>A DRY inspired abstract class providing <a class="xref" href="Material.Blazor.MBSelect-1.html">MBSelect&lt;TItem&gt;</a> and <a class="xref" href="Material.Blazor.MBRadioButtonGroup-1.html">MBRadioButtonGroup&lt;TItem&gt;</a> with validation.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html">ComponentFoundation</a></div>
+    <div class="level2"><a class="xref" href="Material.Blazor.Internal.InputComponentFoundation-1.html">InputComponentFoundation</a>&lt;T&gt;</div>
+    <div class="level3"><span class="xref">ValidatingInputComponentFoundation&lt;T&gt;</span></div>
+      <div class="level4"><a class="xref" href="Material.Blazor.MBRadioButtonGroup-1.html">MBRadioButtonGroup</a>&lt;TItem&gt;</div>
+      <div class="level4"><a class="xref" href="Material.Blazor.MBSelect-1.html">MBSelect</a>&lt;TItem&gt;</div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1__instantiate">InputComponentFoundation&lt;T&gt;._instantiate</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1__hasInstantiated">InputComponentFoundation&lt;T&gt;._hasInstantiated</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_Id">InputComponentFoundation&lt;T&gt;.Id</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_Value">InputComponentFoundation&lt;T&gt;.Value</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_OnValueSet">InputComponentFoundation&lt;T&gt;.OnValueSet</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_ValueChanged">InputComponentFoundation&lt;T&gt;.ValueChanged</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_ValueExpression">InputComponentFoundation&lt;T&gt;.ValueExpression</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_EditContext">InputComponentFoundation&lt;T&gt;.EditContext</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_FieldIdentifier">InputComponentFoundation&lt;T&gt;.FieldIdentifier</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_ReportingValueAsString">InputComponentFoundation&lt;T&gt;.ReportingValueAsString</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_FormatValueToString__0_">InputComponentFoundation&lt;T&gt;.FormatValueToString(T)</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_TryParseValueFromString_System_String__0__System_String__">InputComponentFoundation&lt;T&gt;.TryParseValueFromString(String, T, String)</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_FieldClass">InputComponentFoundation&lt;T&gt;.FieldClass</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_OnInitialized">InputComponentFoundation&lt;T&gt;.OnInitialized()</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_OnInitializedAsync">InputComponentFoundation&lt;T&gt;.OnInitializedAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_SetParametersAsync_ParameterView_">InputComponentFoundation&lt;T&gt;.SetParametersAsync(ParameterView)</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_ShouldRender">InputComponentFoundation&lt;T&gt;.ShouldRender()</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_OnAfterRenderAsync_System_Boolean_">InputComponentFoundation&lt;T&gt;.OnAfterRenderAsync(Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_CascadingDefaults">ComponentFoundation.CascadingDefaults</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_UnmatchedAttributes">ComponentFoundation.UnmatchedAttributes</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_Disabled">ComponentFoundation.Disabled</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_Tooltip">ComponentFoundation.Tooltip</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnDisabledSet">ComponentFoundation.OnDisabledSet</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_Dispose_System_Boolean_">ComponentFoundation.Dispose(Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_Dispose">ComponentFoundation.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnParametersSet">ComponentFoundation.OnParametersSet()</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnParametersSetAsync">ComponentFoundation.OnParametersSetAsync()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Material.Blazor.Internal.html">Material.Blazor.Internal</a></h6>
+  <h6><strong>Assembly</strong>: Material.Blazor.dll</h6>
+  <h5 id="Material_Blazor_Internal_ValidatingInputComponentFoundation_1_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class ValidatingInputComponentFoundation&lt;T&gt; : InputComponentFoundation&lt;T&gt;, IDisposable, IMBDialogChild</code></pre>
+  </div>
+  <h5 class="typeParameters">Type Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="parametername">T</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_Internal_ValidatingInputComponentFoundation_1_ValidateItemList_System_Collections_Generic_IEnumerable_Material_Blazor_MBListElement__0___Material_Blazor_MBItemValidation_.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ValidatingInputComponentFoundation%601.ValidateItemList(System.Collections.Generic.IEnumerable%7BMaterial.Blazor.MBListElement%7B%600%7D%7D%2CMaterial.Blazor.MBItemValidation)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Foundation/ValidatingInputComponentFoundation.cs/#L21">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ValidatingInputComponentFoundation_1_ValidateItemList_" data-uid="Material.Blazor.Internal.ValidatingInputComponentFoundation`1.ValidateItemList*"></a>
+  <h4 id="Material_Blazor_Internal_ValidatingInputComponentFoundation_1_ValidateItemList_System_Collections_Generic_IEnumerable_Material_Blazor_MBListElement__0___Material_Blazor_MBItemValidation_" data-uid="Material.Blazor.Internal.ValidatingInputComponentFoundation`1.ValidateItemList(System.Collections.Generic.IEnumerable{Material.Blazor.MBListElement{`0}},Material.Blazor.MBItemValidation)">ValidateItemList(IEnumerable&lt;MBListElement&lt;T&gt;&gt;, MBItemValidation)</h4>
+  <div class="markdown level1 summary"><p>Validates the item list against the validation specification.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public T ValidateItemList(IEnumerable&lt;MBListElement&lt;T&gt;&gt; items, MBItemValidation appliedItemValidation)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Material.Blazor.MBListElement-1.html">MBListElement</a>&lt;T&gt;&gt;</td>
+        <td><span class="parametername">items</span></td>
+        <td><p>The item list</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Material.Blazor.MBItemValidation.html">MBItemValidation</a></td>
+        <td><span class="parametername">appliedItemValidation</span></td>
+        <td><p>Specification of the required validation <a class="xref" href="Material.Blazor.MBItemValidation.html">MBItemValidation</a></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">T</span></td>
+        <td><p>The item in the list matching <span class="xref">Material.Blazor.Internal.InputComponentFoundation`1._underlyingValue</span></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_Internal_ValidatingInputComponentFoundation_1.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ValidatingInputComponentFoundation%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Foundation/ValidatingInputComponentFoundation.cs/#L11" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

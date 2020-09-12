@@ -1,0 +1,427 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class MBButton
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class MBButton
+   ">
+    <meta name="generator" content="docfx 2.56.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-173249047-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+  
+      gtag('config', 'UA-173249047-2');
+    </script>
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Material.Blazor.MBButton">
+  
+  
+  <h1 id="Material_Blazor_MBButton" data-uid="Material.Blazor.MBButton" class="text-break">Class MBButton
+  </h1>
+  <div class="markdown level0 summary"><p>This is a general purpose Material Theme button, with provision for standard MB styling, leading
+and trailing icons and all standard Blazor events. Adds the &quot;mdc-card__action--button&quot; class when
+placed inside an <a class="xref" href="Material.Blazor.MBCard.html">MBCard</a>.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html">ComponentFoundation</a></div>
+    <div class="level2"><span class="xref">MBButton</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_CascadingDefaults">ComponentFoundation.CascadingDefaults</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_UnmatchedAttributes">ComponentFoundation.UnmatchedAttributes</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_Disabled">ComponentFoundation.Disabled</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_Tooltip">ComponentFoundation.Tooltip</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnDisabledSet">ComponentFoundation.OnDisabledSet</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_Dispose_System_Boolean_">ComponentFoundation.Dispose(Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_Dispose">ComponentFoundation.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnParametersSet">ComponentFoundation.OnParametersSet()</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnParametersSetAsync">ComponentFoundation.OnParametersSetAsync()</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnAfterRenderAsync_System_Boolean_">ComponentFoundation.OnAfterRenderAsync(Boolean)</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Material.Blazor.html">Material.Blazor</a></h6>
+  <h6><strong>Assembly</strong>: Material.Blazor.dll</h6>
+  <h5 id="Material_Blazor_MBButton_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class MBButton : ComponentFoundation, IDisposable</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_MBButton_ButtonStyle.md&amp;value=---%0Auid%3A%20Material.Blazor.MBButton.ButtonStyle%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Components/Button/MBButton.razor.cs/#L27">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBButton_ButtonStyle_" data-uid="Material.Blazor.MBButton.ButtonStyle*"></a>
+  <h4 id="Material_Blazor_MBButton_ButtonStyle" data-uid="Material.Blazor.MBButton.ButtonStyle">ButtonStyle</h4>
+  <div class="markdown level1 summary"><p>The button's Material Theme style - see <a class="xref" href="Material.Blazor.MBButtonStyle.html">MBButtonStyle</a>.</p>
+<p>Overrides <a class="xref" href="Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_ButtonStyle">ButtonStyle</a>, <a class="xref" href="Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_CardActionButtonStyle">CardActionButtonStyle</a> or <a class="xref" href="Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_DialogActionButtonStyle">DialogActionButtonStyle</a> as relevant.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MBButtonStyle? ButtonStyle { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="Material.Blazor.MBButtonStyle.html">MBButtonStyle</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_MBButton_Density.md&amp;value=---%0Auid%3A%20Material.Blazor.MBButton.Density%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Components/Button/MBButton.razor.cs/#L33">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBButton_Density_" data-uid="Material.Blazor.MBButton.Density*"></a>
+  <h4 id="Material_Blazor_MBButton_Density" data-uid="Material.Blazor.MBButton.Density">Density</h4>
+  <div class="markdown level1 summary"><p>The button's density.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public MBDensity? Density { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="Material.Blazor.MBDensity.html">MBDensity</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_MBButton_DialogAction.md&amp;value=---%0Auid%3A%20Material.Blazor.MBButton.DialogAction%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Components/Button/MBButton.razor.cs/#L67">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBButton_DialogAction_" data-uid="Material.Blazor.MBButton.DialogAction*"></a>
+  <h4 id="Material_Blazor_MBButton_DialogAction" data-uid="Material.Blazor.MBButton.DialogAction">DialogAction</h4>
+  <div class="markdown level1 summary"><p>A string value to return from an <a class="xref" href="Material.Blazor.MBDialog.html">MBDialog</a> when this button is pressed.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string DialogAction { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_MBButton_IconFoundry.md&amp;value=---%0Auid%3A%20Material.Blazor.MBButton.IconFoundry%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Components/Button/MBButton.razor.cs/#L61">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBButton_IconFoundry_" data-uid="Material.Blazor.MBButton.IconFoundry*"></a>
+  <h4 id="Material_Blazor_MBButton_IconFoundry" data-uid="Material.Blazor.MBButton.IconFoundry">IconFoundry</h4>
+  <div class="markdown level1 summary"><p>The foundry to use for both leading and trailing icons.</p>
+<p><code>IconFoundry=&quot;IconHelper.MIIcon()&quot;</code></p>
+<p><code>IconFoundry=&quot;IconHelper.FAIcon()&quot;</code></p>
+<p><code>IconFoundry=&quot;IconHelper.OIIcon()&quot;</code></p>
+<p>Overrides <a class="xref" href="Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_IconFoundryName">IconFoundryName</a></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IMBIconFoundry IconFoundry { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Material.Blazor.IMBIconFoundry.html">IMBIconFoundry</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_MBButton_Label.md&amp;value=---%0Auid%3A%20Material.Blazor.MBButton.Label%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Components/Button/MBButton.razor.cs/#L39">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBButton_Label_" data-uid="Material.Blazor.MBButton.Label*"></a>
+  <h4 id="Material_Blazor_MBButton_Label" data-uid="Material.Blazor.MBButton.Label">Label</h4>
+  <div class="markdown level1 summary"><p>The button's label.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Label { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_MBButton_LeadingIcon.md&amp;value=---%0Auid%3A%20Material.Blazor.MBButton.LeadingIcon%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Components/Button/MBButton.razor.cs/#L45">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBButton_LeadingIcon_" data-uid="Material.Blazor.MBButton.LeadingIcon*"></a>
+  <h4 id="Material_Blazor_MBButton_LeadingIcon" data-uid="Material.Blazor.MBButton.LeadingIcon">LeadingIcon</h4>
+  <div class="markdown level1 summary"><p>The leading icon's name. No leading icon shown if not set.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string LeadingIcon { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_MBButton_TrailingIcon.md&amp;value=---%0Auid%3A%20Material.Blazor.MBButton.TrailingIcon%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Components/Button/MBButton.razor.cs/#L51">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBButton_TrailingIcon_" data-uid="Material.Blazor.MBButton.TrailingIcon*"></a>
+  <h4 id="Material_Blazor_MBButton_TrailingIcon" data-uid="Material.Blazor.MBButton.TrailingIcon">TrailingIcon</h4>
+  <div class="markdown level1 summary"><p>The trailing icon's name. No leading icon shown if not set.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string TrailingIcon { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_MBButton_OnInitialized.md&amp;value=---%0Auid%3A%20Material.Blazor.MBButton.OnInitialized%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Components/Button/MBButton.razor.cs/#L77">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBButton_OnInitialized_" data-uid="Material.Blazor.MBButton.OnInitialized*"></a>
+  <h4 id="Material_Blazor_MBButton_OnInitialized" data-uid="Material.Blazor.MBButton.OnInitialized">OnInitialized()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnInitialized()</code></pre>
+  </div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_MBButton.md&amp;value=---%0Auid%3A%20Material.Blazor.MBButton%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Components/Button/MBButton.razor.cs/#L15" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,573 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Class MBDialog
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Class MBDialog
+   ">
+    <meta name="generator" content="docfx 2.56.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-173249047-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+  
+      gtag('config', 'UA-173249047-2');
+    </script>
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Material.Blazor.MBDialog">
+  
+  
+  <h1 id="Material_Blazor_MBDialog" data-uid="Material.Blazor.MBDialog" class="text-break">Class MBDialog
+  </h1>
+  <div class="markdown level0 summary"><p>This is a general purpose Material Theme dialog. The Material.Blazor dialog implementation does not render a dialog at all until
+it is shown by the consumer. At this stage it is rendered and Material Theme is permitted to control it's opening and to
+intiate it and its embedded components. Likewise when the dialog is closed, Material Theme is permitted to close the dialog
+gracefully before Material.Blazor removes the markup.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
+    <div class="level1"><a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html">ComponentFoundation</a></div>
+    <div class="level2"><span class="xref">MBDialog</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_CascadingDefaults">ComponentFoundation.CascadingDefaults</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_UnmatchedAttributes">ComponentFoundation.UnmatchedAttributes</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_Disabled">ComponentFoundation.Disabled</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_Tooltip">ComponentFoundation.Tooltip</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnDisabledSet">ComponentFoundation.OnDisabledSet</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_Dispose">ComponentFoundation.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnParametersSet">ComponentFoundation.OnParametersSet()</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnParametersSetAsync">ComponentFoundation.OnParametersSetAsync()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Material.Blazor.html">Material.Blazor</a></h6>
+  <h6><strong>Assembly</strong>: Material.Blazor.dll</h6>
+  <h5 id="Material_Blazor_MBDialog_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class MBDialog : ComponentFoundation, IDisposable, IMBDialog</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_MBDialog_Body.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDialog.Body%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Components/Dialog/MBDialog.razor.cs/#L29">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBDialog_Body_" data-uid="Material.Blazor.MBDialog.Body*"></a>
+  <h4 id="Material_Blazor_MBDialog_Body" data-uid="Material.Blazor.MBDialog.Body">Body</h4>
+  <div class="markdown level1 summary"><p>Render fragment for the dialog body.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RenderFragment Body { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">RenderFragment</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_MBDialog_Buttons.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDialog.Buttons%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Components/Dialog/MBDialog.razor.cs/#L38">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBDialog_Buttons_" data-uid="Material.Blazor.MBDialog.Buttons*"></a>
+  <h4 id="Material_Blazor_MBDialog_Buttons" data-uid="Material.Blazor.MBDialog.Buttons">Buttons</h4>
+  <div class="markdown level1 summary"><p>Render fragment for the dialog buttons. Note that the dialog will
+return actions to the consumer when the <code>data-mdc-dialog-action</code> attribute
+is set for a button: <a class="xref" href="Material.Blazor.MBButton.html">MBButton</a> does this via its <a class="xref" href="Material.Blazor.MBButton.html#Material_Blazor_MBButton_DialogAction">DialogAction</a>
+parameter.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RenderFragment Buttons { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">RenderFragment</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_MBDialog_EscapeKeyAction.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDialog.EscapeKeyAction%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Components/Dialog/MBDialog.razor.cs/#L52">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBDialog_EscapeKeyAction_" data-uid="Material.Blazor.MBDialog.EscapeKeyAction*"></a>
+  <h4 id="Material_Blazor_MBDialog_EscapeKeyAction" data-uid="Material.Blazor.MBDialog.EscapeKeyAction">EscapeKeyAction</h4>
+  <div class="markdown level1 summary"><p>The action returned by the dialog when the escape key is pressed. Defaults to &quot;close&quot;. Setting
+this to &quot;&quot; will disable the escape key action.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string EscapeKeyAction { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_MBDialog_OverflowVisible.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDialog.OverflowVisible%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Components/Dialog/MBDialog.razor.cs/#L60">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBDialog_OverflowVisible_" data-uid="Material.Blazor.MBDialog.OverflowVisible*"></a>
+  <h4 id="Material_Blazor_MBDialog_OverflowVisible" data-uid="Material.Blazor.MBDialog.OverflowVisible">OverflowVisible</h4>
+  <div class="markdown level1 summary"><p>Dialogs by default apply <code>overflow: hidden;</code>. This means that selects or datepickers are often
+cropped. Set this parameter to true to make the dialog apply <code>overflow: visible;</code> to rectify this.
+Defaults to false.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool OverflowVisible { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_MBDialog_ScrimClickAction.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDialog.ScrimClickAction%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Components/Dialog/MBDialog.razor.cs/#L45">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBDialog_ScrimClickAction_" data-uid="Material.Blazor.MBDialog.ScrimClickAction*"></a>
+  <h4 id="Material_Blazor_MBDialog_ScrimClickAction" data-uid="Material.Blazor.MBDialog.ScrimClickAction">ScrimClickAction</h4>
+  <div class="markdown level1 summary"><p>The action returned by the dialog when the scrim is clicked. Defaults to &quot;close&quot;. Setting
+this to &quot;&quot; will disable scrim click action.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string ScrimClickAction { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_MBDialog_Title.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDialog.Title%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Components/Dialog/MBDialog.razor.cs/#L23">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBDialog_Title_" data-uid="Material.Blazor.MBDialog.Title*"></a>
+  <h4 id="Material_Blazor_MBDialog_Title" data-uid="Material.Blazor.MBDialog.Title">Title</h4>
+  <div class="markdown level1 summary"><p>The dialog title.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Title { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_MBDialog_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDialog.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Components/Dialog/MBDialog.razor.cs/#L100">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBDialog_Dispose_" data-uid="Material.Blazor.MBDialog.Dispose*"></a>
+  <h4 id="Material_Blazor_MBDialog_Dispose_System_Boolean_" data-uid="Material.Blazor.MBDialog.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void Dispose(bool disposing)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">disposing</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_Dispose_System_Boolean_">ComponentFoundation.Dispose(Boolean)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_MBDialog_HideAsync.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDialog.HideAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Components/Dialog/MBDialog.razor.cs/#L157">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBDialog_HideAsync_" data-uid="Material.Blazor.MBDialog.HideAsync*"></a>
+  <h4 id="Material_Blazor_MBDialog_HideAsync" data-uid="Material.Blazor.MBDialog.HideAsync">HideAsync()</h4>
+  <div class="markdown level1 summary"><p>Hides the dialog first by allowing Material Theme to close it gracefully, then
+removing the Blazor markup.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task HideAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_MBDialog_NotifyOpenedAsync.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDialog.NotifyOpenedAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Components/Dialog/MBDialog.razor.cs/#L173">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBDialog_NotifyOpenedAsync_" data-uid="Material.Blazor.MBDialog.NotifyOpenedAsync*"></a>
+  <h4 id="Material_Blazor_MBDialog_NotifyOpenedAsync" data-uid="Material.Blazor.MBDialog.NotifyOpenedAsync">NotifyOpenedAsync()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task NotifyOpenedAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_MBDialog_OnAfterRenderAsync_System_Boolean_.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDialog.OnAfterRenderAsync(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Components/Dialog/MBDialog.razor.cs/#L188">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBDialog_OnAfterRenderAsync_" data-uid="Material.Blazor.MBDialog.OnAfterRenderAsync*"></a>
+  <h4 id="Material_Blazor_MBDialog_OnAfterRenderAsync_System_Boolean_" data-uid="Material.Blazor.MBDialog.OnAfterRenderAsync(System.Boolean)">OnAfterRenderAsync(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Shows the dialog on the next render after a show action. Also on the next render after the dialog is initiated each
+embedded Material.Blazor component is initiated here.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override Task OnAfterRenderAsync(bool firstRender)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">firstRender</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnAfterRenderAsync_System_Boolean_">ComponentFoundation.OnAfterRenderAsync(Boolean)</a></div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_MBDialog_OnInitialized.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDialog.OnInitialized%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Components/Dialog/MBDialog.razor.cs/#L88">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBDialog_OnInitialized_" data-uid="Material.Blazor.MBDialog.OnInitialized*"></a>
+  <h4 id="Material_Blazor_MBDialog_OnInitialized" data-uid="Material.Blazor.MBDialog.OnInitialized">OnInitialized()</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnInitialized()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_MBDialog_ShowAsync.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDialog.ShowAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Components/Dialog/MBDialog.razor.cs/#L130">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBDialog_ShowAsync_" data-uid="Material.Blazor.MBDialog.ShowAsync*"></a>
+  <h4 id="Material_Blazor_MBDialog_ShowAsync" data-uid="Material.Blazor.MBDialog.ShowAsync">ShowAsync()</h4>
+  <div class="markdown level1 summary"><p>Shows the dialog. This first renders the Blazor markup and then allows
+Material Theme to open the dialog, subsequently intiating all embedded Blazor components.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; ShowAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><p>The action string resulting form dialog closure</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  </div>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/new/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/apiSpec/new?filename=Material_Blazor_MBDialog.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDialog%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/Material.Blazor/Components/Dialog/MBDialog.razor.cs/#L18" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

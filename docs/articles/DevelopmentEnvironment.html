@@ -80,13 +80,13 @@
             <article class="content wrap" id="_content" data-uid="A.DevelopmentEnvironment">
 <h1 id="creating-a-development-environment">Creating a Development Environment</h1>
 
-<p>We have developed Blazor MDC using Visual Studio 2019 on Windows, and have not tested any other development environment. However, the CI builds run on Ubuntu so for routine development a Linux environment should be quite acceptable.</p>
+<p>We have developed Material.Blazor using Visual Studio 2019 on Windows, and have not tested any other development environment. However, the CI builds run on Ubuntu so for routine development a Linux environment should be quite acceptable.</p>
 <h2 id="forking-the-repos">Forking the repos</h2>
 <ul>
-<li>The full development environmment is in the Blazor MDC GitHub repository that you can fork from <a href="https://github.com/BlazorMdc/BlazorMdc">https://github.com/BlazorMdc/BlazorMdc</a>. If you intend to submit pull requests please note that we use a<code>main</code> branch and accept feature branches created from <code>main</code>.</li>
-<li>The repo has Github Actions for <code>main</code>. In your forked repo, <a href="https://github.com/BlazorMdc/BlazorMdc/blob/develop/.github/workflows/GithubActionsMainWIP.yml"><code>GithubActionsMainWIP</code></a> will attempt to publish the documentation and this website to your GitHub pages:
+<li>The full development environmment is in the Material.Blazor GitHub repository that you can fork from <a href="https://github.com/Material-Blazor/Material.Blazor">https://github.com/Material-Blazor/Material.Blazor</a>. If you intend to submit pull requests please note that we use a<code>main</code> branch and accept feature branches created from <code>main</code>.</li>
+<li>The repo has Github Actions for <code>main</code>. In your forked repo, <a href="https://github.com/Material-Blazor/Material.Blazor/blob/develop/.github/workflows/GithubActionsMainWIP.yml"><code>GithubActionsMainWIP</code></a> will attempt to publish the documentation and this website to your GitHub pages:
 <ul>
-<li>If you want this to publish to <code>&lt;repository owner&gt;/github.io/BlazorMdc</code>, you will need to set up a Personal Access Token with write access to your repos - PATS are set up by clicking your icon at the top right on GitHub, then Settings and Developer Settings in the navigation menu to the left.
+<li>If you want this to publish to <code>&lt;repository owner&gt;/github.io/Material.Blazor</code>, you will need to set up a Personal Access Token with write access to your repos - PATS are set up by clicking your icon at the top right on GitHub, then Settings and Developer Settings in the navigation menu to the left.
 <img src="../images/gh-account-settings-1.png" alt="GitHub Account Settings">
 <img src="../images/gh-account-settings-2.png" alt="GitHub Account Settings">
 <img src="../images/gh-account-settings-3.png" alt="GitHub Account Settings"></li>
@@ -102,7 +102,7 @@
 <ul>
 <li>To build the Blazor project you need to be using the latest preview version of Visual Studio 2019. This can be found at <a href="https://visualstudio.microsoft.com/vs/preview/">https://visualstudio.microsoft.com/vs/preview/</a>. The Community Edition is sufficient. During the installation you must include the &quot;ASP.NET and web development&quot; Workload using Visual Studio Installer.:
 <img src="../images/vs-config.png" alt="Visual Studio Workloads"></li>
-<li>Blazor MDC uses SASS for styling and uses Material Components Web SASS mixins. You will also need to install &quot;Docker&quot;. Docker for Windows can be found at <a href="https://docs.docker.com/docker-for-windows/install/">https://docs.docker.com/docker-for-windows/install/</a>. Docker for Mac can be found at <a href="https://docs.docker.com/docker-for-mac/install/">https://docs.docker.com/docker-for-mac/install/</a>. Docker will be responsible for using npm to build and minify resources from within Docker virtual images.  Note that npm packages are  <em>voluminous</em> and running the build will download over 160MB of data in the Docker directory.</li>
+<li>Material.Blazor uses SASS for styling and uses Material Components Web SASS mixins. You will also need to install &quot;Docker&quot;. Docker for Windows can be found at <a href="https://docs.docker.com/docker-for-windows/install/">https://docs.docker.com/docker-for-windows/install/</a>. Docker for Mac can be found at <a href="https://docs.docker.com/docker-for-mac/install/">https://docs.docker.com/docker-for-mac/install/</a>. Docker will be responsible for using npm to build and minify resources from within Docker virtual images.  Note that npm packages are  <em>voluminous</em> and running the build will download over 160MB of data in the Docker directory.</li>
 <li>There are some Visual Studio extensions that you need or may want:
 <ul>
 <li>We like Markdown Editor, which will help you improve this page.
@@ -113,22 +113,22 @@
 <h2 id="ci-and-release-github-action-workflows">CI and Release GitHub Action workflows</h2>
 <p>These workflows are responsible for publishing two artifacts:</p>
 <ul>
-<li>The BlazorMdc DocFx pages in the BlazorMdc project, amalgamated with the BlazorMdcWebsite.WebAssembly published output to your gh-pages branch.</li>
-<li>The BlazorMdc NuGet package hosted as a GitHub package (Release) or a NuGet.org (CI).</li>
+<li>The Material.Blazor DocFx pages in the Material.Blazor project, amalgamated with the Material.Blazor.WebAssembly published output to your gh-pages branch.</li>
+<li>The Material.Blazor NuGet package hosted as a GitHub package (Release) or a NuGet.org (CI).</li>
 </ul>
 <h3 id="wip-workflow">WIP Workflow</h3>
 <p>This workflow runs whenever a pull request is created, updated, or pushed.</p>
 <h4 id="forked-repository">Forked repository</h4>
-<p>Regardless of the trigger, all three artifacts are published. The DocFx pages reside locally in the forked repository, the NuGet package is identified as a CI build &amp; published to NuGet packages in the forked repository, and the Website is published into the gh-pages branch of a BlazorMdcWebsite repository with the same owner as the forked BlazorMdc repository.</p>
+<p>Regardless of the trigger, all three artifacts are published. The DocFx pages reside locally in the forked repository, the NuGet package is identified as a CI build &amp; published to NuGet packages in the forked repository, and the Website is published into the gh-pages branch of a Material.Blazor.Website repository with the same owner as the forked Material.Blazor repository.</p>
 <p>NOTE -- An issue exists when publishing the CI package to a forked repository in that the publish appears to work but the packages are not visible. For this reason (pending a service request response) the publish of the CI package is temporarily disabled.</p>
-<h4 id="blazormdcblazormdc-repository">BlazorMdc\BlazorMdc repository</h4>
-<p>Regardless of the trigger, the WebSite &amp; DocFx pages are not built. On a Push trigger the the BlazorMdc Nuget package identified as a CI build is built and then published to the BlazorMdc repository . It is up to a developer to have checked the publishing results of the documentation and website in the forked repository prior to initiating a release workflow.</p>
+<h4 id="material-blazormaterialblazor-repository">Material-Blazor\Material.Blazor repository</h4>
+<p>Regardless of the trigger, the WebSite &amp; DocFx pages are not built. On a Push trigger the the Material.Blazor Nuget package identified as a CI build is built and then published to the Material.Blazor repository . It is up to a developer to have checked the publishing results of the documentation and website in the forked repository prior to initiating a release workflow.</p>
 <h3 id="release-workflow">Release Workflow</h3>
 <h4 id="forked-repository-1">Forked repository</h4>
 <p>Upon creation of a tag no actions are performed in the multiple jobs. At the current time we see no reason to create releases in the forked repositories.</p>
-<h4 id="blazormdcblazormdc-repository-1">BlazorMdc\BlazorMdc repository</h4>
-<p>All three artifacts are produced. The documentation is in the BlazorMdc\BlazorMdc\gh-pages branch.
-The BlazorMdc NuGet package is published to NuGet.org. The Website is in the BlazorMdc\BlazorMdcWebsite\gh-pages branch.</p>
+<h4 id="material-blazormaterialblazor-repository-1">Material-Blazor\Material.Blazor repository</h4>
+<p>All three artifacts are produced. The documentation is in the Material-Blazor\Material.Blazor\gh-pages branch.
+The Material.Blazor NuGet package is published to NuGet.org. The Website is in the Material.Blazor\Material.Blazor.Website\gh-pages branch.</p>
 </article>
           </div>
           
@@ -137,7 +137,7 @@ The BlazorMdc NuGet package is published to NuGet.org. The Website is in the Bla
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/371733c454b3448fb89e0b6931556820cf13609c/articles/DevelopmentEnvironment.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/articles/DevelopmentEnvironment.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

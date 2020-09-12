@@ -78,9 +78,9 @@
         <div class="article row grid-right">
           <div class="col-md-10">
             <article class="content wrap" id="_content" data-uid="A.TwoWayBinding">
-<h1 id="blazor-mdcs-two-way-binding-approach">Blazor MDC's Two Way Binding Approach</h1>
+<h1 id="materialblazors-two-way-binding-approach">Material.Blazor's Two Way Binding Approach</h1>
 
-<p>Blazor MDC takes an unusual approach to two way binding and rendering. Most components return <code>ShouldRender() =&gt; false;</code>. This is
+<p>Material.Blazor takes an unusual approach to two way binding and rendering. Most components return <code>ShouldRender() =&gt; false;</code>. This is
 to resolve an inherent conflict between how Blazor re-renders components when bound parameters are updated by their consumers and
 how a JavaScript framework such as <a href="https://github.com/material-components/material-components-web">Material Components Web (&quot;MCW&quot;)</a> works.</p>
 <p>In a pure Blazor world, Blazor takes care of rendering and re-rendering for you. In doing so it overwrites the relevant part of the
@@ -92,7 +92,7 @@ this gracefully.</p>
 <p>Consider an empty outlined text field before and after a user gives it focus as below. Note how the label floats up and how both it and
 the border gain color:</p>
 <p><img src="../images/text-field-focus.png" alt="Text Field Gaining Focus"></p>
-<p>The text field's markup however has three distinct state. First what any app environment (including your app using Blazor MDC) marks
+<p>The text field's markup however has three distinct state. First what any app environment (including your app using Material.Blazor) marks
 up in a page, then what this becomes once the text field has been initiated and manipulated by MCW and lastly
 how its state after receiving focus. The transition between the last two is animated by MCW.</p>
 <ol>
@@ -136,10 +136,10 @@ how its state after receiving focus. The transition between the last two is anim
 </code></pre>
 </li>
 </ol>
-<p>What we see from this is that if Blazor MDC were to allow Blazor to re-render, this would be with markup similar to 1. above and
+<p>What we see from this is that if Material.Blazor were to allow Blazor to re-render, this would be with markup similar to 1. above and
 MCW will then fail to manipulate the DOM correctly thereafter - we know this because we tried.</p>
 <h2 id="handling-two-way-binding">Handling Two Way Binding</h2>
-<p>When we first identified this issue during Blazor MDC's development we realized that our Blazor code needed to first render a
+<p>When we first identified this issue during Material.Blazor's development we realized that our Blazor code needed to first render a
 new component and then immediately after initiating it step out of MCW's way by applying <code>ShouldRender() =&gt; false;</code>
 in <code>InputComponentFoundation</code>. To begin with this is all we did and so subsequent attempts by the consumer (your project)
 to update Value were ignored, which is an unacceptable result. Fortunately each MCW component has a rich
@@ -170,7 +170,7 @@ feedback bounce loop.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/BlazorMdc/BlazorMdc/blob/371733c454b3448fb89e0b6931556820cf13609c/articles/TwoWayBinding.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/articles/TwoWayBinding.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
