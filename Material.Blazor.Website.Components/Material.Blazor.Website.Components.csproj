@@ -26,6 +26,7 @@
 
 	<ItemGroup>
 	  <Folder Include="Properties\" />
+	  <Folder Include="wwwroot\css\" />
 	</ItemGroup>
 
   <!-- Unfinished dependency issue copied directly from mb, no update yet for website
