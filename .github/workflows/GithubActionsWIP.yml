@@ -267,14 +267,14 @@ jobs:
     - name: Display package output Ꙫ
       run: dir ${env:outputMBWin}
 
-    - name: Display obfuscated secret Ꙫ
-      run: echo The GitHub token is ${{ secrets.GITHUB_TOKEN }}
+    - name: Display repository owner Ꙫ
+      run: echo The repository owner is ${{ github.repository_owner }}
 
     - name: Display obfuscated secret Ꙫ
       run: echo The GH_PAT token is ${{ secrets.GH_PAT }}
 
 # We'd like to push to a forked repository; The push appears to work but the packages are not visible
-# Pending a service response we only do the push of the CI build in the bmdc/bmdc repository
+# Pending a service response we only do the push of the CI build in the Material-Blazor/Material.Blazor repository
 # The commented 'if' can replace the current 'if' when this is resolved
 
     - name: Upload Package 🚀
