@@ -50,7 +50,7 @@ jobs:
 
 ############################################################################################################
 #Build Material.Blazor.Website.WebAssembly (1st of 2 jobs), second job publishes to gh-pages
-#This has to be a separate job from BuildBlazorMdc because of the different dnc environments (3.1 & 5.0 preview)
+#This has to be a separate job from BuildMaterialBlazor because of the different dnc environments (3.1 & 5.0 preview)
 ############################################################################################################
   buildwebsite:
 
@@ -233,7 +233,7 @@ jobs:
         path: siteMB
 
 ############################################################################################################
-#Build & Deploy BlazorMdc Nuget package (2nd of 2 jobs)
+#Build & Deploy MaterialBlazor Nuget package (2nd of 2 jobs)
 #
 # Why two jobs? Because we couldn't figure out how to successfully 'nuget push' on Ubuntu after more than
 # 2 man days of effort. Instead we simply upload the nuget packages as an artifact and then run a Windows job

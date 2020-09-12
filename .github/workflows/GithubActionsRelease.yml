@@ -55,7 +55,7 @@ jobs:
 
 ############################################################################################################
 #Build Material.Blazor.Website.WebAssembly (1st of 2 jobs), second job publishes to gh-pages
-#This has to be a separate job from BuildBlazorMdc because of the different dnc environments (3.1 & 5.0 preview)
+#This has to be a separate job from BuildMaterialBlazor because of the different dnc environments (3.1 & 5.0 preview)
 ############################################################################################################
   buildwebsite:
 
@@ -161,7 +161,7 @@ jobs:
 ############################################################################################################
 #Build & Deploy MaterialBlazor Nuget package (1 job)
 ############################################################################################################
-  buildanddeployblazormdc:
+  buildanddeploymaterialblazor:
     runs-on: ubuntu-latest
 
     steps:
