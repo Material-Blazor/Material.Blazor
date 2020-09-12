@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "BlazorMdcWebsite.Server": {
+    "Material.Blazor.Website.Server": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

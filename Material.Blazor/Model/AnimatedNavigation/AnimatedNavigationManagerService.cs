@@ -45,7 +45,7 @@ namespace Material.Blazor
         {
             if (NavigationComponent is null)
             {
-                throw new InvalidOperationException($"BlazorMdc: you have registered a {Utilities.GetTypeName(typeof(IMBAnimatedNavigationManager))} but have not placed a {Utilities.GetTypeName(typeof(MBAnimatedNavigation))} component around your markup in either App.razor or MainLayout.razor");
+                throw new InvalidOperationException($"Material.Blazor: you have registered a {Utilities.GetTypeName(typeof(IMBAnimatedNavigationManager))} but have not placed a {Utilities.GetTypeName(typeof(MBAnimatedNavigation))} component around your markup in either App.razor or MainLayout.razor");
             }
 
             if (!Configuration.ApplyAnimation)

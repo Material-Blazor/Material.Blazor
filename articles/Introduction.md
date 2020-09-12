@@ -4,7 +4,7 @@ title: Introduction
 ---
 # Introduction
 
-Welcome to the BlazorMdc Articles. We strongly recommend starting with [Installation](xref:A.Installation) & continuing with [Development Environment](xref:A.DevelopmentEnvironment).
+Welcome to the Material.Blazor Articles. We strongly recommend starting with [Installation](xref:A.Installation) & continuing with [Development Environment](xref:A.DevelopmentEnvironment).
 
 The documentation can only take you so far, and we strongly recommend that you examine relevant code from our website, which both demonstrates Material.Blazor and serves as a reference
 installation. Every demonstration page on the website includes a link to its source on GitHub.

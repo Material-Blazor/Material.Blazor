@@ -29,7 +29,7 @@ namespace Material.Blazor.Website.Components.Pages
             OSArchitecture = RuntimeInformation.OSArchitecture.ToString();
             OSDescription = RuntimeInformation.OSDescription.ToString();
             Runtime = RuntimeInformation.FrameworkDescription.ToString();
-            Version = MBVersion.BlazorMdcVersion();
+            Version = MBVersion.MaterialBlazorVersion();
         }
 
 

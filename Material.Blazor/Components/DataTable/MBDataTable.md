@@ -22,7 +22,7 @@ A partial implementation of a [Material Data Table](https://github.com/material-
 - You can provide a function delegate to the `GetKeysFunc` parameter - we have used two variants of this:
   - First to get a unique `Id` property that happens to be in our item's class: `GetKeysFunc="@((item) => item.Id)"`; and
   - Second using a "fake key" where we create a GUID to act as the key: `GetKeysFunc="@((item) => Guid.NewGuid())"`.
-  - You can see an example of this in the [MBList demonstration website page's code](https://github.com/Material-Blazor/Material.Blazor/blob/main/BlazorMdcWebsite.Components/Pages/List.razor#L155).
+  - You can see an example of this in the [MBList demonstration website page's code](https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website.Components/Pages/List.razor#L155).
 
 ## Partial Implementation
 

@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "BlazorMdcWebsite01",
+      "defaultValue": "Material.Blazor.Website01",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }

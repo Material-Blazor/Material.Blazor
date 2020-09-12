@@ -111,7 +111,7 @@
 
     protected async Task ThemeSetterAsync(string theme)
     {
-        await JsRuntime.InvokeAsync<object>("BlazorMdcWebsite.themeSetter.setTheme", theme);
+        await JsRuntime.InvokeAsync<object>("material_blazor_website.themeSetter.setTheme", theme);
         Theme = theme;
         StateHasChanged();
     }

@@ -1,4 +1,4 @@
-window.BlazorMdc = {
+window.material_blazor = {
     autoComplete: {
         init: function (textElem, menuElem, dotNetObject) {
             textElem._textField = mdc.textField.MDCTextField.attachTo(textElem);

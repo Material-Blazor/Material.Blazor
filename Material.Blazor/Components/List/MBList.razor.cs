@@ -10,7 +10,7 @@ namespace Material.Blazor
 {
     /// <summary>
     /// This is a general purpose Material Theme list implementing one and two line MB web component
-    /// standards. It also implements a BlazorMdc interpretation of the specification for a three line
+    /// standards. It also implements a Material.Blazor interpretation of the specification for a three line
     /// list item.
     /// </summary>
     public partial class MBList<TItem> : ComponentFoundation
@@ -223,10 +223,10 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("BlazorMdc.list.init", ElementReference, (KeyboardInteractions && !AppliedDisabled), Ripple));
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("material_blazor.list.init", ElementReference, (KeyboardInteractions && !AppliedDisabled), Ripple));
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("BlazorMdc.list.init", ElementReference, (KeyboardInteractions && !AppliedDisabled), Ripple);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("material_blazor.list.init", ElementReference, (KeyboardInteractions && !AppliedDisabled), Ripple);
     }
 }

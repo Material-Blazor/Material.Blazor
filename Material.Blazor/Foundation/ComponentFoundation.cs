@@ -92,7 +92,7 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// Components should override this with a function to be called when BlazorMdc wants to run Material Theme initialization via JS Interop - always gets called from <see cref="OnAfterRenderAsync()"/>, which should not be overridden.
+        /// Components should override this with a function to be called when Material.Blazor wants to run Material Theme initialization via JS Interop - always gets called from <see cref="OnAfterRenderAsync()"/>, which should not be overridden.
         /// </summary>
         private protected virtual async Task InitializeMdcComponent() => await Task.CompletedTask;
 
@@ -246,7 +246,7 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// BlazorMdc components *must always* override this at the start of `OnParametersSet().
+        /// Material.Blazor components *must always* override this at the start of `OnParametersSet().
         /// </summary>
         protected override void OnParametersSet()
         {
@@ -257,7 +257,7 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// BlazorMdc components *must always* override this at the start of `OnParametersSet().
+        /// Material.Blazor components *must always* override this at the start of `OnParametersSet().
         /// </summary>
         protected override async Task OnParametersSetAsync()
         {
@@ -268,7 +268,7 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// BlazorMdc allows a user to limit unmatched attributes that will be splatted to a defined list in <see cref="BlazorMdc.MBCascadingDefaults"/>.
+        /// Material.Blazor allows a user to limit unmatched attributes that will be splatted to a defined list in <see cref="MBCascadingDefaults"/>.
         /// This method checks validity against that list.
         /// </summary>
         private void CheckAttributeValidity()
@@ -283,7 +283,7 @@ namespace Material.Blazor.Internal
             if (reserved.Count() > 0)
             {
                 throw new ArgumentException(
-                    $"BlazorMdc: You cannot use {string.Join(", ", reserved.Select(x => $"'{x}'"))} attributes in {Utilities.GetTypeName(GetType())}. BlazorMdc reserves the 'display' HTML attributes for internal use; use the 'Display' parameter instead");
+                    $"Material.Blazor: You cannot use {string.Join(", ", reserved.Select(x => $"'{x}'"))} attributes in {Utilities.GetTypeName(GetType())}. Material.Blazor reserves the 'display' HTML attributes for internal use; use the 'Display' parameter instead");
             }
 
             if (!CascadingDefaults.ConstrainSplattableAttributes)
@@ -301,13 +301,13 @@ namespace Material.Blazor.Internal
             if (forbidden.Count() > 0)
             {
                 throw new ArgumentException(
-                    $"BlazorMdc: You cannot use {string.Join(", ", forbidden.Select(x => $"'{x}'"))} attributes in {Utilities.GetTypeName(GetType())}. Either remove the attribute or change 'ConstrainSplattableAttributes' or 'AllowedSplattableAttributes' in your MBCascadingDefaults");
+                    $"Material.Blazor: You cannot use {string.Join(", ", forbidden.Select(x => $"'{x}'"))} attributes in {Utilities.GetTypeName(GetType())}. Either remove the attribute or change 'ConstrainSplattableAttributes' or 'AllowedSplattableAttributes' in your MBCascadingDefaults");
             }
         }
 
 
         /// <summary>
-        /// BlazorMdc components generally *should not* override this because it handles the case where components need
+        /// Material.Blazor components generally *should not* override this because it handles the case where components need
         /// to be adjusted when inside an <c>MBDialog</c> or <c>MBCard</c>. 
         /// </summary>
         protected override async Task OnAfterRenderAsync(bool firstRender)

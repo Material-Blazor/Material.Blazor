@@ -48,5 +48,5 @@ This mechanism is also handled in the Material.Blazor's internal `InputComponent
 
 Material.Blazor has two namespaces:
 
-- `BlazorMdc` is the only namespace that you should use. You can add `@using Material.Blazor` to your project's _Imports.razor file.
-- There is also a `BlazorMdc.Internal` namespace that you should not use. We use this namespace for some components that are intended only for internal use in Material.Blazor, however Blazor has no mechanism to restrict components to internal usage (mirroring the C# "internal" directive).
+- `Material.Blazor` is the only namespace that you should use. You can add `@using Material.Blazor` to your project's _Imports.razor file.
+- There is also a `Material.Blazor.Internal` namespace that you should not use. We use this namespace for some components that are intended only for internal use in Material.Blazor, however Blazor has no mechanism to restrict components to internal usage (mirroring the C# "internal" directive).

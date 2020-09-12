@@ -48,8 +48,8 @@
 		<InputsStylesScss Include="Styles\*.scss" />
 		<InputsComponentsTs Include="Components\**\*.js" />
 		<InputsScriptsTs Include="Scripts\*.js" />
-		<OutputsCss Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css;wwwroot\material.blazor-material-bundle.min.css" />
-		<OutputsJs Include="wwwroot\material.blazor.js;wwwroot\material.blazor.min.js;wwwroot\material.blazor-material-bundle.min.js" />
+		<OutputsCss Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css;wwwroot\material.blazor.material-bundle.min.css" />
+		<OutputsJs Include="wwwroot\material.blazor.js;wwwroot\material.blazor.min.js;wwwroot\material.blazor.material-bundle.min.js" />
 	</ItemGroup>
 
 	<Target Name="BuildScriptsAndStyles" 
@@ -64,8 +64,8 @@
 		<Exec Command="docker run --rm mb_static_assets cat material.blazor.css &gt; wwwroot/material.blazor.css" />
 		<Exec Command="docker run --rm mb_static_assets cat material.blazor.min.js &gt; wwwroot/material.blazor.min.js" />
 		<Exec Command="docker run --rm mb_static_assets cat material.blazor.min.css &gt; wwwroot/material.blazor.min.css" />
-		<Exec Command="docker run --rm mb_static_assets cat material.blazor-material-bundle.min.js &gt; wwwroot/material.blazor-material-bundle.min.js" />
-		<Exec Command="docker run --rm mb_static_assets cat material.blazor-material-bundle.min.css &gt; wwwroot/material.blazor-material-bundle.min.css" />
+		<Exec Command="docker run --rm mb_static_assets cat material.blazor.material-bundle.min.js &gt; wwwroot/material.blazor.material-bundle.min.js" />
+		<Exec Command="docker run --rm mb_static_assets cat material.blazor.material-bundle.min.css &gt; wwwroot/material.blazor.material-bundle.min.css" />
 	</Target>
 
 </Project>

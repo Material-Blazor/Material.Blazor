@@ -6,7 +6,7 @@ namespace Material.Blazor
 {
     /// <summary>
     /// Renders icons from any of the Material Icons, Font Awesome and Open Iconic
-    /// foundries. Material Icons are essential for BlazorMdc and are included by the
+    /// foundries. Material Icons are essential for Material.Blazor and are included by the
     /// library's CSS, while you can elect whether to include Font Awesome and Open Iconic
     /// in your app.
     /// </summary>
