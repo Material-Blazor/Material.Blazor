@@ -1,9 +1,11 @@
 ﻿name: GithubActionsRelease
 
 ############################################################################################################
-# All of thes jobs runs commands only on a tag push in the BlazorMdc\BlazorMdc repository
+# All of thes jobs runs commands only on a tag push in the Material-Blazor\Material.Blazor repository
 # The publishing actions in forked repositories were handled by the WIP workflow
 # An 'ExitWorkflow' action is sorely needed
+############################################################################################################
+# NUGET_API_KEY is valid through 9/11/2021
 ############################################################################################################
 
 on:
@@ -52,10 +54,10 @@ jobs:
 
 
 ############################################################################################################
-#Build BlazorMdcWebsite (1st of 2 jobs), second job publishes to gh-pages
+#Build Material.Blazor.Website.WebAssembly (1st of 2 jobs), second job publishes to gh-pages
 #This has to be a separate job from BuildBlazorMdc because of the different dnc environments (3.1 & 5.0 preview)
 ############################################################################################################
-  buildblazormdcwebsite:
+  buildwebsite:
 
     runs-on: ubuntu-latest
 
@@ -122,7 +124,7 @@ jobs:
 #Deploy gh-pages
 ############################################################################################################
   deployghpages:
-    needs: [builddocfx,buildblazormdcwebsite] # This job must depend on the two build jobs to complete before running, and uses ubuntu-latest instead of windows.
+    needs: [builddocfx,buildwebsite] # This job must depend on the two build jobs to complete before running, and uses ubuntu-latest instead of windows.
 
     runs-on: ubuntu-latest
 
@@ -157,7 +159,7 @@ jobs:
 
 
 ############################################################################################################
-#Build & Deploy BlazorMdc Nuget package (1 job)
+#Build & Deploy MaterialBlazor Nuget package (1 job)
 ############################################################################################################
   buildanddeployblazormdc:
     runs-on: ubuntu-latest
