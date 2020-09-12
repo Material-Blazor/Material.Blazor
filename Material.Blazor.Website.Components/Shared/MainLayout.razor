@@ -51,7 +51,7 @@
 </MBDrawer>
 
 <div class="mdc-drawer-app-content">
-    <MBTopAppBar Title="Blazor MDC"
+    <MBTopAppBar Title="Material.Blazor"
                  @onclick="@SideBarToggle"
                  NavIcon="menu"
                  ScrollTarget="#main-content"
@@ -111,7 +111,7 @@
 
     protected async Task ThemeSetterAsync(string theme)
     {
-        await JsRuntime.InvokeAsync<object>("BlazorMdcWebsite.themeSetter.setTheme", theme);
+        await JsRuntime.InvokeAsync<object>("material_blazor_website.themeSetter.setTheme", theme);
         Theme = theme;
         StateHasChanged();
     }

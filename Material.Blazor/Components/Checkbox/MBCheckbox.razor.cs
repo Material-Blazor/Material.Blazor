@@ -38,7 +38,7 @@ namespace Material.Blazor
                 if (value != _isIndetermimate)
                 {
                     _isIndetermimate = value;
-                    InvokeAsync(() => JsRuntime.InvokeVoidAsync("BlazorMdc.checkBox.setIndeterminate", ElementReference, _isIndetermimate));
+                    InvokeAsync(() => JsRuntime.InvokeVoidAsync("material_blazor.checkBox.setIndeterminate", ElementReference, _isIndetermimate));
                 }
             }
         }
@@ -87,7 +87,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("BlazorMdc.checkBox.setChecked", ElementReference, Value));
+        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("material_blazor.checkBox.setChecked", ElementReference, Value));
 
 
         /// <summary>
@@ -95,10 +95,10 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("BlazorMdc.checkBox.setDisabled", ElementReference, AppliedDisabled));
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("material_blazor.checkBox.setDisabled", ElementReference, AppliedDisabled));
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("BlazorMdc.checkBox.init", ElementReference, FormReference, ReportingValue, IsIndeterminate);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("material_blazor.checkBox.init", ElementReference, FormReference, ReportingValue, IsIndeterminate);
     }
 }

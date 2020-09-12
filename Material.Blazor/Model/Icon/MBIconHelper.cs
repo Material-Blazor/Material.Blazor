@@ -37,7 +37,7 @@ namespace Material.Blazor
         /// Returns a new Material Icons foundry.
         /// </summary>
         /// <param name="theme">Optional <see cref="MBIconMITheme"/> specifying the Material Icons theme.</param>
-        /// <returns><see cref="IMBIconFoundry"/> to be passed to a BlazorMdc component.</returns>
+        /// <returns><see cref="IMBIconFoundry"/> to be passed to a Material.Blazor component.</returns>
         public static IMBIconFoundry MIFoundry(MBIconMITheme? theme = null) => new IconFoundryMI(theme);
 
 
@@ -46,14 +46,14 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="style">Optional <see cref="MBIconFAStyle"/> specifying the Font Awesome style.</param>
         /// <param name="relativeSize">Optional <see cref="MBIconFARelativeSize"/> specifying the Font Awesome relative size.</param>
-        /// <returns><see cref="IMBIconFoundry"/> to be passed to a BlazorMdc component.</returns>
+        /// <returns><see cref="IMBIconFoundry"/> to be passed to a Material.Blazor component.</returns>
         public static IMBIconFoundry FAFoundry(MBIconFAStyle? style = null, MBIconFARelativeSize? relativeSize = null) => new IconFoundryFA(style, relativeSize);
 
 
         /// <summary>
         /// Returns a Open Iconic foundry.
         /// </summary>
-        /// <returns><see cref="IMBIconFoundry"/> to be passed to a BlazorMdc component.</returns>
+        /// <returns><see cref="IMBIconFoundry"/> to be passed to a Material.Blazor component.</returns>
         public static IMBIconFoundry OIFoundry() => new IconFoundryOI();
 
 

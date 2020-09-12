@@ -23,4 +23,4 @@ Has the capacity to scale order of magnitude for percentage or [basis points](ht
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Plus&color=red)](xref:A.PlusComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBNumericDoubleField&color=brightgreen)](xref:BlazorMdc.MBNumericDoubleField)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBNumericDoubleField&color=brightgreen)](xref:Material.Blazor.MBNumericDoubleField)

@@ -21,7 +21,7 @@ namespace Material.Blazor
 
 #nullable enable annotations
         /// <summary>
-        /// The button's Material Theme style - see <see cref="BlazorMdc.MBButtonStyle"/>.
+        /// The button's Material Theme style - see <see cref="MBButtonStyle"/>.
         /// <para>Overrides <see cref="MBCascadingDefaults.ButtonStyle"/>, <see cref="MBCascadingDefaults.CardActionButtonStyle"/> or <see cref="MBCascadingDefaults.DialogActionButtonStyle"/> as relevant.</para>
         /// </summary>
         [Parameter] public MBButtonStyle? ButtonStyle { get; set; }
@@ -73,7 +73,7 @@ namespace Material.Blazor
         private MBCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityCssClass(CascadingDefaults.AppliedButtonDensity(Density));
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override void OnInitialized()
         {
             base.OnInitialized();
@@ -89,6 +89,6 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("BlazorMdc.button.init", ElementReference);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("material_blazor.button.init", ElementReference);
     }
 }

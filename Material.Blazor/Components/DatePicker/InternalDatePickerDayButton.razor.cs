@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Material.Blazor.Internal
 {
     /// <summary>
-    /// For BlazorMdc internal use only.
+    /// For Material.Blazor internal use only.
     /// </summary>
     public partial class InternalDatePickerDayButton : ComponentFoundation
     {

@@ -20,4 +20,4 @@ A [Material Top App Bar](https://github.com/material-components/material-compone
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](xref:A.CoreComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBTopAppBar&color=brightgreen)](xref:BlazorMdc.MBTopAppBar)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBTopAppBar&color=brightgreen)](xref:Material.Blazor.MBTopAppBar)

@@ -3,7 +3,7 @@
 namespace Material.Blazor
 {
     /// <summary>
-    /// Interface for the BlazorMdc toast service, developed from the code base of Blazored Toast by Chris Sainty.
+    /// Interface for the Material.Blazor toast service, developed from the code base of Blazored Toast by Chris Sainty.
     /// Works in conjunction with a <see cref="MBToastAnchor"/> that must be placed in either App.razor or
     /// MainLayout.razor to avoid an exception being thrown when you first attempt to show a toast notification.
     /// 
@@ -43,7 +43,7 @@ namespace Material.Blazor
         /// <summary>
         /// Shows a toast using the supplied settings. Only the level and message parameters are required, with
         /// the remainder haveing defaults specified by the <see cref="MBToastServiceConfiguration"/> that you can supply
-        /// when registering services. Failing that Blazor MDC provides defaults.
+        /// when registering services. Failing that Material.Blazor provides defaults.
         /// </summary>
         /// <param name="level">Severity of the toast (info, error, etc)</param>
         /// <param name="message">Body text in the toast</param>

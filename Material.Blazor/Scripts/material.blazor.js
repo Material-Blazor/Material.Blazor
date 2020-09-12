@@ -1,4 +1,4 @@
-window.BlazorMdc = {
+window.material_blazor = {
     autoComplete: {
         init: function (textElem, menuElem, dotNetObject) {
             textElem._textField = mdc.textField.MDCTextField.attachTo(textElem);
@@ -105,7 +105,7 @@ window.BlazorMdc = {
 
     dataTable: {
         init: function (elem) {
-            //This will only become necessary once Blazor MDC allows row selection, see: https://material.io/develop/web/components/data-tables
+            //This will only become necessary once Material.Blazor allows row selection, see: https://material.io/develop/web/components/data-tables
             //mdc.dataTable.MDCDataTable.attachTo(elem);
         }
     },

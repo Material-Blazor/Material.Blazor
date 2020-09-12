@@ -49,8 +49,8 @@ jobs:
 
 
 ############################################################################################################
-#Build BlazorMdcWebsite (1st of 2 jobs), second job publishes to gh-pages
-#This has to be a separate job from BuildBlazorMdc because of the different dnc environments (3.1 & 5.0 preview)
+#Build Material.Blazor.Website.WebAssembly (1st of 2 jobs), second job publishes to gh-pages
+#This has to be a separate job from BuildMaterialBlazor because of the different dnc environments (3.1 & 5.0 preview)
 ############################################################################################################
   buildwebsite:
 
@@ -143,7 +143,7 @@ jobs:
       uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       with:
         html_path: 'deployroot/index.html'
-        base_href: '/BlazorMdc/'
+        base_href: '/Material.Blazor/'
       if: (github.repository != 'Material-Blazor/Material.Blazor')
 
     - name: Deploy 🚀
@@ -156,13 +156,13 @@ jobs:
 
 
 ############################################################################################################
-# Build & Deploy BlazorMdc Nuget package (1st of 2 jobs)
+# Build & Deploy Material.Blazor Nuget package (1st of 2 jobs)
 #
 # Why two jobs? Because we couldn't figure out how to successfully 'nuget push' on Ubuntu after more than
 # 2 man days of effort. Instead we simply upload the nuget packages as an artifact and then run a Windows job
 # to deploy to GitHub Packages
 ############################################################################################################
-  buildblazormdc:
+  buildmaterialblazor:
     runs-on: ubuntu-latest
 
     steps:
@@ -233,14 +233,14 @@ jobs:
         path: siteMB
 
 ############################################################################################################
-#Build & Deploy BlazorMdc Nuget package (2nd of 2 jobs)
+#Build & Deploy MaterialBlazor Nuget package (2nd of 2 jobs)
 #
 # Why two jobs? Because we couldn't figure out how to successfully 'nuget push' on Ubuntu after more than
 # 2 man days of effort. Instead we simply upload the nuget packages as an artifact and then run a Windows job
 # to deploy to GitHub Packages
 ############################################################################################################
-  deployblazormdc:
-    needs: [buildblazormdc] # The second job must depend on the first one to complete before running, and uses ubuntu-latest instead of windows.
+  deploymaterialblazor:
+    needs: [buildmaterialblazor] # The second job must depend on the first one to complete before running, and uses ubuntu-latest instead of windows.
 
     runs-on: windows-latest
 

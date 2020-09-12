@@ -55,7 +55,7 @@ namespace Material.Blazor
         private ElementReference PrimaryActionReference { get; set; }
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override void OnInitialized()
         {
             base.OnInitialized();
@@ -76,7 +76,7 @@ namespace Material.Blazor
 
             if (firstRender && PrimaryAction != null)
             {
-                await JsRuntime.InvokeVoidAsync("BlazorMdc.cardPrimaryAction.init", PrimaryActionReference);
+                await JsRuntime.InvokeVoidAsync("material_blazor.cardPrimaryAction.init", PrimaryActionReference);
             }
         }
     }

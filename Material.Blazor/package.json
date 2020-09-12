@@ -6,10 +6,10 @@
   "scripts": {
     "build-css": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/material.blazor.scss wwwroot/material.blazor.css",
     "build-min-css": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/material.blazor.scss wwwroot/material.blazor.min.css",
-    "build-min-bundle-css": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/material.blazor-material-bundle.scss wwwroot/material.blazor-material-bundle.min.css",
+    "build-min-bundle-css": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/material.blazor.material-bundle.scss wwwroot/material.blazor.material-bundle.min.css",
     "build-js": "terser Scripts/material.blazor.js node_modules/@material/tooltip/dist/mdc.tooltip.js --output wwwroot/material.blazor.js",
     "build-min-js": "terser wwwroot/material.blazor.js node_modules/@material/tooltip/dist/mdc.tooltip.js --compress --mangle --ecma 2016 --output wwwroot/material.blazor.min.js",
-    "build-min-bundle-js": "terser wwwroot/material.blazor.js node_modules/material-components-web/dist/material-components-web.js node_modules/@material/tooltip/dist/mdc.tooltip.js --compress --mangle --ecma 2016 --output wwwroot/material.blazor-material-bundle.min.js",
+    "build-min-bundle-js": "terser wwwroot/material.blazor.js node_modules/material-components-web/dist/material-components-web.js node_modules/@material/tooltip/dist/mdc.tooltip.js --compress --mangle --ecma 2016 --output wwwroot/material.blazor.material-bundle.min.js",
     "build-ts-realbutcausesfailure": "tsc"
   },
   "keywords": [],

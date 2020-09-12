@@ -13,4 +13,4 @@ A Material Divider which is a horizonal rule with boolean indicators for the mat
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Plus&color=red)](xref:A.PlusComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBDivider&color=brightgreen)](xref:BlazorMdc.MBDivider)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBDivider&color=brightgreen)](xref:Material.Blazor.MBDivider)

@@ -56,7 +56,7 @@ namespace Material.Blazor
         [Parameter] public MBDensity? Density { get; set; }
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override void OnInitialized()
         {
             base.OnInitialized();

@@ -4,7 +4,7 @@ using System;
 namespace Material.Blazor
 {
     /// <summary>
-    /// Interface for the BlazorMdc toast service, developed from the code base of Blazored Toast by Chris Sainty.
+    /// Interface for the Material.Blazor toast service, developed from the code base of Blazored Toast by Chris Sainty.
     /// Works in conjunction with a <see cref="MBToastAnchor"/> that must be placed in either App.razor or
     /// MainLayout.razor to avoid an exception being thrown when you first attempt to show a toast notification.
     /// 

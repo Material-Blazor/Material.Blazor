@@ -45,14 +45,14 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// The select's <see cref="BlazorMdc.MBSelectInputStyle"/>.
+        /// The select's <see cref="MBSelectInputStyle"/>.
         /// <para>Overrides <see cref="MBCascadingDefaults.SelectInputStyle"/></para>
         /// </summary>
         [Parameter] public MBSelectInputStyle? SelectInputStyle { get; set; }
 
 
         /// <summary>
-        /// The select's <see cref="BlazorMdc.MBTextAlignStyle"/>.
+        /// The select's <see cref="MBTextAlignStyle"/>.
         /// <para>Overrides <see cref="MBCascadingDefaults.TextAlignStyle"/></para>
         /// </summary>
         [Parameter] public MBTextAlignStyle? TextAlignStyle { get; set; }
@@ -114,7 +114,7 @@ namespace Material.Blazor
         }
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override void OnInitialized()
         {
             base.OnInitialized();
@@ -142,7 +142,7 @@ namespace Material.Blazor
         }
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override void OnParametersSet()
         {
             base.OnParametersSet();
@@ -186,7 +186,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("BlazorMdc.select.setIndex", SelectReference, ItemDict.Keys.ToList().IndexOf(Value)));
+        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("material_blazor.select.setIndex", SelectReference, ItemDict.Keys.ToList().IndexOf(Value)));
 
 
         /// <summary>
@@ -194,10 +194,10 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("BlazorMdc.select.setDisabled", SelectReference, AppliedDisabled));
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("material_blazor.select.setDisabled", SelectReference, AppliedDisabled));
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("BlazorMdc.select.init", SelectReference, ObjectReference);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("material_blazor.select.init", SelectReference, ObjectReference);
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace Material.Blazor
+﻿using Microsoft.AspNetCore.Components;
+
+namespace Material.Blazor
 {
     /// <summary>
     /// Interface for the animated navigation service. Animated navigations augment
@@ -27,6 +29,12 @@
     /// </summary>
     public interface IMBAnimatedNavigationManager
     {
+        /// <summary>
+        /// The Blazor <see cref="NavigationManager"/>.
+        /// </summary>
+        public NavigationManager NavigationManager { get; set; }
+
+
         /// <summary>
         /// Animated Navigation Service configuration.
         /// </summary>

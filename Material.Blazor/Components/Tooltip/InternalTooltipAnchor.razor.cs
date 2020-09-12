@@ -21,7 +21,7 @@ namespace Material.Blazor.Internal
         private readonly SemaphoreSlim semaphore = new SemaphoreSlim(1);
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override void OnInitialized()
         {
             TooltipService.OnAddRenderFragment += AddTooltipRenderFragment;
@@ -134,7 +134,7 @@ namespace Material.Blazor.Internal
                         orderby t.TimeStamp
                         select t.ElementReference).ToArray();
 
-            await JsRuntime.InvokeVoidAsync("BlazorMdc.tooltip.init", refs);
+            await JsRuntime.InvokeVoidAsync("material_blazor.tooltip.init", refs);
 
             foreach (var t in Tooltips.Values.Where(t => !t.Initiated))
             {

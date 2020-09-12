@@ -7,7 +7,7 @@ namespace Material.Blazor
     public static class ServiceCollectionExtensions
     {
         /// <summary>
-        /// Adds Toast, Tooltip and Animated Navigation services for Blazor MDC. This is required for any app that uses one or more
+        /// Adds Toast, Tooltip and Animated Navigation services for Material.Blazor. This is required for any app that uses one or more
         /// of these components. The two configurations are optional.
         /// </summary>
         /// <param name="services"></param>
@@ -24,7 +24,7 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Adds a BlazorMdc <see cref="IMBToastService"/> to the service collection to manage toast messages.
+        /// Adds a Material.Blazor <see cref="IMBToastService"/> to the service collection to manage toast messages.
         /// <example>
         /// <para>You can optionally add configuration:</para>
         /// <code>
@@ -49,7 +49,7 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Adds a BlazorMdc <see cref="IMBTooltipService"/> to the service collection to manage tooltips.
+        /// Adds a Material.Blazor <see cref="IMBTooltipService"/> to the service collection to manage tooltips.
         /// </summary>
         private static IServiceCollection AddMBTooltipService(this IServiceCollection services)
         {
@@ -58,7 +58,7 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Adds a BlazorMdc <see cref="IMBAnimatedNavigationManager"/> to the service collection to apply
+        /// Adds a Material.Blazor <see cref="IMBAnimatedNavigationManager"/> to the service collection to apply
         /// fade out/in animation to Blazor page navigation.
         /// <example>
         /// <para>You can optionally add configuration:</para>

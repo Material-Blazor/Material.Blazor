@@ -4,8 +4,8 @@ title: CoreComponents
 ---
 # Core Components
 
-Material Theme closely specifies the HTML markup for its [core components](https://material.io/develop/web). Blazor MDC implements many of these and aheres rigorously to 
-the markup specification. We term these "Core Components. Blazor MDC also has non core [Plus Components](xref:A.PlusComponents).
+Material Theme closely specifies the HTML markup for its [core components](https://material.io/develop/web). Material.Blazor implements many of these and aheres rigorously to 
+the markup specification. We term these "Core Components. Material.Blazor also has non core [Plus Components](xref:A.PlusComponents).
 
 ## Component List
 
@@ -21,7 +21,7 @@ the markup specification. We term these "Core Components. Blazor MDC also has no
 | [MBIconButton](xref:C.MBIconButton) | A [Material Icon Button](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-icon-button#icon-buttons). |
 | [MBIconButtonToggle](xref:C.MBIconButtonToggle) | A toggle variant of the [Material Icon Button](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-icon-button#icon-buttons). |
 | [MBLinearProgress](xref:C.MBLinearProgress) | A [Material Linear Progress bar](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-linear-progress#linear-progress). |
-| [MBList](xref:C.MBList) | A [Material List](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-list#lists). Implements Material Theme Web Components one and two line lists, plus a BlazorMdc interpretation of a three line list. |
+| [MBList](xref:C.MBList) | A [Material List](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-list#lists). Implements Material Theme Web Components one and two line lists, plus a Material.Blazor interpretation of a three line list. |
 | [MBMenu](xref:C.MBMenu) | A [Material Menu](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-menu#menus). Does not implement sub menus. May redesign parameterization. |
 | [MBRadioButton](xref:C.MBRadioButton) | A [Material Radio Button](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-radio#selection-controls-radio-buttons). |
 | [MBSelect](xref:C.MBSelect) | A [Material Select Menu](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-select#select-menus). |

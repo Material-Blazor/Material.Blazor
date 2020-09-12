@@ -13,7 +13,7 @@ namespace Material.Blazor
     /// to another value and your whole application within the cascading value will change appearance. You can of course
     /// nest cascading values in the normal manner. Exposes a property <see cref="Version"/> that is incremented each time another
     /// property is updated; <see cref="Version"/> can be used with an `@key(CascadingDefaults.Version)` attribute to force components
-    /// to re-render when cascading defaults have updated. See <see href="https://blazormdc.com/docs/articles/CascadingDefaults.html"/>.
+    /// to re-render when cascading defaults have updated. See <see href="https://material-blazor.com/docs/articles/CascadingDefaults.html"/>.
     /// </remarks>
     public class MBCascadingDefaults
     {
@@ -34,7 +34,7 @@ namespace Material.Blazor
         public bool ConstrainSplattableAttributes { get => _constrainSplattableAttributes; set => SetParameter(ref _constrainSplattableAttributes, value); }
 
         /// <summary>
-        /// A list of unmatched attributes that are used by and therefore essential for BlazorMdc. Works with 
+        /// A list of unmatched attributes that are used by and therefore essential for Material.Blazor. Works with 
         /// <see cref="ConstrainSplattableAttributes"/> and <see cref="AllowedSplattableAttributes"/>.
         /// </summary>
         /// <remarks>
@@ -90,7 +90,7 @@ namespace Material.Blazor
         public MBIconFoundryName IconFoundryName { get => _iconFoundryName; set => SetParameter(ref _iconFoundryName, value); }
 
         /// <summary>
-        /// The foundry name to apply within a BlazorMdc component.
+        /// The foundry name to apply within a Material.Blazor component.
         /// </summary>
         /// <param name="iconFoundryName">The foundry name parameter passed to the component</param>
         /// <returns>The <see cref="IconFoundryName"/> to apply.</returns>
@@ -105,7 +105,7 @@ namespace Material.Blazor
         public MBIconMITheme IconMITheme { get => _iconMITheme; set => SetParameter(ref _iconMITheme, value); }
 
         /// <summary>
-        /// The Material Icons theme to apply within a BlazorMdc component.
+        /// The Material Icons theme to apply within a Material.Blazor component.
         /// </summary>
         /// <param name="iconMITheme">The theme parameter passed to the component</param>
         /// <returns>The <see cref="IconMITheme"/> to apply.</returns>
@@ -120,7 +120,7 @@ namespace Material.Blazor
         public MBIconFAStyle IconFAStyle { get => _iconFAStyle; set => SetParameter(ref _iconFAStyle, value); }
 
         /// <summary>
-        /// The Font Awesome style to apply within a BlazorMdc component.
+        /// The Font Awesome style to apply within a Material.Blazor component.
         /// </summary>
         /// <param name="iconFAStyle">The style parameter passed to the component</param>
         /// <returns>The <see cref="IconFAStyle"/> to apply.</returns>
@@ -135,7 +135,7 @@ namespace Material.Blazor
         public MBIconFARelativeSize IconFARelativeSize { get => _iconFARelativeSize; set => SetParameter(ref _iconFARelativeSize, value); }
 
         /// <summary>
-        /// The Font Awesome relative size to apply within a BlazorMdc component.
+        /// The Font Awesome relative size to apply within a Material.Blazor component.
         /// </summary>
         /// <param name="iconFARelativeSize">The relative size parameter passed to the component</param>
         /// <returns>The <see cref="IconFARelativeSize"/> to apply.</returns>

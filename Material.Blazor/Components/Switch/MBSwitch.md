@@ -13,4 +13,4 @@ A simple two state [Material Switch](https://github.com/material-components/mate
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](xref:A.CoreComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBSwitch&color=brightgreen)](xref:BlazorMdc.MBSwitch)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBSwitch&color=brightgreen)](xref:Material.Blazor.MBSwitch)

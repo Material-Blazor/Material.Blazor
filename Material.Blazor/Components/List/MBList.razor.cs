@@ -10,7 +10,7 @@ namespace Material.Blazor
 {
     /// <summary>
     /// This is a general purpose Material Theme list implementing one and two line MB web component
-    /// standards. It also implements a BlazorMdc interpretation of the specification for a three line
+    /// standards. It also implements a Material.Blazor interpretation of the specification for a three line
     /// list item.
     /// </summary>
     public partial class MBList<TItem> : ComponentFoundation
@@ -160,7 +160,7 @@ namespace Material.Blazor
         private string ListItemClass => "mdc-list-item__text mb-full-width" + (AppliedDisabled ? " mdc-list-item--disabled" : "");
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override void OnInitialized()
         {
             base.OnInitialized();
@@ -177,7 +177,7 @@ namespace Material.Blazor
         }
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override void OnParametersSet()
         {
             base.OnParametersSet();
@@ -219,14 +219,14 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Callback for value the Disabled value setter. MBList is a special case where Blazor MDC re-renders the component when Disabled is set.
+        /// Callback for value the Disabled value setter. MBList is a special case where Material.Blazor re-renders the component when Disabled is set.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("BlazorMdc.list.init", ElementReference, (KeyboardInteractions && !AppliedDisabled), Ripple));
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("material_blazor.list.init", ElementReference, (KeyboardInteractions && !AppliedDisabled), Ripple));
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("BlazorMdc.list.init", ElementReference, (KeyboardInteractions && !AppliedDisabled), Ripple);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("material_blazor.list.init", ElementReference, (KeyboardInteractions && !AppliedDisabled), Ripple);
     }
 }

@@ -340,8 +340,8 @@ ASALocalRun/
 healthchecksdb
 
 #Generated CSS and JS files
-**/BlazorMdc/wwwroot/*.*
-**/BlazorMdcWebsite.Components/wwwroot/css/*.css
+**/Material.Blazor/wwwroot/*.*
+**/Material.Blazor.Website.Components/wwwroot/css/*.css
 
 # DocFx tool
 !**/DocFx/*.*

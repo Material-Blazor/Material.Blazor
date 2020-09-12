@@ -24,7 +24,7 @@ namespace Material.Blazor
         private bool IsOpen { get; set; } = false;
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override void OnInitialized()
         {
             base.OnInitialized();
@@ -74,11 +74,11 @@ namespace Material.Blazor
         {
             if (IsOpen)
             {
-                return await JsRuntime.InvokeAsync<string>("BlazorMdc.menu.hide", ElementReference);
+                return await JsRuntime.InvokeAsync<string>("material_blazor.menu.hide", ElementReference);
             }
             else
             {
-                return await JsRuntime.InvokeAsync<string>("BlazorMdc.menu.show", ElementReference);
+                return await JsRuntime.InvokeAsync<string>("material_blazor.menu.show", ElementReference);
             }
         }
 
@@ -86,7 +86,7 @@ namespace Material.Blazor
         {
             if (firstRender)
             {
-                await JsRuntime.InvokeAsync<string>("BlazorMdc.menu.init", ElementReference, ObjectReference);
+                await JsRuntime.InvokeAsync<string>("material_blazor.menu.init", ElementReference, ObjectReference);
             }
         }
     }

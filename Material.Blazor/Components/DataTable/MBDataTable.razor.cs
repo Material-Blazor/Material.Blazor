@@ -48,7 +48,7 @@ namespace Material.Blazor
         private Func<TItem, object> KeyGenerator { get; set; }
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override void OnInitialized()
         {
             base.OnInitialized();
@@ -59,7 +59,7 @@ namespace Material.Blazor
         }
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override void OnParametersSet()
         {
             base.OnParametersSet();
@@ -69,6 +69,6 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected async override Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("BlazorMdc.dataTable.init", ElementReference);
+        private protected async override Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("material_blazor.dataTable.init", ElementReference);
     }
 }

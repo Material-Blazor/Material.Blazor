@@ -93,7 +93,7 @@ namespace Material.Blazor
         }
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         private bool _disposed = false;
         protected override void Dispose(bool disposing)
         {

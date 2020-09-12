@@ -13,4 +13,4 @@ A [Material Icon Button](https://github.com/material-components/material-compone
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](xref:A.CoreComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBIconButton&color=brightgreen)](xref:BlazorMdc.MBIconButton)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBIconButton&color=brightgreen)](xref:Material.Blazor.MBIconButton)

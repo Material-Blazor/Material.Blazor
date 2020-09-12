@@ -16,4 +16,4 @@ A debounced variant of the [MBTextField](xref:C.MBTextField). Allows the debounc
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Plus&color=red)](xref:A.PlusComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBDebouncedTextField&color=brightgreen)](xref:BlazorMdc.MBDebouncedTextField)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBDebouncedTextField&color=brightgreen)](xref:Material.Blazor.MBDebouncedTextField)

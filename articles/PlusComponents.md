@@ -4,7 +4,7 @@ title: PlusComponents
 ---
 # Plus Components
 
-Material Theme closely specifies component HTML markup. Blazor MDC implements many of these as [Core Components](xref:A.CoreComponents). Blazor MDC also 
+Material Theme closely specifies component HTML markup. Material.Blazor implements many of these as [Core Components](xref:A.CoreComponents). Material.Blazor also 
 implements further Blazor/Material Theme hybrid components that we term "Plus Components".
 
 ## Component List

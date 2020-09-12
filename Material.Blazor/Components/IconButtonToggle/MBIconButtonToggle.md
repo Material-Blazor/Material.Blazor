@@ -14,4 +14,4 @@ A toggle variant of the [Material Icon Button](https://github.com/material-compo
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](xref:A.CoreComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBIconButtonToggle&color=brightgreen)](xref:BlazorMdc.MBIconButtonToggle)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBIconButtonToggle&color=brightgreen)](xref:Material.Blazor.MBIconButtonToggle)

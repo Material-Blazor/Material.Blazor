@@ -161,7 +161,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("BlazorMdc.textField.setValue", ElementReference, Value));
+        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("material_blazor.textField.setValue", ElementReference, Value));
 
 
         /// <summary>
@@ -169,24 +169,24 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("BlazorMdc.textField.setDisabled", ElementReference, AppliedDisabled));
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("material_blazor.textField.setDisabled", ElementReference, AppliedDisabled));
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("BlazorMdc.textField.init", ElementReference);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("material_blazor.textField.init", ElementReference);
 
 
         /// <summary>
         /// Selects the text field - used by <see cref="MBNumericDoubleField"/>.
         /// </summary>
         /// <returns></returns>
-        internal async Task Select() => await JsRuntime.InvokeVoidAsync("BlazorMdc.textField.select", InputReference);
+        internal async Task Select() => await JsRuntime.InvokeVoidAsync("material_blazor.textField.select", InputReference);
 
 
         /// <summary>
         /// Selects the text field - used by <see cref="MBNumericDoubleField"/>.
         /// </summary>
         /// <returns></returns>
-        internal async Task SetType(string value) => await JsRuntime.InvokeVoidAsync("BlazorMdc.textField.setType", InputReference, value);
+        internal async Task SetType(string value) => await JsRuntime.InvokeVoidAsync("material_blazor.textField.setType", InputReference, value);
     }
 }

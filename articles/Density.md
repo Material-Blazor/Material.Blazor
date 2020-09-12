@@ -6,9 +6,9 @@ title: Density
 
 ## Summary
 
-Material Theme specifies a [density subsystem](https://material.io/develop/web/components/density), applied using SASS mixins. Blazor MDC handles density through component parameters and
-cascading defaults. This parameterization is applied to Material Theme components via CSS classes prepared by Blazor MDC from the SASS mixins. Density is specified by the
-[MBDensity enumeration](xref:BlazorMdc.MBDensity), and can be controlled both with Cascading Defaults and direct component parameters.
+Material Theme specifies a [density subsystem](https://material.io/develop/web/components/density), applied using SASS mixins. Material.Blazor handles density through component parameters and
+cascading defaults. This parameterization is applied to Material Theme components via CSS classes prepared by Material.Blazor from the SASS mixins. Density is specified by the
+[MBDensity enumeration](xref:Material.Blazor.MBDensity), and can be controlled both with Cascading Defaults and direct component parameters.
 
 ## Density Levels
 

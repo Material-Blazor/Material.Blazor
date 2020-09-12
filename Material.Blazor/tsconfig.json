@@ -7,7 +7,7 @@
     "target": "es5",
     "outDir": "wwwroot"
   },
-  "include": [ "../BlazorMdc/Scripts/blazormdc.ts" ],
+  "include": [ "../Material.Blazor/Scripts/material.blazor.ts" ],
   "exclude": [
     "node_modules",
     "wwwroot"

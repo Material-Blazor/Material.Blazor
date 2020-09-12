@@ -8,7 +8,7 @@
 		<VersionSuffix></VersionSuffix>
 		<PackageLicenseFile></PackageLicenseFile>
 		<Authors>Simon Ziegler of Dioptra and Mark Stega of Optimium Health</Authors>
-		<Company>Blazor MDC</Company>
+		<Company>Material.Blazor</Company>
 		<Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io. API and other documentation can be found at https://material.blazor.com/docs.</Description>
 		<RepositoryUrl>https://github.com/material.blazor/material.blazor</RepositoryUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -16,7 +16,8 @@
 		<NeutralLanguage>en</NeutralLanguage>
 		<Copyright>Dioptra and Optimium Health</Copyright>
 		<PackageProjectUrl>https://material.blazor.com</PackageProjectUrl>
-		<Product>Blazor MDC</Product>
+		<Product>Material.Blazor</Product>
+		<UserSecretsId>d7509b6c-bc5c-4a56-a750-09c8ae4aeb85</UserSecretsId>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -48,8 +49,8 @@
 		<InputsStylesScss Include="Styles\*.scss" />
 		<InputsComponentsTs Include="Components\**\*.js" />
 		<InputsScriptsTs Include="Scripts\*.js" />
-		<OutputsCss Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css;wwwroot\material.blazor-material-bundle.min.css" />
-		<OutputsJs Include="wwwroot\material.blazor.js;wwwroot\material.blazor.min.js;wwwroot\material.blazor-material-bundle.min.js" />
+		<OutputsCss Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css;wwwroot\material.blazor.material-bundle.min.css" />
+		<OutputsJs Include="wwwroot\material.blazor.js;wwwroot\material.blazor.min.js;wwwroot\material.blazor.material-bundle.min.js" />
 	</ItemGroup>
 
 	<Target Name="BuildScriptsAndStyles" 
@@ -64,8 +65,8 @@
 		<Exec Command="docker run --rm mb_static_assets cat material.blazor.css &gt; wwwroot/material.blazor.css" />
 		<Exec Command="docker run --rm mb_static_assets cat material.blazor.min.js &gt; wwwroot/material.blazor.min.js" />
 		<Exec Command="docker run --rm mb_static_assets cat material.blazor.min.css &gt; wwwroot/material.blazor.min.css" />
-		<Exec Command="docker run --rm mb_static_assets cat material.blazor-material-bundle.min.js &gt; wwwroot/material.blazor-material-bundle.min.js" />
-		<Exec Command="docker run --rm mb_static_assets cat material.blazor-material-bundle.min.css &gt; wwwroot/material.blazor-material-bundle.min.css" />
+		<Exec Command="docker run --rm mb_static_assets cat material.blazor.material-bundle.min.js &gt; wwwroot/material.blazor.material-bundle.min.js" />
+		<Exec Command="docker run --rm mb_static_assets cat material.blazor.material-bundle.min.css &gt; wwwroot/material.blazor.material-bundle.min.css" />
 	</Target>
 
 </Project>

@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 namespace Material.Blazor
 {
     /// <summary>
-    /// This is a general purpose Material Theme dialog. The BlazorMdc dialog implementation does not render a dialog at all until
+    /// This is a general purpose Material Theme dialog. The Material.Blazor dialog implementation does not render a dialog at all until
     /// it is shown by the consumer. At this stage it is rendered and Material Theme is permitted to control it's opening and to 
     /// intiate it and its embedded components. Likewise when the dialog is closed, Material Theme is permitted to close the dialog
-    /// gracefully before BlazorMdc removes the markup.
+    /// gracefully before Material.Blazor removes the markup.
     /// </summary>
     public partial class MBDialog : ComponentFoundation, IMBDialog
     {
@@ -84,7 +84,7 @@ namespace Material.Blazor
         private TaskCompletionSource<string> Tcs { get; set; }
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside BlazorMdc
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override void OnInitialized()
         {
             base.OnInitialized();
@@ -158,7 +158,7 @@ namespace Material.Blazor
         {
             if (IsOpen)
             {
-                await JsRuntime.InvokeAsync<string>("BlazorMdc.dialog.hide", DialogElem);
+                await JsRuntime.InvokeAsync<string>("material_blazor.dialog.hide", DialogElem);
                 IsOpen = false;
                 hasInstantiated = false;
                 StateHasChanged();
@@ -181,7 +181,7 @@ namespace Material.Blazor
 
         /// <summary>
         /// Shows the dialog on the next render after a show action. Also on the next render after the dialog is initiated each
-        /// embedded BlazorMdc component is initiated here.
+        /// embedded Material.Blazor component is initiated here.
         /// </summary>
         /// <param name="firstRender"></param>
         /// <returns></returns>
@@ -194,7 +194,7 @@ namespace Material.Blazor
                 try
                 {
                     AfterRenderShowAction = false;
-                    Tcs.SetResult(await JsRuntime.InvokeAsync<string>("BlazorMdc.dialog.show", DialogElem, ObjectReference, EscapeKeyAction, ScrimClickAction));
+                    Tcs.SetResult(await JsRuntime.InvokeAsync<string>("material_blazor.dialog.show", DialogElem, ObjectReference, EscapeKeyAction, ScrimClickAction));
                     IsOpen = false;
                     StateHasChanged();
                 }

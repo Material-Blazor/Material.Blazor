@@ -31,7 +31,7 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// Returns a BlazorMdc CSS class 
+        /// Returns a Material.Blazor CSS class 
         /// </summary>
         /// <param name="textaAlign"></param>
         /// <returns><c>mb-align-left</c>, <c>...center</c> or <c>...right</c> unless the value is <see cref="MBTextAlignStyle.Default"/> returning a blank string.</returns>

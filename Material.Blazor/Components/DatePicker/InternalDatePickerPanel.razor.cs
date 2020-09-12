@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Material.Blazor.Internal
 {
     /// <summary>
-    /// For BlazorMdc internal use only.
+    /// For Material.Blazor internal use only.
     /// </summary>
     public partial class InternalDatePickerPanel : InputComponentFoundation<DateTime>
     {
@@ -170,7 +170,7 @@ namespace Material.Blazor.Internal
             CachedReportingValue = Value;
             MonthsOffset = 0;
             SetParameters(true);
-            await JsRuntime.InvokeVoidAsync("BlazorMdc.datePicker.listItemClick", ListItemReference, CachedReportingValueText);
+            await JsRuntime.InvokeVoidAsync("material_blazor.datePicker.listItemClick", ListItemReference, CachedReportingValueText);
         }
 
 
@@ -210,7 +210,7 @@ namespace Material.Blazor.Internal
             {
                 ScrollToYear = false;
 
-                await JsRuntime.InvokeVoidAsync("BlazorMdc.datePicker.scrollToYear", currentYearId);
+                await JsRuntime.InvokeVoidAsync("material_blazor.datePicker.scrollToYear", currentYearId);
             }
         }
     }

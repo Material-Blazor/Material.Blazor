@@ -13,4 +13,4 @@ A [Material Linear Progress bar](https://github.com/material-components/material
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](xref:A.CoreComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBLinearProgress&color=brightgreen)](xref:BlazorMdc.MBLinearProgress)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBLinearProgress&color=brightgreen)](xref:Material.Blazor.MBLinearProgress)

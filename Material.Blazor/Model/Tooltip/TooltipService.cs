@@ -46,7 +46,7 @@ namespace Material.Blazor.Internal
         {
             if (OnAddRenderFragment is null)
             {
-                throw new InvalidOperationException($"BlazorMdc: you attempted to add a tooltip from a {Utilities.GetTypeName(typeof(IMBTooltipService))} but have not placed a {Utilities.GetTypeName(typeof(MBAnchor))} component at the top of either App.razor or MainLayout.razor");
+                throw new InvalidOperationException($"Material.Blazor: you attempted to add a tooltip from a {Utilities.GetTypeName(typeof(IMBTooltipService))} but have not placed a {Utilities.GetTypeName(typeof(MBAnchor))} component at the top of either App.razor or MainLayout.razor");
             }
 
             OnAddRenderFragment?.Invoke(id, content);
@@ -59,7 +59,7 @@ namespace Material.Blazor.Internal
         {
             if (OnAddMarkupString is null)
             {
-                throw new InvalidOperationException($"BlazorMdc: you attempted to add a tooltip from a {Utilities.GetTypeName(typeof(IMBTooltipService))} but have not placed a {Utilities.GetTypeName(typeof(MBAnchor))} component at the top of either App.razor or MainLayout.razor");
+                throw new InvalidOperationException($"Material.Blazor: you attempted to add a tooltip from a {Utilities.GetTypeName(typeof(IMBTooltipService))} but have not placed a {Utilities.GetTypeName(typeof(MBAnchor))} component at the top of either App.razor or MainLayout.razor");
             }
 
             OnAddMarkupString?.Invoke(id, content);
@@ -72,7 +72,7 @@ namespace Material.Blazor.Internal
         {
             if (OnRemove is null)
             {
-                throw new InvalidOperationException($"BlazorMdc: you attempted to remove a tooltip from a {Utilities.GetTypeName(typeof(IMBTooltipService))} but have not placed a {Utilities.GetTypeName(typeof(MBAnchor))} component at the top of either App.razor or MainLayout.razor");
+                throw new InvalidOperationException($"Material.Blazor: you attempted to remove a tooltip from a {Utilities.GetTypeName(typeof(IMBTooltipService))} but have not placed a {Utilities.GetTypeName(typeof(MBAnchor))} component at the top of either App.razor or MainLayout.razor");
             }
 
             OnRemove?.Invoke(id);
