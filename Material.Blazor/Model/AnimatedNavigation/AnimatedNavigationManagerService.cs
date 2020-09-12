@@ -10,16 +10,14 @@ namespace Material.Blazor
     internal class AnimatedNavigationManagerService : IMBAnimatedNavigationManager
     {
         /// <summary>
-        /// The Blazor <see cref="NavigationManager"/>.
-        /// </summary>
-        public NavigationManager NavigationManager { get; private set; }
-
-
-        /// <summary>
         /// A reference to the registered <see cref="MBAnimatedNavigation"/>.
         /// </summary>
         internal MBAnimatedNavigation NavigationComponent { get; set; } = null;
-        
+
+
+        /// <inheritdoc/>
+        public NavigationManager NavigationManager { get; set; }
+
 
         /// <inheritdoc/>
         public MBAnimatedNavigationManagerServiceConfiguration Configuration { get; set; } = new MBAnimatedNavigationManagerServiceConfiguration();
