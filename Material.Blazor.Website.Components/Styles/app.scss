@@ -71,7 +71,8 @@
     */
     .splash-screen {
         display: grid;
-        --mdc-theme-primary: #bbb;
+        --mdc-theme-primary: #fff;
+        text-shadow: 0 0 4px black;
         width: 100vw;
         height: 100vh;
     }
@@ -86,9 +87,21 @@
         font-weight: bold;
     }
 
-    .splash-content .mdc-circular-progress {
-        margin-top: 24px;
-        display: block;
+    .splash-background-video {
+        object-fit: cover;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        filter: brightness(50%);
+        -webkit-filter: brightness(50%);
+        -moz-filter: brightness(50%);
+    }
+
+    .splash-linear-progress {
+        position: fixed;
+        width: 100vw;
+        --mdc-theme-primary: var(--mb-color-blue-600);
     }
     /*
         General styling

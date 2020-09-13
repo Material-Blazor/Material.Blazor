@@ -27,6 +27,7 @@
 	<ItemGroup>
 	  <Folder Include="Properties\" />
 	  <Folder Include="wwwroot\css\" />
+	  <Folder Include="wwwroot\videos\" />
 	</ItemGroup>
 
   <!-- Unfinished dependency issue copied directly from mb, no update yet for website
