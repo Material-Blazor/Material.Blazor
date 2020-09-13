@@ -9,7 +9,7 @@ Reference the `Material.Blazor` namespace with `@using Material.Blazor` to your 
 
 ## Directions for using Material.Blazor bundled CSS and JS
 
-***This is the recommended way to install Material.Blazor.***
+***This is the recommended way to install Material.Blazor unless you need to theme with the Material Components Web SASS mixins.***
 
 We bundle the Material Theme CSS and JS into Material.Blazor for your convenience along with [Material Icons](https://material.io/resources/icons/?style=baseline) which are essential for Material.Blazor. You will need to add two items to your index.html/_Host.cshtml file. Place this in the the `<head>` tag:
 
@@ -28,7 +28,11 @@ implies these are intended for internal use by Material.Blazor, however Blazor h
 
 ## Alternative using unbundled CSS and JS
 
-If you want, you can directly reference the Material Theme CSS and JS from the unpkg CDN (or download it for yourself). Again we package a reference to Material Icons. You will to add five items to your index.html/_Host.cshtml. Place this in the <head>` tag:
+***Use this for the CSS if you need to theme with the Material Components Web SASS mixins, although we recommend still using the JS bundle.***
+
+If you want, you can directly reference the Material Theme CSS and JS from the unpkg CDN (or download it for yourself). Again we package a reference 
+to Material Icons. You will to add five items to your index.html/_Host.cshtml. Place this in the `<head>` tag, replacing the unpkg CSS with your own
+if you have built a theme - you can see how we have done this in the [Material.Blazor website's index.html](https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website.WebAssembly/wwwroot/index.html#L14):
 
 ```html
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
