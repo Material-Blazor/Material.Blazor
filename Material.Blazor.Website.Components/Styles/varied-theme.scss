@@ -11,8 +11,8 @@
 
 @use "@material/shape" with ( 
     $small-component-radius: 12px 4px, 
-    $medium-component-radius: 8px, 
-    $large-component-radius: 8px, 
+    $medium-component-radius: 12px 4px, 
+    $large-component-radius: 12px 4px, 
 );
 
 @use "@material/typography" with ( 
