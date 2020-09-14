@@ -61,12 +61,11 @@
             <MBIconButton @onclick="@OpenMenuAsync" Icon="fa-scroll" IconFoundry="@MBIconHelper.FAFoundry(relativeSize: MBIconFARelativeSize.ExtraSmall)" />
             <div class="mdc-menu-surface--anchor">
                 <MBMenu @ref="Menu">
-                    <MBMenuSelectionGroup>
+                    <MBMenuSelectionGroup @key="@Theme">
+                        <MBListItem Label="Material Default Theme" IsSelectedMenuItem="@(Theme == "mt-default-theme")" @onclick="@(() => ThemeSetterAsync("mt-default-theme"))" />
                         <MBListItem Label="Blue Square Theme" IsSelectedMenuItem="@(Theme == "blue-square-theme")" @onclick="@(() => ThemeSetterAsync("blue-square-theme"))" />
                         <MBListItem Label="Red Round Theme" IsSelectedMenuItem="@(Theme == "red-round-theme")" @onclick="@(() => ThemeSetterAsync("red-round-theme"))" />
                         <MBListItem Label="Varied Theme" IsSelectedMenuItem="@(Theme == "varied-theme")" @onclick="@(() => ThemeSetterAsync("varied-theme"))" />
-                        <MBListItem Label="MB Default Theme" IsSelectedMenuItem="@(Theme == "mt-default-theme")" @onclick="@(() => ThemeSetterAsync("mt-default-theme"))" />
-                        <MBListItem Label="@Theme" Disabled="true" />
                     </MBMenuSelectionGroup>
                 </MBMenu>
             </div>
@@ -102,7 +101,7 @@
 
     private MBMenu Menu { get; set; }
 
-    private string Theme { get; set; } = "blue-square-theme";
+    private string Theme { get; set; } = "mt-default-theme";
 
     private async Task OpenMenuAsync()
     {

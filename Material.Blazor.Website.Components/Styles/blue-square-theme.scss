@@ -1,47 +1,26 @@
-﻿// Place @use statements at the start of the file
-@use '@material/theme/color-palette' as cp;
-@use './app';
-@use 'sass:color';
+﻿// stylelint-disable scss/dollar-variable-pattern
 
+@use "sass:color";
 
-// Use @import to ensure that variables have global scope
-@import './blue-square-variables';
+@use "@material/theme" with ( 
+    $primary: #1976d2, 
+    $secondary: #ffa726, 
+    $background: #eee, 
+    $surface: #fff, 
+);
 
-@import "@material/button/mdc-button";
-@import "@material/card/mdc-card";
-@import "@material/checkbox/mdc-checkbox";
-@import "@material/chips/mdc-chips";
-@import "@material/circular-progress/mdc-circular-progress";
-@import "@material/data-table/mdc-data-table";
-@import "@material/dialog/mdc-dialog";
-@import "@material/drawer/mdc-drawer";
-@import "@material/elevation/mdc-elevation";
-@import "@material/fab/mdc-fab";
-@import "@material/floating-label/mdc-floating-label";
-@import "@material/form-field/mdc-form-field";
-@import "@material/icon-button/mdc-icon-button";
-@import "@material/image-list/mdc-image-list";
-@import "@material/layout-grid/mdc-layout-grid";
-@import "@material/line-ripple/mdc-line-ripple";
-@import "@material/linear-progress/mdc-linear-progress";
-@import "@material/list/mdc-list";
-@import "@material/menu/mdc-menu";
-@import "@material/menu-surface/mdc-menu-surface";
-@import "@material/notched-outline/mdc-notched-outline";
-@import "@material/radio/mdc-radio";
-@import "@material/ripple/mdc-ripple";
-@import "@material/select/mdc-select";
-@import "@material/slider/mdc-slider";
-@import "@material/snackbar/mdc-snackbar";
-@import "@material/switch/mdc-switch";
-@import "@material/tab/mdc-tab";
-@import "@material/tab-bar/mdc-tab-bar";
-@import "@material/tab-indicator/mdc-tab-indicator";
-@import "@material/tab-scroller/mdc-tab-scroller";
-@import "@material/textfield/mdc-text-field";
-@import "@material/theme/mdc-theme";
-@import "@material/top-app-bar/mdc-top-app-bar";
-@import "@material/typography/mdc-typography";
+@use "@material/shape" with ( 
+    $small-component-radius: 0, 
+    $medium-component-radius: 0, 
+    $large-component-radius: 0, 
+);
 
+@use "@material/typography" with ( 
+    $font-family: unquote("Rubik, sans-serif"), 
+    $styles-button: ( font-size: 14px, font-weight: 500, letter-spacing: 0.05em, ), 
+);
 
-@include app.app-classes($mdc-theme-background, $mdc-theme-secondary, $mdc-theme-on-secondary, 1);
+@use "material-components-web";
+@use "./app";
+
+@include app.app-classes();

@@ -1,11 +1,15 @@
-﻿@mixin app-classes($background-color, $link-background-color, $link-hover-color, $link-background-opacity) {
+﻿@use "@material/theme";
+@use "@material/top-app-bar";
+
+
+@mixin app-classes() {
     /*
         App layout styling
     */
     body {
         height: 100vh;
         margin: 0 !important;
-        background-color: $background-color;
+        background-color: theme.$background;
     }
 
     app {
@@ -93,8 +97,8 @@
         width: 100vw;
         height: 100vh;
         z-index: -1;
-        filter: brightness(50%);
-        -webkit-filter: brightness(50%);
+        filter: brightness(80%);
+        -webkit-filter: brightness(80%);
         -moz-filter: brightness(50%);
     }
 
@@ -127,13 +131,12 @@
     }
 
     a:hover {
-        color: $link-hover-color;
+        color: theme.$on-secondary;
     }
 
     a::after {
         content: "";
-        background: $link-background-color;
-        opacity: $link-background-opacity;
+        background: theme.$secondary;
         position: absolute;
         left: -2px;
         bottom: 3px;
