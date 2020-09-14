@@ -134,13 +134,14 @@ namespace Material.Blazor.Internal
         internal IReadOnlyDictionary<string, object> AttributesToSplat(SplatType splatType = SplatType.All)
         {
             var allAttributes = new Dictionary<string, object>(ComponentPureHtmlAttributes);
-            var classAndStyle = new Dictionary<string, object>();
+            var idClassAndStyle = new Dictionary<string, object>();
             var htmlAttributes = new Dictionary<string, object>(ComponentPureHtmlAttributes);
             var eventAttributes = new Dictionary<string, object>();
             var requiredAttributes = new Dictionary<string, object>();
 
-            var unmatchedClass = UnmatchedAttributes?.Where(a => a.Key.ToLower() == "class").FirstOrDefault().Value ?? "";
-            var unmatchedStyle = UnmatchedAttributes?.Where(a => a.Key.ToLower() == "style").FirstOrDefault().Value ?? "";
+            var unmatchedId = (UnmatchedAttributes?.Where(a => a.Key.ToLower() == "id").FirstOrDefault().Value ?? "").ToString();
+            var unmatchedClass = (UnmatchedAttributes?.Where(a => a.Key.ToLower() == "class").FirstOrDefault().Value ?? "").ToString();
+            var unmatchedStyle = (UnmatchedAttributes?.Where(a => a.Key.ToLower() == "style").FirstOrDefault().Value ?? "").ToString();
             var nonStylisticAttributes = new Dictionary<string, object>(UnmatchedAttributes?.Where(a => a.Key.ToLower() != "class" && a.Key.ToLower() != "style") ?? new Dictionary<string, object>());
 
             // merge ComponentSetAttributes into the dictionary
@@ -153,7 +154,7 @@ namespace Material.Blazor.Internal
                 nonStylisticAttributes.Add("aria-describedby", TooltipId.ToString());
             }
 
-            if (splatType != SplatType.ClassAndStyleOnly)
+            if (splatType != SplatType.IdClassAndStyleOnly)
             {
                 allAttributes = allAttributes.Union(nonStylisticAttributes)
                     .GroupBy(g => g.Key)
@@ -161,13 +162,13 @@ namespace Material.Blazor.Internal
 
                 if (AppliedDisabled) allAttributes.Add("disabled", AppliedDisabled);
 
-                if (splatType == SplatType.ExcludeClassAndStyle) return allAttributes;
+                if (splatType == SplatType.ExcludeIdClassAndStyle) return allAttributes;
 
                 htmlAttributes = allAttributes
                                     .Where(kvp => !EventAttributeNames.Contains(kvp.Key))
                                     .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
-                if (splatType == SplatType.HtmlExcludingClassAndStyle) return htmlAttributes;
+                if (splatType == SplatType.HtmlExcludingIdClassAndStyle) return htmlAttributes;
 
                 eventAttributes = allAttributes
                                     .Where(kvp => EventAttributeNames.Contains(kvp.Key))
@@ -179,10 +180,11 @@ namespace Material.Blazor.Internal
             var classString = (ClassMapper.ToString() + " " + unmatchedClass).Trim();
             var styleString = (StyleMapper.ToString() + " " + unmatchedStyle).Trim();
 
-            if (!string.IsNullOrWhiteSpace(classString)) classAndStyle.Add("class", classString);
-            if (!string.IsNullOrWhiteSpace(styleString)) classAndStyle.Add("style", styleString);
+            if (!string.IsNullOrWhiteSpace(unmatchedId)) idClassAndStyle.Add("id", unmatchedId);
+            if (!string.IsNullOrWhiteSpace(classString)) idClassAndStyle.Add("class", classString);
+            if (!string.IsNullOrWhiteSpace(styleString)) idClassAndStyle.Add("style", styleString);
 
-            foreach (var item in classAndStyle)
+            foreach (var item in idClassAndStyle)
             {
                 if (allAttributes.ContainsKey(item.Key))
                 {
@@ -194,18 +196,18 @@ namespace Material.Blazor.Internal
                 }
             }
 
-            if (splatType == SplatType.ClassAndStyleOnly)
+            if (splatType == SplatType.IdClassAndStyleOnly)
             {
-                return classAndStyle;
+                return idClassAndStyle;
             }
             else if (splatType == SplatType.All)
             {
                 return allAttributes;
             }
 
-            if ((ushort)(splatType & SplatType.ClassAndStyleOnly) > 0)
+            if ((ushort)(splatType & SplatType.IdClassAndStyleOnly) > 0)
             {
-                foreach (var item in classAndStyle)
+                foreach (var item in idClassAndStyle)
                 {
                     if (requiredAttributes.ContainsKey(item.Key))
                     {
@@ -218,7 +220,7 @@ namespace Material.Blazor.Internal
                 }
             }
 
-            if ((ushort)(splatType & SplatType.HtmlExcludingClassAndStyle) > 0)
+            if ((ushort)(splatType & SplatType.HtmlExcludingIdClassAndStyle) > 0)
             {
                 foreach (var item in htmlAttributes)
                 {

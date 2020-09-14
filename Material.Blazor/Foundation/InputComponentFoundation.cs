@@ -31,7 +31,7 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Gets a value for the component's 'id' attribute.
         /// </summary>
-        [Parameter] public string Id { get; set; } = Utilities.GenerateUniqueElementName();
+        private protected string CrossReferenceId { get; set; } = Utilities.GenerateUniqueElementName();
 
 
         private T _underlyingValue;

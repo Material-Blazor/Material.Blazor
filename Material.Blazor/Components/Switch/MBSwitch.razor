@@ -3,18 +3,18 @@
 
 
 <div @ref="@ElementReference"
-     @attributes="AttributesToSplat(SplatType.ClassAndStyleOnly)">
+     @attributes="AttributesToSplat(SplatType.IdClassAndStyleOnly)">
 
     <div class="mdc-switch__track"></div>
     <div class="mdc-switch__thumb-underlay">
         <div class="mdc-switch__thumb">
-            <input @attributes="AttributesToSplat(SplatType.ExcludeClassAndStyle)"
+            <input @attributes="AttributesToSplat(SplatType.ExcludeIdClassAndStyle)"
                    class="mdc-switch__native-control" 
                    role="switch"
                    type="checkbox" 
-                   id="@Id" 
+                   id="@CrossReferenceId" 
                    @bind="@ReportingValue" />
         </div>
     </div>
 </div>
-<label for="@Id" style="margin-left: 1rem;">@Label</label>
+<label for="@CrossReferenceId" style="margin-left: 1rem;">@Label</label>

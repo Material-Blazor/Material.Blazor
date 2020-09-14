@@ -4,10 +4,10 @@
 
 
 <div @ref="@FormReference"
-     @attributes="@AttributesToSplat(SplatType.ClassAndStyleOnly)">
+     @attributes="@AttributesToSplat(SplatType.IdClassAndStyleOnly)">
 
     <div @ref="@RadioButtonReference" class="@ButtonContainerClass @DisabledClass">
-        <input @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)"
+        <input @attributes="@AttributesToSplat(SplatType.ExcludeIdClassAndStyle)"
                class="mdc-radio__native-control"
                type="radio"
                id="@radioId"

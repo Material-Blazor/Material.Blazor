@@ -3,7 +3,7 @@
 
 
 <label @ref="ElementReference"
-       @attributes="@AttributesToSplat(SplatType.ClassAndStyleOnly)">
+       @attributes="@AttributesToSplat(SplatType.IdClassAndStyleOnly)">
 
     @if (AppliedInputStyle == MBTextInputStyle.Filled)
     {
@@ -21,8 +21,8 @@
     }
 
     <input @ref="@InputReference"
-           @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)"
-           id="@Id"
+           @attributes="@AttributesToSplat(SplatType.ExcludeIdClassAndStyle)"
+           id="@CrossReferenceId"
            class="mdc-text-field__input @AppliedTextInputStyleClass @FieldClass"
            @bind="@ReportingValue">
 
@@ -44,7 +44,7 @@
             @if (ShowLabel)
             {
                 <span class="mdc-notched-outline__notch">
-                    <span class="mdc-floating-label @FloatingLabelClass" for="@Id" id="@labelId">@Label</span>
+                    <span class="mdc-floating-label @FloatingLabelClass" for="@CrossReferenceId" id="@labelId">@Label</span>
                 </span>
             }
 
@@ -55,7 +55,7 @@
     {
         @if (ShowLabel)
         {
-            <span class="mdc-floating-label @FloatingLabelClass" for="@Id" id="@labelId">@Label</span>
+            <span class="mdc-floating-label @FloatingLabelClass" for="@CrossReferenceId" id="@labelId">@Label</span>
         }
 
         <span class="mdc-line-ripple"></span>

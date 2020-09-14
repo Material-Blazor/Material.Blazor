@@ -3,7 +3,7 @@
 
 
 <label @ref="ElementReference"
-       @attributes="@AttributesToSplat(SplatType.ClassAndStyleOnly)">
+       @attributes="@AttributesToSplat(SplatType.IdClassAndStyleOnly)">
 
     @if (AppliedInputStyle == MBTextInputStyle.Filled)
     {
@@ -11,7 +11,7 @@
     }
 
     <span class="mdc-text-field__resizer">
-        <textarea @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)"
+        <textarea @attributes="@AttributesToSplat(SplatType.ExcludeIdClassAndStyle)"
                   id="@id"
                   class="mdc-text-field__input @AppliedTextInputStyleClass @FieldClass"
                   @bind="@ReportingValue"
@@ -29,7 +29,7 @@
             @if (ShowLabel)
             {
                 <span class="mdc-notched-outline__notch">
-                    <span class="mdc-floating-label @FloatingLabelClass" for="@Id" id="@labelId">@Label</span>
+                    <span class="mdc-floating-label @FloatingLabelClass" for="@CrossReferenceId" id="@labelId">@Label</span>
                 </span>
             }
 
@@ -40,7 +40,7 @@
     {
         @if (ShowLabel)
         {
-            <span class="mdc-floating-label @FloatingLabelClass" for="@Id" id="@labelId">@Label</span>
+            <span class="mdc-floating-label @FloatingLabelClass" for="@CrossReferenceId" id="@labelId">@Label</span>
         }
 
         <span class="mdc-line-ripple"></span>
