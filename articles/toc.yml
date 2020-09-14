@@ -4,9 +4,6 @@
 - name: AnimatedNavigation
   topicUid: A.AnimatedNavigation
 
-- name: Material.Blazor Principles
-  topicUid: A.Principles
-
 - name: Code of Conduct
   topicUid: A.CodeOfConduct
 
@@ -27,6 +24,9 @@
 
 - name: Installation
   topicUid: A.Installation
+
+- name: Material.Blazor Principles
+  topicUid: A.Principles
 
 - name: MIT License
   topicUid: A.License
