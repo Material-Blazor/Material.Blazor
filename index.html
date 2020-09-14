@@ -11,8 +11,8 @@
     <link href="_content/Material.Blazor.Website.Components/favicon-32x32.png" rel="icon" type="image/png" sizes="32x32">
     <link href="_content/Material.Blazor.Website.Components/favicon-16x16.png" rel="icon" type="image/png" sizes="16x16">
     <link href="/site.webmanifest" rel="manifest">
-    <link id="app-style" href="_content/Material.Blazor.Website.Components/css/blue-square-theme.min.css" rel="stylesheet">
-    <link href="_content/Material.Blazor/material.blazor.min.css" rel="stylesheet">
+    <link id="app-style" href="_content/Material.Blazor.Website.Components/css/mt-default-theme.min.css" rel="stylesheet">
+    <link href="_content/Material.Blazor/unbundled.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700" rel="stylesheet">
@@ -29,7 +29,7 @@
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
 
-        gtag('config', 'UA-173249047-1', {
+        gtag('config', 'UA-173249047-3', {
             cookie_flags: 'max-age=7200; samesite=none; secure'
         });
     </script>
@@ -37,42 +37,26 @@
 
 <body class="mdc-typography mb-custom-scrollbars">
     <app>
+        <video class="splash-background-video" playsinline autoplay muted loop></video>
+
+        <div role="progressbar" class="mdc-linear-progress mdc-linear-progress--indeterminate splash-linear-progress" aria-label="Example Progress Bar" aria-valuemin="0" aria-valuemax="1" aria-valuenow="0">
+            <div class="mdc-linear-progress__buffer">
+                <div class="mdc-linear-progress__buffer-bar"></div>
+                <div class="mdc-linear-progress__buffer-dots"></div>
+            </div>
+            <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+                <span class="mdc-linear-progress__bar-inner"></span>
+            </div>
+            <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+                <span class="mdc-linear-progress__bar-inner"></span>
+            </div>
+        </div>
+
         <div class="splash-screen">
             <div class="splash-content">
-                <h1 class="mdc-typography-headline2">
+                <h1 class="mdc-typography-headline1">
                     Material.Blazor
                 </h1>
-
-                <h2 class="mdc-typography-headline4">
-                    Loading
-                </h2>
-
-                <div>
-                    <div class="mdc-circular-progress mdc-circular-progress--indeterminate splash-progress" style="width:48px;height:48px;" role="progressbar" aria-label="Example Progress Bar" aria-valuemin="0" aria-valuemax="1">
-                        <div class="mdc-circular-progress__determinate-container">
-                            <svg class="mdc-circular-progress__determinate-circle-graphic" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                                <circle class="mdc-circular-progress__determinate-circle" cx="24" cy="24" r="18" stroke-dasharray="113.097" stroke-dashoffset="113.097" stroke-width="4" />
-                            </svg>
-                        </div>
-                        <div class="mdc-circular-progress__indeterminate-container">
-                            <div class="mdc-circular-progress__spinner-layer">
-                                <div class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-left">
-                                    <svg class="mdc-circular-progress__indeterminate-circle-graphic" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="24" cy="24" r="18" stroke-dasharray="113.097" stroke-dashoffset="56.549" stroke-width="4" />
-                                    </svg>
-                                </div><div class="mdc-circular-progress__gap-patch">
-                                    <svg class="mdc-circular-progress__indeterminate-circle-graphic" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="24" cy="24" r="18" stroke-dasharray="113.097" stroke-dashoffset="56.549" stroke-width="3.2" />
-                                    </svg>
-                                </div><div class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-right">
-                                    <svg class="mdc-circular-progress__indeterminate-circle-graphic" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="24" cy="24" r="18" stroke-dasharray="113.097" stroke-dashoffset="56.549" stroke-width="4" />
-                                    </svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </app>
@@ -83,8 +67,16 @@
         <a class="dismiss">🗙</a>
     </div>
 
+    <script src="_framework/blazor.webassembly.js"></script>
+    <!--    <script>navigator.serviceWorker.register('service-worker.js');</script>-->
+    <script src="_content/Material.Blazor/bundled.min.js"></script>
+    <script src="_content/Material.Blazor.Website.Components/js/app.js"></script>
+
     <!-- Start Single Page Apps for GitHub Pages -->
     <script type="text/javascript">
+        // Choose a background video and set the loading progress bar
+        material_blazor_website.initializeSplash();
+
         // Single Page Apps for GitHub Pages
         // https://github.com/rafrex/spa-github-pages
         // Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
@@ -114,14 +106,5 @@
         }(window.location))
     </script>
     <!-- End Single Page Apps for GitHub Pages -->
-
-    <script src="_framework/blazor.webassembly.js"></script>
-    <!--    <script>navigator.serviceWorker.register('service-worker.js');</script>-->
-    <script src="_content/Material.Blazor/material.blazor.material-bundle.min.js"></script>
-    <script src="_content/Material.Blazor.Website.Components/js/app.js"></script>
-
-    <script>
-        Material.Blazor.circularProgress.init(document.querySelector('.splash-progress'), 0.4);
-    </script>
 </body>
 </html>

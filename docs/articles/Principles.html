@@ -115,6 +115,9 @@ If so, it does one of two things:</p>
 <li>If the dialog is already open, the component intializes immediately after it has first rendered.</li>
 </ol>
 <p>This mechanism is also handled in the Material.Blazor's internal <code>InputComponentFoundation</code> abstract class.</p>
+<h2 id="dispose">Dispose</h2>
+<p>All components that receive notification from Material Components Web javascript via JSInterop pass a <code>DotNetObjectReference</code> to JSInterop. This reference needs
+to be disposed, e.g. <a href="xref:https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/AutocompleteTextField/MBAutocompleteTextField.razor.cs#L166">MBAutocompleteTextField</a>.</p>
 <h2 id="namespaces">Namespaces</h2>
 <p>Material.Blazor has two namespaces:</p>
 <ul>
@@ -129,7 +132,7 @@ If so, it does one of two things:</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/d7c7f14d4cca3721ffb058f8f0b194d46ce44673/articles/Principles.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/6327b501b10067309ad26f5e422417b29ef98809/articles/Principles.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

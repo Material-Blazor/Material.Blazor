@@ -684,23 +684,6 @@ references:
   fullName.vb: Material.Blazor.Internal.InputComponentFoundation(Of T).FormatValueToString
   nameWithType: InputComponentFoundation<T>.FormatValueToString
   nameWithType.vb: InputComponentFoundation(Of T).FormatValueToString
-- uid: Material.Blazor.Internal.InputComponentFoundation`1.Id
-  name: Id
-  href: api/Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_Id
-  commentId: P:Material.Blazor.Internal.InputComponentFoundation`1.Id
-  fullName: Material.Blazor.Internal.InputComponentFoundation<T>.Id
-  fullName.vb: Material.Blazor.Internal.InputComponentFoundation(Of T).Id
-  nameWithType: InputComponentFoundation<T>.Id
-  nameWithType.vb: InputComponentFoundation(Of T).Id
-- uid: Material.Blazor.Internal.InputComponentFoundation`1.Id*
-  name: Id
-  href: api/Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_Id_
-  commentId: Overload:Material.Blazor.Internal.InputComponentFoundation`1.Id
-  isSpec: "True"
-  fullName: Material.Blazor.Internal.InputComponentFoundation<T>.Id
-  fullName.vb: Material.Blazor.Internal.InputComponentFoundation(Of T).Id
-  nameWithType: InputComponentFoundation<T>.Id
-  nameWithType.vb: InputComponentFoundation(Of T).Id
 - uid: Material.Blazor.Internal.InputComponentFoundation`1.OnAfterRenderAsync(System.Boolean)
   name: OnAfterRenderAsync(Boolean)
   href: api/Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_OnAfterRenderAsync_System_Boolean_
@@ -5589,23 +5572,6 @@ references:
   fullName.vb: Material.Blazor.MBRadioButton(Of TItem).Density
   nameWithType: MBRadioButton<TItem>.Density
   nameWithType.vb: MBRadioButton(Of TItem).Density
-- uid: Material.Blazor.MBRadioButton`1.EnableTouchWrapper
-  name: EnableTouchWrapper
-  href: api/Material.Blazor.MBRadioButton-1.html#Material_Blazor_MBRadioButton_1_EnableTouchWrapper
-  commentId: P:Material.Blazor.MBRadioButton`1.EnableTouchWrapper
-  fullName: Material.Blazor.MBRadioButton<TItem>.EnableTouchWrapper
-  fullName.vb: Material.Blazor.MBRadioButton(Of TItem).EnableTouchWrapper
-  nameWithType: MBRadioButton<TItem>.EnableTouchWrapper
-  nameWithType.vb: MBRadioButton(Of TItem).EnableTouchWrapper
-- uid: Material.Blazor.MBRadioButton`1.EnableTouchWrapper*
-  name: EnableTouchWrapper
-  href: api/Material.Blazor.MBRadioButton-1.html#Material_Blazor_MBRadioButton_1_EnableTouchWrapper_
-  commentId: Overload:Material.Blazor.MBRadioButton`1.EnableTouchWrapper
-  isSpec: "True"
-  fullName: Material.Blazor.MBRadioButton<TItem>.EnableTouchWrapper
-  fullName.vb: Material.Blazor.MBRadioButton(Of TItem).EnableTouchWrapper
-  nameWithType: MBRadioButton<TItem>.EnableTouchWrapper
-  nameWithType.vb: MBRadioButton(Of TItem).EnableTouchWrapper
 - uid: Material.Blazor.MBRadioButton`1.Label
   name: Label
   href: api/Material.Blazor.MBRadioButton-1.html#Material_Blazor_MBRadioButton_1_Label
