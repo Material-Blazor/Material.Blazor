@@ -93,7 +93,7 @@ namespace Material.Blazor.Internal
         private readonly IMBIconFoundry foundry = MBIconHelper.MIFoundry(MBIconMITheme.Filled);
 
 
-        /// <inheritdoc/>
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override void OnInitialized()
         {
             base.OnInitialized();

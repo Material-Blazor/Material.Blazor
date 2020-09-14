@@ -85,7 +85,7 @@ namespace Material.Blazor
         private int AppliedDebounceInterval => CascadingDefaults.AppliedDebounceInterval(DebounceInterval);
 
 
-        /// <inheritdoc/>
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override void OnInitialized()
         {
             base.OnInitialized();

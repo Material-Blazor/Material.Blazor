@@ -53,7 +53,7 @@ namespace Material.Blazor
         private double MyBufferValue => (BufferValue is null) ? 1 : (double)BufferValue;
 
 
-        /// <inheritdoc/>
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override void OnInitialized()
         {
             base.OnInitialized();
