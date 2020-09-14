@@ -49,8 +49,8 @@
 		<InputsStylesScss Include="Styles\*.scss" />
 		<InputsComponentsTs Include="Components\**\*.js" />
 		<InputsScriptsTs Include="Scripts\*.js" />
-		<OutputsCss Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css;wwwroot\material.blazor.material-bundle.min.css" />
-		<OutputsJs Include="wwwroot\material.blazor.js;wwwroot\material.blazor.min.js;wwwroot\material.blazor.material-bundle.min.js" />
+		<OutputsCss Include="wwwroot\unbundled.css;wwwroot\unbundled.min.css;wwwroot\bundled.min.css" />
+		<OutputsJs Include="wwwroot\unbundled.js;wwwroot\unbundled.min.js;wwwroot\bundled.min.js" />
 	</ItemGroup>
 
 	<Target Name="BuildScriptsAndStyles" 
@@ -61,12 +61,12 @@
 	<Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">
 		<Exec Command="docker build -t mb_static_assets -f build-static-assets.Dockerfile ." />
 		<Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
-		<Exec Command="docker run --rm mb_static_assets cat material.blazor.js &gt; wwwroot/material.blazor.js" />
-		<Exec Command="docker run --rm mb_static_assets cat material.blazor.css &gt; wwwroot/material.blazor.css" />
-		<Exec Command="docker run --rm mb_static_assets cat material.blazor.min.js &gt; wwwroot/material.blazor.min.js" />
-		<Exec Command="docker run --rm mb_static_assets cat material.blazor.min.css &gt; wwwroot/material.blazor.min.css" />
-		<Exec Command="docker run --rm mb_static_assets cat material.blazor.material-bundle.min.js &gt; wwwroot/material.blazor.material-bundle.min.js" />
-		<Exec Command="docker run --rm mb_static_assets cat material.blazor.material-bundle.min.css &gt; wwwroot/material.blazor.material-bundle.min.css" />
+		<Exec Command="docker run --rm mb_static_assets cat unbundled.js &gt; wwwroot/unbundled.js" />
+		<Exec Command="docker run --rm mb_static_assets cat unbundled.css &gt; wwwroot/unbundled.css" />
+		<Exec Command="docker run --rm mb_static_assets cat unbundled.min.js &gt; wwwroot/unbundled.min.js" />
+		<Exec Command="docker run --rm mb_static_assets cat unbundled.min.css &gt; wwwroot/unbundled.min.css" />
+		<Exec Command="docker run --rm mb_static_assets cat bundled.min.js &gt; wwwroot/bundled.min.js" />
+		<Exec Command="docker run --rm mb_static_assets cat bundled.min.css &gt; wwwroot/bundled.min.css" />
 	</Target>
 
 </Project>

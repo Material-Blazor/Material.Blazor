@@ -14,13 +14,13 @@ Reference the `Material.Blazor` namespace with `@using Material.Blazor` to your 
 We bundle the Material Theme CSS and JS into Material.Blazor for your convenience along with [Material Icons](https://material.io/resources/icons/?style=baseline) which are essential for Material.Blazor. You will need to add two items to your index.html/_Host.cshtml file. Place this in the the `<head>` tag:
 
 ```html
-<link href="_content/Material.Blazor/material.blazor.material-bundle.min.css" rel="stylesheet">
+<link href="_content/Material.Blazor/bundled.min.css" rel="stylesheet">
 ```
 
 and at the end of `<body>`:
 
 ```html
-<script src="_content/Material.Blazor/material.blazor.material-bundle.min.js"></script>
+<script src="_content/Material.Blazor/bundled.min.js"></script>
 ```
 
 Add the `Material.Blazor` namespace to your project by appending `@using Material.Blazor` to the end of your project's _Imports.razor file. Do not use components from the `Material.Blazor.Internal` namespace: as the name
@@ -37,14 +37,14 @@ if you have built a theme - you can see how we have done this in the [Material.B
 ```html
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 <link href="https://unpkg.com/material-components-web@7.0.0/dist/material-components-web.css" rel="stylesheet" />
-<link href="_content/Material-Blazor/material.blazor.css" rel="stylesheet" />
+<link href="_content/Material.Blazor/unbundled.css" rel="stylesheet" />
 ```
 
 and at the end of `<body>`:
 
 ```html
 <script src="https://unpkg.com/material-components-web@7.0.0/dist/material-components-web.js"></script>
-<script src="_content/Material-Blazor/material.blazor.js"></script>
+<script src="_content/Material.Blazor/unbundled.js"></script>
 ```
 
 We also provide minified `material.blazor.min.css` and `material.blazor.min.js`. Add the `Material.Blazor` namespace to your project as above. These will be needed
