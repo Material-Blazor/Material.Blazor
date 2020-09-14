@@ -8,10 +8,10 @@
              @attributes="@AttributesToSplat(SplatType.ExcludeHtmlExcludingClassAndStyle)">
 
             <input @bind="@CheckedValue"
+                   @attributes="AttributesToSplat(SplatType.HtmlExcludingClassAndStyle)"
                    type="checkbox"
                    class="mdc-checkbox__native-control @FieldClass"
-                   id="@Id"
-                   @attributes="AttributesToSplat(SplatType.HtmlExcludingClassAndStyle)" />
+                   id="@Id"/>
             <div class="mdc-checkbox__background">
                 <svg class="mdc-checkbox__checkmark"
                      viewBox="0 0 24 24">

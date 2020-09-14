@@ -4,15 +4,15 @@
 
 
 <div @ref="@FormReference"
-     @attributes="AttributesToSplat(SplatType.ClassAndStyleOnly)">
+     @attributes="@AttributesToSplat(SplatType.ClassAndStyleOnly)">
 
     <div @ref="@RadioButtonReference" class="@ButtonContainerClass @DisabledClass">
-        <input class="mdc-radio__native-control"
+        <input @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)"
+               class="mdc-radio__native-control"
                type="radio"
                id="@radioId"
                name="@RadioGroupName"
-               @onclick="@(_ => OnInternalItemClickAsync())"
-               @attributes="AttributesToSplat(SplatType.ExcludeClassAndStyle)">
+               @onclick="@(_ => OnInternalItemClickAsync())">
 
         <div class="mdc-radio__background">
             <div class="mdc-radio__outer-circle"></div>

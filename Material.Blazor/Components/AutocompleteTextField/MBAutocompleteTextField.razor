@@ -4,7 +4,7 @@
 
 <div class="mb-autocomplete">
     <MBTextField @ref="@TextField"
-                 @bind-Value="@SelectInfo.SelectedText"
+                 @attributes="@AttributesToSplat()"
                  TextAlignStyle="@TextAlignStyle"
                  TextInputStyle="@TextInputStyle"
                  Label="@Label"
@@ -13,10 +13,10 @@
                  IconFoundry="@IconFoundry"
                  Density="@Density"
                  Disabled="@AppliedDisabled"
+                 @bind-Value="@SelectInfo.SelectedText"
                  @oninput="@OnInput"
                  @onchange="@OnTextChangeAsync"
-                 @onfocusout="@OnTextFocusOutAsync"
-                 @attributes="@AttributesToSplat()" />
+                 @onfocusout="@OnTextFocusOutAsync" />
 
     <div class="mdc-menu-surface--anchor">
         <div @ref="@MenuReference"

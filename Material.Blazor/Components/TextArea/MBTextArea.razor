@@ -11,14 +11,14 @@
     }
 
     <span class="mdc-text-field__resizer">
-        <textarea id="@id"
+        <textarea @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)"
+                  id="@id"
                   class="mdc-text-field__input @AppliedTextInputStyleClass @FieldClass"
                   @bind="@ReportingValue"
                   aria-labelledby="@labelId"
                   rows="@Rows"
                   cols="@Cols"
-                  disabled="@AppliedDisabled"
-                  @attributes="@AttributesToSplat(SplatType.ExcludeClassAndStyle)"></textarea>
+                  disabled="@AppliedDisabled"></textarea>
     </span>
 
     @if (AppliedInputStyle == MBTextInputStyle.Outlined)

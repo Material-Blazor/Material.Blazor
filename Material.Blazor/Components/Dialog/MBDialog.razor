@@ -6,9 +6,9 @@
 {
     <div @key="@Key"
          @ref="DialogElem"
+         @attributes="@AttributesToSplat()"
          aria-labelledby="@titleId"
-         aria-describedby="@descId"
-         @attributes="@AttributesToSplat()">
+         aria-describedby="@descId">
 
         <CascadingValue Value="@this">
             <div class="mdc-dialog__container">
