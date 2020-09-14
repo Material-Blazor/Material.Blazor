@@ -63,7 +63,13 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Attributes for splatting to be set by a component's OnInitialized() function.
         /// </summary>
-        private protected IDictionary<string, object> ComponentSetAttributes { get; set; } = new Dictionary<string, object>();        internal bool AppliedDisabled => CascadingDefaults.AppliedDisabled(Disabled);
+        private protected IDictionary<string, object> ComponentSetAttributes { get; set; } = new Dictionary<string, object>();        
+        
+        
+        /// <summary>
+        /// Determines whether to apply the disabled attribute.
+        /// </summary>
+        internal bool AppliedDisabled => CascadingDefaults.AppliedDisabled(Disabled);
 
 
         /// <summary>
@@ -128,6 +134,7 @@ namespace Material.Blazor.Internal
 
 
 
+        private readonly string[] stylisticAttributes = { "id", "class", "style" };
         /// <summary>
         /// Attributes ready for splatting in components. Guaranteed not null, unlike UnmatchedAttributes. Default parameter is <see cref="SplatType.All".
         /// </summary>
@@ -142,7 +149,7 @@ namespace Material.Blazor.Internal
             var unmatchedId = (UnmatchedAttributes?.Where(a => a.Key.ToLower() == "id").FirstOrDefault().Value ?? "").ToString();
             var unmatchedClass = (UnmatchedAttributes?.Where(a => a.Key.ToLower() == "class").FirstOrDefault().Value ?? "").ToString();
             var unmatchedStyle = (UnmatchedAttributes?.Where(a => a.Key.ToLower() == "style").FirstOrDefault().Value ?? "").ToString();
-            var nonStylisticAttributes = new Dictionary<string, object>(UnmatchedAttributes?.Where(a => a.Key.ToLower() != "class" && a.Key.ToLower() != "style") ?? new Dictionary<string, object>());
+            var nonStylisticAttributes = new Dictionary<string, object>(UnmatchedAttributes?.Where(a => !stylisticAttributes.Contains(a.Key.ToLower())) ?? new Dictionary<string, object>());
 
             // merge ComponentSetAttributes into the dictionary
             nonStylisticAttributes = nonStylisticAttributes.Union(ComponentSetAttributes)

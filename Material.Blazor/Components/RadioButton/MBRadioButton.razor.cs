@@ -35,12 +35,6 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Enables the Material Theme touch wrapper.
-        /// </summary>
-        [Parameter] public bool EnableTouchWrapper { get; set; } = true;
-
-
-        /// <summary>
         /// The radio button group name. This is applied to a group of radio buttons
         /// so Material Theme can identify them as representing different values of the
         /// same property.
@@ -53,7 +47,6 @@ namespace Material.Blazor
 
         private ElementReference FormReference { get; set; }
         private ElementReference RadioButtonReference { get; set; }
-        private string ButtonContainerClass { get; set; }
         private string DisabledClass { get; set; } = "";
 
         private MBCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityCssClass(CascadingDefaults.AppliedRadioButtonDensity(Density));
@@ -64,10 +57,12 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
-            ForceShouldRenderToTrue = true;
-
             ClassMapper
-                .Add("mdc-form-field");
+                .Add("mdc-radio mdc-radio--touch")
+                .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
+                .AddIf("mdc-checkbox--disabled", () => AppliedDisabled);
+
+            ForceShouldRenderToTrue = true;
 
             OnValueSet += OnValueSetCallback;
         }
@@ -81,20 +76,6 @@ namespace Material.Blazor
             if (string.IsNullOrEmpty(RadioGroupName))
             {
                 throw new ArgumentException("RadioGroupName is a required parameter in MBRadioButton.");
-            }
-
-            if (EnableTouchWrapper)
-            {
-                ButtonContainerClass = "mdc-radio mdc-radio--touch";
-            }
-            else
-            {
-                ButtonContainerClass = "mdc-radio";
-            }
-
-            if (DensityInfo.ApplyCssClass)
-            {
-                ButtonContainerClass += $" {DensityInfo.CssClassName}";
             }
 
             if (AppliedDisabled)

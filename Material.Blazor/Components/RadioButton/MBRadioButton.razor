@@ -3,12 +3,12 @@
 @typeparam TItem
 
 
-<div @ref="@FormReference"
-     @attributes="@AttributesToSplat(SplatType.IdClassAndStyleOnly)">
+<div @ref="@FormReference" class="mdc-form-field">
 
-    <div @ref="@RadioButtonReference" class="@ButtonContainerClass @DisabledClass">
-        <input @attributes="@AttributesToSplat(SplatType.ExcludeIdClassAndStyle)"
-               class="mdc-radio__native-control"
+    <div @ref="@RadioButtonReference" 
+         @attributes="@AttributesToSplat()">
+
+        <input class="mdc-radio__native-control"
                type="radio"
                id="@radioId"
                name="@RadioGroupName"
