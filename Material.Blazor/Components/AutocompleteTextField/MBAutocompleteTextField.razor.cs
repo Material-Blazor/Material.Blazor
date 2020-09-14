@@ -172,7 +172,6 @@ namespace Material.Blazor
         }
 
 
-
         private void SetParameters()
         {
             MySelectItems = (from i in SelectItems

@@ -33,7 +33,9 @@
                         <MBRadioButton @bind-Value="@Animal"
                                        TargetCheckedValue=@AnimalEnum.Dog
                                        Label=@AnimalEnum.Dog.ToString()
-                                       RadioGroupName="animal-group" />
+                                       RadioGroupName="animal-group" 
+                                       class="supplied-test-class" 
+                                       id="supplied-test-id" />
 
                         <MBRadioButton @bind-Value="@Animal"
                                        TargetCheckedValue=@AnimalEnum.Fish

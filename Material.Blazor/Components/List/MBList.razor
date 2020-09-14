@@ -3,10 +3,10 @@
 @typeparam TItem
 
 
-<ul @ref="@ElementReference"
+<ul @attributes="@AttributesToSplat()"
+    @ref="@ElementReference"
     @key="@AppliedDisabled"
-    aria-orientation="vertical"
-    @attributes="@AttributesToSplat()">
+    aria-orientation="vertical">
 
     @{ var index = 0; }
     @foreach (var item in Items)

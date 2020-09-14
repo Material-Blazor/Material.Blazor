@@ -5,13 +5,13 @@
 <div @ref="@FormReference" class="mdc-form-field">
     <div class="mdc-touch-target-wrapper">
         <div @ref="@ElementReference"
-             @attributes="@AttributesToSplat(SplatType.ExcludeHtmlExcludingClassAndStyle)">
+             @attributes="@AttributesToSplat(SplatType.ExcludeHtmlExceptIdClassAndStyle)">
 
             <input @bind="@CheckedValue"
+                   @attributes="AttributesToSplat(SplatType.HtmlExcludingIdClassAndStyle)"
                    type="checkbox"
                    class="mdc-checkbox__native-control @FieldClass"
-                   id="@Id"
-                   @attributes="AttributesToSplat(SplatType.HtmlExcludingClassAndStyle)" />
+                   id="@CrossReferenceId"/>
             <div class="mdc-checkbox__background">
                 <svg class="mdc-checkbox__checkmark"
                      viewBox="0 0 24 24">
@@ -24,5 +24,5 @@
             <div class="mdc-checkbox__ripple"></div>
         </div>
     </div>
-    <label for="@Id">@Label</label>
+    <label for="@CrossReferenceId">@Label</label>
 </div>

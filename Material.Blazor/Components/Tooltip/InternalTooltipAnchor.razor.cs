@@ -127,6 +127,7 @@ namespace Material.Blazor.Internal
         }
 
 
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             var refs = (from t in Tooltips.Values

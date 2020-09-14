@@ -3,16 +3,16 @@
 @typeparam TItem
 
 
-<div @ref="@FormReference"
-     @attributes="AttributesToSplat(SplatType.ClassAndStyleOnly)">
+<div @ref="@FormReference" class="mdc-form-field">
 
-    <div @ref="@RadioButtonReference" class="@ButtonContainerClass @DisabledClass">
+    <div @ref="@RadioButtonReference" 
+         @attributes="@AttributesToSplat()">
+
         <input class="mdc-radio__native-control"
                type="radio"
                id="@radioId"
                name="@RadioGroupName"
-               @onclick="@(_ => OnInternalItemClickAsync())"
-               @attributes="AttributesToSplat(SplatType.ExcludeClassAndStyle)">
+               @onclick="@(_ => OnInternalItemClickAsync())">
 
         <div class="mdc-radio__background">
             <div class="mdc-radio__outer-circle"></div>

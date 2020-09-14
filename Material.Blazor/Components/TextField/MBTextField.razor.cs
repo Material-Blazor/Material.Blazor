@@ -117,7 +117,7 @@ namespace Material.Blazor
         private bool ShowLabel => !string.IsNullOrWhiteSpace(Label);
 
 
-        /// <inheritdoc/>
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override void OnInitialized()
         {
             base.OnInitialized();
@@ -145,6 +145,7 @@ namespace Material.Blazor
         }
 
 
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await base.OnAfterRenderAsync(firstRender);
