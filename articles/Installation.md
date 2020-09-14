@@ -14,13 +14,13 @@ Reference the `Material.Blazor` namespace with `@using Material.Blazor` to your 
 We bundle the Material Theme CSS and JS into Material.Blazor for your convenience along with [Material Icons](https://material.io/resources/icons/?style=baseline) which are essential for Material.Blazor. You will need to add two items to your index.html/_Host.cshtml file. Place this in the the `<head>` tag:
 
 ```html
-<link href="_content/Material-Blazor/material.blazor.material-bundle.min.css" rel="stylesheet">
+<link href="_content/Material.Blazor/material.blazor.material-bundle.min.css" rel="stylesheet">
 ```
 
 and at the end of `<body>`:
 
 ```html
-<script src="_content/Material-Blazor/material.blazor.material-bundle.min.js"></script>
+<script src="_content/Material.Blazor/material.blazor.material-bundle.min.js"></script>
 ```
 
 Add the `Material.Blazor` namespace to your project by appending `@using Material.Blazor` to the end of your project's _Imports.razor file. Do not use components from the `Material.Blazor.Internal` namespace: as the name
