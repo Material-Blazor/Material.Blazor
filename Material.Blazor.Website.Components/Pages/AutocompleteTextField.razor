@@ -30,7 +30,7 @@
                         the full variety of icon foundries. These are used across the page but it we don't attempt to show each variant everywhere - see the Text Field demo for this.
                     </h3>
 
-                    @if (IsWebAssembly)
+                    @if (false && IsWebAssembly)
                     {
                         <p>
                             Autocompletes are disabled on this site because it is running on WebAssembly. This is because of a <a href="https://github.com/mono/linker/issues/1408" target="_blank">bug in the Mono linker</a> affecting MBAutocomplete and its use of Regex.
