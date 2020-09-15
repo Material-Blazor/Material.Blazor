@@ -3,9 +3,9 @@
 
 
 <button @ref="@ElementReference"
+        type="button"
         @attributes="@AttributesToSplat()"
-        data-mdc-dialog-action="@DialogAction"
-        type="button">
+        data-mdc-dialog-action="@DialogAction">
     <div class="mdc-button__ripple"></div>
 
     @if (!string.IsNullOrWhiteSpace(LeadingIcon))

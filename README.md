@@ -5,6 +5,7 @@
 Material.Blazor is a lightweight [Material Theme](https://material.io/) [web development platform](https://material.io/develop/web/) (version 7.0.0) component library for [ASP.NET Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor) that is rigorously faithful to the Material Theme's design philosophy, markup and code usage. Material Theme has very specific and detailed guidance showing web designers how to build web apps with HTML, CSS and JavaScript. Since neither Blazor for WebAssembly are directly supported, Blazor developers either need to roll their own components or use a component library such as Material.Blazor.
 
 - Visit our website at https://material-blazor.com;
+- See release notes at https://material-blazor.com/docs/ReleaseNotes.html;
 - View the project API documentation at https://material-blazor.com/docs; and
 - Material.Blazor is available at https://www.nuget.org/packages/Material.Blazor.
 - If you intend to submit pull requests please note that we use Git Flow with `develop` and `main` branches. You can read [detailed development environment instructions](https://material-blazor.com/docs/articles/DevelopmentEnvironment.html) on our docs site.
