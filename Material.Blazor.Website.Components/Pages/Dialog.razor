@@ -11,7 +11,7 @@
                    Title="Dialog Demonstration"
                    DemoComponent="@this"
                    MaterialIOPage="mdc-dialog#dialogs"
-                   MinDensity="MBDensity.Minus4">
+                   MinDensity="@MBDensity.Minus4">
     <Description>
         <p>
             Dialog samples. Click each card to launch a dialog.
@@ -37,7 +37,7 @@
 
 
         <div class="mdc-layout-grid__cell--span-4">
-            <MBCard AutoStyled="true" @onclick="@ShowDialog4Async">
+            <MBCard AutoStyled="true" @onclick="@ShowDialog2Async">
                 <PrimaryAction>
                     <div class="mb-card__primary">
                         <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
@@ -53,7 +53,7 @@
 
 
         <div class="mdc-layout-grid__cell--span-4">
-            <MBCard AutoStyled="true" @onclick="@ShowDialog5Async">
+            <MBCard AutoStyled="true" @onclick="@ShowDialog3Async">
                 <PrimaryAction>
                     <div class="mb-card__primary">
                         <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
@@ -69,7 +69,7 @@
 
 
         <div class="mdc-layout-grid__cell--span-4">
-            <MBCard AutoStyled="true" @onclick="@ShowDialog6Async">
+            <MBCard AutoStyled="true" @onclick="@ShowDialog4Async">
                 <PrimaryAction>
                     <div class="mb-card__primary">
                         <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
@@ -105,7 +105,7 @@
 </MBDialog>
 
 
-<MBDialog @ref="@Dialog4" Title="General dialog with scrim and escape disabled (using HideAsync)"
+<MBDialog @ref="@Dialog2" Title="General dialog with scrim and escape disabled (using HideAsync)"
           ScrimClickAction=""
           EscapeKeyAction="">
     <Body>
@@ -119,7 +119,7 @@
 </MBDialog>
 
 
-<MBDialog @ref="@Dialog5" Title="Date Picker Dialog"
+<MBDialog @ref="@Dialog3" Title="Date Picker Dialog"
           OverflowVisible="true">
     <Body>
         <p>Set the date.</p>
@@ -134,34 +134,39 @@
 <MBDialog Title="Log on dialog"
           ScrimClickAction=""
           EscapeKeyAction=""
-          @ref="@Dialog6">
+          @ref="@Dialog4">
 
     <Body>
-        <EditForm Model="@UserLogonDTO" OnValidSubmit="@Dialog6Submitted">
+        <EditForm Model="@UserLogon" OnValidSubmit="@Dialog4Submitted" OnInvalidSubmit="@Dialog4Invalid">
             <DataAnnotationsValidator />
 
-            <div class="form-group">
-                <MBTextField @bind-pValue="UserLogonDTO.UserID"
-                             Label="User ID"
-                             TrailingIcon="person" />
-                <ValidationMessage For=@( () => UserLogonDTO.UserID ) />
+            <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell--span-12">
+                    <MBTextField @bind-Value="@UserLogon.UserID"
+                                 Label="User ID"
+                                 TrailingIcon="person"
+                                 TextInputStyle="@MBTextInputStyle.Outlined"
+                                 style="width: 100%; margin-top: 6px;" />
+                    <ValidationMessage For="@(() => UserLogon.UserID)" />
+                </div>
+                <div class="mdc-layout-grid__cell--span-12">
+                    <MBTextField @bind-Value="@UserLogon.Password"
+                                 Label="Password"
+                                 TrailingIcon="lock_outline"
+                                 TextInputStyle="@MBTextInputStyle.Outlined"
+                                 type="password"
+                                 style="width: 100%;" />
+                    <ValidationMessage For="@(() => UserLogon.Password)" />
+                </div>
+                <div class="mdc-layout-grid__cell--span-12" style="text-align: right;">
+                    <MBButton style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                              type="submit"
+                              Label="Logon" />
+                    <MBButton @onclick="@Dialog4Canceled"
+                              style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                              Label="Cancel" />
+                </div>
             </div>
-            <div class="form-group">
-                <MBTextField @bind-pValue="UserLogonDTO.Password"
-                             Label="Password"
-                             TrailingIcon="lock_outline"
-                             type="password" />
-                <ValidationMessage For=@( () => UserLogonDTO.Password ) />
-            </div>
-            <div class="form-group">
-                <MBButton style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                          type="submit"
-                          Label="Logon" />
-                <MBButton @onclick="@(() => Dialog6Canceled())"
-                          style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                          Label="Cancel" />
-            </div>
-            <hr />
         </EditForm>
     </Body>
 
@@ -172,9 +177,9 @@
 @code {
     private bool DisableInput { get; set; } = false;
     private MBDialog Dialog1 { get; set; }
+    private MBDialog Dialog2 { get; set; }
+    private MBDialog Dialog3 { get; set; }
     private MBDialog Dialog4 { get; set; }
-    private MBDialog Dialog5 { get; set; }
-    private MBDialog Dialog6 { get; set; }
 
     private bool Check { get; set; }
 
@@ -203,15 +208,15 @@
         ToastService.ShowToast(heading: "Dialog 1 Result", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
     }
 
-    private async Task ShowDialog4Async()
+    private async Task ShowDialog2Async()
     {
-        var result = await Dialog4.ShowAsync();
+        var result = await Dialog2.ShowAsync();
         ToastService.ShowToast(heading: "Dialog 4 Result", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
     }
 
     private async Task OnButtonClick(string button)
     {
-        await Dialog4.HideAsync();
+        await Dialog2.HideAsync();
         ToastService.ShowToast(heading: "Dialog 4 By @onclick", message: $"Value: '{button}'", level: MBToastLevel.Success, showIcon: false);
     }
 
@@ -219,32 +224,39 @@
     private DateTime MaxDate { get; set; } = new DateTime(2025, 12, 31);
     private DateTime Date5 { get; set; } = DateTime.Today;
 
-    private async Task ShowDialog5Async()
+    private async Task ShowDialog3Async()
     {
-        var result = await Dialog5.ShowAsync();
+        var result = await Dialog3.ShowAsync();
         ToastService.ShowToast(heading: "Dialog 5 Result", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
     }
 
-    private UserLogonDTODefinition UserLogonDTO { get; set; } = new UserLogonDTODefinition();
-    private async Task ShowDialog6Async()
+    private UserLogonDefinition UserLogon { get; set; }
+    private async Task ShowDialog4Async()
     {
-        _ = Dialog6.ShowAsync();
+        UserLogon = new UserLogonDefinition();
+        _ = Dialog4.ShowAsync();
         await Task.CompletedTask;
     }
 
-    private async Task Dialog6Submitted()
+    private async Task Dialog4Submitted()
     {
-        await Dialog6.HideAsync();
-        ToastService.ShowToast(heading: "Dialog 6 Result", message: $"Values: '{UserLogonDTO.UserID};{UserLogonDTO.Password}'", level: MBToastLevel.Success, showIcon: false);
+        await Dialog4.HideAsync();
+        ToastService.ShowToast(heading: "Dialog 6 Result", message: $"Values: '{UserLogon.UserID};{UserLogon.Password}'", level: MBToastLevel.Success, showIcon: false);
     }
 
-    private async Task Dialog6Canceled()
+    private void Dialog4Invalid()
     {
-        await Dialog6.HideAsync();
+        ToastService.ShowToast(heading: "Dialog 6 Invalid", message: $"Edit form was invalid", level: MBToastLevel.Warning, showIcon: false);
+    }
+
+    private async Task Dialog4Canceled()
+    {
+        await Dialog4.HideAsync();
         ToastService.ShowToast(heading: "Dialog 6 Canceled", message: "The cancel button was selected", level: MBToastLevel.Success, showIcon: false);
     }
 
-    private class UserLogonDTODefinition
+    private class UserLogonDefinition
+
     {
         [Required(ErrorMessage = "UserID is required")] public string UserID { get; set; }
         [Required(ErrorMessage = "Password is required")] public string Password { get; set; }

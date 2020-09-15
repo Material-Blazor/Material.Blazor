@@ -15,17 +15,17 @@
     $large-component-radius: 16px, 
 );
 
-$mdc-typography-styles-headline1: ( font-family: unquote("Shrikhand, serif") );
-$mdc-typography-styles-headline2: ( font-family: unquote("Shrikhand, serif") );
-$mdc-typography-styles-headline3: ( font-family: unquote("Shrikhand, serif") );
-$mdc-typography-styles-headline4: ( font-family: unquote("Shrikhand, serif") );
-$mdc-typography-styles-headline5: ( font-family: unquote("Shrikhand, serif") );
-$mdc-typography-styles-headline6: ( font-family: unquote("Shrikhand, serif") );
-
 @use "@material/typography" with ( 
     $font-family: unquote("Merriweather, serif"), 
-    $styles-button: ( font-size: 14px, font-weight: 400, letter-spacing: 0.05em, ), 
+    $styles-button: ( font-size: 14px, font-weight: 400, letter-spacing: 0.05em, ),
+    $styles-headline1: ( font-family: unquote("Shrikhand, serif"), ),
+    $styles-headline2: ( font-family: unquote("Shrikhand, serif"), ),
+    $styles-headline3: ( font-family: unquote("Shrikhand, serif"), ),
+    $styles-headline4: ( font-family: unquote("Shrikhand, serif"), ),
+    $styles-headline5: ( font-family: unquote("Shrikhand, serif"), ),
+    $styles-headline6: ( font-family: unquote("Shrikhand, serif"), )
 );
+
 
 @use "material-components-web";
 @use "./app";

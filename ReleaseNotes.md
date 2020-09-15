@@ -10,6 +10,7 @@ title: ReleaseNotes
 - Corrects tooltip javascript initiation bug.
 - Updates website to ASP.NET 5 rc 1.
 - Re-enables autocomplete demonstration due to REGEX fix in ASP.NET 5 rc 1.
+- Re-order attributes in MBButton to make `type=""` attribute splat correctly.
 - Minor upgrades to red round and varied themes.
 
 <br />
