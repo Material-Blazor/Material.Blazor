@@ -12,7 +12,7 @@
 @use "@material/shape" with ( 
     $small-component-radius: 50%, 
     $medium-component-radius: 8px, 
-    $large-component-radius: 50%, 
+    $large-component-radius: 8px, 
 );
 
 $mdc-typography-styles-headline1: ( font-family: unquote("Shrikhand, serif") );

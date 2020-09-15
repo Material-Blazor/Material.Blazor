@@ -1,49 +1,49 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
-	<PropertyGroup>
-		<TargetFramework>netstandard2.1</TargetFramework>
-		<RazorLangVersion>3.0</RazorLangVersion>
-		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<VersionPrefix>1.0.0</VersionPrefix>
-		<VersionSuffix></VersionSuffix>
-		<PackageLicenseFile></PackageLicenseFile>
-		<Authors>Simon Ziegler of Dioptra and Mark Stega of Optimium Health</Authors>
-		<Company>Material.Blazor</Company>
-		<Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io. API and other documentation can be found at https://material-blazor.com/docs.</Description>
-		<RepositoryUrl>https://github.com/material.blazor/material.blazor</RepositoryUrl>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageReleaseNotes></PackageReleaseNotes>
-		<NeutralLanguage>en</NeutralLanguage>
-		<Copyright>Dioptra and Optimium Health</Copyright>
-		<PackageProjectUrl>https://material-blazor.com</PackageProjectUrl>
-		<Product>Material.Blazor</Product>
-		<UserSecretsId>d7509b6c-bc5c-4a56-a750-09c8ae4aeb85</UserSecretsId>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RazorLangVersion>3.0</RazorLangVersion>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionSuffix></VersionSuffix>
+    <PackageLicenseFile></PackageLicenseFile>
+    <Authors>Simon Ziegler of Dioptra and Mark Stega of Optimium Health</Authors>
+    <Company>Material.Blazor</Company>
+    <Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io. API and other documentation can be found at https://material-blazor.com/docs.</Description>
+    <RepositoryUrl>https://github.com/Material-Blazor/Material.Blazor</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <NeutralLanguage>en</NeutralLanguage>
+    <Copyright>Dioptra and Optimium Health</Copyright>
+    <PackageProjectUrl>https://material-blazor.com</PackageProjectUrl>
+    <Product>Material.Blazor</Product>
+    <UserSecretsId>d7509b6c-bc5c-4a56-a750-09c8ae4aeb85</UserSecretsId>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<Content Remove="package-lock.json" />
-		<Content Remove="package.json" />
-		<Content Remove="tsconfig.json" />
-	</ItemGroup>
+  <ItemGroup>
+    <Content Remove="package-lock.json" />
+    <Content Remove="package.json" />
+    <Content Remove="tsconfig.json" />
+  </ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.6" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.6" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.6" />
+  </ItemGroup>
 
-	<ItemGroup>
-		<None Include="package-lock.json" />
-		<None Include="package.json">
-			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
-		</None>
-		<None Include="tsconfig.json" />
-	</ItemGroup>
+  <ItemGroup>
+    <None Include="package-lock.json" />
+    <None Include="package.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Include="tsconfig.json" />
+  </ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="wwwroot\" />
-	</ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
 
-<!-- Unfinished dependency issue
+  <!-- Unfinished dependency issue
 	<ItemGroup>
 		<InputsComponentsScss Include="Components\**\*.scss" />
 		<InputsStylesScss Include="Styles\*.scss" />
@@ -57,16 +57,16 @@
 			BeforeTargets="PreBuildEvent" 
 			Inputs="@(InputsComponentsScss);@(InputsStylesScss);@(InputsComponentsTs);@(InputsScriptsTs)"
 			Outputs="@(OutputsCss);@(OutputsJs)">-->
-  
-	<Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">
-		<Exec Command="docker build -t mb_static_assets -f build-static-assets.Dockerfile ." />
-		<Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
-		<Exec Command="docker run --rm mb_static_assets cat unbundled.js &gt; wwwroot/unbundled.js" />
-		<Exec Command="docker run --rm mb_static_assets cat unbundled.css &gt; wwwroot/unbundled.css" />
-		<Exec Command="docker run --rm mb_static_assets cat unbundled.min.js &gt; wwwroot/unbundled.min.js" />
-		<Exec Command="docker run --rm mb_static_assets cat unbundled.min.css &gt; wwwroot/unbundled.min.css" />
-		<Exec Command="docker run --rm mb_static_assets cat bundled.min.js &gt; wwwroot/bundled.min.js" />
-		<Exec Command="docker run --rm mb_static_assets cat bundled.min.css &gt; wwwroot/bundled.min.css" />
-	</Target>
+
+  <Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">
+    <Exec Command="docker build -t mb_static_assets -f build-static-assets.Dockerfile ." />
+    <Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
+    <Exec Command="docker run --rm mb_static_assets cat unbundled.js &gt; wwwroot/unbundled.js" />
+    <Exec Command="docker run --rm mb_static_assets cat unbundled.css &gt; wwwroot/unbundled.css" />
+    <Exec Command="docker run --rm mb_static_assets cat unbundled.min.js &gt; wwwroot/unbundled.min.js" />
+    <Exec Command="docker run --rm mb_static_assets cat unbundled.min.css &gt; wwwroot/unbundled.min.css" />
+    <Exec Command="docker run --rm mb_static_assets cat bundled.min.js &gt; wwwroot/bundled.min.js" />
+    <Exec Command="docker run --rm mb_static_assets cat bundled.min.css &gt; wwwroot/bundled.min.css" />
+  </Target>
 
 </Project>

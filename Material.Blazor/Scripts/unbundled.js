@@ -316,9 +316,14 @@ window.material_blazor = {
 
     tooltip: {
         init: function (elems) {
-            for (let i = 0; i < elems.length; i++) {
-                mdc.tooltip.MDCTooltip.attachTo(elems[i]);
-            }
+            elems
+                .filter(f => f.__internalId !== null)
+                .forEach(i => mdc.tooltip.MDCTooltip.attachTo(i));
+            //let populatedElems = elems.filter(element => element !== null);
+
+            //for (let i = 0; i < populatedElems.length; i++) {
+            //    mdc.tooltip.MDCTooltip.attachTo(populatedElems[i]);
+            //}
         }
     },
 
