@@ -62,10 +62,10 @@
             <div class="mdc-menu-surface--anchor">
                 <MBMenu @ref="Menu">
                     <MBMenuSelectionGroup @key="@Theme">
-                        <MBListItem Label="Material Default Theme" IsSelectedMenuItem="@(Theme == "mt-default-theme")" @onclick="@(() => ThemeSetterAsync("mt-default-theme"))" />
-                        <MBListItem Label="Blue Square Theme" IsSelectedMenuItem="@(Theme == "blue-square-theme")" @onclick="@(() => ThemeSetterAsync("blue-square-theme"))" />
-                        <MBListItem Label="Red Round Theme" IsSelectedMenuItem="@(Theme == "red-round-theme")" @onclick="@(() => ThemeSetterAsync("red-round-theme"))" />
-                        <MBListItem Label="Varied Theme" IsSelectedMenuItem="@(Theme == "varied-theme")" @onclick="@(() => ThemeSetterAsync("varied-theme"))" />
+                        <MBListItem Label="Material Default Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "mt-default-theme")" @onclick="@(() => ThemeSetterAsync("mt-default-theme"))" />
+                        <MBListItem Label="Blue Square Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "blue-square-theme")" @onclick="@(() => ThemeSetterAsync("blue-square-theme"))" />
+                        <MBListItem Label="Red Round Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "red-round-theme")" @onclick="@(() => ThemeSetterAsync("red-round-theme"))" />
+                        <MBListItem Label="Varied Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "varied-theme")" @onclick="@(() => ThemeSetterAsync("varied-theme"))" />
                     </MBMenuSelectionGroup>
                 </MBMenu>
             </div>
