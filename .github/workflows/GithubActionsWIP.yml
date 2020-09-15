@@ -95,7 +95,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.0-rc.1.20451.14
+        dotnet-version: 5.0.100-rc.1.20452.10
 
     - name: Build 🔧
       run: dotnet build --configuration $buildConfiguration --version-suffix $ciSuffix $projectWeb
