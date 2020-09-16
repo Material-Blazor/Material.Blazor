@@ -68,36 +68,11 @@ namespace Material.Blazor
         {
             InvokeAsync(async () =>
             {
-                _ = await FadePageOutAsync().ConfigureAwait(false);
-
+                PageClass = FadeOut;
+                await Task.Delay(AnimatedNavigationService.FadeOutTime);
                 NavigationManager.NavigateTo(uri, forceLoad);
-
-                _ = await FadePageInAsync().ConfigureAwait(false);
+                PageClass = FadeIn;
             });
-        }
-
-
-        private async Task<object> FadePageInAsync()
-        {
-            PageClass = FadeIn;
-            StateHasChanged();
-
-            await Task.CompletedTask;
-
-            return null;
-        }
-
-
-        private async Task<object> FadePageOutAsync()
-        {
-            PageClass = FadeOut;
-            StateHasChanged();
-
-            await Task.CompletedTask;
-
-            await Task.Delay(AnimatedNavigationService.FadeOutTime);
-
-            return null;
         }
 
 
