@@ -122,16 +122,18 @@
     */
     a {
         position: relative;
-        z-index: 1;
+        box-shadow: inset 0 -2px 0 theme.$secondary;
         display: inline-flex;
-        padding-bottom: .25rem;
+        z-index: 1;
         color: inherit;
         text-decoration: none;
         transition: 0.15s ease;
     }
 
     a:hover {
+        box-shadow: none;
         color: theme.$on-secondary;
+        text-decoration: none;
     }
 
     a::after {
@@ -139,9 +141,9 @@
         background: theme.$secondary;
         position: absolute;
         left: -2px;
-        bottom: 3px;
+        bottom: 0;
         width: calc(100% + 4px);
-        height: 4px;
+        height: 0;
         z-index: -1;
         transition: 0.15s ease;
     }
