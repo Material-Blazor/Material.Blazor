@@ -29,7 +29,7 @@
             @if (ShowLabel)
             {
                 <span class="mdc-notched-outline__notch">
-                    <span class="mdc-floating-label @FloatingLabelClass" for="@CrossReferenceId" id="@labelId">@Label</span>
+                    <span class="mdc-floating-label @FloatingLabelClass" for="@CrossReferenceId" id="@labelId">@DisplayLabel</span>
                 </span>
             }
 
@@ -40,7 +40,7 @@
     {
         @if (ShowLabel)
         {
-            <span class="mdc-floating-label @FloatingLabelClass" for="@CrossReferenceId" id="@labelId">@Label</span>
+            <span class="mdc-floating-label @FloatingLabelClass" for="@CrossReferenceId" id="@labelId">@DisplayLabel</span>
         }
 
         <span class="mdc-line-ripple"></span>

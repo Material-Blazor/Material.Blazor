@@ -112,13 +112,13 @@ namespace Material.Blazor
         private MBDensity AppliedDensity => CascadingDefaults.AppliedTextFieldDensity(Density);
         private MBTextInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
         private string AppliedTextInputStyleClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
+        private string DisplayLabel => Label + LabelSuffix;
         private string FloatingLabelClass { get; set; }
         private ElementReference InputReference { get; set; }
         private MarkupString HelperTextMarkup => new MarkupString(HelperText);
         private ElementReference HelperTextReference { get; set; }
-        private string LabelSuffix { get; set; } = "";
-        private string DisplayLabel => Label + LabelSuffix;
         private bool HasHelperText => !string.IsNullOrWhiteSpace(HelperText) || PerformsValidation;
+        private string LabelSuffix { get; set; } = "";
         private bool PerformsValidation => EditContext != null && ValidationMessageFor != null;
 
 

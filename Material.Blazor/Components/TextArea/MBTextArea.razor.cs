@@ -74,11 +74,13 @@ namespace Material.Blazor
         private MBDensity AppliedDensity => CascadingDefaults.AppliedTextFieldDensity(Density);
         private MBTextInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
         private string AppliedTextInputStyleClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
+        private string DisplayLabel => Label + LabelSuffix;
         private ElementReference ElementReference { get; set; }
         private string FloatingLabelClass { get; set; }
         private ElementReference HelperTextReference { get; set; }
         private bool HasHelperText => !string.IsNullOrWhiteSpace(HelperText);
         private bool PerformsValidation => EditContext != null && ValidationMessageFor != null;
+        private string LabelSuffix { get; set; } = "";
 
 
         private readonly string labelId = Utilities.GenerateUniqueElementName();
@@ -130,7 +132,7 @@ namespace Material.Blazor
 
                 if (HasRequiredAttribute(ValidationMessageFor))
                 {
-                    ComponentPureHtmlAttributes.Add("required", true);
+                    LabelSuffix = " *";
                 }
             }
         }
