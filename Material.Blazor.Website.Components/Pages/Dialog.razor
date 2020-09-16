@@ -130,7 +130,7 @@
         </MBDialog>
 
         <MBDialog @ref="@Dialog4"
-                  Title="Log on dialog"
+                  Title="Logon Dialog"
                   ScrimClickAction=""
                   EscapeKeyAction="">
 
@@ -243,18 +243,18 @@
     private async Task Dialog4Submitted()
     {
         await Dialog4.HideAsync();
-        ToastService.ShowToast(heading: "Dialog 6 Result", message: $"Values: '{UserLogon.UserID};{UserLogon.Password}'", level: MBToastLevel.Success, showIcon: false);
+        ToastService.ShowToast(heading: "Logon Dialog Result", message: $"Values: '{UserLogon.UserID};{UserLogon.Password}'", level: MBToastLevel.Success, showIcon: false);
     }
 
     private void Dialog4Invalid()
     {
-        ToastService.ShowToast(heading: "Dialog 6 Invalid", message: $"Edit form was invalid", level: MBToastLevel.Warning, showIcon: false);
+        ToastService.ShowToast(heading: "Logon Dialog Invalid", message: $"Edit form was invalid", level: MBToastLevel.Warning, showIcon: false);
     }
 
     private async Task Dialog4Canceled()
     {
         await Dialog4.HideAsync();
-        ToastService.ShowToast(heading: "Dialog 6 Canceled", message: "The cancel button was selected", level: MBToastLevel.Success, showIcon: false);
+        ToastService.ShowToast(heading: "Logon Dialog Canceled", message: "The cancel button was selected", level: MBToastLevel.Success, showIcon: false);
     }
 
     private class UserLogonDefinition
