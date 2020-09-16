@@ -9,9 +9,16 @@
 >[!TIP]
 >Visit our website at https://material-blazor.com for a full Material.Blazor demonstration.
 
-## Lightweight Material Theme razor components for Blazor
+# Lightweight Material Theme Razor Components for Blazor
 
-Material.Blazor is a lightweight [Material Theme](https://material.io/) [web development platform](https://material.io/develop/web/) ([version 7.0.0]((https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#600-2020-04-22))) component library for [ASP.NET Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor) that is rigorously faithful to the Material Theme's design philosophy, markup and code usage. Material Theme has very specific and detailed guidance showing web designers how to build web apps with HTML, CSS and JavaScript. Since neither Blazor for WebAssembly are directly supported, Blazor developers either need to roll their own components or use a component library such as Material.Blazor. This is available at https://www.nuget.org/packages/Material.Blazor.
+Material.Blazor is a lightweight [Material Theme](https://material.io/) [web development platform](https://material.io/develop/web/) ([version 7.0.0]((https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#600-2020-04-22))) component library for [ASP.NET Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor) that is rigorously faithful to the Material Theme's design philosophy, markup and code usage.
+This docs site along with [our demonstration website](https://material-blazor.com) gives you a deep dive into Material.Blazor.
+
+<div style="text-align: right; font-style: italic;">Simon and Mark</div>
+
+## Background
+
+Material Theme has very specific and detailed guidance showing web designers how to build web apps with HTML, CSS and JavaScript. Since neither Blazor for WebAssembly are directly supported, Blazor developers either need to roll their own components or use a component library such as Material.Blazor. This is available at https://www.nuget.org/packages/Material.Blazor.
 
 Material.Blazor isn't the only Blazor component library for Material Theme and we encourage developers to look at others including open source projects such as [MatBlazor](https://www.matblazor.com/), [Blazorize](https://materialdemo.blazorise.com/) and [Skclusive.Material.Component](https://github.com/skclusive/Skclusive.Material.Component), or commercial products such as those from [Telerik](https://www.telerik.com/blazor-ui), and [Syncfusion](https://blazor.syncfusion.com/); this is not an exhaustive list and there may be others. So why did we create Material.Blazor as yet another option? Because we had some overriding objectives and to our taste this required a new library focussing on the following:
 
@@ -20,7 +27,7 @@ Material.Blazor isn't the only Blazor component library for Material Theme and w
 - A balanced approach (or at least what we think is balanced) to component customization: enough to be functional but keeping things to the point and maintainable;
 - A native Material Theme HTML/CSS experience where a developer wants and expects to use Material Theme's HTML Markup and CSS:
   - Material.Blazor keeps out of a developer's way when she wants to follow Material Theme's guidance rigorously and take full advantage of its theming capability.
-  - We don't help you with styling/CSS. Whether you are theming or just tailoring the styles of individual components within a `<div>` block, you need to be be familar with. If you think you like or dislike the look of one of our "core" Material.Blazor components, what you're actually viewing is Material Theme as Google intend it, and which we aim to bring faithfully to you.
+  - We don't help you with styling/CSS. Whether you are theming or just tailoring the styles of individual components within a `<div>` block, you need to be very familar with [Material Components Web](https://github.com/material-components/material-components-web/tree/v7.0.0/packages). If you think you like or dislike the look of one of our "core" Material.Blazor components, what you're actually viewing is Material Theme as Google intend it, and which we aim to bring faithfully to you.
   - Similarly you need to manage your layout because Material.Blazor doesn't try to help out. This is so you can decide what layout system to use - Material Theme, Bootstrap or whatever you want.
   - So: we just do components using Material Theme. Other libraries take a different approach, and if you have a different requirement you may want to consider other options;
 - You'll find some different themes [on our website](https://material-blazor.com) just to give you a flavour of what can be done. Note that these themes aren't really anything to do with Material.Blazor - we just decided to show that Material.Blazor works with themes built using [material-components-web](https://github.com/material-components/material-components-web). Click the button on the top right of the top app bar. See the code base (same repo as this) to see how we did it.
