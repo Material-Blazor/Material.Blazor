@@ -7,13 +7,16 @@ title: ReleaseNotes
 #### [1.0.0.rc.3](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-rc.3)
 16 September 2020
 
-- `HelperText and `HelperTextPersistent` implemented on:
+- Material helper text added to text fields and associated derivatives.
+- Blazor native validation integrated with Material Components Web's validation display mechanism.
+- `HelperText`, `HelperTextPersistent` and `ValidationMessageFor` implemented on:
   - MBAutocompleteTextField
   - MBDebouncedTextField
   - MBNumericDoubleField
   - MBNumericIntField
   - MBTextArea
   - MBTextField
+- Attribute splatting order checked and documentation provided for reserved attributes in relevant components' articles
 
 <br />
 
