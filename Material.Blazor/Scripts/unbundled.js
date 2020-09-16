@@ -1,3 +1,17 @@
+/*!
+ * Sanitize and encode all HTML in a user-submitted string
+ * (c) 2018 Chris Ferdinandi, MIT License, https://gomakethings.com
+ * @param  {String} str  The user-submitted string
+ * @return {String} str  The sanitized string
+ */
+var sanitizeHTMLWithBreaks = function (str) {
+    let tempDiv = document.createElement('div');
+    tempDiv.textContent = str;
+    let sanitized = tempDiv.innerHTML;
+    tempDiv.remove();
+    return sanitized.replaceAll("&lt;br /&gt;", "<br />");
+};
+
 window.material_blazor = {
     autoComplete: {
         init: function (textElem, menuElem, dotNetObject) {
@@ -292,13 +306,9 @@ window.material_blazor = {
     },
 
     textField: {
-        init: function (elem, helperTextElem, helperText, helperTextPersistent) {
+        init: function (elem, helperTextElem, helperText, helperTextPersistent, performsValidation) {
             elem._textField = mdc.textField.MDCTextField.attachTo(elem);
-
-            if (helperText !== "") {
-                elem._helperText = mdc.textField.MDCTextFieldHelperText.attachTo(helperTextElem);
-                elem._helperText.foundation.setPersistent(helperTextPersistent);
-            }
+            this.setHelperText(elem, helperTextElem, helperText, helperTextPersistent, performsValidation, false, "");
         },
 
         select: function (inputElem) {
@@ -314,9 +324,43 @@ window.material_blazor = {
             elem._textField.disabled = value;
         },
 
+        setHelperText: function (elem, helperTextElem, helperText, helperTextPersistent, performsValidation, shakeLabel, validationMessage) {
+            if (helperText !== "" || performsValidation === true) {
+                if (!elem._helperText) {
+                    elem._helperText = mdc.textField.MDCTextFieldHelperText.attachTo(helperTextElem);
+                }
+
+                if (validationMessage !== "") {
+                    elem._helperText.root.innerHTML = sanitizeHTMLWithBreaks(validationMessage);
+                    elem._helperText.foundation.setPersistent(true);
+                    elem._helperText.foundation.setValidation(true);
+                    elem._helperText.foundation.setValidity(false);
+                    elem._textField.foundation.setValid(false);
+
+                    if (shakeLabel) {
+                        elem._textField.foundation.adapter.shakeLabel(true);
+                    }
+                }
+                else if (helperText !== "") {
+                    elem._helperText.foundation.setContent(helperText);
+                    elem._helperText.foundation.setPersistent(helperTextPersistent);
+                    elem._helperText.foundation.setValidation(false);
+                    elem._helperText.foundation.setValidity(true);
+                    elem._textField.foundation.setValid(true);
+                }
+                else {
+                    elem._helperText.foundation.setContent("");
+                    elem._helperText.foundation.setPersistent(false);
+                    elem._helperText.foundation.setValidation(false);
+                    elem._helperText.foundation.setValidity(true);
+                    elem._textField.foundation.setValid(true);
+                }
+            }
+        },
+
         setType: function (inputElem, value) {
             inputElem.setAttribute("type", value);
-        }
+        },
     },
 
     tooltip: {
@@ -324,11 +368,6 @@ window.material_blazor = {
             elems
                 .filter(f => f.__internalId !== null)
                 .forEach(i => mdc.tooltip.MDCTooltip.attachTo(i));
-            //let populatedElems = elems.filter(element => element !== null);
-
-            //for (let i = 0; i < populatedElems.length; i++) {
-            //    mdc.tooltip.MDCTooltip.attachTo(populatedElems[i]);
-            //}
         }
     },
 

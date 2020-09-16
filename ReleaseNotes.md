@@ -4,7 +4,21 @@ title: ReleaseNotes
 ---
 # Release Notes
 
-#### [1.0.0.RC.2](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-RC.2)
+#### [1.0.0.rc.3](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-rc.3)
+16 September 2020
+
+- `HelperText and `HelperTextPersistent` implemented on:
+  - MBAutocompleteTextField
+  - MBDebouncedTextField
+  - MBNumericDoubleField
+  - MBNumericIntField
+  - MBTextArea
+  - MBTextField
+
+<br />
+
+
+#### [1.0.0.rc.2](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-rc.2)
 15 September 2020
 
 - Corrects tooltip javascript initiation bug.
@@ -15,7 +29,8 @@ title: ReleaseNotes
 
 <br />
 
-#### [1.0.0.RC.1](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-RC.1)
+
+#### [1.0.0.rc.1](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-RC.1)
 14 September 2020
 
 - First 1.0.0 release candidate having migrated from prior Blazor MDC previews.

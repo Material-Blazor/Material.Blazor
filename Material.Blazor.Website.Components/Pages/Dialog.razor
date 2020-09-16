@@ -84,93 +84,93 @@
         </div>
 
 
+        <MBDialog @ref="@Dialog1"
+                  Title="General dialog">
+            <Body>
+                <p>Please choose a fruit.</p>
+                <MBCheckbox @bind-Value="@Check" Label="Check me" />
+                <MBRadioButtonGroup @bind-Value="@RadioButtonResult1"
+                                    Items="@StringItems"
+                                    Vertical="true"
+                                    ItemValidation="@MBItemValidation.DefaultToFirst" />
+            </Body>
+            <Buttons>
+                <MBButton Label="Orange" DialogAction="orange button clicked"></MBButton>
+                <MBButton Label="Apple" DialogAction="apple button clicked" ButtonStyle="@MBButtonStyle.Text"></MBButton>
+            </Buttons>
+        </MBDialog>
+
+
+        <MBDialog @ref="@Dialog2" Title="General dialog with scrim and escape disabled (using HideAsync)"
+                  ScrimClickAction=""
+                  EscapeKeyAction="">
+            <Body>
+                <p>Please choose a fruit.</p>
+                <p><MBCheckbox @bind-Value="@Check" Label="Check me" /></p>
+            </Body>
+            <Buttons>
+                <MBButton Label="Orange" @onclick="@(() => OnButtonClick("orange notified by @onclick"))"></MBButton>
+                <MBButton Label="Apple" @onclick="@(() => OnButtonClick("orange notified by @onclick"))" ButtonStyle="@MBButtonStyle.Text"></MBButton>
+            </Buttons>
+        </MBDialog>
+
+
+        <MBDialog @ref="@Dialog3" Title="Date Picker Dialog"
+                  OverflowVisible="true">
+            <Body>
+                <p>Set the date.</p>
+                <MBDatePicker Label="The date" @bind-Value="@Date5" SelectInputStyle="MBSelectInputStyle.Outlined" MinDate="@MinDate" MaxDate="@MaxDate"></MBDatePicker>
+            </Body>
+            <Buttons>
+                <MBButton Label="Orange" DialogAction="orange"></MBButton>
+                <MBButton Label="Apple" DialogAction="apple" ButtonStyle="@MBButtonStyle.Text"></MBButton>
+            </Buttons>
+        </MBDialog>
+
+        <MBDialog Title="Log on dialog"
+                  ScrimClickAction=""
+                  EscapeKeyAction=""
+                  @ref="@Dialog4">
+
+            <Body>
+                <EditForm Model="@UserLogon" OnValidSubmit="@Dialog4Submitted" OnInvalidSubmit="@Dialog4Invalid">
+                    <DataAnnotationsValidator />
+
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <MBTextField @bind-Value="@UserLogon.UserID"
+                                         Label="User ID"
+                                         TrailingIcon="person"
+                                         TextInputStyle="@MBTextInputStyle.Outlined"
+                                         ValidationMessageFor="@(() => UserLogon.UserID)"
+                                         style="width: 100%; margin-top: 6px;" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <MBTextField @bind-Value="@UserLogon.Password"
+                                         Label="Password"
+                                         TrailingIcon="lock_outline"
+                                         TextInputStyle="@MBTextInputStyle.Outlined"
+                                         HelperText="Min 8 Characters"
+                                         HelperTextPersistent="true"
+                                         ValidationMessageFor="@(() => UserLogon.Password)"
+                                         type="password"
+                                         style="width: 100%;" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-12" style="text-align: right;">
+                            <MBButton style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                      type="submit"
+                                      Label="Logon" />
+                            <MBButton @onclick="@Dialog4Canceled"
+                                      style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                      Label="Cancel" />
+                        </div>
+                    </div>
+                </EditForm>
+            </Body>
+
+        </MBDialog>
     </PageContent>
 </DemonstrationPage>
-
-
-<MBDialog @ref="@Dialog1"
-          Title="General dialog">
-    <Body>
-        <p>Please choose a fruit.</p>
-        <MBCheckbox @bind-Value="@Check" Label="Check me" />
-        <MBRadioButtonGroup @bind-Value="@RadioButtonResult1"
-                            Items="@StringItems"
-                            Vertical="true"
-                            ItemValidation="@MBItemValidation.DefaultToFirst" />
-    </Body>
-    <Buttons>
-        <MBButton Label="Orange" DialogAction="orange button clicked"></MBButton>
-        <MBButton Label="Apple" DialogAction="apple button clicked" ButtonStyle="@MBButtonStyle.Text"></MBButton>
-    </Buttons>
-</MBDialog>
-
-
-<MBDialog @ref="@Dialog2" Title="General dialog with scrim and escape disabled (using HideAsync)"
-          ScrimClickAction=""
-          EscapeKeyAction="">
-    <Body>
-        <p>Please choose a fruit.</p>
-        <p><MBCheckbox @bind-Value="@Check" Label="Check me" /></p>
-    </Body>
-    <Buttons>
-        <MBButton Label="Orange" @onclick="@(() => OnButtonClick("orange notified by @onclick"))"></MBButton>
-        <MBButton Label="Apple" @onclick="@(() => OnButtonClick("orange notified by @onclick"))" ButtonStyle="@MBButtonStyle.Text"></MBButton>
-    </Buttons>
-</MBDialog>
-
-
-<MBDialog @ref="@Dialog3" Title="Date Picker Dialog"
-          OverflowVisible="true">
-    <Body>
-        <p>Set the date.</p>
-        <MBDatePicker Label="The date" @bind-Value="@Date5" SelectInputStyle="MBSelectInputStyle.Outlined" MinDate="@MinDate" MaxDate="@MaxDate"></MBDatePicker>
-    </Body>
-    <Buttons>
-        <MBButton Label="Orange" DialogAction="orange"></MBButton>
-        <MBButton Label="Apple" DialogAction="apple" ButtonStyle="@MBButtonStyle.Text"></MBButton>
-    </Buttons>
-</MBDialog>
-
-<MBDialog Title="Log on dialog"
-          ScrimClickAction=""
-          EscapeKeyAction=""
-          @ref="@Dialog4">
-
-    <Body>
-        <EditForm Model="@UserLogon" OnValidSubmit="@Dialog4Submitted" OnInvalidSubmit="@Dialog4Invalid">
-            <DataAnnotationsValidator />
-
-            <div class="mdc-layout-grid__inner">
-                <div class="mdc-layout-grid__cell--span-12">
-                    <MBTextField @bind-Value="@UserLogon.UserID"
-                                 Label="User ID"
-                                 TrailingIcon="person"
-                                 TextInputStyle="@MBTextInputStyle.Outlined"
-                                 style="width: 100%; margin-top: 6px;" />
-                    <ValidationMessage For="@(() => UserLogon.UserID)" />
-                </div>
-                <div class="mdc-layout-grid__cell--span-12">
-                    <MBTextField @bind-Value="@UserLogon.Password"
-                                 Label="Password"
-                                 TrailingIcon="lock_outline"
-                                 TextInputStyle="@MBTextInputStyle.Outlined"
-                                 type="password"
-                                 style="width: 100%;" />
-                    <ValidationMessage For="@(() => UserLogon.Password)" />
-                </div>
-                <div class="mdc-layout-grid__cell--span-12" style="text-align: right;">
-                    <MBButton style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                              type="submit"
-                              Label="Logon" />
-                    <MBButton @onclick="@Dialog4Canceled"
-                              style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                              Label="Cancel" />
-                </div>
-            </div>
-        </EditForm>
-    </Body>
-
-</MBDialog>
 
 
 
@@ -259,6 +259,6 @@
 
     {
         [Required(ErrorMessage = "UserID is required")] public string UserID { get; set; }
-        [Required(ErrorMessage = "Password is required")] public string Password { get; set; }
+        [Required(ErrorMessage = "Password is required"), MinLength(8, ErrorMessage = "Password at least 8 characters.")] public string Password { get; set; }
     }
 }

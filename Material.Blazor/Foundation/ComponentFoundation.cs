@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 
 using System;
@@ -18,6 +19,7 @@ namespace Material.Blazor.Internal
 
         [Inject] private protected IJSRuntime JsRuntime { get; set; }
         [Inject] private protected IMBTooltipService TooltipService { get; set; }
+        [Inject] private protected ILogger<ComponentFoundation> Logger { get; set; }
 
 
         [CascadingParameter] protected MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults();
