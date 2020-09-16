@@ -17,6 +17,7 @@ Has the capacity to scale order of magnitude for percentage or [basis points](ht
 - A maximum number of decimal places - if the user types additional dp, standard rounding is applied;
 - Focused and Unfocused magnitude to facilite percentage and basis point input, e.g. 12.5% is entered as text "12.5" rather than "0.125" and displayed either as "12.5" or with percentage formatting as "12.5%" (not available with basis points);
 - Applies [density subsystem](xref:A.Density) - note that filled text fields with denisty of -2 or less ignore labels by design within Material Theme.
+- Renders Blazor validation messages in Material Theme's style. see the [Form Validation Article](xref:A.FormValidation).
 
 &nbsp;
 

@@ -19,7 +19,7 @@
 - name: MBAnimatedNavigation
   topicUid: C.MBAnimatedNavigation
 
-- name: MBAutocomplete
+- name: MBAutocompleteTextField
   topicUid: C.MBAutocompleteTextField
 
 - name: MBButton

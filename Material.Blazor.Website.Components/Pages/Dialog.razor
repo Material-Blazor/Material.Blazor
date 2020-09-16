@@ -101,7 +101,8 @@
         </MBDialog>
 
 
-        <MBDialog @ref="@Dialog2" Title="General dialog with scrim and escape disabled (using HideAsync)"
+        <MBDialog @ref="@Dialog2" 
+                  Title="General dialog with scrim and escape disabled (using HideAsync)"
                   ScrimClickAction=""
                   EscapeKeyAction="">
             <Body>
@@ -115,7 +116,8 @@
         </MBDialog>
 
 
-        <MBDialog @ref="@Dialog3" Title="Date Picker Dialog"
+        <MBDialog @ref="@Dialog3"
+                  Title="Date Picker Dialog"
                   OverflowVisible="true">
             <Body>
                 <p>Set the date.</p>
@@ -127,10 +129,10 @@
             </Buttons>
         </MBDialog>
 
-        <MBDialog Title="Log on dialog"
+        <MBDialog @ref="@Dialog4"
+                  Title="Log on dialog"
                   ScrimClickAction=""
-                  EscapeKeyAction=""
-                  @ref="@Dialog4">
+                  EscapeKeyAction="">
 
             <Body>
                 <EditForm Model="@UserLogon" OnValidSubmit="@Dialog4Submitted" OnInvalidSubmit="@Dialog4Invalid">

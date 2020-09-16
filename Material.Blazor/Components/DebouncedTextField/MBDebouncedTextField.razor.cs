@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components;
 using System;
 using System.Linq.Expressions;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Material.Blazor
 {
@@ -22,14 +23,6 @@ namespace Material.Blazor
         /// Makes the <see cref="HelperText"/> persistent if true.
         /// </summary>
         [Parameter] public bool HelperTextPersistent { get; set; } = false;
-
-
-        /// <summary>
-        /// Delivers Material Theme validation methods from native Blazor validation. Either use this or
-        /// <see cref="ValidationMessage{TValue}"/>, but not both. This parameter takes the same input as
-        /// <see cref="ValidationMessage{TValue}.For"/>.
-        /// </summary>
-        [Parameter] public Expression<Func<object>> ValidationMessageFor { get; set; }
 
 
         /// <summary>
@@ -99,9 +92,10 @@ namespace Material.Blazor
 #nullable restore annotations
 
 
-        private Timer Timer { get; set; }
-        private string CurrentValue { get; set; } = "";
         private int AppliedDebounceInterval => CascadingDefaults.AppliedDebounceInterval(DebounceInterval);
+        private string CurrentValue { get; set; } = "";
+        private Timer Timer { get; set; }
+        private MBTextField TextField { get; set; }
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -129,6 +123,13 @@ namespace Material.Blazor
             _disposed = true;
 
             base.Dispose(disposing);
+        }
+
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            await base.OnAfterRenderAsync(firstRender);
+            TextField.IsValidFormField = false;
         }
 
 

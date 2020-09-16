@@ -13,6 +13,7 @@ A [Material Text Field](https://github.com/material-components/material-componen
 - Similar to [MBTextField](xref:C.MBTextField), bit lacking prefix, suffix or leading and trailing icons;
 - Can set the initial number of rows and columns to display; and
 - Applies [density subsystem](xref:A.Density).
+- Renders Blazor validation messages in Material Theme's style. see the [Form Validation Article](xref:A.FormValidation).
 
 &nbsp;
 

@@ -315,6 +315,7 @@ pre code {
 article a {
     position: relative;
     box-shadow: inset 0 -2px 0 #42a5f5;
+    white-space: nowrap;
     color: var(--app-text-color);
     text-decoration: none;
     transition: 0.15s ease;

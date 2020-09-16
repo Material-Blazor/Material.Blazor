@@ -170,11 +170,6 @@ namespace Material.Blazor
                     separator = "<br />";
                 }
 
-                if (separator != "")
-                {
-                    validationMessage += separator + "Extras";
-                }
-
                 InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("material_blazor.textField.setHelperText", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
             }
         }

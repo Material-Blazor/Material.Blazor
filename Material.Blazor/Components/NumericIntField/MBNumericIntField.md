@@ -6,7 +6,10 @@ title: MBNumericIntField
 
 ## Summary
 
-An integer variant of [MBNumericDoubleField](xref:C.MBNumericDoubleField). Applies [density subsystem](xref:A.Density) - note that filled text fields with denisty of -2 or less ignore labels by design within Material Theme.
+An integer variant of [MBNumericDoubleField](xref:C.MBNumericDoubleField).
+
+- Applies [density subsystem](xref:A.Density) - note that filled text fields with denisty of -2 or less ignore labels by design within Material Theme.
+- Renders Blazor validation messages in Material Theme's style. see the [Form Validation Article](xref:A.FormValidation).
 
 &nbsp;
 

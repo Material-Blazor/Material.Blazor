@@ -129,6 +129,14 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
+        /// Performs validation only if true. Used by <see cref="MBDebouncedTextField"/> to disable
+        /// form validation for the embedded <see cref="MBTextField"/>, because a debounced field
+        /// should not be in a form.
+        /// </summary>
+        internal bool IsValidFormField { get; set; } = true;
+
+
+        /// <summary>
         /// Gets or sets the value of the component. To be used by Material.Blazor components for binding to native components, or to set the value
         /// in response to an event arising from the native component. This property fires a change event to the consumer in contrast the 
         /// <see cref="Value"/> parameter. As a result Material.Blazor components must always change the value by using this rather than <see cref="Value"/>
@@ -146,7 +154,12 @@ namespace Material.Blazor.Internal
                     _debouncedUnderlyingValue = value;
                     _underlyingValue = value;
                     _ = ValueChanged.InvokeAsync(value);
-                    EditContext?.NotifyFieldChanged(FieldIdentifier);
+
+                    if (IsValidFormField)
+                    {
+                        EditContext?.NotifyFieldChanged(FieldIdentifier);
+                    }
+
                     StateHasChanged();
                 }
             }
@@ -182,7 +195,7 @@ namespace Material.Blazor.Internal
                 {
                     parsingFailed = true;
 
-                    if (EditContext != null)
+                    if (EditContext != null && IsValidFormField)
                     {
                         if (_parsingValidationMessages == null)
                         {
@@ -243,8 +256,7 @@ namespace Material.Blazor.Internal
         /// Gets a string that indicates the status of the field being edited. This will include
         /// some combination of "modified", "valid", or "invalid", depending on the status of the field.
         /// </summary>
-        protected string FieldClass
-            => EditContext?.FieldCssClass(FieldIdentifier) ?? string.Empty;
+        protected string FieldClass => IsValidFormField ? (EditContext?.FieldCssClass(FieldIdentifier) ?? string.Empty) : string.Empty;
 
 
         /// <para>

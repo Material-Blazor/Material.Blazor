@@ -2,7 +2,8 @@
 @inherits InputComponentFoundation<string>
 
 
-<MBTextField @attributes="AttributesToSplat()"
+<MBTextField @ref="@TextField"
+             @attributes="AttributesToSplat()"
              Label="@Label"
              Prefix="@Prefix"
              Suffix="@Suffix"
@@ -14,6 +15,5 @@
              TextAlignStyle="@TextAlignStyle"
              HelperText="@HelperText"
              HelperTextPersistent="@HelperTextPersistent"
-             ValidationMessageFor="@ValidationMessageFor"
              @oninput="@OnTextInput"
              Disabled=@AppliedDisabled />
