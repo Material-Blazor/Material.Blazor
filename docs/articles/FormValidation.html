@@ -5,18 +5,18 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>ReleaseNotes </title>
+    <title>FormValidation </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="ReleaseNotes ">
+    <meta name="title" content="FormValidation ">
     <meta name="generator" content="docfx 2.56.1.0">
     
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="stylesheet" href="styles/docfx.vendor.css">
-    <link rel="stylesheet" href="styles/docfx.css">
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
-    <meta property="docfx:navrel" content="toc.html">
-    <meta property="docfx:tocrel" content="articles/toc.html">
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
     
     
     
@@ -45,8 +45,8 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="index.html">
-                <img id="logo" class="svg" src="logo.svg" alt="">
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -77,24 +77,29 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="A.ReleaseNotes">
-<h1 id="release-notes">Release Notes</h1>
+            <article class="content wrap" id="_content" data-uid="A.FormValidation">
+<h1 id="form-validation">Form Validation</h1>
 
-<h4 id="100rc2"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-RC.2">1.0.0.RC.2</a></h4>
-<p>15 September 2020</p>
-<ul>
-<li>Corrects tooltip javascript initiation bug.</li>
-<li>Updates website to ASP.NET 5 rc 1.</li>
-<li>Re-enables autocomplete demonstration due to REGEX fix in ASP.NET 5 rc 1.</li>
-<li>Re-order attributes in MBButton to make <code>type=&quot;&quot;</code> attribute splat correctly.</li>
-<li>Minor upgrades to red round and varied themes.</li>
-</ul>
-<br>
-<h4 id="100rc1"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-RC.1">1.0.0.RC.1</a></h4>
-<p>14 September 2020</p>
-<ul>
-<li>First 1.0.0 release candidate having migrated from prior Blazor MDC previews.</li>
-</ul>
+<h2 id="summary">Summary</h2>
+<p>Material.Blazor integrates native Blazor form validation with Material Theme's validation methodology. Usually in Blazor apps you use the <code>ValidationMessage</code> component
+to display validation results and you can still do this.</p>
+<p>We have given you an alternative however, with a <code>ValidationMessageFor</code> parameter on MBAutocompleteTextField, MBNumericDoubleField, MBNumericIntField, MBTextArea and MBTextField.
+This parameter takes the same value as the one you would pass to the vanilla Blazor <code>ValidationMessage</code> component. Your options are below.</p>
+<h2 id="materialblazor-validation-messages">Material.Blazor Validation Messages</h2>
+<p>The new Material.Blazor validation mechanism is built into the components mentioned above. When there's a validation error outlines take the invalid color (usually red) and
+the text field's label shakes.</p>
+<pre><code class="lang-html">&lt;MBTextField @bind-Value=&quot;@Model.Text&quot;
+             Label=&quot;Text Field&quot;
+             TextInputStyle=&quot;@MBTextInputStyle.Outlined&quot;
+             ValidationMessageFor=&quot;@(() =&gt; Model.Text)&quot; /&gt;
+</code></pre>
+<h2 id="standard-blazor-validation-messages">Standard Blazor Validation Messages</h2>
+<p>If you prefer, you can continue to use standard Blazor validation messages.</p>
+<pre><code class="lang-html">&lt;MBTextField @bind-Value=&quot;@Model.Text&quot;
+             Label=&quot;Text Field&quot;
+             TextInputStyle=&quot;@MBTextInputStyle.Outlined&quot; /&gt;
+&lt;ValidationMessage For=&quot;@(() =&gt; Model.Text)&quot; /&gt;
+</code></pre>
 </article>
           </div>
           
@@ -103,7 +108,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/7c4b544d2ca03c906480106b8496304bd2474126/ReleaseNotes.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/fde59be9cee48c66f9dca61efe69bc771f42d466/articles/FormValidation.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
@@ -129,8 +134,8 @@
       </footer>
     </div>
     
-    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="styles/docfx.js"></script>
-    <script type="text/javascript" src="styles/main.js"></script>
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
   </body>
 </html>

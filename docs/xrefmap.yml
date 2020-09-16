@@ -22,6 +22,9 @@ references:
 - uid: A.DevelopmentEnvironment
   name: DevelopmentEnvironment
   href: articles/DevelopmentEnvironment.html
+- uid: A.FormValidation
+  name: FormValidation
+  href: articles/FormValidation.html
 - uid: A.Icon
   name: Icon
   href: articles/Icon.html
@@ -42,10 +45,13 @@ references:
   href: articles/Principles.html
 - uid: A.ReleaseNotes
   name: ReleaseNotes
-  href: ReleaseNotes.html
+  href: articles/ReleaseNotes.html
 - uid: A.Services
   name: Services
   href: articles/Services.html
+- uid: A.ThemingAndCSS
+  name: ThemingAndCSS
+  href: articles/ThemingAndCSS.html
 - uid: A.Toast
   name: Toast
   href: articles/Toast.html
@@ -115,9 +121,18 @@ references:
 - uid: C.MBList
   name: MBList
   href: Material.Blazor/Components/List/MBList.html
+- uid: C.MBListDivider
+  name: MBListDivider
+  href: Material.Blazor/Components/ListDivider/MBListDivider.html
+- uid: C.MBListItem
+  name: MBListItem
+  href: Material.Blazor/Components/ListItem/MBListItem.html
 - uid: C.MBMenu
   name: MBMenu
   href: Material.Blazor/Components/Menu/MBMenu.html
+- uid: C.MBMenuSelectionGroup
+  name: MBMenuSelectionGroup
+  href: Material.Blazor/Components/MenuSelectionGroup/MBMenuSelectionGroup.html
 - uid: C.MBNumericDoubleField
   name: MBNumericDoubleField
   href: Material.Blazor/Components/NumericDoubleField/MBNumericDoubleField.html
@@ -1398,6 +1413,32 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBAutocompleteTextField.Dispose
   nameWithType: MBAutocompleteTextField.Dispose
+- uid: Material.Blazor.MBAutocompleteTextField.HelperText
+  name: HelperText
+  href: api/Material.Blazor.MBAutocompleteTextField.html#Material_Blazor_MBAutocompleteTextField_HelperText
+  commentId: P:Material.Blazor.MBAutocompleteTextField.HelperText
+  fullName: Material.Blazor.MBAutocompleteTextField.HelperText
+  nameWithType: MBAutocompleteTextField.HelperText
+- uid: Material.Blazor.MBAutocompleteTextField.HelperText*
+  name: HelperText
+  href: api/Material.Blazor.MBAutocompleteTextField.html#Material_Blazor_MBAutocompleteTextField_HelperText_
+  commentId: Overload:Material.Blazor.MBAutocompleteTextField.HelperText
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteTextField.HelperText
+  nameWithType: MBAutocompleteTextField.HelperText
+- uid: Material.Blazor.MBAutocompleteTextField.HelperTextPersistent
+  name: HelperTextPersistent
+  href: api/Material.Blazor.MBAutocompleteTextField.html#Material_Blazor_MBAutocompleteTextField_HelperTextPersistent
+  commentId: P:Material.Blazor.MBAutocompleteTextField.HelperTextPersistent
+  fullName: Material.Blazor.MBAutocompleteTextField.HelperTextPersistent
+  nameWithType: MBAutocompleteTextField.HelperTextPersistent
+- uid: Material.Blazor.MBAutocompleteTextField.HelperTextPersistent*
+  name: HelperTextPersistent
+  href: api/Material.Blazor.MBAutocompleteTextField.html#Material_Blazor_MBAutocompleteTextField_HelperTextPersistent_
+  commentId: Overload:Material.Blazor.MBAutocompleteTextField.HelperTextPersistent
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteTextField.HelperTextPersistent
+  nameWithType: MBAutocompleteTextField.HelperTextPersistent
 - uid: Material.Blazor.MBAutocompleteTextField.IconFoundry
   name: IconFoundry
   href: api/Material.Blazor.MBAutocompleteTextField.html#Material_Blazor_MBAutocompleteTextField_IconFoundry
@@ -1567,6 +1608,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBAutocompleteTextField.TrailingIcon
   nameWithType: MBAutocompleteTextField.TrailingIcon
+- uid: Material.Blazor.MBAutocompleteTextField.ValidationMessageFor
+  name: ValidationMessageFor
+  href: api/Material.Blazor.MBAutocompleteTextField.html#Material_Blazor_MBAutocompleteTextField_ValidationMessageFor
+  commentId: P:Material.Blazor.MBAutocompleteTextField.ValidationMessageFor
+  fullName: Material.Blazor.MBAutocompleteTextField.ValidationMessageFor
+  nameWithType: MBAutocompleteTextField.ValidationMessageFor
+- uid: Material.Blazor.MBAutocompleteTextField.ValidationMessageFor*
+  name: ValidationMessageFor
+  href: api/Material.Blazor.MBAutocompleteTextField.html#Material_Blazor_MBAutocompleteTextField_ValidationMessageFor_
+  commentId: Overload:Material.Blazor.MBAutocompleteTextField.ValidationMessageFor
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteTextField.ValidationMessageFor
+  nameWithType: MBAutocompleteTextField.ValidationMessageFor
 - uid: Material.Blazor.MBButton
   name: MBButton
   href: api/Material.Blazor.MBButton.html
@@ -2947,6 +3001,32 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBDebouncedTextField.Dispose
   nameWithType: MBDebouncedTextField.Dispose
+- uid: Material.Blazor.MBDebouncedTextField.HelperText
+  name: HelperText
+  href: api/Material.Blazor.MBDebouncedTextField.html#Material_Blazor_MBDebouncedTextField_HelperText
+  commentId: P:Material.Blazor.MBDebouncedTextField.HelperText
+  fullName: Material.Blazor.MBDebouncedTextField.HelperText
+  nameWithType: MBDebouncedTextField.HelperText
+- uid: Material.Blazor.MBDebouncedTextField.HelperText*
+  name: HelperText
+  href: api/Material.Blazor.MBDebouncedTextField.html#Material_Blazor_MBDebouncedTextField_HelperText_
+  commentId: Overload:Material.Blazor.MBDebouncedTextField.HelperText
+  isSpec: "True"
+  fullName: Material.Blazor.MBDebouncedTextField.HelperText
+  nameWithType: MBDebouncedTextField.HelperText
+- uid: Material.Blazor.MBDebouncedTextField.HelperTextPersistent
+  name: HelperTextPersistent
+  href: api/Material.Blazor.MBDebouncedTextField.html#Material_Blazor_MBDebouncedTextField_HelperTextPersistent
+  commentId: P:Material.Blazor.MBDebouncedTextField.HelperTextPersistent
+  fullName: Material.Blazor.MBDebouncedTextField.HelperTextPersistent
+  nameWithType: MBDebouncedTextField.HelperTextPersistent
+- uid: Material.Blazor.MBDebouncedTextField.HelperTextPersistent*
+  name: HelperTextPersistent
+  href: api/Material.Blazor.MBDebouncedTextField.html#Material_Blazor_MBDebouncedTextField_HelperTextPersistent_
+  commentId: Overload:Material.Blazor.MBDebouncedTextField.HelperTextPersistent
+  isSpec: "True"
+  fullName: Material.Blazor.MBDebouncedTextField.HelperTextPersistent
+  nameWithType: MBDebouncedTextField.HelperTextPersistent
 - uid: Material.Blazor.MBDebouncedTextField.IconFoundry
   name: IconFoundry
   href: api/Material.Blazor.MBDebouncedTextField.html#Material_Blazor_MBDebouncedTextField_IconFoundry
@@ -2986,6 +3066,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBDebouncedTextField.LeadingIcon
   nameWithType: MBDebouncedTextField.LeadingIcon
+- uid: Material.Blazor.MBDebouncedTextField.OnAfterRenderAsync(System.Boolean)
+  name: OnAfterRenderAsync(Boolean)
+  href: api/Material.Blazor.MBDebouncedTextField.html#Material_Blazor_MBDebouncedTextField_OnAfterRenderAsync_System_Boolean_
+  commentId: M:Material.Blazor.MBDebouncedTextField.OnAfterRenderAsync(System.Boolean)
+  fullName: Material.Blazor.MBDebouncedTextField.OnAfterRenderAsync(System.Boolean)
+  nameWithType: MBDebouncedTextField.OnAfterRenderAsync(Boolean)
+- uid: Material.Blazor.MBDebouncedTextField.OnAfterRenderAsync*
+  name: OnAfterRenderAsync
+  href: api/Material.Blazor.MBDebouncedTextField.html#Material_Blazor_MBDebouncedTextField_OnAfterRenderAsync_
+  commentId: Overload:Material.Blazor.MBDebouncedTextField.OnAfterRenderAsync
+  isSpec: "True"
+  fullName: Material.Blazor.MBDebouncedTextField.OnAfterRenderAsync
+  nameWithType: MBDebouncedTextField.OnAfterRenderAsync
 - uid: Material.Blazor.MBDebouncedTextField.OnInitialized
   name: OnInitialized()
   href: api/Material.Blazor.MBDebouncedTextField.html#Material_Blazor_MBDebouncedTextField_OnInitialized
@@ -4769,6 +4862,32 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBNumericDoubleField.FocusedMagnitude
   nameWithType: MBNumericDoubleField.FocusedMagnitude
+- uid: Material.Blazor.MBNumericDoubleField.HelperText
+  name: HelperText
+  href: api/Material.Blazor.MBNumericDoubleField.html#Material_Blazor_MBNumericDoubleField_HelperText
+  commentId: P:Material.Blazor.MBNumericDoubleField.HelperText
+  fullName: Material.Blazor.MBNumericDoubleField.HelperText
+  nameWithType: MBNumericDoubleField.HelperText
+- uid: Material.Blazor.MBNumericDoubleField.HelperText*
+  name: HelperText
+  href: api/Material.Blazor.MBNumericDoubleField.html#Material_Blazor_MBNumericDoubleField_HelperText_
+  commentId: Overload:Material.Blazor.MBNumericDoubleField.HelperText
+  isSpec: "True"
+  fullName: Material.Blazor.MBNumericDoubleField.HelperText
+  nameWithType: MBNumericDoubleField.HelperText
+- uid: Material.Blazor.MBNumericDoubleField.HelperTextPersistent
+  name: HelperTextPersistent
+  href: api/Material.Blazor.MBNumericDoubleField.html#Material_Blazor_MBNumericDoubleField_HelperTextPersistent
+  commentId: P:Material.Blazor.MBNumericDoubleField.HelperTextPersistent
+  fullName: Material.Blazor.MBNumericDoubleField.HelperTextPersistent
+  nameWithType: MBNumericDoubleField.HelperTextPersistent
+- uid: Material.Blazor.MBNumericDoubleField.HelperTextPersistent*
+  name: HelperTextPersistent
+  href: api/Material.Blazor.MBNumericDoubleField.html#Material_Blazor_MBNumericDoubleField_HelperTextPersistent_
+  commentId: Overload:Material.Blazor.MBNumericDoubleField.HelperTextPersistent
+  isSpec: "True"
+  fullName: Material.Blazor.MBNumericDoubleField.HelperTextPersistent
+  nameWithType: MBNumericDoubleField.HelperTextPersistent
 - uid: Material.Blazor.MBNumericDoubleField.IconFoundry
   name: IconFoundry
   href: api/Material.Blazor.MBNumericDoubleField.html#Material_Blazor_MBNumericDoubleField_IconFoundry
@@ -4964,6 +5083,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBNumericDoubleField.UnfocusedMagnitude
   nameWithType: MBNumericDoubleField.UnfocusedMagnitude
+- uid: Material.Blazor.MBNumericDoubleField.ValidationMessageFor
+  name: ValidationMessageFor
+  href: api/Material.Blazor.MBNumericDoubleField.html#Material_Blazor_MBNumericDoubleField_ValidationMessageFor
+  commentId: P:Material.Blazor.MBNumericDoubleField.ValidationMessageFor
+  fullName: Material.Blazor.MBNumericDoubleField.ValidationMessageFor
+  nameWithType: MBNumericDoubleField.ValidationMessageFor
+- uid: Material.Blazor.MBNumericDoubleField.ValidationMessageFor*
+  name: ValidationMessageFor
+  href: api/Material.Blazor.MBNumericDoubleField.html#Material_Blazor_MBNumericDoubleField_ValidationMessageFor_
+  commentId: Overload:Material.Blazor.MBNumericDoubleField.ValidationMessageFor
+  isSpec: "True"
+  fullName: Material.Blazor.MBNumericDoubleField.ValidationMessageFor
+  nameWithType: MBNumericDoubleField.ValidationMessageFor
 - uid: Material.Blazor.MBNumericInputMagnitude
   name: MBNumericInputMagnitude
   href: api/Material.Blazor.MBNumericInputMagnitude.html
@@ -5020,6 +5152,32 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBNumericIntField.FocusedMagnitude
   nameWithType: MBNumericIntField.FocusedMagnitude
+- uid: Material.Blazor.MBNumericIntField.HelperText
+  name: HelperText
+  href: api/Material.Blazor.MBNumericIntField.html#Material_Blazor_MBNumericIntField_HelperText
+  commentId: P:Material.Blazor.MBNumericIntField.HelperText
+  fullName: Material.Blazor.MBNumericIntField.HelperText
+  nameWithType: MBNumericIntField.HelperText
+- uid: Material.Blazor.MBNumericIntField.HelperText*
+  name: HelperText
+  href: api/Material.Blazor.MBNumericIntField.html#Material_Blazor_MBNumericIntField_HelperText_
+  commentId: Overload:Material.Blazor.MBNumericIntField.HelperText
+  isSpec: "True"
+  fullName: Material.Blazor.MBNumericIntField.HelperText
+  nameWithType: MBNumericIntField.HelperText
+- uid: Material.Blazor.MBNumericIntField.HelperTextPersistent
+  name: HelperTextPersistent
+  href: api/Material.Blazor.MBNumericIntField.html#Material_Blazor_MBNumericIntField_HelperTextPersistent
+  commentId: P:Material.Blazor.MBNumericIntField.HelperTextPersistent
+  fullName: Material.Blazor.MBNumericIntField.HelperTextPersistent
+  nameWithType: MBNumericIntField.HelperTextPersistent
+- uid: Material.Blazor.MBNumericIntField.HelperTextPersistent*
+  name: HelperTextPersistent
+  href: api/Material.Blazor.MBNumericIntField.html#Material_Blazor_MBNumericIntField_HelperTextPersistent_
+  commentId: Overload:Material.Blazor.MBNumericIntField.HelperTextPersistent
+  isSpec: "True"
+  fullName: Material.Blazor.MBNumericIntField.HelperTextPersistent
+  nameWithType: MBNumericIntField.HelperTextPersistent
 - uid: Material.Blazor.MBNumericIntField.IconFoundry
   name: IconFoundry
   href: api/Material.Blazor.MBNumericIntField.html#Material_Blazor_MBNumericIntField_IconFoundry
@@ -5189,6 +5347,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBNumericIntField.UnfocusedMagnitude
   nameWithType: MBNumericIntField.UnfocusedMagnitude
+- uid: Material.Blazor.MBNumericIntField.ValidationMessageFor
+  name: ValidationMessageFor
+  href: api/Material.Blazor.MBNumericIntField.html#Material_Blazor_MBNumericIntField_ValidationMessageFor
+  commentId: P:Material.Blazor.MBNumericIntField.ValidationMessageFor
+  fullName: Material.Blazor.MBNumericIntField.ValidationMessageFor
+  nameWithType: MBNumericIntField.ValidationMessageFor
+- uid: Material.Blazor.MBNumericIntField.ValidationMessageFor*
+  name: ValidationMessageFor
+  href: api/Material.Blazor.MBNumericIntField.html#Material_Blazor_MBNumericIntField_ValidationMessageFor_
+  commentId: Overload:Material.Blazor.MBNumericIntField.ValidationMessageFor
+  isSpec: "True"
+  fullName: Material.Blazor.MBNumericIntField.ValidationMessageFor
+  nameWithType: MBNumericIntField.ValidationMessageFor
 - uid: Material.Blazor.MBPagedDataList`1
   name: MBPagedDataList<TItem>
   href: api/Material.Blazor.MBPagedDataList-1.html
@@ -6859,6 +7030,32 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBTextArea.Density
   nameWithType: MBTextArea.Density
+- uid: Material.Blazor.MBTextArea.HelperText
+  name: HelperText
+  href: api/Material.Blazor.MBTextArea.html#Material_Blazor_MBTextArea_HelperText
+  commentId: P:Material.Blazor.MBTextArea.HelperText
+  fullName: Material.Blazor.MBTextArea.HelperText
+  nameWithType: MBTextArea.HelperText
+- uid: Material.Blazor.MBTextArea.HelperText*
+  name: HelperText
+  href: api/Material.Blazor.MBTextArea.html#Material_Blazor_MBTextArea_HelperText_
+  commentId: Overload:Material.Blazor.MBTextArea.HelperText
+  isSpec: "True"
+  fullName: Material.Blazor.MBTextArea.HelperText
+  nameWithType: MBTextArea.HelperText
+- uid: Material.Blazor.MBTextArea.HelperTextPersistent
+  name: HelperTextPersistent
+  href: api/Material.Blazor.MBTextArea.html#Material_Blazor_MBTextArea_HelperTextPersistent
+  commentId: P:Material.Blazor.MBTextArea.HelperTextPersistent
+  fullName: Material.Blazor.MBTextArea.HelperTextPersistent
+  nameWithType: MBTextArea.HelperTextPersistent
+- uid: Material.Blazor.MBTextArea.HelperTextPersistent*
+  name: HelperTextPersistent
+  href: api/Material.Blazor.MBTextArea.html#Material_Blazor_MBTextArea_HelperTextPersistent_
+  commentId: Overload:Material.Blazor.MBTextArea.HelperTextPersistent
+  isSpec: "True"
+  fullName: Material.Blazor.MBTextArea.HelperTextPersistent
+  nameWithType: MBTextArea.HelperTextPersistent
 - uid: Material.Blazor.MBTextArea.Label
   name: Label
   href: api/Material.Blazor.MBTextArea.html#Material_Blazor_MBTextArea_Label
@@ -6950,6 +7147,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBTextArea.TextInputStyle
   nameWithType: MBTextArea.TextInputStyle
+- uid: Material.Blazor.MBTextArea.ValidationMessageFor
+  name: ValidationMessageFor
+  href: api/Material.Blazor.MBTextArea.html#Material_Blazor_MBTextArea_ValidationMessageFor
+  commentId: P:Material.Blazor.MBTextArea.ValidationMessageFor
+  fullName: Material.Blazor.MBTextArea.ValidationMessageFor
+  nameWithType: MBTextArea.ValidationMessageFor
+- uid: Material.Blazor.MBTextArea.ValidationMessageFor*
+  name: ValidationMessageFor
+  href: api/Material.Blazor.MBTextArea.html#Material_Blazor_MBTextArea_ValidationMessageFor_
+  commentId: Overload:Material.Blazor.MBTextArea.ValidationMessageFor
+  isSpec: "True"
+  fullName: Material.Blazor.MBTextArea.ValidationMessageFor
+  nameWithType: MBTextArea.ValidationMessageFor
 - uid: Material.Blazor.MBTextField
   name: MBTextField
   href: api/Material.Blazor.MBTextField.html
@@ -6969,6 +7179,45 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBTextField.Density
   nameWithType: MBTextField.Density
+- uid: Material.Blazor.MBTextField.Dispose(System.Boolean)
+  name: Dispose(Boolean)
+  href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_Dispose_System_Boolean_
+  commentId: M:Material.Blazor.MBTextField.Dispose(System.Boolean)
+  fullName: Material.Blazor.MBTextField.Dispose(System.Boolean)
+  nameWithType: MBTextField.Dispose(Boolean)
+- uid: Material.Blazor.MBTextField.Dispose*
+  name: Dispose
+  href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_Dispose_
+  commentId: Overload:Material.Blazor.MBTextField.Dispose
+  isSpec: "True"
+  fullName: Material.Blazor.MBTextField.Dispose
+  nameWithType: MBTextField.Dispose
+- uid: Material.Blazor.MBTextField.HelperText
+  name: HelperText
+  href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_HelperText
+  commentId: P:Material.Blazor.MBTextField.HelperText
+  fullName: Material.Blazor.MBTextField.HelperText
+  nameWithType: MBTextField.HelperText
+- uid: Material.Blazor.MBTextField.HelperText*
+  name: HelperText
+  href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_HelperText_
+  commentId: Overload:Material.Blazor.MBTextField.HelperText
+  isSpec: "True"
+  fullName: Material.Blazor.MBTextField.HelperText
+  nameWithType: MBTextField.HelperText
+- uid: Material.Blazor.MBTextField.HelperTextPersistent
+  name: HelperTextPersistent
+  href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_HelperTextPersistent
+  commentId: P:Material.Blazor.MBTextField.HelperTextPersistent
+  fullName: Material.Blazor.MBTextField.HelperTextPersistent
+  nameWithType: MBTextField.HelperTextPersistent
+- uid: Material.Blazor.MBTextField.HelperTextPersistent*
+  name: HelperTextPersistent
+  href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_HelperTextPersistent_
+  commentId: Overload:Material.Blazor.MBTextField.HelperTextPersistent
+  isSpec: "True"
+  fullName: Material.Blazor.MBTextField.HelperTextPersistent
+  nameWithType: MBTextField.HelperTextPersistent
 - uid: Material.Blazor.MBTextField.IconFoundry
   name: IconFoundry
   href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_IconFoundry
@@ -7125,6 +7374,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBTextField.TrailingIcon
   nameWithType: MBTextField.TrailingIcon
+- uid: Material.Blazor.MBTextField.ValidationMessageFor
+  name: ValidationMessageFor
+  href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_ValidationMessageFor
+  commentId: P:Material.Blazor.MBTextField.ValidationMessageFor
+  fullName: Material.Blazor.MBTextField.ValidationMessageFor
+  nameWithType: MBTextField.ValidationMessageFor
+- uid: Material.Blazor.MBTextField.ValidationMessageFor*
+  name: ValidationMessageFor
+  href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_ValidationMessageFor_
+  commentId: Overload:Material.Blazor.MBTextField.ValidationMessageFor
+  isSpec: "True"
+  fullName: Material.Blazor.MBTextField.ValidationMessageFor
+  nameWithType: MBTextField.ValidationMessageFor
 - uid: Material.Blazor.MBTextInputStyle
   name: MBTextInputStyle
   href: api/Material.Blazor.MBTextInputStyle.html

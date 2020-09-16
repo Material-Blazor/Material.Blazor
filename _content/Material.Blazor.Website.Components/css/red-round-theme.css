@@ -11037,16 +11037,18 @@ app {
 */
 a {
   position: relative;
-  z-index: 1;
+  box-shadow: inset 0 -2px 0 #4dd0e1;
   display: inline-flex;
-  padding-bottom: 0.25rem;
+  z-index: 1;
   color: inherit;
   text-decoration: none;
   transition: 0.15s ease;
 }
 
 a:hover {
+  box-shadow: none;
   color: #000;
+  text-decoration: none;
 }
 
 a::after {
@@ -11054,9 +11056,9 @@ a::after {
   background: #4dd0e1;
   position: absolute;
   left: -2px;
-  bottom: 3px;
+  bottom: 0;
   width: calc(100% + 4px);
-  height: 4px;
+  height: 0;
   z-index: -1;
   transition: 0.15s ease;
 }
