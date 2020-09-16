@@ -47,7 +47,7 @@ This mechanism is also handled in the Material.Blazor's internal `InputComponent
 ## Dispose
 
 All components that receive notification from Material Components Web javascript via JSInterop pass a `DotNetObjectReference` to JSInterop. This reference needs
-to be disposed, e.g. [MBAutocompleteTextField](xref:https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/AutocompleteTextField/MBAutocompleteTextField.razor.cs#L166).
+to be disposed, e.g. [MBAutocompleteTextField](https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/AutocompleteTextField/MBAutocompleteTextField.razor.cs#L166).
 
 ## Namespaces
 

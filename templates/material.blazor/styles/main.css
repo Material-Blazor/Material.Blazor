@@ -312,28 +312,32 @@ pre code {
     white-space: pre !important;
 }
 
-/* a {
+article a {
     position: relative;
-    z-index: 1;
-    display: inline-flex;
-    padding-bottom: .25rem;
+    box-shadow: inset 0 -2px 0 #42a5f5;
     color: var(--app-text-color);
     text-decoration: none;
+    transition: 0.15s ease;
 }
 
-    a::after {
-        content: "";
-        background: #1e88e5;
-        opacity: 0.2;
-        position: absolute;
-        left: -2px;
-        bottom: 3px;
-        width: calc(100% + 4px);
-        height: 4px;
-        z-index: -1;
-        transition: 0.15s ease;
-    }
+article a:hover {
+    box-shadow: inset 0 -2px 0 #bbdefb;
+    color: var(--app-text-color);
+    text-decoration: none;
+} 
 
-    a:hover:after {
-        height: calc(100% - 3px);
-    } */
+article a::after {
+    content: "";
+    background: #bbdefb;
+    position: absolute;
+    left: -2px;
+    bottom: 0;
+    width: calc(100% + 4px);
+    height: 0;
+    z-index: -1;
+    transition: 0.15s ease;
+}
+
+article a:hover:after {
+    height: 100%;
+}
