@@ -292,8 +292,13 @@ window.material_blazor = {
     },
 
     textField: {
-        init: function (elem) {
+        init: function (elem, helperTextElem, helperText, helperTextPersistent) {
             elem._textField = mdc.textField.MDCTextField.attachTo(elem);
+
+            if (helperText !== "") {
+                elem._helperText = mdc.textField.MDCTextFieldHelperText.attachTo(helperTextElem);
+                elem._helperText.foundation.setPersistent(helperTextPersistent);
+            }
         },
 
         select: function (inputElem) {

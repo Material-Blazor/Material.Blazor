@@ -16,6 +16,18 @@ namespace Material.Blazor
     {
 #nullable enable annotations
         /// <summary>
+        /// Helper text that is displayed either with focus or persistently with <see cref="HelperTextPersistent"/>.
+        /// </summary>
+        [Parameter] public string HelperText { get; set; } = "";
+
+
+        /// <summary>
+        /// Makes the <see cref="HelperText"/> persistent if true.
+        /// </summary>
+        [Parameter] public bool HelperTextPersistent { get; set; } = false;
+
+
+        /// <summary>
         /// The text input style.
         /// <para>Overrides <see cref="MBCascadingDefaults.TextInputStyle"/></para>
         /// </summary>
@@ -90,14 +102,18 @@ namespace Material.Blazor
         internal bool SelectAllText { get; set; } = false;
 
 
+        private MBDensity AppliedDensity => CascadingDefaults.AppliedTextFieldDensity(Density);
         private MBTextInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
         private string AppliedTextInputStyleClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
-        private MBDensity AppliedDensity => CascadingDefaults.AppliedTextFieldDensity(Density);
-        private ElementReference InputReference { get; set; }
         private string FloatingLabelClass { get; set; }
+        private ElementReference InputReference { get; set; }
+        private ElementReference HelperTextReference { get; set; }
+        private bool HasHelperText => !string.IsNullOrWhiteSpace(HelperText);
 
         
         private readonly string labelId = Utilities.GenerateUniqueElementName();
+        private readonly string helperTextId = Utilities.GenerateUniqueElementName();
+
 
         private MBCascadingDefaults.DensityInfo DensityInfo
         {
@@ -136,6 +152,13 @@ namespace Material.Blazor
             if (!string.IsNullOrWhiteSpace(Label))
             {
                 ComponentPureHtmlAttributes.Add("aria-label", Label);
+                ComponentPureHtmlAttributes.Add("aria-labelledby", labelId);
+            }
+
+            if (HasHelperText)
+            {
+                ComponentPureHtmlAttributes.Add("aria-controls", helperTextId);
+                ComponentPureHtmlAttributes.Add("aria-describedby", helperTextId);
             }
 
             FloatingLabelClass = string.IsNullOrEmpty(ReportingValue) ? "" : "mdc-floating-label--float-above";
@@ -174,7 +197,7 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("material_blazor.textField.init", ElementReference);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("material_blazor.textField.init", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent);
 
 
         /// <summary>

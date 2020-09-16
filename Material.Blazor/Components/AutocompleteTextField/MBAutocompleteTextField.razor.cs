@@ -37,6 +37,18 @@ namespace Material.Blazor
 
 #nullable enable annotations
         /// <summary>
+        /// Helper text that is displayed either with focus or persistently with <see cref="HelperTextPersistent"/>.
+        /// </summary>
+        [Parameter] public string HelperText { get; set; } = "";
+
+
+        /// <summary>
+        /// Makes the <see cref="HelperText"/> persistent if true.
+        /// </summary>
+        [Parameter] public bool HelperTextPersistent { get; set; } = false;
+
+
+        /// <summary>
         /// The text input style.
         /// <para>Overrides <see cref="MBCascadingDefaults.TextInputStyle"/></para>
         /// </summary>

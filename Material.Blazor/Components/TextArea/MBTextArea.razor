@@ -12,7 +12,7 @@
 
     <span class="mdc-text-field__resizer">
         <textarea @attributes="@AttributesToSplat(SplatType.ExcludeIdClassAndStyle)"
-                  id="@id"
+                  id="@CrossReferenceId"
                   class="mdc-text-field__input @AppliedTextInputStyleClass @FieldClass"
                   @bind="@ReportingValue"
                   aria-labelledby="@labelId"
@@ -46,3 +46,15 @@
         <span class="mdc-line-ripple"></span>
     }
 </label>
+
+@if (HasHelperText)
+{
+    <div class="mdc-text-field-helper-line">
+        <div @ref="@HelperTextReference"
+             class="mdc-text-field-helper-text"
+             id="@helperTextId"
+             aria-hidden="true">
+            @HelperText
+        </div>
+    </div>
+}

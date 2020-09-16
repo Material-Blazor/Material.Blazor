@@ -2,7 +2,7 @@
 @inherits InputComponentFoundation<string>
 
 
-<label @ref="ElementReference"
+<label @ref="@ElementReference"
        @attributes="@AttributesToSplat(SplatType.IdClassAndStyleOnly)">
 
     @if (AppliedInputStyle == MBTextInputStyle.Filled)
@@ -60,4 +60,16 @@
 
         <span class="mdc-line-ripple"></span>
     }
-    </label>
+</label>
+
+@if (HasHelperText)
+{
+    <div class="mdc-text-field-helper-line">
+        <div @ref="@HelperTextReference"
+             class="mdc-text-field-helper-text" 
+             id="@helperTextId" 
+             aria-hidden="true">
+            @HelperText
+        </div>
+    </div>
+}

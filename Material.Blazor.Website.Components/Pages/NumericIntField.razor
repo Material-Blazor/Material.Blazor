@@ -39,6 +39,25 @@
                 </Primary>
             </MBCard>
         </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Helper Text
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows persistent and non-persistent helper text.
+                    </h3>
+
+                    <p><MBNumericIntField Label="Popup Helper Text" @bind-Value="@PopupHelperText" HelperText="Some helper text that pops up" /></p>
+                    <p><MBNumericIntField Label="Persistent Helper Text" @bind-Value="@PersistentHelperText" HelperText="Some persistent helper text" HelperTextPersistent="true" /></p>
+                </Primary>
+            </MBCard>
+        </div>
     </PageContent>
 </DemonstrationPage>
 
@@ -53,6 +72,32 @@
             _integer = value;
 
             ToastService.ShowToast(heading: "Integer numeric", message: $"Value: '{_integer.ToString("N0")}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private int _popupHelperText;
+    private int PopupHelperText
+    {
+        get => _popupHelperText;
+        set
+        {
+            _popupHelperText = value;
+
+            ToastService.ShowToast(heading: "Popup Helper Text", message: $"Value: '{_popupHelperText}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private int _persistentHelperText;
+    private int PersistentHelperText
+    {
+        get => _persistentHelperText;
+        set
+        {
+            _persistentHelperText = value;
+
+            ToastService.ShowToast(heading: "Persistent Helper Text", message: $"Value: '{_persistentHelperText}'", level: MBToastLevel.Success, showIcon: false);
         }
     }
 }

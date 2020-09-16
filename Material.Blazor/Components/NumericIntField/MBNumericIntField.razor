@@ -3,7 +3,7 @@
 
 
 <MBNumericDoubleField @attributes="@AttributesToSplat()"
-                      TextInputStyle="TextInputStyle"
+                      TextInputStyle="@TextInputStyle"
                       Label="@Label"
                       Prefix="@Prefix"
                       Suffix="@Suffix"
@@ -19,4 +19,6 @@
                       Max="@Max"
                       DecimalPlaces="0"
                       Disabled="@AppliedDisabled"
+                      HelperText="@HelperText"
+                      HelperTextPersistent="@HelperTextPersistent"
                       @bind-Value="@DblVal" />
