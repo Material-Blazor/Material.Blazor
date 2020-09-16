@@ -1,10 +1,9 @@
 ﻿using Material.Blazor.Internal;
-
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
-
 using System;
-using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Material.Blazor
@@ -15,6 +14,26 @@ namespace Material.Blazor
     public partial class MBTextField : InputComponentFoundation<string>
     {
 #nullable enable annotations
+        /// <summary>
+        /// Helper text that is displayed either with focus or persistently with <see cref="HelperTextPersistent"/>.
+        /// </summary>
+        [Parameter] public string HelperText { get; set; } = "";
+
+
+        /// <summary>
+        /// Makes the <see cref="HelperText"/> persistent if true.
+        /// </summary>
+        [Parameter] public bool HelperTextPersistent { get; set; } = false;
+
+
+        /// <summary>
+        /// Delivers Material Theme validation methods from native Blazor validation. Either use this or
+        /// <see cref="ValidationMessage{TValue}"/>, but not both. This parameter takes the same input as
+        /// <see cref="ValidationMessage{TValue}.For"/>.
+        /// </summary>
+        [Parameter] public Expression<Func<object>> ValidationMessageFor { get; set; }
+
+
         /// <summary>
         /// The text input style.
         /// <para>Overrides <see cref="MBCascadingDefaults.TextInputStyle"/></para>
@@ -90,14 +109,22 @@ namespace Material.Blazor
         internal bool SelectAllText { get; set; } = false;
 
 
+        private MBDensity AppliedDensity => CascadingDefaults.AppliedTextFieldDensity(Density);
         private MBTextInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
         private string AppliedTextInputStyleClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
-        private MBDensity AppliedDensity => CascadingDefaults.AppliedTextFieldDensity(Density);
-        private ElementReference InputReference { get; set; }
+        private string DisplayLabel => Label + LabelSuffix;
         private string FloatingLabelClass { get; set; }
+        private ElementReference InputReference { get; set; }
+        private MarkupString HelperTextMarkup => new MarkupString(HelperText);
+        private ElementReference HelperTextReference { get; set; }
+        private bool HasHelperText => !string.IsNullOrWhiteSpace(HelperText) || PerformsValidation;
+        private string LabelSuffix { get; set; } = "";
+        private bool PerformsValidation => EditContext != null && ValidationMessageFor != null;
 
-        
+
         private readonly string labelId = Utilities.GenerateUniqueElementName();
+        private readonly string helperTextId = Utilities.GenerateUniqueElementName();
+
 
         private MBCascadingDefaults.DensityInfo DensityInfo
         {
@@ -136,12 +163,48 @@ namespace Material.Blazor
             if (!string.IsNullOrWhiteSpace(Label))
             {
                 ComponentPureHtmlAttributes.Add("aria-label", Label);
+                ComponentPureHtmlAttributes.Add("aria-labelledby", labelId);
+            }
+
+            if (HasHelperText)
+            {
+                ComponentPureHtmlAttributes.Add("aria-controls", helperTextId);
+                ComponentPureHtmlAttributes.Add("aria-describedby", helperTextId);
             }
 
             FloatingLabelClass = string.IsNullOrEmpty(ReportingValue) ? "" : "mdc-floating-label--float-above";
 
             OnValueSet += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
+
+            if (EditContext != null)
+            {
+                EditContext.OnValidationStateChanged += OnValidationStateChangedCallback;
+
+                if (HasRequiredAttribute(ValidationMessageFor))
+                {
+                    LabelSuffix = " *";
+                }
+            }
+        }
+
+
+        private bool _disposed = false;
+        protected override void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing && EditContext != null)
+            {
+                EditContext.OnValidationStateChanged -= OnValidationStateChangedCallback;
+            }
+
+            _disposed = true;
+
+            base.Dispose(disposing);
         }
 
 
@@ -174,7 +237,7 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("material_blazor.textField.init", ElementReference);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("material_blazor.textField.init", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
 
 
         /// <summary>
@@ -189,5 +252,24 @@ namespace Material.Blazor
         /// </summary>
         /// <returns></returns>
         internal async Task SetType(string value) => await JsRuntime.InvokeVoidAsync("material_blazor.textField.setType", InputReference, value);
+
+
+        private void OnValidationStateChangedCallback(object sender, EventArgs e)
+        {
+            if (ValidationMessageFor != null)
+            {
+                var fieldIdentifier = FieldIdentifier.Create(ValidationMessageFor);
+                var validationMessage = "";
+                var separator = "";
+
+                foreach (var message in EditContext.GetValidationMessages(fieldIdentifier))
+                {
+                    validationMessage += separator + message;
+                    separator = "<br />";
+                }
+
+                InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("material_blazor.textField.setHelperText", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
+            }
+        }
     }
 }

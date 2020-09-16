@@ -36,6 +36,13 @@ MBList does not implement:
 - Multi-select
 - Checkbox
 
+## Reserved Attributes
+
+The following attributes are reserved by Material Components Web and will be ignored if you supply them:
+
+- aria-orientation
+- aria-valuemax
+
 &nbsp;
 
 &nbsp;

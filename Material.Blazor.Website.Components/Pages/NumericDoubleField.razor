@@ -104,6 +104,25 @@
                 </Primary>
             </MBCard>
         </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Helper Text
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows persistent and non-persistent helper text.
+                    </h3>
+
+                    <p><MBNumericDoubleField Label="Popup Helper Text" @bind-Value="@PopupHelperText" HelperText="Some helper text that pops up" /></p>
+                    <p><MBNumericDoubleField Label="Persistent Helper Text" @bind-Value="@PersistentHelperText" HelperText="Some persistent helper text" HelperTextPersistent="true" /></p>
+                </Primary>
+            </MBCard>
+        </div>
     </PageContent>
 </DemonstrationPage>
 
@@ -190,5 +209,28 @@
     }
 
 
-    private bool IsWebAssembly => RuntimeInformation.OSArchitecture == Architecture.Wasm;
+    private double _popupHelperText;
+    private double PopupHelperText
+    {
+        get => _popupHelperText;
+        set
+        {
+            _popupHelperText = value;
+
+            ToastService.ShowToast(heading: "Popup Helper Text", message: $"Value: '{_popupHelperText}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private double _persistentHelperText;
+    private double PersistentHelperText
+    {
+        get => _persistentHelperText;
+        set
+        {
+            _persistentHelperText = value;
+
+            ToastService.ShowToast(heading: "Persistent Helper Text", message: $"Value: '{_persistentHelperText}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
 }

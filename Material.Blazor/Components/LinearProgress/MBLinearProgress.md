@@ -8,6 +8,16 @@ title: MBLinearProgress
 
 A [Material Linear Progress bar](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-linear-progress#linear-progress) with both determinate and indeterminate states plus values for level of progress and buffering level.
 
+## Reserved Attributes
+
+The following attributes are reserved by Material Components Web and will be ignored if you supply them:
+
+- aria-label
+- aria-valuemax
+- aria-valuemin
+- aria-valuenow
+- role
+
 &nbsp;
 
 &nbsp;

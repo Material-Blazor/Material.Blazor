@@ -16,6 +16,7 @@ A fully-featured implementation of the suite of [Material Text Fields](https://g
 - Allows leading and trailing icons to be set, with the ability to set the icon foundry;
 - Responds properly to the HTML `<input>` `type` attribute, including the "password" variant for hidden/revealable passwords; and
 - Applies [density subsystem](xref:A.Density) - note that filled text fields with denisty of -2 or less ignore labels by design within Material Theme.
+- Renders Blazor validation messages in Material Theme's style. see the [Form Validation Article](xref:A.FormValidation).
 
 &nbsp;
 

@@ -19,7 +19,7 @@
 - name: MBAnimatedNavigation
   topicUid: C.MBAnimatedNavigation
 
-- name: MBAutocomplete
+- name: MBAutocompleteTextField
   topicUid: C.MBAutocompleteTextField
 
 - name: MBButton
@@ -64,8 +64,17 @@
 - name: MBList
   topicUid: C.MBList
 
+- name: MBListDivider
+  topicUid: C.MBListDivider
+
+- name: MBListItem
+  topicUid: C.MBListItem
+
 - name: MBMenu
   topicUid: C.MBMenu
+
+- name: MBMenuSelectionGroup
+  topicUid: C.MBMenuSelectionGroup
 
 - name: MBNumericDoubleField
   topicUid: C.MBNumericDoubleField

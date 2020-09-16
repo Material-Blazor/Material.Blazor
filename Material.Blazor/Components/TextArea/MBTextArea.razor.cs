@@ -1,10 +1,9 @@
 ﻿using Material.Blazor.Internal;
-
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
-
 using System;
-using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Material.Blazor
@@ -14,6 +13,26 @@ namespace Material.Blazor
     /// </summary>
     public partial class MBTextArea : InputComponentFoundation<string>
     {
+        /// <summary>
+        /// Helper text that is displayed either with focus or persistently with <see cref="HelperTextPersistent"/>.
+        /// </summary>
+        [Parameter] public string HelperText { get; set; } = "";
+
+
+        /// <summary>
+        /// Makes the <see cref="HelperText"/> persistent if true.
+        /// </summary>
+        [Parameter] public bool HelperTextPersistent { get; set; } = false;
+
+
+        /// <summary>
+        /// Delivers Material Theme validation methods from native Blazor validation. Either use this or
+        /// <see cref="ValidationMessage{TValue}"/>, but not both. This parameter takes the same input as
+        /// <see cref="ValidationMessage{TValue}.For"/>.
+        /// </summary>
+        [Parameter] public Expression<Func<object>> ValidationMessageFor { get; set; }
+
+
         /// <summary>
         /// The text input style.
         /// <para>Overrides <see cref="MBCascadingDefaults.TextInputStyle"/></para>
@@ -53,15 +72,20 @@ namespace Material.Blazor
 
 
         private MBDensity AppliedDensity => CascadingDefaults.AppliedTextFieldDensity(Density);
-
-        private ElementReference ElementReference { get; set; }
         private MBTextInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(TextInputStyle);
         private string AppliedTextInputStyleClass => Utilities.GetTextAlignClass(CascadingDefaults.AppliedStyle(TextAlignStyle));
+        private string DisplayLabel => Label + LabelSuffix;
+        private ElementReference ElementReference { get; set; }
         private string FloatingLabelClass { get; set; }
+        private ElementReference HelperTextReference { get; set; }
+        private bool HasHelperText => !string.IsNullOrWhiteSpace(HelperText);
+        private bool PerformsValidation => EditContext != null && ValidationMessageFor != null;
+        private string LabelSuffix { get; set; } = "";
 
-        private readonly string id = Utilities.GenerateUniqueElementName();
 
         private readonly string labelId = Utilities.GenerateUniqueElementName();
+        private readonly string helperTextId = Utilities.GenerateUniqueElementName();
+
 
         private MBCascadingDefaults.DensityInfo DensityInfo
         {
@@ -101,6 +125,16 @@ namespace Material.Blazor
 
             OnValueSet += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
+
+            if (EditContext != null)
+            {
+                EditContext.OnValidationStateChanged += OnValidationStateChangedCallback;
+
+                if (HasRequiredAttribute(ValidationMessageFor))
+                {
+                    LabelSuffix = " *";
+                }
+            }
         }
 
 
@@ -121,6 +155,25 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("material_blazor.textField.init", ElementReference);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("material_blazor.textField.init", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
+
+
+        private void OnValidationStateChangedCallback(object sender, EventArgs e)
+        {
+            if (ValidationMessageFor != null)
+            {
+                var fieldIdentifier = FieldIdentifier.Create(ValidationMessageFor);
+                var validationMessage = "";
+                var separator = "";
+
+                foreach (var message in EditContext.GetValidationMessages(fieldIdentifier))
+                {
+                    validationMessage += separator + message;
+                    separator = "<br />";
+                }
+
+                InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("material_blazor.textField.setHelperText", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
+            }
+        }
     }
 }

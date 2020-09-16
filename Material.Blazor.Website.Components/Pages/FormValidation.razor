@@ -1,0 +1,146 @@
+﻿@page "/FormValidation"
+
+@using System.ComponentModel.DataAnnotations
+
+@inject IMBToastService ToastService
+
+
+
+<DemonstrationPage Title="Form Validation"
+                   DemoComponent="@this"
+                   DetailedArticle="FormValidation">
+    <Description>
+        <p>
+            Demonstrates native Blazor form validation displayed in the Material Theme style.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Validated Form
+                    </h2>
+
+                    <EditForm Model="@Model">
+                        <DataAnnotationsValidator />
+
+                        <div class="mdc-layout-grid__inner">
+                            <div class="mdc-layout-grid__cell--span-12" style="margin-top: 6px;">
+                                <MBTextField @bind-Value="@Model.Text"
+                                             Label="Text Field"
+                                             TextInputStyle="@MBTextInputStyle.Outlined"
+                                             ValidationMessageFor="@(() => Model.Text)" />
+                            </div>
+                            <div class="mdc-layout-grid__cell--span-12">
+                                <MBTextArea @bind-Value="@Model.Area"
+                                            Label="Text Area"
+                                            TextInputStyle="@MBTextInputStyle.Outlined"
+                                            HelperText="Min 20 Characters"
+                                            HelperTextPersistent="true"
+                                            ValidationMessageFor="@(() => Model.Area)" />
+                            </div>
+                            <div class="mdc-layout-grid__cell--span-12">
+                                <MBAutocompleteTextField @bind-Value="@Model.Autocomplete"
+                                                         Label="Autocomplete Text Field"
+                                                         SelectItems="@Fruits"
+                                                         TextInputStyle="@MBTextInputStyle.Outlined"
+                                                         ValidationMessageFor="@(() => Model.Autocomplete)" />
+                            </div>
+                            <div class="mdc-layout-grid__cell--span-12">
+                                <MBNumericDoubleField @bind-Value="@Model.NumericDouble"
+                                                      Label="Numeric Double"
+                                                      NumericFormat="N2"
+                                                      TextInputStyle="@MBTextInputStyle.Outlined"
+                                                      ValidationMessageFor="@(() => Model.NumericDouble)" />
+                            </div>
+                            <div class="mdc-layout-grid__cell--span-12">
+                                <MBNumericIntField @bind-Value="@Model.NumericInt"
+                                                   Label="Numeric Int"
+                                                   NumericFormat="N0"
+                                                   TextInputStyle="@MBTextInputStyle.Outlined"
+                                                   ValidationMessageFor="@(() => Model.NumericInt)" />
+                            </div>
+                            <div class="mdc-layout-grid__cell--span-12" style="text-align: right;">
+                                <MBButton style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                          type="submit"
+                                          Label="submit" />
+                                <MBButton style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                          Label="cancel" />
+                            </div>
+                        </div>
+                    </EditForm>
+                </Primary>
+            </MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Form Data Model
+                    </h2>
+
+                    <div style="overflow-x: auto;">
+                        <pre>
+                            <code>
+private class FormModel
+{
+    [Required(ErrorMessage = "The text field is required")]
+    public string Text { get; set; }
+                        
+                        
+    [MinLength(20, ErrorMessage ="The text area's minimum length is 20 characters")]
+    public string Area { get; set; }
+                                    
+                                    
+    [Required(ErrorMessage = "The autocomplete text field is required")]
+    public string Autocomplete { get; set; }
+                                            
+                                            
+    [Range(minimum: 0, maximum: 100)]
+    public double NumericDouble { get; set; }
+                                             
+                                             
+    [Range(minimum: 0, maximum: 100)]
+    public int NumericInt { get; set; }
+}
+                            </code>
+                        </pre>
+                    </div>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private string[] Fruits = { "Avocado", "Banana", "Blackberry", "Blueberry", "Cantaloupe", "Cherry", "Clementine", "Dragonfruit", "Fig", "Grape", "Guava", "Honeydew", "Huckleberry", "Jujube", "Kiwi", "Kumquat", "Lime", "Nectarine", "Orange", "Papaya", "Passion Fruit", "Pineapple", "Plum", "Pomegranate", "Raspberry", "Satsuma", "Strawberry", "Tangerine", "Tomato", "Watermelon" };
+
+    private class FormModel
+    {
+        [Required(ErrorMessage = "The text field is required")]
+        public string Text { get; set; }
+
+
+        [MinLength(20, ErrorMessage ="The text area's minimum length is 20 characters")]
+        public string Area { get; set; }
+
+
+        [Required(ErrorMessage = "The autocomplete text field is required")]
+        public string Autocomplete { get; set; }
+
+
+        [Range(minimum: 0, maximum: 100)]
+        public double NumericDouble { get; set; }
+
+
+        [Range(minimum: 0, maximum: 100)]
+        public int NumericInt { get; set; }
+    }
+
+    private FormModel Model { get; set; } = new();
+}

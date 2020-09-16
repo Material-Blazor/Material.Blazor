@@ -2,7 +2,7 @@
 @inherits InputComponentFoundation<string>
 
 
-<label @ref="ElementReference"
+<label @ref="@ElementReference"
        @attributes="@AttributesToSplat(SplatType.IdClassAndStyleOnly)">
 
     @if (AppliedInputStyle == MBTextInputStyle.Filled)
@@ -44,7 +44,7 @@
             @if (ShowLabel)
             {
                 <span class="mdc-notched-outline__notch">
-                    <span class="mdc-floating-label @FloatingLabelClass" for="@CrossReferenceId" id="@labelId">@Label</span>
+                    <span class="mdc-floating-label @FloatingLabelClass" for="@CrossReferenceId" id="@labelId">@DisplayLabel</span>
                 </span>
             }
 
@@ -55,9 +55,21 @@
     {
         @if (ShowLabel)
         {
-            <span class="mdc-floating-label @FloatingLabelClass" for="@CrossReferenceId" id="@labelId">@Label</span>
+            <span class="mdc-floating-label @FloatingLabelClass" for="@CrossReferenceId" id="@labelId">@DisplayLabel</span>
         }
 
         <span class="mdc-line-ripple"></span>
     }
-    </label>
+</label>
+
+@if (HasHelperText)
+{
+    <div class="mdc-text-field-helper-line">
+        <div @ref="@HelperTextReference"
+             class="mdc-text-field-helper-text"
+             id="@helperTextId"
+             aria-hidden="true">
+            @HelperTextMarkup
+        </div>
+    </div>
+}

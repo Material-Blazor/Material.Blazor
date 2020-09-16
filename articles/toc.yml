@@ -19,6 +19,9 @@
 - name: Density
   topicUid: A.Density
 
+- name: Form Validation
+  topicUid: A.FormValidation
+
 - name: Icon
   topicUid: A.Icon
 
@@ -39,6 +42,9 @@
 
 - name: Services
   topicUid: A.Services
+  
+- name: Theming and CSS
+  topicUid: A.ThemingAndCSS
   
 - name: Toast
   topicUid: A.Toast

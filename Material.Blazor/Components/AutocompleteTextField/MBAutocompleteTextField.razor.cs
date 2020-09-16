@@ -1,9 +1,11 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -36,6 +38,26 @@ namespace Material.Blazor
 
 
 #nullable enable annotations
+        /// <summary>
+        /// Helper text that is displayed either with focus or persistently with <see cref="HelperTextPersistent"/>.
+        /// </summary>
+        [Parameter] public string HelperText { get; set; } = "";
+
+
+        /// <summary>
+        /// Makes the <see cref="HelperText"/> persistent if true.
+        /// </summary>
+        [Parameter] public bool HelperTextPersistent { get; set; } = false;
+
+
+        /// <summary>
+        /// Delivers Material Theme validation methods from native Blazor validation. Either use this or
+        /// <see cref="ValidationMessage{TValue}"/>, but not both. This parameter takes the same input as
+        /// <see cref="ValidationMessage{TValue}.For"/>.
+        /// </summary>
+        [Parameter] public Expression<Func<object>> ValidationMessageFor { get; set; }
+
+
         /// <summary>
         /// The text input style.
         /// <para>Overrides <see cref="MBCascadingDefaults.TextInputStyle"/></para>

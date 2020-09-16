@@ -1,9 +1,9 @@
 ﻿using Material.Blazor.Internal;
-
 using Microsoft.AspNetCore.Components;
-
 using System;
+using System.Linq.Expressions;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Material.Blazor
 {
@@ -13,6 +13,18 @@ namespace Material.Blazor
     public partial class MBDebouncedTextField : InputComponentFoundation<string>
     {
 #nullable enable annotations
+        /// <summary>
+        /// Helper text that is displayed either with focus or persistently with <see cref="HelperTextPersistent"/>.
+        /// </summary>
+        [Parameter] public string HelperText { get; set; } = "";
+
+
+        /// <summary>
+        /// Makes the <see cref="HelperText"/> persistent if true.
+        /// </summary>
+        [Parameter] public bool HelperTextPersistent { get; set; } = false;
+
+
         /// <summary>
         /// The text input style.
         /// <para>Overrides <see cref="MBCascadingDefaults.TextInputStyle"/></para>
@@ -80,9 +92,10 @@ namespace Material.Blazor
 #nullable restore annotations
 
 
-        private Timer Timer { get; set; }
-        private string CurrentValue { get; set; } = "";
         private int AppliedDebounceInterval => CascadingDefaults.AppliedDebounceInterval(DebounceInterval);
+        private string CurrentValue { get; set; } = "";
+        private Timer Timer { get; set; }
+        private MBTextField TextField { get; set; }
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -110,6 +123,13 @@ namespace Material.Blazor
             _disposed = true;
 
             base.Dispose(disposing);
+        }
+
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            await base.OnAfterRenderAsync(firstRender);
+            TextField.IsValidFormField = false;
         }
 
 

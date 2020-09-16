@@ -16,6 +16,14 @@ A [Material Dialog](https://github.com/material-components/material-components-w
 - Action text for when the scrim is clicked or the Escape button pressed - setting these to empty strings disables the relevant action forcing the user to close the dialog with a button press;
 - An optional helper boolean to set the dialog overflow CSS attribute to "visible".
 
+## Reserved Attributes
+
+The following attributes are reserved by Material Components Web and will be ignored if you supply them:
+
+- aria-describedby
+- aria-labelledby
+- aria-modal
+
 &nbsp;
 
 &nbsp;
