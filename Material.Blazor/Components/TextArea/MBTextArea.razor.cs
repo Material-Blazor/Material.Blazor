@@ -1,10 +1,9 @@
 ﻿using Material.Blazor.Internal;
-
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
-
 using System;
-using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Material.Blazor
@@ -24,6 +23,14 @@ namespace Material.Blazor
         /// Makes the <see cref="HelperText"/> persistent if true.
         /// </summary>
         [Parameter] public bool HelperTextPersistent { get; set; } = false;
+
+
+        /// <summary>
+        /// Delivers Material Theme validation methods from native Blazor validation. Either use this or
+        /// <see cref="ValidationMessage{TValue}"/>, but not both. This parameter takes the same input as
+        /// <see cref="ValidationMessage{TValue}.For"/>.
+        /// </summary>
+        [Parameter] public Expression<Func<object>> ValidationMessageFor { get; set; }
 
 
         /// <summary>
@@ -71,6 +78,7 @@ namespace Material.Blazor
         private string FloatingLabelClass { get; set; }
         private ElementReference HelperTextReference { get; set; }
         private bool HasHelperText => !string.IsNullOrWhiteSpace(HelperText);
+        private bool PerformsValidation => EditContext != null && ValidationMessageFor != null;
 
 
         private readonly string labelId = Utilities.GenerateUniqueElementName();
@@ -115,6 +123,16 @@ namespace Material.Blazor
 
             OnValueSet += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
+
+            if (EditContext != null)
+            {
+                EditContext.OnValidationStateChanged += OnValidationStateChangedCallback;
+
+                if (HasRequiredAttribute(ValidationMessageFor))
+                {
+                    ComponentPureHtmlAttributes.Add("required", true);
+                }
+            }
         }
 
 
@@ -135,6 +153,30 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("material_blazor.textField.init", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("material_blazor.textField.init", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
+
+
+        private void OnValidationStateChangedCallback(object sender, EventArgs e)
+        {
+            if (ValidationMessageFor != null)
+            {
+                var fieldIdentifier = FieldIdentifier.Create(ValidationMessageFor);
+                var validationMessage = "";
+                var separator = "";
+
+                foreach (var message in EditContext.GetValidationMessages(fieldIdentifier))
+                {
+                    validationMessage += separator + message;
+                    separator = "<br />";
+                }
+
+                if (separator != "")
+                {
+                    validationMessage += separator + "Extras";
+                }
+
+                InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("material_blazor.textField.setHelperText", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
+            }
+        }
     }
 }

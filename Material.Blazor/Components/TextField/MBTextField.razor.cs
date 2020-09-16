@@ -1,12 +1,9 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Material.Blazor
@@ -30,7 +27,9 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Makes the <see cref="HelperText"/> persistent if true.
+        /// Delivers Material Theme validation methods from native Blazor validation. Either use this or
+        /// <see cref="ValidationMessage{TValue}"/>, but not both. This parameter takes the same input as
+        /// <see cref="ValidationMessage{TValue}.For"/>.
         /// </summary>
         [Parameter] public Expression<Func<object>> ValidationMessageFor { get; set; }
 
@@ -263,10 +262,7 @@ namespace Material.Blazor
 
                 foreach (var message in EditContext.GetValidationMessages(fieldIdentifier))
                 {
-                    Logger.LogInformation($"{CrossReferenceId} {message}");
-
                     validationMessage += separator + message;
-
                     separator = "<br />";
                 }
 

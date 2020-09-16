@@ -4,6 +4,7 @@ using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -46,6 +47,14 @@ namespace Material.Blazor
         /// Makes the <see cref="HelperText"/> persistent if true.
         /// </summary>
         [Parameter] public bool HelperTextPersistent { get; set; } = false;
+
+
+        /// <summary>
+        /// Delivers Material Theme validation methods from native Blazor validation. Either use this or
+        /// <see cref="ValidationMessage{TValue}"/>, but not both. This parameter takes the same input as
+        /// <see cref="ValidationMessage{TValue}.For"/>.
+        /// </summary>
+        [Parameter] public Expression<Func<object>> ValidationMessageFor { get; set; }
 
 
         /// <summary>
