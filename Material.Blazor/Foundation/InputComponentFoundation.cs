@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Components.Forms;
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
@@ -357,6 +360,54 @@ namespace Material.Blazor.Internal
                 _hasInstantiated = true;
                 await InitializeMdcComponent();
             }
+        }
+
+
+        /// <summary>
+        /// Returns true if one of the custom attributes is the <see cref="RequiredAttribute"/>. Used by <see cref="MBTextArea"/> and <see cref="MBTextField"/> to
+        /// look for a required attribute.
+        /// </summary>
+        /// <typeparam name="TItem"></typeparam>
+        /// <param name="accessor"></param>
+        /// <returns></returns>
+        private protected static bool HasRequiredAttribute<TItem>(Expression<Func<TItem>> accessor)
+        {
+            if (accessor == null)
+            {
+                return false;
+            }
+
+            var customAttributes = GetExpressionCustomAttributes<TItem>(accessor);
+
+            return customAttributes.Where(a => a.GetType() == typeof(RequiredAttribute)).Count() > 0;
+        }
+
+
+        /// <summary>
+        /// Returns the custom attributes assocated with a field. Used by <see cref="MBTextArea"/> and <see cref="MBTextField"/> to
+        /// look for a required attribute.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="accessor"></param>
+        /// <returns></returns>
+        private static IEnumerable<Attribute> GetExpressionCustomAttributes<TItem>(Expression<Func<TItem>> accessor)
+        {
+            var accessorBody = accessor.Body;
+
+            // Unwrap casts to object
+            if (accessorBody is UnaryExpression unaryExpression
+                && unaryExpression.NodeType == ExpressionType.Convert
+                && unaryExpression.Type == typeof(object))
+            {
+                accessorBody = unaryExpression.Operand;
+            }
+
+            if (!(accessorBody is MemberExpression memberExpression))
+            {
+                throw new ArgumentException($"The provided expression contains a {accessorBody.GetType().Name} which is not supported. {nameof(FieldIdentifier)} only supports simple member accessors (fields, properties) of an object.");
+            }
+
+            return memberExpression.Member.GetCustomAttributes();
         }
     }
 }

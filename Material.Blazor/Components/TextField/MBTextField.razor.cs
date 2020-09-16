@@ -4,7 +4,9 @@ using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace Material.Blazor
@@ -177,6 +179,11 @@ namespace Material.Blazor
             if (EditContext != null)
             {
                 EditContext.OnValidationStateChanged += OnValidationStateChangedCallback;
+
+                if (HasRequiredAttribute(ValidationMessageFor))
+                {
+                    ComponentPureHtmlAttributes.Add("required", true);
+                }
             }
         }
 
