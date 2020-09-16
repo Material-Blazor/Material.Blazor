@@ -8,6 +8,12 @@ title: MBDivider
 
 A Material Divider which is a horizonal rule with boolean indicators for the material inset and padded CSS classes.
 
+## Reserved Attributes
+
+The following attributes are reserved by Material Components Web and will be ignored if you supply them:
+
+- role
+
 &nbsp;
 
 &nbsp;

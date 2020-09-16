@@ -2,21 +2,22 @@
 @inherits ComponentFoundation
 
 
-<button @ref="@ElementReference"
-        type="button"
-        @attributes="@AttributesToSplat()"
-        data-mdc-dialog-action="@DialogAction">
-    <div class="mdc-button__ripple"></div>
+<div class="mdc-touch-target-wrapper">
+    <button @ref="@ElementReference"
+            @attributes="@AttributesToSplat()"
+            data-mdc-dialog-action="@DialogAction">
+        <div class="mdc-button__ripple"></div>
 
-    @if (!string.IsNullOrWhiteSpace(LeadingIcon))
-    {
-        <MBIcon IconName="@LeadingIcon" IconFoundry="@IconFoundry" class="mdc-button__icon" aria-hidden="true" />
-    }
+        @if (!string.IsNullOrWhiteSpace(LeadingIcon))
+        {
+            <MBIcon IconName="@LeadingIcon" IconFoundry="@IconFoundry" class="mdc-button__icon" aria-hidden="true" />
+        }
 
-    <span class="mdc-button__label">@Label</span>
+        <span class="mdc-button__label">@Label</span>
 
-    @if (!string.IsNullOrWhiteSpace(TrailingIcon))
-    {
-        <MBIcon IconName="@TrailingIcon" IconFoundry="@IconFoundry" class="mdc-button__icon" aria-hidden="true" />
-    }
-</button>
+        @if (!string.IsNullOrWhiteSpace(TrailingIcon))
+        {
+            <MBIcon IconName="@TrailingIcon" IconFoundry="@IconFoundry" class="mdc-button__icon" aria-hidden="true" />
+        }
+    </button>
+</div>

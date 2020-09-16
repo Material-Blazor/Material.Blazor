@@ -12,6 +12,12 @@ A [Material Checkbox](https://github.com/material-components/material-components
 - Accepts a boolean for determination of indeterminate state; and
 - Applies the [density subsystem](xref:A.Density).
 
+## Reserved Attributes
+
+The following attributes are reserved by Material Components Web and will be ignored if you supply them:
+
+- type
+
 &nbsp;
 
 &nbsp;
