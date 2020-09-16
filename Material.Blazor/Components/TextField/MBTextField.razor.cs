@@ -116,6 +116,8 @@ namespace Material.Blazor
         private ElementReference InputReference { get; set; }
         private MarkupString HelperTextMarkup => new MarkupString(HelperText);
         private ElementReference HelperTextReference { get; set; }
+        private string LabelSuffix { get; set; } = "";
+        private string DisplayLabel => Label + LabelSuffix;
         private bool HasHelperText => !string.IsNullOrWhiteSpace(HelperText) || PerformsValidation;
         private bool PerformsValidation => EditContext != null && ValidationMessageFor != null;
 
@@ -181,7 +183,7 @@ namespace Material.Blazor
 
                 if (HasRequiredAttribute(ValidationMessageFor))
                 {
-                    ComponentPureHtmlAttributes.Add("required", true);
+                    LabelSuffix = " *";
                 }
             }
         }
