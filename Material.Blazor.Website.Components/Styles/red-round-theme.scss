@@ -10,7 +10,7 @@
 );
 
 @use "@material/shape" with ( 
-    $small-component-radius: 16px, 
+    $small-component-radius: 8px, 
     $medium-component-radius: 16px, 
     $large-component-radius: 16px, 
 );
@@ -29,6 +29,13 @@
 
 @use "material-components-web";
 @use "./app";
+
+
+@use "@material/button";
+
+.mdc-button {
+    @include button.shape-radius(50%);
+}
 
 
 @include app.app-classes();
