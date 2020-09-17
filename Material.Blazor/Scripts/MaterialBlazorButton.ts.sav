@@ -1,0 +1,5 @@
+import { MDCRipple } from '@material/ripple';
+
+export function init(elem) {
+    MDCRipple.attachTo(elem);
+}

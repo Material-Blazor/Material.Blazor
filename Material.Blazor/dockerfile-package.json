@@ -1,0 +1,29 @@
+{
+  "name": "material.blazor-node-build",
+  "version": "0.0.0",
+  "description": "Node build steps for Material.Blazor",
+  "main": "server.js",
+  "repository": "https://github.com/Material-Blazor/Material.Blazor",
+  "scripts": {
+    "build-css": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/unbundled.scss wwwroot/unbundled.css",
+    "build-min-css": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/unbundled.scss wwwroot/unbundled.min.css",
+    "build-min-bundle-css": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/bundled.scss wwwroot/bundled.min.css",
+    "build-js": "terser Scripts/MaterialBlazor.js node_modules/@material/tooltip/dist/mdc.tooltip.js --output wwwroot/unbundled.js",
+    "build-min-js": "terser wwwroot/unbundled.js node_modules/@material/tooltip/dist/mdc.tooltip.js --compress --mangle --ecma 2016 --output wwwroot/unbundled.min.js",
+    "build-min-bundle-js": "terser wwwroot/unbundled.js node_modules/material-components-web/dist/material-components-web.js node_modules/@material/tooltip/dist/mdc.tooltip.js --compress --mangle --ecma 2016 --output wwwroot/bundled.min.js",
+    "build-ts": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "material-components-web": "7.0.0",
+    "@material/tooltip": "8.0.0-canary.2e5711e04.0",
+    "dart-sass": "^1.25.0",
+    "terser": "^4.8.0",
+    "typescript": "^4.0.2"
+  },
+  "dependencies": {
+    "@material/ripple": "^7.0.0"
+  }
+}

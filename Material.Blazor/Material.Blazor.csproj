@@ -21,6 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="dockerfile-package.json" />
     <Content Remove="package-lock.json" />
     <Content Remove="package.json" />
     <Content Remove="tsconfig.json" />
@@ -32,6 +33,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="dockerfile-package.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
     <None Include="package-lock.json" />
     <None Include="package.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
@@ -59,14 +63,16 @@
 			Outputs="@(OutputsCss);@(OutputsJs)">-->
 
   <Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">
+    <Exec Command="npm install" />
     <Exec Command="docker build -t mb_static_assets -f build-static-assets.Dockerfile ." />
     <Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
-    <Exec Command="docker run --rm mb_static_assets cat unbundled.js &gt; wwwroot/unbundled.js" />
-    <Exec Command="docker run --rm mb_static_assets cat unbundled.css &gt; wwwroot/unbundled.css" />
-    <Exec Command="docker run --rm mb_static_assets cat unbundled.min.js &gt; wwwroot/unbundled.min.js" />
-    <Exec Command="docker run --rm mb_static_assets cat unbundled.min.css &gt; wwwroot/unbundled.min.css" />
-    <Exec Command="docker run --rm mb_static_assets cat bundled.min.js &gt; wwwroot/bundled.min.js" />
-    <Exec Command="docker run --rm mb_static_assets cat bundled.min.css &gt; wwwroot/bundled.min.css" />
+    <Exec Command="docker run --rm mb_static_assets cat wwwroot/unbundled.js &gt; wwwroot/unbundled.js" />
+    <Exec Command="docker run --rm mb_static_assets cat wwwroot/unbundled.css &gt; wwwroot/unbundled.css" />
+    <Exec Command="docker run --rm mb_static_assets cat wwwroot/unbundled.min.js &gt; wwwroot/unbundled.min.js" />
+    <Exec Command="docker run --rm mb_static_assets cat wwwroot/unbundled.min.css &gt; wwwroot/unbundled.min.css" />
+    <Exec Command="docker run --rm mb_static_assets cat wwwroot/bundled.min.js &gt; wwwroot/bundled.min.js" />
+    <Exec Command="docker run --rm mb_static_assets cat wwwroot/bundled.min.css &gt; wwwroot/bundled.min.css" />
+    <Exec Command="docker run --rm mb_static_assets cat typescript.js &gt; wwwroot/typescript.js" />
   </Target>
 
 </Project>

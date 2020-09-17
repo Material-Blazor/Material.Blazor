@@ -1,13 +1,14 @@
 {
   "compilerOptions": {
-    "noImplicitAny": false,
+    "allowJs": true,
     "noEmitOnError": false,
+    "noImplicitAny": false,
+    "outFile": "typescript.js",
     "removeComments": false,
     "sourceMap": false,
-    "target": "es5",
-    "outDir": "wwwroot"
+    "target": "es5"
   },
-  "include": [ "../Material.Blazor/Scripts/material.blazor.ts" ],
+  "include": [ "Scripts/*.ts" ],
   "exclude": [
     "node_modules",
     "wwwroot"
