@@ -1,9 +1,10 @@
 {
   "compilerOptions": {
-    "allowJs": true,
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "noEmitOnError": false,
     "noImplicitAny": false,
-    "outFile": "typescript.js",
+    "outDir": ".",
     "removeComments": false,
     "sourceMap": false,
     "target": "es5"
