@@ -3,14 +3,16 @@
   "version": "0.0.0",
   "description": "NPM build steps for Material.Blazor.Website.Components",
   "scripts": {
-    "build-blue-square": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/blue-square-theme.scss wwwroot/css/blue-square-theme.css",
-    "build-min-blue-square": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/blue-square-theme.scss wwwroot/css/blue-square-theme.min.css",
-    "build-red-round": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/red-round-theme.scss wwwroot/css/red-round-theme.css",
-    "build-min-red-round": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/red-round-theme.scss wwwroot/css/red-round-theme.min.css",
-    "build-varied": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/varied-theme.scss wwwroot/css/varied-theme.css",
-    "build-min-varied": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/varied-theme.scss wwwroot/css/varied-theme.min.css",
     "build-mt-default": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/mt-default-theme.scss wwwroot/css/mt-default-theme.css",
-    "build-min-mt-default": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/mt-default-theme.scss wwwroot/css/mt-default-theme.min.css"
+    "build-min-mt-default": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/mt-default-theme.scss wwwroot/css/mt-default-theme.min.css",
+    "build-light-square": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/light-square-theme.scss wwwroot/css/light-square-theme.css",
+    "build-min-light-square": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/light-square-theme.scss wwwroot/css/light-square-theme.min.css",
+    "build-dark-square": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/dark-square-theme.scss wwwroot/css/dark-square-theme.css",
+    "build-min-dark-square": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/dark-square-theme.scss wwwroot/css/dark-square-theme.min.css",
+    "build-rounded": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/rounded-theme.scss wwwroot/css/rounded-theme.css",
+    "build-min-rounded": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/rounded-theme.scss wwwroot/css/rounded-theme.min.css",
+    "build-asymmetric": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/asymmetric-theme.scss wwwroot/css/asymmetric-theme.css",
+    "build-min-asymmetric": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/asymmetric-theme.scss wwwroot/css/asymmetric-theme.min.css"
   },
   "keywords": [],
   "author": "",

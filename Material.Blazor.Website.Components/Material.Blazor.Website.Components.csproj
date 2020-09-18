@@ -10,6 +10,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Styles\dark-square-theme.scss" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="Styles\dark-square-theme.scss" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Include="package-lock.json" />
 		<None Include="package.json" />
 	</ItemGroup>
