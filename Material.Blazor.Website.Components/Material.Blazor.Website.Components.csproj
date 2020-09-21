@@ -68,22 +68,28 @@
 -->
 
   <Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">
+    <Exec Command="echo ***** npm install" />
     <Exec Command="npm install" />
-    
+
+    <Exec Command="echo ***** mkdir wwwroot" />
     <Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
     <Exec Command="mkdir wwwroot/css" IgnoreExitCode="true" />
     <Exec Command="mkdir wwwroot\css" IgnoreExitCode="true" />
 
-    <Exec Command="npm run build-mt-default" />
+    <Exec Command="echo ***** build mt default" />
+<!--    <Exec Command="npm run build-mt-default" /> -->
     <Exec Command="npm run build-min-mt-default" />
-    
-    <Exec Command="npm run build-blue-square" />
+
+    <Exec Command="echo ***** build blue square" />
+<!--    <Exec Command="npm run build-blue-square" /> -->
     <Exec Command="npm run build-min-blue-square" />
-    
-    <Exec Command="npm run build-red-round" />
+
+    <Exec Command="echo ***** build red round" />
+<!--    <Exec Command="npm run build-red-round" /> -->
     <Exec Command="npm run build-min-red-round" />
-    
-    <Exec Command="npm run build-varied" />
+
+    <Exec Command="echo ***** build varied" />
+<!--    <Exec Command="npm run build-varied" /> -->
     <Exec Command="npm run build-min-varied" />
 
   </Target>

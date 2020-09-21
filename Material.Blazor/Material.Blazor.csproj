@@ -21,7 +21,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="dockerfile.json" />
     <Content Remove="tsconfig.json" />
   </ItemGroup>
 
@@ -31,14 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="dockerfile.json">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
     <None Include="tsconfig.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <!-- Unfinished dependency issue
@@ -73,15 +65,38 @@
 -->
 
   <Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">
+    <Exec Command="echo ***** npm install" />
     <Exec Command="npm install" />
+
+    <Exec Command="echo ***** mkdir wwwroot" />
     <Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
+
+    <Exec Command="echo ***** downloadfile" />
+    <DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" DestinationFolder="$(MSBuildProjectDirectory)\wwwroot" DestinationFilename="material-components-icons.css">
+    </DownloadFile>
+
+    <Exec Command="echo ***** npm run build-css" />
     <Exec Command="npm run build-css" />
+
+    <Exec Command="echo ***** npm run build-min-css" />
     <Exec Command="npm run build-min-css" />
+
+    <Exec Command="echo ***** npm run build-min-bundle-css" />
     <Exec Command="npm run build-min-bundle-css" />
+
+    <Exec Command="echo ***** npm run build-ts" />
     <Exec Command="npm run build-ts" />
+
+    <Exec Command="echo ***** npm run build-js" />
     <Exec Command="npm run build-js" />
+
+    <Exec Command="echo ***** npm run build-min-js" />
     <Exec Command="npm run build-min-js" />
+
+    <Exec Command="echo ***** npm run build-min-bundle-js" />
     <Exec Command="npm run build-min-bundle-js" />
   </Target>
+
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 </Project>

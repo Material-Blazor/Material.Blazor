@@ -1,8 +1,7 @@
 {
-  "name": "material.blazor-website-node-build",
+  "name": "material.blazor.website.components",
   "version": "0.0.0",
-  "description": "Node build steps for Material.Blazor.Website",
-  "main": "server.js",
+  "description": "NPM build steps for Material.Blazor.Website.Components",
   "scripts": {
     "build-blue-square": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/blue-square-theme.scss wwwroot/css/blue-square-theme.css",
     "build-min-blue-square": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/blue-square-theme.scss wwwroot/css/blue-square-theme.min.css",
@@ -18,8 +17,6 @@
   "license": "MIT",
   "devDependencies": {
     "material-components-web": "7.0.0",
-    "dart-sass": "^1.25.0",
-    "terser": "^4.8.0",
-    "typescript": "^3.9.7"
+    "dart-sass": "^1.25.0"
   }
 }
