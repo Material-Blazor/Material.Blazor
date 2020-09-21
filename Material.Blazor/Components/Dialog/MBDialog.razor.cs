@@ -158,7 +158,7 @@ namespace Material.Blazor
         {
             if (IsOpen)
             {
-                await JsRuntime.InvokeAsync<string>("material_blazor.dialog.hide", DialogElem);
+                await JsRuntime.InvokeAsync<string>("MaterialBlazor.MBDialog.hide", DialogElem);
                 IsOpen = false;
                 hasInstantiated = false;
                 StateHasChanged();
@@ -194,7 +194,7 @@ namespace Material.Blazor
                 try
                 {
                     AfterRenderShowAction = false;
-                    Tcs.SetResult(await JsRuntime.InvokeAsync<string>("material_blazor.dialog.show", DialogElem, ObjectReference, EscapeKeyAction, ScrimClickAction));
+                    Tcs.SetResult(await JsRuntime.InvokeAsync<string>("MaterialBlazor.MBDialog.show", DialogElem, ObjectReference, EscapeKeyAction, ScrimClickAction));
                     IsOpen = false;
                     StateHasChanged();
                 }

@@ -88,6 +88,6 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("material_blazor.drawer.toggle", DrawerElem, isOpen);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDrawer.toggle", DrawerElem, isOpen);
     }
 }
