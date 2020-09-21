@@ -76,8 +76,7 @@ namespace Material.Blazor
 
             if (firstRender && PrimaryAction != null)
             {
-//                await JsRuntime.InvokeVoidAsync("MaterialBlazorCard.init", PrimaryActionReference);
-                await JsRuntime.InvokeVoidAsync("material_blazor.cardPrimaryAction.init", PrimaryActionReference);
+                await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBCard.init", PrimaryActionReference);
            }
         }
     }

@@ -55,52 +55,6 @@ window.material_blazor = {
         }
     },
 
-    button: {
-        init: function (elem) {
-            mdc.ripple.MDCRipple.attachTo(elem);
-        }
-    },
-
-    cardPrimaryAction: {
-        init: function (elem) {
-            mdc.ripple.MDCRipple.attachTo(elem);
-        }
-    },
-
-    checkBox: {
-        init: function (elem, formFieldElem, checked, indeterminate) {
-            elem._checkbox = mdc.checkbox.MDCCheckbox.attachTo(elem);
-            elem._checkbox.checked = checked;
-            elem._checkbox.indeterminate = indeterminate;  
-
-            elem._formField = mdc.formField.MDCFormField.attachTo(formFieldElem);
-            elem._formField.input = elem._checkbox;
-        },
-
-        setChecked: function (elem, checked) {
-            elem._checkbox.checked = checked;
-        },
-
-        setIndeterminate: function (elem, indeterminate) {
-            elem._checkbox.indeterminate = indeterminate;
-        },
-
-        setDisabled: function (elem, disabled) {
-            elem._checkbox.disabled = disabled;
-        }
-    },
-
-    circularProgress: {
-        init: function (elem, progress) {
-            elem._circularProgress = mdc.circularProgress.MDCCircularProgress.attachTo(elem);
-            this.setProgress(elem, progress);
-        },
-
-        setProgress: function (elem, progress) {
-            elem._circularProgress.progress = progress;
-        }
-    },
-
     datePicker: {
         init: function (elem) {
             elem._select = mdc.select.MDCSelect.attachTo(elem);
@@ -369,14 +323,6 @@ window.material_blazor = {
                 .filter(f => f.__internalId !== null)
                 .forEach(i => mdc.tooltip.MDCTooltip.attachTo(i));
         }
-    },
-
-    topAppBar: {
-        init: function (elem, scrollTarget) {
-            const topAppBar = mdc.topAppBar.MDCTopAppBar.attachTo(elem);
-            if (scrollTarget) {
-                topAppBar.setScrollTarget(document.querySelector(scrollTarget));
-            }
-        }
     }
+
 };

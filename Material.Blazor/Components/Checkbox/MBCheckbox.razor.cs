@@ -99,6 +99,6 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("material_blazor.checkBox.init", ElementReference, FormReference, ReportingValue, IsIndeterminate);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBCheckbox.init", ElementReference, FormReference, ReportingValue, IsIndeterminate);
     }
 }

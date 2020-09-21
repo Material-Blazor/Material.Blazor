@@ -1,24 +1,26 @@
 var path = require("path");
 
 module.exports = {
+    mode: 'production',
+
     entry: {
-        'matBlazor': [
-            './scripts/MaterialBlazor.ts'
+        'MaterialBlazor': [
+            './scripts/MaterialBlazor.js'
         ]
     },
+
     optimization: {
         minimize: false
     },
+
     output: {
         filename: "MaterialBlazor.js",
         path: path.resolve(__dirname, 'wwwroot'),
     },
 
-
     resolve: {
-        extensions: [".ts"]
+        extensions: [".ts", ".js"]
     },
-
 
     module: {
         rules: [
@@ -26,7 +28,11 @@ module.exports = {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/,
+            },
+            {
+                test: /\.js$/,
+                loader: "babel-loader",
             }
-        ]
-    }
+        ],
+    },
 };
