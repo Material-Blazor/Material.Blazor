@@ -1,49 +1,4 @@
 window.material_blazor = {
-    iconButton: {
-        init: function (elem) {
-            const iconButtonRipple = mdc.ripple.MDCRipple.attachTo(elem);
-            iconButtonRipple.unbounded = true;
-        }
-    },
-
-    iconButtonToggle: {
-        init: function (elem) {
-            elem._iconButtonToggle = mdc.iconButton.MDCIconButtonToggle.attachTo(elem);
-        },
-
-        setOn: function (elem, isOn) {
-            elem._iconButtonToggle.on = isOn;
-        },
-
-        click: function (elem) {
-            elem._iconButtonToggle.root.click();
-        }
-    },
-
-    linearProgress: {
-        init: function (elem, progress, buffer) {
-            elem._linearProgress = mdc.linearProgress.MDCLinearProgress.attachTo(elem);
-            this.setProgress(elem, progress, buffer);
-        },
-
-        setProgress: function (elem, progress, buffer) {
-            elem._linearProgress.progress = progress;
-            elem._linearProgress.buffer = buffer;
-        }
-    },
-
-    list: {
-        init: function (elem, keyboardInteractions, ripple) {
-            if (keyboardInteractions == true) {
-                const list = mdc.list.MDCList.attachTo(elem);
-
-                if (ripple == true) {
-                    list.listElements.map((elem) => mdc.ripple.MDCRipple.attachTo(elem));
-                }
-            }
-        }
-    },
-
     menu: {
         init: function (elem, dotNetObject) {
             elem._menu = mdc.menu.MDCMenu.attachTo(elem);

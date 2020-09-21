@@ -16,7 +16,6 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@material/tooltip": "8.0.0-canary.2e5711e04.0",
     "babel-core": "^6.25.0",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.1.1",
@@ -58,6 +57,7 @@
     "@material/tab-scroller": "7.0.0",
     "@material/textfield": "7.0.0",
     "@material/theme": "7.0.0",
+    "@material/tooltip": "8.0.0-canary.2e5711e04.0",
     "@material/top-app-bar": "7.0.0",
     "@material/typography": "7.0.0"
   }

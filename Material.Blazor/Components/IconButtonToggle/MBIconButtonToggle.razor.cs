@@ -83,7 +83,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("material_blazor.iconButtonToggle.setOn", ElementReference, Value));
+        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.iconButtonToggle.setOn", ElementReference, Value));
 
 
         /// <summary>
@@ -95,6 +95,6 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("material_blazor.iconButtonToggle.init", ElementReference);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBIconButtonToggle.init", ElementReference);
     }
 }

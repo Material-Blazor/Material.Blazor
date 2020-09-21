@@ -186,7 +186,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("material_blazor.select.setIndex", SelectReference, ItemDict.Keys.ToList().IndexOf(Value)));
+        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSelect.setIndex", SelectReference, ItemDict.Keys.ToList().IndexOf(Value)));
 
 
         /// <summary>
@@ -194,10 +194,10 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("material_blazor.select.setDisabled", SelectReference, AppliedDisabled));
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSelect.setDisabled", SelectReference, AppliedDisabled));
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("material_blazor.select.init", SelectReference, ObjectReference);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSelect.init", SelectReference, ObjectReference);
     }
 }

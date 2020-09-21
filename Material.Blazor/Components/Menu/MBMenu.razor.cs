@@ -74,11 +74,11 @@ namespace Material.Blazor
         {
             if (IsOpen)
             {
-                return await JsRuntime.InvokeAsync<string>("material_blazor.menu.hide", ElementReference);
+                return await JsRuntime.InvokeAsync<string>("MaterialBlazor.MBMenu.hide", ElementReference);
             }
             else
             {
-                return await JsRuntime.InvokeAsync<string>("material_blazor.menu.show", ElementReference);
+                return await JsRuntime.InvokeAsync<string>("MaterialBlazor.MBMenu.show", ElementReference);
             }
         }
 
@@ -88,7 +88,7 @@ namespace Material.Blazor
         {
             if (firstRender)
             {
-                await JsRuntime.InvokeAsync<string>("material_blazor.menu.init", ElementReference, ObjectReference);
+                await JsRuntime.InvokeAsync<string>("MaterialBlazor.MBMenu.init", ElementReference, ObjectReference);
             }
         }
     }
