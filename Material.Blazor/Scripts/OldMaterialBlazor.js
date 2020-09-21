@@ -1,5 +1,5 @@
-window.material_blazor = {
-    menu: {
+window.MaterialBlazor = {
+    MBMenu: {
         init: function (elem, dotNetObject) {
             elem._menu = mdc.menu.MDCMenu.attachTo(elem);
 
@@ -24,7 +24,7 @@ window.material_blazor = {
         }
     },
 
-    radioButton: {
+    MBRadioButton: {
         init: function (elem, formFieldElem, isChecked) {
             elem._radio = mdc.radio.MDCRadio.attachTo(elem);
             elem._radio.checked = isChecked;
@@ -37,7 +37,7 @@ window.material_blazor = {
         }
     },
 
-    select: {
+    MBSelect: {
         init: function (selectElem, dotNetObject) {
             selectElem._select = mdc.select.MDCSelect.attachTo(selectElem);
 
@@ -58,7 +58,7 @@ window.material_blazor = {
         }
     },
 
-    switch: {
+    MBSwitch: {
         init: function (elem, checked) {
             elem._switch = mdc.switchControl.MDCSwitch.attachTo(elem);
             elem._switch.checked = checked;
@@ -73,7 +73,7 @@ window.material_blazor = {
         }
     },
 
-    tabBar: {
+    MBTabBar: {
         init: function (elem, dotNetObject) {
             elem._tabBar = mdc.tabBar.MDCTabBar.attachTo(elem);
 
@@ -91,6 +91,14 @@ window.material_blazor = {
             elem._tabBar.unlisten('MDCTabBar:activated', elem._callback);
             elem._tabBar.activateTab(index);
             elem._tabBar.listen('MDCTabBar:activated', elem._callback);
+        }
+    },
+
+    MBTooltip: {
+        init: function (elems) {
+            elems
+                .filter(f => f.__internalId !== null)
+                .forEach(i => mdc.tooltip.MDCTooltip.attachTo(i));
         }
     }
 
