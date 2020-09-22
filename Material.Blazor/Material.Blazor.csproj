@@ -34,9 +34,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Scripts\MaterialBlazor.ts.sav">
+    <None Update="Scripts\MaterialBlazor.ts">
       <SubType>Code</SubType>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
   <!-- Unfinished dependency issue
@@ -90,8 +94,8 @@
     <Exec Command="echo ***** npm run build-min-bundle-css" />
     <Exec Command="npm run build-min-bundle-css" />
 
-    <Exec Command="echo ***** npm run build-webpack" />
-    <Exec Command="npm run build-webpack" />
+    <Exec Command="echo ***** npm run build-scripts" />
+    <Exec Command="npm run build-scripts" />
 
     <Exec Command="echo ***** npm run build-js" />
     <Exec Command="npm run build-js" />

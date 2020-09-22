@@ -172,7 +172,7 @@ namespace Material.Blazor
                     separator = "<br />";
                 }
 
-                InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.textField.setHelperText", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
+                InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.setHelperText", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
             }
         }
     }

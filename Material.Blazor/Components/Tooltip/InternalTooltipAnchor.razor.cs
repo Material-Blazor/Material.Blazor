@@ -135,7 +135,7 @@ namespace Material.Blazor.Internal
                         orderby t.TimeStamp
                         select t.ElementReference).ToArray();
 
-            await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTooltip.init", refs);
+            await JsRuntime.InvokeVoidAsync("OldMaterialBlazor.MBTooltip.init", refs);
 
             foreach (var t in Tooltips.Values.Where(t => !t.Initiated))
             {

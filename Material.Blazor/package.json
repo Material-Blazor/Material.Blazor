@@ -10,7 +10,7 @@
     "build-js": "terser Scripts/OldMaterialBlazor.js wwwroot/MaterialBlazor.js node_modules/@material/tooltip/dist/mdc.tooltip.js --output wwwroot/unbundled.js",
     "build-min-js": "terser wwwroot/unbundled.js --compress --mangle --ecma 2016 --output wwwroot/unbundled.min.js",
     "build-min-bundle-js": "terser wwwroot/unbundled.js node_modules/material-components-web/dist/material-components-web.js --compress --mangle --ecma 2016 --output wwwroot/bundled.min.js",
-    "build-webpack": "webpack --config webpack.config.js"
+    "build-scripts": "webpack --config webpack.config.js"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +24,7 @@
     "babel-preset-env": "^1.6.0",
     "dart-sass": "^1.25.0",
     "material-components-web": "7.0.0",
+    "regexp": "^1.0.0",
     "terser": "^4.8.0",
     "ts-loader": "^8.0.4",
     "typescript": "^4.0.3",
