@@ -99,9 +99,8 @@ jobs:
       with:
         dotnet-version: 5.0.100-rc.1.20452.10
         source-url: https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
-#      env:
-#        NUGET_AUTH_TOKEN: "%NUGET_AUTH_TOKEN%"
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Build 🔧
       run: dotnet build --configuration ${env:buildConfiguration} -p:InformationalVersion=${env:Version} ${env:projectWeb}
