@@ -19,8 +19,10 @@ env:
 jobs:
 
 ############################################################################################################
-#Build Material.Blazor.Website.WebAssembly (1st of 2 jobs), second job publishes to gh-pages
-#As part of this build the Material.Blazor dll is built and published
+#Build Material.Blazor (1st of 2 jobs), second job publishes to gh-pages
+#   Output: Material.Blazor DocFx pages
+#   Output: Material.Blazor
+#   Output: Material.Blazor.Website.WebAssembly
 ############################################################################################################
   buildmaterialblazor:
 
@@ -136,7 +138,7 @@ jobs:
 #Deploy gh-pages
 ############################################################################################################
   deployghpages:
-    needs: [buildmaterialblazor] # This job must depend on the two build jobs to complete before running, and uses ubuntu-latest instead of windows.
+    needs: [buildmaterialblazor]
 
     runs-on: ubuntu-latest
 
