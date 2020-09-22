@@ -9,7 +9,8 @@
     "build-min-bundle-css": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/bundled.scss wwwroot/bundled.min.css",
     "build-js": "terser Scripts/OldMaterialBlazor.js wwwroot/MaterialBlazor.js node_modules/@material/tooltip/dist/mdc.tooltip.js --output wwwroot/unbundled.js",
     "build-min-js": "terser wwwroot/unbundled.js --compress --mangle --ecma 2016 --output wwwroot/unbundled.min.js",
-    "build-min-bundle-js": "terser wwwroot/unbundled.js node_modules/material-components-web/dist/material-components-web.js --compress --mangle --ecma 2016 --output wwwroot/bundled.min.js",
+    "build-min-bundle-js-Comment1": "unbundled.js must be after material-components-web otherwise the tooltips fail",
+    "build-min-bundle-js": "terser node_modules/material-components-web/dist/material-components-web.js wwwroot/unbundled.js --compress --mangle --ecma 2016 --output wwwroot/bundled.min.js",
     "build-scripts": "webpack --config webpack.config.js"
   },
   "keywords": [],
