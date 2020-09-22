@@ -30,21 +30,26 @@ jobs:
 
     - name: Set ciSuffix as env variable
       run: echo "::set-env name=ciSuffix::CI.$(date +'%Y-%m-%d--%H%M')"
+      shell: bash
 
     - name: Echo ciSuffix
       run: echo "CI suffix is $ciSuffix"
+      shell: bash
 
     - name: Get the branch
       id: get_branch
       run: echo ::set-output name=branch::${GITHUB_REF/refs\/heads\//}
+      shell: bash
 
     - name: Get the pullrequest
       id: get_pullrequest
       run: echo ::set-output name=pullrequest::${GITHUB_REF/refs\/pull\//}
+      shell: bash
 
     - name: Get the tag
       id: get_tag
       run: echo ::set-output name=tag::${GITHUB_REF/refs\/tags\//}
+      shell: bash
 
     - name: Show branch name Ꙫ
       run: echo GitHub indicates that this is a branch push request of ${{steps.get_branch.outputs.branch}}
@@ -84,10 +89,10 @@ jobs:
         NUGET_AUTH_TOKEN: '%NUGET_AUTH_TOKEN%'
 
     - name: Build 🔧
-      run: dotnet build --configuration $buildConfiguration --version-suffix $ciSuffix $projectWeb
+      run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectWeb}
 
     - name: Publish Website 🔧
-      run: dotnet publish --no-build --configuration $buildConfiguration --output $outputWeb --version-suffix $ciSuffix $projectWeb
+      run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} --version-suffix ${env:ciSuffix} ${env:projectWeb}
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v1
@@ -97,7 +102,7 @@ jobs:
       if: (github.repository != 'Material-Blazor/Material.Blazor')
 
     - name: Generate NuGet package 🔧
-      run: dotnet pack --no-build --configuration $buildConfiguration --output $outputMB -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix $ciSuffix $projectMB
+      run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:projectMB}
       env:
         NUGET_AUTH_TOKEN: '${{secrets.GITHUB_TOKEN}}'
 
@@ -115,7 +120,7 @@ jobs:
 # The commented 'if' can replace the current 'if' when this is resolved
 
     - name: Upload Package 🚀
-      run: nuget push ${env:outputMBWin}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      run: nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: '${{ secrets.GH_PAT }}'
       if: ((github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push'))
