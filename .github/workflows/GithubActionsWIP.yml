@@ -89,18 +89,18 @@ jobs:
       with:
         dotnet-version: 5.0.100-rc.1.20452.10
         source-url: https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
-      env:
-        NUGET_AUTH_TOKEN: "%NUGET_AUTH_TOKEN%"
+#      env:
+#        NUGET_AUTH_TOKEN: "%NUGET_AUTH_TOKEN%"
 
     - name: Build 🔧
       run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectWeb}
-      env:
-        NUGET_AUTH_TOKEN: "${secrets.GH_PAT}"
+#      env:
+#        NUGET_AUTH_TOKEN: "${secrets.GH_PAT}"
 
     - name: Publish Website 🔧
       run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} --version-suffix ${env:ciSuffix} ${env:projectWeb}
-      env:
-        NUGET_AUTH_TOKEN: "${secrets.GH_PAT}"
+#      env:
+#        NUGET_AUTH_TOKEN: "${secrets.GH_PAT}"
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v1
@@ -111,8 +111,8 @@ jobs:
 
     - name: Generate NuGet package 🔧
       run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:projectMB}
-      env:
-        NUGET_AUTH_TOKEN: '${{secrets.GH_PAT}}'
+#      env:
+#        NUGET_AUTH_TOKEN: '${{secrets.GH_PAT}}'
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${env:outputMB}
