@@ -65,8 +65,6 @@ jobs:
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
-      with:
-        ref: main
 
 
 
