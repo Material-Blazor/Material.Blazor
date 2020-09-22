@@ -16,11 +16,11 @@ export function init(textElem, menuElem, dotNetObject): any {
             menuElem._menu.foundation.setDefaultFocusState(0);
         };
 
-        /*closedCallback = () => {
+        const closedCallback = () => {
             dotNetObject.invokeMethodAsync('NotifyClosedAsync');
         };
-
-        menuElem._menu.listen('MDCMenuSurface:closed', closedCallback);*/
+        
+        menuElem._menu.listen('MDCMenuSurface:closed', closedCallback);
     });
 }
 
