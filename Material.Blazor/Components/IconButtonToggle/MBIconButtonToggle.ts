@@ -1,8 +1,8 @@
 ﻿import { MDCRipple } from '@material/ripple';
+import { MDCIconButtonToggle } from '@material/icon-button';
 
 export function init(elem) {
-    //    elem._iconButtonToggle = mdc.iconButton.MDCIconButtonToggle.attachTo(elem);
-    elem._iconButtonToggle = MDCRipple.attachTo(elem);
+    elem._iconButtonToggle = MDCIconButtonToggle.attachTo(elem);
 }
 
 export function setOn(elem, isOn) {

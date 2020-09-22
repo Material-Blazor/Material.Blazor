@@ -39,10 +39,6 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
-
   <!-- Unfinished dependency issue
 	<ItemGroup>
 		<InputsComponentsScss Include="Components\**\*.scss" />
