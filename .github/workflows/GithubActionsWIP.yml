@@ -117,7 +117,7 @@ jobs:
 # The commented 'if' can replace the current 'if' when this is resolved
 
     - name: Upload Package 🚀
-      run: nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      run: nuget push ${env:outputMB}/*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       if: ((github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push'))
