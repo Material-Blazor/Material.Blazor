@@ -126,9 +126,9 @@ jobs:
       run: dir ${env:outputMB}
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
-#    - name: Upload Package 🚀
-#      run: dotnet nuget push $outputMB/*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
-#      if: (github.repository == 'Material-Blazor/Material.Blazor')
+    - name: Upload Package 🚀
+      run: dotnet nuget push $outputMB/*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
 ############################################################################################################
 # deployghpages
