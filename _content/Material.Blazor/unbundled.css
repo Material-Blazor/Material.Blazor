@@ -1124,6 +1124,8 @@
 /************************************************
     Applied to MBDatePicker.razor
 ************************************************/
+/*$dp-menu-day-menu-height: $dp-menu-height + 7 * ($dp-button-size + 2 * $dp-button-margin) + $dp-button-margin + $dp-day-pad-bottom-margin;
+$dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-size + 2 * $dp-button-margin) + $dp-year-pad-padding-top + $dp-year-pad-padding-bottom;*/
 .mb-dp-menu__surface-adjust {
   overflow: visible !important;
   pointer-events: none;
@@ -1135,11 +1137,13 @@
 }
 
 .mb-dp-menu__day-menu {
-  min-height: 314px;
+  /*min-height: $dp-menu-day-menu-height;*/
+  display: inline;
 }
 
 .mb-dp-menu__year-menu {
-  min-height: 316px;
+  /*min-height: $dp-menu-year-menu-height;*/
+  display: inline;
 }
 
 .mb-dialog-overflow-visible {

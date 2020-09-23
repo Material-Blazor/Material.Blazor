@@ -26,6 +26,6 @@
         elem.innerHTML = "<source src='_content/Material.Blazor.Website.Components/videos/" + selectedName + ".mp4' type='video/mp4'>"
 
         let linearProgress = document.querySelector('.splash-linear-progress');
-        material_blazor.linearProgress.init(linearProgress, 0, 0);
+        MaterialBlazor.MBLinearProgress.init(linearProgress, 0, 0);
     }
 }
