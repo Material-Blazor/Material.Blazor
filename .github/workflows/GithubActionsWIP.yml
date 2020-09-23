@@ -19,10 +19,10 @@ env:
 jobs:
 
 ############################################################################################################
-#Build Material.Blazor (1st of 2 jobs), second job publishes to gh-pages
-#   Output: Material.Blazor DocFx pages
-#   Output: Material.Blazor
-#   Output: Material.Blazor.Website.WebAssembly
+# BuildMaterialBlazor (1st of 2 jobs), second job publishes to gh-pages
+#   Output: Material.Blazor DocFx pages (uploaded as artifacts)
+#   Output: Material.Blazor NuGet package (published as CI)
+#   Output: Material.Blazor.Website.WebAssembly (uploaded as artifacts)
 ############################################################################################################
   buildmaterialblazor:
 
@@ -138,7 +138,7 @@ jobs:
 #      if: (((github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push')) || (github.repository != 'Material-Blazor/Material.Blazor'))
 
 ############################################################################################################
-#Deploy gh-pages
+# deployghpages
 ############################################################################################################
   deployghpages:
     needs: [buildmaterialblazor]

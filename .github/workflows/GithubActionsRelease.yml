@@ -25,10 +25,10 @@ env:
 jobs:
 
 ############################################################################################################
-#Build Material.Blazor (1st of 2 jobs), second job publishes to gh-pages
-#   Output: Material.Blazor DocFx pages
-#   Output: Material.Blazor
-#   Output: Material.Blazor.Website.WebAssembly
+# BuildMaterialBlazor (1st of 2 jobs), second job publishes to gh-pages
+#   Output: Material.Blazor DocFx pages (uploaded as artifacts)
+#   Output: Material.Blazor NuGet package (published as CI)
+#   Output: Material.Blazor.Website.WebAssembly (uploaded as artifacts)
 ############################################################################################################
   buildmaterialblazor:
 
@@ -38,13 +38,13 @@ jobs:
 
     - name: Set Version as env variable
       run: echo "::set-env name=Version::${GITHUB_REF/refs\/tags\//}"
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
       shell: bash
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Echo Version
       run: echo "Version is $Version"
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
       shell: bash
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
 
     - name: Get the branch
@@ -100,7 +100,8 @@ jobs:
         dotnet-version: 5.0.100-rc.1.20452.10
         source-url: https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}      if: (github.repository == 'Material-Blazor/Material.Blazor')
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Build 🔧
       run: dotnet build --configuration ${env:buildConfiguration} -p:InformationalVersion=${env:Version} ${env:projectWeb}
@@ -131,12 +132,12 @@ jobs:
       run: dir ${env:outputMB}
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
-    - name: Upload Package 🚀
-      run: dotnet nuget push $outputMB/*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
+#    - name: Upload Package 🚀
+#      run: dotnet nuget push $outputMB/*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
+#      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
 ############################################################################################################
-#Deploy gh-pages
+# deployghpages
 ############################################################################################################
   deployghpages:
     needs: [buildmaterialblazor]
