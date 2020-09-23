@@ -16,9 +16,9 @@ on:
 env:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
-  outputDocFx: ${{github.workspace}}/siteDocFx
-  outputMB: ${{github.workspace}}/siteMB
-  outputWeb: ${{github.workspace}}/siteWeb
+  outputDocFx: ${{github.workspace}}\siteDocFx
+  outputMB: ${{github.workspace}}\siteMB
+  outputWeb: ${{github.workspace}}\siteWeb
   projectMB: 'Material.Blazor/Material.Blazor.csproj'
   projectWeb: 'Material.Blazor.Website.WebAssembly/Material.Blazor.Website.WebAssembly.csproj'
 
@@ -127,7 +127,7 @@ jobs:
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Upload Package 🚀
-      run: dotnet nuget push $outputMB/*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push $outputMB\*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
 ############################################################################################################
