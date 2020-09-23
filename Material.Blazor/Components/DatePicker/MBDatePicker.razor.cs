@@ -116,11 +116,11 @@ namespace Material.Blazor
         protected void OnValueSetCallback(object sender, EventArgs e)
         {
             Panel.SetParameters(true, Value);
-            InvokeAsync(() => JsRuntime.InvokeVoidAsync("material_blazor.datePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, DateFormat)).ConfigureAwait(false));
+            InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, DateFormat)).ConfigureAwait(false));
         }
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("material_blazor.datePicker.init", ElementReference);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.init", ElementReference);
     }
 }

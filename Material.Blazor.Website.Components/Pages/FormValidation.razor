@@ -52,6 +52,7 @@
                                 <MBNumericDoubleField @bind-Value="@Model.NumericDouble"
                                                       Label="Numeric Double"
                                                       NumericFormat="N2"
+                                                      DecimalPlaces="2"
                                                       TextInputStyle="@MBTextInputStyle.Outlined"
                                                       ValidationMessageFor="@(() => Model.NumericDouble)" />
                             </div>
@@ -89,21 +90,24 @@ private class FormModel
 {
     [Required(ErrorMessage = "The text field is required")]
     public string Text { get; set; }
-                        
-                        
+
+
+    [Required(ErrorMessage = "The text area is required")]
     [MinLength(20, ErrorMessage ="The text area's minimum length is 20 characters")]
     public string Area { get; set; }
-                                    
-                                    
+
+
     [Required(ErrorMessage = "The autocomplete text field is required")]
     public string Autocomplete { get; set; }
-                                            
-                                            
-    [Range(minimum: 0, maximum: 100)]
+
+
+    // Add decimal point to force double comparison rather than int which rounds before comparing
+    [Range(0.0, 100.0, ErrorMessage = "Must be from 0 to 100")]
     public double NumericDouble { get; set; }
-                                             
-                                             
-    [Range(minimum: 0, maximum: 100)]
+
+
+    // No decimal points because integer rounding is required
+    [Range(0, 100, ErrorMessage = "Must be from 0 to 100")]
     public int NumericInt { get; set; }
 }
                             </code>
@@ -126,6 +130,7 @@ private class FormModel
         public string Text { get; set; }
 
 
+        [Required(ErrorMessage = "The text area is required")]
         [MinLength(20, ErrorMessage ="The text area's minimum length is 20 characters")]
         public string Area { get; set; }
 
@@ -134,11 +139,13 @@ private class FormModel
         public string Autocomplete { get; set; }
 
 
-        [Range(minimum: 0, maximum: 100)]
+        // Add decimal point to force double comparison rather than int which rounds before comparing
+        [Range(0.0, 100.0, ErrorMessage = "Must be from 0 to 100")]
         public double NumericDouble { get; set; }
 
 
-        [Range(minimum: 0, maximum: 100)]
+        // No decimal points because integer rounding is required
+        [Range(0, 100, ErrorMessage = "Must be from 0 to 100")]
         public int NumericInt { get; set; }
     }
 

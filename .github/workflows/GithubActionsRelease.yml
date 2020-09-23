@@ -25,63 +25,42 @@ env:
 jobs:
 
 ############################################################################################################
-#Build DocFx pages (1st of 2 jobs), second job publishes to gh-pages
-#
-# Why Windows? Lack of guidance on running docfx under Linus
+# BuildMaterialBlazor (1st of 2 jobs), second job publishes to gh-pages
+#   Output: Material.Blazor DocFx pages (uploaded as artifacts)
+#   Output: Material.Blazor NuGet package (published as CI)
+#   Output: Material.Blazor.Website.WebAssembly (uploaded as artifacts)
 ############################################################################################################
-  builddocfx:
+  buildmaterialblazor:
 
     runs-on: windows-latest
 
     steps:
 
-    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v2
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
-
-    - name: Create documentation 🔧
-      run: .\docfx\docfx docfx.json
-      env:
-        DOCFX_SOURCE_BRANCH_NAME: ${{steps.get_branch.outputs.branch}}
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
-
-    - name: Upload Artifacts 🔺 # The project is then uploaded as an artifact named 'site'.
-      uses: actions/upload-artifact@v1
-      with:
-        name: siteDocFx
-        path: siteDocFx
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
-
-
-############################################################################################################
-#Build Material.Blazor.Website.WebAssembly (1st of 2 jobs), second job publishes to gh-pages
-#This has to be a separate job from BuildMaterialBlazor because of the different dnc environments (3.1 & 5.0 preview)
-############################################################################################################
-  buildwebsite:
-
-    runs-on: ubuntu-latest
-
-    steps:
-
     - name: Set Version as env variable
       run: echo "::set-env name=Version::${GITHUB_REF/refs\/tags\//}"
+      shell: bash
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Echo Version
       run: echo "Version is $Version"
+      shell: bash
       if: (github.repository == 'Material-Blazor/Material.Blazor')
+
 
     - name: Get the branch
       id: get_branch
       run: echo ::set-output name=branch::${GITHUB_REF/refs\/heads\//}
+      shell: bash
 
     - name: Get the pullrequest
       id: get_pullrequest
       run: echo ::set-output name=pullrequest::${GITHUB_REF/refs\/pull\//}
+      shell: bash
 
     - name: Get the tag
       id: get_tag
       run: echo ::set-output name=tag::${GITHUB_REF/refs\/tags\//}
+      shell: bash
 
     - name: Show branch name Ꙫ
       run: echo GitHub indicates that this is a branch push request of ${{steps.get_branch.outputs.branch}}
@@ -99,32 +78,63 @@ jobs:
       uses: actions/checkout@v2
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
+
+
+    - name: Create documentation 🔧
+      run: .\docfx\docfx docfx.json
+      env:
+        DOCFX_SOURCE_BRANCH_NAME: ${{steps.get_branch.outputs.branch}}
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
+
+    - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'site'.
+      uses: actions/upload-artifact@v1
+      with:
+        name: siteDocFx
+        path: siteDocFx
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
+
+
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.100-rc.1.20452.10
+        source-url: https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Build 🔧
-      run: dotnet build --configuration $buildConfiguration -p:InformationalVersion=$Version $projectWeb
+      run: dotnet build --configuration ${env:buildConfiguration} -p:InformationalVersion=${env:Version} ${env:projectWeb}
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
-    - name: Publish 🔧
-      run: dotnet publish --no-build --configuration $buildConfiguration --output $outputWeb -p:InformationalVersion=$Version $projectWeb
+    - name: Publish Website 🔧
+      run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} -p:InformationalVersion=${env:Version} ${env:projectWeb}
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
-    - name: Upload Artifacts 🔺 # The project is then uploaded as an artifact named 'siteWeb'.
+    - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v1
       with:
         name: siteWeb
         path: siteWeb
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
+    - name: Generate NuGet package 🔧
+      run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:InformationalVersion=${env:Version} ${env:projectMB}
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
+
+    - name: Display MaterialBlazor package output Ꙫ
+      run: dir ${env:outputMB}
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
+
+#    - name: Upload Package 🚀
+#      run: dotnet nuget push $outputMB/*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
+#      if: (github.repository == 'Material-Blazor/Material.Blazor')
+
 ############################################################################################################
-#Deploy gh-pages
+# deployghpages
 ############################################################################################################
   deployghpages:
-    needs: [builddocfx,buildwebsite] # This job must depend on the two build jobs to complete before running, and uses ubuntu-latest instead of windows.
+    needs: [buildmaterialblazor]
 
     runs-on: ubuntu-latest
 
@@ -155,72 +165,4 @@ jobs:
         ACCESS_TOKEN: ${{secrets.GH_PAT}}
         BRANCH: gh-pages
         FOLDER: 'deployroot'
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
-
-
-############################################################################################################
-#Build & Deploy MaterialBlazor Nuget package (1 job)
-############################################################################################################
-  buildanddeploymaterialblazor:
-    runs-on: ubuntu-latest
-
-    steps:
-
-    - name: Set Version as env variable
-      run: echo "::set-env name=Version::${GITHUB_REF/refs\/tags\//}"
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
-
-    - name: Echo Version
-      run: echo "Version is $Version"
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
-
-    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
-      uses: actions/checkout@v2
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
-
-    - name: Setup .NET Core 🛎️
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.302
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
-
-    - name: Build 🔧
-      run: dotnet build --configuration $buildConfiguration -p:PackageVersion=$Version -p:InformationalVersion=$Version $projectMB
-      env:
-        NUGET_AUTH_TOKEN: "${secrets.GITHUB_TOKEN}"
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
-
-    - name: Generate NuGet package 🔧
-      run: dotnet pack --no-build --configuration $buildConfiguration --output $outputMB -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:PackageVersion=$Version -p:InformationalVersion=$Version $projectMB
-      env:
-        NUGET_AUTH_TOKEN: "${secrets.GITHUB_TOKEN}"
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
-
-    - name: Display package output Ꙫ
-      run: ls $outputMB
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
-
-    - name: Upload Package 🚀
-      run: dotnet nuget push $outputMB/*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
-
-    - name: Get the branch
-      id: get_branch
-      run: echo ::set-output name=branch::${GITHUB_REF/refs\/heads\//}
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
-
-    - name: Get the tag
-      id: get_tag
-      run: echo ::set-output name=tag::${GITHUB_REF/refs\/tags\//}
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
-
-    - name: Create Release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{steps.get_branch.outputs.branch}}
-        release_name: Release ${{steps.get_tag.outputs.tag}}
-        draft: false
-        prerelease: false
       if: (github.repository == 'Material-Blazor/Material.Blazor')

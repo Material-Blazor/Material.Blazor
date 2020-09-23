@@ -1,15 +1,24 @@
 {
   "compilerOptions": {
-    "noImplicitAny": false,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["ES2015", "DOM"],
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "noEmitOnError": false,
+    "noImplicitAny": false,
+    "outDir": "wwwroot",
     "removeComments": false,
+    "skipLibCheck": true,
     "sourceMap": false,
-    "target": "es5",
-    "outDir": "wwwroot"
+    "strict": true,
+    "target": "ES5"
   },
-  "include": [ "../Material.Blazor/Scripts/material.blazor.ts" ],
+  "include": [ "**/*.ts" ],
   "exclude": [
     "node_modules",
     "wwwroot"
-  ]
+  ],
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Recommended"
 }

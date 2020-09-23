@@ -21,8 +21,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="package-lock.json" />
-    <Content Remove="package.json" />
     <Content Remove="tsconfig.json" />
   </ItemGroup>
 
@@ -32,15 +30,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="package-lock.json" />
-    <None Include="package.json">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </None>
     <None Include="tsconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <None Update="Scripts\MaterialBlazor.ts">
+      <SubType>Code</SubType>
+    </None>
   </ItemGroup>
 
   <!-- Unfinished dependency issue
@@ -58,15 +54,55 @@
 			Inputs="@(InputsComponentsScss);@(InputsStylesScss);@(InputsComponentsTs);@(InputsScriptsTs)"
 			Outputs="@(OutputsCss);@(OutputsJs)">-->
 
+  <!--
   <Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">
+    <Exec Command="npm install" />
     <Exec Command="docker build -t mb_static_assets -f build-static-assets.Dockerfile ." />
     <Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
-    <Exec Command="docker run --rm mb_static_assets cat unbundled.js &gt; wwwroot/unbundled.js" />
-    <Exec Command="docker run --rm mb_static_assets cat unbundled.css &gt; wwwroot/unbundled.css" />
-    <Exec Command="docker run --rm mb_static_assets cat unbundled.min.js &gt; wwwroot/unbundled.min.js" />
-    <Exec Command="docker run --rm mb_static_assets cat unbundled.min.css &gt; wwwroot/unbundled.min.css" />
-    <Exec Command="docker run --rm mb_static_assets cat bundled.min.js &gt; wwwroot/bundled.min.js" />
-    <Exec Command="docker run --rm mb_static_assets cat bundled.min.css &gt; wwwroot/bundled.min.css" />
+    <Exec Command="docker run - -rm mb_static_assets cat wwwroot/unbundled.js &gt; wwwroot/unbundled.js" />
+    <Exec Command="docker run - -rm mb_static_assets cat wwwroot/unbundled.css &gt; wwwroot/unbundled.css" />
+    <Exec Command="docker run - -rm mb_static_assets cat wwwroot/unbundled.min.js &gt; wwwroot/unbundled.min.js" />
+    <Exec Command="docker run - -rm mb_static_assets cat wwwroot/unbundled.min.css &gt; wwwroot/unbundled.min.css" />
+    <Exec Command="docker run - -rm mb_static_assets cat wwwroot/bundled.min.js &gt; wwwroot/bundled.min.js" />
+    <Exec Command="docker run - -rm mb_static_assets cat wwwroot/bundled.min.css &gt; wwwroot/bundled.min.css" />
+    <Exec Command="docker run - -rm mb_static_assets cat MaterialBlazorButton.js &gt; wwwroot/MaterialBlazorButton.js" />
+    <Exec Command="docker run - -rm mb_static_assets cat MaterialBlazorCard.js &gt; wwwroot/MaterialBlazorCard.js" />
   </Target>
+-->
+
+  <Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">
+    <Exec Command="echo ***** npm install" />
+    <Exec Command="npm install" />
+
+    <Exec Command="echo ***** mkdir wwwroot" />
+    <Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
+
+    <Exec Command="echo ***** downloadfile" />
+    <DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" DestinationFolder="$(MSBuildProjectDirectory)\wwwroot" DestinationFilename="material-components-icons.css">
+    </DownloadFile>
+
+    <Exec Command="echo ***** npm run build-css" />
+    <Exec Command="npm run build-css" />
+
+    <Exec Command="echo ***** npm run build-min-css" />
+    <Exec Command="npm run build-min-css" />
+
+    <Exec Command="echo ***** npm run build-min-bundle-css" />
+    <Exec Command="npm run build-min-bundle-css" />
+
+    <Exec Command="echo ***** npm run build-scripts" />
+    <Exec Command="npm run build-scripts" />
+
+    <Exec Command="echo ***** npm run build-js" />
+    <Exec Command="npm run build-js" />
+
+    <Exec Command="echo ***** npm run build-min-js" />
+    <Exec Command="npm run build-min-js" />
+
+    <Exec Command="echo ***** npm run build-min-bundle-js" />
+    <Exec Command="npm run build-min-bundle-js" />
+  </Target>
+
+  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
 
 </Project>

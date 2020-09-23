@@ -225,7 +225,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("material_blazor.textField.setValue", ElementReference, Value));
+        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.setValue", ElementReference, Value));
 
 
         /// <summary>
@@ -233,25 +233,25 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("material_blazor.textField.setDisabled", ElementReference, AppliedDisabled));
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.setDisabled", ElementReference, AppliedDisabled));
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("material_blazor.textField.init", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
 
 
         /// <summary>
         /// Selects the text field - used by <see cref="MBNumericDoubleField"/>.
         /// </summary>
         /// <returns></returns>
-        internal async Task Select() => await JsRuntime.InvokeVoidAsync("material_blazor.textField.select", InputReference);
+        internal async Task Select() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.select", InputReference);
 
 
         /// <summary>
         /// Selects the text field - used by <see cref="MBNumericDoubleField"/>.
         /// </summary>
         /// <returns></returns>
-        internal async Task SetType(string value) => await JsRuntime.InvokeVoidAsync("material_blazor.textField.setType", InputReference, value);
+        internal async Task SetType(string value) => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.setType", InputReference, value);
 
 
         private void OnValidationStateChangedCallback(object sender, EventArgs e)
@@ -268,7 +268,7 @@ namespace Material.Blazor
                     separator = "<br />";
                 }
 
-                InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("material_blazor.textField.setHelperText", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
+                InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.setHelperText", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
             }
         }
     }
