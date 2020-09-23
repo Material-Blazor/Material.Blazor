@@ -92,18 +92,12 @@ jobs:
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       if: (github.repository == 'Material-Blazor/Material.Blazor')
-#      env:
-#        NUGET_AUTH_TOKEN: "%NUGET_AUTH_TOKEN%"
 
     - name: Build 🔧
       run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectWeb}
-#      env:
-#        NUGET_AUTH_TOKEN: "${secrets.GH_PAT}"
 
     - name: Publish Website 🔧
       run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} --version-suffix ${env:ciSuffix} ${env:projectWeb}
-#      env:
-#        NUGET_AUTH_TOKEN: "${secrets.GH_PAT}"
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v1
@@ -114,17 +108,9 @@ jobs:
 
     - name: Generate NuGet package 🔧
       run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:projectMB}
-#      env:
-#        NUGET_AUTH_TOKEN: '${{secrets.GH_PAT}}'
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${env:outputMB}
-
-    - name: Display repository owner Ꙫ
-      run: echo The repository owner is ${{ github.repository_owner }}
-
-    - name: Display obfuscated secret Ꙫ
-      run: echo The GH_PAT token is ${{ secrets.GH_PAT }}
 
 # We'd like to push to a forked repository; The push appears to work but the packages are not visible
 # Pending a service response we only do the push of the CI build in the Material-Blazor/Material.Blazor repository
@@ -133,7 +119,7 @@ jobs:
     - name: Upload Package 🚀
       run: nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
-        NUGET_AUTH_TOKEN: '${{ secrets.GH_PAT }}'
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       if: ((github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push'))
 #      if: (((github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push')) || (github.repository != 'Material-Blazor/Material.Blazor'))
 
