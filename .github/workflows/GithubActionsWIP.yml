@@ -124,7 +124,7 @@ jobs:
       run: nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GH_PAT}}
-      if: ((github.repository != 'Material-Blazor/Material.Blazor') && (github.event_name == 'push'))
+      if: ((github.repository != 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false)
 
 ############################################################################################################
 # deployghpages
