@@ -1,42 +1,42 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
-	<PropertyGroup>
-		<TargetFramework>net5.0</TargetFramework>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<Content Remove="package-lock.json" />
-		<Content Remove="package.json" />
-	</ItemGroup>
+  <ItemGroup>
+    <Content Remove="package-lock.json" />
+    <Content Remove="package.json" />
+  </ItemGroup>
 
-	<ItemGroup>
-	  <None Remove="Styles\dark-square-theme.scss" />
-	</ItemGroup>
+  <ItemGroup>
+    <None Remove="Styles\dark-square-theme.scss" />
+  </ItemGroup>
 
-	<ItemGroup>
-	  <Content Include="Styles\dark-square-theme.scss" />
-	</ItemGroup>
+  <ItemGroup>
+    <Content Include="Styles\dark-square-theme.scss" />
+  </ItemGroup>
 
-	<ItemGroup>
-		<None Include="package-lock.json" />
-		<None Include="package.json" />
-	</ItemGroup>
+  <ItemGroup>
+    <None Include="package-lock.json" />
+    <None Include="package.json" />
+  </ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.0-rc.1.20451.17" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.0-rc.1.20451.17" PrivateAssets="all" />
-		<PackageReference Include="System.Net.Http.Json" Version="5.0.0-rc.1.20451.14" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.0-rc.1.20451.17" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.0-rc.1.20451.17" PrivateAssets="all" />
+    <PackageReference Include="System.Net.Http.Json" Version="5.0.0-rc.1.20451.14" />
+  </ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\Material.Blazor\Material.Blazor.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Material.Blazor\Material.Blazor.csproj" />
+  </ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Properties\" />
-	  <Folder Include="wwwroot\css\" />
-	  <Folder Include="wwwroot\videos\" />
-	</ItemGroup>
+  <ItemGroup>
+    <Folder Include="Properties\" />
+    <Folder Include="wwwroot\css\" />
+    <Folder Include="wwwroot\videos\" />
+  </ItemGroup>
 
   <!-- Unfinished dependency issue copied directly from mb, no update yet for website
 	<ItemGroup>
@@ -84,21 +84,21 @@
     <Exec Command="mkdir wwwroot/css" IgnoreExitCode="true" />
     <Exec Command="mkdir wwwroot\css" IgnoreExitCode="true" />
 
+    <!-- Don't build unminified themes -->
     <Exec Command="echo ***** build mt default" />
-<!--    <Exec Command="npm run build-mt-default" /> -->
     <Exec Command="npm run build-min-mt-default" />
 
-    <Exec Command="echo ***** build blue square" />
-<!--    <Exec Command="npm run build-blue-square" /> -->
-    <Exec Command="npm run build-min-blue-square" />
+    <Exec Command="echo ***** build light square" />
+    <Exec Command="npm run build-min-light-square" />
 
-    <Exec Command="echo ***** build red round" />
-<!--    <Exec Command="npm run build-red-round" /> -->
-    <Exec Command="npm run build-min-red-round" />
+    <Exec Command="echo ***** build dark square" />
+    <Exec Command="npm run build-min-dark-square" />
 
-    <Exec Command="echo ***** build varied" />
-<!--    <Exec Command="npm run build-varied" /> -->
-    <Exec Command="npm run build-min-varied" />
+    <Exec Command="echo ***** build reounded" />
+    <Exec Command="npm run build-min-rounded" />
+
+    <Exec Command="echo ***** build asymmetric" />
+    <Exec Command="npm run build-min-asymmetric" />
 
   </Target>
 
