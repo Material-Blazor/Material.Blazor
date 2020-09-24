@@ -21,6 +21,24 @@
             <MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Debounce Intervals
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        <p>Set the debounce period you want.</p>
+                    </h3>
+
+                    <p><MBRadioButtonGroup @bind-Value="@DebouncePeriod" Items="DebouncePeriods" ItemValidation="@MBItemValidation.DefaultToFirst" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
                         Debounced text field
                     </h2>
 
@@ -29,20 +47,13 @@
                             Each of these can display as Filled or Outlined and with
                             the full variety of icon foundries. These are used across the page but it we don't attempt to show each variant everywhere - see the Text Field demo for this.
                         </p>
-                        <p>Set the debounce period you want.</p>
                     </h3>
 
-                    <p><MBRadioButtonGroup @bind-Value="@DebouncePeriod" Items="DebouncePeriods" ItemValidation="@MBItemValidation.DefaultToFirst" /></p>
-
-                    <p>
-                        <MBDebouncedTextField Label="Debounced Text"
-                                              @bind-Value="@Debounced"
-                                              TextInputStyle="MBTextInputStyle.Outlined"
-                                              LeadingIcon="account_balance_wallet"
-                                              DebounceInterval="DebouncePeriod" />
-                    </p>
-
+                    <p><MBDebouncedTextField Label="Debounced Text" @bind-Value="@Debounced" TextInputStyle="MBTextInputStyle.Outlined" LeadingIcon="account_balance_wallet" DebounceInterval="@DebouncePeriod" /></p>
                     <p>Debounced text: <em>'@Debounced'</em></p>
+
+                    <p><MBDebouncedTextField Label="Pre-filled" @bind-Value="@Prefilled" TextInputStyle="MBTextInputStyle.Outlined" LeadingIcon="account_balance_wallet" DebounceInterval="@DebouncePeriod" /></p>
+                    <p>Prefilled text: <em>'@Prefilled'</em></p>
                 </Primary>
             </MBCard>
         </div>
@@ -65,6 +76,25 @@
                 </Primary>
             </MBCard>
         </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Two-way binding
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Demonstrates two-way binding.
+                    </h3>
+
+                    <p><MBDebouncedTextField Label="Two Way Binding" @bind-Value="@TwoWayBinding" /></p>
+                    <p><MBDebouncedTextField Label="Two Way Binding" @bind-Value="@TwoWayBinding" /></p>
+                </Primary>
+            </MBCard>
+        </div>
     </PageContent>
 </DemonstrationPage>
 
@@ -75,11 +105,11 @@
         new MBListElement<int> { SelectedValue = 300, Label = "300 ms" },
         new MBListElement<int> { SelectedValue = 500, Label = "500 ms" },
         new MBListElement<int> { SelectedValue = 1000, Label = "1,000 ms" }
-            };
+    };
 
 
 
-    private string _debounced = "Initial Value";
+    private string _debounced;
     private string Debounced
     {
         get => _debounced;
@@ -88,6 +118,19 @@
             _debounced = value;
 
             ToastService.ShowToast(heading: "Debounced text field", message: $"Value: '{_debounced}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private string _prefilled = "Initial Value";
+    private string Prefilled
+    {
+        get => _prefilled;
+        set
+        {
+            _prefilled = value;
+
+            ToastService.ShowToast(heading: "Prefilled", message: $"Value: '{_prefilled}'", level: MBToastLevel.Success, showIcon: false);
         }
     }
 
@@ -114,6 +157,19 @@
             _persistentHelperText = value;
 
             ToastService.ShowToast(heading: "Persistent Helper Text", message: $"Value: '{_persistentHelperText}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private string _twoWayBinding;
+    private string TwoWayBinding
+    {
+        get => _twoWayBinding;
+        set
+        {
+            _twoWayBinding = value;
+
+            ToastService.ShowToast(heading: "Two Way Binding", message: $"Value: '{_twoWayBinding}'", level: MBToastLevel.Success, showIcon: false);
         }
     }
 
