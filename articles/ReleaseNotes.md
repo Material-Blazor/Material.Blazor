@@ -4,6 +4,17 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [1.0.0.rc.4](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-rc.4)
+24 September 2020
+
+- Build process uses npm directly rather than via docker (docker dependency removed).
+- Typescript in localized files replaces single Javascript file.
+- Themes upgraded.
+- Bug fixes.
+
+<br />
+
+
 #### [1.0.0.rc.3](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-rc.3)
 16 September 2020
 
