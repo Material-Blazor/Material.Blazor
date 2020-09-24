@@ -1,0 +1,417 @@
+﻿@page "/pageddatalist"
+
+@inject IMBToastService ToastService
+
+
+<style>
+    .my-container {
+        margin-bottom: 1rem;
+    }
+
+    .my-float-right {
+        float: right;
+    }
+
+    .my-float-right .mb-paginator {
+        justify-content: flex-end;
+    }
+
+    .my-full-width {
+        min-width: 100%;
+    }
+
+    .my-header-bold {
+        font-weight: bold;
+    }
+
+    .my-half-list {
+        width: 50%;
+        padding: 0 0.3rem 0 0.3rem;
+        float: left;
+        box-sizing: border-box;
+    }
+</style>
+
+<DemonstrationPage ComponentName="PagedDataList"
+                   Title="Paged Data List Demonstration"
+                   DemoComponent="@this"
+                   IsGeneric="true">
+    <Description>
+        <p>
+            Demonstrates a paged data list, which is a Material.Blazor Plus component. The paged data list is a complex component that uses the MBPaginator, MBSlidingContent and a nested render fragment construct
+            to allow you to render sophisticated paginated elements.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Paged Data List with Cards
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        A paged data list with cards showing a range of colors from the <a href="https://material.io/design/color/the-color-system.html" target="_blank">Material Theme color system</a>.
+                    </h3>
+
+                    <p>
+                        <MBPagedDataList @ref="@ColorsPagedDataList"
+                                         class="my-container"
+                                         PaginatorClass="my-float-right"
+                                         @bind-ItemsPerPage="@ColorsItemsPerPage"
+                                         @bind-PageNumber="@ColorsPageNumber"
+                                         ItemsPerPageSelection="@ColorsItemsPerPageSelection"
+                                         Data=@Colors>
+
+                            <ListTemplate Context="listOfPeople">
+                                <div class="mdc-layout-grid__inner" style="margin-bottom: 1rem;">
+                                    @foreach (var item in ColorsPagedDataList.CurrentPage)
+                                    {
+                                        <div class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-2-phone">
+                                            <MBCard CardStyle="@MBCardStyle.Outlined" AutoStyled="true" style="@item.Style">
+                                                <Primary>
+                                                    <h4 class="mdc-typography--headline6">@item.ColorName @item.Intensity</h4>
+                                                </Primary>
+                                            </MBCard>
+                                        </div>
+                                    }
+                                </div>
+                            </ListTemplate>
+                        </MBPagedDataList>
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Paged Data List with Dual Lists
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        A paged data list showing either two lists either side by side or vertically stacked on a mobile device.
+                    </h3>
+
+                    <p>
+                        <MBPagedDataList @ref="TwinListData"
+                                         class="my-container"
+                                         ListTemplateClass="my-container"
+                                         PaginatorClass="my-float-right"
+                                         @bind-ItemsPerPage="@TwinListItemsPerPage"
+                                         @bind-PageNumber="@TwinListPageNumber"
+                                         ItemsPerPageSelection="@PersonItemsPerPageSelection"
+                                         Data=@People>
+
+                            <ListTemplate Context="listOfPeople">
+                                @{
+                                    var half = TwinListData.CurrentPage.Count() / 2;
+                                    var leftList = TwinListData.CurrentPage.Skip(0).Take(half);
+                                    var rightList = TwinListData.CurrentPage.Skip(half).Take(half);
+                                }
+
+                                <div class="mdc-layout-grid__inner" style="margin-bottom: 1rem;">
+                                    <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                        <MBList Items="@leftList"
+                                                Context="person"
+                                                ShowSeparators="true"
+                                                ListType="@MBListType.Avatar"
+                                                ListStyle="MBListStyle.Outlined">
+
+                                            <Icon><MBIcon IconName="local_grocery_store" /></Icon>
+                                            <Title>@person.FamilyName</Title>
+                                            <LineTwo>@person.Salutation @person.FamilyName, @person.GivenName</LineTwo>
+                                        </MBList>
+                                    </div>
+
+                                    <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                        <MBList Items="@rightList"
+                                                Context="person"
+                                                ShowSeparators="true"
+                                                ListType="@MBListType.Avatar"
+                                                ListStyle="MBListStyle.Outlined">
+
+                                            <Icon><MBIcon IconName="local_grocery_store" /></Icon>
+                                            <Title>@person.FamilyName</Title>
+                                            <LineTwo>@person.Salutation @person.FamilyName, @person.GivenName</LineTwo>
+                                        </MBList>
+                                    </div>
+                                </div>
+                            </ListTemplate>
+                        </MBPagedDataList>
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Paged Data List with Data Table
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        A paged data list showing a data table.
+                    </h3>
+
+                    <p>
+                        <MBPagedDataList @ref="DataTableList"
+                                         class="my-container"
+                                         PaginatorClass="my-float-right"
+                                         @bind-ItemsPerPage="@DataTableItemsPerPage"
+                                         @bind-PageNumber="@DataTablePageNumber"
+                                         ItemsPerPageSelection="@PersonItemsPerPageSelection"
+                                         Data=@People>
+
+                            <ListTemplate Context="listOfPeople">
+                                <div class="mdc-layout-grid__inner" style="margin-bottom: 1rem; overflow: auto;">
+                                    <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+                                        <MBDataTable Items="@DataTableList.CurrentPage"
+                                                     Context="person"
+                                                     class="my-full-width">
+                                            <TableHeader>
+                                                <th class="mdc-data-table__header-cell my-header-bold" role="columnheader" scope="col">Salutation</th>
+                                                <th class="mdc-data-table__header-cell my-header-bold" role="columnheader" scope="col">Given Name</th>
+                                                <th class="mdc-data-table__header-cell my-header-bold" role="columnheader" scope="col">Family Name</th>
+                                            </TableHeader>
+                                            <TableRow>
+                                                <td class="mdc-data-table__cell">@person.Salutation</td>
+                                                <td class="mdc-data-table__cell">@person.GivenName</td>
+                                                <td class="mdc-data-table__cell">@person.FamilyName</td>
+                                            </TableRow>
+                                        </MBDataTable>
+                                    </div>
+                                </div>
+                            </ListTemplate>
+                        </MBPagedDataList>
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Paged Data Item and List Templates
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        A paged data list deploying both the ItemTemplate and ListTemplate render fragments.
+                    </h3>
+
+                    <p>
+                        <MBPagedDataList class="my-container"
+                                         PaginatorClass="my-float-right"
+                                         @bind-ItemsPerPage="@ItemAndListTemplateItemsPerPage"
+                                         @bind-PageNumber="@ItemAndListTemplatePageNumber"
+                                         ItemsPerPageSelection="@PersonItemsPerPageSelection"
+                                         Data=@People>
+
+                            <ListTemplate Context="listOfPeople">
+                                <table border=1 cellpadding=4>
+                                    <thead>
+                                        <tr>
+                                            <th>Salutation</th>
+                                            <th>Given name</th>
+                                            <th>Family name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @listOfPeople
+                                    </tbody>
+                                </table>
+                            </ListTemplate>
+                            <ItemTemplate Context="person">
+                                <tr @key=@person>
+                                    <td>@person.Salutation</td>
+                                    <td>@person.GivenName</td>
+                                    <td>@person.FamilyName</td>
+                                </tr>
+                            </ItemTemplate>
+                        </MBPagedDataList>
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Paged Data Item Template
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        A paged data list deploying only the ItemTemplate render fragment.
+                    </h3>
+
+                    <p>
+                        <MBPagedDataList class="my-container"
+                                         PaginatorClass="my-float-right"
+                                         @bind-ItemsPerPage="@ItemTemplateItemsPerPage"
+                                         @bind-PageNumber="@ItemTemplatePageNumber"
+                                         ItemsPerPageSelection="@PersonItemsPerPageSelection"
+                                         Data=@People>
+
+                            <ItemTemplate Context="person">
+                                <li @key=@person>
+                                    @person.Salutation @person.FamilyName, @person.GivenName
+                                </li>
+                            </ItemTemplate>
+                        </MBPagedDataList>
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Simple Paged Data List
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        A paged data list using neither the ItemTemplate nor the ListTemplate and therefore unstyled.
+                    </h3>
+
+                    <p>
+                        <MBPagedDataList class="my-container"
+                                         PaginatorClass="my-float-right"
+                                         @bind-ItemsPerPage="@SimpleItemsPerPage"
+                                         @bind-PageNumber="@SimplePageNumber"
+                                         ItemsPerPageSelection="@PersonItemsPerPageSelection"
+                                         Data=@People>
+                        </MBPagedDataList>
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private int[] PaginatorItemsPerPageSelection { get; set; } = { 2, 4, 6 };
+
+    private string[] PaginatorItems { get; set; } = { "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty" };
+    private int PaginatorItemsPerPage { get; set; } = 6;
+    private int p = 0;
+    private int PaginatorPageNumber// { get; set; }
+    {
+        get => p;
+        set
+        {
+            p = value;
+            ToastService.ShowToast(heading: "Page Change", message: $"Page: {p}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+    private IEnumerable<string> PaginatorSelection => PaginatorItems.Skip(PaginatorItemsPerPage * PaginatorPageNumber).Take(PaginatorItemsPerPage);
+
+
+
+    private readonly string[] colorNames = { "Red", "Pink", "Purple", "Deep Purple", "Indigo", "Blue", "Light Blue", "Cyan", "Teal", "Green", "Light Green", "Lime", "Yellow", "Amber", "Orange", "Deep Orange", "Brown", "Grey", "Blue Grey" };
+    private readonly string[] intensities = { "50", "100", "200", "300", "400", "500", "600", "700", "800", "900" };
+    private int[] ColorsItemsPerPageSelection { get; set; } = { 4, 8, 16 };
+    private int ColorsPageNumber { get; set; }
+    private int ColorsItemsPerPage { get; set; } = 4;
+
+    private class ColorSpec
+    {
+        public string ColorName { get; set; }
+        public string Intensity { get; set; }
+
+        public string Style => $"background-color: var(--mb-color-{ColorName.ToLower().Replace(" ", "-")}-{Intensity}); color: var(--mb-color-on-{ColorName.ToLower().Replace(" ", "-")}-{Intensity});";
+    }
+
+    private MBPagedDataList<ColorSpec> ColorsPagedDataList { get; set; }
+    private List<ColorSpec> Colors { get; set; } = new();
+
+
+    private class Person
+    {
+        public string Salutation { get; set; }
+        public string GivenName { get; set; }
+        public string FamilyName { get; set; }
+
+        public override string ToString()
+        {
+            return $"ToString(): {Salutation} {GivenName} {FamilyName}";
+        }
+    }
+
+    private Person[] People =
+    {
+        new Person() { Salutation = "Prof", GivenName = "Marie", FamilyName = "Curie" },
+        new Person() { Salutation = "Prof", GivenName = "Albert", FamilyName = "Einstein" },
+        new Person() { Salutation = "Prof", GivenName = "Andrew", FamilyName = "Huxley" },
+        new Person() { Salutation = "Mr", GivenName = "Bob", FamilyName = "Dylan" },
+        new Person() { Salutation = "Mr", GivenName = "Barack", FamilyName = "Obama" },
+        new Person() { Salutation = "Ms", GivenName = "Nadine", FamilyName = "Gordimer" },
+        new Person() { Salutation = "Mr", GivenName = "Muhammad", FamilyName = "Yunus" },
+        new Person() { Salutation = "RtHon", GivenName = "Lord", FamilyName = "Rayleigh" },
+        new Person() { Salutation = "Ms", GivenName = "Grazia", FamilyName = "Deledda" },
+        new Person() { Salutation = "Mr", GivenName = "Jean-Paul", FamilyName = "Sartre" },
+        new Person() { Salutation = "Prof", GivenName = "Esther", FamilyName = "Duflo" },
+        new Person() { Salutation = "Prof", GivenName = "Yoshinori", FamilyName = "Ohsumi" },
+        new Person() { Salutation = "Prof", GivenName = "Robert", FamilyName = "Merton" },
+        new Person() { Salutation = "Prof", GivenName = "Barbara", FamilyName = "McClintock" },
+        new Person() { Salutation = "Mr", GivenName = "Boris", FamilyName = "Pasternak" },
+        new Person() { Salutation = "Mr", GivenName = "Willy", FamilyName = "Brandt" },
+        new Person() { Salutation = "Mr", GivenName = "Isaac", FamilyName = "Bashevis Singer" },
+        new Person() { Salutation = "Ms", GivenName = "Olga", FamilyName = "Tokarczuk" },
+        new Person() { Salutation = "Mr", GivenName = "Günter", FamilyName = "Grass" },
+        new Person() { Salutation = "Mr", GivenName = "John", FamilyName = "Hume" },
+    };
+
+    private int[] PersonItemsPerPageSelection = { 2, 4, 6 };
+
+    private int TwinListItemsPerPage = 6;
+    private int TwinListPageNumber = 0;
+    private MBPagedDataList<Person> TwinListData;
+
+    private int DataTableItemsPerPage = 6;
+    private int DataTablePageNumber = 0;
+    private MBPagedDataList<Person> DataTableList;
+
+    private int ItemAndListTemplateItemsPerPage = 6;
+    private int ItemAndListTemplatePageNumber = 0;
+
+    private int ItemTemplateItemsPerPage = 6;
+    private int ItemTemplatePageNumber = 0;
+
+    private int SimpleItemsPerPage = 6;
+    private int SimplePageNumber = 0;
+
+
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        foreach (var n in colorNames)
+        {
+            foreach (var i in intensities)
+            {
+                Colors.Add(new ColorSpec()
+                {
+                    ColorName = n,
+                    Intensity = i
+                });
+
+            }
+        }
+    }
+}

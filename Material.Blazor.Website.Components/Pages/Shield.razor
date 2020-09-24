@@ -1,0 +1,44 @@
+﻿@page "/shield"
+
+
+<style>
+    .my-label-two {
+        --mb-shield-label-color: var(--mb-color-orange-100);
+        --mb-shield-value-color: var(--mb-color-orange-100);
+        --mb-shield-label-background: var(--mb-color-blue-700);
+        --mb-shield-value-background: var(--mb-color-green-700);
+    }
+</style>
+
+
+<DemonstrationPage ComponentName="shield"
+                   Title="Shield Demonstration"
+                   DemoComponent="@this">
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                                Shields
+                            </h2>
+
+                            <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                                The shields have a label and a value provided as text, the shields also present tooltips using the Tooltip
+                                parameter. The second shield uses custom classes. The third shield has icons.
+                            </h3>
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <p>
+                                <MBShield Label="label one" Value="value one" Tooltip="Plain shield" />
+                                <MBShield Label="label two" Value="value two" LabelClass="my-label-two" ValueClass="my-label-two" Tooltip="LabelClass and ValueClass set" />
+                                <MBShield Label="label three" Value="value three" LabelIcon="edit" ValueIcon="edit" Tooltip="With icons" />
+                            </p>
+                        </div>
+                    </div>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>

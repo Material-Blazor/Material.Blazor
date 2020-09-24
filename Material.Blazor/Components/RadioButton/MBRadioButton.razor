@@ -1,0 +1,24 @@
+﻿@namespace Material.Blazor
+@inherits InputComponentFoundation<TItem>
+@typeparam TItem
+
+
+<div @ref="@FormReference" class="mdc-form-field">
+
+    <div @ref="@RadioButtonReference" 
+         @attributes="@AttributesToSplat()">
+
+        <input class="mdc-radio__native-control"
+               type="radio"
+               id="@radioId"
+               name="@RadioGroupName"
+               @onclick="@(_ => OnInternalItemClickAsync())">
+
+        <div class="mdc-radio__background">
+            <div class="mdc-radio__outer-circle"></div>
+            <div class="mdc-radio__inner-circle"></div>
+        </div>
+        <div class="mdc-radio__ripple"></div>
+    </div>
+    <label for="@radioId">@Label</label>
+</div>

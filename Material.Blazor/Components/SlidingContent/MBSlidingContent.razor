@@ -1,0 +1,13 @@
+﻿@namespace Material.Blazor
+
+@typeparam TItem
+
+
+<div class="@VisibilityClass">
+    <div class="@ContentClass">
+        @if (Content != null)
+        {
+            @Content(CurrentItem)
+        }
+    </div>
+</div>

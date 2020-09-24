@@ -1,0 +1,100 @@
+﻿@page "/datepicker"
+
+@inject IMBToastService ToastService
+
+
+
+<DemonstrationPage ComponentName="DatePicker"
+                   Title="Date Picker Demonstration"
+                   DemoComponent="@this"
+                   RequiresDisableSelection="true"
+                   MinDensity="MBDensity.Minus4">
+    <Description>
+        <p>
+            The Date Picker is a Plus components, using Material.Blazor's implementation of the <a href="https://material.io/components/pickers" target="_blank">Material Date Picker</a>.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Button Styles
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Default and explicit button styles.
+                    </h3>
+
+                    <p>
+                        <MBDatePicker Label="Filled"
+                                      @bind-Value="@Filled"
+                                      SelectInputStyle="MBSelectInputStyle.Filled"
+                                      MinDate="@Min"
+                                      MaxDate="@Max" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Button Styles
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Default and explicit button styles.
+                    </h3>
+
+                    <p>
+                        <MBDatePicker Label="Weekdays Outlined"
+                                      @bind-Value="@Outlined"
+                                      SelectInputStyle="MBSelectInputStyle.Outlined"
+                                      DateSelectionCriteria="MBDateSelectionCriteria.WeekdaysOnly"
+                                      MinDate="@Min"
+                                      MaxDate="@Max"
+                                      DateFormat="ddd MMM dd, yyyy" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private DateTime _filled = DateTime.Today.AddMonths(1);
+    private DateTime Filled
+    {
+        get => _filled;
+        set
+        {
+            _filled = value;
+
+            ToastService.ShowToast(heading: "Filled Date Picker", message: $"Value: {_filled.ToLongDateString()}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private DateTime _outlined = DateTime.Today.AddMonths(1);
+    private DateTime Outlined
+    {
+        get => _outlined;
+        set
+        {
+            _outlined = value;
+
+            ToastService.ShowToast(heading: "Outlined Date Picker", message: $"Value: {_outlined.ToLongDateString()}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private DateTime Min { get; set; } = new DateTime(2019, 12, 14);
+    private DateTime Max { get; set; } = new DateTime(2097, 6, 14);
+}

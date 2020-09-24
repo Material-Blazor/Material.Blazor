@@ -1,0 +1,59 @@
+﻿@namespace Material.Blazor.Internal
+@inherits InputComponentFoundation<DateTime>
+
+
+<div @attributes="@AttributesToSplat()">
+
+    <ul class="mdc-list mb-dp-list">
+        <li class="mdc-list-item mdc-list-item--selected mb-dp-list-item"
+            data-value="@CachedReportingValueText"
+            aria-selected="true"
+            role="option">
+            <span class="mdc-list-item__ripple"></span>
+            <span @ref="@ListItemReference" class="mdc-list-item__text mb-dp-list-item__text">@CachedReportingValueText</span>
+        </li>
+    </ul>
+
+    <div class="mb-dp-menu">
+        <div class="mb-dp-menu__left">
+            <span>@MonthText</span>
+            <MBIconButtonToggle @bind-Value="@ShowYearPad" class="mb-dp-menu__icon-button" IconOn="arrow_drop_up" IconOff="arrow_drop_down" IconFoundry="@foundry" />
+        </div>
+
+        @if (!ShowYearPad)
+        {
+            <div class="mb-dp-menu__right">
+                <MBIconButton @onclick="@OnPreviousMonthClick" class="mb-dp-menu__icon-button" Icon="chevron_left" IconFoundry="@foundry" Disabled="@PreviousMonthDisabled" />
+                <MBIconButton @onclick="@OnShowCurrentDateClick" class="mb-dp-menu__icon-button spaced" Icon="undo" IconFoundry="@foundry" />
+                <MBIconButton @onclick="@OnNextMonthClick" class="mb-dp-menu__icon-button spaced" Icon="chevron_right" IconFoundry="@foundry" Disabled="@NextMonthDisabled" />
+            </div>
+        }
+    </div>
+
+    @if (ShowYearPad)
+    {
+        <div class="mb-dp-year-pad">
+            @foreach (var year in Years)
+            {
+                <InternalDatePickerYearButton @key="@year" CurrentYear="@StartOfDisplayMonth.Year" DisplayYear="@year" OnItemClickAsync="@OnYearItemClick" MinDate="@MinDate" MaxDate="@MaxDate" CurrentYearId="@currentYearId" />
+            }
+        </div>
+    }
+    else
+    {
+        <div class="mb-dp-day-pad">
+            <div class="mb-dp-day-pad__weekdays-block">
+                @foreach (var d in DaysOfWeek)
+                {
+                    <span class="mdc-theme--text-disabled-on-background mb-dp-day-pad__weekday">@d</span>
+                }
+            </div>
+            <div class="mdc-list mb-dp-day-pad__days-block">
+                @foreach (var date in Dates)
+                {
+                    <InternalDatePickerDayButton @key="@date" DateSelectionCriteria="@DateSelectionCriteria" CurrentDate="@InitialDate" DisplayDate="@date" StartOfDisplayMonth="@StartOfDisplayMonth" OnItemClickAsync="@OnDayItemClickAsync" MinDate="@MinDate" MaxDate="@MaxDate" />
+                }
+            </div>
+        </div>
+    }
+</div>

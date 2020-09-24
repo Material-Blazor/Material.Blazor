@@ -1,0 +1,25 @@
+﻿@namespace Material.Blazor
+@inherits ComponentFoundation
+
+
+<header @ref="HeaderElem"
+        @attributes="AttributesToSplat(SplatType.ExcludeEvents)"
+        id="app-bar">
+
+    <div class="mdc-top-app-bar__row">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+            <MBIconButton class="mdc-top-app-bar__action-item--unbounded"
+                          Icon="@NavIcon"
+                          IconFoundry="@IconFoundry"
+                          @attributes="@AttributesToSplat(SplatType.EventsOnly)" />
+
+            <span class="mdc-top-app-bar__title">@Title</span>
+        </section>
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" style="padding-right: 20px;">
+            @if (ChildContent != null)
+            {
+                @ChildContent
+            }
+        </section>
+    </div>
+</header>

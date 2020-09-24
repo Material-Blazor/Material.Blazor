@@ -4,7 +4,7 @@
       "src": [
         {
           "files": [
-            "BlazorMdc/BlazorMdc.csproj"
+            "Material.Blazor/Material.Blazor.csproj"
           ],
           "filter": "filterConfig.yml"
         }
@@ -31,13 +31,13 @@
       },
       {
         "files": [
-          "BlazorMdc/**/**.md",
-          "BlazorMdc/**/**/**.md",
-          "BlazorMdc/**/toc.yml"
+          "Material.Blazor/**/**.md",
+          "Material.Blazor/**/**/**.md",
+          "Material.Blazor/**/toc.yml"
         ],
         "exclude": [
-          "BlazorMdc/node_modules/**/**.md",
-          "BlazorMdc/node_modules/**/**.toc"
+          "Material.Blazor/node_modules/**/**.md",
+          "Material.Blazor/node_modules/**/**.toc"
         ]
       },
       {
@@ -52,7 +52,10 @@
       {
         "files": [
           "images/**.png",
-          "images/**.jpg"
+          "images/**.jpg",
+          ".nojekyll",
+          "404.html",
+          "*html.txt"
         ]
       }
     ],
@@ -63,7 +66,7 @@
         ],
         "exclude": [
           "obj/**",
-          "_site/**"
+          "siteDocFx/**"
         ]
       }
     ],
@@ -72,7 +75,7 @@
     "fileMetadataFiles": [],
     "template": [
       "default",
-      "templates/blazormdc"
+      "templates/material.blazor"
     ],
     "postProcessors": [],
     "markdownEngineName": "markdig",

@@ -1,0 +1,36 @@
+﻿@namespace Material.Blazor
+@inherits ComponentFoundation
+
+
+<div @attributes="@AttributesToSplat()">
+
+    <div class="mb-paginator">
+        <div class="mb-paginator-group">
+            <span>@ItemsText</span>
+
+            <div>
+                <MBIconButtonToggle @ref="@IconButtonToggle" @bind-Value="@ToggleOn" @onclick="@OnMenuToggleAsync" IconOn="arrow_drop_up" IconOff="arrow_drop_down" />
+                <div class="mdc-menu-surface--anchor">
+                    <MBMenu @ref="Menu">
+                        @foreach (var itemsPerPage in ItemsPerPageSelection)
+                        {
+                            <MBListItem @key="@itemsPerPage" Label="@itemsPerPage.ToString("G0")" @onclick="@(() => OnMenuItemClick(itemsPerPage))" />
+                        }
+                    </MBMenu>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-paginator-group">
+            <div class="mb-paginator__position-text">
+                @* This hidden element serves to give the actual position text a constant width equal to the maximum width that may be required *@
+                <span class="mb-paginator__position-text-hidden">@MaxPositionText</span>
+                <span>@PositionText</span>
+            </div>
+
+            <MBIconButton Icon="chevron_left" @onclick="@OnPreviousClick" Disabled="@PreviousDisabled" />
+
+            <MBIconButton Icon="chevron_right" @onclick="@OnNextClick" Disabled="@NextDisabled" />
+        </div>
+    </div>
+</div>

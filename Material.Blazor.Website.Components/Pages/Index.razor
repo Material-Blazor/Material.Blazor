@@ -1,0 +1,81 @@
+﻿@page "/"
+
+
+<div class="mdc-layout-grid__cell--span-12">
+    <MBCard>
+        <Primary>
+            <div class="mb-card__primary">
+                <h1 class="mb-card__title mdc-typography--headline4">Welcome to Material.Blazor</h1>
+                <h2 class="mb-card__title mdc-typography--subtitle1">Demonstration website</h2>
+            </div>
+            <div class="mb-card__secondary">
+                <ul class="mdc-typography--body2 point-list">
+                    <li>
+                        Material.Blazor is a <a href="https://docs.microsoft.com/en-us/aspnet/core/razor-pages/ui-class?view=aspnetcore-3.1&tabs=visual-studio" target="_blank">Razor Class Library</a>
+                        for <a href="https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor" target="_blank">Blazor</a> apps bringing a comprehensive, lightweight suite of <a href="https://material.io" target="_blank">Material Theme</a> components.
+                    </li>
+                    <li>
+                        Use the <a href="https://www.nuget.org/packages/Material.Blazor/" target="_blank">nuget package</a> - use the version 1.0.0 latest pre-release.
+                    </li>
+                    <li>
+                        You will notice that page transitions are animated with a fade out/in effect using the <a href="https://material-blazor.com/docs/Material.Blazor/Model/AnimatedNavigation/IMBAnimatedNavigationService.cs.html" target="_blank">Material.Blazor Animated Navigation</a>;
+                    </li>
+                    <li>
+                        Material.Blazor has been built by <a href="https://dioptra.tech" target="_blank">Simon Ziegler of Dioptra</a> and <a href="https://www.optimiumhealth.com/" target="_blank">Mark Stega of Optimium Health</a>, and is licensed under the permissive
+                        <a href="https://en.wikipedia.org/wiki/MIT_License" target="_blank">MIT License</a> and is delivered as a <a href="https://www.nuget.org/packages/Material.Blazor/" target="_blank">Nuget package</a>.
+                    </li>
+                    <li>
+                        One of Material Theme's benefits is the ability to theme, using either SASS mixins (preferred and more capable) or CSS variables. We have four SASS mixin driven themes on
+                        this website which you can select from a menu when you click the action button on the far right of the top app bar. Look particularly at how these four themes affect
+                        buttons and text fields. <a href="https://material-blazor.com/docs" target="_blank">See the docs</a> for more detail on how to theme. This site's theming can be found in
+                        <a href="https://github.com/Material-Blazor/Material.Blazor/tree/main/Material.Blazor.Website.Components/Styles" target="_blank">the GitHub repository</a>, and you can see how we
+                        use simple Node commands in <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website.Components/package.json" target="_blank">package.json</a>, called from
+                        build actions in <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website.Components/Material.Blazor.Website.Components.csproj#L48" target="_blank">the CSPROJ file</a>.
+                    </li>
+                    <li>
+                        This application was built in <strong>@BuildMode</strong> mode and is currently executing on <strong>@Runtime</strong> hosted by <strong>@OSDescription/@OSArchitecture</strong>.
+                    </li>
+                    <li>
+                        The Material.Blazor version is <strong>@Version</strong>.
+                    </li>
+                </ul>
+            </div>
+        </Primary>
+    </MBCard>
+</div>
+
+
+
+<div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+    <MBCard class="mb-basic-with-text-over-media xlink-card" @onclick="@NavigateToDocs">
+        <PrimaryAction>
+            <div class="mdc-card__media mdc-card__media--16-9 mb-card__media" style="background-image: url('_content/Material.Blazor.Website.Components/images/book-shelves.jpg');">
+                <div class="mdc-card__media-content mb-card__media-content">
+                    <div class="mb-card__primary">
+                        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">Documentation</h2>
+                        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">Click to visit the docs website</h3>
+                    </div>
+                </div>
+            </div>
+        </PrimaryAction>
+    </MBCard>
+</div>
+
+
+       
+<div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+    <MBCard class="mb-basic-with-text-over-media xlink-card" @onclick="@NavigateToButton">
+        <PrimaryAction>
+            <div class="mdc-card__media mdc-card__media--16-9 mb-card__media" style="background-image: url('_content/Material.Blazor.Website.Components/images/mac.jpg');">
+                <div class="mdc-card__media-content mb-card__media-content">
+                    <div class="mb-card__primary">
+                        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">Demonstration</h2>
+                        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                            Try Material.Blazor out from the menu or click here to go straight to the Button demo page.
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </PrimaryAction>
+    </MBCard>
+</div>

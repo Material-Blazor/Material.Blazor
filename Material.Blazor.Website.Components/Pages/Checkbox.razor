@@ -1,0 +1,202 @@
+﻿@page "/checkbox"
+
+@inject IMBToastService ToastService
+
+
+
+<DemonstrationPage ComponentName="Checkbox"
+                   Title="Checkbox Demonstration"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-checkbox#selection-controls-checkboxes"
+                   MinDensity="MBDensity.Minus3"
+                   RequiresDisableSelection="true">
+    <Description>
+        <p>
+            Demonstrates checkboxes and switches.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Basic component demo
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Simple checkbox.
+                    </h3>
+
+                    <p><MBCheckbox @bind-Value="@CheckboxState" Label="Simple Checkbox" class="supplied-test-class" id="supplied-test-id" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Two-Way Binding
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows two-way binding.
+                    </h3>
+
+                    <p><MBCheckbox @bind-Value="@ToggleTwoWayBindingState" Label="Bound Checkbox" /></p>
+
+                    <p><MBSwitch @bind-Value="@ToggleTwoWayBindingState" Label="Bound Switch" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Indeterminate Checkbox
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows a simple lone indeterminate checkbox.
+                    </h3>
+
+                    <p>
+                        <MBButton Label="Toggle Indeterminate" @onclick="@(() => IsIndeterminate = !IsIndeterminate)" />
+                        <MBCheckbox Label="Indeterminate" @bind-Value="@IndeterminateCheckboxValue" @bind-IsIndeterminate="@IsIndeterminate" />
+                    </p>
+
+                    <p>
+                        Value: @IndeterminateCheckboxValue, Indeterminate State: @IsIndeterminate
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Grouped Indeterminate Checkbox
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows a grouped indeterminate checkbox implementation.
+                    </h3>
+
+                    <p>
+                        <MBCheckbox Label="All Winter Wear" @bind-Value="@AllWinterWear" IsIndeterminate="@AllWinterWearIndeterminate" />
+                    </p>
+                    <p>
+                        <ul style="list-style-type: none;">
+                            <li>
+                                <MBCheckbox Label="Gloves" @bind-Value="@Gloves" />
+                            </li>
+                            <li>
+                                <MBCheckbox Label="Hat" @bind-Value="@Hat" />
+                            </li>
+                            <li>
+                                <MBCheckbox Label="Coat" @bind-Value="@Coat" />
+                            </li>
+                            <li>
+                                <MBCheckbox Label="Boots" @bind-Value="@Boots" />
+                            </li>
+                        </ul>
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Checkbox Density
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows density subsystem from default to minus 3.
+                    </h3>
+
+                    <p><MBCheckbox Label="Default Density" Density="@MBDensity.Default" /></p>
+                    <p><MBCheckbox Label="Density Minus 1" Density="@MBDensity.Minus1" /></p>
+                    <p><MBCheckbox Label="Density Minus 2" Density="@MBDensity.Minus2" /></p>
+                    <p><MBCheckbox Label="Density Minus 3" Density="@MBDensity.Minus3" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private bool _checkboxState;
+    private bool CheckboxState
+    {
+        get => _checkboxState;
+        set
+        {
+            _checkboxState = value;
+
+            ToastService.ShowToast(heading: "Checkbox Clicked", message: $"Value: {_checkboxState}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private bool _toggleTwoWayBindingState;
+    private bool ToggleTwoWayBindingState
+    {
+        get => _toggleTwoWayBindingState;
+        set
+        {
+            _toggleTwoWayBindingState = value;
+
+            ToastService.ShowToast(heading: "Toggle Icon Button Clicked", message: $"Two way binding Value: {_toggleTwoWayBindingState}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private void ButtonClick(string notification)
+    {
+        ToastService.ShowToast(heading: "Button Clicked", message: notification, level: MBToastLevel.Success, showIcon: false);
+    }
+
+
+    private bool IndeterminateCheckboxValue { get; set; } = false;
+    private bool IsIndeterminate { get; set; } = true;
+
+
+    private bool[] WinterWear = { false, true, true, false };
+    private bool Gloves { get => WinterWear[0]; set => WinterWear[0] = value; }
+    private bool Hat { get => WinterWear[1]; set => WinterWear[1] = value; }
+    private bool Coat { get => WinterWear[2]; set => WinterWear[2] = value; }
+    private bool Boots { get => WinterWear[3]; set => WinterWear[3] = value; }
+
+    private bool AllWinterWear
+    {
+        get => WinterWear.Where(x => !x).Count() == 0;
+        set
+        {
+            for (int i = 0; i < WinterWear.Length; i++)
+            {
+                WinterWear[i] = value;
+            }
+
+            StateHasChanged();
+        }
+    }
+
+    private bool AllWinterWearIndeterminate => WinterWear.Where(x => !x).Count() > 0 && WinterWear.Where(x => x).Count() > 0;
+}

@@ -1,0 +1,69 @@
+﻿@namespace Material.Blazor
+
+@typeparam TItem
+
+@inherits InputComponentFoundation<int>
+
+
+@if (Icon is null && Label is null)
+{
+    <MBTabBar @bind-Value="@ReportingValue"
+              Items="@Items"
+              Context="item"
+              StackIcons="@StackIcons"
+              Disabled="@AppliedDisabled"
+              Density="@Density"
+              GetKeysFunc="@GetKeysFunc">
+
+    </MBTabBar>
+}
+else if (Label is null)
+{
+    <MBTabBar @bind-Value="@ReportingValue"
+              Items="@Items"
+              Context="item"
+              StackIcons="@StackIcons"
+              Disabled="@AppliedDisabled"
+              Density="@Density"
+              GetKeysFunc="@GetKeysFunc">
+
+        <Icon>@Icon(item)</Icon>
+    </MBTabBar>
+}
+else if (Icon is null)
+{
+    <MBTabBar @bind-Value="@ReportingValue"
+              Items="@Items"
+              Context="item"
+              StackIcons="@StackIcons"
+              Disabled="@AppliedDisabled"
+              Density="@Density"
+              GetKeysFunc="@GetKeysFunc">
+
+        <Label>@Label(item)</Label>
+    </MBTabBar>
+}
+else
+{
+    <MBTabBar @bind-Value="@ReportingValue"
+              Items="@Items"
+              Context="item"
+              StackIcons="@StackIcons"
+              Disabled="@AppliedDisabled"
+              Density="@Density"
+              GetKeysFunc="@GetKeysFunc">
+
+        <Label>@Label(item)</Label>
+        <Icon>@Icon(item)</Icon>
+    </MBTabBar>
+}
+
+
+<MBSlidingContent Items="@Items"
+                  ItemIndex="@Value"
+                  Context="item">
+
+    <Content>
+        @Content(item)
+    </Content>
+</MBSlidingContent>

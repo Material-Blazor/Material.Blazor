@@ -1,0 +1,97 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Remove="package-lock.json" />
+		<Content Remove="package.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="package-lock.json" />
+		<None Include="package.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="5.0.0-rc.1.20451.17" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="5.0.0-rc.1.20451.17" PrivateAssets="all" />
+		<PackageReference Include="System.Net.Http.Json" Version="5.0.0-rc.1.20451.14" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Material.Blazor\Material.Blazor.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Properties\" />
+	  <Folder Include="wwwroot\css\" />
+	  <Folder Include="wwwroot\videos\" />
+	</ItemGroup>
+
+  <!-- Unfinished dependency issue copied directly from mb, no update yet for website
+	<ItemGroup>
+		<InputsComponentsScss Include="Components\**\*.scss" />
+		<InputsStylesScss Include="Styles\*.scss" />
+		<InputsComponentsTs Include="Components\**\*.js" />
+		<InputsScriptsTs Include="Scripts\*.js" />
+		<OutputsCss Include="wwwroot\blazormdc.css;wwwroot\blazormdc.min.css;wwwroot\blazormdc-material-bundle.min.css" />
+		<OutputsJs Include="wwwroot\blazormdc.js;wwwroot\blazormdc.min.js;wwwroot\blazormdc-material-bundle.min.js" />
+	</ItemGroup>
+
+	<Target Name="BuildScriptsAndStyles" 
+			BeforeTargets="PreBuildEvent" 
+			Inputs="@(InputsComponentsScss);@(InputsStylesScss);@(InputsComponentsTs);@(InputsScriptsTs)"
+			Outputs="@(OutputsCss);@(OutputsJs)">-->
+
+  <!--
+	<Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">
+		<Exec Command="docker build -t mbw_static_assets -f build-static-assets.Dockerfile ." />
+
+		<Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
+		<Exec Command="mkdir wwwroot/css" IgnoreExitCode="true" />
+		<Exec Command="mkdir wwwroot\css" IgnoreExitCode="true" />
+
+		<Exec Command="docker run - -rm mbw_static_assets cat blue-square-theme.css &gt; wwwroot/css/blue-square-theme.css" />
+		<Exec Command="docker run - -rm mbw_static_assets cat blue-square-theme.min.css &gt; wwwroot/css/blue-square-theme.min.css" />
+
+	  <Exec Command="docker run - -rm mbw_static_assets cat mt-default-theme.css &gt; wwwroot/css/mt-default-theme.css" />
+		<Exec Command="docker run - -rm mbw_static_assets cat mt-default-theme.min.css &gt; wwwroot/css/mt-default-theme.min.css" />
+
+		<Exec Command="docker run - -rm mbw_static_assets cat red-round-theme.css &gt; wwwroot/css/red-round-theme.css" />
+		<Exec Command="docker run - -rm mbw_static_assets cat red-round-theme.min.css &gt; wwwroot/css/red-round-theme.min.css" />
+
+		<Exec Command="docker run - -rm mbw_static_assets cat varied-theme.css &gt; wwwroot/css/varied-theme.css" />
+		<Exec Command="docker run - -rm mbw_static_assets cat varied-theme.min.css &gt; wwwroot/css/varied-theme.min.css" />
+	</Target>
+-->
+
+  <Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">
+    <Exec Command="echo ***** npm install" />
+    <Exec Command="npm install" />
+
+    <Exec Command="echo ***** mkdir wwwroot" />
+    <Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
+    <Exec Command="mkdir wwwroot/css" IgnoreExitCode="true" />
+    <Exec Command="mkdir wwwroot\css" IgnoreExitCode="true" />
+
+    <Exec Command="echo ***** build mt default" />
+<!--    <Exec Command="npm run build-mt-default" /> -->
+    <Exec Command="npm run build-min-mt-default" />
+
+    <Exec Command="echo ***** build blue square" />
+<!--    <Exec Command="npm run build-blue-square" /> -->
+    <Exec Command="npm run build-min-blue-square" />
+
+    <Exec Command="echo ***** build red round" />
+<!--    <Exec Command="npm run build-red-round" /> -->
+    <Exec Command="npm run build-min-red-round" />
+
+    <Exec Command="echo ***** build varied" />
+<!--    <Exec Command="npm run build-varied" /> -->
+    <Exec Command="npm run build-min-varied" />
+
+  </Target>
+
+</Project>

@@ -1,0 +1,76 @@
+﻿@page "/menu"
+
+@inject IMBToastService ToastService
+
+
+<DemonstrationPage ComponentName="Menu"
+                   Title="Menu Demonstration"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-menu#menus">
+    <Description>
+        <p>
+            Demonstrates a menu.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Menu Example
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Click the button to open the menu.
+                    </h3>
+
+                    <p>
+                        <MBButton Label="Open Menu" @onclick="@OpenMenuAsync" />
+                    </p>
+
+                    <div class="mdc-menu-surface--anchor">
+                        <MBMenu @ref="@MenuElement">
+                            <MBListItem Label="One" @onclick="@(() => OnClickHandler("One"))" />
+                            <MBListItem Label="Two" @onclick="@(() => OnClickHandler("Two"))" />
+                            <MBListItem Label="Three" IconFoundry="@MBIconHelper.OIFoundry()" @onclick="@(() => OnClickHandler("Three"))" />
+                            <MBListDivider />
+                            <MBListItem Label="Four" LeadingIcon="home" @onclick="@(() => OnClickHandler("Four"))" />
+                            <MBListItem Label="Five" LeadingIcon="alarm" @onclick="@(() => OnClickHandler("Five"))" />
+                            <MBListItem Label="Six" LeadingIcon="shield" IconFoundry="@MBIconHelper.OIFoundry()" @onclick="@(() => OnClickHandler("Six"))" />
+                            <MBListDivider />
+                            <MBMenuSelectionGroup>
+                                <MBListItem Label="Seven" LeadingIcon="done" IsSelectedMenuItem="@SevenSelected" @onclick="@(() => OnClickHandler("Seven"))" />
+                                <MBListItem Label="Eight" LeadingIcon="done" IsSelectedMenuItem="@EightSelected" @onclick="@(() => OnClickHandler("Eight"))" />
+                            </MBMenuSelectionGroup>
+                            <MBListDivider />
+                            <MBListItem Label="Nine (disabled)" Disabled="true" @onclick="@(() => OnClickHandler("Nine"))" />
+                        </MBMenu>
+                    </div>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private MBMenu MenuElement { get; set; }
+    private bool SevenSelected { get; set; }
+    private bool EightSelected { get; set; }
+
+    private async Task OpenMenuAsync()
+    {
+        await MenuElement.ToggleAsync();
+    }
+
+    protected void OnClickHandler(string NavigationReference)
+    {
+        var result = NavigationReference;
+        ToastService.ShowToast(heading: "Menu result", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+
+        SevenSelected = (result == "Seven") ? !SevenSelected : SevenSelected;
+        EightSelected = (result == "Eight") ? !EightSelected : EightSelected;
+    }
+}

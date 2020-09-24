@@ -1,0 +1,51 @@
+﻿.mb-card {
+    width: 350px;
+    margin: 48px 0;
+}
+
+.mb-card__primary {
+    padding: 1rem;
+}
+
+.mb-card__title {
+    margin: 0;
+}
+
+.mb-card__subtitle {
+    margin: 0
+}
+
+.mb-card__secondary, .mb-card__subtitle {
+    color: rgba(0,0,0,.54);
+    color: var(--mdc-theme-text-secondary-on-background,rgba(0,0,0,.54))
+}
+
+.mb-card__secondary {
+    padding: 0 1rem 8px
+}
+
+.mb-card__media.mdc-card__media--square {
+    width: 110px
+}
+
+.mb-basic-with-header .mb-card__secondary, .mb-basic-with-text-over-media .mb-card__secondary {
+    padding-top: 1rem
+}
+
+.mb-basic-with-text-over-media .mb-card__media-content {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: end;
+    align-items: flex-end
+}
+
+.mb-basic-with-text-over-media .mb-card__media-content .mb-card__subtitle, .mb-basic-with-text-over-media .mb-card__media-content .mb-card__title {
+    color: #fff
+}
+
+.mb-ui-control .mb-card__primary-action {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+    flex-direction: row
+}

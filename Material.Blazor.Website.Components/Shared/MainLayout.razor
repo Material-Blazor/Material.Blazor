@@ -1,0 +1,130 @@
+﻿@inherits LayoutComponentBase
+
+@inject IMBAnimatedNavigationManager AnimatedNavigationService
+@inject IJSRuntime JsRuntime
+
+<MBDrawer @ref="@Drawer"
+          IsDismissible="true">
+
+    <div class="mdc-list">
+        <MBListItem LeadingIcon="home" Label="Home" @onclick="@(() => ListItemClickHandler(""))" />
+        <MBListItem LeadingIcon="anchor" Label="Anchor" @onclick="@(() => ListItemClickHandler("anchor"))" />
+        <MBListItem LeadingIcon="short_text" Label="Autocomplete Text Field" @onclick="@(() => ListItemClickHandler("autocompletetextfield"))" />
+        <MBListItem LeadingIcon="swap_horiz" Label="Animated Navigation" @onclick="@(() => ListItemClickHandler("animatednavigation"))" />
+        <MBListItem LeadingIcon="touch_app" Label="Button" @onclick="@(() => ListItemClickHandler("button"))" />
+        <MBListItem LeadingIcon="dashboard" Label="Card" @onclick="@(() => ListItemClickHandler("card"))" />
+        <MBListItem LeadingIcon="web" Label="Cascading Defaults" @onclick="@(() => ListItemClickHandler("cascadingdefaults"))" />
+        <MBListItem LeadingIcon="check_box" Label="Checkbox" @onclick="@(() => ListItemClickHandler("checkbox"))" />
+        <MBListItem LeadingIcon="access_time" Label="Circular Progress" @onclick="@(() => ListItemClickHandler("circularprogress"))" />
+        <MBListItem LeadingIcon="picture_in_picture" Label="Confirmation Dialog" @onclick="@(() => ListItemClickHandler("confirmationdialog"))" />
+        <MBListItem LeadingIcon="table_chart" Label="Data Table" @onclick="@(() => ListItemClickHandler("datatable"))" />
+        <MBListItem LeadingIcon="date_range" Label="Date Picker" @onclick="@(() => ListItemClickHandler("datepicker"))" />
+        <MBListItem LeadingIcon="forward_10" Label="Debounced Text Field" @onclick="@(() => ListItemClickHandler("debouncedtextfield"))" />
+        <MBListItem LeadingIcon="picture_in_picture" Label="Dialog" @onclick="@(() => ListItemClickHandler("dialog"))" />
+        <MBListItem LeadingIcon="directions_off" Label="Divider" @onclick="@(() => ListItemClickHandler("divider"))" />
+        <MBListItem LeadingIcon="view_headline" Label="Drawer" @onclick="@(() => ListItemClickHandler("drawer"))" />
+        <MBListItem LeadingIcon="dynamic_form" Label="Form Validation" @onclick="@(() => ListItemClickHandler("formvalidation"))" />
+        <MBListItem LeadingIcon="touch_app" Label="Icon" @onclick="@(() => ListItemClickHandler("icon"))" />
+        <MBListItem LeadingIcon="touch_app" Label="Icon Button" @onclick="@(() => ListItemClickHandler("iconbutton"))" />
+        <MBListItem LeadingIcon="touch_app" Label="Icon Button Toggle" @onclick="@(() => ListItemClickHandler("iconbuttontoggle"))" />
+        <MBListItem LeadingIcon="access_time" Label="Linear Progress" @onclick="@(() => ListItemClickHandler("linearprogress"))" />
+        <MBListItem LeadingIcon="list" Label="List" @onclick="@(() => ListItemClickHandler("list"))" />
+        <MBListItem LeadingIcon="menu" Label="Menu" @onclick="@(() => ListItemClickHandler("menu"))" />
+        <MBListItem LeadingIcon="money" Label="Numeric Double Field" @onclick="@(() => ListItemClickHandler("numericdoublefield"))" />
+        <MBListItem LeadingIcon="exposure_zero" Label="Numeric Int Field" @onclick="@(() => ListItemClickHandler("numericintfield"))" />
+        <MBListItem LeadingIcon="import_contacts" Label="Paged Data List" @onclick="@(() => ListItemClickHandler("pageddatalist"))" />
+        <MBListItem LeadingIcon="import_contacts" Label="Paginator" @onclick="@(() => ListItemClickHandler("paginator"))" />
+        <MBListItem LeadingIcon="radio_button_checked" Label="Radio Button" @onclick="@(() => ListItemClickHandler("radiobutton"))" />
+        <MBListItem LeadingIcon="radio_button_checked" Label="Radio Button Group" @onclick="@(() => ListItemClickHandler("radiobuttongroup"))" />
+        <MBListItem LeadingIcon="arrow_drop_down" Label="Select" @onclick="@(() => ListItemClickHandler("select"))" />
+        <MBListItem LeadingIcon="preview" Label="Shield" @onclick="@(() => ListItemClickHandler("shield"))" />
+        <MBListItem LeadingIcon="compare_arrows" Label="Sliding Content" @onclick="@(() => ListItemClickHandler("slidingcontent"))" />
+        <MBListItem LeadingIcon="slideshow" Label="Sliding Tab Bar" @onclick="@(() => ListItemClickHandler("slidingtabbar"))" />
+        <MBListItem LeadingIcon="switch_left" Label="Switch" @onclick="@(() => ListItemClickHandler("switch"))" />
+        <MBListItem LeadingIcon="tab" Label="Tab Bar" @onclick="@(() => ListItemClickHandler("tabbar"))" />
+        <MBListItem LeadingIcon="assignment" Label="Text Area" @onclick="@(() => ListItemClickHandler("textarea"))" />
+        <MBListItem LeadingIcon="text_format" Label="Text Field" @onclick="@(() => ListItemClickHandler("textfield"))" />
+        <MBListItem LeadingIcon="textsms" Label="Toast" @onclick="@(() => ListItemClickHandler("toast"))" />
+        <MBListItem LeadingIcon="live_help" Label="Tooltip" @onclick="@(() => ListItemClickHandler("tooltip"))" />
+        <MBListItem LeadingIcon="border_top" Label="Top App Bar" @onclick="@(() => ListItemClickHandler("topappbar"))" />
+        <MBListItem LeadingIcon="http" Label="Typography" @onclick="@(() => ListItemClickHandler("typography"))" />
+    </div>
+</MBDrawer>
+
+<div class="mdc-drawer-app-content">
+    <MBTopAppBar Title="Material.Blazor"
+                 @onclick="@SideBarToggle"
+                 NavIcon="menu"
+                 ScrollTarget="#main-content"
+                 TopAppBarType="@MBTopAppBarType.Dense"
+                 class="mdc-top-app-bar--short-has-action-item mdc-elevation--z5">
+        <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
+            <MBIconButton @onclick="@OpenMenuAsync" Icon="fa-scroll" IconFoundry="@MBIconHelper.FAFoundry(relativeSize: MBIconFARelativeSize.ExtraSmall)" />
+            <div class="mdc-menu-surface--anchor">
+                <MBMenu @ref="Menu">
+                    <MBMenuSelectionGroup @key="@Theme">
+                        <MBListItem Label="Material Default Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "mt-default-theme")" @onclick="@(() => ThemeSetterAsync("mt-default-theme"))" />
+                        <MBListItem Label="Blue Square Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "blue-square-theme")" @onclick="@(() => ThemeSetterAsync("blue-square-theme"))" />
+                        <MBListItem Label="Red Round Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "red-round-theme")" @onclick="@(() => ThemeSetterAsync("red-round-theme"))" />
+                        <MBListItem Label="Varied Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "varied-theme")" @onclick="@(() => ThemeSetterAsync("varied-theme"))" />
+                    </MBMenuSelectionGroup>
+                </MBMenu>
+            </div>
+        </section>
+    </MBTopAppBar>
+
+    <main class="main-content" id="main-content">
+        <div class="max-width-content">
+            <CascadingValue Name="MaterialDocRef" Value="@materialDocRef" IsFixed="true">
+
+                <MBAnimatedNavigation>
+                    <div class="mdc-top-app-bar--dense-fixed-adjust">
+                        <div class="main-content">
+                            <div class="mdc-layout-grid">
+                                <div class="mdc-layout-grid__inner">
+                                    @Body
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </MBAnimatedNavigation>
+
+            </CascadingValue>
+        </div>
+    </main>
+</div>
+
+
+@code {
+    private const string materialDocRef = "https://github.com/material-components/material-components-web/tree/master/packages/";
+
+    private MBDrawer Drawer { get; set; }
+
+    private MBMenu Menu { get; set; }
+
+    private string Theme { get; set; } = "mt-default-theme";
+
+    private async Task OpenMenuAsync()
+    {
+        await Menu.ToggleAsync();
+    }
+
+    protected async Task ThemeSetterAsync(string theme)
+    {
+        await JsRuntime.InvokeAsync<object>("material_blazor_website.themeSetter.setTheme", theme);
+        Theme = theme;
+        StateHasChanged();
+    }
+
+
+    private void ListItemClickHandler(string NavigationReference)
+    {
+        Drawer.NotifyNavigation();
+        AnimatedNavigationService.NavigateTo(NavigationReference);
+    }
+
+    private void SideBarToggle()
+    {
+        Drawer.Toggle();
+    }
+}

@@ -1,0 +1,67 @@
+﻿@namespace Material.Blazor
+@inherits ComponentFoundation
+@typeparam TItem
+
+
+<ul @attributes="@AttributesToSplat()"
+    @ref="@ElementReference"
+    @key="@AppliedDisabled"
+    aria-orientation="vertical">
+
+    @{ var index = 0; }
+    @foreach (var item in Items)
+    {
+        var tabIndex = "";
+        var clickIndex = index++;
+
+        @if (clickIndex == 0)
+        {
+            tabIndex = "0";
+        }
+        else if (ShowSeparators)
+        {
+            <li role="separator" class="mdc-list-divider"></li>
+        }
+
+        <li @key="@KeyGenerator(item)"
+            class="mdc-list-item"
+            tabindex="@tabIndex"
+            @onclick="@(() => OnItemClickAsync(clickIndex))"
+            @onmousedown="@(() => OnItemMouseDownAsync(clickIndex))"
+            @onkeydown="@(() => OnItemKeyDownAsync(clickIndex))"
+            @ontouchstart="@(() => OnItemTouchStartAsync(clickIndex))">
+
+            @if (!SuppressIcons && Icon != null)
+            {
+                <span class="mdc-list-item__graphic" aria-hidden="true">@Icon(item)</span>
+            }
+
+            @if (!AppliedDisabled && KeyboardInteractions && Ripple)
+            {
+                <span class="mdc-list-item__ripple"></span>
+            }
+
+            <span class="mdc-list-item__text mb-full-width @ListItemClass " disabled="@AppliedDisabled">
+                @if (Title != null)
+                {
+                    <span class="@TitleClass">@Title(item)</span>
+                }
+
+                @if (HasLineTwo && (LineTwo != null))
+                {
+                    <span class="@LineTwoClass">@LineTwo(item)</span>
+                }
+
+                @if (HasLineThree && (LineThree != null))
+                {
+                    <span class="@LineThreeClass">@LineThree(item)</span>
+                }
+            </span>
+
+            @if (Actions != null)
+            {
+                <span class="mdc-list-item__meta" aria-hidden="true">@Actions(item)</span>
+            }
+        </li>
+    }
+</ul>

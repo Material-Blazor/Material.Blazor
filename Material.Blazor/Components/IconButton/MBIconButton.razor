@@ -1,0 +1,9 @@
+﻿@namespace Material.Blazor
+@inherits ComponentFoundation
+
+
+<button @ref="@ElementReference"
+        @attributes="@AttributesToSplat()">
+
+    <MBIcon IconName="@Icon" IconFoundry="@IconFoundry" />
+</button>

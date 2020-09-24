@@ -1,0 +1,68 @@
+﻿@namespace Material.Blazor
+@inherits InputComponentFoundation<DateTime>
+
+
+<div @ref="ElementReference"
+     @attributes="@AttributesToSplat()">
+
+    <div class="mdc-select__anchor"
+         role="button"
+         aria-disabled="@AppliedDisabled"
+         aria-haspopup="@listboxId"
+         aria-labelledby="@labelId @selectedTextId">
+
+        @if (AppliedInputStyle == MBSelectInputStyle.Filled)
+        {
+            <span class="mdc-select__ripple"></span>
+        }
+
+        <span id="@selectedTextId" class="mdc-select__selected-text" aria-disabled="@AppliedDisabled"></span>
+        <span class="mdc-select__dropdown-icon">
+            <svg class="mdc-select__dropdown-icon-graphic"
+                 viewBox="7 10 10 5">
+                <polygon class="mdc-select__dropdown-icon-inactive"
+                         stroke="none"
+                         fill-rule="evenodd"
+                         points="7 10 12 15 17 10">
+                </polygon>
+                <polygon class="mdc-select__dropdown-icon-active"
+                         stroke="none"
+                         fill-rule="evenodd"
+                         points="7 15 12 10 17 15">
+                </polygon>
+            </svg>
+        </span>
+
+        @if (AppliedInputStyle == MBSelectInputStyle.Outlined)
+        {
+            <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+                @if (!string.IsNullOrWhiteSpace(Label))
+                {
+                    <span class="mdc-notched-outline__notch">
+                        <span id="@labelId" class="mdc-floating-label mdc-floating-label--float-above">@Label</span>
+                    </span>
+                }
+                <span class="mdc-notched-outline__trailing"></span>
+            </span>
+        }
+        else
+        {
+            if (!string.IsNullOrWhiteSpace(Label))
+            {
+                <span id="@labelId" class="mdc-floating-label mdc-floating-label--float-above">@Label</span>
+            }
+            <div class="mdc-line-ripple"></div>
+        }
+    </div>
+
+    <div id="@listboxId"
+         class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fixed mb-dp-menu__surface-adjust @MenuClass">
+        <InternalDatePickerPanel @ref="Panel"
+                                 @bind-Value="@ReportingValue"
+                                 DateSelectionCriteria="@DateSelectionCriteria"
+                                 MinDate="@MinDate"
+                                 MaxDate="@MaxDate"
+                                 DateFormat="@DateFormat" />
+    </div>
+</div>

@@ -1,0 +1,210 @@
+﻿@page "/select"
+
+@inject IMBToastService ToastService
+
+
+<DemonstrationPage ComponentName="Select"
+                   Title="Select Demonstration"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-select#select-menus"
+                   IsGeneric="true"
+                   MinDensity="MBDensity.Minus4"
+                   RequiresDisableSelection="true">
+    <Description>
+        <p>
+            Filled and outlined text fields with icon usage, class and style application and finally density.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Select Styles
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Default and explicit select styles.
+                    </h3>
+
+                    <p><MBSelect Label="Default Style" @bind-Value="@DefaultStyle" Items="KittenBreeds" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                    <p><MBSelect Label="Filled Style" @bind-Value="@FilledStyle" Items="KittenBreeds" SelectInputStyle="MBSelectInputStyle.Filled" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                    <p><MBSelect Label="Outlined Style" @bind-Value="@OutlinedStyle" Items="KittenBreeds" SelectInputStyle="MBSelectInputStyle.Outlined" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Icons
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Icons - both using icons from the Material Icons, Font Awesome and Open Iconic foundries.
+                    </h3>
+
+                    <p><MBSelect Label="Filled With Icon" @bind-Value="@Icon1" Items="KittenBreeds" LeadingIcon="print" IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.TwoTone)" SelectInputStyle="MBSelectInputStyle.Filled" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                    <p><MBSelect Label="Outlined With Icon" @bind-Value="@Icon2" Items="KittenBreeds" LeadingIcon="fa-car-crash" IconFoundry="@MBIconHelper.FAFoundry()" SelectInputStyle="MBSelectInputStyle.Outlined" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Contents Alignment
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Left, center and right aligned text (not the same as right-to-left script).
+                    </h3>
+
+                    <p><MBSelect Label="Left Aligned" @bind-Value="@LeftAligned" Items="KittenBreeds" TextAlignStyle="@MBTextAlignStyle.Left" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                    <p><MBSelect Label="Right Aligned" @bind-Value="@RightAligned" Items="KittenBreeds" TextAlignStyle="@MBTextAlignStyle.Right" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Two Way Binding
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows two way binding for selects.
+                    </h3>
+
+                    <p><MBSelect Label="Two Way Binding" @bind-Value="@TwoWayBinding" Items="KittenBreeds" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                    <p><MBSelect Label="Two Way Binding" @bind-Value="@TwoWayBinding" Items="KittenBreeds" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Filled Density
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Filled density subsystem from default to minus 4.
+                    </h3>
+
+                    <p><MBSelect Label="Default Density" @bind-Value="@FilledDensityDefault" Items="KittenBreeds" Density="@MBDensity.Default" SelectInputStyle="MBSelectInputStyle.Filled" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                    <p><MBSelect Label="Density Minus 1" @bind-Value="@FilledDensityMinus1" Items="KittenBreeds" Density="@MBDensity.Minus1" SelectInputStyle="MBSelectInputStyle.Filled" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                    <p><MBSelect Label="Density Minus 3" @bind-Value="@FilledDensityMinus2" Items="KittenBreeds" Density="@MBDensity.Minus2" SelectInputStyle="MBSelectInputStyle.Filled" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                    <p><MBSelect Label="Density Minus 3" @bind-Value="@FilledDensityMinus3" Items="KittenBreeds" Density="@MBDensity.Minus3" SelectInputStyle="MBSelectInputStyle.Filled" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                    <p><MBSelect Label="Density Minus 4" @bind-Value="@FilledDensityMinus4" Items="KittenBreeds" Density="@MBDensity.Minus4" SelectInputStyle="MBSelectInputStyle.Filled" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Outlined Density
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Outlined density subsystem from default to minus 4.
+                    </h3>
+
+                    <p><MBSelect Label="Default Density" @bind-Value="@OutlinedDensityDefault" Items="KittenBreeds" Density="@MBDensity.Default" SelectInputStyle="MBSelectInputStyle.Outlined" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                    <p><MBSelect Label="Density Minus 1" @bind-Value="@OutlinedDensityMinus1" Items="KittenBreeds" Density="@MBDensity.Minus1" SelectInputStyle="MBSelectInputStyle.Outlined" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                    <p><MBSelect Label="Density Minus 3" @bind-Value="@OutlinedDensityMinus2" Items="KittenBreeds" Density="@MBDensity.Minus2" SelectInputStyle="MBSelectInputStyle.Outlined" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                    <p><MBSelect Label="Density Minus 3" @bind-Value="@OutlinedDensityMinus3" Items="KittenBreeds" Density="@MBDensity.Minus3" SelectInputStyle="MBSelectInputStyle.Outlined" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                    <p><MBSelect Label="Density Minus 4" @bind-Value="@OutlinedDensityMinus4" Items="KittenBreeds" Density="@MBDensity.Minus4" SelectInputStyle="MBSelectInputStyle.Outlined" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+@code {
+    MBListElement<string>[] KittenBreeds = new MBListElement<string>[]
+    {
+        new MBListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new MBListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new MBListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+        };
+
+
+    private string _defaultStyle;
+    private string DefaultStyle
+    {
+        get => _defaultStyle;
+        set
+        {
+            _defaultStyle = value;
+
+            ToastService.ShowToast(heading: "Default Style", message: $"Value: '{_defaultStyle}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private string _filledStyle;
+    private string FilledStyle
+    {
+        get => _filledStyle;
+        set
+        {
+            _filledStyle = value;
+
+            ToastService.ShowToast(heading: "Filled Style", message: $"Value: '{_filledStyle}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private string _outlinedStyle;
+    private string OutlinedStyle
+    {
+        get => _outlinedStyle;
+        set
+        {
+            _outlinedStyle = value;
+
+            ToastService.ShowToast(heading: "Outlined Style", message: $"Value: '{_outlinedStyle}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+    private string Icon1;
+    private string Icon2;
+
+    private string LeftAligned;
+    private string RightAligned;
+
+    private string TwoWayBinding;
+
+    private string FilledDensityDefault;
+    private string FilledDensityMinus1;
+    private string FilledDensityMinus2;
+    private string FilledDensityMinus3;
+    private string FilledDensityMinus4;
+
+    private string OutlinedDensityDefault;
+    private string OutlinedDensityMinus1;
+    private string OutlinedDensityMinus2;
+    private string OutlinedDensityMinus3;
+    private string OutlinedDensityMinus4;
+}

@@ -1,0 +1,20 @@
+﻿@namespace Material.Blazor
+@inherits InputComponentFoundation<bool>
+
+
+<div @ref="@ElementReference"
+     @attributes="AttributesToSplat(SplatType.IdClassAndStyleOnly)">
+
+    <div class="mdc-switch__track"></div>
+    <div class="mdc-switch__thumb-underlay">
+        <div class="mdc-switch__thumb">
+            <input @attributes="AttributesToSplat(SplatType.ExcludeIdClassAndStyle)"
+                   class="mdc-switch__native-control" 
+                   role="switch"
+                   type="checkbox" 
+                   id="@CrossReferenceId" 
+                   @bind="@ReportingValue" />
+        </div>
+    </div>
+</div>
+<label for="@CrossReferenceId" style="margin-left: 1rem;">@Label</label>

@@ -6,7 +6,7 @@ title: Demonstration
 
 We are not yet hosting a demonstration, but you can fork and download this project yourself. If you so so, set your default project to `BlazorMdc.Demo.WebServer`.
 
-### Demonstration from local build
+## Demonstration from local build
 
 If you have cloned the repository and are building from source there is a project 'BlazorMDC.Demo.WebServer' that should be selected as the startup project.
  

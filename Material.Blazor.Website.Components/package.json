@@ -1,0 +1,22 @@
+{
+  "name": "material.blazor.website.components",
+  "version": "0.0.0",
+  "description": "NPM build steps for Material.Blazor.Website.Components",
+  "scripts": {
+    "build-blue-square": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/blue-square-theme.scss wwwroot/css/blue-square-theme.css",
+    "build-min-blue-square": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/blue-square-theme.scss wwwroot/css/blue-square-theme.min.css",
+    "build-red-round": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/red-round-theme.scss wwwroot/css/red-round-theme.css",
+    "build-min-red-round": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/red-round-theme.scss wwwroot/css/red-round-theme.min.css",
+    "build-varied": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/varied-theme.scss wwwroot/css/varied-theme.css",
+    "build-min-varied": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/varied-theme.scss wwwroot/css/varied-theme.min.css",
+    "build-mt-default": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/mt-default-theme.scss wwwroot/css/mt-default-theme.css",
+    "build-min-mt-default": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/mt-default-theme.scss wwwroot/css/mt-default-theme.min.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "material-components-web": "7.0.0",
+    "dart-sass": "^1.25.0"
+  }
+}

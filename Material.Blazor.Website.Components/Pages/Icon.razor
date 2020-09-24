@@ -1,0 +1,33 @@
+﻿@page "/icon"
+
+@inject IMBToastService ToastService
+
+
+
+<DemonstrationPage ComponentName="Icon"
+                   Title="Icon Demonstration"
+                   DemoComponent="@this"
+                   DetailedArticle="Icon">
+    <Description>
+        <p>
+            Shows several icons.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Icon 
+                    </h2>
+
+                    <p><MBIcon IconName="access_alarms" /></p>
+                    <p><MBIcon IconName="fa-dog" IconFoundry="@MBIconHelper.FAFoundry()" /></p>
+                    <p><MBIcon IconName="fa-cat" IconFoundry="@MBIconHelper.FAFoundry()" /></p>
+                    <p><MBIcon IconName="fa-horse" IconFoundry="@MBIconHelper.FAFoundry()" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>

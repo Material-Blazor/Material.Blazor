@@ -1,0 +1,75 @@
+﻿@namespace Material.Blazor
+@inherits InputComponentFoundation<string>
+
+
+<label @ref="@ElementReference"
+       @attributes="@AttributesToSplat(SplatType.IdClassAndStyleOnly)">
+
+    @if (AppliedInputStyle == MBTextInputStyle.Filled)
+    {
+        <span class="mdc-text-field__ripple"></span>
+    }
+
+    @if (!string.IsNullOrWhiteSpace(LeadingIcon))
+    {
+        <MBIcon IconName="@LeadingIcon" IconFoundry="@IconFoundry" class="mdc-text-field__icon mdc-text-field__icon--leading" tabindex="-1" role="button" />
+    }
+
+    @if (!string.IsNullOrWhiteSpace(Prefix))
+    {
+        <span class="mdc-text-field__affix mdc-text-field__affix--prefix">@Prefix</span>
+    }
+
+    <input @ref="@InputReference"
+           @attributes="@AttributesToSplat(SplatType.ExcludeIdClassAndStyle)"
+           id="@CrossReferenceId"
+           class="mdc-text-field__input @AppliedTextInputStyleClass @FieldClass"
+           @bind="@ReportingValue">
+
+    @if (!string.IsNullOrWhiteSpace(Suffix))
+    {
+        <span class="mdc-text-field__affix mdc-text-field__affix--suffix">@Suffix</span>
+    }
+
+    @if (!string.IsNullOrWhiteSpace(TrailingIcon))
+    {
+        <MBIcon IconName="@TrailingIcon" IconFoundry="@IconFoundry" class="mdc-text-field__icon mdc-text-field__icon--trailing" tabindex="-1" role="button" />
+    }
+
+    @if (AppliedInputStyle == MBTextInputStyle.Outlined)
+    {
+        <span class="mdc-notched-outline">
+            <span class="mdc-notched-outline__leading"></span>
+
+            @if (ShowLabel)
+            {
+                <span class="mdc-notched-outline__notch">
+                    <span class="mdc-floating-label @FloatingLabelClass" for="@CrossReferenceId" id="@labelId">@DisplayLabel</span>
+                </span>
+            }
+
+            <span class="mdc-notched-outline__trailing"></span>
+        </span>
+    }
+    else
+    {
+        @if (ShowLabel)
+        {
+            <span class="mdc-floating-label @FloatingLabelClass" for="@CrossReferenceId" id="@labelId">@DisplayLabel</span>
+        }
+
+        <span class="mdc-line-ripple"></span>
+    }
+</label>
+
+@if (HasHelperText)
+{
+    <div class="mdc-text-field-helper-line">
+        <div @ref="@HelperTextReference"
+             class="mdc-text-field-helper-text"
+             id="@helperTextId"
+             aria-hidden="true">
+            @HelperTextMarkup
+        </div>
+    </div>
+}

@@ -1,0 +1,26 @@
+﻿// stylelint-disable scss/dollar-variable-pattern
+
+@use "sass:color";
+
+@use "@material/theme" with ( 
+    $primary: #1976d2, 
+    $secondary: #ffa726, 
+    $background: #eee, 
+    $surface: #fff, 
+);
+
+@use "@material/shape" with ( 
+    $small-component-radius: 0, 
+    $medium-component-radius: 0, 
+    $large-component-radius: 0, 
+);
+
+@use "@material/typography" with ( 
+    $font-family: unquote("Rubik, sans-serif"), 
+    $styles-button: ( font-size: 14px, font-weight: 500, letter-spacing: 0.05em, ), 
+);
+
+@use "material-components-web";
+@use "./app";
+
+@include app.app-classes();

@@ -1,0 +1,52 @@
+﻿@namespace Material.Blazor
+@inherits InputComponentFoundation<string>
+
+
+<div class="mb-autocomplete">
+    <MBTextField @ref="@TextField"
+                 @attributes="@AttributesToSplat()"
+                 TextAlignStyle="@TextAlignStyle"
+                 TextInputStyle="@TextInputStyle"
+                 Label="@Label"
+                 LeadingIcon="@LeadingIcon"
+                 TrailingIcon="@TrailingIcon"
+                 IconFoundry="@IconFoundry"
+                 Density="@Density"
+                 Disabled="@AppliedDisabled"
+                 HelperText="@HelperText"
+                 HelperTextPersistent="@HelperTextPersistent"
+                 ValidationMessageFor="@ValidationMessageFor"
+                 @bind-Value="@SelectInfo.SelectedText"
+                 @oninput="@OnInput"
+                 @onchange="@OnTextChangeAsync"
+                 @onfocusout="@OnTextFocusOutAsync" />
+
+    <div class="mdc-menu-surface--anchor">
+        <div @ref="@MenuReference"
+                class="mdc-menu mdc-menu-surface mdc-menu-surface--fixed"
+                @onfocusin="OnMenuFocusIn"
+                @onfocusout="OnMenuFocusOut"
+                tabindex="-1">
+
+            <ul class="mdc-list"
+                tabindex="-1">
+
+                @foreach (var item in SelectInfo.SelectList)
+                {
+                    var listClass = "mdc-list-item" + (item.Equals(Value) ? " mdc-list-item--selected" : "");
+                    var ariaSelected = item.Equals(Value);
+
+                    <li @key="@item"
+                        class="@listClass"
+                        data-value="@item"
+                        aria-selected="@ariaSelected"
+                        role="option"
+                        tabindex="0">
+                        <span class="mdc-list-item__ripple"></span>
+                        <span class="mdc-list-item__text mb-full-width">@item</span>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
