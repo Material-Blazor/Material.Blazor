@@ -91,7 +91,6 @@ jobs:
         source-url: https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Build 🔧
       run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectWeb}
@@ -114,14 +113,18 @@ jobs:
 
 # We'd like to push to a forked repository; The push appears to work but the packages are not visible
 # Pending a service response we only do the push of the CI build in the Material-Blazor/Material.Blazor repository
-# The commented 'if' can replace the current 'if' when this is resolved
 
-    - name: Upload Package 🚀
+    - name: Upload Package (Main repository) 🚀
       run: nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       if: ((github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push'))
-#      if: (((github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push')) || (github.repository != 'Material-Blazor/Material.Blazor'))
+
+    - name: Upload Package (Forked repository) 🚀
+      run: nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GH_PAT}}
+      if: ((github.repository != 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false)
 
 ############################################################################################################
 # deployghpages

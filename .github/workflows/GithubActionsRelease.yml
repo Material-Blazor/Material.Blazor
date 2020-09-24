@@ -139,6 +139,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Get the branch
+      id: get_branch
+      run: echo ::set-output name=branch::${GITHUB_REF/refs\/heads\//}
+
+    - name: Get the pullrequest
+      id: get_pullrequest
+      run: echo ::set-output name=pullrequest::${GITHUB_REF/refs\/pull\//}
+
+    - name: Get the tag
+      id: get_tag
+      run: echo ::set-output name=tag::${GITHUB_REF/refs\/tags\//}
+
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
       if: (github.repository == 'Material-Blazor/Material.Blazor')
@@ -165,4 +177,15 @@ jobs:
         ACCESS_TOKEN: ${{secrets.GH_PAT}}
         BRANCH: gh-pages
         FOLDER: 'deployroot'
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
+
+    - name: Create Release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{steps.get_branch.outputs.branch}}
+        release_name: Release ${{steps.get_tag.outputs.tag}}
+        draft: false
+        prerelease: false
       if: (github.repository == 'Material-Blazor/Material.Blazor')
