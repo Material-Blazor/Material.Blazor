@@ -1,7 +1,6 @@
 ﻿using Material.Blazor.Internal;
-
 using Microsoft.AspNetCore.Components;
-
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,16 +65,19 @@ namespace Material.Blazor
                 if (value != PageNumber)
                 {
                     var oldValue = PageNumber;
-                    PageNumber = value;
 
                     if (HasRendered)
                     {
-                        PageNumberChanged.InvokeAsync(value);
                         InvokeAsync(() => OnPageNumberChange(oldValue, value));
+                    }
+                    else
+                    {
+                        PageNumberChanged.InvokeAsync(value);
                     }
                 }
             }
         }
+
 
         /// <summary>
         /// The page number.
@@ -101,6 +103,7 @@ namespace Material.Blazor
                 }
             }
         }
+
 
         /// <summary>
         /// The number of items per page.
@@ -136,6 +139,7 @@ namespace Material.Blazor
             }
 
             await Task.Delay(100);
+            await PageNumberChanged.InvokeAsync(newPageNumber);
 
             ContentClass = nextClass;
             IsHidden = false;
