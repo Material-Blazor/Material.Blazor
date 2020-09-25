@@ -1,0 +1,10 @@
+**/*.csproj
+bin
+obj
+wwwroot
+**/*.cs
+**/*.razor
+**/*.df
+**/*.df.dockerignore
+**/*.md
+**/*.yml

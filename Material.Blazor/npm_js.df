@@ -1,0 +1,7 @@
+FROM mb_static_assets
+WORKDIR /src
+COPY . .
+RUN npm run build-scripts
+RUN npm run build-js
+RUN npm run build-min-js
+RUN npm run build-min-bundle-js

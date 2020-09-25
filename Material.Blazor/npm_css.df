@@ -1,0 +1,9 @@
+FROM mb_static_assets
+WORKDIR /src/wwwroot
+RUN curl "https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" --output material-components-icons.css
+WORKDIR /src
+RUN npm install dart-sass
+COPY . .
+RUN npm run build-css
+RUN npm run build-min-css
+RUN npm run build-min-bundle-css

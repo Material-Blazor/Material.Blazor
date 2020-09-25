@@ -1,108 +1,117 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <RazorLangVersion>3.0</RazorLangVersion>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <VersionPrefix>1.0.0</VersionPrefix>
-    <VersionSuffix></VersionSuffix>
-    <PackageLicenseFile></PackageLicenseFile>
-    <Authors>Simon Ziegler of Dioptra and Mark Stega of Optimium Health</Authors>
-    <Company>Material.Blazor</Company>
-    <Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io. API and other documentation can be found at https://material-blazor.com/docs.</Description>
-    <RepositoryUrl>https://github.com/Material-Blazor/Material.Blazor</RepositoryUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <NeutralLanguage>en</NeutralLanguage>
-    <Copyright>Dioptra and Optimium Health</Copyright>
-    <PackageProjectUrl>https://material-blazor.com</PackageProjectUrl>
-    <Product>Material.Blazor</Product>
-    <UserSecretsId>d7509b6c-bc5c-4a56-a750-09c8ae4aeb85</UserSecretsId>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<RazorLangVersion>3.0</RazorLangVersion>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<VersionPrefix>1.0.0</VersionPrefix>
+		<VersionSuffix></VersionSuffix>
+		<PackageLicenseFile></PackageLicenseFile>
+		<Authors>Simon Ziegler of Dioptra and Mark Stega of Optimium Health</Authors>
+		<Company>Material.Blazor</Company>
+		<Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io. API and other documentation can be found at https://material-blazor.com/docs.</Description>
+		<RepositoryUrl>https://github.com/Material-Blazor/Material.Blazor</RepositoryUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReleaseNotes></PackageReleaseNotes>
+		<NeutralLanguage>en</NeutralLanguage>
+		<Copyright>Dioptra and Optimium Health</Copyright>
+		<PackageProjectUrl>https://material-blazor.com</PackageProjectUrl>
+		<Product>Material.Blazor</Product>
+		<UserSecretsId>d7509b6c-bc5c-4a56-a750-09c8ae4aeb85</UserSecretsId>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Content Remove="tsconfig.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.6" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.6" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="tsconfig.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Scripts\MaterialBlazor.ts">
-      <SubType>Code</SubType>
-    </None>
-  </ItemGroup>
-
-  <!-- Unfinished dependency issue
 	<ItemGroup>
-		<InputsComponentsScss Include="Components\**\*.scss" />
-		<InputsStylesScss Include="Styles\*.scss" />
-		<InputsComponentsTs Include="Components\**\*.js" />
-		<InputsScriptsTs Include="Scripts\*.js" />
-		<OutputsCss Include="wwwroot\unbundled.css;wwwroot\unbundled.min.css;wwwroot\bundled.min.css" />
-		<OutputsJs Include="wwwroot\unbundled.js;wwwroot\unbundled.min.js;wwwroot\bundled.min.js" />
+		<Content Remove="tsconfig.json" />
 	</ItemGroup>
 
-	<Target Name="BuildScriptsAndStyles" 
-			BeforeTargets="PreBuildEvent" 
-			Inputs="@(InputsComponentsScss);@(InputsStylesScss);@(InputsComponentsTs);@(InputsScriptsTs)"
-			Outputs="@(OutputsCss);@(OutputsJs)">-->
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.6" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.6" />
+	</ItemGroup>
 
-  <!--
-  <Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">
-    <Exec Command="npm install" />
-    <Exec Command="docker build -t mb_static_assets -f build-static-assets.Dockerfile ." />
-    <Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
-    <Exec Command="docker run - -rm mb_static_assets cat wwwroot/unbundled.js &gt; wwwroot/unbundled.js" />
-    <Exec Command="docker run - -rm mb_static_assets cat wwwroot/unbundled.css &gt; wwwroot/unbundled.css" />
-    <Exec Command="docker run - -rm mb_static_assets cat wwwroot/unbundled.min.js &gt; wwwroot/unbundled.min.js" />
-    <Exec Command="docker run - -rm mb_static_assets cat wwwroot/unbundled.min.css &gt; wwwroot/unbundled.min.css" />
-    <Exec Command="docker run - -rm mb_static_assets cat wwwroot/bundled.min.js &gt; wwwroot/bundled.min.js" />
-    <Exec Command="docker run - -rm mb_static_assets cat wwwroot/bundled.min.css &gt; wwwroot/bundled.min.css" />
-    <Exec Command="docker run - -rm mb_static_assets cat MaterialBlazorButton.js &gt; wwwroot/MaterialBlazorButton.js" />
-    <Exec Command="docker run - -rm mb_static_assets cat MaterialBlazorCard.js &gt; wwwroot/MaterialBlazorCard.js" />
-  </Target>
--->
+	<ItemGroup>
+		<None Include="tsconfig.json" />
+	</ItemGroup>
 
-  <Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">
-    <Exec Command="echo ***** npm install" />
-    <Exec Command="npm install" />
+	<ItemGroup>
+		<None Update="Scripts\MaterialBlazor.ts">
+			<SubType>Code</SubType>
+		</None>
+	</ItemGroup>
 
-    <Exec Command="echo ***** mkdir wwwroot" />
-    <Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
+	<Target Name="BuildNpmBase">
+		<!-- Build the base for both styles and scripts: this is essentially just the npm install -->
+		<Exec Command="docker build -q -t mb_static_assets -f npm.df ." />
+	</Target>
+	
+	<ItemGroup>
+		<InputStaticAssetsCss Include="**\*.css;**\*.scss" Exclude="wwwroot\**\*;obj\**\*;bin\**\*" />
+		<OutputStaticAssetsCss Include="wwwroot\bundled.min.css;wwwroot\unbundled.min.css;wwwroot\unbundled.css;" />
+	</ItemGroup>
 
-    <Exec Command="echo ***** downloadfile" />
-    <DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" DestinationFolder="$(MSBuildProjectDirectory)\wwwroot" DestinationFilename="material-components-icons.css">
-    </DownloadFile>
+	<Target Name="BuildStyles" BeforeTargets="BeforeBuild" Inputs="@(InputStaticAssetsCss)" Outputs="@(OutputStaticAssetsCss)" DependsOnTargets="BuildNpmBase">
+		<!-- We need to remove our tmp output dir, otherwise the copy command from docker to host will mess things up -->
+		<Message Importance="high" Text="$(BaseIntermediateOutputPath)static_assets_css" />
+		<ItemGroup>
+			<TmpFiles Include="$(BaseIntermediateOutputPath)static_assets_css\*" />
+		</ItemGroup>
+		<Delete Files="@(TmpFiles)" />
+		<RemoveDir Directories="$(BaseIntermediateOutputPath)static_assets_css" />
+		<!-- This is the actual build of assets -->
+		<Exec Command="docker build -q -t mb_static_assets_css -f npm_css.df ." />
+		<!-- Now we want to copy all output assets from the container to the host -->
+		<!-- Remove container instance in case anything went wrong in a previous run, so nevermind if it fails -->
+		<Exec Command="docker rm -f tmp_css" ContinueOnError="true" />
+		<!-- Create a fresh container instance -->
+		<Exec Command="docker create -ti --name tmp_css mb_static_assets_css bash" />
+		<!-- Copy relevant output files into tmp folder -->
+		<Exec Command="docker cp tmp_css:/src/wwwroot &quot;$(ProjectDir)$(BaseIntermediateOutputPath)static_assets_css&quot;" />
+		<!-- Remove container instance -->
+		<Exec Command="docker rm -f tmp_css" />
+		<ItemGroup>
+			<GeneratedStaticAssetsCss Include="$(ProjectDir)$(BaseIntermediateOutputPath)static_assets_css\*" />
+		</ItemGroup>
+		<!-- Copy files from tmp folder to wwwroot -->
+		<Touch Files="@(GeneratedStaticAssetsCss)" ForceTouch="true" />
+		<Copy SourceFiles="@(GeneratedStaticAssetsCss)" DestinationFolder="$(ProjectDir)wwwroot" />
+		<RemoveDir Directories="$(ProjectDir)$(BaseIntermediateOutputPath)static_assets_css" />
+	</Target>
 
-    <Exec Command="echo ***** npm run build-css" />
-    <Exec Command="npm run build-css" />
+	<ItemGroup>
+		<InputStaticAssetsJs Include="**\*.js;**\*.ts;" Exclude="wwwroot\**\*;obj\**\*;bin\**\*" />
+		<OutputStaticAssetsJs Include="wwwroot\bundled.min.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js;" />
+	</ItemGroup>
 
-    <Exec Command="echo ***** npm run build-min-css" />
-    <Exec Command="npm run build-min-css" />
+	<Target Name="BuildScripts" BeforeTargets="BeforeBuild" Inputs="@(InputStaticAssetsJs)" Outputs="@(OutputStaticAssetsJs)" DependsOnTargets="BuildNpmBase">
+		<!-- We need to remove our tmp output dir, otherwise the copy command from docker to host will mess things up -->
+		<ItemGroup>
+			<TmpFiles Include="$(ProjectDir)$(BaseIntermediateOutputPath)static_assets_js\*" />
+		</ItemGroup>
+		<Delete Files="@(TmpFiles)" />
+		<RemoveDir Directories="$(ProjectDir)$(BaseIntermediateOutputPath)static_assets_js" />
+		<!-- This is the actual build of assets -->
+		<Exec Command="docker build -q -t mb_static_assets_js -f npm_js.df ." />
+		<!-- Now we want to copy all output assets from the container to the host -->
+		<!-- Remove container instance in case anything went wrong in a previous run, so nevermind if it fails -->
+		<Exec Command="docker rm -f tmp_js" ContinueOnError="true" />
+		<!-- Create a fresh container instance -->
+		<Exec Command="docker create -ti --name tmp_js mb_static_assets_js bash" />
+		<!-- Copy relevant output files into tmp folder -->
+		<Exec Command="docker cp tmp_js:/src/wwwroot &quot;$(ProjectDir)$(BaseIntermediateOutputPath)static_assets_js&quot;" />
+		<!-- Remove container instance -->
+		<Exec Command="docker rm -f tmp_js" />
+		<ItemGroup>
+			<GeneratedStaticAssetsJs Include="$(ProjectDir)$(BaseIntermediateOutputPath)static_assets_js\*" />
+		</ItemGroup>
+		<!-- Copy files from tmp folder to wwwroot -->
+		<Touch Files="@(GeneratedStaticAssetsJs)" ForceTouch="true" />
+		<Copy SourceFiles="@(GeneratedStaticAssetsJs)" DestinationFolder="$(ProjectDir)wwwroot" />
+	</Target>
 
-    <Exec Command="echo ***** npm run build-min-bundle-css" />
-    <Exec Command="npm run build-min-bundle-css" />
-
-    <Exec Command="echo ***** npm run build-scripts" />
-    <Exec Command="npm run build-scripts" />
-
-    <Exec Command="echo ***** npm run build-js" />
-    <Exec Command="npm run build-js" />
-
-    <Exec Command="echo ***** npm run build-min-js" />
-    <Exec Command="npm run build-min-js" />
-
-    <Exec Command="echo ***** npm run build-min-bundle-js" />
-    <Exec Command="npm run build-min-bundle-js" />
-  </Target>
-
-  <ProjectExtensions><VisualStudio><UserProperties /></VisualStudio></ProjectExtensions>
+	<ProjectExtensions>
+		<VisualStudio>
+			<UserProperties />
+		</VisualStudio>
+	</ProjectExtensions>
 
 </Project>

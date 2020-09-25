@@ -5,7 +5,7 @@ module.exports = {
 
     entry: {
         'MaterialBlazor': [
-            './scripts/MaterialBlazor.ts'
+            './Scripts/MaterialBlazor.ts'
         ]
     },
 
