@@ -20,7 +20,7 @@ namespace Material.Blazor.Internal
         private Dictionary<Guid, TooltipInstance> Tooltips { get; set; } = new Dictionary<Guid, TooltipInstance>();
 
 
-        private readonly SemaphoreSlim _semaphore = new SemaphoreSlim(1, 1);
+        private readonly SemaphoreSlim _semProtectTooltips = new SemaphoreSlim(1, 1);
         private readonly SemaphoreSlim _onAfterRenderSemaphore = new SemaphoreSlim(1, 1);
 
 
@@ -43,7 +43,7 @@ namespace Material.Blazor.Internal
         {
             InvokeAsync(async () =>
             {
-                await _semaphore.WaitAsync();
+                await _semProtectTooltips.WaitAsync();
 
                 try
                 {
@@ -59,7 +59,7 @@ namespace Material.Blazor.Internal
                 }
                 finally
                 {
-                    _semaphore.Release();
+                    _semProtectTooltips.Release();
                 }
 
                 StateHasChanged();
@@ -77,7 +77,7 @@ namespace Material.Blazor.Internal
         {
             InvokeAsync(async () =>
             {
-                await _semaphore.WaitAsync();
+                await _semProtectTooltips.WaitAsync();
 
                 try
                 {
@@ -93,7 +93,7 @@ namespace Material.Blazor.Internal
                 }
                 finally
                 {
-                    _semaphore.Release();
+                    _semProtectTooltips.Release();
                 }
 
                 StateHasChanged();
@@ -111,7 +111,7 @@ namespace Material.Blazor.Internal
             InvokeAsync(async () =>
             {
 
-                await _semaphore.WaitAsync();
+                await _semProtectTooltips.WaitAsync();
 
                 try
                 {
@@ -122,7 +122,7 @@ namespace Material.Blazor.Internal
                 }
                 finally
                 {
-                    _semaphore.Release();
+                    _semProtectTooltips.Release();
                 }
 
                 StateHasChanged();
@@ -133,13 +133,12 @@ namespace Material.Blazor.Internal
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            await _semaphore.WaitAsync();
+            await _semProtectTooltips.WaitAsync();
 
             try
             {
                 var refs = (from t in Tooltips.Values
-                            where !t.Initiated
-                            where !t.ElementReference.Id.Equals(null)
+                            where !t.Initiated && !t.ElementReference.Equals(null) && !string.IsNullOrWhiteSpace(t.ElementReference.Id)
                             orderby t.TimeStamp
                             select t).ToArray();
 
@@ -156,7 +155,7 @@ namespace Material.Blazor.Internal
             }
             finally
             {
-                _semaphore.Release();
+                _semProtectTooltips.Release();
             }
         }
     }
