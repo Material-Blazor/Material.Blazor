@@ -15,6 +15,7 @@ namespace Material.Blazor.Internal
     /// </summary>
     public partial class InternalTooltipAnchor : ComponentFoundation
     {
+        [Inject] private IMBToastService ToastService { get; set; }
         private Dictionary<Guid, TooltipInstance> Tooltips { get; set; } = new Dictionary<Guid, TooltipInstance>();
 
 
@@ -147,6 +148,7 @@ namespace Material.Blazor.Internal
                     foreach (var t in refs)
                     {
                         t.Initiated = true;
+                        ToastService.ShowToast(MBToastLevel.Info, t.MarkupStringContent.ToString(), "New Tooltip", closeMethod: MBToastCloseMethod.CloseButton);
                     }
                 }
             }

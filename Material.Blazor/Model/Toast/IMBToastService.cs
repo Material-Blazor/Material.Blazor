@@ -54,6 +54,7 @@ namespace Material.Blazor
         /// <param name="iconFoundry">The icon's foundry</param>
         /// <param name="showIcon">Show or hide icon</param>
         /// <param name="timeout">Length of time before autodismiss</param>
+        /// <param name="debug">If true only shows toasts when compiling in DEBUG mode</param>
 #nullable enable annotations
         void ShowToast(
             MBToastLevel level,
@@ -64,7 +65,8 @@ namespace Material.Blazor
             string iconName = null,
             IMBIconFoundry? iconFoundry = null,
             bool? showIcon = null,
-            uint? timeout = null);
+            uint? timeout = null,
+            bool debug = false);
 #nullable restore annotations
     }
 }
