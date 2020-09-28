@@ -10,6 +10,7 @@ title: ReleaseNotes
 - Build process uses npm directly rather than via docker (docker dependency removed).
 - Typescript in localized files replaces single Javascript file.
 - Themes upgraded.
+- `ToastService.ShowToast` adds debug parameter, showing toast only in debug mode when true.
 - Bug fixes.
 
 <br />
