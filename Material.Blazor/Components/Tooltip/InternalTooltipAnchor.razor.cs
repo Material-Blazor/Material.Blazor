@@ -139,7 +139,7 @@ namespace Material.Blazor.Internal
             {
                 var refs = (from t in Tooltips.Values
                             where !t.Initiated
-                            where !t.ElementReference.Equals(null)
+                            where !t.ElementReference.Id.Equals(null)
                             orderby t.TimeStamp
                             select t).ToArray();
 
