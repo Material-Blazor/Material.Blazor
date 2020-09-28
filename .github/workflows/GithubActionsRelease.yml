@@ -127,7 +127,7 @@ jobs:
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Upload Package 🚀
-      run: nuget push $outputMB\*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push ${env:outputMB}\*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
 ############################################################################################################
@@ -155,13 +155,13 @@ jobs:
       uses: actions/checkout@v2
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
-    - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
+    - name: Download Artifacts 🔻 # The documentation is downloaded into the 'siteDocFx' folder.
       uses: actions/download-artifact@v1
       with:
         name: siteDocFx
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
-    - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
+    - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteWeb' folder.
       uses: actions/download-artifact@v1
       with:
         name: siteWeb
