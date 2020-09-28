@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
@@ -146,12 +147,17 @@ namespace Material.Blazor.Internal
                 {
                     await JsRuntime.InvokeVoidAsync("OldMaterialBlazor.MBTooltip.init", refs.Select(r => r.ElementReference));
 
-                    foreach (var t in refs)
+                    foreach (var item in refs)
                     {
-                        t.Initiated = true;
-                        ToastService.ShowToast(MBToastLevel.Info, t.MarkupStringContent.ToString(), "New Tooltip", closeMethod: MBToastCloseMethod.CloseButton);
+                        item.Initiated = true;
+                        ToastService.ShowToast(MBToastLevel.Info, item.MarkupStringContent.ToString(), "New Tooltip", closeMethod: MBToastCloseMethod.CloseButton);
+                        await JsRuntime.InvokeVoidAsync("OldMaterialBlazor.MBTooltip.consoleLog", item);
                     }
                 }
+            }
+            catch (Exception e)
+            {
+                Logger.LogError(e.Message);
             }
             finally
             {
