@@ -89,16 +89,11 @@ ought to look like, they just show some of what is possible with colors, fonts a
 <p>There are two ways to do theming that you can read about at <a href="https://material.io/develop/web/theming/color">material.io</a>:</p>
 <ul>
 <li>CSS variables are very simple to use, e.g. setting <code>--mdc-theme-primary</code> for the primary color. While the simplicity is great, we found the result a bit inadequate. This is because Material Theme is supported by comples SASS, and these CSS helper variables can only make best effort to achieve something similar. For instance if you set the primary color with CSS, text field labels don't change color accordingly.</li>
-<li>SASS mixins are harder to use, but give a fantastic result - this is what we did on the website. You need familiarity with node, SASS compilation with <a href="https://sass-lang.com/dart-sass">Dart Sass</a> (<a href="https://sass-lang.com/libsass">LibSass</a> won't work because it doesn't support the <code>@use</code> statement) and how to use Dart Sass from MS Build. Fortunately we managed to work some of this out for the website and you can copy what we did:
-<ul>
-<li>We kept our project directory clean by doing node builds inside Docker containers (thanks to <a href="https://github.com/stefanloerwald">Stefan L�rwald</a>).</li>
+<li>SASS mixins are harder to use, but give a fantastic result - this is what we did on the website. You need familiarity with node, SASS compilation with <a href="https://sass-lang.com/dart-sass">Dart Sass</a> (<a href="https://sass-lang.com/libsass">LibSass</a> won't work because it doesn't support the <code>@use</code> statement) and how to use Dart Sass from MS Build. Fortunately we managed to work some of this out for the website and you can copy what we did:</li>
 <li>Look at these files to understand the build process:
 <ul>
 <li><a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website.Components/Material.Blazor.Website.Components.csproj">Material.Blazor.Website.Components.csproj</a></li>
-<li><a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website.Components/build-static-assets.Dockerfile">build-static-assets.Dockerfile</a></li>
 <li><a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website.Components/package.json">package.json</a></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -139,7 +134,7 @@ thing we want you to know of is that we have built CSS variables for the entire 
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/refs/tags/1.0.0-rc.3.1/articles/ThemingAndCSS.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/refs/tags/1.0.0-rc.4/articles/ThemingAndCSS.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

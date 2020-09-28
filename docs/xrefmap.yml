@@ -328,15 +328,15 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.IMBToastService.Configuration
   nameWithType: IMBToastService.Configuration
-- uid: Material.Blazor.IMBToastService.ShowToast(Material.Blazor.MBToastLevel,System.String,System.String,System.Nullable{Material.Blazor.MBToastCloseMethod},System.String,System.String,Material.Blazor.IMBIconFoundry,System.Nullable{System.Boolean},System.Nullable{System.UInt32})
-  name: ShowToast(MBToastLevel, String, String, Nullable<MBToastCloseMethod>, String, String, IMBIconFoundry, Nullable<Boolean>, Nullable<UInt32>)
-  href: api/Material.Blazor.IMBToastService.html#Material_Blazor_IMBToastService_ShowToast_Material_Blazor_MBToastLevel_System_String_System_String_System_Nullable_Material_Blazor_MBToastCloseMethod__System_String_System_String_Material_Blazor_IMBIconFoundry_System_Nullable_System_Boolean__System_Nullable_System_UInt32__
-  commentId: M:Material.Blazor.IMBToastService.ShowToast(Material.Blazor.MBToastLevel,System.String,System.String,System.Nullable{Material.Blazor.MBToastCloseMethod},System.String,System.String,Material.Blazor.IMBIconFoundry,System.Nullable{System.Boolean},System.Nullable{System.UInt32})
-  name.vb: ShowToast(MBToastLevel, String, String, Nullable(Of MBToastCloseMethod), String, String, IMBIconFoundry, Nullable(Of Boolean), Nullable(Of UInt32))
-  fullName: Material.Blazor.IMBToastService.ShowToast(Material.Blazor.MBToastLevel, System.String, System.String, System.Nullable<Material.Blazor.MBToastCloseMethod>, System.String, System.String, Material.Blazor.IMBIconFoundry, System.Nullable<System.Boolean>, System.Nullable<System.UInt32>)
-  fullName.vb: Material.Blazor.IMBToastService.ShowToast(Material.Blazor.MBToastLevel, System.String, System.String, System.Nullable(Of Material.Blazor.MBToastCloseMethod), System.String, System.String, Material.Blazor.IMBIconFoundry, System.Nullable(Of System.Boolean), System.Nullable(Of System.UInt32))
-  nameWithType: IMBToastService.ShowToast(MBToastLevel, String, String, Nullable<MBToastCloseMethod>, String, String, IMBIconFoundry, Nullable<Boolean>, Nullable<UInt32>)
-  nameWithType.vb: IMBToastService.ShowToast(MBToastLevel, String, String, Nullable(Of MBToastCloseMethod), String, String, IMBIconFoundry, Nullable(Of Boolean), Nullable(Of UInt32))
+- uid: Material.Blazor.IMBToastService.ShowToast(Material.Blazor.MBToastLevel,System.String,System.String,System.Nullable{Material.Blazor.MBToastCloseMethod},System.String,System.String,Material.Blazor.IMBIconFoundry,System.Nullable{System.Boolean},System.Nullable{System.UInt32},System.Boolean)
+  name: ShowToast(MBToastLevel, String, String, Nullable<MBToastCloseMethod>, String, String, IMBIconFoundry, Nullable<Boolean>, Nullable<UInt32>, Boolean)
+  href: api/Material.Blazor.IMBToastService.html#Material_Blazor_IMBToastService_ShowToast_Material_Blazor_MBToastLevel_System_String_System_String_System_Nullable_Material_Blazor_MBToastCloseMethod__System_String_System_String_Material_Blazor_IMBIconFoundry_System_Nullable_System_Boolean__System_Nullable_System_UInt32__System_Boolean_
+  commentId: M:Material.Blazor.IMBToastService.ShowToast(Material.Blazor.MBToastLevel,System.String,System.String,System.Nullable{Material.Blazor.MBToastCloseMethod},System.String,System.String,Material.Blazor.IMBIconFoundry,System.Nullable{System.Boolean},System.Nullable{System.UInt32},System.Boolean)
+  name.vb: ShowToast(MBToastLevel, String, String, Nullable(Of MBToastCloseMethod), String, String, IMBIconFoundry, Nullable(Of Boolean), Nullable(Of UInt32), Boolean)
+  fullName: Material.Blazor.IMBToastService.ShowToast(Material.Blazor.MBToastLevel, System.String, System.String, System.Nullable<Material.Blazor.MBToastCloseMethod>, System.String, System.String, Material.Blazor.IMBIconFoundry, System.Nullable<System.Boolean>, System.Nullable<System.UInt32>, System.Boolean)
+  fullName.vb: Material.Blazor.IMBToastService.ShowToast(Material.Blazor.MBToastLevel, System.String, System.String, System.Nullable(Of Material.Blazor.MBToastCloseMethod), System.String, System.String, Material.Blazor.IMBIconFoundry, System.Nullable(Of System.Boolean), System.Nullable(Of System.UInt32), System.Boolean)
+  nameWithType: IMBToastService.ShowToast(MBToastLevel, String, String, Nullable<MBToastCloseMethod>, String, String, IMBIconFoundry, Nullable<Boolean>, Nullable<UInt32>, Boolean)
+  nameWithType.vb: IMBToastService.ShowToast(MBToastLevel, String, String, Nullable(Of MBToastCloseMethod), String, String, IMBIconFoundry, Nullable(Of Boolean), Nullable(Of UInt32), Boolean)
 - uid: Material.Blazor.IMBToastService.ShowToast*
   name: ShowToast
   href: api/Material.Blazor.IMBToastService.html#Material_Blazor_IMBToastService_ShowToast_
