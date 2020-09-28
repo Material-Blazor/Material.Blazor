@@ -150,7 +150,7 @@ namespace Material.Blazor.Internal
                     foreach (var item in refs)
                     {
                         item.Initiated = true;
-                        ToastService.ShowToast(MBToastLevel.Info, item.MarkupStringContent.ToString(), "New Tooltip", closeMethod: MBToastCloseMethod.CloseButton);
+                        ToastService.ShowToast(MBToastLevel.Info, item.MarkupStringContent.ToString(), "New Tooltip", closeMethod: MBToastCloseMethod.CloseButton, debug: true);
                     }
                 }
             }
