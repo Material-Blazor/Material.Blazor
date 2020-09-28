@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Material.Blazor.Internal
 {
     /// <summary>
-    /// An anchor component that displays tooltips taht you add, and using 
+    /// An anchor component that displays tooltips that you add, and using 
     /// <see cref="IMBTooltipService"/>.
     /// Place this component at the top of either App.razor or MainLayout.razor.
     /// </summary>
@@ -151,13 +151,8 @@ namespace Material.Blazor.Internal
                     {
                         item.Initiated = true;
                         ToastService.ShowToast(MBToastLevel.Info, item.MarkupStringContent.ToString(), "New Tooltip", closeMethod: MBToastCloseMethod.CloseButton);
-                        await JsRuntime.InvokeVoidAsync("OldMaterialBlazor.MBTooltip.consoleLog", item);
                     }
                 }
-            }
-            catch (Exception e)
-            {
-                Logger.LogError(e.Message);
             }
             finally
             {
