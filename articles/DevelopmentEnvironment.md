@@ -24,7 +24,7 @@ We have developed Material.Blazor using Visual Studio 2019 on Windows, and have 
 
 - To build the Blazor project you need to be using the latest preview version of Visual Studio 2019. This can be found at [https://visualstudio.microsoft.com/vs/preview/](https://visualstudio.microsoft.com/vs/preview/). The Community Edition is sufficient. During the installation you must include the "ASP.NET and web development" Workload using Visual Studio Installer.:
   <img src="../images/vs-config.png" alt="Visual Studio Workloads"></img>
-- Material.Blazor uses SASS for styling and uses Material Components Web SASS mixins. You will also need to install "Docker". Docker for Windows can be found at [https://docs.docker.com/docker-for-windows/install/](https://docs.docker.com/docker-for-windows/install/). Docker for Mac can be found at [https://docs.docker.com/docker-for-mac/install/](https://docs.docker.com/docker-for-mac/install/). Docker will be responsible for using npm to build and minify resources from within Docker virtual images.  Note that npm packages are  *voluminous* and running the build will download over 160MB of data in the Docker directory.
+- Material.Blazor uses SASS for styling and uses Material Components Web SASS mixins, and additionally TypeScript with the Material Components Web's TypeScript. This is the reason you need to select "Node.js development" in the previous step.
 - There are some Visual Studio extensions that you need or may want:
   - We like Markdown Editor, which will help you improve this page.
     <img src="../images/vs-extensions.png" alt="Visual Studio Extensions"></img>

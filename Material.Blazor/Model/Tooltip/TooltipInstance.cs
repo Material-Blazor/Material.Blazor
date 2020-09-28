@@ -4,7 +4,7 @@ using System;
 namespace Material.Blazor.Internal
 {
     /// <summary>
-    /// An instance of a toast message.
+    /// An instance of a tooltip.
     /// </summary>
     internal class TooltipInstance
     {

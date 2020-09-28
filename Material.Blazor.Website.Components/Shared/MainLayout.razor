@@ -59,14 +59,15 @@
                  TopAppBarType="@MBTopAppBarType.Dense"
                  class="mdc-top-app-bar--short-has-action-item mdc-elevation--z5">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
-            <MBIconButton @onclick="@OpenMenuAsync" Icon="fa-scroll" IconFoundry="@MBIconHelper.FAFoundry(relativeSize: MBIconFARelativeSize.ExtraSmall)" />
+            <MBIconButton @onclick="@OpenMenuAsync" Icon="more_vert" />
             <div class="mdc-menu-surface--anchor">
                 <MBMenu @ref="Menu">
                     <MBMenuSelectionGroup @key="@Theme">
                         <MBListItem Label="Material Default Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "mt-default-theme")" @onclick="@(() => ThemeSetterAsync("mt-default-theme"))" />
-                        <MBListItem Label="Blue Square Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "blue-square-theme")" @onclick="@(() => ThemeSetterAsync("blue-square-theme"))" />
-                        <MBListItem Label="Red Round Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "red-round-theme")" @onclick="@(() => ThemeSetterAsync("red-round-theme"))" />
-                        <MBListItem Label="Varied Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "varied-theme")" @onclick="@(() => ThemeSetterAsync("varied-theme"))" />
+                        <MBListItem Label="Light Square Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "light-square-theme")" @onclick="@(() => ThemeSetterAsync("light-square-theme"))" />
+                        <MBListItem Label="Dark Square Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "dark-square-theme")" @onclick="@(() => ThemeSetterAsync("dark-square-theme"))" />
+                        <MBListItem Label="Rounded Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "rounded-theme")" @onclick="@(() => ThemeSetterAsync("rounded-theme"))" />
+                        <MBListItem Label="Asymmetric Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "asymmetric-theme")" @onclick="@(() => ThemeSetterAsync("asymmetric-theme"))" />
                     </MBMenuSelectionGroup>
                 </MBMenu>
             </div>
@@ -111,7 +112,7 @@
 
     protected async Task ThemeSetterAsync(string theme)
     {
-        await JsRuntime.InvokeAsync<object>("material_blazor_website.themeSetter.setTheme", theme);
+        await JsRuntime.InvokeAsync<object>("material_blazor_website.themeSetter.setTheme", theme, true);
         Theme = theme;
         StateHasChanged();
     }
