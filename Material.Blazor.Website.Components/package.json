@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "description": "NPM build steps for Material.Blazor.Website.Components",
   "scripts": {
-    "build-mt-default": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/mt-default-theme.scss wwwroot/css/mt-default-theme.css",
-    "build-min-mt-default": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/mt-default-theme.scss wwwroot/css/mt-default-theme.min.css",
+    "build-material-default": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/material-default-theme.scss wwwroot/css/material-default-theme.css",
+    "build-min-material-default": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/material-default-theme.scss wwwroot/css/material-default-theme.min.css",
     "build-light-square": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/light-square-theme.scss wwwroot/css/light-square-theme.css",
     "build-min-light-square": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/light-square-theme.scss wwwroot/css/light-square-theme.min.css",
     "build-dark-square": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/dark-square-theme.scss wwwroot/css/dark-square-theme.css",

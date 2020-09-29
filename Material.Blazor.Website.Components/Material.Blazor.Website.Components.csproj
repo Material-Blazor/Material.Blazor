@@ -17,14 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Styles\dark-square-theme.scss" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Styles\dark-square-theme.scss" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="package-lock.json" />
     <None Include="package.json" />
   </ItemGroup>
@@ -44,66 +36,33 @@
     <Folder Include="wwwroot\videos\" />
   </ItemGroup>
 
-  <!-- Unfinished dependency issue copied directly from mb, no update yet for website
-	<ItemGroup>
-		<InputsComponentsScss Include="Components\**\*.scss" />
-		<InputsStylesScss Include="Styles\*.scss" />
-		<InputsComponentsTs Include="Components\**\*.js" />
-		<InputsScriptsTs Include="Scripts\*.js" />
-		<OutputsCss Include="wwwroot\blazormdc.css;wwwroot\blazormdc.min.css;wwwroot\blazormdc-material-bundle.min.css" />
-		<OutputsJs Include="wwwroot\blazormdc.js;wwwroot\blazormdc.min.js;wwwroot\blazormdc-material-bundle.min.js" />
-	</ItemGroup>
+  <ItemGroup>
+    <InputStaticAssetsStyles Include="**\*.scss;" Exclude="bin\**\*;node_modules\**\*;obj\**\*" />
+    <OutputStaticAssetsStyles Include="wwwroot\css\asymmetric-theme.min.css;wwwroot\css\dark-square-theme.min.css;wwwroot\css\light-square-theme.min.css;wwwroot\css\material-default-theme.min.css;wwwroot\css\rounded-theme.min.css;" />
+  </ItemGroup>
 
-	<Target Name="BuildScriptsAndStyles" 
-			BeforeTargets="PreBuildEvent" 
-			Inputs="@(InputsComponentsScss);@(InputsStylesScss);@(InputsComponentsTs);@(InputsScriptsTs)"
-			Outputs="@(OutputsCss);@(OutputsJs)">-->
-
-  <!--
-	<Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">
-		<Exec Command="docker build -t mbw_static_assets -f build-static-assets.Dockerfile ." />
-
-		<Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
-		<Exec Command="mkdir wwwroot/css" IgnoreExitCode="true" />
-		<Exec Command="mkdir wwwroot\css" IgnoreExitCode="true" />
-
-		<Exec Command="docker run - -rm mbw_static_assets cat blue-square-theme.css &gt; wwwroot/css/blue-square-theme.css" />
-		<Exec Command="docker run - -rm mbw_static_assets cat blue-square-theme.min.css &gt; wwwroot/css/blue-square-theme.min.css" />
-
-	  <Exec Command="docker run - -rm mbw_static_assets cat mt-default-theme.css &gt; wwwroot/css/mt-default-theme.css" />
-		<Exec Command="docker run - -rm mbw_static_assets cat mt-default-theme.min.css &gt; wwwroot/css/mt-default-theme.min.css" />
-
-		<Exec Command="docker run - -rm mbw_static_assets cat red-round-theme.css &gt; wwwroot/css/red-round-theme.css" />
-		<Exec Command="docker run - -rm mbw_static_assets cat red-round-theme.min.css &gt; wwwroot/css/red-round-theme.min.css" />
-
-		<Exec Command="docker run - -rm mbw_static_assets cat varied-theme.css &gt; wwwroot/css/varied-theme.css" />
-		<Exec Command="docker run - -rm mbw_static_assets cat varied-theme.min.css &gt; wwwroot/css/varied-theme.min.css" />
-	</Target>
--->
-
-  <Target Name="BuildScriptsAndStyles" BeforeTargets="PreBuildEvent">
+  <Target Name="BuildScriptsAndStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent">
     <Exec Command="echo ***** npm install" />
     <Exec Command="npm install" />
 
-    <Exec Command="echo ***** mkdir wwwroot" />
+    <Exec Command="echo ***** mkdir wwwroot and wwwroot\css" />
     <Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
-    <Exec Command="mkdir wwwroot/css" IgnoreExitCode="true" />
     <Exec Command="mkdir wwwroot\css" IgnoreExitCode="true" />
 
     <!-- Don't build unminified themes -->
-    <Exec Command="echo ***** build mt default" />
-    <Exec Command="npm run build-min-mt-default" />
+    <Exec Command="echo ***** build material default theme" />
+    <Exec Command="npm run build-min-material-default" />
 
-    <Exec Command="echo ***** build light square" />
+    <Exec Command="echo ***** build light square theme" />
     <Exec Command="npm run build-min-light-square" />
 
-    <Exec Command="echo ***** build dark square" />
+    <Exec Command="echo ***** build dark square theme" />
     <Exec Command="npm run build-min-dark-square" />
 
-    <Exec Command="echo ***** build reounded" />
+    <Exec Command="echo ***** build rounded theme" />
     <Exec Command="npm run build-min-rounded" />
 
-    <Exec Command="echo ***** build asymmetric" />
+    <Exec Command="echo ***** build asymmetric theme" />
     <Exec Command="npm run build-min-asymmetric" />
 
   </Target>
