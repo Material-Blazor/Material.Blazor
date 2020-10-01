@@ -63,7 +63,7 @@
             <div class="mdc-menu-surface--anchor">
                 <MBMenu @ref="Menu">
                     <MBMenuSelectionGroup @key="@Theme">
-                        <MBListItem Label="Material Default Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "mt-default-theme")" @onclick="@(() => ThemeSetterAsync("mt-default-theme"))" />
+                        <MBListItem Label="Material Default Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "material-default-theme")" @onclick="@(() => ThemeSetterAsync("material-default-theme"))" />
                         <MBListItem Label="Light Square Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "light-square-theme")" @onclick="@(() => ThemeSetterAsync("light-square-theme"))" />
                         <MBListItem Label="Dark Square Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "dark-square-theme")" @onclick="@(() => ThemeSetterAsync("dark-square-theme"))" />
                         <MBListItem Label="Rounded Theme" LeadingIcon="done" IsSelectedMenuItem="@(Theme == "rounded-theme")" @onclick="@(() => ThemeSetterAsync("rounded-theme"))" />
@@ -103,7 +103,7 @@
 
     private MBMenu Menu { get; set; }
 
-    private string Theme { get; set; } = "mt-default-theme";
+    private string Theme { get; set; } = "material-default-theme";
 
     private async Task OpenMenuAsync()
     {

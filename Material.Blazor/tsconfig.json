@@ -3,7 +3,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["ES2015", "DOM"],
-    "module": "CommonJS",
+    "module": "ES2015",
     "moduleResolution": "Node",
     "noEmitOnError": false,
     "noImplicitAny": false,
