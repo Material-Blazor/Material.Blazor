@@ -138,8 +138,7 @@ namespace Material.Blazor.Internal
             {
                 var refs = (from tooltip in Tooltips.Values
                             where !tooltip.Initiated &&
-                                (!tooltip.ElementReference.Equals(null)) && // Not really needed
-                                !string.IsNullOrWhiteSpace(tooltip.ElementReference.Id)
+                                  !string.IsNullOrWhiteSpace(tooltip.ElementReference.Id)
                             orderby tooltip.TimeStamp
                             select tooltip).ToArray();
 
