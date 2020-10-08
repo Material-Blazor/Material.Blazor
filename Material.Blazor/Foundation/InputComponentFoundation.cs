@@ -157,7 +157,14 @@ namespace Material.Blazor.Internal
 
                     if (IsValidFormField)
                     {
-                        EditContext?.NotifyFieldChanged(FieldIdentifier);
+                        if (string.IsNullOrWhiteSpace(FieldIdentifier.FieldName))
+                        {
+                            throw new Exception("ValueExpression must be defined for a field contained in an EditForm");
+                        }
+                        else
+                        {
+                            EditContext?.NotifyFieldChanged(FieldIdentifier);
+                        }
                     }
 
                     StateHasChanged();
