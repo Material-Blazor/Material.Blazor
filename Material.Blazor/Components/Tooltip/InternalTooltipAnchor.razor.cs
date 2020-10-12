@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
@@ -9,16 +10,17 @@ using System.Threading.Tasks;
 namespace Material.Blazor.Internal
 {
     /// <summary>
-    /// An anchor component that displays tooltips taht you add, and using 
+    /// An anchor component that displays tooltips that you add, and using 
     /// <see cref="IMBTooltipService"/>.
     /// Place this component at the top of either App.razor or MainLayout.razor.
     /// </summary>
     public partial class InternalTooltipAnchor : ComponentFoundation
     {
         private Dictionary<Guid, TooltipInstance> Tooltips { get; set; } = new Dictionary<Guid, TooltipInstance>();
-        
 
-        private readonly SemaphoreSlim semaphore = new SemaphoreSlim(1);
+
+        private readonly SemaphoreSlim _semProtectTooltips = new SemaphoreSlim(1, 1);
+        private readonly SemaphoreSlim _onAfterRenderSemaphore = new SemaphoreSlim(1, 1);
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -40,7 +42,7 @@ namespace Material.Blazor.Internal
         {
             InvokeAsync(async () =>
             {
-                await semaphore.WaitAsync();
+                await _semProtectTooltips.WaitAsync();
 
                 try
                 {
@@ -56,7 +58,7 @@ namespace Material.Blazor.Internal
                 }
                 finally
                 {
-                    semaphore.Release();
+                    _semProtectTooltips.Release();
                 }
 
                 StateHasChanged();
@@ -74,7 +76,7 @@ namespace Material.Blazor.Internal
         {
             InvokeAsync(async () =>
             {
-                await semaphore.WaitAsync();
+                await _semProtectTooltips.WaitAsync();
 
                 try
                 {
@@ -90,7 +92,7 @@ namespace Material.Blazor.Internal
                 }
                 finally
                 {
-                    semaphore.Release();
+                    _semProtectTooltips.Release();
                 }
 
                 StateHasChanged();
@@ -108,7 +110,7 @@ namespace Material.Blazor.Internal
             InvokeAsync(async () =>
             {
 
-                await semaphore.WaitAsync();
+                await _semProtectTooltips.WaitAsync();
 
                 try
                 {
@@ -119,7 +121,7 @@ namespace Material.Blazor.Internal
                 }
                 finally
                 {
-                    semaphore.Release();
+                    _semProtectTooltips.Release();
                 }
 
                 StateHasChanged();
@@ -130,16 +132,29 @@ namespace Material.Blazor.Internal
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            var refs = (from t in Tooltips.Values
-                        where !t.Initiated
-                        orderby t.TimeStamp
-                        select t.ElementReference).ToArray();
+            await _semProtectTooltips.WaitAsync();
 
-            await JsRuntime.InvokeVoidAsync("OldMaterialBlazor.MBTooltip.init", refs);
-
-            foreach (var t in Tooltips.Values.Where(t => !t.Initiated))
+            try
             {
-                t.Initiated = true;
+                var refs = (from tooltip in Tooltips.Values
+                            where !tooltip.Initiated &&
+                                  !string.IsNullOrWhiteSpace(tooltip.ElementReference.Id)
+                            orderby tooltip.TimeStamp
+                            select tooltip).ToArray();
+
+                if (refs.Count() > 0)
+                {
+                    await JsRuntime.InvokeVoidAsync("OldMaterialBlazor.MBTooltip.init", refs.Select(r => r.ElementReference));
+
+                    foreach (var item in refs)
+                    {
+                        item.Initiated = true;
+                    }
+                }
+            }
+            finally
+            {
+                _semProtectTooltips.Release();
             }
         }
     }

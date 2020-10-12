@@ -36,9 +36,17 @@ namespace Material.Blazor.Internal
             string iconName = null,
             IMBIconFoundry? iconFoundry = null,
             bool? showIcon = null,
-            uint? timeout = null)
+            uint? timeout = null,
+            bool debug = false)
 #nullable restore annotations
         {
+#if !DEBUG
+            if (debug)
+            {
+                return;
+            }
+#endif
+
             var settings = new MBToastSettings()
             {
                 Message = message,

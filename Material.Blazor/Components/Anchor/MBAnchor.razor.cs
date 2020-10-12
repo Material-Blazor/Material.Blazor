@@ -11,7 +11,7 @@ namespace Material.Blazor
 {
     /// <summary>
     /// An anchor component that displays toast notification that you display via
-    /// <see cref="IMBToastService.ShowToast(MBToastLevel, string, string, MBToastCloseMethod?, string, string, IMBIconFoundry?, bool?, uint?)"/>.
+    /// <see cref="IMBToastService.ShowToast(MBToastLevel, string, string, MBToastCloseMethod?, string, string, IMBIconFoundry?, bool?, uint?, bool)"/>.
     /// Place this component at the top of either App.razor or MainLayout.razor.
     /// </summary>
     public partial class MBToastAnchor : ComponentFoundation

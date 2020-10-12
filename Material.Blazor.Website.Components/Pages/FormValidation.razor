@@ -122,9 +122,9 @@ private class FormModel
 
 
 @code {
-    private string[] Fruits = { "Avocado", "Banana", "Blackberry", "Blueberry", "Cantaloupe", "Cherry", "Clementine", "Dragonfruit", "Fig", "Grape", "Guava", "Honeydew", "Huckleberry", "Jujube", "Kiwi", "Kumquat", "Lime", "Nectarine", "Orange", "Papaya", "Passion Fruit", "Pineapple", "Plum", "Pomegranate", "Raspberry", "Satsuma", "Strawberry", "Tangerine", "Tomato", "Watermelon" };
+    public string[] Fruits = { "Avocado", "Banana", "Blackberry", "Blueberry", "Cantaloupe", "Cherry", "Clementine", "Dragonfruit", "Fig", "Grape", "Guava", "Honeydew", "Huckleberry", "Jujube", "Kiwi", "Kumquat", "Lime", "Nectarine", "Orange", "Papaya", "Passion Fruit", "Pineapple", "Plum", "Pomegranate", "Raspberry", "Satsuma", "Strawberry", "Tangerine", "Tomato", "Watermelon" };
 
-    private class FormModel
+    public class FormModel
     {
         [Required(ErrorMessage = "The text field is required")]
         public string Text { get; set; }

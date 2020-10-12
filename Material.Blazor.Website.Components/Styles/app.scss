@@ -4,12 +4,13 @@
 
 @mixin app-classes() {
     /*
-        App layout styling
-    */
+     * App layout styling
+     */
     body {
         height: 100vh;
         margin: 0 !important;
         background-color: theme.$background;
+        color: theme.$on-surface;
     }
 
     app {
