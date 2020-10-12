@@ -11,6 +11,12 @@ namespace Material.Blazor
     /// </summary>
     public class MBToastSettings
     {
+        public MBToastSettings(MBToastLevel level, string message)
+        {
+            Level = level;
+            Message = message;
+        }
+
 #nullable enable annotations
         /// <summary>
         /// The heading - first line.
@@ -21,7 +27,7 @@ namespace Material.Blazor
         /// <summary>
         /// The message - second line.
         /// </summary>
-        public string Message { get; set; }
+        public string Message { get; private set; }
 
 
         /// <summary>
@@ -55,6 +61,12 @@ namespace Material.Blazor
         /// How the toast message gets closed. See <see cref="MBToastCloseMethod"/>.
         /// </summary>
         public MBToastCloseMethod? CloseMethod { get; set; }
+
+
+        /// <summary>
+        /// Optional action to be executed when the body of the toast is clicked.
+        /// </summary>
+        public Action<MBToastSettings>? ClickAction { get; set; }
 
 
         /// <summary>

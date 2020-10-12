@@ -42,7 +42,7 @@ namespace Material.Blazor
 
         /// <summary>
         /// Shows a toast using the supplied settings. Only the level and message parameters are required, with
-        /// the remainder haveing defaults specified by the <see cref="MBToastServiceConfiguration"/> that you can supply
+        /// the remainder having defaults specified by the <see cref="MBToastServiceConfiguration"/> that you can supply
         /// when registering services. Failing that Material.Blazor provides defaults.
         /// </summary>
         /// <param name="level">Severity of the toast (info, error, etc)</param>
@@ -67,6 +67,16 @@ namespace Material.Blazor
             bool? showIcon = null,
             uint? timeout = null,
             bool debug = false);
+
+
+        /// <summary>
+        /// Shows a toast using the supplied settings. Only the level and message parameters are required, with
+        /// the remainder having defaults specified by the <see cref="MBToastServiceConfiguration"/> that you can supply
+        /// when registering services. Failing that Material.Blazor provides defaults.
+        /// </summary>
+        /// <param name="settings">The toast settings</param>
+        /// <param name="debug">If true only shows toasts when compiling in DEBUG mode</param>
+        void ShowToast(MBToastSettings settings, bool debug = false);
 #nullable restore annotations
     }
 }

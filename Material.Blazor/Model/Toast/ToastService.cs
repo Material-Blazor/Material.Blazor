@@ -25,6 +25,23 @@ namespace Material.Blazor.Internal
             Configuration = configuration;
         }
 
+        public void ShowToast(MBToastSettings settings, bool debug = false)
+        {
+#if !DEBUG
+            if (debug)
+            {
+                return;
+            }
+#endif
+
+            if (OnAdd is null)
+            {
+                throw new InvalidOperationException($"Material.Blazor: you attempted to show a toast notification from a {Utilities.GetTypeName(typeof(IMBToastService))} but have not placed a {Utilities.GetTypeName(typeof(MBToastAnchor))} component at the top of either App.razor or MainLayout.razor");
+            }
+
+            OnAdd?.Invoke(settings.Level, settings);
+        }
+
         ///<inheritdoc/>
 #nullable enable annotations
         public void ShowToast(
@@ -47,9 +64,8 @@ namespace Material.Blazor.Internal
             }
 #endif
 
-            var settings = new MBToastSettings()
+            var settings = new MBToastSettings(level, message)
             {
-                Message = message,
                 Heading = heading,
                 CloseMethod = closeMethod,
                 CssClass = cssClass,
