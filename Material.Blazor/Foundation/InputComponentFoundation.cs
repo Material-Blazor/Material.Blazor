@@ -159,7 +159,7 @@ namespace Material.Blazor.Internal
                     {
                         if (string.IsNullOrWhiteSpace(FieldIdentifier.FieldName))
                         {
-                            throw new Exception("ValueExpression must be defined for a field contained in an EditForm");
+                            throw new Exception("Material.Blazor: ValueExpression must be defined for a field contained in an EditForm");
                         }
                         else
                         {

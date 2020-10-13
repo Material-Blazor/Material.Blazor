@@ -78,9 +78,9 @@ namespace Material.Blazor
         private ElementReference ElementReference { get; set; }
         private string FloatingLabelClass { get; set; }
         private ElementReference HelperTextReference { get; set; }
-        private bool HasHelperText => !string.IsNullOrWhiteSpace(HelperText);
-        private bool PerformsValidation => EditContext != null && ValidationMessageFor != null;
+        private bool HasHelperText => !string.IsNullOrWhiteSpace(HelperText) || PerformsValidation;
         private string LabelSuffix { get; set; } = "";
+        private bool PerformsValidation => EditContext != null && ValidationMessageFor != null;
 
 
         private readonly string labelId = Utilities.GenerateUniqueElementName();
