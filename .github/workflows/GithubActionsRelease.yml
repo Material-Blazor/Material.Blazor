@@ -37,7 +37,7 @@ jobs:
     steps:
 
     - name: Set Version as env variable
-      run: echo "::set-env name=Version::${GITHUB_REF/refs\/tags\//}"
+      run: echo "Version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
       shell: bash
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
