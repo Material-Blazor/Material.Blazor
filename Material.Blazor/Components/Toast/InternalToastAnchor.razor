@@ -16,14 +16,14 @@
                     var iconHelper = new MBIconHelper(null, toast.Settings.AppliedIconName, toast.Settings.AppliedIconFoundry);
                     var filterClass = iconHelper.RequiresColorFilter ? toast.Settings.IconFilterClass : "";
 
-                    <div class="mb-toast-icon @filterClass">
+                    <div class="mb-toast-icon @filterClass" @onclick="(_) => { toast.Settings.ClickAction?.Invoke(toast.Settings); }" style="@(toast.Settings.ClickAction != null ? "cursor: pointer" : "")">
                         <MBIcon IconName="@toast.Settings.AppliedIconName" IconFoundry="@toast.Settings.IconFoundry" aria-hidden="true" />
                     </div>
                 }
 
-                <div class="mb-toast-body" @onclick="(_) => { toast.Settings.ClickAction?.Invoke(toast.Settings); }" style="@(toast.Settings.ClickAction != null ? "cursor: pointer" : "")">
+                <div class="mb-toast-body">
                     <div class="mb-toast-header">
-                        <div class="mb-toast-heading-container">
+                        <div class="mb-toast-heading-container" @onclick="(_) => { toast.Settings.ClickAction?.Invoke(toast.Settings); }" style="@(toast.Settings.ClickAction != null ? "cursor: pointer" : "")">
                             <h5 class="mdc-typography--subtitle1">@((MarkupString)toast.Settings.AppliedHeading)</h5>
                         </div>
 
@@ -33,7 +33,7 @@
                         }
                     </div>
 
-                    <p class="mdc-typography--body2">@((MarkupString)toast.Settings.AppliedMessage)</p>
+                    <p class="mdc-typography--body2" @onclick="(_) => { toast.Settings.ClickAction?.Invoke(toast.Settings); }" style="@(toast.Settings.ClickAction != null ? "cursor: pointer" : "")">@((MarkupString)toast.Settings.AppliedMessage)</p>
                 </div>
             </div>
         }

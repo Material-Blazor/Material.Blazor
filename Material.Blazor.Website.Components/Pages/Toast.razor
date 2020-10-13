@@ -171,7 +171,7 @@
                         </div>
 
                         <div class="mdc-layout-grid__cell--span-12">
-                            <MBButton @onclick="@(() => ToastService.ShowToast(new MBToastSettings(MBToastLevel.Info, "Click me!") { ClickAction = (toast) => { ToastService.ShowToast(new MBToastSettings(MBToastLevel.Success, "Toast clicked!")); } }))"
+                            <MBButton @onclick="@(() => ToastService.ShowToast(new MBToastSettings(MBToastLevel.Info, "Click me!") { Heading = "Clickable toast", ClickAction = (toast) => { ToastService.ShowToast(new MBToastSettings(MBToastLevel.Success, "Toast clicked!")); } }))"
                                       Label="Show clickable Toast"
                                       ButtonStyle="@MBButtonStyle.ContainedRaised" />
                         </div>
