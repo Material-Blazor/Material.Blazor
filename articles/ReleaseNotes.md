@@ -4,6 +4,16 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [1.0.0.rc.5](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-rc.5)
+13 October 2020
+
+- MS Build dependency check for SASS and Typescript files working.
+- Github Actions updated to new path setting construct.
+- Bug fixes.
+
+<br />
+
+
 #### [1.0.0.rc.4](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-rc.4)
 24 September 2020
 
