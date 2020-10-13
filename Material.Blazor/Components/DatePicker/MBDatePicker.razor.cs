@@ -36,13 +36,13 @@ namespace Material.Blazor
         /// <summary>
         /// Minimum date set by the consumer
         /// </summary>
-        [Parameter] public DateTime MinDate { get; set; }
+        [Parameter] public DateTime MinDate { get; set; } = DateTime.MinValue;
 
 
         /// <summary>
         /// Maximum date set by the consumer
         /// </summary>
-        [Parameter] public DateTime MaxDate { get; set; }
+        [Parameter] public DateTime MaxDate { get; set; } = DateTime.MaxValue;
 
 
         /// <summary>
