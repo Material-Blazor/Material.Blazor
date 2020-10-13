@@ -84,6 +84,38 @@
         </div>
 
 
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true" @onclick="@ShowDialog5Async">
+                <PrimaryAction>
+                    <div class="mb-card__primary">
+                        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                            No Body
+                        </h2>
+                        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                            Shows a dialog with no body
+                        </h3>
+                    </div>
+                </PrimaryAction>
+            </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true" @onclick="@ShowDialog6Async">
+                <PrimaryAction>
+                    <div class="mb-card__primary">
+                        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                            No Title
+                        </h2>
+                        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                            Shows a dialog with no title
+                        </h3>
+                    </div>
+                </PrimaryAction>
+            </MBCard>
+        </div>
+
+
         <MBDialog @ref="@Dialog1"
                   Title="General dialog">
             <Body>
@@ -101,7 +133,7 @@
         </MBDialog>
 
 
-        <MBDialog @ref="@Dialog2" 
+        <MBDialog @ref="@Dialog2"
                   Title="General Dialog with Scrim and Escape Disabled (using HideAsync)"
                   ScrimClickAction=""
                   EscapeKeyAction="">
@@ -169,7 +201,24 @@
                     </div>
                 </EditForm>
             </Body>
+        </MBDialog>
 
+        <MBDialog @ref="@Dialog5"
+                  Title="No Body">
+            <Buttons>
+                <MBButton Label="OK" DialogAction="ok"></MBButton>
+                <MBButton Label="Cancel" DialogAction="cancel" ButtonStyle="@MBButtonStyle.Text"></MBButton>
+            </Buttons>
+        </MBDialog>
+
+        <MBDialog @ref="@Dialog6">
+            <Body>
+                <p>No Title</p>
+            </Body>
+            <Buttons>
+                <MBButton Label="OK" DialogAction="ok"></MBButton>
+                <MBButton Label="Cancel" DialogAction="cancel" ButtonStyle="@MBButtonStyle.Text"></MBButton>
+            </Buttons>
         </MBDialog>
     </PageContent>
 </DemonstrationPage>
@@ -182,6 +231,8 @@
     private MBDialog Dialog2 { get; set; }
     private MBDialog Dialog3 { get; set; }
     private MBDialog Dialog4 { get; set; }
+    private MBDialog Dialog5 { get; set; }
+    private MBDialog Dialog6 { get; set; }
 
     private bool Check { get; set; }
 
@@ -257,15 +308,27 @@
         ToastService.ShowToast(heading: "Logon Dialog Canceled", message: "The cancel button was selected", level: MBToastLevel.Success, showIcon: false);
     }
 
+    private async Task ShowDialog5Async()
+    {
+        var result = await Dialog5.ShowAsync();
+        ToastService.ShowToast(heading: "No Body Dialog", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+    }
+
+    private async Task ShowDialog6Async()
+    {
+        var result = await Dialog6.ShowAsync();
+        ToastService.ShowToast(heading: "No Title Dialog", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+    }
+
     private class UserLogonDefinition
 
     {
-        [Required(ErrorMessage = "UserID is required")] 
+        [Required(ErrorMessage = "UserID is required")]
         public string UserID { get; set; }
-        
+
 
         [Required(ErrorMessage = "Password is required")]
-        [MinLength(8, ErrorMessage = "Password at least 8 characters.")] 
+        [MinLength(8, ErrorMessage = "Password at least 8 characters.")]
         public string Password { get; set; }
     }
 }

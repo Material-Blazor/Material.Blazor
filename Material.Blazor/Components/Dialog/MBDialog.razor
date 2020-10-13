@@ -6,24 +6,25 @@
 {
     <div @key="@Key"
          @ref="DialogElem"
-         @attributes="@AttributesToSplat()"
-         aria-modal="true"
-         aria-labelledby="@titleId"
-         aria-describedby="@descId">
+         @attributes="@MyAttributes"
+         aria-modal="true">
 
         <CascadingValue Value="@this">
             <div class="mdc-dialog__container">
                 <div class="mdc-dialog__surface @OverflowClass">
-                    <h2 id="@titleId" class="mdc-dialog__title">@Title</h2>
+                    @if (HasTitle)
+                    {
+                        <h2 id="@titleId" class="mdc-dialog__title">@Title</h2>
+                    }
 
-                    <div id="@descId" class="mdc-dialog__content @OverflowClass">
-                        @if (Body != null)
-                        {
+                    @if (HasBody)
+                    {
+                        <div id="@bodyId" class="mdc-dialog__content @OverflowClass">
                             @Body
-                        }
-                    </div>
+                        </div>
+                    }
 
-                    @if (Buttons != null)
+                    @if (HasButtons)
                     {
                         <footer class="mdc-dialog__actions">
                             @Buttons

@@ -144,14 +144,14 @@ namespace Material.Blazor
         private const string PositiveIntegerPattern = @"^\d+$";
 
 
-        private MBTextField TextField { get; set; }
-        private double FocusedMultiplier { get; set; } = 1;
-        private double UnfocusedMultiplier { get; set; } = 1;
         private double AppliedMultiplier => HasFocus ? FocusedMultiplier : UnfocusedMultiplier;
+        private double FocusedMultiplier { get; set; } = 1;
+        private Dictionary<string, object> MyAttributes { get; set; }
         private int MyDecimalPlaces { get; set; } = 0;
         private string NextType { get; set; } = "";
         private Regex Regex { get; set; }
-        private Dictionary<string, object> MyAttributes { get; set; }
+        private MBTextField TextField { get; set; }
+        private double UnfocusedMultiplier { get; set; } = 1;
 
 
         ///// <summary>

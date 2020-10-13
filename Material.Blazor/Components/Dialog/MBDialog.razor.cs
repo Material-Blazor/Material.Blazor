@@ -1,10 +1,9 @@
 ﻿using Material.Blazor.Internal;
-
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Material.Blazor
@@ -67,12 +66,15 @@ namespace Material.Blazor
 
 
         private ElementReference DialogElem { get; set; }
+        private bool HasBody => Body != null;
+        private bool HasButtons => Buttons != null;
+        private bool HasTitle => !string.IsNullOrWhiteSpace(Title);
         private List<IMBDialogChild> LayoutChildren { get; set; } = new List<IMBDialogChild>();
         private DotNetObjectReference<MBDialog> ObjectReference { get; set; }
         private string OverflowClass => OverflowVisible ? "mb-dialog-overflow-visible" : "";
 
 
-        private readonly string descId = Utilities.GenerateUniqueElementName();
+        private readonly string bodyId = Utilities.GenerateUniqueElementName();
         private readonly string titleId = Utilities.GenerateUniqueElementName();
 
         private bool hasInstantiated = false;
@@ -81,6 +83,7 @@ namespace Material.Blazor
         private bool AfterRenderShowAction { get; set; } = false;
         private bool IsOpen { get; set; } = false;
         private string Key { get; set; } = "";
+        private Dictionary<string, object> MyAttributes { get; set; }
         private TaskCompletionSource<string> Tcs { get; set; }
 
 
@@ -93,6 +96,26 @@ namespace Material.Blazor
                 .Add("mdc-dialog");
 
             ObjectReference = DotNetObjectReference.Create(this);
+
+            BuildMyAttributes();
+        }
+
+
+        private void BuildMyAttributes()
+        {
+            MyAttributes = (from a in AttributesToSplat()
+                            select new KeyValuePair<string, object>(a.Key, a.Value))
+                            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+
+            if (HasTitle)
+            {
+                MyAttributes.Add("aria-labelledby", titleId);
+            }
+
+            if (HasBody)
+            {
+                MyAttributes.Add("aria-describedby", bodyId);
+            }
         }
 
 
