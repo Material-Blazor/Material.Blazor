@@ -52,8 +52,9 @@ export function setHelperText(elem, helperTextElem, helperText, helperTextPersis
     }
 }
 
-export function setType(inputElem, value) {
-    inputElem.setAttribute("type", value);
+export function setType(elem, value, inputElem, type) {
+    inputElem.setAttribute("type", type);
+    elem._textField.value = value;
 }
 /*!
  * Sanitize and encode all HTML in a user-submitted string

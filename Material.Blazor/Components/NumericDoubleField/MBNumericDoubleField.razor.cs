@@ -244,7 +244,7 @@ namespace Material.Blazor
             
             if (!string.IsNullOrWhiteSpace(NextType))
             {
-                await TextField.SetType(NextType);
+                await TextField.SetType(FormattedValue, NextType);
                 NextType = "";
             }
         }
