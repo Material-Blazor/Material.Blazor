@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.Extensions.Logging;
 
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,7 @@ namespace Material.Blazor.Internal
         [CascadingParameter] private IMBDialog Dialog { get; set; }
 
 
+
         /// <summary>
         /// Gets a value for the component's 'id' attribute.
         /// </summary>
@@ -47,12 +49,13 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// Derived components can use this to get a callback from the <see cref="Value"/> setter when the consumer changes the value.
+        /// Derived components can use this to get a callback from the <see cref="ComponentValue"/> setter when the consumer changes the value.
         /// This allows a component to take action with Material Theme js to update the DOM to reflect the data change visually. An
         /// example is a select where the relevant list item needs to be automatically clicked to get Material Theme to update
         /// the value shown in the <c>&lt;input&gt;</c> HTML tag.
         /// </summary>
-        protected event EventHandler OnComponentValueSet;
+        #warning Needs proper comment
+        protected event EventHandler SetComponentValue;
 
 
         /// <summary>
@@ -98,14 +101,19 @@ namespace Material.Blazor.Internal
         /// which would cause a race condition if called in response to user interaction arising within a
         /// Material.Blazor component.
         /// </summary>
+
+        private T _componentValue;
         private protected T ComponentValue
         {
-            get => Value;
+            get => _componentValue;
             set
             {
-                var hasChanged = !EqualityComparer<T>.Default.Equals(value, Value);
-                if (hasChanged)
+                if (!EqualityComparer<T>.Default.Equals(value, Value))
                 {
+#if Logging
+                    Logger.LogDebug("ComponentValue setter changing value to '" + value?.ToString() ?? "null" + "'");
+#endif
+                    _componentValue = value;
                     _ = ValueChanged.InvokeAsync(value);
                     if (IsValidFormField)
                     {
@@ -273,8 +281,11 @@ namespace Material.Blazor.Internal
                 EditContext = CascadedEditContext;
                 _nullableUnderlyingType = Nullable.GetUnderlyingType(typeof(T));
                 _hasSetInitialParameters = true;
-                OnComponentValueSet?.Invoke(this, null);
+#if Logging
+                Logger.LogDebug("SetParametersAsync setting ComponentValue value to '" + Value?.ToString() ?? "null" + "'");
+#endif
                 CachedValue = Value;
+                ComponentValue = Value;
             }
             else if (CascadedEditContext != EditContext)
             {
@@ -291,31 +302,37 @@ namespace Material.Blazor.Internal
             await base.SetParametersAsync(ParameterView.Empty);
         }
 
+        /// <inheritdoc/>
         protected override void OnParametersSet()
         {
             base.OnParametersSet();
 
-            if (!EqualityComparer<T>.Default.Equals(CachedValue, Value))
-            {
-                CachedValue = Value;
-                if (!EqualityComparer<T>.Default.Equals(ComponentValue, Value))
-                {
-                    ComponentValue = Value;
-                    OnComponentValueSet?.Invoke(this, null);
-                }
-            }
+            CommonParametersSet();
         }
+
+        /// <inheritdoc/>
         protected override async Task OnParametersSetAsync()
         {
             await base.OnParametersSetAsync();
 
+            CommonParametersSet();
+        }
+
+        private void CommonParametersSet()
+        {
             if (!EqualityComparer<T>.Default.Equals(CachedValue, Value))
             {
                 CachedValue = Value;
                 if (!EqualityComparer<T>.Default.Equals(ComponentValue, Value))
                 {
+#if Logging
+                    Logger.LogDebug("OnParametersSet setting ComponentValue value to '" + Value?.ToString() ?? "null" + "'");
+#endif
                     ComponentValue = Value;
-                    OnComponentValueSet?.Invoke(this, null);
+                    if (_hasInstantiated)
+                    {
+                        SetComponentValue?.Invoke(this, null);
+                    }
                 }
             }
         }

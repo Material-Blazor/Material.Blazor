@@ -104,7 +104,7 @@ namespace Material.Blazor
                 .AddIf("mdc-select--no-label", () => string.IsNullOrWhiteSpace(Label))
                 .AddIf("mdc-select--disabled", () => AppliedDisabled);
 
-            OnComponentValueSet += OnValueSetCallback;
+            SetComponentValue += OnValueSetCallback;
         }
 
 

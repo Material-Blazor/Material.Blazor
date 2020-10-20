@@ -64,7 +64,7 @@ namespace Material.Blazor
 
             ForceShouldRenderToTrue = true;
 
-            OnComponentValueSet += OnValueSetCallback;
+            SetComponentValue += OnValueSetCallback;
         }
 
 

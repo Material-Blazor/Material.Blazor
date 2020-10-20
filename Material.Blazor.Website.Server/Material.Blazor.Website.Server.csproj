@@ -2,10 +2,21 @@
 
 	<PropertyGroup>
 		<TargetFramework>net5.0</TargetFramework>
-	</PropertyGroup>
 
-	<ItemGroup>
-	  <PackageReference Include="Serilog.AspNetCore" Version="3.4.0" />
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DefineConstants>Logging</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DefineConstants>NoLogging</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="Serilog.AspNetCore" Version="3.4.1-dev-00180" />
+	  <PackageReference Include="Serilog.Sinks.Async" Version="1.4.1-dev-00073" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -174,7 +174,7 @@ namespace Material.Blazor
 
             FloatingLabelClass = string.IsNullOrEmpty(ComponentValue) ? "" : "mdc-floating-label--float-above";
 
-            OnComponentValueSet += OnValueSetCallback;
+            SetComponentValue += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
 
             if (EditContext != null)

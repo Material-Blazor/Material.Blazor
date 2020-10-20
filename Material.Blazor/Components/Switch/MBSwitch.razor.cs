@@ -40,7 +40,7 @@ namespace Material.Blazor
                 .AddIf("mdc-switch--disabled", () => AppliedDisabled)
                 .AddIf("mdc-switch--checked", () => ComponentValue);
 
-            OnComponentValueSet += OnValueSetCallback;
+            SetComponentValue += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
         }
 

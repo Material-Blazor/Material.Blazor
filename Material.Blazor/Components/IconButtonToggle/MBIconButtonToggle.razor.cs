@@ -64,7 +64,7 @@ namespace Material.Blazor
                 .AddIf("mdc-card__action mdc-card__action--icon", () => (Card != null))
                 .AddIf("mdc-icon-button--on", () => Value);
             
-            OnComponentValueSet += OnValueSetCallback;
+            SetComponentValue += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
         }            
 

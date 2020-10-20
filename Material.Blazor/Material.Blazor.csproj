@@ -18,6 +18,16 @@
     <PackageProjectUrl>https://material-blazor.com</PackageProjectUrl>
     <Product>Material.Blazor</Product>
     <UserSecretsId>d7509b6c-bc5c-4a56-a750-09c8ae4aeb85</UserSecretsId>
+
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DefineConstants>Logging</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DefineConstants>NoLogging</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup>

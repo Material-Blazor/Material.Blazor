@@ -90,7 +90,7 @@ namespace Material.Blazor
                 .Add("mdc-tab-bar")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass);
             
-            OnComponentValueSet += OnValueSetCallback;
+            SetComponentValue += OnValueSetCallback;
         }
 
 

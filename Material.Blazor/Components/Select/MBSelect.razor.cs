@@ -1,6 +1,7 @@
 ﻿using Material.Blazor.Internal;
 
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 
 using System;
@@ -135,7 +136,7 @@ namespace Material.Blazor
             SelectedText = (Value is null) ? "" : Items.Where(i => object.Equals(i.SelectedValue, Value)).FirstOrDefault().Label;
             FloatingLabelClass = string.IsNullOrWhiteSpace(SelectedText) ? "" : "mdc-floating-label--float-above";
 
-            OnComponentValueSet += OnValueSetCallback;
+            SetComponentValue += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
 
             ObjectReference = DotNetObjectReference.Create(this);

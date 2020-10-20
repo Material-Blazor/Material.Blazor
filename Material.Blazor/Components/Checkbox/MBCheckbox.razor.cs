@@ -77,7 +77,7 @@ namespace Material.Blazor
                 .AddIf("mdc-checkbox--selected", () => Value)
                 .AddIf("mdc-checkbox--disabled", () => AppliedDisabled);
 
-            OnComponentValueSet += OnValueSetCallback;
+            SetComponentValue += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
         }
 
