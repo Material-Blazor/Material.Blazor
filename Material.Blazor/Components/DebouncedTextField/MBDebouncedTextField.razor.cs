@@ -141,6 +141,6 @@ namespace Material.Blazor
         }
 
 
-        private void OnTimerComplete(object stateInfo) => InvokeAsync(() => ReportingValue = CurrentValue);
+        private void OnTimerComplete(object stateInfo) => InvokeAsync(() => ComponentValue = CurrentValue);
     }
 }

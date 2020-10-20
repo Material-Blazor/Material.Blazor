@@ -172,9 +172,9 @@ namespace Material.Blazor
                 ComponentPureHtmlAttributes.Add("aria-describedby", helperTextId);
             }
 
-            FloatingLabelClass = string.IsNullOrEmpty(ReportingValue) ? "" : "mdc-floating-label--float-above";
+            FloatingLabelClass = string.IsNullOrEmpty(ComponentValue) ? "" : "mdc-floating-label--float-above";
 
-            OnValueSet += OnValueSetCallback;
+            OnComponentValueSet += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
 
             if (EditContext != null)

@@ -121,7 +121,7 @@ namespace Material.Blazor
 
             ItemDict = Items.ToDictionary(i => i.SelectedValue);
 
-            ReportingValue = ValidateItemList(ItemDict.Values, CascadingDefaults.AppliedItemValidation(ItemValidation));
+            ComponentValue = ValidateItemList(ItemDict.Values, CascadingDefaults.AppliedItemValidation(ItemValidation));
 
             ClassMapper
                 .Add("mdc-select")
@@ -135,7 +135,7 @@ namespace Material.Blazor
             SelectedText = (Value is null) ? "" : Items.Where(i => object.Equals(i.SelectedValue, Value)).FirstOrDefault().Label;
             FloatingLabelClass = string.IsNullOrWhiteSpace(SelectedText) ? "" : "mdc-floating-label--float-above";
 
-            OnValueSet += OnValueSetCallback;
+            OnComponentValueSet += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
 
             ObjectReference = DotNetObjectReference.Create(this);
@@ -176,7 +176,7 @@ namespace Material.Blazor
         [JSInvokable("NotifySelectedAsync")]
         public async Task NotifySelectedAsync(int index)
         {
-            ReportingValue = ItemDict.Values.ElementAt(index).SelectedValue;
+            ComponentValue = ItemDict.Values.ElementAt(index).SelectedValue;
             await Task.CompletedTask;
         }
 

@@ -90,7 +90,7 @@ namespace Material.Blazor
                 .Add("mdc-tab-bar")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass);
             
-            OnValueSet += OnValueSetCallback;
+            OnComponentValueSet += OnValueSetCallback;
         }
 
 
@@ -129,7 +129,7 @@ namespace Material.Blazor
         [JSInvokable("NotifyActivatedAsync")]
         public async Task NotifyActivatedAsync(int index)
         {
-            ReportingValue = index;
+            ComponentValue = index;
 
             await Task.CompletedTask;
         }

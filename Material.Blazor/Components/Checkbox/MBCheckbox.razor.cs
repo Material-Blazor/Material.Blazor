@@ -51,12 +51,12 @@ namespace Material.Blazor
 
         private bool CheckedValue
         {
-            get => ReportingValue;
+            get => ComponentValue;
             set
             {
                 _isIndetermimate = false;
                 IsIndeterminateChanged.InvokeAsync(false);
-                ReportingValue = value;
+                ComponentValue = value;
             }
         }
 
@@ -77,7 +77,7 @@ namespace Material.Blazor
                 .AddIf("mdc-checkbox--selected", () => Value)
                 .AddIf("mdc-checkbox--disabled", () => AppliedDisabled);
 
-            OnValueSet += OnValueSetCallback;
+            OnComponentValueSet += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
         }
 
@@ -99,6 +99,6 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBCheckbox.init", ElementReference, FormReference, ReportingValue, IsIndeterminate);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBCheckbox.init", ElementReference, FormReference, ComponentValue, IsIndeterminate);
     }
 }

@@ -67,7 +67,7 @@ namespace Material.Blazor
 
             ForceShouldRenderToTrue = true;
 
-            ReportingValue = ValidateItemList(ItemArray, appliedItemValidation);
+            ComponentValue = ValidateItemList(ItemArray, appliedItemValidation);
 
             ClassMapper.AddIf("mb-mdc-radio-group-vertical", () => Vertical);
         }

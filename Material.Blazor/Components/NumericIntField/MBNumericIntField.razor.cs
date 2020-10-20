@@ -129,8 +129,8 @@ namespace Material.Blazor
 
         private double DblVal
         {
-            get => (double)ReportingValue;
-            set => ReportingValue = Convert.ToInt32(Math.Round(value, 0));
+            get => (double)ComponentValue;
+            set => ComponentValue = Convert.ToInt32(Math.Round(value, 0));
         }
 
 

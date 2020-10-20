@@ -84,7 +84,7 @@ namespace Material.Blazor
                 .AddIf("mdc-circular-progress--indeterminate", () => CircularProgressType == MBCircularProgressType.Indeterminate)
                 .AddIf("mdc-circular-progress--closed", () => CircularProgressType == MBCircularProgressType.Closed);
 
-            OnValueSet += OnValueSetCallback;
+            OnComponentValueSet += OnValueSetCallback;
         }
 
 
