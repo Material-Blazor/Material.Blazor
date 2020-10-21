@@ -64,7 +64,7 @@ namespace Material.Blazor
 
             ForceShouldRenderToTrue = true;
 
-            OnValueSet += OnValueSetCallback;
+            SetComponentValue += OnValueSetCallback;
         }
 
 
@@ -95,7 +95,7 @@ namespace Material.Blazor
 
         private async Task OnInternalItemClickAsync()
         {
-            ReportingValue = TargetCheckedValue;
+            ComponentValue = TargetCheckedValue;
             await Task.CompletedTask;
         }
 

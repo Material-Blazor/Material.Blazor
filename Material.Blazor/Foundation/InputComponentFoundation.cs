@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
+using Microsoft.Extensions.Logging;
 
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace Material.Blazor.Internal
@@ -31,77 +31,31 @@ namespace Material.Blazor.Internal
         [CascadingParameter] private IMBDialog Dialog { get; set; }
 
 
+
         /// <summary>
         /// Gets a value for the component's 'id' attribute.
         /// </summary>
         private protected string CrossReferenceId { get; set; } = Utilities.GenerateUniqueElementName();
 
 
-        private T _underlyingValue;
-        private T _debouncedUnderlyingValue = default;
         /// <summary>
         /// Gets or sets the value of the input. This should be used with two-way binding.
         /// </summary>
         /// <example>
         /// @bind-Value="@model.PropertyName"
         /// </example>
-        [Parameter] public T Value
-        {
-            get => _underlyingValue;
-            set
-            {
-                if (!EqualityComparer<T>.Default.Equals(value, _underlyingValue))
-                {
-                    _underlyingValue = value;
+        [Parameter] public T Value { get; set; }
+        private T _cachedValue;
 
-                    if (_hasInstantiated)
-                    {
-                        InvokeAsync(() => DebouncedOnValueSet());
-                    }
-                    else
-                    {
-                        _debouncedUnderlyingValue = value;
-                    }
-                }
-            }
-        }
-
-
-        private object _lockable = "";
-        /// <summary>
-        /// Inserts a 1ms delay to debounce Blazor's two-way binding, which can cause infinite bounce
-        /// issues with Material Theme's potential for a JS feedback loop when Blazor occasionally
-        /// bounces binding.
-        /// </summary>
-        /// <returns></returns>
-        private async Task DebouncedOnValueSet()
-        {
-            await Task.Delay(1);
-
-            bool invokeUpdate = false;
-
-            lock (_lockable)
-            {
-                if (!EqualityComparer<T>.Default.Equals(_debouncedUnderlyingValue, _underlyingValue))
-                {
-                    _debouncedUnderlyingValue = _underlyingValue;
-                    invokeUpdate = true;
-                }
-            }
-
-            if (invokeUpdate)
-            {
-                OnValueSet?.Invoke(this, null);
-            }
-        }
 
         /// <summary>
-        /// Derived components can use this to get a callback from the <see cref="Value"/> setter when the consumer changes the value.
-        /// This allows a component to take action with Material Theme js to update the DOM to reflect the data change visually. An
-        /// example is a select where the relevant list item needs to be automatically clicked to get Material Theme to update
-        /// the value shown in the <c>&lt;input&gt;</c> HTML tag.
+        /// Derived components can use this to get a callback from SetParametrs(Async) when the consumer changes
+        /// the value. This allows a component to take action with Material Theme js to update the DOM to reflect
+        /// the data change visually. An example is a select where the relevant list item needs to be
+        /// automatically clicked to get Material Theme to update the value shown in the
+        /// <c>&lt;input&gt;</c> HTML tag.
         /// </summary>
-        protected event EventHandler OnValueSet;
+        protected event EventHandler SetComponentValue;
 
 
         /// <summary>
@@ -137,23 +91,27 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// Gets or sets the value of the component. To be used by Material.Blazor components for binding to native components, or to set the value
-        /// in response to an event arising from the native component. This property fires a change event to the consumer in contrast the 
-        /// <see cref="Value"/> parameter. As a result Material.Blazor components must always change the value by using this rather than <see cref="Value"/>
-        /// which never fires a change event but does call <see cref="OnValueSet(T)"/> which would cause a race condition if called in response to
-        /// user interaction arising within a Material.Blazor component.
+        /// Gets or sets the value of the component. To be used by Material.Blazor components for binding to
+        /// native components, or to set the value in response to an event arising from the native component.
         /// </summary>
-        private protected T ReportingValue
+
+        private T _componentValue;
+        private protected T ComponentValue
         {
-            get => _underlyingValue;
+            get => _componentValue;
             set
             {
-                var hasChanged = !EqualityComparer<T>.Default.Equals(value, _underlyingValue);
-                if (hasChanged)
+#if Logging
+                Logger.LogDebug("ComponentValue setter entered");
+#endif
+                if (!EqualityComparer<T>.Default.Equals(value, Value))
                 {
-                    _debouncedUnderlyingValue = value;
-                    _underlyingValue = value;
+#if Logging
+                    Logger.LogDebug("ComponentValue setter changing value to '" + value?.ToString() ?? "null" + "'");
+#endif
+                    _componentValue = value;
                     _ = ValueChanged.InvokeAsync(value);
+                    if (EditContext != null && IsValidFormField)
 
                     if (EditContext != null && IsValidFormField)
                     {
@@ -166,8 +124,6 @@ namespace Material.Blazor.Internal
                             EditContext?.NotifyFieldChanged(FieldIdentifier);
                         }
                     }
-
-                    StateHasChanged();
                 }
             }
         }
@@ -176,9 +132,9 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Gets or sets the current value of the input, represented as a string.
         /// </summary>
-        protected string ReportingValueAsString
+        protected string ComponentValueAsString
         {
-            get => FormatValueToString(ReportingValue);
+            get => FormatValueToString(ComponentValue);
             set
             {
                 _parsingValidationMessages?.Clear();
@@ -191,12 +147,12 @@ namespace Material.Blazor.Internal
                     // Then all subclasses get nullable support almost automatically (they just have to
                     // not reject Nullable<T> based on the type itself).
                     parsingFailed = false;
-                    ReportingValue = default;
+                    ComponentValue = default;
                 }
                 else if (TryParseValueFromString(value, out var parsedValue, out var validationErrorMessage))
                 {
                     parsingFailed = false;
-                    ReportingValue = parsedValue;
+                    ComponentValue = parsedValue;
                 }
                 else
                 {
@@ -211,7 +167,7 @@ namespace Material.Blazor.Internal
 
                         _parsingValidationMessages.Add(FieldIdentifier, validationErrorMessage);
 
-                        // Since we're not writing to ReportingValue, we'll need to notify about modification from here
+                        // Since we're not writing to ComponentValue, we'll need to notify about modification from here
                         EditContext.NotifyFieldChanged(FieldIdentifier);
                     }
                 }
@@ -239,7 +195,7 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// Formats the value as a string. Derived classes can override this to determine the formating used for <see cref="ReportingValueAsString"/>.
+        /// Formats the value as a string. Derived classes can override this to determine the formating used for <see cref="ComponentValueAsString"/>.
         /// </summary>
         /// <param name="value">The value to format.</param>
         /// <returns>A string representation of the value.</returns>
@@ -249,14 +205,14 @@ namespace Material.Blazor.Internal
 
         /// <summary>
         /// Parses a string to create an instance of <typeparamref name="T"/>. Derived classes can override this to change how
-        /// <see cref="ReportingValueAsString"/> interprets incoming values.
+        /// <see cref="ComponentValueAsString"/> interprets incoming values.
         /// </summary>
         /// <param name="value">The string value to be parsed.</param>
         /// <param name="result">An instance of <typeparamref name="T"/>.</param>
         /// <param name="validationErrorMessage">If the value could not be parsed, provides a validation error message.</param>
         /// <returns>True if the value could be parsed; otherwise false.</returns>
         protected virtual bool TryParseValueFromString(string value, out T result, out string validationErrorMessage)
-            => throw new NotImplementedException($"This component does not parse string inputs. Bind to the '{nameof(ReportingValue)}' property, not '{nameof(ReportingValueAsString)}'.");
+            => throw new NotImplementedException($"This component does not parse string inputs. Bind to the '{nameof(ComponentValue)}' property, not '{nameof(ComponentValueAsString)}'.");
 
 
         /// <summary>
@@ -302,9 +258,10 @@ namespace Material.Blazor.Internal
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor.
+        //
         // This implementation of SetParametersAsync is largely untouched from our original fork of Steve Sanderson's
-        // RazoComponents.MaterialDesign repo. To be honest we're not entirely sure what it does but we are leaving it
-        // alone given Steve's provenance.
+        // RazorComponents.MaterialDesign repo. We've added the storage of a cached Value for use in
+        // OnSetParameters/OnSetParametersAsync.
         public override async Task SetParametersAsync(ParameterView parameters)
         {
             parameters.SetParameterProperties(this);
@@ -322,10 +279,15 @@ namespace Material.Blazor.Internal
                 EditContext = CascadedEditContext;
                 _nullableUnderlyingType = Nullable.GetUnderlyingType(typeof(T));
                 _hasSetInitialParameters = true;
+#if Logging
+                Logger.LogDebug("SetParametersAsync setting ComponentValue value to '" + Value?.ToString() ?? "null" + "'");
+#endif
+                _cachedValue = Value;
+                _componentValue = Value;
             }
             else if (CascadedEditContext != EditContext)
             {
-                // Not the first run
+                // Not the first run, this is a re-render caused by the parent re-render
 
                 // We don't support changing EditContext because it's messy to be clearing up state and event
                 // handlers for the previous one, and there's no strong use case. If a strong use case
@@ -336,6 +298,55 @@ namespace Material.Blazor.Internal
 
             // For derived components, retain the usual lifecycle with OnInit/OnParametersSet/etc.
             await base.SetParametersAsync(ParameterView.Empty);
+        }
+
+        /// <inheritdoc/>
+        protected override void OnParametersSet()
+        {
+            base.OnParametersSet();
+
+            CommonParametersSet();
+        }
+
+        /// <inheritdoc/>
+        protected override async Task OnParametersSetAsync()
+        {
+            await base.OnParametersSetAsync();
+
+            CommonParametersSet();
+        }
+
+        private void CommonParametersSet()
+        {
+#if Logging
+            Logger.LogDebug("");
+            Logger.LogDebug("OnParametersSet entered");
+            Logger.LogDebug("OnParametersSet CachedValue '" + _cachedValue?.ToString() ?? "null" + "'");
+            Logger.LogDebug("OnParametersSet ComponentValue '" + ComponentValue?.ToString() ?? "null" + "'");
+            Logger.LogDebug("OnParametersSet Value '" + Value?.ToString() ?? "null" + "'");
+#endif
+            if (!EqualityComparer<T>.Default.Equals(_cachedValue, Value))
+            {
+                _cachedValue = Value;
+#if Logging
+                Logger.LogDebug("OnParametersSet setting CachedValue value to '" + Value?.ToString() ?? "null" + "'");
+#endif
+                if (!EqualityComparer<T>.Default.Equals(ComponentValue, Value))
+                {
+#if Logging
+                    Logger.LogDebug("OnParametersSet setting ComponentValue value to '" + Value?.ToString() ?? "null" + "'");
+#endif
+                    _componentValue = Value;
+                    if (_hasInstantiated)
+                    {
+                        SetComponentValue?.Invoke(this, null);
+                    }
+                }
+            }
+#if Logging
+            Logger.LogDebug("OnParametersSet leaving");
+            Logger.LogDebug("");
+#endif
         }
 
 

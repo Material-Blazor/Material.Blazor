@@ -203,7 +203,7 @@ namespace Material.Blazor
                                  IgnoreWhitespace = IgnoreWhitespace
                              }).ToArray();
 
-            SelectInfo = BuildSelectList(ReportingValue);
+            SelectInfo = BuildSelectList(ComponentValue);
 
             StateHasChanged();
         }
@@ -248,7 +248,7 @@ namespace Material.Blazor
             if (SelectInfo.FullMatchFound || (AllowBlankResult && string.IsNullOrWhiteSpace(SelectInfo.SelectedText)))
             {
                 await CloseMenuAsync();
-                ReportingValue = SelectInfo.SelectedText.Trim();
+                ComponentValue = SelectInfo.SelectedText.Trim();
                 SetParameters();
             }
 
@@ -264,7 +264,7 @@ namespace Material.Blazor
             {
                 if (SelectInfo.FullMatchFound || (AllowBlankResult && string.IsNullOrWhiteSpace(SelectInfo.SelectedText)))
                 {
-                    ReportingValue = SelectInfo.SelectedText.Trim();
+                    ComponentValue = SelectInfo.SelectedText.Trim();
                 }
 
                 SetParameters();
@@ -323,7 +323,7 @@ namespace Material.Blazor
         [JSInvokable("NotifySelectedAsync")]
         public async Task NotifySelectedAsync(string value)
         {
-            ReportingValue = value;
+            ComponentValue = value;
 
             await NotifyClosedAsync();
         }

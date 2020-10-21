@@ -162,13 +162,13 @@ namespace Material.Blazor
         {
             get
             {
-                return HasFocus ? Math.Round(Convert.ToDouble(ReportingValue) * AppliedMultiplier, MyDecimalPlaces).ToString() : StringValue(ReportingValue);
+                return HasFocus ? Math.Round(Convert.ToDouble(ComponentValue) * AppliedMultiplier, MyDecimalPlaces).ToString() : StringValue(ComponentValue);
             }
 
             set
             {
                 var enteredVal = HasFocus ? Convert.ToDouble(Convert.ToDouble(string.IsNullOrWhiteSpace(value) ? "0" : value.Trim()) / FocusedMultiplier) : NumericValue(value) / AppliedMultiplier;
-                ReportingValue = Math.Round(Math.Max(Min ?? enteredVal, Math.Min(enteredVal, Max ?? enteredVal)), MyDecimalPlaces + (int)FocusedMagnitude);
+                ComponentValue = Math.Round(Math.Max(Min ?? enteredVal, Math.Min(enteredVal, Max ?? enteredVal)), MyDecimalPlaces + (int)FocusedMagnitude);
             }
         }
 
@@ -179,7 +179,7 @@ namespace Material.Blazor
             {
                 if (HasFocus) return "";
 
-                if (!(NumericSingularFormat is null) && Utilities.DoubleEqual(Math.Abs(ReportingValue), 1)) return NumericSingularFormat;
+                if (!(NumericSingularFormat is null) && Utilities.DoubleEqual(Math.Abs(ComponentValue), 1)) return NumericSingularFormat;
 
                 return NumericFormat;
             }
@@ -235,7 +235,7 @@ namespace Material.Blazor
 
             if (!Regex.IsMatch(displayText))
             {
-                return ReportingValue;
+                return ComponentValue;
             }
 
             double amount;
@@ -245,12 +245,12 @@ namespace Material.Blazor
             }
             catch
             {
-                return ReportingValue;
+                return ComponentValue;
             }
 
             if ((Min != null && amount < Min) || (Max != null && amount > Max))
             {
-                return ReportingValue;
+                return ComponentValue;
             }
 
             return amount;

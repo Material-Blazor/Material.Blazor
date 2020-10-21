@@ -8,7 +8,7 @@
     @foreach (var item in ItemArray)
     {
         <MBRadioButton @key="@KeyGenerator(item.SelectedValue)"
-                       @bind-Value="@ReportingValue"
+                       @bind-Value="@ComponentValue"
                        TItem="TItem"
                        Disabled="@item.Disabled"
                        EnableTouchWrapper="@EnableTouchWrapper"

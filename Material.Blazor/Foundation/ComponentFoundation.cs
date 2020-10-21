@@ -19,7 +19,10 @@ namespace Material.Blazor.Internal
 
         [Inject] private protected IJSRuntime JsRuntime { get; set; }
         [Inject] private protected IMBTooltipService TooltipService { get; set; }
+
+#if Logging
         [Inject] private protected ILogger<ComponentFoundation> Logger { get; set; }
+#endif
 
 
         [CascadingParameter] protected MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults();

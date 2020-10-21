@@ -38,9 +38,9 @@ namespace Material.Blazor
                 .Add("mdc-switch")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-switch--disabled", () => AppliedDisabled)
-                .AddIf("mdc-switch--checked", () => ReportingValue);
+                .AddIf("mdc-switch--checked", () => ComponentValue);
 
-            OnValueSet += OnValueSetCallback;
+            SetComponentValue += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
         }
 
@@ -62,6 +62,6 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSwitch.init", ElementReference, ReportingValue);
+        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSwitch.init", ElementReference, ComponentValue);
     }
 }

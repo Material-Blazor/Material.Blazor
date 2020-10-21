@@ -67,7 +67,7 @@ namespace Material.Blazor
                 .AddIf("mdc-linear-progress--reversed", () => LinearProgressType == MBLinearProgressType.ReversedDeterminate)
                 .AddIf("mdc-linear-progress--closed", () => LinearProgressType == MBLinearProgressType.Closed);
 
-            OnValueSet += OnValueSetCallback;
+            SetComponentValue += OnValueSetCallback;
         }
 
 

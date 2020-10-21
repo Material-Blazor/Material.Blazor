@@ -45,8 +45,9 @@ namespace Material.BlazorWebsite.Server
                 app.UseHsts();
             }
 
+#if Logging
             app.UseSerilogRequestLogging();
-
+#endif
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

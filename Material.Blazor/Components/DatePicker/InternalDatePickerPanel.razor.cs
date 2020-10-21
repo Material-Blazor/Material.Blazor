@@ -69,13 +69,13 @@ namespace Material.Blazor.Internal
 
         private DateTime InitialDate { get; set; }
 
-        private DateTime CachedReportingValue { get; set; }
+        private DateTime CachedComponentValue { get; set; }
 
         private DateTime CachedMinDate { get; set; }
 
         private DateTime CachedMaxDate { get; set; }
 
-        private string CachedReportingValueText => Utilities.DateToString(CachedReportingValue, DateFormat);
+        private string CachedComponentValueText => Utilities.DateToString(CachedComponentValue, DateFormat);
 
         private int MonthsOffset { get; set; } = 0;
 
@@ -122,7 +122,7 @@ namespace Material.Blazor.Internal
 
         internal void SetParameters(bool forceSetup, DateTime? newValue = null)
         {
-            if (forceSetup || ReportingValue != CachedReportingValue || MinDate != CachedMinDate || MaxDate != CachedMaxDate)
+            if (forceSetup || ComponentValue != CachedComponentValue || MinDate != CachedMinDate || MaxDate != CachedMaxDate)
             {
                 if (newValue != null)
                 {
@@ -130,7 +130,7 @@ namespace Material.Blazor.Internal
                 }
 
                 InitialDate = Value;
-                CachedReportingValue = Value;
+                CachedComponentValue = Value;
                 CachedMinDate = MinDate;
                 CachedMaxDate = MaxDate;
 
@@ -166,11 +166,11 @@ namespace Material.Blazor.Internal
 
         private async Task OnDayItemClickAsync(DateTime dateTime)
         {
-            ReportingValue = dateTime;
-            CachedReportingValue = Value;
+            ComponentValue = dateTime;
+            CachedComponentValue = Value;
             MonthsOffset = 0;
             SetParameters(true);
-            await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", ListItemReference, CachedReportingValueText);
+            await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", ListItemReference, CachedComponentValueText);
         }
 
 

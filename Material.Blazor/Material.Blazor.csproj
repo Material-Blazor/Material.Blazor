@@ -18,6 +18,16 @@
     <PackageProjectUrl>https://material-blazor.com</PackageProjectUrl>
     <Product>Material.Blazor</Product>
     <UserSecretsId>d7509b6c-bc5c-4a56-a750-09c8ae4aeb85</UserSecretsId>
+
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
+    <DefineConstants>Logging</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DefineConstants>NoLogging</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -48,7 +58,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <InputStaticAssetsScripts Include="**\*.js;**\*.ts" Exclude="bin\**\*;node_modules\**\*;obj\**\*;wwwroot\*.js" />
+    <InputStaticAssetsScripts Include="**\*.js;**\*.ts" Exclude="wwwroot\**\*;bin\**\*;node_modules\**\*;obj\**\*" />
     <OutputStaticAssetsScripts Include="wwwroot\bundled.min.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js" />
   </ItemGroup>
 
@@ -56,8 +66,8 @@
     <Exec Command="echo ***** npm install" />
     <Exec Command="npm install" />
 
-    <Exec Command="echo ***** mkdir wwwroot" />
-    <Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
+    <Exec Command="echo ***** MakeDir wwwroot" />
+    <MakeDir Directories="wwwroot" />
 
     <Exec Command="echo ***** npm run build-scripts" />
     <Exec Command="npm run build-scripts" />
@@ -70,10 +80,13 @@
 
     <Exec Command="echo ***** npm run build-min-bundle-js" />
     <Exec Command="npm run build-min-bundle-js" />
+
+    <Exec Command="echo ***** delate materialblazor.js" />
+    <Delete Files="wwwroot\materialblazor.js" />
   </Target>
 
   <ItemGroup>
-    <InputStaticAssetsStyles Include="**\*.scss" Exclude="node_modules\**\*;obj\**\*;bin\**\*" />
+    <InputStaticAssetsStyles Include="**\*.scss" Exclude="wwwroot\**\*;node_modules\**\*;obj\**\*;bin\**\*" />
     <OutputStaticAssetsStyles Include="wwwroot\bundled.min.css;wwwroot\unbundled.min.css;wwwroot\unbundled.css" />
   </ItemGroup>
 
@@ -82,7 +95,7 @@
     <Exec Command="npm install" />
 
     <Exec Command="echo ***** mkdir wwwroot" />
-    <Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
+    <MakeDir Directories="wwwroot" />
 
     <Exec Command="echo ***** downloadfile" />
     <DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" DestinationFolder="$(MSBuildProjectDirectory)\wwwroot" DestinationFilename="material-components-icons.css">
