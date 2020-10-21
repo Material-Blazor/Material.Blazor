@@ -156,6 +156,8 @@ namespace Material.Blazor
         private bool HasFocus { get; set; } = false;
 
 
+        // There may be a case for simplifying this code. Does FormattedValue need to be bound like this or can we instead bind to a string representation of the
+        // properly scaled number without formatting intended only for human legibility?
         private string FormattedValue
         {
             get
