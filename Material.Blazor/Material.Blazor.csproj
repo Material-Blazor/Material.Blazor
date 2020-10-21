@@ -95,7 +95,7 @@
     <Exec Command="npm install" />
 
     <Exec Command="echo ***** mkdir wwwroot" />
-    <MakeDir Directories="wwwroot"/>
+    <MakeDir Directories="wwwroot" />
 
     <Exec Command="echo ***** downloadfile" />
     <DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" DestinationFolder="$(MSBuildProjectDirectory)\wwwroot" DestinationFilename="material-components-icons.css">

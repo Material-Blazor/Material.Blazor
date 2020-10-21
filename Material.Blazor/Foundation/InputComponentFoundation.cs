@@ -49,12 +49,12 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// Derived components can use this to get a callback from the <see cref="ComponentValue"/> setter when the consumer changes the value.
-        /// This allows a component to take action with Material Theme js to update the DOM to reflect the data change visually. An
-        /// example is a select where the relevant list item needs to be automatically clicked to get Material Theme to update
-        /// the value shown in the <c>&lt;input&gt;</c> HTML tag.
+        /// Derived components can use this to get a callback from SetParametrs(Async) when the consumer changes
+        /// the value. This allows a component to take action with Material Theme js to update the DOM to reflect
+        /// the data change visually. An example is a select where the relevant list item needs to be
+        /// automatically clicked to get Material Theme to update the value shown in the
+        /// <c>&lt;input&gt;</c> HTML tag.
         /// </summary>
-        #warning Needs proper comment
         protected event EventHandler SetComponentValue;
 
 
@@ -341,7 +341,7 @@ namespace Material.Blazor.Internal
 #if Logging
                     Logger.LogDebug("OnParametersSet setting ComponentValue value to '" + Value?.ToString() ?? "null" + "'");
 #endif
-                    ComponentValue = Value;
+                    _componentValue = Value;
                     if (_hasInstantiated)
                     {
                         SetComponentValue?.Invoke(this, null);
