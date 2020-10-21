@@ -208,18 +208,6 @@ namespace Material.Blazor
         }
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            await base.OnAfterRenderAsync(firstRender);
-
-            if (SelectAllText)
-            {
-                await Select();
-            }
-        }
-
-
         /// <summary>
         /// Callback for value the value setter.
         /// </summary>
@@ -244,14 +232,7 @@ namespace Material.Blazor
         /// Selects the text field - used by <see cref="MBNumericDoubleField"/>.
         /// </summary>
         /// <returns></returns>
-        internal async Task Select() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.select", InputReference);
-
-
-        /// <summary>
-        /// Selects the text field - used by <see cref="MBNumericDoubleField"/>.
-        /// </summary>
-        /// <returns></returns>
-        internal async Task SetType(string value) => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.setType", InputReference, value);
+        internal async Task SetType(string value, string type, bool formNoValidate) => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.setType", ElementReference, value, InputReference, type, formNoValidate);
 
 
         private void OnValidationStateChangedCallback(object sender, EventArgs e)

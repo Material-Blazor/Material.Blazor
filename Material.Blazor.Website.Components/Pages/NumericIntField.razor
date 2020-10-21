@@ -53,8 +53,20 @@
                         Shows persistent and non-persistent helper text.
                     </h3>
 
-                    <p><MBNumericIntField Label="Popup Helper Text" @bind-Value="@PopupHelperText" HelperText="Some helper text that pops up" /></p>
-                    <p><MBNumericIntField Label="Persistent Helper Text" @bind-Value="@PersistentHelperText" HelperText="Some persistent helper text" HelperTextPersistent="true" /></p>
+                    <p>
+                        <MBNumericIntField Label="Popup Helper Text"
+                                           @bind-Value="@PopupHelperText"
+                                           NumericFormat="N0"
+                                           HelperText="Some helper text that pops up" />
+                    </p>
+
+                    <p>
+                        <MBNumericIntField Label="Persistent Helper Text"
+                                           @bind-Value="@PersistentHelperText"
+                                           NumericFormat="N0"
+                                           HelperText="Some persistent helper text"
+                                           HelperTextPersistent="true" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>
