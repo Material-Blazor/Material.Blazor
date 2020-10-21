@@ -93,13 +93,6 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Gets or sets the value of the component. To be used by Material.Blazor components for binding to
         /// native components, or to set the value in response to an event arising from the native component.
-        /// 
-        /// Deprecate?
-        /// This property fires a change event to the consumer in contrast the <see cref="Value"/> parameter.
-        /// As a result Material.Blazor components must always change the value by using this rather than
-        /// <see cref="Value"/> which never fires a change event but does call <see cref="OnValueSet(T)"/>
-        /// which would cause a race condition if called in response to user interaction arising within a
-        /// Material.Blazor component.
         /// </summary>
 
         private T _componentValue;
