@@ -119,6 +119,8 @@ namespace Material.Blazor.Internal
                     _componentValue = value;
                     _ = ValueChanged.InvokeAsync(value);
                     if (EditContext != null && IsValidFormField)
+
+                    if (EditContext != null && IsValidFormField)
                     {
                         if (string.IsNullOrWhiteSpace(FieldIdentifier.FieldName))
                         {
