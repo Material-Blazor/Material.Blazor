@@ -155,7 +155,7 @@ namespace Material.Blazor.Internal
                     _underlyingValue = value;
                     _ = ValueChanged.InvokeAsync(value);
 
-                    if (IsValidFormField)
+                    if (EditContext != null && IsValidFormField)
                     {
                         if (string.IsNullOrWhiteSpace(FieldIdentifier.FieldName))
                         {

@@ -148,16 +148,9 @@ namespace Material.Blazor
         private double FocusedMultiplier { get; set; } = 1;
         private Dictionary<string, object> MyAttributes { get; set; }
         private int MyDecimalPlaces { get; set; } = 0;
-        private string NextType { get; set; } = "";
         private Regex Regex { get; set; }
         private MBTextField TextField { get; set; }
         private double UnfocusedMultiplier { get; set; } = 1;
-
-
-        ///// <summary>
-        ///// Need to fix this.
-        ///// </summary>
-        //private bool myFormNoValidate => hasFocus ? true : FormNoValidate;
 
 
         private bool HasFocus { get; set; } = false;
@@ -212,67 +205,25 @@ namespace Material.Blazor
                 Regex = new Regex(allowSign ? DoublePattern : PositiveDoublePattern);
             }
 
+            // Required for MBNumericIntField to work
             ForceShouldRenderToTrue = true;
         }
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-        protected override void OnParametersSet()
-        {
-            base.OnParametersSet();
-            BuildMyAttributes();
-        }
-
-        
-        private void BuildMyAttributes()
-        {
-            MyAttributes = (from a in AttributesToSplat()
-                            select new KeyValuePair<string, object>(a.Key, a.Value))
-                            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-
-            if (HasFocus)
-            {
-                MyAttributes.Add("formnovalidate", true);
-            }
-        }
-
-
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            await base.OnAfterRenderAsync(firstRender);
-            
-            if (!string.IsNullOrWhiteSpace(NextType))
-            {
-                await TextField.SetType(FormattedValue, NextType);
-                NextType = "";
-            }
-        }
-
-
-        private void OnFocusIn()
+        private async Task OnFocusInAsync()
         {
             HasFocus = true;
-            NextType = "number";
-            TextField.SelectAllText = true;
-            TextField.AllowNextRender = true;
-            BuildMyAttributes();
+            await TextField.SetType(FormattedValue, "number", true);
         }
 
 
-        private void OnFocusOut()
+        private async Task OnFocusOutAsync()
         {
             HasFocus = false;
-            NextType = "text";
-            TextField.SelectAllText = false;
-            TextField.AllowNextRender = true;
-            BuildMyAttributes();
+            await TextField.SetType(FormattedValue, "text", false);
         }
 
 
-        private void StopForceSelect() => TextField.SelectAllText = false;        
-        
-        
         private string StringValue(double? value) => (Convert.ToDouble(value) * AppliedMultiplier).ToString(AppliedFormat);
 
 

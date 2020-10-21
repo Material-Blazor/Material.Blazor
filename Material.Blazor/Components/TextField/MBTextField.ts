@@ -5,11 +5,6 @@ export function init(elem, helperTextElem, helperText, helperTextPersistent, per
     setHelperText(elem, helperTextElem, helperText, helperTextPersistent, performsValidation, false, "");
 }
 
-export function select(inputElem) {
-    inputElem.focus();
-    inputElem.select();
-}
-
 export function setValue(elem, value) {
     elem._textField.value = value;
 }
@@ -52,9 +47,15 @@ export function setHelperText(elem, helperTextElem, helperText, helperTextPersis
     }
 }
 
-export function setType(elem, value, inputElem, type) {
+export function setType(elem, value, inputElem, type, formNoValidate) {
     inputElem.setAttribute("type", type);
+    inputElem.setAttribute("formnovalidate", formNoValidate);
     elem._textField.value = value;
+
+    if (formNoValidate) {
+        inputElem.focus();
+        inputElem.select();
+    }
 }
 /*!
  * Sanitize and encode all HTML in a user-submitted string

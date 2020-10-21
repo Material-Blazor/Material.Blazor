@@ -4,7 +4,7 @@
 
 
 <MBTextField @ref="@TextField"
-             @attributes="@MyAttributes"
+             @attributes="@AttributesToSplat()"
              step="@(Math.Pow(10, -MyDecimalPlaces).ToString())"
              min="@Min"
              max="@Max"
@@ -22,8 +22,5 @@
              HelperTextPersistent="@HelperTextPersistent"
              ValidationMessageFor="@ValidationMessageFor"
              Disabled="@AppliedDisabled"
-             @onfocusin="@OnFocusIn"
-             @onfocusout="@OnFocusOut"
-             @onkeydown="@StopForceSelect"
-             @onmousedown="@StopForceSelect"
-             @ontouchstart="@StopForceSelect" />
+             @onfocusin="@OnFocusInAsync"
+             @onfocusout="@OnFocusOutAsync" />
