@@ -45,7 +45,7 @@ namespace Material.Blazor.Internal
         /// @bind-Value="@model.PropertyName"
         /// </example>
         [Parameter] public T Value { get; set; }
-        private T CachedValue { get; set; }
+        private T _cachedValue;
 
 
         /// <summary>
@@ -108,6 +108,9 @@ namespace Material.Blazor.Internal
             get => _componentValue;
             set
             {
+#if Logging
+                Logger.LogDebug("ComponentValue setter entered");
+#endif
                 if (!EqualityComparer<T>.Default.Equals(value, Value))
                 {
 #if Logging
@@ -115,7 +118,7 @@ namespace Material.Blazor.Internal
 #endif
                     _componentValue = value;
                     _ = ValueChanged.InvokeAsync(value);
-                    if (IsValidFormField)
+                    if (EditContext != null && IsValidFormField)
                     {
                         if (string.IsNullOrWhiteSpace(FieldIdentifier.FieldName))
                         {
@@ -284,8 +287,8 @@ namespace Material.Blazor.Internal
 #if Logging
                 Logger.LogDebug("SetParametersAsync setting ComponentValue value to '" + Value?.ToString() ?? "null" + "'");
 #endif
-                CachedValue = Value;
-                ComponentValue = Value;
+                _cachedValue = Value;
+                _componentValue = Value;
             }
             else if (CascadedEditContext != EditContext)
             {
@@ -320,9 +323,19 @@ namespace Material.Blazor.Internal
 
         private void CommonParametersSet()
         {
-            if (!EqualityComparer<T>.Default.Equals(CachedValue, Value))
+#if Logging
+            Logger.LogDebug("");
+            Logger.LogDebug("OnParametersSet entered");
+            Logger.LogDebug("OnParametersSet CachedValue '" + _cachedValue?.ToString() ?? "null" + "'");
+            Logger.LogDebug("OnParametersSet ComponentValue '" + ComponentValue?.ToString() ?? "null" + "'");
+            Logger.LogDebug("OnParametersSet Value '" + Value?.ToString() ?? "null" + "'");
+#endif
+            if (!EqualityComparer<T>.Default.Equals(_cachedValue, Value))
             {
-                CachedValue = Value;
+                _cachedValue = Value;
+#if Logging
+                Logger.LogDebug("OnParametersSet setting CachedValue value to '" + Value?.ToString() ?? "null" + "'");
+#endif
                 if (!EqualityComparer<T>.Default.Equals(ComponentValue, Value))
                 {
 #if Logging
@@ -335,6 +348,10 @@ namespace Material.Blazor.Internal
                     }
                 }
             }
+#if Logging
+            Logger.LogDebug("OnParametersSet leaving");
+            Logger.LogDebug("");
+#endif
         }
 
 

@@ -3,7 +3,7 @@
 @inject IMBToastService ToastService
 
 
-<DemonstrationPage ComponentName="RadioButton"
+@*<DemonstrationPage ComponentName="RadioButton"
                    Title="Radio Button Demonstration"
                    DemoComponent="@this"
                    MaterialIOPage="mdc-radio#selection-controls-radio-buttons"
@@ -16,49 +16,50 @@
         </p>
     </Description>
 
-    <PageContent>
-        <div class="mdc-layout-grid__cell--span-12">
-            <MBCard AutoStyled="true">
-                <Primary>
-                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Individual Radio Buttons
-                    </h2>
+    <PageContent>*@
+<div class="mdc-layout-grid__cell--span-12">
+    <MBCard AutoStyled="true">
+        <Primary>
+            <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                Individual Radio Buttons
+            </h2>
 
-                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        Radio Buttons are rendered individually and grouped by id. The second line demonstrates two-way binding.
-                        Bound data is an <code>enum</code>.
-                    </h3>
+            <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                Radio Buttons are rendered individually and grouped by id. The second line demonstrates two-way binding.
+                Bound data is an <code>enum</code>.
+            </h3>
 
-                    <p>
-                        <MBRadioButton @bind-Value="@Animal"
-                                       TargetCheckedValue=@AnimalEnum.Dog
-                                       Label=@AnimalEnum.Dog.ToString()
-                                       RadioGroupName="animal-group" 
-                                       class="supplied-test-class" 
-                                       id="supplied-test-id" />
+            <p>
+                <MBRadioButton @bind-Value="@Animal"
+                               TargetCheckedValue=@AnimalEnum.Dog
+                               Label=@AnimalEnum.Dog.ToString()
+                               RadioGroupName="animal-group"
+                               class="supplied-test-class"
+                               id="supplied-test-id" />
 
-                        <MBRadioButton @bind-Value="@Animal"
-                                       TargetCheckedValue=@AnimalEnum.Fish
-                                       Label=@AnimalEnum.Fish.ToString()
-                                       RadioGroupName="animal-group" />
+                <MBRadioButton @bind-Value="@Animal"
+                               TargetCheckedValue=@AnimalEnum.Fish
+                               Label=@AnimalEnum.Fish.ToString()
+                               RadioGroupName="animal-group" />
 
-                        <MBRadioButton @bind-Value="@Animal"
-                                       TargetCheckedValue=@AnimalEnum.Zebra
-                                       Label=@AnimalEnum.Zebra.ToString()
-                                       RadioGroupName="animal-group" />
-                    </p>
-                    <p>
-                        <MBRadioButton @bind-Value="@Animal"
-                                       TargetCheckedValue=@AnimalEnum.Dog
-                                       Label=@RepeatedDogLabel
-                                       RadioGroupName="repeat-group" />
+                <MBRadioButton @bind-Value="@Animal"
+                               TargetCheckedValue=@AnimalEnum.Zebra
+                               Label=@AnimalEnum.Zebra.ToString()
+                               RadioGroupName="animal-group" />
+            </p>
+            <p>
+                <MBRadioButton @bind-Value="@Animal"
+                               TargetCheckedValue=@AnimalEnum.Dog
+                               Label=@RepeatedDogLabel
+                               RadioGroupName="repeat-group" />
 
-                    </p>
-                </Primary>
-            </MBCard>
-        </div>
-    </PageContent>
-</DemonstrationPage>
+            </p>
+        </Primary>
+    </MBCard>
+    <p>Animal=@Animal</p>
+</div>
+    @*</PageContent>
+</DemonstrationPage>*@
 
 
 @code {
