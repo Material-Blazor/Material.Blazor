@@ -318,13 +318,6 @@ namespace Material.Blazor.Internal
 
         private void CommonParametersSet()
         {
-#if Logging
-            Logger.LogDebug("");
-            Logger.LogDebug("OnParametersSet entered");
-            Logger.LogDebug("OnParametersSet CachedValue '" + _cachedValue?.ToString() ?? "null" + "'");
-            Logger.LogDebug("OnParametersSet ComponentValue '" + ComponentValue?.ToString() ?? "null" + "'");
-            Logger.LogDebug("OnParametersSet Value '" + Value?.ToString() ?? "null" + "'");
-#endif
             if (!EqualityComparer<T>.Default.Equals(_cachedValue, Value))
             {
                 _cachedValue = Value;
@@ -343,10 +336,6 @@ namespace Material.Blazor.Internal
                     }
                 }
             }
-#if Logging
-            Logger.LogDebug("OnParametersSet leaving");
-            Logger.LogDebug("");
-#endif
         }
 
 
