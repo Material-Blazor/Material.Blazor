@@ -16,7 +16,7 @@ namespace Material.Blazor.Internal
         /// </summary>
         /// <param name="items">The item list</param>
         /// <param name="appliedItemValidation">Specification of the required validation <see cref="MBItemValidation"/></param>
-        /// <returns>The item in the list matching <see cref="InputComponentFoundation{T}._underlyingValue"/></returns>
+        /// <returns>The item in the list matching <see cref="InputComponentFoundation{T}._cachedValue"/></returns>
         /// <exception cref="ArgumentException"/>
         public T ValidateItemList(IEnumerable<MBListElement<T>> items, MBItemValidation appliedItemValidation)
         {
