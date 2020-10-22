@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Material.Blazor.Internal
 {
@@ -29,8 +30,17 @@ namespace Material.Blazor.Internal
         protected override void OnInitialized()
         {
             ToastService.OnAdd += AddToast;
+            ToastService.OnTriggerStateHasChanged += OnTriggerStateHasChanged;
         }
 
+
+        public new void Dispose()
+        {
+            ToastService.OnAdd -= AddToast;
+            ToastService.OnTriggerStateHasChanged -= OnTriggerStateHasChanged;
+
+            base.Dispose();
+        }
 
 
         /// <summary>
@@ -77,6 +87,9 @@ namespace Material.Blazor.Internal
                 StateHasChanged();
             });
         }
+
+
+        private void OnTriggerStateHasChanged() => _ = InvokeAsync(StateHasChanged);
 
 
         private void FlushPendingToasts()

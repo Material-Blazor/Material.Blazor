@@ -7,10 +7,22 @@ namespace Material.Blazor.Internal
     /// </summary>
     internal class ToastService : IMBToastService
     {
+        private MBToastServiceConfiguration configuration = new MBToastServiceConfiguration();
         ///<inheritdoc/>
-        public MBToastServiceConfiguration Configuration { get; set; } = new MBToastServiceConfiguration();
+        public MBToastServiceConfiguration Configuration
+        { 
+            get => configuration; 
+            set
+            { 
+                configuration = value;
+                configuration.OnValueChanged += ConfigurationChanged;
+                OnTriggerStateHasChanged?.Invoke(); 
+            }
+        }
+
 
         private event Action<MBToastLevel, MBToastSettings> OnAdd;
+        private event Action OnTriggerStateHasChanged;
 
         ///<inheritdoc/>
         event Action<MBToastLevel, MBToastSettings> IMBToastService.OnAdd
@@ -20,10 +32,21 @@ namespace Material.Blazor.Internal
         }
 
 
+        ///<inheritdoc/>
+        event Action IMBToastService.OnTriggerStateHasChanged
+        {
+            add => OnTriggerStateHasChanged += value;
+            remove => OnTriggerStateHasChanged -= value;
+        }
+
+
         public ToastService(MBToastServiceConfiguration configuration)
         {
             Configuration = configuration;
         }
+
+        private void ConfigurationChanged() => OnTriggerStateHasChanged?.Invoke();
+
 
         ///<inheritdoc/>
 #nullable enable annotations
