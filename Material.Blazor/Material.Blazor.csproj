@@ -81,7 +81,7 @@
     <Exec Command="echo ***** npm run build-min-bundle-js" />
     <Exec Command="npm run build-min-bundle-js" />
 
-    <Exec Command="echo ***** delate materialblazor.js" />
+    <Exec Command="echo ***** delete materialblazor.js" />
     <Delete Files="wwwroot\materialblazor.js" />
   </Target>
 

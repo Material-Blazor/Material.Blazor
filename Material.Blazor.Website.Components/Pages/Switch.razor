@@ -28,14 +28,12 @@
                         Simple switch. Notice that density only affects the halo when selecting a switch.
                     </h3>
 
-                    <p><MBSwitch @bind-Value="@SwitchState" Label="Simple Switch" class="supplied-test-class" id="supplied-test-id" /></p>
-                    <p><MBSwitch @bind-Value="@SwitchState" Label="Simple Switch" /></p>
-                    <p><MBSwitch @bind-Value="@SwitchState" Label="Simple Switch" /></p>
-                    <p><MBSwitch @bind-Value="@SwitchState" Label="Simple Switch" /></p>
+                    <p><MBSwitch @bind-Value="@SwitchState1" Label="Simple Switch 1" class="supplied-test-class" id="supplied-test-id" /></p>
+                    <p><MBSwitch @bind-Value="@SwitchState2" Label="Simple Switch 2" /></p>
+                    <p><MBSwitch @bind-Value="@SwitchState3" Label="Simple Switch 3" /></p>
                 </Primary>
             </MBCard>
         </div>
-
 
 
         <div class="mdc-layout-grid__cell--span-4">
@@ -57,7 +55,6 @@
         </div>
 
 
-
         <div class="mdc-layout-grid__cell--span-4">
             <MBCard AutoStyled="true">
                 <Primary>
@@ -69,12 +66,12 @@
                         Shows density subsystem from default to minus 5.
                     </h3>
 
-                    <p><MBSwitch Label="Default Density" Density="@MBDensity.Default" /></p>
-                    <p><MBSwitch Label="Density Minus 1" Density="@MBDensity.Minus1" /></p>
-                    <p><MBSwitch Label="Density Minus 2" Density="@MBDensity.Minus2" /></p>
-                    <p><MBSwitch Label="Density Minus 3" Density="@MBDensity.Minus3" /></p>
-                    <p><MBSwitch Label="Density Minus 4" Density="@MBDensity.Minus3" /></p>
-                    <p><MBSwitch Label="Density Minus 5" Density="@MBDensity.Minus3" /></p>
+                    <p><MBSwitch @bind-Value="@densityDefault" Label="Default Density" Density="@MBDensity.Default" /></p>
+                    <p><MBSwitch @bind-Value="@densityMinus1" Label="Density Minus 1" Density="@MBDensity.Minus1" /></p>
+                    <p><MBSwitch @bind-Value="@densityMinus2" Label="Density Minus 2" Density="@MBDensity.Minus2" /></p>
+                    <p><MBSwitch @bind-Value="@densityMinus3" Label="Density Minus 3" Density="@MBDensity.Minus3" /></p>
+                    <p><MBSwitch @bind-Value="@densityMinus4" Label="Density Minus 4" Density="@MBDensity.Minus4" /></p>
+                    <p><MBSwitch @bind-Value="@densityMinus5" Label="Density Minus 5" Density="@MBDensity.Minus5" /></p>
                 </Primary>
             </MBCard>
         </div>
@@ -84,6 +81,13 @@
 
 
 @code {
+    private bool densityDefault;
+    private bool densityMinus1;
+    private bool densityMinus2;
+    private bool densityMinus3;
+    private bool densityMinus4;
+    private bool densityMinus5;
+
     private bool _checkboxState;
     private bool CheckboxState
     {
@@ -98,15 +102,43 @@
 
 
 
-    private bool _switchState;
-    private bool SwitchState
+    private bool _switchState1;
+    private bool SwitchState1
     {
-        get => _switchState;
+        get => _switchState1;
         set
         {
-            _switchState = value;
+            _switchState1 = value;
 
-            ToastService.ShowToast(heading: "Switch Clicked", message: $"Value: {_switchState}", level: MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(heading: "Switch 1 Clicked", message: $"Value: {_switchState1}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private bool _switchState2;
+    private bool SwitchState2
+    {
+        get => _switchState2;
+        set
+        {
+            _switchState2 = value;
+
+            ToastService.ShowToast(heading: "Switch 2 Clicked", message: $"Value: {_switchState2}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+
+    private bool _switchState3;
+    private bool SwitchState3
+    {
+        get => _switchState3;
+        set
+        {
+            _switchState3 = value;
+
+            ToastService.ShowToast(heading: "Switch 3 Clicked", message: $"Value: {_switchState3}", level: MBToastLevel.Success, showIcon: false);
         }
     }
 
@@ -130,5 +162,4 @@
     {
         ToastService.ShowToast(heading: "Button Clicked", message: notification, level: MBToastLevel.Success, showIcon: false);
     }
-
 }
