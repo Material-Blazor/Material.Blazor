@@ -53,7 +53,7 @@ namespace Material.Blazor
         /// <summary>
         /// Delivers Material Theme validation methods from native Blazor validation. Either use this or
         /// <see cref="ValidationMessage{TValue}"/>, but not both. This parameter takes the same input as
-        /// <see cref="ValidationMessage{TValue}.For"/>.
+        /// <see cref="ValidationMessage{TValue}.For{Func{TValue}}"/>.
         /// </summary>
         [Parameter] public Expression<Func<object>> ValidationMessageFor { get; set; }
 
