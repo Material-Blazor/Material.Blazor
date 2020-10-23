@@ -377,7 +377,8 @@ namespace Material.Blazor.Internal
             {
                 _instantiate = false;
                 _hasInstantiated = true;
-                await InitializeMdcComponent();
+                await InitiateMcwComponent();
+                AddTooltip();
             }
         }
 

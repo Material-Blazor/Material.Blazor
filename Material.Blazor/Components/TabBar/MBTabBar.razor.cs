@@ -143,6 +143,6 @@ namespace Material.Blazor
         protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTabBar.activateTab", ElementReference, Value).ConfigureAwait(false));
 
 
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTabBar.init", ElementReference, ObjectReference).ConfigureAwait(false);
+        private protected override async Task InitiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTabBar.init", ElementReference, ObjectReference).ConfigureAwait(false);
     }
 }
