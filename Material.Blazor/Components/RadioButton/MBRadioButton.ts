@@ -8,6 +8,10 @@ export function init(elem, formFieldElem, isChecked) {
     formField.input = elem._radio;
 }
 
+export function setDisabled(elem, value) {
+    elem._radio.disabled = value;
+}
+
 export function setChecked(elem, isChecked) {
     elem._radio.checked = isChecked;
 }
