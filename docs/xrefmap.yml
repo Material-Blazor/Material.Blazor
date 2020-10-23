@@ -631,6 +631,23 @@ references:
   fullName.vb: Material.Blazor.Internal.InputComponentFoundation(Of T)._instantiate
   nameWithType: InputComponentFoundation<T>._instantiate
   nameWithType.vb: InputComponentFoundation(Of T)._instantiate
+- uid: Material.Blazor.Internal.InputComponentFoundation`1.ComponentValueAsString
+  name: ComponentValueAsString
+  href: api/Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_ComponentValueAsString
+  commentId: P:Material.Blazor.Internal.InputComponentFoundation`1.ComponentValueAsString
+  fullName: Material.Blazor.Internal.InputComponentFoundation<T>.ComponentValueAsString
+  fullName.vb: Material.Blazor.Internal.InputComponentFoundation(Of T).ComponentValueAsString
+  nameWithType: InputComponentFoundation<T>.ComponentValueAsString
+  nameWithType.vb: InputComponentFoundation(Of T).ComponentValueAsString
+- uid: Material.Blazor.Internal.InputComponentFoundation`1.ComponentValueAsString*
+  name: ComponentValueAsString
+  href: api/Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_ComponentValueAsString_
+  commentId: Overload:Material.Blazor.Internal.InputComponentFoundation`1.ComponentValueAsString
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.InputComponentFoundation<T>.ComponentValueAsString
+  fullName.vb: Material.Blazor.Internal.InputComponentFoundation(Of T).ComponentValueAsString
+  nameWithType: InputComponentFoundation<T>.ComponentValueAsString
+  nameWithType.vb: InputComponentFoundation(Of T).ComponentValueAsString
 - uid: Material.Blazor.Internal.InputComponentFoundation`1.EditContext
   name: EditContext
   href: api/Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_EditContext
@@ -750,31 +767,48 @@ references:
   fullName.vb: Material.Blazor.Internal.InputComponentFoundation(Of T).OnInitializedAsync
   nameWithType: InputComponentFoundation<T>.OnInitializedAsync
   nameWithType.vb: InputComponentFoundation(Of T).OnInitializedAsync
-- uid: Material.Blazor.Internal.InputComponentFoundation`1.OnValueSet
-  name: OnValueSet
-  href: api/Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_OnValueSet
-  commentId: E:Material.Blazor.Internal.InputComponentFoundation`1.OnValueSet
-  fullName: Material.Blazor.Internal.InputComponentFoundation<T>.OnValueSet
-  fullName.vb: Material.Blazor.Internal.InputComponentFoundation(Of T).OnValueSet
-  nameWithType: InputComponentFoundation<T>.OnValueSet
-  nameWithType.vb: InputComponentFoundation(Of T).OnValueSet
-- uid: Material.Blazor.Internal.InputComponentFoundation`1.ReportingValueAsString
-  name: ReportingValueAsString
-  href: api/Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_ReportingValueAsString
-  commentId: P:Material.Blazor.Internal.InputComponentFoundation`1.ReportingValueAsString
-  fullName: Material.Blazor.Internal.InputComponentFoundation<T>.ReportingValueAsString
-  fullName.vb: Material.Blazor.Internal.InputComponentFoundation(Of T).ReportingValueAsString
-  nameWithType: InputComponentFoundation<T>.ReportingValueAsString
-  nameWithType.vb: InputComponentFoundation(Of T).ReportingValueAsString
-- uid: Material.Blazor.Internal.InputComponentFoundation`1.ReportingValueAsString*
-  name: ReportingValueAsString
-  href: api/Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_ReportingValueAsString_
-  commentId: Overload:Material.Blazor.Internal.InputComponentFoundation`1.ReportingValueAsString
+- uid: Material.Blazor.Internal.InputComponentFoundation`1.OnParametersSet
+  name: OnParametersSet()
+  href: api/Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_OnParametersSet
+  commentId: M:Material.Blazor.Internal.InputComponentFoundation`1.OnParametersSet
+  fullName: Material.Blazor.Internal.InputComponentFoundation<T>.OnParametersSet()
+  fullName.vb: Material.Blazor.Internal.InputComponentFoundation(Of T).OnParametersSet()
+  nameWithType: InputComponentFoundation<T>.OnParametersSet()
+  nameWithType.vb: InputComponentFoundation(Of T).OnParametersSet()
+- uid: Material.Blazor.Internal.InputComponentFoundation`1.OnParametersSet*
+  name: OnParametersSet
+  href: api/Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_OnParametersSet_
+  commentId: Overload:Material.Blazor.Internal.InputComponentFoundation`1.OnParametersSet
   isSpec: "True"
-  fullName: Material.Blazor.Internal.InputComponentFoundation<T>.ReportingValueAsString
-  fullName.vb: Material.Blazor.Internal.InputComponentFoundation(Of T).ReportingValueAsString
-  nameWithType: InputComponentFoundation<T>.ReportingValueAsString
-  nameWithType.vb: InputComponentFoundation(Of T).ReportingValueAsString
+  fullName: Material.Blazor.Internal.InputComponentFoundation<T>.OnParametersSet
+  fullName.vb: Material.Blazor.Internal.InputComponentFoundation(Of T).OnParametersSet
+  nameWithType: InputComponentFoundation<T>.OnParametersSet
+  nameWithType.vb: InputComponentFoundation(Of T).OnParametersSet
+- uid: Material.Blazor.Internal.InputComponentFoundation`1.OnParametersSetAsync
+  name: OnParametersSetAsync()
+  href: api/Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_OnParametersSetAsync
+  commentId: M:Material.Blazor.Internal.InputComponentFoundation`1.OnParametersSetAsync
+  fullName: Material.Blazor.Internal.InputComponentFoundation<T>.OnParametersSetAsync()
+  fullName.vb: Material.Blazor.Internal.InputComponentFoundation(Of T).OnParametersSetAsync()
+  nameWithType: InputComponentFoundation<T>.OnParametersSetAsync()
+  nameWithType.vb: InputComponentFoundation(Of T).OnParametersSetAsync()
+- uid: Material.Blazor.Internal.InputComponentFoundation`1.OnParametersSetAsync*
+  name: OnParametersSetAsync
+  href: api/Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_OnParametersSetAsync_
+  commentId: Overload:Material.Blazor.Internal.InputComponentFoundation`1.OnParametersSetAsync
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.InputComponentFoundation<T>.OnParametersSetAsync
+  fullName.vb: Material.Blazor.Internal.InputComponentFoundation(Of T).OnParametersSetAsync
+  nameWithType: InputComponentFoundation<T>.OnParametersSetAsync
+  nameWithType.vb: InputComponentFoundation(Of T).OnParametersSetAsync
+- uid: Material.Blazor.Internal.InputComponentFoundation`1.SetComponentValue
+  name: SetComponentValue
+  href: api/Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_SetComponentValue
+  commentId: E:Material.Blazor.Internal.InputComponentFoundation`1.SetComponentValue
+  fullName: Material.Blazor.Internal.InputComponentFoundation<T>.SetComponentValue
+  fullName.vb: Material.Blazor.Internal.InputComponentFoundation(Of T).SetComponentValue
+  nameWithType: InputComponentFoundation<T>.SetComponentValue
+  nameWithType.vb: InputComponentFoundation(Of T).SetComponentValue
 - uid: Material.Blazor.Internal.InputComponentFoundation`1.SetParametersAsync(ParameterView)
   name: SetParametersAsync(ParameterView)
   href: api/Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_SetParametersAsync_ParameterView_
@@ -1175,6 +1209,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.Internal.InternalToastAnchor.CloseToast
   nameWithType: InternalToastAnchor.CloseToast
+- uid: Material.Blazor.Internal.InternalToastAnchor.Dispose
+  name: Dispose()
+  href: api/Material.Blazor.Internal.InternalToastAnchor.html#Material_Blazor_Internal_InternalToastAnchor_Dispose
+  commentId: M:Material.Blazor.Internal.InternalToastAnchor.Dispose
+  fullName: Material.Blazor.Internal.InternalToastAnchor.Dispose()
+  nameWithType: InternalToastAnchor.Dispose()
+- uid: Material.Blazor.Internal.InternalToastAnchor.Dispose*
+  name: Dispose
+  href: api/Material.Blazor.Internal.InternalToastAnchor.html#Material_Blazor_Internal_InternalToastAnchor_Dispose_
+  commentId: Overload:Material.Blazor.Internal.InternalToastAnchor.Dispose
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.InternalToastAnchor.Dispose
+  nameWithType: InternalToastAnchor.Dispose
 - uid: Material.Blazor.Internal.InternalToastAnchor.OnInitialized
   name: OnInitialized()
   href: api/Material.Blazor.Internal.InternalToastAnchor.html#Material_Blazor_Internal_InternalToastAnchor_OnInitialized
@@ -4979,19 +5026,6 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBNumericDoubleField.NumericSingularFormat
   nameWithType: MBNumericDoubleField.NumericSingularFormat
-- uid: Material.Blazor.MBNumericDoubleField.OnAfterRenderAsync(System.Boolean)
-  name: OnAfterRenderAsync(Boolean)
-  href: api/Material.Blazor.MBNumericDoubleField.html#Material_Blazor_MBNumericDoubleField_OnAfterRenderAsync_System_Boolean_
-  commentId: M:Material.Blazor.MBNumericDoubleField.OnAfterRenderAsync(System.Boolean)
-  fullName: Material.Blazor.MBNumericDoubleField.OnAfterRenderAsync(System.Boolean)
-  nameWithType: MBNumericDoubleField.OnAfterRenderAsync(Boolean)
-- uid: Material.Blazor.MBNumericDoubleField.OnAfterRenderAsync*
-  name: OnAfterRenderAsync
-  href: api/Material.Blazor.MBNumericDoubleField.html#Material_Blazor_MBNumericDoubleField_OnAfterRenderAsync_
-  commentId: Overload:Material.Blazor.MBNumericDoubleField.OnAfterRenderAsync
-  isSpec: "True"
-  fullName: Material.Blazor.MBNumericDoubleField.OnAfterRenderAsync
-  nameWithType: MBNumericDoubleField.OnAfterRenderAsync
 - uid: Material.Blazor.MBNumericDoubleField.OnInitialized
   name: OnInitialized()
   href: api/Material.Blazor.MBNumericDoubleField.html#Material_Blazor_MBNumericDoubleField_OnInitialized
@@ -5005,19 +5039,6 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBNumericDoubleField.OnInitialized
   nameWithType: MBNumericDoubleField.OnInitialized
-- uid: Material.Blazor.MBNumericDoubleField.OnParametersSet
-  name: OnParametersSet()
-  href: api/Material.Blazor.MBNumericDoubleField.html#Material_Blazor_MBNumericDoubleField_OnParametersSet
-  commentId: M:Material.Blazor.MBNumericDoubleField.OnParametersSet
-  fullName: Material.Blazor.MBNumericDoubleField.OnParametersSet()
-  nameWithType: MBNumericDoubleField.OnParametersSet()
-- uid: Material.Blazor.MBNumericDoubleField.OnParametersSet*
-  name: OnParametersSet
-  href: api/Material.Blazor.MBNumericDoubleField.html#Material_Blazor_MBNumericDoubleField_OnParametersSet_
-  commentId: Overload:Material.Blazor.MBNumericDoubleField.OnParametersSet
-  isSpec: "True"
-  fullName: Material.Blazor.MBNumericDoubleField.OnParametersSet
-  nameWithType: MBNumericDoubleField.OnParametersSet
 - uid: Material.Blazor.MBNumericDoubleField.Prefix
   name: Prefix
   href: api/Material.Blazor.MBNumericDoubleField.html#Material_Blazor_MBNumericDoubleField_Prefix
@@ -5760,6 +5781,23 @@ references:
   fullName.vb: Material.Blazor.MBRadioButton(Of TItem).Label
   nameWithType: MBRadioButton<TItem>.Label
   nameWithType.vb: MBRadioButton(Of TItem).Label
+- uid: Material.Blazor.MBRadioButton`1.OnDisabledSetCallback(System.Object,System.EventArgs)
+  name: OnDisabledSetCallback(Object, EventArgs)
+  href: api/Material.Blazor.MBRadioButton-1.html#Material_Blazor_MBRadioButton_1_OnDisabledSetCallback_System_Object_System_EventArgs_
+  commentId: M:Material.Blazor.MBRadioButton`1.OnDisabledSetCallback(System.Object,System.EventArgs)
+  fullName: Material.Blazor.MBRadioButton<TItem>.OnDisabledSetCallback(System.Object, System.EventArgs)
+  fullName.vb: Material.Blazor.MBRadioButton(Of TItem).OnDisabledSetCallback(System.Object, System.EventArgs)
+  nameWithType: MBRadioButton<TItem>.OnDisabledSetCallback(Object, EventArgs)
+  nameWithType.vb: MBRadioButton(Of TItem).OnDisabledSetCallback(Object, EventArgs)
+- uid: Material.Blazor.MBRadioButton`1.OnDisabledSetCallback*
+  name: OnDisabledSetCallback
+  href: api/Material.Blazor.MBRadioButton-1.html#Material_Blazor_MBRadioButton_1_OnDisabledSetCallback_
+  commentId: Overload:Material.Blazor.MBRadioButton`1.OnDisabledSetCallback
+  isSpec: "True"
+  fullName: Material.Blazor.MBRadioButton<TItem>.OnDisabledSetCallback
+  fullName.vb: Material.Blazor.MBRadioButton(Of TItem).OnDisabledSetCallback
+  nameWithType: MBRadioButton<TItem>.OnDisabledSetCallback
+  nameWithType.vb: MBRadioButton(Of TItem).OnDisabledSetCallback
 - uid: Material.Blazor.MBRadioButton`1.OnInitialized
   name: OnInitialized()
   href: api/Material.Blazor.MBRadioButton-1.html#Material_Blazor_MBRadioButton_1_OnInitialized
@@ -7257,19 +7295,6 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBTextField.LeadingIcon
   nameWithType: MBTextField.LeadingIcon
-- uid: Material.Blazor.MBTextField.OnAfterRenderAsync(System.Boolean)
-  name: OnAfterRenderAsync(Boolean)
-  href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_OnAfterRenderAsync_System_Boolean_
-  commentId: M:Material.Blazor.MBTextField.OnAfterRenderAsync(System.Boolean)
-  fullName: Material.Blazor.MBTextField.OnAfterRenderAsync(System.Boolean)
-  nameWithType: MBTextField.OnAfterRenderAsync(Boolean)
-- uid: Material.Blazor.MBTextField.OnAfterRenderAsync*
-  name: OnAfterRenderAsync
-  href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_OnAfterRenderAsync_
-  commentId: Overload:Material.Blazor.MBTextField.OnAfterRenderAsync
-  isSpec: "True"
-  fullName: Material.Blazor.MBTextField.OnAfterRenderAsync
-  nameWithType: MBTextField.OnAfterRenderAsync
 - uid: Material.Blazor.MBTextField.OnDisabledSetCallback(System.Object,System.EventArgs)
   name: OnDisabledSetCallback(Object, EventArgs)
   href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_OnDisabledSetCallback_System_Object_System_EventArgs_
