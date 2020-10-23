@@ -12,7 +12,8 @@
                type="radio"
                id="@radioId"
                name="@RadioGroupName"
-               @onclick="@(_ => OnInternalItemClickAsync())">
+               disabled="@InputDisabled"
+               @onclick="@OnInternalItemClickAsync">
 
         <div class="mdc-radio__background">
             <div class="mdc-radio__outer-circle"></div>

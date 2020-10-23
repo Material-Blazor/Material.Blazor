@@ -105,7 +105,13 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Components should override this with a function to be called when Material.Blazor wants to run Material Theme initialization via JS Interop - always gets called from <see cref="OnAfterRenderAsync()"/>, which should not be overridden.
         /// </summary>
-        private protected virtual async Task InitializeMdcComponent() => await Task.CompletedTask;
+        private protected virtual async Task InitiateMcwComponent() => await Task.CompletedTask;
+
+
+        /// <summary>
+        /// Components should override this with a function to be called when Material.Blazor wants to run Material Theme initialization via JS Interop - always gets called from <see cref="OnAfterRenderAsync()"/>, which should not be overridden.
+        /// </summary>
+        private protected virtual async Task DestroyMcwComponent() => await Task.CompletedTask;
 
 
         ~ComponentFoundation() => Dispose(false);
@@ -118,6 +124,8 @@ namespace Material.Blazor.Internal
             {
                 return;
             }
+
+            _ = DestroyMcwComponent();
             
             if (disposing && !string.IsNullOrWhiteSpace(Tooltip))
             {
@@ -328,12 +336,20 @@ namespace Material.Blazor.Internal
         {
             if (firstRender)
             {
-                await InitializeMdcComponent();
-                
-                if (!string.IsNullOrWhiteSpace(Tooltip))
-                {
-                    TooltipService.AddTooltip(TooltipId, new MarkupString(Tooltip));
-                }
+                await InitiateMcwComponent();
+                AddTooltip();
+            }
+        }
+
+
+        /// <summary>
+        /// Adds a tooltip if tooltip text has been provided.
+        /// </summary>
+        private protected void AddTooltip()
+        {
+            if (!string.IsNullOrWhiteSpace(Tooltip))
+            {
+                TooltipService.AddTooltip(TooltipId, new MarkupString(Tooltip));
             }
         }
     }

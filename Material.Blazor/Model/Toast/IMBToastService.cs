@@ -41,6 +41,14 @@ namespace Material.Blazor
 
 
         /// <summary>
+        /// A event that will be invoked when toasts should call StateHasChanged. This will
+        /// be when the configuration is updated.
+        /// </summary>
+        internal event Action OnTriggerStateHasChanged;
+
+
+
+        /// <summary>
         /// Shows a toast using the supplied settings. Only the level and message parameters are required, with
         /// the remainder haveing defaults specified by the <see cref="MBToastServiceConfiguration"/> that you can supply
         /// when registering services. Failing that Material.Blazor provides defaults.

@@ -46,6 +46,7 @@ namespace Material.Blazor
 
 
         private ElementReference FormReference { get; set; }
+        private bool InputDisabled { get; set; }
         private ElementReference RadioButtonReference { get; set; }
         private string DisabledClass { get; set; } = "";
 
@@ -62,9 +63,12 @@ namespace Material.Blazor
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-checkbox--disabled", () => AppliedDisabled);
 
+            InputDisabled = AppliedDisabled;
+
             ForceShouldRenderToTrue = true;
 
             SetComponentValue += OnValueSetCallback;
+            OnDisabledSet += OnDisabledSetCallback;
         }
 
 
@@ -93,6 +97,14 @@ namespace Material.Blazor
         protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBRadioButton.setChecked", RadioButtonReference, Value.Equals(TargetCheckedValue)).ConfigureAwait(false));
 
 
+        /// <summary>
+        /// Callback for value the Disabled value setter.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBRadioButton.setDisabled", RadioButtonReference, AppliedDisabled));
+
+
         private async Task OnInternalItemClickAsync()
         {
             ComponentValue = TargetCheckedValue;
@@ -100,6 +112,6 @@ namespace Material.Blazor
         }
 
 
-        private protected override async Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBRadioButton.init", RadioButtonReference, FormReference, Value.Equals(TargetCheckedValue)).ConfigureAwait(false);
+        private protected override async Task InitiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBRadioButton.init", RadioButtonReference, FormReference, Value.Equals(TargetCheckedValue)).ConfigureAwait(false);
     }
 }

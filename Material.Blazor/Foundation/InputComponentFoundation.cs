@@ -104,7 +104,7 @@ namespace Material.Blazor.Internal
 #if Logging
                 Logger.LogDebug("ComponentValue setter entered");
 #endif
-                if (!EqualityComparer<T>.Default.Equals(value, Value))
+                if (!EqualityComparer<T>.Default.Equals(value, _componentValue))
                 {
 #if Logging
                     Logger.LogDebug("ComponentValue setter changing value to '" + value?.ToString() ?? "null" + "'");
@@ -377,7 +377,8 @@ namespace Material.Blazor.Internal
             {
                 _instantiate = false;
                 _hasInstantiated = true;
-                await InitializeMdcComponent();
+                await InitiateMcwComponent();
+                AddTooltip();
             }
         }
 
