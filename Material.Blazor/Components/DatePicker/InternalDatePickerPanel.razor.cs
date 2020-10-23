@@ -129,12 +129,12 @@ namespace Material.Blazor.Internal
                     Value = (DateTime)newValue;
                 }
 
-                InitialDate = Value;
-                CachedComponentValue = Value;
+                InitialDate = ComponentValue;
+                CachedComponentValue = ComponentValue;
                 CachedMinDate = MinDate;
                 CachedMaxDate = MaxDate;
 
-                var startDate = StartOfDisplayMonth = new DateTime(Value.Year, Value.Month, 1).AddMonths(MonthsOffset);
+                var startDate = StartOfDisplayMonth = new DateTime(ComponentValue.Year, ComponentValue.Month, 1).AddMonths(MonthsOffset);
                 var endDate = startDate.AddMonths(1).AddDays(-1);
 
                 startDate = startDate.AddDays(-Convert.ToInt32(startDate.DayOfWeek));
