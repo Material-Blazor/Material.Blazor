@@ -4,6 +4,16 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [1.0.0.rc.6](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-rc.6)
+23 October 2020
+
+- Rewrote two-way binding in response to [ASP.NET issue #24599](https://github.com/dotnet/aspnetcore/issues/24599#issuecomment-697588562) with Steve Sanderson's advisory note.
+- Toasts dynamically respond to service configuration changes.
+- Bug fixes.
+
+<br />
+
+
 #### [1.0.0.rc.5](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-rc.5)
 13 October 2020
 
