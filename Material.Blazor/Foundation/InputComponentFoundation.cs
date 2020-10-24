@@ -280,7 +280,7 @@ namespace Material.Blazor.Internal
                 _nullableUnderlyingType = Nullable.GetUnderlyingType(typeof(T));
                 _hasSetInitialParameters = true;
 #if Logging
-                Logger.LogDebug("SetParametersAsync setting ComponentValue value to '" + Value?.ToString() ?? "null" + "'");
+                Logger.LogDebug($"SetParametersAsync setting ComponentValue value to '{Value?.ToString() ?? "null"}'");
 #endif
                 _cachedValue = Value;
                 _componentValue = Value;
@@ -292,8 +292,7 @@ namespace Material.Blazor.Internal
                 // We don't support changing EditContext because it's messy to be clearing up state and event
                 // handlers for the previous one, and there's no strong use case. If a strong use case
                 // emerges, we can consider changing this.
-                throw new InvalidOperationException($"{GetType()} does not support changing the " +
-                    $"{nameof(EditContext)} dynamically.");
+                throw new InvalidOperationException($"{GetType()} does not support changing the {nameof(EditContext)} dynamically.");
             }
 
             // For derived components, retain the usual lifecycle with OnInit/OnParametersSet/etc.
