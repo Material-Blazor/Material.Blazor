@@ -101,13 +101,13 @@ namespace Material.Blazor.Internal
             get => _componentValue;
             set
             {
-#if Logging
-                Logger.LogDebug("ComponentValue setter entered");
+#if LoggingVerbose
+                Logger.LogDebug($"ComponentValue setter entered: _componentValue is '{_cachedValue?.ToString() ?? "null"}' and new value is'{value?.ToString() ?? "null"}'");
 #endif
                 if (!EqualityComparer<T>.Default.Equals(value, _componentValue))
                 {
 #if Logging
-                    Logger.LogDebug("ComponentValue setter changing value to '" + value?.ToString() ?? "null" + "'");
+                    Logger.LogDebug($"ComponentValue setter changed _componentValue");
 #endif
                     _componentValue = value;
                     _ = ValueChanged.InvokeAsync(value);
@@ -318,16 +318,19 @@ namespace Material.Blazor.Internal
 
         private void CommonParametersSet()
         {
+#if LoggingVerbose
+            Logger.LogDebug($"OnParametersSet setter entered: _cachedValue is '{_cachedValue?.ToString() ?? "null"}' and Value is'{Value?.ToString() ?? "null"}'");
+#endif
             if (!EqualityComparer<T>.Default.Equals(_cachedValue, Value))
             {
                 _cachedValue = Value;
 #if Logging
-                Logger.LogDebug("OnParametersSet setting CachedValue value to '" + Value?.ToString() ?? "null" + "'");
+                Logger.LogDebug($"OnParametersSet changed _cachedValue value");
 #endif
-                if (!EqualityComparer<T>.Default.Equals(ComponentValue, Value))
+                if (!EqualityComparer<T>.Default.Equals(_componentValue, Value))
                 {
 #if Logging
-                    Logger.LogDebug("OnParametersSet setting ComponentValue value to '" + Value?.ToString() ?? "null" + "'");
+                    Logger.LogDebug("OnParametersSet update _componentValue value from '" + _componentValue?.ToString() ?? "null" + "'");
 #endif
                     _componentValue = Value;
                     if (_hasInstantiated)
