@@ -6,7 +6,7 @@
        @attributes="@AttributesToSplat()">
 
     <div class="mdc-drawer__content">
-        <CascadingValue Value="@this">
+        <CascadingValue Value="@this" IsFixed="true">
             @if (ChildContent != null)
             {
                 @ChildContent
