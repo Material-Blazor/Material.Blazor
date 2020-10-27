@@ -4,7 +4,16 @@ title: ReleaseNotes
 ---
 # Release Notes
 
-#### [1.0.0.rc.6](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-rc.6)
+#### [1.0.0](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0)
+27 October 2020
+
+- First full release of Material.Blazor!
+- Minor changes to internal cascading values, setting `IsFixed="true"`.
+
+<br />
+
+
+#### [1.0.0-rc.6](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-rc.6)
 23 October 2020
 
 - Rewrote two-way binding in response to [ASP.NET issue #24599](https://github.com/dotnet/aspnetcore/issues/24599#issuecomment-697588562) with Steve Sanderson's advisory note.
@@ -14,7 +23,7 @@ title: ReleaseNotes
 <br />
 
 
-#### [1.0.0.rc.5](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-rc.5)
+#### [1.0.0-rc.5](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-rc.5)
 13 October 2020
 
 - MS Build dependency check for SASS and Typescript files working.
@@ -24,7 +33,7 @@ title: ReleaseNotes
 <br />
 
 
-#### [1.0.0.rc.4](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-rc.4)
+#### [1.0.0-rc.4](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-rc.4)
 24 September 2020
 
 - Build process uses npm directly rather than via docker (docker dependency removed).
@@ -36,7 +45,7 @@ title: ReleaseNotes
 <br />
 
 
-#### [1.0.0.rc.3](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-rc.3)
+#### [1.0.0-rc.3](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-rc.3)
 16 September 2020
 
 - Material helper text added to text fields and associated derivatives.
@@ -53,7 +62,7 @@ title: ReleaseNotes
 <br />
 
 
-#### [1.0.0.rc.2](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-rc.2)
+#### [1.0.0-rc.2](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-rc.2)
 15 September 2020
 
 - Corrects tooltip javascript initiation bug.
@@ -65,7 +74,7 @@ title: ReleaseNotes
 <br />
 
 
-#### [1.0.0.rc.1](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-RC.1)
+#### [1.0.0-rc.1](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0-RC.1)
 14 September 2020
 
 - First 1.0.0 release candidate having migrated from prior Blazor MDC previews.
