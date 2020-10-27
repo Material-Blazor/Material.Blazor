@@ -67,7 +67,13 @@
     <OutputStaticAssetsScripts Include="wwwroot\bundled.min.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js" />
   </ItemGroup>
 
-  <Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent">
+	<Target Name="CheckIfNpmExists">
+		<Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
+			<Output TaskParameter="ExitCode" PropertyName="NpmErrorCode" />
+		</Exec>
+	</Target>
+
+  <Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmErrorCode)' == '0' ">
     <Exec Command="echo ***** npm install" />
     <Exec Command="npm install" />
 
@@ -95,7 +101,7 @@
     <OutputStaticAssetsStyles Include="wwwroot\bundled.min.css;wwwroot\unbundled.min.css;wwwroot\unbundled.css" />
   </ItemGroup>
 
-  <Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent">
+  <Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmErrorCode)' == '0' ">
     <Exec Command="echo ***** npm install" />
     <Exec Command="npm install" />
 
