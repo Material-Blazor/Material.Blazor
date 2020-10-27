@@ -173,7 +173,7 @@
       "url": "_content\/Material.Blazor.Website.Components\/videos\/coverr-someone-is-checking-emails-there_s-an-old-globe-on-the-table-0186.mp4"
     },
     {
-      "hash": "sha256-YWAz05rHgf89a6v6Nw3maAYsfwAhA1srabZDuc+Djyk=",
+      "hash": "sha256-omXlOtkiBblrMvMJuTfBa4o3klXerTCMG5qao5IY1yw=",
       "url": "_content\/Material.Blazor\/bundled.min.css"
     },
     {
@@ -181,11 +181,11 @@
       "url": "_content\/Material.Blazor\/bundled.min.js"
     },
     {
-      "hash": "sha256-GNpaI3tsUyv80W0gtRB6N0yvc+1Pl6szdw0Ig\/CTMTA=",
+      "hash": "sha256-8uE2E1hciEZenBA\/7FY63oh3eLm26JjBEoxH8\/EWF+w=",
       "url": "_content\/Material.Blazor\/material-components-icons.css"
     },
     {
-      "hash": "sha256-gapAG\/eglOIXJx2zaz\/IuG\/Qe0M1dw5vRDVww9rGqMI=",
+      "hash": "sha256-jLdusdm0cn6ZCOzf3ZT2ai0clgTNdK2UKZWhlBo0l5c=",
       "url": "_content\/Material.Blazor\/unbundled.css"
     },
     {
@@ -193,7 +193,7 @@
       "url": "_content\/Material.Blazor\/unbundled.js"
     },
     {
-      "hash": "sha256-kCKfPNAUigoZbkitiZB5oh5B+GrkrMfxmgBvN8vuAQE=",
+      "hash": "sha256-wyrq7Nnh4rUKC+26pW\/duM5\/8f1WZoxx2j5fJpxK2jQ=",
       "url": "_content\/Material.Blazor\/unbundled.min.css"
     },
     {
@@ -265,15 +265,15 @@
       "url": "_framework\/System.IO.Pipelines.dll"
     },
     {
-      "hash": "sha256-3iv7xU6R87UBbI5f8jmvqRYsN0uuZEIgMrTztujRLi8=",
+      "hash": "sha256-WbgSZR9XIcu7pp42\/fKlCKCNzbal07qmMLX3U0uJ5iI=",
       "url": "_framework\/Material.Blazor.dll"
     },
     {
-      "hash": "sha256-qsZTx89xkxdcRWSKZZlh\/\/ANPopVGoKNw5GJyBd2r+c=",
+      "hash": "sha256-DtDcLHHEVvI\/1MdA2cY6+Siet98awpuRiacWBbepeEI=",
       "url": "_framework\/Material.Blazor.Website.Components.dll"
     },
     {
-      "hash": "sha256-0xYYu01MBAyNr6i\/J8mTkdAfzHFqljBHyiAucx9z91U=",
+      "hash": "sha256-GwLqg3+\/wvaS1Eak5IqR1S39yDgRb5Lx\/Dahyx+ZSOs=",
       "url": "_framework\/Material.Blazor.Website.WebAssembly.dll"
     },
     {
@@ -373,7 +373,7 @@
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
-      "hash": "sha256-nTJTU\/IK7uJkIxl+OuKBVRLOgz4abrPqTKGTlGvVcBA=",
+      "hash": "sha256-Emjqv6twIzCQ\/MNa+xVr\/1fBCm5bSRfgXB6UOkbhEOA=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -381,5 +381,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "ZX+ARonv"
+  "version": "OyXetJLZ"
 };
