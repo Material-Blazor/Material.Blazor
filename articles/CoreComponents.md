@@ -18,6 +18,7 @@ the markup specification. We term these "Core Components. Material.Blazor also h
 | [MBDataTable<TItem>](xref:C.MBDataTable) | A [Material Data Table](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-data-table#data-tables) without row selection. |
 | [MBDialog](xref:C.MBDialog) | A [Material Dialog](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-dialog#dialogs). Can set scrim and escape button actions. |
 | [MBDrawer](xref:C.MBDrawer) | A [Material Drawer](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-drawer#navigation-drawers). |
+| [MBFloatingButton](xref:C.MBFloatingButton) | A [Material FAB](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-fab#floating-action-buttons). |
 | [MBIconButton](xref:C.MBIconButton) | A [Material Icon Button](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-icon-button#icon-buttons). |
 | [MBIconButtonToggle](xref:C.MBIconButtonToggle) | A toggle variant of the [Material Icon Button](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-icon-button#icon-buttons). |
 | [MBLinearProgress](xref:C.MBLinearProgress) | A [Material Linear Progress bar](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-linear-progress#linear-progress). |
