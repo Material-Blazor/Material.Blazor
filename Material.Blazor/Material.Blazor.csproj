@@ -67,7 +67,7 @@
     <OutputStaticAssetsScripts Include="wwwroot\bundled.min.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js" />
   </ItemGroup>
 
-  <Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" >
+  <Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent">
     <Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="NpmErrorCode" />
     </Exec>
