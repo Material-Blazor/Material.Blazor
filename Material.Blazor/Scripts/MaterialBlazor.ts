@@ -6,6 +6,7 @@ import * as MBCircularProgress from '../Components/CircularProgress/MBCircularPr
 import * as MBDatePicker from '../Components/DatePicker/MBDatePicker';
 import * as MBDialog from '../Components/Dialog/MBDialog';
 import * as MBDrawer from '../Components/Drawer/MBDrawer';
+import * as MBFloatingActionButton from '../Components/FloatingActionButton/MBFloatingActionButton';
 import * as MBIconButton from '../Components/IconButton/MBIconButton';
 import * as MBIconButtonToggle from '../Components/IconButtonToggle/MBIconButtonToggle';
 import * as MBLinearProgress from '../Components/LinearProgress/MBLinearProgress';
@@ -28,6 +29,7 @@ import * as MBTopAppBar from '../Components/TopAppBar/MBTopAppBar';
     MBDatePicker,
     MBDialog,
     MBDrawer,
+    MBFloatingActionButton,
     MBIconButton,
     MBIconButtonToggle,
     MBLinearProgress,

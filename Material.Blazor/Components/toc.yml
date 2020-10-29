@@ -46,6 +46,9 @@
 - name: MBDivider
   topicUid: C.MBDivider
 
+- name: MBFloatingActionButton
+  topicUid: C.MBFloatingActionButton
+
 - name: MBIcon
   topicUid: C.MBIcon
 

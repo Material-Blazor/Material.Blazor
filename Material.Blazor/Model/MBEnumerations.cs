@@ -281,6 +281,28 @@
 
 
     /// <summary>
+    /// Type for an <see cref="MBFloatingActionButton"/>.
+    /// </summary>
+    public enum MBFloatingActionButtonType
+    {
+        /// <summary>
+        /// FAB regular variant.
+        /// </summary>
+        Regular,
+
+        /// <summary>
+        /// FAB mini variant.
+        /// </summary>
+        Mini,
+
+        /// <summary>
+        /// FAB extended variant.
+        /// </summary>
+        Extended
+    }
+
+
+    /// <summary>
     /// Type for an <see cref="MBLinearProgress"/>.
     /// </summary>
     public enum MBLinearProgressType

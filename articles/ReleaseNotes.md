@@ -4,6 +4,16 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [1.1.0](https://github.com/Material-Blazor/Material.Blazor/tree/1.1.0)
+31 October 2020
+
+- Added FABs (floating action buttons).
+- Upgraded build process to skip node builds if npm isn't installed.
+- Bug fixes.
+
+<br />
+
+
 #### [1.0.0](https://github.com/Material-Blazor/Material.Blazor/tree/1.0.0)
 27 October 2020
 
