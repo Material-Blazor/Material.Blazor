@@ -50,16 +50,24 @@
     <Folder Include="wwwroot\videos\" />
   </ItemGroup>
 
+  <Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
+    <Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
+      <Output TaskParameter="ExitCode" PropertyName="NpmErrorCode" />
+    </Exec>
+    <Exec Command="echo ***** checking for npm installation returns an error code of $(NpmErrorCode) (0 indicates npm is available)" />
+  </Target>
+
   <ItemGroup>
     <InputStaticAssetsStyles Include="**\*.scss;" Exclude="bin\**\*;node_modules\**\*;obj\**\*" />
     <OutputStaticAssetsStyles Include="wwwroot\css\asymmetric-theme.min.css;wwwroot\css\dark-square-theme.min.css;wwwroot\css\light-square-theme.min.css;wwwroot\css\material-default-theme.min.css;wwwroot\css\rounded-theme.min.css;" />
   </ItemGroup>
 
-  <Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent">
+  <!--<Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent">
     <Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="NpmErrorCode" />
     </Exec>
-  </Target>
+    <Exec Command="echo ***** checking for npm installation returns an error code of $(NpmErrorCode) (0 indicates npm is available)" />
+  </Target>-->
 
   <Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmErrorCode)' == '0' ">
     <Exec Command="echo ***** npm install" />

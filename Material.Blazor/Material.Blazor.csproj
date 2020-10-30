@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionPrefix>1.1.0</VersionPrefix>
     <VersionSuffix></VersionSuffix>
     <PackageLicenseFile></PackageLicenseFile>
     <Authors>Simon Ziegler of Dioptra and Mark Stega of Optimium Health</Authors>
@@ -62,16 +62,29 @@
     </None>
   </ItemGroup>
 
+  <!--<ItemGroup>
+    <InputStaticAssets Include="**\*.js;**\*.ts;**\*.scss" Exclude="wwwroot\**\*;bin\**\*;node_modules\**\*;obj\**\*;bin\**\*" />
+    <OutputStaticAssets Include="wwwroot\bundled.min.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js;wwwroot\bundled.min.css;wwwroot\unbundled.min.css;wwwroot\unbundled.css" />
+  </ItemGroup>
+
+  <Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssets)" Outputs="@(OutputStaticAssets)" BeforeTargets="PreBuildEvent">
+    <Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
+      <Output TaskParameter="ExitCode" PropertyName="NpmErrorCode" />
+    </Exec>
+    <Exec Command="echo ***** checking for npm installation returns an error code of $(NpmErrorCode) (0 indicates npm is available)" />
+  </Target>-->
+
+  <Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
+    <Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
+      <Output TaskParameter="ExitCode" PropertyName="NpmErrorCode" />
+    </Exec>
+    <Exec Command="echo ***** checking for npm installation returns an error code of $(NpmErrorCode) (0 indicates npm is available)" />
+  </Target>
+
   <ItemGroup>
     <InputStaticAssetsScripts Include="**\*.js;**\*.ts" Exclude="wwwroot\**\*;bin\**\*;node_modules\**\*;obj\**\*" />
     <OutputStaticAssetsScripts Include="wwwroot\bundled.min.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js" />
   </ItemGroup>
-
-  <Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent">
-    <Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
-      <Output TaskParameter="ExitCode" PropertyName="NpmErrorCode" />
-    </Exec>
-  </Target>
 
   <Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmErrorCode)' == '0' ">
     <Exec Command="echo ***** npm install" />
