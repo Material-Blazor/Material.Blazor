@@ -48,13 +48,16 @@ export function setHelperText(elem, helperTextElem, helperText, helperTextPersis
 }
 
 export function setType(elem, value, inputElem, type, formNoValidate) {
-    inputElem.setAttribute("type", type);
-    inputElem.setAttribute("formnovalidate", formNoValidate);
-    elem._textField.value = value;
+    if (elem && inputElem) {
+        inputElem.setAttribute("type", type);
+        inputElem.setAttribute("formnovalidate", formNoValidate);
 
-    if (formNoValidate) {
-        inputElem.focus();
-        inputElem.select();
+        elem._textField.value = value;
+
+        if (formNoValidate) {
+            inputElem.focus();
+            inputElem.select();
+        }
     }
 }
 /*!

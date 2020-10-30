@@ -24,7 +24,6 @@ namespace Material.Blazor.Internal
         private Type _nullableUnderlyingType;
         private bool _hasSetInitialParameters;
         protected bool _instantiate = false;
-        protected bool _hasInstantiated = false;
 
         [CascadingParameter] private EditContext CascadedEditContext { get; set; }
 
