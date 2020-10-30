@@ -106,6 +106,9 @@ references:
 - uid: C.MBDrawer
   name: MBDrawer
   href: Material.Blazor/Components/Drawer/MBDrawer.html
+- uid: C.MBFloatingActionButton
+  name: MBFloatingActionButton
+  href: Material.Blazor/Components/FloatingActionButton/MBFloatingActionButton.html
 - uid: C.MBIcon
   name: MBIcon
   href: Material.Blazor/Components/Icon/MBIcon.html
@@ -455,6 +458,12 @@ references:
   commentId: T:Material.Blazor.Internal.ComponentFoundation
   fullName: Material.Blazor.Internal.ComponentFoundation
   nameWithType: ComponentFoundation
+- uid: Material.Blazor.Internal.ComponentFoundation._hasInstantiated
+  name: _hasInstantiated
+  href: api/Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation__hasInstantiated
+  commentId: F:Material.Blazor.Internal.ComponentFoundation._hasInstantiated
+  fullName: Material.Blazor.Internal.ComponentFoundation._hasInstantiated
+  nameWithType: ComponentFoundation._hasInstantiated
 - uid: Material.Blazor.Internal.ComponentFoundation.CascadingDefaults
   name: CascadingDefaults
   href: api/Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_CascadingDefaults
@@ -615,14 +624,6 @@ references:
   fullName.vb: Material.Blazor.Internal.InputComponentFoundation(Of T)
   nameWithType: InputComponentFoundation<T>
   nameWithType.vb: InputComponentFoundation(Of T)
-- uid: Material.Blazor.Internal.InputComponentFoundation`1._hasInstantiated
-  name: _hasInstantiated
-  href: api/Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1__hasInstantiated
-  commentId: F:Material.Blazor.Internal.InputComponentFoundation`1._hasInstantiated
-  fullName: Material.Blazor.Internal.InputComponentFoundation<T>._hasInstantiated
-  fullName.vb: Material.Blazor.Internal.InputComponentFoundation(Of T)._hasInstantiated
-  nameWithType: InputComponentFoundation<T>._hasInstantiated
-  nameWithType.vb: InputComponentFoundation(Of T)._hasInstantiated
 - uid: Material.Blazor.Internal.InputComponentFoundation`1._instantiate
   name: _instantiate
   href: api/Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1__instantiate
@@ -3568,6 +3569,127 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBDrawer.Toggle
   nameWithType: MBDrawer.Toggle
+- uid: Material.Blazor.MBFloatingActionButton
+  name: MBFloatingActionButton
+  href: api/Material.Blazor.MBFloatingActionButton.html
+  commentId: T:Material.Blazor.MBFloatingActionButton
+  fullName: Material.Blazor.MBFloatingActionButton
+  nameWithType: MBFloatingActionButton
+- uid: Material.Blazor.MBFloatingActionButton.Exited
+  name: Exited
+  href: api/Material.Blazor.MBFloatingActionButton.html#Material_Blazor_MBFloatingActionButton_Exited
+  commentId: P:Material.Blazor.MBFloatingActionButton.Exited
+  fullName: Material.Blazor.MBFloatingActionButton.Exited
+  nameWithType: MBFloatingActionButton.Exited
+- uid: Material.Blazor.MBFloatingActionButton.Exited*
+  name: Exited
+  href: api/Material.Blazor.MBFloatingActionButton.html#Material_Blazor_MBFloatingActionButton_Exited_
+  commentId: Overload:Material.Blazor.MBFloatingActionButton.Exited
+  isSpec: "True"
+  fullName: Material.Blazor.MBFloatingActionButton.Exited
+  nameWithType: MBFloatingActionButton.Exited
+- uid: Material.Blazor.MBFloatingActionButton.Icon
+  name: Icon
+  href: api/Material.Blazor.MBFloatingActionButton.html#Material_Blazor_MBFloatingActionButton_Icon
+  commentId: P:Material.Blazor.MBFloatingActionButton.Icon
+  fullName: Material.Blazor.MBFloatingActionButton.Icon
+  nameWithType: MBFloatingActionButton.Icon
+- uid: Material.Blazor.MBFloatingActionButton.Icon*
+  name: Icon
+  href: api/Material.Blazor.MBFloatingActionButton.html#Material_Blazor_MBFloatingActionButton_Icon_
+  commentId: Overload:Material.Blazor.MBFloatingActionButton.Icon
+  isSpec: "True"
+  fullName: Material.Blazor.MBFloatingActionButton.Icon
+  nameWithType: MBFloatingActionButton.Icon
+- uid: Material.Blazor.MBFloatingActionButton.IconFoundry
+  name: IconFoundry
+  href: api/Material.Blazor.MBFloatingActionButton.html#Material_Blazor_MBFloatingActionButton_IconFoundry
+  commentId: P:Material.Blazor.MBFloatingActionButton.IconFoundry
+  fullName: Material.Blazor.MBFloatingActionButton.IconFoundry
+  nameWithType: MBFloatingActionButton.IconFoundry
+- uid: Material.Blazor.MBFloatingActionButton.IconFoundry*
+  name: IconFoundry
+  href: api/Material.Blazor.MBFloatingActionButton.html#Material_Blazor_MBFloatingActionButton_IconFoundry_
+  commentId: Overload:Material.Blazor.MBFloatingActionButton.IconFoundry
+  isSpec: "True"
+  fullName: Material.Blazor.MBFloatingActionButton.IconFoundry
+  nameWithType: MBFloatingActionButton.IconFoundry
+- uid: Material.Blazor.MBFloatingActionButton.IconTrailsLabel
+  name: IconTrailsLabel
+  href: api/Material.Blazor.MBFloatingActionButton.html#Material_Blazor_MBFloatingActionButton_IconTrailsLabel
+  commentId: P:Material.Blazor.MBFloatingActionButton.IconTrailsLabel
+  fullName: Material.Blazor.MBFloatingActionButton.IconTrailsLabel
+  nameWithType: MBFloatingActionButton.IconTrailsLabel
+- uid: Material.Blazor.MBFloatingActionButton.IconTrailsLabel*
+  name: IconTrailsLabel
+  href: api/Material.Blazor.MBFloatingActionButton.html#Material_Blazor_MBFloatingActionButton_IconTrailsLabel_
+  commentId: Overload:Material.Blazor.MBFloatingActionButton.IconTrailsLabel
+  isSpec: "True"
+  fullName: Material.Blazor.MBFloatingActionButton.IconTrailsLabel
+  nameWithType: MBFloatingActionButton.IconTrailsLabel
+- uid: Material.Blazor.MBFloatingActionButton.Label
+  name: Label
+  href: api/Material.Blazor.MBFloatingActionButton.html#Material_Blazor_MBFloatingActionButton_Label
+  commentId: P:Material.Blazor.MBFloatingActionButton.Label
+  fullName: Material.Blazor.MBFloatingActionButton.Label
+  nameWithType: MBFloatingActionButton.Label
+- uid: Material.Blazor.MBFloatingActionButton.Label*
+  name: Label
+  href: api/Material.Blazor.MBFloatingActionButton.html#Material_Blazor_MBFloatingActionButton_Label_
+  commentId: Overload:Material.Blazor.MBFloatingActionButton.Label
+  isSpec: "True"
+  fullName: Material.Blazor.MBFloatingActionButton.Label
+  nameWithType: MBFloatingActionButton.Label
+- uid: Material.Blazor.MBFloatingActionButton.OnInitialized
+  name: OnInitialized()
+  href: api/Material.Blazor.MBFloatingActionButton.html#Material_Blazor_MBFloatingActionButton_OnInitialized
+  commentId: M:Material.Blazor.MBFloatingActionButton.OnInitialized
+  fullName: Material.Blazor.MBFloatingActionButton.OnInitialized()
+  nameWithType: MBFloatingActionButton.OnInitialized()
+- uid: Material.Blazor.MBFloatingActionButton.OnInitialized*
+  name: OnInitialized
+  href: api/Material.Blazor.MBFloatingActionButton.html#Material_Blazor_MBFloatingActionButton_OnInitialized_
+  commentId: Overload:Material.Blazor.MBFloatingActionButton.OnInitialized
+  isSpec: "True"
+  fullName: Material.Blazor.MBFloatingActionButton.OnInitialized
+  nameWithType: MBFloatingActionButton.OnInitialized
+- uid: Material.Blazor.MBFloatingActionButton.Type
+  name: Type
+  href: api/Material.Blazor.MBFloatingActionButton.html#Material_Blazor_MBFloatingActionButton_Type
+  commentId: P:Material.Blazor.MBFloatingActionButton.Type
+  fullName: Material.Blazor.MBFloatingActionButton.Type
+  nameWithType: MBFloatingActionButton.Type
+- uid: Material.Blazor.MBFloatingActionButton.Type*
+  name: Type
+  href: api/Material.Blazor.MBFloatingActionButton.html#Material_Blazor_MBFloatingActionButton_Type_
+  commentId: Overload:Material.Blazor.MBFloatingActionButton.Type
+  isSpec: "True"
+  fullName: Material.Blazor.MBFloatingActionButton.Type
+  nameWithType: MBFloatingActionButton.Type
+- uid: Material.Blazor.MBFloatingActionButtonType
+  name: MBFloatingActionButtonType
+  href: api/Material.Blazor.MBFloatingActionButtonType.html
+  commentId: T:Material.Blazor.MBFloatingActionButtonType
+  fullName: Material.Blazor.MBFloatingActionButtonType
+  nameWithType: MBFloatingActionButtonType
+- uid: Material.Blazor.MBFloatingActionButtonType.Extended
+  name: Extended
+  href: api/Material.Blazor.MBFloatingActionButtonType.html#Material_Blazor_MBFloatingActionButtonType_Extended
+  commentId: F:Material.Blazor.MBFloatingActionButtonType.Extended
+  fullName: Material.Blazor.MBFloatingActionButtonType.Extended
+  nameWithType: MBFloatingActionButtonType.Extended
+- uid: Material.Blazor.MBFloatingActionButtonType.Mini
+  name: Mini
+  href: api/Material.Blazor.MBFloatingActionButtonType.html#Material_Blazor_MBFloatingActionButtonType_Mini
+  commentId: F:Material.Blazor.MBFloatingActionButtonType.Mini
+  fullName: Material.Blazor.MBFloatingActionButtonType.Mini
+  nameWithType: MBFloatingActionButtonType.Mini
+- uid: Material.Blazor.MBFloatingActionButtonType.Regular
+  name: Regular
+  href: api/Material.Blazor.MBFloatingActionButtonType.html#Material_Blazor_MBFloatingActionButtonType_Regular
+  commentId: F:Material.Blazor.MBFloatingActionButtonType.Regular
+  fullName: Material.Blazor.MBFloatingActionButtonType.Regular
+  nameWithType: MBFloatingActionButtonType.Regular
 - uid: Material.Blazor.MBIcon
   name: MBIcon
   href: api/Material.Blazor.MBIcon.html

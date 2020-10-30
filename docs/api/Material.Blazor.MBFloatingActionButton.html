@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class InternalDatePickerDayButton
+    <title>Class MBFloatingActionButton
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class InternalDatePickerDayButton
+    <meta name="title" content="Class MBFloatingActionButton
    ">
     <meta name="generator" content="docfx 2.56.1.0">
     
@@ -79,19 +79,21 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Material.Blazor.Internal.InternalDatePickerDayButton">
+            <article class="content wrap" id="_content" data-uid="Material.Blazor.MBFloatingActionButton">
   
   
-  <h1 id="Material_Blazor_Internal_InternalDatePickerDayButton" data-uid="Material.Blazor.Internal.InternalDatePickerDayButton" class="text-break">Class InternalDatePickerDayButton
+  <h1 id="Material_Blazor_MBFloatingActionButton" data-uid="Material.Blazor.MBFloatingActionButton" class="text-break">Class MBFloatingActionButton
   </h1>
-  <div class="markdown level0 summary"><p>For Material.Blazor internal use only.</p>
+  <div class="markdown level0 summary"><p>This is a Material Theme FAB or floating action button, with regular, mini or extended variants,
+application of the &quot;mdc-fab--exited&quot; animated class and the choice of leading or trailing icons for
+the extended variant.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
     <div class="level1"><a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html">ComponentFoundation</a></div>
-    <div class="level2"><span class="xref">InternalDatePickerDayButton</span></div>
+    <div class="level2"><span class="xref">MBFloatingActionButton</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
@@ -133,29 +135,29 @@
       <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnAfterRenderAsync_System_Boolean_">ComponentFoundation.OnAfterRenderAsync(Boolean)</a>
     </div>
   </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Material.Blazor.Internal.html">Material.Blazor.Internal</a></h6>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Material.Blazor.html">Material.Blazor</a></h6>
   <h6><strong>Assembly</strong>: Material.Blazor.dll</h6>
-  <h5 id="Material_Blazor_Internal_InternalDatePickerDayButton_syntax">Syntax</h5>
+  <h5 id="Material_Blazor_MBFloatingActionButton_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class InternalDatePickerDayButton : ComponentFoundation, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class MBFloatingActionButton : ComponentFoundation, IDisposable</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/refs/tags/1.1.0/apiSpec/new?filename=Material_Blazor_Internal_InternalDatePickerDayButton_CurrentDate.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.InternalDatePickerDayButton.CurrentDate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/refs/tags/1.1.0/apiSpec/new?filename=Material_Blazor_MBFloatingActionButton_Exited.md&amp;value=---%0Auid%3A%20Material.Blazor.MBFloatingActionButton.Exited%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/refs/tags/1.1.0/Material.Blazor/Components/DatePicker/InternalDatePickerDayButton.razor.cs/#L17">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/refs/tags/1.1.0/Material.Blazor/Components/FloatingActionButton/MBFloatingActionButton.razor.cs/#L59">View Source</a>
   </span>
-  <a id="Material_Blazor_Internal_InternalDatePickerDayButton_CurrentDate_" data-uid="Material.Blazor.Internal.InternalDatePickerDayButton.CurrentDate*"></a>
-  <h4 id="Material_Blazor_Internal_InternalDatePickerDayButton_CurrentDate" data-uid="Material.Blazor.Internal.InternalDatePickerDayButton.CurrentDate">CurrentDate</h4>
-  <div class="markdown level1 summary"><p>The currently selected date.</p>
+  <a id="Material_Blazor_MBFloatingActionButton_Exited_" data-uid="Material.Blazor.MBFloatingActionButton.Exited*"></a>
+  <h4 id="Material_Blazor_MBFloatingActionButton_Exited" data-uid="Material.Blazor.MBFloatingActionButton.Exited">Exited</h4>
+  <div class="markdown level1 summary"><p>Leading icon if false, otherwise trailine, and only applied to the extended variant.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DateTime CurrentDate { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool Exited { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -167,26 +169,26 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/refs/tags/1.1.0/apiSpec/new?filename=Material_Blazor_Internal_InternalDatePickerDayButton_DateSelectionCriteria.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.InternalDatePickerDayButton.DateSelectionCriteria%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/refs/tags/1.1.0/apiSpec/new?filename=Material_Blazor_MBFloatingActionButton_Icon.md&amp;value=---%0Auid%3A%20Material.Blazor.MBFloatingActionButton.Icon%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/refs/tags/1.1.0/Material.Blazor/Components/DatePicker/InternalDatePickerDayButton.razor.cs/#L41">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/refs/tags/1.1.0/Material.Blazor/Components/FloatingActionButton/MBFloatingActionButton.razor.cs/#L24">View Source</a>
   </span>
-  <a id="Material_Blazor_Internal_InternalDatePickerDayButton_DateSelectionCriteria_" data-uid="Material.Blazor.Internal.InternalDatePickerDayButton.DateSelectionCriteria*"></a>
-  <h4 id="Material_Blazor_Internal_InternalDatePickerDayButton_DateSelectionCriteria" data-uid="Material.Blazor.Internal.InternalDatePickerDayButton.DateSelectionCriteria">DateSelectionCriteria</h4>
-  <div class="markdown level1 summary"><p>Date selection criteria</p>
+  <a id="Material_Blazor_MBFloatingActionButton_Icon_" data-uid="Material.Blazor.MBFloatingActionButton.Icon*"></a>
+  <h4 id="Material_Blazor_MBFloatingActionButton_Icon" data-uid="Material.Blazor.MBFloatingActionButton.Icon">Icon</h4>
+  <div class="markdown level1 summary"><p>The icon's name.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MBDateSelectionCriteria? DateSelectionCriteria { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string Icon { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -198,26 +200,30 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="Material.Blazor.MBDateSelectionCriteria.html">MBDateSelectionCriteria</a>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/refs/tags/1.1.0/apiSpec/new?filename=Material_Blazor_Internal_InternalDatePickerDayButton_DisplayDate.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.InternalDatePickerDayButton.DisplayDate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/refs/tags/1.1.0/apiSpec/new?filename=Material_Blazor_MBFloatingActionButton_IconFoundry.md&amp;value=---%0Auid%3A%20Material.Blazor.MBFloatingActionButton.IconFoundry%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/refs/tags/1.1.0/Material.Blazor/Components/DatePicker/InternalDatePickerDayButton.razor.cs/#L23">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/refs/tags/1.1.0/Material.Blazor/Components/FloatingActionButton/MBFloatingActionButton.razor.cs/#L34">View Source</a>
   </span>
-  <a id="Material_Blazor_Internal_InternalDatePickerDayButton_DisplayDate_" data-uid="Material.Blazor.Internal.InternalDatePickerDayButton.DisplayDate*"></a>
-  <h4 id="Material_Blazor_Internal_InternalDatePickerDayButton_DisplayDate" data-uid="Material.Blazor.Internal.InternalDatePickerDayButton.DisplayDate">DisplayDate</h4>
-  <div class="markdown level1 summary"><p>The date being displayed by this button</p>
+  <a id="Material_Blazor_MBFloatingActionButton_IconFoundry_" data-uid="Material.Blazor.MBFloatingActionButton.IconFoundry*"></a>
+  <h4 id="Material_Blazor_MBFloatingActionButton_IconFoundry" data-uid="Material.Blazor.MBFloatingActionButton.IconFoundry">IconFoundry</h4>
+  <div class="markdown level1 summary"><p>The foundry to use for both leading and trailing icons.</p>
+<p><code>IconFoundry=&quot;IconHelper.MIIcon()&quot;</code></p>
+<p><code>IconFoundry=&quot;IconHelper.FAIcon()&quot;</code></p>
+<p><code>IconFoundry=&quot;IconHelper.OIIcon()&quot;</code></p>
+<p>Overrides <a class="xref" href="Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_IconFoundryName">IconFoundryName</a></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DateTime DisplayDate { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IMBIconFoundry IconFoundry { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -229,26 +235,26 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
+        <td><a class="xref" href="Material.Blazor.IMBIconFoundry.html">IMBIconFoundry</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/refs/tags/1.1.0/apiSpec/new?filename=Material_Blazor_Internal_InternalDatePickerDayButton_MaxDate.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.InternalDatePickerDayButton.MaxDate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/refs/tags/1.1.0/apiSpec/new?filename=Material_Blazor_MBFloatingActionButton_IconTrailsLabel.md&amp;value=---%0Auid%3A%20Material.Blazor.MBFloatingActionButton.IconTrailsLabel%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/refs/tags/1.1.0/Material.Blazor/Components/DatePicker/InternalDatePickerDayButton.razor.cs/#L53">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/refs/tags/1.1.0/Material.Blazor/Components/FloatingActionButton/MBFloatingActionButton.razor.cs/#L52">View Source</a>
   </span>
-  <a id="Material_Blazor_Internal_InternalDatePickerDayButton_MaxDate_" data-uid="Material.Blazor.Internal.InternalDatePickerDayButton.MaxDate*"></a>
-  <h4 id="Material_Blazor_Internal_InternalDatePickerDayButton_MaxDate" data-uid="Material.Blazor.Internal.InternalDatePickerDayButton.MaxDate">MaxDate</h4>
-  <div class="markdown level1 summary"><p>Maximum date set by the consumer</p>
+  <a id="Material_Blazor_MBFloatingActionButton_IconTrailsLabel_" data-uid="Material.Blazor.MBFloatingActionButton.IconTrailsLabel*"></a>
+  <h4 id="Material_Blazor_MBFloatingActionButton_IconTrailsLabel" data-uid="Material.Blazor.MBFloatingActionButton.IconTrailsLabel">IconTrailsLabel</h4>
+  <div class="markdown level1 summary"><p>Leading icon if false, otherwise trailine, and only applied to the extended variant.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DateTime MaxDate { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IconTrailsLabel { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -260,26 +266,26 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/refs/tags/1.1.0/apiSpec/new?filename=Material_Blazor_Internal_InternalDatePickerDayButton_MinDate.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.InternalDatePickerDayButton.MinDate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/refs/tags/1.1.0/apiSpec/new?filename=Material_Blazor_MBFloatingActionButton_Label.md&amp;value=---%0Auid%3A%20Material.Blazor.MBFloatingActionButton.Label%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/refs/tags/1.1.0/Material.Blazor/Components/DatePicker/InternalDatePickerDayButton.razor.cs/#L47">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/refs/tags/1.1.0/Material.Blazor/Components/FloatingActionButton/MBFloatingActionButton.razor.cs/#L46">View Source</a>
   </span>
-  <a id="Material_Blazor_Internal_InternalDatePickerDayButton_MinDate_" data-uid="Material.Blazor.Internal.InternalDatePickerDayButton.MinDate*"></a>
-  <h4 id="Material_Blazor_Internal_InternalDatePickerDayButton_MinDate" data-uid="Material.Blazor.Internal.InternalDatePickerDayButton.MinDate">MinDate</h4>
-  <div class="markdown level1 summary"><p>Minimum date set by the consumer</p>
+  <a id="Material_Blazor_MBFloatingActionButton_Label_" data-uid="Material.Blazor.MBFloatingActionButton.Label*"></a>
+  <h4 id="Material_Blazor_MBFloatingActionButton_Label" data-uid="Material.Blazor.MBFloatingActionButton.Label">Label</h4>
+  <div class="markdown level1 summary"><p>Sets the label, which is ignored for anything other than the extended variant.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DateTime MinDate { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string Label { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -291,26 +297,26 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/refs/tags/1.1.0/apiSpec/new?filename=Material_Blazor_Internal_InternalDatePickerDayButton_OnItemClickAsync.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.InternalDatePickerDayButton.OnItemClickAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/refs/tags/1.1.0/apiSpec/new?filename=Material_Blazor_MBFloatingActionButton_Type.md&amp;value=---%0Auid%3A%20Material.Blazor.MBFloatingActionButton.Type%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/refs/tags/1.1.0/Material.Blazor/Components/DatePicker/InternalDatePickerDayButton.razor.cs/#L35">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/refs/tags/1.1.0/Material.Blazor/Components/FloatingActionButton/MBFloatingActionButton.razor.cs/#L40">View Source</a>
   </span>
-  <a id="Material_Blazor_Internal_InternalDatePickerDayButton_OnItemClickAsync_" data-uid="Material.Blazor.Internal.InternalDatePickerDayButton.OnItemClickAsync*"></a>
-  <h4 id="Material_Blazor_Internal_InternalDatePickerDayButton_OnItemClickAsync" data-uid="Material.Blazor.Internal.InternalDatePickerDayButton.OnItemClickAsync">OnItemClickAsync</h4>
-  <div class="markdown level1 summary"><p>Callback returning the date if the button is clicked</p>
+  <a id="Material_Blazor_MBFloatingActionButton_Type_" data-uid="Material.Blazor.MBFloatingActionButton.Type*"></a>
+  <h4 id="Material_Blazor_MBFloatingActionButton_Type" data-uid="Material.Blazor.MBFloatingActionButton.Type">Type</h4>
+  <div class="markdown level1 summary"><p>Sets the FAB to be regular or the mini or extended variants.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public EventCallback&lt;DateTime&gt; OnItemClickAsync { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public MBFloatingActionButtonType Type { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -322,42 +328,28 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventCallback</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.datetime">DateTime</a>&gt;</td>
+        <td><a class="xref" href="Material.Blazor.MBFloatingActionButtonType.html">MBFloatingActionButtonType</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
+  <h3 id="methods">Methods
+  </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/refs/tags/1.1.0/apiSpec/new?filename=Material_Blazor_Internal_InternalDatePickerDayButton_StartOfDisplayMonth.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.InternalDatePickerDayButton.StartOfDisplayMonth%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/refs/tags/1.1.0/apiSpec/new?filename=Material_Blazor_MBFloatingActionButton_OnInitialized.md&amp;value=---%0Auid%3A%20Material.Blazor.MBFloatingActionButton.OnInitialized%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/refs/tags/1.1.0/Material.Blazor/Components/DatePicker/InternalDatePickerDayButton.razor.cs/#L29">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/refs/tags/1.1.0/Material.Blazor/Components/FloatingActionButton/MBFloatingActionButton.razor.cs/#L82">View Source</a>
   </span>
-  <a id="Material_Blazor_Internal_InternalDatePickerDayButton_StartOfDisplayMonth_" data-uid="Material.Blazor.Internal.InternalDatePickerDayButton.StartOfDisplayMonth*"></a>
-  <h4 id="Material_Blazor_Internal_InternalDatePickerDayButton_StartOfDisplayMonth" data-uid="Material.Blazor.Internal.InternalDatePickerDayButton.StartOfDisplayMonth">StartOfDisplayMonth</h4>
-  <div class="markdown level1 summary"><p>First day of the month being displayed</p>
-</div>
+  <a id="Material_Blazor_MBFloatingActionButton_OnInitialized_" data-uid="Material.Blazor.MBFloatingActionButton.OnInitialized*"></a>
+  <h4 id="Material_Blazor_MBFloatingActionButton_OnInitialized" data-uid="Material.Blazor.MBFloatingActionButton.OnInitialized">OnInitialized()</h4>
+  <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public DateTime StartOfDisplayMonth { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">protected override void OnInitialized()</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
@@ -370,10 +362,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Material-Blazor/Material.Blazor/new/refs/tags/1.1.0/apiSpec/new?filename=Material_Blazor_Internal_InternalDatePickerDayButton.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.InternalDatePickerDayButton%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/new/refs/tags/1.1.0/apiSpec/new?filename=Material_Blazor_MBFloatingActionButton.md&amp;value=---%0Auid%3A%20Material.Blazor.MBFloatingActionButton%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/refs/tags/1.1.0/Material.Blazor/Components/DatePicker/InternalDatePickerDayButton.razor.cs/#L12" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/refs/tags/1.1.0/Material.Blazor/Components/FloatingActionButton/MBFloatingActionButton.razor.cs/#L15" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

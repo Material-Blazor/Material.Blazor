@@ -156,6 +156,14 @@ window.OldMaterialBlazor = {
         __webpack_require__.d(MBDrawer_namespaceObject, "toggle", (function() {
             return toggle;
         }));
+        var MBFloatingActionButton_namespaceObject = {};
+        __webpack_require__.r(MBFloatingActionButton_namespaceObject);
+        __webpack_require__.d(MBFloatingActionButton_namespaceObject, "init", (function() {
+            return MBFloatingActionButton_init;
+        }));
+        __webpack_require__.d(MBFloatingActionButton_namespaceObject, "setExited", (function() {
+            return setExited;
+        }));
         var MBIconButton_namespaceObject = {};
         __webpack_require__.r(MBIconButton_namespaceObject);
         __webpack_require__.d(MBIconButton_namespaceObject, "init", (function() {
@@ -9316,6 +9324,20 @@ PERFORMANCE OF THIS SOFTWARE.
             var drawer = component_MDCDrawer.attachTo(elem);
             drawer.open = isOpen;
         }
+        function MBFloatingActionButton_init(elem, exited) {
+            elem._fab = component_MDCRipple.attachTo(elem);
+            elem._exited = false;
+            setExited(elem, exited);
+        }
+        function setExited(elem, exited) {
+            if (elem) {
+                if (exited != elem._exited) {
+                    elem.classList.add("mdc-fab--exited");
+                } else {
+                    elem.classList.remove("mdc-fab--exited");
+                }
+            }
+        }
         function MBIconButton_init(elem) {
             var iconButtonRipple = component_MDCRipple.attachTo(elem);
             iconButtonRipple.unbounded = true;
@@ -12210,12 +12232,14 @@ PERFORMANCE OF THIS SOFTWARE.
             }
         }
         function setType(elem, value, inputElem, type, formNoValidate) {
-            inputElem.setAttribute("type", type);
-            inputElem.setAttribute("formnovalidate", formNoValidate);
-            elem._textField.value = value;
-            if (formNoValidate) {
-                inputElem.focus();
-                inputElem.select();
+            if (elem && inputElem) {
+                inputElem.setAttribute("type", type);
+                inputElem.setAttribute("formnovalidate", formNoValidate);
+                elem._textField.value = value;
+                if (formNoValidate) {
+                    inputElem.focus();
+                    inputElem.select();
+                }
             }
         }
         /*!
@@ -12737,6 +12761,7 @@ PERFORMANCE OF THIS SOFTWARE.
             MBDatePicker: MBDatePicker_namespaceObject,
             MBDialog: MBDialog_namespaceObject,
             MBDrawer: MBDrawer_namespaceObject,
+            MBFloatingActionButton: MBFloatingActionButton_namespaceObject,
             MBIconButton: MBIconButton_namespaceObject,
             MBIconButtonToggle: MBIconButtonToggle_namespaceObject,
             MBLinearProgress: MBLinearProgress_namespaceObject,
