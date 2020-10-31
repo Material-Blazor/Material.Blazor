@@ -73,17 +73,18 @@
   </ItemGroup>
 
   <Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssetsScripts);@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles);@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent">
-    <Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
+      <Exec Command="echo ***** npm help" />
+    <Exec Command="npm help" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="NpmErrorCode" />
     </Exec>
-    <Exec Command="echo ***** checking for npm installation returns an error code of $(NpmErrorCode) (0 indicates npm is available)" />
+    <Exec Command="echo ***** checking 'npm help' returns an error code of $(NpmErrorCode) (0 indicates npm is available)" />
   </Target>
 
   <Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
-    <Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
+    <Exec Command="npm help" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="NpmErrorCode" />
     </Exec>
-    <Exec Command="echo ***** checking for npm installation returns an error code of $(NpmErrorCode) (0 indicates npm is available)" />
+    <Exec Command="echo ***** 2nd check of 'npm help' returns an error code of $(NpmErrorCode) (0 indicates npm is available)" />
   </Target>
 
   <Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmErrorCode)' == '0' ">

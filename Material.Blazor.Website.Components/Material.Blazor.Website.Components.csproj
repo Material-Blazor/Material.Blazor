@@ -56,6 +56,7 @@
   </ItemGroup>
 
   <Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent">
+    <Exec Command="echo ***** npm help" />
     <Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="NpmErrorCode" />
     </Exec>
