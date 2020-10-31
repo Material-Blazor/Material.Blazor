@@ -73,11 +73,11 @@
   </ItemGroup>
 
   <Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssetsScripts);@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles);@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent">
-      <Exec Command="echo ***** npm help" />
+      <Exec Command="echo ***** npm install" />
     <Exec Command="npm help" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="NpmErrorCode" />
     </Exec>
-    <Exec Command="echo ***** checking 'npm help' returns an error code of $(NpmErrorCode) (0 indicates npm is available)" />
+    <Exec Command="echo ***** checking 'npm install' returns an error code of $(NpmErrorCode) (0 indicates npm is available)" />
   </Target>
 
   <Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
@@ -88,9 +88,6 @@
   </Target>
 
   <Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmErrorCode)' == '0' ">
-    <Exec Command="echo ***** npm install" />
-    <Exec Command="npm install" />
-
     <Exec Command="echo ***** MakeDir wwwroot" />
     <MakeDir Directories="wwwroot" />
 
@@ -111,9 +108,6 @@
   </Target>
 
   <Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmErrorCode)' == '0' ">
-    <Exec Command="echo ***** npm install" />
-    <Exec Command="npm install" />
-
     <Exec Command="echo ***** mkdir wwwroot" />
     <MakeDir Directories="wwwroot" />
 
