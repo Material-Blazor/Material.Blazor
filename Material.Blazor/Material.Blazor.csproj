@@ -70,6 +70,17 @@
     <Exec Command="echo ***** checking 'npm help' returns an error code of $(NpmErrorCode) (0 indicates npm is available)" />
   </Target>
 
+  <Target Name="ErrorOutput" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmErrorCode)' != '0' ">
+    <Exec Command="echo *************************************************************************" />
+    <Exec Command="echo *************************************************************************" />
+    <Exec Command="echo *************************************************************************" />
+    <Exec Command="echo CSS and JS not built due to the lack of a proper installation environment" />
+    <Exec Command="echo See https://material-blazor.com/docs/articles/DevelopmentEnvironment.html" />
+    <Exec Command="echo *************************************************************************" />
+    <Exec Command="echo *************************************************************************" />
+    <Exec Command="echo *************************************************************************" />
+  </Target>
+
   <ItemGroup>
     <InputStaticAssetsScripts Include="**\*.js;**\*.ts" Exclude="wwwroot\**\*;bin\**\*;node_modules\**\*;obj\**\*" />
     <OutputStaticAssetsScripts Include="wwwroot\bundled.min.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js" />
