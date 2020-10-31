@@ -62,32 +62,23 @@
     </None>
   </ItemGroup>
 
+  <Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
+    <Exec Command="echo ***** npm help" />
+    <Exec Command="npm help" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
+      <Output TaskParameter="ExitCode" PropertyName="NpmErrorCode" />
+    </Exec>
+    <Exec Command="echo ***** checking 'npm help' returns an error code of $(NpmErrorCode) (0 indicates npm is available)" />
+  </Target>
+
   <ItemGroup>
     <InputStaticAssetsScripts Include="**\*.js;**\*.ts" Exclude="wwwroot\**\*;bin\**\*;node_modules\**\*;obj\**\*" />
     <OutputStaticAssetsScripts Include="wwwroot\bundled.min.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js" />
   </ItemGroup>
 
-  <ItemGroup>
-    <InputStaticAssetsStyles Include="**\*.scss" Exclude="wwwroot\**\*;node_modules\**\*;obj\**\*;bin\**\*" />
-    <OutputStaticAssetsStyles Include="wwwroot\bundled.min.css;wwwroot\unbundled.min.css;wwwroot\unbundled.css" />
-  </ItemGroup>
-
-  <Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssetsScripts);@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles);@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent">
-      <Exec Command="echo ***** npm install" />
-    <Exec Command="npm help" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
-      <Output TaskParameter="ExitCode" PropertyName="NpmErrorCode" />
-    </Exec>
-    <Exec Command="echo ***** checking 'npm install' returns an error code of $(NpmErrorCode) (0 indicates npm is available)" />
-  </Target>
-
-  <Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
-    <Exec Command="npm help" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
-      <Output TaskParameter="ExitCode" PropertyName="NpmErrorCode" />
-    </Exec>
-    <Exec Command="echo ***** 2nd check of 'npm help' returns an error code of $(NpmErrorCode) (0 indicates npm is available)" />
-  </Target>
-
   <Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmErrorCode)' == '0' ">
+    <Exec Command="echo ***** npm install" />
+    <Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true" />
+
     <Exec Command="echo ***** MakeDir wwwroot" />
     <MakeDir Directories="wwwroot" />
 
@@ -107,7 +98,15 @@
     <Delete Files="wwwroot\materialblazor.js" />
   </Target>
 
+  <ItemGroup>
+    <InputStaticAssetsStyles Include="**\*.scss" Exclude="wwwroot\**\*;node_modules\**\*;obj\**\*;bin\**\*" />
+    <OutputStaticAssetsStyles Include="wwwroot\bundled.min.css;wwwroot\unbundled.min.css;wwwroot\unbundled.css" />
+  </ItemGroup>
+
   <Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmErrorCode)' == '0' ">
+    <Exec Command="echo ***** npm install" />
+    <Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true" />
+
     <Exec Command="echo ***** mkdir wwwroot" />
     <MakeDir Directories="wwwroot" />
 
