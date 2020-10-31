@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <RazorLangVersion>3.0</RazorLangVersion>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionPrefix>1.1.0</VersionPrefix>
     <VersionSuffix></VersionSuffix>
     <PackageLicenseFile></PackageLicenseFile>
     <Authors>Simon Ziegler of Dioptra and Mark Stega of Optimium Health</Authors>
@@ -62,20 +62,33 @@
     </None>
   </ItemGroup>
 
+  <Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
+    <Exec Command="echo ***** npm help" />
+    <Exec Command="npm help" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
+      <Output TaskParameter="ExitCode" PropertyName="NpmErrorCode" />
+    </Exec>
+    <Exec Command="echo ***** checking 'npm help' returns an error code of $(NpmErrorCode) (0 indicates npm is available)" />
+  </Target>
+
+  <Target Name="ErrorOutput" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmErrorCode)' != '0' ">
+    <Exec Command="echo *************************************************************************" />
+    <Exec Command="echo *************************************************************************" />
+    <Exec Command="echo *************************************************************************" />
+    <Exec Command="echo CSS and JS not built due to the lack of a proper installation environment" />
+    <Exec Command="echo See https://material-blazor.com/docs/articles/DevelopmentEnvironment.html" />
+    <Exec Command="echo *************************************************************************" />
+    <Exec Command="echo *************************************************************************" />
+    <Exec Command="echo *************************************************************************" />
+  </Target>
+
   <ItemGroup>
     <InputStaticAssetsScripts Include="**\*.js;**\*.ts" Exclude="wwwroot\**\*;bin\**\*;node_modules\**\*;obj\**\*" />
     <OutputStaticAssetsScripts Include="wwwroot\bundled.min.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js" />
   </ItemGroup>
 
-  <Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent">
-    <Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
-      <Output TaskParameter="ExitCode" PropertyName="NpmErrorCode" />
-    </Exec>
-  </Target>
-
   <Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmErrorCode)' == '0' ">
     <Exec Command="echo ***** npm install" />
-    <Exec Command="npm install" />
+    <Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true" />
 
     <Exec Command="echo ***** MakeDir wwwroot" />
     <MakeDir Directories="wwwroot" />
@@ -103,7 +116,7 @@
 
   <Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmErrorCode)' == '0' ">
     <Exec Command="echo ***** npm install" />
-    <Exec Command="npm install" />
+    <Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true" />
 
     <Exec Command="echo ***** mkdir wwwroot" />
     <MakeDir Directories="wwwroot" />

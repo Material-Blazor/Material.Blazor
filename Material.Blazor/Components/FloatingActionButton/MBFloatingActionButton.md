@@ -2,7 +2,7 @@
 uid: C.MBFloatingActionButton
 title: MBFloatingActionButton
 ---
-# MBIconButton
+# MBFloatingActionButton (FAB)
 
 ## Summary
 
