@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Material.Blazor;
-using Material.Blazor.Website.Components;
+using Material.Blazor.Website;
 
 namespace Material.BlazorWebsite.WebAssembly
 {

@@ -24,7 +24,7 @@
 
 	
 	<ItemGroup>
-	  <ProjectReference Include="..\Material.Blazor.Website.Components\Material.Blazor.Website.Components.csproj" />
+	  <ProjectReference Include="..\Material.Blazor.Website\Material.Blazor.Website.csproj" />
 	</ItemGroup>
 
 	
