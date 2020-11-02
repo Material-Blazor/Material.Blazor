@@ -7,7 +7,7 @@ title: ReleaseNotes
 #### [1.1.1](https://github.com/Material-Blazor/Material.Blazor/tree/1.1.1)
 02 November 2020
 
-- Upgraded build process to produce Material.Blazor with .
+- Upgraded build process to produce Material.Blazor with support for netstandard2.1 and net5.0.
 
 <br />
 
