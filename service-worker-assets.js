@@ -1,6 +1,10 @@
 ﻿self.assetsManifest = {
   "assets": [
     {
+      "hash": "sha256-l16RnLlOS7CD96SIj501LsSDSsxViFiHtdxCgvPrdJI=",
+      "url": "_framework\/package-lock.json"
+    },
+    {
       "hash": "sha256-8ZRc1sGeVrPBx4lD717BgRaQekyh78QKV9SKsdt638U=",
       "url": ".nojekyll"
     },
@@ -9,7 +13,7 @@
       "url": "404.html"
     },
     {
-      "hash": "sha256-K7YZ44jdFWMe9pFO2yvbLrBwzogAy1L3leixtOzFW+Q=",
+      "hash": "sha256-gWiHcGPCCsb+UzcbBabBEpTGkNcdpMwS1aWBOpPCVIU=",
       "url": "index.html"
     },
     {
@@ -46,131 +50,131 @@
     },
     {
       "hash": "sha256-8ZRc1sGeVrPBx4lD717BgRaQekyh78QKV9SKsdt638U=",
-      "url": "_content\/Material.Blazor.Website.Components\/.nojekyll"
+      "url": "_content\/Material.Blazor.Website\/.nojekyll"
     },
     {
       "hash": "sha256-a4UZK+j3b8LLoSXhWVmJD0QKTQlP2A3mt6lNH6+Q1o4=",
-      "url": "_content\/Material.Blazor.Website.Components\/404.html"
+      "url": "_content\/Material.Blazor.Website\/404.html"
     },
     {
       "hash": "sha256-XBPCT+HKZ+lJwbQEW9L\/JdEC4Zv7U2J+qcSJd50VMmk=",
-      "url": "_content\/Material.Blazor.Website.Components\/android-chrome-192x192.png"
+      "url": "_content\/Material.Blazor.Website\/android-chrome-192x192.png"
     },
     {
       "hash": "sha256-YV84EM6RWw2XdB1yaE\/8DGiljJ0+wHxFeWMzthNdMlw=",
-      "url": "_content\/Material.Blazor.Website.Components\/android-chrome-512x512.png"
+      "url": "_content\/Material.Blazor.Website\/android-chrome-512x512.png"
     },
     {
       "hash": "sha256-at09O4nBaQkgAc137bPTVcSyE6S1bnmN3gyfSn4zWmk=",
-      "url": "_content\/Material.Blazor.Website.Components\/apple-touch-icon.png"
+      "url": "_content\/Material.Blazor.Website\/apple-touch-icon.png"
     },
     {
       "hash": "sha256-WeOKCkI7IdJHs2kCqsKgLfiWX4\/sNPbaRUspOLefkCY=",
-      "url": "_content\/Material.Blazor.Website.Components\/background.png"
+      "url": "_content\/Material.Blazor.Website\/background.png"
     },
     {
-      "hash": "sha256-EVZrAgx9VTmVDmbhaaTXgtKgugWqHOiBUsf7ZWTWxcw=",
-      "url": "_content\/Material.Blazor.Website.Components\/css\/asymmetric-theme.min.css"
+      "hash": "sha256-MWQ46l1lvxyBha447rHZRJwI\/paAh9mrwZn4JlgR3kY=",
+      "url": "_content\/Material.Blazor.Website\/css\/asymmetric-theme.min.css"
     },
     {
-      "hash": "sha256-REkPX9kF+qxFzXbx9gCemzRy4l4bhcFFNM9kijT42Og=",
-      "url": "_content\/Material.Blazor.Website.Components\/css\/dark-square-theme.min.css"
+      "hash": "sha256-C6s1qEX9VfF4nZLvDQT4NI+QB72c7Na2Cq32bZ2GzmM=",
+      "url": "_content\/Material.Blazor.Website\/css\/dark-square-theme.min.css"
     },
     {
-      "hash": "sha256-aU4Gzrax5MjJk\/8Oq0nY6452DJyebh\/CLSKHEsIr0m4=",
-      "url": "_content\/Material.Blazor.Website.Components\/css\/light-square-theme.min.css"
+      "hash": "sha256-RQt56G01XWRcDZJAZCumOpZf9+vil8HXUBjb04gCyQg=",
+      "url": "_content\/Material.Blazor.Website\/css\/light-square-theme.min.css"
     },
     {
-      "hash": "sha256-MVtYg1gDLCU49pcJ7YiQ\/APwAKxjC6xSFP8c66kxQZ4=",
-      "url": "_content\/Material.Blazor.Website.Components\/css\/material-default-theme.min.css"
+      "hash": "sha256-uuhf9JaYetRUrAEsAVDOkyFRvec56o8ikLV7a03ZDoU=",
+      "url": "_content\/Material.Blazor.Website\/css\/material-default-theme.min.css"
     },
     {
-      "hash": "sha256-q3bdMmnc9ZbDbwOOYthwHxEh0eYhoFrKhBh2oAZuOVs=",
-      "url": "_content\/Material.Blazor.Website.Components\/css\/rounded-theme.min.css"
+      "hash": "sha256-9xbQjYq2j+BCJu89q+fsRtdK9GhYo9taUP+y08Zrh3M=",
+      "url": "_content\/Material.Blazor.Website\/css\/rounded-theme.min.css"
     },
     {
       "hash": "sha256-uy4mYulZhVVhXKU+6YXTgFrWMMFbNPmaF80ytkP9D8A=",
-      "url": "_content\/Material.Blazor.Website.Components\/favicon-16x16.png"
+      "url": "_content\/Material.Blazor.Website\/favicon-16x16.png"
     },
     {
       "hash": "sha256-jQAdMjJA8WdPz3EeHgbOBK16iERbo0OYRBA6hTD5od0=",
-      "url": "_content\/Material.Blazor.Website.Components\/favicon-32x32.png"
+      "url": "_content\/Material.Blazor.Website\/favicon-32x32.png"
     },
     {
       "hash": "sha256-Pnum7vbQa4g0BMlFPv8bvPAuISsbgYvxZd5z3FZjQjs=",
-      "url": "_content\/Material.Blazor.Website.Components\/favicon.ico"
+      "url": "_content\/Material.Blazor.Website\/favicon.ico"
     },
     {
       "hash": "sha256-IpHFcQvs03lh6W54zoeJRG1jW+VnGmwymzxLoXtKX7Y=",
-      "url": "_content\/Material.Blazor.Website.Components\/favicon.png"
+      "url": "_content\/Material.Blazor.Website\/favicon.png"
     },
     {
       "hash": "sha256-YadVh0\/bYSeL998sGMuZ7R4aEO36uxTl5dCcGPgOZnM=",
-      "url": "_content\/Material.Blazor.Website.Components\/icon-512.png"
+      "url": "_content\/Material.Blazor.Website\/icon-512.png"
     },
     {
       "hash": "sha256-Za9x3LY7GHVpsIMZGfkgYoh2W1JEbtM0UtKdut7uHP4=",
-      "url": "_content\/Material.Blazor.Website.Components\/images\/architecture-book-shelves-books-commercial-eatablishment-244134.jpg"
+      "url": "_content\/Material.Blazor.Website\/images\/architecture-book-shelves-books-commercial-eatablishment-244134.jpg"
     },
     {
       "hash": "sha256-EfzFdxYNWe1cHTqcRLOuDaCIY9enLk\/GR9yCuuMrDWc=",
-      "url": "_content\/Material.Blazor.Website.Components\/images\/book-shelves.jpg"
+      "url": "_content\/Material.Blazor.Website\/images\/book-shelves.jpg"
     },
     {
       "hash": "sha256-QyqbchwpSGt\/VNl+2MPmHG7ALFWAjk7I6ODrtn71gJg=",
-      "url": "_content\/Material.Blazor.Website.Components\/images\/mac.jpg"
+      "url": "_content\/Material.Blazor.Website\/images\/mac.jpg"
     },
     {
       "hash": "sha256-Nu5viCkBGpacimLEYCWsJ4nZ6sbhLbo48Dy8lz1NIJA=",
-      "url": "_content\/Material.Blazor.Website.Components\/images\/notebook-and-pen-beside-red-mug-on-gray-surface-3774057.jpg"
+      "url": "_content\/Material.Blazor.Website\/images\/notebook-and-pen-beside-red-mug-on-gray-surface-3774057.jpg"
     },
     {
       "hash": "sha256-\/9BKa+y8cJZtzX3lX2rzlM3dYHGk95lh3iUUOLbKAOw=",
-      "url": "_content\/Material.Blazor.Website.Components\/images\/person-using-macbook-pro-3804775.jpg"
+      "url": "_content\/Material.Blazor.Website\/images\/person-using-macbook-pro-3804775.jpg"
     },
     {
       "hash": "sha256-56b92PU5N6MhcxOfL+JRixKzirg\/S2hyx0XV2nb152U=",
-      "url": "_content\/Material.Blazor.Website.Components\/images\/person-using-tablet-computer-3740722.jpg"
+      "url": "_content\/Material.Blazor.Website\/images\/person-using-tablet-computer-3740722.jpg"
     },
     {
       "hash": "sha256-9FsnKwRq4gyXrVMQPADlT8YCrdxkKr9EO2xbdDJKlYg=",
-      "url": "_content\/Material.Blazor.Website.Components\/images\/tablet.jpg"
+      "url": "_content\/Material.Blazor.Website\/images\/tablet.jpg"
     },
     {
       "hash": "sha256-w\/5Gidm2qvD0WOVGjPD6GDp20YUCihfK\/rZuFMFCY0E=",
-      "url": "_content\/Material.Blazor.Website.Components\/js\/app.js"
+      "url": "_content\/Material.Blazor.Website\/js\/app.js"
     },
     {
       "hash": "sha256-c3ewTsuVnAuQb2L+dDpVQXr5iDdBpwMTaO25ArxWAus=",
-      "url": "_content\/Material.Blazor.Website.Components\/videos\/coverr-a-girl-finishes-to-work-and-goes-away-7516.jpg"
+      "url": "_content\/Material.Blazor.Website\/videos\/coverr-a-girl-finishes-to-work-and-goes-away-7516.jpg"
     },
     {
       "hash": "sha256-Yme6mhZqipI8Tv6UKrmHK\/jAD+5LU9XRFaXQLWKp3bs=",
-      "url": "_content\/Material.Blazor.Website.Components\/videos\/coverr-a-girl-finishes-to-work-and-goes-away-7516.mp4"
+      "url": "_content\/Material.Blazor.Website\/videos\/coverr-a-girl-finishes-to-work-and-goes-away-7516.mp4"
     },
     {
       "hash": "sha256-BvcL\/IHz6PtBlNp19e7WQn32\/Y3XRmovamqr2nU8QBI=",
-      "url": "_content\/Material.Blazor.Website.Components\/videos\/coverr-a-girl-is-typing-on-the-laptop-and-drinking-coffee-9927.jpg"
+      "url": "_content\/Material.Blazor.Website\/videos\/coverr-a-girl-is-typing-on-the-laptop-and-drinking-coffee-9927.jpg"
     },
     {
       "hash": "sha256-g5dPcE+w9XosjBMZnn\/Oe71zoVVkkOj7PIDEYmGc3BM=",
-      "url": "_content\/Material.Blazor.Website.Components\/videos\/coverr-a-girl-is-typing-on-the-laptop-and-drinking-coffee-9927.mp4"
+      "url": "_content\/Material.Blazor.Website\/videos\/coverr-a-girl-is-typing-on-the-laptop-and-drinking-coffee-9927.mp4"
     },
     {
       "hash": "sha256-HQeCWMbWhd0Ags4fjcEVNSdqOwxItPhaKUH4+vhIk34=",
-      "url": "_content\/Material.Blazor.Website.Components\/videos\/coverr-close-up-of-two-hands-typing-on-a-keyboard-9692.jpg"
+      "url": "_content\/Material.Blazor.Website\/videos\/coverr-close-up-of-two-hands-typing-on-a-keyboard-9692.jpg"
     },
     {
       "hash": "sha256-L4viPeJLCFGryVuKqJraDgXgILhO9N2XiFEAZT9fUbs=",
-      "url": "_content\/Material.Blazor.Website.Components\/videos\/coverr-close-up-of-two-hands-typing-on-a-keyboard-9692.mp4"
+      "url": "_content\/Material.Blazor.Website\/videos\/coverr-close-up-of-two-hands-typing-on-a-keyboard-9692.mp4"
     },
     {
       "hash": "sha256-BnQCtxrOGix3hwf34CwYGdIesrFfSIDu0fnC3\/qp748=",
-      "url": "_content\/Material.Blazor.Website.Components\/videos\/coverr-someone-is-checking-emails-there_s-an-old-globe-on-the-table-0186.jpg"
+      "url": "_content\/Material.Blazor.Website\/videos\/coverr-someone-is-checking-emails-there_s-an-old-globe-on-the-table-0186.jpg"
     },
     {
       "hash": "sha256-VxoaUEKFgOd7P1b6B1HSQFldeFO+FiEFDiee299J2q4=",
-      "url": "_content\/Material.Blazor.Website.Components\/videos\/coverr-someone-is-checking-emails-there_s-an-old-globe-on-the-table-0186.mp4"
+      "url": "_content\/Material.Blazor.Website\/videos\/coverr-someone-is-checking-emails-there_s-an-old-globe-on-the-table-0186.mp4"
     },
     {
       "hash": "sha256-YWAz05rHgf89a6v6Nw3maAYsfwAhA1srabZDuc+Djyk=",
@@ -265,15 +269,15 @@
       "url": "_framework\/System.IO.Pipelines.dll"
     },
     {
-      "hash": "sha256-Y1F\/wPBtiwkLq0smhyh4tIhz0wNF0fjr9nJaHjQIz5Q=",
+      "hash": "sha256-aPMLWdWIr4AoRtJ1WN9ZZ0uJ7pqwwW7XVy5+1QU\/d9M=",
       "url": "_framework\/Material.Blazor.dll"
     },
     {
-      "hash": "sha256-5IHpPlya4GJuoObxxIHv6\/MsuFmllpO\/KAcM3ghtZWw=",
-      "url": "_framework\/Material.Blazor.Website.Components.dll"
+      "hash": "sha256-lzESYdRUqWUHE3Vgl0H+efC2x9KlV2LtJjKJYjtZMWc=",
+      "url": "_framework\/Material.Blazor.Website.dll"
     },
     {
-      "hash": "sha256-rHVcuqjIm5TzEkfUuVGYVb8QNd8JTr+97kiK6W0Htic=",
+      "hash": "sha256-fass1D1qmWKDa+JnM+GWtteaxe6DV3JJkImrKHZu5D0=",
       "url": "_framework\/Material.Blazor.Website.WebAssembly.dll"
     },
     {
@@ -373,7 +377,7 @@
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
-      "hash": "sha256-ei8SfzQ0oW0gjAZ1COqwWRxWbQEbh0v694S8JmnEZ+U=",
+      "hash": "sha256-RMODgmwJ8MerIHIBWdrrP4maV1w9R70nJVfdD4qgUfU=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -381,5 +385,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "07Nt2zB6"
+  "version": "wlIRVLKl"
 };
