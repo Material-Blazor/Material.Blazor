@@ -177,7 +177,7 @@
       "url": "_content\/Material.Blazor.Website\/videos\/coverr-someone-is-checking-emails-there_s-an-old-globe-on-the-table-0186.mp4"
     },
     {
-      "hash": "sha256-YWAz05rHgf89a6v6Nw3maAYsfwAhA1srabZDuc+Djyk=",
+      "hash": "sha256-jUjVgJNIV6Qt4rd8XnxScPZ30rrjq4wMRNoRJdSLkGU=",
       "url": "_content\/Material.Blazor\/bundled.min.css"
     },
     {
@@ -185,11 +185,11 @@
       "url": "_content\/Material.Blazor\/bundled.min.js"
     },
     {
-      "hash": "sha256-GNpaI3tsUyv80W0gtRB6N0yvc+1Pl6szdw0Ig\/CTMTA=",
+      "hash": "sha256-NhuCwvC\/x92\/ZvAKwJKDYJu9PB6RIqFLcSBRRiZpmmc=",
       "url": "_content\/Material.Blazor\/material-components-icons.css"
     },
     {
-      "hash": "sha256-gapAG\/eglOIXJx2zaz\/IuG\/Qe0M1dw5vRDVww9rGqMI=",
+      "hash": "sha256-2X9lzbHBOuBb12bE9S7DEcMQSlVnb08l\/ePtn+RmFwg=",
       "url": "_content\/Material.Blazor\/unbundled.css"
     },
     {
@@ -197,7 +197,7 @@
       "url": "_content\/Material.Blazor\/unbundled.js"
     },
     {
-      "hash": "sha256-kCKfPNAUigoZbkitiZB5oh5B+GrkrMfxmgBvN8vuAQE=",
+      "hash": "sha256-3Dx8HFEbUEhPHhPjvM0OMR\/XFQI34Oha1oIpZ3bvbm8=",
       "url": "_content\/Material.Blazor\/unbundled.min.css"
     },
     {
@@ -269,15 +269,15 @@
       "url": "_framework\/System.IO.Pipelines.dll"
     },
     {
-      "hash": "sha256-aPMLWdWIr4AoRtJ1WN9ZZ0uJ7pqwwW7XVy5+1QU\/d9M=",
+      "hash": "sha256-JUOriKqMrrL2DT2MEeFEINvAOeFgLIutlDaXldt3bKE=",
       "url": "_framework\/Material.Blazor.dll"
     },
     {
-      "hash": "sha256-lzESYdRUqWUHE3Vgl0H+efC2x9KlV2LtJjKJYjtZMWc=",
+      "hash": "sha256-Hms0xbI7RhjkiJk5vICAkcnJenlzgrh+AMia9jir\/3s=",
       "url": "_framework\/Material.Blazor.Website.dll"
     },
     {
-      "hash": "sha256-fass1D1qmWKDa+JnM+GWtteaxe6DV3JJkImrKHZu5D0=",
+      "hash": "sha256-58x86AvbHeiXHsoJgwMfhnGvmSPM\/uLQcfIeHxYXb98=",
       "url": "_framework\/Material.Blazor.Website.WebAssembly.dll"
     },
     {
@@ -377,7 +377,7 @@
       "url": "_framework\/System.Private.CoreLib.dll"
     },
     {
-      "hash": "sha256-RMODgmwJ8MerIHIBWdrrP4maV1w9R70nJVfdD4qgUfU=",
+      "hash": "sha256-8qHVnQQVsjfKQ7+ITWu16g6Bi0cE4h2PDZJBGAQ+vxc=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -385,5 +385,5 @@
       "url": "_framework\/blazor.webassembly.js"
     }
   ],
-  "version": "wlIRVLKl"
+  "version": "2rXm7Lbz"
 };
