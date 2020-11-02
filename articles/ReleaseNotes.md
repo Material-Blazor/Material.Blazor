@@ -4,6 +4,14 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [1.1.1](https://github.com/Material-Blazor/Material.Blazor/tree/1.1.1)
+02 November 2020
+
+- Upgraded build process to produce Material.Blazor with .
+
+<br />
+
+
 #### [1.1.0](https://github.com/Material-Blazor/Material.Blazor/tree/1.1.0)
 31 October 2020
 

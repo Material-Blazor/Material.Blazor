@@ -103,7 +103,7 @@ jobs:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
-    - name: Build 🔧
+    - name: Build Website 🔧
       run: dotnet build --configuration ${env:buildConfiguration} -p:InformationalVersion=${env:Version} ${env:projectWeb}
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
@@ -116,6 +116,15 @@ jobs:
       with:
         name: siteWeb
         path: siteWeb
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
+
+############################################################################################################
+# The website build optimizes the build and skips build the netstandard2.1 output for M.B
+# We build M.B again and this creates both outputs
+############################################################################################################
+
+    - name: Build Material.Blazor 🔧
+      run: dotnet build --configuration ${env:buildConfiguration} -p:InformationalVersion=${env:Version} ${env:projectMB}
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Generate NuGet package 🔧

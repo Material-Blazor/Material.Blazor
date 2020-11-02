@@ -31,7 +31,7 @@ jobs:
     steps:
 
     - name: Set ciSuffix as env variable
-      run: echo "ciSuffix=CI.$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
+      run: echo "ciSuffix=ci.$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
       shell: bash
 
     - name: Echo ciSuffix
@@ -92,7 +92,7 @@ jobs:
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
-    - name: Build 🔧
+    - name: Build Website 🔧
       run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectWeb}
 
     - name: Publish Website 🔧
@@ -104,6 +104,14 @@ jobs:
         name: siteWeb
         path: siteWeb
       if: (github.repository != 'Material-Blazor/Material.Blazor')
+
+############################################################################################################
+# The website build optimizes the build and skips build the netstandard2.1 output for M.B
+# We build M.B again and this creates both outputs
+############################################################################################################
+
+    - name: Build Material.Blazor 🔧
+      run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectMB}
 
     - name: Generate NuGet package 🔧
       run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:projectMB}
