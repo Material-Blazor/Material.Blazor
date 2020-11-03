@@ -82,15 +82,15 @@ jobs:
     - name: Create documentation 🔧
       run: .\docfx\docfx docfx.json
       env:
-        DOCFX_SOURCE_BRANCH_NAME: ${{steps.get_branch.outputs.branch}}
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
+        DOCFX_SOURCE_BRANCH_NAME: main
+      if: (github.repository != 'Material-Blazor/Material.Blazor') && contains(github.ref, 'refs/heads')
 
-    - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'site'.
+    - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'siteDocFx'.
       uses: actions/upload-artifact@v1
       with:
         name: siteDocFx
         path: siteDocFx
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
+      if: (github.repository != 'Material-Blazor/Material.Blazor') && contains(github.ref, 'refs/heads')
 
 
     - name: Build Website 🔧
@@ -146,30 +146,30 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
+      if: (github.repository != 'Material-Blazor/Material.Blazor') && contains(github.ref, 'refs/heads')
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v1
       with:
         name: siteDocFx
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
+      if: (github.repository != 'Material-Blazor/Material.Blazor') && contains(github.ref, 'refs/heads')
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v1
       with:
         name: siteWeb
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
+      if: (github.repository != 'Material-Blazor/Material.Blazor') && contains(github.ref, 'refs/heads')
 
     - name: Configure deployment directory structure Ꙫ
       run: mv siteWeb/wwwroot deployroot; mv siteDocFx deployroot/docs
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
+      if: (github.repository != 'Material-Blazor/Material.Blazor') && contains(github.ref, 'refs/heads')
 
     - name: Base Href Rewrite 👉
       uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       with:
         html_path: 'deployroot/index.html'
         base_href: '/Material.Blazor/'
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
+      if: (github.repository != 'Material-Blazor/Material.Blazor') && contains(github.ref, 'refs/heads')
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
@@ -177,4 +177,4 @@ jobs:
         ACCESS_TOKEN: ${{secrets.GH_PAT}}
         BRANCH: gh-pages
         FOLDER: 'deployroot'
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
+      if: (github.repository != 'Material-Blazor/Material.Blazor') && contains(github.ref, 'refs/heads')
