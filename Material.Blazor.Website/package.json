@@ -1,7 +1,7 @@
 {
-  "name": "material.blazor.website.components",
+  "name": "material.blazor.website",
   "version": "0.0.0",
-  "description": "NPM build steps for Material.Blazor.Website.Components",
+  "description": "NPM build steps for Material.Blazor.Website",
   "scripts": {
     "build-material-default": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/material-default-theme.scss wwwroot/css/material-default-theme.css",
     "build-min-material-default": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/material-default-theme.scss wwwroot/css/material-default-theme.min.css",
