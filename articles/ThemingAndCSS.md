@@ -19,7 +19,7 @@ There are two ways to do theming that you can read about at [material.io](https:
 - CSS variables are very simple to use, e.g. setting `--mdc-theme-primary` for the primary color. While the simplicity is great, we found the result a bit inadequate. This is because Material Theme is supported by comples SASS, and these CSS helper variables can only make best effort to achieve something similar. For instance if you set the primary color with CSS, text field labels don't change color accordingly.
 - SASS mixins are harder to use, but give a fantastic result - this is what we did on the website. You need familiarity with node, SASS compilation with [Dart Sass](https://sass-lang.com/dart-sass) ([LibSass](https://sass-lang.com/libsass) won't work because it doesn't support the `@use` statement) and how to use Dart Sass from MS Build. Fortunately we managed to work some of this out for the website and you can copy what we did:
 - Look at these files to understand the build process:
-	- [Material.Blazor.Website.Components.csproj](https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website/Material.Blazor.Website.csproj)
+	- [Material.Blazor.Website.csproj](https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website/Material.Blazor.Website.csproj)
 	- [package.json](https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website/package.json)
 
 ## CSS Color Helpers
