@@ -7,7 +7,7 @@
   "theme_color": "#03173d",
   "icons": [
     {
-      "src": "_content/Material.Blazor.Website.Components/icon-512.png",
+      "src": "_content/Material.Blazor.Website/icon-512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
