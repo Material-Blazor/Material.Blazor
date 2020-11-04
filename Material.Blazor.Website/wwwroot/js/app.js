@@ -7,7 +7,7 @@
                 extension = ".min.css";
             }
 
-            document.getElementById("app-style").setAttribute("href", "_content/Material.Blazor.Website.Components/css/" + sheetName + extension);
+            document.getElementById("app-style").setAttribute("href", "_content/Material.Blazor.Website/css/" + sheetName + extension);
         }
     },
 
@@ -28,8 +28,8 @@
         let selectedName = fileNames[Math.floor(Math.random() * fileNames.length)];
 
         let elem = document.querySelector(".splash-background-video");
-        elem.poster = "_content/Material.Blazor.Website.Components/videos/" + selectedName + ".jpg";
-        elem.innerHTML = "<source src='_content/Material.Blazor.Website.Components/videos/" + selectedName + ".mp4' type='video/mp4'>"
+        elem.poster = "_content/Material.Blazor.Website/videos/" + selectedName + ".jpg";
+        elem.innerHTML = "<source src='_content/Material.Blazor.Website/videos/" + selectedName + ".mp4' type='video/mp4'>"
 
         let linearProgress = document.querySelector('.splash-linear-progress');
         MaterialBlazor.MBLinearProgress.init(linearProgress, 0, 0);
