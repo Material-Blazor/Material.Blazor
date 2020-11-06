@@ -4,6 +4,14 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [1.1.4](https://github.com/Material-Blazor/Material.Blazor/tree/1.1.4)
+06 November 2020
+
+- Repaired Release build.
+
+<br />
+
+
 #### [1.1.3](https://github.com/Material-Blazor/Material.Blazor/tree/1.1.3)
 06 November 2020
 
