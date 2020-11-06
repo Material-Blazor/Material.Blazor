@@ -4,6 +4,22 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [1.1.3](https://github.com/Material-Blazor/Material.Blazor/tree/1.1.3)
+06 November 2020
+
+- Removed dual runtimes due to an error in DocFx.
+
+<br />
+
+
+#### [1.1.2](https://github.com/Material-Blazor/Material.Blazor/tree/1.1.2)
+02 November 2020
+
+- Upgraded build process for DocFx
+
+<br />
+
+
 #### [1.1.1](https://github.com/Material-Blazor/Material.Blazor/tree/1.1.1)
 02 November 2020
 
