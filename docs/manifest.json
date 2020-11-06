@@ -28,600 +28,480 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Anchor/MBAnchor.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/Anchor/MBAnchor.html",
-          "hash": "BwYU3bU14pb41AOHFE8zNw=="
+          "hash": "zU56S8jZNZYZFCpTEI1MOQ=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/AnimatedNavigation/MBAnimatedNavigation.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/AnimatedNavigation/MBAnimatedNavigation.html",
-          "hash": "pJFos6XKwPqjgyudXDT0KA=="
+          "hash": "9+U1z+Rr5bpxCoL7d86NiA=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/AutocompleteTextField/MBAutoCompleteTextField.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/AutocompleteTextField/MBAutoCompleteTextField.html",
-          "hash": "abno53lnQBptrqBxrA+BlQ=="
+          "hash": "x3DxPhyioZ5ty34u4je9dg=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Button/MBButton.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/Button/MBButton.html",
-          "hash": "WVxadfdDGTjnhISKWgV1Ew=="
+          "hash": "qz3XROykcJAGtNYlAA8CFg=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Card/MBCard.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/Card/MBCard.html",
-          "hash": "ROHTxXCV2M7zS/mmNhMqdA=="
+          "hash": "dyLdcIhoJ0h5URE3qz4bWA=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Checkbox/MBCheckbox.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/Checkbox/MBCheckbox.html",
-          "hash": "m/Q8yZzpvOBY7MaU5giLQg=="
+          "hash": "7iM+qBpGVcw+fSmgddAi1w=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/CircularProgress/MBCircularProgress.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/CircularProgress/MBCircularProgress.html",
-          "hash": "efkP6aWyHG9LWhzmZPjPPg=="
+          "hash": "NrVIf8JMJZ1jzNWtb+HUBA=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/ConfirmationDialog/MBConfirmationDialog.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/ConfirmationDialog/MBConfirmationDialog.html",
-          "hash": "eoweUZ9hFAPkKjQtJsvv/w=="
+          "hash": "EJMfZNFZxtbAtmbzZ53EvQ=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/DataTable/MBDataTable.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/DataTable/MBDataTable.html",
-          "hash": "MoPQvzkNckNGNHOdX2gvPg=="
+          "hash": "EEcCmjVUKhpVDtTXTiZOyw=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/DatePicker/MBDatePicker.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/DatePicker/MBDatePicker.html",
-          "hash": "d5ahLHeQ1dN0bku/yM4URA=="
+          "hash": "N8xQKz74muuS6Ye4D51/DQ=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/DebouncedTextField/MBDebouncedTextField.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/DebouncedTextField/MBDebouncedTextField.html",
-          "hash": "EZzN1uTtk8KMfIHXo8Mydg=="
+          "hash": "8f6lSMIx64ZmSrnIkc/gLw=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Dialog/MBDialog.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/Dialog/MBDialog.html",
-          "hash": "+yWGJ/RtWGSeAwWiq5YS4g=="
+          "hash": "jOGG/kYpM1SJe2ZW18JsYA=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Divider/MBDivider.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/Divider/MBDivider.html",
-          "hash": "31oO2HoWq3sIobIEgGSB0w=="
+          "hash": "7gVSxyEEr+/KLZ70mtvXYw=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Drawer/MBDrawer.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/Drawer/MBDrawer.html",
-          "hash": "4fY/smz3LYF4BBBJeiXb+A=="
+          "hash": "IVGhs5huejHfoB1gXaPImQ=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/FloatingActionButton/MBFloatingActionButton.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/FloatingActionButton/MBFloatingActionButton.html",
-          "hash": "igM060xvGMO1MRSClzsLQg=="
+          "hash": "lkXcOJ7DmUUfkhzq+1nzwg=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Icon/MBIcon.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/Icon/MBIcon.html",
-          "hash": "zGqpC3Uxjaez3Oz6JTMB+A=="
+          "hash": "DetZ+bIrUsBMCV4kHK26Yg=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/IconButton/MBIconButton.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/IconButton/MBIconButton.html",
-          "hash": "1+jqdA2dqyDB5gjr45f09A=="
+          "hash": "R+AUmFq5uOkklwj6I0/fPg=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/IconButtonToggle/MBIconButtonToggle.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/IconButtonToggle/MBIconButtonToggle.html",
-          "hash": "Ex0qaKVCX0gONtBmTZk4og=="
+          "hash": "t0JyMK4oajfy5nUT5WAN9g=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/LinearProgress/MBLinearProgress.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/LinearProgress/MBLinearProgress.html",
-          "hash": "lcaZxtXmC5mllc5RFErGsw=="
+          "hash": "NEOuHvTzM2mh+McR/V/eEg=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/List/MBList.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/List/MBList.html",
-          "hash": "oHLBPSEwQ3G23fU2jr1doQ=="
+          "hash": "bnuEmzGWi0ku3Lt6b3qpaQ=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/ListDivider/MBListDivider.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/ListDivider/MBListDivider.html",
-          "hash": "aocoTaeLlAD+VJuxhodn1A=="
+          "hash": "NO8QSEokVYCqEtkarjVNuw=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/ListItem/MBListItem.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/ListItem/MBListItem.html",
-          "hash": "y6GfO1lR1SAS/wfbJ9nbPQ=="
+          "hash": "YDe8I0aiYChtMToyqukwaw=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Menu/MBMenu.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/Menu/MBMenu.html",
-          "hash": "AM4Ajjp2bn9YsWxCnnDSyg=="
+          "hash": "wHvHdBXJUo53O3sinZPjmw=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/MenuSelectionGroup/MBMenuSelectionGroup.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/MenuSelectionGroup/MBMenuSelectionGroup.html",
-          "hash": "NqSrO+mPo+HEiQ18QIZUlA=="
+          "hash": "HL+LhOtsWPy4LGOJc8KrSw=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/NumericDoubleField/MBNumericDoubleField.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/NumericDoubleField/MBNumericDoubleField.html",
-          "hash": "SlFZrLn8uJn2UOVGvtUg8Q=="
+          "hash": "DsEJADvObITPrRtACNFiwg=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/NumericIntField/MBNumericIntField.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/NumericIntField/MBNumericIntField.html",
-          "hash": "dMxKsHytnuufSU/PdFP60Q=="
+          "hash": "CsKHUr9aaaA4weGUM2cmEw=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/PagedDataList/MBPagedDataList.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/PagedDataList/MBPagedDataList.html",
-          "hash": "GdptHHOlczY9k37U6x/kfg=="
+          "hash": "BUAw4h0NallbxGHNuzberQ=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Paginator/MBPaginator.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/Paginator/MBPaginator.html",
-          "hash": "EYxeISq1dh8njNfUfA0zzw=="
+          "hash": "akqN+uI5UzlWd6zOKVEWsg=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/RadioButton/MBRadioButton.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/RadioButton/MBRadioButton.html",
-          "hash": "102zyx3QtTI0cD+YiD5eVw=="
+          "hash": "uHUECsMCjusIhrWXTSx07Q=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/RadioButtonGroup/MBRadioButtonGroup.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/RadioButtonGroup/MBRadioButtonGroup.html",
-          "hash": "ivoXi0ahM0UYAe/Pzg1NUg=="
+          "hash": "Z4Y3FF9jNiG6CBVTq87cEg=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Select/MBSelect.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/Select/MBSelect.html",
-          "hash": "3AsPrrfbCzQKbLfPMTv0zA=="
+          "hash": "itJ/gqYF+rkSI7dlai3drA=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Shield/MBShield.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/Shield/MBShield.html",
-          "hash": "6RwIJkexzjMNuykXF2vJRw=="
+          "hash": "W1R2cedKtxjbG+gsHcHOGA=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/SlidingContent/MBSlidingContent.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/SlidingContent/MBSlidingContent.html",
-          "hash": "pVxfnXbyHKGpTvOLY1ZUzg=="
+          "hash": "8r/Gvg7VbS/DUsku64d/3g=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/SlidingTabBar/MBSlidingTabBar.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/SlidingTabBar/MBSlidingTabBar.html",
-          "hash": "P6mse8AQb3cRQmX5O63w/w=="
+          "hash": "iUUzmSQ+CY/pTIy1650ktg=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Switch/MBSwitch.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/Switch/MBSwitch.html",
-          "hash": "T7ttU5RQm+eFw9Iz+DD2xA=="
+          "hash": "OCt1t/rV8vkTbgYr8WKy1w=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/TabBar/MBTabBar.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/TabBar/MBTabBar.html",
-          "hash": "kxiYARQ6Ew9mycVLlY9G/w=="
+          "hash": "66j66aGXwpU5+Qit8MV+4g=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/TextArea/MBTextArea.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/TextArea/MBTextArea.html",
-          "hash": "XImEqXw7Rnx0mkdTF2GXeQ=="
+          "hash": "CY8VeldIL+0/tDaWH/M1Bg=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/TextField/MBTextField.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/TextField/MBTextField.html",
-          "hash": "h3RQX9hFmJ9cmS0b0pdN2g=="
+          "hash": "1ITZKZZB5ZiMhxxmYiB5Mg=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Tooltip/MBTooltip.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/Tooltip/MBTooltip.html",
-          "hash": "lmiNbild9JhjVWHCJrzguQ=="
+          "hash": "/qXatSoLxtbpJK9gqlsKJw=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/TopAppBar/MBTopAppBar.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/TopAppBar/MBTopAppBar.html",
-          "hash": "MKJ9DArer11VRsU26a/s8w=="
+          "hash": "eOHORS+MFo8Z6cey1aNImA=="
         }
       },
       "is_incremental": false,
@@ -640,90 +520,72 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Toc",
       "source_relative_path": "Material.Blazor/Components/toc.yml",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/toc.html",
-          "hash": "5PoGsSCIA1qSzlJrUzXs6g=="
+          "hash": "JktMtuC2V8zyg59/1ZSC2g=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Model/AnimatedNavigation/IMBAnimatedNavigationManager.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Model/AnimatedNavigation/IMBAnimatedNavigationManager.html",
-          "hash": "SwdtWoGM0hgtWpBdiw7Gnw=="
+          "hash": "/eqPQilqCJ39ZQN6lJ0HgQ=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Model/Icon/MBIconHelper.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Model/Icon/MBIconHelper.html",
-          "hash": "HDh19NhvMecn/MniwErZ5Q=="
+          "hash": "vBgv0qQc7ft3yVw0N2StIA=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Model/MBCascadingDefaults.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Model/MBCascadingDefaults.html",
-          "hash": "Kr+1AwAeoFz4uMseoV2ilg=="
+          "hash": "aYfwJwFyypBtmdDgLyBQvg=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Model/Toast/IMBToastService.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Model/Toast/IMBToastService.html",
-          "hash": "lnCPLYmDOUNZqYfoKwdILg=="
+          "hash": "jYv00/nnrHdWTbBmxfzEww=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Model/Tooltip/IMBTooltipService.md",
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Model/Tooltip/IMBTooltipService.html",
-          "hash": "g3G0E2YSdWR8nFg0ESKEow=="
+          "hash": "wYk+aythqEkOUpdVqP6asQ=="
         }
       },
       "is_incremental": false,
@@ -742,6 +604,1122 @@
       "version": ""
     },
     {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.IMBAnimatedNavigationManager.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.IMBAnimatedNavigationManager.html",
+          "hash": "goOvK1EItnt8iqfYYdv6LQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.IMBIcon.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.IMBIcon.html",
+          "hash": "2boi299GjsBi2/wDT8enDA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.IMBIconFoundry.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.IMBIconFoundry.html",
+          "hash": "1hTx4Rom1HPaNYrzhY33PA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.IMBToastService.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.IMBToastService.html",
+          "hash": "T+jzazoEMVG6qpLfp10Z/g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.ClassAndStyleMapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.Internal.ClassAndStyleMapper.html",
+          "hash": "Fr08BjswA5cN791u8hU2fA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.ClassAndStyleMapperExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.Internal.ClassAndStyleMapperExtensions.html",
+          "hash": "stEMMBKc86D0rbCravmvww=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.ClassMapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.Internal.ClassMapper.html",
+          "hash": "AnseajDT3eDuVUlhZvVWnQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.ComponentFoundation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.Internal.ComponentFoundation.html",
+          "hash": "+7azsmKqAn4BjjDO4nKR/Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.ComponentFoundationExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.Internal.ComponentFoundationExtensions.html",
+          "hash": "L5Pv9Idk6A1PEzh/USHFxg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.InputComponentFoundation-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.Internal.InputComponentFoundation-1.html",
+          "hash": "o54ws98gbQfeu48FhaWaRg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.InternalDatePickerDayButton.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.Internal.InternalDatePickerDayButton.html",
+          "hash": "a/EhtlPpfk7vH/BH2LXILw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.InternalDatePickerPanel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.Internal.InternalDatePickerPanel.html",
+          "hash": "KpLTq9CxyNhWR3ravmijcQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.InternalDatePickerYearButton.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.Internal.InternalDatePickerYearButton.html",
+          "hash": "otaPwJP5iD/PpxlVTQBl6A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.InternalToastAnchor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.Internal.InternalToastAnchor.html",
+          "hash": "uc81f/Pnxv/ME/cRfXSnJg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.InternalTooltipAnchor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.Internal.InternalTooltipAnchor.html",
+          "hash": "l46wfPv2Q5hqhJbmhn3vng=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.StyleMapper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.Internal.StyleMapper.html",
+          "hash": "wfpL0zvawSbBMXqXxCRAWA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.ValidatingInputComponentFoundation-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.Internal.ValidatingInputComponentFoundation-1.html",
+          "hash": "obpE99wowcgQawZ3ADZ7hg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.Internal.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.Internal.html",
+          "hash": "2G/r6sMCHgvVViNj5WILvA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBAnimatedNavigation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBAnimatedNavigation.html",
+          "hash": "Jj4HVYuRfVlKVEvcpBBOvg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.html",
+          "hash": "Lr4QrTYXoUh3HCTUovvYEA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBAutocompleteTextField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBAutocompleteTextField.html",
+          "hash": "UN9CyIDSWlGQeBLBD+nXVA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBButton.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBButton.html",
+          "hash": "VCQg968mbUI83HRwois+Yg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBButtonStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBButtonStyle.html",
+          "hash": "WtgjMiolpZ3lEBbhU6sYbw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBCard.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBCard.html",
+          "hash": "Oj/g5jubbdcpFOKOEZo5cg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBCardStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBCardStyle.html",
+          "hash": "Alk3G61d0uor8Hg3SDtfJw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBCascadingDefaults.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBCascadingDefaults.html",
+          "hash": "u96KJ45S1AYTqHg4LpvwUg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBCheckbox.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBCheckbox.html",
+          "hash": "DkI9UvTEJfpbgXkU0F52dQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBCircularProgress.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBCircularProgress.html",
+          "hash": "FDv2h7axLWasEDkGX99iiA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBCircularProgressSize.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBCircularProgressSize.html",
+          "hash": "i1SeTu4iAhBEizXGG7FE0g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBCircularProgressType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBCircularProgressType.html",
+          "hash": "CFZ99i/B31PGPmTe08G7ZQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBConfirmationDialog.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBConfirmationDialog.html",
+          "hash": "3KYHL/1fiJ0cUlML22bGCA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBDataTable-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBDataTable-1.html",
+          "hash": "x+4WJo8MP/6xbU+JQoi6sQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBDatePicker.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBDatePicker.html",
+          "hash": "MzzT2P9zMrxFMlJ3I9J23A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBDateSelectionCriteria.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBDateSelectionCriteria.html",
+          "hash": "MfhYYtLCnHoDjcTJlBxN/w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBDebouncedTextField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBDebouncedTextField.html",
+          "hash": "xEGmw81nPqFU32RQXGH8nw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBDensity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBDensity.html",
+          "hash": "4dBKaTo8IB6OLU3eN14CkA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBDialog.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBDialog.html",
+          "hash": "wEMJgn83OtMGQa2nfjZ6uA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBDivider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBDivider.html",
+          "hash": "qxsoyMsTwTMvgFR5omFnGQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBDrawer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBDrawer.html",
+          "hash": "o+sQAcXdnpUkUjptOHrm9A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBFloatingActionButton.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBFloatingActionButton.html",
+          "hash": "kN3p6UawsoM2B9hPzbrX+Q=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBFloatingActionButtonType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBFloatingActionButtonType.html",
+          "hash": "7BIb8vQ//KHl/JFPIATRJQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBIcon.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBIcon.html",
+          "hash": "P9eEh61BrJE+WtbztHLbqA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBIconButton.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBIconButton.html",
+          "hash": "ZoAXKF/rCFn6tNRV7yfcZw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBIconButtonToggle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBIconButtonToggle.html",
+          "hash": "fGkKft1CGIAJDLuwJ0H8lA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBIconFARelativeSize.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBIconFARelativeSize.html",
+          "hash": "fRwIMYDBL38Gsh7IfFhCXQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBIconFAStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBIconFAStyle.html",
+          "hash": "yGEltYyj2zoI5TfqYIQ0Cg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBIconFoundryName.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBIconFoundryName.html",
+          "hash": "Hx0ArEB4HwE/cS9NbqlIbQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBIconHelper.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBIconHelper.html",
+          "hash": "jSangCRtMFAdPP/exX4JJQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBIconMITheme.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBIconMITheme.html",
+          "hash": "PrEtEdZBxDF3WHK4/CAb2g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBItemValidation.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBItemValidation.html",
+          "hash": "4/S4rzINOoCH5jhnufAUQQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBLinearProgress.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBLinearProgress.html",
+          "hash": "h5f+QuMwYqa2Gklzt1xOVg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBLinearProgressType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBLinearProgressType.html",
+          "hash": "8mjaHgTTfVvT8QFS6C5g3A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBList-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBList-1.html",
+          "hash": "RobJ32jr0kp6r1MQDzIUgQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBListDivider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBListDivider.html",
+          "hash": "U5SW64zq3Ahr1i0U/UPy3g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBListElement-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBListElement-1.html",
+          "hash": "g5uXoTnkg4NRlas5oNBYng=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBListItem.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBListItem.html",
+          "hash": "DuVVCMoakv0vAp8ysVO12A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBListStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBListStyle.html",
+          "hash": "pg0SJokDjSKD3tkOkCcrlA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBListType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBListType.html",
+          "hash": "FRplKO18LaC60yu7iYfjWA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBMenu.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBMenu.html",
+          "hash": "xMaoe4rKuhpifFJjApPSfA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBMenuSelectionGroup.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBMenuSelectionGroup.html",
+          "hash": "ICuK3w21fZUba0/apOjpDA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBNumericDoubleField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBNumericDoubleField.html",
+          "hash": "OAaRVOvqlKgOPc6IZpBtlg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBNumericInputMagnitude.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBNumericInputMagnitude.html",
+          "hash": "jTTlLiRVZfFRPbfn9JVJvw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBNumericIntField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBNumericIntField.html",
+          "hash": "FGoQxmmIapFOcwOTOonb9g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBPagedDataList-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBPagedDataList-1.html",
+          "hash": "RuoRyJXeI4MN8asXnmuvxg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBPaginator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBPaginator.html",
+          "hash": "STFNHFMIAF79tTbNgzBF7A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBRadioButton-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBRadioButton-1.html",
+          "hash": "KisTSwRqqTc69gJO2sfpWg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBRadioButtonGroup-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBRadioButtonGroup-1.html",
+          "hash": "pURbx6y2Tcg2hu6nySjICg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBSelect-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBSelect-1.html",
+          "hash": "n/mS2+3pi7B1d5SiFpp+VA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBSelectInputStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBSelectInputStyle.html",
+          "hash": "8mx0EfnGRTqMJdV9dcqyZw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBShield.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBShield.html",
+          "hash": "ThP45Cf+EoJb7rtNjYVTLg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBShieldType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBShieldType.html",
+          "hash": "VejxtV8UqtGMn/EvVvFYUA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBSlidingContent-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBSlidingContent-1.html",
+          "hash": "zI31ZQI3j76L2kPbG4Z1nA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBSlidingTabBar-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBSlidingTabBar-1.html",
+          "hash": "oQNJuHumS+EIwDP5WwbdWQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBSwitch.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBSwitch.html",
+          "hash": "EGOZI7A2wwOKSpz/ioakLA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBTabBar-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBTabBar-1.html",
+          "hash": "GmM91we/Do7+Eop75ZFbrg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBTextAlignStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBTextAlignStyle.html",
+          "hash": "tuK7QmxJbYohU2R3ZfObJQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBTextArea.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBTextArea.html",
+          "hash": "WB9aONcZD38j1SCQOzL3Jg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBTextField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBTextField.html",
+          "hash": "Pp+UUy8pTjpLgMpPIZtiug=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBTextInputStyle.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBTextInputStyle.html",
+          "hash": "aDOv874BqOJM5XoIsu/QtQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBToastAnchor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBToastAnchor.html",
+          "hash": "x9DeQT7UDlCtCj7hEM46aA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBToastCloseMethod.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBToastCloseMethod.html",
+          "hash": "HHqaCzIsLF/Rnj6k3ALTqw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBToastLevel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBToastLevel.html",
+          "hash": "s5evFGo8c1b3cDRsGqHqQw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBToastPosition.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBToastPosition.html",
+          "hash": "S+G9JAoTTW+Xxb6RA/r5bw=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBToastServiceConfiguration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBToastServiceConfiguration.html",
+          "hash": "bw0tIpV4bxZaELH6ZUNI2g=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBToastSettings.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBToastSettings.html",
+          "hash": "/niPXZBTYfik701+z/R0Ow=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBTooltip.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBTooltip.html",
+          "hash": "6OQiDSQQ6m32Ejkxo1laBQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBTooltipType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBTooltipType.html",
+          "hash": "G4RXagluTHLVR1c7wSNpwA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBTopAppBar.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBTopAppBar.html",
+          "hash": "h1oB2NDSB8PgmZ0tgWfKzA=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBTopAppBarType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBTopAppBarType.html",
+          "hash": "2TZTfjKFn/Uc80jN/OcQrg=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBVersion.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBVersion.html",
+          "hash": "6VAbCx8kYC5r7pVSE+dg6w=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.ServiceCollectionExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.ServiceCollectionExtensions.html",
+          "hash": "GfmbY2+L+AI3mug5zlsqew=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.html",
+          "hash": "ZeGE5FPUN9zpAKXk/7Te4A=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html",
+          "hash": "/KlSxPWXTnduMVp8NveHoQ=="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
       "type": "Conceptual",
       "source_relative_path": "articles/AnimatedNavigation.md",
       "output": {
@@ -754,15 +1732,12 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "articles/CascadingDefaults.md",
       "output": {
         ".html": {
           "relative_path": "articles/CascadingDefaults.html",
-          "hash": "E3QvST6XTju0ebJAdMGDHw=="
+          "hash": "ckGX822CYZRQQIZlRx6H3w=="
         }
       },
       "is_incremental": false,
@@ -793,15 +1768,12 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "articles/Density.md",
       "output": {
         ".html": {
           "relative_path": "articles/Density.html",
-          "hash": "cCujh8+L9HR4vFQMPl3LaQ=="
+          "hash": "5albjLwa+PLX9fK68oAEYA=="
         }
       },
       "is_incremental": false,
@@ -832,30 +1804,24 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "articles/Icon.md",
       "output": {
         ".html": {
           "relative_path": "articles/Icon.html",
-          "hash": "t7ssGMLrS7e6GvX1i4FqHA=="
+          "hash": "39V+8fxjfpGYV4rftQjo7g=="
         }
       },
       "is_incremental": false,
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "articles/Installation.md",
       "output": {
         ".html": {
           "relative_path": "articles/Installation.html",
-          "hash": "EM/FuEDHvIMZk8i9uBuGSw=="
+          "hash": "jlSEiSDey/8NuWQJVtgp8g=="
         }
       },
       "is_incremental": false,
@@ -903,7 +1869,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/ReleaseNotes.html",
-          "hash": "lF8LDZ3cywe/slhdtnneRA=="
+          "hash": "OdLx8urnnrO5XaaZgEgf+A=="
         }
       },
       "is_incremental": false,
@@ -934,15 +1900,12 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "UidNotFound"
-      ],
       "type": "Conceptual",
       "source_relative_path": "articles/Toast.md",
       "output": {
         ".html": {
           "relative_path": "articles/Toast.html",
-          "hash": "wlsYGnf/iybSILIkTm4o1Q=="
+          "hash": "NXVJnsWMbG3oQFubnoDo9A=="
         }
       },
       "is_incremental": false,
@@ -1135,6 +2098,12 @@
           "can_incremental": false,
           "incrementalPhase": "build",
           "total_file_count": 69,
+          "skipped_file_count": 0
+        },
+        "ManagedReferenceDocumentProcessor": {
+          "can_incremental": false,
+          "incrementalPhase": "build",
+          "total_file_count": 92,
           "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {

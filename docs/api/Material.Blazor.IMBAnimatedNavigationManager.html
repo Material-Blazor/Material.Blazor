@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IMBAnimatedNavigationManager
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IMBAnimatedNavigationManager
+   ">
+    <meta name="generator" content="docfx 2.56.1.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
+    <meta property="docfx:navrel" content="../toc.html">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-173249047-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+  
+      gtag('config', 'UA-173249047-2');
+    </script>
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Material.Blazor.IMBAnimatedNavigationManager">
+  
+  
+  <h1 id="Material_Blazor_IMBAnimatedNavigationManager" data-uid="Material.Blazor.IMBAnimatedNavigationManager" class="text-break">Interface IMBAnimatedNavigationManager
+  </h1>
+  <div class="markdown level0 summary"><p>Interface for the animated navigation service. Animated navigations augment
+Blazor's NavigationManager with minor animation.</p>
+<p>
+First the current page fades out for 40% of the animation period, followed by a call to
+NavigationManager.NavigateTo(string, bool)
+before the new page fades in for the remaining 60% of the animation period. The default
+animation period is 500ms (but seems faster due to the end of the fade in being imperceptible),
+and animation is disapplied by default.
+</p>
+<p>
+Throws a <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a> if <a class="xref" href="Material.Blazor.IMBAnimatedNavigationManager.html#Material_Blazor_IMBAnimatedNavigationManager_NavigateTo_System_String_System_Boolean_">NavigateTo(String, Boolean)</a>
+is called without a <a class="xref" href="Material.Blazor.MBAnimatedNavigation.html">MBAnimatedNavigation</a> component used in the app.
+</p>
+<example>
+<p>You can optionally add configuration when you add this to the service collection:</p>
+<pre><code>services.AddMBAnimatedNavigationService(new MBAnimatedNaviationManagerConfiguration()
+{
+    ApplyAnimation = true,
+    AnimationTime = 300
+});</code></pre>
+</example>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Material.Blazor.html">Material.Blazor</a></h6>
+  <h6><strong>Assembly</strong>: Material.Blazor.dll</h6>
+  <h5 id="Material_Blazor_IMBAnimatedNavigationManager_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IMBAnimatedNavigationManager</code></pre>
+  </div>
+  <h3 id="properties">Properties
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_IMBAnimatedNavigationManager_Configuration.md&amp;value=---%0Auid%3A%20Material.Blazor.IMBAnimatedNavigationManager.Configuration%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Model/AnimatedNavigation/IMBAnimatedNavigationManager.cs/#L41">View Source</a>
+  </span>
+  <a id="Material_Blazor_IMBAnimatedNavigationManager_Configuration_" data-uid="Material.Blazor.IMBAnimatedNavigationManager.Configuration*"></a>
+  <h4 id="Material_Blazor_IMBAnimatedNavigationManager_Configuration" data-uid="Material.Blazor.IMBAnimatedNavigationManager.Configuration">Configuration</h4>
+  <div class="markdown level1 summary"><p>Animated Navigation Service configuration.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">MBAnimatedNavigationManagerServiceConfiguration Configuration { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.html">MBAnimatedNavigationManagerServiceConfiguration</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_IMBAnimatedNavigationManager_NavigationManager.md&amp;value=---%0Auid%3A%20Material.Blazor.IMBAnimatedNavigationManager.NavigationManager%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Model/AnimatedNavigation/IMBAnimatedNavigationManager.cs/#L35">View Source</a>
+  </span>
+  <a id="Material_Blazor_IMBAnimatedNavigationManager_NavigationManager_" data-uid="Material.Blazor.IMBAnimatedNavigationManager.NavigationManager*"></a>
+  <h4 id="Material_Blazor_IMBAnimatedNavigationManager_NavigationManager" data-uid="Material.Blazor.IMBAnimatedNavigationManager.NavigationManager">NavigationManager</h4>
+  <div class="markdown level1 summary"><p>The Blazor <a class="xref" href="Material.Blazor.IMBAnimatedNavigationManager.html#Material_Blazor_IMBAnimatedNavigationManager_NavigationManager">NavigationManager</a>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">NavigationManager NavigationManager { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">NavigationManager</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_IMBAnimatedNavigationManager_NavigateTo_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20Material.Blazor.IMBAnimatedNavigationManager.NavigateTo(System.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Model/AnimatedNavigation/IMBAnimatedNavigationManager.cs/#L62">View Source</a>
+  </span>
+  <a id="Material_Blazor_IMBAnimatedNavigationManager_NavigateTo_" data-uid="Material.Blazor.IMBAnimatedNavigationManager.NavigateTo*"></a>
+  <h4 id="Material_Blazor_IMBAnimatedNavigationManager_NavigateTo_System_String_System_Boolean_" data-uid="Material.Blazor.IMBAnimatedNavigationManager.NavigateTo(System.String,System.Boolean)">NavigateTo(String, Boolean)</h4>
+  <div class="markdown level1 summary"><p>Navigates to the specified URI.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">void NavigateTo(string uri, bool forceLoad = false)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">uri</span></td>
+        <td><p>The destination URI. This can be absolute, or relative to the base URI (as returned by Microsoft.AspNetCore.Components.NavigationManager.BaseUri).</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">forceLoad</span></td>
+        <td><p>If true, bypasses client-side routing and forces the browser to load the new page from the server, whether or not the URI would normally be handled by the client-side router.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_IMBAnimatedNavigationManager.md&amp;value=---%0Auid%3A%20Material.Blazor.IMBAnimatedNavigationManager%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Model/AnimatedNavigation/IMBAnimatedNavigationManager.cs/#L30" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
