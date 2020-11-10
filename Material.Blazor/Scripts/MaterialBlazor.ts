@@ -17,7 +17,7 @@ import * as MBSelect from '../Components/Select/MBSelect';
 import * as MBSwitch from '../Components/Switch/MBSwitch';
 import * as MBTabBar from '../Components/TabBar/MBTabBar';
 import * as MBTextField from '../Components/TextField/MBTextField';
-//import * as MBTooltip from '../Components/Tooltip/MBTooltip';
+import * as MBTooltip from '../Components/Tooltip/MBTooltip';
 import * as MBTopAppBar from '../Components/TopAppBar/MBTopAppBar';
 
 (<any>window).MaterialBlazor = {
@@ -40,6 +40,6 @@ import * as MBTopAppBar from '../Components/TopAppBar/MBTopAppBar';
     MBSwitch,
     MBTabBar,
     MBTextField,
-    //MBTooltip,
+    MBTooltip,
     MBTopAppBar
 };

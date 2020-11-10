@@ -36,14 +36,14 @@ if you have built a theme - you can see how we have done this in the [Material.B
 
 ```html
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
-<link href="https://unpkg.com/material-components-web@7.0.0/dist/material-components-web.css" rel="stylesheet" />
+<link href="https://unpkg.com/material-components-web@8.0.0/dist/material-components-web.css" rel="stylesheet" />
 <link href="_content/Material.Blazor/unbundled.css" rel="stylesheet" />
 ```
 
 and at the end of `<body>`:
 
 ```html
-<script src="https://unpkg.com/material-components-web@7.0.0/dist/material-components-web.js"></script>
+<script src="https://unpkg.com/material-components-web@8.0.0/dist/material-components-web.js"></script>
 <script src="_content/Material.Blazor/unbundled.js"></script>
 ```
 
@@ -54,7 +54,7 @@ if you want to create your own theme using Material Theme SASS mixins - we have 
 
 Material.Blazor works with the following package versions:
 
-- [Material Components v7.0.0](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#700-2020-06-23);
+- [Material Components v8.0.0](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#800-2020-11-02);
 - [Font Awesome Icons version 5](https://fontawesome.com/changelog/latest) are optional and can be included in your HTML `<head>` with the CDN link:
     ```html
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />

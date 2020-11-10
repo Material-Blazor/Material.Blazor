@@ -6,7 +6,7 @@ title: MBDataTable
 
 ## Summary
 
-A partial implementation of a [Material Data Table](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-data-table#data-tables) built using render fragments. It features:
+A partial implementation of a [Material Data Table](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-data-table#data-tables) built using render fragments. It features:
 
 ## Details
 

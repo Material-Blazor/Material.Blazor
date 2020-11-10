@@ -6,7 +6,7 @@ title: MBFloatingActionButton
 
 ## Summary
 
-A [Material FAB](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-fab#floating-action-buttons) that:
+A [Material FAB](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-fab#floating-action-buttons) that:
 
 - accepts an icon and an optional icon foundry;
 - has regular, mini and extended variants; and
