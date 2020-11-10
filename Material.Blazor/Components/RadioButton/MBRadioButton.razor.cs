@@ -112,6 +112,9 @@ namespace Material.Blazor
         }
 
 
-        private protected override async Task InitiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBRadioButton.init", RadioButtonReference, FormReference, Value.Equals(TargetCheckedValue)).ConfigureAwait(false);
+        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBRadioButton.init", RadioButtonReference, FormReference, Value.Equals(TargetCheckedValue)).ConfigureAwait(false);
+
+
+        private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBRadioButton.destroy", RadioButtonReference).ConfigureAwait(false);
     }
 }

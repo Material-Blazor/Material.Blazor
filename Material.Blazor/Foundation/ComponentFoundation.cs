@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
-
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,8 +14,7 @@ namespace Material.Blazor.Internal
         private readonly string[] EventAttributeNames = { "onfocus", "onblur", "onfocusin", "onfocusout", "onmouseover", "onmouseout", "onmousemove", "onmousedown", "onmouseup", "onclick", "ondblclick", "onwheel", "onmousewheel", "oncontextmenu", "ondrag", "ondragend", "ondragenter", "ondragleave", "ondragover", "ondragstart", "ondrop", "onkeydown", "onkeyup", "onkeypress", "onchange", "oninput", "oninvalid", "onreset", "onselect", "onselectstart", "onselectionchange", "onsubmit", "onbeforecopy", "onbeforecut", "onbeforepaste", "oncopy", "oncut", "onpaste", "ontouchcancel", "ontouchend", "ontouchmove", "ontouchstart", "ontouchenter", "ontouchleave", "ongotpointercapture", "onlostpointercapture", "onpointercancel", "onpointerdown", "onpointerenter", "onpointerleave", "onpointermove", "onpointerout", "onpointerover", "onpointerup", "oncanplay", "oncanplaythrough", "oncuechange", "ondurationchange", "onemptied", "onpause", "onplay", "onplaying", "onratechange", "onseeked", "onseeking", "onstalled", "onstop", "onsuspend", "ontimeupdate", "onvolumechange", "onwaiting", "onloadstart", "ontimeout", "onabort", "onload", "onloadend", "onprogress", "onerror", "onactivate", "onbeforeactivate", "onbeforedeactivate", "ondeactivate", "onended", "onfullscreenchange", "onfullscreenerror", "onloadeddata", "onloadedmetadata", "onpointerlockchange", "onpointerlockerror", "onreadystatechange", "onscroll" };
         private readonly string[] AriaAttributeNames = { "aria-activedescendant", "aria-atomic", "aria-autocomplete", "aria-busy", "aria-checked", "aria-controls", "aria-describedat", "aria-describedby", "aria-disabled", "aria-dropeffect", "aria-expanded", "aria-flowto", "aria-grabbed", "aria-haspopup", "aria-hidden", "aria-invalid", "aria-label", "aria-labelledby", "aria-level", "aria-live", "aria-multiline", "aria-multiselectable", "aria-orientation", "aria-owns", "aria-posinset", "aria-pressed", "aria-readonly", "aria-relevant", "aria-required", "aria-selected", "aria-setsize", "aria-sort", "aria-valuemax", "aria-valuemin", "aria-valuenow", "aria-valuetext" };
         private bool? disabled = null;
-        protected bool _hasInstantiated = false;
-
+        
         [Inject] private protected IJSRuntime JsRuntime { get; set; }
         [Inject] private protected IMBTooltipService TooltipService { get; set; }
 
@@ -48,7 +45,11 @@ namespace Material.Blazor.Internal
                 if (disabled != value)
                 {
                     disabled = value;
-                    OnDisabledSet?.Invoke(this, null);
+
+                    if (HasInstantiated)
+                    {
+                        OnDisabledSet?.Invoke(this, null);
+                    }
                 }
             }
         }
@@ -58,6 +59,12 @@ namespace Material.Blazor.Internal
         /// A markup capable tooltip.
         /// </summary>
         [Parameter] public string Tooltip { get; set; }
+
+
+        /// <summary>
+        /// Gets a value for the component's 'id' attribute.
+        /// </summary>
+        private protected string CrossReferenceId { get; set; } = Utilities.GenerateUniqueElementName();
 
 
         /// <summary>
@@ -79,10 +86,16 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
+        /// True if the component has been instantiated with a Material Components Web JSInterop call.
+        /// </summary>
+        private protected bool HasInstantiated { get; set; }
+
+
+        /// <summary>
         /// Derived components can use this to get a callback from the <see cref="AppliedDisabled"/> setter when the consumer changes the value.
         /// This allows a component to take action with Material Theme js to update the DOM to reflect the data change visually. 
         /// </summary>
-        protected event EventHandler OnDisabledSet;
+        private protected event EventHandler OnDisabledSet;
 
 
         /// <summary>
@@ -104,13 +117,13 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// Components should override this with a function to be called when Material.Blazor wants to run Material Theme initialization via JS Interop - always gets called from <see cref="OnAfterRenderAsync()"/>, which should not be overridden.
+        /// Components should override this with a function to be called when Material.Blazor wants to run Material Components Web instantiation via JS Interop - always gets called from <see cref="OnAfterRenderAsync()"/>, which should not be overridden.
         /// </summary>
-        private protected virtual async Task InitiateMcwComponent() => await Task.CompletedTask;
+        private protected virtual async Task InstantiateMcwComponent() => await Task.CompletedTask;
 
 
         /// <summary>
-        /// Components should override this with a function to be called when Material.Blazor wants to run Material Theme initialization via JS Interop - always gets called from <see cref="OnAfterRenderAsync()"/>, which should not be overridden.
+        /// Components should override this with a function to be called when Material.Blazor wants to run Material Components Web instantiation via JS Interop - always gets called from <see cref="OnAfterRenderAsync()"/>, which should not be overridden.
         /// </summary>
         private protected virtual async Task DestroyMcwComponent() => await Task.CompletedTask;
 
@@ -126,7 +139,10 @@ namespace Material.Blazor.Internal
                 return;
             }
 
-            _ = DestroyMcwComponent();
+            if (HasInstantiated)
+            {
+                _ = DestroyMcwComponent();
+            }
             
             if (disposing && !string.IsNullOrWhiteSpace(Tooltip))
             {
@@ -337,8 +353,14 @@ namespace Material.Blazor.Internal
         {
             if (firstRender)
             {
-                await InitiateMcwComponent();
-                _hasInstantiated = true;
+#if Logging
+                Logger.LogInformation($"Instantiate +++++++++++++ {GetType()} {CrossReferenceId}");
+#endif
+                await InstantiateMcwComponent();
+#if Logging
+                Logger.LogInformation($"Has Instantiated +++++++++++++ {GetType()} {CrossReferenceId}");
+#endif
+                HasInstantiated = true;
                 AddTooltip();
             }
         }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
@@ -100,22 +99,21 @@ namespace Material.Blazor.Internal
         }
 
 
-
         /// <summary>
         /// Removes a tooltip from the anchor.
         /// </summary>
         /// <param name="id"></param>
-        public void RemoveTooltip(Guid id)
+        internal void RemoveTooltip(Guid id)
         {
             InvokeAsync(async () =>
             {
-
                 await _semProtectTooltips.WaitAsync();
 
                 try
                 {
                     if (Tooltips.TryGetValue(id, out var instance))
                     {
+                        await JsRuntime.InvokeVoidAsync("OldMaterialBlazor.MBTooltip.destroy", instance.ElementReference).ConfigureAwait(false);
                         Tooltips.Remove(id);
                     }
                 }

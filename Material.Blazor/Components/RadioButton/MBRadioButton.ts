@@ -4,8 +4,13 @@ import { MDCRadio } from '@material/radio';
 export function init(elem, formFieldElem, isChecked) {
     elem._radio = MDCRadio.attachTo(elem);
     elem._radio.checked = isChecked;
-    let formField = MDCFormField.attachTo(formFieldElem);
-    formField.input = elem._radio;
+    elem._formField = MDCFormField.attachTo(formFieldElem);
+    elem._formField.input = elem._radio;
+}
+
+export function destroy(elem) {
+    elem._radio.destroy();
+    elem._formField.destroy();
 }
 
 export function setDisabled(elem, value) {

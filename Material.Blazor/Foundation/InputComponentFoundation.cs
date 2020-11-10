@@ -32,12 +32,6 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// Gets a value for the component's 'id' attribute.
-        /// </summary>
-        private protected string CrossReferenceId { get; set; } = Utilities.GenerateUniqueElementName();
-
-
-        /// <summary>
         /// Gets or sets the value of the input. This should be used with two-way binding.
         /// </summary>
         /// <example>
@@ -245,7 +239,7 @@ namespace Material.Blazor.Internal
 
         private void OnInitDialog()
         {
-            if (Dialog != null && !Dialog.HasInstantiated)
+            if (Dialog != null && !Dialog.DialogHasInstantiated)
             {
                 Dialog.RegisterLayoutAction(this);
             }
@@ -331,7 +325,7 @@ namespace Material.Blazor.Internal
                     Logger.LogDebug("OnParametersSet update _componentValue value from '" + _componentValue?.ToString() ?? "null" + "'");
 #endif
                     _componentValue = Value;
-                    if (_hasInstantiated)
+                    if (HasInstantiated)
                     {
                         SetComponentValue?.Invoke(this, null);
                     }
@@ -357,7 +351,7 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Material.Blazor components descending from MdcInputComponentBase _*must not*_ override ShouldRender().
         /// </summary>
-        protected override bool ShouldRender()
+        protected sealed override bool ShouldRender()
         {
             if (ForceShouldRenderToTrue || AllowNextRender)
             {
@@ -377,8 +371,16 @@ namespace Material.Blazor.Internal
             if (_instantiate)
             {
                 _instantiate = false;
-                _hasInstantiated = true;
-                await InitiateMcwComponent();
+
+#if Logging
+                Logger.LogInformation($"Instantiate +++++++++++++ {GetType()} {CrossReferenceId}");
+#endif
+                await InstantiateMcwComponent();
+#if Logging
+                Logger.LogInformation($"Has Instantiated +++++++++++++ {GetType()} {CrossReferenceId}");
+#endif
+
+                HasInstantiated = true;
                 AddTooltip();
             }
         }

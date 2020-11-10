@@ -13,6 +13,10 @@ export function init(elem, dotNetObject) {
     });
 }
 
+export function destroy(elem) {
+    elem._tabBar.destroy();
+}
+
 export function activateTab(elem, index) {
     elem._tabBar.unlisten('MDCTabBar:activated', elem._callback);
     elem._tabBar.activateTab(index);

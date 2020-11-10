@@ -62,7 +62,7 @@ namespace Material.Blazor
         /// <summary>
         /// True once the dialog has instantiated components for the first time.
         /// </summary>
-        bool IMBDialog.HasInstantiated => hasInstantiated;
+        bool IMBDialog.DialogHasInstantiated => dialogHasInstantiated;
 
 
         private ElementReference DialogElem { get; set; }
@@ -77,7 +77,7 @@ namespace Material.Blazor
         private readonly string bodyId = Utilities.GenerateUniqueElementName();
         private readonly string titleId = Utilities.GenerateUniqueElementName();
 
-        private bool hasInstantiated = false;
+        private bool dialogHasInstantiated = false;
 
         private bool AfterDialogInitialization { get; set; } = false;
         private bool AfterRenderShowAction { get; set; } = false;
@@ -165,7 +165,7 @@ namespace Material.Blazor
                 StateHasChanged();
                 Tcs = new TaskCompletionSource<string>();
                 var ret = await Tcs.Task;
-                hasInstantiated = false;
+                dialogHasInstantiated = false;
                 return ret;
             }
         }
@@ -183,7 +183,7 @@ namespace Material.Blazor
             {
                 await JsRuntime.InvokeAsync<string>("MaterialBlazor.MBDialog.hide", DialogElem);
                 IsOpen = false;
-                hasInstantiated = false;
+                dialogHasInstantiated = false;
                 StateHasChanged();
             }
             else
@@ -237,7 +237,7 @@ namespace Material.Blazor
 
                 LayoutChildren.Clear();
 
-                hasInstantiated = true;
+                dialogHasInstantiated = true;
 
                 StateHasChanged();
             }

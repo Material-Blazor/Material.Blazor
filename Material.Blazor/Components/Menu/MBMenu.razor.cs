@@ -67,29 +67,31 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Toggles the menu open and closed.
+        /// Toggles the menu open and closed. NEED TO RETURN <code>Task</code> RATHER THAN <code>Task&lt;string&gt;</code> IN VERSION 2.0.0
         /// </summary>
         /// <returns></returns>
         public async Task<string> ToggleAsync()
         {
             if (IsOpen)
             {
-                return await JsRuntime.InvokeAsync<string>("MaterialBlazor.MBMenu.hide", ElementReference);
+                await JsRuntime.InvokeAsync<string>("MaterialBlazor.MBMenu.hide", ElementReference);
+                //IsOpen = false;
             }
             else
             {
-                return await JsRuntime.InvokeAsync<string>("MaterialBlazor.MBMenu.show", ElementReference);
+                await JsRuntime.InvokeAsync<string>("MaterialBlazor.MBMenu.show", ElementReference);
+                //IsOpen = true;
             }
+
+            return "";
         }
 
 
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (firstRender)
-            {
-                await JsRuntime.InvokeAsync<string>("MaterialBlazor.MBMenu.init", ElementReference, ObjectReference);
-            }
-        }
+        /// <inheritdoc/>
+        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeAsync<string>("MaterialBlazor.MBMenu.init", ElementReference, ObjectReference);
+
+
+        /// <inheritdoc/>
+        private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBMenu.destroy", ElementReference);
     }
 }
