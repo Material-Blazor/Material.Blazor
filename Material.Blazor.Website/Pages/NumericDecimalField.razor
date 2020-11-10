@@ -1,18 +1,18 @@
-﻿@page "/numericdoublefield"
+﻿@page "/numericdecimalField"
 
 @inject IMBToastService ToastService
 
 @using System.Runtime.InteropServices
 
 
-<DemonstrationPage ComponentName="NumericDoubleField"
-                         Title="Numeric Double Field Demonstration"
-                         DemoComponent="@this"
-                         MinDensity="MBDensity.Minus4"
-                         RequiresDisableSelection="true">
+<DemonstrationPage ComponentName="NumericDecimalField"
+                   Title="Numeric Decimal Field Demonstration"
+                   DemoComponent="@this"
+                   MinDensity="MBDensity.Minus4"
+                   RequiresDisableSelection="true">
     <Description>
         <p>
-            Shows numeric double fields, which are Plus components.
+            Shows numeric decimal fields, which are Plus components.
             Each of these can display as Filled or Outlined and with
             the full variety of icon foundries. These are used across the page but it we don't attempt to show each variant everywhere - see the Text Field demo for this.
         </p>
@@ -31,28 +31,28 @@
                     </h3>
 
                     <p>
-                        <MBNumericDoubleField Label="Double 2dp"
-                                              @bind-Value="@DoubleValue"
-                                              NumericFormat="N2"
-                                              DecimalPlaces="2"
-                                              TextInputStyle="MBTextInputStyle.Outlined" />
+                        <MBNumericDecimalField Label="Double 2dp"
+                                               @bind-Value="@DecimalValue"
+                                               NumericFormat="N2"
+                                               DecimalPlaces="2"
+                                               TextInputStyle="MBTextInputStyle.Outlined" />
                     </p>
 
                     <p>
-                        <MBNumericDoubleField Label="Money by format"
-                                              @bind-Value="@MoneyByFormat"
-                                              NumericFormat="C2"
-                                              DecimalPlaces="2"
-                                              TextInputStyle="MBTextInputStyle.Outlined" />
+                        <MBNumericDecimalField Label="Money by format"
+                                               @bind-Value="@MoneyByFormat"
+                                               NumericFormat="C2"
+                                               DecimalPlaces="2"
+                                               TextInputStyle="MBTextInputStyle.Outlined" />
                     </p>
 
                     <p>
-                        <MBNumericDoubleField Label="Money by prefix"
+                        <MBNumericDecimalField Label="Money by prefix"
                                               Prefix="£"
-                                              @bind-Value="@MoneyByPrefix"
-                                              NumericFormat="N2"
-                                              DecimalPlaces="2"
-                                              TextInputStyle="MBTextInputStyle.Outlined" />
+                                               @bind-Value="@MoneyByPrefix"
+                                               NumericFormat="N2"
+                                               DecimalPlaces="2"
+                                               TextInputStyle="MBTextInputStyle.Outlined" />
                     </p>
                 </Primary>
             </MBCard>
@@ -73,34 +73,34 @@
                     </h3>
 
                     <p>
-                        <MBNumericDoubleField Label="Percent by format"
-                                              @bind-Value="@PercentByFormat"
-                                              NumericFormat="P2"
-                                              DecimalPlaces="2"
-                                              FocusedMagnitude="MBNumericInputMagnitude.Percent"
-                                              TextInputStyle="MBTextInputStyle.Outlined" />
+                        <MBNumericDecimalField Label="Percent by format"
+                                               @bind-Value="@PercentByFormat"
+                                               NumericFormat="P2"
+                                               DecimalPlaces="2"
+                                               FocusedMagnitude="MBNumericInputMagnitude.Percent"
+                                               TextInputStyle="MBTextInputStyle.Outlined" />
                     </p>
 
                     <p>
-                        <MBNumericDoubleField Label="Percent by Suffix"
-                                              @bind-Value="@PercentBySuffix"
-                                              NumericFormat="N2"
-                                              DecimalPlaces="2"
-                                              Suffix="%"
-                                              FocusedMagnitude="MBNumericInputMagnitude.Percent"
-                                              UnfocusedMagnitude="MBNumericInputMagnitude.Percent"
-                                              TextInputStyle="MBTextInputStyle.Outlined" />
+                        <MBNumericDecimalField Label="Percent by Suffix"
+                                               @bind-Value="@PercentBySuffix"
+                                               NumericFormat="N2"
+                                               DecimalPlaces="2"
+                                               Suffix="%"
+                                               FocusedMagnitude="MBNumericInputMagnitude.Percent"
+                                               UnfocusedMagnitude="MBNumericInputMagnitude.Percent"
+                                               TextInputStyle="MBTextInputStyle.Outlined" />
                     </p>
 
                     <p>
-                        <MBNumericDoubleField Label="Basis Points by Suffix"
-                                              @bind-Value="@BasisPointsBySuffix"
-                                              NumericFormat="N0"
-                                              DecimalPlaces="0"
-                                              Suffix="bp"
-                                              FocusedMagnitude="MBNumericInputMagnitude.BasisPoints"
-                                              UnfocusedMagnitude="MBNumericInputMagnitude.BasisPoints"
-                                              TextInputStyle="MBTextInputStyle.Outlined" />
+                        <MBNumericDecimalField Label="Basis Points by Suffix"
+                                               @bind-Value="@BasisPointsBySuffix"
+                                               NumericFormat="N0"
+                                               DecimalPlaces="0"
+                                               Suffix="bp"
+                                               FocusedMagnitude="MBNumericInputMagnitude.BasisPoints"
+                                               UnfocusedMagnitude="MBNumericInputMagnitude.BasisPoints"
+                                               TextInputStyle="MBTextInputStyle.Outlined" />
                     </p>
                 </Primary>
             </MBCard>
@@ -120,14 +120,14 @@
                     </h3>
 
                     <p>
-                        <MBNumericDoubleField Label="Popup Helper Text"
+                        <MBNumericDecimalField Label="Popup Helper Text"
                                               @bind-Value="@PopupHelperText"
                                               NumericFormat="N2"
                                               HelperText="Some helper text that pops up" />
                     </p>
-                    
+
                     <p>
-                        <MBNumericDoubleField Label="Persistent Helper Text"
+                        <MBNumericDecimalField Label="Persistent Helper Text"
                                               @bind-Value="@PersistentHelperText"
                                               NumericFormat="N2"
                                               HelperText="Some persistent helper text"
@@ -141,22 +141,22 @@
 
 
 @code {
-    private double _doubleValue;
-    private double DoubleValue
+    private decimal _decimalValue;
+    private decimal DecimalValue
     {
-        get => _doubleValue;
+        get => _decimalValue;
         set
         {
-            _doubleValue = value;
+            _decimalValue = value;
 
-            ToastService.ShowToast(heading: "Double numeric", message: $"Value: '{_doubleValue.ToString("N2")}'", level: MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(heading: "Decimal numeric", message: $"Value: '{_decimalValue.ToString("N2")}'", level: MBToastLevel.Success, showIcon: false);
         }
     }
 
 
 
-    private double _moneyByFormat;
-    private double MoneyByFormat
+    private decimal _moneyByFormat;
+    private decimal MoneyByFormat
     {
         get => _moneyByFormat;
         set
@@ -169,8 +169,8 @@
 
 
 
-    private double _moneyByPrefix;
-    private double MoneyByPrefix
+    private decimal _moneyByPrefix;
+    private decimal MoneyByPrefix
     {
         get => _moneyByPrefix;
         set
@@ -183,8 +183,8 @@
 
 
 
-    private double _percentByFormat;
-    private double PercentByFormat
+    private decimal _percentByFormat;
+    private decimal PercentByFormat
     {
         get => _percentByFormat;
         set
@@ -196,8 +196,8 @@
     }
 
 
-    private double _percentBySuffix;
-    private double PercentBySuffix
+    private decimal _percentBySuffix;
+    private decimal PercentBySuffix
     {
         get => _percentBySuffix;
         set
@@ -209,8 +209,8 @@
     }
 
 
-    private double _basisPointsBySuffix;
-    private double BasisPointsBySuffix
+    private decimal _basisPointsBySuffix;
+    private decimal BasisPointsBySuffix
     {
         get => _basisPointsBySuffix;
         set
@@ -222,8 +222,8 @@
     }
 
 
-    private double _popupHelperText;
-    private double PopupHelperText
+    private decimal _popupHelperText;
+    private decimal PopupHelperText
     {
         get => _popupHelperText;
         set
@@ -235,8 +235,8 @@
     }
 
 
-    private double _persistentHelperText;
-    private double PersistentHelperText
+    private decimal _persistentHelperText;
+    private decimal PersistentHelperText
     {
         get => _persistentHelperText;
         set

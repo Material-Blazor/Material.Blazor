@@ -4,6 +4,16 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [2.0.0](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0)
+12 November 2020
+
+- Upgrade to [Material Components Web 8.0.0](https://github.com/material-components/material-components-web/tree/v8.0.0/packages).
+- Upgraded build process to produce Material.Blazor with support for netstandard2.1 and net5.0.
+- Full implementation of Material Components Web JS `destroy()` function calls for every component's `Dispose()` process.
+
+<br />
+
+
 #### [1.1.4](https://github.com/Material-Blazor/Material.Blazor/tree/1.1.4)
 06 November 2020
 
@@ -23,7 +33,7 @@ title: ReleaseNotes
 #### [1.1.2](https://github.com/Material-Blazor/Material.Blazor/tree/1.1.2)
 02 November 2020
 
-- Upgraded build process for DocFx
+- Upgraded build process for DocFx.
 
 <br />
 

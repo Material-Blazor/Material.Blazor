@@ -1,14 +1,18 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace Material.Blazor
 {
     /// <summary>
-    /// An double variant of <see cref="MBNumericDecimalField"/>.
+    /// A Material Theme numeric input field. This wraps <see cref="MBTextField"/> and normally
+    /// displays the numeric value as formatted text, but switches to a pure number on being selected.
     /// </summary>
-    public partial class MBNumericDoubleField : InputComponentFoundation<double>
+    public partial class MBNumericDecimalField : InputComponentFoundation<decimal>
     {
 #nullable enable annotations
         /// <summary>
@@ -116,13 +120,13 @@ namespace Material.Blazor
         /// <summary>
         /// The minimum allowable value.
         /// </summary>
-        [Parameter] public double? Min { get; set; }
+        [Parameter] public decimal? Min { get; set; }
 
 
         /// <summary>
         /// The maximum allowable value.
         /// </summary>
-        [Parameter] public double? Max { get; set; }
+        [Parameter] public decimal? Max { get; set; }
 
 
         /// <summary>
@@ -132,57 +136,50 @@ namespace Material.Blazor
 #nullable restore annotations
 
 
-        private decimal DecimalValue
-        {
-            get => (decimal)ComponentValue;
-            set => ComponentValue = Convert.ToDouble(Math.Round(value, DecimalPlaces));
-        }
+        private const string DoublePattern = @"^[-+]?[0-9]*\.?[0-9]+$";
+        private const string PositiveDoublePattern = @"[0-9]*\.?[0-9]+$";
+        private const string IntegerPattern = @"^(\+|-)?\d+$";
+        private const string PositiveIntegerPattern = @"^\d+$";
 
 
-        private decimal? DecimalMin
+        private decimal AppliedMultiplier => HasFocus ? FocusedMultiplier : UnfocusedMultiplier;
+        private decimal FocusedMultiplier { get; set; } = 1;
+        private Dictionary<string, object> MyAttributes { get; set; }
+        private int MyDecimalPlaces { get; set; } = 0;
+        private Regex Regex { get; set; }
+        private MBTextField TextField { get; set; }
+        private decimal UnfocusedMultiplier { get; set; } = 1;
+
+
+        private bool HasFocus { get; set; } = false;
+
+
+        // There may be a case for simplifying this code. Does FormattedValue need to be bound like this or can we instead bind to a string representation of the
+        // properly scaled number without formatting intended only for human legibility?
+        private string FormattedValue
         {
             get
             {
-                if (Min == null)
-                {
-                    return null;
-                }
-
-                return (decimal)Min;
+                return HasFocus ? Math.Round(Convert.ToDecimal(ComponentValue) * AppliedMultiplier, MyDecimalPlaces).ToString() : StringValue(ComponentValue);
             }
 
             set
             {
-                if (value == null)
-                {
-                    Min = null;
-                }
-
-                Min = Convert.ToDouble(Math.Round(value ?? 0, DecimalPlaces));
+                var enteredVal = HasFocus ? Convert.ToDecimal(Convert.ToDecimal(string.IsNullOrWhiteSpace(value) ? "0" : value.Trim()) / FocusedMultiplier) : NumericValue(value) / AppliedMultiplier;
+                ComponentValue = Convert.ToDecimal(Math.Round(Math.Max(Min ?? enteredVal, Math.Min(enteredVal, Max ?? enteredVal)), MyDecimalPlaces + (int)FocusedMagnitude));
             }
         }
 
 
-        private decimal? DecimalMax
+        private string AppliedFormat
         {
             get
             {
-                if (Max == null)
-                {
-                    return null;
-                }
+                if (HasFocus) return "";
 
-                return (decimal)Max;
-            }
+                if (!(NumericSingularFormat is null) && Utilities.DecimalEqual(Math.Abs(ComponentValue), 1)) return NumericSingularFormat;
 
-            set
-            {
-                if (value == null)
-                {
-                    Max = null;
-                }
-
-                Max = Convert.ToDouble(Math.Round(value ?? 0, DecimalPlaces));
+                return NumericFormat;
             }
         }
 
@@ -192,7 +189,69 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
+            bool allowSign = !(Min != null && Min >= 0);
+
+            FocusedMultiplier = Convert.ToDecimal(Math.Pow(10, (int)FocusedMagnitude));
+            UnfocusedMultiplier = Convert.ToDecimal(Math.Pow(10, (int)UnfocusedMagnitude));
+
+            if (DecimalPlaces <= 0)
+            {
+                MyDecimalPlaces = 0;
+                Regex = new Regex(allowSign ? IntegerPattern : PositiveIntegerPattern);
+            }
+            else
+            {
+                MyDecimalPlaces = DecimalPlaces;
+                Regex = new Regex(allowSign ? DoublePattern : PositiveDoublePattern);
+            }
+
+            // Required for MBNumericIntField to work
             ForceShouldRenderToTrue = true;
+        }
+
+
+        private async Task OnFocusInAsync()
+        {
+            HasFocus = true;
+            await TextField.SetType(FormattedValue, "number", true);
+        }
+
+
+        private async Task OnFocusOutAsync()
+        {
+            HasFocus = false;
+            await TextField.SetType(FormattedValue, "text", false);
+        }
+
+
+        private string StringValue(decimal? value) => (Convert.ToDecimal(value) * AppliedMultiplier).ToString(AppliedFormat);
+
+
+        private decimal NumericValue(string displayText)
+        {
+            int myRounding = MyDecimalPlaces + Convert.ToInt32(Math.Log(Convert.ToDouble(AppliedMultiplier)));
+
+            if (!Regex.IsMatch(displayText))
+            {
+                return ComponentValue;
+            }
+
+            decimal amount;
+            try
+            {
+                amount = Convert.ToDecimal(Math.Round(Convert.ToDecimal(displayText) / AppliedMultiplier, myRounding));
+            }
+            catch
+            {
+                return ComponentValue;
+            }
+
+            if ((Min != null && amount < Min) || (Max != null && amount > Max))
+            {
+                return ComponentValue;
+            }
+
+            return amount;
         }
     }
 }
