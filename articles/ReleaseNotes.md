@@ -7,9 +7,17 @@ title: ReleaseNotes
 #### [2.0.0](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0)
 12 November 2020
 
+**Updates**
+
 - Upgrade to [Material Components Web 8.0.0](https://github.com/material-components/material-components-web/tree/v8.0.0/packages).
 - Upgraded build process to produce Material.Blazor with support for netstandard2.1 and net5.0.
 - Full implementation of Material Components Web JS `destroy()` function calls for every component's `Dispose()` process.
+
+**Breaking Changes**
+
+- CDN packages now reference material components web 8.0.0, see [Installation article](xref:A.Installation).
+- If you are building a theme from material components web SASS, you need to reference version 8.0.0.
+- MBMenu `ToggleAsync()` is now return type `Task` rather than `Task<string>` in version 1.
 
 <br />
 

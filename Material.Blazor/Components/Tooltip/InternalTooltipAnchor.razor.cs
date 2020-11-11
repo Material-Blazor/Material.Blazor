@@ -113,7 +113,7 @@ namespace Material.Blazor.Internal
                 {
                     if (Tooltips.TryGetValue(id, out var instance))
                     {
-                        await JsRuntime.InvokeVoidAsync("OldMaterialBlazor.MBTooltip.destroy", instance.ElementReference).ConfigureAwait(false);
+                        await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTooltip.destroy", instance.ElementReference).ConfigureAwait(false);
                         Tooltips.Remove(id);
                     }
                 }
@@ -142,7 +142,7 @@ namespace Material.Blazor.Internal
 
                 if (refs.Count() > 0)
                 {
-                    await JsRuntime.InvokeVoidAsync("OldMaterialBlazor.MBTooltip.init", refs.Select(r => r.ElementReference));
+                    await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTooltip.init", refs.Select(r => r.ElementReference));
 
                     foreach (var item in refs)
                     {

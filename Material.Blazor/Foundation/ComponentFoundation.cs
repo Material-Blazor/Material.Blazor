@@ -349,20 +349,31 @@ namespace Material.Blazor.Internal
         /// Material.Blazor components generally *should not* override this because it handles the case where components need
         /// to be adjusted when inside an <c>MBDialog</c> or <c>MBCard</c>. 
         /// </summary>
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+        protected override void OnAfterRender(bool firstRender)
         {
             if (firstRender)
             {
 #if Logging
                 Logger.LogInformation($"Instantiate +++++++++++++ {GetType()} {CrossReferenceId}");
 #endif
-                await InstantiateMcwComponent();
+                _ = InstantiateMcwComponent();
 #if Logging
                 Logger.LogInformation($"Has Instantiated +++++++++++++ {GetType()} {CrossReferenceId}");
 #endif
                 HasInstantiated = true;
                 AddTooltip();
             }
+        }
+
+
+        /// <summary>
+        /// Material.Blazor components generally *should not* override this because it handles the case where components need
+        /// to be adjusted when inside an <c>MBDialog</c> or <c>MBCard</c>. 
+        /// </summary>
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            OnAfterRender(firstRender);
+            await Task.CompletedTask;
         }
 
 

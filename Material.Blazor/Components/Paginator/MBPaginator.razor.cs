@@ -149,7 +149,7 @@ namespace Material.Blazor
         {
             if (ToggleOn)
             {
-                _ = await Menu.ToggleAsync();
+                await Menu.ToggleAsync();
                 ToggleOn = false;
             }
         }

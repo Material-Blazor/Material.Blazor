@@ -366,7 +366,7 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Material.Blazor components descending from MdcInputComponentBase _*must not*_ override OnAfterRenderAsync(bool).
         /// </summary>
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+        protected override void OnAfterRender(bool firstRender)
         {
             if (_instantiate)
             {
@@ -375,7 +375,7 @@ namespace Material.Blazor.Internal
 #if Logging
                 Logger.LogInformation($"Instantiate +++++++++++++ {GetType()} {CrossReferenceId}");
 #endif
-                await InstantiateMcwComponent();
+                _ = InstantiateMcwComponent();
 #if Logging
                 Logger.LogInformation($"Has Instantiated +++++++++++++ {GetType()} {CrossReferenceId}");
 #endif
@@ -383,6 +383,16 @@ namespace Material.Blazor.Internal
                 HasInstantiated = true;
                 AddTooltip();
             }
+        }
+
+
+        /// <summary>
+        /// Material.Blazor components descending from MdcInputComponentBase _*must not*_ override OnAfterRenderAsync(bool).
+        /// </summary>
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            OnAfterRender(firstRender);
+            await Task.CompletedTask;
         }
 
 

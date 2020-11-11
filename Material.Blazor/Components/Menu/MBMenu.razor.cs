@@ -59,6 +59,7 @@ namespace Material.Blazor
         /// For Material Theme to notify of menu closure via JS Interop.
         /// </summary>
         [JSInvokable("NotifyClosedAsync")]
+        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
         public async Task NotifyClosedAsync()
         {
             IsOpen = false;
@@ -70,20 +71,18 @@ namespace Material.Blazor
         /// Toggles the menu open and closed. NEED TO RETURN <code>Task</code> RATHER THAN <code>Task&lt;string&gt;</code> IN VERSION 2.0.0
         /// </summary>
         /// <returns></returns>
-        public async Task<string> ToggleAsync()
+        public async Task ToggleAsync()
         {
             if (IsOpen)
             {
                 await JsRuntime.InvokeAsync<string>("MaterialBlazor.MBMenu.hide", ElementReference);
-                //IsOpen = false;
+                IsOpen = false;
             }
             else
             {
                 await JsRuntime.InvokeAsync<string>("MaterialBlazor.MBMenu.show", ElementReference);
-                //IsOpen = true;
+                IsOpen = true;
             }
-
-            return "";
         }
 
 
