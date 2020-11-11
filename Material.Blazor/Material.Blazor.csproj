@@ -85,6 +85,10 @@
     <OutputStaticAssetsStyles Include="wwwroot\bundled.min.css;wwwroot\unbundled.min.css;wwwroot\unbundled.css" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
   <!-- The NpmReturnCode parameter value is preset to 0 in the PropertyGroup -->
   <Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssetsScripts);@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsScripts);@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent">
     <Exec Command="echo ***** npm install" />
