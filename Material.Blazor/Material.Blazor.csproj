@@ -75,13 +75,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <InputStaticAssetsScripts Include="**\*.ts" Exclude="wwwroot\**\*;bin\**\*;node_modules\**\*;obj\**\*" />
+    <InputStaticAssetsScripts Include="components\**\*.ts;scripts\**\*.ts" />
     <OutputStaticAssetsScripts Include="wwwroot\bundled.min.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js" />
   </ItemGroup>
 
   <ItemGroup>
-    <InputStaticAssetsStyles Include="**\*.scss" Exclude="wwwroot\**\*;node_modules\**\*;obj\**\*;bin\**\*" />
+    <InputStaticAssetsStyles Include="components\**\*.scss;styles\**\*.scss;" />
     <OutputStaticAssetsStyles Include="wwwroot\bundled.min.css;wwwroot\unbundled.min.css;wwwroot\unbundled.css" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InputStaticAssets Include="components\**\*.ts;scripts\**\*.ts;components\**\*.scss;styles\**\*.scss;" />
+    <OutputStaticAssets Include="wwwroot\bundled.min.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js;wwwroot\bundled.min.css;wwwroot\unbundled.min.css;wwwroot\unbundled.css" />
   </ItemGroup>
 
   <ItemGroup>
@@ -89,7 +94,7 @@
   </ItemGroup>
 
   <!-- The NpmReturnCode parameter value is preset to 0 in the PropertyGroup -->
-  <Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssetsScripts);@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsScripts);@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent">
+  <Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssets)" Outputs="@(OutputStaticAssets)" BeforeTargets="PreBuildEvent">
     <Exec Command="echo ***** npm install" />
     <Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
