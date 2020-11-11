@@ -34,7 +34,7 @@ namespace Material.Blazor
         {
             base.OnInitialized();
             
-            ClassMapper
+            ClassMapperInstance
                 .Add("mdc-switch")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-switch--disabled", () => AppliedDisabled)

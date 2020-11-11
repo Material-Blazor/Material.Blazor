@@ -83,7 +83,7 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
-            ClassMapper
+            ClassMapperInstance
                 .Add($"mdc-fab")
                 .AddIf("mdc-fab--mini mdc-fab--touch", () => Type == MBFloatingActionButtonType.Mini)
                 .AddIf("mdc-fab--extended", () => Type == MBFloatingActionButtonType.Extended);

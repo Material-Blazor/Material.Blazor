@@ -26,7 +26,7 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
-            ClassMapper
+            ClassMapperInstance
                 .Add("mdc-list-divider")
                 .AddIf("mdc-list-divider--inset", () => Inset)
                 .AddIf("mdc-list-divider--padded", () => Padded);

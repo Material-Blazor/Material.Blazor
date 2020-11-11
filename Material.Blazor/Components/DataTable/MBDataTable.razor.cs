@@ -53,7 +53,7 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
-            ClassMapper
+            ClassMapperInstance
                 .Add("mdc-data-table")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass);
         }

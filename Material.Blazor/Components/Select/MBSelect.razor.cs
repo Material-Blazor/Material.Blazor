@@ -124,7 +124,7 @@ namespace Material.Blazor
 
             ComponentValue = ValidateItemList(ItemDict.Values, CascadingDefaults.AppliedItemValidation(ItemValidation));
 
-            ClassMapper
+            ClassMapperInstance
                 .Add("mdc-select")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-select--filled", () => AppliedInputStyle == MBSelectInputStyle.Filled)

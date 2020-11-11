@@ -165,7 +165,7 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
-            ClassMapper
+            ClassMapperInstance
                 .Add("mdc-list")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass && NumberOfLines == 1 && AppliedListType != MBListType.Dense)
                 .AddIf("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(AppliedListStyle) == MBListStyle.Outlined))

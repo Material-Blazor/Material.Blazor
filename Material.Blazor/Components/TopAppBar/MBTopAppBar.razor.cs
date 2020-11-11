@@ -60,7 +60,7 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
-            ClassMapper
+            ClassMapperInstance
                 .Add("mdc-top-app-bar")
                 .AddIf($"mdc-top-app-bar--{TopAppBarType.ToString().ToLower()}", () => TopAppBarType != MBTopAppBarType.Standard && TopAppBarType != MBTopAppBarType.ShortCollapsed)
                 .AddIf($"mdc-top-app-bar--short mdc-top-app-bar--short-collapsed", () => TopAppBarType == MBTopAppBarType.ShortCollapsed)

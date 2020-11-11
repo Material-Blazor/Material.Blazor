@@ -107,7 +107,7 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
-            ClassMapper
+            ClassMapperInstance
                 .Add("mdc-text-field mdc-text-field--textarea")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))

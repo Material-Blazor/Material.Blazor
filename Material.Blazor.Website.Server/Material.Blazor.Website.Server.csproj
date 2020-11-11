@@ -4,6 +4,8 @@
 		<TargetFramework>net5.0</TargetFramework>
 
     <Configurations>Debug;Release</Configurations>
+
+    <UserSecretsId>6d666ee3-08b4-4baf-95e0-6ddc8d4b4cfa</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">

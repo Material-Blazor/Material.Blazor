@@ -98,7 +98,7 @@ namespace Material.Blazor.Internal
         {
             base.OnInitialized();
 
-            ClassMapper
+            ClassMapperInstance
                 .Add("mdc-typography--body2 mb-dp-container");
 
             DaysOfWeek = (new DateTimeFormatInfo()).DayNames.Select(d => d.Substring(0, 1)).ToArray();

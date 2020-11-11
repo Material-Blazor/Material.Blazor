@@ -29,7 +29,7 @@ namespace Material.Blazor
         {
             base.OnInitialized();
             
-            ClassMapper
+            ClassMapperInstance
                 .Add("mdc-menu mdc-menu-surface mdc-menu-surface--fixed");
 
             ObjectReference = DotNetObjectReference.Create(this);

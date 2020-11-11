@@ -60,7 +60,7 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
-            ClassMapper
+            ClassMapperInstance
                 .Add("mdc-card")
                 .AddIf("mdc-card--outlined", () => CascadingDefaults.AppliedStyle(CardStyle) == MBCardStyle.Outlined);
         }

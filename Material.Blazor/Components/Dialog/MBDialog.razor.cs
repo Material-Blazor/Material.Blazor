@@ -92,7 +92,7 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
-            ClassMapper
+            ClassMapperInstance
                 .Add("mdc-dialog");
 
             ObjectReference = DotNetObjectReference.Create(this);

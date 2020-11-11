@@ -76,7 +76,7 @@ namespace Material.Blazor
             ForceShouldRenderToTrue = true;
             IntialValue = Value;
 
-            ClassMapper
+            ClassMapperInstance
                 .Add("mdc-circular-progress")
                 .AddIf("mdc-circular-progress--small", () => CircularProgressSize == MBCircularProgressSize.Small)
                 .AddIf("mdc-circular-progress--medium", () => CircularProgressSize == MBCircularProgressSize.Medium)
@@ -84,7 +84,7 @@ namespace Material.Blazor
                 .AddIf("mdc-circular-progress--indeterminate", () => CircularProgressType == MBCircularProgressType.Indeterminate)
                 .AddIf("mdc-circular-progress--closed", () => CircularProgressType == MBCircularProgressType.Closed);
 
-            StyleMapper
+            StyleMapperInstance
                 .AddIf("width:24px;height:24px;", () => CircularProgressSize == MBCircularProgressSize.Small)
                 .AddIf("width:36px;height:36px;", () => CircularProgressSize == MBCircularProgressSize.Medium)
                 .AddIf("width:48px;height:48px;", () => CircularProgressSize == MBCircularProgressSize.Large);
