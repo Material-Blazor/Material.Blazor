@@ -371,15 +371,7 @@ namespace Material.Blazor.Internal
             if (_instantiate)
             {
                 _instantiate = false;
-
-#if Logging
-                Logger.LogInformation($"Instantiate +++++++++++++ {GetType()} {CrossReferenceId}");
-#endif
                 _ = InstantiateMcwComponent();
-#if Logging
-                Logger.LogInformation($"Has Instantiated +++++++++++++ {GetType()} {CrossReferenceId}");
-#endif
-
                 HasInstantiated = true;
                 AddTooltip();
             }

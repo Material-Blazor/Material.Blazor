@@ -176,9 +176,9 @@ namespace Material.Blazor.Internal
             var eventAttributes = new Dictionary<string, object>();
             var requiredAttributes = new Dictionary<string, object>();
 
-            var unmatchedId = (UnmatchedAttributes?.Where(a => a.Key.ToLower() == "id").FirstOrDefault().Value ?? "").ToString();
-            var unmatchedClass = (UnmatchedAttributes?.Where(a => a.Key.ToLower() == "class").FirstOrDefault().Value ?? "").ToString();
-            var unmatchedStyle = (UnmatchedAttributes?.Where(a => a.Key.ToLower() == "style").FirstOrDefault().Value ?? "").ToString();
+            var unmatchedId = (UnmatchedAttributes?.Where(a => a.Key == "id").FirstOrDefault().Value ?? "").ToString();
+            var unmatchedClass = (UnmatchedAttributes?.Where(a => a.Key == "class").FirstOrDefault().Value ?? "").ToString();
+            var unmatchedStyle = (UnmatchedAttributes?.Where(a => a.Key == "style").FirstOrDefault().Value ?? "").ToString();
             var nonStylisticAttributes = new Dictionary<string, object>(UnmatchedAttributes?.Where(a => !stylisticAttributes.Contains(a.Key.ToLower())) ?? new Dictionary<string, object>());
 
             // merge ComponentSetAttributes into the dictionary
@@ -353,13 +353,7 @@ namespace Material.Blazor.Internal
         {
             if (firstRender)
             {
-#if Logging
-                Logger.LogInformation($"Instantiate +++++++++++++ {GetType()} {CrossReferenceId}");
-#endif
                 _ = InstantiateMcwComponent();
-#if Logging
-                Logger.LogInformation($"Has Instantiated +++++++++++++ {GetType()} {CrossReferenceId}");
-#endif
                 HasInstantiated = true;
                 AddTooltip();
             }
