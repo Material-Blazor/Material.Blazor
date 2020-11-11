@@ -82,8 +82,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12'
-    - run: npm install
-    - run: npm test
 
 # We really want to setup .Net 5 here, but DocFx fails
 
