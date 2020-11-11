@@ -5,22 +5,6 @@
 <label @ref="ElementReference"
        @attributes="@AttributesToSplat(SplatType.IdClassAndStyleOnly)">
 
-    @if (AppliedInputStyle == MBTextInputStyle.Filled)
-    {
-        <span class="mdc-text-field__ripple"></span>
-    }
-
-    <span class="mdc-text-field__resizer">
-        <textarea @attributes="@AttributesToSplat(SplatType.ExcludeIdClassAndStyle)"
-                  id="@CrossReferenceId"
-                  class="mdc-text-field__input @AppliedTextInputStyleClass @FieldClass"
-                  @bind="@ComponentValue"
-                  aria-labelledby="@labelId"
-                  rows="@Rows"
-                  cols="@Cols"
-                  disabled="@AppliedDisabled"></textarea>
-    </span>
-
     @if (AppliedInputStyle == MBTextInputStyle.Outlined)
     {
         <span class="mdc-notched-outline">
@@ -38,11 +22,27 @@
     }
     else
     {
+        <span class="mdc-text-field__ripple"></span>
+
         @if (ShowLabel)
         {
             <span class="mdc-floating-label @FloatingLabelClass" for="@CrossReferenceId" id="@labelId">@DisplayLabel</span>
         }
+    }
 
+    <span class="mdc-text-field__resizer">
+        <textarea @attributes="@AttributesToSplat(SplatType.ExcludeIdClassAndStyle)"
+                  id="@CrossReferenceId"
+                  class="mdc-text-field__input @AppliedTextInputStyleClass @FieldClass"
+                  @bind="@ComponentValue"
+                  aria-labelledby="@labelId"
+                  rows="@Rows"
+                  cols="@Cols"
+                  disabled="@AppliedDisabled"></textarea>
+    </span>
+
+    @if (AppliedInputStyle == MBTextInputStyle.Filled)
+    {
         <span class="mdc-line-ripple"></span>
     }
 </label>

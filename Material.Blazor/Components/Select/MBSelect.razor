@@ -8,13 +8,34 @@
 
     <div class="mdc-select__anchor"
          role="button"
-         aria-disabled="@AppliedDisabled"
          aria-haspopup="@listboxId"
+         aria-expanded="false"
+         aria-disabled="@AppliedDisabled"
          aria-labelledby="@labelId @selectedTextId">
 
-        @if (AppliedInputStyle == MBSelectInputStyle.Filled)
+        @if (AppliedInputStyle == MBSelectInputStyle.Outlined)
+        {
+            <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+
+                @if (ShowLabel)
+                {
+                    <span class="mdc-notched-outline__notch">
+                        <span id="@labelId" class="mdc-floating-label @FloatingLabelClass">@Label</span>
+                    </span>
+                }
+
+                <span class="mdc-notched-outline__trailing"></span>
+            </span>
+        }
+        else
         {
             <span class="mdc-select__ripple"></span>
+
+            if (ShowLabel)
+            {
+                <span id="@labelId" class="mdc-floating-label @FloatingLabelClass">@Label</span>
+            }
         }
 
         @if (!string.IsNullOrWhiteSpace(LeadingIcon))
@@ -22,10 +43,13 @@
             <MBIcon IconName="@LeadingIcon" IconFoundry="@IconFoundry" class="mdc-select__icon" tabindex="-1" role="button" />
         }
 
-        <span id="@selectedTextId" class="mdc-select__selected-text" aria-disabled="@AppliedDisabled"></span>
+        <span class="mdc-select__selected-text-container">
+            <span id="@selectedTextId" class="mdc-select__selected-text" aria-disabled="@AppliedDisabled"></span>
+        </span>
+
         <span class="mdc-select__dropdown-icon">
             <svg class="mdc-select__dropdown-icon-graphic"
-                 viewBox="7 10 10 5">
+                 viewBox="7 10 10 5" focusable="false">
                 <polygon class="mdc-select__dropdown-icon-inactive"
                          stroke="none"
                          fill-rule="evenodd"
@@ -39,31 +63,14 @@
             </svg>
         </span>
 
-        @if (AppliedInputStyle == MBSelectInputStyle.Outlined)
+        @if (AppliedInputStyle == MBSelectInputStyle.Filled)
         {
-            <span class="mdc-notched-outline">
-                <span class="mdc-notched-outline__leading"></span>
-                @if (ShowLabel)
-                {
-                    <span class="mdc-notched-outline__notch">
-                        <span id="@labelId" class="mdc-floating-label @FloatingLabelClass">@Label</span>
-                    </span>
-                }
-                <span class="mdc-notched-outline__trailing"></span>
-            </span>
-        }
-        else
-        {
-            if (ShowLabel)
-            {
-                <span id="@labelId" class="mdc-floating-label @FloatingLabelClass">@Label</span>
-            }
-            <div class="mdc-line-ripple"></div>
+            <span class="mdc-line-ripple"></span>
         }
     </div>
 
     <div id="@listboxId" 
-         class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fixed">
+         class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth">
 
         <ul class="mdc-list">
 

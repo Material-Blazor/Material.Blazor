@@ -19,7 +19,7 @@
     <PackageProjectUrl>https://material-blazor.com</PackageProjectUrl>
     <Product>Material.Blazor</Product>
     <UserSecretsId>d7509b6c-bc5c-4a56-a750-09c8ae4aeb85</UserSecretsId>
-
+    <NpmReturnCode>0</NpmReturnCode>
     <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 
@@ -58,9 +58,9 @@
 
   <!-- Conditionally obtain references for the .NET Framework 5.0 target -->
   <ItemGroup Condition=" '$(TargetFramework)' == 'net5.0' ">
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.0-rc.2.20475.17" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.0-rc.2.20475.17" />
-    <PackageReference Include="System.Net.Http.Json" Version="5.0.0-rc.2.20475.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.0" />
+    <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -76,7 +76,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <InputStaticAssetsScripts Include="**\*.js;**\*.ts" Exclude="wwwroot\**\*;bin\**\*;node_modules\**\*;obj\**\*" />
+    <InputStaticAssetsScripts Include="**\*.ts" Exclude="wwwroot\**\*;bin\**\*;node_modules\**\*;obj\**\*" />
     <OutputStaticAssetsScripts Include="wwwroot\bundled.min.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js" />
   </ItemGroup>
 
@@ -85,12 +85,7 @@
     <OutputStaticAssetsStyles Include="wwwroot\bundled.min.css;wwwroot\unbundled.min.css;wwwroot\unbundled.css" />
   </ItemGroup>
 
-  <Target Name="SetNpmReturnCodeUnconditionally" BeforeTargets="CheckIfNpmExists">
-    <Exec Command="echo *****" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
-      <Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
-    </Exec>
-  </Target>
-
+  <!-- The NpmReturnCode parameter value is preset to 0 in the PropertyGroup -->
   <Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssetsScripts);@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsScripts);@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent">
     <Exec Command="echo ***** npm install" />
     <Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
@@ -114,6 +109,8 @@
     <Exec Command="echo ***** MakeDir wwwroot" />
     <MakeDir Directories="wwwroot" />
 
+    <Delete Files="node_modules\@material\tooltip\component.ts;node_modules\@material\tooltip\constants.ts;node_modules\@material\tooltip\foundation.ts" />
+    
     <Exec Command="echo ***** npm run build-scripts" />
     <Exec Command="npm run build-scripts" />
 
