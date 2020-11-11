@@ -68,11 +68,11 @@ jobs:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
 
-    - name: Show node version
-      run: node --version
+    #- name: Show node version
+    #  run: node --version
 
-    - name: Show npm version
-      run: npm --version
+    #- name: Show npm version
+    #  run: npm --version
 
 # We really want to setup .Net 5 here, but DocFx fails
 
