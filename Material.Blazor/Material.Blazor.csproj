@@ -99,7 +99,7 @@
     <Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
     </Exec>
-    <Exec Command="echo ***** 'npm install' return code was $(NpmReturnCode) (0 indicates npm is available)" />
+    <Exec Command="echo ***** 'npm install' return code was $(NpmReturnCode) (0 - npm present &amp; successful, 1 - npm probable bad dependencies, 9009 - npm not present)" />
   </Target>
 
   <Target Name="ErrorOutput" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' != '0' ">
@@ -108,6 +108,7 @@
     <Exec Command="echo **********************************************************************************" />
     <Exec Command="echo CSS and JS not built due to the lack of a proper development environment" />
     <Exec Command="echo See https://material-blazor.com/docs/articles/DevelopmentEnvironment.html" />
+    <Exec Command="echo If the return code is 1, check package.json and package-lock.json" />
     <Exec Command="echo **********************************************************************************" />
     <Exec Command="echo **********************************************************************************" />
     <Exec Command="echo **********************************************************************************" />
