@@ -99,7 +99,7 @@
     <Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
     </Exec>
-    <Exec Command="echo ***** 'npm install' return code was $(NpmReturnCode) (0 - npm present &amp; successful, 1 - npm probable bad dependencies, 9009 - npm not present)" />
+    <Exec Command="echo ***** 'npm install' return code was $(NpmReturnCode) (0 - npm present and successful, 1 - npm probable bad dependencies, 9009 - npm not present)" />
   </Target>
 
   <Target Name="ErrorOutput" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' != '0' ">
