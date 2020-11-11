@@ -87,7 +87,7 @@ jobs:
 #      if: (github.repository != 'Material-Blazor/Material.Blazor') && contains(github.ref, 'refs/heads')
 
 
-    - name: Setup .NET
+    - name: Setup .NET 5
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 5.0.100
