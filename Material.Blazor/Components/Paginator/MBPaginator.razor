@@ -3,12 +3,19 @@
 
 
 <div @attributes="@AttributesToSplat()">
+    <div class="mdc-data-table__pagination-trailing">
+        <div class="mdc-data-table__pagination-rows-per-page">
+            <div class="mdc-data-table__pagination-rows-per-page-label">
+                @ItemsText
+            </div>
 
-    <div class="mb-paginator">
-        <div class="mb-paginator-group">
-            <span>@ItemsText</span>
+            @*<MBSelect class="mdc-data-table__pagination-rows-per-page-select"
+                      @bind-Value="@SelectItemsPerPage"
+                      Items="@ItemsPerPageItems"
+                      SelectInputStyle="@MBSelectInputStyle.Outlined"
+                      Density="MBDensity.Minus4" />*@
 
-            <div>
+            <div class="mdc-data-table__pagination-rows-per-page-select">
                 <MBIconButtonToggle @ref="@IconButtonToggle" @bind-Value="@ToggleOn" @onclick="@OnMenuToggleAsync" IconOn="arrow_drop_up" IconOff="arrow_drop_down" />
                 <div class="mdc-menu-surface--anchor">
                     <MBMenu @ref="Menu">
@@ -21,16 +28,19 @@
             </div>
         </div>
 
-        <div class="mb-paginator-group">
-            <div class="mb-paginator__position-text">
-                @* This hidden element serves to give the actual position text a constant width equal to the maximum width that may be required *@
-                <span class="mb-paginator__position-text-hidden">@MaxPositionText</span>
+        <div class="mdc-data-table__pagination-navigation">
+            @* This hidden element serves to give the actual position text a constant width equal to the maximum width that may be required *@
+            <div class="mdc-data-table__pagination-total">
+                <span class="hidden" aria-hidden="true">@MaxPositionText</span>
                 <span>@PositionText</span>
             </div>
+        </div>
 
-            <MBIconButton Icon="chevron_left" @onclick="@OnPreviousClick" Disabled="@PreviousDisabled" />
-
-            <MBIconButton Icon="chevron_right" @onclick="@OnNextClick" Disabled="@NextDisabled" />
+        <div class="mdc-data-table__pagination-navigation">
+            <MBIconButton class="mdc-data-table__pagination-button" Icon="first_page" @onclick="@OnFirstClick" Disabled="@PreviousDisabled" data-prev-page="true" />
+            <MBIconButton class="mdc-data-table__pagination-button" Icon="chevron_left" @onclick="@OnPreviousClick" Disabled="@PreviousDisabled" data-prev-page="true" />
+            <MBIconButton class="mdc-data-table__pagination-button" Icon="chevron_right" @onclick="@OnNextClick" Disabled="@NextDisabled" data-prev-page="true" />
+            <MBIconButton class="mdc-data-table__pagination-button" Icon="last_page" @onclick="@OnLastClick" Disabled="@NextDisabled" data-prev-page="true" />
         </div>
     </div>
 </div>

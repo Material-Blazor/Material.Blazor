@@ -3,6 +3,7 @@ import * as MBButton from '../Components/Button/MBButton';
 import * as MBCard from '../Components/Card/MBCard';
 import * as MBCheckbox from '../Components/Checkbox/MBCheckbox';
 import * as MBCircularProgress from '../Components/CircularProgress/MBCircularProgress';
+import * as MBDataTable from '../Components/DataTable/MBDataTable';
 import * as MBDatePicker from '../Components/DatePicker/MBDatePicker';
 import * as MBDialog from '../Components/Dialog/MBDialog';
 import * as MBDrawer from '../Components/Drawer/MBDrawer';
@@ -26,6 +27,7 @@ import * as MBTopAppBar from '../Components/TopAppBar/MBTopAppBar';
     MBCard,
     MBCheckbox,
     MBCircularProgress,
+    MBDataTable,
     MBDatePicker,
     MBDialog,
     MBDrawer,

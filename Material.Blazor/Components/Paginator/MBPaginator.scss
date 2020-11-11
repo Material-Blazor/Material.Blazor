@@ -2,38 +2,34 @@
 $paginator-spacing: 18px;
 $position-text-spacing: 6px;
 
-
-.mb-paginator {
-    display: inline-flex;
-    flex-flow: row wrap;
-    justify-content: left;
-    box-sizing: content-box;
-    font-weight: bold;
-    user-select: none;
+.mdc-data-table__pagination-rows-per-page {
+    margin-right: 0 !important;
 }
 
-
-.mb-paginator-group {
-    display: flex;
-    line-height: $paginator-height;
-    flex-flow: row nowrap;
+.mdc-data-table__pagination-navigation {
+    margin-left: 12px !important;
+}
+.mdc-data-table__pagination-button {
+    margin-right: 0 !important;
 }
 
+.mdc-data-table__pagination.no-border {
+    border-top: 0 !important;
+}
 
-.mb-paginator__position-text {
+.mdc-data-table__pagination-total {
+    margin: 0 !important;
     display: flex;
     flex-flow: column nowrap;
-    padding: 0 $position-text-spacing 0 $position-text-spacing;
     text-align: center;
+
+    & .hidden {
+        height: 0;
+        overflow: hidden;
+    }
 }
 
-
-.mb-paginator__position-text-hidden {
-    height: 0;
-    overflow: hidden;
-}
-
-
-.mb-paginator .mdc-icon-button {
-    margin: 0 !important;
+.mdc-data-table__pagination-rows-per-page-select {
+    width: auto !important;
+    min-width: 0 !important;
 }
