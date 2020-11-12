@@ -428,7 +428,12 @@ namespace Material.Blazor.Internal
         /// <param name="eventId">The event id associated with the log.</param>
         /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
         /// <param name="args">An object array that contains zero or more objects to format.</param>
+#if Logging
         protected void LogMBDebug(EventId eventId, string message, params object[] args) => Logger.LogDebug(eventId, $"MATERIAL.BLAZOR DEBUG - {message}", args);
+#else
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
+        protected void LogMBDebug(EventId eventId, string message, params object[] args) {}
+#endif
 
 
         /// <summary>
@@ -438,7 +443,12 @@ namespace Material.Blazor.Internal
         /// <param name="exception">The exception to log.</param>
         /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
         /// <param name="args">An object array that contains zero or more objects to format.</param>
+#if Logging
         protected void LogMBDebug(EventId eventId, Exception exception, string message, params object[] args) => Logger.LogDebug(eventId, exception, $"MATERIAL.BLAZOR DEBUG - {message}", args);
+#else
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
+        protected void LogMBDebug(EventId eventId, Exception exception, string message, params object[] args) { }
+#endif
 
 
         /// <summary>
@@ -446,7 +456,12 @@ namespace Material.Blazor.Internal
         /// </summary>
         /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
         /// <param name="args">An object array that contains zero or more objects to format.</param>
+#if Logging
         protected void LogMBDebug(string message, params object[] args) => Logger.LogDebug($"MATERIAL.BLAZOR DEBUG - {message}", args);
+#else
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
+        protected void LogMBDebug(string message, params object[] args) {}
+#endif
 
 
         /// <summary>
@@ -455,8 +470,68 @@ namespace Material.Blazor.Internal
         /// <param name="exception">The exception to log.</param>
         /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
         /// <param name="args">An object array that contains zero or more objects to format.</param>
+#if Logging
         protected void LogMBDebug(Exception exception, string message, params object[] args) => Logger.LogDebug(exception, $"MATERIAL.BLAZOR DEBUG - {message}", args);
+#else
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
+        protected void LogMBDebug(Exception exception, string message, params object[] args) { }
+#endif
 
+
+        /// <summary>
+        /// Logs a debug message identifying it as having come from Material.Blazor
+        /// </summary>
+        /// <param name="eventId">The event id associated with the log.</param>
+        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
+        /// <param name="args">An object array that contains zero or more objects to format.</param>
+#if LoggingVerbose
+        protected void LogMBDebugVerbose(EventId eventId, string message, params object[] args) => Logger.LogDebug(eventId, $"MATERIAL.BLAZOR DEBUG - {message}", args);
+#else
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
+        protected void LogMBDebugVerbose(EventId eventId, string message, params object[] args) {}
+#endif
+
+
+        /// <summary>
+        /// Logs a debug message identifying it as having come from Material.Blazor
+        /// </summary>
+        /// <param name="eventId">The event id associated with the log.</param>
+        /// <param name="exception">The exception to log.</param>
+        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
+        /// <param name="args">An object array that contains zero or more objects to format.</param>
+#if LoggingVerbose
+        protected void LogMBDebugVerbose(EventId eventId, Exception exception, string message, params object[] args) => Logger.LogDebug(eventId, exception, $"MATERIAL.BLAZOR DEBUG - {message}", args);
+#else
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
+        protected void LogMBDebugVerbose(EventId eventId, Exception exception, string message, params object[] args) { }
+#endif
+
+
+        /// <summary>
+        /// Logs a debug message identifying it as having come from Material.Blazor
+        /// </summary>
+        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
+        /// <param name="args">An object array that contains zero or more objects to format.</param>
+#if LoggingVerbose
+        protected void LogMBDebugVerbose(string message, params object[] args) => Logger.LogDebug($"MATERIAL.BLAZOR DEBUG - {message}", args);
+#else
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
+        protected void LogMBDebugVerbose(string message, params object[] args) {}
+#endif
+
+
+        /// <summary>
+        /// Logs a debug message identifying it as having come from Material.Blazor
+        /// </summary>
+        /// <param name="exception">The exception to log.</param>
+        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
+        /// <param name="args">An object array that contains zero or more objects to format.</param>
+#if LoggingVerbose
+        protected void LogMBDebugVerbose(Exception exception, string message, params object[] args) => Logger.LogDebug(exception, $"MATERIAL.BLAZOR DEBUG - {message}", args);
+#else
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
+        protected void LogMBDebugVerbose(Exception exception, string message, params object[] args) { }
+#endif
 
         /// <summary>
         /// Logs a error message identifying it as having come from Material.Blazor

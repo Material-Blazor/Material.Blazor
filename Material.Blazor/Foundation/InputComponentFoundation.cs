@@ -91,14 +91,12 @@ namespace Material.Blazor.Internal
             get => _componentValue;
             set
             {
-#if LoggingVerbose
-                LogMBDebug($"ComponentValue setter entered: _componentValue is '{_cachedValue?.ToString() ?? "null"}' and new value is'{value?.ToString() ?? "null"}'");
-#endif
+                LogMBDebugVerbose($"ComponentValue setter entered: _componentValue is '{_cachedValue?.ToString() ?? "null"}' and new value is'{value?.ToString() ?? "null"}'");
+                
                 if (!EqualityComparer<T>.Default.Equals(value, _componentValue))
                 {
-#if Logging
                     LogMBDebug($"ComponentValue setter changed _componentValue");
-#endif
+
                     _componentValue = value;
                     _ = ValueChanged.InvokeAsync(value);
 
@@ -273,9 +271,9 @@ namespace Material.Blazor.Internal
                 EditContext = CascadedEditContext;
                 _nullableUnderlyingType = Nullable.GetUnderlyingType(typeof(T));
                 _hasSetInitialParameters = true;
-#if Logging
+
                 LogMBDebug($"SetParametersAsync setting ComponentValue value to '{Value?.ToString() ?? "null"}'");
-#endif
+
                 _cachedValue = Value;
                 _componentValue = Value;
             }
@@ -311,20 +309,18 @@ namespace Material.Blazor.Internal
 
         private void CommonParametersSet()
         {
-#if LoggingVerbose
-            LogMBDebug($"OnParametersSet setter entered: _cachedValue is '{_cachedValue?.ToString() ?? "null"}' and Value is'{Value?.ToString() ?? "null"}'");
-#endif
+            LogMBDebugVerbose($"OnParametersSet setter entered: _cachedValue is '{_cachedValue?.ToString() ?? "null"}' and Value is'{Value?.ToString() ?? "null"}'");
+
             if (!EqualityComparer<T>.Default.Equals(_cachedValue, Value))
             {
                 _cachedValue = Value;
-#if Logging
+
                 LogMBDebug($"OnParametersSet changed _cachedValue value");
-#endif
+
                 if (!EqualityComparer<T>.Default.Equals(_componentValue, Value))
                 {
-#if Logging
                     LogMBDebug("OnParametersSet update _componentValue value from '" + _componentValue?.ToString() ?? "null" + "'");
-#endif
+
                     _componentValue = Value;
                     if (HasInstantiated)
                     {

@@ -12,6 +12,11 @@ title: ReleaseNotes
 - Upgrade to [Material Components Web 8.0.0](https://github.com/material-components/material-components-web/tree/v8.0.0/packages).
 - Upgraded build process to produce Material.Blazor with support for netstandard2.1 and net5.0.
 - Full implementation of Material Components Web JS `destroy()` function calls for every component's `Dispose()` process.
+- MBDataTable enhanced with pagination and linear progress implementation - no breaking changes.
+- MBPaginator now uses Material Component Web 8.0.0's markup, with some minor modification - no breaking changes.
+- Tooltips use Material Component Web 8.0.0 rather than preview packages - no breaking changes.
+- Material.Blazor beginning to use `ILogger` to log warnings when validating component markup to help you during app development.
+- General bug fixes.
 
 **Breaking Changes**
 
