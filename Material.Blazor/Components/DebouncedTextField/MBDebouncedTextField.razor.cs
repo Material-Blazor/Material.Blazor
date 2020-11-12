@@ -128,7 +128,6 @@ namespace Material.Blazor
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await base.OnAfterRenderAsync(firstRender);
-            TextField.IsValidFormField = false;
         }
 
 

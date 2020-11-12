@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.Extensions.Logging;
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -25,10 +23,9 @@ namespace Material.Blazor.Internal
         private bool _hasSetInitialParameters;
         protected bool _instantiate = false;
 
+
         [CascadingParameter] private EditContext CascadedEditContext { get; set; }
-
         [CascadingParameter] private IMBDialog Dialog { get; set; }
-
 
 
         /// <summary>
@@ -80,7 +77,7 @@ namespace Material.Blazor.Internal
         /// form validation for the embedded <see cref="MBTextField"/>, because a debounced field
         /// should not be in a form.
         /// </summary>
-        internal bool IsValidFormField { get; set; } = true;
+        private bool IgnoreFormField => this is MBDebouncedTextField;
 
 
         /// <summary>
@@ -95,18 +92,17 @@ namespace Material.Blazor.Internal
             set
             {
 #if LoggingVerbose
-                Logger.LogDebug($"ComponentValue setter entered: _componentValue is '{_cachedValue?.ToString() ?? "null"}' and new value is'{value?.ToString() ?? "null"}'");
+                LogMBDebug($"ComponentValue setter entered: _componentValue is '{_cachedValue?.ToString() ?? "null"}' and new value is'{value?.ToString() ?? "null"}'");
 #endif
                 if (!EqualityComparer<T>.Default.Equals(value, _componentValue))
                 {
 #if Logging
-                    Logger.LogDebug($"ComponentValue setter changed _componentValue");
+                    LogMBDebug($"ComponentValue setter changed _componentValue");
 #endif
                     _componentValue = value;
                     _ = ValueChanged.InvokeAsync(value);
-                    if (EditContext != null && IsValidFormField)
 
-                    if (EditContext != null && IsValidFormField)
+                    if (EditContext != null && !IgnoreFormField)
                     {
                         if (string.IsNullOrWhiteSpace(FieldIdentifier.FieldName))
                         {
@@ -151,7 +147,7 @@ namespace Material.Blazor.Internal
                 {
                     parsingFailed = true;
 
-                    if (EditContext != null && IsValidFormField)
+                    if (EditContext != null && !IgnoreFormField)
                     {
                         if (_parsingValidationMessages == null)
                         {
@@ -212,7 +208,7 @@ namespace Material.Blazor.Internal
         /// Gets a string that indicates the status of the field being edited. This will include
         /// some combination of "modified", "valid", or "invalid", depending on the status of the field.
         /// </summary>
-        protected string FieldClass => IsValidFormField ? (EditContext?.FieldCssClass(FieldIdentifier) ?? string.Empty) : string.Empty;
+        protected string FieldClass => !IgnoreFormField ? (EditContext?.FieldCssClass(FieldIdentifier) ?? string.Empty) : string.Empty;
 
 
         /// <para>
@@ -223,6 +219,11 @@ namespace Material.Blazor.Internal
             base.OnInitialized();
 
             OnInitDialog();
+
+            if (EditContext != null && IgnoreFormField)
+            {
+                LogMBWarning($"{GetType()} is in a form but has EditContext features disabled because it is considered a valid Material.Blazor form field type");
+            }
         }
 
 
@@ -273,7 +274,7 @@ namespace Material.Blazor.Internal
                 _nullableUnderlyingType = Nullable.GetUnderlyingType(typeof(T));
                 _hasSetInitialParameters = true;
 #if Logging
-                Logger.LogDebug($"SetParametersAsync setting ComponentValue value to '{Value?.ToString() ?? "null"}'");
+                LogMBDebug($"SetParametersAsync setting ComponentValue value to '{Value?.ToString() ?? "null"}'");
 #endif
                 _cachedValue = Value;
                 _componentValue = Value;
@@ -311,18 +312,18 @@ namespace Material.Blazor.Internal
         private void CommonParametersSet()
         {
 #if LoggingVerbose
-            Logger.LogDebug($"OnParametersSet setter entered: _cachedValue is '{_cachedValue?.ToString() ?? "null"}' and Value is'{Value?.ToString() ?? "null"}'");
+            LogMBDebug($"OnParametersSet setter entered: _cachedValue is '{_cachedValue?.ToString() ?? "null"}' and Value is'{Value?.ToString() ?? "null"}'");
 #endif
             if (!EqualityComparer<T>.Default.Equals(_cachedValue, Value))
             {
                 _cachedValue = Value;
 #if Logging
-                Logger.LogDebug($"OnParametersSet changed _cachedValue value");
+                LogMBDebug($"OnParametersSet changed _cachedValue value");
 #endif
                 if (!EqualityComparer<T>.Default.Equals(_componentValue, Value))
                 {
 #if Logging
-                    Logger.LogDebug("OnParametersSet update _componentValue value from '" + _componentValue?.ToString() ?? "null" + "'");
+                    LogMBDebug("OnParametersSet update _componentValue value from '" + _componentValue?.ToString() ?? "null" + "'");
 #endif
                     _componentValue = Value;
                     if (HasInstantiated)

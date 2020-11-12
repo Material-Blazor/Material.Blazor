@@ -4,18 +4,27 @@
 //
 
 using Microsoft.AspNetCore.Components;
-
 using System.Collections.Generic;
 
 namespace Material.Blazor.Internal
 {
+    /// <summary>
+    /// Static utilities.
+    /// </summary>
     public static class ComponentFoundationExtensions
     {
-        public static bool ParameterIsChanged<T>(this Microsoft.AspNetCore.Components.ComponentBase cmp, ParameterView parameters,
-            string parameterName, T value)
+        /// <summary>
+        /// Detects if a parameter has changed given the component's <see cref="ParameterView"/> and the parameter's name and value.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="cmp"></param>
+        /// <param name="parameters"></param>
+        /// <param name="parameterName"></param>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static bool ParameterIsChanged<T>(this ComponentBase cmp, ParameterView parameters, string parameterName, T value)
         {
-            T newValue;
-            if (parameters.TryGetValue(parameterName, out newValue))
+            if (parameters.TryGetValue(parameterName, out T newValue))
             {
                 if (!EqualityComparer<T>.Default.Equals(value, newValue))
                 {
