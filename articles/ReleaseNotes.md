@@ -5,7 +5,7 @@ title: ReleaseNotes
 # Release Notes
 
 #### [2.0.0](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0)
-12 November 2020
+99 November 2020
 
 **Updates**
 
