@@ -25,6 +25,7 @@ the markup specification. We term these "Core Components. Material.Blazor also h
 | [MBList](xref:C.MBList) | A [Material List](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-list#lists). Implements Material Theme Web Components one and two line lists, plus a Material.Blazor interpretation of a three line list. |
 | [MBMenu](xref:C.MBMenu) | A [Material Menu](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-menu#menus). Does not implement sub menus. May redesign parameterization. |
 | [MBRadioButton](xref:C.MBRadioButton) | A [Material Radio Button](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-radio#selection-controls-radio-buttons). |
+| [MBPaginator](xref:C.MBPaginator) | An implementation of the [Material paginator specification](https://material.io/components/data-tables#behavior). |
 | [MBSelect](xref:C.MBSelect) | A [Material Select Menu](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-select#select-menus). |
 | [MBSwitch](xref:C.MBSwitch) | A [Material Switch](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-switch#selection-controls-switches). |
 | [MBTabBar](xref:C.MBTabBar) | A [Material Tab Bar](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-tab-bar#tab-bar). |

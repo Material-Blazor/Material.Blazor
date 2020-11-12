@@ -15,6 +15,7 @@ title: ReleaseNotes
 
 **Breaking Changes**
 
+- Material.Blazor 2.0.0 is only compatible with .NET 5.0 - if you require .NET Core 3.1 or .NET Standard 2.1 use Material.Blazor version 1.0.0.
 - CDN packages now reference material components web 8.0.0, see [Installation article](xref:A.Installation).
 - If you are building a theme from material components web SASS, you need to reference version 8.0.0.
 - MBMenu `ToggleAsync()` is now return type `Task` rather than `Task<string>` in version 1.

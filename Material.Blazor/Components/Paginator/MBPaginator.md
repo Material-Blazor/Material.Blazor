@@ -17,5 +17,5 @@ An implementation of the [Material paginator specification](https://material.io/
 
 &nbsp;
 
-[![Components](https://img.shields.io/static/v1?label=Components&message=Plus&color=red)](xref:A.PlusComponents)
+[![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](xref:A.CoreComponents)
 [![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBPaginator&color=brightgreen)](xref:Material.Blazor.MBPaginator)
