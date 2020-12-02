@@ -30,6 +30,9 @@ jobs:
 
     steps:
 
+    - name: DotNet info
+      run: dotnet --info
+
     - name: Set ciSuffix as env variable
       run: echo "ciSuffix=ci.$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
       shell: bash
@@ -85,16 +88,6 @@ jobs:
         path: siteDocFx
       if: (github.repository != 'Material-Blazor/Material.Blazor')
 #      if: (github.repository != 'Material-Blazor/Material.Blazor') && contains(github.ref, 'refs/heads')
-
-
-    - name: Setup .NET 5
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.100
-        source-url: https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
 
     - name: Build Website 🔧
       run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectWeb}
