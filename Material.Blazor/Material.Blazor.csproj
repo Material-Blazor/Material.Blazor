@@ -4,7 +4,7 @@
     <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
     <RazorLangVersion>3.0</RazorLangVersion>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <VersionPrefix>1.1.2</VersionPrefix>
+    <VersionPrefix>2.0.0</VersionPrefix>
     <VersionSuffix></VersionSuffix>
     <PackageLicenseFile></PackageLicenseFile>
     <Authors>Simon Ziegler of Dioptra and Mark Stega of Optimium Health</Authors>
