@@ -31,9 +31,14 @@ We have developed Material.Blazor using Visual Studio 2019 on Windows, and have 
 
 ## CI and Release GitHub Action workflows
 
-These workflows are responsible for publishing two artifacts:
-* The Material.Blazor DocFx pages in the Material.Blazor project, amalgamated with the Material.Blazor.WebAssembly published output to your gh-pages branch.
-* The Material.Blazor NuGet package hosted as a GitHub package (Release) or a NuGet.org (CI).
+These workflows are responsible for publishing three artifacts:
+* The Material.Blazor DocFx pages in the Material.Blazor project
+* Material.Blazor.WebAssembly published output 
+* The Material.Blazor NuGet package 
+
+The first two artifacts are combined and published in the repository gh-pages.
+
+The third artifact is hosted as a GitHub package (CI) or a NuGet package (Release).
 
 ### WIP Workflow
 
