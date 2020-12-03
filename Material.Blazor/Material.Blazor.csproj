@@ -93,12 +93,14 @@
   </ItemGroup>
 
   <!-- The NpmReturnCode parameter value is preset to 0 in the PropertyGroup -->
+  <!-- The inputs/outputs are 'close to correct' in that a newer TS source than output CSS (or newer SCSS source
+       than output JS) will trigger this check even though nothing needs to be built -->
   <Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssets)" Outputs="@(OutputStaticAssets)" BeforeTargets="PreBuildEvent">
-    <Exec Command="echo ***** npm install" />
-    <Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
+    <Exec Command="echo ***** npm --version" />
+    <Exec Command="npm --version" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
     </Exec>
-    <Exec Command="echo ***** 'npm install' return code was $(NpmReturnCode) (0 - npm install was successful)" />
+    <Exec Command="echo ***** 'npm --version' return code was $(NpmReturnCode) (0 - npm --version was successful)" />
   </Target>
 
   <Target Name="ErrorOutput" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' != '0' ">
@@ -118,6 +120,9 @@
   <Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
     <Exec Command="echo ***** MakeDir wwwroot" />
     <MakeDir Directories="wwwroot" />
+
+    <Exec Command="echo ***** npm install" />
+    <Exec Command="npm install" />
 
     <Delete Files="node_modules\@material\tooltip\component.ts;node_modules\@material\tooltip\constants.ts;node_modules\@material\tooltip\foundation.ts" />
     
@@ -140,6 +145,9 @@
   <Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
     <Exec Command="echo ***** mkdir wwwroot" />
     <MakeDir Directories="wwwroot" />
+
+    <Exec Command="echo ***** npm install" />
+    <Exec Command="npm install" />
 
     <Exec Command="echo ***** downloadfile" />
     <DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" DestinationFolder="$(MSBuildProjectDirectory)\wwwroot" DestinationFilename="material-components-icons.css">
