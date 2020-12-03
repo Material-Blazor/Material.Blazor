@@ -96,7 +96,6 @@
   <!-- The inputs/outputs are 'close to correct' in that a newer TS source than output CSS (or newer SCSS source
        than output JS) will trigger this check even though nothing needs to be built -->
   <Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssets)" Outputs="@(OutputStaticAssets)" BeforeTargets="PreBuildEvent">
-    <Exec Command="echo ***** npm --version" />
     <Exec Command="npm --version" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
     </Exec>
