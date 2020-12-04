@@ -23,7 +23,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
-    <DefineConstants>Logging</DefineConstants>
+    <!--<DefineConstants>Logging</DefineConstants>-->
     <!--<DefineConstants>Logging;LoggingVerbose</DefineConstants>-->
   </PropertyGroup>
 
