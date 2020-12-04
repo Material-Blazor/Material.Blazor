@@ -120,16 +120,16 @@ jobs:
 # Pending a service response we only do the push of the CI build in the Material-Blazor/Material.Blazor repository
 
     - name: Upload Package (Main repository) 🚀
-      run: nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      run: dotnet nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       if: ((github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push'))
 
     - name: Upload Package (Forked repository) 🚀
-      run: nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      run: dotnet nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GH_PAT}}
-      if: ((github.repository != 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false)
+      if: ((github.repository != 'Material-Blazor/Material.Blazor') && (github.event_name == 'push'))
 
 ############################################################################################################
 # deployghpages
