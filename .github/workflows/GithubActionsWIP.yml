@@ -71,15 +71,11 @@ jobs:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
 
-
-# We really want to setup .Net 5 here, but DocFx fails
-
     - name: Create documentation 🔧
       run: .\docfx\docfx docfx.json
       env:
         DOCFX_SOURCE_BRANCH_NAME: main
       if: (github.repository != 'Material-Blazor/Material.Blazor')
-#      if: (github.repository != 'Material-Blazor/Material.Blazor') && contains(github.ref, 'refs/heads')
 
     - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'siteDocFx'.
       uses: actions/upload-artifact@v1
@@ -87,7 +83,6 @@ jobs:
         name: siteDocFx
         path: siteDocFx
       if: (github.repository != 'Material-Blazor/Material.Blazor')
-#      if: (github.repository != 'Material-Blazor/Material.Blazor') && contains(github.ref, 'refs/heads')
 
     - name: Build Website 🔧
       run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectWeb}
@@ -116,20 +111,22 @@ jobs:
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${env:outputMB}
 
+# We'd like to push to a the main repository but now getting errors of authorization
+
+    - name: Upload Package (Main repository) 🚀
+      run: nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      env:
+        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      if: ((github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false)
+
 # We'd like to push to a forked repository; The push appears to work but the packages are not visible
 # Pending a service response we only do the push of the CI build in the Material-Blazor/Material.Blazor repository
 
-    - name: Upload Package (Main repository) 🚀
-      run: dotnet nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      if: ((github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push'))
-
     - name: Upload Package (Forked repository) 🚀
-      run: dotnet nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      run: nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GH_PAT}}
-      if: ((github.repository != 'Material-Blazor/Material.Blazor') && (github.event_name == 'push'))
+      if: ((github.repository != 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false)
 
 ############################################################################################################
 # deployghpages
