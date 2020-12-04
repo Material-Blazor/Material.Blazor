@@ -99,13 +99,13 @@
     <Exec Command="npm --version" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
     </Exec>
-    <Exec Command="echo ***** 'npm --version' return code was $(NpmReturnCode) (0 - npm --version was successful)" />
   </Target>
 
   <Target Name="ErrorOutput" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' != '0' ">
     <Exec Command="echo **********************************************************************************" />
     <Exec Command="echo **********************************************************************************" />
     <Exec Command="echo **********************************************************************************" />
+    <Exec Command="echo ***** 'npm --version' return code was $(NpmReturnCode)" />
     <Exec Command="echo CSS and JS not built due to the lack of a proper development environment" />
     <Exec Command="echo See https://material-blazor.com/docs/articles/DevelopmentEnvironment.html" />
     <Exec Command="echo If the return code is 1, check package.json and package-lock.json" />
