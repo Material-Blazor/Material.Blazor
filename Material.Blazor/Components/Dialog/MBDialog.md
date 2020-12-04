@@ -6,7 +6,7 @@ title: MBDialog
 
 ## Summary
 
-A [Material Dialog](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-dialog#dialogs) using a render fragment for content. It features:
+A [Material Dialog](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-dialog#dialogs) using a render fragment for content. It features:
 
 ## Details
 

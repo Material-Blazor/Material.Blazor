@@ -6,7 +6,7 @@ title: MBButton
 
 ## Summary
 
-A [Material Button](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-button#buttons) with the following properties:
+A [Material Button](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-button#buttons) with the following properties:
 
 ## Details
 

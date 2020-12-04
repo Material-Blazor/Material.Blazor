@@ -4,6 +4,10 @@ export function init(elem) {
     elem._iconButtonToggle = MDCIconButtonToggle.attachTo(elem);
 }
 
+export function destroy(elem): void {
+    elem._ripple.destroy();
+}
+
 export function setOn(elem, isOn) {
     elem._iconButtonToggle.on = isOn;
 }

@@ -60,24 +60,29 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
-            ClassMapper
+            ClassMapperInstance
                 .Add("mdc-card")
                 .AddIf("mdc-card--outlined", () => CascadingDefaults.AppliedStyle(CardStyle) == MBCardStyle.Outlined);
         }
 
 
-        /// <summary>
-        /// Overrides <see cref="OnAfterRenderAsync(bool)"/> because the method must only
-        /// initiate Material Theme javascript if the <see cref="PrimaryAction"/> is not null.
-        /// </summary>
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+        /// <inheritdoc/>
+        private protected override async Task InstantiateMcwComponent()
         {
-            await base.OnAfterRenderAsync(firstRender);
-
-            if (firstRender && PrimaryAction != null)
+            if (PrimaryAction != null)
             {
                 await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBCard.init", PrimaryActionReference);
-           }
+            }
+        }
+
+
+        /// <inheritdoc/>
+        private protected override async Task DestroyMcwComponent()
+        {
+            if (PrimaryAction != null)
+            {
+                await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBCard.destroy", PrimaryActionReference);
+            }
         }
     }
 }

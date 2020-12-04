@@ -18,7 +18,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "material-components-web": "7.0.0",
+    "material-components-web": "8.0.0",
     "dart-sass": "^1.25.0"
   }
 }

@@ -153,7 +153,7 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
-            ClassMapper
+            ClassMapperInstance
                 .AddIf(MBSlidingContent<object>.Hidden, () => IsHidden)
                 .AddIf(MBSlidingContent<object>.Visible, () => !IsHidden);
         }

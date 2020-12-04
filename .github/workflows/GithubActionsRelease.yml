@@ -36,6 +36,9 @@ jobs:
 
     steps:
 
+    - name: DotNet info
+      run: dotnet --info
+
     - name: Set Version as env variable
       run: echo "Version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
       shell: bash
@@ -78,8 +81,10 @@ jobs:
       uses: actions/checkout@v2
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
-
-# We really want to setup .Net 5 here, but DocFx fails
+    - name: Revert to Node 12
+      uses: actions/setup-node@v1
+      with:
+        node-version: '12'
 
     - name: Create documentation 🔧
       run: .\docfx\docfx docfx.json
@@ -93,17 +98,6 @@ jobs:
         name: siteDocFx
         path: siteDocFx
       if: (github.repository == 'Material-Blazor/Material.Blazor')
-
-
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 5.0.100-rc.2.20479.15
-        source-url: https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
-
 
     - name: Build Website 🔧
       run: dotnet build --configuration ${env:buildConfiguration} -p:InformationalVersion=${env:Version} ${env:projectWeb}

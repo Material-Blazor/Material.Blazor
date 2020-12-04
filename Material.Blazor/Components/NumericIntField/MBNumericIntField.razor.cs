@@ -1,13 +1,12 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
 using System;
 using System.Linq.Expressions;
 
 namespace Material.Blazor
 {
     /// <summary>
-    /// An integer variant of <see cref="MBNumericDoubleField"/>.
+    /// An integer variant of <see cref="MBNumericDecimalField"/>.
     /// </summary>
     public partial class MBNumericIntField : InputComponentFoundation<int>
     {
@@ -117,19 +116,19 @@ namespace Material.Blazor
         /// <summary>
         /// The minimum allowable value.
         /// </summary>
-        [Parameter] public double? Min { get; set; }
+        [Parameter] public int? Min { get; set; }
 
 
         /// <summary>
         /// The maximum allowable value.
         /// </summary>
-        [Parameter] public double? Max { get; set; }
+        [Parameter] public int? Max { get; set; }
 #nullable restore annotations
 
 
-        private double DblVal
+        private decimal DecimalValue
         {
-            get => (double)ComponentValue;
+            get => ComponentValue;
             set => ComponentValue = Convert.ToInt32(Math.Round(value, 0));
         }
 

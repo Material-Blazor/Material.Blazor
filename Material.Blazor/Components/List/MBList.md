@@ -6,7 +6,7 @@ title: MBList
 
 ## Summary
 
-A partial implementation of a [Material List](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-list#lists). Uses render fragments to implement Material Theme Web Components one and two line lists, plus a Material.Blazor interpretation of a three line list. It features:
+A partial implementation of a [Material List](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-list#lists). Uses render fragments to implement Material Theme Web Components one and two line lists, plus a Material.Blazor interpretation of a three line list. It features:
 
 ## Details
 

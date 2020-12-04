@@ -1,0 +1,26 @@
+﻿@namespace Material.Blazor
+
+@inherits InputComponentFoundation<decimal>
+
+
+<MBTextField @ref="@TextField"
+             @attributes="@AttributesToSplat()"
+             step="@(Math.Pow(10, -MyDecimalPlaces).ToString())"
+             min="@Min"
+             max="@Max"
+             @bind-Value="@FormattedValue"
+             Label="@Label"
+             Prefix="@Prefix"
+             Suffix="@Suffix"
+             LeadingIcon="@LeadingIcon"
+             TrailingIcon="@TrailingIcon"
+             IconFoundry="@IconFoundry"
+             Density="@Density"
+             TextInputStyle="@TextInputStyle"
+             TextAlignStyle="@MBTextAlignStyle.Right"
+             HelperText="@HelperText"
+             HelperTextPersistent="@HelperTextPersistent"
+             ValidationMessageFor="@ValidationMessageFor"
+             Disabled="@AppliedDisabled"
+             @onfocusin="@OnFocusInAsync"
+             @onfocusout="@OnFocusOutAsync" />

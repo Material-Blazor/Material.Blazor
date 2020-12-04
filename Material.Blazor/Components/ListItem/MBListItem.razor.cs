@@ -45,7 +45,7 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
-            ClassMapper
+            ClassMapperInstance
                 .Add("mdc-list-item")
                 .AddIf("mdc-menu-item--selected", () => IsSelectedMenuItem)
                 .AddIf("mdc-list-item--disabled mb-list-item--disabled", () => AppliedDisabled);

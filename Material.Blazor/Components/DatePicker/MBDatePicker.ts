@@ -4,6 +4,10 @@ export function init(elem) {
     elem._select = MDCSelect.attachTo(elem);
 }
 
+export function destroy(elem) {
+    elem._select.destroy();
+}
+
 export function listItemClick(elem, elemText) {
     elem.innerText = elemText;
     elem.click();

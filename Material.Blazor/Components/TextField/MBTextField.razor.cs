@@ -149,7 +149,7 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
-            ClassMapper
+            ClassMapperInstance
                 .Add("mdc-text-field")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
@@ -225,7 +225,11 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InitiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
+        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
+
+
+        /// <inheritdoc/>
+        private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.destroy", ElementReference);
 
 
         /// <summary>

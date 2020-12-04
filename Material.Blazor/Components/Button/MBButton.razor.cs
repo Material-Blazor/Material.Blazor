@@ -78,7 +78,7 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
-            ClassMapper
+            ClassMapperInstance
                 .Add("mdc-button")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-button--raised", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MBButtonStyle.ContainedRaised)
@@ -89,7 +89,7 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InitiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBButton.init", ElementReference);
+        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBButton.init", ElementReference);
 
 
         /// <inheritdoc/>

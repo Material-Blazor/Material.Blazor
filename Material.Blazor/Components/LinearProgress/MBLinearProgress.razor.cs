@@ -61,7 +61,7 @@ namespace Material.Blazor
             ForceShouldRenderToTrue = true;
             IntialValue = Value;
 
-            ClassMapper
+            ClassMapperInstance
                 .Add("mdc-linear-progress")
                 .AddIf("mdc-linear-progress--indeterminate", () => LinearProgressType == MBLinearProgressType.Indeterminate)
                 .AddIf("mdc-linear-progress--reversed", () => LinearProgressType == MBLinearProgressType.ReversedDeterminate)
@@ -80,6 +80,10 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InitiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBLinearProgress.init", ElementReference, Value, MyBufferValue);
+        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBLinearProgress.init", ElementReference, Value, MyBufferValue);
+
+
+        /// <inheritdoc/>
+        private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBLinearProgress.destroy", ElementReference);
     }
 }

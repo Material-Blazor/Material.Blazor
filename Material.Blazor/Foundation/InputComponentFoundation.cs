@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.Extensions.Logging;
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -25,16 +23,9 @@ namespace Material.Blazor.Internal
         private bool _hasSetInitialParameters;
         protected bool _instantiate = false;
 
+
         [CascadingParameter] private EditContext CascadedEditContext { get; set; }
-
         [CascadingParameter] private IMBDialog Dialog { get; set; }
-
-
-
-        /// <summary>
-        /// Gets a value for the component's 'id' attribute.
-        /// </summary>
-        private protected string CrossReferenceId { get; set; } = Utilities.GenerateUniqueElementName();
 
 
         /// <summary>
@@ -86,7 +77,7 @@ namespace Material.Blazor.Internal
         /// form validation for the embedded <see cref="MBTextField"/>, because a debounced field
         /// should not be in a form.
         /// </summary>
-        internal bool IsValidFormField { get; set; } = true;
+        private bool IgnoreFormField => this is MBDebouncedTextField;
 
 
         /// <summary>
@@ -100,19 +91,16 @@ namespace Material.Blazor.Internal
             get => _componentValue;
             set
             {
-#if LoggingVerbose
-                Logger.LogDebug($"ComponentValue setter entered: _componentValue is '{_cachedValue?.ToString() ?? "null"}' and new value is'{value?.ToString() ?? "null"}'");
-#endif
+                LogMBDebugVerbose($"ComponentValue setter entered: _componentValue is '{_cachedValue?.ToString() ?? "null"}' and new value is'{value?.ToString() ?? "null"}'");
+                
                 if (!EqualityComparer<T>.Default.Equals(value, _componentValue))
                 {
-#if Logging
-                    Logger.LogDebug($"ComponentValue setter changed _componentValue");
-#endif
+                    LogMBDebug($"ComponentValue setter changed _componentValue");
+
                     _componentValue = value;
                     _ = ValueChanged.InvokeAsync(value);
-                    if (EditContext != null && IsValidFormField)
 
-                    if (EditContext != null && IsValidFormField)
+                    if (EditContext != null && !IgnoreFormField)
                     {
                         if (string.IsNullOrWhiteSpace(FieldIdentifier.FieldName))
                         {
@@ -157,7 +145,7 @@ namespace Material.Blazor.Internal
                 {
                     parsingFailed = true;
 
-                    if (EditContext != null && IsValidFormField)
+                    if (EditContext != null && !IgnoreFormField)
                     {
                         if (_parsingValidationMessages == null)
                         {
@@ -218,7 +206,7 @@ namespace Material.Blazor.Internal
         /// Gets a string that indicates the status of the field being edited. This will include
         /// some combination of "modified", "valid", or "invalid", depending on the status of the field.
         /// </summary>
-        protected string FieldClass => IsValidFormField ? (EditContext?.FieldCssClass(FieldIdentifier) ?? string.Empty) : string.Empty;
+        protected string FieldClass => !IgnoreFormField ? (EditContext?.FieldCssClass(FieldIdentifier) ?? string.Empty) : string.Empty;
 
 
         /// <para>
@@ -229,6 +217,11 @@ namespace Material.Blazor.Internal
             base.OnInitialized();
 
             OnInitDialog();
+
+            if (EditContext != null && IgnoreFormField)
+            {
+                LogMBWarning($"{GetType()} is in a form but has EditContext features disabled because it is considered a valid Material.Blazor form field type");
+            }
         }
 
 
@@ -245,7 +238,7 @@ namespace Material.Blazor.Internal
 
         private void OnInitDialog()
         {
-            if (Dialog != null && !Dialog.HasInstantiated)
+            if (Dialog != null && !Dialog.DialogHasInstantiated)
             {
                 Dialog.RegisterLayoutAction(this);
             }
@@ -278,9 +271,9 @@ namespace Material.Blazor.Internal
                 EditContext = CascadedEditContext;
                 _nullableUnderlyingType = Nullable.GetUnderlyingType(typeof(T));
                 _hasSetInitialParameters = true;
-#if Logging
-                Logger.LogDebug($"SetParametersAsync setting ComponentValue value to '{Value?.ToString() ?? "null"}'");
-#endif
+
+                LogMBDebug($"SetParametersAsync setting ComponentValue value to '{Value?.ToString() ?? "null"}'");
+
                 _cachedValue = Value;
                 _componentValue = Value;
             }
@@ -316,22 +309,20 @@ namespace Material.Blazor.Internal
 
         private void CommonParametersSet()
         {
-#if LoggingVerbose
-            Logger.LogDebug($"OnParametersSet setter entered: _cachedValue is '{_cachedValue?.ToString() ?? "null"}' and Value is'{Value?.ToString() ?? "null"}'");
-#endif
+            LogMBDebugVerbose($"OnParametersSet setter entered: _cachedValue is '{_cachedValue?.ToString() ?? "null"}' and Value is'{Value?.ToString() ?? "null"}'");
+
             if (!EqualityComparer<T>.Default.Equals(_cachedValue, Value))
             {
                 _cachedValue = Value;
-#if Logging
-                Logger.LogDebug($"OnParametersSet changed _cachedValue value");
-#endif
+
+                LogMBDebug($"OnParametersSet changed _cachedValue value");
+
                 if (!EqualityComparer<T>.Default.Equals(_componentValue, Value))
                 {
-#if Logging
-                    Logger.LogDebug("OnParametersSet update _componentValue value from '" + _componentValue?.ToString() ?? "null" + "'");
-#endif
+                    LogMBDebug("OnParametersSet update _componentValue value from '" + _componentValue?.ToString() ?? "null" + "'");
+
                     _componentValue = Value;
-                    if (_hasInstantiated)
+                    if (HasInstantiated)
                     {
                         SetComponentValue?.Invoke(this, null);
                     }
@@ -357,7 +348,7 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Material.Blazor components descending from MdcInputComponentBase _*must not*_ override ShouldRender().
         /// </summary>
-        protected override bool ShouldRender()
+        protected sealed override bool ShouldRender()
         {
             if (ForceShouldRenderToTrue || AllowNextRender)
             {
@@ -372,15 +363,25 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Material.Blazor components descending from MdcInputComponentBase _*must not*_ override OnAfterRenderAsync(bool).
         /// </summary>
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+        protected override void OnAfterRender(bool firstRender)
         {
             if (_instantiate)
             {
                 _instantiate = false;
-                _hasInstantiated = true;
-                await InitiateMcwComponent();
+                _ = InstantiateMcwComponent();
+                HasInstantiated = true;
                 AddTooltip();
             }
+        }
+
+
+        /// <summary>
+        /// Material.Blazor components descending from MdcInputComponentBase _*must not*_ override OnAfterRenderAsync(bool).
+        /// </summary>
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            OnAfterRender(firstRender);
+            await Task.CompletedTask;
         }
 
 

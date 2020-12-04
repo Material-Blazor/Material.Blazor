@@ -6,7 +6,7 @@ title: MBTabBar
 
 ## Summary
 
-A [Material Tab Bar](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-tab-bar#tab-bar), including scroll function for when the tab bar is wider than the viewport.
+A [Material Tab Bar](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-tab-bar#tab-bar), including scroll function for when the tab bar is wider than the viewport.
 
 ## Details
 

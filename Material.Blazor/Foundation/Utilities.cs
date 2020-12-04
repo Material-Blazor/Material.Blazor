@@ -6,6 +6,21 @@ namespace Material.Blazor.Internal
     internal static class Utilities
     {
         /// <summary>
+        /// Compares two decimals to the tolerance of the specified number of decimal places.
+        /// </summary>
+        /// <param name="left">The first decimal for the comparison.</param>
+        /// <param name="right">The second decimal for the comparison.</param>
+        /// <param name="decimalPlaces">The number of decimal places to take into account.</param>
+        /// <returns>True if the two numbers are equal within the specified tolerance, otherwise false.</returns>
+        public static bool DecimalEqual(decimal left, decimal right, int decimalPlaces = 6)
+        {
+            decimal tolerance = Convert.ToDecimal(Math.Pow(0.1, decimalPlaces));
+
+            return Math.Abs(left - right) <= tolerance;
+        }
+
+
+        /// <summary>
         /// Compares two doubles to the tolerance of the specified number of decimal places.
         /// </summary>
         /// <param name="left">The first double for the comparison.</param>

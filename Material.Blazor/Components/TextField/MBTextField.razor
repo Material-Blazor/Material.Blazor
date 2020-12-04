@@ -5,9 +5,29 @@
 <label @ref="@ElementReference"
        @attributes="@AttributesToSplat(SplatType.IdClassAndStyleOnly)">
 
-    @if (AppliedInputStyle == MBTextInputStyle.Filled)
+    @if (AppliedInputStyle == MBTextInputStyle.Outlined)
+    {
+        <span class="mdc-notched-outline">
+            <span class="mdc-notched-outline__leading"></span>
+
+            @if (ShowLabel)
+            {
+                <span class="mdc-notched-outline__notch">
+                    <span class="mdc-floating-label @FloatingLabelClass" for="@CrossReferenceId" id="@labelId">@DisplayLabel</span>
+                </span>
+            }
+
+            <span class="mdc-notched-outline__trailing"></span>
+        </span>
+    }
+    else
     {
         <span class="mdc-text-field__ripple"></span>
+
+        @if (ShowLabel)
+        {
+            <span class="mdc-floating-label @FloatingLabelClass" for="@CrossReferenceId" id="@labelId">@DisplayLabel</span>
+        }
     }
 
     @if (!string.IsNullOrWhiteSpace(LeadingIcon))
@@ -36,28 +56,8 @@
         <MBIcon IconName="@TrailingIcon" IconFoundry="@IconFoundry" class="mdc-text-field__icon mdc-text-field__icon--trailing" tabindex="-1" role="button" />
     }
 
-    @if (AppliedInputStyle == MBTextInputStyle.Outlined)
+    @if (AppliedInputStyle == MBTextInputStyle.Filled)
     {
-        <span class="mdc-notched-outline">
-            <span class="mdc-notched-outline__leading"></span>
-
-            @if (ShowLabel)
-            {
-                <span class="mdc-notched-outline__notch">
-                    <span class="mdc-floating-label @FloatingLabelClass" for="@CrossReferenceId" id="@labelId">@DisplayLabel</span>
-                </span>
-            }
-
-            <span class="mdc-notched-outline__trailing"></span>
-        </span>
-    }
-    else
-    {
-        @if (ShowLabel)
-        {
-            <span class="mdc-floating-label @FloatingLabelClass" for="@CrossReferenceId" id="@labelId">@DisplayLabel</span>
-        }
-
         <span class="mdc-line-ripple"></span>
     }
 </label>

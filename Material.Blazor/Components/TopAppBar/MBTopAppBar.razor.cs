@@ -60,7 +60,7 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
-            ClassMapper
+            ClassMapperInstance
                 .Add("mdc-top-app-bar")
                 .AddIf($"mdc-top-app-bar--{TopAppBarType.ToString().ToLower()}", () => TopAppBarType != MBTopAppBarType.Standard && TopAppBarType != MBTopAppBarType.ShortCollapsed)
                 .AddIf($"mdc-top-app-bar--short mdc-top-app-bar--short-collapsed", () => TopAppBarType == MBTopAppBarType.ShortCollapsed)
@@ -69,6 +69,10 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InitiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTopAppBar.init", HeaderElem, ScrollTarget);
+        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTopAppBar.init", HeaderElem, ScrollTarget);
+
+
+        /// <inheritdoc/>
+        private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTopAppBar.destroy", HeaderElem);
     }
 }

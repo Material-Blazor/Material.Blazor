@@ -1,4 +1,4 @@
-﻿@page "/NumericDoublefield"
+﻿@page "/numericdoublefield"
 
 @inject IMBToastService ToastService
 
@@ -32,8 +32,9 @@
 
                     <p>
                         <MBNumericDoubleField Label="Double 2dp"
-                                              @bind-Value="@Double"
-                                              NumericFormat="N2" DecimalPlaces="2"
+                                              @bind-Value="@DoubleValue"
+                                              NumericFormat="N2"
+                                              DecimalPlaces="2"
                                               TextInputStyle="MBTextInputStyle.Outlined" />
                     </p>
 
@@ -140,15 +141,15 @@
 
 
 @code {
-    private double _double;
-    private double Double
+    private double _doubleValue;
+    private double DoubleValue
     {
-        get => _double;
+        get => _doubleValue;
         set
         {
-            _double = value;
+            _doubleValue = value;
 
-            ToastService.ShowToast(heading: "Double numeric", message: $"Value: '{_double.ToString("N2")}'", level: MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(heading: "Double numeric", message: $"Value: '{_doubleValue.ToString("N2")}'", level: MBToastLevel.Success, showIcon: false);
         }
     }
 

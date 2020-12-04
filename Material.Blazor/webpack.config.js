@@ -1,4 +1,5 @@
 var path = require("path");
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
     mode: 'production',
@@ -25,10 +26,14 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
+                test: /\.(ts|js)x?$/,
+                use: 'babel-loader',
                 exclude: /node_modules/,
             }
         ],
     },
+
+    plugins: [
+        new ForkTsCheckerWebpackPlugin(),
+    ]
 };

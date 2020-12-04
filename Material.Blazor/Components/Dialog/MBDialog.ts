@@ -7,7 +7,7 @@ export function show(elem, dotNetObject, escapeKeyAction, scrimClickAction): any
     return new Promise(resolve => {
         const dialog = elem._dialog;
 
-        const openedCallback = event => {
+        const openedCallback = () => {
             dialog.unlisten('MDCDialog:opened', openedCallback);
             dotNetObject.invokeMethodAsync('NotifyOpenedAsync');
         };
@@ -26,7 +26,8 @@ export function show(elem, dotNetObject, escapeKeyAction, scrimClickAction): any
 }
 
 export function hide(elem, dialogAction) {
-    if (elem._dialog) {
+    if (elem && elem._dialog) {
         elem._dialog.close(dialogAction || 'dismissed');
+        elem._dialog.destroy();
     }
 }

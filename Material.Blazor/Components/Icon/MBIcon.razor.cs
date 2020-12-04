@@ -47,7 +47,7 @@ namespace Material.Blazor
             // Has to be here, the string in Add/AddIf is evaluated only once at the
             // time of the add.
             //
-            ClassMapper
+            ClassMapperInstance
                 .Clear()
                 .Add(IconHelper.Class)
                 .AddIf("mdc-tab__icon", () => TabBarIdentifier != null);

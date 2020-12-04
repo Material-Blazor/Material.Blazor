@@ -1,14 +1,18 @@
 ﻿import { MDCSelect } from '@material/select';
 
-export function init(selectElem, dotNetObject) {
-    selectElem._select = MDCSelect.attachTo(selectElem);
+export function init(elem, dotNetObject) {
+    elem._select = MDCSelect.attachTo(elem);
 
     return new Promise(() => {
-        selectElem._select.foundation.handleMenuItemAction = index => {
-            selectElem._select.foundation.setSelectedIndex(index);
+        elem._select.foundation.handleMenuItemAction = index => {
+            elem._select.foundation.setSelectedIndex(index);
             dotNetObject.invokeMethodAsync('NotifySelectedAsync', index);
         };
     });
+}
+
+export function destroy(elem) {
+    elem._select.destroy();
 }
 
 export function setDisabled(elem, value) {

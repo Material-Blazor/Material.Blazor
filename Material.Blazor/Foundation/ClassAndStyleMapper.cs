@@ -48,15 +48,19 @@ namespace Material.Blazor.Internal
                 .Where(v => v != null)); // consider only non-null values
         }
     }
+
+
     public class ClassMapper : ClassAndStyleMapper
     {
         public override string ToString() => ToClassString();
     }
 
+
     public class StyleMapper : ClassAndStyleMapper
     {
         public override string ToString() => ToStyleString();
     }
+
 
     public static class ClassAndStyleMapperExtensions
     {
@@ -96,5 +100,4 @@ namespace Material.Blazor.Internal
             return m;
         }
     }
-
 }

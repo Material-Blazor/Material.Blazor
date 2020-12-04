@@ -86,7 +86,7 @@ namespace Material.Blazor
 
             ObjectReference = DotNetObjectReference.Create(this);
 
-            ClassMapper
+            ClassMapperInstance
                 .Add("mdc-tab-bar")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass);
             
@@ -143,6 +143,11 @@ namespace Material.Blazor
         protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTabBar.activateTab", ElementReference, Value).ConfigureAwait(false));
 
 
-        private protected override async Task InitiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTabBar.init", ElementReference, ObjectReference).ConfigureAwait(false);
+        /// <inheritdoc/>
+        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTabBar.init", ElementReference, ObjectReference).ConfigureAwait(false);
+
+
+        /// <inheritdoc/>
+        private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTabBar.destroy", ElementReference).ConfigureAwait(false);
     }
 }

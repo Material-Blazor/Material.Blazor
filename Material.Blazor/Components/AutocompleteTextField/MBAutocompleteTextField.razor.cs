@@ -350,7 +350,7 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InitiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBAutoCompleteTextField.init", TextField.ElementReference, MenuReference, ObjectReference);
+        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBAutoCompleteTextField.init", TextField.ElementReference, MenuReference, ObjectReference);
 
 
         /// <inheritdoc/>

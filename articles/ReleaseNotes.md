@@ -4,6 +4,30 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [2.0.0](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0)
+99 November 2020
+
+**Updates**
+
+- Upgrade to [Material Components Web 8.0.0](https://github.com/material-components/material-components-web/tree/v8.0.0/packages).
+- Upgraded build process to produce Material.Blazor with support for netstandard2.1 and net5.0.
+- Full implementation of Material Components Web JS `destroy()` function calls for every component's `Dispose()` process.
+- MBDataTable enhanced with pagination and linear progress implementation - no breaking changes.
+- MBPaginator now uses Material Component Web 8.0.0's markup, with some minor modification - no breaking changes.
+- Tooltips use Material Component Web 8.0.0 rather than preview packages - no breaking changes.
+- Material.Blazor beginning to use `ILogger` to log warnings when validating component markup to help you during app development.
+- General bug fixes.
+
+**Breaking Changes**
+
+- Material.Blazor 2.0.0 is only compatible with .NET 5.0 - if you require .NET Core 3.1 or .NET Standard 2.1 use Material.Blazor version 1.0.0.
+- CDN packages now reference material components web 8.0.0, see [Installation article](xref:A.Installation).
+- If you are building a theme from material components web SASS, you need to reference version 8.0.0.
+- MBMenu `ToggleAsync()` is now return type `Task` rather than `Task<string>` in version 1.
+
+<br />
+
+
 #### [1.1.4](https://github.com/Material-Blazor/Material.Blazor/tree/1.1.4)
 06 November 2020
 
@@ -23,7 +47,7 @@ title: ReleaseNotes
 #### [1.1.2](https://github.com/Material-Blazor/Material.Blazor/tree/1.1.2)
 02 November 2020
 
-- Upgraded build process for DocFx
+- Upgraded build process for DocFx.
 
 <br />
 

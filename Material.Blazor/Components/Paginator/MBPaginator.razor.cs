@@ -11,6 +11,9 @@ namespace Material.Blazor
 {
     public partial class MBPaginator : ComponentFoundation
     {
+        [CascadingParameter(Name = MBDataTable<string>.DataTableCascadingValue)] private string DataTableCascadingValue { get; set; }
+
+
         /// <summary>
         /// A list of the allowable number of items per page for the
         /// paginator to present to the user.
@@ -99,23 +102,29 @@ namespace Material.Blazor
 
 
         private bool HasRendered { get; set; } = false;
-        private MBMenu Menu { get; set; }
         private MBIconButtonToggle IconButtonToggle { get; set; }
-        private bool ToggleOn { get; set; }
         private MBListElement<int>[] ItemsPerPageItems { get; set; }
-        private int MaxPageNumber => Math.Max(0, Convert.ToInt32(Math.Ceiling((double)ItemCount / ItemsPerPage)) - 1);
         private string ItemsText => $"{ItemsPerPage:G0} items per page";
-        private string PositionText => PositionTextString(PageNumber);
+        private int MaxPageNumber => Math.Max(0, Convert.ToInt32(Math.Ceiling((double)ItemCount / ItemsPerPage)) - 1);
         private string MaxPositionText => PositionTextString(MaxPageNumber);
-        private bool PreviousDisabled => PageNumber <= 0;
+        private MBMenu Menu { get; set; }
         private bool NextDisabled => PageNumber >= MaxPageNumber;
+        private string PositionText => PositionTextString(PageNumber);
+        private bool PreviousDisabled => PageNumber <= 0;
         private string PositionTextString(int pageNumber) => $"{pageNumber * ItemsPerPage + 1:G0}-{Math.Min(ItemCount, (pageNumber + 1) * ItemsPerPage):G0} of {ItemCount:G0}";
+        private bool ToggleOn { get; set; }
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override void OnInitialized()
         {
             base.OnInitialized();
+
+            var requiresBorder = DataTableCascadingValue != null && DataTableCascadingValue == MBDataTable<string>.DataTableReference;
+
+            ClassMapperInstance
+                .Add("mdc-data-table__pagination")
+                .AddIf("no-border", () => !requiresBorder);
 
             if (ItemsPerPage == 0)
             {
@@ -149,7 +158,7 @@ namespace Material.Blazor
         {
             if (ToggleOn)
             {
-                _ = await Menu.ToggleAsync();
+                await Menu.ToggleAsync();
                 ToggleOn = false;
             }
         }
@@ -160,6 +169,12 @@ namespace Material.Blazor
             double ratio = (double)ItemsPerPage / (double)itemsPerPage;
             BackingItemsPerPage = itemsPerPage;
             BackingPageNumber = Convert.ToInt32(PageNumber * ratio);
+        }
+        
+        
+        private void OnFirstClick()
+        {
+            BackingPageNumber = 0;
         }
 
 
@@ -172,6 +187,12 @@ namespace Material.Blazor
         private void OnNextClick()
         {
             BackingPageNumber = Math.Min(PageNumber + 1, MaxPageNumber);
+        }
+
+
+        private void OnLastClick()
+        {
+            BackingPageNumber = MaxPageNumber;
         }
     }
 }

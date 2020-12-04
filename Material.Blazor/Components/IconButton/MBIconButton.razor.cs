@@ -51,7 +51,7 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
-            ClassMapper
+            ClassMapperInstance
                 .Add($"mdc-icon-button")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-card__action mdc-card__action--icon", () => (Card != null));
@@ -59,6 +59,10 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InitiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBIconButton.init", ElementReference);
+        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBIconButton.init", ElementReference);
+
+
+        /// <inheritdoc/>
+        private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBIconButton.destroy", ElementReference);
     }
 }

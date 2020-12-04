@@ -1,18 +1,12 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Material.Blazor
 {
     /// <summary>
-    /// A Material Theme numeric input field. This wraps <see cref="MBTextField"/> and normally
-    /// displays the numeric value as formatted text, but switches to a pure number on being selected.
+    /// An double variant of <see cref="MBNumericDecimalField"/>.
     /// </summary>
     public partial class MBNumericDoubleField : InputComponentFoundation<double>
     {
@@ -138,50 +132,57 @@ namespace Material.Blazor
 #nullable restore annotations
 
 
-        private const string DoublePattern = @"^[-+]?[0-9]*\.?[0-9]+$";
-        private const string PositiveDoublePattern = @"[0-9]*\.?[0-9]+$";
-        private const string IntegerPattern = @"^(\+|-)?\d+$";
-        private const string PositiveIntegerPattern = @"^\d+$";
+        private decimal DecimalValue
+        {
+            get => (decimal)ComponentValue;
+            set => ComponentValue = Convert.ToDouble(Math.Round(value, DecimalPlaces));
+        }
 
 
-        private double AppliedMultiplier => HasFocus ? FocusedMultiplier : UnfocusedMultiplier;
-        private double FocusedMultiplier { get; set; } = 1;
-        private Dictionary<string, object> MyAttributes { get; set; }
-        private int MyDecimalPlaces { get; set; } = 0;
-        private Regex Regex { get; set; }
-        private MBTextField TextField { get; set; }
-        private double UnfocusedMultiplier { get; set; } = 1;
-
-
-        private bool HasFocus { get; set; } = false;
-
-
-        // There may be a case for simplifying this code. Does FormattedValue need to be bound like this or can we instead bind to a string representation of the
-        // properly scaled number without formatting intended only for human legibility?
-        private string FormattedValue
+        private decimal? DecimalMin
         {
             get
             {
-                return HasFocus ? Math.Round(Convert.ToDouble(ComponentValue) * AppliedMultiplier, MyDecimalPlaces).ToString() : StringValue(ComponentValue);
+                if (Min == null)
+                {
+                    return null;
+                }
+
+                return (decimal)Min;
             }
 
             set
             {
-                var enteredVal = HasFocus ? Convert.ToDouble(Convert.ToDouble(string.IsNullOrWhiteSpace(value) ? "0" : value.Trim()) / FocusedMultiplier) : NumericValue(value) / AppliedMultiplier;
-                ComponentValue = Math.Round(Math.Max(Min ?? enteredVal, Math.Min(enteredVal, Max ?? enteredVal)), MyDecimalPlaces + (int)FocusedMagnitude);
+                if (value == null)
+                {
+                    Min = null;
+                }
+
+                Min = Convert.ToDouble(Math.Round(value ?? 0, DecimalPlaces));
             }
         }
 
 
-        private string AppliedFormat
+        private decimal? DecimalMax
         {
             get
             {
-                if (HasFocus) return "";
+                if (Max == null)
+                {
+                    return null;
+                }
 
-                if (!(NumericSingularFormat is null) && Utilities.DoubleEqual(Math.Abs(ComponentValue), 1)) return NumericSingularFormat;
+                return (decimal)Max;
+            }
 
-                return NumericFormat;
+            set
+            {
+                if (value == null)
+                {
+                    Max = null;
+                }
+
+                Max = Convert.ToDouble(Math.Round(value ?? 0, DecimalPlaces));
             }
         }
 
@@ -191,69 +192,7 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
-            bool allowSign = !(Min != null && Min >= 0);
-
-            FocusedMultiplier = Math.Pow(10, (int)FocusedMagnitude);
-            UnfocusedMultiplier = Math.Pow(10, (int)UnfocusedMagnitude);
-
-            if (DecimalPlaces <= 0)
-            {
-                MyDecimalPlaces = 0;
-                Regex = new Regex(allowSign ? IntegerPattern : PositiveIntegerPattern);
-            }
-            else
-            {
-                MyDecimalPlaces = DecimalPlaces;
-                Regex = new Regex(allowSign ? DoublePattern : PositiveDoublePattern);
-            }
-
-            // Required for MBNumericIntField to work
             ForceShouldRenderToTrue = true;
-        }
-
-
-        private async Task OnFocusInAsync()
-        {
-            HasFocus = true;
-            await TextField.SetType(FormattedValue, "number", true);
-        }
-
-
-        private async Task OnFocusOutAsync()
-        {
-            HasFocus = false;
-            await TextField.SetType(FormattedValue, "text", false);
-        }
-
-
-        private string StringValue(double? value) => (Convert.ToDouble(value) * AppliedMultiplier).ToString(AppliedFormat);
-
-
-        private double NumericValue(string displayText)
-        {
-            int myRounding = MyDecimalPlaces + Convert.ToInt32(Math.Log(AppliedMultiplier));
-
-            if (!Regex.IsMatch(displayText))
-            {
-                return ComponentValue;
-            }
-
-            double amount;
-            try
-            {
-                amount = Convert.ToDouble(Math.Round(Convert.ToDouble(displayText) / AppliedMultiplier, myRounding));
-            }
-            catch
-            {
-                return ComponentValue;
-            }
-
-            if ((Min != null && amount < Min) || (Max != null && amount > Max))
-            {
-                return ComponentValue;
-            }
-
-            return amount;
         }
     }
 }

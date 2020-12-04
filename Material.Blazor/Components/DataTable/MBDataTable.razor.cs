@@ -13,6 +13,20 @@ namespace Material.Blazor
     public partial class MBDataTable<TItem> : ComponentFoundation
     {
         /// <summary>
+        /// A cascading to be used by <see cref="MBPaginator"/> to
+        /// identify that it is within a data table.
+        /// </summary>
+        internal const string DataTableCascadingValue = "DataTableCascadingValue";
+
+
+        /// <summary>
+        /// A reference for <see cref="DataTableCascadingValue"/> to be used by <see cref="MBPaginator"/> to
+        /// identify that it is within a data table.
+        /// </summary>
+        internal const string DataTableReference = "276994ab-401c-434b-835d-740e06e5aa82";
+
+
+        /// <summary>
         /// A function delegate to return the parameters for <c>@key</c> attributes. If unused
         /// "fake" keys set to GUIDs will be used.
         /// </summary>
@@ -38,6 +52,40 @@ namespace Material.Blazor
 
 
         /// <summary>
+        /// Render fragment to contain an <see cref="MBPaginator"/>.
+        /// </summary>
+        [Parameter] public RenderFragment Paginator { get; set; }
+
+
+        /// <summary>
+        /// Determines whether the data table has a progress bar.
+        /// </summary>
+        [Parameter] public bool HasProgressBar { get; set; }
+
+
+        private bool showProgress;
+        /// <summary>
+        /// Determines whether the data table has a progress bar.
+        /// </summary>
+        [Parameter] public bool ShowProgress
+        {
+            get => showProgress;
+            set
+            {
+                if (value != showProgress)
+                {
+                    showProgress = value;
+
+                    if (HasProgressBar && HasInstantiated)
+                    {
+                        InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDataTable.setProgress", ElementReference, showProgress));
+                    }
+                }
+            }
+        }
+
+
+        /// <summary>
         /// The data table's density.
         /// </summary>
         [Parameter] public MBDensity? Density { get; set; }
@@ -53,7 +101,7 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
-            ClassMapper
+            ClassMapperInstance
                 .Add("mdc-data-table")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass);
         }
@@ -69,8 +117,10 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected async override Task InitiateMcwComponent() => await Task.CompletedTask;
-// Not needed until row selection is enabled
-//        private protected async override Task InitializeMdcComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDataTable.init", ElementReference);
+        private protected async override Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDataTable.init", ElementReference, HasProgressBar && ShowProgress);
+
+
+        /// <inheritdoc/>
+        private protected async override Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDataTable.destroy", ElementReference);
     }
 }

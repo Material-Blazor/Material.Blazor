@@ -3,7 +3,11 @@
 export function init(elem, exited) {
     elem._fab = MDCRipple.attachTo(elem);
     elem._exited = false;
-    setExited(elem, exited)
+    setExited(elem, exited);
+}
+
+export function destroy(elem) {
+    elem._fab.destroy();
 }
 
 export function setExited(elem, exited) {

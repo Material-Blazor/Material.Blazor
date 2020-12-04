@@ -48,7 +48,7 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
-            ClassMapper
+            ClassMapperInstance
                 .Add("mdc-drawer")
                 .AddIf("mdc-drawer--dismissible", () => IsDismissible)
                 .AddIf("mdc-drawer--open", () => StartOpen);
@@ -70,7 +70,7 @@ namespace Material.Blazor
         public void Toggle(bool open)
         {
             isOpen = open;
-            InvokeAsync(() => InitiateMcwComponent());
+            InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDrawer.toggle", DrawerElem, isOpen));
         }
 
 
@@ -88,6 +88,10 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InitiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDrawer.toggle", DrawerElem, isOpen);
+        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDrawer.init", DrawerElem, isOpen);
+
+
+        /// <inheritdoc/>
+        private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDrawer.destroy", DrawerElem);
     }
 }
