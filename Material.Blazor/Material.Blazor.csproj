@@ -5,7 +5,7 @@
     <RazorLangVersion>3.0</RazorLangVersion>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <VersionPrefix>2.0.0</VersionPrefix>
-    <VersionSuffix></VersionSuffix>
+    <VersionSuffix>aaa1</VersionSuffix>
     <PackageLicenseFile></PackageLicenseFile>
     <Authors>Simon Ziegler of Dioptra and Mark Stega of Optimium Health</Authors>
     <Company>Material.Blazor</Company>
