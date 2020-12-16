@@ -134,8 +134,8 @@
     <Message Importance="high" Text="***** npm run build-min-js" />
     <Exec Command="npm run build-min-js" />
 
-    <Message Importance="high" Text="***** npm run build-bundle-js (For debug)" />
-    <Exec Command="npm run build-bundle-js" />
+    <!--<Message Importance="high" Text="***** npm run build-bundle-js (For debug)" />
+    <Exec Command="npm run build-bundle-js" />-->
 
     <Message Importance="high" Text="***** npm run build-min-bundle-js" />
     <Exec Command="npm run build-min-bundle-js" />

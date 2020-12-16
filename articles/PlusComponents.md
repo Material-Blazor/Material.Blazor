@@ -18,8 +18,9 @@ implements further Blazor/Material Theme hybrid components that we term "Plus Co
 | [MBDatePicker](xref:C.MBDatePicker) | An implementation of the [Material date picker specification](https://material.io/components/pickers/#specs) for the desktop. |
 | [MBDebouncedTextField](xref:C.MBDebouncedTextField) | A debounced version of [MBTextField](xref:C.MBTextField) |
 | [MBDivider](xref:C.MBDivider) | Implements a list divider by wrapping `hr` and gives the option of inset and padded. This uses the mdc-list-divider styles. |
+| [MBGrid](xref:C.MBGrid) | Displays a grid composed from the elements specified as parameters. |
 | [MBIcon](xref:C.MBIcon) | Displays an icon from the specified icon foundry or the default foundry from [MBCascadingDefaults](xref:U.MBCascadingDefaults). See also [MBIconHelper](xref:U.MBIconHelper). |
-| [MBNumericDeciamlField](xref:C.MBNumericDeciamlField) | Wraps [MBTextField](xref:C.MBTextField) to format numeric entry of a `decimal`. |
+| [MBNumericDecimalField](xref:C.MBNumericDecimalField) | Wraps [MBTextField](xref:C.MBTextField) to format numeric entry of a `decimal`. |
 | [MBNumericDoubleField](xref:C.MBNumericDoubleField) | A wrapper for `MBNumericDecimalField` for `double` variables. |
 | [MBNumericIntField](xref:C.MBNumericIntField) | A wrapper for `MBNumericDecimalField` for `int` variables. |
 | [MBPagedDataList](xref:C.MBPagedDataList) | A templated component for paging generic data lists using [MBPaginator](xref:C.MBPaginator) and applying transitions with [MBSlidingContent](xref:C.MBSlidingContent). |

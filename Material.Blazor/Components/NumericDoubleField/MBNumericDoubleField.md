@@ -1,6 +1,6 @@
 ﻿---
-uid: C.MBNumericIntField
-title: MBNumericIntField
+uid: C.MBNumericDoubleField
+title: MBNumericDoubleField
 ---
 # MBNumericIntField
 

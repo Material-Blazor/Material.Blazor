@@ -2,21 +2,23 @@
 uid: C.MBGrid
 title: MBGrid
 ---
-# MBGrid&lt;TItem&gt;
+# MBGrid&lt;TRowData&gt;
 
 ## Summary
 
-A [Material Grid](https://github.com/material-components/material-components-web/tree/v7.0.0/packages/mdc-data-table#data-tables) built on a Material Data Table base using render fragments. It features:
+A grid built on a table base using BuildRenderTree.
+
+## Warning
+
+This is a preview version of the grid. The expectation must be that implementation details and the API will change.
 
 ## Details
 
-- A Table Header render fragment, which requires correct HTML/CSS markup for the table's header;
-- An IEnumerable of Table Row render fragments, also requiring correct HTML/CSS markup; and
-- Applies [density subsystem](xref:A.Density).
+- tbd.
 
 &nbsp;
 
 &nbsp;
 
-[![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](xref:A.PlusComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBDataTable&color=brightgreen)](xref:BlazorMdc.MBGrid)
+[![Components](https://img.shields.io/static/v1?label=Components&message=Plus&color=red)](xref:A.PlusComponents)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBGrid&color=brightgreen)](xref:Material.Blazor.MBGrid`1)

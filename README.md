@@ -8,7 +8,7 @@ Material.Blazor is a lightweight [Material Theme](https://material.io/) [web dev
 - See release notes at https://material-blazor.com/docs/ReleaseNotes.html;
 - View the project API documentation at https://material-blazor.com/docs; and
 - Material.Blazor is available at https://www.nuget.org/packages/Material.Blazor.
-- If you intend to submit pull requests please note that we use Git Flow with `develop` and `main` branches. You can read [detailed development environment instructions](https://material-blazor.com/docs/articles/DevelopmentEnvironment.html) on our docs site.
+- If you intend to submit pull requests please note that we use a gitub repository with a `main` branch upon which pull requests can be made. You can read [detailed development environment instructions](https://material-blazor.com/docs/articles/DevelopmentEnvironment.html) on our docs site.
 
 <br />
 <br />
