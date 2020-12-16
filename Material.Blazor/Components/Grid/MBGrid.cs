@@ -2,8 +2,7 @@
 //
 //  Move enumerations to MBEnumerations removing the leading 'e'
 //  Remove leading 'p' on property names
-//  Change namespace
-//  Add ts to build, change the name of the js window
+//  Remove tableReferences, JS, calls to JS
 //  
 
 
@@ -50,12 +49,18 @@ namespace Material.Blazor
 
         [Inject] private protected ILogger<MBGrid<TRowData>> Logger { get; set; }
 
-        private MB_Grid_Measurement DerivedMeasurement { get; set; } = MB_Grid_Measurement.Percent;
+        private float[] ColumnWidthArray;
+        private ElementReference GridBodyDivRef { get; set; }
+        private ElementReference GridHeaderDivRef { get; set; }
+        private ElementReference GridBodyTableRef { get; set; }
+        private ElementReference GridHeaderTableRef { get; set; }
+        private bool IsFirstRender { get; set; } = true;
         private List<KeyValuePair<string, List<TRowData>>> OrderedGroupedData { get; set; } = null;
-        private ElementReference GridHeaderRef { get; set; }
-        private ElementReference GridBodyRef { get; set; }
         private string SelectedKey { get; set; } = "";
-        private bool HasRendered { get; set; } = false;
+
+        //Instantiate a Singleton of the Semaphore with a value of 1. This means that only 1 thread can be granted access at a time.
+        static SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
+        private string TableWidthString { get; set; }
 
         protected override void OnInitialized()
         {
@@ -65,21 +70,7 @@ namespace Material.Blazor
             {
                 throw new System.Exception("MBGrid requires column configuration definitions.");
             }
-
-            DerivedMeasurement = Measurement;
-            if (Measurement == MB_Grid_Measurement.FitToData)
-            {
-                DerivedMeasurement = MB_Grid_Measurement.PX;
-
-                foreach (var col in ColumnConfigurations)
-                {
-                    col.Width = 1;
-                }
-            }
         }
-
-        //Instantiate a Singleton of the Semaphore with a value of 1. This means that only 1 thread can be granted access at a time.
-        static SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -87,107 +78,14 @@ namespace Material.Blazor
             try
             {
                 await base.OnAfterRenderAsync(firstRender);
-                HasRendered = true;
 
-                //Logger.LogDebug("OnAfterRenderAsync with a reference of " + GridHeaderRef.Id.ToString(), null);
-                // Measure the width of a vertical scrollbar and set the padding of the header
-                //await JsRuntime.InvokeVoidAsync("GeneralComponents.MBGrid.setPaddingRight", GridHeaderRef);
+                Logger.LogInformation("OnAfterRenderAsync");
 
-                //
-                // We need to create column widths if the Measurement == MB_Grid_Measurement.FitToData
-                // We are going to measure the actual sizes using JS
-                // Next, traverse the DOM and set all of the td widths
-                //
-                if (Measurement == MB_Grid_Measurement.FitToData)
+                if (IsFirstRender)
                 {
-                    var columnWidthList = new List<float>();
-
-                    // Measure the header columns
-                    foreach (var col in ColumnConfigurations)
-                    {
-                        columnWidthList.Add(ConvertPxMeasureToFloat(
-                            await JsRuntime.InvokeAsync<string>(
-                                "GeneralComponents.MBGrid.getTextWidth",
-                                "mb-grid-div-header",
-                                col.Title)));
-                    }
-
-                    // Measure the body columns
-                    foreach (var kvp in OrderedGroupedData)
-                    {
-                        foreach (var rowValues in kvp.Value)
-                        {
-                            var colIndex = 0;
-                            foreach (var columnDefinition in ColumnConfigurations)
-                            {
-                                switch (columnDefinition.ColumnType)
-                                {
-                                    case MB_Grid_ColumnType.Icon:
-                                        // We let the column width get driven by the title
-                                        break;
-
-                                    case MB_Grid_ColumnType.Text:
-                                        if (columnDefinition.DataExpression != null)
-                                        {
-                                            var value = columnDefinition.DataExpression(rowValues);
-                                            var formattedValue = string.IsNullOrEmpty(columnDefinition.FormatString) ? value?.ToString() : string.Format("{0:" + columnDefinition.FormatString + "}", value);
-                                            var width = ConvertPxMeasureToFloat(
-                                                await JsRuntime.InvokeAsync<string>(
-                                                    "GeneralComponents.MBGrid.getTextWidth",
-                                                    "mb-grid-div-body",
-                                                    formattedValue));
-                                            if (width > columnWidthList[colIndex])
-                                            {
-                                                columnWidthList[colIndex] = width;
-                                            }
-                                        }
-                                        break;
-
-                                    case MB_Grid_ColumnType.TextColor:
-                                        if (columnDefinition.DataExpression != null)
-                                        {
-                                            try
-                                            {
-                                                var value = (MBGridTextColorSpecification)columnDefinition.DataExpression(rowValues);
-                                                if (!value.Supress)
-                                                {
-                                                    var width = ConvertPxMeasureToFloat(
-                                                        await JsRuntime.InvokeAsync<string>(
-                                                            "GeneralComponents.MBGrid.getTextWidth",
-                                                            "mb-grid-div-body",
-                                                            value.Text));
-                                                    if (width > columnWidthList[colIndex])
-                                                    {
-                                                        columnWidthList[colIndex] = width;
-                                                    }
-                                                }
-                                            }
-                                            catch
-                                            {
-                                                throw new Exception("Backing value incorrect for MBGrid.TextColor column.");
-                                            }
-                                        }
-                                        break;
-
-                                    default:
-                                        throw new Exception("MBGrid -- Unknown column type");
-                                }
-
-                                colIndex++;
-                            }
-                        }
-                    }
-
-                    // Traverse the DOM and set the widths of each td element
-                    await JsRuntime.InvokeAsync<string>(
-                        "GeneralComponents.MBGrid.setTDWidths",
-                        GridHeaderRef,
-                        (object)columnWidthList);
-
-                    await JsRuntime.InvokeAsync<string>(
-                        "GeneralComponents.MBGrid.setTDWidths",
-                        GridBodyRef,
-                        (object)columnWidthList);
+                    IsFirstRender = false;
+                    await MeasureColumnWidths();
+                    StateHasChanged();
                 }
             }
             finally
@@ -195,16 +93,148 @@ namespace Material.Blazor
                 semaphoreSlim.Release();
             }
         }
+
+        private async Task MeasureColumnWidths()
+        {
+            //Logger.LogDebug("OnAfterRenderAsync with a reference of " + GridHeaderRef.Id.ToString(), null);
+            // Measure the width of a vertical scrollbar and set the padding of the header
+            //await JsRuntime.InvokeVoidAsync("GeneralComponents.MBGrid.setPaddingRight", GridHeaderRef);
+
+            //
+            // We need to create column widths if the Measurement == MB_Grid_Measurement.FitToData
+            // We are going to measure the actual sizes using JS
+            // We need to create the ColumnWidthArray regardless of the measurement type as we need to pass
+            // values to CreateTD
+            //
+            ColumnWidthArray = new float[ColumnConfigurations.Count];
+
+            if (Measurement == MB_Grid_Measurement.FitToData)
+            {
+                // Measure the header columns
+                var colIndex = 0;
+                foreach (var col in ColumnConfigurations)
+                {
+                    ColumnWidthArray[colIndex] = ConvertPxMeasureToFloat(
+                        await JsRuntime.InvokeAsync<string>(
+                            "MaterialBlazor.MBGrid.getTextWidth",
+                            "mb-grid-div-header",
+                            col.Title));
+                }
+
+                // Measure the body columns
+                foreach (var kvp in DataDictionary)
+                {
+                    IEnumerable<TRowData> enumerableData = DataDictionary.Values;
+
+                    foreach (var rowValues in enumerableData)
+                    {
+                        colIndex = 0;
+                        foreach (var columnDefinition in ColumnConfigurations)
+                        {
+                            switch (columnDefinition.ColumnType)
+                            {
+                                case MB_Grid_ColumnType.Icon:
+                                    // We let the column width get driven by the title
+                                    break;
+
+                                case MB_Grid_ColumnType.Text:
+                                    if (columnDefinition.DataExpression != null)
+                                    {
+                                        var value = columnDefinition.DataExpression(rowValues);
+                                        var formattedValue = string.IsNullOrEmpty(columnDefinition.FormatString) ? value?.ToString() : string.Format("{0:" + columnDefinition.FormatString + "}", value);
+                                        var width = ConvertPxMeasureToFloat(
+                                            await JsRuntime.InvokeAsync<string>(
+                                                "MaterialBlazor.MBGrid.getTextWidth",
+                                                "mb-grid-div-body",
+                                                formattedValue));
+                                        if (width > ColumnWidthArray[colIndex])
+                                        {
+                                            ColumnWidthArray[colIndex] = width;
+                                        }
+                                    }
+                                    break;
+
+                                case MB_Grid_ColumnType.TextColor:
+                                    if (columnDefinition.DataExpression != null)
+                                    {
+                                        try
+                                        {
+                                            var value = (MBGridTextColorSpecification)columnDefinition.DataExpression(rowValues);
+                                            if (!value.Supress)
+                                            {
+                                                var width = ConvertPxMeasureToFloat(
+                                                    await JsRuntime.InvokeAsync<string>(
+                                                        "MaterialBlazor.MBGrid.getTextWidth",
+                                                        "mb-grid-div-body",
+                                                        value.Text));
+                                                if (width > ColumnWidthArray[colIndex])
+                                                {
+                                                    ColumnWidthArray[colIndex] = width;
+                                                }
+                                            }
+                                        }
+                                        catch
+                                        {
+                                            throw new Exception("Backing value incorrect for MBGrid.TextColor column.");
+                                        }
+                                    }
+                                    break;
+
+                                default:
+                                    throw new Exception("MBGrid -- Unknown column type");
+                            }
+
+                            colIndex++;
+                        }
+                    }
+                }
+
+                var tableWidth = 0.0;
+                foreach (var width in ColumnWidthArray)
+                {
+                    tableWidth += width;
+                }
+
+                TableWidthString =
+                    "width: " + tableWidth.ToString() + "px; " +
+                    "min-width: " + tableWidth.ToString() + "px; " +
+                    "max-width: " + tableWidth.ToString() + "px; ";
+
+                /*
+                // Traverse the DOM and set the widths of each td element
+                await JsRuntime.InvokeAsync<string>(
+                    "MaterialBlazor.MBGrid.setTDWidths",
+                    GridHeaderTableRef,
+                    (object)columnWidthList);
+
+                await JsRuntime.InvokeAsync<string>(
+                    "MaterialBlazor.MBGrid.setTDWidths",
+                    GridBodyTableRef,
+                    (object)columnWidthList);
+                */
+            }
+            else
+            {
+                var tableWidth = 0;
+                foreach (var col in ColumnConfigurations)
+                {
+                    tableWidth += col.Width;
+                }
+
+                TableWidthString =
+                    "width: " + tableWidth.ToString() + CreateSubStyle() + " !important; " +
+                    "min-width: " + tableWidth.ToString() + CreateSubStyle() + " !important; " +
+                    "max-width: " + tableWidth.ToString() + CreateSubStyle() + " !important; ";
+            }
+        }
+
         private float ConvertPxMeasureToFloat(string pxMeasure)
         {
             return Convert.ToSingle(pxMeasure.Substring(0, pxMeasure.Length - 2));
         }
         protected async Task GridSyncScroll()
         {
-            if (HasRendered)
-            {
-                await JsRuntime.InvokeVoidAsync("GeneralComponents.MBGrid.syncScroll", GridHeaderRef, GridBodyRef);
-            }
+            await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBGrid.syncScroll", GridHeaderDivRef, GridBodyDivRef);
         }
 
         class StringComparer : IComparer<string>
@@ -217,6 +247,17 @@ namespace Material.Blazor
 
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
+            if (IsFirstRender)
+            {
+                // We are going to render a DIV and nothing else
+                // We need to get into OnAfterRenderAsync so that we can use JS interop to measure
+                // the text
+                base.BuildRenderTree(builder);
+                builder.OpenElement(1, "div");
+                builder.CloseElement();
+                return;
+            }
+
             OrderedGroupedData = null;
 
             if (DataDictionary != null)
@@ -299,7 +340,7 @@ namespace Material.Blazor
             //
 
             base.BuildRenderTree(builder);
-            int rendSeq = 1;
+            var rendSeq = 1;
             string styleStr;
 
             // Based on the column config generate the column titles unless asked not to
@@ -307,33 +348,42 @@ namespace Material.Blazor
             {
                 builder.OpenElement(rendSeq++, "div");
                 builder.AddAttribute(rendSeq++, "class", "mb-grid-div-header mb-grid-backgroundcolor-header-background");
-                builder.AddElementReferenceCapture(rendSeq++, (__value) => { GridHeaderRef = __value; });
+                builder.AddElementReferenceCapture(rendSeq++, (__value) => { GridHeaderDivRef = __value; });
                 builder.OpenElement(rendSeq++, "table");
                 builder.AddAttribute(rendSeq++, "class", "mb-grid-table");
-                BuildColGroup(builder, ref rendSeq);
+                builder.AddAttribute(rendSeq++, "style", TableWidthString);
+                builder.AddElementReferenceCapture(rendSeq++, (__value) => { GridHeaderTableRef = __value; });
                 builder.OpenElement(rendSeq++, "thead");
                 builder.AddAttribute(rendSeq++, "class", "mb-grid-thead");
                 builder.OpenElement(rendSeq++, "tr");
                 builder.AddAttribute(rendSeq++, "class", "mb-grid-tr");
 
-                // For each column output a span
-                var isFirstColumn = true;
+                // For each column output a TD
                 var isHeaderRow = true;
+                var colCount = 0;
                 foreach (MBGridColumnConfiguration<TRowData> col in ColumnConfigurations)
                 {
-                    styleStr = BuildNewGridTD(builder, ref rendSeq, isFirstColumn, isHeaderRow, col, "mb-grid-backgroundcolor-header-background");
+                    styleStr = BuildNewGridTD(
+                        builder,
+                        ref rendSeq,
+                        colCount == 0,
+                        isHeaderRow,
+                        col,
+                        "mb-grid-backgroundcolor-header-background",
+                        ColumnWidthArray[colCount]);
 
                     // Set the header colors
                     styleStr += " color: " + col.ForegroundColor.Name + ";";
                     styleStr += " background-color : " + col.BackgroundColor.Name + ";";
 
                     builder.AddAttribute(rendSeq++, "style", styleStr);
+                    builder.AddAttribute(rendSeq++, "mbgrid-td-normal", colCount.ToString());
                     builder.AddContent(rendSeq++, col.Title);
 
-                    // Close this column span
+                    // Close this column TD
                     builder.CloseElement();
 
-                    isFirstColumn = false;
+                    colCount++;
                 }
 
                 builder.CloseElement(); // tr
@@ -359,9 +409,11 @@ namespace Material.Blazor
                 builder.AddAttribute(rendSeq++, "class", "mb-grid-div-body");
                 builder.AddAttribute(rendSeq++, "onscroll",
                     EventCallback.Factory.Create<System.EventArgs>(this, GridSyncScroll));
-                builder.AddElementReferenceCapture(rendSeq++, (__value) => { GridBodyRef = __value; });
+                builder.AddElementReferenceCapture(rendSeq++, (__value) => { GridBodyDivRef = __value; });
                 builder.OpenElement(rendSeq++, "table");
                 builder.AddAttribute(rendSeq++, "class", "mb-grid-table");
+                builder.AddAttribute(rendSeq++, "style", TableWidthString);
+                builder.AddElementReferenceCapture(rendSeq++, (__value) => { GridBodyTableRef = __value; });
                 BuildColGroup(builder, ref rendSeq);
                 builder.OpenElement(rendSeq++, "tbody");
                 builder.AddAttribute(rendSeq++, "class", "mb-grid-tbody");
@@ -377,11 +429,14 @@ namespace Material.Blazor
                         builder.OpenElement(rendSeq++, "td");
                         builder.AddAttribute(rendSeq++, "colspan", ColumnConfigurations.Count.ToString());
                         builder.AddAttribute(rendSeq++, "class", "mb-grid-td-group mb-grid-backgroundcolor-row-group");
+                        var tdStyleStr = TableWidthString;
                         if (isFirstGrouper)
                         {
                             isFirstGrouper = false;
-                            builder.AddAttribute(rendSeq++, "style", "border-top: 1px solid black;");
+                            tdStyleStr += "border-top: 1px solid black; ";
                         }
+                        builder.AddAttribute(rendSeq++, "style", tdStyleStr);
+                        builder.AddAttribute(rendSeq++, "mbgrid-td-wide", "0");
                         builder.AddContent(rendSeq++, "  " + kvp.Key);
                         builder.CloseElement(); // td
                         builder.CloseElement(); // tr
@@ -425,11 +480,19 @@ namespace Material.Blazor
                         );
 
                         // For each column output a td
-                        var isFirstColumn = true;
+                        var colCount = 0;
                         var isHeaderRow = false;
                         foreach (MBGridColumnConfiguration<TRowData> columnDefinition in ColumnConfigurations)
                         {
-                            styleStr = BuildNewGridTD(builder, ref rendSeq, isFirstColumn, isHeaderRow, columnDefinition, rowBackgroundColorClass);
+                            styleStr = BuildNewGridTD(
+                                builder,
+                                ref rendSeq,
+                                colCount == 0,
+                                isHeaderRow,
+                                columnDefinition,
+                                rowBackgroundColorClass,
+                                ColumnWidthArray[colCount]);
+                            builder.AddAttribute(rendSeq++, "mbgrid-td-normal", colCount.ToString()); ;
 
                             switch (columnDefinition.ColumnType)
                             {
@@ -510,7 +573,7 @@ namespace Material.Blazor
                             // Close this column span
                             builder.CloseElement();
 
-                            isFirstColumn = false;
+                            colCount++;
                         }
 
                         // Close this row's div
@@ -530,6 +593,7 @@ namespace Material.Blazor
 
         private void BuildColGroup(RenderTreeBuilder builder, ref int rendSeq)
         {
+            /*
             // Create the sizing colgroup collection
             builder.OpenElement(rendSeq++, "colgroup");
             builder.AddAttribute(rendSeq++, "class", "mb-grid-colgroup");
@@ -541,6 +605,7 @@ namespace Material.Blazor
                 builder.CloseElement(); // col
             }
             builder.CloseElement(); // colgroup
+            */
         }
 
         private string BuildNewGridTD(
@@ -549,13 +614,14 @@ namespace Material.Blazor
             bool isFirstColumn,
             bool isHeaderRow,
             MBGridColumnConfiguration<TRowData> col,
-            string rowBackgroundColorClass)
+            string rowBackgroundColorClass,
+            float columnWidth)
         {
             string styleStr = "";
             builder.OpenElement(rendSeq++, "td");
             builder.AddAttribute(rendSeq++, "class", "mb-grid-td " + rowBackgroundColorClass);
 
-            styleStr = CreateMeasurementStyle(col);
+            styleStr = CreateMeasurementStyle(col, columnWidth);
 
             if (isHeaderRow)
             {
@@ -587,13 +653,37 @@ namespace Material.Blazor
             return styleStr;
         }
 
-        private string CreateMeasurementStyle(MBGridColumnConfiguration<TRowData> col)
+        private string CreateMeasurementStyle(MBGridColumnConfiguration<TRowData> col, float columnWidth)
         {
-            string subStyle = "";
-            switch (DerivedMeasurement)
+            string subStyle;
+            subStyle = CreateSubStyle();
+            if (subStyle.Length > 0)
+            {
+                return
+                    "width: " + col.Width.ToString() + subStyle + " !important; " +
+                    "max-width: " + col.Width.ToString() + subStyle + " !important; " +
+                    "min-width: " + col.Width.ToString() + subStyle + " !important; ";
+            }
+            else
+            {
+                return
+                    "width: " + columnWidth.ToString() + "px !important; " +
+                    "max-width: " + columnWidth.ToString() + "px !important; " +
+                    "min-width: " + columnWidth.ToString() + "px !important; ";
+            }
+        }
+
+        private string CreateSubStyle()
+        {
+            string subStyle;
+            switch (Measurement)
             {
                 case MB_Grid_Measurement.EM:
                     subStyle = "em";
+                    break;
+
+                case MB_Grid_Measurement.FitToData:
+                    subStyle = "";
                     break;
 
                 case MB_Grid_Measurement.PX:
@@ -607,10 +697,8 @@ namespace Material.Blazor
                 default:
                     throw new Exception("Unexpected measurement type in MBGrid");
             }
-            return
-                "width: " + col.Width.ToString() + subStyle + " !important; " +
-                "max-width: " + col.Width.ToString() + subStyle + " !important; " +
-                "min-width: " + col.Width.ToString() + subStyle + " !important; ";
+
+            return subStyle;
         }
 
 

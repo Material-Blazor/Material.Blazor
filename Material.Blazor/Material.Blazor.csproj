@@ -75,7 +75,7 @@
 
   <ItemGroup>
     <InputStaticAssetsScripts Include="components\**\*.ts;scripts\**\*.ts" />
-    <OutputStaticAssetsScripts Include="wwwroot\bundled.min.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js" />
+    <OutputStaticAssetsScripts Include="wwwroot\bundled.min.js;wwwroot\bundled.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -85,7 +85,7 @@
 
   <ItemGroup>
     <InputStaticAssets Include="components\**\*.ts;scripts\**\*.ts;components\**\*.scss;styles\**\*.scss;" />
-    <OutputStaticAssets Include="wwwroot\bundled.min.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js;wwwroot\bundled.min.css;wwwroot\unbundled.min.css;wwwroot\unbundled.css" />
+    <OutputStaticAssets Include="wwwroot\bundled.min.js;wwwroot\bundled.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js;wwwroot\bundled.min.css;wwwroot\unbundled.min.css;wwwroot\unbundled.css" />
   </ItemGroup>
 
   <ItemGroup>
@@ -102,63 +102,66 @@
   </Target>
 
   <Target Name="ErrorOutput" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' != '0' ">
-    <Exec Command="echo **********************************************************************************" />
-    <Exec Command="echo **********************************************************************************" />
-    <Exec Command="echo **********************************************************************************" />
-    <Exec Command="echo ***** 'npm --version' return code was $(NpmReturnCode)" />
-    <Exec Command="echo CSS and JS not built due to the lack of a proper development environment" />
-    <Exec Command="echo See https://material-blazor.com/docs/articles/DevelopmentEnvironment.html" />
-    <Exec Command="echo If the return code is 1, check package.json and package-lock.json" />
-    <Exec Command="echo If the return code is 9009, npm is not present" />
-    <Exec Command="echo For other non-zero return codes, check npm documentation" />
-    <Exec Command="echo **********************************************************************************" />
-    <Exec Command="echo **********************************************************************************" />
-    <Exec Command="echo **********************************************************************************" />
+    <Message Importance="high" Text="**********************************************************************************" />
+    <Message Importance="high" Text="**********************************************************************************" />
+    <Message Importance="high" Text="**********************************************************************************" />
+    <Message Importance="high" Text="***** 'npm --version' return code was $(NpmReturnCode)" />
+    <Message Importance="high" Text="CSS and JS not built due to the lack of a proper development environment" />
+    <Message Importance="high" Text="See https://material-blazor.com/docs/articles/DevelopmentEnvironment.html" />
+    <Message Importance="high" Text="If the return code is 1, check package.json and package-lock.json" />
+    <Message Importance="high" Text="If the return code is 9009, npm is not present" />
+    <Message Importance="high" Text="For other non-zero return codes, check npm documentation" />
+    <Message Importance="high" Text="**********************************************************************************" />
+    <Message Importance="high" Text="**********************************************************************************" />
+    <Message Importance="high" Text="**********************************************************************************" />
   </Target>
 
   <Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
-    <Exec Command="echo ***** MakeDir wwwroot" />
+    <Message Importance="high" Text="***** MakeDir wwwroot (Scripts)" />
     <MakeDir Directories="wwwroot" />
 
-    <Exec Command="echo ***** npm install" />
+    <Message Importance="high" Text="***** npm install" />
     <Exec Command="npm install" />
 
     <Delete Files="node_modules\@material\tooltip\component.ts;node_modules\@material\tooltip\constants.ts;node_modules\@material\tooltip\foundation.ts" />
     
-    <Exec Command="echo ***** npm run build-scripts" />
+    <Message Importance="high" Text="***** npm run build-scripts" />
     <Exec Command="npm run build-scripts" />
 
-    <Exec Command="echo ***** npm run build-js" />
+    <Message Importance="high" Text="***** npm run build-js" />
     <Exec Command="npm run build-js" />
 
-    <Exec Command="echo ***** npm run build-min-js" />
+    <Message Importance="high" Text="***** npm run build-min-js" />
     <Exec Command="npm run build-min-js" />
 
-    <Exec Command="echo ***** npm run build-min-bundle-js" />
+    <Message Importance="high" Text="***** npm run build-bundle-js (For debug)" />
+    <Exec Command="npm run build-bundle-js" />
+
+    <Message Importance="high" Text="***** npm run build-min-bundle-js" />
     <Exec Command="npm run build-min-bundle-js" />
 
-    <Exec Command="echo ***** delete materialblazor.js" />
+    <Message Importance="high" Text="***** delete materialblazor.js" />
     <Delete Files="wwwroot\materialblazor.js" />
   </Target>
 
   <Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
-    <Exec Command="echo ***** mkdir wwwroot" />
+    <Message Importance="high" Text="***** mkdir wwwroot (Styles)" />
     <MakeDir Directories="wwwroot" />
 
-    <Exec Command="echo ***** npm install" />
+    <Message Importance="high" Text="***** npm install" />
     <Exec Command="npm install" />
 
-    <Exec Command="echo ***** downloadfile" />
+    <Message Importance="high" Text="***** downloadfile" />
     <DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" DestinationFolder="$(MSBuildProjectDirectory)\wwwroot" DestinationFilename="material-components-icons.css">
     </DownloadFile>
 
-    <Exec Command="echo ***** npm run build-css" />
+    <Message Importance="high" Text="***** npm run build-css" />
     <Exec Command="npm run build-css" />
 
-    <Exec Command="echo ***** npm run build-min-css" />
+    <Message Importance="high" Text="***** npm run build-min-css" />
     <Exec Command="npm run build-min-css" />
 
-    <Exec Command="echo ***** npm run build-min-bundle-css" />
+    <Message Importance="high" Text="***** npm run build-min-bundle-css" />
     <Exec Command="npm run build-min-bundle-css" />
 
   </Target>
