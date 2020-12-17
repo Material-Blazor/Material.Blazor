@@ -5,7 +5,7 @@ title: ReleaseNotes
 # Release Notes
 
 #### [2.0.0](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0)
-99 November 2020
+99 January 2021
 
 **Updates**
 
@@ -17,6 +17,12 @@ title: ReleaseNotes
 - Tooltips use Material Component Web 8.0.0 rather than preview packages - no breaking changes.
 - Material.Blazor beginning to use `ILogger` to log warnings when validating component markup to help you during app development.
 - General bug fixes.
+
+**New components**
+
+- MBGrid (preview)
+- MBNumericDecimalField
+
 
 **Breaking Changes**
 

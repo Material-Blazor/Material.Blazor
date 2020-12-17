@@ -1,0 +1,103 @@
+﻿.mb-grid-div-header {
+    font-weight: bolder;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    text-align: left;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    flex-grow: 1;
+    flex-basis: auto;
+    align-items: stretch;
+}
+
+.mb-grid-div-body {
+    background: lightblue;
+    font-weight: normal;
+    padding: 0;
+    overflow-x: auto;
+    overflow-y: scroll;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+.mb-grid-table {
+    border: 0;
+    border-collapse: collapse;
+    border-spacing: 0;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    flex-grow: 1;
+    overflow: hidden;
+    font-size: 1.0rem;
+    table-layout: fixed;
+    text-align: left;
+    text-indent: unset;
+    text-overflow: ellipsis;
+    text-wrap: none;
+    vertical-align: middle;
+    width: 100%;
+}
+
+.mb-grid-colgroup {
+    display: table-column-group;
+}
+
+.mb-grid-theader {
+}
+
+.mb-grid-tbody {
+}
+
+.mb-grid-tr {
+}
+
+/* 
+    CAUTION -- the padding value is used in the method MeasureWidths
+*/
+.mb-grid-td {
+    display: table-cell;
+    flex: 0 0 auto;
+    padding: 4px;
+    font-size: inherit;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+
+.mb-grid-td-group {
+    display: table-cell;
+    color: black;
+    border-bottom: 0px;
+    border-left: 1px solid darkblue;
+    border-right: 1px solid darkblue;
+    border-top: 2px solid darkblue;
+    font-size: x-large;
+    font-weight: bolder;
+    flex: 0 0 auto;
+}
+
+.mb-grid-backgroundcolor-header-background {
+    background: lightgray;
+    background-color: lightgray;
+}
+
+.mb-grid-backgroundcolor-row-even {
+    background-color: khaki;
+}
+
+.mb-grid-backgroundcolor-row-odd {
+    background-color: lemonchiffon;
+}
+
+.mb-grid-backgroundcolor-row-group {
+    background-color: lightblue;
+}
+
+.mb-grid-backgroundcolor-row-selected {
+    background-color: lightgreen;
+}
