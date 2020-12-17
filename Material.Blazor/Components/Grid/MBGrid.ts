@@ -11,13 +11,6 @@ export function syncScrollByRef(gridHeaderRef: HTMLElement, gridBodyRef: HTMLEle
 }
 
 export function getScrollBarWidth(className: string): number {
-    if (className != null) {
-        return 200;
-    }
-    return 201;
-}
-
-export function getScrollBarWidth2(className: string): number {
     const firstDiv: HTMLDivElement = document.createElement("div");
 
     // Set styles
@@ -43,9 +36,7 @@ export function getScrollBarWidth2(className: string): number {
 
     // Remove the divs
     document.body.removeChild(firstDiv);
-    //if (firstDiv.parentNode != null) {
-    //    firstDiv.parentNode.removeChild(firstDiv);
-    //}
+
     return width;
 }
 
