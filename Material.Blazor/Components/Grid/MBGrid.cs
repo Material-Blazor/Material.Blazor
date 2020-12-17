@@ -5,6 +5,7 @@
 //  
 //  Bugs:
 //      MeasureWidth execution time
+//      Resolve issue with ElementReferences
 //
 
 
@@ -41,22 +42,62 @@ namespace Material.Blazor
     public class MBGrid<TRowData> : ComponentFoundation
     {
 #pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+        /// <summary>
+        /// The configuration of each column to be displayed. See the definition of MBGridColumnConfiguration
+        /// for details.
+        /// </summary>
         [Parameter] public List<MBGridColumnConfiguration<TRowData>> ColumnConfigurations { get; set; } = null;
+        /// <summary>
+        /// TheDataDictionary contains the data to be displayed. The dictionary key must be a unique identifier
+        /// that is used to indicate a row that has been clicked.
+        /// </summary>
         [Parameter] public Dictionary<string, TRowData> DataDictionary { get; set; }
+        /// <summary>
+        /// The GroupExpression is an optional expression indicating that grouping is to occur by a 
+        /// particular column.
+        /// </summary>
         [Parameter] public Func<TRowData, object>? GroupExpression { get; set; } = null;
+        /// <summary>
+        /// If you are grouping (As determined by the presence of the GroupExpression) then it is
+        /// sometimes a requirement to show empty group headers. See the demo website for an example.
+        /// </summary>
         [Parameter] public List<string> GroupOrderedList { get; set; }
+        /// <summary>
+        /// A boolean indicating whether the selected row is highlighted
+        /// </summary>
         [Parameter] public bool HighlightSelectedRow { get; set; } = false;
+        /// <summary>
+        /// The KeyExpression is used to add a key to each row of the grid
+        /// </summary>
         [Parameter] public Func<TRowData, object>? KeyExpression { get; set; } = null;
+        /// <summary>
+        /// Measurement determines the unit of size (EM, Percent, PX) or if the grid is to measure the
+        /// data widths (FitToData)
+        /// </summary>
         [Parameter] public MB_Grid_Measurement Measurement { get; set; } = MB_Grid_Measurement.Percent;
+        /// <summary>
+        /// Callback for a mouse click
+        /// </summary>
         [Parameter] public EventCallback<string> OnMouseClick { get; set; }
+        /// <summary>
+        /// First sort expression
+        /// </summary>
         [Parameter] public Func<TRowData, object>? SortExpressionFirst { get; set; } = null;
+        /// <summary>
+        /// Second sort expression
+        /// </summary>
         [Parameter] public Func<TRowData, object>? SortExpressionSecond { get; set; } = null;
+        /// <summary>
+        /// Headers are optional
+        /// </summary>
         [Parameter] public bool SupressHeader { get; set; } = false;
 #pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
 
         [Inject] private protected ILogger<MBGrid<TRowData>> Logger { get; set; }
 
         private float[] ColumnWidthArray;
+        private ElementReference GridBodyRef { get; set; }
+        private ElementReference GridHeaderRef { get; set; }
         private string GridBodyID { get; set; } = Utilities.GenerateUniqueElementName();
         private string GridHeaderID { get; set; } = Utilities.GenerateUniqueElementName();
         private bool HasCompletedFullRender { get; set; } = false;
@@ -131,7 +172,9 @@ namespace Material.Blazor
             ColumnWidthArray = new float[ColumnConfigurations.Count];
 
             // Measure the width of a vertical scrollbar (Used to set the padding of the header)
-            ScrollWidth = await JsRuntime.InvokeAsync<int>("MaterialBlazor.MBGrid.getScrollBarWidth");
+            ScrollWidth = await JsRuntime.InvokeAsync<int>(
+                "MaterialBlazor.MBGrid.getScrollBarWidth",
+                "mb-grid-div-body");
 
             if (Measurement == MB_Grid_Measurement.FitToData)
             {
@@ -221,7 +264,7 @@ namespace Material.Blazor
                     ColumnWidthArray[col] += 8;
                 }
             }
-            Logger.LogDebug("OnAfterRenderAsync/MeasureWidths complete");
+            Logger.LogDebug("MeasureWidths complete");
         }
         private float ConvertPxMeasureToFloat(string pxMeasure)
         {
@@ -229,7 +272,9 @@ namespace Material.Blazor
         }
         protected async Task GridSyncScroll()
         {
-            await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBGrid.syncScroll", GridHeaderID, GridBodyID);
+            Logger.LogDebug("GridSyncScroll()");
+            await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBGrid.syncScrollByID", GridHeaderID, GridBodyID);
+            //await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBGrid.syncScrollByRef", GridHeaderRef, GridBodyRef);
         }
 
         class StringComparer : IComparer<string>
@@ -349,6 +394,7 @@ namespace Material.Blazor
                 builder.AddAttribute(rendSeq++, "class", "mb-grid-div-header mb-grid-backgroundcolor-header-background");
                 builder.AddAttribute(rendSeq++, "style", "padding-right: " + ScrollWidth.ToString() + "px; ");
                 builder.AddAttribute(rendSeq++, "id", GridHeaderID);
+                builder.AddElementReferenceCapture(rendSeq++, (__value) => { GridHeaderRef = __value; });
                 builder.OpenElement(rendSeq++, "table");
                 builder.AddAttribute(rendSeq++, "class", "mb-grid-table");
                 BuildColGroup(builder, ref rendSeq);
@@ -409,6 +455,7 @@ namespace Material.Blazor
                 builder.AddAttribute(rendSeq++, "onscroll",
                     EventCallback.Factory.Create<System.EventArgs>(this, GridSyncScroll));
                 builder.AddAttribute(rendSeq++, "id", GridBodyID);
+                builder.AddElementReferenceCapture(rendSeq++, (__value) => { GridBodyRef = __value; });
                 builder.OpenElement(rendSeq++, "table");
                 builder.AddAttribute(rendSeq++, "class", "mb-grid-table");
                 BuildColGroup(builder, ref rendSeq);

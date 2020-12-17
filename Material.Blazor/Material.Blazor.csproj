@@ -75,7 +75,8 @@
 
   <ItemGroup>
     <InputStaticAssetsScripts Include="components\**\*.ts;scripts\**\*.ts" />
-    <OutputStaticAssetsScripts Include="wwwroot\bundled.min.js;wwwroot\bundled.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js" />
+    <!-- (For debug) <OutputStaticAssetsScripts Include="wwwroot\bundled.min.js;wwwroot\bundled.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js" />-->
+    <OutputStaticAssetsScripts Include="wwwroot\bundled.min.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -117,7 +118,7 @@
   </Target>
 
   <Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
-    <Message Importance="high" Text="***** MakeDir wwwroot (Scripts)" />
+    <Message Importance="high" Text="***** MakeDir wwwroot (M.B Scripts)" />
     <MakeDir Directories="wwwroot" />
 
     <Message Importance="high" Text="***** npm install" />
@@ -145,7 +146,7 @@
   </Target>
 
   <Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
-    <Message Importance="high" Text="***** mkdir wwwroot (Styles)" />
+    <Message Importance="high" Text="***** mkdir wwwroot (M.B Styles)" />
     <MakeDir Directories="wwwroot" />
 
     <Message Importance="high" Text="***** npm install" />

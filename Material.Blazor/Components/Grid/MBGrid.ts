@@ -1,4 +1,4 @@
-﻿export function syncScroll(gridHeaderID: string, gridBodyID: string) {
+﻿export function syncScrollByID(gridHeaderID: string, gridBodyID: string) {
     const headerDiv: HTMLElement | null = document.getElementById(gridHeaderID);
     const bodyDiv: HTMLElement | null = document.getElementById(gridBodyID);
     if ((headerDiv != null) && (bodyDiv != null)) {
@@ -6,21 +6,46 @@
     }
 }
 
-export function syncScroll2(gridHeaderRef: HTMLElement, gridBodyRef: HTMLElement) {
+export function syncScrollByRef(gridHeaderRef: HTMLElement, gridBodyRef: HTMLElement) {
     gridHeaderRef.scrollLeft = gridBodyRef.scrollLeft;
 }
 
-export function getScrollBarWidth(): number {
-    const firstDiv: HTMLDivElement = document.createElement("div");
-    firstDiv.style.visibility = "hidden";
-    firstDiv.style.overflow = "scroll";
-    document.body.appendChild(firstDiv);
-    const secondDiv: HTMLDivElement = document.createElement("div");
-    firstDiv.appendChild(secondDiv);
-    const width: number = firstDiv.offsetWidth - secondDiv.offsetWidth;
-    if (firstDiv.parentNode != null) {
-        firstDiv.parentNode.removeChild(firstDiv);
+export function getScrollBarWidth(className: string): number {
+    if (className != null) {
+        return 200;
     }
+    return 201;
+}
+
+export function getScrollBarWidth2(className: string): number {
+    const firstDiv: HTMLDivElement = document.createElement("div");
+
+    // Set styles
+    firstDiv.style.position = 'absolute';
+    firstDiv.style.visibility = 'hidden';
+    firstDiv.style.whiteSpace = 'nowrap';
+    firstDiv.style.left = '-9999px';
+
+    // Set the class
+    firstDiv.className = className;
+
+    // Append to the body
+    document.body.appendChild(firstDiv);
+
+    // Create a second div
+    const secondDiv: HTMLDivElement = document.createElement("div");
+
+    // Append it as a child of the first div
+    firstDiv.appendChild(secondDiv);
+
+    // Calculate width
+    const width: number = firstDiv.offsetWidth - secondDiv.offsetWidth;
+
+    // Remove the divs
+    document.body.removeChild(firstDiv);
+    //if (firstDiv.parentNode != null) {
+    //    firstDiv.parentNode.removeChild(firstDiv);
+    //}
     return width;
 }
 
@@ -36,6 +61,8 @@ export function getTextWidth(className: string, textToMeasure: string): string {
 
     // Set the class
     ele.className = className;
+
+    // Set the text
     ele.innerText = textToMeasure;
 
     // Append to the body
