@@ -58,32 +58,30 @@
   </ItemGroup>
 
   <Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent">
-    <Exec Command="echo ***** npm install" />
+    <Message Importance="high" Text="***** npm install" />
     <Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
     </Exec>
-    <Exec Command="echo ***** 'npm install' return code was $(NpmReturnCode) (0 indicates npm is available)" />
   </Target>
 
   <Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
-    <Exec Command="echo ***** mkdir wwwroot and wwwroot\css" />
-    <Exec Command="mkdir wwwroot" IgnoreExitCode="true" />
+    <Message Importance="high" Text="***** mkdir wwwroot and wwwroot\css (M.B.W Styles)" />
     <Exec Command="mkdir wwwroot\css" IgnoreExitCode="true" />
 
     <!-- Don't build unminified themes -->
-    <Exec Command="echo ***** build material default theme" />
+    <Message Importance="high" Text="***** build material default theme" />
     <Exec Command="npm run build-min-material-default" />
 
-    <Exec Command="echo ***** build light square theme" />
+    <Message Importance="high" Text="***** build light square theme" />
     <Exec Command="npm run build-min-light-square" />
 
-    <Exec Command="echo ***** build dark square theme" />
+    <Message Importance="high" Text="***** build dark square theme" />
     <Exec Command="npm run build-min-dark-square" />
 
-    <Exec Command="echo ***** build rounded theme" />
+    <Message Importance="high" Text="***** build rounded theme" />
     <Exec Command="npm run build-min-rounded" />
 
-    <Exec Command="echo ***** build asymmetric theme" />
+    <Message Importance="high" Text="***** build asymmetric theme" />
     <Exec Command="npm run build-min-asymmetric" />
 
   </Target>

@@ -1,0 +1,127 @@
+﻿@page "/grid"
+
+@inject IMBToastService ToastService
+
+<DemonstrationPage ComponentName="Grid"
+                   Title="Grid Demonstration (EXPERIMENTAL)"
+                   DemoComponent="@this"
+                   DetailedArticle="Grid">
+    <Description>
+        <p>
+            Shows a grid using many of the grid features.
+        </p>
+        <p>
+            This is an EXPERIMENTAL component. It's API is subject to change. It's styling is not yet
+            Material. It will not be released as part of Blazor 2.0.0 except in EXPERIMENTAL form.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBGrid ColumnConfigurations="@ColumnConfigurations"
+                    DataDictionary=@PeopleAsDictionary
+                    GroupExpression="@(PeopleAsDictionary => PeopleAsDictionary.Salutation)"
+                    GroupOrderedList="@GroupOrderedList"
+                    HighlightSelectedRow="@true"
+                    KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
+                    Measurement="@MB_Grid_Measurement.Percent"
+                    OnMouseClick="@MBGridRowClicked"
+                    SortExpressionFirst="@(PeopleAsDictionary => PeopleAsDictionary.Salutation)"
+                    SortExpressionSecond="@(PeopleAsDictionary => PeopleAsDictionary.Salutation)"
+                    TRowData="@Person" />
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+@code {
+    private class Person
+    {
+        public Guid UniqueIdentifier { get; set; }
+        public string Salutation { get; set; }
+        public string GivenName { get; set; }
+        public string FamilyName { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Salutation} {GivenName} {FamilyName}";
+        }
+    }
+
+    private Person[] People =
+{
+        new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Prof", GivenName = "Marie", FamilyName = "Curie" },
+        new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Prof", GivenName = "Albert", FamilyName = "Einstein" },
+        new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Prof", GivenName = "Andrew", FamilyName = "Huxley" },
+        new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Mr", GivenName = "Bob", FamilyName = "Dylan" },
+        new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Mr", GivenName = "Barack", FamilyName = "Obama" },
+        new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Ms", GivenName = "Nadine", FamilyName = "Gordimer" },
+        new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Mr", GivenName = "Muhammad", FamilyName = "Yunus" },
+        new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "RtHon", GivenName = "Lord", FamilyName = "Rayleigh" },
+        new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Ms", GivenName = "Grazia", FamilyName = "Deledda" },
+        new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Mr", GivenName = "Jean-Paul", FamilyName = "Sartre" },
+        new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Prof", GivenName = "Esther", FamilyName = "Duflo" },
+        new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Prof", GivenName = "Yoshinori", FamilyName = "Ohsumi" },
+        new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Prof", GivenName = "Robert", FamilyName = "Merton" },
+        new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Prof", GivenName = "Barbara", FamilyName = "McClintock" },
+        new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Mr", GivenName = "Boris", FamilyName = "Pasternak" },
+        new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Mr", GivenName = "Willy", FamilyName = "Brandt" },
+        new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Mr", GivenName = "Isaac", FamilyName = "Bashevis Singer" },
+        new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Ms", GivenName = "Olga", FamilyName = "Tokarczuk" },
+        new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Mr", GivenName = "Günter", FamilyName = "Grass" },
+        new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Mr", GivenName = "John", FamilyName = "Hume" },
+    };
+
+    private Dictionary<string, Person> PeopleAsDictionary = new();
+    private List<string> GroupOrderedList = new();
+    private List<MBGridColumnConfiguration<Person>> ColumnConfigurations { get; set; } = null;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        foreach (var person in People)
+        {
+            PeopleAsDictionary.Add(person.UniqueIdentifier.ToString(), person);
+        }
+
+        GroupOrderedList.Add("Dr");
+        GroupOrderedList.Add("Mr");
+        GroupOrderedList.Add("Ms");
+        GroupOrderedList.Add("Prof");
+        GroupOrderedList.Add("Professor");
+        GroupOrderedList.Add("RtHon");
+
+        ColumnConfigurations = new List<MBGridColumnConfiguration<Person>>();
+
+        ColumnConfigurations.Add(new MBGridColumnConfiguration<Person>(
+            bold: true,
+            dataExpression: c => c.Salutation,
+            title: "Salutation",
+            width: 5));
+        ColumnConfigurations.Add(new MBGridColumnConfiguration<Person>(
+            bold: true,
+            dataExpression: c => c.GivenName,
+            title: "Given name",
+            width: 10));
+        ColumnConfigurations.Add(new MBGridColumnConfiguration<Person>(
+            bold: true,
+            dataExpression: c => c.FamilyName,
+            title: "Family name",
+            width: 15));
+        ColumnConfigurations.Add(new MBGridColumnConfiguration<Person>(
+            bold: true,
+            width: 70));
+    }
+
+    protected async Task MBGridRowClicked(string guid)
+    {
+        await Task.CompletedTask;
+
+        ToastService.ShowToast(
+            heading: "Row clicked",
+            message: $"You clicked on '{PeopleAsDictionary[guid]}'",
+            level: MBToastLevel.Success,
+            showIcon: false);
+    }
+
+}

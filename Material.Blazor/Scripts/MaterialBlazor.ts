@@ -8,6 +8,7 @@ import * as MBDatePicker from '../Components/DatePicker/MBDatePicker';
 import * as MBDialog from '../Components/Dialog/MBDialog';
 import * as MBDrawer from '../Components/Drawer/MBDrawer';
 import * as MBFloatingActionButton from '../Components/FloatingActionButton/MBFloatingActionButton';
+import * as MBGrid from '../Components/Grid/MBGrid';
 import * as MBIconButton from '../Components/IconButton/MBIconButton';
 import * as MBIconButtonToggle from '../Components/IconButtonToggle/MBIconButtonToggle';
 import * as MBLinearProgress from '../Components/LinearProgress/MBLinearProgress';
@@ -32,6 +33,7 @@ import * as MBTopAppBar from '../Components/TopAppBar/MBTopAppBar';
     MBDialog,
     MBDrawer,
     MBFloatingActionButton,
+    MBGrid,
     MBIconButton,
     MBIconButtonToggle,
     MBLinearProgress,

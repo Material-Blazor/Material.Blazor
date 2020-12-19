@@ -49,6 +49,9 @@
 - name: MBFloatingActionButton
   topicUid: C.MBFloatingActionButton
 
+- name: MBGrid
+  topicUid: C.MBGrid
+
 - name: MBIcon
   topicUid: C.MBIcon
 
@@ -78,6 +81,9 @@
 
 - name: MBMenuSelectionGroup
   topicUid: C.MBMenuSelectionGroup
+
+- name: MBNumericDecimalField
+  topicUid: C.MBNumericDecimalField
 
 - name: MBNumericDoubleField
   topicUid: C.MBNumericDoubleField

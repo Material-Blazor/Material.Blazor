@@ -115,7 +115,7 @@ jobs:
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
 ############################################################################################################
-# The website build optimizes the build and skips build the netstandard2.1 output for M.B
+# The website build optimizes the build and skips building the netstandard2.1 output for M.B
 # We build M.B again and this creates both outputs
 ############################################################################################################
 
