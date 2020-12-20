@@ -57,17 +57,14 @@ namespace Material.Blazor
         [Parameter] public MBDensity? Density { get; set; }
 
 
-        private ElementReference ElementReference { get; set; }
-
-        private InternalDatePickerPanel Panel { get; set; }
-
-        private MBSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
 
         private MBDensity AppliedDensity => CascadingDefaults.AppliedSelectDensity(Density);
-
+        private MBSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
+        private ElementReference ElementReference { get; set; }
         private bool IsOpen { get; set; } = false;
-
         private string MenuClass => (Panel?.ShowYearPad ?? true) ? "mb-dp-menu__day-menu" : "mb-dp-menu__year-menu";
+        private InternalDatePickerPanel Panel { get; set; }
+        private bool ShowLabel => !string.IsNullOrWhiteSpace(Label);
 
         private MBCascadingDefaults.DensityInfo DensityInfo
         {
@@ -83,11 +80,8 @@ namespace Material.Blazor
 
 
         private readonly string key = Utilities.GenerateUniqueElementName();
-
         private readonly string labelId = Utilities.GenerateUniqueElementName();
-
         private readonly string listboxId = Utilities.GenerateUniqueElementName();
-
         private readonly string selectedTextId = Utilities.GenerateUniqueElementName();
 
 
@@ -105,6 +99,8 @@ namespace Material.Blazor
                 .AddIf("mdc-select--disabled", () => AppliedDisabled);
 
             SetComponentValue += OnValueSetCallback;
+
+            OnDisabledSet += OnDisabledSetCallback;
         }
 
 
@@ -118,6 +114,14 @@ namespace Material.Blazor
             Panel.SetParameters(true, Value);
             InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, DateFormat)).ConfigureAwait(false));
         }
+
+
+        /// <summary>
+        /// Callback for value the Disabled value setter.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.setDisabled", ElementReference, AppliedDisabled));
 
 
         /// <inheritdoc/>

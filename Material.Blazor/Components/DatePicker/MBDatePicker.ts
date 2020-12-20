@@ -4,6 +4,10 @@ export function init(elem) {
     elem._select = MDCSelect.attachTo(elem);
 }
 
+export function setDisabled(elem, value) {
+    elem._select.disabled = value;
+}
+
 export function destroy(elem) {
     elem._select.destroy();
 }
