@@ -15,7 +15,7 @@ namespace Material.Blazor.Internal
     /// [CascadingParameter] EditContext as optional.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class InputComponentFoundation<T> : ComponentFoundation, IMBDialogChild
+    public abstract class InputComponentFoundation<T> : DialogChildComponentFoundation
     {
         private bool _previousParsingAttemptFailed;
         private ValidationMessageStore _parsingValidationMessages;
@@ -332,10 +332,11 @@ namespace Material.Blazor.Internal
 
 
         /// <inheritdoc/>
-        void IMBDialogChild.RequestInstantiation()
+        public override void RequestInstantiation()
         {
             _instantiate = true;
             AllowNextRender = true;
+            InvokeAsync(StateHasChanged);
         }
 
 
@@ -401,7 +402,7 @@ namespace Material.Blazor.Internal
 
             var customAttributes = GetExpressionCustomAttributes<TItem>(accessor);
 
-            return customAttributes.Where(a => a.GetType() == typeof(RequiredAttribute)).Count() > 0;
+            return customAttributes.Where(a => a.GetType() == typeof(RequiredAttribute)).Any();
         }
 
 
