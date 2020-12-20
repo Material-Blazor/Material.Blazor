@@ -25,6 +25,12 @@ title: ReleaseNotes
 - MBNumericDecimalField
 
 
+**New components**
+
+- MBGrid (preview)
+- MBNumericDecimalField
+
+
 **Breaking Changes**
 
 - CDN packages now reference material components web 8.0.0, see [Installation article](xref:A.Installation).

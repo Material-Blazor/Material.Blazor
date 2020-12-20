@@ -14,7 +14,7 @@ namespace Material.Blazor
     /// <summary>
     /// A Material Theme select.
     /// </summary>
-    public partial class MBSelect<TItem> : ValidatingInputComponentFoundation<TItem>, IMBDialogChild
+    public partial class MBSelect<TItem> : ValidatingInputComponentFoundation<TItem>
     {
 #nullable enable annotations
         /// <summary>
