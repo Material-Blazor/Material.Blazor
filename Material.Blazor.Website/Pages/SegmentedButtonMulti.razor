@@ -37,11 +37,11 @@
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
                         Checkboxes two-way bound to buttons
-                    </h2>
+                    </h2>-->
 
-                    @*<p><MBCheckbox @bind-Value="@Values[0]" Label="@KittenBreeds[0].Label" /></p>
-                    <p><MBCheckbox @bind-Value="@Values[1]" Label="@KittenBreeds[1].Label" /></p>
-                    <p><MBCheckbox @bind-Value="@Values[2]" Label="@KittenBreeds[2].Label" /></p>*@
+                    <p><MBCheckbox @bind-Value="@CheckboxValues[0]" Label="@KittenBreeds[0].Label" /></p>
+                    <p><MBCheckbox @bind-Value="@CheckboxValues[1]" Label="@KittenBreeds[1].Label" /></p>
+                    <p><MBCheckbox @bind-Value="@CheckboxValues[2]" Label="@KittenBreeds[2].Label" /></p>
                 </Primary>
             </MBCard>
         </div>
@@ -60,6 +60,6 @@
 
     string[] Values = { "russ-blue" };
 
-
+    bool[] CheckboxValues = { false, true, false };
     
 }

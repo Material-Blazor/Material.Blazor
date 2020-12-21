@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Components;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -8,8 +9,27 @@ namespace Material.Blazor.Internal
     /// A DRY inspired abstract class providing <see cref="MBSelect{TItem}"/> and <see cref="MBRadioButtonGroup{TItem}"/> with validation.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class ValidatingInputComponentFoundation<T> : InputComponentFoundation<T>
+    public abstract class SingleSelectComponentFoundation<T> : InputComponentFoundation<T>
     {
+        /// <summary>
+        /// A function delegate to return the parameters for <c>@key</c> attributes. If unused
+        /// "fake" keys set to GUIDs will be used.
+        /// </summary>
+        [Parameter] public Func<T, object> GetKeysFunc { get; set; }
+
+
+        /// <summary>
+        /// The item list to be represented as radio buttons
+        /// </summary>
+        [Parameter] public IEnumerable<MBListElement<T>> Items { get; set; }
+
+
+        /// <summary>
+        /// Generates keys for repeated elements in the single select list.
+        /// </summary>
+        private protected Func<T, object> KeyGenerator { get; set; }
+
+
         // This method was added in the interest of DRY and is used by MBSelect & MBRadioButtonGroup
         /// <summary>
         /// Validates the item list against the validation specification.
@@ -22,16 +42,16 @@ namespace Material.Blazor.Internal
         {
             var componentName = Utilities.GetTypeName(GetType());
             
-            if (items.Count() == 0)
+            if (items.Any())
             {
                 throw new ArgumentException(componentName + " requires a non-empty Items parameter.");
             }
-            if (items.GroupBy(i => i.SelectedValue).Where(g => g.Count() > 1).Count() > 0)
+            if (items.GroupBy(i => i.SelectedValue).Where(g => g.Count() > 1).Any())
             {
                 throw new ArgumentException(componentName + " has multiple enties in the List with the same SelectedValue");
             }
 
-            if (items.Where(i => object.Equals(i.SelectedValue, Value)).Count() == 0)
+            if (!items.Where(i => object.Equals(i.SelectedValue, Value)).Any())
             {
                 switch (appliedItemValidation)
                 {

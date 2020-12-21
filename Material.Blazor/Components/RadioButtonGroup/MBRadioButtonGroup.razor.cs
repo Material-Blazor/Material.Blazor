@@ -9,21 +9,8 @@ namespace Material.Blazor
     /// <summary>
     /// A group of <see cref="MBRadioButton{TItem}"/>s displayed horizontally or vertically.
     /// </summary>
-    public partial class MBRadioButtonGroup<TItem> : ValidatingInputComponentFoundation<TItem>
+    public partial class MBRadioButtonGroup<TItem> : SingleSelectComponentFoundation<TItem>
     {
-        /// <summary>
-        /// A function delegate to return the parameters for <c>@key</c> attributes. If unused
-        /// "fake" keys set to GUIDs will be used.
-        /// </summary>
-        [Parameter] public Func<TItem, object> GetKeysFunc { get; set; }
-
-
-        /// <summary>
-        /// The item list to be represented as radio buttons
-        /// </summary>
-        [Parameter] public IEnumerable<MBListElement<TItem>> Items { get; set; }
-
-
         /// <summary>
         /// The radio button's density.
         /// </summary>
@@ -51,8 +38,6 @@ namespace Material.Blazor
         [Parameter] public bool EnableTouchWrapper { get; set; } = true;
 
 
-        private MBListElement<TItem>[] ItemArray { get; set; }
-        private Func<TItem, object> KeyGenerator { get; set; }
         private string RadioGroupName { get; set; } = Utilities.GenerateUniqueElementName();
 
 
@@ -61,13 +46,11 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
-            ItemArray = Items.ToArray();
-
             MBItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidation(ItemValidation);
 
             ForceShouldRenderToTrue = true;
 
-            ComponentValue = ValidateItemList(ItemArray, appliedItemValidation);
+            ComponentValue = ValidateItemList(Items, appliedItemValidation);
 
             ClassMapperInstance.AddIf("mb-mdc-radio-group-vertical", () => Vertical);
         }
