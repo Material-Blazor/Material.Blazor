@@ -107,7 +107,7 @@ namespace Material.Blazor
         private string SelectedKey { get; set; } = "";
 
         //Instantiate a Singleton of the Semaphore with a value of 1. This means that only 1 thread can be granted access at a time.
-        static SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
+        private static readonly SemaphoreSlim semaphoreSlim = new(1, 1);
 
         protected override void OnInitialized()
         {
@@ -268,7 +268,7 @@ namespace Material.Blazor
         }
         private float ConvertPxMeasureToFloat(string pxMeasure)
         {
-            return Convert.ToSingle(pxMeasure.Substring(0, pxMeasure.Length - 2));
+            return Convert.ToSingle(pxMeasure[0..^2]);
         }
         protected async Task GridSyncScroll()
         {
@@ -695,28 +695,14 @@ namespace Material.Blazor
 
         private string CreateMeasurementStyle(MBGridColumnConfiguration<TRowData> col, float columnWidth)
         {
-            string subStyle;
-            switch (Measurement)
+            string subStyle = Measurement switch
             {
-                case MB_Grid_Measurement.EM:
-                    subStyle = "em";
-                    break;
-
-                case MB_Grid_Measurement.FitToData:
-                    subStyle = "";
-                    break;
-
-                case MB_Grid_Measurement.PX:
-                    subStyle = "px";
-                    break;
-
-                case MB_Grid_Measurement.Percent:
-                    subStyle = "%";
-                    break;
-
-                default:
-                    throw new Exception("Unexpected measurement type in MBGrid");
-            }
+                MB_Grid_Measurement.EM => "em",
+                MB_Grid_Measurement.FitToData => "",
+                MB_Grid_Measurement.PX => "px",
+                MB_Grid_Measurement.Percent => "%",
+                _ => throw new Exception("Unexpected measurement type in MBGrid"),
+            };
 
             if (subStyle.Length > 0)
             {

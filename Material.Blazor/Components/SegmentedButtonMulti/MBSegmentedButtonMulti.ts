@@ -3,12 +3,12 @@
 export function init(elem, dotNetObject) {
     elem._segmentedButton = MDCSegmentedButton.attachTo(elem);
     var x = dotNetObject;
-    //return new Promise(() => {
-    //    elem._segmentedButton.foundation.handleMenuItemAction = index => {
-    //        elem._segmentedButton.foundation.setSelectedIndex(index);
-    //        dotNetObject.invokeMethodAsync('NotifySelectedAsync', index);
-    //    };
-    //});
+
+    return new Promise(() => {
+        elem._segmentedButton.foundation.handleSelected = _ => {
+            dotNetObject.invokeMethodAsync('NotifySelectedAsync', elem._segmentedButton.segments_.map(x => x.isSelected()));
+        };
+    });
 }
 
 export function destroy(elem) {
@@ -19,6 +19,13 @@ export function setDisabled(elem, value) {
     elem._segmentedButton.disabled = value;
 }
 
-export function setIndex(elem, index) {
-    elem._segmentedButton.selectedIndex = index;
+export function setAreSelected(elem, areSelected) {
+    for (let i = 0; i < areSelected.length; i++) {
+        if (areSelected[i] == true) {
+            elem._segmentedButton.segments_[i].setSelected();
+        }
+        else {
+            elem._segmentedButton.segments_[i].setUnselected();
+        }
+    }
 }

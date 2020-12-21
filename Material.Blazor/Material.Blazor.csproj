@@ -86,8 +86,6 @@
 
   <ItemGroup>
     <InputStaticAssets Include="components\**\*.ts;scripts\**\*.ts;components\**\*.scss;styles\**\*.scss;" />
-    <InputStaticAssets Remove="Components\SegmentedButtonMulti\MBSegmentedButtonMulti.ts" />
-    <InputStaticAssetsScripts Remove="Components\SegmentedButtonMulti\MBSegmentedButtonMulti.ts" />
     <OutputStaticAssets Include="wwwroot\bundled.min.js;wwwroot\bundled.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js;wwwroot\bundled.min.css;wwwroot\unbundled.min.css;wwwroot\unbundled.css" />
   </ItemGroup>
 

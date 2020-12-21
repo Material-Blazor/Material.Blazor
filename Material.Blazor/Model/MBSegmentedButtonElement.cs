@@ -9,12 +9,6 @@
         /// <summary>
         /// The leading icon.
         /// </summary>
-        public string LeadingIcon { get; set; }
-
-
-        /// <summary>
-        /// The trailing icon.
-        /// </summary>
-        public string TrailingIcon { get; set; }
+        public string Icon { get; set; }
     }
 }

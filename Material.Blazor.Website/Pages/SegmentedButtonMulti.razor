@@ -16,15 +16,19 @@
     </Description>
 
     <PageContent>
-        <div class="mdc-layout-grid__cell--span-4">
+        <div class="mdc-layout-grid__cell--span-12">
             <MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        General segmented buttons
+                        Two sets of two-way bound segmented buttons
                     </h2>
 
                     <p>
-                        <MBSegmentedButtonMulti @bind-Value="@Values" Items="@KittenBreeds" />
+                        <MBSegmentedButtonMulti @bind-Value="@SBValues" Items="@KittenBreeds" />
+                    </p>
+
+                    <p>
+                        <MBSegmentedButtonMulti @bind-Value="@SBValues" Items="@KittenBreeds" />
                     </p>
                 </Primary>
             </MBCard>
@@ -32,16 +36,16 @@
 
 
 
-        <div class="mdc-layout-grid__cell--span-4">
+        <div class="mdc-layout-grid__cell--span-12">
             <MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Checkboxes two-way bound to buttons
-                    </h2>-->
+                        Checkboxes bound to buttons - display only and non-interactive.
+                    </h2>
 
-                    <p><MBCheckbox @bind-Value="@CheckboxValues[0]" Label="@KittenBreeds[0].Label" /></p>
-                    <p><MBCheckbox @bind-Value="@CheckboxValues[1]" Label="@KittenBreeds[1].Label" /></p>
-                    <p><MBCheckbox @bind-Value="@CheckboxValues[2]" Label="@KittenBreeds[2].Label" /></p>
+                    <p><MBCheckbox @bind-Value="@CheckboxValues[0]" Label="@KittenBreeds[0].Label" Disabled="true" /></p>
+                    <p><MBCheckbox @bind-Value="@CheckboxValues[1]" Label="@KittenBreeds[1].Label" Disabled="true" /></p>
+                    <p><MBCheckbox @bind-Value="@CheckboxValues[2]" Label="Icelandic Invisible" Disabled="true" /></p>
                 </Primary>
             </MBCard>
         </div>
@@ -53,13 +57,23 @@
     MBSegmentedButtonElement<string>[] KittenBreeds = new MBSegmentedButtonElement<string>[]
     {
         new MBSegmentedButtonElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
-        new MBSegmentedButtonElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue", LeadingIcon="admin_panel_settings" },
-        new MBSegmentedButtonElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible", TrailingIcon="card_membership" }
+        new MBSegmentedButtonElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue", Icon="admin_panel_settings" },
+        new MBSegmentedButtonElement<string> { SelectedValue = "ice-invis", Icon="card_membership" }
     };
 
 
-    string[] Values = { "russ-blue" };
+    IList<string> sbvalues = Array.Empty<string>();
+    IList<string> SBValues
+    {
+        get => sbvalues;
+        set
+        {
+            sbvalues = value;
+            CheckboxValues = KittenBreeds.Select(x => sbvalues.Contains(x.SelectedValue)).ToArray();
+            StateHasChanged();
+        }
+    }
 
-    bool[] CheckboxValues = { false, true, false };
-    
+
+    bool[] CheckboxValues = { false, false, false };
 }
