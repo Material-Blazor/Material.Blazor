@@ -1,0 +1,65 @@
+﻿@page "/segmentedbuttonmulti"
+
+@inject IMBToastService ToastService
+
+
+<DemonstrationPage ComponentName="SegmentedButtonMulti"
+                   Title="Segmented Button Multi-Select Demonstration"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-segmented-button#segmented-buttons"
+                   IsGeneric="true"
+                   RequiresDisableSelection="true">
+    <Description>
+        <p>
+            Segmented buttons with multi-select capability.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        General segmented buttons
+                    </h2>
+
+                    <p>
+                        <MBSegmentedButtonMulti @bind-Value="@Values" Items="@KittenBreeds" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Checkboxes two-way bound to buttons
+                    </h2>
+
+                    @*<p><MBCheckbox @bind-Value="@Values[0]" Label="@KittenBreeds[0].Label" /></p>
+                    <p><MBCheckbox @bind-Value="@Values[1]" Label="@KittenBreeds[1].Label" /></p>
+                    <p><MBCheckbox @bind-Value="@Values[2]" Label="@KittenBreeds[2].Label" /></p>*@
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+@code {
+    MBSegmentedButtonElement<string>[] KittenBreeds = new MBSegmentedButtonElement<string>[]
+    {
+        new MBSegmentedButtonElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new MBSegmentedButtonElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue", LeadingIcon="admin_panel_settings" },
+        new MBSegmentedButtonElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible", TrailingIcon="card_membership" }
+    };
+
+
+    string[] Values = { "russ-blue" };
+
+
+    
+}

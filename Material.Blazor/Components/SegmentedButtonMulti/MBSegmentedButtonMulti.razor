@@ -1,0 +1,33 @@
+﻿@namespace Material.Blazor
+@inherits InputComponentFoundation<IList<TItem>>
+@typeparam TItem
+@*@typeparam TList*@
+
+
+<div class="mdc-touch-target-wrapper">
+    <div @ref="SegmentedButtonReference"
+         @attributes="AttributesToSplat()">
+
+        @for (int i = 0; i < Items.Count(); i++)
+        {
+            var item = Items.ElementAt(i);
+
+            <button @ref="@item.SelectedValue" class="mdc-segmented-button__segment" aria-pressed="@Value.ElementAt(i)">
+                @if (!string.IsNullOrWhiteSpace(item.LeadingIcon))
+                {
+                    <MBIcon IconName="@item.LeadingIcon" IconFoundry="@IconFoundry" class="mdc-segmented-button__icon" />
+                }
+
+                @if (!string.IsNullOrWhiteSpace(item.Label))
+                {
+                    <div class="mdc-segmented-button__label">@item.Label</div>
+                }
+
+                @if (!string.IsNullOrWhiteSpace(item.TrailingIcon))
+                {
+                    <MBIcon IconName="@item.TrailingIcon" IconFoundry="@IconFoundry" class="mdc-segmented-button__icon" />
+                }
+            </button>
+        }
+    </div>
+</div>
