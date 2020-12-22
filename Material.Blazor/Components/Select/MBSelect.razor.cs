@@ -14,31 +14,9 @@ namespace Material.Blazor
     /// <summary>
     /// A Material Theme select.
     /// </summary>
-    public partial class MBSelect<TItem> : ValidatingInputComponentFoundation<TItem>
+    public partial class MBSelect<TItem> : SingleSelectComponentFoundation<TItem, MBSelectElement<TItem>>
     {
 #nullable enable annotations
-        /// <summary>
-        /// A function delegate to return the parameters for <c>@key</c> attributes. If unused
-        /// "fake" keys set to GUIDs will be used.
-        /// </summary>
-        [Parameter] public Func<TItem, object> GetKeysFunc { get; set; }
-
-
-        /// <summary>
-        /// The item list to be represented as a select
-        /// </summary>
-        [Parameter] public IEnumerable<MBListElement<TItem>> Items { get; set; }
-
-
-        /// <summary>
-        /// The form of validation to apply when Value is first set, deciding whether to accept
-        /// a value outside the <see cref="Items"/> list, replace it with the first list item or
-        /// to throw an exception (the default).
-        /// <para>Overrides <see cref="MBCascadingDefaults.ItemValidation"/></para>
-        /// </summary>
-        [Parameter] public MBItemValidation? ItemValidation { get; set; }
-
-
         /// <summary>
         /// The select's label.
         /// </summary>
@@ -50,6 +28,12 @@ namespace Material.Blazor
         /// <para>Overrides <see cref="MBCascadingDefaults.SelectInputStyle"/></para>
         /// </summary>
         [Parameter] public MBSelectInputStyle? SelectInputStyle { get; set; }
+
+
+        /// <summary>
+        /// Regular, fullwidth or fixed positioning/width.
+        /// </summary>
+        [Parameter] public MBMenuSurfacePositioning MenuSurfacePositioning { get; set; } = MBMenuSurfacePositioning.Regular;
 
 
         /// <summary>
@@ -91,8 +75,8 @@ namespace Material.Blazor
         private MBDensity AppliedDensity => CascadingDefaults.AppliedSelectDensity(Density);
         private MBSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
         private string FloatingLabelClass { get; set; } = "";
-        private Dictionary<TItem, MBListElement<TItem>> ItemDict { get; set; }
-        private Func<TItem, object> KeyGenerator { get; set; }
+        private Dictionary<TItem, MBSelectElement<TItem>> ItemDict { get; set; }
+        private string MenuClass => MBMenu.GetMenuSurfacePositioningClass(MenuSurfacePositioning);
         private DotNetObjectReference<MBSelect<TItem>> ObjectReference { get; set; }
         private ElementReference SelectReference { get; set; }
         private string SelectedText { get; set; } = "";

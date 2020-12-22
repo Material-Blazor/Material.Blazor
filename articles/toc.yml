@@ -31,6 +31,9 @@
 - name: Material.Blazor Principles
   topicUid: A.Principles
 
+- name: Menu Overflow
+  topicUid: A.MenuOverflow
+
 - name: MIT License
   topicUid: A.License
 

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
+    <TargetFrameworks>net5.0</TargetFrameworks>
     <RazorLangVersion>3.0</RazorLangVersion>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <VersionPrefix>2.0.0</VersionPrefix>
@@ -86,6 +86,8 @@
 
   <ItemGroup>
     <InputStaticAssets Include="components\**\*.ts;scripts\**\*.ts;components\**\*.scss;styles\**\*.scss;" />
+    <InputStaticAssets Remove="Components\ChipsSelectMulti\MBChipsSelectMulti.ts" />
+    <InputStaticAssetsScripts Remove="Components\ChipsSelectMulti\MBChipsSelectMulti.ts" />
     <OutputStaticAssets Include="wwwroot\bundled.min.js;wwwroot\bundled.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js;wwwroot\bundled.min.css;wwwroot\unbundled.min.css;wwwroot\unbundled.css" />
   </ItemGroup>
 
@@ -124,6 +126,8 @@
     <Message Importance="high" Text="***** npm install" />
     <Exec Command="npm install" />
 
+    <Delete Files="node_modules\@material\segmented-button\segment\adapter.ts;node_modules\@material\segmented-button\segment\component.ts;node_modules\@material\segmented-button\segment\constants.ts;node_modules\@material\segmented-button\segment\foundation.ts;node_modules\@material\segmented-button\segment\index.ts" />
+    <Delete Files="node_modules\@material\segmented-button\segmented-button\adapter.ts;node_modules\@material\segmented-button\segmented-button\component.ts;node_modules\@material\segmented-button\segmented-button\constants.ts;node_modules\@material\segmented-button\segmented-button\foundation.ts;node_modules\@material\segmented-button\segmented-button\index.ts" />
     <Delete Files="node_modules\@material\tooltip\component.ts;node_modules\@material\tooltip\constants.ts;node_modules\@material\tooltip\foundation.ts" />
     
     <Message Importance="high" Text="***** npm run build-scripts" />

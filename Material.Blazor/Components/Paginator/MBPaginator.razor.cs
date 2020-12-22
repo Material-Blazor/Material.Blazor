@@ -103,7 +103,7 @@ namespace Material.Blazor
 
         private bool HasRendered { get; set; } = false;
         private MBIconButtonToggle IconButtonToggle { get; set; }
-        private MBListElement<int>[] ItemsPerPageItems { get; set; }
+        private MBSelectElement<int>[] ItemsPerPageItems { get; set; }
         private string ItemsText => $"{ItemsPerPage:G0} items per page";
         private int MaxPageNumber => Math.Max(0, Convert.ToInt32(Math.Ceiling((double)ItemCount / ItemsPerPage)) - 1);
         private string MaxPositionText => PositionTextString(MaxPageNumber);
@@ -137,7 +137,7 @@ namespace Material.Blazor
             }
 
             ItemsPerPageItems = (from r in ItemsPerPageSelection
-                                 select new MBListElement<int>
+                                 select new MBSelectElement<int>
                                  {
                                      SelectedValue = r,
                                      Label = r.ToString()

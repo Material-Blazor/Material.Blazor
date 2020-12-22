@@ -175,8 +175,8 @@
 
 
 @code {
-    private IEnumerable<MBListElement<MBListType>> ListTypes => from t in (MBListType[])Enum.GetValues(typeof(MBListType))
-                                                                select new MBListElement<MBListType>
+    private IEnumerable<MBSelectElement<MBListType>> ListTypes => from t in (MBListType[])Enum.GetValues(typeof(MBListType))
+                                                                select new MBSelectElement<MBListType>
                                                                 {
                                                                     SelectedValue = t,
                                                                     Label = t.ToString(),

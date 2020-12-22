@@ -1,6 +1,7 @@
 ﻿import * as MBAutoCompleteTextField from '../Components/AutocompleteTextField/MBAutocompleteTextField';
 import * as MBButton from '../Components/Button/MBButton';
 import * as MBCard from '../Components/Card/MBCard';
+import * as MBChipsSelectMulti from '../Components/ChipsSelectMulti/MBChipsSelectMulti';
 import * as MBCheckbox from '../Components/Checkbox/MBCheckbox';
 import * as MBCircularProgress from '../Components/CircularProgress/MBCircularProgress';
 import * as MBDataTable from '../Components/DataTable/MBDataTable';
@@ -15,6 +16,7 @@ import * as MBLinearProgress from '../Components/LinearProgress/MBLinearProgress
 import * as MBList from '../Components/List/MBList';
 import * as MBMenu from '../Components/Menu/MBMenu';
 import * as MBRadioButton from '../Components/RadioButton/MBRadioButton';
+import * as MBSegmentedButtonMulti from '../Components/SegmentedButtonMulti/MBSegmentedButtonMulti';
 import * as MBSelect from '../Components/Select/MBSelect';
 import * as MBSwitch from '../Components/Switch/MBSwitch';
 import * as MBTabBar from '../Components/TabBar/MBTabBar';
@@ -26,6 +28,7 @@ import * as MBTopAppBar from '../Components/TopAppBar/MBTopAppBar';
     MBAutoCompleteTextField,
     MBButton,
     MBCard,
+    MBChipsSelectMulti,
     MBCheckbox,
     MBCircularProgress,
     MBDataTable,
@@ -40,6 +43,7 @@ import * as MBTopAppBar from '../Components/TopAppBar/MBTopAppBar';
     MBList,
     MBMenu,
     MBRadioButton,
+    MBSegmentedButtonMulti,
     MBSelect,
     MBSwitch,
     MBTabBar,

@@ -5,24 +5,26 @@ title: ReleaseNotes
 # Release Notes
 
 #### [2.0.0](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0)
-99 January 2021
+In Pre-Release Q4 2020 and Q1 2021
 
 **Updates**
 
 - Upgrade to [Material Components Web 8.0.0](https://github.com/material-components/material-components-web/tree/v8.0.0/packages).
-- Upgraded build process to produce Material.Blazor with support for netstandard2.1 and net5.0.
 - Full implementation of Material Components Web JS `destroy()` function calls for every component's `Dispose()` process.
 - MBDataTable enhanced with pagination and linear progress implementation - no breaking changes.
 - MBPaginator now uses Material Component Web 8.0.0's markup, with some minor modification - no breaking changes.
 - Tooltips use Material Component Web 8.0.0 rather than preview packages - no breaking changes.
 - Material.Blazor beginning to use `ILogger` to log warnings when validating component markup to help you during app development.
 - General bug fixes.
-- Material.Blazor 2.0.0 is compatible with .NET 5.0 and .NET Standard 2.1.
+- Material.Blazor 2.0.0 is compatible with .NET 5.0 only. If you need to build against versions of .NET please continue to use Material.Blazor 1.1.4.
+
 
 **New components**
 
-- MBGrid (EXPERIMENTAL)
-- MBNumericDecimalField
+- MBGrid (EXPERIMENTAL) - a capable grid component. This is not yet styled to look like Material Theme and we may or may not keep it in Material.Blazor. We recommend not using MBGrid for anything other than experiment or contributing to its development.
+- MBNumericDecimalField - a decimal variant of the existing numeric input fields.
+- MBSegmentedButtonMulti - a multi select variant of segmented buttons which have been added to Material Components Web 8.0.0.
+- MBSegmentedButtonSingle - a single select variant of segmented buttons which have been added to Material Components Web 8.0.0.
 
 
 **Breaking Changes**

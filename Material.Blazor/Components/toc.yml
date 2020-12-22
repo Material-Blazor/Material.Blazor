@@ -106,6 +106,12 @@
 - name: MBSelect
   topicUid: C.MBSelect
 
+- name: MBSegmentedButtonMulti
+  topicUid: C.MBSegmentedButtonMulti
+
+- name: MBSegmentedButtonSingle
+  topicUid: C.MBSegmentedButtonSingle
+
 - name: MBShield
   topicUid: C.MBShield
 
