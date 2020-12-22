@@ -10,7 +10,6 @@ In Pre-Release Q4 2020 and Q1 2021
 **Updates**
 
 - Upgrade to [Material Components Web 8.0.0](https://github.com/material-components/material-components-web/tree/v8.0.0/packages).
-- Upgraded build process to produce Material.Blazor with support for netstandard2.1 and net5.0.
 - Full implementation of Material Components Web JS `destroy()` function calls for every component's `Dispose()` process.
 - MBDataTable enhanced with pagination and linear progress implementation - no breaking changes.
 - MBPaginator now uses Material Component Web 8.0.0's markup, with some minor modification - no breaking changes.
