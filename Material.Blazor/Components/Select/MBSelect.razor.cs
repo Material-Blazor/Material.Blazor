@@ -31,6 +31,12 @@ namespace Material.Blazor
 
 
         /// <summary>
+        /// Regular, fullwidth or fixed positioning/width.
+        /// </summary>
+        [Parameter] public MBMenuSurfacePositioning MenuSurfacePositioning { get; set; } = MBMenuSurfacePositioning.Regular;
+
+
+        /// <summary>
         /// The select's <see cref="MBTextAlignStyle"/>.
         /// <para>Overrides <see cref="MBCascadingDefaults.TextAlignStyle"/></para>
         /// </summary>
@@ -70,6 +76,7 @@ namespace Material.Blazor
         private MBSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
         private string FloatingLabelClass { get; set; } = "";
         private Dictionary<TItem, MBSelectElement<TItem>> ItemDict { get; set; }
+        private string MenuClass => MBMenu.GetMenuSurfacePositioningClass(MenuSurfacePositioning);
         private DotNetObjectReference<MBSelect<TItem>> ObjectReference { get; set; }
         private ElementReference SelectReference { get; set; }
         private string SelectedText { get; set; } = "";

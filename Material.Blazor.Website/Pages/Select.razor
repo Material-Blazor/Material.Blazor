@@ -41,15 +41,15 @@
             <MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Icons
+                        Icons &amp; Full Width Menu Surface
                     </h2>
 
                     <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        Icons - both using icons from the Material Icons, Font Awesome and Open Iconic foundries.
+                        Icons - both using icons from the Material Icons, Font Awesome and Open Iconic foundries. Note how the menu surface is the same width as the select anchor.
                     </h3>
 
-                    <p><MBSelect Label="Filled With Icon" @bind-Value="@Icon1" Items="KittenBreeds" LeadingIcon="print" IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.TwoTone)" SelectInputStyle="MBSelectInputStyle.Filled" ItemValidation="@MBItemValidation.NoSelection" /></p>
-                    <p><MBSelect Label="Outlined With Icon" @bind-Value="@Icon2" Items="KittenBreeds" LeadingIcon="fa-car-crash" IconFoundry="@MBIconHelper.FAFoundry()" SelectInputStyle="MBSelectInputStyle.Outlined" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                    <p><MBSelect Label="Filled With Icon" @bind-Value="@Icon1" Items="KittenBreeds" LeadingIcon="print" IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.TwoTone)" SelectInputStyle="MBSelectInputStyle.Filled" ItemValidation="@MBItemValidation.NoSelection" MenuSurfacePositioning="@MBMenuSurfacePositioning.FullWidth" /></p>
+                    <p><MBSelect Label="Outlined With Icon" @bind-Value="@Icon2" Items="KittenBreeds" LeadingIcon="fa-car-crash" IconFoundry="@MBIconHelper.FAFoundry()" SelectInputStyle="MBSelectInputStyle.Outlined" ItemValidation="@MBItemValidation.NoSelection" MenuSurfacePositioning="@MBMenuSurfacePositioning.FullWidth" /></p>
                 </Primary>
             </MBCard>
         </div>
@@ -60,15 +60,16 @@
             <MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Contents Alignment
+                        Contents Alignment &amp; Fixed Menu Surface
                     </h2>
 
                     <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        Left, center and right aligned text (not the same as right-to-left script).
+                        Left, center and right aligned text (not the same as right-to-left script). Note how the menu remains fixed as you scroll the page. Using the fixed menu surface position is
+                        particularly useful when a select menu might need to overflow its container, such as in a dialog: using a regular or full width menu surface variants in a dialog causes unwanted overflow results.
                     </h3>
 
-                    <p><MBSelect Label="Left Aligned" @bind-Value="@LeftAligned" Items="KittenBreeds" TextAlignStyle="@MBTextAlignStyle.Left" ItemValidation="@MBItemValidation.NoSelection" /></p>
-                    <p><MBSelect Label="Right Aligned" @bind-Value="@RightAligned" Items="KittenBreeds" TextAlignStyle="@MBTextAlignStyle.Right" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                    <p><MBSelect Label="Left Aligned" @bind-Value="@LeftAligned" Items="KittenBreeds" TextAlignStyle="@MBTextAlignStyle.Left" ItemValidation="@MBItemValidation.NoSelection" MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed" /></p>
+                    <p><MBSelect Label="Right Aligned" @bind-Value="@RightAligned" Items="KittenBreeds" TextAlignStyle="@MBTextAlignStyle.Right" ItemValidation="@MBItemValidation.NoSelection" MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed" /></p>
                 </Primary>
             </MBCard>
         </div>
