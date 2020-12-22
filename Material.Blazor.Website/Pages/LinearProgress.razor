@@ -46,11 +46,11 @@
 
 
 @code {
-    MBListElement<double>[] ProgressLevels = new MBListElement<double>[]
+    MBSelectElement<double>[] ProgressLevels = new MBSelectElement<double>[]
     {
-        new MBListElement<double> { SelectedValue = 0.2, Label = "20% Progress" },
-        new MBListElement<double> { SelectedValue = 0.5, Label = "50% Progress" },
-        new MBListElement<double> { SelectedValue = 0.8, Label = "80% Progress" }
+        new MBSelectElement<double> { SelectedValue = 0.2, Label = "20% Progress" },
+        new MBSelectElement<double> { SelectedValue = 0.5, Label = "50% Progress" },
+        new MBSelectElement<double> { SelectedValue = 0.8, Label = "80% Progress" }
         };
 
     private double ProgressLevel { get; set; } = 0.2;

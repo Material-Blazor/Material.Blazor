@@ -1,19 +1,16 @@
 ﻿@namespace Material.Blazor
-@inherits MultiSelectComponentFoundation<TItem, MBSegmentedButtonElement<TItem>>
+@inherits MultiSelectComponentFoundation<TItem, MBIconBearingSelectElement<TItem>>
 @typeparam TItem
 
 
 <div @ref="@SegmentedButtonReference"
         @attributes="AttributesToSplat()"
-        role="group">
+        role="@GroupRole">
 
     @for (int i = 0; i < ItemsArray.Length; i++)
     {
-        var isPressed = @Value.Where(v => v.Equals(ItemsArray[i].SelectedValue)).Any();
-        var sbClass = "mdc-segmented-button__segment mdc-segmented-button--touch" + (isPressed ? " mdc-segmented-button__segment--selected" : "");
-            
         <div class="mdc-touch-target-wrapper">
-            <button @key="@ItemsArray[i].SelectedValue" class="@sbClass" aria-pressed="@Value.Where(v => v.Equals(ItemsArray[i].SelectedValue)).Any()">
+            <button @key="@KeyGenerator(ItemsArray[i].SelectedValue)" @attributes="@SegmentAttributes[i]">
                 <div class="mdc-segmented-button__ripple"></div>
 
                 @if (!string.IsNullOrWhiteSpace(ItemsArray[i].Icon))

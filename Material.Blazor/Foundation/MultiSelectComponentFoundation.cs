@@ -8,7 +8,7 @@ namespace Material.Blazor.Internal
     /// A DRY inspired abstract class providing <see cref="MBSelect{TItem}"/> and <see cref="MBRadioButtonGroup{TItem}"/> with validation.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class MultiSelectComponentFoundation<T, TListElement> : InputComponentFoundation<IList<T>> where TListElement : MBListElement<T>
+    public abstract class MultiSelectComponentFoundation<T, TListElement> : InputComponentFoundation<IList<T>> where TListElement : MBSelectElement<T>
     {
         /// <summary>
         /// A function delegate to return the parameters for <c>@key</c> attributes. If unused

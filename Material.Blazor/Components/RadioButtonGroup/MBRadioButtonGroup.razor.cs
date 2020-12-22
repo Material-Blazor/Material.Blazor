@@ -1,15 +1,12 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Material.Blazor
 {
     /// <summary>
     /// A group of <see cref="MBRadioButton{TItem}"/>s displayed horizontally or vertically.
     /// </summary>
-    public partial class MBRadioButtonGroup<TItem> : SingleSelectComponentFoundation<TItem>
+    public partial class MBRadioButtonGroup<TItem> : SingleSelectComponentFoundation<TItem, MBSelectElement<TItem>>
     {
         /// <summary>
         /// The radio button's density.

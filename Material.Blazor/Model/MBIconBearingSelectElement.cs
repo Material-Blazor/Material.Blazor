@@ -4,7 +4,7 @@
     /// A list item used by <see cref="MBSegmentedButtonMulti{IList{TItem}}"/>
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class MBSegmentedButtonElement<T> : MBListElement<T>
+    public class MBIconBearingSelectElement<T> : MBSelectElement<T>
     {
         /// <summary>
         /// The leading icon.

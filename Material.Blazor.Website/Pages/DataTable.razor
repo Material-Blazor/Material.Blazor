@@ -156,8 +156,8 @@
         new Biscuit() { Name = "Maryland", Price = 0.78, Review = "Try not to eat a pack in one go" }
     };
 
-    IEnumerable<MBListElement<MBDensity>> DensityItems => from d in (MBDensity[])Enum.GetValues(typeof(MBDensity))
-                                                          select new MBListElement<MBDensity>
+    IEnumerable<MBSelectElement<MBDensity>> DensityItems => from d in (MBDensity[])Enum.GetValues(typeof(MBDensity))
+                                                          select new MBSelectElement<MBDensity>
                                                           {
                                                               SelectedValue = d,
                                                               Label = d.ToString(),

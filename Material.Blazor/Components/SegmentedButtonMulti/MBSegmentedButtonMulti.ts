@@ -1,12 +1,26 @@
 ﻿import { MDCSegmentedButton } from '@material/segmented-button';
 
-export function init(elem, dotNetObject) {
+export function init(elem, isSingleSelect, dotNetObject) {
     elem._segmentedButton = MDCSegmentedButton.attachTo(elem);
-    var x = dotNetObject;
+    elem._isSingleSelect = isSingleSelect;
 
     return new Promise(() => {
-        elem._segmentedButton.foundation.handleSelected = _ => {
-            dotNetObject.invokeMethodAsync('NotifySelectedAsync', elem._segmentedButton.segments_.map(x => x.isSelected()));
+        elem._segmentedButton.foundation.handleSelected = index => {
+            if (elem._isSingleSelect) {
+                dotNetObject.invokeMethodAsync('NotifySingleSelectedAsync', index.index);
+
+                for (let i = 0; i < elem._segmentedButton.segments_.length; i++) {
+                    if (i == index) {
+                        elem._segmentedButton.segments_[i].setSelected();
+                    }
+                    else {
+                        elem._segmentedButton.segments_[i].setUnselected();
+                    }
+                }
+            }
+            else {
+                dotNetObject.invokeMethodAsync('NotifyMultiSelectedAsync', elem._segmentedButton.segments_.map(x => x.isSelected()));
+            }
         };
     });
 }

@@ -9,7 +9,7 @@ namespace Material.Blazor.Internal
     /// A DRY inspired abstract class providing <see cref="MBSelect{TItem}"/> and <see cref="MBRadioButtonGroup{TItem}"/> with validation.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class SingleSelectComponentFoundation<T> : InputComponentFoundation<T>
+    public abstract class SingleSelectComponentFoundation<T, TListElement> : InputComponentFoundation<T> where TListElement : MBSelectElement<T>
     {
         /// <summary>
         /// A function delegate to return the parameters for <c>@key</c> attributes. If unused
@@ -21,7 +21,7 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// The item list to be represented as radio buttons
         /// </summary>
-        [Parameter] public IEnumerable<MBListElement<T>> Items { get; set; }
+        [Parameter] public IEnumerable<TListElement> Items { get; set; }
 
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Material.Blazor.Internal
         /// <param name="appliedItemValidation">Specification of the required validation <see cref="MBItemValidation"/></param>
         /// <returns>The item in the list matching <see cref="InputComponentFoundation{T}._cachedValue"/></returns>
         /// <exception cref="ArgumentException"/>
-        public T ValidateItemList(IEnumerable<MBListElement<T>> items, MBItemValidation appliedItemValidation)
+        public T ValidateItemList(IEnumerable<MBSelectElement<T>> items, MBItemValidation appliedItemValidation)
         {
             var componentName = Utilities.GetTypeName(GetType());
             

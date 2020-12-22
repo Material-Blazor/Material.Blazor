@@ -14,7 +14,7 @@ namespace Material.Blazor
     /// <summary>
     /// A Material Theme select.
     /// </summary>
-    public partial class MBSelect<TItem> : SingleSelectComponentFoundation<TItem>
+    public partial class MBSelect<TItem> : SingleSelectComponentFoundation<TItem, MBSelectElement<TItem>>
     {
 #nullable enable annotations
         /// <summary>
@@ -78,7 +78,7 @@ namespace Material.Blazor
         private MBDensity AppliedDensity => CascadingDefaults.AppliedSelectDensity(Density);
         private MBSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
         private string FloatingLabelClass { get; set; } = "";
-        private Dictionary<TItem, MBListElement<TItem>> ItemDict { get; set; }
+        private Dictionary<TItem, MBSelectElement<TItem>> ItemDict { get; set; }
         private DotNetObjectReference<MBSelect<TItem>> ObjectReference { get; set; }
         private ElementReference SelectReference { get; set; }
         private string SelectedText { get; set; } = "";
