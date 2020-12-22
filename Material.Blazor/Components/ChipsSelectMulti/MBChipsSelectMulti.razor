@@ -1,0 +1,39 @@
+﻿@namespace Material.Blazor
+@inherits MultiSelectComponentFoundation<TItem, MBIconBearingSelectElement<TItem>>
+@typeparam TItem
+
+
+<div @ref="@ChipsReference"
+     @attributes="AttributesToSplat()"
+     role="grid">
+
+    @for (int i = 0; i < ItemsArray.Length; i++)
+    {
+        <div @key="@KeyGenerator(ItemsArray[i].SelectedValue)" class="mdc-touch-target-wrapper">
+            <div class="mdc-chip mdc-chip--touch" role="row">
+                <div class="mdc-chip__ripple"></div>
+
+                @if (!string.IsNullOrWhiteSpace(ItemsArray[i].Icon))
+                {
+                    <MBIcon IconName="@ItemsArray[i].Icon" IconFoundry="@IconFoundry" class="mdc-chip__icon mdc-chip__icon--leading" />
+                }
+
+                @if (!IsSingleSelect)
+                {
+                    <span class="mdc-chip__checkmark">
+                        <svg class="mdc-chip__checkmark-svg" viewBox="-2 -3 30 30">
+                            <path class="mdc-chip__checkmark-path" fill="none" stroke="black"
+                                  d="M1.73,12.91 8.1,19.28 22.79,4.59" />
+                        </svg>
+                    </span>
+                }
+
+                <span role="gridcell">
+                    <span role="checkbox" tabindex="0" aria-checked="false" class="mdc-chip__primary-action">
+                        <span class="mdc-chip__text">@ItemsArray[i].Label</span>
+                    </span>
+                </span>
+            </div>
+        </div>
+    }
+</div>

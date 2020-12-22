@@ -9,8 +9,8 @@
 
     @for (int i = 0; i < ItemsArray.Length; i++)
     {
-        <div class="mdc-touch-target-wrapper">
-            <button @key="@KeyGenerator(ItemsArray[i].SelectedValue)" @attributes="@SegmentAttributes[i]">
+        <div @key="@KeyGenerator(ItemsArray[i].SelectedValue)" class="mdc-touch-target-wrapper">
+            <button @attributes="@SegmentAttributes[i]">
                 <div class="mdc-segmented-button__ripple"></div>
 
                 @if (!string.IsNullOrWhiteSpace(ItemsArray[i].Icon))

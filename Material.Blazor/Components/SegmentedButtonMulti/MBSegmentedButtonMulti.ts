@@ -33,9 +33,9 @@ export function setDisabled(elem, value) {
     elem._segmentedButton.disabled = value;
 }
 
-export function setAreSelected(elem, areSelected) {
-    for (let i = 0; i < areSelected.length; i++) {
-        if (areSelected[i] == true) {
+export function setSelected(elem, selectedFlags) {
+    for (let i = 0; i < selectedFlags.length; i++) {
+        if (selectedFlags[i] == true) {
             elem._segmentedButton.segments_[i].setSelected();
         }
         else {

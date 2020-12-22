@@ -12,20 +12,19 @@ namespace Material.Blazor
     /// <summary>
     /// A Material Theme segmented button orientated as a multi-select.
     /// </summary>
-    public partial class MBSegmentedButtonMulti<TItem> : MultiSelectComponentFoundation<TItem, MBIconBearingSelectElement<TItem>>
+    public partial class MBChipsSelectMulti<TItem> : MultiSelectComponentFoundation<TItem, MBIconBearingSelectElement<TItem>>
     {
         /// <summary>
         /// If this component is rendered inside a single-select segmented button, add the "" class.
         /// </summary>
-        [CascadingParameter] private MBSegmentedButtonSingle<TItem> SegmentedButtonSingle { get; set; }
+        [CascadingParameter] private MBSegmentedButtonSingle<TItem> ChipsSelectSingle { get; set; }
 
 
         private MBIconBearingSelectElement<TItem>[] ItemsArray { get; set; }
         private bool IsSingleSelect { get; set; }
         private IDisposable ObjectReference { get; set; }
-        private string GroupRole => (SegmentedButtonSingle == null) ? "group" : "radiogroup";
-        private Dictionary<string, object>[] SegmentAttributes { get; set; }
-        private ElementReference SegmentedButtonReference { get; set; }
+        private Dictionary<string, object>[] ChipSpanAttributes { get; set; }
+        private ElementReference ChipsReference { get; set; }
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -33,32 +32,34 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
-            IsSingleSelect = SegmentedButtonSingle != null;
+            IsSingleSelect = ChipsSelectSingle != null;
 
             ClassMapperInstance
-                .Add("mdc-segmented-button")
-                .AddIf("mdc-segmented-button--single-select", () => IsSingleSelect);
+                .Add("mdc-chip-set")
+                .AddIf("mdc-chip-set--filter", () => !IsSingleSelect)
+                .AddIf("mdc-chip-set--choice", () => IsSingleSelect);
 
             ItemsArray = Items.ToArray();
 
-            SegmentAttributes = new Dictionary<string, object>[ItemsArray.Length];
+            ChipSpanAttributes = new Dictionary<string, object>[ItemsArray.Length];
 
             for (int i = 0; i < ItemsArray.Length; i++)
             {
-                SegmentAttributes[i] = new();
+                ChipSpanAttributes[i] = new();
 
                 var selected = Value.Contains(ItemsArray[i].SelectedValue);
 
-                SegmentAttributes[i].Add("class", "mdc-segmented-button__segment mdc-segmented-button--touch" + (selected ? " mdc-segmented-button__segment--selected" : ""));
+                ChipSpanAttributes[i].Add("class", "mdc-chip__primary-action");
+                ChipSpanAttributes[i].Add("tabindex", "0");
 
                 if (IsSingleSelect)
                 {
-                    SegmentAttributes[i].Add("role", "radio");
-                    SegmentAttributes[i].Add("aria-checked", selected.ToString().ToLower());
+                    ChipSpanAttributes[i].Add("role", "button");
                 }
                 else
                 {
-                    SegmentAttributes[i].Add("aria-pressed", selected.ToString().ToLower());
+                    ChipSpanAttributes[i].Add("role", "checkbox");
+                    ChipSpanAttributes[i].Add("aria-checked", selected.ToString().ToLower());
                 }
             }
 
@@ -116,7 +117,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSegmentedButtonMulti.setSelected", SegmentedButtonReference, Items.Select(x => Value.Contains(x.SelectedValue)).ToArray()));
+        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBChipsSelectMulti.setSelected", ChipsReference, Items.Select(x => Value.Contains(x.SelectedValue)).ToArray()));
 
 
         /// <summary>
@@ -124,15 +125,15 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSegmentedButtonMulti.setDisabled", SegmentedButtonReference, AppliedDisabled));
+        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBChipsSelectMulti.setDisabled", ChipsReference, AppliedDisabled));
 
 
         /// <inheritdoc/>
-        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSegmentedButtonMulti.init", SegmentedButtonReference, IsSingleSelect, ObjectReference);
+        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBChipsSelectMulti.init", ChipsReference, IsSingleSelect, ObjectReference);
 
 
         /// <inheritdoc/>
-        private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSegmentedButtonMulti.destroy", SegmentedButtonReference);
+        private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBChipsSelectMulti.destroy", ChipsReference);
 
 
         /// <summary>
