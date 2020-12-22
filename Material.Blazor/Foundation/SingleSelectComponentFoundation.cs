@@ -42,10 +42,11 @@ namespace Material.Blazor.Internal
         {
             var componentName = Utilities.GetTypeName(GetType());
             
-            if (items.Any())
+            if (!items.Any())
             {
                 throw new ArgumentException(componentName + " requires a non-empty Items parameter.");
             }
+            
             if (items.GroupBy(i => i.SelectedValue).Where(g => g.Count() > 1).Any())
             {
                 throw new ArgumentException(componentName + " has multiple enties in the List with the same SelectedValue");
