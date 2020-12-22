@@ -18,15 +18,6 @@ namespace Material.Blazor
     {
 #nullable enable annotations
         /// <summary>
-        /// The form of validation to apply when Value is first set, deciding whether to accept
-        /// a value outside the <see cref="Items"/> list, replace it with the first list item or
-        /// to throw an exception (the default).
-        /// <para>Overrides <see cref="MBCascadingDefaults.ItemValidation"/></para>
-        /// </summary>
-        [Parameter] public MBItemValidation? ItemValidation { get; set; }
-
-
-        /// <summary>
         /// The select's label.
         /// </summary>
         [Parameter] public string Label { get; set; }

@@ -1,17 +1,17 @@
 ﻿---
-uid: C.MBSegmentedButtonMulti
-title: MBSegmentedButtonMulti
+uid: C.MBSegmentedButtonSingle
+title: MBSegmentedButtonSingle
 ---
-# MBSegmentedButtonMulti&lt;TItem&gt;
+# MBSegmentedButtonSingle&lt;TItem&gt;
 
 ## Summary
 
-A [Material Segmented Button](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-segmented-button#segmented-buttons) as a multi-select.
+A [Material Segmented Button](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-segmented-button#segmented-buttons) as a single-select.
 
 ## Details
 
 - Accepts an `IEnumerable<MBIconBearingSelectElement<TItem>>` of selectable items;
-- Binds to an `IList<TItem>` of all items selected;
+- Binds to a `TItem` for the selected value;
 - Ignores the `Disabled` parameter because Material Components Web segmented buttons do not implement a disabled state.
 
 ## Assisting Blazor Rendering with `@key`
@@ -29,4 +29,4 @@ A [Material Segmented Button](https://github.com/material-components/material-co
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](xref:A.CoreComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBSegmentedButtonMulti&color=brightgreen)](xref:Material.Blazor.MBSegmentedButtonMulti`1)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBSegmentedButtonSingle&color=brightgreen)](xref:Material.Blazor.MBSegmentedButtonMulti`1)

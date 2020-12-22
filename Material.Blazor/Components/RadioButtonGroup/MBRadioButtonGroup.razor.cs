@@ -21,15 +21,6 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// The form of validation to apply when Value is first set, deciding whether to accept
-        /// a value outside the <see cref="Items"/> list, replace it with the first list item or
-        /// to throw an exception (the default).
-        /// <para>Overrides <see cref="MBCascadingDefaults.ItemValidation"/></para>
-        /// </summary>
-        [Parameter] public MBItemValidation? ItemValidation { get; set; }
-
-
-        /// <summary>
         /// Enables the Material Theme touch wrapper.
         /// </summary>
         [Parameter] public bool EnableTouchWrapper { get; set; } = true;
