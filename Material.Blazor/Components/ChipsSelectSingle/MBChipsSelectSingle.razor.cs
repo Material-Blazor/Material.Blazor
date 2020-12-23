@@ -9,7 +9,7 @@ namespace Material.Blazor
     /// <summary>
     /// A Material Theme segmented button orientated as a single-select.
     /// </summary>
-    public partial class MBSegmentedButtonSingle<TItem> : SingleSelectComponentFoundation<TItem, MBIconBearingSelectElement<TItem>>
+    public partial class MBChipsSelectSingle<TItem> : SingleSelectComponentFoundation<TItem, MBIconBearingSelectElement<TItem>>
     {
 #nullable enable annotations
         /// <summary>
@@ -23,7 +23,7 @@ namespace Material.Blazor
 #nullable restore annotations
 
 
-        private MBSegmentedButtonMulti<TItem> SegmentedButtonMulti { get; set; }
+        private MBChipsSelectMulti<TItem> ChipsSelectMulti { get; set; }
 
         private IList<TItem> multiValues;
         private IList<TItem> MultiValues
@@ -53,6 +53,6 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => SegmentedButtonMulti.SetSingleSelectValue(Value);
+        protected void OnValueSetCallback(object sender, EventArgs e) => ChipsSelectMulti.SetSingleSelectValue(Value);
     }
 }

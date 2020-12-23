@@ -5,25 +5,23 @@ export function init(elem, isSingleSelect, dotNetObject) {
     elem._isSingleSelect = isSingleSelect;
     
     return new Promise(() => {
-        elem._chipSet.foundation.handleChipSelection = index => {
-            var x = index;
-            var y = dotNetObject;
+        const clickedCallback = () => {
             if (elem._isSingleSelect) {
-                dotNetObject.invokeMethodAsync('NotifySingleSelectedAsync', index.index);
+                var selectedChips = elem._chipSet.chips.filter(x => x.foundation.isSelected());
 
-                for (let i = 0; i < elem._chipSet.chips_.length; i++) {
-                    if (i == index) {
-                        elem._chipSet.chips_[i].setSelected();
-                    }
-                    else {
-                        elem._chipSet.chips_[i].setUnselected();
-                    }
+                if (selectedChips.length == 0) {
+                    dotNetObject.invokeMethodAsync('NotifySingleSelectedAsync', -1);
+                }
+                else {
+                    dotNetObject.invokeMethodAsync('NotifySingleSelectedAsync', elem._chipSet.chips.findIndex(x => x.id === selectedChips[0].id));
                 }
             }
             else {
-                dotNetObject.invokeMethodAsync('NotifyMultiSelectedAsync', elem._chipSet.chips_.map(x => x.foundation.isSelected()));
+                dotNetObject.invokeMethodAsync('NotifyMultiSelectedAsync', elem._chipSet.chips.map(x => x.foundation.isSelected()));
             }
         };
+
+        elem._chipSet.listen('MDCChip:selection', clickedCallback);
     });
 }
 
@@ -35,8 +33,12 @@ export function setDisabled(elem, value) {
     elem._chipSet.disabled = value;
 }
 
+// This function doesn't appear to work properly - see https://github.com/Material-Blazor/Material.Blazor/issues/366
 export function setSelected(elem, selectedFlags) {
     for (let i = 0; i < selectedFlags.length; i++) {
+        //elem._chipSet.chips[i].selected = selectedFlags[i];
         elem._chipSet.foundation.adapter.selectChipAtIndex(i, selectedFlags[i], false);
+        //elem._chipSet.chips[i].foundation.setSelectedFromChipSet(selectedFlags[i], false);
+        //elem._chipSet.chips[i].foundation.notifySelection(selectedFlags[i], false);
     }
 }

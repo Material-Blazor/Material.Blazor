@@ -17,7 +17,7 @@ namespace Material.Blazor
         /// <summary>
         /// If this component is rendered inside a single-select segmented button, add the "" class.
         /// </summary>
-        [CascadingParameter] private MBSegmentedButtonSingle<TItem> ChipsSelectSingle { get; set; }
+        [CascadingParameter] private MBChipsSelectSingle<TItem> ChipsSelectSingle { get; set; }
 
 
         private MBIconBearingSelectElement<TItem>[] ItemsArray { get; set; }
