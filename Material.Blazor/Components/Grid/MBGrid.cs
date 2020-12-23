@@ -93,8 +93,6 @@ namespace Material.Blazor
         [Parameter] public bool SupressHeader { get; set; } = false;
 #pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
 
-        [Inject] private protected ILogger<MBGrid<TRowData>> Logger { get; set; }
-
         private float[] ColumnWidthArray;
         private ElementReference GridBodyRef { get; set; }
         private ElementReference GridHeaderRef { get; set; }
@@ -260,8 +258,8 @@ namespace Material.Blazor
 
                 for (var col = 0; col < ColumnWidthArray.Length; col++)
                 {
-                    // We need to add the padding amount from the mb-grid-td style
-                    ColumnWidthArray[col] += 8;
+                    // We need to add the padding(4L, 4R), border(1R), and 1 to account for fractional amounts from the mb-grid-td style
+                    ColumnWidthArray[col] += 4 + 4 + 1 + 1 + 6; // Plus 6 more for good measure (observed)
                 }
             }
             Logger.LogDebug("MeasureWidths complete");
