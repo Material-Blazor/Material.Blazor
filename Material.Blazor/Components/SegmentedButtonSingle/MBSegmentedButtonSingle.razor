@@ -1,0 +1,9 @@
+﻿@namespace Material.Blazor
+
+@inherits SingleSelectComponent<TItem, MBIconBearingSelectElement<TItem>>
+@typeparam TItem
+
+
+<CascadingValue Value="@this" IsFixed="true">
+    <MBSegmentedButtonMulti @ref="@SegmentedButtonMulti" @bind-Value="@MultiValues" Items="@Items" />
+</CascadingValue>

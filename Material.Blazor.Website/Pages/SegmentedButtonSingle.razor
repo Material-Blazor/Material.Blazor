@@ -1,0 +1,70 @@
+﻿@page "/segmentedbuttonsingle"
+
+@inject IMBToastService ToastService
+
+
+<DemonstrationPage ComponentName="SegmentedButtonSingle"
+                   Title="Segmented Button Single-Select Demonstration"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-segmented-button#segmented-buttons"
+                   IsGeneric="true"
+                   RequiresDisableSelection="false">
+    <Description>
+        <p>
+            Segmented buttons with single-select capability.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Two sets of two-way bound segmented buttons
+                    </h2>
+
+                    <p>
+                        <MBSegmentedButtonSingle @bind-Value="@selectedKitten" Items="@KittenBreeds" />
+                    </p>
+
+                    <p>
+                        <MBSegmentedButtonSingle @bind-Value="@selectedKitten" Items="@KittenBreeds" />
+                    </p>
+
+                    <p>@selectedKitten</p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Radio buttons bound to segmented buttons.
+                    </h2>
+
+                    <p>
+                        <MBRadioButtonGroup @bind-Value="@selectedKitten" Items="@KittenBreeds" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+@code {
+    MBIconBearingSelectElement<string>[] KittenBreeds = new MBIconBearingSelectElement<string>[]
+{
+        new MBIconBearingSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new MBIconBearingSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue", Icon="admin_panel_settings" },
+        new MBIconBearingSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible", Icon="card_membership" }
+    };
+
+
+    string selectedKitten = "brit-short";
+
+
+    bool[] CheckboxValues = { false, false, false };
+}

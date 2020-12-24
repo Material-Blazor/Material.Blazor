@@ -106,11 +106,11 @@
 
 
 @code {
-    MBListElement<string>[] KittenBreeds = new MBListElement<string>[]
+    MBSelectElement<string>[] KittenBreeds = new MBSelectElement<string>[]
     {
-        new MBListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
-        new MBListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
-        new MBListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+        new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
         };
 
 
@@ -128,13 +128,13 @@
 
 
     enum ColorEnum { Red, Orange, Yellow, Green, Blue, Indigo, Violet };
-    IEnumerable<MBListElement<ColorEnum>> ColourItems => from c in (ColorEnum[])Enum.GetValues(typeof(ColorEnum))
-                                                         select new MBListElement<ColorEnum>
-                                                         {
-                                                             SelectedValue = c,
-                                                             Label = c.ToString() + ((c == ColorEnum.Blue) ? " (disabled)" : ""),
-                                                             Disabled = (c == ColorEnum.Blue) ? true : (bool?)null
-                                                         };
+    IEnumerable<MBSelectElement<ColorEnum>> ColourItems => from c in (ColorEnum[])Enum.GetValues(typeof(ColorEnum))
+                                                           select new MBSelectElement<ColorEnum>
+                                                           {
+                                                               SelectedValue = c,
+                                                               Label = c.ToString() + ((c == ColorEnum.Blue) ? " (disabled)" : ""),
+                                                               Disabled = (c == ColorEnum.Blue) ? true : (bool?)null
+                                                           };
 
     private ColorEnum _color = ColorEnum.Orange;
     private ColorEnum Colour

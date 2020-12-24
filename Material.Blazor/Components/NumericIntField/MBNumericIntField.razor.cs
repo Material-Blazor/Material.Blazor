@@ -8,7 +8,7 @@ namespace Material.Blazor
     /// <summary>
     /// An integer variant of <see cref="MBNumericDecimalField"/>.
     /// </summary>
-    public partial class MBNumericIntField : InputComponentFoundation<int>
+    public partial class MBNumericIntField : InputComponent<int>
     {
 #nullable enable annotations
         /// <summary>

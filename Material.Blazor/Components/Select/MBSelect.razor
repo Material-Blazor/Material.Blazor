@@ -1,5 +1,6 @@
 ﻿@namespace Material.Blazor
-@inherits ValidatingInputComponentFoundation<TItem>
+
+@inherits SingleSelectComponent<TItem, MBSelectElement<TItem>>
 @typeparam TItem
 
 
@@ -70,7 +71,7 @@
     </div>
 
     <div id="@listboxId" 
-         class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fixed">
+         class="mdc-select__menu mdc-menu mdc-menu-surface @MenuClass">
 
         <ul class="mdc-list">
 

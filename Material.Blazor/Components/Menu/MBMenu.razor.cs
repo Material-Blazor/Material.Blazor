@@ -19,6 +19,12 @@ namespace Material.Blazor
         [Parameter] public RenderFragment ChildContent { get; set; }
 
 
+        /// <summary>
+        /// Regular, fullwidth or fixed positioning/width.
+        /// </summary>
+        [Parameter] public MBMenuSurfacePositioning MenuSurfacePositioning { get; set; } = MBMenuSurfacePositioning.Regular;
+
+
         private DotNetObjectReference<MBMenu> ObjectReference { get; set; }
         private ElementReference ElementReference { get; set; }
         private bool IsOpen { get; set; } = false;
@@ -28,9 +34,10 @@ namespace Material.Blazor
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            
+
             ClassMapperInstance
-                .Add("mdc-menu mdc-menu-surface mdc-menu-surface--fixed");
+                .Add("mdc-menu mdc-menu-surface mdc-menu-surface--fixed")
+                .AddIf(GetMenuSurfacePositioningClass(MenuSurfacePositioning), () => MenuSurfacePositioning != MBMenuSurfacePositioning.Regular);
 
             ObjectReference = DotNetObjectReference.Create(this);
         }
@@ -92,5 +99,19 @@ namespace Material.Blazor
 
         /// <inheritdoc/>
         private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBMenu.destroy", ElementReference);
+    
+        
+        /// <summary>
+        /// Returns a menu surface class determined by the parameter.
+        /// </summary>
+        /// <param name="surfacePositioning"></param>
+        /// <returns></returns>
+        internal static string GetMenuSurfacePositioningClass(MBMenuSurfacePositioning surfacePositioning) =>
+            surfacePositioning switch
+            {
+                MBMenuSurfacePositioning.FullWidth => "mdc-menu-surface--fullwidth",
+                MBMenuSurfacePositioning.Fixed => "mdc-menu-surface--fixed",
+                _ => ""
+            };
     }
 }

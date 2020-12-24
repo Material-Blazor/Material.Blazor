@@ -1,0 +1,81 @@
+﻿@page "/slider"
+
+@inject IMBToastService ToastService
+
+
+<DemonstrationPage ComponentName="Slider"
+                   Title="Single Thumb Slider"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-slider#slider"
+                   RequiresDisableSelection="true">
+    <Description>
+        <p>
+            Single thumb sliders, responding to user events in three ways:
+
+            <ol>
+                <li><strong>Thumb-up</strong> emits events when the user lets releases the slider after movement.</li>
+                <li><strong>Continuous Debounced</strong> emits events while the user is holding the thumb, but only after pausing motion.</li>
+                <li><strong>Continuous Throttled</strong> emits events while the user is moving the thumb, but throttled against the specified delay.</li>
+            </ol>
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Continuous Slider
+                    </h2>
+
+                    <p>With non-continuous input, yielding a value of @Value1a.ToString("N2")</p>
+                    <p><MBSlider @bind-Value="@Value1a" SliderType="@MBSliderType.Continuous" ValueMin="0" ValueMax="100" DecimalPlaces="2" AriaLabel="Continuous Slider" /></p>
+                    <p><MBSlider @bind-Value="@Value1a" SliderType="@MBSliderType.Continuous" ValueMin="0" ValueMax="100" DecimalPlaces="2" AriaLabel="Continuous Slider" /></p>
+
+                    <p>With continuous input and 300ms debounce delay, yielding a value of @Value1b.ToString("N2")</p>
+                    <p><MBSlider @bind-Value="@Value1b" SliderType="@MBSliderType.Continuous" ValueMin="0" ValueMax="100" DecimalPlaces="2" AriaLabel="Continuous Slider" EventType="@MBSliderEventType.ContinuousDebounced" ContinuousInputDebounceDelay="@DebounceDelay" /></p>
+                    <p><MBSlider @bind-Value="@Value1b" SliderType="@MBSliderType.Continuous" ValueMin="0" ValueMax="100" DecimalPlaces="2" AriaLabel="Continuous Slider" EventType="@MBSliderEventType.ContinuousDebounced" ContinuousInputDebounceDelay="@DebounceDelay" /></p>
+
+                    <p>With continuous input and 300ms throttle delay, yielding a value of @Value1c.ToString("N2")</p>
+                    <p><MBSlider @bind-Value="@Value1c" SliderType="@MBSliderType.Continuous" ValueMin="0" ValueMax="100" DecimalPlaces="2" AriaLabel="Continuous Slider" EventType="@MBSliderEventType.ContinuousThrottled" ContinuousInputDebounceDelay="@DebounceDelay" /></p>
+                    <p><MBSlider @bind-Value="@Value1c" SliderType="@MBSliderType.Continuous" ValueMin="0" ValueMax="100" DecimalPlaces="2" AriaLabel="Continuous Slider" EventType="@MBSliderEventType.ContinuousThrottled" ContinuousInputDebounceDelay="@DebounceDelay" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Discrete Sliders
+                    </h2>
+
+                    <p>With non-continuous input, yielding a value of @Value2a.ToString("N2")</p>
+                    <p><MBSlider @bind-Value="@Value2a" SliderType="@MBSliderType.Discrete" ValueMin="0" ValueMax="10" DecimalPlaces="0" AriaLabel="Discrete Slider" /></p>
+                    <p><MBSlider @bind-Value="@Value2a" SliderType="@MBSliderType.DiscreteWithTickmarks" ValueMin="0" ValueMax="10" DecimalPlaces="0" AriaLabel="Discrete Slider" /></p>
+
+                    <p>With continuous input and 300ms debounce delay, yielding a value of @Value2b.ToString("N2")</p>
+                    <p><MBSlider @bind-Value="@Value2b" SliderType="@MBSliderType.Discrete" ValueMin="0" ValueMax="10" DecimalPlaces="0" AriaLabel="Discrete Slider" EventType="@MBSliderEventType.ContinuousDebounced" ContinuousInputDebounceDelay="@DebounceDelay" /></p>
+                    <p><MBSlider @bind-Value="@Value2b" SliderType="@MBSliderType.DiscreteWithTickmarks" ValueMin="0" ValueMax="10" DecimalPlaces="0" AriaLabel="Discrete Slider" EventType="@MBSliderEventType.ContinuousDebounced" ContinuousInputDebounceDelay="@DebounceDelay" /></p>
+
+                    <p>With continuous input and 300ms throttle delay, yielding a value of @Value2c.ToString("N2")</p>
+                    <p><MBSlider @bind-Value="@Value2c" SliderType="@MBSliderType.Discrete" ValueMin="0" ValueMax="10" DecimalPlaces="0" AriaLabel="Discrete Slider" EventType="@MBSliderEventType.ContinuousThrottled" ContinuousInputDebounceDelay="@DebounceDelay" /></p>
+                    <p><MBSlider @bind-Value="@Value2c" SliderType="@MBSliderType.DiscreteWithTickmarks" ValueMin="0" ValueMax="10" DecimalPlaces="0" AriaLabel="Discrete Slider" EventType="@MBSliderEventType.ContinuousThrottled" ContinuousInputDebounceDelay="@DebounceDelay" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+@code {
+    double Value1a = 16.67;
+    double Value1b = 33.33;
+    double Value1c = 66.67;
+    double Value2a = 3;
+    double Value2b = 5;
+    double Value2c = 7;
+
+    uint DebounceDelay = 300;
+}

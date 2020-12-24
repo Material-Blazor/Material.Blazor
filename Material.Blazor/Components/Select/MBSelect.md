@@ -10,7 +10,7 @@ A [Material Select Menu](https://github.com/material-components/material-compone
 
 ## Details
 
-- Accepts an `IEnumerable<Titem>` of selectable items;
+- Accepts an `IEnumerable<MBSelectElement<TItem>>` of selectable items;
 - Can be styled as either a filled or outlined Material Theme select;
 - The ItemValidation parameter has three possible values:
   - "Exception" is the default value and an exception will be raised if the Value supplied does not match one of the Values in the List parameter data;

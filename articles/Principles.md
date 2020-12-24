@@ -27,7 +27,7 @@ the following situation:
 
 We have overcome this by ensuring that Material.Blazor steps out of the way of Material Theme once components have been intialized, so that Blazor no longer re-renders. In practice this means that
 once initialized, the component's `ShouldRender()` lifecycle method is set to return false, disabling Blazor's ability to re-render. This then means that two-way binding of Value and Disabled
-parameters needs to make appropriate JSInterop calls to update values using the Material Theme javascript framework. This pattern is handled in the Material.Blazor's internal `InputComponentFoundation`
+parameters needs to make appropriate JSInterop calls to update values using the Material Theme javascript framework. This pattern is handled in the Material.Blazor's internal `InputComponent`
 abstract class.
 
 This is an unusual approach for a Blazor component library, but it is the key methodology that makes Material Theme components behave precisely as they should. Material.Blazor then does the hard work
@@ -42,7 +42,7 @@ If so, it does one of two things:
 1. If the dialog has not been opened, rather than initializing after the component's first render, it registers a callback with the dialog, so the dialog can initialize it after opening; or
 1. If the dialog is already open, the component intializes immediately after it has first rendered.
 
-This mechanism is also handled in the Material.Blazor's internal `InputComponentFoundation` abstract class.
+This mechanism is also handled in the Material.Blazor's internal `InputComponent` abstract class.
 
 ## Dispose
 

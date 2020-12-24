@@ -10,13 +10,13 @@ namespace Material.Blazor
 {
     /// <summary>
     /// This is a general purpose Material Theme radio button. Accepts a generic class TItem
-    /// and displays as checked if <see cref="InputComponentFoundation{T}.Value"/> equals <see cref="TargetCheckedValue"/>.
+    /// and displays as checked if <see cref="InputComponent{T}.Value"/> equals <see cref="TargetCheckedValue"/>.
     /// </summary>
-    public partial class MBRadioButton<TItem> : InputComponentFoundation<TItem>
+    public partial class MBRadioButton<TItem> : InputComponent<TItem>
     {
         /// <summary>
-        /// <see cref="InputComponentFoundation{T}.Value"/> is set to this when the 
-        /// radio button is clicked. If the consumer sets <see cref="InputComponentFoundation{T}.Value"/>
+        /// <see cref="InputComponent{T}.Value"/> is set to this when the 
+        /// radio button is clicked. If the consumer sets <see cref="InputComponent{T}.Value"/>
         /// to this the radio state will change to checked, or cleared for any other value.
         /// </summary>
         [Parameter] public TItem TargetCheckedValue { get; set; }

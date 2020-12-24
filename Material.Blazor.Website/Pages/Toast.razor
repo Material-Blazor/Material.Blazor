@@ -162,8 +162,8 @@
 @code {
     private bool OverrideCssDefaults { get; set; }
 
-    private readonly IEnumerable<MBListElement<MBToastPosition>> positionItems = from pos in (MBToastPosition[])Enum.GetValues(typeof(MBToastPosition))
-                                                                                 select new MBListElement<MBToastPosition>
+    private readonly IEnumerable<MBSelectElement<MBToastPosition>> positionItems = from pos in (MBToastPosition[])Enum.GetValues(typeof(MBToastPosition))
+                                                                                 select new MBSelectElement<MBToastPosition>
                                                                                  {
                                                                                      SelectedValue = pos,
                                                                                      Label = pos.ToString()
@@ -171,27 +171,27 @@
 
 
     private string CssClass { get; set; }
-    private readonly MBListElement<string>[] CssClassItems = new MBListElement<string>[]
+    private readonly MBSelectElement<string>[] CssClassItems = new MBSelectElement<string>[]
     {
-        new MBListElement<string> { SelectedValue = "", Label = "Default" },
-        new MBListElement<string> { SelectedValue = "italic-class", Label = "Italic" },
+        new MBSelectElement<string> { SelectedValue = "", Label = "Default" },
+        new MBSelectElement<string> { SelectedValue = "italic-class", Label = "Italic" },
         };
 
 
     private MBToastCloseMethod CloseMethod { get; set; }
-    private readonly IEnumerable<MBListElement<MBToastCloseMethod>> closeMethodItems = from c in (MBToastCloseMethod[])Enum.GetValues(typeof(MBToastCloseMethod))
-                                                                                       select new MBListElement<MBToastCloseMethod>
+    private readonly IEnumerable<MBSelectElement<MBToastCloseMethod>> closeMethodItems = from c in (MBToastCloseMethod[])Enum.GetValues(typeof(MBToastCloseMethod))
+                                                                                       select new MBSelectElement<MBToastCloseMethod>
                                                                                        {
                                                                                            SelectedValue = c,
                                                                                            Label = c.ToString()
                                                                                        };
 
     private string Heading { get; set; }
-    private readonly MBListElement<string>[] headingItems = new MBListElement<string>[]
+    private readonly MBSelectElement<string>[] headingItems = new MBSelectElement<string>[]
     {
-        new MBListElement<string> { SelectedValue = "", Label = "Default" },
-        new MBListElement<string> { SelectedValue = "Run of the mill heading", Label = "Run of the mill heading" },
-        new MBListElement<string> { SelectedValue = "Heading truncated and truncated and truncated and truncated", Label = "Heading that will be truncated" }
+        new MBSelectElement<string> { SelectedValue = "", Label = "Default" },
+        new MBSelectElement<string> { SelectedValue = "Run of the mill heading", Label = "Run of the mill heading" },
+        new MBSelectElement<string> { SelectedValue = "Heading truncated and truncated and truncated and truncated", Label = "Heading that will be truncated" }
         };
 
 
@@ -204,22 +204,22 @@
 #nullable restore annotations
 
     private MyIcon Icon { get; set; }
-    private readonly MBListElement<MyIcon>[] iconItems = new MBListElement<MyIcon>[]
+    private readonly MBSelectElement<MyIcon>[] iconItems = new MBSelectElement<MyIcon>[]
     {
-        new MBListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "directions_run" }, Label = "directions_run" },
-        new MBListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MBIconHelper.MIFoundry(theme: MBIconMITheme.Filled) }, Label = "thumb_up (filled / default)" },
-        new MBListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MBIconHelper.MIFoundry(theme: MBIconMITheme.Outlined) }, Label = "thumb_up (outlined)" },
-        new MBListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MBIconHelper.MIFoundry(theme: MBIconMITheme.Round) }, Label = "thumb_up (rounded)" },
-        new MBListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MBIconHelper.MIFoundry(theme: MBIconMITheme.TwoTone) }, Label = "thumb_up (two-tone)" },
-        new MBListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MBIconHelper.MIFoundry(theme: MBIconMITheme.Sharp) }, Label = "thumb_up (sharp)" },
-        new MBListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = MBIconHelper.FAFoundry() }, Label = "fa-ambulance" },
-        new MBListElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = MBIconHelper.FAFoundry(relativeSize: MBIconFARelativeSize.ExtraSmall) }, Label = "fa-ambulance (x-small)" },
+        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "directions_run" }, Label = "directions_run" },
+        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MBIconHelper.MIFoundry(theme: MBIconMITheme.Filled) }, Label = "thumb_up (filled / default)" },
+        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MBIconHelper.MIFoundry(theme: MBIconMITheme.Outlined) }, Label = "thumb_up (outlined)" },
+        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MBIconHelper.MIFoundry(theme: MBIconMITheme.Round) }, Label = "thumb_up (rounded)" },
+        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MBIconHelper.MIFoundry(theme: MBIconMITheme.TwoTone) }, Label = "thumb_up (two-tone)" },
+        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MBIconHelper.MIFoundry(theme: MBIconMITheme.Sharp) }, Label = "thumb_up (sharp)" },
+        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = MBIconHelper.FAFoundry() }, Label = "fa-ambulance" },
+        new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = MBIconHelper.FAFoundry(relativeSize: MBIconFARelativeSize.ExtraSmall) }, Label = "fa-ambulance (x-small)" },
         };
 
 
     private MBToastLevel Level { get; set; }
-    private readonly IEnumerable<MBListElement<MBToastLevel>> levelItems = from c in (MBToastLevel[])Enum.GetValues(typeof(MBToastLevel))
-                                                                           select new MBListElement<MBToastLevel>
+    private readonly IEnumerable<MBSelectElement<MBToastLevel>> levelItems = from c in (MBToastLevel[])Enum.GetValues(typeof(MBToastLevel))
+                                                                           select new MBSelectElement<MBToastLevel>
                                                                            {
                                                                                SelectedValue = c,
                                                                                Label = c.ToString()
@@ -227,30 +227,30 @@
 
 
     private string Message { get; set; }
-    private readonly MBListElement<string>[] messageItems = new MBListElement<string>[]
+    private readonly MBSelectElement<string>[] messageItems = new MBSelectElement<string>[]
     {
-        new MBListElement<string> { SelectedValue = "Run of the mill message", Label = "Run of the mill message" },
-        new MBListElement<string> { SelectedValue = "Text <strong>bold</strong> and <u>underlined</u>", Label = "Message with markup" },
-        new MBListElement<string> { SelectedValue = "Message truncated and truncated and truncated and truncated", Label = "Message that will be truncated" }
+        new MBSelectElement<string> { SelectedValue = "Run of the mill message", Label = "Run of the mill message" },
+        new MBSelectElement<string> { SelectedValue = "Text <strong>bold</strong> and <u>underlined</u>", Label = "Message with markup" },
+        new MBSelectElement<string> { SelectedValue = "Message truncated and truncated and truncated and truncated", Label = "Message that will be truncated" }
         };
 
 
     private string ShowIcon { get; set; }
-    private readonly MBListElement<string>[] showIconItems = new MBListElement<string>[]
+    private readonly MBSelectElement<string>[] showIconItems = new MBSelectElement<string>[]
     {
-        new MBListElement<string> { SelectedValue = "", Label = "Default" },
-        new MBListElement<string> { SelectedValue = "true", Label = "true" },
-        new MBListElement<string> { SelectedValue = "false", Label = "false" }
+        new MBSelectElement<string> { SelectedValue = "", Label = "Default" },
+        new MBSelectElement<string> { SelectedValue = "true", Label = "true" },
+        new MBSelectElement<string> { SelectedValue = "false", Label = "false" }
         };
 
 
     private string Timeout { get; set; }
-    private readonly MBListElement<string>[] timeoutItems = new MBListElement<string>[]
+    private readonly MBSelectElement<string>[] timeoutItems = new MBSelectElement<string>[]
     {
-        new MBListElement<string> { SelectedValue = "", Label = "Default" },
-        new MBListElement<string> { SelectedValue = "1000", Label = "1 second" },
-        new MBListElement<string> { SelectedValue = "10000", Label = "10 seconds" },
-        new MBListElement<string> { SelectedValue = "60000", Label = "60 seconds" }
+        new MBSelectElement<string> { SelectedValue = "", Label = "Default" },
+        new MBSelectElement<string> { SelectedValue = "1000", Label = "1 second" },
+        new MBSelectElement<string> { SelectedValue = "10000", Label = "10 seconds" },
+        new MBSelectElement<string> { SelectedValue = "60000", Label = "60 seconds" }
         };
 
 

@@ -4,7 +4,7 @@
     /// A list item used by <see cref="MBSelect{TItem}"/>, <see cref="MBRadioButtonGroup{TItem}"/> and <see cref="MBPagedDataList{TItem}"/>
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class MBListElement<T>
+    public class MBSelectElement<T>
     {
         /// <summary>
         /// The value associated with the list element.

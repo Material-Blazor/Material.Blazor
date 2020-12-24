@@ -1,11 +1,12 @@
 ﻿@namespace Material.Blazor
-@inherits ValidatingInputComponentFoundation<TItem>
+
+@inherits SingleSelectComponent<TItem, MBSelectElement<TItem>>
 @typeparam TItem
 
 
 <div @attributes="@AttributesToSplat()">
 
-    @foreach (var item in ItemArray)
+    @foreach (var item in Items)
     {
         <MBRadioButton @key="@KeyGenerator(item.SelectedValue)"
                        @bind-Value="@ComponentValue"

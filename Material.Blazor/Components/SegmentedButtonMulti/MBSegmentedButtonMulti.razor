@@ -1,0 +1,31 @@
+﻿@namespace Material.Blazor
+
+@inherits MultiSelectComponent<TItem, MBIconBearingSelectElement<TItem>>
+@typeparam TItem
+
+
+<div @ref="@SegmentedButtonReference"
+        @attributes="AttributesToSplat()"
+        role="@GroupRole">
+
+    @for (int i = 0; i < ItemsArray.Length; i++)
+    {
+        <div @key="@KeyGenerator(ItemsArray[i].SelectedValue)" class="mdc-touch-target-wrapper">
+            <button @attributes="@SegmentAttributes[i]">
+                <div class="mdc-segmented-button__ripple"></div>
+
+                @if (!string.IsNullOrWhiteSpace(ItemsArray[i].Icon))
+                {
+                    <MBIcon IconName="@ItemsArray[i].Icon" IconFoundry="@IconFoundry" class="mdc-segmented-button__icon" />
+                }
+
+                @if (!string.IsNullOrWhiteSpace(ItemsArray[i].Label))
+                {
+                    <div class="mdc-segmented-button__label">@ItemsArray[i].Label</div>
+                }
+
+                <div class="mdc-segmented-button__touch"></div>
+            </button>
+        </div>
+    }
+</div>

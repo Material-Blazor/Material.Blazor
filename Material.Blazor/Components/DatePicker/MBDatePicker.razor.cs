@@ -12,7 +12,7 @@ namespace Material.Blazor
     /// A date picker styled to match the Material Theme date picker specification, using
     /// a modfied Material Theme select input as also applied in <see cref="MBSelect{TItem}"/>.
     /// </summary>
-    public partial class MBDatePicker : InputComponentFoundation<DateTime>
+    public partial class MBDatePicker : InputComponent<DateTime>
     {
         /// <summary>
         /// The select style.
@@ -57,14 +57,21 @@ namespace Material.Blazor
         [Parameter] public MBDensity? Density { get; set; }
 
 
+        /// <summary>
+        /// Regular, fullwidth or fixed positioning/width. Overrides a value of <see cref="MBMenuSurfacePositioning.FullWidth"/>
+        /// with <see cref="MBMenuSurfacePositioning.Regular"/>.
+        /// </summary>
+        [Parameter] public MBMenuSurfacePositioning MenuSurfacePositioning { get; set; } = MBMenuSurfacePositioning.Regular;
+
 
         private MBDensity AppliedDensity => CascadingDefaults.AppliedSelectDensity(Density);
         private MBSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
         private ElementReference ElementReference { get; set; }
         private bool IsOpen { get; set; } = false;
-        private string MenuClass => (Panel?.ShowYearPad ?? true) ? "mb-dp-menu__day-menu" : "mb-dp-menu__year-menu";
+        private string MenuClass => MBMenu.GetMenuSurfacePositioningClass(MenuSurfacePositioning == MBMenuSurfacePositioning.Fixed ? MBMenuSurfacePositioning.Fixed : MBMenuSurfacePositioning.Regular) + ((Panel?.ShowYearPad ?? true) ? " mb-dp-menu__day-menu" : " mb-dp-menu__year-menu");
         private InternalDatePickerPanel Panel { get; set; }
         private bool ShowLabel => !string.IsNullOrWhiteSpace(Label);
+
 
         private MBCascadingDefaults.DensityInfo DensityInfo
         {

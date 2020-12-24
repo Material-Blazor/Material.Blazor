@@ -15,7 +15,7 @@ namespace Material.Blazor.Internal
     /// [CascadingParameter] EditContext as optional.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class InputComponentFoundation<T> : DialogChildComponentFoundation
+    public abstract class InputComponent<T> : DialogChildComponent
     {
         private bool _previousParsingAttemptFailed;
         private ValidationMessageStore _parsingValidationMessages;
@@ -265,7 +265,8 @@ namespace Material.Blazor.Internal
 
                 if (ValueExpression != null)
                 {
-                    FieldIdentifier = FieldIdentifier.Create(ValueExpression);
+#warning Mark's help needed to make this line work with the checkboxes in SegmentedButtonMulti.razor which bind to elements of an array.
+                    //FieldIdentifier = FieldIdentifier.Create(ValueExpression);
                 }
 
                 EditContext = CascadedEditContext;
@@ -425,7 +426,7 @@ namespace Material.Blazor.Internal
                 accessorBody = unaryExpression.Operand;
             }
 
-            if (!(accessorBody is MemberExpression memberExpression))
+            if (accessorBody is not MemberExpression memberExpression)
             {
                 throw new ArgumentException($"The provided expression contains a {accessorBody.GetType().Name} which is not supported. {nameof(FieldIdentifier)} only supports simple member accessors (fields, properties) of an object.");
             }

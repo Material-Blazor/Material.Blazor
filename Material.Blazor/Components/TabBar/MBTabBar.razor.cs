@@ -11,7 +11,7 @@ namespace Material.Blazor
     /// <summary>
     /// This is a general purpose Material Theme tab bar.
     /// </summary>
-    public partial class MBTabBar<TItem> : InputComponentFoundation<int>
+    public partial class MBTabBar<TItem> : InputComponent<int>
     {
         /// <summary>
         /// A constant string to identify a cascading value to <see cref="MBIcon"/>, so that the

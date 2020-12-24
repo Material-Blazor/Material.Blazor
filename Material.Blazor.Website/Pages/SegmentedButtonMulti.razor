@@ -1,0 +1,78 @@
+﻿@page "/segmentedbuttonmulti"
+
+@inject IMBToastService ToastService
+
+
+<DemonstrationPage ComponentName="SegmentedButtonMulti"
+                   Title="Segmented Button Multi-Select Demonstration"
+                   DemoComponent="@this"
+                   MaterialIOPage="mdc-segmented-button#segmented-buttons"
+                   IsGeneric="true"
+                   RequiresDisableSelection="false">
+    <Description>
+        <p>
+            Segmented buttons with multi-select capability.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Two sets of two-way bound segmented buttons
+                    </h2>
+
+                    <p>
+                        <MBSegmentedButtonMulti @bind-Value="@SBValues" Items="@KittenBreeds" />
+                    </p>
+
+                    <p>
+                        <MBSegmentedButtonMulti @bind-Value="@SBValues" Items="@KittenBreeds" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Checkboxes bound to buttons - display only and non-interactive.
+                    </h2>
+
+                    <p><MBCheckbox @bind-Value="@CheckboxValues[0]" Label="@KittenBreeds[0].Label" Disabled="true" /></p>
+                    <p><MBCheckbox @bind-Value="@CheckboxValues[1]" Label="@KittenBreeds[1].Label" Disabled="true" /></p>
+                    <p><MBCheckbox @bind-Value="@CheckboxValues[2]" Label="@KittenBreeds[2].Label" Disabled="true" /></p>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+@code {
+    MBIconBearingSelectElement<string>[] KittenBreeds = new MBIconBearingSelectElement<string>[]
+{
+        new MBIconBearingSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new MBIconBearingSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue", Icon="admin_panel_settings" },
+        new MBIconBearingSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible", Icon="card_membership" }
+};
+
+
+    IList<string> sbvalues = Array.Empty<string>();
+    IList<string> SBValues
+    {
+        get => sbvalues;
+        set
+        {
+            sbvalues = value;
+            CheckboxValues = KittenBreeds.Select(x => sbvalues.Contains(x.SelectedValue)).ToArray();
+            StateHasChanged();
+        }
+    }
+
+
+    bool[] CheckboxValues = { false, false, false };
+}

@@ -149,11 +149,10 @@
 
 
         <MBDialog @ref="@Dialog3"
-                  Title="Date Picker Dialog"
-                  OverflowVisible="true">
+                  Title="Date Picker Dialog">
             <Body>
                 <p>Set the date.</p>
-                <MBDatePicker Label="The date" @bind-Value="@Date5" SelectInputStyle="MBSelectInputStyle.Outlined" MinDate="@MinDate" MaxDate="@MaxDate"></MBDatePicker>
+                <MBDatePicker Label="The date" @bind-Value="@Date5" SelectInputStyle="MBSelectInputStyle.Outlined" MinDate="@MinDate" MaxDate="@MaxDate" MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"></MBDatePicker>
             </Body>
             <Buttons>
                 <MBButton Label="Orange" DialogAction="orange"></MBButton>
@@ -165,7 +164,6 @@
                   Title="Logon Dialog"
                   ScrimClickAction=""
                   EscapeKeyAction="">
-
             <Body>
                 <EditForm Model="@UserLogon" OnValidSubmit="@Dialog4Submitted" OnInvalidSubmit="@Dialog4Invalid">
                     <DataAnnotationsValidator />
@@ -248,11 +246,11 @@
         }
     }
 
-    private MBListElement<string>[] StringItems = new MBListElement<string>[]
+    private MBSelectElement<string>[] StringItems = new MBSelectElement<string>[]
     {
-        new MBListElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
-        new MBListElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
-        new MBListElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+        new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
                     };
 
     private async Task ShowDialog1Async()
