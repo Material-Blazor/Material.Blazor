@@ -1,0 +1,56 @@
+﻿@namespace Material.Blazor
+@inherits InputComponent<double>
+
+<div @ref="@ElementReference" @attributes="@MyAttributes">
+    <div class="mdc-slider__track">
+        <div class="mdc-slider__track--inactive"></div>
+        <div class="mdc-slider__track--active">
+            <div class="mdc-slider__track--active_fill"></div>
+        </div>
+    </div>
+
+    @if (SliderType == MBSliderType.DiscreteWithTickmarks)
+    {
+        <div class="mdc-slider__tick-marks">
+
+            @{ double currValue = ValueMin - DataStep / 2; }
+
+            @while (currValue < ValueMax)
+            {
+                if (currValue < Value)
+                {
+                    <div class="mdc-slider__tick-mark--active"></div>
+                }
+                else
+                {
+                    <div class="mdc-slider__tick-mark--inactive"></div>
+                }
+
+                currValue += DataStep;
+            }
+        </div>
+    }
+
+    <div class="mdc-slider__thumb"
+         style="left: calc(@ThumbEndPercent% - 24px)"
+         role="slider"
+         tabindex="@TabIndex"
+         aria-label="@AriaLabel"
+         aria-valuemin="@ValueMin.ToString(Format)"
+         aria-valuemax="@ValueMax.ToString(Format)"
+         aria-valuenow="@Value.ToString(Format)">
+
+        @if (SliderType != MBSliderType.Continuous)
+        {
+            <div class="mdc-slider__value-indicator-container">
+                <div class="mdc-slider__value-indicator">
+                    <span class="mdc-slider__value-indicator-text">
+                        @Value.ToString(Format)
+                    </span>
+                </div>
+            </div>
+        }
+
+        <div class="mdc-slider__thumb-knob"></div>
+    </div>
+</div>

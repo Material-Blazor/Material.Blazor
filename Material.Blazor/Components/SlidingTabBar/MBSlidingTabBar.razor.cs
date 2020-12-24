@@ -11,7 +11,7 @@ namespace Material.Blazor
     /// beneath showing tabbed content.
     /// </summary>
     /// <typeparam name="TItem"></typeparam>
-    public partial class MBSlidingTabBar<TItem> : InputComponentFoundation<int>
+    public partial class MBSlidingTabBar<TItem> : InputComponent<int>
     {
         /// <summary>
         /// Stack icons vertically if True, otherwise icons are leading.

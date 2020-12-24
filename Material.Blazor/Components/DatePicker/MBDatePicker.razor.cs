@@ -12,7 +12,7 @@ namespace Material.Blazor
     /// A date picker styled to match the Material Theme date picker specification, using
     /// a modfied Material Theme select input as also applied in <see cref="MBSelect{TItem}"/>.
     /// </summary>
-    public partial class MBDatePicker : InputComponentFoundation<DateTime>
+    public partial class MBDatePicker : InputComponent<DateTime>
     {
         /// <summary>
         /// The select style.

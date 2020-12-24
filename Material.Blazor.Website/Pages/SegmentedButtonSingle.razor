@@ -59,22 +59,11 @@
 {
         new MBIconBearingSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MBIconBearingSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue", Icon="admin_panel_settings" },
-        new MBIconBearingSelectElement<string> { SelectedValue = "ice-invis", Icon="card_membership" }
+        new MBIconBearingSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible", Icon="card_membership" }
     };
 
 
     string selectedKitten = "brit-short";
-    //IList<string> sbvalues = Array.Empty<string>();
-    //IList<string> SBValues
-    //{
-    //    get => sbvalues;
-    //    set
-    //    {
-    //        sbvalues = value;
-    //        CheckboxValues = KittenBreeds.Select(x => sbvalues.Contains(x.SelectedValue)).ToArray();
-    //        StateHasChanged();
-    //    }
-    //}
 
 
     bool[] CheckboxValues = { false, false, false };

@@ -12,7 +12,7 @@ namespace Material.Blazor
     /// <summary>
     /// A Material Theme segmented button orientated as a multi-select.
     /// </summary>
-    public partial class MBChipsSelectMulti<TItem> : MultiSelectComponentFoundation<TItem, MBIconBearingSelectElement<TItem>>
+    public partial class MBChipsSelectMulti<TItem> : MultiSelectComponent<TItem, MBIconBearingSelectElement<TItem>>
     {
         /// <summary>
         /// If this component is rendered inside a single-select segmented button, add the "" class.
@@ -20,11 +20,11 @@ namespace Material.Blazor
         [CascadingParameter] private MBChipsSelectSingle<TItem> ChipsSelectSingle { get; set; }
 
 
+        private Dictionary<string, object>[] ChipSpanAttributes { get; set; }
+        private ElementReference ChipsReference { get; set; }
         private MBIconBearingSelectElement<TItem>[] ItemsArray { get; set; }
         private bool IsSingleSelect { get; set; }
         private IDisposable ObjectReference { get; set; }
-        private Dictionary<string, object>[] ChipSpanAttributes { get; set; }
-        private ElementReference ChipsReference { get; set; }
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor

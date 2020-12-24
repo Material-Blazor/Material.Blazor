@@ -9,7 +9,7 @@ namespace Material.Blazor
     /// <summary>
     /// A Material Theme segmented button orientated as a single-select.
     /// </summary>
-    public partial class MBChipsSelectSingle<TItem> : SingleSelectComponentFoundation<TItem, MBIconBearingSelectElement<TItem>>
+    public partial class MBChipsSelectSingle<TItem> : SingleSelectComponent<TItem, MBIconBearingSelectElement<TItem>>
     {
 #nullable enable annotations
         /// <summary>

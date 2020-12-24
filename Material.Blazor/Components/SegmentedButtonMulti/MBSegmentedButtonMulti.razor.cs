@@ -12,7 +12,7 @@ namespace Material.Blazor
     /// <summary>
     /// A Material Theme segmented button orientated as a multi-select.
     /// </summary>
-    public partial class MBSegmentedButtonMulti<TItem> : MultiSelectComponentFoundation<TItem, MBIconBearingSelectElement<TItem>>
+    public partial class MBSegmentedButtonMulti<TItem> : MultiSelectComponent<TItem, MBIconBearingSelectElement<TItem>>
     {
         /// <summary>
         /// If this component is rendered inside a single-select segmented button, add the "" class.

@@ -134,6 +134,29 @@
 
 
     /// <summary>
+    /// Determines the allowed selections in <see cref="MBDatePicker"/>
+    /// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="AllowAll"/></para>
+    /// </summary>
+    public enum MBDateSelectionCriteria
+    {
+        /// <summary>
+        /// Allow weekdays and weekends. This is the <see cref="MBCascadingDefaults"/> default.
+        /// </summary>
+        AllowAll,
+
+        /// <summary>
+        /// Limit selection to weekends only.
+        /// </summary>
+        WeekendsOnly,
+
+        /// <summary>
+        /// Limit selection to weekdays only.
+        /// </summary>
+        WeekdaysOnly
+    }
+
+
+    /// <summary>
     /// Determines the density of a component
     /// <para>Defaults to <see cref="Default"/></para>
     /// </summary>
@@ -535,6 +558,50 @@
 
 
     /// <summary>
+    /// Determines the type of an <see cref="MBSlider"/>.
+    /// </summary>
+    public enum MBSliderEventType
+    {
+        /// <summary>
+        /// Emits events only when the thumb is released.
+        /// </summary>
+        ThumbUp,
+
+        /// <summary>
+        /// Debounced events during slider movement. Debouncing requires the slider to be still for a period before emitting an event.
+        /// </summary>
+        ContinuousDebounced,
+
+        /// <summary>
+        /// Throttled events during slider movement. Throttling emits events even while the slider is moving.
+        /// </summary>
+        ContinuousThrottled
+    }
+
+
+    /// <summary>
+    /// Determines the type of an <see cref="MBSlider"/>.
+    /// </summary>
+    public enum MBSliderType
+    {
+        /// <summary>
+        /// Continuous value.
+        /// </summary>
+        Continuous,
+
+        /// <summary>
+        /// Discrete values.
+        /// </summary>
+        Discrete,
+
+        /// <summary>
+        /// Discrete values with tickmarks.
+        /// </summary>
+        DiscreteWithTickmarks
+    }
+
+
+    /// <summary>
     /// A helper to set the alignment of text in <see cref="MBTextField"/>, <see cref="MBTextArea"/> and <see cref="MBSelect{TItem}"/>.
     /// <para>Applied also to <seealso cref="MBAutocompleteTextField"/>, <seealso cref="MBDebouncedTextField"/>, <seealso cref="MBNumericDoubleField"/> and <seealso cref="MBNumericIntField"/></para>
     /// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Default"/></para>
@@ -616,30 +683,6 @@
         /// The short collapsed variety.
         /// </summary>
         ShortCollapsed
-    }
-
-
-
-    /// <summary>
-    /// Determines the allowed selections in <see cref="MBDatePicker"/>
-    /// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="AllowAll"/></para>
-    /// </summary>
-    public enum MBDateSelectionCriteria 
-    {
-        /// <summary>
-        /// Allow weekdays and weekends. This is the <see cref="MBCascadingDefaults"/> default.
-        /// </summary>
-        AllowAll,
-
-        /// <summary>
-        /// Limit selection to weekends only.
-        /// </summary>
-        WeekendsOnly,
-
-        /// <summary>
-        /// Limit selection to weekdays only.
-        /// </summary>
-        WeekdaysOnly
     }
 
 

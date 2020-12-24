@@ -11,7 +11,7 @@ namespace Material.Blazor
     /// <summary>
     /// A Material Theme text field.
     /// </summary>
-    public partial class MBTextArea : InputComponentFoundation<string>
+    public partial class MBTextArea : InputComponent<string>
     {
         /// <summary>
         /// Helper text that is displayed either with focus or persistently with <see cref="HelperTextPersistent"/>.

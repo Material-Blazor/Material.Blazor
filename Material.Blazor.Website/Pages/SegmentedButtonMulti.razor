@@ -44,7 +44,7 @@
 
                     <p><MBCheckbox @bind-Value="@CheckboxValues[0]" Label="@KittenBreeds[0].Label" Disabled="true" /></p>
                     <p><MBCheckbox @bind-Value="@CheckboxValues[1]" Label="@KittenBreeds[1].Label" Disabled="true" /></p>
-                    <p><MBCheckbox @bind-Value="@CheckboxValues[2]" Label="Icelandic Invisible" Disabled="true" /></p>
+                    <p><MBCheckbox @bind-Value="@CheckboxValues[2]" Label="@KittenBreeds[2].Label" Disabled="true" /></p>
                 </Primary>
             </MBCard>
         </div>
@@ -57,7 +57,7 @@
 {
         new MBIconBearingSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MBIconBearingSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue", Icon="admin_panel_settings" },
-        new MBIconBearingSelectElement<string> { SelectedValue = "ice-invis", Icon="card_membership" }
+        new MBIconBearingSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible", Icon="card_membership" }
 };
 
 

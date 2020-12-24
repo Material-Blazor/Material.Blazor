@@ -1,12 +1,12 @@
 ﻿---
-uid: C.MBSegmentedButtonMulti
-title: MBSegmentedButtonMulti
+uid: C.MBChipsSelectMulti
+title: MBChipsSelectMulti
 ---
-# MBSegmentedButtonMulti&lt;TItem&gt;
+# MBChipsSelectMulti&lt;TItem&gt;
 
 ## Summary
 
-A [Material Segmented Button](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-segmented-button#segmented-buttons) as a multi-select.
+A [Material Chip Set](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-chips#chips) configured as a multi-select.
 
 ## Details
 
@@ -29,4 +29,4 @@ A [Material Segmented Button](https://github.com/material-components/material-co
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](xref:A.CoreComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBSegmentedButtonMulti&color=brightgreen)](xref:Material.Blazor.MBSegmentedButtonMulti`1)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBChipsSelectMulti&color=brightgreen)](xref:Material.Blazor.MBChipsSelectMulti`1)
