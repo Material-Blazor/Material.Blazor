@@ -8,7 +8,7 @@ namespace Material.Blazor
     /// <summary>
     /// An double variant of <see cref="MBNumericDecimalField"/>.
     /// </summary>
-    public partial class MBNumericDoubleField : InputComponentFoundation<double>
+    public partial class MBNumericDoubleField : InputComponent<double>
     {
 #nullable enable annotations
         /// <summary>
@@ -128,14 +128,14 @@ namespace Material.Blazor
         /// <summary>
         /// Number of decimal places for the value. If more dp are entered the value gets rounded properly.
         /// </summary>
-        [Parameter] public int DecimalPlaces { get; set; } = 2;
+        [Parameter] public uint DecimalPlaces { get; set; } = 2;
 #nullable restore annotations
 
 
         private decimal DecimalValue
         {
             get => (decimal)ComponentValue;
-            set => ComponentValue = Convert.ToDouble(Math.Round(value, DecimalPlaces));
+            set => ComponentValue = Convert.ToDouble(Math.Round(value, (int)DecimalPlaces));
         }
 
 
@@ -158,7 +158,7 @@ namespace Material.Blazor
                     Min = null;
                 }
 
-                Min = Convert.ToDouble(Math.Round(value ?? 0, DecimalPlaces));
+                Min = Convert.ToDouble(Math.Round(value ?? 0, (int)DecimalPlaces));
             }
         }
 
@@ -182,7 +182,7 @@ namespace Material.Blazor
                     Max = null;
                 }
 
-                Max = Convert.ToDouble(Math.Round(value ?? 0, DecimalPlaces));
+                Max = Convert.ToDouble(Math.Round(value ?? 0, (int)DecimalPlaces));
             }
         }
 

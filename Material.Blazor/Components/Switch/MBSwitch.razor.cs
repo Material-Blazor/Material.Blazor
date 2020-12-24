@@ -10,7 +10,7 @@ namespace Material.Blazor
     /// <summary>
     /// This is a general purpose Material Theme switch.
     /// </summary>
-    public partial class MBSwitch : InputComponentFoundation<bool>
+    public partial class MBSwitch : InputComponent<bool>
     {
         /// <summary>
         /// The switch's label

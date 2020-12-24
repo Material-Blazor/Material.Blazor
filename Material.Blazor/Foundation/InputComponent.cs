@@ -15,7 +15,7 @@ namespace Material.Blazor.Internal
     /// [CascadingParameter] EditContext as optional.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class InputComponentFoundation<T> : DialogChildComponentFoundation
+    public abstract class InputComponent<T> : DialogChildComponent
     {
         private bool _previousParsingAttemptFailed;
         private ValidationMessageStore _parsingValidationMessages;

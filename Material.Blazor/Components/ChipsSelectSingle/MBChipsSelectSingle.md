@@ -1,17 +1,17 @@
 ﻿---
-uid: C.MBChipsSelectMulti
-title: MBChipsSelectMulti
+uid: C.MBChipsSelectSingle
+title: MBChipsSelectSingle
 ---
-# MBChipsSelectMulti&lt;TItem&gt;
+# MBChipsSelectSingle&lt;TItem&gt;
 
 ## Summary
 
-A [Material Chip Set](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-chips#chips) configured as a multi-select.
+A [Material Chip Set](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-chips#chips) configured as a single-select.
 
 ## Details
 
 - Accepts an `IEnumerable<MBIconBearingSelectElement<TItem>>` of selectable items;
-- Binds to an `IList<TItem>` of all items selected;
+- Binds to a `TItem` for the selected value;
 - Ignores the `Disabled` parameter because Material Components Web segmented buttons do not implement a disabled state.
 
 ## Assisting Blazor Rendering with `@key`
@@ -29,4 +29,4 @@ A [Material Chip Set](https://github.com/material-components/material-components
 &nbsp;
 
 [![Components](https://img.shields.io/static/v1?label=Components&message=Core&color=blue)](xref:A.CoreComponents)
-[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBChipsSelectMulti&color=brightgreen)](xref:Material.Blazor.MBChipsSelectMulti`1)
+[![Docs](https://img.shields.io/static/v1?label=API%20Documentation&message=MBChipsSelectSingle&color=brightgreen)](xref:Material.Blazor.MBChipsSelectSingle`1)

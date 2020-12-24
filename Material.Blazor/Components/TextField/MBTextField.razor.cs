@@ -11,7 +11,7 @@ namespace Material.Blazor
     /// <summary>
     /// A Material Theme text field.
     /// </summary>
-    public partial class MBTextField : InputComponentFoundation<string>
+    public partial class MBTextField : InputComponent<string>
     {
 #nullable enable annotations
         /// <summary>

@@ -12,7 +12,7 @@ namespace Material.Blazor
     /// A Material Theme numeric input field. This wraps <see cref="MBTextField"/> and normally
     /// displays the numeric value as formatted text, but switches to a pure number on being selected.
     /// </summary>
-    public partial class MBNumericDecimalField : InputComponentFoundation<decimal>
+    public partial class MBNumericDecimalField : InputComponent<decimal>
     {
 #nullable enable annotations
         /// <summary>
@@ -132,7 +132,7 @@ namespace Material.Blazor
         /// <summary>
         /// Number of decimal places for the value. If more dp are entered the value gets rounded properly.
         /// </summary>
-        [Parameter] public int DecimalPlaces { get; set; } = 2;
+        [Parameter] public uint DecimalPlaces { get; set; } = 2;
 #nullable restore annotations
 
 
@@ -201,7 +201,7 @@ namespace Material.Blazor
             }
             else
             {
-                MyDecimalPlaces = DecimalPlaces;
+                MyDecimalPlaces = (int)DecimalPlaces;
                 Regex = new Regex(allowSign ? DoublePattern : PositiveDoublePattern);
             }
 

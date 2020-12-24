@@ -79,7 +79,7 @@ Coupling this with the need to prevent Blazor rendering brought us to the two wa
 
 When we first identified this issue during Material.Blazor's development we realized that our Blazor code needed to first render a
 new component and then immediately after instantiating it step out of MCW's way by applying `ShouldRender() => false;` 
-in `InputComponentFoundation`. If we did no more, two way binding would be broken because subsequent attempts by the consumer (your project) 
+in `InputComponent`. If we did no more, two way binding would be broken because subsequent attempts by the consumer (your project) 
 to update Value are ignored, which is an unacceptable result. Fortunately each MCW component has a rich 
 JavaScript library that includes both the ability to set a value in the future and to be notified of that value being changed by 
 the user. We make use of this in our two way binding for the `Value` parameter, and do something similar for the `Disabled` 
@@ -89,10 +89,10 @@ The principle is like this:
 
 <img src="../images/two-way-bind-flow.png" alt="Two Way Binding Flow"></img>
 
-Each component inheriting from `InputComponentFoundation` implements this mechanism separately calling the JavaScript provided
+Each component inheriting from `InputComponent` implements this mechanism separately calling the JavaScript provided
 by MCW for that component:
 
-- Overrides `SetComponentValue` from `InputComponentFoundation` to call the relevant MCW code via JSInterop;
+- Overrides `SetComponentValue` from `InputComponent` to call the relevant MCW code via JSInterop;
 - Registers a JSInterop callback with MCW for notification of value changes;
 - Overrides `OnDisabledSet` from `ComponentFoundation` for to either call MCW via JSInterop to set the disabled state or to do so directly via Blazor binding as relevant; and
 - *Does not* bind Value to any elements in the razor markup.

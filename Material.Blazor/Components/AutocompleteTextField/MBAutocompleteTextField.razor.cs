@@ -15,7 +15,7 @@ namespace Material.Blazor
     /// An autocomplete built using an <see cref="MBTextField"/> with the anchor and drop
     /// down list implementation from a Material Theme select.
     /// </summary>
-    public partial class MBAutocompleteTextField : InputComponentFoundation<string>
+    public partial class MBAutocompleteTextField : InputComponent<string>
     {
         private IEnumerable<string> selectItems;
         private IEnumerable<string> newSelectItems = null;

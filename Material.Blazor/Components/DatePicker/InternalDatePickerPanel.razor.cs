@@ -12,7 +12,7 @@ namespace Material.Blazor.Internal
     /// <summary>
     /// For Material.Blazor internal use only.
     /// </summary>
-    public partial class InternalDatePickerPanel : InputComponentFoundation<DateTime>
+    public partial class InternalDatePickerPanel : InputComponent<DateTime>
     {
         /// <summary>
         /// Date selection criteria

@@ -69,7 +69,7 @@ namespace Material.Blazor
         private bool HasBody => Body != null;
         private bool HasButtons => Buttons != null;
         private bool HasTitle => !string.IsNullOrWhiteSpace(Title);
-        private List<DialogChildComponentFoundation> LayoutChildren { get; set; } = new List<DialogChildComponentFoundation>();
+        private List<DialogChildComponent> LayoutChildren { get; set; } = new List<DialogChildComponent>();
         private DotNetObjectReference<MBDialog> ObjectReference { get; set; }
         private string OverflowClass => OverflowVisible ? "mb-dialog-overflow-visible" : "";
 
@@ -139,7 +139,7 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        void IMBDialog.RegisterLayoutAction(DialogChildComponentFoundation child)
+        void IMBDialog.RegisterLayoutAction(DialogChildComponent child)
         {
             LayoutChildren.Add(child);
         }

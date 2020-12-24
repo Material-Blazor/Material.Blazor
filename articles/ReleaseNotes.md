@@ -16,15 +16,18 @@ In Pre-Release Q4 2020 and Q1 2021
 - Tooltips use Material Component Web 8.0.0 rather than preview packages - no breaking changes.
 - Material.Blazor beginning to use `ILogger` to log warnings when validating component markup to help you during app development.
 - General bug fixes.
-- Material.Blazor 2.0.0 is compatible with .NET 5.0 only. If you need to build against versions of .NET please continue to use Material.Blazor 1.1.4.
+- Material.Blazor 2.0.0 is compatible with .NET 5.0 only. If you need to build against older versions of .NET please continue to use Material.Blazor 1.1.4.
 
 
 **New components**
 
 - MBGrid (EXPERIMENTAL) - a capable grid component. This is not yet styled to look like Material Theme and we may or may not keep it in Material.Blazor. We recommend not using MBGrid for anything other than experiment or contributing to its development.
 - MBNumericDecimalField - a decimal variant of the existing numeric input fields.
-- MBSegmentedButtonMulti - a multi select variant of segmented buttons which have been added to Material Components Web 8.0.0.
-- MBSegmentedButtonSingle - a single select variant of segmented buttons which have been added to Material Components Web 8.0.0.
+- MBChipsSelectMulti - a multi select variant of a chip set.
+- MBChipsSelectSingle - a single select variant of a chip set.
+- MBSegmentedButtonMulti - a multi select variant of segmented buttons, which have been added to Material Components Web 8.0.0.
+- MBSegmentedButtonSingle - a single select variant of segmented buttons, which have been added to Material Components Web 8.0.0.
+- MBSlider - a continuous and discrete single-thumb slider.
 
 
 **Breaking Changes**

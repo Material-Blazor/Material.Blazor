@@ -6,7 +6,7 @@ namespace Material.Blazor
     /// <summary>
     /// A group of <see cref="MBRadioButton{TItem}"/>s displayed horizontally or vertically.
     /// </summary>
-    public partial class MBRadioButtonGroup<TItem> : SingleSelectComponentFoundation<TItem, MBSelectElement<TItem>>
+    public partial class MBRadioButtonGroup<TItem> : SingleSelectComponent<TItem, MBSelectElement<TItem>>
     {
         /// <summary>
         /// The radio button's density.

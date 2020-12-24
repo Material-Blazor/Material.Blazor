@@ -8,7 +8,7 @@ namespace Material.Blazor
     /// <summary>
     /// A Material Theme debounced text field.
     /// </summary>
-    public partial class MBDebouncedTextField : InputComponentFoundation<string>
+    public partial class MBDebouncedTextField : InputComponent<string>
     {
 #nullable enable annotations
         /// <summary>

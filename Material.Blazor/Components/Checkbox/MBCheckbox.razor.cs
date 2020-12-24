@@ -12,7 +12,7 @@ namespace Material.Blazor
     /// This is a general purpose Material Theme check box accepting a boolean as a bound value. This
     /// check box does not implement indeteriminate state.
     /// </summary>
-    public partial class MBCheckbox : InputComponentFoundation<bool>
+    public partial class MBCheckbox : InputComponent<bool>
     {
         /// <summary>
         /// The check box label.

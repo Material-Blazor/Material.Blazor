@@ -5,21 +5,12 @@ export function init(elem, isSingleSelect, dotNetObject) {
     elem._isSingleSelect = isSingleSelect;
 
     return new Promise(() => {
-        elem._segmentedButton.foundation.handleSelected = index => {
+        elem._segmentedButton.foundation.adapter.notifySelectedChange = detail => {
             if (elem._isSingleSelect) {
-                dotNetObject.invokeMethodAsync('NotifySingleSelectedAsync', index.index);
-
-                for (let i = 0; i < elem._segmentedButton.segments_.length; i++) {
-                    if (i == index) {
-                        elem._segmentedButton.segments_[i].setSelected();
-                    }
-                    else {
-                        elem._segmentedButton.segments_[i].setUnselected();
-                    }
-                }
+                dotNetObject.invokeMethodAsync('NotifySingleSelectedAsync', detail.index);
             }
             else {
-                dotNetObject.invokeMethodAsync('NotifyMultiSelectedAsync', elem._segmentedButton.segments_.map(x => x.isSelected()));
+                dotNetObject.invokeMethodAsync('NotifyMultiSelectedAsync', elem._segmentedButton.segments.map(x => x.isSelected()));
             }
         };
     });
@@ -36,10 +27,10 @@ export function setDisabled(elem, value) {
 export function setSelected(elem, selectedFlags) {
     for (let i = 0; i < selectedFlags.length; i++) {
         if (selectedFlags[i] == true) {
-            elem._segmentedButton.segments_[i].setSelected();
+            elem._segmentedButton.segments[i].setSelected();
         }
         else {
-            elem._segmentedButton.segments_[i].setUnselected();
+            elem._segmentedButton.segments[i].setUnselected();
         }
     }
 }

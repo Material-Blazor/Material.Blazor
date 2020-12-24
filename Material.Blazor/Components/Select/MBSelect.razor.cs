@@ -14,7 +14,7 @@ namespace Material.Blazor
     /// <summary>
     /// A Material Theme select.
     /// </summary>
-    public partial class MBSelect<TItem> : SingleSelectComponentFoundation<TItem, MBSelectElement<TItem>>
+    public partial class MBSelect<TItem> : SingleSelectComponent<TItem, MBSelectElement<TItem>>
     {
 #nullable enable annotations
         /// <summary>
