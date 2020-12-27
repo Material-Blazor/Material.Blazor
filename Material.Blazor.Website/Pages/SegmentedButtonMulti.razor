@@ -61,7 +61,7 @@
 };
 
 
-    IList<string> sbvalues = Array.Empty<string>();
+    IList<string> sbvalues = new string[] { "brit-short", "ice-invis" };
     IList<string> SBValues
     {
         get => sbvalues;
@@ -74,5 +74,12 @@
     }
 
 
-    bool[] CheckboxValues = { false, false, false };
+    bool[] CheckboxValues;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        CheckboxValues = KittenBreeds.Select(k => SBValues.Contains(k.SelectedValue)).ToArray();
+    }
 }

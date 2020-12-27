@@ -20,6 +20,8 @@ namespace Material.Blazor
         [CascadingParameter] private MBChipsSelectSingle<TItem> ChipsSelectSingle { get; set; }
 
 
+        private Dictionary<string, object>[] ChipAttributes { get; set; }
+        private Dictionary<string, object>[] ChipIconAttributes { get; set; }
         private Dictionary<string, object>[] ChipSpanAttributes { get; set; }
         private ElementReference ChipsReference { get; set; }
         private MBIconBearingSelectElement<TItem>[] ItemsArray { get; set; }
@@ -41,16 +43,26 @@ namespace Material.Blazor
 
             ItemsArray = Items.ToArray();
 
+            ChipAttributes = new Dictionary<string, object>[ItemsArray.Length];
+            ChipIconAttributes = new Dictionary<string, object>[ItemsArray.Length];
             ChipSpanAttributes = new Dictionary<string, object>[ItemsArray.Length];
 
             for (int i = 0; i < ItemsArray.Length; i++)
             {
+                ChipAttributes[i] = new();
+                ChipIconAttributes[i] = new();
                 ChipSpanAttributes[i] = new();
 
                 var selected = Value.Contains(ItemsArray[i].SelectedValue);
 
+                ChipAttributes[i].Add("class", "mdc-chip mdc-chip--touch" + (selected ? " mdc-chip--selected" : ""));
+                ChipAttributes[i].Add("role", "row");
+
+                ChipIconAttributes[i].Add("class", "mdc-chip__icon mdc-chip__icon--leading" + (selected ? " mdc-chip__icon--leading-hidden" : ""));
+
                 ChipSpanAttributes[i].Add("class", "mdc-chip__primary-action");
                 ChipSpanAttributes[i].Add("tabindex", "0");
+                ChipSpanAttributes[i].Add("aria-checked", selected.ToString().ToLower());
 
                 if (IsSingleSelect)
                 {
@@ -59,7 +71,6 @@ namespace Material.Blazor
                 else
                 {
                     ChipSpanAttributes[i].Add("role", "checkbox");
-                    ChipSpanAttributes[i].Add("aria-checked", selected.ToString().ToLower());
                 }
             }
 

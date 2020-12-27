@@ -42,6 +42,11 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
+            MBItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidation(ItemValidation);
+
+            bool hasValue;
+            (hasValue, ComponentValue) = ValidateItemList(Items, appliedItemValidation);
+
             multiValues = new TItem[] { Value };
 
             SetComponentValue += OnValueSetCallback;
