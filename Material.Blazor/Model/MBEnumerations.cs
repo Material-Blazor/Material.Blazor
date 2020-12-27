@@ -374,6 +374,28 @@
 
 
     /// <summary>
+    /// Determines how an <see cref="MBSlider"/> responds to user events.
+    /// </summary>
+    public enum MBInputEventType
+    {
+        /// <summary>
+        /// Emits events only when the thumb is released via an change event.
+        /// </summary>
+        OnChange,
+
+        /// <summary>
+        /// Emits debounced events during slider movement via input events. Debouncing requires the slider to be still for a period before emitting an event.
+        /// </summary>
+        OnInputDebounced,
+
+        /// <summary>
+        /// Emits throttled events during slider movement via input events. Throttling emits events even while the slider is moving.
+        /// </summary>
+        OnInputThrottled
+    }
+
+
+    /// <summary>
     /// A helper to determine how a <see cref="MBSelect{TItem}"/> or <see cref="MBRadioButtonGroup{TItem}"/> should handle an intial bound value not matching elements in the value list.
     /// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Exception"/></para>
     /// </summary>
@@ -554,28 +576,6 @@
         /// Show both value (right hand element) only.
         /// </summary>
         ValueOnly
-    }
-
-
-    /// <summary>
-    /// Determines the type of an <see cref="MBSlider"/>.
-    /// </summary>
-    public enum MBSliderEventType
-    {
-        /// <summary>
-        /// Emits events only when the thumb is released.
-        /// </summary>
-        ThumbUp,
-
-        /// <summary>
-        /// Debounced events during slider movement. Debouncing requires the slider to be still for a period before emitting an event.
-        /// </summary>
-        ContinuousDebounced,
-
-        /// <summary>
-        /// Throttled events during slider movement. Throttling emits events even while the slider is moving.
-        /// </summary>
-        ContinuousThrottled
     }
 
 
