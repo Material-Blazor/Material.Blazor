@@ -42,6 +42,7 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
+
             MBItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidation(ItemValidation);
 
             bool hasValue;

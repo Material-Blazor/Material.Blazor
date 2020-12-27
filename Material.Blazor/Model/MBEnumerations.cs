@@ -627,6 +627,7 @@
         /// Right aligned text contents.
         /// </summary>
         Right
+
     }
 
 
@@ -663,6 +664,7 @@
         /// The fixed variety.
         /// </summary>
         Fixed,
+
 
         /// <summary>
         /// The dense variety.
