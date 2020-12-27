@@ -38,15 +38,15 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Specifies how slider events are emitted, see <see cref="MBSliderEventType"/>.
+        /// Specifies how slider events are emitted, see <see cref="MBInputEventType"/>.
         /// </summary>
-        [Parameter] public MBSliderEventType EventType { get; set; } = MBSliderEventType.ThumbUp;
+        [Parameter] public MBInputEventType EventType { get; set; } = MBInputEventType.OnChange;
 
 
         /// <summary>
-        /// For continuous input sets the throttle delay.
+        /// For continuous input sets the debounce/throttle delay.
         /// </summary>
-        [Parameter] public uint ContinuousInputDebounceDelay { get; set; } = 300;
+        [Parameter] public uint ContinuousInputDelay { get; set; } = 300;
 
 
         /// <summary>
@@ -164,7 +164,7 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSlider.init", ElementReference, ObjectReference, EventType, ContinuousInputDebounceDelay);
+        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSlider.init", ElementReference, ObjectReference, EventType, ContinuousInputDelay);
 
 
         /// <inheritdoc/>

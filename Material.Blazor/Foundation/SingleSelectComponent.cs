@@ -45,9 +45,9 @@ namespace Material.Blazor.Internal
         /// </summary>
         /// <param name="items">The item list</param>
         /// <param name="appliedItemValidation">Specification of the required validation <see cref="MBItemValidation"/></param>
-        /// <returns>The item in the list matching <see cref="InputComponent{T}._cachedValue"/></returns>
+        /// <returns>The an indicator of whether an item was found and the item in the list matching <see cref="InputComponent{T}._cachedValue"/> or default if not found.</returns>
         /// <exception cref="ArgumentException"/>
-        public T ValidateItemList(IEnumerable<MBSelectElement<T>> items, MBItemValidation appliedItemValidation)
+        public (bool hasValue, T value) ValidateItemList(IEnumerable<MBSelectElement<T>> items, MBItemValidation appliedItemValidation)
         {
             var componentName = Utilities.GetTypeName(GetType());
             
@@ -61,13 +61,12 @@ namespace Material.Blazor.Internal
                 throw new ArgumentException(componentName + " has multiple enties in the List with the same SelectedValue");
             }
 
-            if (!items.Where(i => object.Equals(i.SelectedValue, Value)).Any())
+            if (!items.Where(i => Equals(i.SelectedValue, Value)).Any())
             {
                 switch (appliedItemValidation)
                 {
                     case MBItemValidation.DefaultToFirst:
-                        var firstOrDefault = items.FirstOrDefault().SelectedValue;
-                        return firstOrDefault;
+                        return (true, items.FirstOrDefault().SelectedValue);
 
                     case MBItemValidation.Exception:
                         string itemList = "{ ";
@@ -84,11 +83,11 @@ namespace Material.Blazor.Internal
                         throw new ArgumentException(componentName + $" cannot select item with data value of '{Value?.ToString()}' from {itemList}");
 
                     case MBItemValidation.NoSelection:
-                        return default;
+                        return (false, default);
                 }
             }
 
-            return Value;
+            return (true, Value);
         }
     }
 }

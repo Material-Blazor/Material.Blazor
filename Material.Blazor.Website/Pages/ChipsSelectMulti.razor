@@ -55,14 +55,14 @@
 
 @code {
     MBIconBearingSelectElement<string>[] KittenBreeds = new MBIconBearingSelectElement<string>[]
-{
+    {
         new MBIconBearingSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MBIconBearingSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue", Icon="admin_panel_settings" },
         new MBIconBearingSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible", Icon="card_membership" }
-};
+    };
 
 
-    IList<string> sbvalues = Array.Empty<string>();
+    IList<string> sbvalues =new string[] { "brit-short", "ice-invis" };
     IList<string> SBValues
     {
         get => sbvalues;
@@ -74,6 +74,12 @@
         }
     }
 
+    bool[] CheckboxValues;
 
-    bool[] CheckboxValues = { false, false, false };
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        CheckboxValues = KittenBreeds.Select(k => SBValues.Contains(k.SelectedValue)).ToArray();
+    }
 }

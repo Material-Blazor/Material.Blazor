@@ -24,7 +24,7 @@ namespace Material.Blazor
         {
             public string SelectedText { get; set; }
             public IEnumerable<string> SelectList { get; set; }
-            public bool PotentialMatchesFound => SelectList.Count() > 0;
+            public bool PotentialMatchesFound => SelectList.Any();
             public bool FullMatchFound => (SelectList.Count() == 1) && SelectList.Contains(SelectedText);
         }
 
@@ -218,7 +218,7 @@ namespace Material.Blazor
                                where fullMatchRegex.Matches(f.SearchTarget).Count > 0
                                select f.Item).ToArray();
 
-            if (fullMatches.Count() > 0)
+            if (fullMatches.Any())
             {
                 return new SelectionInfo()
                 {
@@ -274,7 +274,7 @@ namespace Material.Blazor
 
         private async Task OnTextFocusOutAsync()
         {
-            if (SelectInfo.SelectList.Count() == 0)
+            if (!SelectInfo.SelectList.Any())
             {
                 await CloseMenuAsync();
             }

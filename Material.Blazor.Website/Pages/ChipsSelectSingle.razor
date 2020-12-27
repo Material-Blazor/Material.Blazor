@@ -24,11 +24,11 @@
                     </h2>
 
                     <p>
-                        <MBChipsSelectSingle @bind-Value="@selectedKitten" Items="@KittenBreeds" />
+                        <MBChipsSelectSingle @bind-Value="@selectedKitten" Items="@KittenBreeds" ItemValidation="@MBItemValidation.NoSelection" />
                     </p>
 
                     <p>
-                        <MBChipsSelectSingle @bind-Value="@selectedKitten" Items="@KittenBreeds" />
+                        <MBChipsSelectSingle @bind-Value="@selectedKitten" Items="@KittenBreeds" ItemValidation="@MBItemValidation.NoSelection" />
                     </p>
 
                     <p>@selectedKitten</p>
@@ -45,7 +45,7 @@
                     </h2>
 
                     <p>
-                        <MBRadioButtonGroup @bind-Value="@selectedKitten" Items="@KittenBreeds" />
+                        <MBRadioButtonGroup @bind-Value="@selectedKitten" Items="@KittenBreeds" ItemValidation="@MBItemValidation.NoSelection" />
                     </p>
                 </Primary>
             </MBCard>
@@ -56,7 +56,7 @@
 
 @code {
     MBIconBearingSelectElement<string>[] KittenBreeds = new MBIconBearingSelectElement<string>[]
-{
+    {
         new MBIconBearingSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MBIconBearingSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue", Icon="admin_panel_settings" },
         new MBIconBearingSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible", Icon="card_membership" }

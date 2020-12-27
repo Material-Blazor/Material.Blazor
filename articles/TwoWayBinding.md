@@ -92,10 +92,10 @@ The principle is like this:
 Each component inheriting from `InputComponent` implements this mechanism separately calling the JavaScript provided
 by MCW for that component:
 
-- Overrides `SetComponentValue` from `InputComponent` to call the relevant MCW code via JSInterop;
+- Overrides `OnParametersSet` from `InputComponent` to call the relevant MCW code via JSInterop;
 - Registers a JSInterop callback with MCW for notification of value changes;
 - Overrides `OnDisabledSet` from `ComponentFoundation` for to either call MCW via JSInterop to set the disabled state or to do so directly via Blazor binding as relevant; and
-- *Does not* bind Value to any elements in the razor markup.
+- *Does not* bind Value to any elements in the razor markup except for `MBTextField` which binds directly to the `'<input>` block.
 
 Without this careful mechanism Blazor and MCW can enter an infinite positive feedback loop of values bouncing from current to previous value.
 
