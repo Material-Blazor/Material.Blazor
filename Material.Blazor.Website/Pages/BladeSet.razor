@@ -22,14 +22,36 @@
                         Add Blades
                     </h2>
 
-                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        Default and explicit button styles.
-                    </h3>
+                    @foreach (var bladeReference in BladeReferences)
+                    {
+                        <p>
+                            <MBButton @key="@bladeReference"
+                                      Label="@GetAddLabel(bladeReference)"
+                                      @onclick="@(() => Blades.AddBladeAsync(bladeReference, "demo-blade mdc-elevation--z3"))"
+                                      Disabled="@Blades.BladeReferences.Contains(bladeReference)"
+                                      ButtonStyle="@MBButtonStyle.Outlined"/>
+                        </p>
+                    }
+                </Primary>
+            </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Remove Blades
+                    </h2>
 
                     @foreach (var bladeReference in BladeReferences)
                     {
                         <p>
-                            <MBButton @key="@bladeReference" Label="@GetLabel(bladeReference)" @onclick="@(() => Blades.AddBladeAsync(bladeReference, "demo-blade mdc-elevation--z3"))" Disabled="@Blades.BladeReferences.Contains(bladeReference)" />
+                            <MBButton @key="@bladeReference"
+                                      Label="@GetRemoveLabel(bladeReference)"
+                                      @onclick="@(() => Blades.RemoveBladeAsync(bladeReference))"
+                                      Disabled="@(!Blades.BladeReferences.Contains(bladeReference))"
+                                      ButtonStyle="@MBButtonStyle.Outlined"/>
                         </p>
                     }
                 </Primary>
@@ -45,5 +67,7 @@
 
     string[] BladeReferences = { "One", "Two", "Three" };
 
-    private string GetLabel(string reference) => $"Blade {reference}";
+    private string GetAddLabel(string reference) => $"Add Blade {reference}";
+
+    private string GetRemoveLabel(string reference) => $"Remove Blade {reference}";
 }
