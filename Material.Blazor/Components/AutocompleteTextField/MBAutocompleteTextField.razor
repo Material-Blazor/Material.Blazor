@@ -2,9 +2,9 @@
 @inherits InputComponent<string>
 
 
-<div class="mb-autocomplete">
+<div @attributes="@AttributesToSplat(SplatType.IdClassAndStyleOnly)">
     <MBTextField @ref="@TextField"
-                 @attributes="@AttributesToSplat()"
+                 @attributes="@AttributesToSplat(SplatType.ExcludeIdClassAndStyle)"
                  TextAlignStyle="@TextAlignStyle"
                  TextInputStyle="@TextInputStyle"
                  Label="@Label"

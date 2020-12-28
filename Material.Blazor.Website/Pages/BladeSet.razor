@@ -65,7 +65,7 @@
 @code {
     [CascadingParameter] private MBBladeSet Blades { get; set; }
 
-    string[] BladeReferences = { "One", "Two", "Three" };
+    public readonly static string[] BladeReferences = { "One", "Two", "Three" };
 
     private string GetAddLabel(string reference) => $"Add Blade {reference}";
 
