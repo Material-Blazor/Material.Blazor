@@ -35,6 +35,7 @@ In Pre-Release Q4 2020 and Q1 2021
 - CDN packages now reference material components web 8.0.0, see [Installation article](xref:A.Installation).
 - If you are building a theme from material components web SASS, you need to reference version 8.0.0.
 - MBMenu `ToggleAsync()` is now return type `Task` rather than `Task<string>` in version 1.
+- MBRadioButtonGroup `EnableTouchWrapper` obsolete and removed.
 
 <br />
 

@@ -11,12 +11,12 @@
     @for (int i = 0; i < ItemsArray.Length; i++)
     {
         <div @key="@KeyGenerator(ItemsArray[i].SelectedValue)" class="mdc-touch-target-wrapper">
-            <div class="mdc-chip mdc-chip--touch" role="row">
+            <div @attributes="@ChipAttributes[i]">
                 <div class="mdc-chip__ripple"></div>
 
                 @if (!string.IsNullOrWhiteSpace(ItemsArray[i].Icon))
                 {
-                    <MBIcon IconName="@ItemsArray[i].Icon" IconFoundry="@IconFoundry" class="mdc-chip__icon mdc-chip__icon--leading" />
+                    <MBIcon IconName="@ItemsArray[i].Icon" IconFoundry="@IconFoundry" @attributes="@ChipIconAttributes[i]" />
                 }
 
                 @if (!IsSingleSelect)
@@ -30,7 +30,7 @@
                 }
 
                 <span role="gridcell">
-                    <span role="checkbox" tabindex="0" aria-checked="false" class="mdc-chip__primary-action">
+                    <span @attributes="@ChipSpanAttributes[i]">
                         <span class="mdc-chip__text">@ItemsArray[i].Label</span>
                     </span>
                 </span>

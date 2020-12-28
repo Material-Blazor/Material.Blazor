@@ -31,7 +31,7 @@
                     <p>
                         <MBRadioButtonGroup @bind-Value="@HorizontalGroup"
                                             Items="@KittenBreeds"
-                                            ItemValidation="@MBItemValidation.DefaultToFirst" />
+                                            ItemValidation="@MBItemValidation.NoSelection" />
                     </p>
                 </Primary>
             </MBCard>
@@ -53,8 +53,7 @@
                     <p>
                         <MBRadioButtonGroup @bind-Value="@Colour"
                                             Items="@ColourItems"
-                                            Vertical="true"
-                                            EnableTouchWrapper="false" />
+                                            Vertical="true" />
                     </p>
                 </Primary>
             </MBCard>

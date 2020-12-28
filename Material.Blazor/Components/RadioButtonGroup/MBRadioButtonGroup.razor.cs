@@ -20,12 +20,6 @@ namespace Material.Blazor
         [Parameter] public bool Vertical { get; set; } = false;
 
 
-        /// <summary>
-        /// Enables the Material Theme touch wrapper.
-        /// </summary>
-        [Parameter] public bool EnableTouchWrapper { get; set; } = true;
-
-
         private string RadioGroupName { get; set; } = Utilities.GenerateUniqueElementName();
 
 
@@ -38,7 +32,9 @@ namespace Material.Blazor
 
             ForceShouldRenderToTrue = true;
 
-            ComponentValue = ValidateItemList(Items, appliedItemValidation);
+            bool hasValue;
+
+            (hasValue, ComponentValue) = ValidateItemList(Items, appliedItemValidation);
 
             ClassMapperInstance.AddIf("mb-mdc-radio-group-vertical", () => Vertical);
         }
