@@ -1,0 +1,27 @@
+﻿@namespace Material.Blazor
+
+
+<CascadingValue Value="@this" IsFixed="true">
+    <mb-bladeset>
+        <mb-bladeset-scroll-helper></mb-bladeset-scroll-helper>
+
+        <mb-bladeset-main-content>
+            @PageContent
+        </mb-bladeset-main-content>
+
+        @foreach (var bladeInfo in Blades.Values)
+        {
+            <mb-blade @key="@bladeInfo" @attributes="@bladeInfo.Attributes">
+
+                @if (bladeInfo.HasMeasuredContentWidth)
+                {
+                    @bladeInfo.OpenCssClassDefinition
+                }
+
+                <mb-blade-content @ref="@bladeInfo.BladeContentElementReference">
+                    @BladeContent(bladeInfo.Reference)
+                </mb-blade-content>
+            </mb-blade>
+        }
+    </mb-bladeset>
+</CascadingValue>

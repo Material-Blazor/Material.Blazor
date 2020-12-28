@@ -1,0 +1,49 @@
+﻿@page "/bladeset"
+
+@inject IMBToastService ToastService
+
+
+
+<DemonstrationPage ComponentName="Blades"
+                   Title="Blades Demonstration"
+                   DemoComponent="@this"
+                   RequiresDisableSelection="false">
+    <Description>
+        <p>
+            Demonstrates Material Blazor's blade functionality.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Add Blades
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Default and explicit button styles.
+                    </h3>
+
+                    @foreach (var bladeReference in BladeReferences)
+                    {
+                        <p>
+                            <MBButton @key="@bladeReference" Label="@GetLabel(bladeReference)" @onclick="@(() => Blades.AddBladeAsync(bladeReference, "demo-blade mdc-elevation--z3"))" Disabled="@Blades.BladeReferences.Contains(bladeReference)" />
+                        </p>
+                    }
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    [CascadingParameter] private MBBladeSet Blades { get; set; }
+
+    string[] BladeReferences = { "One", "Two", "Three" };
+
+    private string GetLabel(string reference) => $"Blade {reference}";
+}
