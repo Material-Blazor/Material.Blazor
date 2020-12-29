@@ -1,0 +1,89 @@
+﻿@page "/bladeset"
+
+@implements IDisposable
+
+@inject IMBToastService ToastService
+
+
+
+<DemonstrationPage ComponentName="Blades"
+                   Title="Blades Demonstration"
+                   DemoComponent="@this"
+                   RequiresDisableSelection="false">
+    <Description>
+        <p>
+            Demonstrates Material Blazor's blade functionality.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Add Blades
+                    </h2>
+
+                    @foreach (var bladeReference in BladeReferences)
+                    {
+                        <p>
+                            <MBButton @key="@bladeReference"
+                                      Label="@GetAddLabel(bladeReference)"
+                                      @onclick="@(() => Blades.AddBlade(bladeReference, "demo-blade"))"
+                                      Disabled="@Blades.BladeReferences.Contains(bladeReference)"
+                                      ButtonStyle="@MBButtonStyle.Outlined"/>
+                        </p>
+                    }
+                </Primary>
+            </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Remove Blades
+                    </h2>
+
+                    @foreach (var bladeReference in BladeReferences)
+                    {
+                        <p>
+                            <MBButton @key="@bladeReference"
+                                      Label="@GetRemoveLabel(bladeReference)"
+                                      @onclick="@(() => Blades.RemoveBlade(bladeReference))"
+                                      Disabled="@(!Blades.BladeReferences.Contains(bladeReference))"
+                                      ButtonStyle="@MBButtonStyle.Outlined"/>
+                        </p>
+                    }
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    [CascadingParameter] private MBBladeSet Blades { get; set; }
+
+    public readonly static string[] BladeReferences = { "One", "Two", "Three" };
+
+    private string GetAddLabel(string reference) => $"Add Blade {reference}";
+
+    private string GetRemoveLabel(string reference) => $"Remove Blade {reference}";
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        Blades.BladeSetChanged += HandleBladeSetChange;
+    }
+
+
+    public void Dispose() => Blades.BladeSetChanged -= HandleBladeSetChange;
+
+
+    private void HandleBladeSetChange(object sender, EventArgs e) => InvokeAsync(StateHasChanged);
+}

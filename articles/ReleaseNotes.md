@@ -7,6 +7,8 @@ title: ReleaseNotes
 #### [2.0.0](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0)
 In Pre-Release Q4 2020 and Q1 2021
 
+_NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VERSIONS._
+
 **Updates**
 
 - Upgrade to [Material Components Web 8.0.0](https://github.com/material-components/material-components-web/tree/v8.0.0/packages).
@@ -21,6 +23,7 @@ In Pre-Release Q4 2020 and Q1 2021
 
 **New components**
 
+- MBBladeSet - a blade implementation inspired by Microsoft Azure blades.
 - MBGrid (EXPERIMENTAL) - a capable grid component. This is not yet styled to look like Material Theme and we may or may not keep it in Material.Blazor. We recommend not using MBGrid for anything other than experiment or contributing to its development.
 - MBNumericDecimalField - a decimal variant of the existing numeric input fields.
 - MBChipsSelectMulti - a multi select variant of a chip set.

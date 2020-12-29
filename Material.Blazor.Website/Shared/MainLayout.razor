@@ -11,6 +11,7 @@
         <MBListItem LeadingIcon="anchor" Label="Anchor" @onclick="@(() => ListItemClickHandler("anchor"))" />
         <MBListItem LeadingIcon="short_text" Label="Autocomplete Text Field" @onclick="@(() => ListItemClickHandler("autocompletetextfield"))" />
         <MBListItem LeadingIcon="swap_horiz" Label="Animated Navigation" @onclick="@(() => ListItemClickHandler("animatednavigation"))" />
+        <MBListItem LeadingIcon="view_sidebar" Label="Blades" @onclick="@(() => ListItemClickHandler("bladeset"))" />
         <MBListItem LeadingIcon="touch_app" Label="Button" @onclick="@(() => ListItemClickHandler("button"))" />
         <MBListItem LeadingIcon="dashboard" Label="Card" @onclick="@(() => ListItemClickHandler("card"))" />
         <MBListItem LeadingIcon="web" Label="Cascading Defaults" @onclick="@(() => ListItemClickHandler("cascadingdefaults"))" />
@@ -82,25 +83,35 @@
         </section>
     </MBTopAppBar>
 
-    <main class="main-content" id="main-content">
-        <div class="max-width-content">
-            <CascadingValue Name="MaterialDocRef" Value="@materialDocRef" IsFixed="true">
+    <MBBladeSet Context="bladeReference"
+                MainContentAdditionalCss="demo-blade-main-content"
+                BladesAdditionalCss="mdc-elevation--z3">
+        <PageContent>
+            <main class="main-content" id="main-content">
+                <div class="max-width-content">
+                    <CascadingValue Name="MaterialDocRef" Value="@materialDocRef" IsFixed="true">
 
-                <MBAnimatedNavigation>
-                    <div class="mdc-top-app-bar--dense-fixed-adjust">
-                        <div class="main-content">
-                            <div class="mdc-layout-grid">
-                                <div class="mdc-layout-grid__inner">
-                                    @Body
+                        <MBAnimatedNavigation>
+                            <div class="mdc-top-app-bar--dense-fixed-adjust">
+                                <div class="main-content">
+                                    <div class="mdc-layout-grid">
+                                        <div class="mdc-layout-grid__inner">
+                                            @Body
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </MBAnimatedNavigation>
+                        </MBAnimatedNavigation>
 
-            </CascadingValue>
-        </div>
-    </main>
+                    </CascadingValue>
+                </div>
+            </main>
+        </PageContent>
+
+        <BladeContent>
+            <ShowBladeContent BladeReference="@bladeReference" />
+        </BladeContent>
+    </MBBladeSet>
 </div>
 
 

@@ -71,7 +71,6 @@ namespace Material.Blazor
                 else
                 {
                     ChipSpanAttributes[i].Add("role", "checkbox");
-                    ChipSpanAttributes[i].Add("aria-checked", selected.ToString().ToLower());
                 }
             }
 

@@ -93,8 +93,6 @@ namespace Material.Blazor
         [Parameter] public bool SupressHeader { get; set; } = false;
 #pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
 
-        [Inject] private protected ILogger<MBGrid<TRowData>> Logger { get; set; }
-
         private float[] ColumnWidthArray;
         private ElementReference GridBodyRef { get; set; }
         private ElementReference GridHeaderRef { get; set; }
@@ -266,7 +264,7 @@ namespace Material.Blazor
             }
             Logger.LogDebug("MeasureWidths complete");
         }
-        private float ConvertPxMeasureToFloat(string pxMeasure)
+        private static float ConvertPxMeasureToFloat(string pxMeasure)
         {
             return Convert.ToSingle(pxMeasure[0..^2]);
         }
@@ -413,9 +411,7 @@ namespace Material.Blazor
                         ref rendSeq,
                         colCount == 0,
                         isHeaderRow,
-                        col,
-                        "mb-grid-backgroundcolor-header-background",
-                        ColumnWidthArray[colCount]);
+                        "mb-grid-backgroundcolor-header-background");
 
                     // Set the header colors
                     styleStr += " color: " + col.ForegroundColor.Name + ";";
@@ -531,10 +527,8 @@ namespace Material.Blazor
                                 ref rendSeq,
                                 colCount == 0,
                                 isHeaderRow,
-                                columnDefinition,
-                                rowBackgroundColorClass,
-                                ColumnWidthArray[colCount]);
-                            builder.AddAttribute(rendSeq++, "mbgrid-td-normal", colCount.ToString()); ;
+                                rowBackgroundColorClass);
+                            builder.AddAttribute(rendSeq++, "mbgrid-td-normal", colCount.ToString());
 
                             switch (columnDefinition.ColumnType)
                             {
@@ -653,14 +647,12 @@ namespace Material.Blazor
             builder.CloseElement(); // colgroup
         }
 
-        private string BuildNewGridTD(
+        private static string BuildNewGridTD(
             RenderTreeBuilder builder,
             ref int rendSeq,
             bool isFirstColumn,
             bool isHeaderRow,
-            MBGridColumnConfiguration<TRowData> col,
-            string rowBackgroundColorClass,
-            float columnWidth)
+            string rowBackgroundColorClass)
         {
             builder.OpenElement(rendSeq++, "td");
             builder.AddAttribute(rendSeq++, "class", "mb-grid-td " + rowBackgroundColorClass);
@@ -739,7 +731,7 @@ namespace Material.Blazor
 
             return false;
         }
-        private string ColorToCSSColor(Color color)
+        private static string ColorToCSSColor(Color color)
         {
             int rawColor = color.ToArgb();
             rawColor &= 0xFFFFFF;
