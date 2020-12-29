@@ -9,13 +9,15 @@
             @PageContent
         </mb-bladeset-main-content>
 
-        @foreach (var bladeInfo in Blades.Values)
-        {
-            <mb-blade @key="@bladeInfo" @ref="@bladeInfo.BladeElementReference" @attributes="@bladeInfo.Attributes">
-                <mb-blade-content @ref="@bladeInfo.BladeContentElementReference">
-                    @BladeContent(bladeInfo.BladeReference)
-                </mb-blade-content>
-            </mb-blade>
-        }
+        <mb-blades>
+            @foreach (var bladeInfo in Blades.Values)
+            {
+                <mb-blade @key="@bladeInfo" @ref="@bladeInfo.BladeElementReference" @attributes="@bladeInfo.Attributes">
+                    <mb-blade-content @ref="@bladeInfo.BladeContentElementReference">
+                        @BladeContent(bladeInfo.BladeReference)
+                    </mb-blade-content>
+                </mb-blade>
+            }
+        </mb-blades>
     </mb-bladeset>
 </CascadingValue>
