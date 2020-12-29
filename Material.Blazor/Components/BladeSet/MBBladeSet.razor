@@ -2,24 +2,18 @@
 
 
 <CascadingValue Value="@this" IsFixed="true">
-    <mb-bladeset>
-        <mb-bladeset-scroll-helper></mb-bladeset-scroll-helper>
+    <mb-bladeset @ref="@BladeSetElem">
+        <mb-bladeset-scroll-helper @ref="@ScrollHelperElementReference"></mb-bladeset-scroll-helper>
 
-        <mb-bladeset-main-content>
+        <mb-bladeset-main-content @ref="@MainContentElementReference">
             @PageContent
         </mb-bladeset-main-content>
 
         @foreach (var bladeInfo in Blades.Values)
         {
-            <mb-blade @key="@bladeInfo" @attributes="@bladeInfo.Attributes">
-
-                @if (bladeInfo.HasMeasuredContentWidth)
-                {
-                    @bladeInfo.OpenCssClassDefinition
-                }
-
+            <mb-blade @key="@bladeInfo" @ref="@bladeInfo.BladeElementReference" @attributes="@bladeInfo.Attributes">
                 <mb-blade-content @ref="@bladeInfo.BladeContentElementReference">
-                    @BladeContent(bladeInfo.Reference)
+                    @BladeContent(bladeInfo.BladeReference)
                 </mb-blade-content>
             </mb-blade>
         }
