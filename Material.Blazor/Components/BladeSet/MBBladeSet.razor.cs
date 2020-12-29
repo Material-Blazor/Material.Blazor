@@ -10,6 +10,10 @@ using System.Threading.Tasks;
 
 namespace Material.Blazor
 {
+    /// <summary>
+    /// A blade display component. Adds blades to the right hand side of the viewport (or bock where this component is located), with
+    /// blades displayed left to right in ascending order of when they were requested (newest blades to the right).
+    /// </summary>
     public partial class MBBladeSet
     {
         /// <summary>
@@ -45,6 +49,12 @@ namespace Material.Blazor
             /// Additional CSS for the blade.
             /// </summary>
             public string AdditionalCss { get; set; }
+
+
+            /// <summary>
+            /// Additional style attributes the blade.
+            /// </summary>
+            public string AdditionalStyles { get; set; }
         }
 
 
@@ -124,7 +134,7 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Render fragment for each blade.
+        /// Render fragment for the page content.
         /// </summary>
         [Parameter] public RenderFragment PageContent { get; set; }
 
@@ -136,31 +146,35 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Additional CSS classes to apply to the mb-blade-set block.
+        /// Additional CSS classes to apply to the mb-bladeset-main-content block that contains page content.
         /// </summary>
         [Parameter] public string MainContentAdditionalCss { get; set; }
 
 
         /// <summary>
-        /// Additional style attributes to apply to the mb-blade-set block.
+        /// Additional style attributes to apply to the mb-bladeset-main-content block that contains page content.
         /// </summary>
         [Parameter] public string MainContentAdditionalStyles { get; set; }
 
 
         /// <summary>
-        /// Additional CSS classes to apply to the mb-blades block.
+        /// Additional CSS classes to apply to the mb-blades block that contains all blades. Note that this block is not rendered if
+        /// no blades are currently being displayed, so it's safe to use (for instance) a class such as <code>mdc-elevation--z3</code>
+        /// that bleeds outside its block.
         /// </summary>
         [Parameter] public string BladesAdditionalCss { get; set; }
 
 
         /// <summary>
-        /// Additional style attributes to apply to the mb-blades block.
+        /// Additional style attributes to apply to the mb-blades block that contains all blades. Note that this block is not rendered if
+        /// no blades are currently being displayed, so it's safe to apply styles that bleed outside its block.
         /// </summary>
         [Parameter] public string BladesAdditionalStyles { get; set; }
 
 
         /// <summary>
-        /// References to each blade presently shown.
+        /// References to each blade presently shown. These references are passed back to render fragments via Context to tell the consumer
+        /// what contents to render.
         /// </summary>
         public ImmutableList<string> BladeReferences => Blades.Select(b => b.Value.BladeReference).ToImmutableList();
 
@@ -184,15 +198,16 @@ namespace Material.Blazor
         /// <summary>
         /// Adds the specified blade then animating its opening sequence.
         /// </summary>
-        /// <param name="bladeReference"></param>
-        /// <returns></returns>
-        public void AddBlade(string bladeReference, string additionalCss = "") => _ = QueueAction(new() { BladeSetAction = BladeSetAction.Add, BladeReference = bladeReference, AdditionalCss = additionalCss });
+        /// <param name="bladeReference">A string reference that the MBBladeSet component passes back via Context so the consumer can display the correct blade contents.</param>
+        /// <param name="additionalCss">CSS styles to be applied to the &lt;mb-blade&gt; block.</param>
+        /// <param name="additionalStyles">Style attributes to be applied to the &lt;mb-blade&gt; block.</param>
+        public void AddBlade(string bladeReference, string additionalCss = "", string additionalStyles = "") => _ = QueueAction(new() { BladeSetAction = BladeSetAction.Add, BladeReference = bladeReference, AdditionalCss = additionalCss, AdditionalStyles = additionalStyles });
 
 
         /// <summary>
         /// Animates the specified blade's closing sequence then removes it.
         /// </summary>
-        /// <param name="bladeReference"></param>
+        /// <param name="bladeReference">The reference of the blade to be removed.</param>
         /// <returns></returns>
         public void RemoveBlade(string bladeReference) => _ = QueueAction(new() { BladeSetAction = BladeSetAction.Remove, BladeReference = bladeReference });
 
@@ -215,7 +230,7 @@ namespace Material.Blazor
                 {
                     if (queueElement.BladeSetAction == BladeSetAction.Add)
                     {
-                        Blades.Add(queueElement.BladeReference, new() { BladeReference = queueElement.BladeReference, AdditionalCss = queueElement.AdditionalCss, Status = BladeStatus.NewClosed });
+                        Blades.Add(queueElement.BladeReference, new() { BladeReference = queueElement.BladeReference, AdditionalCss = queueElement.AdditionalCss, AdditionalStyles = queueElement.AdditionalStyles, Status = BladeStatus.NewClosed });
 
                         StateHasChanged();
                     }

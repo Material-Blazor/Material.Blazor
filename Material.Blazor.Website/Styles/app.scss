@@ -158,18 +158,18 @@
         background-color: white;
     }
 
-    .demo-blade-set {
+    .demo-blade-main-content {
         min-width: 340px;
     }
 
     @media screen and (min-width: 600px) {
-        .demo-blade-set {
+        .demo-blade-main-content {
             min-width: 480px;
         }
     }
 
     @media screen and (min-width: 840px) {
-        .demo-blade-set {
+        .demo-blade-main-content {
             min-width: 640px;
         }
     }

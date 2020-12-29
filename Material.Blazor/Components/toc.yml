@@ -22,6 +22,9 @@
 - name: MBAutocompleteTextField
   topicUid: C.MBAutocompleteTextField
 
+- name: MBBladeSet
+  topicUid: C.MBBladeSet
+
 - name: MBButton
   topicUid: C.MBButton
 
