@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -10,13 +12,40 @@ namespace Material.Blazor
 {
     public partial class MBBladeSet
     {
-        [Inject] private protected IJSRuntime JsRuntime { get; set; }
-        
-        
         /// <summary>
         /// The three states in a blade's lifecycle.
         /// </summary>
-        private enum BladeStatus { NewClosed, Open, ClosedToRemove };
+        private enum BladeStatus { NewClosed, Open, ClosedToRemove }
+
+
+        /// <summary>
+        /// Actions for the concurrent queue.
+        /// </summary>
+        private enum BladeSetAction { Add, Remove }
+
+
+        /// <summary>
+        /// Structs for queued blade add/remove actions.
+        /// </summary>
+        private struct QueueElement
+        {
+            /// <summary>
+            /// The queued operation.
+            /// </summary>
+            public BladeSetAction BladeSetAction { get; set; }
+
+
+            /// <summary>
+            /// The blade referene to be operated on.
+            /// </summary>
+            public string BladeReference { get; set; }
+
+
+            /// <summary>
+            /// Additional CSS for the blade.
+            /// </summary>
+            public string AdditionalCss { get; set; }
+        }
 
 
         /// <summary>
@@ -101,6 +130,9 @@ namespace Material.Blazor
         }
 
 
+        [Inject] private protected IJSRuntime JsRuntime { get; set; }
+
+
         /// <summary>
         /// Render fragment for each blade.
         /// </summary>
@@ -119,7 +151,14 @@ namespace Material.Blazor
         public ImmutableList<string> BladeReferences => Blades.Select(b => b.Value.Reference).ToImmutableList();
 
 
-        private readonly SemaphoreSlim animationSemaphore = new(1, 1);
+        /// <summary>
+        /// Invoked without arguments at the outset of a blade being added or removed from the bladeset.
+        /// </summary>
+        public event EventHandler BladeSetChanged;
+
+
+        private readonly SemaphoreSlim queueSemaphore = new(1, 1);
+        private readonly ConcurrentQueue<QueueElement> bladeSetAactionQueue = new();
         private Dictionary<string, BladeInfo> Blades { get; set; } = new();
 
 
@@ -128,21 +167,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="bladeReference"></param>
         /// <returns></returns>
-        public async Task AddBladeAsync(string bladeReference, string additionalCss = "")
-        {
-            await animationSemaphore.WaitAsync();
-
-            try
-            {
-                Blades.Add(bladeReference, new() { Reference = bladeReference, AdditionalCss = additionalCss, Status = BladeStatus.NewClosed });
-
-                StateHasChanged();
-            }
-            finally
-            {
-                animationSemaphore.Release();
-            }
-        }
+        public void AddBlade(string bladeReference, string additionalCss = "") => _ = QueueAction(new() { BladeSetAction = BladeSetAction.Add, BladeReference = bladeReference, AdditionalCss = additionalCss });
 
 
         /// <summary>
@@ -150,25 +175,52 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="bladeReference"></param>
         /// <returns></returns>
-        public async Task RemoveBladeAsync(string bladeReference)
+        public void RemoveBlade(string bladeReference) => _ = QueueAction(new() { BladeSetAction = BladeSetAction.Remove, BladeReference = bladeReference });
+
+
+        /// <summary>
+        /// Places the blade action on a concurrent queue and then dequeues the next action governed by semaphore locking.
+        /// Dequeuing is throttled to ensure that only one blade is being added/removed at a time.
+        /// </summary>
+        /// <param name="action"></param>
+        /// <returns></returns>
+        private async Task QueueAction(QueueElement action)
         {
-            await animationSemaphore.WaitAsync();
+            bladeSetAactionQueue.Enqueue(action);
+
+            await queueSemaphore.WaitAsync();
 
             try
             {
-                Blades[bladeReference].Status = BladeStatus.ClosedToRemove;
+                if (bladeSetAactionQueue.TryDequeue(out QueueElement queueElement))
+                {
+                    if (queueElement.BladeSetAction == BladeSetAction.Add)
+                    {
+                        Blades.Add(queueElement.BladeReference, new() { Reference = queueElement.BladeReference, AdditionalCss = queueElement.AdditionalCss, Status = BladeStatus.NewClosed });
 
-                StateHasChanged();
+                        StateHasChanged();
+                    }
+                    else
+                    {
+                        Blades[queueElement.BladeReference].Status = BladeStatus.ClosedToRemove;
 
-                await Task.Delay(200);
+                        StateHasChanged();
 
-                Blades.Remove(bladeReference);
+                        await Task.Delay(200);
 
-                StateHasChanged();
+                        Blades.Remove(queueElement.BladeReference);
+
+                        StateHasChanged();
+                    }
+
+                    BladeSetChanged.Invoke(this, null);
+
+                    await Task.Delay(220);
+                }
             }
             finally
             {
-                animationSemaphore.Release();
+                queueSemaphore.Release();
             }
         }
 

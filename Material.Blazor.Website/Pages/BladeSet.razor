@@ -1,5 +1,7 @@
 ﻿@page "/bladeset"
 
+@implements IDisposable
+
 @inject IMBToastService ToastService
 
 
@@ -27,7 +29,7 @@
                         <p>
                             <MBButton @key="@bladeReference"
                                       Label="@GetAddLabel(bladeReference)"
-                                      @onclick="@(() => Blades.AddBladeAsync(bladeReference, "demo-blade mdc-elevation--z3"))"
+                                      @onclick="@(() => Blades.AddBlade(bladeReference, "demo-blade mdc-elevation--z3"))"
                                       Disabled="@Blades.BladeReferences.Contains(bladeReference)"
                                       ButtonStyle="@MBButtonStyle.Outlined"/>
                         </p>
@@ -49,7 +51,7 @@
                         <p>
                             <MBButton @key="@bladeReference"
                                       Label="@GetRemoveLabel(bladeReference)"
-                                      @onclick="@(() => Blades.RemoveBladeAsync(bladeReference))"
+                                      @onclick="@(() => Blades.RemoveBlade(bladeReference))"
                                       Disabled="@(!Blades.BladeReferences.Contains(bladeReference))"
                                       ButtonStyle="@MBButtonStyle.Outlined"/>
                         </p>
@@ -70,4 +72,18 @@
     private string GetAddLabel(string reference) => $"Add Blade {reference}";
 
     private string GetRemoveLabel(string reference) => $"Remove Blade {reference}";
+
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        Blades.BladeSetChanged += HandleBladeSetChange;
+    }
+
+
+    public void Dispose() => Blades.BladeSetChanged -= HandleBladeSetChange;
+
+
+    private void HandleBladeSetChange(object sender, EventArgs e) => InvokeAsync(StateHasChanged);
 }

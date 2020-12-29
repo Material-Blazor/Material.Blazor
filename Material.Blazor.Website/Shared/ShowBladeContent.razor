@@ -2,6 +2,10 @@
     <div class="mdc-layout-grid">
         <div class="mdc-layout-grid__inner">
             <div class="mdc-layout-grid__cell--span-12">
+                <MBIconButton Icon="close" @onclick="@CloseBlade"/>
+            </div>
+
+            <div class="mdc-layout-grid__cell--span-12">
                 <h3 class="mdc-typography--headline6">Blade @BladeReference</h3>
             </div>
 
@@ -97,6 +101,8 @@
 </div>
 
 @code {
+    [CascadingParameter] private MBBladeSet Blades { get; set; }
+
     [Parameter] public string BladeReference { get; set; }
 
 
@@ -119,5 +125,12 @@
                 return "333px";
             }
         }
+    }
+
+
+    private void CloseBlade()
+    {
+        Blades.RemoveBlade(BladeReference);
+        StateHasChanged();
     }
 }
