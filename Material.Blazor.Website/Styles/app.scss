@@ -155,7 +155,10 @@
     }
 
     .demo-blade {
-        background-color: white;
+        background-color: var(--mdc-theme-surface, #fff);
+        border-width: 1px;
+        border-style: solid;
+        border-color: var(--mdc-segmented-button-outline-color, rgba(0, 0, 0, 0.12)); // --mdc-segmented-button-outline-color conveniently switches between light and dark themes
     }
 
     .demo-blade-main-content {
