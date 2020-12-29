@@ -6,7 +6,7 @@ export function openBlade(bladeSetElem, mainContentElem, scrollHelperElem, blade
     let availableShrinkage = bladeContentWidth;
 
     if (mainContentMinWidth.substring(mainContentMinWidth.length - 2, mainContentMinWidth.length) == "px") {
-        availableShrinkage = Math.min(bladeContentWidth, parseInt(mainContentWidth) - parseInt(mainContentWidth));
+        availableShrinkage = Math.min(bladeContentWidth, parseInt(mainContentWidth) - parseInt(mainContentMinWidth));
     }
 
     if (availableShrinkage < bladeContentWidth) {

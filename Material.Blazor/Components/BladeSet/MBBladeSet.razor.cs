@@ -84,6 +84,12 @@ namespace Material.Blazor
 
 
             /// <summary>
+            /// JSInterop element ref for the mb-blade-content block.
+            /// </summary>
+            public readonly DateTime Created = DateTime.UtcNow;
+
+
+            /// <summary>
             /// Attributes to splat on to the mb-blade element.
             /// </summary>
             public Dictionary<string, object> Attributes
