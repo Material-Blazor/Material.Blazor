@@ -77,7 +77,7 @@ namespace Material.Blazor.Internal
         /// form validation for the embedded <see cref="MBTextField"/>, because a debounced field
         /// should not be in a form.
         /// </summary>
-        private bool IgnoreFormField => this is MBDebouncedTextField;
+        private bool IgnoreFormField => this is MBDebouncedTextField || this is MultiSelectComponent<T, MBSelectElement<T>>;
 
 
         /// <summary>
@@ -265,8 +265,7 @@ namespace Material.Blazor.Internal
 
                 if (ValueExpression != null)
                 {
-#warning Mark's help needed to make this line work with the checkboxes in SegmentedButtonMulti.razor which bind to elements of an array.
-                    //FieldIdentifier = FieldIdentifier.Create(ValueExpression);
+                    FieldIdentifier = FieldIdentifier.Create(ValueExpression);
                 }
 
                 EditContext = CascadedEditContext;
