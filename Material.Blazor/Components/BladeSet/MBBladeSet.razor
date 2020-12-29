@@ -5,19 +5,22 @@
     <mb-bladeset @ref="@BladeSetElem">
         <mb-bladeset-scroll-helper @ref="@ScrollHelperElementReference"></mb-bladeset-scroll-helper>
 
-        <mb-bladeset-main-content @ref="@MainContentElementReference">
+        <mb-bladeset-main-content @ref="@MainContentElementReference" @attributes="@MainContentAttributes">
             @PageContent
         </mb-bladeset-main-content>
 
-        <mb-blades>
-            @foreach (var bladeInfo in Blades.Values.OrderBy(b => b.Created))
-            {
-                <mb-blade @key="@bladeInfo" @ref="@bladeInfo.BladeElementReference" @attributes="@bladeInfo.Attributes">
-                    <mb-blade-content @ref="@bladeInfo.BladeContentElementReference">
-                        @BladeContent(bladeInfo.BladeReference)
-                    </mb-blade-content>
-                </mb-blade>
-            }
-        </mb-blades>
+        @if (Blades.Any())
+        {
+            <mb-blades @attributes="@BladesAttributes">
+                @foreach (var bladeInfo in Blades.Values.OrderBy(b => b.Created))
+                {
+                    <mb-blade @key="@bladeInfo" @ref="@bladeInfo.BladeElementReference" @attributes="@bladeInfo.Attributes">
+                        <mb-blade-content @ref="@bladeInfo.BladeContentElementReference">
+                            @BladeContent(bladeInfo.BladeReference)
+                        </mb-blade-content>
+                    </mb-blade>
+                }
+            </mb-blades>
+        }
     </mb-bladeset>
 </CascadingValue>

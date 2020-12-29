@@ -158,7 +158,19 @@
         background-color: white;
     }
 
-    mb-bladeset-main-content {
-        min-width: 40rem;
+    .demo-blade-set {
+        min-width: 340px;
+    }
+
+    @media screen and (min-width: 600px) {
+        .demo-blade-set {
+            min-width: 480px;
+        }
+    }
+
+    @media screen and (min-width: 840px) {
+        .demo-blade-set {
+            min-width: 640px;
+        }
     }
 }

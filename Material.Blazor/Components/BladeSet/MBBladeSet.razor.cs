@@ -60,9 +60,15 @@ namespace Material.Blazor
 
 
             /// <summary>
-            /// The blade's current animation status.
+            /// Additional CSS classes to add to the mb-blade block.
             /// </summary>
             public string AdditionalCss { get; set; } = "";
+
+
+            /// <summary>
+            /// Additional stle attributes to add to the mb-blade block.
+            /// </summary>
+            public string AdditionalStyles { get; set; } = "";
 
 
             /// <summary>
@@ -103,6 +109,11 @@ namespace Material.Blazor
                         result.Add("class", AdditionalCss.Trim());
                     }
 
+                    if (!string.IsNullOrWhiteSpace(AdditionalStyles))
+                    {
+                        result.Add("style", AdditionalStyles.Trim());
+                    }
+
                     return result;
                 }
             }
@@ -125,6 +136,30 @@ namespace Material.Blazor
 
 
         /// <summary>
+        /// Additional CSS classes to apply to the mb-blade-set block.
+        /// </summary>
+        [Parameter] public string MainContentAdditionalCss { get; set; }
+
+
+        /// <summary>
+        /// Additional style attributes to apply to the mb-blade-set block.
+        /// </summary>
+        [Parameter] public string MainContentAdditionalStyles { get; set; }
+
+
+        /// <summary>
+        /// Additional CSS classes to apply to the mb-blades block.
+        /// </summary>
+        [Parameter] public string BladesAdditionalCss { get; set; }
+
+
+        /// <summary>
+        /// Additional style attributes to apply to the mb-blades block.
+        /// </summary>
+        [Parameter] public string BladesAdditionalStyles { get; set; }
+
+
+        /// <summary>
         /// References to each blade presently shown.
         /// </summary>
         public ImmutableList<string> BladeReferences => Blades.Select(b => b.Value.BladeReference).ToImmutableList();
@@ -139,6 +174,8 @@ namespace Material.Blazor
         private readonly SemaphoreSlim queueSemaphore = new(1, 1);
         private readonly ConcurrentQueue<QueueElement> bladeSetAactionQueue = new();
         private Dictionary<string, BladeInfo> Blades { get; set; } = new();
+        private Dictionary<string, object> MainContentAttributes { get; set; }
+        private Dictionary<string, object> BladesAttributes { get; set; }
         private ElementReference BladeSetElem { get; set; }
         private ElementReference MainContentElementReference { get; set; }
         private ElementReference ScrollHelperElementReference { get; set; }
@@ -195,6 +232,36 @@ namespace Material.Blazor
             finally
             {
                 queueSemaphore.Release();
+            }
+        }
+
+
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+        protected override void OnParametersSet()
+        {
+            base.OnParametersSet();
+
+            MainContentAttributes = new();
+            BladesAttributes = new();
+
+            if (!string.IsNullOrWhiteSpace(MainContentAdditionalCss))
+            {
+                MainContentAttributes.Add("class", MainContentAdditionalCss.Trim());
+            }
+
+            if (!string.IsNullOrWhiteSpace(MainContentAdditionalStyles))
+            {
+                MainContentAttributes.Add("style", MainContentAdditionalStyles.Trim());
+            }
+
+            if (!string.IsNullOrWhiteSpace(BladesAdditionalCss))
+            {
+                BladesAttributes.Add("class", BladesAdditionalCss.Trim());
+            }
+
+            if (!string.IsNullOrWhiteSpace(BladesAdditionalStyles))
+            {
+                BladesAttributes.Add("style", BladesAdditionalStyles.Trim());
             }
         }
 
