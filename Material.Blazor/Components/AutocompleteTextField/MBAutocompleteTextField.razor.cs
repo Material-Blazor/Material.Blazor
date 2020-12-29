@@ -160,6 +160,9 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
+            ClassMapperInstance
+                .Add("mb-autocomplete");
+
             ObjectReference = DotNetObjectReference.Create(this);
 
             ForceShouldRenderToTrue = true;

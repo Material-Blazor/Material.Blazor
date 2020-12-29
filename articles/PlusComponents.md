@@ -14,6 +14,7 @@ implements further Blazor/Material Theme hybrid components that we term "Plus Co
 | [MBAnchor](xref:C.MBAnchor) | Anchor for a port of [Blazored/Toast](https://github.com/Blazored/Toast) and [Material Tooltips](https://github.com/material-components/material-components-web/tree/master/packages/mdc-tooltip#tooltip) modified and styled for Material Theme. Place once instance of this in your Blazor app at the top of `App.razor` or `MainLayout.razor`. Requires that you register an [IIMBoastService](xref:S.IMBToastService) service and will throw an exception on startup if the service is not found. |
 | [MBAnimatedNavigation](xref:C.MBAnimatedNavigation) | An component used by the [IMBAnimatedNavigationService](xref:S.IMBAnimatedNavigationManager) service. |
 | [MBAutocompleteTextField](xref:C.MBAutocompleteTextField) | An autocomplete comprising a text field and a menu. |
+| [MBBladeSet](xref:C.MBBladeSet) | Blades inspired by Microsoft Azure |
 | [MBConfirmationDialog](xref:C.MBConfirmationDialog) | A special purpose wrapper around [MBDialog](xref:C.MBDialog) that makes the user type some text correctly in order to enable a button for a specific purpose. Modelled after the GitHub confirmation forms. |
 | [MBDatePicker](xref:C.MBDatePicker) | An implementation of the [Material date picker specification](https://material.io/components/pickers/#specs) for the desktop. |
 | [MBDebouncedTextField](xref:C.MBDebouncedTextField) | A debounced version of [MBTextField](xref:C.MBTextField) |
