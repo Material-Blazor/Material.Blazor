@@ -84,13 +84,14 @@
   
   <h1 id="Material_Blazor_Internal_ComponentFoundation" data-uid="Material.Blazor.Internal.ComponentFoundation" class="text-break">Class ComponentFoundation
   </h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>The base class for all Material.Blazor components.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
     <div class="level1"><span class="xref">ComponentFoundation</span></div>
-      <div class="level2"><a class="xref" href="Material.Blazor.Internal.InputComponentFoundation-1.html">InputComponentFoundation&lt;T&gt;</a></div>
+      <div class="level2"><a class="xref" href="Material.Blazor.DialogChildComponent.html">DialogChildComponent</a></div>
       <div class="level2"><a class="xref" href="Material.Blazor.Internal.InternalDatePickerDayButton.html">InternalDatePickerDayButton</a></div>
       <div class="level2"><a class="xref" href="Material.Blazor.Internal.InternalDatePickerYearButton.html">InternalDatePickerYearButton</a></div>
       <div class="level2"><a class="xref" href="Material.Blazor.Internal.InternalToastAnchor.html">InternalToastAnchor</a></div>
@@ -103,6 +104,7 @@
       <div class="level2"><a class="xref" href="Material.Blazor.MBDivider.html">MBDivider</a></div>
       <div class="level2"><a class="xref" href="Material.Blazor.MBDrawer.html">MBDrawer</a></div>
       <div class="level2"><a class="xref" href="Material.Blazor.MBFloatingActionButton.html">MBFloatingActionButton</a></div>
+      <div class="level2"><a class="xref" href="Material.Blazor.MBGrid-1.html">MBGrid&lt;TRowData&gt;</a></div>
       <div class="level2"><a class="xref" href="Material.Blazor.MBIcon.html">MBIcon</a></div>
       <div class="level2"><a class="xref" href="Material.Blazor.MBIconButton.html">MBIconButton</a></div>
       <div class="level2"><a class="xref" href="Material.Blazor.MBList-1.html">MBList&lt;TItem&gt;</a></div>
@@ -124,37 +126,6 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public abstract class ComponentFoundation : ComponentBase, IDisposable</code></pre>
   </div>
-  <h3 id="fields">Fields
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation__hasInstantiated.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation._hasInstantiated%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L19">View Source</a>
-  </span>
-  <h4 id="Material_Blazor_Internal_ComponentFoundation__hasInstantiated" data-uid="Material.Blazor.Internal.ComponentFoundation._hasInstantiated">_hasInstantiated</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected bool _hasInstantiated</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
@@ -162,7 +133,7 @@
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_CascadingDefaults.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.CascadingDefaults%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L29">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L26">View Source</a>
   </span>
   <a id="Material_Blazor_Internal_ComponentFoundation_CascadingDefaults_" data-uid="Material.Blazor.Internal.ComponentFoundation.CascadingDefaults*"></a>
   <h4 id="Material_Blazor_Internal_ComponentFoundation_CascadingDefaults" data-uid="Material.Blazor.Internal.ComponentFoundation.CascadingDefaults">CascadingDefaults</h4>
@@ -192,7 +163,7 @@
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_Disabled.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.Disabled%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L43">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L40">View Source</a>
   </span>
   <a id="Material_Blazor_Internal_ComponentFoundation_Disabled_" data-uid="Material.Blazor.Internal.ComponentFoundation.Disabled*"></a>
   <h4 id="Material_Blazor_Internal_ComponentFoundation_Disabled" data-uid="Material.Blazor.Internal.ComponentFoundation.Disabled">Disabled</h4>
@@ -223,7 +194,7 @@
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_Tooltip.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.Tooltip%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L60">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L61">View Source</a>
   </span>
   <a id="Material_Blazor_Internal_ComponentFoundation_Tooltip_" data-uid="Material.Blazor.Internal.ComponentFoundation.Tooltip*"></a>
   <h4 id="Material_Blazor_Internal_ComponentFoundation_Tooltip" data-uid="Material.Blazor.Internal.ComponentFoundation.Tooltip">Tooltip</h4>
@@ -254,7 +225,7 @@
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_UnmatchedAttributes.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.UnmatchedAttributes%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L35">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L32">View Source</a>
   </span>
   <a id="Material_Blazor_Internal_ComponentFoundation_UnmatchedAttributes_" data-uid="Material.Blazor.Internal.ComponentFoundation.UnmatchedAttributes*"></a>
   <h4 id="Material_Blazor_Internal_ComponentFoundation_UnmatchedAttributes" data-uid="Material.Blazor.Internal.ComponentFoundation.UnmatchedAttributes">UnmatchedAttributes</h4>
@@ -287,7 +258,7 @@
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_Dispose.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.Dispose%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L142">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L158">View Source</a>
   </span>
   <a id="Material_Blazor_Internal_ComponentFoundation_Dispose_" data-uid="Material.Blazor.Internal.ComponentFoundation.Dispose*"></a>
   <h4 id="Material_Blazor_Internal_ComponentFoundation_Dispose" data-uid="Material.Blazor.Internal.ComponentFoundation.Dispose">Dispose()</h4>
@@ -302,7 +273,7 @@
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_Dispose_System_Boolean_.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.Dispose(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L122">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L135">View Source</a>
   </span>
   <a id="Material_Blazor_Internal_ComponentFoundation_Dispose_" data-uid="Material.Blazor.Internal.ComponentFoundation.Dispose*"></a>
   <h4 id="Material_Blazor_Internal_ComponentFoundation_Dispose_System_Boolean_" data-uid="Material.Blazor.Internal.ComponentFoundation.Dispose(System.Boolean)">Dispose(Boolean)</h4>
@@ -334,7 +305,7 @@
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_Finalize.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.Finalize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L118">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L131">View Source</a>
   </span>
   <a id="Material_Blazor_Internal_ComponentFoundation_Finalize_" data-uid="Material.Blazor.Internal.ComponentFoundation.Finalize*"></a>
   <h4 id="Material_Blazor_Internal_ComponentFoundation_Finalize" data-uid="Material.Blazor.Internal.ComponentFoundation.Finalize">Finalize()</h4>
@@ -346,10 +317,1332 @@
   </div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBCritical_EventId_System_Exception_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBCritical(EventId%2CSystem.Exception%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L405">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBCritical_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBCritical*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBCritical_EventId_System_Exception_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBCritical(EventId,System.Exception,System.String,System.Object[])">LogMBCritical(EventId, Exception, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a critical message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBCritical(EventId eventId, Exception exception, string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventId</span></td>
+        <td><span class="parametername">eventId</span></td>
+        <td><p>The event id associated with the log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><span class="parametername">exception</span></td>
+        <td><p>The exception to log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBCritical_EventId_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBCritical(EventId%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L395">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBCritical_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBCritical*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBCritical_EventId_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBCritical(EventId,System.String,System.Object[])">LogMBCritical(EventId, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a critical message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBCritical(EventId eventId, string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventId</span></td>
+        <td><span class="parametername">eventId</span></td>
+        <td><p>The event id associated with the log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBCritical_System_Exception_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBCritical(System.Exception%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L422">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBCritical_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBCritical*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBCritical_System_Exception_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBCritical(System.Exception,System.String,System.Object[])">LogMBCritical(Exception, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a critical message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBCritical(Exception exception, string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><span class="parametername">exception</span></td>
+        <td><p>The exception to log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBCritical_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBCritical(System.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L413">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBCritical_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBCritical*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBCritical_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBCritical(System.String,System.Object[])">LogMBCritical(String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a critical message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBCritical(string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBDebug_EventId_System_Exception_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBDebug(EventId%2CSystem.Exception%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L449">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBDebug_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBDebug*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBDebug_EventId_System_Exception_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBDebug(EventId,System.Exception,System.String,System.Object[])">LogMBDebug(EventId, Exception, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a debug message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBDebug(EventId eventId, Exception exception, string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventId</span></td>
+        <td><span class="parametername">eventId</span></td>
+        <td><p>The event id associated with the log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><span class="parametername">exception</span></td>
+        <td><p>The exception to log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBDebug_EventId_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBDebug(EventId%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L434">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBDebug_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBDebug*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBDebug_EventId_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBDebug(EventId,System.String,System.Object[])">LogMBDebug(EventId, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a debug message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBDebug(EventId eventId, string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventId</span></td>
+        <td><span class="parametername">eventId</span></td>
+        <td><p>The event id associated with the log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBDebug_System_Exception_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBDebug(System.Exception%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L476">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBDebug_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBDebug*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBDebug_System_Exception_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBDebug(System.Exception,System.String,System.Object[])">LogMBDebug(Exception, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a debug message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBDebug(Exception exception, string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><span class="parametername">exception</span></td>
+        <td><p>The exception to log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBDebug_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBDebug(System.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L462">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBDebug_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBDebug*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBDebug_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBDebug(System.String,System.Object[])">LogMBDebug(String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a debug message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBDebug(string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_EventId_System_Exception_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBDebugVerbose(EventId%2CSystem.Exception%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L505">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBDebugVerbose*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_EventId_System_Exception_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBDebugVerbose(EventId,System.Exception,System.String,System.Object[])">LogMBDebugVerbose(EventId, Exception, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a debug message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBDebugVerbose(EventId eventId, Exception exception, string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventId</span></td>
+        <td><span class="parametername">eventId</span></td>
+        <td><p>The event id associated with the log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><span class="parametername">exception</span></td>
+        <td><p>The exception to log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_EventId_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBDebugVerbose(EventId%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L490">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBDebugVerbose*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_EventId_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBDebugVerbose(EventId,System.String,System.Object[])">LogMBDebugVerbose(EventId, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a debug message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBDebugVerbose(EventId eventId, string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventId</span></td>
+        <td><span class="parametername">eventId</span></td>
+        <td><p>The event id associated with the log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_System_Exception_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBDebugVerbose(System.Exception%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L532">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBDebugVerbose*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_System_Exception_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBDebugVerbose(System.Exception,System.String,System.Object[])">LogMBDebugVerbose(Exception, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a debug message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBDebugVerbose(Exception exception, string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><span class="parametername">exception</span></td>
+        <td><p>The exception to log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBDebugVerbose(System.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L518">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBDebugVerbose*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBDebugVerbose(System.String,System.Object[])">LogMBDebugVerbose(String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a debug message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBDebugVerbose(string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBError_EventId_System_Exception_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBError(EventId%2CSystem.Exception%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L552">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBError_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBError*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBError_EventId_System_Exception_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBError(EventId,System.Exception,System.String,System.Object[])">LogMBError(EventId, Exception, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a error message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBError(EventId eventId, Exception exception, string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventId</span></td>
+        <td><span class="parametername">eventId</span></td>
+        <td><p>The event id associated with the log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><span class="parametername">exception</span></td>
+        <td><p>The exception to log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBError_EventId_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBError(EventId%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L542">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBError_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBError*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBError_EventId_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBError(EventId,System.String,System.Object[])">LogMBError(EventId, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a error message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBError(EventId eventId, string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventId</span></td>
+        <td><span class="parametername">eventId</span></td>
+        <td><p>The event id associated with the log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBError_System_Exception_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBError(System.Exception%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L569">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBError_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBError*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBError_System_Exception_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBError(System.Exception,System.String,System.Object[])">LogMBError(Exception, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a error message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBError(Exception exception, string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><span class="parametername">exception</span></td>
+        <td><p>The exception to log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBError_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBError(System.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L560">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBError_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBError*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBError_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBError(System.String,System.Object[])">LogMBError(String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a error message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBError(string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBInformation_EventId_System_Exception_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBInformation(EventId%2CSystem.Exception%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L588">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBInformation_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBInformation*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBInformation_EventId_System_Exception_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBInformation(EventId,System.Exception,System.String,System.Object[])">LogMBInformation(EventId, Exception, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a information message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBInformation(EventId eventId, Exception exception, string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventId</span></td>
+        <td><span class="parametername">eventId</span></td>
+        <td><p>The event id associated with the log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><span class="parametername">exception</span></td>
+        <td><p>The exception to log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBInformation_EventId_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBInformation(EventId%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L578">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBInformation_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBInformation*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBInformation_EventId_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBInformation(EventId,System.String,System.Object[])">LogMBInformation(EventId, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a information message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBInformation(EventId eventId, string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventId</span></td>
+        <td><span class="parametername">eventId</span></td>
+        <td><p>The event id associated with the log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBInformation_System_Exception_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBInformation(System.Exception%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L605">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBInformation_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBInformation*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBInformation_System_Exception_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBInformation(System.Exception,System.String,System.Object[])">LogMBInformation(Exception, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a information message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBInformation(Exception exception, string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><span class="parametername">exception</span></td>
+        <td><p>The exception to log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBInformation_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBInformation(System.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L596">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBInformation_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBInformation*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBInformation_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBInformation(System.String,System.Object[])">LogMBInformation(String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a information message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBInformation(string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBTrace_EventId_System_Exception_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBTrace(EventId%2CSystem.Exception%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L624">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBTrace_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBTrace*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBTrace_EventId_System_Exception_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBTrace(EventId,System.Exception,System.String,System.Object[])">LogMBTrace(EventId, Exception, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a trace message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBTrace(EventId eventId, Exception exception, string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventId</span></td>
+        <td><span class="parametername">eventId</span></td>
+        <td><p>The event id associated with the log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><span class="parametername">exception</span></td>
+        <td><p>The exception to log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBTrace_EventId_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBTrace(EventId%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L614">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBTrace_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBTrace*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBTrace_EventId_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBTrace(EventId,System.String,System.Object[])">LogMBTrace(EventId, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a trace message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBTrace(EventId eventId, string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventId</span></td>
+        <td><span class="parametername">eventId</span></td>
+        <td><p>The event id associated with the log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBTrace_System_Exception_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBTrace(System.Exception%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L641">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBTrace_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBTrace*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBTrace_System_Exception_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBTrace(System.Exception,System.String,System.Object[])">LogMBTrace(Exception, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a trace message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBTrace(Exception exception, string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><span class="parametername">exception</span></td>
+        <td><p>The exception to log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBTrace_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBTrace(System.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L632">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBTrace_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBTrace*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBTrace_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBTrace(System.String,System.Object[])">LogMBTrace(String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a trace message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBTrace(string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBWarning_EventId_System_Exception_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBWarning(EventId%2CSystem.Exception%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L660">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBWarning_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBWarning*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBWarning_EventId_System_Exception_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBWarning(EventId,System.Exception,System.String,System.Object[])">LogMBWarning(EventId, Exception, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a warning message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBWarning(EventId eventId, Exception exception, string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventId</span></td>
+        <td><span class="parametername">eventId</span></td>
+        <td><p>The event id associated with the log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><span class="parametername">exception</span></td>
+        <td><p>The exception to log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBWarning_EventId_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBWarning(EventId%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L650">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBWarning_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBWarning*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBWarning_EventId_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBWarning(EventId,System.String,System.Object[])">LogMBWarning(EventId, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a warning message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBWarning(EventId eventId, string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">EventId</span></td>
+        <td><span class="parametername">eventId</span></td>
+        <td><p>The event id associated with the log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBWarning_System_Exception_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBWarning(System.Exception%2CSystem.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L677">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBWarning_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBWarning*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBWarning_System_Exception_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBWarning(System.Exception,System.String,System.Object[])">LogMBWarning(Exception, String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a warning message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBWarning(Exception exception, string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.exception">Exception</a></td>
+        <td><span class="parametername">exception</span></td>
+        <td><p>The exception to log.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_LogMBWarning_System_String_System_Object___.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.LogMBWarning(System.String%2CSystem.Object%5B%5D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L668">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_LogMBWarning_" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBWarning*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_LogMBWarning_System_String_System_Object___" data-uid="Material.Blazor.Internal.ComponentFoundation.LogMBWarning(System.String,System.Object[])">LogMBWarning(String, Object[])</h4>
+  <div class="markdown level1 summary"><p>Logs a warning message identifying it as having come from Material.Blazor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected void LogMBWarning(string message, params object[] args)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">message</span></td>
+        <td><p>Format string of the log message in message template format. Example: &quot;User {User} logged in from {Address}</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>[]</td>
+        <td><span class="parametername">args</span></td>
+        <td><p>An object array that contains zero or more objects to format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_OnAfterRender_System_Boolean_.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.OnAfterRender(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L355">View Source</a>
+  </span>
+  <a id="Material_Blazor_Internal_ComponentFoundation_OnAfterRender_" data-uid="Material.Blazor.Internal.ComponentFoundation.OnAfterRender*"></a>
+  <h4 id="Material_Blazor_Internal_ComponentFoundation_OnAfterRender_System_Boolean_" data-uid="Material.Blazor.Internal.ComponentFoundation.OnAfterRender(System.Boolean)">OnAfterRender(Boolean)</h4>
+  <div class="markdown level1 summary"><p>Material.Blazor components generally <em>should not</em> override this because it handles the case where components need
+to be adjusted when inside an <code>MBDialog</code> or <code>MBCard</code>.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">protected override void OnAfterRender(bool firstRender)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">firstRender</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_OnAfterRenderAsync_System_Boolean_.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.OnAfterRenderAsync(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L336">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L370">View Source</a>
   </span>
   <a id="Material_Blazor_Internal_ComponentFoundation_OnAfterRenderAsync_" data-uid="Material.Blazor.Internal.ComponentFoundation.OnAfterRenderAsync*"></a>
   <h4 id="Material_Blazor_Internal_ComponentFoundation_OnAfterRenderAsync_System_Boolean_" data-uid="Material.Blazor.Internal.ComponentFoundation.OnAfterRenderAsync(System.Boolean)">OnAfterRenderAsync(Boolean)</h4>
@@ -398,7 +1691,7 @@ to be adjusted when inside an <code>MBDialog</code> or <code>MBCard</code>.</p>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_OnParametersSet.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.OnParametersSet%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L274">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L290">View Source</a>
   </span>
   <a id="Material_Blazor_Internal_ComponentFoundation_OnParametersSet_" data-uid="Material.Blazor.Internal.ComponentFoundation.OnParametersSet*"></a>
   <h4 id="Material_Blazor_Internal_ComponentFoundation_OnParametersSet" data-uid="Material.Blazor.Internal.ComponentFoundation.OnParametersSet">OnParametersSet()</h4>
@@ -414,7 +1707,7 @@ to be adjusted when inside an <code>MBDialog</code> or <code>MBCard</code>.</p>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_OnParametersSetAsync.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.OnParametersSetAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L285">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L301">View Source</a>
   </span>
   <a id="Material_Blazor_Internal_ComponentFoundation_OnParametersSetAsync_" data-uid="Material.Blazor.Internal.ComponentFoundation.OnParametersSetAsync*"></a>
   <h4 id="Material_Blazor_Internal_ComponentFoundation_OnParametersSetAsync" data-uid="Material.Blazor.Internal.ComponentFoundation.OnParametersSetAsync">OnParametersSetAsync()</h4>
@@ -440,39 +1733,6 @@ to be adjusted when inside an <code>MBDialog</code> or <code>MBCard</code>.</p>
       </tr>
     </tbody>
   </table>
-  <h3 id="events">Events
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation_OnDisabledSet.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation.OnDisabledSet%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L85">View Source</a>
-  </span>
-  <h4 id="Material_Blazor_Internal_ComponentFoundation_OnDisabledSet" data-uid="Material.Blazor.Internal.ComponentFoundation.OnDisabledSet">OnDisabledSet</h4>
-  <div class="markdown level1 summary"><p>Derived components can use this to get a callback from the <span class="xref">Material.Blazor.Internal.ComponentFoundation.AppliedDisabled</span> setter when the consumer changes the value.
-This allows a component to take action with Material Theme js to update the DOM to reflect the data change visually.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected event EventHandler OnDisabledSet</code></pre>
-  </div>
-  <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <h3 id="implements">Implements</h3>
   <div>
       <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
@@ -488,7 +1748,7 @@ This allows a component to take action with Material Theme js to update the DOM 
                     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_ComponentFoundation.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.ComponentFoundation%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L13" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/ComponentFoundation.cs/#L14" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

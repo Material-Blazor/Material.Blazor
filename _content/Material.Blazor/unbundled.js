@@ -1,272 +1,5636 @@
-window.OldMaterialBlazor = {
-    MBTooltip: {
-        init: function(arrayOfReferences) {
-            arrayOfReferences.forEach(i => mdc.tooltip.MDCTooltip.attachTo(i));
-        }
-    }
-};
+(() => {
+    var __webpack_modules__ = {
+        486: function(module, exports, __webpack_require__) {
+            module = __webpack_require__.nmd(module);
+            var __WEBPACK_AMD_DEFINE_RESULT__;
+            /**
+ * @license
+ * Lodash <https://lodash.com/>
+ * Copyright OpenJS Foundation and other contributors <https://openjsf.org/>
+ * Released under MIT license <https://lodash.com/license>
+ * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+ * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+ */            (function() {
+                var undefined;
+                var VERSION = "4.17.20";
+                var LARGE_ARRAY_SIZE = 200;
+                var CORE_ERROR_TEXT = "Unsupported core-js use. Try https://npms.io/search?q=ponyfill.", FUNC_ERROR_TEXT = "Expected a function";
+                var HASH_UNDEFINED = "__lodash_hash_undefined__";
+                var MAX_MEMOIZE_SIZE = 500;
+                var PLACEHOLDER = "__lodash_placeholder__";
+                var CLONE_DEEP_FLAG = 1, CLONE_FLAT_FLAG = 2, CLONE_SYMBOLS_FLAG = 4;
+                var COMPARE_PARTIAL_FLAG = 1, COMPARE_UNORDERED_FLAG = 2;
+                var WRAP_BIND_FLAG = 1, WRAP_BIND_KEY_FLAG = 2, WRAP_CURRY_BOUND_FLAG = 4, WRAP_CURRY_FLAG = 8, WRAP_CURRY_RIGHT_FLAG = 16, WRAP_PARTIAL_FLAG = 32, WRAP_PARTIAL_RIGHT_FLAG = 64, WRAP_ARY_FLAG = 128, WRAP_REARG_FLAG = 256, WRAP_FLIP_FLAG = 512;
+                var DEFAULT_TRUNC_LENGTH = 30, DEFAULT_TRUNC_OMISSION = "...";
+                var HOT_COUNT = 800, HOT_SPAN = 16;
+                var LAZY_FILTER_FLAG = 1, LAZY_MAP_FLAG = 2, LAZY_WHILE_FLAG = 3;
+                var INFINITY = 1 / 0, MAX_SAFE_INTEGER = 9007199254740991, MAX_INTEGER = 17976931348623157e292, NAN = 0 / 0;
+                var MAX_ARRAY_LENGTH = 4294967295, MAX_ARRAY_INDEX = MAX_ARRAY_LENGTH - 1, HALF_MAX_ARRAY_LENGTH = MAX_ARRAY_LENGTH >>> 1;
+                var wrapFlags = [ [ "ary", WRAP_ARY_FLAG ], [ "bind", WRAP_BIND_FLAG ], [ "bindKey", WRAP_BIND_KEY_FLAG ], [ "curry", WRAP_CURRY_FLAG ], [ "curryRight", WRAP_CURRY_RIGHT_FLAG ], [ "flip", WRAP_FLIP_FLAG ], [ "partial", WRAP_PARTIAL_FLAG ], [ "partialRight", WRAP_PARTIAL_RIGHT_FLAG ], [ "rearg", WRAP_REARG_FLAG ] ];
+                var argsTag = "[object Arguments]", arrayTag = "[object Array]", asyncTag = "[object AsyncFunction]", boolTag = "[object Boolean]", dateTag = "[object Date]", domExcTag = "[object DOMException]", errorTag = "[object Error]", funcTag = "[object Function]", genTag = "[object GeneratorFunction]", mapTag = "[object Map]", numberTag = "[object Number]", nullTag = "[object Null]", objectTag = "[object Object]", promiseTag = "[object Promise]", proxyTag = "[object Proxy]", regexpTag = "[object RegExp]", setTag = "[object Set]", stringTag = "[object String]", symbolTag = "[object Symbol]", undefinedTag = "[object Undefined]", weakMapTag = "[object WeakMap]", weakSetTag = "[object WeakSet]";
+                var arrayBufferTag = "[object ArrayBuffer]", dataViewTag = "[object DataView]", float32Tag = "[object Float32Array]", float64Tag = "[object Float64Array]", int8Tag = "[object Int8Array]", int16Tag = "[object Int16Array]", int32Tag = "[object Int32Array]", uint8Tag = "[object Uint8Array]", uint8ClampedTag = "[object Uint8ClampedArray]", uint16Tag = "[object Uint16Array]", uint32Tag = "[object Uint32Array]";
+                var reEmptyStringLeading = /\b__p \+= '';/g, reEmptyStringMiddle = /\b(__p \+=) '' \+/g, reEmptyStringTrailing = /(__e\(.*?\)|\b__t\)) \+\n'';/g;
+                var reEscapedHtml = /&(?:amp|lt|gt|quot|#39);/g, reUnescapedHtml = /[&<>"']/g, reHasEscapedHtml = RegExp(reEscapedHtml.source), reHasUnescapedHtml = RegExp(reUnescapedHtml.source);
+                var reEscape = /<%-([\s\S]+?)%>/g, reEvaluate = /<%([\s\S]+?)%>/g, reInterpolate = /<%=([\s\S]+?)%>/g;
+                var reIsDeepProp = /\.|\[(?:[^[\]]*|(["'])(?:(?!\1)[^\\]|\\.)*?\1)\]/, reIsPlainProp = /^\w*$/, rePropName = /[^.[\]]+|\[(?:(-?\d+(?:\.\d+)?)|(["'])((?:(?!\2)[^\\]|\\.)*?)\2)\]|(?=(?:\.|\[\])(?:\.|\[\]|$))/g;
+                var reRegExpChar = /[\\^$.*+?()[\]{}|]/g, reHasRegExpChar = RegExp(reRegExpChar.source);
+                var reTrim = /^\s+|\s+$/g, reTrimStart = /^\s+/, reTrimEnd = /\s+$/;
+                var reWrapComment = /\{(?:\n\/\* \[wrapped with .+\] \*\/)?\n?/, reWrapDetails = /\{\n\/\* \[wrapped with (.+)\] \*/, reSplitDetails = /,? & /;
+                var reAsciiWord = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
+                var reEscapeChar = /\\(\\)?/g;
+                var reEsTemplate = /\$\{([^\\}]*(?:\\.[^\\}]*)*)\}/g;
+                var reFlags = /\w*$/;
+                var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
+                var reIsBinary = /^0b[01]+$/i;
+                var reIsHostCtor = /^\[object .+?Constructor\]$/;
+                var reIsOctal = /^0o[0-7]+$/i;
+                var reIsUint = /^(?:0|[1-9]\d*)$/;
+                var reLatin = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g;
+                var reNoMatch = /($^)/;
+                var reUnescapedString = /['\n\r\u2028\u2029\\]/g;
+                var rsAstralRange = "\\ud800-\\udfff", rsComboMarksRange = "\\u0300-\\u036f", reComboHalfMarksRange = "\\ufe20-\\ufe2f", rsComboSymbolsRange = "\\u20d0-\\u20ff", rsComboRange = rsComboMarksRange + reComboHalfMarksRange + rsComboSymbolsRange, rsDingbatRange = "\\u2700-\\u27bf", rsLowerRange = "a-z\\xdf-\\xf6\\xf8-\\xff", rsMathOpRange = "\\xac\\xb1\\xd7\\xf7", rsNonCharRange = "\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf", rsPunctuationRange = "\\u2000-\\u206f", rsSpaceRange = " \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000", rsUpperRange = "A-Z\\xc0-\\xd6\\xd8-\\xde", rsVarRange = "\\ufe0e\\ufe0f", rsBreakRange = rsMathOpRange + rsNonCharRange + rsPunctuationRange + rsSpaceRange;
+                var rsApos = "['’]", rsAstral = "[" + rsAstralRange + "]", rsBreak = "[" + rsBreakRange + "]", rsCombo = "[" + rsComboRange + "]", rsDigits = "\\d+", rsDingbat = "[" + rsDingbatRange + "]", rsLower = "[" + rsLowerRange + "]", rsMisc = "[^" + rsAstralRange + rsBreakRange + rsDigits + rsDingbatRange + rsLowerRange + rsUpperRange + "]", rsFitz = "\\ud83c[\\udffb-\\udfff]", rsModifier = "(?:" + rsCombo + "|" + rsFitz + ")", rsNonAstral = "[^" + rsAstralRange + "]", rsRegional = "(?:\\ud83c[\\udde6-\\uddff]){2}", rsSurrPair = "[\\ud800-\\udbff][\\udc00-\\udfff]", rsUpper = "[" + rsUpperRange + "]", rsZWJ = "\\u200d";
+                var rsMiscLower = "(?:" + rsLower + "|" + rsMisc + ")", rsMiscUpper = "(?:" + rsUpper + "|" + rsMisc + ")", rsOptContrLower = "(?:" + rsApos + "(?:d|ll|m|re|s|t|ve))?", rsOptContrUpper = "(?:" + rsApos + "(?:D|LL|M|RE|S|T|VE))?", reOptMod = rsModifier + "?", rsOptVar = "[" + rsVarRange + "]?", rsOptJoin = "(?:" + rsZWJ + "(?:" + [ rsNonAstral, rsRegional, rsSurrPair ].join("|") + ")" + rsOptVar + reOptMod + ")*", rsOrdLower = "\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])", rsOrdUpper = "\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])", rsSeq = rsOptVar + reOptMod + rsOptJoin, rsEmoji = "(?:" + [ rsDingbat, rsRegional, rsSurrPair ].join("|") + ")" + rsSeq, rsSymbol = "(?:" + [ rsNonAstral + rsCombo + "?", rsCombo, rsRegional, rsSurrPair, rsAstral ].join("|") + ")";
+                var reApos = RegExp(rsApos, "g");
+                var reComboMark = RegExp(rsCombo, "g");
+                var reUnicode = RegExp(rsFitz + "(?=" + rsFitz + ")|" + rsSymbol + rsSeq, "g");
+                var reUnicodeWord = RegExp([ rsUpper + "?" + rsLower + "+" + rsOptContrLower + "(?=" + [ rsBreak, rsUpper, "$" ].join("|") + ")", rsMiscUpper + "+" + rsOptContrUpper + "(?=" + [ rsBreak, rsUpper + rsMiscLower, "$" ].join("|") + ")", rsUpper + "?" + rsMiscLower + "+" + rsOptContrLower, rsUpper + "+" + rsOptContrUpper, rsOrdUpper, rsOrdLower, rsDigits, rsEmoji ].join("|"), "g");
+                var reHasUnicode = RegExp("[" + rsZWJ + rsAstralRange + rsComboRange + rsVarRange + "]");
+                var reHasUnicodeWord = /[a-z][A-Z]|[A-Z]{2}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/;
+                var contextProps = [ "Array", "Buffer", "DataView", "Date", "Error", "Float32Array", "Float64Array", "Function", "Int8Array", "Int16Array", "Int32Array", "Map", "Math", "Object", "Promise", "RegExp", "Set", "String", "Symbol", "TypeError", "Uint8Array", "Uint8ClampedArray", "Uint16Array", "Uint32Array", "WeakMap", "_", "clearTimeout", "isFinite", "parseInt", "setTimeout" ];
+                var templateCounter = -1;
+                var typedArrayTags = {};
+                typedArrayTags[float32Tag] = typedArrayTags[float64Tag] = typedArrayTags[int8Tag] = typedArrayTags[int16Tag] = typedArrayTags[int32Tag] = typedArrayTags[uint8Tag] = typedArrayTags[uint8ClampedTag] = typedArrayTags[uint16Tag] = typedArrayTags[uint32Tag] = true;
+                typedArrayTags[argsTag] = typedArrayTags[arrayTag] = typedArrayTags[arrayBufferTag] = typedArrayTags[boolTag] = typedArrayTags[dataViewTag] = typedArrayTags[dateTag] = typedArrayTags[errorTag] = typedArrayTags[funcTag] = typedArrayTags[mapTag] = typedArrayTags[numberTag] = typedArrayTags[objectTag] = typedArrayTags[regexpTag] = typedArrayTags[setTag] = typedArrayTags[stringTag] = typedArrayTags[weakMapTag] = false;
+                var cloneableTags = {};
+                cloneableTags[argsTag] = cloneableTags[arrayTag] = cloneableTags[arrayBufferTag] = cloneableTags[dataViewTag] = cloneableTags[boolTag] = cloneableTags[dateTag] = cloneableTags[float32Tag] = cloneableTags[float64Tag] = cloneableTags[int8Tag] = cloneableTags[int16Tag] = cloneableTags[int32Tag] = cloneableTags[mapTag] = cloneableTags[numberTag] = cloneableTags[objectTag] = cloneableTags[regexpTag] = cloneableTags[setTag] = cloneableTags[stringTag] = cloneableTags[symbolTag] = cloneableTags[uint8Tag] = cloneableTags[uint8ClampedTag] = cloneableTags[uint16Tag] = cloneableTags[uint32Tag] = true;
+                cloneableTags[errorTag] = cloneableTags[funcTag] = cloneableTags[weakMapTag] = false;
+                var deburredLetters = {
+                    "À": "A",
+                    "Á": "A",
+                    "Â": "A",
+                    "Ã": "A",
+                    "Ä": "A",
+                    "Å": "A",
+                    "à": "a",
+                    "á": "a",
+                    "â": "a",
+                    "ã": "a",
+                    "ä": "a",
+                    "å": "a",
+                    "Ç": "C",
+                    "ç": "c",
+                    "Ð": "D",
+                    "ð": "d",
+                    "È": "E",
+                    "É": "E",
+                    "Ê": "E",
+                    "Ë": "E",
+                    "è": "e",
+                    "é": "e",
+                    "ê": "e",
+                    "ë": "e",
+                    "Ì": "I",
+                    "Í": "I",
+                    "Î": "I",
+                    "Ï": "I",
+                    "ì": "i",
+                    "í": "i",
+                    "î": "i",
+                    "ï": "i",
+                    "Ñ": "N",
+                    "ñ": "n",
+                    "Ò": "O",
+                    "Ó": "O",
+                    "Ô": "O",
+                    "Õ": "O",
+                    "Ö": "O",
+                    "Ø": "O",
+                    "ò": "o",
+                    "ó": "o",
+                    "ô": "o",
+                    "õ": "o",
+                    "ö": "o",
+                    "ø": "o",
+                    "Ù": "U",
+                    "Ú": "U",
+                    "Û": "U",
+                    "Ü": "U",
+                    "ù": "u",
+                    "ú": "u",
+                    "û": "u",
+                    "ü": "u",
+                    "Ý": "Y",
+                    "ý": "y",
+                    "ÿ": "y",
+                    "Æ": "Ae",
+                    "æ": "ae",
+                    "Þ": "Th",
+                    "þ": "th",
+                    "ß": "ss",
+                    "Ā": "A",
+                    "Ă": "A",
+                    "Ą": "A",
+                    "ā": "a",
+                    "ă": "a",
+                    "ą": "a",
+                    "Ć": "C",
+                    "Ĉ": "C",
+                    "Ċ": "C",
+                    "Č": "C",
+                    "ć": "c",
+                    "ĉ": "c",
+                    "ċ": "c",
+                    "č": "c",
+                    "Ď": "D",
+                    "Đ": "D",
+                    "ď": "d",
+                    "đ": "d",
+                    "Ē": "E",
+                    "Ĕ": "E",
+                    "Ė": "E",
+                    "Ę": "E",
+                    "Ě": "E",
+                    "ē": "e",
+                    "ĕ": "e",
+                    "ė": "e",
+                    "ę": "e",
+                    "ě": "e",
+                    "Ĝ": "G",
+                    "Ğ": "G",
+                    "Ġ": "G",
+                    "Ģ": "G",
+                    "ĝ": "g",
+                    "ğ": "g",
+                    "ġ": "g",
+                    "ģ": "g",
+                    "Ĥ": "H",
+                    "Ħ": "H",
+                    "ĥ": "h",
+                    "ħ": "h",
+                    "Ĩ": "I",
+                    "Ī": "I",
+                    "Ĭ": "I",
+                    "Į": "I",
+                    "İ": "I",
+                    "ĩ": "i",
+                    "ī": "i",
+                    "ĭ": "i",
+                    "į": "i",
+                    "ı": "i",
+                    "Ĵ": "J",
+                    "ĵ": "j",
+                    "Ķ": "K",
+                    "ķ": "k",
+                    "ĸ": "k",
+                    "Ĺ": "L",
+                    "Ļ": "L",
+                    "Ľ": "L",
+                    "Ŀ": "L",
+                    "Ł": "L",
+                    "ĺ": "l",
+                    "ļ": "l",
+                    "ľ": "l",
+                    "ŀ": "l",
+                    "ł": "l",
+                    "Ń": "N",
+                    "Ņ": "N",
+                    "Ň": "N",
+                    "Ŋ": "N",
+                    "ń": "n",
+                    "ņ": "n",
+                    "ň": "n",
+                    "ŋ": "n",
+                    "Ō": "O",
+                    "Ŏ": "O",
+                    "Ő": "O",
+                    "ō": "o",
+                    "ŏ": "o",
+                    "ő": "o",
+                    "Ŕ": "R",
+                    "Ŗ": "R",
+                    "Ř": "R",
+                    "ŕ": "r",
+                    "ŗ": "r",
+                    "ř": "r",
+                    "Ś": "S",
+                    "Ŝ": "S",
+                    "Ş": "S",
+                    "Š": "S",
+                    "ś": "s",
+                    "ŝ": "s",
+                    "ş": "s",
+                    "š": "s",
+                    "Ţ": "T",
+                    "Ť": "T",
+                    "Ŧ": "T",
+                    "ţ": "t",
+                    "ť": "t",
+                    "ŧ": "t",
+                    "Ũ": "U",
+                    "Ū": "U",
+                    "Ŭ": "U",
+                    "Ů": "U",
+                    "Ű": "U",
+                    "Ų": "U",
+                    "ũ": "u",
+                    "ū": "u",
+                    "ŭ": "u",
+                    "ů": "u",
+                    "ű": "u",
+                    "ų": "u",
+                    "Ŵ": "W",
+                    "ŵ": "w",
+                    "Ŷ": "Y",
+                    "ŷ": "y",
+                    "Ÿ": "Y",
+                    "Ź": "Z",
+                    "Ż": "Z",
+                    "Ž": "Z",
+                    "ź": "z",
+                    "ż": "z",
+                    "ž": "z",
+                    "Ĳ": "IJ",
+                    "ĳ": "ij",
+                    "Œ": "Oe",
+                    "œ": "oe",
+                    "ŉ": "'n",
+                    "ſ": "s"
+                };
+                var htmlEscapes = {
+                    "&": "&amp;",
+                    "<": "&lt;",
+                    ">": "&gt;",
+                    '"': "&quot;",
+                    "'": "&#39;"
+                };
+                var htmlUnescapes = {
+                    "&amp;": "&",
+                    "&lt;": "<",
+                    "&gt;": ">",
+                    "&quot;": '"',
+                    "&#39;": "'"
+                };
+                var stringEscapes = {
+                    "\\": "\\",
+                    "'": "'",
+                    "\n": "n",
+                    "\r": "r",
+                    "\u2028": "u2028",
+                    "\u2029": "u2029"
+                };
+                var freeParseFloat = parseFloat, freeParseInt = parseInt;
+                var freeGlobal = typeof __webpack_require__.g == "object" && __webpack_require__.g && __webpack_require__.g.Object === Object && __webpack_require__.g;
+                var freeSelf = typeof self == "object" && self && self.Object === Object && self;
+                var root = freeGlobal || freeSelf || Function("return this")();
+                var freeExports = true && exports && !exports.nodeType && exports;
+                var freeModule = freeExports && "object" == "object" && module && !module.nodeType && module;
+                var moduleExports = freeModule && freeModule.exports === freeExports;
+                var freeProcess = moduleExports && freeGlobal.process;
+                var nodeUtil = function() {
+                    try {
+                        var types = freeModule && freeModule.require && freeModule.require("util").types;
+                        if (types) {
+                            return types;
+                        }
+                        return freeProcess && freeProcess.binding && freeProcess.binding("util");
+                    } catch (e) {}
+                }();
+                var nodeIsArrayBuffer = nodeUtil && nodeUtil.isArrayBuffer, nodeIsDate = nodeUtil && nodeUtil.isDate, nodeIsMap = nodeUtil && nodeUtil.isMap, nodeIsRegExp = nodeUtil && nodeUtil.isRegExp, nodeIsSet = nodeUtil && nodeUtil.isSet, nodeIsTypedArray = nodeUtil && nodeUtil.isTypedArray;
+                function apply(func, thisArg, args) {
+                    switch (args.length) {
+                      case 0:
+                        return func.call(thisArg);
 
-(function(modules) {
-    var installedModules = {};
-    function __webpack_require__(moduleId) {
-        if (installedModules[moduleId]) {
-            return installedModules[moduleId].exports;
+                      case 1:
+                        return func.call(thisArg, args[0]);
+
+                      case 2:
+                        return func.call(thisArg, args[0], args[1]);
+
+                      case 3:
+                        return func.call(thisArg, args[0], args[1], args[2]);
+                    }
+                    return func.apply(thisArg, args);
+                }
+                function arrayAggregator(array, setter, iteratee, accumulator) {
+                    var index = -1, length = array == null ? 0 : array.length;
+                    while (++index < length) {
+                        var value = array[index];
+                        setter(accumulator, value, iteratee(value), array);
+                    }
+                    return accumulator;
+                }
+                function arrayEach(array, iteratee) {
+                    var index = -1, length = array == null ? 0 : array.length;
+                    while (++index < length) {
+                        if (iteratee(array[index], index, array) === false) {
+                            break;
+                        }
+                    }
+                    return array;
+                }
+                function arrayEachRight(array, iteratee) {
+                    var length = array == null ? 0 : array.length;
+                    while (length--) {
+                        if (iteratee(array[length], length, array) === false) {
+                            break;
+                        }
+                    }
+                    return array;
+                }
+                function arrayEvery(array, predicate) {
+                    var index = -1, length = array == null ? 0 : array.length;
+                    while (++index < length) {
+                        if (!predicate(array[index], index, array)) {
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+                function arrayFilter(array, predicate) {
+                    var index = -1, length = array == null ? 0 : array.length, resIndex = 0, result = [];
+                    while (++index < length) {
+                        var value = array[index];
+                        if (predicate(value, index, array)) {
+                            result[resIndex++] = value;
+                        }
+                    }
+                    return result;
+                }
+                function arrayIncludes(array, value) {
+                    var length = array == null ? 0 : array.length;
+                    return !!length && baseIndexOf(array, value, 0) > -1;
+                }
+                function arrayIncludesWith(array, value, comparator) {
+                    var index = -1, length = array == null ? 0 : array.length;
+                    while (++index < length) {
+                        if (comparator(value, array[index])) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+                function arrayMap(array, iteratee) {
+                    var index = -1, length = array == null ? 0 : array.length, result = Array(length);
+                    while (++index < length) {
+                        result[index] = iteratee(array[index], index, array);
+                    }
+                    return result;
+                }
+                function arrayPush(array, values) {
+                    var index = -1, length = values.length, offset = array.length;
+                    while (++index < length) {
+                        array[offset + index] = values[index];
+                    }
+                    return array;
+                }
+                function arrayReduce(array, iteratee, accumulator, initAccum) {
+                    var index = -1, length = array == null ? 0 : array.length;
+                    if (initAccum && length) {
+                        accumulator = array[++index];
+                    }
+                    while (++index < length) {
+                        accumulator = iteratee(accumulator, array[index], index, array);
+                    }
+                    return accumulator;
+                }
+                function arrayReduceRight(array, iteratee, accumulator, initAccum) {
+                    var length = array == null ? 0 : array.length;
+                    if (initAccum && length) {
+                        accumulator = array[--length];
+                    }
+                    while (length--) {
+                        accumulator = iteratee(accumulator, array[length], length, array);
+                    }
+                    return accumulator;
+                }
+                function arraySome(array, predicate) {
+                    var index = -1, length = array == null ? 0 : array.length;
+                    while (++index < length) {
+                        if (predicate(array[index], index, array)) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+                var asciiSize = baseProperty("length");
+                function asciiToArray(string) {
+                    return string.split("");
+                }
+                function asciiWords(string) {
+                    return string.match(reAsciiWord) || [];
+                }
+                function baseFindKey(collection, predicate, eachFunc) {
+                    var result;
+                    eachFunc(collection, (function(value, key, collection) {
+                        if (predicate(value, key, collection)) {
+                            result = key;
+                            return false;
+                        }
+                    }));
+                    return result;
+                }
+                function baseFindIndex(array, predicate, fromIndex, fromRight) {
+                    var length = array.length, index = fromIndex + (fromRight ? 1 : -1);
+                    while (fromRight ? index-- : ++index < length) {
+                        if (predicate(array[index], index, array)) {
+                            return index;
+                        }
+                    }
+                    return -1;
+                }
+                function baseIndexOf(array, value, fromIndex) {
+                    return value === value ? strictIndexOf(array, value, fromIndex) : baseFindIndex(array, baseIsNaN, fromIndex);
+                }
+                function baseIndexOfWith(array, value, fromIndex, comparator) {
+                    var index = fromIndex - 1, length = array.length;
+                    while (++index < length) {
+                        if (comparator(array[index], value)) {
+                            return index;
+                        }
+                    }
+                    return -1;
+                }
+                function baseIsNaN(value) {
+                    return value !== value;
+                }
+                function baseMean(array, iteratee) {
+                    var length = array == null ? 0 : array.length;
+                    return length ? baseSum(array, iteratee) / length : NAN;
+                }
+                function baseProperty(key) {
+                    return function(object) {
+                        return object == null ? undefined : object[key];
+                    };
+                }
+                function basePropertyOf(object) {
+                    return function(key) {
+                        return object == null ? undefined : object[key];
+                    };
+                }
+                function baseReduce(collection, iteratee, accumulator, initAccum, eachFunc) {
+                    eachFunc(collection, (function(value, index, collection) {
+                        accumulator = initAccum ? (initAccum = false, value) : iteratee(accumulator, value, index, collection);
+                    }));
+                    return accumulator;
+                }
+                function baseSortBy(array, comparer) {
+                    var length = array.length;
+                    array.sort(comparer);
+                    while (length--) {
+                        array[length] = array[length].value;
+                    }
+                    return array;
+                }
+                function baseSum(array, iteratee) {
+                    var result, index = -1, length = array.length;
+                    while (++index < length) {
+                        var current = iteratee(array[index]);
+                        if (current !== undefined) {
+                            result = result === undefined ? current : result + current;
+                        }
+                    }
+                    return result;
+                }
+                function baseTimes(n, iteratee) {
+                    var index = -1, result = Array(n);
+                    while (++index < n) {
+                        result[index] = iteratee(index);
+                    }
+                    return result;
+                }
+                function baseToPairs(object, props) {
+                    return arrayMap(props, (function(key) {
+                        return [ key, object[key] ];
+                    }));
+                }
+                function baseUnary(func) {
+                    return function(value) {
+                        return func(value);
+                    };
+                }
+                function baseValues(object, props) {
+                    return arrayMap(props, (function(key) {
+                        return object[key];
+                    }));
+                }
+                function cacheHas(cache, key) {
+                    return cache.has(key);
+                }
+                function charsStartIndex(strSymbols, chrSymbols) {
+                    var index = -1, length = strSymbols.length;
+                    while (++index < length && baseIndexOf(chrSymbols, strSymbols[index], 0) > -1) {}
+                    return index;
+                }
+                function charsEndIndex(strSymbols, chrSymbols) {
+                    var index = strSymbols.length;
+                    while (index-- && baseIndexOf(chrSymbols, strSymbols[index], 0) > -1) {}
+                    return index;
+                }
+                function countHolders(array, placeholder) {
+                    var length = array.length, result = 0;
+                    while (length--) {
+                        if (array[length] === placeholder) {
+                            ++result;
+                        }
+                    }
+                    return result;
+                }
+                var deburrLetter = basePropertyOf(deburredLetters);
+                var escapeHtmlChar = basePropertyOf(htmlEscapes);
+                function escapeStringChar(chr) {
+                    return "\\" + stringEscapes[chr];
+                }
+                function getValue(object, key) {
+                    return object == null ? undefined : object[key];
+                }
+                function hasUnicode(string) {
+                    return reHasUnicode.test(string);
+                }
+                function hasUnicodeWord(string) {
+                    return reHasUnicodeWord.test(string);
+                }
+                function iteratorToArray(iterator) {
+                    var data, result = [];
+                    while (!(data = iterator.next()).done) {
+                        result.push(data.value);
+                    }
+                    return result;
+                }
+                function mapToArray(map) {
+                    var index = -1, result = Array(map.size);
+                    map.forEach((function(value, key) {
+                        result[++index] = [ key, value ];
+                    }));
+                    return result;
+                }
+                function overArg(func, transform) {
+                    return function(arg) {
+                        return func(transform(arg));
+                    };
+                }
+                function replaceHolders(array, placeholder) {
+                    var index = -1, length = array.length, resIndex = 0, result = [];
+                    while (++index < length) {
+                        var value = array[index];
+                        if (value === placeholder || value === PLACEHOLDER) {
+                            array[index] = PLACEHOLDER;
+                            result[resIndex++] = index;
+                        }
+                    }
+                    return result;
+                }
+                function setToArray(set) {
+                    var index = -1, result = Array(set.size);
+                    set.forEach((function(value) {
+                        result[++index] = value;
+                    }));
+                    return result;
+                }
+                function setToPairs(set) {
+                    var index = -1, result = Array(set.size);
+                    set.forEach((function(value) {
+                        result[++index] = [ value, value ];
+                    }));
+                    return result;
+                }
+                function strictIndexOf(array, value, fromIndex) {
+                    var index = fromIndex - 1, length = array.length;
+                    while (++index < length) {
+                        if (array[index] === value) {
+                            return index;
+                        }
+                    }
+                    return -1;
+                }
+                function strictLastIndexOf(array, value, fromIndex) {
+                    var index = fromIndex + 1;
+                    while (index--) {
+                        if (array[index] === value) {
+                            return index;
+                        }
+                    }
+                    return index;
+                }
+                function stringSize(string) {
+                    return hasUnicode(string) ? unicodeSize(string) : asciiSize(string);
+                }
+                function stringToArray(string) {
+                    return hasUnicode(string) ? unicodeToArray(string) : asciiToArray(string);
+                }
+                var unescapeHtmlChar = basePropertyOf(htmlUnescapes);
+                function unicodeSize(string) {
+                    var result = reUnicode.lastIndex = 0;
+                    while (reUnicode.test(string)) {
+                        ++result;
+                    }
+                    return result;
+                }
+                function unicodeToArray(string) {
+                    return string.match(reUnicode) || [];
+                }
+                function unicodeWords(string) {
+                    return string.match(reUnicodeWord) || [];
+                }
+                var runInContext = function runInContext(context) {
+                    context = context == null ? root : _.defaults(root.Object(), context, _.pick(root, contextProps));
+                    var Array = context.Array, Date = context.Date, Error = context.Error, Function = context.Function, Math = context.Math, Object = context.Object, RegExp = context.RegExp, String = context.String, TypeError = context.TypeError;
+                    var arrayProto = Array.prototype, funcProto = Function.prototype, objectProto = Object.prototype;
+                    var coreJsData = context["__core-js_shared__"];
+                    var funcToString = funcProto.toString;
+                    var hasOwnProperty = objectProto.hasOwnProperty;
+                    var idCounter = 0;
+                    var maskSrcKey = function() {
+                        var uid = /[^.]+$/.exec(coreJsData && coreJsData.keys && coreJsData.keys.IE_PROTO || "");
+                        return uid ? "Symbol(src)_1." + uid : "";
+                    }();
+                    var nativeObjectToString = objectProto.toString;
+                    var objectCtorString = funcToString.call(Object);
+                    var oldDash = root._;
+                    var reIsNative = RegExp("^" + funcToString.call(hasOwnProperty).replace(reRegExpChar, "\\$&").replace(/hasOwnProperty|(function).*?(?=\\\()| for .+?(?=\\\])/g, "$1.*?") + "$");
+                    var Buffer = moduleExports ? context.Buffer : undefined, Symbol = context.Symbol, Uint8Array = context.Uint8Array, allocUnsafe = Buffer ? Buffer.allocUnsafe : undefined, getPrototype = overArg(Object.getPrototypeOf, Object), objectCreate = Object.create, propertyIsEnumerable = objectProto.propertyIsEnumerable, splice = arrayProto.splice, spreadableSymbol = Symbol ? Symbol.isConcatSpreadable : undefined, symIterator = Symbol ? Symbol.iterator : undefined, symToStringTag = Symbol ? Symbol.toStringTag : undefined;
+                    var defineProperty = function() {
+                        try {
+                            var func = getNative(Object, "defineProperty");
+                            func({}, "", {});
+                            return func;
+                        } catch (e) {}
+                    }();
+                    var ctxClearTimeout = context.clearTimeout !== root.clearTimeout && context.clearTimeout, ctxNow = Date && Date.now !== root.Date.now && Date.now, ctxSetTimeout = context.setTimeout !== root.setTimeout && context.setTimeout;
+                    var nativeCeil = Math.ceil, nativeFloor = Math.floor, nativeGetSymbols = Object.getOwnPropertySymbols, nativeIsBuffer = Buffer ? Buffer.isBuffer : undefined, nativeIsFinite = context.isFinite, nativeJoin = arrayProto.join, nativeKeys = overArg(Object.keys, Object), nativeMax = Math.max, nativeMin = Math.min, nativeNow = Date.now, nativeParseInt = context.parseInt, nativeRandom = Math.random, nativeReverse = arrayProto.reverse;
+                    var DataView = getNative(context, "DataView"), Map = getNative(context, "Map"), Promise = getNative(context, "Promise"), Set = getNative(context, "Set"), WeakMap = getNative(context, "WeakMap"), nativeCreate = getNative(Object, "create");
+                    var metaMap = WeakMap && new WeakMap;
+                    var realNames = {};
+                    var dataViewCtorString = toSource(DataView), mapCtorString = toSource(Map), promiseCtorString = toSource(Promise), setCtorString = toSource(Set), weakMapCtorString = toSource(WeakMap);
+                    var symbolProto = Symbol ? Symbol.prototype : undefined, symbolValueOf = symbolProto ? symbolProto.valueOf : undefined, symbolToString = symbolProto ? symbolProto.toString : undefined;
+                    function lodash(value) {
+                        if (isObjectLike(value) && !isArray(value) && !(value instanceof LazyWrapper)) {
+                            if (value instanceof LodashWrapper) {
+                                return value;
+                            }
+                            if (hasOwnProperty.call(value, "__wrapped__")) {
+                                return wrapperClone(value);
+                            }
+                        }
+                        return new LodashWrapper(value);
+                    }
+                    var baseCreate = function() {
+                        function object() {}
+                        return function(proto) {
+                            if (!isObject(proto)) {
+                                return {};
+                            }
+                            if (objectCreate) {
+                                return objectCreate(proto);
+                            }
+                            object.prototype = proto;
+                            var result = new object;
+                            object.prototype = undefined;
+                            return result;
+                        };
+                    }();
+                    function baseLodash() {}
+                    function LodashWrapper(value, chainAll) {
+                        this.__wrapped__ = value;
+                        this.__actions__ = [];
+                        this.__chain__ = !!chainAll;
+                        this.__index__ = 0;
+                        this.__values__ = undefined;
+                    }
+                    lodash.templateSettings = {
+                        escape: reEscape,
+                        evaluate: reEvaluate,
+                        interpolate: reInterpolate,
+                        variable: "",
+                        imports: {
+                            _: lodash
+                        }
+                    };
+                    lodash.prototype = baseLodash.prototype;
+                    lodash.prototype.constructor = lodash;
+                    LodashWrapper.prototype = baseCreate(baseLodash.prototype);
+                    LodashWrapper.prototype.constructor = LodashWrapper;
+                    function LazyWrapper(value) {
+                        this.__wrapped__ = value;
+                        this.__actions__ = [];
+                        this.__dir__ = 1;
+                        this.__filtered__ = false;
+                        this.__iteratees__ = [];
+                        this.__takeCount__ = MAX_ARRAY_LENGTH;
+                        this.__views__ = [];
+                    }
+                    function lazyClone() {
+                        var result = new LazyWrapper(this.__wrapped__);
+                        result.__actions__ = copyArray(this.__actions__);
+                        result.__dir__ = this.__dir__;
+                        result.__filtered__ = this.__filtered__;
+                        result.__iteratees__ = copyArray(this.__iteratees__);
+                        result.__takeCount__ = this.__takeCount__;
+                        result.__views__ = copyArray(this.__views__);
+                        return result;
+                    }
+                    function lazyReverse() {
+                        if (this.__filtered__) {
+                            var result = new LazyWrapper(this);
+                            result.__dir__ = -1;
+                            result.__filtered__ = true;
+                        } else {
+                            result = this.clone();
+                            result.__dir__ *= -1;
+                        }
+                        return result;
+                    }
+                    function lazyValue() {
+                        var array = this.__wrapped__.value(), dir = this.__dir__, isArr = isArray(array), isRight = dir < 0, arrLength = isArr ? array.length : 0, view = getView(0, arrLength, this.__views__), start = view.start, end = view.end, length = end - start, index = isRight ? end : start - 1, iteratees = this.__iteratees__, iterLength = iteratees.length, resIndex = 0, takeCount = nativeMin(length, this.__takeCount__);
+                        if (!isArr || !isRight && arrLength == length && takeCount == length) {
+                            return baseWrapperValue(array, this.__actions__);
+                        }
+                        var result = [];
+                        outer: while (length-- && resIndex < takeCount) {
+                            index += dir;
+                            var iterIndex = -1, value = array[index];
+                            while (++iterIndex < iterLength) {
+                                var data = iteratees[iterIndex], iteratee = data.iteratee, type = data.type, computed = iteratee(value);
+                                if (type == LAZY_MAP_FLAG) {
+                                    value = computed;
+                                } else if (!computed) {
+                                    if (type == LAZY_FILTER_FLAG) {
+                                        continue outer;
+                                    } else {
+                                        break outer;
+                                    }
+                                }
+                            }
+                            result[resIndex++] = value;
+                        }
+                        return result;
+                    }
+                    LazyWrapper.prototype = baseCreate(baseLodash.prototype);
+                    LazyWrapper.prototype.constructor = LazyWrapper;
+                    function Hash(entries) {
+                        var index = -1, length = entries == null ? 0 : entries.length;
+                        this.clear();
+                        while (++index < length) {
+                            var entry = entries[index];
+                            this.set(entry[0], entry[1]);
+                        }
+                    }
+                    function hashClear() {
+                        this.__data__ = nativeCreate ? nativeCreate(null) : {};
+                        this.size = 0;
+                    }
+                    function hashDelete(key) {
+                        var result = this.has(key) && delete this.__data__[key];
+                        this.size -= result ? 1 : 0;
+                        return result;
+                    }
+                    function hashGet(key) {
+                        var data = this.__data__;
+                        if (nativeCreate) {
+                            var result = data[key];
+                            return result === HASH_UNDEFINED ? undefined : result;
+                        }
+                        return hasOwnProperty.call(data, key) ? data[key] : undefined;
+                    }
+                    function hashHas(key) {
+                        var data = this.__data__;
+                        return nativeCreate ? data[key] !== undefined : hasOwnProperty.call(data, key);
+                    }
+                    function hashSet(key, value) {
+                        var data = this.__data__;
+                        this.size += this.has(key) ? 0 : 1;
+                        data[key] = nativeCreate && value === undefined ? HASH_UNDEFINED : value;
+                        return this;
+                    }
+                    Hash.prototype.clear = hashClear;
+                    Hash.prototype["delete"] = hashDelete;
+                    Hash.prototype.get = hashGet;
+                    Hash.prototype.has = hashHas;
+                    Hash.prototype.set = hashSet;
+                    function ListCache(entries) {
+                        var index = -1, length = entries == null ? 0 : entries.length;
+                        this.clear();
+                        while (++index < length) {
+                            var entry = entries[index];
+                            this.set(entry[0], entry[1]);
+                        }
+                    }
+                    function listCacheClear() {
+                        this.__data__ = [];
+                        this.size = 0;
+                    }
+                    function listCacheDelete(key) {
+                        var data = this.__data__, index = assocIndexOf(data, key);
+                        if (index < 0) {
+                            return false;
+                        }
+                        var lastIndex = data.length - 1;
+                        if (index == lastIndex) {
+                            data.pop();
+                        } else {
+                            splice.call(data, index, 1);
+                        }
+                        --this.size;
+                        return true;
+                    }
+                    function listCacheGet(key) {
+                        var data = this.__data__, index = assocIndexOf(data, key);
+                        return index < 0 ? undefined : data[index][1];
+                    }
+                    function listCacheHas(key) {
+                        return assocIndexOf(this.__data__, key) > -1;
+                    }
+                    function listCacheSet(key, value) {
+                        var data = this.__data__, index = assocIndexOf(data, key);
+                        if (index < 0) {
+                            ++this.size;
+                            data.push([ key, value ]);
+                        } else {
+                            data[index][1] = value;
+                        }
+                        return this;
+                    }
+                    ListCache.prototype.clear = listCacheClear;
+                    ListCache.prototype["delete"] = listCacheDelete;
+                    ListCache.prototype.get = listCacheGet;
+                    ListCache.prototype.has = listCacheHas;
+                    ListCache.prototype.set = listCacheSet;
+                    function MapCache(entries) {
+                        var index = -1, length = entries == null ? 0 : entries.length;
+                        this.clear();
+                        while (++index < length) {
+                            var entry = entries[index];
+                            this.set(entry[0], entry[1]);
+                        }
+                    }
+                    function mapCacheClear() {
+                        this.size = 0;
+                        this.__data__ = {
+                            hash: new Hash,
+                            map: new (Map || ListCache),
+                            string: new Hash
+                        };
+                    }
+                    function mapCacheDelete(key) {
+                        var result = getMapData(this, key)["delete"](key);
+                        this.size -= result ? 1 : 0;
+                        return result;
+                    }
+                    function mapCacheGet(key) {
+                        return getMapData(this, key).get(key);
+                    }
+                    function mapCacheHas(key) {
+                        return getMapData(this, key).has(key);
+                    }
+                    function mapCacheSet(key, value) {
+                        var data = getMapData(this, key), size = data.size;
+                        data.set(key, value);
+                        this.size += data.size == size ? 0 : 1;
+                        return this;
+                    }
+                    MapCache.prototype.clear = mapCacheClear;
+                    MapCache.prototype["delete"] = mapCacheDelete;
+                    MapCache.prototype.get = mapCacheGet;
+                    MapCache.prototype.has = mapCacheHas;
+                    MapCache.prototype.set = mapCacheSet;
+                    function SetCache(values) {
+                        var index = -1, length = values == null ? 0 : values.length;
+                        this.__data__ = new MapCache;
+                        while (++index < length) {
+                            this.add(values[index]);
+                        }
+                    }
+                    function setCacheAdd(value) {
+                        this.__data__.set(value, HASH_UNDEFINED);
+                        return this;
+                    }
+                    function setCacheHas(value) {
+                        return this.__data__.has(value);
+                    }
+                    SetCache.prototype.add = SetCache.prototype.push = setCacheAdd;
+                    SetCache.prototype.has = setCacheHas;
+                    function Stack(entries) {
+                        var data = this.__data__ = new ListCache(entries);
+                        this.size = data.size;
+                    }
+                    function stackClear() {
+                        this.__data__ = new ListCache;
+                        this.size = 0;
+                    }
+                    function stackDelete(key) {
+                        var data = this.__data__, result = data["delete"](key);
+                        this.size = data.size;
+                        return result;
+                    }
+                    function stackGet(key) {
+                        return this.__data__.get(key);
+                    }
+                    function stackHas(key) {
+                        return this.__data__.has(key);
+                    }
+                    function stackSet(key, value) {
+                        var data = this.__data__;
+                        if (data instanceof ListCache) {
+                            var pairs = data.__data__;
+                            if (!Map || pairs.length < LARGE_ARRAY_SIZE - 1) {
+                                pairs.push([ key, value ]);
+                                this.size = ++data.size;
+                                return this;
+                            }
+                            data = this.__data__ = new MapCache(pairs);
+                        }
+                        data.set(key, value);
+                        this.size = data.size;
+                        return this;
+                    }
+                    Stack.prototype.clear = stackClear;
+                    Stack.prototype["delete"] = stackDelete;
+                    Stack.prototype.get = stackGet;
+                    Stack.prototype.has = stackHas;
+                    Stack.prototype.set = stackSet;
+                    function arrayLikeKeys(value, inherited) {
+                        var isArr = isArray(value), isArg = !isArr && isArguments(value), isBuff = !isArr && !isArg && isBuffer(value), isType = !isArr && !isArg && !isBuff && isTypedArray(value), skipIndexes = isArr || isArg || isBuff || isType, result = skipIndexes ? baseTimes(value.length, String) : [], length = result.length;
+                        for (var key in value) {
+                            if ((inherited || hasOwnProperty.call(value, key)) && !(skipIndexes && (key == "length" || isBuff && (key == "offset" || key == "parent") || isType && (key == "buffer" || key == "byteLength" || key == "byteOffset") || isIndex(key, length)))) {
+                                result.push(key);
+                            }
+                        }
+                        return result;
+                    }
+                    function arraySample(array) {
+                        var length = array.length;
+                        return length ? array[baseRandom(0, length - 1)] : undefined;
+                    }
+                    function arraySampleSize(array, n) {
+                        return shuffleSelf(copyArray(array), baseClamp(n, 0, array.length));
+                    }
+                    function arrayShuffle(array) {
+                        return shuffleSelf(copyArray(array));
+                    }
+                    function assignMergeValue(object, key, value) {
+                        if (value !== undefined && !eq(object[key], value) || value === undefined && !(key in object)) {
+                            baseAssignValue(object, key, value);
+                        }
+                    }
+                    function assignValue(object, key, value) {
+                        var objValue = object[key];
+                        if (!(hasOwnProperty.call(object, key) && eq(objValue, value)) || value === undefined && !(key in object)) {
+                            baseAssignValue(object, key, value);
+                        }
+                    }
+                    function assocIndexOf(array, key) {
+                        var length = array.length;
+                        while (length--) {
+                            if (eq(array[length][0], key)) {
+                                return length;
+                            }
+                        }
+                        return -1;
+                    }
+                    function baseAggregator(collection, setter, iteratee, accumulator) {
+                        baseEach(collection, (function(value, key, collection) {
+                            setter(accumulator, value, iteratee(value), collection);
+                        }));
+                        return accumulator;
+                    }
+                    function baseAssign(object, source) {
+                        return object && copyObject(source, keys(source), object);
+                    }
+                    function baseAssignIn(object, source) {
+                        return object && copyObject(source, keysIn(source), object);
+                    }
+                    function baseAssignValue(object, key, value) {
+                        if (key == "__proto__" && defineProperty) {
+                            defineProperty(object, key, {
+                                configurable: true,
+                                enumerable: true,
+                                value: value,
+                                writable: true
+                            });
+                        } else {
+                            object[key] = value;
+                        }
+                    }
+                    function baseAt(object, paths) {
+                        var index = -1, length = paths.length, result = Array(length), skip = object == null;
+                        while (++index < length) {
+                            result[index] = skip ? undefined : get(object, paths[index]);
+                        }
+                        return result;
+                    }
+                    function baseClamp(number, lower, upper) {
+                        if (number === number) {
+                            if (upper !== undefined) {
+                                number = number <= upper ? number : upper;
+                            }
+                            if (lower !== undefined) {
+                                number = number >= lower ? number : lower;
+                            }
+                        }
+                        return number;
+                    }
+                    function baseClone(value, bitmask, customizer, key, object, stack) {
+                        var result, isDeep = bitmask & CLONE_DEEP_FLAG, isFlat = bitmask & CLONE_FLAT_FLAG, isFull = bitmask & CLONE_SYMBOLS_FLAG;
+                        if (customizer) {
+                            result = object ? customizer(value, key, object, stack) : customizer(value);
+                        }
+                        if (result !== undefined) {
+                            return result;
+                        }
+                        if (!isObject(value)) {
+                            return value;
+                        }
+                        var isArr = isArray(value);
+                        if (isArr) {
+                            result = initCloneArray(value);
+                            if (!isDeep) {
+                                return copyArray(value, result);
+                            }
+                        } else {
+                            var tag = getTag(value), isFunc = tag == funcTag || tag == genTag;
+                            if (isBuffer(value)) {
+                                return cloneBuffer(value, isDeep);
+                            }
+                            if (tag == objectTag || tag == argsTag || isFunc && !object) {
+                                result = isFlat || isFunc ? {} : initCloneObject(value);
+                                if (!isDeep) {
+                                    return isFlat ? copySymbolsIn(value, baseAssignIn(result, value)) : copySymbols(value, baseAssign(result, value));
+                                }
+                            } else {
+                                if (!cloneableTags[tag]) {
+                                    return object ? value : {};
+                                }
+                                result = initCloneByTag(value, tag, isDeep);
+                            }
+                        }
+                        stack || (stack = new Stack);
+                        var stacked = stack.get(value);
+                        if (stacked) {
+                            return stacked;
+                        }
+                        stack.set(value, result);
+                        if (isSet(value)) {
+                            value.forEach((function(subValue) {
+                                result.add(baseClone(subValue, bitmask, customizer, subValue, value, stack));
+                            }));
+                        } else if (isMap(value)) {
+                            value.forEach((function(subValue, key) {
+                                result.set(key, baseClone(subValue, bitmask, customizer, key, value, stack));
+                            }));
+                        }
+                        var keysFunc = isFull ? isFlat ? getAllKeysIn : getAllKeys : isFlat ? keysIn : keys;
+                        var props = isArr ? undefined : keysFunc(value);
+                        arrayEach(props || value, (function(subValue, key) {
+                            if (props) {
+                                key = subValue;
+                                subValue = value[key];
+                            }
+                            assignValue(result, key, baseClone(subValue, bitmask, customizer, key, value, stack));
+                        }));
+                        return result;
+                    }
+                    function baseConforms(source) {
+                        var props = keys(source);
+                        return function(object) {
+                            return baseConformsTo(object, source, props);
+                        };
+                    }
+                    function baseConformsTo(object, source, props) {
+                        var length = props.length;
+                        if (object == null) {
+                            return !length;
+                        }
+                        object = Object(object);
+                        while (length--) {
+                            var key = props[length], predicate = source[key], value = object[key];
+                            if (value === undefined && !(key in object) || !predicate(value)) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+                    function baseDelay(func, wait, args) {
+                        if (typeof func != "function") {
+                            throw new TypeError(FUNC_ERROR_TEXT);
+                        }
+                        return setTimeout((function() {
+                            func.apply(undefined, args);
+                        }), wait);
+                    }
+                    function baseDifference(array, values, iteratee, comparator) {
+                        var index = -1, includes = arrayIncludes, isCommon = true, length = array.length, result = [], valuesLength = values.length;
+                        if (!length) {
+                            return result;
+                        }
+                        if (iteratee) {
+                            values = arrayMap(values, baseUnary(iteratee));
+                        }
+                        if (comparator) {
+                            includes = arrayIncludesWith;
+                            isCommon = false;
+                        } else if (values.length >= LARGE_ARRAY_SIZE) {
+                            includes = cacheHas;
+                            isCommon = false;
+                            values = new SetCache(values);
+                        }
+                        outer: while (++index < length) {
+                            var value = array[index], computed = iteratee == null ? value : iteratee(value);
+                            value = comparator || value !== 0 ? value : 0;
+                            if (isCommon && computed === computed) {
+                                var valuesIndex = valuesLength;
+                                while (valuesIndex--) {
+                                    if (values[valuesIndex] === computed) {
+                                        continue outer;
+                                    }
+                                }
+                                result.push(value);
+                            } else if (!includes(values, computed, comparator)) {
+                                result.push(value);
+                            }
+                        }
+                        return result;
+                    }
+                    var baseEach = createBaseEach(baseForOwn);
+                    var baseEachRight = createBaseEach(baseForOwnRight, true);
+                    function baseEvery(collection, predicate) {
+                        var result = true;
+                        baseEach(collection, (function(value, index, collection) {
+                            result = !!predicate(value, index, collection);
+                            return result;
+                        }));
+                        return result;
+                    }
+                    function baseExtremum(array, iteratee, comparator) {
+                        var index = -1, length = array.length;
+                        while (++index < length) {
+                            var value = array[index], current = iteratee(value);
+                            if (current != null && (computed === undefined ? current === current && !isSymbol(current) : comparator(current, computed))) {
+                                var computed = current, result = value;
+                            }
+                        }
+                        return result;
+                    }
+                    function baseFill(array, value, start, end) {
+                        var length = array.length;
+                        start = toInteger(start);
+                        if (start < 0) {
+                            start = -start > length ? 0 : length + start;
+                        }
+                        end = end === undefined || end > length ? length : toInteger(end);
+                        if (end < 0) {
+                            end += length;
+                        }
+                        end = start > end ? 0 : toLength(end);
+                        while (start < end) {
+                            array[start++] = value;
+                        }
+                        return array;
+                    }
+                    function baseFilter(collection, predicate) {
+                        var result = [];
+                        baseEach(collection, (function(value, index, collection) {
+                            if (predicate(value, index, collection)) {
+                                result.push(value);
+                            }
+                        }));
+                        return result;
+                    }
+                    function baseFlatten(array, depth, predicate, isStrict, result) {
+                        var index = -1, length = array.length;
+                        predicate || (predicate = isFlattenable);
+                        result || (result = []);
+                        while (++index < length) {
+                            var value = array[index];
+                            if (depth > 0 && predicate(value)) {
+                                if (depth > 1) {
+                                    baseFlatten(value, depth - 1, predicate, isStrict, result);
+                                } else {
+                                    arrayPush(result, value);
+                                }
+                            } else if (!isStrict) {
+                                result[result.length] = value;
+                            }
+                        }
+                        return result;
+                    }
+                    var baseFor = createBaseFor();
+                    var baseForRight = createBaseFor(true);
+                    function baseForOwn(object, iteratee) {
+                        return object && baseFor(object, iteratee, keys);
+                    }
+                    function baseForOwnRight(object, iteratee) {
+                        return object && baseForRight(object, iteratee, keys);
+                    }
+                    function baseFunctions(object, props) {
+                        return arrayFilter(props, (function(key) {
+                            return isFunction(object[key]);
+                        }));
+                    }
+                    function baseGet(object, path) {
+                        path = castPath(path, object);
+                        var index = 0, length = path.length;
+                        while (object != null && index < length) {
+                            object = object[toKey(path[index++])];
+                        }
+                        return index && index == length ? object : undefined;
+                    }
+                    function baseGetAllKeys(object, keysFunc, symbolsFunc) {
+                        var result = keysFunc(object);
+                        return isArray(object) ? result : arrayPush(result, symbolsFunc(object));
+                    }
+                    function baseGetTag(value) {
+                        if (value == null) {
+                            return value === undefined ? undefinedTag : nullTag;
+                        }
+                        return symToStringTag && symToStringTag in Object(value) ? getRawTag(value) : objectToString(value);
+                    }
+                    function baseGt(value, other) {
+                        return value > other;
+                    }
+                    function baseHas(object, key) {
+                        return object != null && hasOwnProperty.call(object, key);
+                    }
+                    function baseHasIn(object, key) {
+                        return object != null && key in Object(object);
+                    }
+                    function baseInRange(number, start, end) {
+                        return number >= nativeMin(start, end) && number < nativeMax(start, end);
+                    }
+                    function baseIntersection(arrays, iteratee, comparator) {
+                        var includes = comparator ? arrayIncludesWith : arrayIncludes, length = arrays[0].length, othLength = arrays.length, othIndex = othLength, caches = Array(othLength), maxLength = Infinity, result = [];
+                        while (othIndex--) {
+                            var array = arrays[othIndex];
+                            if (othIndex && iteratee) {
+                                array = arrayMap(array, baseUnary(iteratee));
+                            }
+                            maxLength = nativeMin(array.length, maxLength);
+                            caches[othIndex] = !comparator && (iteratee || length >= 120 && array.length >= 120) ? new SetCache(othIndex && array) : undefined;
+                        }
+                        array = arrays[0];
+                        var index = -1, seen = caches[0];
+                        outer: while (++index < length && result.length < maxLength) {
+                            var value = array[index], computed = iteratee ? iteratee(value) : value;
+                            value = comparator || value !== 0 ? value : 0;
+                            if (!(seen ? cacheHas(seen, computed) : includes(result, computed, comparator))) {
+                                othIndex = othLength;
+                                while (--othIndex) {
+                                    var cache = caches[othIndex];
+                                    if (!(cache ? cacheHas(cache, computed) : includes(arrays[othIndex], computed, comparator))) {
+                                        continue outer;
+                                    }
+                                }
+                                if (seen) {
+                                    seen.push(computed);
+                                }
+                                result.push(value);
+                            }
+                        }
+                        return result;
+                    }
+                    function baseInverter(object, setter, iteratee, accumulator) {
+                        baseForOwn(object, (function(value, key, object) {
+                            setter(accumulator, iteratee(value), key, object);
+                        }));
+                        return accumulator;
+                    }
+                    function baseInvoke(object, path, args) {
+                        path = castPath(path, object);
+                        object = parent(object, path);
+                        var func = object == null ? object : object[toKey(last(path))];
+                        return func == null ? undefined : apply(func, object, args);
+                    }
+                    function baseIsArguments(value) {
+                        return isObjectLike(value) && baseGetTag(value) == argsTag;
+                    }
+                    function baseIsArrayBuffer(value) {
+                        return isObjectLike(value) && baseGetTag(value) == arrayBufferTag;
+                    }
+                    function baseIsDate(value) {
+                        return isObjectLike(value) && baseGetTag(value) == dateTag;
+                    }
+                    function baseIsEqual(value, other, bitmask, customizer, stack) {
+                        if (value === other) {
+                            return true;
+                        }
+                        if (value == null || other == null || !isObjectLike(value) && !isObjectLike(other)) {
+                            return value !== value && other !== other;
+                        }
+                        return baseIsEqualDeep(value, other, bitmask, customizer, baseIsEqual, stack);
+                    }
+                    function baseIsEqualDeep(object, other, bitmask, customizer, equalFunc, stack) {
+                        var objIsArr = isArray(object), othIsArr = isArray(other), objTag = objIsArr ? arrayTag : getTag(object), othTag = othIsArr ? arrayTag : getTag(other);
+                        objTag = objTag == argsTag ? objectTag : objTag;
+                        othTag = othTag == argsTag ? objectTag : othTag;
+                        var objIsObj = objTag == objectTag, othIsObj = othTag == objectTag, isSameTag = objTag == othTag;
+                        if (isSameTag && isBuffer(object)) {
+                            if (!isBuffer(other)) {
+                                return false;
+                            }
+                            objIsArr = true;
+                            objIsObj = false;
+                        }
+                        if (isSameTag && !objIsObj) {
+                            stack || (stack = new Stack);
+                            return objIsArr || isTypedArray(object) ? equalArrays(object, other, bitmask, customizer, equalFunc, stack) : equalByTag(object, other, objTag, bitmask, customizer, equalFunc, stack);
+                        }
+                        if (!(bitmask & COMPARE_PARTIAL_FLAG)) {
+                            var objIsWrapped = objIsObj && hasOwnProperty.call(object, "__wrapped__"), othIsWrapped = othIsObj && hasOwnProperty.call(other, "__wrapped__");
+                            if (objIsWrapped || othIsWrapped) {
+                                var objUnwrapped = objIsWrapped ? object.value() : object, othUnwrapped = othIsWrapped ? other.value() : other;
+                                stack || (stack = new Stack);
+                                return equalFunc(objUnwrapped, othUnwrapped, bitmask, customizer, stack);
+                            }
+                        }
+                        if (!isSameTag) {
+                            return false;
+                        }
+                        stack || (stack = new Stack);
+                        return equalObjects(object, other, bitmask, customizer, equalFunc, stack);
+                    }
+                    function baseIsMap(value) {
+                        return isObjectLike(value) && getTag(value) == mapTag;
+                    }
+                    function baseIsMatch(object, source, matchData, customizer) {
+                        var index = matchData.length, length = index, noCustomizer = !customizer;
+                        if (object == null) {
+                            return !length;
+                        }
+                        object = Object(object);
+                        while (index--) {
+                            var data = matchData[index];
+                            if (noCustomizer && data[2] ? data[1] !== object[data[0]] : !(data[0] in object)) {
+                                return false;
+                            }
+                        }
+                        while (++index < length) {
+                            data = matchData[index];
+                            var key = data[0], objValue = object[key], srcValue = data[1];
+                            if (noCustomizer && data[2]) {
+                                if (objValue === undefined && !(key in object)) {
+                                    return false;
+                                }
+                            } else {
+                                var stack = new Stack;
+                                if (customizer) {
+                                    var result = customizer(objValue, srcValue, key, object, source, stack);
+                                }
+                                if (!(result === undefined ? baseIsEqual(srcValue, objValue, COMPARE_PARTIAL_FLAG | COMPARE_UNORDERED_FLAG, customizer, stack) : result)) {
+                                    return false;
+                                }
+                            }
+                        }
+                        return true;
+                    }
+                    function baseIsNative(value) {
+                        if (!isObject(value) || isMasked(value)) {
+                            return false;
+                        }
+                        var pattern = isFunction(value) ? reIsNative : reIsHostCtor;
+                        return pattern.test(toSource(value));
+                    }
+                    function baseIsRegExp(value) {
+                        return isObjectLike(value) && baseGetTag(value) == regexpTag;
+                    }
+                    function baseIsSet(value) {
+                        return isObjectLike(value) && getTag(value) == setTag;
+                    }
+                    function baseIsTypedArray(value) {
+                        return isObjectLike(value) && isLength(value.length) && !!typedArrayTags[baseGetTag(value)];
+                    }
+                    function baseIteratee(value) {
+                        if (typeof value == "function") {
+                            return value;
+                        }
+                        if (value == null) {
+                            return identity;
+                        }
+                        if (typeof value == "object") {
+                            return isArray(value) ? baseMatchesProperty(value[0], value[1]) : baseMatches(value);
+                        }
+                        return property(value);
+                    }
+                    function baseKeys(object) {
+                        if (!isPrototype(object)) {
+                            return nativeKeys(object);
+                        }
+                        var result = [];
+                        for (var key in Object(object)) {
+                            if (hasOwnProperty.call(object, key) && key != "constructor") {
+                                result.push(key);
+                            }
+                        }
+                        return result;
+                    }
+                    function baseKeysIn(object) {
+                        if (!isObject(object)) {
+                            return nativeKeysIn(object);
+                        }
+                        var isProto = isPrototype(object), result = [];
+                        for (var key in object) {
+                            if (!(key == "constructor" && (isProto || !hasOwnProperty.call(object, key)))) {
+                                result.push(key);
+                            }
+                        }
+                        return result;
+                    }
+                    function baseLt(value, other) {
+                        return value < other;
+                    }
+                    function baseMap(collection, iteratee) {
+                        var index = -1, result = isArrayLike(collection) ? Array(collection.length) : [];
+                        baseEach(collection, (function(value, key, collection) {
+                            result[++index] = iteratee(value, key, collection);
+                        }));
+                        return result;
+                    }
+                    function baseMatches(source) {
+                        var matchData = getMatchData(source);
+                        if (matchData.length == 1 && matchData[0][2]) {
+                            return matchesStrictComparable(matchData[0][0], matchData[0][1]);
+                        }
+                        return function(object) {
+                            return object === source || baseIsMatch(object, source, matchData);
+                        };
+                    }
+                    function baseMatchesProperty(path, srcValue) {
+                        if (isKey(path) && isStrictComparable(srcValue)) {
+                            return matchesStrictComparable(toKey(path), srcValue);
+                        }
+                        return function(object) {
+                            var objValue = get(object, path);
+                            return objValue === undefined && objValue === srcValue ? hasIn(object, path) : baseIsEqual(srcValue, objValue, COMPARE_PARTIAL_FLAG | COMPARE_UNORDERED_FLAG);
+                        };
+                    }
+                    function baseMerge(object, source, srcIndex, customizer, stack) {
+                        if (object === source) {
+                            return;
+                        }
+                        baseFor(source, (function(srcValue, key) {
+                            stack || (stack = new Stack);
+                            if (isObject(srcValue)) {
+                                baseMergeDeep(object, source, key, srcIndex, baseMerge, customizer, stack);
+                            } else {
+                                var newValue = customizer ? customizer(safeGet(object, key), srcValue, key + "", object, source, stack) : undefined;
+                                if (newValue === undefined) {
+                                    newValue = srcValue;
+                                }
+                                assignMergeValue(object, key, newValue);
+                            }
+                        }), keysIn);
+                    }
+                    function baseMergeDeep(object, source, key, srcIndex, mergeFunc, customizer, stack) {
+                        var objValue = safeGet(object, key), srcValue = safeGet(source, key), stacked = stack.get(srcValue);
+                        if (stacked) {
+                            assignMergeValue(object, key, stacked);
+                            return;
+                        }
+                        var newValue = customizer ? customizer(objValue, srcValue, key + "", object, source, stack) : undefined;
+                        var isCommon = newValue === undefined;
+                        if (isCommon) {
+                            var isArr = isArray(srcValue), isBuff = !isArr && isBuffer(srcValue), isTyped = !isArr && !isBuff && isTypedArray(srcValue);
+                            newValue = srcValue;
+                            if (isArr || isBuff || isTyped) {
+                                if (isArray(objValue)) {
+                                    newValue = objValue;
+                                } else if (isArrayLikeObject(objValue)) {
+                                    newValue = copyArray(objValue);
+                                } else if (isBuff) {
+                                    isCommon = false;
+                                    newValue = cloneBuffer(srcValue, true);
+                                } else if (isTyped) {
+                                    isCommon = false;
+                                    newValue = cloneTypedArray(srcValue, true);
+                                } else {
+                                    newValue = [];
+                                }
+                            } else if (isPlainObject(srcValue) || isArguments(srcValue)) {
+                                newValue = objValue;
+                                if (isArguments(objValue)) {
+                                    newValue = toPlainObject(objValue);
+                                } else if (!isObject(objValue) || isFunction(objValue)) {
+                                    newValue = initCloneObject(srcValue);
+                                }
+                            } else {
+                                isCommon = false;
+                            }
+                        }
+                        if (isCommon) {
+                            stack.set(srcValue, newValue);
+                            mergeFunc(newValue, srcValue, srcIndex, customizer, stack);
+                            stack["delete"](srcValue);
+                        }
+                        assignMergeValue(object, key, newValue);
+                    }
+                    function baseNth(array, n) {
+                        var length = array.length;
+                        if (!length) {
+                            return;
+                        }
+                        n += n < 0 ? length : 0;
+                        return isIndex(n, length) ? array[n] : undefined;
+                    }
+                    function baseOrderBy(collection, iteratees, orders) {
+                        if (iteratees.length) {
+                            iteratees = arrayMap(iteratees, (function(iteratee) {
+                                if (isArray(iteratee)) {
+                                    return function(value) {
+                                        return baseGet(value, iteratee.length === 1 ? iteratee[0] : iteratee);
+                                    };
+                                }
+                                return iteratee;
+                            }));
+                        } else {
+                            iteratees = [ identity ];
+                        }
+                        var index = -1;
+                        iteratees = arrayMap(iteratees, baseUnary(getIteratee()));
+                        var result = baseMap(collection, (function(value, key, collection) {
+                            var criteria = arrayMap(iteratees, (function(iteratee) {
+                                return iteratee(value);
+                            }));
+                            return {
+                                criteria: criteria,
+                                index: ++index,
+                                value: value
+                            };
+                        }));
+                        return baseSortBy(result, (function(object, other) {
+                            return compareMultiple(object, other, orders);
+                        }));
+                    }
+                    function basePick(object, paths) {
+                        return basePickBy(object, paths, (function(value, path) {
+                            return hasIn(object, path);
+                        }));
+                    }
+                    function basePickBy(object, paths, predicate) {
+                        var index = -1, length = paths.length, result = {};
+                        while (++index < length) {
+                            var path = paths[index], value = baseGet(object, path);
+                            if (predicate(value, path)) {
+                                baseSet(result, castPath(path, object), value);
+                            }
+                        }
+                        return result;
+                    }
+                    function basePropertyDeep(path) {
+                        return function(object) {
+                            return baseGet(object, path);
+                        };
+                    }
+                    function basePullAll(array, values, iteratee, comparator) {
+                        var indexOf = comparator ? baseIndexOfWith : baseIndexOf, index = -1, length = values.length, seen = array;
+                        if (array === values) {
+                            values = copyArray(values);
+                        }
+                        if (iteratee) {
+                            seen = arrayMap(array, baseUnary(iteratee));
+                        }
+                        while (++index < length) {
+                            var fromIndex = 0, value = values[index], computed = iteratee ? iteratee(value) : value;
+                            while ((fromIndex = indexOf(seen, computed, fromIndex, comparator)) > -1) {
+                                if (seen !== array) {
+                                    splice.call(seen, fromIndex, 1);
+                                }
+                                splice.call(array, fromIndex, 1);
+                            }
+                        }
+                        return array;
+                    }
+                    function basePullAt(array, indexes) {
+                        var length = array ? indexes.length : 0, lastIndex = length - 1;
+                        while (length--) {
+                            var index = indexes[length];
+                            if (length == lastIndex || index !== previous) {
+                                var previous = index;
+                                if (isIndex(index)) {
+                                    splice.call(array, index, 1);
+                                } else {
+                                    baseUnset(array, index);
+                                }
+                            }
+                        }
+                        return array;
+                    }
+                    function baseRandom(lower, upper) {
+                        return lower + nativeFloor(nativeRandom() * (upper - lower + 1));
+                    }
+                    function baseRange(start, end, step, fromRight) {
+                        var index = -1, length = nativeMax(nativeCeil((end - start) / (step || 1)), 0), result = Array(length);
+                        while (length--) {
+                            result[fromRight ? length : ++index] = start;
+                            start += step;
+                        }
+                        return result;
+                    }
+                    function baseRepeat(string, n) {
+                        var result = "";
+                        if (!string || n < 1 || n > MAX_SAFE_INTEGER) {
+                            return result;
+                        }
+                        do {
+                            if (n % 2) {
+                                result += string;
+                            }
+                            n = nativeFloor(n / 2);
+                            if (n) {
+                                string += string;
+                            }
+                        } while (n);
+                        return result;
+                    }
+                    function baseRest(func, start) {
+                        return setToString(overRest(func, start, identity), func + "");
+                    }
+                    function baseSample(collection) {
+                        return arraySample(values(collection));
+                    }
+                    function baseSampleSize(collection, n) {
+                        var array = values(collection);
+                        return shuffleSelf(array, baseClamp(n, 0, array.length));
+                    }
+                    function baseSet(object, path, value, customizer) {
+                        if (!isObject(object)) {
+                            return object;
+                        }
+                        path = castPath(path, object);
+                        var index = -1, length = path.length, lastIndex = length - 1, nested = object;
+                        while (nested != null && ++index < length) {
+                            var key = toKey(path[index]), newValue = value;
+                            if (key === "__proto__" || key === "constructor" || key === "prototype") {
+                                return object;
+                            }
+                            if (index != lastIndex) {
+                                var objValue = nested[key];
+                                newValue = customizer ? customizer(objValue, key, nested) : undefined;
+                                if (newValue === undefined) {
+                                    newValue = isObject(objValue) ? objValue : isIndex(path[index + 1]) ? [] : {};
+                                }
+                            }
+                            assignValue(nested, key, newValue);
+                            nested = nested[key];
+                        }
+                        return object;
+                    }
+                    var baseSetData = !metaMap ? identity : function(func, data) {
+                        metaMap.set(func, data);
+                        return func;
+                    };
+                    var baseSetToString = !defineProperty ? identity : function(func, string) {
+                        return defineProperty(func, "toString", {
+                            configurable: true,
+                            enumerable: false,
+                            value: constant(string),
+                            writable: true
+                        });
+                    };
+                    function baseShuffle(collection) {
+                        return shuffleSelf(values(collection));
+                    }
+                    function baseSlice(array, start, end) {
+                        var index = -1, length = array.length;
+                        if (start < 0) {
+                            start = -start > length ? 0 : length + start;
+                        }
+                        end = end > length ? length : end;
+                        if (end < 0) {
+                            end += length;
+                        }
+                        length = start > end ? 0 : end - start >>> 0;
+                        start >>>= 0;
+                        var result = Array(length);
+                        while (++index < length) {
+                            result[index] = array[index + start];
+                        }
+                        return result;
+                    }
+                    function baseSome(collection, predicate) {
+                        var result;
+                        baseEach(collection, (function(value, index, collection) {
+                            result = predicate(value, index, collection);
+                            return !result;
+                        }));
+                        return !!result;
+                    }
+                    function baseSortedIndex(array, value, retHighest) {
+                        var low = 0, high = array == null ? low : array.length;
+                        if (typeof value == "number" && value === value && high <= HALF_MAX_ARRAY_LENGTH) {
+                            while (low < high) {
+                                var mid = low + high >>> 1, computed = array[mid];
+                                if (computed !== null && !isSymbol(computed) && (retHighest ? computed <= value : computed < value)) {
+                                    low = mid + 1;
+                                } else {
+                                    high = mid;
+                                }
+                            }
+                            return high;
+                        }
+                        return baseSortedIndexBy(array, value, identity, retHighest);
+                    }
+                    function baseSortedIndexBy(array, value, iteratee, retHighest) {
+                        var low = 0, high = array == null ? 0 : array.length;
+                        if (high === 0) {
+                            return 0;
+                        }
+                        value = iteratee(value);
+                        var valIsNaN = value !== value, valIsNull = value === null, valIsSymbol = isSymbol(value), valIsUndefined = value === undefined;
+                        while (low < high) {
+                            var mid = nativeFloor((low + high) / 2), computed = iteratee(array[mid]), othIsDefined = computed !== undefined, othIsNull = computed === null, othIsReflexive = computed === computed, othIsSymbol = isSymbol(computed);
+                            if (valIsNaN) {
+                                var setLow = retHighest || othIsReflexive;
+                            } else if (valIsUndefined) {
+                                setLow = othIsReflexive && (retHighest || othIsDefined);
+                            } else if (valIsNull) {
+                                setLow = othIsReflexive && othIsDefined && (retHighest || !othIsNull);
+                            } else if (valIsSymbol) {
+                                setLow = othIsReflexive && othIsDefined && !othIsNull && (retHighest || !othIsSymbol);
+                            } else if (othIsNull || othIsSymbol) {
+                                setLow = false;
+                            } else {
+                                setLow = retHighest ? computed <= value : computed < value;
+                            }
+                            if (setLow) {
+                                low = mid + 1;
+                            } else {
+                                high = mid;
+                            }
+                        }
+                        return nativeMin(high, MAX_ARRAY_INDEX);
+                    }
+                    function baseSortedUniq(array, iteratee) {
+                        var index = -1, length = array.length, resIndex = 0, result = [];
+                        while (++index < length) {
+                            var value = array[index], computed = iteratee ? iteratee(value) : value;
+                            if (!index || !eq(computed, seen)) {
+                                var seen = computed;
+                                result[resIndex++] = value === 0 ? 0 : value;
+                            }
+                        }
+                        return result;
+                    }
+                    function baseToNumber(value) {
+                        if (typeof value == "number") {
+                            return value;
+                        }
+                        if (isSymbol(value)) {
+                            return NAN;
+                        }
+                        return +value;
+                    }
+                    function baseToString(value) {
+                        if (typeof value == "string") {
+                            return value;
+                        }
+                        if (isArray(value)) {
+                            return arrayMap(value, baseToString) + "";
+                        }
+                        if (isSymbol(value)) {
+                            return symbolToString ? symbolToString.call(value) : "";
+                        }
+                        var result = value + "";
+                        return result == "0" && 1 / value == -INFINITY ? "-0" : result;
+                    }
+                    function baseUniq(array, iteratee, comparator) {
+                        var index = -1, includes = arrayIncludes, length = array.length, isCommon = true, result = [], seen = result;
+                        if (comparator) {
+                            isCommon = false;
+                            includes = arrayIncludesWith;
+                        } else if (length >= LARGE_ARRAY_SIZE) {
+                            var set = iteratee ? null : createSet(array);
+                            if (set) {
+                                return setToArray(set);
+                            }
+                            isCommon = false;
+                            includes = cacheHas;
+                            seen = new SetCache;
+                        } else {
+                            seen = iteratee ? [] : result;
+                        }
+                        outer: while (++index < length) {
+                            var value = array[index], computed = iteratee ? iteratee(value) : value;
+                            value = comparator || value !== 0 ? value : 0;
+                            if (isCommon && computed === computed) {
+                                var seenIndex = seen.length;
+                                while (seenIndex--) {
+                                    if (seen[seenIndex] === computed) {
+                                        continue outer;
+                                    }
+                                }
+                                if (iteratee) {
+                                    seen.push(computed);
+                                }
+                                result.push(value);
+                            } else if (!includes(seen, computed, comparator)) {
+                                if (seen !== result) {
+                                    seen.push(computed);
+                                }
+                                result.push(value);
+                            }
+                        }
+                        return result;
+                    }
+                    function baseUnset(object, path) {
+                        path = castPath(path, object);
+                        object = parent(object, path);
+                        return object == null || delete object[toKey(last(path))];
+                    }
+                    function baseUpdate(object, path, updater, customizer) {
+                        return baseSet(object, path, updater(baseGet(object, path)), customizer);
+                    }
+                    function baseWhile(array, predicate, isDrop, fromRight) {
+                        var length = array.length, index = fromRight ? length : -1;
+                        while ((fromRight ? index-- : ++index < length) && predicate(array[index], index, array)) {}
+                        return isDrop ? baseSlice(array, fromRight ? 0 : index, fromRight ? index + 1 : length) : baseSlice(array, fromRight ? index + 1 : 0, fromRight ? length : index);
+                    }
+                    function baseWrapperValue(value, actions) {
+                        var result = value;
+                        if (result instanceof LazyWrapper) {
+                            result = result.value();
+                        }
+                        return arrayReduce(actions, (function(result, action) {
+                            return action.func.apply(action.thisArg, arrayPush([ result ], action.args));
+                        }), result);
+                    }
+                    function baseXor(arrays, iteratee, comparator) {
+                        var length = arrays.length;
+                        if (length < 2) {
+                            return length ? baseUniq(arrays[0]) : [];
+                        }
+                        var index = -1, result = Array(length);
+                        while (++index < length) {
+                            var array = arrays[index], othIndex = -1;
+                            while (++othIndex < length) {
+                                if (othIndex != index) {
+                                    result[index] = baseDifference(result[index] || array, arrays[othIndex], iteratee, comparator);
+                                }
+                            }
+                        }
+                        return baseUniq(baseFlatten(result, 1), iteratee, comparator);
+                    }
+                    function baseZipObject(props, values, assignFunc) {
+                        var index = -1, length = props.length, valsLength = values.length, result = {};
+                        while (++index < length) {
+                            var value = index < valsLength ? values[index] : undefined;
+                            assignFunc(result, props[index], value);
+                        }
+                        return result;
+                    }
+                    function castArrayLikeObject(value) {
+                        return isArrayLikeObject(value) ? value : [];
+                    }
+                    function castFunction(value) {
+                        return typeof value == "function" ? value : identity;
+                    }
+                    function castPath(value, object) {
+                        if (isArray(value)) {
+                            return value;
+                        }
+                        return isKey(value, object) ? [ value ] : stringToPath(toString(value));
+                    }
+                    var castRest = baseRest;
+                    function castSlice(array, start, end) {
+                        var length = array.length;
+                        end = end === undefined ? length : end;
+                        return !start && end >= length ? array : baseSlice(array, start, end);
+                    }
+                    var clearTimeout = ctxClearTimeout || function(id) {
+                        return root.clearTimeout(id);
+                    };
+                    function cloneBuffer(buffer, isDeep) {
+                        if (isDeep) {
+                            return buffer.slice();
+                        }
+                        var length = buffer.length, result = allocUnsafe ? allocUnsafe(length) : new buffer.constructor(length);
+                        buffer.copy(result);
+                        return result;
+                    }
+                    function cloneArrayBuffer(arrayBuffer) {
+                        var result = new arrayBuffer.constructor(arrayBuffer.byteLength);
+                        new Uint8Array(result).set(new Uint8Array(arrayBuffer));
+                        return result;
+                    }
+                    function cloneDataView(dataView, isDeep) {
+                        var buffer = isDeep ? cloneArrayBuffer(dataView.buffer) : dataView.buffer;
+                        return new dataView.constructor(buffer, dataView.byteOffset, dataView.byteLength);
+                    }
+                    function cloneRegExp(regexp) {
+                        var result = new regexp.constructor(regexp.source, reFlags.exec(regexp));
+                        result.lastIndex = regexp.lastIndex;
+                        return result;
+                    }
+                    function cloneSymbol(symbol) {
+                        return symbolValueOf ? Object(symbolValueOf.call(symbol)) : {};
+                    }
+                    function cloneTypedArray(typedArray, isDeep) {
+                        var buffer = isDeep ? cloneArrayBuffer(typedArray.buffer) : typedArray.buffer;
+                        return new typedArray.constructor(buffer, typedArray.byteOffset, typedArray.length);
+                    }
+                    function compareAscending(value, other) {
+                        if (value !== other) {
+                            var valIsDefined = value !== undefined, valIsNull = value === null, valIsReflexive = value === value, valIsSymbol = isSymbol(value);
+                            var othIsDefined = other !== undefined, othIsNull = other === null, othIsReflexive = other === other, othIsSymbol = isSymbol(other);
+                            if (!othIsNull && !othIsSymbol && !valIsSymbol && value > other || valIsSymbol && othIsDefined && othIsReflexive && !othIsNull && !othIsSymbol || valIsNull && othIsDefined && othIsReflexive || !valIsDefined && othIsReflexive || !valIsReflexive) {
+                                return 1;
+                            }
+                            if (!valIsNull && !valIsSymbol && !othIsSymbol && value < other || othIsSymbol && valIsDefined && valIsReflexive && !valIsNull && !valIsSymbol || othIsNull && valIsDefined && valIsReflexive || !othIsDefined && valIsReflexive || !othIsReflexive) {
+                                return -1;
+                            }
+                        }
+                        return 0;
+                    }
+                    function compareMultiple(object, other, orders) {
+                        var index = -1, objCriteria = object.criteria, othCriteria = other.criteria, length = objCriteria.length, ordersLength = orders.length;
+                        while (++index < length) {
+                            var result = compareAscending(objCriteria[index], othCriteria[index]);
+                            if (result) {
+                                if (index >= ordersLength) {
+                                    return result;
+                                }
+                                var order = orders[index];
+                                return result * (order == "desc" ? -1 : 1);
+                            }
+                        }
+                        return object.index - other.index;
+                    }
+                    function composeArgs(args, partials, holders, isCurried) {
+                        var argsIndex = -1, argsLength = args.length, holdersLength = holders.length, leftIndex = -1, leftLength = partials.length, rangeLength = nativeMax(argsLength - holdersLength, 0), result = Array(leftLength + rangeLength), isUncurried = !isCurried;
+                        while (++leftIndex < leftLength) {
+                            result[leftIndex] = partials[leftIndex];
+                        }
+                        while (++argsIndex < holdersLength) {
+                            if (isUncurried || argsIndex < argsLength) {
+                                result[holders[argsIndex]] = args[argsIndex];
+                            }
+                        }
+                        while (rangeLength--) {
+                            result[leftIndex++] = args[argsIndex++];
+                        }
+                        return result;
+                    }
+                    function composeArgsRight(args, partials, holders, isCurried) {
+                        var argsIndex = -1, argsLength = args.length, holdersIndex = -1, holdersLength = holders.length, rightIndex = -1, rightLength = partials.length, rangeLength = nativeMax(argsLength - holdersLength, 0), result = Array(rangeLength + rightLength), isUncurried = !isCurried;
+                        while (++argsIndex < rangeLength) {
+                            result[argsIndex] = args[argsIndex];
+                        }
+                        var offset = argsIndex;
+                        while (++rightIndex < rightLength) {
+                            result[offset + rightIndex] = partials[rightIndex];
+                        }
+                        while (++holdersIndex < holdersLength) {
+                            if (isUncurried || argsIndex < argsLength) {
+                                result[offset + holders[holdersIndex]] = args[argsIndex++];
+                            }
+                        }
+                        return result;
+                    }
+                    function copyArray(source, array) {
+                        var index = -1, length = source.length;
+                        array || (array = Array(length));
+                        while (++index < length) {
+                            array[index] = source[index];
+                        }
+                        return array;
+                    }
+                    function copyObject(source, props, object, customizer) {
+                        var isNew = !object;
+                        object || (object = {});
+                        var index = -1, length = props.length;
+                        while (++index < length) {
+                            var key = props[index];
+                            var newValue = customizer ? customizer(object[key], source[key], key, object, source) : undefined;
+                            if (newValue === undefined) {
+                                newValue = source[key];
+                            }
+                            if (isNew) {
+                                baseAssignValue(object, key, newValue);
+                            } else {
+                                assignValue(object, key, newValue);
+                            }
+                        }
+                        return object;
+                    }
+                    function copySymbols(source, object) {
+                        return copyObject(source, getSymbols(source), object);
+                    }
+                    function copySymbolsIn(source, object) {
+                        return copyObject(source, getSymbolsIn(source), object);
+                    }
+                    function createAggregator(setter, initializer) {
+                        return function(collection, iteratee) {
+                            var func = isArray(collection) ? arrayAggregator : baseAggregator, accumulator = initializer ? initializer() : {};
+                            return func(collection, setter, getIteratee(iteratee, 2), accumulator);
+                        };
+                    }
+                    function createAssigner(assigner) {
+                        return baseRest((function(object, sources) {
+                            var index = -1, length = sources.length, customizer = length > 1 ? sources[length - 1] : undefined, guard = length > 2 ? sources[2] : undefined;
+                            customizer = assigner.length > 3 && typeof customizer == "function" ? (length--, 
+                            customizer) : undefined;
+                            if (guard && isIterateeCall(sources[0], sources[1], guard)) {
+                                customizer = length < 3 ? undefined : customizer;
+                                length = 1;
+                            }
+                            object = Object(object);
+                            while (++index < length) {
+                                var source = sources[index];
+                                if (source) {
+                                    assigner(object, source, index, customizer);
+                                }
+                            }
+                            return object;
+                        }));
+                    }
+                    function createBaseEach(eachFunc, fromRight) {
+                        return function(collection, iteratee) {
+                            if (collection == null) {
+                                return collection;
+                            }
+                            if (!isArrayLike(collection)) {
+                                return eachFunc(collection, iteratee);
+                            }
+                            var length = collection.length, index = fromRight ? length : -1, iterable = Object(collection);
+                            while (fromRight ? index-- : ++index < length) {
+                                if (iteratee(iterable[index], index, iterable) === false) {
+                                    break;
+                                }
+                            }
+                            return collection;
+                        };
+                    }
+                    function createBaseFor(fromRight) {
+                        return function(object, iteratee, keysFunc) {
+                            var index = -1, iterable = Object(object), props = keysFunc(object), length = props.length;
+                            while (length--) {
+                                var key = props[fromRight ? length : ++index];
+                                if (iteratee(iterable[key], key, iterable) === false) {
+                                    break;
+                                }
+                            }
+                            return object;
+                        };
+                    }
+                    function createBind(func, bitmask, thisArg) {
+                        var isBind = bitmask & WRAP_BIND_FLAG, Ctor = createCtor(func);
+                        function wrapper() {
+                            var fn = this && this !== root && this instanceof wrapper ? Ctor : func;
+                            return fn.apply(isBind ? thisArg : this, arguments);
+                        }
+                        return wrapper;
+                    }
+                    function createCaseFirst(methodName) {
+                        return function(string) {
+                            string = toString(string);
+                            var strSymbols = hasUnicode(string) ? stringToArray(string) : undefined;
+                            var chr = strSymbols ? strSymbols[0] : string.charAt(0);
+                            var trailing = strSymbols ? castSlice(strSymbols, 1).join("") : string.slice(1);
+                            return chr[methodName]() + trailing;
+                        };
+                    }
+                    function createCompounder(callback) {
+                        return function(string) {
+                            return arrayReduce(words(deburr(string).replace(reApos, "")), callback, "");
+                        };
+                    }
+                    function createCtor(Ctor) {
+                        return function() {
+                            var args = arguments;
+                            switch (args.length) {
+                              case 0:
+                                return new Ctor;
+
+                              case 1:
+                                return new Ctor(args[0]);
+
+                              case 2:
+                                return new Ctor(args[0], args[1]);
+
+                              case 3:
+                                return new Ctor(args[0], args[1], args[2]);
+
+                              case 4:
+                                return new Ctor(args[0], args[1], args[2], args[3]);
+
+                              case 5:
+                                return new Ctor(args[0], args[1], args[2], args[3], args[4]);
+
+                              case 6:
+                                return new Ctor(args[0], args[1], args[2], args[3], args[4], args[5]);
+
+                              case 7:
+                                return new Ctor(args[0], args[1], args[2], args[3], args[4], args[5], args[6]);
+                            }
+                            var thisBinding = baseCreate(Ctor.prototype), result = Ctor.apply(thisBinding, args);
+                            return isObject(result) ? result : thisBinding;
+                        };
+                    }
+                    function createCurry(func, bitmask, arity) {
+                        var Ctor = createCtor(func);
+                        function wrapper() {
+                            var length = arguments.length, args = Array(length), index = length, placeholder = getHolder(wrapper);
+                            while (index--) {
+                                args[index] = arguments[index];
+                            }
+                            var holders = length < 3 && args[0] !== placeholder && args[length - 1] !== placeholder ? [] : replaceHolders(args, placeholder);
+                            length -= holders.length;
+                            if (length < arity) {
+                                return createRecurry(func, bitmask, createHybrid, wrapper.placeholder, undefined, args, holders, undefined, undefined, arity - length);
+                            }
+                            var fn = this && this !== root && this instanceof wrapper ? Ctor : func;
+                            return apply(fn, this, args);
+                        }
+                        return wrapper;
+                    }
+                    function createFind(findIndexFunc) {
+                        return function(collection, predicate, fromIndex) {
+                            var iterable = Object(collection);
+                            if (!isArrayLike(collection)) {
+                                var iteratee = getIteratee(predicate, 3);
+                                collection = keys(collection);
+                                predicate = function(key) {
+                                    return iteratee(iterable[key], key, iterable);
+                                };
+                            }
+                            var index = findIndexFunc(collection, predicate, fromIndex);
+                            return index > -1 ? iterable[iteratee ? collection[index] : index] : undefined;
+                        };
+                    }
+                    function createFlow(fromRight) {
+                        return flatRest((function(funcs) {
+                            var length = funcs.length, index = length, prereq = LodashWrapper.prototype.thru;
+                            if (fromRight) {
+                                funcs.reverse();
+                            }
+                            while (index--) {
+                                var func = funcs[index];
+                                if (typeof func != "function") {
+                                    throw new TypeError(FUNC_ERROR_TEXT);
+                                }
+                                if (prereq && !wrapper && getFuncName(func) == "wrapper") {
+                                    var wrapper = new LodashWrapper([], true);
+                                }
+                            }
+                            index = wrapper ? index : length;
+                            while (++index < length) {
+                                func = funcs[index];
+                                var funcName = getFuncName(func), data = funcName == "wrapper" ? getData(func) : undefined;
+                                if (data && isLaziable(data[0]) && data[1] == (WRAP_ARY_FLAG | WRAP_CURRY_FLAG | WRAP_PARTIAL_FLAG | WRAP_REARG_FLAG) && !data[4].length && data[9] == 1) {
+                                    wrapper = wrapper[getFuncName(data[0])].apply(wrapper, data[3]);
+                                } else {
+                                    wrapper = func.length == 1 && isLaziable(func) ? wrapper[funcName]() : wrapper.thru(func);
+                                }
+                            }
+                            return function() {
+                                var args = arguments, value = args[0];
+                                if (wrapper && args.length == 1 && isArray(value)) {
+                                    return wrapper.plant(value).value();
+                                }
+                                var index = 0, result = length ? funcs[index].apply(this, args) : value;
+                                while (++index < length) {
+                                    result = funcs[index].call(this, result);
+                                }
+                                return result;
+                            };
+                        }));
+                    }
+                    function createHybrid(func, bitmask, thisArg, partials, holders, partialsRight, holdersRight, argPos, ary, arity) {
+                        var isAry = bitmask & WRAP_ARY_FLAG, isBind = bitmask & WRAP_BIND_FLAG, isBindKey = bitmask & WRAP_BIND_KEY_FLAG, isCurried = bitmask & (WRAP_CURRY_FLAG | WRAP_CURRY_RIGHT_FLAG), isFlip = bitmask & WRAP_FLIP_FLAG, Ctor = isBindKey ? undefined : createCtor(func);
+                        function wrapper() {
+                            var length = arguments.length, args = Array(length), index = length;
+                            while (index--) {
+                                args[index] = arguments[index];
+                            }
+                            if (isCurried) {
+                                var placeholder = getHolder(wrapper), holdersCount = countHolders(args, placeholder);
+                            }
+                            if (partials) {
+                                args = composeArgs(args, partials, holders, isCurried);
+                            }
+                            if (partialsRight) {
+                                args = composeArgsRight(args, partialsRight, holdersRight, isCurried);
+                            }
+                            length -= holdersCount;
+                            if (isCurried && length < arity) {
+                                var newHolders = replaceHolders(args, placeholder);
+                                return createRecurry(func, bitmask, createHybrid, wrapper.placeholder, thisArg, args, newHolders, argPos, ary, arity - length);
+                            }
+                            var thisBinding = isBind ? thisArg : this, fn = isBindKey ? thisBinding[func] : func;
+                            length = args.length;
+                            if (argPos) {
+                                args = reorder(args, argPos);
+                            } else if (isFlip && length > 1) {
+                                args.reverse();
+                            }
+                            if (isAry && ary < length) {
+                                args.length = ary;
+                            }
+                            if (this && this !== root && this instanceof wrapper) {
+                                fn = Ctor || createCtor(fn);
+                            }
+                            return fn.apply(thisBinding, args);
+                        }
+                        return wrapper;
+                    }
+                    function createInverter(setter, toIteratee) {
+                        return function(object, iteratee) {
+                            return baseInverter(object, setter, toIteratee(iteratee), {});
+                        };
+                    }
+                    function createMathOperation(operator, defaultValue) {
+                        return function(value, other) {
+                            var result;
+                            if (value === undefined && other === undefined) {
+                                return defaultValue;
+                            }
+                            if (value !== undefined) {
+                                result = value;
+                            }
+                            if (other !== undefined) {
+                                if (result === undefined) {
+                                    return other;
+                                }
+                                if (typeof value == "string" || typeof other == "string") {
+                                    value = baseToString(value);
+                                    other = baseToString(other);
+                                } else {
+                                    value = baseToNumber(value);
+                                    other = baseToNumber(other);
+                                }
+                                result = operator(value, other);
+                            }
+                            return result;
+                        };
+                    }
+                    function createOver(arrayFunc) {
+                        return flatRest((function(iteratees) {
+                            iteratees = arrayMap(iteratees, baseUnary(getIteratee()));
+                            return baseRest((function(args) {
+                                var thisArg = this;
+                                return arrayFunc(iteratees, (function(iteratee) {
+                                    return apply(iteratee, thisArg, args);
+                                }));
+                            }));
+                        }));
+                    }
+                    function createPadding(length, chars) {
+                        chars = chars === undefined ? " " : baseToString(chars);
+                        var charsLength = chars.length;
+                        if (charsLength < 2) {
+                            return charsLength ? baseRepeat(chars, length) : chars;
+                        }
+                        var result = baseRepeat(chars, nativeCeil(length / stringSize(chars)));
+                        return hasUnicode(chars) ? castSlice(stringToArray(result), 0, length).join("") : result.slice(0, length);
+                    }
+                    function createPartial(func, bitmask, thisArg, partials) {
+                        var isBind = bitmask & WRAP_BIND_FLAG, Ctor = createCtor(func);
+                        function wrapper() {
+                            var argsIndex = -1, argsLength = arguments.length, leftIndex = -1, leftLength = partials.length, args = Array(leftLength + argsLength), fn = this && this !== root && this instanceof wrapper ? Ctor : func;
+                            while (++leftIndex < leftLength) {
+                                args[leftIndex] = partials[leftIndex];
+                            }
+                            while (argsLength--) {
+                                args[leftIndex++] = arguments[++argsIndex];
+                            }
+                            return apply(fn, isBind ? thisArg : this, args);
+                        }
+                        return wrapper;
+                    }
+                    function createRange(fromRight) {
+                        return function(start, end, step) {
+                            if (step && typeof step != "number" && isIterateeCall(start, end, step)) {
+                                end = step = undefined;
+                            }
+                            start = toFinite(start);
+                            if (end === undefined) {
+                                end = start;
+                                start = 0;
+                            } else {
+                                end = toFinite(end);
+                            }
+                            step = step === undefined ? start < end ? 1 : -1 : toFinite(step);
+                            return baseRange(start, end, step, fromRight);
+                        };
+                    }
+                    function createRelationalOperation(operator) {
+                        return function(value, other) {
+                            if (!(typeof value == "string" && typeof other == "string")) {
+                                value = toNumber(value);
+                                other = toNumber(other);
+                            }
+                            return operator(value, other);
+                        };
+                    }
+                    function createRecurry(func, bitmask, wrapFunc, placeholder, thisArg, partials, holders, argPos, ary, arity) {
+                        var isCurry = bitmask & WRAP_CURRY_FLAG, newHolders = isCurry ? holders : undefined, newHoldersRight = isCurry ? undefined : holders, newPartials = isCurry ? partials : undefined, newPartialsRight = isCurry ? undefined : partials;
+                        bitmask |= isCurry ? WRAP_PARTIAL_FLAG : WRAP_PARTIAL_RIGHT_FLAG;
+                        bitmask &= ~(isCurry ? WRAP_PARTIAL_RIGHT_FLAG : WRAP_PARTIAL_FLAG);
+                        if (!(bitmask & WRAP_CURRY_BOUND_FLAG)) {
+                            bitmask &= ~(WRAP_BIND_FLAG | WRAP_BIND_KEY_FLAG);
+                        }
+                        var newData = [ func, bitmask, thisArg, newPartials, newHolders, newPartialsRight, newHoldersRight, argPos, ary, arity ];
+                        var result = wrapFunc.apply(undefined, newData);
+                        if (isLaziable(func)) {
+                            setData(result, newData);
+                        }
+                        result.placeholder = placeholder;
+                        return setWrapToString(result, func, bitmask);
+                    }
+                    function createRound(methodName) {
+                        var func = Math[methodName];
+                        return function(number, precision) {
+                            number = toNumber(number);
+                            precision = precision == null ? 0 : nativeMin(toInteger(precision), 292);
+                            if (precision && nativeIsFinite(number)) {
+                                var pair = (toString(number) + "e").split("e"), value = func(pair[0] + "e" + (+pair[1] + precision));
+                                pair = (toString(value) + "e").split("e");
+                                return +(pair[0] + "e" + (+pair[1] - precision));
+                            }
+                            return func(number);
+                        };
+                    }
+                    var createSet = !(Set && 1 / setToArray(new Set([ , -0 ]))[1] == INFINITY) ? noop : function(values) {
+                        return new Set(values);
+                    };
+                    function createToPairs(keysFunc) {
+                        return function(object) {
+                            var tag = getTag(object);
+                            if (tag == mapTag) {
+                                return mapToArray(object);
+                            }
+                            if (tag == setTag) {
+                                return setToPairs(object);
+                            }
+                            return baseToPairs(object, keysFunc(object));
+                        };
+                    }
+                    function createWrap(func, bitmask, thisArg, partials, holders, argPos, ary, arity) {
+                        var isBindKey = bitmask & WRAP_BIND_KEY_FLAG;
+                        if (!isBindKey && typeof func != "function") {
+                            throw new TypeError(FUNC_ERROR_TEXT);
+                        }
+                        var length = partials ? partials.length : 0;
+                        if (!length) {
+                            bitmask &= ~(WRAP_PARTIAL_FLAG | WRAP_PARTIAL_RIGHT_FLAG);
+                            partials = holders = undefined;
+                        }
+                        ary = ary === undefined ? ary : nativeMax(toInteger(ary), 0);
+                        arity = arity === undefined ? arity : toInteger(arity);
+                        length -= holders ? holders.length : 0;
+                        if (bitmask & WRAP_PARTIAL_RIGHT_FLAG) {
+                            var partialsRight = partials, holdersRight = holders;
+                            partials = holders = undefined;
+                        }
+                        var data = isBindKey ? undefined : getData(func);
+                        var newData = [ func, bitmask, thisArg, partials, holders, partialsRight, holdersRight, argPos, ary, arity ];
+                        if (data) {
+                            mergeData(newData, data);
+                        }
+                        func = newData[0];
+                        bitmask = newData[1];
+                        thisArg = newData[2];
+                        partials = newData[3];
+                        holders = newData[4];
+                        arity = newData[9] = newData[9] === undefined ? isBindKey ? 0 : func.length : nativeMax(newData[9] - length, 0);
+                        if (!arity && bitmask & (WRAP_CURRY_FLAG | WRAP_CURRY_RIGHT_FLAG)) {
+                            bitmask &= ~(WRAP_CURRY_FLAG | WRAP_CURRY_RIGHT_FLAG);
+                        }
+                        if (!bitmask || bitmask == WRAP_BIND_FLAG) {
+                            var result = createBind(func, bitmask, thisArg);
+                        } else if (bitmask == WRAP_CURRY_FLAG || bitmask == WRAP_CURRY_RIGHT_FLAG) {
+                            result = createCurry(func, bitmask, arity);
+                        } else if ((bitmask == WRAP_PARTIAL_FLAG || bitmask == (WRAP_BIND_FLAG | WRAP_PARTIAL_FLAG)) && !holders.length) {
+                            result = createPartial(func, bitmask, thisArg, partials);
+                        } else {
+                            result = createHybrid.apply(undefined, newData);
+                        }
+                        var setter = data ? baseSetData : setData;
+                        return setWrapToString(setter(result, newData), func, bitmask);
+                    }
+                    function customDefaultsAssignIn(objValue, srcValue, key, object) {
+                        if (objValue === undefined || eq(objValue, objectProto[key]) && !hasOwnProperty.call(object, key)) {
+                            return srcValue;
+                        }
+                        return objValue;
+                    }
+                    function customDefaultsMerge(objValue, srcValue, key, object, source, stack) {
+                        if (isObject(objValue) && isObject(srcValue)) {
+                            stack.set(srcValue, objValue);
+                            baseMerge(objValue, srcValue, undefined, customDefaultsMerge, stack);
+                            stack["delete"](srcValue);
+                        }
+                        return objValue;
+                    }
+                    function customOmitClone(value) {
+                        return isPlainObject(value) ? undefined : value;
+                    }
+                    function equalArrays(array, other, bitmask, customizer, equalFunc, stack) {
+                        var isPartial = bitmask & COMPARE_PARTIAL_FLAG, arrLength = array.length, othLength = other.length;
+                        if (arrLength != othLength && !(isPartial && othLength > arrLength)) {
+                            return false;
+                        }
+                        var arrStacked = stack.get(array);
+                        var othStacked = stack.get(other);
+                        if (arrStacked && othStacked) {
+                            return arrStacked == other && othStacked == array;
+                        }
+                        var index = -1, result = true, seen = bitmask & COMPARE_UNORDERED_FLAG ? new SetCache : undefined;
+                        stack.set(array, other);
+                        stack.set(other, array);
+                        while (++index < arrLength) {
+                            var arrValue = array[index], othValue = other[index];
+                            if (customizer) {
+                                var compared = isPartial ? customizer(othValue, arrValue, index, other, array, stack) : customizer(arrValue, othValue, index, array, other, stack);
+                            }
+                            if (compared !== undefined) {
+                                if (compared) {
+                                    continue;
+                                }
+                                result = false;
+                                break;
+                            }
+                            if (seen) {
+                                if (!arraySome(other, (function(othValue, othIndex) {
+                                    if (!cacheHas(seen, othIndex) && (arrValue === othValue || equalFunc(arrValue, othValue, bitmask, customizer, stack))) {
+                                        return seen.push(othIndex);
+                                    }
+                                }))) {
+                                    result = false;
+                                    break;
+                                }
+                            } else if (!(arrValue === othValue || equalFunc(arrValue, othValue, bitmask, customizer, stack))) {
+                                result = false;
+                                break;
+                            }
+                        }
+                        stack["delete"](array);
+                        stack["delete"](other);
+                        return result;
+                    }
+                    function equalByTag(object, other, tag, bitmask, customizer, equalFunc, stack) {
+                        switch (tag) {
+                          case dataViewTag:
+                            if (object.byteLength != other.byteLength || object.byteOffset != other.byteOffset) {
+                                return false;
+                            }
+                            object = object.buffer;
+                            other = other.buffer;
+
+                          case arrayBufferTag:
+                            if (object.byteLength != other.byteLength || !equalFunc(new Uint8Array(object), new Uint8Array(other))) {
+                                return false;
+                            }
+                            return true;
+
+                          case boolTag:
+                          case dateTag:
+                          case numberTag:
+                            return eq(+object, +other);
+
+                          case errorTag:
+                            return object.name == other.name && object.message == other.message;
+
+                          case regexpTag:
+                          case stringTag:
+                            return object == other + "";
+
+                          case mapTag:
+                            var convert = mapToArray;
+
+                          case setTag:
+                            var isPartial = bitmask & COMPARE_PARTIAL_FLAG;
+                            convert || (convert = setToArray);
+                            if (object.size != other.size && !isPartial) {
+                                return false;
+                            }
+                            var stacked = stack.get(object);
+                            if (stacked) {
+                                return stacked == other;
+                            }
+                            bitmask |= COMPARE_UNORDERED_FLAG;
+                            stack.set(object, other);
+                            var result = equalArrays(convert(object), convert(other), bitmask, customizer, equalFunc, stack);
+                            stack["delete"](object);
+                            return result;
+
+                          case symbolTag:
+                            if (symbolValueOf) {
+                                return symbolValueOf.call(object) == symbolValueOf.call(other);
+                            }
+                        }
+                        return false;
+                    }
+                    function equalObjects(object, other, bitmask, customizer, equalFunc, stack) {
+                        var isPartial = bitmask & COMPARE_PARTIAL_FLAG, objProps = getAllKeys(object), objLength = objProps.length, othProps = getAllKeys(other), othLength = othProps.length;
+                        if (objLength != othLength && !isPartial) {
+                            return false;
+                        }
+                        var index = objLength;
+                        while (index--) {
+                            var key = objProps[index];
+                            if (!(isPartial ? key in other : hasOwnProperty.call(other, key))) {
+                                return false;
+                            }
+                        }
+                        var objStacked = stack.get(object);
+                        var othStacked = stack.get(other);
+                        if (objStacked && othStacked) {
+                            return objStacked == other && othStacked == object;
+                        }
+                        var result = true;
+                        stack.set(object, other);
+                        stack.set(other, object);
+                        var skipCtor = isPartial;
+                        while (++index < objLength) {
+                            key = objProps[index];
+                            var objValue = object[key], othValue = other[key];
+                            if (customizer) {
+                                var compared = isPartial ? customizer(othValue, objValue, key, other, object, stack) : customizer(objValue, othValue, key, object, other, stack);
+                            }
+                            if (!(compared === undefined ? objValue === othValue || equalFunc(objValue, othValue, bitmask, customizer, stack) : compared)) {
+                                result = false;
+                                break;
+                            }
+                            skipCtor || (skipCtor = key == "constructor");
+                        }
+                        if (result && !skipCtor) {
+                            var objCtor = object.constructor, othCtor = other.constructor;
+                            if (objCtor != othCtor && ("constructor" in object && "constructor" in other) && !(typeof objCtor == "function" && objCtor instanceof objCtor && typeof othCtor == "function" && othCtor instanceof othCtor)) {
+                                result = false;
+                            }
+                        }
+                        stack["delete"](object);
+                        stack["delete"](other);
+                        return result;
+                    }
+                    function flatRest(func) {
+                        return setToString(overRest(func, undefined, flatten), func + "");
+                    }
+                    function getAllKeys(object) {
+                        return baseGetAllKeys(object, keys, getSymbols);
+                    }
+                    function getAllKeysIn(object) {
+                        return baseGetAllKeys(object, keysIn, getSymbolsIn);
+                    }
+                    var getData = !metaMap ? noop : function(func) {
+                        return metaMap.get(func);
+                    };
+                    function getFuncName(func) {
+                        var result = func.name + "", array = realNames[result], length = hasOwnProperty.call(realNames, result) ? array.length : 0;
+                        while (length--) {
+                            var data = array[length], otherFunc = data.func;
+                            if (otherFunc == null || otherFunc == func) {
+                                return data.name;
+                            }
+                        }
+                        return result;
+                    }
+                    function getHolder(func) {
+                        var object = hasOwnProperty.call(lodash, "placeholder") ? lodash : func;
+                        return object.placeholder;
+                    }
+                    function getIteratee() {
+                        var result = lodash.iteratee || iteratee;
+                        result = result === iteratee ? baseIteratee : result;
+                        return arguments.length ? result(arguments[0], arguments[1]) : result;
+                    }
+                    function getMapData(map, key) {
+                        var data = map.__data__;
+                        return isKeyable(key) ? data[typeof key == "string" ? "string" : "hash"] : data.map;
+                    }
+                    function getMatchData(object) {
+                        var result = keys(object), length = result.length;
+                        while (length--) {
+                            var key = result[length], value = object[key];
+                            result[length] = [ key, value, isStrictComparable(value) ];
+                        }
+                        return result;
+                    }
+                    function getNative(object, key) {
+                        var value = getValue(object, key);
+                        return baseIsNative(value) ? value : undefined;
+                    }
+                    function getRawTag(value) {
+                        var isOwn = hasOwnProperty.call(value, symToStringTag), tag = value[symToStringTag];
+                        try {
+                            value[symToStringTag] = undefined;
+                            var unmasked = true;
+                        } catch (e) {}
+                        var result = nativeObjectToString.call(value);
+                        if (unmasked) {
+                            if (isOwn) {
+                                value[symToStringTag] = tag;
+                            } else {
+                                delete value[symToStringTag];
+                            }
+                        }
+                        return result;
+                    }
+                    var getSymbols = !nativeGetSymbols ? stubArray : function(object) {
+                        if (object == null) {
+                            return [];
+                        }
+                        object = Object(object);
+                        return arrayFilter(nativeGetSymbols(object), (function(symbol) {
+                            return propertyIsEnumerable.call(object, symbol);
+                        }));
+                    };
+                    var getSymbolsIn = !nativeGetSymbols ? stubArray : function(object) {
+                        var result = [];
+                        while (object) {
+                            arrayPush(result, getSymbols(object));
+                            object = getPrototype(object);
+                        }
+                        return result;
+                    };
+                    var getTag = baseGetTag;
+                    if (DataView && getTag(new DataView(new ArrayBuffer(1))) != dataViewTag || Map && getTag(new Map) != mapTag || Promise && getTag(Promise.resolve()) != promiseTag || Set && getTag(new Set) != setTag || WeakMap && getTag(new WeakMap) != weakMapTag) {
+                        getTag = function(value) {
+                            var result = baseGetTag(value), Ctor = result == objectTag ? value.constructor : undefined, ctorString = Ctor ? toSource(Ctor) : "";
+                            if (ctorString) {
+                                switch (ctorString) {
+                                  case dataViewCtorString:
+                                    return dataViewTag;
+
+                                  case mapCtorString:
+                                    return mapTag;
+
+                                  case promiseCtorString:
+                                    return promiseTag;
+
+                                  case setCtorString:
+                                    return setTag;
+
+                                  case weakMapCtorString:
+                                    return weakMapTag;
+                                }
+                            }
+                            return result;
+                        };
+                    }
+                    function getView(start, end, transforms) {
+                        var index = -1, length = transforms.length;
+                        while (++index < length) {
+                            var data = transforms[index], size = data.size;
+                            switch (data.type) {
+                              case "drop":
+                                start += size;
+                                break;
+
+                              case "dropRight":
+                                end -= size;
+                                break;
+
+                              case "take":
+                                end = nativeMin(end, start + size);
+                                break;
+
+                              case "takeRight":
+                                start = nativeMax(start, end - size);
+                                break;
+                            }
+                        }
+                        return {
+                            start: start,
+                            end: end
+                        };
+                    }
+                    function getWrapDetails(source) {
+                        var match = source.match(reWrapDetails);
+                        return match ? match[1].split(reSplitDetails) : [];
+                    }
+                    function hasPath(object, path, hasFunc) {
+                        path = castPath(path, object);
+                        var index = -1, length = path.length, result = false;
+                        while (++index < length) {
+                            var key = toKey(path[index]);
+                            if (!(result = object != null && hasFunc(object, key))) {
+                                break;
+                            }
+                            object = object[key];
+                        }
+                        if (result || ++index != length) {
+                            return result;
+                        }
+                        length = object == null ? 0 : object.length;
+                        return !!length && isLength(length) && isIndex(key, length) && (isArray(object) || isArguments(object));
+                    }
+                    function initCloneArray(array) {
+                        var length = array.length, result = new array.constructor(length);
+                        if (length && typeof array[0] == "string" && hasOwnProperty.call(array, "index")) {
+                            result.index = array.index;
+                            result.input = array.input;
+                        }
+                        return result;
+                    }
+                    function initCloneObject(object) {
+                        return typeof object.constructor == "function" && !isPrototype(object) ? baseCreate(getPrototype(object)) : {};
+                    }
+                    function initCloneByTag(object, tag, isDeep) {
+                        var Ctor = object.constructor;
+                        switch (tag) {
+                          case arrayBufferTag:
+                            return cloneArrayBuffer(object);
+
+                          case boolTag:
+                          case dateTag:
+                            return new Ctor(+object);
+
+                          case dataViewTag:
+                            return cloneDataView(object, isDeep);
+
+                          case float32Tag:
+                          case float64Tag:
+                          case int8Tag:
+                          case int16Tag:
+                          case int32Tag:
+                          case uint8Tag:
+                          case uint8ClampedTag:
+                          case uint16Tag:
+                          case uint32Tag:
+                            return cloneTypedArray(object, isDeep);
+
+                          case mapTag:
+                            return new Ctor;
+
+                          case numberTag:
+                          case stringTag:
+                            return new Ctor(object);
+
+                          case regexpTag:
+                            return cloneRegExp(object);
+
+                          case setTag:
+                            return new Ctor;
+
+                          case symbolTag:
+                            return cloneSymbol(object);
+                        }
+                    }
+                    function insertWrapDetails(source, details) {
+                        var length = details.length;
+                        if (!length) {
+                            return source;
+                        }
+                        var lastIndex = length - 1;
+                        details[lastIndex] = (length > 1 ? "& " : "") + details[lastIndex];
+                        details = details.join(length > 2 ? ", " : " ");
+                        return source.replace(reWrapComment, "{\n/* [wrapped with " + details + "] */\n");
+                    }
+                    function isFlattenable(value) {
+                        return isArray(value) || isArguments(value) || !!(spreadableSymbol && value && value[spreadableSymbol]);
+                    }
+                    function isIndex(value, length) {
+                        var type = typeof value;
+                        length = length == null ? MAX_SAFE_INTEGER : length;
+                        return !!length && (type == "number" || type != "symbol" && reIsUint.test(value)) && (value > -1 && value % 1 == 0 && value < length);
+                    }
+                    function isIterateeCall(value, index, object) {
+                        if (!isObject(object)) {
+                            return false;
+                        }
+                        var type = typeof index;
+                        if (type == "number" ? isArrayLike(object) && isIndex(index, object.length) : type == "string" && index in object) {
+                            return eq(object[index], value);
+                        }
+                        return false;
+                    }
+                    function isKey(value, object) {
+                        if (isArray(value)) {
+                            return false;
+                        }
+                        var type = typeof value;
+                        if (type == "number" || type == "symbol" || type == "boolean" || value == null || isSymbol(value)) {
+                            return true;
+                        }
+                        return reIsPlainProp.test(value) || !reIsDeepProp.test(value) || object != null && value in Object(object);
+                    }
+                    function isKeyable(value) {
+                        var type = typeof value;
+                        return type == "string" || type == "number" || type == "symbol" || type == "boolean" ? value !== "__proto__" : value === null;
+                    }
+                    function isLaziable(func) {
+                        var funcName = getFuncName(func), other = lodash[funcName];
+                        if (typeof other != "function" || !(funcName in LazyWrapper.prototype)) {
+                            return false;
+                        }
+                        if (func === other) {
+                            return true;
+                        }
+                        var data = getData(other);
+                        return !!data && func === data[0];
+                    }
+                    function isMasked(func) {
+                        return !!maskSrcKey && maskSrcKey in func;
+                    }
+                    var isMaskable = coreJsData ? isFunction : stubFalse;
+                    function isPrototype(value) {
+                        var Ctor = value && value.constructor, proto = typeof Ctor == "function" && Ctor.prototype || objectProto;
+                        return value === proto;
+                    }
+                    function isStrictComparable(value) {
+                        return value === value && !isObject(value);
+                    }
+                    function matchesStrictComparable(key, srcValue) {
+                        return function(object) {
+                            if (object == null) {
+                                return false;
+                            }
+                            return object[key] === srcValue && (srcValue !== undefined || key in Object(object));
+                        };
+                    }
+                    function memoizeCapped(func) {
+                        var result = memoize(func, (function(key) {
+                            if (cache.size === MAX_MEMOIZE_SIZE) {
+                                cache.clear();
+                            }
+                            return key;
+                        }));
+                        var cache = result.cache;
+                        return result;
+                    }
+                    function mergeData(data, source) {
+                        var bitmask = data[1], srcBitmask = source[1], newBitmask = bitmask | srcBitmask, isCommon = newBitmask < (WRAP_BIND_FLAG | WRAP_BIND_KEY_FLAG | WRAP_ARY_FLAG);
+                        var isCombo = srcBitmask == WRAP_ARY_FLAG && bitmask == WRAP_CURRY_FLAG || srcBitmask == WRAP_ARY_FLAG && bitmask == WRAP_REARG_FLAG && data[7].length <= source[8] || srcBitmask == (WRAP_ARY_FLAG | WRAP_REARG_FLAG) && source[7].length <= source[8] && bitmask == WRAP_CURRY_FLAG;
+                        if (!(isCommon || isCombo)) {
+                            return data;
+                        }
+                        if (srcBitmask & WRAP_BIND_FLAG) {
+                            data[2] = source[2];
+                            newBitmask |= bitmask & WRAP_BIND_FLAG ? 0 : WRAP_CURRY_BOUND_FLAG;
+                        }
+                        var value = source[3];
+                        if (value) {
+                            var partials = data[3];
+                            data[3] = partials ? composeArgs(partials, value, source[4]) : value;
+                            data[4] = partials ? replaceHolders(data[3], PLACEHOLDER) : source[4];
+                        }
+                        value = source[5];
+                        if (value) {
+                            partials = data[5];
+                            data[5] = partials ? composeArgsRight(partials, value, source[6]) : value;
+                            data[6] = partials ? replaceHolders(data[5], PLACEHOLDER) : source[6];
+                        }
+                        value = source[7];
+                        if (value) {
+                            data[7] = value;
+                        }
+                        if (srcBitmask & WRAP_ARY_FLAG) {
+                            data[8] = data[8] == null ? source[8] : nativeMin(data[8], source[8]);
+                        }
+                        if (data[9] == null) {
+                            data[9] = source[9];
+                        }
+                        data[0] = source[0];
+                        data[1] = newBitmask;
+                        return data;
+                    }
+                    function nativeKeysIn(object) {
+                        var result = [];
+                        if (object != null) {
+                            for (var key in Object(object)) {
+                                result.push(key);
+                            }
+                        }
+                        return result;
+                    }
+                    function objectToString(value) {
+                        return nativeObjectToString.call(value);
+                    }
+                    function overRest(func, start, transform) {
+                        start = nativeMax(start === undefined ? func.length - 1 : start, 0);
+                        return function() {
+                            var args = arguments, index = -1, length = nativeMax(args.length - start, 0), array = Array(length);
+                            while (++index < length) {
+                                array[index] = args[start + index];
+                            }
+                            index = -1;
+                            var otherArgs = Array(start + 1);
+                            while (++index < start) {
+                                otherArgs[index] = args[index];
+                            }
+                            otherArgs[start] = transform(array);
+                            return apply(func, this, otherArgs);
+                        };
+                    }
+                    function parent(object, path) {
+                        return path.length < 2 ? object : baseGet(object, baseSlice(path, 0, -1));
+                    }
+                    function reorder(array, indexes) {
+                        var arrLength = array.length, length = nativeMin(indexes.length, arrLength), oldArray = copyArray(array);
+                        while (length--) {
+                            var index = indexes[length];
+                            array[length] = isIndex(index, arrLength) ? oldArray[index] : undefined;
+                        }
+                        return array;
+                    }
+                    function safeGet(object, key) {
+                        if (key === "constructor" && typeof object[key] === "function") {
+                            return;
+                        }
+                        if (key == "__proto__") {
+                            return;
+                        }
+                        return object[key];
+                    }
+                    var setData = shortOut(baseSetData);
+                    var setTimeout = ctxSetTimeout || function(func, wait) {
+                        return root.setTimeout(func, wait);
+                    };
+                    var setToString = shortOut(baseSetToString);
+                    function setWrapToString(wrapper, reference, bitmask) {
+                        var source = reference + "";
+                        return setToString(wrapper, insertWrapDetails(source, updateWrapDetails(getWrapDetails(source), bitmask)));
+                    }
+                    function shortOut(func) {
+                        var count = 0, lastCalled = 0;
+                        return function() {
+                            var stamp = nativeNow(), remaining = HOT_SPAN - (stamp - lastCalled);
+                            lastCalled = stamp;
+                            if (remaining > 0) {
+                                if (++count >= HOT_COUNT) {
+                                    return arguments[0];
+                                }
+                            } else {
+                                count = 0;
+                            }
+                            return func.apply(undefined, arguments);
+                        };
+                    }
+                    function shuffleSelf(array, size) {
+                        var index = -1, length = array.length, lastIndex = length - 1;
+                        size = size === undefined ? length : size;
+                        while (++index < size) {
+                            var rand = baseRandom(index, lastIndex), value = array[rand];
+                            array[rand] = array[index];
+                            array[index] = value;
+                        }
+                        array.length = size;
+                        return array;
+                    }
+                    var stringToPath = memoizeCapped((function(string) {
+                        var result = [];
+                        if (string.charCodeAt(0) === 46) {
+                            result.push("");
+                        }
+                        string.replace(rePropName, (function(match, number, quote, subString) {
+                            result.push(quote ? subString.replace(reEscapeChar, "$1") : number || match);
+                        }));
+                        return result;
+                    }));
+                    function toKey(value) {
+                        if (typeof value == "string" || isSymbol(value)) {
+                            return value;
+                        }
+                        var result = value + "";
+                        return result == "0" && 1 / value == -INFINITY ? "-0" : result;
+                    }
+                    function toSource(func) {
+                        if (func != null) {
+                            try {
+                                return funcToString.call(func);
+                            } catch (e) {}
+                            try {
+                                return func + "";
+                            } catch (e) {}
+                        }
+                        return "";
+                    }
+                    function updateWrapDetails(details, bitmask) {
+                        arrayEach(wrapFlags, (function(pair) {
+                            var value = "_." + pair[0];
+                            if (bitmask & pair[1] && !arrayIncludes(details, value)) {
+                                details.push(value);
+                            }
+                        }));
+                        return details.sort();
+                    }
+                    function wrapperClone(wrapper) {
+                        if (wrapper instanceof LazyWrapper) {
+                            return wrapper.clone();
+                        }
+                        var result = new LodashWrapper(wrapper.__wrapped__, wrapper.__chain__);
+                        result.__actions__ = copyArray(wrapper.__actions__);
+                        result.__index__ = wrapper.__index__;
+                        result.__values__ = wrapper.__values__;
+                        return result;
+                    }
+                    function chunk(array, size, guard) {
+                        if (guard ? isIterateeCall(array, size, guard) : size === undefined) {
+                            size = 1;
+                        } else {
+                            size = nativeMax(toInteger(size), 0);
+                        }
+                        var length = array == null ? 0 : array.length;
+                        if (!length || size < 1) {
+                            return [];
+                        }
+                        var index = 0, resIndex = 0, result = Array(nativeCeil(length / size));
+                        while (index < length) {
+                            result[resIndex++] = baseSlice(array, index, index += size);
+                        }
+                        return result;
+                    }
+                    function compact(array) {
+                        var index = -1, length = array == null ? 0 : array.length, resIndex = 0, result = [];
+                        while (++index < length) {
+                            var value = array[index];
+                            if (value) {
+                                result[resIndex++] = value;
+                            }
+                        }
+                        return result;
+                    }
+                    function concat() {
+                        var length = arguments.length;
+                        if (!length) {
+                            return [];
+                        }
+                        var args = Array(length - 1), array = arguments[0], index = length;
+                        while (index--) {
+                            args[index - 1] = arguments[index];
+                        }
+                        return arrayPush(isArray(array) ? copyArray(array) : [ array ], baseFlatten(args, 1));
+                    }
+                    var difference = baseRest((function(array, values) {
+                        return isArrayLikeObject(array) ? baseDifference(array, baseFlatten(values, 1, isArrayLikeObject, true)) : [];
+                    }));
+                    var differenceBy = baseRest((function(array, values) {
+                        var iteratee = last(values);
+                        if (isArrayLikeObject(iteratee)) {
+                            iteratee = undefined;
+                        }
+                        return isArrayLikeObject(array) ? baseDifference(array, baseFlatten(values, 1, isArrayLikeObject, true), getIteratee(iteratee, 2)) : [];
+                    }));
+                    var differenceWith = baseRest((function(array, values) {
+                        var comparator = last(values);
+                        if (isArrayLikeObject(comparator)) {
+                            comparator = undefined;
+                        }
+                        return isArrayLikeObject(array) ? baseDifference(array, baseFlatten(values, 1, isArrayLikeObject, true), undefined, comparator) : [];
+                    }));
+                    function drop(array, n, guard) {
+                        var length = array == null ? 0 : array.length;
+                        if (!length) {
+                            return [];
+                        }
+                        n = guard || n === undefined ? 1 : toInteger(n);
+                        return baseSlice(array, n < 0 ? 0 : n, length);
+                    }
+                    function dropRight(array, n, guard) {
+                        var length = array == null ? 0 : array.length;
+                        if (!length) {
+                            return [];
+                        }
+                        n = guard || n === undefined ? 1 : toInteger(n);
+                        n = length - n;
+                        return baseSlice(array, 0, n < 0 ? 0 : n);
+                    }
+                    function dropRightWhile(array, predicate) {
+                        return array && array.length ? baseWhile(array, getIteratee(predicate, 3), true, true) : [];
+                    }
+                    function dropWhile(array, predicate) {
+                        return array && array.length ? baseWhile(array, getIteratee(predicate, 3), true) : [];
+                    }
+                    function fill(array, value, start, end) {
+                        var length = array == null ? 0 : array.length;
+                        if (!length) {
+                            return [];
+                        }
+                        if (start && typeof start != "number" && isIterateeCall(array, value, start)) {
+                            start = 0;
+                            end = length;
+                        }
+                        return baseFill(array, value, start, end);
+                    }
+                    function findIndex(array, predicate, fromIndex) {
+                        var length = array == null ? 0 : array.length;
+                        if (!length) {
+                            return -1;
+                        }
+                        var index = fromIndex == null ? 0 : toInteger(fromIndex);
+                        if (index < 0) {
+                            index = nativeMax(length + index, 0);
+                        }
+                        return baseFindIndex(array, getIteratee(predicate, 3), index);
+                    }
+                    function findLastIndex(array, predicate, fromIndex) {
+                        var length = array == null ? 0 : array.length;
+                        if (!length) {
+                            return -1;
+                        }
+                        var index = length - 1;
+                        if (fromIndex !== undefined) {
+                            index = toInteger(fromIndex);
+                            index = fromIndex < 0 ? nativeMax(length + index, 0) : nativeMin(index, length - 1);
+                        }
+                        return baseFindIndex(array, getIteratee(predicate, 3), index, true);
+                    }
+                    function flatten(array) {
+                        var length = array == null ? 0 : array.length;
+                        return length ? baseFlatten(array, 1) : [];
+                    }
+                    function flattenDeep(array) {
+                        var length = array == null ? 0 : array.length;
+                        return length ? baseFlatten(array, INFINITY) : [];
+                    }
+                    function flattenDepth(array, depth) {
+                        var length = array == null ? 0 : array.length;
+                        if (!length) {
+                            return [];
+                        }
+                        depth = depth === undefined ? 1 : toInteger(depth);
+                        return baseFlatten(array, depth);
+                    }
+                    function fromPairs(pairs) {
+                        var index = -1, length = pairs == null ? 0 : pairs.length, result = {};
+                        while (++index < length) {
+                            var pair = pairs[index];
+                            result[pair[0]] = pair[1];
+                        }
+                        return result;
+                    }
+                    function head(array) {
+                        return array && array.length ? array[0] : undefined;
+                    }
+                    function indexOf(array, value, fromIndex) {
+                        var length = array == null ? 0 : array.length;
+                        if (!length) {
+                            return -1;
+                        }
+                        var index = fromIndex == null ? 0 : toInteger(fromIndex);
+                        if (index < 0) {
+                            index = nativeMax(length + index, 0);
+                        }
+                        return baseIndexOf(array, value, index);
+                    }
+                    function initial(array) {
+                        var length = array == null ? 0 : array.length;
+                        return length ? baseSlice(array, 0, -1) : [];
+                    }
+                    var intersection = baseRest((function(arrays) {
+                        var mapped = arrayMap(arrays, castArrayLikeObject);
+                        return mapped.length && mapped[0] === arrays[0] ? baseIntersection(mapped) : [];
+                    }));
+                    var intersectionBy = baseRest((function(arrays) {
+                        var iteratee = last(arrays), mapped = arrayMap(arrays, castArrayLikeObject);
+                        if (iteratee === last(mapped)) {
+                            iteratee = undefined;
+                        } else {
+                            mapped.pop();
+                        }
+                        return mapped.length && mapped[0] === arrays[0] ? baseIntersection(mapped, getIteratee(iteratee, 2)) : [];
+                    }));
+                    var intersectionWith = baseRest((function(arrays) {
+                        var comparator = last(arrays), mapped = arrayMap(arrays, castArrayLikeObject);
+                        comparator = typeof comparator == "function" ? comparator : undefined;
+                        if (comparator) {
+                            mapped.pop();
+                        }
+                        return mapped.length && mapped[0] === arrays[0] ? baseIntersection(mapped, undefined, comparator) : [];
+                    }));
+                    function join(array, separator) {
+                        return array == null ? "" : nativeJoin.call(array, separator);
+                    }
+                    function last(array) {
+                        var length = array == null ? 0 : array.length;
+                        return length ? array[length - 1] : undefined;
+                    }
+                    function lastIndexOf(array, value, fromIndex) {
+                        var length = array == null ? 0 : array.length;
+                        if (!length) {
+                            return -1;
+                        }
+                        var index = length;
+                        if (fromIndex !== undefined) {
+                            index = toInteger(fromIndex);
+                            index = index < 0 ? nativeMax(length + index, 0) : nativeMin(index, length - 1);
+                        }
+                        return value === value ? strictLastIndexOf(array, value, index) : baseFindIndex(array, baseIsNaN, index, true);
+                    }
+                    function nth(array, n) {
+                        return array && array.length ? baseNth(array, toInteger(n)) : undefined;
+                    }
+                    var pull = baseRest(pullAll);
+                    function pullAll(array, values) {
+                        return array && array.length && values && values.length ? basePullAll(array, values) : array;
+                    }
+                    function pullAllBy(array, values, iteratee) {
+                        return array && array.length && values && values.length ? basePullAll(array, values, getIteratee(iteratee, 2)) : array;
+                    }
+                    function pullAllWith(array, values, comparator) {
+                        return array && array.length && values && values.length ? basePullAll(array, values, undefined, comparator) : array;
+                    }
+                    var pullAt = flatRest((function(array, indexes) {
+                        var length = array == null ? 0 : array.length, result = baseAt(array, indexes);
+                        basePullAt(array, arrayMap(indexes, (function(index) {
+                            return isIndex(index, length) ? +index : index;
+                        })).sort(compareAscending));
+                        return result;
+                    }));
+                    function remove(array, predicate) {
+                        var result = [];
+                        if (!(array && array.length)) {
+                            return result;
+                        }
+                        var index = -1, indexes = [], length = array.length;
+                        predicate = getIteratee(predicate, 3);
+                        while (++index < length) {
+                            var value = array[index];
+                            if (predicate(value, index, array)) {
+                                result.push(value);
+                                indexes.push(index);
+                            }
+                        }
+                        basePullAt(array, indexes);
+                        return result;
+                    }
+                    function reverse(array) {
+                        return array == null ? array : nativeReverse.call(array);
+                    }
+                    function slice(array, start, end) {
+                        var length = array == null ? 0 : array.length;
+                        if (!length) {
+                            return [];
+                        }
+                        if (end && typeof end != "number" && isIterateeCall(array, start, end)) {
+                            start = 0;
+                            end = length;
+                        } else {
+                            start = start == null ? 0 : toInteger(start);
+                            end = end === undefined ? length : toInteger(end);
+                        }
+                        return baseSlice(array, start, end);
+                    }
+                    function sortedIndex(array, value) {
+                        return baseSortedIndex(array, value);
+                    }
+                    function sortedIndexBy(array, value, iteratee) {
+                        return baseSortedIndexBy(array, value, getIteratee(iteratee, 2));
+                    }
+                    function sortedIndexOf(array, value) {
+                        var length = array == null ? 0 : array.length;
+                        if (length) {
+                            var index = baseSortedIndex(array, value);
+                            if (index < length && eq(array[index], value)) {
+                                return index;
+                            }
+                        }
+                        return -1;
+                    }
+                    function sortedLastIndex(array, value) {
+                        return baseSortedIndex(array, value, true);
+                    }
+                    function sortedLastIndexBy(array, value, iteratee) {
+                        return baseSortedIndexBy(array, value, getIteratee(iteratee, 2), true);
+                    }
+                    function sortedLastIndexOf(array, value) {
+                        var length = array == null ? 0 : array.length;
+                        if (length) {
+                            var index = baseSortedIndex(array, value, true) - 1;
+                            if (eq(array[index], value)) {
+                                return index;
+                            }
+                        }
+                        return -1;
+                    }
+                    function sortedUniq(array) {
+                        return array && array.length ? baseSortedUniq(array) : [];
+                    }
+                    function sortedUniqBy(array, iteratee) {
+                        return array && array.length ? baseSortedUniq(array, getIteratee(iteratee, 2)) : [];
+                    }
+                    function tail(array) {
+                        var length = array == null ? 0 : array.length;
+                        return length ? baseSlice(array, 1, length) : [];
+                    }
+                    function take(array, n, guard) {
+                        if (!(array && array.length)) {
+                            return [];
+                        }
+                        n = guard || n === undefined ? 1 : toInteger(n);
+                        return baseSlice(array, 0, n < 0 ? 0 : n);
+                    }
+                    function takeRight(array, n, guard) {
+                        var length = array == null ? 0 : array.length;
+                        if (!length) {
+                            return [];
+                        }
+                        n = guard || n === undefined ? 1 : toInteger(n);
+                        n = length - n;
+                        return baseSlice(array, n < 0 ? 0 : n, length);
+                    }
+                    function takeRightWhile(array, predicate) {
+                        return array && array.length ? baseWhile(array, getIteratee(predicate, 3), false, true) : [];
+                    }
+                    function takeWhile(array, predicate) {
+                        return array && array.length ? baseWhile(array, getIteratee(predicate, 3)) : [];
+                    }
+                    var union = baseRest((function(arrays) {
+                        return baseUniq(baseFlatten(arrays, 1, isArrayLikeObject, true));
+                    }));
+                    var unionBy = baseRest((function(arrays) {
+                        var iteratee = last(arrays);
+                        if (isArrayLikeObject(iteratee)) {
+                            iteratee = undefined;
+                        }
+                        return baseUniq(baseFlatten(arrays, 1, isArrayLikeObject, true), getIteratee(iteratee, 2));
+                    }));
+                    var unionWith = baseRest((function(arrays) {
+                        var comparator = last(arrays);
+                        comparator = typeof comparator == "function" ? comparator : undefined;
+                        return baseUniq(baseFlatten(arrays, 1, isArrayLikeObject, true), undefined, comparator);
+                    }));
+                    function uniq(array) {
+                        return array && array.length ? baseUniq(array) : [];
+                    }
+                    function uniqBy(array, iteratee) {
+                        return array && array.length ? baseUniq(array, getIteratee(iteratee, 2)) : [];
+                    }
+                    function uniqWith(array, comparator) {
+                        comparator = typeof comparator == "function" ? comparator : undefined;
+                        return array && array.length ? baseUniq(array, undefined, comparator) : [];
+                    }
+                    function unzip(array) {
+                        if (!(array && array.length)) {
+                            return [];
+                        }
+                        var length = 0;
+                        array = arrayFilter(array, (function(group) {
+                            if (isArrayLikeObject(group)) {
+                                length = nativeMax(group.length, length);
+                                return true;
+                            }
+                        }));
+                        return baseTimes(length, (function(index) {
+                            return arrayMap(array, baseProperty(index));
+                        }));
+                    }
+                    function unzipWith(array, iteratee) {
+                        if (!(array && array.length)) {
+                            return [];
+                        }
+                        var result = unzip(array);
+                        if (iteratee == null) {
+                            return result;
+                        }
+                        return arrayMap(result, (function(group) {
+                            return apply(iteratee, undefined, group);
+                        }));
+                    }
+                    var without = baseRest((function(array, values) {
+                        return isArrayLikeObject(array) ? baseDifference(array, values) : [];
+                    }));
+                    var xor = baseRest((function(arrays) {
+                        return baseXor(arrayFilter(arrays, isArrayLikeObject));
+                    }));
+                    var xorBy = baseRest((function(arrays) {
+                        var iteratee = last(arrays);
+                        if (isArrayLikeObject(iteratee)) {
+                            iteratee = undefined;
+                        }
+                        return baseXor(arrayFilter(arrays, isArrayLikeObject), getIteratee(iteratee, 2));
+                    }));
+                    var xorWith = baseRest((function(arrays) {
+                        var comparator = last(arrays);
+                        comparator = typeof comparator == "function" ? comparator : undefined;
+                        return baseXor(arrayFilter(arrays, isArrayLikeObject), undefined, comparator);
+                    }));
+                    var zip = baseRest(unzip);
+                    function zipObject(props, values) {
+                        return baseZipObject(props || [], values || [], assignValue);
+                    }
+                    function zipObjectDeep(props, values) {
+                        return baseZipObject(props || [], values || [], baseSet);
+                    }
+                    var zipWith = baseRest((function(arrays) {
+                        var length = arrays.length, iteratee = length > 1 ? arrays[length - 1] : undefined;
+                        iteratee = typeof iteratee == "function" ? (arrays.pop(), iteratee) : undefined;
+                        return unzipWith(arrays, iteratee);
+                    }));
+                    function chain(value) {
+                        var result = lodash(value);
+                        result.__chain__ = true;
+                        return result;
+                    }
+                    function tap(value, interceptor) {
+                        interceptor(value);
+                        return value;
+                    }
+                    function thru(value, interceptor) {
+                        return interceptor(value);
+                    }
+                    var wrapperAt = flatRest((function(paths) {
+                        var length = paths.length, start = length ? paths[0] : 0, value = this.__wrapped__, interceptor = function(object) {
+                            return baseAt(object, paths);
+                        };
+                        if (length > 1 || this.__actions__.length || !(value instanceof LazyWrapper) || !isIndex(start)) {
+                            return this.thru(interceptor);
+                        }
+                        value = value.slice(start, +start + (length ? 1 : 0));
+                        value.__actions__.push({
+                            func: thru,
+                            args: [ interceptor ],
+                            thisArg: undefined
+                        });
+                        return new LodashWrapper(value, this.__chain__).thru((function(array) {
+                            if (length && !array.length) {
+                                array.push(undefined);
+                            }
+                            return array;
+                        }));
+                    }));
+                    function wrapperChain() {
+                        return chain(this);
+                    }
+                    function wrapperCommit() {
+                        return new LodashWrapper(this.value(), this.__chain__);
+                    }
+                    function wrapperNext() {
+                        if (this.__values__ === undefined) {
+                            this.__values__ = toArray(this.value());
+                        }
+                        var done = this.__index__ >= this.__values__.length, value = done ? undefined : this.__values__[this.__index__++];
+                        return {
+                            done: done,
+                            value: value
+                        };
+                    }
+                    function wrapperToIterator() {
+                        return this;
+                    }
+                    function wrapperPlant(value) {
+                        var result, parent = this;
+                        while (parent instanceof baseLodash) {
+                            var clone = wrapperClone(parent);
+                            clone.__index__ = 0;
+                            clone.__values__ = undefined;
+                            if (result) {
+                                previous.__wrapped__ = clone;
+                            } else {
+                                result = clone;
+                            }
+                            var previous = clone;
+                            parent = parent.__wrapped__;
+                        }
+                        previous.__wrapped__ = value;
+                        return result;
+                    }
+                    function wrapperReverse() {
+                        var value = this.__wrapped__;
+                        if (value instanceof LazyWrapper) {
+                            var wrapped = value;
+                            if (this.__actions__.length) {
+                                wrapped = new LazyWrapper(this);
+                            }
+                            wrapped = wrapped.reverse();
+                            wrapped.__actions__.push({
+                                func: thru,
+                                args: [ reverse ],
+                                thisArg: undefined
+                            });
+                            return new LodashWrapper(wrapped, this.__chain__);
+                        }
+                        return this.thru(reverse);
+                    }
+                    function wrapperValue() {
+                        return baseWrapperValue(this.__wrapped__, this.__actions__);
+                    }
+                    var countBy = createAggregator((function(result, value, key) {
+                        if (hasOwnProperty.call(result, key)) {
+                            ++result[key];
+                        } else {
+                            baseAssignValue(result, key, 1);
+                        }
+                    }));
+                    function every(collection, predicate, guard) {
+                        var func = isArray(collection) ? arrayEvery : baseEvery;
+                        if (guard && isIterateeCall(collection, predicate, guard)) {
+                            predicate = undefined;
+                        }
+                        return func(collection, getIteratee(predicate, 3));
+                    }
+                    function filter(collection, predicate) {
+                        var func = isArray(collection) ? arrayFilter : baseFilter;
+                        return func(collection, getIteratee(predicate, 3));
+                    }
+                    var find = createFind(findIndex);
+                    var findLast = createFind(findLastIndex);
+                    function flatMap(collection, iteratee) {
+                        return baseFlatten(map(collection, iteratee), 1);
+                    }
+                    function flatMapDeep(collection, iteratee) {
+                        return baseFlatten(map(collection, iteratee), INFINITY);
+                    }
+                    function flatMapDepth(collection, iteratee, depth) {
+                        depth = depth === undefined ? 1 : toInteger(depth);
+                        return baseFlatten(map(collection, iteratee), depth);
+                    }
+                    function forEach(collection, iteratee) {
+                        var func = isArray(collection) ? arrayEach : baseEach;
+                        return func(collection, getIteratee(iteratee, 3));
+                    }
+                    function forEachRight(collection, iteratee) {
+                        var func = isArray(collection) ? arrayEachRight : baseEachRight;
+                        return func(collection, getIteratee(iteratee, 3));
+                    }
+                    var groupBy = createAggregator((function(result, value, key) {
+                        if (hasOwnProperty.call(result, key)) {
+                            result[key].push(value);
+                        } else {
+                            baseAssignValue(result, key, [ value ]);
+                        }
+                    }));
+                    function includes(collection, value, fromIndex, guard) {
+                        collection = isArrayLike(collection) ? collection : values(collection);
+                        fromIndex = fromIndex && !guard ? toInteger(fromIndex) : 0;
+                        var length = collection.length;
+                        if (fromIndex < 0) {
+                            fromIndex = nativeMax(length + fromIndex, 0);
+                        }
+                        return isString(collection) ? fromIndex <= length && collection.indexOf(value, fromIndex) > -1 : !!length && baseIndexOf(collection, value, fromIndex) > -1;
+                    }
+                    var invokeMap = baseRest((function(collection, path, args) {
+                        var index = -1, isFunc = typeof path == "function", result = isArrayLike(collection) ? Array(collection.length) : [];
+                        baseEach(collection, (function(value) {
+                            result[++index] = isFunc ? apply(path, value, args) : baseInvoke(value, path, args);
+                        }));
+                        return result;
+                    }));
+                    var keyBy = createAggregator((function(result, value, key) {
+                        baseAssignValue(result, key, value);
+                    }));
+                    function map(collection, iteratee) {
+                        var func = isArray(collection) ? arrayMap : baseMap;
+                        return func(collection, getIteratee(iteratee, 3));
+                    }
+                    function orderBy(collection, iteratees, orders, guard) {
+                        if (collection == null) {
+                            return [];
+                        }
+                        if (!isArray(iteratees)) {
+                            iteratees = iteratees == null ? [] : [ iteratees ];
+                        }
+                        orders = guard ? undefined : orders;
+                        if (!isArray(orders)) {
+                            orders = orders == null ? [] : [ orders ];
+                        }
+                        return baseOrderBy(collection, iteratees, orders);
+                    }
+                    var partition = createAggregator((function(result, value, key) {
+                        result[key ? 0 : 1].push(value);
+                    }), (function() {
+                        return [ [], [] ];
+                    }));
+                    function reduce(collection, iteratee, accumulator) {
+                        var func = isArray(collection) ? arrayReduce : baseReduce, initAccum = arguments.length < 3;
+                        return func(collection, getIteratee(iteratee, 4), accumulator, initAccum, baseEach);
+                    }
+                    function reduceRight(collection, iteratee, accumulator) {
+                        var func = isArray(collection) ? arrayReduceRight : baseReduce, initAccum = arguments.length < 3;
+                        return func(collection, getIteratee(iteratee, 4), accumulator, initAccum, baseEachRight);
+                    }
+                    function reject(collection, predicate) {
+                        var func = isArray(collection) ? arrayFilter : baseFilter;
+                        return func(collection, negate(getIteratee(predicate, 3)));
+                    }
+                    function sample(collection) {
+                        var func = isArray(collection) ? arraySample : baseSample;
+                        return func(collection);
+                    }
+                    function sampleSize(collection, n, guard) {
+                        if (guard ? isIterateeCall(collection, n, guard) : n === undefined) {
+                            n = 1;
+                        } else {
+                            n = toInteger(n);
+                        }
+                        var func = isArray(collection) ? arraySampleSize : baseSampleSize;
+                        return func(collection, n);
+                    }
+                    function shuffle(collection) {
+                        var func = isArray(collection) ? arrayShuffle : baseShuffle;
+                        return func(collection);
+                    }
+                    function size(collection) {
+                        if (collection == null) {
+                            return 0;
+                        }
+                        if (isArrayLike(collection)) {
+                            return isString(collection) ? stringSize(collection) : collection.length;
+                        }
+                        var tag = getTag(collection);
+                        if (tag == mapTag || tag == setTag) {
+                            return collection.size;
+                        }
+                        return baseKeys(collection).length;
+                    }
+                    function some(collection, predicate, guard) {
+                        var func = isArray(collection) ? arraySome : baseSome;
+                        if (guard && isIterateeCall(collection, predicate, guard)) {
+                            predicate = undefined;
+                        }
+                        return func(collection, getIteratee(predicate, 3));
+                    }
+                    var sortBy = baseRest((function(collection, iteratees) {
+                        if (collection == null) {
+                            return [];
+                        }
+                        var length = iteratees.length;
+                        if (length > 1 && isIterateeCall(collection, iteratees[0], iteratees[1])) {
+                            iteratees = [];
+                        } else if (length > 2 && isIterateeCall(iteratees[0], iteratees[1], iteratees[2])) {
+                            iteratees = [ iteratees[0] ];
+                        }
+                        return baseOrderBy(collection, baseFlatten(iteratees, 1), []);
+                    }));
+                    var now = ctxNow || function() {
+                        return root.Date.now();
+                    };
+                    function after(n, func) {
+                        if (typeof func != "function") {
+                            throw new TypeError(FUNC_ERROR_TEXT);
+                        }
+                        n = toInteger(n);
+                        return function() {
+                            if (--n < 1) {
+                                return func.apply(this, arguments);
+                            }
+                        };
+                    }
+                    function ary(func, n, guard) {
+                        n = guard ? undefined : n;
+                        n = func && n == null ? func.length : n;
+                        return createWrap(func, WRAP_ARY_FLAG, undefined, undefined, undefined, undefined, n);
+                    }
+                    function before(n, func) {
+                        var result;
+                        if (typeof func != "function") {
+                            throw new TypeError(FUNC_ERROR_TEXT);
+                        }
+                        n = toInteger(n);
+                        return function() {
+                            if (--n > 0) {
+                                result = func.apply(this, arguments);
+                            }
+                            if (n <= 1) {
+                                func = undefined;
+                            }
+                            return result;
+                        };
+                    }
+                    var bind = baseRest((function(func, thisArg, partials) {
+                        var bitmask = WRAP_BIND_FLAG;
+                        if (partials.length) {
+                            var holders = replaceHolders(partials, getHolder(bind));
+                            bitmask |= WRAP_PARTIAL_FLAG;
+                        }
+                        return createWrap(func, bitmask, thisArg, partials, holders);
+                    }));
+                    var bindKey = baseRest((function(object, key, partials) {
+                        var bitmask = WRAP_BIND_FLAG | WRAP_BIND_KEY_FLAG;
+                        if (partials.length) {
+                            var holders = replaceHolders(partials, getHolder(bindKey));
+                            bitmask |= WRAP_PARTIAL_FLAG;
+                        }
+                        return createWrap(key, bitmask, object, partials, holders);
+                    }));
+                    function curry(func, arity, guard) {
+                        arity = guard ? undefined : arity;
+                        var result = createWrap(func, WRAP_CURRY_FLAG, undefined, undefined, undefined, undefined, undefined, arity);
+                        result.placeholder = curry.placeholder;
+                        return result;
+                    }
+                    function curryRight(func, arity, guard) {
+                        arity = guard ? undefined : arity;
+                        var result = createWrap(func, WRAP_CURRY_RIGHT_FLAG, undefined, undefined, undefined, undefined, undefined, arity);
+                        result.placeholder = curryRight.placeholder;
+                        return result;
+                    }
+                    function debounce(func, wait, options) {
+                        var lastArgs, lastThis, maxWait, result, timerId, lastCallTime, lastInvokeTime = 0, leading = false, maxing = false, trailing = true;
+                        if (typeof func != "function") {
+                            throw new TypeError(FUNC_ERROR_TEXT);
+                        }
+                        wait = toNumber(wait) || 0;
+                        if (isObject(options)) {
+                            leading = !!options.leading;
+                            maxing = "maxWait" in options;
+                            maxWait = maxing ? nativeMax(toNumber(options.maxWait) || 0, wait) : maxWait;
+                            trailing = "trailing" in options ? !!options.trailing : trailing;
+                        }
+                        function invokeFunc(time) {
+                            var args = lastArgs, thisArg = lastThis;
+                            lastArgs = lastThis = undefined;
+                            lastInvokeTime = time;
+                            result = func.apply(thisArg, args);
+                            return result;
+                        }
+                        function leadingEdge(time) {
+                            lastInvokeTime = time;
+                            timerId = setTimeout(timerExpired, wait);
+                            return leading ? invokeFunc(time) : result;
+                        }
+                        function remainingWait(time) {
+                            var timeSinceLastCall = time - lastCallTime, timeSinceLastInvoke = time - lastInvokeTime, timeWaiting = wait - timeSinceLastCall;
+                            return maxing ? nativeMin(timeWaiting, maxWait - timeSinceLastInvoke) : timeWaiting;
+                        }
+                        function shouldInvoke(time) {
+                            var timeSinceLastCall = time - lastCallTime, timeSinceLastInvoke = time - lastInvokeTime;
+                            return lastCallTime === undefined || timeSinceLastCall >= wait || timeSinceLastCall < 0 || maxing && timeSinceLastInvoke >= maxWait;
+                        }
+                        function timerExpired() {
+                            var time = now();
+                            if (shouldInvoke(time)) {
+                                return trailingEdge(time);
+                            }
+                            timerId = setTimeout(timerExpired, remainingWait(time));
+                        }
+                        function trailingEdge(time) {
+                            timerId = undefined;
+                            if (trailing && lastArgs) {
+                                return invokeFunc(time);
+                            }
+                            lastArgs = lastThis = undefined;
+                            return result;
+                        }
+                        function cancel() {
+                            if (timerId !== undefined) {
+                                clearTimeout(timerId);
+                            }
+                            lastInvokeTime = 0;
+                            lastArgs = lastCallTime = lastThis = timerId = undefined;
+                        }
+                        function flush() {
+                            return timerId === undefined ? result : trailingEdge(now());
+                        }
+                        function debounced() {
+                            var time = now(), isInvoking = shouldInvoke(time);
+                            lastArgs = arguments;
+                            lastThis = this;
+                            lastCallTime = time;
+                            if (isInvoking) {
+                                if (timerId === undefined) {
+                                    return leadingEdge(lastCallTime);
+                                }
+                                if (maxing) {
+                                    clearTimeout(timerId);
+                                    timerId = setTimeout(timerExpired, wait);
+                                    return invokeFunc(lastCallTime);
+                                }
+                            }
+                            if (timerId === undefined) {
+                                timerId = setTimeout(timerExpired, wait);
+                            }
+                            return result;
+                        }
+                        debounced.cancel = cancel;
+                        debounced.flush = flush;
+                        return debounced;
+                    }
+                    var defer = baseRest((function(func, args) {
+                        return baseDelay(func, 1, args);
+                    }));
+                    var delay = baseRest((function(func, wait, args) {
+                        return baseDelay(func, toNumber(wait) || 0, args);
+                    }));
+                    function flip(func) {
+                        return createWrap(func, WRAP_FLIP_FLAG);
+                    }
+                    function memoize(func, resolver) {
+                        if (typeof func != "function" || resolver != null && typeof resolver != "function") {
+                            throw new TypeError(FUNC_ERROR_TEXT);
+                        }
+                        var memoized = function() {
+                            var args = arguments, key = resolver ? resolver.apply(this, args) : args[0], cache = memoized.cache;
+                            if (cache.has(key)) {
+                                return cache.get(key);
+                            }
+                            var result = func.apply(this, args);
+                            memoized.cache = cache.set(key, result) || cache;
+                            return result;
+                        };
+                        memoized.cache = new (memoize.Cache || MapCache);
+                        return memoized;
+                    }
+                    memoize.Cache = MapCache;
+                    function negate(predicate) {
+                        if (typeof predicate != "function") {
+                            throw new TypeError(FUNC_ERROR_TEXT);
+                        }
+                        return function() {
+                            var args = arguments;
+                            switch (args.length) {
+                              case 0:
+                                return !predicate.call(this);
+
+                              case 1:
+                                return !predicate.call(this, args[0]);
+
+                              case 2:
+                                return !predicate.call(this, args[0], args[1]);
+
+                              case 3:
+                                return !predicate.call(this, args[0], args[1], args[2]);
+                            }
+                            return !predicate.apply(this, args);
+                        };
+                    }
+                    function once(func) {
+                        return before(2, func);
+                    }
+                    var overArgs = castRest((function(func, transforms) {
+                        transforms = transforms.length == 1 && isArray(transforms[0]) ? arrayMap(transforms[0], baseUnary(getIteratee())) : arrayMap(baseFlatten(transforms, 1), baseUnary(getIteratee()));
+                        var funcsLength = transforms.length;
+                        return baseRest((function(args) {
+                            var index = -1, length = nativeMin(args.length, funcsLength);
+                            while (++index < length) {
+                                args[index] = transforms[index].call(this, args[index]);
+                            }
+                            return apply(func, this, args);
+                        }));
+                    }));
+                    var partial = baseRest((function(func, partials) {
+                        var holders = replaceHolders(partials, getHolder(partial));
+                        return createWrap(func, WRAP_PARTIAL_FLAG, undefined, partials, holders);
+                    }));
+                    var partialRight = baseRest((function(func, partials) {
+                        var holders = replaceHolders(partials, getHolder(partialRight));
+                        return createWrap(func, WRAP_PARTIAL_RIGHT_FLAG, undefined, partials, holders);
+                    }));
+                    var rearg = flatRest((function(func, indexes) {
+                        return createWrap(func, WRAP_REARG_FLAG, undefined, undefined, undefined, indexes);
+                    }));
+                    function rest(func, start) {
+                        if (typeof func != "function") {
+                            throw new TypeError(FUNC_ERROR_TEXT);
+                        }
+                        start = start === undefined ? start : toInteger(start);
+                        return baseRest(func, start);
+                    }
+                    function spread(func, start) {
+                        if (typeof func != "function") {
+                            throw new TypeError(FUNC_ERROR_TEXT);
+                        }
+                        start = start == null ? 0 : nativeMax(toInteger(start), 0);
+                        return baseRest((function(args) {
+                            var array = args[start], otherArgs = castSlice(args, 0, start);
+                            if (array) {
+                                arrayPush(otherArgs, array);
+                            }
+                            return apply(func, this, otherArgs);
+                        }));
+                    }
+                    function throttle(func, wait, options) {
+                        var leading = true, trailing = true;
+                        if (typeof func != "function") {
+                            throw new TypeError(FUNC_ERROR_TEXT);
+                        }
+                        if (isObject(options)) {
+                            leading = "leading" in options ? !!options.leading : leading;
+                            trailing = "trailing" in options ? !!options.trailing : trailing;
+                        }
+                        return debounce(func, wait, {
+                            leading: leading,
+                            maxWait: wait,
+                            trailing: trailing
+                        });
+                    }
+                    function unary(func) {
+                        return ary(func, 1);
+                    }
+                    function wrap(value, wrapper) {
+                        return partial(castFunction(wrapper), value);
+                    }
+                    function castArray() {
+                        if (!arguments.length) {
+                            return [];
+                        }
+                        var value = arguments[0];
+                        return isArray(value) ? value : [ value ];
+                    }
+                    function clone(value) {
+                        return baseClone(value, CLONE_SYMBOLS_FLAG);
+                    }
+                    function cloneWith(value, customizer) {
+                        customizer = typeof customizer == "function" ? customizer : undefined;
+                        return baseClone(value, CLONE_SYMBOLS_FLAG, customizer);
+                    }
+                    function cloneDeep(value) {
+                        return baseClone(value, CLONE_DEEP_FLAG | CLONE_SYMBOLS_FLAG);
+                    }
+                    function cloneDeepWith(value, customizer) {
+                        customizer = typeof customizer == "function" ? customizer : undefined;
+                        return baseClone(value, CLONE_DEEP_FLAG | CLONE_SYMBOLS_FLAG, customizer);
+                    }
+                    function conformsTo(object, source) {
+                        return source == null || baseConformsTo(object, source, keys(source));
+                    }
+                    function eq(value, other) {
+                        return value === other || value !== value && other !== other;
+                    }
+                    var gt = createRelationalOperation(baseGt);
+                    var gte = createRelationalOperation((function(value, other) {
+                        return value >= other;
+                    }));
+                    var isArguments = baseIsArguments(function() {
+                        return arguments;
+                    }()) ? baseIsArguments : function(value) {
+                        return isObjectLike(value) && hasOwnProperty.call(value, "callee") && !propertyIsEnumerable.call(value, "callee");
+                    };
+                    var isArray = Array.isArray;
+                    var isArrayBuffer = nodeIsArrayBuffer ? baseUnary(nodeIsArrayBuffer) : baseIsArrayBuffer;
+                    function isArrayLike(value) {
+                        return value != null && isLength(value.length) && !isFunction(value);
+                    }
+                    function isArrayLikeObject(value) {
+                        return isObjectLike(value) && isArrayLike(value);
+                    }
+                    function isBoolean(value) {
+                        return value === true || value === false || isObjectLike(value) && baseGetTag(value) == boolTag;
+                    }
+                    var isBuffer = nativeIsBuffer || stubFalse;
+                    var isDate = nodeIsDate ? baseUnary(nodeIsDate) : baseIsDate;
+                    function isElement(value) {
+                        return isObjectLike(value) && value.nodeType === 1 && !isPlainObject(value);
+                    }
+                    function isEmpty(value) {
+                        if (value == null) {
+                            return true;
+                        }
+                        if (isArrayLike(value) && (isArray(value) || typeof value == "string" || typeof value.splice == "function" || isBuffer(value) || isTypedArray(value) || isArguments(value))) {
+                            return !value.length;
+                        }
+                        var tag = getTag(value);
+                        if (tag == mapTag || tag == setTag) {
+                            return !value.size;
+                        }
+                        if (isPrototype(value)) {
+                            return !baseKeys(value).length;
+                        }
+                        for (var key in value) {
+                            if (hasOwnProperty.call(value, key)) {
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+                    function isEqual(value, other) {
+                        return baseIsEqual(value, other);
+                    }
+                    function isEqualWith(value, other, customizer) {
+                        customizer = typeof customizer == "function" ? customizer : undefined;
+                        var result = customizer ? customizer(value, other) : undefined;
+                        return result === undefined ? baseIsEqual(value, other, undefined, customizer) : !!result;
+                    }
+                    function isError(value) {
+                        if (!isObjectLike(value)) {
+                            return false;
+                        }
+                        var tag = baseGetTag(value);
+                        return tag == errorTag || tag == domExcTag || typeof value.message == "string" && typeof value.name == "string" && !isPlainObject(value);
+                    }
+                    function isFinite(value) {
+                        return typeof value == "number" && nativeIsFinite(value);
+                    }
+                    function isFunction(value) {
+                        if (!isObject(value)) {
+                            return false;
+                        }
+                        var tag = baseGetTag(value);
+                        return tag == funcTag || tag == genTag || tag == asyncTag || tag == proxyTag;
+                    }
+                    function isInteger(value) {
+                        return typeof value == "number" && value == toInteger(value);
+                    }
+                    function isLength(value) {
+                        return typeof value == "number" && value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+                    }
+                    function isObject(value) {
+                        var type = typeof value;
+                        return value != null && (type == "object" || type == "function");
+                    }
+                    function isObjectLike(value) {
+                        return value != null && typeof value == "object";
+                    }
+                    var isMap = nodeIsMap ? baseUnary(nodeIsMap) : baseIsMap;
+                    function isMatch(object, source) {
+                        return object === source || baseIsMatch(object, source, getMatchData(source));
+                    }
+                    function isMatchWith(object, source, customizer) {
+                        customizer = typeof customizer == "function" ? customizer : undefined;
+                        return baseIsMatch(object, source, getMatchData(source), customizer);
+                    }
+                    function isNaN(value) {
+                        return isNumber(value) && value != +value;
+                    }
+                    function isNative(value) {
+                        if (isMaskable(value)) {
+                            throw new Error(CORE_ERROR_TEXT);
+                        }
+                        return baseIsNative(value);
+                    }
+                    function isNull(value) {
+                        return value === null;
+                    }
+                    function isNil(value) {
+                        return value == null;
+                    }
+                    function isNumber(value) {
+                        return typeof value == "number" || isObjectLike(value) && baseGetTag(value) == numberTag;
+                    }
+                    function isPlainObject(value) {
+                        if (!isObjectLike(value) || baseGetTag(value) != objectTag) {
+                            return false;
+                        }
+                        var proto = getPrototype(value);
+                        if (proto === null) {
+                            return true;
+                        }
+                        var Ctor = hasOwnProperty.call(proto, "constructor") && proto.constructor;
+                        return typeof Ctor == "function" && Ctor instanceof Ctor && funcToString.call(Ctor) == objectCtorString;
+                    }
+                    var isRegExp = nodeIsRegExp ? baseUnary(nodeIsRegExp) : baseIsRegExp;
+                    function isSafeInteger(value) {
+                        return isInteger(value) && value >= -MAX_SAFE_INTEGER && value <= MAX_SAFE_INTEGER;
+                    }
+                    var isSet = nodeIsSet ? baseUnary(nodeIsSet) : baseIsSet;
+                    function isString(value) {
+                        return typeof value == "string" || !isArray(value) && isObjectLike(value) && baseGetTag(value) == stringTag;
+                    }
+                    function isSymbol(value) {
+                        return typeof value == "symbol" || isObjectLike(value) && baseGetTag(value) == symbolTag;
+                    }
+                    var isTypedArray = nodeIsTypedArray ? baseUnary(nodeIsTypedArray) : baseIsTypedArray;
+                    function isUndefined(value) {
+                        return value === undefined;
+                    }
+                    function isWeakMap(value) {
+                        return isObjectLike(value) && getTag(value) == weakMapTag;
+                    }
+                    function isWeakSet(value) {
+                        return isObjectLike(value) && baseGetTag(value) == weakSetTag;
+                    }
+                    var lt = createRelationalOperation(baseLt);
+                    var lte = createRelationalOperation((function(value, other) {
+                        return value <= other;
+                    }));
+                    function toArray(value) {
+                        if (!value) {
+                            return [];
+                        }
+                        if (isArrayLike(value)) {
+                            return isString(value) ? stringToArray(value) : copyArray(value);
+                        }
+                        if (symIterator && value[symIterator]) {
+                            return iteratorToArray(value[symIterator]());
+                        }
+                        var tag = getTag(value), func = tag == mapTag ? mapToArray : tag == setTag ? setToArray : values;
+                        return func(value);
+                    }
+                    function toFinite(value) {
+                        if (!value) {
+                            return value === 0 ? value : 0;
+                        }
+                        value = toNumber(value);
+                        if (value === INFINITY || value === -INFINITY) {
+                            var sign = value < 0 ? -1 : 1;
+                            return sign * MAX_INTEGER;
+                        }
+                        return value === value ? value : 0;
+                    }
+                    function toInteger(value) {
+                        var result = toFinite(value), remainder = result % 1;
+                        return result === result ? remainder ? result - remainder : result : 0;
+                    }
+                    function toLength(value) {
+                        return value ? baseClamp(toInteger(value), 0, MAX_ARRAY_LENGTH) : 0;
+                    }
+                    function toNumber(value) {
+                        if (typeof value == "number") {
+                            return value;
+                        }
+                        if (isSymbol(value)) {
+                            return NAN;
+                        }
+                        if (isObject(value)) {
+                            var other = typeof value.valueOf == "function" ? value.valueOf() : value;
+                            value = isObject(other) ? other + "" : other;
+                        }
+                        if (typeof value != "string") {
+                            return value === 0 ? value : +value;
+                        }
+                        value = value.replace(reTrim, "");
+                        var isBinary = reIsBinary.test(value);
+                        return isBinary || reIsOctal.test(value) ? freeParseInt(value.slice(2), isBinary ? 2 : 8) : reIsBadHex.test(value) ? NAN : +value;
+                    }
+                    function toPlainObject(value) {
+                        return copyObject(value, keysIn(value));
+                    }
+                    function toSafeInteger(value) {
+                        return value ? baseClamp(toInteger(value), -MAX_SAFE_INTEGER, MAX_SAFE_INTEGER) : value === 0 ? value : 0;
+                    }
+                    function toString(value) {
+                        return value == null ? "" : baseToString(value);
+                    }
+                    var assign = createAssigner((function(object, source) {
+                        if (isPrototype(source) || isArrayLike(source)) {
+                            copyObject(source, keys(source), object);
+                            return;
+                        }
+                        for (var key in source) {
+                            if (hasOwnProperty.call(source, key)) {
+                                assignValue(object, key, source[key]);
+                            }
+                        }
+                    }));
+                    var assignIn = createAssigner((function(object, source) {
+                        copyObject(source, keysIn(source), object);
+                    }));
+                    var assignInWith = createAssigner((function(object, source, srcIndex, customizer) {
+                        copyObject(source, keysIn(source), object, customizer);
+                    }));
+                    var assignWith = createAssigner((function(object, source, srcIndex, customizer) {
+                        copyObject(source, keys(source), object, customizer);
+                    }));
+                    var at = flatRest(baseAt);
+                    function create(prototype, properties) {
+                        var result = baseCreate(prototype);
+                        return properties == null ? result : baseAssign(result, properties);
+                    }
+                    var defaults = baseRest((function(object, sources) {
+                        object = Object(object);
+                        var index = -1;
+                        var length = sources.length;
+                        var guard = length > 2 ? sources[2] : undefined;
+                        if (guard && isIterateeCall(sources[0], sources[1], guard)) {
+                            length = 1;
+                        }
+                        while (++index < length) {
+                            var source = sources[index];
+                            var props = keysIn(source);
+                            var propsIndex = -1;
+                            var propsLength = props.length;
+                            while (++propsIndex < propsLength) {
+                                var key = props[propsIndex];
+                                var value = object[key];
+                                if (value === undefined || eq(value, objectProto[key]) && !hasOwnProperty.call(object, key)) {
+                                    object[key] = source[key];
+                                }
+                            }
+                        }
+                        return object;
+                    }));
+                    var defaultsDeep = baseRest((function(args) {
+                        args.push(undefined, customDefaultsMerge);
+                        return apply(mergeWith, undefined, args);
+                    }));
+                    function findKey(object, predicate) {
+                        return baseFindKey(object, getIteratee(predicate, 3), baseForOwn);
+                    }
+                    function findLastKey(object, predicate) {
+                        return baseFindKey(object, getIteratee(predicate, 3), baseForOwnRight);
+                    }
+                    function forIn(object, iteratee) {
+                        return object == null ? object : baseFor(object, getIteratee(iteratee, 3), keysIn);
+                    }
+                    function forInRight(object, iteratee) {
+                        return object == null ? object : baseForRight(object, getIteratee(iteratee, 3), keysIn);
+                    }
+                    function forOwn(object, iteratee) {
+                        return object && baseForOwn(object, getIteratee(iteratee, 3));
+                    }
+                    function forOwnRight(object, iteratee) {
+                        return object && baseForOwnRight(object, getIteratee(iteratee, 3));
+                    }
+                    function functions(object) {
+                        return object == null ? [] : baseFunctions(object, keys(object));
+                    }
+                    function functionsIn(object) {
+                        return object == null ? [] : baseFunctions(object, keysIn(object));
+                    }
+                    function get(object, path, defaultValue) {
+                        var result = object == null ? undefined : baseGet(object, path);
+                        return result === undefined ? defaultValue : result;
+                    }
+                    function has(object, path) {
+                        return object != null && hasPath(object, path, baseHas);
+                    }
+                    function hasIn(object, path) {
+                        return object != null && hasPath(object, path, baseHasIn);
+                    }
+                    var invert = createInverter((function(result, value, key) {
+                        if (value != null && typeof value.toString != "function") {
+                            value = nativeObjectToString.call(value);
+                        }
+                        result[value] = key;
+                    }), constant(identity));
+                    var invertBy = createInverter((function(result, value, key) {
+                        if (value != null && typeof value.toString != "function") {
+                            value = nativeObjectToString.call(value);
+                        }
+                        if (hasOwnProperty.call(result, value)) {
+                            result[value].push(key);
+                        } else {
+                            result[value] = [ key ];
+                        }
+                    }), getIteratee);
+                    var invoke = baseRest(baseInvoke);
+                    function keys(object) {
+                        return isArrayLike(object) ? arrayLikeKeys(object) : baseKeys(object);
+                    }
+                    function keysIn(object) {
+                        return isArrayLike(object) ? arrayLikeKeys(object, true) : baseKeysIn(object);
+                    }
+                    function mapKeys(object, iteratee) {
+                        var result = {};
+                        iteratee = getIteratee(iteratee, 3);
+                        baseForOwn(object, (function(value, key, object) {
+                            baseAssignValue(result, iteratee(value, key, object), value);
+                        }));
+                        return result;
+                    }
+                    function mapValues(object, iteratee) {
+                        var result = {};
+                        iteratee = getIteratee(iteratee, 3);
+                        baseForOwn(object, (function(value, key, object) {
+                            baseAssignValue(result, key, iteratee(value, key, object));
+                        }));
+                        return result;
+                    }
+                    var merge = createAssigner((function(object, source, srcIndex) {
+                        baseMerge(object, source, srcIndex);
+                    }));
+                    var mergeWith = createAssigner((function(object, source, srcIndex, customizer) {
+                        baseMerge(object, source, srcIndex, customizer);
+                    }));
+                    var omit = flatRest((function(object, paths) {
+                        var result = {};
+                        if (object == null) {
+                            return result;
+                        }
+                        var isDeep = false;
+                        paths = arrayMap(paths, (function(path) {
+                            path = castPath(path, object);
+                            isDeep || (isDeep = path.length > 1);
+                            return path;
+                        }));
+                        copyObject(object, getAllKeysIn(object), result);
+                        if (isDeep) {
+                            result = baseClone(result, CLONE_DEEP_FLAG | CLONE_FLAT_FLAG | CLONE_SYMBOLS_FLAG, customOmitClone);
+                        }
+                        var length = paths.length;
+                        while (length--) {
+                            baseUnset(result, paths[length]);
+                        }
+                        return result;
+                    }));
+                    function omitBy(object, predicate) {
+                        return pickBy(object, negate(getIteratee(predicate)));
+                    }
+                    var pick = flatRest((function(object, paths) {
+                        return object == null ? {} : basePick(object, paths);
+                    }));
+                    function pickBy(object, predicate) {
+                        if (object == null) {
+                            return {};
+                        }
+                        var props = arrayMap(getAllKeysIn(object), (function(prop) {
+                            return [ prop ];
+                        }));
+                        predicate = getIteratee(predicate);
+                        return basePickBy(object, props, (function(value, path) {
+                            return predicate(value, path[0]);
+                        }));
+                    }
+                    function result(object, path, defaultValue) {
+                        path = castPath(path, object);
+                        var index = -1, length = path.length;
+                        if (!length) {
+                            length = 1;
+                            object = undefined;
+                        }
+                        while (++index < length) {
+                            var value = object == null ? undefined : object[toKey(path[index])];
+                            if (value === undefined) {
+                                index = length;
+                                value = defaultValue;
+                            }
+                            object = isFunction(value) ? value.call(object) : value;
+                        }
+                        return object;
+                    }
+                    function set(object, path, value) {
+                        return object == null ? object : baseSet(object, path, value);
+                    }
+                    function setWith(object, path, value, customizer) {
+                        customizer = typeof customizer == "function" ? customizer : undefined;
+                        return object == null ? object : baseSet(object, path, value, customizer);
+                    }
+                    var toPairs = createToPairs(keys);
+                    var toPairsIn = createToPairs(keysIn);
+                    function transform(object, iteratee, accumulator) {
+                        var isArr = isArray(object), isArrLike = isArr || isBuffer(object) || isTypedArray(object);
+                        iteratee = getIteratee(iteratee, 4);
+                        if (accumulator == null) {
+                            var Ctor = object && object.constructor;
+                            if (isArrLike) {
+                                accumulator = isArr ? new Ctor : [];
+                            } else if (isObject(object)) {
+                                accumulator = isFunction(Ctor) ? baseCreate(getPrototype(object)) : {};
+                            } else {
+                                accumulator = {};
+                            }
+                        }
+                        (isArrLike ? arrayEach : baseForOwn)(object, (function(value, index, object) {
+                            return iteratee(accumulator, value, index, object);
+                        }));
+                        return accumulator;
+                    }
+                    function unset(object, path) {
+                        return object == null ? true : baseUnset(object, path);
+                    }
+                    function update(object, path, updater) {
+                        return object == null ? object : baseUpdate(object, path, castFunction(updater));
+                    }
+                    function updateWith(object, path, updater, customizer) {
+                        customizer = typeof customizer == "function" ? customizer : undefined;
+                        return object == null ? object : baseUpdate(object, path, castFunction(updater), customizer);
+                    }
+                    function values(object) {
+                        return object == null ? [] : baseValues(object, keys(object));
+                    }
+                    function valuesIn(object) {
+                        return object == null ? [] : baseValues(object, keysIn(object));
+                    }
+                    function clamp(number, lower, upper) {
+                        if (upper === undefined) {
+                            upper = lower;
+                            lower = undefined;
+                        }
+                        if (upper !== undefined) {
+                            upper = toNumber(upper);
+                            upper = upper === upper ? upper : 0;
+                        }
+                        if (lower !== undefined) {
+                            lower = toNumber(lower);
+                            lower = lower === lower ? lower : 0;
+                        }
+                        return baseClamp(toNumber(number), lower, upper);
+                    }
+                    function inRange(number, start, end) {
+                        start = toFinite(start);
+                        if (end === undefined) {
+                            end = start;
+                            start = 0;
+                        } else {
+                            end = toFinite(end);
+                        }
+                        number = toNumber(number);
+                        return baseInRange(number, start, end);
+                    }
+                    function random(lower, upper, floating) {
+                        if (floating && typeof floating != "boolean" && isIterateeCall(lower, upper, floating)) {
+                            upper = floating = undefined;
+                        }
+                        if (floating === undefined) {
+                            if (typeof upper == "boolean") {
+                                floating = upper;
+                                upper = undefined;
+                            } else if (typeof lower == "boolean") {
+                                floating = lower;
+                                lower = undefined;
+                            }
+                        }
+                        if (lower === undefined && upper === undefined) {
+                            lower = 0;
+                            upper = 1;
+                        } else {
+                            lower = toFinite(lower);
+                            if (upper === undefined) {
+                                upper = lower;
+                                lower = 0;
+                            } else {
+                                upper = toFinite(upper);
+                            }
+                        }
+                        if (lower > upper) {
+                            var temp = lower;
+                            lower = upper;
+                            upper = temp;
+                        }
+                        if (floating || lower % 1 || upper % 1) {
+                            var rand = nativeRandom();
+                            return nativeMin(lower + rand * (upper - lower + freeParseFloat("1e-" + ((rand + "").length - 1))), upper);
+                        }
+                        return baseRandom(lower, upper);
+                    }
+                    var camelCase = createCompounder((function(result, word, index) {
+                        word = word.toLowerCase();
+                        return result + (index ? capitalize(word) : word);
+                    }));
+                    function capitalize(string) {
+                        return upperFirst(toString(string).toLowerCase());
+                    }
+                    function deburr(string) {
+                        string = toString(string);
+                        return string && string.replace(reLatin, deburrLetter).replace(reComboMark, "");
+                    }
+                    function endsWith(string, target, position) {
+                        string = toString(string);
+                        target = baseToString(target);
+                        var length = string.length;
+                        position = position === undefined ? length : baseClamp(toInteger(position), 0, length);
+                        var end = position;
+                        position -= target.length;
+                        return position >= 0 && string.slice(position, end) == target;
+                    }
+                    function escape(string) {
+                        string = toString(string);
+                        return string && reHasUnescapedHtml.test(string) ? string.replace(reUnescapedHtml, escapeHtmlChar) : string;
+                    }
+                    function escapeRegExp(string) {
+                        string = toString(string);
+                        return string && reHasRegExpChar.test(string) ? string.replace(reRegExpChar, "\\$&") : string;
+                    }
+                    var kebabCase = createCompounder((function(result, word, index) {
+                        return result + (index ? "-" : "") + word.toLowerCase();
+                    }));
+                    var lowerCase = createCompounder((function(result, word, index) {
+                        return result + (index ? " " : "") + word.toLowerCase();
+                    }));
+                    var lowerFirst = createCaseFirst("toLowerCase");
+                    function pad(string, length, chars) {
+                        string = toString(string);
+                        length = toInteger(length);
+                        var strLength = length ? stringSize(string) : 0;
+                        if (!length || strLength >= length) {
+                            return string;
+                        }
+                        var mid = (length - strLength) / 2;
+                        return createPadding(nativeFloor(mid), chars) + string + createPadding(nativeCeil(mid), chars);
+                    }
+                    function padEnd(string, length, chars) {
+                        string = toString(string);
+                        length = toInteger(length);
+                        var strLength = length ? stringSize(string) : 0;
+                        return length && strLength < length ? string + createPadding(length - strLength, chars) : string;
+                    }
+                    function padStart(string, length, chars) {
+                        string = toString(string);
+                        length = toInteger(length);
+                        var strLength = length ? stringSize(string) : 0;
+                        return length && strLength < length ? createPadding(length - strLength, chars) + string : string;
+                    }
+                    function parseInt(string, radix, guard) {
+                        if (guard || radix == null) {
+                            radix = 0;
+                        } else if (radix) {
+                            radix = +radix;
+                        }
+                        return nativeParseInt(toString(string).replace(reTrimStart, ""), radix || 0);
+                    }
+                    function repeat(string, n, guard) {
+                        if (guard ? isIterateeCall(string, n, guard) : n === undefined) {
+                            n = 1;
+                        } else {
+                            n = toInteger(n);
+                        }
+                        return baseRepeat(toString(string), n);
+                    }
+                    function replace() {
+                        var args = arguments, string = toString(args[0]);
+                        return args.length < 3 ? string : string.replace(args[1], args[2]);
+                    }
+                    var snakeCase = createCompounder((function(result, word, index) {
+                        return result + (index ? "_" : "") + word.toLowerCase();
+                    }));
+                    function split(string, separator, limit) {
+                        if (limit && typeof limit != "number" && isIterateeCall(string, separator, limit)) {
+                            separator = limit = undefined;
+                        }
+                        limit = limit === undefined ? MAX_ARRAY_LENGTH : limit >>> 0;
+                        if (!limit) {
+                            return [];
+                        }
+                        string = toString(string);
+                        if (string && (typeof separator == "string" || separator != null && !isRegExp(separator))) {
+                            separator = baseToString(separator);
+                            if (!separator && hasUnicode(string)) {
+                                return castSlice(stringToArray(string), 0, limit);
+                            }
+                        }
+                        return string.split(separator, limit);
+                    }
+                    var startCase = createCompounder((function(result, word, index) {
+                        return result + (index ? " " : "") + upperFirst(word);
+                    }));
+                    function startsWith(string, target, position) {
+                        string = toString(string);
+                        position = position == null ? 0 : baseClamp(toInteger(position), 0, string.length);
+                        target = baseToString(target);
+                        return string.slice(position, position + target.length) == target;
+                    }
+                    function template(string, options, guard) {
+                        var settings = lodash.templateSettings;
+                        if (guard && isIterateeCall(string, options, guard)) {
+                            options = undefined;
+                        }
+                        string = toString(string);
+                        options = assignInWith({}, options, settings, customDefaultsAssignIn);
+                        var imports = assignInWith({}, options.imports, settings.imports, customDefaultsAssignIn), importsKeys = keys(imports), importsValues = baseValues(imports, importsKeys);
+                        var isEscaping, isEvaluating, index = 0, interpolate = options.interpolate || reNoMatch, source = "__p += '";
+                        var reDelimiters = RegExp((options.escape || reNoMatch).source + "|" + interpolate.source + "|" + (interpolate === reInterpolate ? reEsTemplate : reNoMatch).source + "|" + (options.evaluate || reNoMatch).source + "|$", "g");
+                        var sourceURL = "//# sourceURL=" + (hasOwnProperty.call(options, "sourceURL") ? (options.sourceURL + "").replace(/\s/g, " ") : "lodash.templateSources[" + ++templateCounter + "]") + "\n";
+                        string.replace(reDelimiters, (function(match, escapeValue, interpolateValue, esTemplateValue, evaluateValue, offset) {
+                            interpolateValue || (interpolateValue = esTemplateValue);
+                            source += string.slice(index, offset).replace(reUnescapedString, escapeStringChar);
+                            if (escapeValue) {
+                                isEscaping = true;
+                                source += "' +\n__e(" + escapeValue + ") +\n'";
+                            }
+                            if (evaluateValue) {
+                                isEvaluating = true;
+                                source += "';\n" + evaluateValue + ";\n__p += '";
+                            }
+                            if (interpolateValue) {
+                                source += "' +\n((__t = (" + interpolateValue + ")) == null ? '' : __t) +\n'";
+                            }
+                            index = offset + match.length;
+                            return match;
+                        }));
+                        source += "';\n";
+                        var variable = hasOwnProperty.call(options, "variable") && options.variable;
+                        if (!variable) {
+                            source = "with (obj) {\n" + source + "\n}\n";
+                        }
+                        source = (isEvaluating ? source.replace(reEmptyStringLeading, "") : source).replace(reEmptyStringMiddle, "$1").replace(reEmptyStringTrailing, "$1;");
+                        source = "function(" + (variable || "obj") + ") {\n" + (variable ? "" : "obj || (obj = {});\n") + "var __t, __p = ''" + (isEscaping ? ", __e = _.escape" : "") + (isEvaluating ? ", __j = Array.prototype.join;\n" + "function print() { __p += __j.call(arguments, '') }\n" : ";\n") + source + "return __p\n}";
+                        var result = attempt((function() {
+                            return Function(importsKeys, sourceURL + "return " + source).apply(undefined, importsValues);
+                        }));
+                        result.source = source;
+                        if (isError(result)) {
+                            throw result;
+                        }
+                        return result;
+                    }
+                    function toLower(value) {
+                        return toString(value).toLowerCase();
+                    }
+                    function toUpper(value) {
+                        return toString(value).toUpperCase();
+                    }
+                    function trim(string, chars, guard) {
+                        string = toString(string);
+                        if (string && (guard || chars === undefined)) {
+                            return string.replace(reTrim, "");
+                        }
+                        if (!string || !(chars = baseToString(chars))) {
+                            return string;
+                        }
+                        var strSymbols = stringToArray(string), chrSymbols = stringToArray(chars), start = charsStartIndex(strSymbols, chrSymbols), end = charsEndIndex(strSymbols, chrSymbols) + 1;
+                        return castSlice(strSymbols, start, end).join("");
+                    }
+                    function trimEnd(string, chars, guard) {
+                        string = toString(string);
+                        if (string && (guard || chars === undefined)) {
+                            return string.replace(reTrimEnd, "");
+                        }
+                        if (!string || !(chars = baseToString(chars))) {
+                            return string;
+                        }
+                        var strSymbols = stringToArray(string), end = charsEndIndex(strSymbols, stringToArray(chars)) + 1;
+                        return castSlice(strSymbols, 0, end).join("");
+                    }
+                    function trimStart(string, chars, guard) {
+                        string = toString(string);
+                        if (string && (guard || chars === undefined)) {
+                            return string.replace(reTrimStart, "");
+                        }
+                        if (!string || !(chars = baseToString(chars))) {
+                            return string;
+                        }
+                        var strSymbols = stringToArray(string), start = charsStartIndex(strSymbols, stringToArray(chars));
+                        return castSlice(strSymbols, start).join("");
+                    }
+                    function truncate(string, options) {
+                        var length = DEFAULT_TRUNC_LENGTH, omission = DEFAULT_TRUNC_OMISSION;
+                        if (isObject(options)) {
+                            var separator = "separator" in options ? options.separator : separator;
+                            length = "length" in options ? toInteger(options.length) : length;
+                            omission = "omission" in options ? baseToString(options.omission) : omission;
+                        }
+                        string = toString(string);
+                        var strLength = string.length;
+                        if (hasUnicode(string)) {
+                            var strSymbols = stringToArray(string);
+                            strLength = strSymbols.length;
+                        }
+                        if (length >= strLength) {
+                            return string;
+                        }
+                        var end = length - stringSize(omission);
+                        if (end < 1) {
+                            return omission;
+                        }
+                        var result = strSymbols ? castSlice(strSymbols, 0, end).join("") : string.slice(0, end);
+                        if (separator === undefined) {
+                            return result + omission;
+                        }
+                        if (strSymbols) {
+                            end += result.length - end;
+                        }
+                        if (isRegExp(separator)) {
+                            if (string.slice(end).search(separator)) {
+                                var match, substring = result;
+                                if (!separator.global) {
+                                    separator = RegExp(separator.source, toString(reFlags.exec(separator)) + "g");
+                                }
+                                separator.lastIndex = 0;
+                                while (match = separator.exec(substring)) {
+                                    var newEnd = match.index;
+                                }
+                                result = result.slice(0, newEnd === undefined ? end : newEnd);
+                            }
+                        } else if (string.indexOf(baseToString(separator), end) != end) {
+                            var index = result.lastIndexOf(separator);
+                            if (index > -1) {
+                                result = result.slice(0, index);
+                            }
+                        }
+                        return result + omission;
+                    }
+                    function unescape(string) {
+                        string = toString(string);
+                        return string && reHasEscapedHtml.test(string) ? string.replace(reEscapedHtml, unescapeHtmlChar) : string;
+                    }
+                    var upperCase = createCompounder((function(result, word, index) {
+                        return result + (index ? " " : "") + word.toUpperCase();
+                    }));
+                    var upperFirst = createCaseFirst("toUpperCase");
+                    function words(string, pattern, guard) {
+                        string = toString(string);
+                        pattern = guard ? undefined : pattern;
+                        if (pattern === undefined) {
+                            return hasUnicodeWord(string) ? unicodeWords(string) : asciiWords(string);
+                        }
+                        return string.match(pattern) || [];
+                    }
+                    var attempt = baseRest((function(func, args) {
+                        try {
+                            return apply(func, undefined, args);
+                        } catch (e) {
+                            return isError(e) ? e : new Error(e);
+                        }
+                    }));
+                    var bindAll = flatRest((function(object, methodNames) {
+                        arrayEach(methodNames, (function(key) {
+                            key = toKey(key);
+                            baseAssignValue(object, key, bind(object[key], object));
+                        }));
+                        return object;
+                    }));
+                    function cond(pairs) {
+                        var length = pairs == null ? 0 : pairs.length, toIteratee = getIteratee();
+                        pairs = !length ? [] : arrayMap(pairs, (function(pair) {
+                            if (typeof pair[1] != "function") {
+                                throw new TypeError(FUNC_ERROR_TEXT);
+                            }
+                            return [ toIteratee(pair[0]), pair[1] ];
+                        }));
+                        return baseRest((function(args) {
+                            var index = -1;
+                            while (++index < length) {
+                                var pair = pairs[index];
+                                if (apply(pair[0], this, args)) {
+                                    return apply(pair[1], this, args);
+                                }
+                            }
+                        }));
+                    }
+                    function conforms(source) {
+                        return baseConforms(baseClone(source, CLONE_DEEP_FLAG));
+                    }
+                    function constant(value) {
+                        return function() {
+                            return value;
+                        };
+                    }
+                    function defaultTo(value, defaultValue) {
+                        return value == null || value !== value ? defaultValue : value;
+                    }
+                    var flow = createFlow();
+                    var flowRight = createFlow(true);
+                    function identity(value) {
+                        return value;
+                    }
+                    function iteratee(func) {
+                        return baseIteratee(typeof func == "function" ? func : baseClone(func, CLONE_DEEP_FLAG));
+                    }
+                    function matches(source) {
+                        return baseMatches(baseClone(source, CLONE_DEEP_FLAG));
+                    }
+                    function matchesProperty(path, srcValue) {
+                        return baseMatchesProperty(path, baseClone(srcValue, CLONE_DEEP_FLAG));
+                    }
+                    var method = baseRest((function(path, args) {
+                        return function(object) {
+                            return baseInvoke(object, path, args);
+                        };
+                    }));
+                    var methodOf = baseRest((function(object, args) {
+                        return function(path) {
+                            return baseInvoke(object, path, args);
+                        };
+                    }));
+                    function mixin(object, source, options) {
+                        var props = keys(source), methodNames = baseFunctions(source, props);
+                        if (options == null && !(isObject(source) && (methodNames.length || !props.length))) {
+                            options = source;
+                            source = object;
+                            object = this;
+                            methodNames = baseFunctions(source, keys(source));
+                        }
+                        var chain = !(isObject(options) && "chain" in options) || !!options.chain, isFunc = isFunction(object);
+                        arrayEach(methodNames, (function(methodName) {
+                            var func = source[methodName];
+                            object[methodName] = func;
+                            if (isFunc) {
+                                object.prototype[methodName] = function() {
+                                    var chainAll = this.__chain__;
+                                    if (chain || chainAll) {
+                                        var result = object(this.__wrapped__), actions = result.__actions__ = copyArray(this.__actions__);
+                                        actions.push({
+                                            func: func,
+                                            args: arguments,
+                                            thisArg: object
+                                        });
+                                        result.__chain__ = chainAll;
+                                        return result;
+                                    }
+                                    return func.apply(object, arrayPush([ this.value() ], arguments));
+                                };
+                            }
+                        }));
+                        return object;
+                    }
+                    function noConflict() {
+                        if (root._ === this) {
+                            root._ = oldDash;
+                        }
+                        return this;
+                    }
+                    function noop() {}
+                    function nthArg(n) {
+                        n = toInteger(n);
+                        return baseRest((function(args) {
+                            return baseNth(args, n);
+                        }));
+                    }
+                    var over = createOver(arrayMap);
+                    var overEvery = createOver(arrayEvery);
+                    var overSome = createOver(arraySome);
+                    function property(path) {
+                        return isKey(path) ? baseProperty(toKey(path)) : basePropertyDeep(path);
+                    }
+                    function propertyOf(object) {
+                        return function(path) {
+                            return object == null ? undefined : baseGet(object, path);
+                        };
+                    }
+                    var range = createRange();
+                    var rangeRight = createRange(true);
+                    function stubArray() {
+                        return [];
+                    }
+                    function stubFalse() {
+                        return false;
+                    }
+                    function stubObject() {
+                        return {};
+                    }
+                    function stubString() {
+                        return "";
+                    }
+                    function stubTrue() {
+                        return true;
+                    }
+                    function times(n, iteratee) {
+                        n = toInteger(n);
+                        if (n < 1 || n > MAX_SAFE_INTEGER) {
+                            return [];
+                        }
+                        var index = MAX_ARRAY_LENGTH, length = nativeMin(n, MAX_ARRAY_LENGTH);
+                        iteratee = getIteratee(iteratee);
+                        n -= MAX_ARRAY_LENGTH;
+                        var result = baseTimes(length, iteratee);
+                        while (++index < n) {
+                            iteratee(index);
+                        }
+                        return result;
+                    }
+                    function toPath(value) {
+                        if (isArray(value)) {
+                            return arrayMap(value, toKey);
+                        }
+                        return isSymbol(value) ? [ value ] : copyArray(stringToPath(toString(value)));
+                    }
+                    function uniqueId(prefix) {
+                        var id = ++idCounter;
+                        return toString(prefix) + id;
+                    }
+                    var add = createMathOperation((function(augend, addend) {
+                        return augend + addend;
+                    }), 0);
+                    var ceil = createRound("ceil");
+                    var divide = createMathOperation((function(dividend, divisor) {
+                        return dividend / divisor;
+                    }), 1);
+                    var floor = createRound("floor");
+                    function max(array) {
+                        return array && array.length ? baseExtremum(array, identity, baseGt) : undefined;
+                    }
+                    function maxBy(array, iteratee) {
+                        return array && array.length ? baseExtremum(array, getIteratee(iteratee, 2), baseGt) : undefined;
+                    }
+                    function mean(array) {
+                        return baseMean(array, identity);
+                    }
+                    function meanBy(array, iteratee) {
+                        return baseMean(array, getIteratee(iteratee, 2));
+                    }
+                    function min(array) {
+                        return array && array.length ? baseExtremum(array, identity, baseLt) : undefined;
+                    }
+                    function minBy(array, iteratee) {
+                        return array && array.length ? baseExtremum(array, getIteratee(iteratee, 2), baseLt) : undefined;
+                    }
+                    var multiply = createMathOperation((function(multiplier, multiplicand) {
+                        return multiplier * multiplicand;
+                    }), 1);
+                    var round = createRound("round");
+                    var subtract = createMathOperation((function(minuend, subtrahend) {
+                        return minuend - subtrahend;
+                    }), 0);
+                    function sum(array) {
+                        return array && array.length ? baseSum(array, identity) : 0;
+                    }
+                    function sumBy(array, iteratee) {
+                        return array && array.length ? baseSum(array, getIteratee(iteratee, 2)) : 0;
+                    }
+                    lodash.after = after;
+                    lodash.ary = ary;
+                    lodash.assign = assign;
+                    lodash.assignIn = assignIn;
+                    lodash.assignInWith = assignInWith;
+                    lodash.assignWith = assignWith;
+                    lodash.at = at;
+                    lodash.before = before;
+                    lodash.bind = bind;
+                    lodash.bindAll = bindAll;
+                    lodash.bindKey = bindKey;
+                    lodash.castArray = castArray;
+                    lodash.chain = chain;
+                    lodash.chunk = chunk;
+                    lodash.compact = compact;
+                    lodash.concat = concat;
+                    lodash.cond = cond;
+                    lodash.conforms = conforms;
+                    lodash.constant = constant;
+                    lodash.countBy = countBy;
+                    lodash.create = create;
+                    lodash.curry = curry;
+                    lodash.curryRight = curryRight;
+                    lodash.debounce = debounce;
+                    lodash.defaults = defaults;
+                    lodash.defaultsDeep = defaultsDeep;
+                    lodash.defer = defer;
+                    lodash.delay = delay;
+                    lodash.difference = difference;
+                    lodash.differenceBy = differenceBy;
+                    lodash.differenceWith = differenceWith;
+                    lodash.drop = drop;
+                    lodash.dropRight = dropRight;
+                    lodash.dropRightWhile = dropRightWhile;
+                    lodash.dropWhile = dropWhile;
+                    lodash.fill = fill;
+                    lodash.filter = filter;
+                    lodash.flatMap = flatMap;
+                    lodash.flatMapDeep = flatMapDeep;
+                    lodash.flatMapDepth = flatMapDepth;
+                    lodash.flatten = flatten;
+                    lodash.flattenDeep = flattenDeep;
+                    lodash.flattenDepth = flattenDepth;
+                    lodash.flip = flip;
+                    lodash.flow = flow;
+                    lodash.flowRight = flowRight;
+                    lodash.fromPairs = fromPairs;
+                    lodash.functions = functions;
+                    lodash.functionsIn = functionsIn;
+                    lodash.groupBy = groupBy;
+                    lodash.initial = initial;
+                    lodash.intersection = intersection;
+                    lodash.intersectionBy = intersectionBy;
+                    lodash.intersectionWith = intersectionWith;
+                    lodash.invert = invert;
+                    lodash.invertBy = invertBy;
+                    lodash.invokeMap = invokeMap;
+                    lodash.iteratee = iteratee;
+                    lodash.keyBy = keyBy;
+                    lodash.keys = keys;
+                    lodash.keysIn = keysIn;
+                    lodash.map = map;
+                    lodash.mapKeys = mapKeys;
+                    lodash.mapValues = mapValues;
+                    lodash.matches = matches;
+                    lodash.matchesProperty = matchesProperty;
+                    lodash.memoize = memoize;
+                    lodash.merge = merge;
+                    lodash.mergeWith = mergeWith;
+                    lodash.method = method;
+                    lodash.methodOf = methodOf;
+                    lodash.mixin = mixin;
+                    lodash.negate = negate;
+                    lodash.nthArg = nthArg;
+                    lodash.omit = omit;
+                    lodash.omitBy = omitBy;
+                    lodash.once = once;
+                    lodash.orderBy = orderBy;
+                    lodash.over = over;
+                    lodash.overArgs = overArgs;
+                    lodash.overEvery = overEvery;
+                    lodash.overSome = overSome;
+                    lodash.partial = partial;
+                    lodash.partialRight = partialRight;
+                    lodash.partition = partition;
+                    lodash.pick = pick;
+                    lodash.pickBy = pickBy;
+                    lodash.property = property;
+                    lodash.propertyOf = propertyOf;
+                    lodash.pull = pull;
+                    lodash.pullAll = pullAll;
+                    lodash.pullAllBy = pullAllBy;
+                    lodash.pullAllWith = pullAllWith;
+                    lodash.pullAt = pullAt;
+                    lodash.range = range;
+                    lodash.rangeRight = rangeRight;
+                    lodash.rearg = rearg;
+                    lodash.reject = reject;
+                    lodash.remove = remove;
+                    lodash.rest = rest;
+                    lodash.reverse = reverse;
+                    lodash.sampleSize = sampleSize;
+                    lodash.set = set;
+                    lodash.setWith = setWith;
+                    lodash.shuffle = shuffle;
+                    lodash.slice = slice;
+                    lodash.sortBy = sortBy;
+                    lodash.sortedUniq = sortedUniq;
+                    lodash.sortedUniqBy = sortedUniqBy;
+                    lodash.split = split;
+                    lodash.spread = spread;
+                    lodash.tail = tail;
+                    lodash.take = take;
+                    lodash.takeRight = takeRight;
+                    lodash.takeRightWhile = takeRightWhile;
+                    lodash.takeWhile = takeWhile;
+                    lodash.tap = tap;
+                    lodash.throttle = throttle;
+                    lodash.thru = thru;
+                    lodash.toArray = toArray;
+                    lodash.toPairs = toPairs;
+                    lodash.toPairsIn = toPairsIn;
+                    lodash.toPath = toPath;
+                    lodash.toPlainObject = toPlainObject;
+                    lodash.transform = transform;
+                    lodash.unary = unary;
+                    lodash.union = union;
+                    lodash.unionBy = unionBy;
+                    lodash.unionWith = unionWith;
+                    lodash.uniq = uniq;
+                    lodash.uniqBy = uniqBy;
+                    lodash.uniqWith = uniqWith;
+                    lodash.unset = unset;
+                    lodash.unzip = unzip;
+                    lodash.unzipWith = unzipWith;
+                    lodash.update = update;
+                    lodash.updateWith = updateWith;
+                    lodash.values = values;
+                    lodash.valuesIn = valuesIn;
+                    lodash.without = without;
+                    lodash.words = words;
+                    lodash.wrap = wrap;
+                    lodash.xor = xor;
+                    lodash.xorBy = xorBy;
+                    lodash.xorWith = xorWith;
+                    lodash.zip = zip;
+                    lodash.zipObject = zipObject;
+                    lodash.zipObjectDeep = zipObjectDeep;
+                    lodash.zipWith = zipWith;
+                    lodash.entries = toPairs;
+                    lodash.entriesIn = toPairsIn;
+                    lodash.extend = assignIn;
+                    lodash.extendWith = assignInWith;
+                    mixin(lodash, lodash);
+                    lodash.add = add;
+                    lodash.attempt = attempt;
+                    lodash.camelCase = camelCase;
+                    lodash.capitalize = capitalize;
+                    lodash.ceil = ceil;
+                    lodash.clamp = clamp;
+                    lodash.clone = clone;
+                    lodash.cloneDeep = cloneDeep;
+                    lodash.cloneDeepWith = cloneDeepWith;
+                    lodash.cloneWith = cloneWith;
+                    lodash.conformsTo = conformsTo;
+                    lodash.deburr = deburr;
+                    lodash.defaultTo = defaultTo;
+                    lodash.divide = divide;
+                    lodash.endsWith = endsWith;
+                    lodash.eq = eq;
+                    lodash.escape = escape;
+                    lodash.escapeRegExp = escapeRegExp;
+                    lodash.every = every;
+                    lodash.find = find;
+                    lodash.findIndex = findIndex;
+                    lodash.findKey = findKey;
+                    lodash.findLast = findLast;
+                    lodash.findLastIndex = findLastIndex;
+                    lodash.findLastKey = findLastKey;
+                    lodash.floor = floor;
+                    lodash.forEach = forEach;
+                    lodash.forEachRight = forEachRight;
+                    lodash.forIn = forIn;
+                    lodash.forInRight = forInRight;
+                    lodash.forOwn = forOwn;
+                    lodash.forOwnRight = forOwnRight;
+                    lodash.get = get;
+                    lodash.gt = gt;
+                    lodash.gte = gte;
+                    lodash.has = has;
+                    lodash.hasIn = hasIn;
+                    lodash.head = head;
+                    lodash.identity = identity;
+                    lodash.includes = includes;
+                    lodash.indexOf = indexOf;
+                    lodash.inRange = inRange;
+                    lodash.invoke = invoke;
+                    lodash.isArguments = isArguments;
+                    lodash.isArray = isArray;
+                    lodash.isArrayBuffer = isArrayBuffer;
+                    lodash.isArrayLike = isArrayLike;
+                    lodash.isArrayLikeObject = isArrayLikeObject;
+                    lodash.isBoolean = isBoolean;
+                    lodash.isBuffer = isBuffer;
+                    lodash.isDate = isDate;
+                    lodash.isElement = isElement;
+                    lodash.isEmpty = isEmpty;
+                    lodash.isEqual = isEqual;
+                    lodash.isEqualWith = isEqualWith;
+                    lodash.isError = isError;
+                    lodash.isFinite = isFinite;
+                    lodash.isFunction = isFunction;
+                    lodash.isInteger = isInteger;
+                    lodash.isLength = isLength;
+                    lodash.isMap = isMap;
+                    lodash.isMatch = isMatch;
+                    lodash.isMatchWith = isMatchWith;
+                    lodash.isNaN = isNaN;
+                    lodash.isNative = isNative;
+                    lodash.isNil = isNil;
+                    lodash.isNull = isNull;
+                    lodash.isNumber = isNumber;
+                    lodash.isObject = isObject;
+                    lodash.isObjectLike = isObjectLike;
+                    lodash.isPlainObject = isPlainObject;
+                    lodash.isRegExp = isRegExp;
+                    lodash.isSafeInteger = isSafeInteger;
+                    lodash.isSet = isSet;
+                    lodash.isString = isString;
+                    lodash.isSymbol = isSymbol;
+                    lodash.isTypedArray = isTypedArray;
+                    lodash.isUndefined = isUndefined;
+                    lodash.isWeakMap = isWeakMap;
+                    lodash.isWeakSet = isWeakSet;
+                    lodash.join = join;
+                    lodash.kebabCase = kebabCase;
+                    lodash.last = last;
+                    lodash.lastIndexOf = lastIndexOf;
+                    lodash.lowerCase = lowerCase;
+                    lodash.lowerFirst = lowerFirst;
+                    lodash.lt = lt;
+                    lodash.lte = lte;
+                    lodash.max = max;
+                    lodash.maxBy = maxBy;
+                    lodash.mean = mean;
+                    lodash.meanBy = meanBy;
+                    lodash.min = min;
+                    lodash.minBy = minBy;
+                    lodash.stubArray = stubArray;
+                    lodash.stubFalse = stubFalse;
+                    lodash.stubObject = stubObject;
+                    lodash.stubString = stubString;
+                    lodash.stubTrue = stubTrue;
+                    lodash.multiply = multiply;
+                    lodash.nth = nth;
+                    lodash.noConflict = noConflict;
+                    lodash.noop = noop;
+                    lodash.now = now;
+                    lodash.pad = pad;
+                    lodash.padEnd = padEnd;
+                    lodash.padStart = padStart;
+                    lodash.parseInt = parseInt;
+                    lodash.random = random;
+                    lodash.reduce = reduce;
+                    lodash.reduceRight = reduceRight;
+                    lodash.repeat = repeat;
+                    lodash.replace = replace;
+                    lodash.result = result;
+                    lodash.round = round;
+                    lodash.runInContext = runInContext;
+                    lodash.sample = sample;
+                    lodash.size = size;
+                    lodash.snakeCase = snakeCase;
+                    lodash.some = some;
+                    lodash.sortedIndex = sortedIndex;
+                    lodash.sortedIndexBy = sortedIndexBy;
+                    lodash.sortedIndexOf = sortedIndexOf;
+                    lodash.sortedLastIndex = sortedLastIndex;
+                    lodash.sortedLastIndexBy = sortedLastIndexBy;
+                    lodash.sortedLastIndexOf = sortedLastIndexOf;
+                    lodash.startCase = startCase;
+                    lodash.startsWith = startsWith;
+                    lodash.subtract = subtract;
+                    lodash.sum = sum;
+                    lodash.sumBy = sumBy;
+                    lodash.template = template;
+                    lodash.times = times;
+                    lodash.toFinite = toFinite;
+                    lodash.toInteger = toInteger;
+                    lodash.toLength = toLength;
+                    lodash.toLower = toLower;
+                    lodash.toNumber = toNumber;
+                    lodash.toSafeInteger = toSafeInteger;
+                    lodash.toString = toString;
+                    lodash.toUpper = toUpper;
+                    lodash.trim = trim;
+                    lodash.trimEnd = trimEnd;
+                    lodash.trimStart = trimStart;
+                    lodash.truncate = truncate;
+                    lodash.unescape = unescape;
+                    lodash.uniqueId = uniqueId;
+                    lodash.upperCase = upperCase;
+                    lodash.upperFirst = upperFirst;
+                    lodash.each = forEach;
+                    lodash.eachRight = forEachRight;
+                    lodash.first = head;
+                    mixin(lodash, function() {
+                        var source = {};
+                        baseForOwn(lodash, (function(func, methodName) {
+                            if (!hasOwnProperty.call(lodash.prototype, methodName)) {
+                                source[methodName] = func;
+                            }
+                        }));
+                        return source;
+                    }(), {
+                        chain: false
+                    });
+                    lodash.VERSION = VERSION;
+                    arrayEach([ "bind", "bindKey", "curry", "curryRight", "partial", "partialRight" ], (function(methodName) {
+                        lodash[methodName].placeholder = lodash;
+                    }));
+                    arrayEach([ "drop", "take" ], (function(methodName, index) {
+                        LazyWrapper.prototype[methodName] = function(n) {
+                            n = n === undefined ? 1 : nativeMax(toInteger(n), 0);
+                            var result = this.__filtered__ && !index ? new LazyWrapper(this) : this.clone();
+                            if (result.__filtered__) {
+                                result.__takeCount__ = nativeMin(n, result.__takeCount__);
+                            } else {
+                                result.__views__.push({
+                                    size: nativeMin(n, MAX_ARRAY_LENGTH),
+                                    type: methodName + (result.__dir__ < 0 ? "Right" : "")
+                                });
+                            }
+                            return result;
+                        };
+                        LazyWrapper.prototype[methodName + "Right"] = function(n) {
+                            return this.reverse()[methodName](n).reverse();
+                        };
+                    }));
+                    arrayEach([ "filter", "map", "takeWhile" ], (function(methodName, index) {
+                        var type = index + 1, isFilter = type == LAZY_FILTER_FLAG || type == LAZY_WHILE_FLAG;
+                        LazyWrapper.prototype[methodName] = function(iteratee) {
+                            var result = this.clone();
+                            result.__iteratees__.push({
+                                iteratee: getIteratee(iteratee, 3),
+                                type: type
+                            });
+                            result.__filtered__ = result.__filtered__ || isFilter;
+                            return result;
+                        };
+                    }));
+                    arrayEach([ "head", "last" ], (function(methodName, index) {
+                        var takeName = "take" + (index ? "Right" : "");
+                        LazyWrapper.prototype[methodName] = function() {
+                            return this[takeName](1).value()[0];
+                        };
+                    }));
+                    arrayEach([ "initial", "tail" ], (function(methodName, index) {
+                        var dropName = "drop" + (index ? "" : "Right");
+                        LazyWrapper.prototype[methodName] = function() {
+                            return this.__filtered__ ? new LazyWrapper(this) : this[dropName](1);
+                        };
+                    }));
+                    LazyWrapper.prototype.compact = function() {
+                        return this.filter(identity);
+                    };
+                    LazyWrapper.prototype.find = function(predicate) {
+                        return this.filter(predicate).head();
+                    };
+                    LazyWrapper.prototype.findLast = function(predicate) {
+                        return this.reverse().find(predicate);
+                    };
+                    LazyWrapper.prototype.invokeMap = baseRest((function(path, args) {
+                        if (typeof path == "function") {
+                            return new LazyWrapper(this);
+                        }
+                        return this.map((function(value) {
+                            return baseInvoke(value, path, args);
+                        }));
+                    }));
+                    LazyWrapper.prototype.reject = function(predicate) {
+                        return this.filter(negate(getIteratee(predicate)));
+                    };
+                    LazyWrapper.prototype.slice = function(start, end) {
+                        start = toInteger(start);
+                        var result = this;
+                        if (result.__filtered__ && (start > 0 || end < 0)) {
+                            return new LazyWrapper(result);
+                        }
+                        if (start < 0) {
+                            result = result.takeRight(-start);
+                        } else if (start) {
+                            result = result.drop(start);
+                        }
+                        if (end !== undefined) {
+                            end = toInteger(end);
+                            result = end < 0 ? result.dropRight(-end) : result.take(end - start);
+                        }
+                        return result;
+                    };
+                    LazyWrapper.prototype.takeRightWhile = function(predicate) {
+                        return this.reverse().takeWhile(predicate).reverse();
+                    };
+                    LazyWrapper.prototype.toArray = function() {
+                        return this.take(MAX_ARRAY_LENGTH);
+                    };
+                    baseForOwn(LazyWrapper.prototype, (function(func, methodName) {
+                        var checkIteratee = /^(?:filter|find|map|reject)|While$/.test(methodName), isTaker = /^(?:head|last)$/.test(methodName), lodashFunc = lodash[isTaker ? "take" + (methodName == "last" ? "Right" : "") : methodName], retUnwrapped = isTaker || /^find/.test(methodName);
+                        if (!lodashFunc) {
+                            return;
+                        }
+                        lodash.prototype[methodName] = function() {
+                            var value = this.__wrapped__, args = isTaker ? [ 1 ] : arguments, isLazy = value instanceof LazyWrapper, iteratee = args[0], useLazy = isLazy || isArray(value);
+                            var interceptor = function(value) {
+                                var result = lodashFunc.apply(lodash, arrayPush([ value ], args));
+                                return isTaker && chainAll ? result[0] : result;
+                            };
+                            if (useLazy && checkIteratee && typeof iteratee == "function" && iteratee.length != 1) {
+                                isLazy = useLazy = false;
+                            }
+                            var chainAll = this.__chain__, isHybrid = !!this.__actions__.length, isUnwrapped = retUnwrapped && !chainAll, onlyLazy = isLazy && !isHybrid;
+                            if (!retUnwrapped && useLazy) {
+                                value = onlyLazy ? value : new LazyWrapper(this);
+                                var result = func.apply(value, args);
+                                result.__actions__.push({
+                                    func: thru,
+                                    args: [ interceptor ],
+                                    thisArg: undefined
+                                });
+                                return new LodashWrapper(result, chainAll);
+                            }
+                            if (isUnwrapped && onlyLazy) {
+                                return func.apply(this, args);
+                            }
+                            result = this.thru(interceptor);
+                            return isUnwrapped ? isTaker ? result.value()[0] : result.value() : result;
+                        };
+                    }));
+                    arrayEach([ "pop", "push", "shift", "sort", "splice", "unshift" ], (function(methodName) {
+                        var func = arrayProto[methodName], chainName = /^(?:push|sort|unshift)$/.test(methodName) ? "tap" : "thru", retUnwrapped = /^(?:pop|shift)$/.test(methodName);
+                        lodash.prototype[methodName] = function() {
+                            var args = arguments;
+                            if (retUnwrapped && !this.__chain__) {
+                                var value = this.value();
+                                return func.apply(isArray(value) ? value : [], args);
+                            }
+                            return this[chainName]((function(value) {
+                                return func.apply(isArray(value) ? value : [], args);
+                            }));
+                        };
+                    }));
+                    baseForOwn(LazyWrapper.prototype, (function(func, methodName) {
+                        var lodashFunc = lodash[methodName];
+                        if (lodashFunc) {
+                            var key = lodashFunc.name + "";
+                            if (!hasOwnProperty.call(realNames, key)) {
+                                realNames[key] = [];
+                            }
+                            realNames[key].push({
+                                name: methodName,
+                                func: lodashFunc
+                            });
+                        }
+                    }));
+                    realNames[createHybrid(undefined, WRAP_BIND_KEY_FLAG).name] = [ {
+                        name: "wrapper",
+                        func: undefined
+                    } ];
+                    LazyWrapper.prototype.clone = lazyClone;
+                    LazyWrapper.prototype.reverse = lazyReverse;
+                    LazyWrapper.prototype.value = lazyValue;
+                    lodash.prototype.at = wrapperAt;
+                    lodash.prototype.chain = wrapperChain;
+                    lodash.prototype.commit = wrapperCommit;
+                    lodash.prototype.next = wrapperNext;
+                    lodash.prototype.plant = wrapperPlant;
+                    lodash.prototype.reverse = wrapperReverse;
+                    lodash.prototype.toJSON = lodash.prototype.valueOf = lodash.prototype.value = wrapperValue;
+                    lodash.prototype.first = lodash.prototype.head;
+                    if (symIterator) {
+                        lodash.prototype[symIterator] = wrapperToIterator;
+                    }
+                    return lodash;
+                };
+                var _ = runInContext();
+                if (true) {
+                    root._ = _;
+                    !(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
+                        return _;
+                    }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+                } else {}
+            }).call(this);
         }
-        var module = installedModules[moduleId] = {
-            i: moduleId,
-            l: false,
+    };
+    var __webpack_module_cache__ = {};
+    function __webpack_require__(moduleId) {
+        if (__webpack_module_cache__[moduleId]) {
+            return __webpack_module_cache__[moduleId].exports;
+        }
+        var module = __webpack_module_cache__[moduleId] = {
+            id: moduleId,
+            loaded: false,
             exports: {}
         };
-        modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-        module.l = true;
+        __webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+        module.loaded = true;
         return module.exports;
     }
-    __webpack_require__.m = modules;
-    __webpack_require__.c = installedModules;
-    __webpack_require__.d = function(exports, name, getter) {
-        if (!__webpack_require__.o(exports, name)) {
-            Object.defineProperty(exports, name, {
-                enumerable: true,
-                get: getter
+    (() => {
+        __webpack_require__.d = (exports, definition) => {
+            for (var key in definition) {
+                if (__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+                    Object.defineProperty(exports, key, {
+                        enumerable: true,
+                        get: definition[key]
+                    });
+                }
+            }
+        };
+    })();
+    (() => {
+        __webpack_require__.g = function() {
+            if (typeof globalThis === "object") return globalThis;
+            try {
+                return this || new Function("return this")();
+            } catch (e) {
+                if (typeof window === "object") return window;
+            }
+        }();
+    })();
+    (() => {
+        __webpack_require__.o = (obj, prop) => Object.prototype.hasOwnProperty.call(obj, prop);
+    })();
+    (() => {
+        __webpack_require__.r = exports => {
+            if (typeof Symbol !== "undefined" && Symbol.toStringTag) {
+                Object.defineProperty(exports, Symbol.toStringTag, {
+                    value: "Module"
+                });
+            }
+            Object.defineProperty(exports, "__esModule", {
+                value: true
             });
-        }
-    };
-    __webpack_require__.r = function(exports) {
-        if (typeof Symbol !== "undefined" && Symbol.toStringTag) {
-            Object.defineProperty(exports, Symbol.toStringTag, {
-                value: "Module"
-            });
-        }
-        Object.defineProperty(exports, "__esModule", {
-            value: true
-        });
-    };
-    __webpack_require__.t = function(value, mode) {
-        if (mode & 1) value = __webpack_require__(value);
-        if (mode & 8) return value;
-        if (mode & 4 && typeof value === "object" && value && value.__esModule) return value;
-        var ns = Object.create(null);
-        __webpack_require__.r(ns);
-        Object.defineProperty(ns, "default", {
-            enumerable: true,
-            value: value
-        });
-        if (mode & 2 && typeof value != "string") for (var key in value) __webpack_require__.d(ns, key, function(key) {
-            return value[key];
-        }.bind(null, key));
-        return ns;
-    };
-    __webpack_require__.n = function(module) {
-        var getter = module && module.__esModule ? function getDefault() {
-            return module["default"];
-        } : function getModuleExports() {
+        };
+    })();
+    (() => {
+        __webpack_require__.nmd = module => {
+            module.paths = [];
+            if (!module.children) module.children = [];
             return module;
         };
-        __webpack_require__.d(getter, "a", getter);
-        return getter;
-    };
-    __webpack_require__.o = function(object, property) {
-        return Object.prototype.hasOwnProperty.call(object, property);
-    };
-    __webpack_require__.p = "";
-    return __webpack_require__(__webpack_require__.s = 5);
-})({
-    5: function(module, exports, __webpack_require__) {
-        module.exports = __webpack_require__(6);
-    },
-    6: function(module, __webpack_exports__, __webpack_require__) {
+    })();
+    (() => {
         "use strict";
-        __webpack_require__.r(__webpack_exports__);
         var MBAutocompleteTextField_namespaceObject = {};
         __webpack_require__.r(MBAutocompleteTextField_namespaceObject);
-        __webpack_require__.d(MBAutocompleteTextField_namespaceObject, "init", (function() {
-            return init;
-        }));
-        __webpack_require__.d(MBAutocompleteTextField_namespaceObject, "destroy", (function() {
-            return destroy;
-        }));
-        __webpack_require__.d(MBAutocompleteTextField_namespaceObject, "open", (function() {
-            return MBAutocompleteTextField_open;
-        }));
-        __webpack_require__.d(MBAutocompleteTextField_namespaceObject, "close", (function() {
-            return MBAutocompleteTextField_close;
-        }));
-        __webpack_require__.d(MBAutocompleteTextField_namespaceObject, "setValue", (function() {
-            return setValue;
-        }));
-        __webpack_require__.d(MBAutocompleteTextField_namespaceObject, "setDisabled", (function() {
-            return setDisabled;
-        }));
+        __webpack_require__.d(MBAutocompleteTextField_namespaceObject, {
+            close: () => MBAutocompleteTextField_close,
+            destroy: () => destroy,
+            init: () => init,
+            open: () => MBAutocompleteTextField_open,
+            setDisabled: () => setDisabled,
+            setValue: () => setValue
+        });
+        var MBBladeSet_namespaceObject = {};
+        __webpack_require__.r(MBBladeSet_namespaceObject);
+        __webpack_require__.d(MBBladeSet_namespaceObject, {
+            closeBlade: () => closeBlade,
+            openBlade: () => openBlade
+        });
         var MBButton_namespaceObject = {};
         __webpack_require__.r(MBButton_namespaceObject);
-        __webpack_require__.d(MBButton_namespaceObject, "init", (function() {
-            return MBButton_init;
-        }));
-        __webpack_require__.d(MBButton_namespaceObject, "destroy", (function() {
-            return MBButton_destroy;
-        }));
+        __webpack_require__.d(MBButton_namespaceObject, {
+            destroy: () => MBButton_destroy,
+            init: () => MBButton_init
+        });
         var MBCard_namespaceObject = {};
         __webpack_require__.r(MBCard_namespaceObject);
-        __webpack_require__.d(MBCard_namespaceObject, "init", (function() {
-            return MBCard_init;
-        }));
+        __webpack_require__.d(MBCard_namespaceObject, {
+            destroy: () => MBCard_destroy,
+            init: () => MBCard_init
+        });
+        var MBChipsSelectMulti_namespaceObject = {};
+        __webpack_require__.r(MBChipsSelectMulti_namespaceObject);
+        __webpack_require__.d(MBChipsSelectMulti_namespaceObject, {
+            destroy: () => MBChipsSelectMulti_destroy,
+            init: () => MBChipsSelectMulti_init,
+            setDisabled: () => MBChipsSelectMulti_setDisabled,
+            setSelected: () => setSelected
+        });
         var MBCheckbox_namespaceObject = {};
         __webpack_require__.r(MBCheckbox_namespaceObject);
-        __webpack_require__.d(MBCheckbox_namespaceObject, "init", (function() {
-            return MBCheckbox_init;
-        }));
-        __webpack_require__.d(MBCheckbox_namespaceObject, "setChecked", (function() {
-            return setChecked;
-        }));
-        __webpack_require__.d(MBCheckbox_namespaceObject, "setIndeterminate", (function() {
-            return setIndeterminate;
-        }));
-        __webpack_require__.d(MBCheckbox_namespaceObject, "setDisabled", (function() {
-            return MBCheckbox_setDisabled;
-        }));
+        __webpack_require__.d(MBCheckbox_namespaceObject, {
+            destroy: () => MBCheckbox_destroy,
+            init: () => MBCheckbox_init,
+            setChecked: () => setChecked,
+            setDisabled: () => MBCheckbox_setDisabled,
+            setIndeterminate: () => setIndeterminate
+        });
         var MBCircularProgress_namespaceObject = {};
         __webpack_require__.r(MBCircularProgress_namespaceObject);
-        __webpack_require__.d(MBCircularProgress_namespaceObject, "init", (function() {
-            return MBCircularProgress_init;
-        }));
-        __webpack_require__.d(MBCircularProgress_namespaceObject, "setProgress", (function() {
-            return setProgress;
-        }));
+        __webpack_require__.d(MBCircularProgress_namespaceObject, {
+            destroy: () => MBCircularProgress_destroy,
+            init: () => MBCircularProgress_init,
+            setProgress: () => setProgress
+        });
+        var MBDataTable_namespaceObject = {};
+        __webpack_require__.r(MBDataTable_namespaceObject);
+        __webpack_require__.d(MBDataTable_namespaceObject, {
+            destroy: () => MBDataTable_destroy,
+            init: () => MBDataTable_init,
+            setProgress: () => MBDataTable_setProgress
+        });
         var MBDatePicker_namespaceObject = {};
         __webpack_require__.r(MBDatePicker_namespaceObject);
-        __webpack_require__.d(MBDatePicker_namespaceObject, "init", (function() {
-            return MBDatePicker_init;
-        }));
-        __webpack_require__.d(MBDatePicker_namespaceObject, "listItemClick", (function() {
-            return listItemClick;
-        }));
-        __webpack_require__.d(MBDatePicker_namespaceObject, "scrollToYear", (function() {
-            return scrollToYear;
-        }));
+        __webpack_require__.d(MBDatePicker_namespaceObject, {
+            destroy: () => MBDatePicker_destroy,
+            init: () => MBDatePicker_init,
+            listItemClick: () => listItemClick,
+            scrollToYear: () => scrollToYear,
+            setDisabled: () => MBDatePicker_setDisabled
+        });
         var MBDialog_namespaceObject = {};
         __webpack_require__.r(MBDialog_namespaceObject);
-        __webpack_require__.d(MBDialog_namespaceObject, "show", (function() {
-            return show;
-        }));
-        __webpack_require__.d(MBDialog_namespaceObject, "hide", (function() {
-            return hide;
-        }));
+        __webpack_require__.d(MBDialog_namespaceObject, {
+            hide: () => hide,
+            show: () => show
+        });
         var MBDrawer_namespaceObject = {};
         __webpack_require__.r(MBDrawer_namespaceObject);
-        __webpack_require__.d(MBDrawer_namespaceObject, "toggle", (function() {
-            return toggle;
-        }));
+        __webpack_require__.d(MBDrawer_namespaceObject, {
+            destroy: () => MBDrawer_destroy,
+            init: () => MBDrawer_init,
+            toggle: () => toggle
+        });
         var MBFloatingActionButton_namespaceObject = {};
         __webpack_require__.r(MBFloatingActionButton_namespaceObject);
-        __webpack_require__.d(MBFloatingActionButton_namespaceObject, "init", (function() {
-            return MBFloatingActionButton_init;
-        }));
-        __webpack_require__.d(MBFloatingActionButton_namespaceObject, "setExited", (function() {
-            return setExited;
-        }));
+        __webpack_require__.d(MBFloatingActionButton_namespaceObject, {
+            destroy: () => MBFloatingActionButton_destroy,
+            init: () => MBFloatingActionButton_init,
+            setExited: () => setExited
+        });
+        var MBGrid_namespaceObject = {};
+        __webpack_require__.r(MBGrid_namespaceObject);
+        __webpack_require__.d(MBGrid_namespaceObject, {
+            getScrollBarWidth: () => getScrollBarWidth,
+            getTextWidth: () => getTextWidth,
+            syncScrollByID: () => syncScrollByID,
+            syncScrollByRef: () => syncScrollByRef
+        });
         var MBIconButton_namespaceObject = {};
         __webpack_require__.r(MBIconButton_namespaceObject);
-        __webpack_require__.d(MBIconButton_namespaceObject, "init", (function() {
-            return MBIconButton_init;
-        }));
+        __webpack_require__.d(MBIconButton_namespaceObject, {
+            destroy: () => MBIconButton_destroy,
+            init: () => MBIconButton_init
+        });
         var MBIconButtonToggle_namespaceObject = {};
         __webpack_require__.r(MBIconButtonToggle_namespaceObject);
-        __webpack_require__.d(MBIconButtonToggle_namespaceObject, "init", (function() {
-            return MBIconButtonToggle_init;
-        }));
-        __webpack_require__.d(MBIconButtonToggle_namespaceObject, "setOn", (function() {
-            return setOn;
-        }));
-        __webpack_require__.d(MBIconButtonToggle_namespaceObject, "click", (function() {
-            return click;
-        }));
+        __webpack_require__.d(MBIconButtonToggle_namespaceObject, {
+            click: () => click,
+            destroy: () => MBIconButtonToggle_destroy,
+            init: () => MBIconButtonToggle_init,
+            setOn: () => setOn
+        });
         var MBLinearProgress_namespaceObject = {};
         __webpack_require__.r(MBLinearProgress_namespaceObject);
-        __webpack_require__.d(MBLinearProgress_namespaceObject, "init", (function() {
-            return MBLinearProgress_init;
-        }));
-        __webpack_require__.d(MBLinearProgress_namespaceObject, "setProgress", (function() {
-            return MBLinearProgress_setProgress;
-        }));
+        __webpack_require__.d(MBLinearProgress_namespaceObject, {
+            destroy: () => MBLinearProgress_destroy,
+            init: () => MBLinearProgress_init,
+            setProgress: () => MBLinearProgress_setProgress
+        });
         var MBList_namespaceObject = {};
         __webpack_require__.r(MBList_namespaceObject);
-        __webpack_require__.d(MBList_namespaceObject, "init", (function() {
-            return MBList_init;
-        }));
+        __webpack_require__.d(MBList_namespaceObject, {
+            destroy: () => MBList_destroy,
+            init: () => MBList_init
+        });
         var MBMenu_namespaceObject = {};
         __webpack_require__.r(MBMenu_namespaceObject);
-        __webpack_require__.d(MBMenu_namespaceObject, "init", (function() {
-            return MBMenu_init;
-        }));
-        __webpack_require__.d(MBMenu_namespaceObject, "show", (function() {
-            return MBMenu_show;
-        }));
-        __webpack_require__.d(MBMenu_namespaceObject, "hide", (function() {
-            return MBMenu_hide;
-        }));
+        __webpack_require__.d(MBMenu_namespaceObject, {
+            destroy: () => MBMenu_destroy,
+            hide: () => MBMenu_hide,
+            init: () => MBMenu_init,
+            show: () => MBMenu_show
+        });
         var MBRadioButton_namespaceObject = {};
         __webpack_require__.r(MBRadioButton_namespaceObject);
-        __webpack_require__.d(MBRadioButton_namespaceObject, "init", (function() {
-            return MBRadioButton_init;
-        }));
-        __webpack_require__.d(MBRadioButton_namespaceObject, "setDisabled", (function() {
-            return MBRadioButton_setDisabled;
-        }));
-        __webpack_require__.d(MBRadioButton_namespaceObject, "setChecked", (function() {
-            return MBRadioButton_setChecked;
-        }));
+        __webpack_require__.d(MBRadioButton_namespaceObject, {
+            destroy: () => MBRadioButton_destroy,
+            init: () => MBRadioButton_init,
+            setChecked: () => MBRadioButton_setChecked,
+            setDisabled: () => MBRadioButton_setDisabled
+        });
+        var MBSegmentedButtonMulti_namespaceObject = {};
+        __webpack_require__.r(MBSegmentedButtonMulti_namespaceObject);
+        __webpack_require__.d(MBSegmentedButtonMulti_namespaceObject, {
+            destroy: () => MBSegmentedButtonMulti_destroy,
+            init: () => MBSegmentedButtonMulti_init,
+            setDisabled: () => MBSegmentedButtonMulti_setDisabled,
+            setSelected: () => MBSegmentedButtonMulti_setSelected
+        });
         var MBSelect_namespaceObject = {};
         __webpack_require__.r(MBSelect_namespaceObject);
-        __webpack_require__.d(MBSelect_namespaceObject, "init", (function() {
-            return MBSelect_init;
-        }));
-        __webpack_require__.d(MBSelect_namespaceObject, "setDisabled", (function() {
-            return MBSelect_setDisabled;
-        }));
-        __webpack_require__.d(MBSelect_namespaceObject, "setIndex", (function() {
-            return setIndex;
-        }));
+        __webpack_require__.d(MBSelect_namespaceObject, {
+            destroy: () => MBSelect_destroy,
+            init: () => MBSelect_init,
+            setDisabled: () => MBSelect_setDisabled,
+            setIndex: () => setIndex
+        });
+        var MBSlider_namespaceObject = {};
+        __webpack_require__.r(MBSlider_namespaceObject);
+        __webpack_require__.d(MBSlider_namespaceObject, {
+            destroy: () => MBSlider_destroy,
+            init: () => MBSlider_init,
+            setDisabled: () => MBSlider_setDisabled,
+            setValue: () => MBSlider_setValue
+        });
         var MBSwitch_namespaceObject = {};
         __webpack_require__.r(MBSwitch_namespaceObject);
-        __webpack_require__.d(MBSwitch_namespaceObject, "init", (function() {
-            return MBSwitch_init;
-        }));
-        __webpack_require__.d(MBSwitch_namespaceObject, "setChecked", (function() {
-            return MBSwitch_setChecked;
-        }));
-        __webpack_require__.d(MBSwitch_namespaceObject, "setDisabled", (function() {
-            return MBSwitch_setDisabled;
-        }));
+        __webpack_require__.d(MBSwitch_namespaceObject, {
+            destroy: () => MBSwitch_destroy,
+            init: () => MBSwitch_init,
+            setChecked: () => MBSwitch_setChecked,
+            setDisabled: () => MBSwitch_setDisabled
+        });
         var MBTabBar_namespaceObject = {};
         __webpack_require__.r(MBTabBar_namespaceObject);
-        __webpack_require__.d(MBTabBar_namespaceObject, "init", (function() {
-            return MBTabBar_init;
-        }));
-        __webpack_require__.d(MBTabBar_namespaceObject, "activateTab", (function() {
-            return activateTab;
-        }));
+        __webpack_require__.d(MBTabBar_namespaceObject, {
+            activateTab: () => activateTab,
+            destroy: () => MBTabBar_destroy,
+            init: () => MBTabBar_init
+        });
         var MBTextField_namespaceObject = {};
         __webpack_require__.r(MBTextField_namespaceObject);
-        __webpack_require__.d(MBTextField_namespaceObject, "init", (function() {
-            return MBTextField_init;
-        }));
-        __webpack_require__.d(MBTextField_namespaceObject, "setValue", (function() {
-            return MBTextField_setValue;
-        }));
-        __webpack_require__.d(MBTextField_namespaceObject, "setDisabled", (function() {
-            return MBTextField_setDisabled;
-        }));
-        __webpack_require__.d(MBTextField_namespaceObject, "setHelperText", (function() {
-            return setHelperText;
-        }));
-        __webpack_require__.d(MBTextField_namespaceObject, "setType", (function() {
-            return setType;
-        }));
+        __webpack_require__.d(MBTextField_namespaceObject, {
+            destroy: () => MBTextField_destroy,
+            init: () => MBTextField_init,
+            setDisabled: () => MBTextField_setDisabled,
+            setHelperText: () => setHelperText,
+            setType: () => setType,
+            setValue: () => MBTextField_setValue
+        });
+        var MBTooltip_namespaceObject = {};
+        __webpack_require__.r(MBTooltip_namespaceObject);
+        __webpack_require__.d(MBTooltip_namespaceObject, {
+            destroy: () => MBTooltip_destroy,
+            init: () => MBTooltip_init
+        });
         var MBTopAppBar_namespaceObject = {};
         __webpack_require__.r(MBTopAppBar_namespaceObject);
-        __webpack_require__.d(MBTopAppBar_namespaceObject, "init", (function() {
-            return MBTopAppBar_init;
-        }));
+        __webpack_require__.d(MBTopAppBar_namespaceObject, {
+            destroy: () => MBTopAppBar_destroy,
+            init: () => MBTopAppBar_init
+        });
         /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
 
@@ -664,7 +6028,7 @@ PERFORMANCE OF THIS SOFTWARE.
             MDCFoundation.prototype.destroy = function() {};
             return MDCFoundation;
         }();
-        var base_foundation = MDCFoundation;
+        const foundation = null && MDCFoundation;
         /**
  * @license
  * Copyright 2016 Google Inc.
@@ -686,7 +6050,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_MDCComponent = function() {
+ */        var MDCComponent = function() {
             function MDCComponent(root, foundation) {
                 var args = [];
                 for (var _i = 2; _i < arguments.length; _i++) {
@@ -738,7 +6102,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCComponent;
         }();
-        var component = component_MDCComponent;
+        const component = null && MDCComponent;
         /**
  * @license
  * Copyright 2019 Google Inc.
@@ -887,7 +6251,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCFloatingLabelFoundation = function(_super) {
+ */        var MDCFloatingLabelFoundation = function(_super) {
             __extends(MDCFloatingLabelFoundation, _super);
             function MDCFloatingLabelFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCFloatingLabelFoundation.defaultAdapter), adapter)) || this;
@@ -966,7 +6330,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCFloatingLabelFoundation;
         }(MDCFoundation);
-        var floating_label_foundation = foundation_MDCFloatingLabelFoundation;
+        const floating_label_foundation = null && MDCFloatingLabelFoundation;
         /**
  * @license
  * Copyright 2016 Google Inc.
@@ -988,7 +6352,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_MDCFloatingLabel = function(_super) {
+ */        var MDCFloatingLabel = function(_super) {
             __extends(MDCFloatingLabel, _super);
             function MDCFloatingLabel() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1027,10 +6391,10 @@ PERFORMANCE OF THIS SOFTWARE.
                         return _this.unlisten(evtType, handler);
                     }
                 };
-                return new foundation_MDCFloatingLabelFoundation(adapter);
+                return new MDCFloatingLabelFoundation(adapter);
             };
             return MDCFloatingLabel;
-        }(component_MDCComponent);
+        }(MDCComponent);
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -1077,7 +6441,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCLineRippleFoundation = function(_super) {
+ */        var MDCLineRippleFoundation = function(_super) {
             __extends(MDCLineRippleFoundation, _super);
             function MDCLineRippleFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCLineRippleFoundation.defaultAdapter), adapter)) || this;
@@ -1146,7 +6510,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCLineRippleFoundation;
         }(MDCFoundation);
-        var line_ripple_foundation = foundation_MDCLineRippleFoundation;
+        const line_ripple_foundation = null && MDCLineRippleFoundation;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -1168,7 +6532,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_MDCLineRipple = function(_super) {
+ */        var MDCLineRipple = function(_super) {
             __extends(MDCLineRipple, _super);
             function MDCLineRipple() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1207,10 +6571,10 @@ PERFORMANCE OF THIS SOFTWARE.
                         return _this.unlisten(evtType, handler);
                     }
                 };
-                return new foundation_MDCLineRippleFoundation(adapter);
+                return new MDCLineRippleFoundation(adapter);
             };
             return MDCLineRipple;
-        }(component_MDCComponent);
+        }(MDCComponent);
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -1264,7 +6628,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCNotchedOutlineFoundation = function(_super) {
+ */        var MDCNotchedOutlineFoundation = function(_super) {
             __extends(MDCNotchedOutlineFoundation, _super);
             function MDCNotchedOutlineFoundation(adapter) {
                 return _super.call(this, __assign(__assign({}, MDCNotchedOutlineFoundation.defaultAdapter), adapter)) || this;
@@ -1325,7 +6689,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCNotchedOutlineFoundation;
         }(MDCFoundation);
-        var notched_outline_foundation = foundation_MDCNotchedOutlineFoundation;
+        const notched_outline_foundation = null && MDCNotchedOutlineFoundation;
         /**
  * @license
  * Copyright 2017 Google Inc.
@@ -1347,7 +6711,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_MDCNotchedOutline = function(_super) {
+ */        var MDCNotchedOutline = function(_super) {
             __extends(MDCNotchedOutline, _super);
             function MDCNotchedOutline() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -1357,7 +6721,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             MDCNotchedOutline.prototype.initialSyncWithDOM = function() {
                 this.notchElement_ = this.root.querySelector(strings.NOTCH_ELEMENT_SELECTOR);
-                var label = this.root.querySelector("." + foundation_MDCFloatingLabelFoundation.cssClasses.ROOT);
+                var label = this.root.querySelector("." + MDCFloatingLabelFoundation.cssClasses.ROOT);
                 if (label) {
                     label.style.transitionDuration = "0s";
                     this.root.classList.add(notched_outline_constants_cssClasses.OUTLINE_UPGRADED);
@@ -1390,10 +6754,10 @@ PERFORMANCE OF THIS SOFTWARE.
                         return _this.notchElement_.style.removeProperty("width");
                     }
                 };
-                return new foundation_MDCNotchedOutlineFoundation(adapter);
+                return new MDCNotchedOutlineFoundation(adapter);
             };
             return MDCNotchedOutline;
-        }(component_MDCComponent);
+        }(MDCComponent);
         /**
  * @license
  * Copyright 2016 Google Inc.
@@ -1509,7 +6873,7 @@ PERFORMANCE OF THIS SOFTWARE.
  */        var ACTIVATION_EVENT_TYPES = [ "touchstart", "pointerdown", "mousedown", "keydown" ];
         var POINTER_DEACTIVATION_EVENT_TYPES = [ "touchend", "pointerup", "mouseup", "contextmenu" ];
         var activatedTargets = [];
-        var foundation_MDCRippleFoundation = function(_super) {
+        var MDCRippleFoundation = function(_super) {
             __extends(MDCRippleFoundation, _super);
             function MDCRippleFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCRippleFoundation.defaultAdapter), adapter)) || this;
@@ -1960,7 +7324,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCRippleFoundation;
         }(MDCFoundation);
-        var ripple_foundation = foundation_MDCRippleFoundation;
+        const ripple_foundation = null && MDCRippleFoundation;
         /**
  * @license
  * Copyright 2016 Google Inc.
@@ -1982,7 +7346,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_MDCRipple = function(_super) {
+ */        var MDCRipple = function(_super) {
             __extends(MDCRipple, _super);
             function MDCRipple() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -2077,7 +7441,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 this.foundation.layout();
             };
             MDCRipple.prototype.getDefaultFoundation = function() {
-                return new foundation_MDCRippleFoundation(MDCRipple.createAdapter(this));
+                return new MDCRippleFoundation(MDCRipple.createAdapter(this));
             };
             MDCRipple.prototype.initialSyncWithDOM = function() {
                 var root = this.root;
@@ -2087,7 +7451,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 this.foundation.setUnbounded(Boolean(this.unbounded_));
             };
             return MDCRipple;
-        }(component_MDCComponent);
+        }(MDCComponent);
         /**
  * @license
  * Copyright 2019 Google Inc.
@@ -2136,7 +7500,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCTextFieldCharacterCounterFoundation = function(_super) {
+ */        var MDCTextFieldCharacterCounterFoundation = function(_super) {
             __extends(MDCTextFieldCharacterCounterFoundation, _super);
             function MDCTextFieldCharacterCounterFoundation(adapter) {
                 return _super.call(this, __assign(__assign({}, MDCTextFieldCharacterCounterFoundation.defaultAdapter), adapter)) || this;
@@ -2172,7 +7536,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCTextFieldCharacterCounterFoundation;
         }(MDCFoundation);
-        var character_counter_foundation = foundation_MDCTextFieldCharacterCounterFoundation;
+        const character_counter_foundation = null && MDCTextFieldCharacterCounterFoundation;
         /**
  * @license
  * Copyright 2019 Google Inc.
@@ -2194,7 +7558,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_MDCTextFieldCharacterCounter = function(_super) {
+ */        var MDCTextFieldCharacterCounter = function(_super) {
             __extends(MDCTextFieldCharacterCounter, _super);
             function MDCTextFieldCharacterCounter() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -2216,10 +7580,10 @@ PERFORMANCE OF THIS SOFTWARE.
                         _this.root.textContent = content;
                     }
                 };
-                return new foundation_MDCTextFieldCharacterCounterFoundation(adapter);
+                return new MDCTextFieldCharacterCounterFoundation(adapter);
             };
             return MDCTextFieldCharacterCounter;
-        }(component_MDCComponent);
+        }(MDCComponent);
         /**
  * @license
  * Copyright 2016 Google Inc.
@@ -2243,6 +7607,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * THE SOFTWARE.
  */        var textfield_constants_strings = {
             ARIA_CONTROLS: "aria-controls",
+            ARIA_DESCRIBEDBY: "aria-describedby",
             INPUT_SELECTOR: ".mdc-text-field__input",
             LABEL_SELECTOR: ".mdc-floating-label",
             LEADING_ICON_SELECTOR: ".mdc-text-field__icon--leading",
@@ -2255,7 +7620,6 @@ PERFORMANCE OF THIS SOFTWARE.
         var textfield_constants_cssClasses = {
             DISABLED: "mdc-text-field--disabled",
             FOCUSED: "mdc-text-field--focused",
-            FULLWIDTH: "mdc-text-field--fullwidth",
             HELPER_LINE: "mdc-text-field-helper-line",
             INVALID: "mdc-text-field--invalid",
             LABEL_FLOATING: "mdc-text-field--label-floating",
@@ -2294,7 +7658,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * THE SOFTWARE.
  */        var POINTERDOWN_EVENTS = [ "mousedown", "touchstart" ];
         var INTERACTION_EVENTS = [ "click", "keydown" ];
-        var foundation_MDCTextFieldFoundation = function(_super) {
+        var MDCTextFieldFoundation = function(_super) {
             __extends(MDCTextFieldFoundation, _super);
             function MDCTextFieldFoundation(adapter, foundationMap) {
                 if (foundationMap === void 0) {
@@ -2305,6 +7669,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 _this.receivedUserInput_ = false;
                 _this.isValid_ = true;
                 _this.useNativeValidation_ = true;
+                _this.validateOnValueChange_ = true;
                 _this.helperText_ = foundationMap.helperText;
                 _this.characterCounter_ = foundationMap.characterCounter;
                 _this.leadingIcon_ = foundationMap.leadingIcon;
@@ -2383,6 +7748,12 @@ PERFORMANCE OF THIS SOFTWARE.
                         },
                         hasClass: function() {
                             return true;
+                        },
+                        setInputAttr: function() {
+                            return undefined;
+                        },
+                        removeInputAttr: function() {
+                            return undefined;
                         },
                         registerTextFieldInteractionHandler: function() {
                             return undefined;
@@ -2507,7 +7878,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 }
             };
             MDCTextFieldFoundation.prototype.notchOutline = function(openNotch) {
-                if (!this.adapter.hasOutline()) {
+                if (!this.adapter.hasOutline() || !this.adapter.hasLabel()) {
                     return;
                 }
                 if (openNotch) {
@@ -2527,7 +7898,7 @@ PERFORMANCE OF THIS SOFTWARE.
                     this.styleFloating_(this.shouldFloat);
                     this.adapter.shakeLabel(this.shouldShake);
                 }
-                if (this.helperText_) {
+                if (this.helperText_ && (this.helperText_.isPersistent() || !this.helperText_.isValidation() || !this.isValid_)) {
                     this.helperText_.showToScreenReader();
                 }
             };
@@ -2574,13 +7945,17 @@ PERFORMANCE OF THIS SOFTWARE.
                     this.getNativeInput_().value = value;
                 }
                 this.setCharacterCounter_(value.length);
-                var isValid = this.isValid();
-                this.styleValidity_(isValid);
+                if (this.validateOnValueChange_) {
+                    var isValid = this.isValid();
+                    this.styleValidity_(isValid);
+                }
                 if (this.adapter.hasLabel()) {
                     this.notchOutline(this.shouldFloat);
                     this.adapter.floatLabel(this.shouldFloat);
                     this.styleFloating_(this.shouldFloat);
-                    this.adapter.shakeLabel(this.shouldShake);
+                    if (this.validateOnValueChange_) {
+                        this.adapter.shakeLabel(this.shouldShake);
+                    }
                 }
             };
             MDCTextFieldFoundation.prototype.isValid = function() {
@@ -2593,6 +7968,12 @@ PERFORMANCE OF THIS SOFTWARE.
                 if (this.adapter.hasLabel()) {
                     this.adapter.shakeLabel(shouldShake);
                 }
+            };
+            MDCTextFieldFoundation.prototype.setValidateOnValueChange = function(shouldValidate) {
+                this.validateOnValueChange_ = shouldValidate;
+            };
+            MDCTextFieldFoundation.prototype.getValidateOnValueChange = function() {
+                return this.validateOnValueChange_;
             };
             MDCTextFieldFoundation.prototype.setUseNativeValidation = function(useNativeValidation) {
                 this.useNativeValidation_ = useNativeValidation;
@@ -2654,6 +8035,17 @@ PERFORMANCE OF THIS SOFTWARE.
                 }
                 if (this.helperText_) {
                     this.helperText_.setValidity(isValid);
+                    var helperTextValidation = this.helperText_.isValidation();
+                    if (!helperTextValidation) {
+                        return;
+                    }
+                    var helperTextVisible = this.helperText_.isVisible();
+                    var helperTextId = this.helperText_.getId();
+                    if (helperTextVisible && helperTextId) {
+                        this.adapter.setInputAttr(textfield_constants_strings.ARIA_DESCRIBEDBY, helperTextId);
+                    } else {
+                        this.adapter.removeInputAttr(textfield_constants_strings.ARIA_DESCRIBEDBY);
+                    }
                 }
             };
             MDCTextFieldFoundation.prototype.styleFocused_ = function(isFocused) {
@@ -2703,7 +8095,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCTextFieldFoundation;
         }(MDCFoundation);
-        var textfield_foundation = foundation_MDCTextFieldFoundation;
+        const textfield_foundation = null && MDCTextFieldFoundation;
         /**
  * @license
  * Copyright 2016 Google Inc.
@@ -2756,7 +8148,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCTextFieldHelperTextFoundation = function(_super) {
+ */        var MDCTextFieldHelperTextFoundation = function(_super) {
             __extends(MDCTextFieldHelperTextFoundation, _super);
             function MDCTextFieldHelperTextFoundation(adapter) {
                 return _super.call(this, __assign(__assign({}, MDCTextFieldHelperTextFoundation.defaultAdapter), adapter)) || this;
@@ -2787,6 +8179,9 @@ PERFORMANCE OF THIS SOFTWARE.
                         hasClass: function() {
                             return false;
                         },
+                        getAttr: function() {
+                            return null;
+                        },
                         setAttr: function() {
                             return undefined;
                         },
@@ -2801,8 +8196,17 @@ PERFORMANCE OF THIS SOFTWARE.
                 enumerable: true,
                 configurable: true
             });
+            MDCTextFieldHelperTextFoundation.prototype.getId = function() {
+                return this.adapter.getAttr("id");
+            };
+            MDCTextFieldHelperTextFoundation.prototype.isVisible = function() {
+                return this.adapter.getAttr(helper_text_constants_strings.ARIA_HIDDEN) !== "true";
+            };
             MDCTextFieldHelperTextFoundation.prototype.setContent = function(content) {
                 this.adapter.setContent(content);
+            };
+            MDCTextFieldHelperTextFoundation.prototype.isPersistent = function() {
+                return this.adapter.hasClass(helper_text_constants_cssClasses.HELPER_TEXT_PERSISTENT);
             };
             MDCTextFieldHelperTextFoundation.prototype.setPersistent = function(isPersistent) {
                 if (isPersistent) {
@@ -2810,6 +8214,9 @@ PERFORMANCE OF THIS SOFTWARE.
                 } else {
                     this.adapter.removeClass(helper_text_constants_cssClasses.HELPER_TEXT_PERSISTENT);
                 }
+            };
+            MDCTextFieldHelperTextFoundation.prototype.isValidation = function() {
+                return this.adapter.hasClass(helper_text_constants_cssClasses.HELPER_TEXT_VALIDATION_MSG);
             };
             MDCTextFieldHelperTextFoundation.prototype.setValidation = function(isValidation) {
                 if (isValidation) {
@@ -2826,6 +8233,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 var helperTextIsValidationMsg = this.adapter.hasClass(helper_text_constants_cssClasses.HELPER_TEXT_VALIDATION_MSG);
                 var validationMsgNeedsDisplay = helperTextIsValidationMsg && !inputIsValid;
                 if (validationMsgNeedsDisplay) {
+                    this.showToScreenReader();
                     this.adapter.setAttr(helper_text_constants_strings.ROLE, "alert");
                 } else {
                     this.adapter.removeAttr(helper_text_constants_strings.ROLE);
@@ -2839,7 +8247,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCTextFieldHelperTextFoundation;
         }(MDCFoundation);
-        var helper_text_foundation = foundation_MDCTextFieldHelperTextFoundation;
+        const helper_text_foundation = null && MDCTextFieldHelperTextFoundation;
         /**
  * @license
  * Copyright 2017 Google Inc.
@@ -2861,7 +8269,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_MDCTextFieldHelperText = function(_super) {
+ */        var MDCTextFieldHelperText = function(_super) {
             __extends(MDCTextFieldHelperText, _super);
             function MDCTextFieldHelperText() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -2888,6 +8296,9 @@ PERFORMANCE OF THIS SOFTWARE.
                     hasClass: function(className) {
                         return _this.root.classList.contains(className);
                     },
+                    getAttr: function(attr) {
+                        return _this.root.getAttribute(attr);
+                    },
                     setAttr: function(attr, value) {
                         return _this.root.setAttribute(attr, value);
                     },
@@ -2898,10 +8309,10 @@ PERFORMANCE OF THIS SOFTWARE.
                         _this.root.textContent = content;
                     }
                 };
-                return new foundation_MDCTextFieldHelperTextFoundation(adapter);
+                return new MDCTextFieldHelperTextFoundation(adapter);
             };
             return MDCTextFieldHelperText;
-        }(component_MDCComponent);
+        }(MDCComponent);
         /**
  * @license
  * Copyright 2016 Google Inc.
@@ -2952,7 +8363,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */        var foundation_INTERACTION_EVENTS = [ "click", "keydown" ];
-        var foundation_MDCTextFieldIconFoundation = function(_super) {
+        var MDCTextFieldIconFoundation = function(_super) {
             __extends(MDCTextFieldIconFoundation, _super);
             function MDCTextFieldIconFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCTextFieldIconFoundation.defaultAdapter), adapter)) || this;
@@ -3045,7 +8456,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCTextFieldIconFoundation;
         }(MDCFoundation);
-        var icon_foundation = foundation_MDCTextFieldIconFoundation;
+        const icon_foundation = null && MDCTextFieldIconFoundation;
         /**
  * @license
  * Copyright 2017 Google Inc.
@@ -3067,7 +8478,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_MDCTextFieldIcon = function(_super) {
+ */        var MDCTextFieldIcon = function(_super) {
             __extends(MDCTextFieldIcon, _super);
             function MDCTextFieldIcon() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -3104,13 +8515,13 @@ PERFORMANCE OF THIS SOFTWARE.
                         return _this.unlisten(evtType, handler);
                     },
                     notifyIconAction: function() {
-                        return _this.emit(foundation_MDCTextFieldIconFoundation.strings.ICON_EVENT, {}, true);
+                        return _this.emit(MDCTextFieldIconFoundation.strings.ICON_EVENT, {}, true);
                     }
                 };
-                return new foundation_MDCTextFieldIconFoundation(adapter);
+                return new MDCTextFieldIconFoundation(adapter);
             };
             return MDCTextFieldIcon;
-        }(component_MDCComponent);
+        }(MDCComponent);
         /**
  * @license
  * Copyright 2016 Google Inc.
@@ -3132,7 +8543,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_MDCTextField = function(_super) {
+ */        var MDCTextField = function(_super) {
             __extends(MDCTextField, _super);
             function MDCTextField() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -3143,37 +8554,37 @@ PERFORMANCE OF THIS SOFTWARE.
             MDCTextField.prototype.initialize = function(rippleFactory, lineRippleFactory, helperTextFactory, characterCounterFactory, iconFactory, labelFactory, outlineFactory) {
                 if (rippleFactory === void 0) {
                     rippleFactory = function(el, foundation) {
-                        return new component_MDCRipple(el, foundation);
+                        return new MDCRipple(el, foundation);
                     };
                 }
                 if (lineRippleFactory === void 0) {
                     lineRippleFactory = function(el) {
-                        return new component_MDCLineRipple(el);
+                        return new MDCLineRipple(el);
                     };
                 }
                 if (helperTextFactory === void 0) {
                     helperTextFactory = function(el) {
-                        return new component_MDCTextFieldHelperText(el);
+                        return new MDCTextFieldHelperText(el);
                     };
                 }
                 if (characterCounterFactory === void 0) {
                     characterCounterFactory = function(el) {
-                        return new component_MDCTextFieldCharacterCounter(el);
+                        return new MDCTextFieldCharacterCounter(el);
                     };
                 }
                 if (iconFactory === void 0) {
                     iconFactory = function(el) {
-                        return new component_MDCTextFieldIcon(el);
+                        return new MDCTextFieldIcon(el);
                     };
                 }
                 if (labelFactory === void 0) {
                     labelFactory = function(el) {
-                        return new component_MDCFloatingLabel(el);
+                        return new MDCFloatingLabel(el);
                     };
                 }
                 if (outlineFactory === void 0) {
                     outlineFactory = function(el) {
-                        return new component_MDCNotchedOutline(el);
+                        return new MDCNotchedOutline(el);
                     };
                 }
                 this.input_ = this.root.querySelector(textfield_constants_strings.INPUT_SELECTOR);
@@ -3183,12 +8594,12 @@ PERFORMANCE OF THIS SOFTWARE.
                 this.lineRipple_ = lineRippleElement ? lineRippleFactory(lineRippleElement) : null;
                 var outlineElement = this.root.querySelector(textfield_constants_strings.OUTLINE_SELECTOR);
                 this.outline_ = outlineElement ? outlineFactory(outlineElement) : null;
-                var helperTextStrings = foundation_MDCTextFieldHelperTextFoundation.strings;
+                var helperTextStrings = MDCTextFieldHelperTextFoundation.strings;
                 var nextElementSibling = this.root.nextElementSibling;
                 var hasHelperLine = nextElementSibling && nextElementSibling.classList.contains(textfield_constants_cssClasses.HELPER_LINE);
                 var helperTextEl = hasHelperLine && nextElementSibling && nextElementSibling.querySelector(helperTextStrings.ROOT_SELECTOR);
                 this.helperText_ = helperTextEl ? helperTextFactory(helperTextEl) : null;
-                var characterCounterStrings = foundation_MDCTextFieldCharacterCounterFoundation.strings;
+                var characterCounterStrings = MDCTextFieldCharacterCounterFoundation.strings;
                 var characterCounterEl = this.root.querySelector(characterCounterStrings.ROOT_SELECTOR);
                 if (!characterCounterEl && hasHelperLine && nextElementSibling) {
                     characterCounterEl = nextElementSibling.querySelector(characterCounterStrings.ROOT_SELECTOR);
@@ -3411,7 +8822,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             MDCTextField.prototype.getDefaultFoundation = function() {
                 var adapter = __assign(__assign(__assign(__assign(__assign({}, this.getRootAdapterMethods_()), this.getInputAdapterMethods_()), this.getLabelAdapterMethods_()), this.getLineRippleAdapterMethods_()), this.getOutlineAdapterMethods_());
-                return new foundation_MDCTextFieldFoundation(adapter, this.getFoundationMap_());
+                return new MDCTextFieldFoundation(adapter, this.getFoundationMap_());
             };
             MDCTextField.prototype.getRootAdapterMethods_ = function() {
                 var _this = this;
@@ -3426,10 +8837,10 @@ PERFORMANCE OF THIS SOFTWARE.
                         return _this.root.classList.contains(className);
                     },
                     registerTextFieldInteractionHandler: function(evtType, handler) {
-                        return _this.listen(evtType, handler);
+                        _this.listen(evtType, handler);
                     },
                     deregisterTextFieldInteractionHandler: function(evtType, handler) {
-                        return _this.unlisten(evtType, handler);
+                        _this.unlisten(evtType, handler);
                     },
                     registerValidationAttributeChangeHandler: function(handler) {
                         var getAttributesList = function(mutationsList) {
@@ -3449,7 +8860,7 @@ PERFORMANCE OF THIS SOFTWARE.
                         return observer;
                     },
                     deregisterValidationAttributeChangeHandler: function(observer) {
-                        return observer.disconnect();
+                        observer.disconnect();
                     }
                 };
             };
@@ -3459,14 +8870,20 @@ PERFORMANCE OF THIS SOFTWARE.
                     getNativeInput: function() {
                         return _this.input_;
                     },
+                    setInputAttr: function(attr, value) {
+                        _this.input_.setAttribute(attr, value);
+                    },
+                    removeInputAttr: function(attr) {
+                        _this.input_.removeAttribute(attr);
+                    },
                     isFocused: function() {
                         return document.activeElement === _this.input_;
                     },
                     registerInputInteractionHandler: function(evtType, handler) {
-                        return _this.input_.addEventListener(evtType, handler, applyPassive());
+                        _this.input_.addEventListener(evtType, handler, applyPassive());
                     },
                     deregisterInputInteractionHandler: function(evtType, handler) {
-                        return _this.input_.removeEventListener(evtType, handler, applyPassive());
+                        _this.input_.removeEventListener(evtType, handler, applyPassive());
                     }
                 };
             };
@@ -3539,7 +8956,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 if (isTextArea || isOutlined) {
                     return null;
                 }
-                var adapter = __assign(__assign({}, component_MDCRipple.createAdapter(this)), {
+                var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), {
                     isSurfaceActive: function() {
                         return matches(_this.input_, ":active");
                     },
@@ -3550,10 +8967,10 @@ PERFORMANCE OF THIS SOFTWARE.
                         return _this.input_.removeEventListener(evtType, handler, applyPassive());
                     }
                 });
-                return rippleFactory(this.root, new foundation_MDCRippleFoundation(adapter));
+                return rippleFactory(this.root, new MDCRippleFoundation(adapter));
             };
             return MDCTextField;
-        }(component_MDCComponent);
+        }(MDCComponent);
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -3949,7 +9366,7 @@ PERFORMANCE OF THIS SOFTWARE.
  */        function isNumberArray(selectedIndex) {
             return selectedIndex instanceof Array;
         }
-        var foundation_MDCListFoundation = function(_super) {
+        var MDCListFoundation = function(_super) {
             __extends(MDCListFoundation, _super);
             function MDCListFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCListFoundation.defaultAdapter), adapter)) || this;
@@ -4055,6 +9472,8 @@ PERFORMANCE OF THIS SOFTWARE.
                     this.isCheckboxList_ = true;
                 } else if (this.adapter.hasRadioAtIndex(0)) {
                     this.isRadioList_ = true;
+                } else {
+                    this.maybeInitializeSingleSelection();
                 }
                 if (this.hasTypeahead) {
                     this.sortedIndexByFirstChar = this.typeaheadInitSortedIndex();
@@ -4068,6 +9487,24 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             MDCListFoundation.prototype.setSingleSelection = function(value) {
                 this.isSingleSelectionList_ = value;
+                if (value) {
+                    this.maybeInitializeSingleSelection();
+                }
+            };
+            MDCListFoundation.prototype.maybeInitializeSingleSelection = function() {
+                for (var i = 0; i < this.adapter.getListItemCount(); i++) {
+                    var hasSelectedClass = this.adapter.listItemAtIndexHasClass(i, list_constants_cssClasses.LIST_ITEM_SELECTED_CLASS);
+                    var hasActivatedClass = this.adapter.listItemAtIndexHasClass(i, list_constants_cssClasses.LIST_ITEM_ACTIVATED_CLASS);
+                    if (!(hasSelectedClass || hasActivatedClass)) {
+                        continue;
+                    }
+                    if (hasActivatedClass) {
+                        this.setUseActivatedClass(true);
+                    }
+                    this.isSingleSelectionList_ = true;
+                    this.selectedIndex_ = i;
+                    return;
+                }
             };
             MDCListFoundation.prototype.setHasTypeahead = function(hasTypeahead) {
                 this.hasTypeahead = hasTypeahead;
@@ -4099,17 +9536,19 @@ PERFORMANCE OF THIS SOFTWARE.
             MDCListFoundation.prototype.handleFocusIn = function(_, listItemIndex) {
                 if (listItemIndex >= 0) {
                     this.focusedItemIndex = listItemIndex;
+                    this.adapter.setAttributeForElementIndex(listItemIndex, "tabindex", "0");
                     this.adapter.setTabIndexForListItemChildren(listItemIndex, "0");
                 }
             };
             MDCListFoundation.prototype.handleFocusOut = function(_, listItemIndex) {
                 var _this = this;
                 if (listItemIndex >= 0) {
+                    this.adapter.setAttributeForElementIndex(listItemIndex, "tabindex", "-1");
                     this.adapter.setTabIndexForListItemChildren(listItemIndex, "-1");
                 }
                 setTimeout((function() {
                     if (!_this.adapter.isFocusInsideList()) {
-                        _this.setTabindexToFirstSelectedItem_();
+                        _this.setTabindexToFirstSelectedOrFocusedItem();
                     }
                 }), 0);
             };
@@ -4205,8 +9644,6 @@ PERFORMANCE OF THIS SOFTWARE.
                 if (index === list_constants_numbers.UNSET_INDEX) {
                     return;
                 }
-                this.setTabindexAtIndex_(index);
-                this.focusedItemIndex = index;
                 if (this.adapter.listItemAtIndexHasClass(index, list_constants_cssClasses.LIST_ITEM_DISABLED_CLASS)) {
                     return;
                 }
@@ -4272,8 +9709,11 @@ PERFORMANCE OF THIS SOFTWARE.
                 if (this.selectedIndex_ !== list_constants_numbers.UNSET_INDEX) {
                     this.adapter.removeClassForElementIndex(this.selectedIndex_, selectedClassName);
                 }
-                this.adapter.addClassForElementIndex(index, selectedClassName);
                 this.setAriaForSingleSelectionAtIndex_(index);
+                this.setTabindexAtIndex_(index);
+                if (index !== list_constants_numbers.UNSET_INDEX) {
+                    this.adapter.addClassForElementIndex(index, selectedClassName);
+                }
                 this.selectedIndex_ = index;
             };
             MDCListFoundation.prototype.setAriaForSingleSelectionAtIndex_ = function(index) {
@@ -4285,8 +9725,10 @@ PERFORMANCE OF THIS SOFTWARE.
                 if (this.selectedIndex_ !== list_constants_numbers.UNSET_INDEX) {
                     this.adapter.setAttributeForElementIndex(this.selectedIndex_, ariaAttribute, "false");
                 }
-                var ariaAttributeValue = isAriaCurrent ? this.ariaCurrentAttrValue_ : "true";
-                this.adapter.setAttributeForElementIndex(index, ariaAttribute, ariaAttributeValue);
+                if (index !== list_constants_numbers.UNSET_INDEX) {
+                    var ariaAttributeValue = isAriaCurrent ? this.ariaCurrentAttrValue_ : "true";
+                    this.adapter.setAttributeForElementIndex(index, ariaAttribute, ariaAttributeValue);
+                }
             };
             MDCListFoundation.prototype.setRadioAtIndex_ = function(index) {
                 this.adapter.setCheckedCheckboxOrRadioAtIndex(index, true);
@@ -4313,13 +9755,18 @@ PERFORMANCE OF THIS SOFTWARE.
                 } else if (this.focusedItemIndex >= 0 && this.focusedItemIndex !== index) {
                     this.adapter.setAttributeForElementIndex(this.focusedItemIndex, "tabindex", "-1");
                 }
-                this.adapter.setAttributeForElementIndex(index, "tabindex", "0");
+                if (!(this.selectedIndex_ instanceof Array) && this.selectedIndex_ !== index) {
+                    this.adapter.setAttributeForElementIndex(this.selectedIndex_, "tabindex", "-1");
+                }
+                if (index !== list_constants_numbers.UNSET_INDEX) {
+                    this.adapter.setAttributeForElementIndex(index, "tabindex", "0");
+                }
             };
             MDCListFoundation.prototype.isSelectableList_ = function() {
                 return this.isSingleSelectionList_ || this.isCheckboxList_ || this.isRadioList_;
             };
-            MDCListFoundation.prototype.setTabindexToFirstSelectedItem_ = function() {
-                var targetIndex = 0;
+            MDCListFoundation.prototype.setTabindexToFirstSelectedOrFocusedItem = function() {
+                var targetIndex = this.focusedItemIndex >= 0 ? this.focusedItemIndex : 0;
                 if (this.isSelectableList_()) {
                     if (typeof this.selectedIndex_ === "number" && this.selectedIndex_ !== list_constants_numbers.UNSET_INDEX) {
                         targetIndex = this.selectedIndex_;
@@ -4348,7 +9795,7 @@ PERFORMANCE OF THIS SOFTWARE.
                     if (this.isCheckboxList_) {
                         throw new Error("MDCListFoundation: Expected array of index for checkbox based list but got number: " + index);
                     }
-                    return this.isIndexInRange_(index);
+                    return this.isIndexInRange_(index) || this.isSingleSelectionList_ && index === list_constants_numbers.UNSET_INDEX;
                 } else {
                     return false;
                 }
@@ -4385,7 +9832,6 @@ PERFORMANCE OF THIS SOFTWARE.
                 this.selectedIndex_ = selectedIndexes;
             };
             MDCListFoundation.prototype.focusItemAtIndex = function(index) {
-                this.setTabindexAtIndex_(index);
                 this.adapter.focusItemAtIndex(index);
                 this.focusedItemIndex = index;
             };
@@ -4416,7 +9862,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCListFoundation;
         }(MDCFoundation);
-        var list_foundation = foundation_MDCListFoundation;
+        const list_foundation = null && MDCListFoundation;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -4438,7 +9884,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_MDCList = function(_super) {
+ */        var MDCList = function(_super) {
             __extends(MDCList, _super);
             function MDCList() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -4538,19 +9984,12 @@ PERFORMANCE OF THIS SOFTWARE.
             MDCList.prototype.initializeListType = function() {
                 var _this = this;
                 var checkboxListItems = this.root.querySelectorAll(list_constants_strings.ARIA_ROLE_CHECKBOX_SELECTOR);
-                var singleSelectedListItem = this.root.querySelector("\n      ." + list_constants_cssClasses.LIST_ITEM_ACTIVATED_CLASS + ",\n      ." + list_constants_cssClasses.LIST_ITEM_SELECTED_CLASS + "\n    ");
                 var radioSelectedListItem = this.root.querySelector(list_constants_strings.ARIA_CHECKED_RADIO_SELECTOR);
                 if (checkboxListItems.length) {
                     var preselectedItems = this.root.querySelectorAll(list_constants_strings.ARIA_CHECKED_CHECKBOX_SELECTOR);
                     this.selectedIndex = [].map.call(preselectedItems, (function(listItem) {
                         return _this.listElements.indexOf(listItem);
                     }));
-                } else if (singleSelectedListItem) {
-                    if (singleSelectedListItem.classList.contains(list_constants_cssClasses.LIST_ITEM_ACTIVATED_CLASS)) {
-                        this.foundation.setUseActivatedClass(true);
-                    }
-                    this.singleSelection = true;
-                    this.selectedIndex = this.listElements.indexOf(singleSelectedListItem);
                 } else if (radioSelectedListItem) {
                     this.selectedIndex = this.listElements.indexOf(radioSelectedListItem);
                 }
@@ -4602,7 +10041,7 @@ PERFORMANCE OF THIS SOFTWARE.
                         return toggleEl.checked;
                     },
                     isFocusInsideList: function() {
-                        return _this.root.contains(document.activeElement);
+                        return _this.root !== document.activeElement && _this.root.contains(document.activeElement);
                     },
                     isRootFocused: function() {
                         return document.activeElement === _this.root;
@@ -4643,7 +10082,7 @@ PERFORMANCE OF THIS SOFTWARE.
                         }));
                     }
                 };
-                return new foundation_MDCListFoundation(adapter);
+                return new MDCListFoundation(adapter);
             };
             MDCList.prototype.getListItemIndex_ = function(evt) {
                 var eventTarget = evt.target;
@@ -4673,7 +10112,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 this.foundation.handleClick(index, toggleCheckbox);
             };
             return MDCList;
-        }(component_MDCComponent);
+        }(MDCComponent);
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -4754,7 +10193,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCMenuSurfaceFoundation = function(_super) {
+ */        var MDCMenuSurfaceFoundation = function(_super) {
             __extends(MDCMenuSurfaceFoundation, _super);
             function MDCMenuSurfaceFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCMenuSurfaceFoundation.defaultAdapter), adapter)) || this;
@@ -5074,7 +10513,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 }
                 var isRtl = this.adapter.isRtl();
                 var isFlipRtl = this.hasBit(this.anchorCorner, CornerBit.FLIP_RTL);
-                var hasRightBit = this.hasBit(this.anchorCorner, CornerBit.RIGHT);
+                var hasRightBit = this.hasBit(this.anchorCorner, CornerBit.RIGHT) || this.hasBit(corner, CornerBit.RIGHT);
                 var isAnchoredToRight = false;
                 if (isRtl && isFlipRtl) {
                     isAnchoredToRight = !hasRightBit;
@@ -5199,7 +10638,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCMenuSurfaceFoundation;
         }(MDCFoundation);
-        var menu_surface_foundation = foundation_MDCMenuSurfaceFoundation;
+        const menu_surface_foundation = null && MDCMenuSurfaceFoundation;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -5253,7 +10692,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_MDCMenuSurface = function(_super) {
+ */        var MDCMenuSurface = function(_super) {
             __extends(MDCMenuSurface, _super);
             function MDCMenuSurface() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -5280,7 +10719,9 @@ PERFORMANCE OF THIS SOFTWARE.
                     });
                 };
                 this.deregisterBodyClickListener = function() {
-                    document.body.removeEventListener("click", _this.handleBodyClick);
+                    document.body.removeEventListener("click", _this.handleBodyClick, {
+                        capture: true
+                    });
                 };
                 this.listen("keydown", this.handleKeydown);
                 this.listen(menu_surface_constants_strings.OPENED_EVENT, this.registerBodyClickListener);
@@ -5351,10 +10792,10 @@ PERFORMANCE OF THIS SOFTWARE.
                         return !!_this.anchorElement;
                     },
                     notifyClose: function() {
-                        return _this.emit(foundation_MDCMenuSurfaceFoundation.strings.CLOSED_EVENT, {});
+                        return _this.emit(MDCMenuSurfaceFoundation.strings.CLOSED_EVENT, {});
                     },
                     notifyOpen: function() {
-                        return _this.emit(foundation_MDCMenuSurfaceFoundation.strings.OPENED_EVENT, {});
+                        return _this.emit(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, {});
                     },
                     isElementInContainer: function(el) {
                         return _this.root.contains(el);
@@ -5417,10 +10858,10 @@ PERFORMANCE OF THIS SOFTWARE.
                         _this.root.style.maxHeight = height;
                     }
                 };
-                return new foundation_MDCMenuSurfaceFoundation(adapter);
+                return new MDCMenuSurfaceFoundation(adapter);
             };
             return MDCMenuSurface;
-        }(component_MDCComponent);
+        }(MDCComponent);
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -5485,7 +10926,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCMenuFoundation = function(_super) {
+ */        var MDCMenuFoundation = function(_super) {
             __extends(MDCMenuFoundation, _super);
             function MDCMenuFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCMenuFoundation.defaultAdapter), adapter)) || this;
@@ -5589,7 +11030,7 @@ PERFORMANCE OF THIS SOFTWARE.
                     if (recomputedIndex >= 0 && _this.adapter.isSelectableItemAtIndex(recomputedIndex)) {
                         _this.setSelectedIndex(recomputedIndex);
                     }
-                }), foundation_MDCMenuSurfaceFoundation.numbers.TRANSITION_CLOSE_DURATION);
+                }), MDCMenuSurfaceFoundation.numbers.TRANSITION_CLOSE_DURATION);
             };
             MDCMenuFoundation.prototype.handleMenuSurfaceOpened = function() {
                 switch (this.defaultFocusState_) {
@@ -5644,7 +11085,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCMenuFoundation;
         }(MDCFoundation);
-        var menu_foundation = foundation_MDCMenuFoundation;
+        const menu_foundation = null && MDCMenuFoundation;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -5666,7 +11107,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_MDCMenu = function(_super) {
+ */        var MDCMenu = function(_super) {
             __extends(MDCMenu, _super);
             function MDCMenu() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -5677,12 +11118,12 @@ PERFORMANCE OF THIS SOFTWARE.
             MDCMenu.prototype.initialize = function(menuSurfaceFactory, listFactory) {
                 if (menuSurfaceFactory === void 0) {
                     menuSurfaceFactory = function(el) {
-                        return new component_MDCMenuSurface(el);
+                        return new MDCMenuSurface(el);
                     };
                 }
                 if (listFactory === void 0) {
                     listFactory = function(el) {
-                        return new component_MDCList(el);
+                        return new MDCList(el);
                     };
                 }
                 this.menuSurfaceFactory_ = menuSurfaceFactory;
@@ -5707,18 +11148,18 @@ PERFORMANCE OF THIS SOFTWARE.
                 this.handleMenuSurfaceOpened_ = function() {
                     return _this.foundation.handleMenuSurfaceOpened();
                 };
-                this.menuSurface_.listen(foundation_MDCMenuSurfaceFoundation.strings.OPENED_EVENT, this.handleMenuSurfaceOpened_);
+                this.menuSurface_.listen(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, this.handleMenuSurfaceOpened_);
                 this.listen("keydown", this.handleKeydown_);
-                this.listen(foundation_MDCListFoundation.strings.ACTION_EVENT, this.handleItemAction_);
+                this.listen(MDCListFoundation.strings.ACTION_EVENT, this.handleItemAction_);
             };
             MDCMenu.prototype.destroy = function() {
                 if (this.list_) {
                     this.list_.destroy();
                 }
                 this.menuSurface_.destroy();
-                this.menuSurface_.unlisten(foundation_MDCMenuSurfaceFoundation.strings.OPENED_EVENT, this.handleMenuSurfaceOpened_);
+                this.menuSurface_.unlisten(MDCMenuSurfaceFoundation.strings.OPENED_EVENT, this.handleMenuSurfaceOpened_);
                 this.unlisten("keydown", this.handleKeydown_);
-                this.unlisten(foundation_MDCListFoundation.strings.ACTION_EVENT, this.handleItemAction_);
+                this.unlisten(MDCListFoundation.strings.ACTION_EVENT, this.handleItemAction_);
                 _super.prototype.destroy.call(this);
             };
             Object.defineProperty(MDCMenu.prototype, "open", {
@@ -5777,6 +11218,27 @@ PERFORMANCE OF THIS SOFTWARE.
             Object.defineProperty(MDCMenu.prototype, "items", {
                 get: function() {
                     return this.list_ ? this.list_.listElements : [];
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCMenu.prototype, "singleSelection", {
+                set: function(singleSelection) {
+                    if (this.list_) {
+                        this.list_.singleSelection = singleSelection;
+                    }
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCMenu.prototype, "selectedIndex", {
+                get: function() {
+                    return this.list_ ? this.list_.selectedIndex : list_constants_numbers.UNSET_INDEX;
+                },
+                set: function(index) {
+                    if (this.list_) {
+                        this.list_.selectedIndex = index;
+                    }
                 },
                 enumerable: true,
                 configurable: true
@@ -5882,13 +11344,13 @@ PERFORMANCE OF THIS SOFTWARE.
                         return selectedItemEl ? _this.items.indexOf(selectedItemEl) : -1;
                     }
                 };
-                return new foundation_MDCMenuFoundation(adapter);
+                return new MDCMenuFoundation(adapter);
             };
             return MDCMenu;
-        }(component_MDCComponent);
+        }(MDCComponent);
         function init(textElem, menuElem, dotNetObject) {
-            textElem._textField = component_MDCTextField.attachTo(textElem);
-            menuElem._menu = component_MDCMenu.attachTo(menuElem);
+            textElem._textField = MDCTextField.attachTo(textElem);
+            menuElem._menu = MDCMenu.attachTo(menuElem);
             return new Promise((function() {
                 menuElem._menu.foundation.handleItemAction = function(listItem) {
                     menuElem._menu.open = false;
@@ -5897,7 +11359,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 menuElem._menu.foundation.adapter.handleMenuSurfaceOpened = function() {
                     menuElem._menu.foundation.setDefaultFocusState(0);
                 };
-                var closedCallback = function() {
+                var closedCallback = function closedCallback() {
                     dotNetObject.invokeMethodAsync("NotifyClosedAsync");
                 };
                 menuElem._menu.listen("MDCMenuSurface:closed", closedCallback);
@@ -5920,14 +11382,1560 @@ PERFORMANCE OF THIS SOFTWARE.
         function setDisabled(textElem, disabled) {
             textElem._textField.disabled = disabled;
         }
+        function openBlade(bladeSetElem, mainContentElem, scrollHelperElem, bladeElem, bladeContentElem) {
+            var bladeContentWidth = bladeContentElem.getBoundingClientRect().width;
+            var mainContentWidth = getComputedStyle(mainContentElem).width;
+            var mainContentMinWidth = getComputedStyle(mainContentElem).minWidth;
+            var availableShrinkage = bladeContentWidth;
+            if (mainContentMinWidth.substring(mainContentMinWidth.length - 2, mainContentMinWidth.length) == "px") {
+                availableShrinkage = Math.min(bladeContentWidth, parseInt(mainContentWidth) - parseInt(mainContentMinWidth));
+            }
+            if (availableShrinkage < bladeContentWidth) {
+                scrollHelperElem.style.transition = "";
+                scrollHelperElem.style.width = bladeContentWidth + "px";
+                bladeSetElem.scrollBy({
+                    top: 0,
+                    left: 5e3,
+                    behavior: "auto"
+                });
+                scrollHelperElem.style.transition = "width 200ms";
+                scrollHelperElem.style.width = "0px";
+            }
+            bladeElem.style.width = bladeContentWidth + "px";
+        }
+        function closeBlade(bladeElem) {
+            bladeElem.style.width = "0px";
+        }
         function MBButton_init(elem) {
-            elem._ripple = component_MDCRipple.attachTo(elem);
+            elem._ripple = MDCRipple.attachTo(elem);
         }
         function MBButton_destroy(elem) {
             elem._ripple.destroy();
         }
         function MBCard_init(elem) {
-            component_MDCRipple.attachTo(elem);
+            elem._ripple = MDCRipple.attachTo(elem);
+        }
+        function MBCard_destroy(elem) {
+            elem._ripple.destroy();
+        }
+        /**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var AnnouncerPriority;
+        (function(AnnouncerPriority) {
+            AnnouncerPriority["POLITE"] = "polite";
+            AnnouncerPriority["ASSERTIVE"] = "assertive";
+        })(AnnouncerPriority || (AnnouncerPriority = {}));
+        var DATA_MDC_DOM_ANNOUNCE = "data-mdc-dom-announce";
+        function announce(message, priority) {
+            Announcer.getInstance().say(message, priority);
+        }
+        var Announcer = function() {
+            function Announcer() {
+                this.liveRegions = new Map;
+            }
+            Announcer.getInstance = function() {
+                if (!Announcer.instance) {
+                    Announcer.instance = new Announcer;
+                }
+                return Announcer.instance;
+            };
+            Announcer.prototype.say = function(message, priority) {
+                if (priority === void 0) {
+                    priority = AnnouncerPriority.POLITE;
+                }
+                var liveRegion = this.getLiveRegion(priority);
+                liveRegion.textContent = "";
+                setTimeout((function() {
+                    liveRegion.textContent = message;
+                    document.addEventListener("click", clearLiveRegion);
+                }), 1);
+                function clearLiveRegion() {
+                    liveRegion.textContent = "";
+                    document.removeEventListener("click", clearLiveRegion);
+                }
+            };
+            Announcer.prototype.getLiveRegion = function(priority) {
+                var existingLiveRegion = this.liveRegions.get(priority);
+                if (existingLiveRegion && document.body.contains(existingLiveRegion)) {
+                    return existingLiveRegion;
+                }
+                var liveRegion = this.createLiveRegion(priority);
+                this.liveRegions.set(priority, liveRegion);
+                return liveRegion;
+            };
+            Announcer.prototype.createLiveRegion = function(priority) {
+                var el = document.createElement("div");
+                el.style.position = "absolute";
+                el.style.top = "-9999px";
+                el.style.left = "-9999px";
+                el.style.height = "1px";
+                el.style.overflow = "hidden";
+                el.setAttribute("aria-atomic", "true");
+                el.setAttribute("aria-live", priority);
+                el.setAttribute(DATA_MDC_DOM_ANNOUNCE, "true");
+                document.body.appendChild(el);
+                return el;
+            };
+            return Announcer;
+        }();
+        /**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var InteractionTrigger;
+        (function(InteractionTrigger) {
+            InteractionTrigger[InteractionTrigger["UNSPECIFIED"] = 0] = "UNSPECIFIED";
+            InteractionTrigger[InteractionTrigger["CLICK"] = 1] = "CLICK";
+            InteractionTrigger[InteractionTrigger["BACKSPACE_KEY"] = 2] = "BACKSPACE_KEY";
+            InteractionTrigger[InteractionTrigger["DELETE_KEY"] = 3] = "DELETE_KEY";
+            InteractionTrigger[InteractionTrigger["SPACEBAR_KEY"] = 4] = "SPACEBAR_KEY";
+            InteractionTrigger[InteractionTrigger["ENTER_KEY"] = 5] = "ENTER_KEY";
+        })(InteractionTrigger || (InteractionTrigger = {}));
+        var trailingaction_constants_strings = {
+            ARIA_HIDDEN: "aria-hidden",
+            INTERACTION_EVENT: "MDCChipTrailingAction:interaction",
+            NAVIGATION_EVENT: "MDCChipTrailingAction:navigation",
+            TAB_INDEX: "tabindex"
+        };
+        /**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var MDCChipTrailingActionFoundation = function(_super) {
+            __extends(MDCChipTrailingActionFoundation, _super);
+            function MDCChipTrailingActionFoundation(adapter) {
+                return _super.call(this, __assign(__assign({}, MDCChipTrailingActionFoundation.defaultAdapter), adapter)) || this;
+            }
+            Object.defineProperty(MDCChipTrailingActionFoundation, "strings", {
+                get: function() {
+                    return trailingaction_constants_strings;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCChipTrailingActionFoundation, "defaultAdapter", {
+                get: function() {
+                    return {
+                        focus: function() {
+                            return undefined;
+                        },
+                        getAttribute: function() {
+                            return null;
+                        },
+                        setAttribute: function() {
+                            return undefined;
+                        },
+                        notifyInteraction: function() {
+                            return undefined;
+                        },
+                        notifyNavigation: function() {
+                            return undefined;
+                        }
+                    };
+                },
+                enumerable: true,
+                configurable: true
+            });
+            MDCChipTrailingActionFoundation.prototype.handleClick = function(evt) {
+                evt.stopPropagation();
+                this.adapter.notifyInteraction(InteractionTrigger.CLICK);
+            };
+            MDCChipTrailingActionFoundation.prototype.handleKeydown = function(evt) {
+                evt.stopPropagation();
+                var key = normalizeKey(evt);
+                if (this.shouldNotifyInteractionFromKey_(key)) {
+                    var trigger = this.getTriggerFromKey_(key);
+                    this.adapter.notifyInteraction(trigger);
+                    return;
+                }
+                if (isNavigationEvent(evt)) {
+                    this.adapter.notifyNavigation(key);
+                    return;
+                }
+            };
+            MDCChipTrailingActionFoundation.prototype.removeFocus = function() {
+                this.adapter.setAttribute(trailingaction_constants_strings.TAB_INDEX, "-1");
+            };
+            MDCChipTrailingActionFoundation.prototype.focus = function() {
+                this.adapter.setAttribute(trailingaction_constants_strings.TAB_INDEX, "0");
+                this.adapter.focus();
+            };
+            MDCChipTrailingActionFoundation.prototype.isNavigable = function() {
+                return this.adapter.getAttribute(trailingaction_constants_strings.ARIA_HIDDEN) !== "true";
+            };
+            MDCChipTrailingActionFoundation.prototype.shouldNotifyInteractionFromKey_ = function(key) {
+                var isFromActionKey = key === KEY.ENTER || key === KEY.SPACEBAR;
+                var isFromDeleteKey = key === KEY.BACKSPACE || key === KEY.DELETE;
+                return isFromActionKey || isFromDeleteKey;
+            };
+            MDCChipTrailingActionFoundation.prototype.getTriggerFromKey_ = function(key) {
+                if (key === KEY.SPACEBAR) {
+                    return InteractionTrigger.SPACEBAR_KEY;
+                }
+                if (key === KEY.ENTER) {
+                    return InteractionTrigger.ENTER_KEY;
+                }
+                if (key === KEY.DELETE) {
+                    return InteractionTrigger.DELETE_KEY;
+                }
+                if (key === KEY.BACKSPACE) {
+                    return InteractionTrigger.BACKSPACE_KEY;
+                }
+                return InteractionTrigger.UNSPECIFIED;
+            };
+            return MDCChipTrailingActionFoundation;
+        }(MDCFoundation);
+        const trailingaction_foundation = null && MDCChipTrailingActionFoundation;
+        /**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var MDCChipTrailingAction = function(_super) {
+            __extends(MDCChipTrailingAction, _super);
+            function MDCChipTrailingAction() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            Object.defineProperty(MDCChipTrailingAction.prototype, "ripple", {
+                get: function() {
+                    return this.ripple_;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            MDCChipTrailingAction.attachTo = function(root) {
+                return new MDCChipTrailingAction(root);
+            };
+            MDCChipTrailingAction.prototype.initialize = function(rippleFactory) {
+                if (rippleFactory === void 0) {
+                    rippleFactory = function(el, foundation) {
+                        return new MDCRipple(el, foundation);
+                    };
+                }
+                var rippleAdapter = MDCRipple.createAdapter(this);
+                this.ripple_ = rippleFactory(this.root, new MDCRippleFoundation(rippleAdapter));
+            };
+            MDCChipTrailingAction.prototype.initialSyncWithDOM = function() {
+                var _this = this;
+                this.handleClick_ = function(evt) {
+                    _this.foundation.handleClick(evt);
+                };
+                this.handleKeydown_ = function(evt) {
+                    _this.foundation.handleKeydown(evt);
+                };
+                this.listen("click", this.handleClick_);
+                this.listen("keydown", this.handleKeydown_);
+            };
+            MDCChipTrailingAction.prototype.destroy = function() {
+                this.ripple_.destroy();
+                this.unlisten("click", this.handleClick_);
+                this.unlisten("keydown", this.handleKeydown_);
+                _super.prototype.destroy.call(this);
+            };
+            MDCChipTrailingAction.prototype.getDefaultFoundation = function() {
+                var _this = this;
+                var adapter = {
+                    focus: function() {
+                        _this.root.focus();
+                    },
+                    getAttribute: function(attr) {
+                        return _this.root.getAttribute(attr);
+                    },
+                    notifyInteraction: function(trigger) {
+                        return _this.emit(trailingaction_constants_strings.INTERACTION_EVENT, {
+                            trigger: trigger
+                        }, true);
+                    },
+                    notifyNavigation: function(key) {
+                        _this.emit(trailingaction_constants_strings.NAVIGATION_EVENT, {
+                            key: key
+                        }, true);
+                    },
+                    setAttribute: function(attr, value) {
+                        _this.root.setAttribute(attr, value);
+                    }
+                };
+                return new MDCChipTrailingActionFoundation(adapter);
+            };
+            MDCChipTrailingAction.prototype.isNavigable = function() {
+                return this.foundation.isNavigable();
+            };
+            MDCChipTrailingAction.prototype.focus = function() {
+                this.foundation.focus();
+            };
+            MDCChipTrailingAction.prototype.removeFocus = function() {
+                this.foundation.removeFocus();
+            };
+            return MDCChipTrailingAction;
+        }(MDCComponent);
+        /**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var Direction;
+        (function(Direction) {
+            Direction["LEFT"] = "left";
+            Direction["RIGHT"] = "right";
+        })(Direction || (Direction = {}));
+        var EventSource;
+        (function(EventSource) {
+            EventSource["PRIMARY"] = "primary";
+            EventSource["TRAILING"] = "trailing";
+            EventSource["NONE"] = "none";
+        })(EventSource || (EventSource = {}));
+        var chip_constants_strings = {
+            ADDED_ANNOUNCEMENT_ATTRIBUTE: "data-mdc-chip-added-announcement",
+            ARIA_CHECKED: "aria-checked",
+            ARROW_DOWN_KEY: "ArrowDown",
+            ARROW_LEFT_KEY: "ArrowLeft",
+            ARROW_RIGHT_KEY: "ArrowRight",
+            ARROW_UP_KEY: "ArrowUp",
+            BACKSPACE_KEY: "Backspace",
+            CHECKMARK_SELECTOR: ".mdc-chip__checkmark",
+            DELETE_KEY: "Delete",
+            END_KEY: "End",
+            ENTER_KEY: "Enter",
+            ENTRY_ANIMATION_NAME: "mdc-chip-entry",
+            HOME_KEY: "Home",
+            IE_ARROW_DOWN_KEY: "Down",
+            IE_ARROW_LEFT_KEY: "Left",
+            IE_ARROW_RIGHT_KEY: "Right",
+            IE_ARROW_UP_KEY: "Up",
+            IE_DELETE_KEY: "Del",
+            INTERACTION_EVENT: "MDCChip:interaction",
+            LEADING_ICON_SELECTOR: ".mdc-chip__icon--leading",
+            NAVIGATION_EVENT: "MDCChip:navigation",
+            PRIMARY_ACTION_SELECTOR: ".mdc-chip__primary-action",
+            REMOVED_ANNOUNCEMENT_ATTRIBUTE: "data-mdc-chip-removed-announcement",
+            REMOVAL_EVENT: "MDCChip:removal",
+            SELECTION_EVENT: "MDCChip:selection",
+            SPACEBAR_KEY: " ",
+            TAB_INDEX: "tabindex",
+            TRAILING_ACTION_SELECTOR: ".mdc-chip-trailing-action",
+            TRAILING_ICON_INTERACTION_EVENT: "MDCChip:trailingIconInteraction",
+            TRAILING_ICON_SELECTOR: ".mdc-chip__icon--trailing"
+        };
+        var chip_constants_cssClasses = {
+            CHECKMARK: "mdc-chip__checkmark",
+            CHIP_EXIT: "mdc-chip--exit",
+            DELETABLE: "mdc-chip--deletable",
+            EDITABLE: "mdc-chip--editable",
+            EDITING: "mdc-chip--editing",
+            HIDDEN_LEADING_ICON: "mdc-chip__icon--leading-hidden",
+            LEADING_ICON: "mdc-chip__icon--leading",
+            PRIMARY_ACTION: "mdc-chip__primary-action",
+            PRIMARY_ACTION_FOCUSED: "mdc-chip--primary-action-focused",
+            SELECTED: "mdc-chip--selected",
+            TEXT: "mdc-chip__text",
+            TRAILING_ACTION: "mdc-chip__trailing-action",
+            TRAILING_ICON: "mdc-chip__icon--trailing"
+        };
+        var constants_navigationKeys = new Set;
+        constants_navigationKeys.add(chip_constants_strings.ARROW_LEFT_KEY);
+        constants_navigationKeys.add(chip_constants_strings.ARROW_RIGHT_KEY);
+        constants_navigationKeys.add(chip_constants_strings.ARROW_DOWN_KEY);
+        constants_navigationKeys.add(chip_constants_strings.ARROW_UP_KEY);
+        constants_navigationKeys.add(chip_constants_strings.END_KEY);
+        constants_navigationKeys.add(chip_constants_strings.HOME_KEY);
+        constants_navigationKeys.add(chip_constants_strings.IE_ARROW_LEFT_KEY);
+        constants_navigationKeys.add(chip_constants_strings.IE_ARROW_RIGHT_KEY);
+        constants_navigationKeys.add(chip_constants_strings.IE_ARROW_DOWN_KEY);
+        constants_navigationKeys.add(chip_constants_strings.IE_ARROW_UP_KEY);
+        var jumpChipKeys = new Set;
+        jumpChipKeys.add(chip_constants_strings.ARROW_UP_KEY);
+        jumpChipKeys.add(chip_constants_strings.ARROW_DOWN_KEY);
+        jumpChipKeys.add(chip_constants_strings.HOME_KEY);
+        jumpChipKeys.add(chip_constants_strings.END_KEY);
+        jumpChipKeys.add(chip_constants_strings.IE_ARROW_UP_KEY);
+        jumpChipKeys.add(chip_constants_strings.IE_ARROW_DOWN_KEY);
+        /**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var emptyClientRect = {
+            bottom: 0,
+            height: 0,
+            left: 0,
+            right: 0,
+            top: 0,
+            width: 0
+        };
+        var FocusBehavior;
+        (function(FocusBehavior) {
+            FocusBehavior[FocusBehavior["SHOULD_FOCUS"] = 0] = "SHOULD_FOCUS";
+            FocusBehavior[FocusBehavior["SHOULD_NOT_FOCUS"] = 1] = "SHOULD_NOT_FOCUS";
+        })(FocusBehavior || (FocusBehavior = {}));
+        var MDCChipFoundation = function(_super) {
+            __extends(MDCChipFoundation, _super);
+            function MDCChipFoundation(adapter) {
+                var _this = _super.call(this, __assign(__assign({}, MDCChipFoundation.defaultAdapter), adapter)) || this;
+                _this.shouldRemoveOnTrailingIconClick_ = true;
+                _this.shouldFocusPrimaryActionOnClick_ = true;
+                return _this;
+            }
+            Object.defineProperty(MDCChipFoundation, "strings", {
+                get: function() {
+                    return chip_constants_strings;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCChipFoundation, "cssClasses", {
+                get: function() {
+                    return chip_constants_cssClasses;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCChipFoundation, "defaultAdapter", {
+                get: function() {
+                    return {
+                        addClass: function() {
+                            return undefined;
+                        },
+                        addClassToLeadingIcon: function() {
+                            return undefined;
+                        },
+                        eventTargetHasClass: function() {
+                            return false;
+                        },
+                        focusPrimaryAction: function() {
+                            return undefined;
+                        },
+                        focusTrailingAction: function() {
+                            return undefined;
+                        },
+                        getAttribute: function() {
+                            return null;
+                        },
+                        getCheckmarkBoundingClientRect: function() {
+                            return emptyClientRect;
+                        },
+                        getComputedStyleValue: function() {
+                            return "";
+                        },
+                        getRootBoundingClientRect: function() {
+                            return emptyClientRect;
+                        },
+                        hasClass: function() {
+                            return false;
+                        },
+                        hasLeadingIcon: function() {
+                            return false;
+                        },
+                        isRTL: function() {
+                            return false;
+                        },
+                        isTrailingActionNavigable: function() {
+                            return false;
+                        },
+                        notifyEditFinish: function() {
+                            return undefined;
+                        },
+                        notifyEditStart: function() {
+                            return undefined;
+                        },
+                        notifyInteraction: function() {
+                            return undefined;
+                        },
+                        notifyNavigation: function() {
+                            return undefined;
+                        },
+                        notifyRemoval: function() {
+                            return undefined;
+                        },
+                        notifySelection: function() {
+                            return undefined;
+                        },
+                        notifyTrailingIconInteraction: function() {
+                            return undefined;
+                        },
+                        removeClass: function() {
+                            return undefined;
+                        },
+                        removeClassFromLeadingIcon: function() {
+                            return undefined;
+                        },
+                        removeTrailingActionFocus: function() {
+                            return undefined;
+                        },
+                        setPrimaryActionAttr: function() {
+                            return undefined;
+                        },
+                        setStyleProperty: function() {
+                            return undefined;
+                        }
+                    };
+                },
+                enumerable: true,
+                configurable: true
+            });
+            MDCChipFoundation.prototype.isSelected = function() {
+                return this.adapter.hasClass(chip_constants_cssClasses.SELECTED);
+            };
+            MDCChipFoundation.prototype.isEditable = function() {
+                return this.adapter.hasClass(chip_constants_cssClasses.EDITABLE);
+            };
+            MDCChipFoundation.prototype.isEditing = function() {
+                return this.adapter.hasClass(chip_constants_cssClasses.EDITING);
+            };
+            MDCChipFoundation.prototype.setSelected = function(selected) {
+                this.setSelected_(selected);
+                this.notifySelection_(selected);
+            };
+            MDCChipFoundation.prototype.setSelectedFromChipSet = function(selected, shouldNotifyClients) {
+                this.setSelected_(selected);
+                if (shouldNotifyClients) {
+                    this.notifyIgnoredSelection_(selected);
+                }
+            };
+            MDCChipFoundation.prototype.getShouldRemoveOnTrailingIconClick = function() {
+                return this.shouldRemoveOnTrailingIconClick_;
+            };
+            MDCChipFoundation.prototype.setShouldRemoveOnTrailingIconClick = function(shouldRemove) {
+                this.shouldRemoveOnTrailingIconClick_ = shouldRemove;
+            };
+            MDCChipFoundation.prototype.setShouldFocusPrimaryActionOnClick = function(shouldFocus) {
+                this.shouldFocusPrimaryActionOnClick_ = shouldFocus;
+            };
+            MDCChipFoundation.prototype.getDimensions = function() {
+                var _this = this;
+                var getRootRect = function() {
+                    return _this.adapter.getRootBoundingClientRect();
+                };
+                var getCheckmarkRect = function() {
+                    return _this.adapter.getCheckmarkBoundingClientRect();
+                };
+                if (!this.adapter.hasLeadingIcon()) {
+                    var checkmarkRect = getCheckmarkRect();
+                    if (checkmarkRect) {
+                        var rootRect = getRootRect();
+                        return {
+                            bottom: rootRect.bottom,
+                            height: rootRect.height,
+                            left: rootRect.left,
+                            right: rootRect.right,
+                            top: rootRect.top,
+                            width: rootRect.width + checkmarkRect.height
+                        };
+                    }
+                }
+                return getRootRect();
+            };
+            MDCChipFoundation.prototype.beginExit = function() {
+                this.adapter.addClass(chip_constants_cssClasses.CHIP_EXIT);
+            };
+            MDCChipFoundation.prototype.handleClick = function() {
+                this.adapter.notifyInteraction();
+                this.setPrimaryActionFocusable_(this.getFocusBehavior_());
+            };
+            MDCChipFoundation.prototype.handleDoubleClick = function() {
+                if (this.isEditable()) {
+                    this.startEditing();
+                }
+            };
+            MDCChipFoundation.prototype.handleTransitionEnd = function(evt) {
+                var _this = this;
+                var shouldHandle = this.adapter.eventTargetHasClass(evt.target, chip_constants_cssClasses.CHIP_EXIT);
+                var widthIsAnimating = evt.propertyName === "width";
+                var opacityIsAnimating = evt.propertyName === "opacity";
+                if (shouldHandle && opacityIsAnimating) {
+                    var chipWidth_1 = this.adapter.getComputedStyleValue("width");
+                    requestAnimationFrame((function() {
+                        _this.adapter.setStyleProperty("width", chipWidth_1);
+                        _this.adapter.setStyleProperty("padding", "0");
+                        _this.adapter.setStyleProperty("margin", "0");
+                        requestAnimationFrame((function() {
+                            _this.adapter.setStyleProperty("width", "0");
+                        }));
+                    }));
+                    return;
+                }
+                if (shouldHandle && widthIsAnimating) {
+                    this.removeFocus();
+                    var removedAnnouncement = this.adapter.getAttribute(chip_constants_strings.REMOVED_ANNOUNCEMENT_ATTRIBUTE);
+                    this.adapter.notifyRemoval(removedAnnouncement);
+                }
+                if (!opacityIsAnimating) {
+                    return;
+                }
+                var shouldHideLeadingIcon = this.adapter.eventTargetHasClass(evt.target, chip_constants_cssClasses.LEADING_ICON) && this.adapter.hasClass(chip_constants_cssClasses.SELECTED);
+                var shouldShowLeadingIcon = this.adapter.eventTargetHasClass(evt.target, chip_constants_cssClasses.CHECKMARK) && !this.adapter.hasClass(chip_constants_cssClasses.SELECTED);
+                if (shouldHideLeadingIcon) {
+                    this.adapter.addClassToLeadingIcon(chip_constants_cssClasses.HIDDEN_LEADING_ICON);
+                    return;
+                }
+                if (shouldShowLeadingIcon) {
+                    this.adapter.removeClassFromLeadingIcon(chip_constants_cssClasses.HIDDEN_LEADING_ICON);
+                    return;
+                }
+            };
+            MDCChipFoundation.prototype.handleFocusIn = function(evt) {
+                if (!this.eventFromPrimaryAction_(evt)) {
+                    return;
+                }
+                this.adapter.addClass(chip_constants_cssClasses.PRIMARY_ACTION_FOCUSED);
+            };
+            MDCChipFoundation.prototype.handleFocusOut = function(evt) {
+                if (!this.eventFromPrimaryAction_(evt)) {
+                    return;
+                }
+                if (this.isEditing()) {
+                    this.finishEditing();
+                }
+                this.adapter.removeClass(chip_constants_cssClasses.PRIMARY_ACTION_FOCUSED);
+            };
+            MDCChipFoundation.prototype.handleTrailingActionInteraction = function() {
+                this.adapter.notifyTrailingIconInteraction();
+                this.removeChip_();
+            };
+            MDCChipFoundation.prototype.handleKeydown = function(evt) {
+                if (this.isEditing()) {
+                    if (this.shouldFinishEditing(evt)) {
+                        evt.preventDefault();
+                        this.finishEditing();
+                    }
+                    return;
+                }
+                if (this.isEditable()) {
+                    if (this.shouldStartEditing(evt)) {
+                        evt.preventDefault();
+                        this.startEditing();
+                    }
+                }
+                if (this.shouldNotifyInteraction_(evt)) {
+                    this.adapter.notifyInteraction();
+                    this.setPrimaryActionFocusable_(this.getFocusBehavior_());
+                    return;
+                }
+                if (this.isDeleteAction_(evt)) {
+                    evt.preventDefault();
+                    this.removeChip_();
+                    return;
+                }
+                if (!constants_navigationKeys.has(evt.key)) {
+                    return;
+                }
+                evt.preventDefault();
+                this.focusNextAction_(evt.key, EventSource.PRIMARY);
+            };
+            MDCChipFoundation.prototype.handleTrailingActionNavigation = function(evt) {
+                return this.focusNextAction_(evt.detail.key, EventSource.TRAILING);
+            };
+            MDCChipFoundation.prototype.removeFocus = function() {
+                this.adapter.setPrimaryActionAttr(chip_constants_strings.TAB_INDEX, "-1");
+                this.adapter.removeTrailingActionFocus();
+            };
+            MDCChipFoundation.prototype.focusPrimaryAction = function() {
+                this.setPrimaryActionFocusable_(FocusBehavior.SHOULD_FOCUS);
+            };
+            MDCChipFoundation.prototype.focusTrailingAction = function() {
+                var trailingActionIsNavigable = this.adapter.isTrailingActionNavigable();
+                if (trailingActionIsNavigable) {
+                    this.adapter.setPrimaryActionAttr(chip_constants_strings.TAB_INDEX, "-1");
+                    this.adapter.focusTrailingAction();
+                    return;
+                }
+                this.focusPrimaryAction();
+            };
+            MDCChipFoundation.prototype.setPrimaryActionFocusable_ = function(focusBehavior) {
+                this.adapter.setPrimaryActionAttr(chip_constants_strings.TAB_INDEX, "0");
+                if (focusBehavior === FocusBehavior.SHOULD_FOCUS) {
+                    this.adapter.focusPrimaryAction();
+                }
+                this.adapter.removeTrailingActionFocus();
+            };
+            MDCChipFoundation.prototype.getFocusBehavior_ = function() {
+                if (this.shouldFocusPrimaryActionOnClick_) {
+                    return FocusBehavior.SHOULD_FOCUS;
+                }
+                return FocusBehavior.SHOULD_NOT_FOCUS;
+            };
+            MDCChipFoundation.prototype.focusNextAction_ = function(key, source) {
+                var isTrailingActionNavigable = this.adapter.isTrailingActionNavigable();
+                var dir = this.getDirection_(key);
+                if (jumpChipKeys.has(key) || !isTrailingActionNavigable) {
+                    return this.adapter.notifyNavigation(key, source);
+                }
+                if (source === EventSource.PRIMARY && dir === Direction.RIGHT) {
+                    return this.focusTrailingAction();
+                }
+                if (source === EventSource.TRAILING && dir === Direction.LEFT) {
+                    return this.focusPrimaryAction();
+                }
+                this.adapter.notifyNavigation(key, EventSource.NONE);
+            };
+            MDCChipFoundation.prototype.getDirection_ = function(key) {
+                var isRTL = this.adapter.isRTL();
+                var isLeftKey = key === chip_constants_strings.ARROW_LEFT_KEY || key === chip_constants_strings.IE_ARROW_LEFT_KEY;
+                var isRightKey = key === chip_constants_strings.ARROW_RIGHT_KEY || key === chip_constants_strings.IE_ARROW_RIGHT_KEY;
+                if (!isRTL && isLeftKey || isRTL && isRightKey) {
+                    return Direction.LEFT;
+                }
+                return Direction.RIGHT;
+            };
+            MDCChipFoundation.prototype.removeChip_ = function() {
+                if (this.shouldRemoveOnTrailingIconClick_) {
+                    this.beginExit();
+                }
+            };
+            MDCChipFoundation.prototype.shouldStartEditing = function(evt) {
+                return this.eventFromPrimaryAction_(evt) && evt.key === chip_constants_strings.ENTER_KEY;
+            };
+            MDCChipFoundation.prototype.shouldFinishEditing = function(evt) {
+                return evt.key === chip_constants_strings.ENTER_KEY;
+            };
+            MDCChipFoundation.prototype.shouldNotifyInteraction_ = function(evt) {
+                return evt.key === chip_constants_strings.ENTER_KEY || evt.key === chip_constants_strings.SPACEBAR_KEY;
+            };
+            MDCChipFoundation.prototype.isDeleteAction_ = function(evt) {
+                var isDeletable = this.adapter.hasClass(chip_constants_cssClasses.DELETABLE);
+                return isDeletable && (evt.key === chip_constants_strings.BACKSPACE_KEY || evt.key === chip_constants_strings.DELETE_KEY || evt.key === chip_constants_strings.IE_DELETE_KEY);
+            };
+            MDCChipFoundation.prototype.setSelected_ = function(selected) {
+                if (selected) {
+                    this.adapter.addClass(chip_constants_cssClasses.SELECTED);
+                    this.adapter.setPrimaryActionAttr(chip_constants_strings.ARIA_CHECKED, "true");
+                } else {
+                    this.adapter.removeClass(chip_constants_cssClasses.SELECTED);
+                    this.adapter.setPrimaryActionAttr(chip_constants_strings.ARIA_CHECKED, "false");
+                }
+            };
+            MDCChipFoundation.prototype.notifySelection_ = function(selected) {
+                this.adapter.notifySelection(selected, false);
+            };
+            MDCChipFoundation.prototype.notifyIgnoredSelection_ = function(selected) {
+                this.adapter.notifySelection(selected, true);
+            };
+            MDCChipFoundation.prototype.eventFromPrimaryAction_ = function(evt) {
+                return this.adapter.eventTargetHasClass(evt.target, chip_constants_cssClasses.PRIMARY_ACTION);
+            };
+            MDCChipFoundation.prototype.startEditing = function() {
+                this.adapter.addClass(chip_constants_cssClasses.EDITING);
+                this.adapter.notifyEditStart();
+            };
+            MDCChipFoundation.prototype.finishEditing = function() {
+                this.adapter.removeClass(chip_constants_cssClasses.EDITING);
+                this.adapter.notifyEditFinish();
+            };
+            return MDCChipFoundation;
+        }(MDCFoundation);
+        const chip_foundation = null && MDCChipFoundation;
+        /**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var MDCChip = function(_super) {
+            __extends(MDCChip, _super);
+            function MDCChip() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            Object.defineProperty(MDCChip.prototype, "selected", {
+                get: function() {
+                    return this.foundation.isSelected();
+                },
+                set: function(selected) {
+                    this.foundation.setSelected(selected);
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCChip.prototype, "shouldRemoveOnTrailingIconClick", {
+                get: function() {
+                    return this.foundation.getShouldRemoveOnTrailingIconClick();
+                },
+                set: function(shouldRemove) {
+                    this.foundation.setShouldRemoveOnTrailingIconClick(shouldRemove);
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCChip.prototype, "setShouldFocusPrimaryActionOnClick", {
+                set: function(shouldFocus) {
+                    this.foundation.setShouldFocusPrimaryActionOnClick(shouldFocus);
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCChip.prototype, "ripple", {
+                get: function() {
+                    return this.ripple_;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCChip.prototype, "id", {
+                get: function() {
+                    return this.root.id;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            MDCChip.attachTo = function(root) {
+                return new MDCChip(root);
+            };
+            MDCChip.prototype.initialize = function(rippleFactory, trailingActionFactory) {
+                var _this = this;
+                if (rippleFactory === void 0) {
+                    rippleFactory = function(el, foundation) {
+                        return new MDCRipple(el, foundation);
+                    };
+                }
+                if (trailingActionFactory === void 0) {
+                    trailingActionFactory = function(el) {
+                        return new MDCChipTrailingAction(el);
+                    };
+                }
+                this.leadingIcon_ = this.root.querySelector(chip_constants_strings.LEADING_ICON_SELECTOR);
+                this.checkmark_ = this.root.querySelector(chip_constants_strings.CHECKMARK_SELECTOR);
+                this.primaryAction_ = this.root.querySelector(chip_constants_strings.PRIMARY_ACTION_SELECTOR);
+                var trailingActionEl = this.root.querySelector(chip_constants_strings.TRAILING_ACTION_SELECTOR);
+                if (trailingActionEl) {
+                    this.trailingAction_ = trailingActionFactory(trailingActionEl);
+                }
+                var rippleAdapter = __assign(__assign({}, MDCRipple.createAdapter(this)), {
+                    computeBoundingRect: function() {
+                        return _this.foundation.getDimensions();
+                    }
+                });
+                this.ripple_ = rippleFactory(this.root, new MDCRippleFoundation(rippleAdapter));
+            };
+            MDCChip.prototype.initialSyncWithDOM = function() {
+                var _this = this;
+                this.handleTrailingActionInteraction_ = function() {
+                    _this.foundation.handleTrailingActionInteraction();
+                };
+                this.handleTrailingActionNavigation_ = function(evt) {
+                    _this.foundation.handleTrailingActionNavigation(evt);
+                };
+                this.handleClick_ = function() {
+                    _this.foundation.handleClick();
+                };
+                this.handleKeydown_ = function(evt) {
+                    _this.foundation.handleKeydown(evt);
+                };
+                this.handleTransitionEnd_ = function(evt) {
+                    _this.foundation.handleTransitionEnd(evt);
+                };
+                this.handleFocusIn_ = function(evt) {
+                    _this.foundation.handleFocusIn(evt);
+                };
+                this.handleFocusOut_ = function(evt) {
+                    _this.foundation.handleFocusOut(evt);
+                };
+                this.listen("transitionend", this.handleTransitionEnd_);
+                this.listen("click", this.handleClick_);
+                this.listen("keydown", this.handleKeydown_);
+                this.listen("focusin", this.handleFocusIn_);
+                this.listen("focusout", this.handleFocusOut_);
+                if (this.trailingAction_) {
+                    this.listen(trailingaction_constants_strings.INTERACTION_EVENT, this.handleTrailingActionInteraction_);
+                    this.listen(trailingaction_constants_strings.NAVIGATION_EVENT, this.handleTrailingActionNavigation_);
+                }
+            };
+            MDCChip.prototype.destroy = function() {
+                this.ripple_.destroy();
+                this.unlisten("transitionend", this.handleTransitionEnd_);
+                this.unlisten("keydown", this.handleKeydown_);
+                this.unlisten("click", this.handleClick_);
+                this.unlisten("focusin", this.handleFocusIn_);
+                this.unlisten("focusout", this.handleFocusOut_);
+                if (this.trailingAction_) {
+                    this.unlisten(trailingaction_constants_strings.INTERACTION_EVENT, this.handleTrailingActionInteraction_);
+                    this.unlisten(trailingaction_constants_strings.NAVIGATION_EVENT, this.handleTrailingActionNavigation_);
+                }
+                _super.prototype.destroy.call(this);
+            };
+            MDCChip.prototype.beginExit = function() {
+                this.foundation.beginExit();
+            };
+            MDCChip.prototype.getDefaultFoundation = function() {
+                var _this = this;
+                var adapter = {
+                    addClass: function(className) {
+                        return _this.root.classList.add(className);
+                    },
+                    addClassToLeadingIcon: function(className) {
+                        if (_this.leadingIcon_) {
+                            _this.leadingIcon_.classList.add(className);
+                        }
+                    },
+                    eventTargetHasClass: function(target, className) {
+                        return target ? target.classList.contains(className) : false;
+                    },
+                    focusPrimaryAction: function() {
+                        if (_this.primaryAction_) {
+                            _this.primaryAction_.focus();
+                        }
+                    },
+                    focusTrailingAction: function() {
+                        if (_this.trailingAction_) {
+                            _this.trailingAction_.focus();
+                        }
+                    },
+                    getAttribute: function(attr) {
+                        return _this.root.getAttribute(attr);
+                    },
+                    getCheckmarkBoundingClientRect: function() {
+                        return _this.checkmark_ ? _this.checkmark_.getBoundingClientRect() : null;
+                    },
+                    getComputedStyleValue: function(propertyName) {
+                        return window.getComputedStyle(_this.root).getPropertyValue(propertyName);
+                    },
+                    getRootBoundingClientRect: function() {
+                        return _this.root.getBoundingClientRect();
+                    },
+                    hasClass: function(className) {
+                        return _this.root.classList.contains(className);
+                    },
+                    hasLeadingIcon: function() {
+                        return !!_this.leadingIcon_;
+                    },
+                    isRTL: function() {
+                        return window.getComputedStyle(_this.root).getPropertyValue("direction") === "rtl";
+                    },
+                    isTrailingActionNavigable: function() {
+                        if (_this.trailingAction_) {
+                            return _this.trailingAction_.isNavigable();
+                        }
+                        return false;
+                    },
+                    notifyInteraction: function() {
+                        return _this.emit(chip_constants_strings.INTERACTION_EVENT, {
+                            chipId: _this.id
+                        }, true);
+                    },
+                    notifyNavigation: function(key, source) {
+                        return _this.emit(chip_constants_strings.NAVIGATION_EVENT, {
+                            chipId: _this.id,
+                            key: key,
+                            source: source
+                        }, true);
+                    },
+                    notifyRemoval: function(removedAnnouncement) {
+                        _this.emit(chip_constants_strings.REMOVAL_EVENT, {
+                            chipId: _this.id,
+                            removedAnnouncement: removedAnnouncement
+                        }, true);
+                    },
+                    notifySelection: function(selected, shouldIgnore) {
+                        return _this.emit(chip_constants_strings.SELECTION_EVENT, {
+                            chipId: _this.id,
+                            selected: selected,
+                            shouldIgnore: shouldIgnore
+                        }, true);
+                    },
+                    notifyTrailingIconInteraction: function() {
+                        return _this.emit(chip_constants_strings.TRAILING_ICON_INTERACTION_EVENT, {
+                            chipId: _this.id
+                        }, true);
+                    },
+                    notifyEditStart: function() {},
+                    notifyEditFinish: function() {},
+                    removeClass: function(className) {
+                        return _this.root.classList.remove(className);
+                    },
+                    removeClassFromLeadingIcon: function(className) {
+                        if (_this.leadingIcon_) {
+                            _this.leadingIcon_.classList.remove(className);
+                        }
+                    },
+                    removeTrailingActionFocus: function() {
+                        if (_this.trailingAction_) {
+                            _this.trailingAction_.removeFocus();
+                        }
+                    },
+                    setPrimaryActionAttr: function(attr, value) {
+                        if (_this.primaryAction_) {
+                            _this.primaryAction_.setAttribute(attr, value);
+                        }
+                    },
+                    setStyleProperty: function(propertyName, value) {
+                        return _this.root.style.setProperty(propertyName, value);
+                    }
+                };
+                return new MDCChipFoundation(adapter);
+            };
+            MDCChip.prototype.setSelectedFromChipSet = function(selected, shouldNotifyClients) {
+                this.foundation.setSelectedFromChipSet(selected, shouldNotifyClients);
+            };
+            MDCChip.prototype.focusPrimaryAction = function() {
+                this.foundation.focusPrimaryAction();
+            };
+            MDCChip.prototype.focusTrailingAction = function() {
+                this.foundation.focusTrailingAction();
+            };
+            MDCChip.prototype.removeFocus = function() {
+                this.foundation.removeFocus();
+            };
+            MDCChip.prototype.remove = function() {
+                var parent = this.root.parentNode;
+                if (parent !== null) {
+                    parent.removeChild(this.root);
+                }
+            };
+            return MDCChip;
+        }(MDCComponent);
+        /**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var chip_set_constants_strings = {
+            CHIP_SELECTOR: ".mdc-chip"
+        };
+        var chip_set_constants_cssClasses = {
+            CHOICE: "mdc-chip-set--choice",
+            FILTER: "mdc-chip-set--filter"
+        };
+        /**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var MDCChipSetFoundation = function(_super) {
+            __extends(MDCChipSetFoundation, _super);
+            function MDCChipSetFoundation(adapter) {
+                var _this = _super.call(this, __assign(__assign({}, MDCChipSetFoundation.defaultAdapter), adapter)) || this;
+                _this.selectedChipIds_ = [];
+                return _this;
+            }
+            Object.defineProperty(MDCChipSetFoundation, "strings", {
+                get: function() {
+                    return chip_set_constants_strings;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCChipSetFoundation, "cssClasses", {
+                get: function() {
+                    return chip_set_constants_cssClasses;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCChipSetFoundation, "defaultAdapter", {
+                get: function() {
+                    return {
+                        announceMessage: function() {
+                            return undefined;
+                        },
+                        focusChipPrimaryActionAtIndex: function() {
+                            return undefined;
+                        },
+                        focusChipTrailingActionAtIndex: function() {
+                            return undefined;
+                        },
+                        getChipListCount: function() {
+                            return -1;
+                        },
+                        getIndexOfChipById: function() {
+                            return -1;
+                        },
+                        hasClass: function() {
+                            return false;
+                        },
+                        isRTL: function() {
+                            return false;
+                        },
+                        removeChipAtIndex: function() {
+                            return undefined;
+                        },
+                        removeFocusFromChipAtIndex: function() {
+                            return undefined;
+                        },
+                        selectChipAtIndex: function() {
+                            return undefined;
+                        }
+                    };
+                },
+                enumerable: true,
+                configurable: true
+            });
+            MDCChipSetFoundation.prototype.getSelectedChipIds = function() {
+                return this.selectedChipIds_.slice();
+            };
+            MDCChipSetFoundation.prototype.select = function(chipId) {
+                this.select_(chipId, false);
+            };
+            MDCChipSetFoundation.prototype.handleChipInteraction = function(_a) {
+                var chipId = _a.chipId;
+                var index = this.adapter.getIndexOfChipById(chipId);
+                this.removeFocusFromChipsExcept_(index);
+                if (this.adapter.hasClass(chip_set_constants_cssClasses.CHOICE) || this.adapter.hasClass(chip_set_constants_cssClasses.FILTER)) {
+                    this.toggleSelect_(chipId);
+                }
+            };
+            MDCChipSetFoundation.prototype.handleChipSelection = function(_a) {
+                var chipId = _a.chipId, selected = _a.selected, shouldIgnore = _a.shouldIgnore;
+                if (shouldIgnore) {
+                    return;
+                }
+                var chipIsSelected = this.selectedChipIds_.indexOf(chipId) >= 0;
+                if (selected && !chipIsSelected) {
+                    this.select(chipId);
+                } else if (!selected && chipIsSelected) {
+                    this.deselect_(chipId);
+                }
+            };
+            MDCChipSetFoundation.prototype.handleChipRemoval = function(_a) {
+                var chipId = _a.chipId, removedAnnouncement = _a.removedAnnouncement;
+                if (removedAnnouncement) {
+                    this.adapter.announceMessage(removedAnnouncement);
+                }
+                var index = this.adapter.getIndexOfChipById(chipId);
+                this.deselectAndNotifyClients_(chipId);
+                this.adapter.removeChipAtIndex(index);
+                var maxIndex = this.adapter.getChipListCount() - 1;
+                if (maxIndex < 0) {
+                    return;
+                }
+                var nextIndex = Math.min(index, maxIndex);
+                this.removeFocusFromChipsExcept_(nextIndex);
+                this.adapter.focusChipTrailingActionAtIndex(nextIndex);
+            };
+            MDCChipSetFoundation.prototype.handleChipNavigation = function(_a) {
+                var chipId = _a.chipId, key = _a.key, source = _a.source;
+                var maxIndex = this.adapter.getChipListCount() - 1;
+                var index = this.adapter.getIndexOfChipById(chipId);
+                if (index === -1 || !constants_navigationKeys.has(key)) {
+                    return;
+                }
+                var isRTL = this.adapter.isRTL();
+                var isLeftKey = key === chip_constants_strings.ARROW_LEFT_KEY || key === chip_constants_strings.IE_ARROW_LEFT_KEY;
+                var isRightKey = key === chip_constants_strings.ARROW_RIGHT_KEY || key === chip_constants_strings.IE_ARROW_RIGHT_KEY;
+                var isDownKey = key === chip_constants_strings.ARROW_DOWN_KEY || key === chip_constants_strings.IE_ARROW_DOWN_KEY;
+                var shouldIncrement = !isRTL && isRightKey || isRTL && isLeftKey || isDownKey;
+                var isHome = key === chip_constants_strings.HOME_KEY;
+                var isEnd = key === chip_constants_strings.END_KEY;
+                if (shouldIncrement) {
+                    index++;
+                } else if (isHome) {
+                    index = 0;
+                } else if (isEnd) {
+                    index = maxIndex;
+                } else {
+                    index--;
+                }
+                if (index < 0 || index > maxIndex) {
+                    return;
+                }
+                this.removeFocusFromChipsExcept_(index);
+                this.focusChipAction_(index, key, source);
+            };
+            MDCChipSetFoundation.prototype.focusChipAction_ = function(index, key, source) {
+                var shouldJumpChips = jumpChipKeys.has(key);
+                if (shouldJumpChips && source === EventSource.PRIMARY) {
+                    return this.adapter.focusChipPrimaryActionAtIndex(index);
+                }
+                if (shouldJumpChips && source === EventSource.TRAILING) {
+                    return this.adapter.focusChipTrailingActionAtIndex(index);
+                }
+                var dir = this.getDirection_(key);
+                if (dir === Direction.LEFT) {
+                    return this.adapter.focusChipTrailingActionAtIndex(index);
+                }
+                if (dir === Direction.RIGHT) {
+                    return this.adapter.focusChipPrimaryActionAtIndex(index);
+                }
+            };
+            MDCChipSetFoundation.prototype.getDirection_ = function(key) {
+                var isRTL = this.adapter.isRTL();
+                var isLeftKey = key === chip_constants_strings.ARROW_LEFT_KEY || key === chip_constants_strings.IE_ARROW_LEFT_KEY;
+                var isRightKey = key === chip_constants_strings.ARROW_RIGHT_KEY || key === chip_constants_strings.IE_ARROW_RIGHT_KEY;
+                if (!isRTL && isLeftKey || isRTL && isRightKey) {
+                    return Direction.LEFT;
+                }
+                return Direction.RIGHT;
+            };
+            MDCChipSetFoundation.prototype.deselect_ = function(chipId, shouldNotifyClients) {
+                if (shouldNotifyClients === void 0) {
+                    shouldNotifyClients = false;
+                }
+                var index = this.selectedChipIds_.indexOf(chipId);
+                if (index >= 0) {
+                    this.selectedChipIds_.splice(index, 1);
+                    var chipIndex = this.adapter.getIndexOfChipById(chipId);
+                    this.adapter.selectChipAtIndex(chipIndex, false, shouldNotifyClients);
+                }
+            };
+            MDCChipSetFoundation.prototype.deselectAndNotifyClients_ = function(chipId) {
+                this.deselect_(chipId, true);
+            };
+            MDCChipSetFoundation.prototype.toggleSelect_ = function(chipId) {
+                if (this.selectedChipIds_.indexOf(chipId) >= 0) {
+                    this.deselectAndNotifyClients_(chipId);
+                } else {
+                    this.selectAndNotifyClients_(chipId);
+                }
+            };
+            MDCChipSetFoundation.prototype.removeFocusFromChipsExcept_ = function(index) {
+                var chipCount = this.adapter.getChipListCount();
+                for (var i = 0; i < chipCount; i++) {
+                    if (i !== index) {
+                        this.adapter.removeFocusFromChipAtIndex(i);
+                    }
+                }
+            };
+            MDCChipSetFoundation.prototype.selectAndNotifyClients_ = function(chipId) {
+                this.select_(chipId, true);
+            };
+            MDCChipSetFoundation.prototype.select_ = function(chipId, shouldNotifyClients) {
+                if (this.selectedChipIds_.indexOf(chipId) >= 0) {
+                    return;
+                }
+                if (this.adapter.hasClass(chip_set_constants_cssClasses.CHOICE) && this.selectedChipIds_.length > 0) {
+                    var previouslySelectedChip = this.selectedChipIds_[0];
+                    var previouslySelectedIndex = this.adapter.getIndexOfChipById(previouslySelectedChip);
+                    this.selectedChipIds_ = [];
+                    this.adapter.selectChipAtIndex(previouslySelectedIndex, false, shouldNotifyClients);
+                }
+                this.selectedChipIds_.push(chipId);
+                var index = this.adapter.getIndexOfChipById(chipId);
+                this.adapter.selectChipAtIndex(index, true, shouldNotifyClients);
+            };
+            return MDCChipSetFoundation;
+        }(MDCFoundation);
+        const chip_set_foundation = null && MDCChipSetFoundation;
+        /**
+ * @license
+ * Copyright 2016 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var _a = MDCChipFoundation.strings, INTERACTION_EVENT = _a.INTERACTION_EVENT, SELECTION_EVENT = _a.SELECTION_EVENT, REMOVAL_EVENT = _a.REMOVAL_EVENT, NAVIGATION_EVENT = _a.NAVIGATION_EVENT;
+        var CHIP_SELECTOR = MDCChipSetFoundation.strings.CHIP_SELECTOR;
+        var idCounter = 0;
+        var MDCChipSet = function(_super) {
+            __extends(MDCChipSet, _super);
+            function MDCChipSet() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            MDCChipSet.attachTo = function(root) {
+                return new MDCChipSet(root);
+            };
+            Object.defineProperty(MDCChipSet.prototype, "chips", {
+                get: function() {
+                    return this.chips_.slice();
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCChipSet.prototype, "selectedChipIds", {
+                get: function() {
+                    return this.foundation.getSelectedChipIds();
+                },
+                enumerable: true,
+                configurable: true
+            });
+            MDCChipSet.prototype.initialize = function(chipFactory) {
+                if (chipFactory === void 0) {
+                    chipFactory = function(el) {
+                        return new MDCChip(el);
+                    };
+                }
+                this.chipFactory_ = chipFactory;
+                this.chips_ = this.instantiateChips_(this.chipFactory_);
+            };
+            MDCChipSet.prototype.initialSyncWithDOM = function() {
+                var _this = this;
+                this.chips_.forEach((function(chip) {
+                    if (chip.id && chip.selected) {
+                        _this.foundation.select(chip.id);
+                    }
+                }));
+                this.handleChipInteraction_ = function(evt) {
+                    return _this.foundation.handleChipInteraction(evt.detail);
+                };
+                this.handleChipSelection_ = function(evt) {
+                    return _this.foundation.handleChipSelection(evt.detail);
+                };
+                this.handleChipRemoval_ = function(evt) {
+                    return _this.foundation.handleChipRemoval(evt.detail);
+                };
+                this.handleChipNavigation_ = function(evt) {
+                    return _this.foundation.handleChipNavigation(evt.detail);
+                };
+                this.listen(INTERACTION_EVENT, this.handleChipInteraction_);
+                this.listen(SELECTION_EVENT, this.handleChipSelection_);
+                this.listen(REMOVAL_EVENT, this.handleChipRemoval_);
+                this.listen(NAVIGATION_EVENT, this.handleChipNavigation_);
+            };
+            MDCChipSet.prototype.destroy = function() {
+                this.chips_.forEach((function(chip) {
+                    chip.destroy();
+                }));
+                this.unlisten(INTERACTION_EVENT, this.handleChipInteraction_);
+                this.unlisten(SELECTION_EVENT, this.handleChipSelection_);
+                this.unlisten(REMOVAL_EVENT, this.handleChipRemoval_);
+                this.unlisten(NAVIGATION_EVENT, this.handleChipNavigation_);
+                _super.prototype.destroy.call(this);
+            };
+            MDCChipSet.prototype.addChip = function(chipEl) {
+                chipEl.id = chipEl.id || "mdc-chip-" + ++idCounter;
+                this.chips_.push(this.chipFactory_(chipEl));
+            };
+            MDCChipSet.prototype.getDefaultFoundation = function() {
+                var _this = this;
+                var adapter = {
+                    announceMessage: function(message) {
+                        announce(message);
+                    },
+                    focusChipPrimaryActionAtIndex: function(index) {
+                        _this.chips_[index].focusPrimaryAction();
+                    },
+                    focusChipTrailingActionAtIndex: function(index) {
+                        _this.chips_[index].focusTrailingAction();
+                    },
+                    getChipListCount: function() {
+                        return _this.chips_.length;
+                    },
+                    getIndexOfChipById: function(chipId) {
+                        return _this.findChipIndex_(chipId);
+                    },
+                    hasClass: function(className) {
+                        return _this.root.classList.contains(className);
+                    },
+                    isRTL: function() {
+                        return window.getComputedStyle(_this.root).getPropertyValue("direction") === "rtl";
+                    },
+                    removeChipAtIndex: function(index) {
+                        if (index >= 0 && index < _this.chips_.length) {
+                            _this.chips_[index].destroy();
+                            _this.chips_[index].remove();
+                            _this.chips_.splice(index, 1);
+                        }
+                    },
+                    removeFocusFromChipAtIndex: function(index) {
+                        _this.chips_[index].removeFocus();
+                    },
+                    selectChipAtIndex: function(index, selected, shouldNotifyClients) {
+                        if (index >= 0 && index < _this.chips_.length) {
+                            _this.chips_[index].setSelectedFromChipSet(selected, shouldNotifyClients);
+                        }
+                    }
+                };
+                return new MDCChipSetFoundation(adapter);
+            };
+            MDCChipSet.prototype.instantiateChips_ = function(chipFactory) {
+                var chipElements = [].slice.call(this.root.querySelectorAll(CHIP_SELECTOR));
+                return chipElements.map((function(el) {
+                    el.id = el.id || "mdc-chip-" + ++idCounter;
+                    return chipFactory(el);
+                }));
+            };
+            MDCChipSet.prototype.findChipIndex_ = function(chipId) {
+                for (var i = 0; i < this.chips_.length; i++) {
+                    if (this.chips_[i].id === chipId) {
+                        return i;
+                    }
+                }
+                return -1;
+            };
+            return MDCChipSet;
+        }(MDCComponent);
+        function MBChipsSelectMulti_init(elem, isSingleSelect, dotNetObject) {
+            elem._chipSet = MDCChipSet.attachTo(elem);
+            elem._isSingleSelect = isSingleSelect;
+            return new Promise((function() {
+                var clickedCallback = function clickedCallback() {
+                    if (elem._isSingleSelect) {
+                        var selectedChips = elem._chipSet.chips.filter((function(x) {
+                            return x.foundation.isSelected();
+                        }));
+                        if (selectedChips.length == 0) {
+                            dotNetObject.invokeMethodAsync("NotifySingleSelectedAsync", -1);
+                        } else {
+                            dotNetObject.invokeMethodAsync("NotifySingleSelectedAsync", elem._chipSet.chips.findIndex((function(x) {
+                                return x.id === selectedChips[0].id;
+                            })));
+                        }
+                    } else {
+                        dotNetObject.invokeMethodAsync("NotifyMultiSelectedAsync", elem._chipSet.chips.map((function(x) {
+                            return x.foundation.isSelected();
+                        })));
+                    }
+                };
+                elem._chipSet.listen("MDCChip:selection", clickedCallback);
+            }));
+        }
+        function MBChipsSelectMulti_destroy(elem) {
+            elem._chipSet.destroy();
+        }
+        function MBChipsSelectMulti_setDisabled(elem, value) {
+            elem._chipSet.disabled = value;
+        }
+        function setSelected(elem, selectedFlags) {
+            for (var i = 0; i < selectedFlags.length; i++) {
+                elem._chipSet.foundation.adapter.selectChipAtIndex(i, selectedFlags[i], false);
+            }
         }
         /**
  * @license
@@ -6081,7 +13089,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCCheckboxFoundation = function(_super) {
+ */        var MDCCheckboxFoundation = function(_super) {
             __extends(MDCCheckboxFoundation, _super);
             function MDCCheckboxFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCCheckboxFoundation.defaultAdapter), adapter)) || this;
@@ -6245,7 +13253,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCCheckboxFoundation;
         }(MDCFoundation);
-        var checkbox_foundation = foundation_MDCCheckboxFoundation;
+        const checkbox_foundation = null && MDCCheckboxFoundation;
         /**
  * @license
  * Copyright 2016 Google Inc.
@@ -6268,7 +13276,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */        var CB_PROTO_PROPS = [ "checked", "indeterminate" ];
-        var component_MDCCheckbox = function(_super) {
+        var MDCCheckbox = function(_super) {
             __extends(MDCCheckbox, _super);
             function MDCCheckbox() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -6383,11 +13391,11 @@ PERFORMANCE OF THIS SOFTWARE.
                         _this.nativeControl_.disabled = disabled;
                     }
                 };
-                return new foundation_MDCCheckboxFoundation(adapter);
+                return new MDCCheckboxFoundation(adapter);
             };
             MDCCheckbox.prototype.createRipple_ = function() {
                 var _this = this;
-                var adapter = __assign(__assign({}, component_MDCRipple.createAdapter(this)), {
+                var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), {
                     deregisterInteractionHandler: function(evtType, handler) {
                         return _this.nativeControl_.removeEventListener(evtType, handler, applyPassive());
                     },
@@ -6401,7 +13409,7 @@ PERFORMANCE OF THIS SOFTWARE.
                         return _this.nativeControl_.addEventListener(evtType, handler, applyPassive());
                     }
                 });
-                return new component_MDCRipple(this.root, new foundation_MDCRippleFoundation(adapter));
+                return new MDCRipple(this.root, new MDCRippleFoundation(adapter));
             };
             MDCCheckbox.prototype.installPropertyChangeHooks_ = function() {
                 var _this = this;
@@ -6449,7 +13457,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 configurable: true
             });
             return MDCCheckbox;
-        }(component_MDCComponent);
+        }(MDCComponent);
         function validDescriptor(inputPropDesc) {
             return !!inputPropDesc && typeof inputPropDesc.set === "function";
         }
@@ -6501,7 +13509,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCFormFieldFoundation = function(_super) {
+ */        var MDCFormFieldFoundation = function(_super) {
             __extends(MDCFormFieldFoundation, _super);
             function MDCFormFieldFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCFormFieldFoundation.defaultAdapter), adapter)) || this;
@@ -6559,7 +13567,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCFormFieldFoundation;
         }(MDCFoundation);
-        var form_field_foundation = foundation_MDCFormFieldFoundation;
+        const form_field_foundation = null && MDCFormFieldFoundation;
         /**
  * @license
  * Copyright 2017 Google Inc.
@@ -6581,7 +13589,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_MDCFormField = function(_super) {
+ */        var MDCFormField = function(_super) {
             __extends(MDCFormField, _super);
             function MDCFormField() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -6590,7 +13598,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 return new MDCFormField(root);
             };
             MDCFormField.prototype.labelEl = function() {
-                var LABEL_SELECTOR = foundation_MDCFormFieldFoundation.strings.LABEL_SELECTOR;
+                var LABEL_SELECTOR = MDCFormFieldFoundation.strings.LABEL_SELECTOR;
                 return this.root.querySelector(LABEL_SELECTOR);
             };
             MDCFormField.prototype.getDefaultFoundation = function() {
@@ -6619,16 +13627,20 @@ PERFORMANCE OF THIS SOFTWARE.
                         }
                     }
                 };
-                return new foundation_MDCFormFieldFoundation(adapter);
+                return new MDCFormFieldFoundation(adapter);
             };
             return MDCFormField;
-        }(component_MDCComponent);
+        }(MDCComponent);
         function MBCheckbox_init(elem, formFieldElem, checked, indeterminate) {
-            elem._checkbox = component_MDCCheckbox.attachTo(elem);
+            elem._checkbox = MDCCheckbox.attachTo(elem);
             elem._checkbox.checked = checked;
             elem._checkbox.indeterminate = indeterminate;
-            elem._formField = component_MDCFormField.attachTo(formFieldElem);
+            elem._formField = MDCFormField.attachTo(formFieldElem);
             elem._formField.input = elem._checkbox;
+        }
+        function MBCheckbox_destroy(elem) {
+            elem._checkbox.destroy();
+            elem._formField.destroy();
         }
         function setChecked(elem, checked) {
             elem._checkbox.checked = checked;
@@ -6691,7 +13703,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCCircularProgressFoundation = function(_super) {
+ */        var MDCCircularProgressFoundation = function(_super) {
             __extends(MDCCircularProgressFoundation, _super);
             function MDCCircularProgressFoundation(adapter) {
                 return _super.call(this, __assign(__assign({}, MDCCircularProgressFoundation.defaultAdapter), adapter)) || this;
@@ -6785,7 +13797,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCCircularProgressFoundation;
         }(MDCFoundation);
-        var circular_progress_foundation = foundation_MDCCircularProgressFoundation;
+        const circular_progress_foundation = null && MDCCircularProgressFoundation;
         /**
  * @license
  * Copyright 2020 Google Inc.
@@ -6807,13 +13819,13 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_MDCCircularProgress = function(_super) {
+ */        var MDCCircularProgress = function(_super) {
             __extends(MDCCircularProgress, _super);
             function MDCCircularProgress() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
             MDCCircularProgress.prototype.initialize = function() {
-                this.determinateCircle_ = this.root.querySelector(foundation_MDCCircularProgressFoundation.strings.DETERMINATE_CIRCLE_SELECTOR);
+                this.determinateCircle_ = this.root.querySelector(MDCCircularProgressFoundation.strings.DETERMINATE_CIRCLE_SELECTOR);
             };
             MDCCircularProgress.attachTo = function(root) {
                 return new MDCCircularProgress(root);
@@ -6870,16 +13882,1099 @@ PERFORMANCE OF THIS SOFTWARE.
                         return _this.determinateCircle_.setAttribute(attributeName, value);
                     }
                 };
-                return new foundation_MDCCircularProgressFoundation(adapter);
+                return new MDCCircularProgressFoundation(adapter);
             };
             return MDCCircularProgress;
-        }(component_MDCComponent);
+        }(MDCComponent);
         function MBCircularProgress_init(elem, progress) {
-            elem._circularProgress = component_MDCCircularProgress.attachTo(elem);
+            elem._circularProgress = MDCCircularProgress.attachTo(elem);
             setProgress(elem, progress);
+        }
+        function MBCircularProgress_destroy(elem) {
+            elem._circularProgress.destroy();
         }
         function setProgress(elem, progress) {
             elem._circularProgress.progress = progress;
+        }
+        /**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var linear_progress_constants_cssClasses = {
+            CLOSED_CLASS: "mdc-linear-progress--closed",
+            CLOSED_ANIMATION_OFF_CLASS: "mdc-linear-progress--closed-animation-off",
+            INDETERMINATE_CLASS: "mdc-linear-progress--indeterminate",
+            REVERSED_CLASS: "mdc-linear-progress--reversed",
+            ANIMATION_READY_CLASS: "mdc-linear-progress--animation-ready"
+        };
+        var linear_progress_constants_strings = {
+            ARIA_VALUENOW: "aria-valuenow",
+            BUFFER_BAR_SELECTOR: ".mdc-linear-progress__buffer-bar",
+            FLEX_BASIS: "flex-basis",
+            PRIMARY_BAR_SELECTOR: ".mdc-linear-progress__primary-bar"
+        };
+        var animationDimensionPercentages = {
+            PRIMARY_HALF: .8367142,
+            PRIMARY_FULL: 2.00611057,
+            SECONDARY_QUARTER: .37651913,
+            SECONDARY_HALF: .84386165,
+            SECONDARY_FULL: 1.60277782
+        };
+        /**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var MDCLinearProgressFoundation = function(_super) {
+            __extends(MDCLinearProgressFoundation, _super);
+            function MDCLinearProgressFoundation(adapter) {
+                var _this = _super.call(this, __assign(__assign({}, MDCLinearProgressFoundation.defaultAdapter), adapter)) || this;
+                _this.observer = null;
+                return _this;
+            }
+            Object.defineProperty(MDCLinearProgressFoundation, "cssClasses", {
+                get: function() {
+                    return linear_progress_constants_cssClasses;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCLinearProgressFoundation, "strings", {
+                get: function() {
+                    return linear_progress_constants_strings;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCLinearProgressFoundation, "defaultAdapter", {
+                get: function() {
+                    return {
+                        addClass: function() {
+                            return undefined;
+                        },
+                        attachResizeObserver: function() {
+                            return null;
+                        },
+                        forceLayout: function() {
+                            return undefined;
+                        },
+                        getWidth: function() {
+                            return 0;
+                        },
+                        hasClass: function() {
+                            return false;
+                        },
+                        setBufferBarStyle: function() {
+                            return null;
+                        },
+                        setPrimaryBarStyle: function() {
+                            return null;
+                        },
+                        setStyle: function() {
+                            return undefined;
+                        },
+                        removeAttribute: function() {
+                            return undefined;
+                        },
+                        removeClass: function() {
+                            return undefined;
+                        },
+                        setAttribute: function() {
+                            return undefined;
+                        }
+                    };
+                },
+                enumerable: true,
+                configurable: true
+            });
+            MDCLinearProgressFoundation.prototype.init = function() {
+                var _this = this;
+                this.isDeterminate = !this.adapter.hasClass(linear_progress_constants_cssClasses.INDETERMINATE_CLASS);
+                this.adapter.addClass(linear_progress_constants_cssClasses.ANIMATION_READY_CLASS);
+                this.isReversed = this.adapter.hasClass(linear_progress_constants_cssClasses.REVERSED_CLASS);
+                this.progress = 0;
+                this.buffer = 1;
+                this.observer = this.adapter.attachResizeObserver((function(entries) {
+                    var e_1, _a;
+                    if (_this.isDeterminate) {
+                        return;
+                    }
+                    try {
+                        for (var entries_1 = __values(entries), entries_1_1 = entries_1.next(); !entries_1_1.done; entries_1_1 = entries_1.next()) {
+                            var entry = entries_1_1.value;
+                            if (entry.contentRect) {
+                                _this.calculateAndSetDimensions(entry.contentRect.width);
+                            }
+                        }
+                    } catch (e_1_1) {
+                        e_1 = {
+                            error: e_1_1
+                        };
+                    } finally {
+                        try {
+                            if (entries_1_1 && !entries_1_1.done && (_a = entries_1.return)) _a.call(entries_1);
+                        } finally {
+                            if (e_1) throw e_1.error;
+                        }
+                    }
+                }));
+                if (!this.isDeterminate && this.observer) {
+                    this.calculateAndSetDimensions(this.adapter.getWidth());
+                }
+            };
+            MDCLinearProgressFoundation.prototype.setDeterminate = function(isDeterminate) {
+                this.isDeterminate = isDeterminate;
+                if (this.isDeterminate) {
+                    this.adapter.removeClass(linear_progress_constants_cssClasses.INDETERMINATE_CLASS);
+                    this.adapter.setAttribute(linear_progress_constants_strings.ARIA_VALUENOW, this.progress.toString());
+                    this.setPrimaryBarProgress(this.progress);
+                    this.setBufferBarProgress(this.buffer);
+                    return;
+                }
+                if (this.isReversed) {
+                    this.adapter.removeClass(linear_progress_constants_cssClasses.REVERSED_CLASS);
+                    this.adapter.forceLayout();
+                    this.adapter.addClass(linear_progress_constants_cssClasses.REVERSED_CLASS);
+                }
+                if (this.observer) {
+                    this.calculateAndSetDimensions(this.adapter.getWidth());
+                }
+                this.adapter.addClass(linear_progress_constants_cssClasses.INDETERMINATE_CLASS);
+                this.adapter.removeAttribute(linear_progress_constants_strings.ARIA_VALUENOW);
+                this.setPrimaryBarProgress(1);
+                this.setBufferBarProgress(1);
+            };
+            MDCLinearProgressFoundation.prototype.getDeterminate = function() {
+                return this.isDeterminate;
+            };
+            MDCLinearProgressFoundation.prototype.setProgress = function(value) {
+                this.progress = value;
+                if (this.isDeterminate) {
+                    this.setPrimaryBarProgress(value);
+                    this.adapter.setAttribute(linear_progress_constants_strings.ARIA_VALUENOW, value.toString());
+                }
+            };
+            MDCLinearProgressFoundation.prototype.getProgress = function() {
+                return this.progress;
+            };
+            MDCLinearProgressFoundation.prototype.setBuffer = function(value) {
+                this.buffer = value;
+                if (this.isDeterminate) {
+                    this.setBufferBarProgress(value);
+                }
+            };
+            MDCLinearProgressFoundation.prototype.setReverse = function(isReversed) {
+                this.isReversed = isReversed;
+                if (!this.isDeterminate) {
+                    this.restartAnimation();
+                }
+                if (this.isReversed) {
+                    this.adapter.addClass(linear_progress_constants_cssClasses.REVERSED_CLASS);
+                    return;
+                }
+                this.adapter.removeClass(linear_progress_constants_cssClasses.REVERSED_CLASS);
+            };
+            MDCLinearProgressFoundation.prototype.open = function() {
+                this.adapter.removeClass(linear_progress_constants_cssClasses.CLOSED_CLASS);
+                this.adapter.removeClass(linear_progress_constants_cssClasses.CLOSED_ANIMATION_OFF_CLASS);
+            };
+            MDCLinearProgressFoundation.prototype.close = function() {
+                this.adapter.addClass(linear_progress_constants_cssClasses.CLOSED_CLASS);
+            };
+            MDCLinearProgressFoundation.prototype.handleTransitionEnd = function() {
+                if (this.adapter.hasClass(linear_progress_constants_cssClasses.CLOSED_CLASS)) {
+                    this.adapter.addClass(linear_progress_constants_cssClasses.CLOSED_ANIMATION_OFF_CLASS);
+                }
+            };
+            MDCLinearProgressFoundation.prototype.destroy = function() {
+                _super.prototype.destroy.call(this);
+                if (this.observer) {
+                    this.observer.disconnect();
+                }
+            };
+            MDCLinearProgressFoundation.prototype.setPrimaryBarProgress = function(progressValue) {
+                var value = "scaleX(" + progressValue + ")";
+                var transformProp = typeof window !== "undefined" ? getCorrectPropertyName(window, "transform") : "transform";
+                this.adapter.setPrimaryBarStyle(transformProp, value);
+            };
+            MDCLinearProgressFoundation.prototype.setBufferBarProgress = function(progressValue) {
+                var value = progressValue * 100 + "%";
+                this.adapter.setBufferBarStyle(linear_progress_constants_strings.FLEX_BASIS, value);
+            };
+            MDCLinearProgressFoundation.prototype.restartAnimation = function() {
+                this.adapter.removeClass(linear_progress_constants_cssClasses.ANIMATION_READY_CLASS);
+                this.adapter.forceLayout();
+                this.adapter.addClass(linear_progress_constants_cssClasses.ANIMATION_READY_CLASS);
+            };
+            MDCLinearProgressFoundation.prototype.calculateAndSetDimensions = function(width) {
+                var primaryHalf = width * animationDimensionPercentages.PRIMARY_HALF;
+                var primaryFull = width * animationDimensionPercentages.PRIMARY_FULL;
+                var secondaryQuarter = width * animationDimensionPercentages.SECONDARY_QUARTER;
+                var secondaryHalf = width * animationDimensionPercentages.SECONDARY_HALF;
+                var secondaryFull = width * animationDimensionPercentages.SECONDARY_FULL;
+                this.adapter.setStyle("--mdc-linear-progress-primary-half", primaryHalf + "px");
+                this.adapter.setStyle("--mdc-linear-progress-primary-half-neg", -primaryHalf + "px");
+                this.adapter.setStyle("--mdc-linear-progress-primary-full", primaryFull + "px");
+                this.adapter.setStyle("--mdc-linear-progress-primary-full-neg", -primaryFull + "px");
+                this.adapter.setStyle("--mdc-linear-progress-secondary-quarter", secondaryQuarter + "px");
+                this.adapter.setStyle("--mdc-linear-progress-secondary-quarter-neg", -secondaryQuarter + "px");
+                this.adapter.setStyle("--mdc-linear-progress-secondary-half", secondaryHalf + "px");
+                this.adapter.setStyle("--mdc-linear-progress-secondary-half-neg", -secondaryHalf + "px");
+                this.adapter.setStyle("--mdc-linear-progress-secondary-full", secondaryFull + "px");
+                this.adapter.setStyle("--mdc-linear-progress-secondary-full-neg", -secondaryFull + "px");
+                this.restartAnimation();
+            };
+            return MDCLinearProgressFoundation;
+        }(MDCFoundation);
+        const linear_progress_foundation = null && MDCLinearProgressFoundation;
+        /**
+ * @license
+ * Copyright 2017 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var MDCLinearProgress = function(_super) {
+            __extends(MDCLinearProgress, _super);
+            function MDCLinearProgress() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            MDCLinearProgress.attachTo = function(root) {
+                return new MDCLinearProgress(root);
+            };
+            Object.defineProperty(MDCLinearProgress.prototype, "determinate", {
+                set: function(value) {
+                    this.foundation.setDeterminate(value);
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCLinearProgress.prototype, "progress", {
+                set: function(value) {
+                    this.foundation.setProgress(value);
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCLinearProgress.prototype, "buffer", {
+                set: function(value) {
+                    this.foundation.setBuffer(value);
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCLinearProgress.prototype, "reverse", {
+                set: function(value) {
+                    this.foundation.setReverse(value);
+                },
+                enumerable: true,
+                configurable: true
+            });
+            MDCLinearProgress.prototype.open = function() {
+                this.foundation.open();
+            };
+            MDCLinearProgress.prototype.close = function() {
+                this.foundation.close();
+            };
+            MDCLinearProgress.prototype.initialSyncWithDOM = function() {
+                var _this = this;
+                this.root.addEventListener("transitionend", (function() {
+                    _this.foundation.handleTransitionEnd();
+                }));
+            };
+            MDCLinearProgress.prototype.getDefaultFoundation = function() {
+                var _this = this;
+                var adapter = {
+                    addClass: function(className) {
+                        _this.root.classList.add(className);
+                    },
+                    forceLayout: function() {
+                        _this.root.getBoundingClientRect();
+                    },
+                    setBufferBarStyle: function(styleProperty, value) {
+                        var bufferBar = _this.root.querySelector(MDCLinearProgressFoundation.strings.BUFFER_BAR_SELECTOR);
+                        if (bufferBar) {
+                            bufferBar.style.setProperty(styleProperty, value);
+                        }
+                    },
+                    setPrimaryBarStyle: function(styleProperty, value) {
+                        var primaryBar = _this.root.querySelector(MDCLinearProgressFoundation.strings.PRIMARY_BAR_SELECTOR);
+                        if (primaryBar) {
+                            primaryBar.style.setProperty(styleProperty, value);
+                        }
+                    },
+                    hasClass: function(className) {
+                        return _this.root.classList.contains(className);
+                    },
+                    removeAttribute: function(attributeName) {
+                        _this.root.removeAttribute(attributeName);
+                    },
+                    removeClass: function(className) {
+                        _this.root.classList.remove(className);
+                    },
+                    setAttribute: function(attributeName, value) {
+                        _this.root.setAttribute(attributeName, value);
+                    },
+                    setStyle: function(name, value) {
+                        _this.root.style.setProperty(name, value);
+                    },
+                    attachResizeObserver: function(callback) {
+                        if (window.ResizeObserver) {
+                            var ro = new ResizeObserver(callback);
+                            ro.observe(_this.root);
+                            return ro;
+                        }
+                        return null;
+                    },
+                    getWidth: function() {
+                        return _this.root.offsetWidth;
+                    }
+                };
+                return new MDCLinearProgressFoundation(adapter);
+            };
+            return MDCLinearProgress;
+        }(MDCComponent);
+        /**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var data_table_constants_cssClasses = {
+            CELL: "mdc-data-table__cell",
+            CELL_NUMERIC: "mdc-data-table__cell--numeric",
+            CONTENT: "mdc-data-table__content",
+            HEADER_CELL: "mdc-data-table__header-cell",
+            HEADER_CELL_LABEL: "mdc-data-table__header-cell-label",
+            HEADER_CELL_SORTED: "mdc-data-table__header-cell--sorted",
+            HEADER_CELL_SORTED_DESCENDING: "mdc-data-table__header-cell--sorted-descending",
+            HEADER_CELL_WITH_SORT: "mdc-data-table__header-cell--with-sort",
+            HEADER_CELL_WRAPPER: "mdc-data-table__header-cell-wrapper",
+            HEADER_ROW: "mdc-data-table__header-row",
+            HEADER_ROW_CHECKBOX: "mdc-data-table__header-row-checkbox",
+            IN_PROGRESS: "mdc-data-table--in-progress",
+            LINEAR_PROGRESS: "mdc-data-table__linear-progress",
+            PAGINATION_ROWS_PER_PAGE_LABEL: "mdc-data-table__pagination-rows-per-page-label",
+            PAGINATION_ROWS_PER_PAGE_SELECT: "mdc-data-table__pagination-rows-per-page-select",
+            PROGRESS_INDICATOR: "mdc-data-table__progress-indicator",
+            ROOT: "mdc-data-table",
+            ROW: "mdc-data-table__row",
+            ROW_CHECKBOX: "mdc-data-table__row-checkbox",
+            ROW_SELECTED: "mdc-data-table__row--selected",
+            SORT_ICON_BUTTON: "mdc-data-table__sort-icon-button",
+            SORT_STATUS_LABEL: "mdc-data-table__sort-status-label",
+            TABLE_CONTAINER: "mdc-data-table__table-container"
+        };
+        var attributes = {
+            ARIA_SELECTED: "aria-selected",
+            ARIA_SORT: "aria-sort"
+        };
+        var dataAttributes = {
+            COLUMN_ID: "data-column-id",
+            ROW_ID: "data-row-id"
+        };
+        var selectors = {
+            CONTENT: "." + data_table_constants_cssClasses.CONTENT,
+            HEADER_CELL: "." + data_table_constants_cssClasses.HEADER_CELL,
+            HEADER_CELL_WITH_SORT: "." + data_table_constants_cssClasses.HEADER_CELL_WITH_SORT,
+            HEADER_ROW: "." + data_table_constants_cssClasses.HEADER_ROW,
+            HEADER_ROW_CHECKBOX: "." + data_table_constants_cssClasses.HEADER_ROW_CHECKBOX,
+            PROGRESS_INDICATOR: "." + data_table_constants_cssClasses.PROGRESS_INDICATOR,
+            ROW: "." + data_table_constants_cssClasses.ROW,
+            ROW_CHECKBOX: "." + data_table_constants_cssClasses.ROW_CHECKBOX,
+            ROW_SELECTED: "." + data_table_constants_cssClasses.ROW_SELECTED,
+            SORT_ICON_BUTTON: "." + data_table_constants_cssClasses.SORT_ICON_BUTTON,
+            SORT_STATUS_LABEL: "." + data_table_constants_cssClasses.SORT_STATUS_LABEL
+        };
+        var messages = {
+            SORTED_IN_DESCENDING: "Sorted in descending order",
+            SORTED_IN_ASCENDING: "Sorted in ascending order"
+        };
+        var data_table_constants_strings = {
+            ARIA_SELECTED: attributes.ARIA_SELECTED,
+            ARIA_SORT: attributes.ARIA_SORT,
+            DATA_ROW_ID_ATTR: dataAttributes.ROW_ID,
+            HEADER_ROW_CHECKBOX_SELECTOR: selectors.HEADER_ROW_CHECKBOX,
+            ROW_CHECKBOX_SELECTOR: selectors.ROW_CHECKBOX,
+            ROW_SELECTED_SELECTOR: selectors.ROW_SELECTED,
+            ROW_SELECTOR: selectors.ROW
+        };
+        var SortValue;
+        (function(SortValue) {
+            SortValue["ASCENDING"] = "ascending";
+            SortValue["DESCENDING"] = "descending";
+            SortValue["NONE"] = "none";
+            SortValue["OTHER"] = "other";
+        })(SortValue || (SortValue = {}));
+        var events = {
+            ROW_SELECTION_CHANGED: "MDCDataTable:rowSelectionChanged",
+            SELECTED_ALL: "MDCDataTable:selectedAll",
+            UNSELECTED_ALL: "MDCDataTable:unselectedAll",
+            SORTED: "MDCDataTable:sorted"
+        };
+        /**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var MDCDataTableFoundation = function(_super) {
+            __extends(MDCDataTableFoundation, _super);
+            function MDCDataTableFoundation(adapter) {
+                return _super.call(this, __assign(__assign({}, MDCDataTableFoundation.defaultAdapter), adapter)) || this;
+            }
+            Object.defineProperty(MDCDataTableFoundation, "defaultAdapter", {
+                get: function() {
+                    return {
+                        addClass: function() {
+                            return undefined;
+                        },
+                        addClassAtRowIndex: function() {
+                            return undefined;
+                        },
+                        getAttributeByHeaderCellIndex: function() {
+                            return "";
+                        },
+                        getHeaderCellCount: function() {
+                            return 0;
+                        },
+                        getHeaderCellElements: function() {
+                            return [];
+                        },
+                        getRowCount: function() {
+                            return 0;
+                        },
+                        getRowElements: function() {
+                            return [];
+                        },
+                        getRowIdAtIndex: function() {
+                            return "";
+                        },
+                        getRowIndexByChildElement: function() {
+                            return 0;
+                        },
+                        getSelectedRowCount: function() {
+                            return 0;
+                        },
+                        getTableContainerHeight: function() {
+                            return 0;
+                        },
+                        getTableHeaderHeight: function() {
+                            return 0;
+                        },
+                        isCheckboxAtRowIndexChecked: function() {
+                            return false;
+                        },
+                        isHeaderRowCheckboxChecked: function() {
+                            return false;
+                        },
+                        isRowsSelectable: function() {
+                            return false;
+                        },
+                        notifyRowSelectionChanged: function() {
+                            return undefined;
+                        },
+                        notifySelectedAll: function() {
+                            return undefined;
+                        },
+                        notifySortAction: function() {
+                            return undefined;
+                        },
+                        notifyUnselectedAll: function() {
+                            return undefined;
+                        },
+                        registerHeaderRowCheckbox: function() {
+                            return undefined;
+                        },
+                        registerRowCheckboxes: function() {
+                            return undefined;
+                        },
+                        removeClass: function() {
+                            return undefined;
+                        },
+                        removeClassAtRowIndex: function() {
+                            return undefined;
+                        },
+                        removeClassNameByHeaderCellIndex: function() {
+                            return undefined;
+                        },
+                        setAttributeAtRowIndex: function() {
+                            return undefined;
+                        },
+                        setAttributeByHeaderCellIndex: function() {
+                            return undefined;
+                        },
+                        setClassNameByHeaderCellIndex: function() {
+                            return undefined;
+                        },
+                        setHeaderRowCheckboxChecked: function() {
+                            return undefined;
+                        },
+                        setHeaderRowCheckboxIndeterminate: function() {
+                            return undefined;
+                        },
+                        setProgressIndicatorStyles: function() {
+                            return undefined;
+                        },
+                        setRowCheckboxCheckedAtIndex: function() {
+                            return undefined;
+                        },
+                        setSortStatusLabelByHeaderCellIndex: function() {
+                            return undefined;
+                        }
+                    };
+                },
+                enumerable: true,
+                configurable: true
+            });
+            MDCDataTableFoundation.prototype.layout = function() {
+                if (this.adapter.isRowsSelectable()) {
+                    this.adapter.registerHeaderRowCheckbox();
+                    this.adapter.registerRowCheckboxes();
+                    this.setHeaderRowCheckboxState();
+                }
+            };
+            MDCDataTableFoundation.prototype.layoutAsync = function() {
+                return __awaiter(this, void 0, void 0, (function() {
+                    return __generator(this, (function(_a) {
+                        switch (_a.label) {
+                          case 0:
+                            if (!this.adapter.isRowsSelectable()) return [ 3, 3 ];
+                            return [ 4, this.adapter.registerHeaderRowCheckbox() ];
+
+                          case 1:
+                            _a.sent();
+                            return [ 4, this.adapter.registerRowCheckboxes() ];
+
+                          case 2:
+                            _a.sent();
+                            this.setHeaderRowCheckboxState();
+                            _a.label = 3;
+
+                          case 3:
+                            return [ 2 ];
+                        }
+                    }));
+                }));
+            };
+            MDCDataTableFoundation.prototype.getRows = function() {
+                return this.adapter.getRowElements();
+            };
+            MDCDataTableFoundation.prototype.getHeaderCells = function() {
+                return this.adapter.getHeaderCellElements();
+            };
+            MDCDataTableFoundation.prototype.setSelectedRowIds = function(rowIds) {
+                for (var rowIndex = 0; rowIndex < this.adapter.getRowCount(); rowIndex++) {
+                    var rowId = this.adapter.getRowIdAtIndex(rowIndex);
+                    var isSelected = false;
+                    if (rowId && rowIds.indexOf(rowId) >= 0) {
+                        isSelected = true;
+                    }
+                    this.adapter.setRowCheckboxCheckedAtIndex(rowIndex, isSelected);
+                    this.selectRowAtIndex(rowIndex, isSelected);
+                }
+                this.setHeaderRowCheckboxState();
+            };
+            MDCDataTableFoundation.prototype.getRowIds = function() {
+                var rowIds = [];
+                for (var rowIndex = 0; rowIndex < this.adapter.getRowCount(); rowIndex++) {
+                    rowIds.push(this.adapter.getRowIdAtIndex(rowIndex));
+                }
+                return rowIds;
+            };
+            MDCDataTableFoundation.prototype.getSelectedRowIds = function() {
+                var selectedRowIds = [];
+                for (var rowIndex = 0; rowIndex < this.adapter.getRowCount(); rowIndex++) {
+                    if (this.adapter.isCheckboxAtRowIndexChecked(rowIndex)) {
+                        selectedRowIds.push(this.adapter.getRowIdAtIndex(rowIndex));
+                    }
+                }
+                return selectedRowIds;
+            };
+            MDCDataTableFoundation.prototype.handleHeaderRowCheckboxChange = function() {
+                var isHeaderChecked = this.adapter.isHeaderRowCheckboxChecked();
+                for (var rowIndex = 0; rowIndex < this.adapter.getRowCount(); rowIndex++) {
+                    this.adapter.setRowCheckboxCheckedAtIndex(rowIndex, isHeaderChecked);
+                    this.selectRowAtIndex(rowIndex, isHeaderChecked);
+                }
+                if (isHeaderChecked) {
+                    this.adapter.notifySelectedAll();
+                } else {
+                    this.adapter.notifyUnselectedAll();
+                }
+            };
+            MDCDataTableFoundation.prototype.handleRowCheckboxChange = function(event) {
+                var rowIndex = this.adapter.getRowIndexByChildElement(event.target);
+                if (rowIndex === -1) {
+                    return;
+                }
+                var selected = this.adapter.isCheckboxAtRowIndexChecked(rowIndex);
+                this.selectRowAtIndex(rowIndex, selected);
+                this.setHeaderRowCheckboxState();
+                var rowId = this.adapter.getRowIdAtIndex(rowIndex);
+                this.adapter.notifyRowSelectionChanged({
+                    rowId: rowId,
+                    rowIndex: rowIndex,
+                    selected: selected
+                });
+            };
+            MDCDataTableFoundation.prototype.handleSortAction = function(eventData) {
+                var columnId = eventData.columnId, columnIndex = eventData.columnIndex, headerCell = eventData.headerCell;
+                for (var index = 0; index < this.adapter.getHeaderCellCount(); index++) {
+                    if (index === columnIndex) {
+                        continue;
+                    }
+                    this.adapter.removeClassNameByHeaderCellIndex(index, data_table_constants_cssClasses.HEADER_CELL_SORTED);
+                    this.adapter.removeClassNameByHeaderCellIndex(index, data_table_constants_cssClasses.HEADER_CELL_SORTED_DESCENDING);
+                    this.adapter.setAttributeByHeaderCellIndex(index, data_table_constants_strings.ARIA_SORT, SortValue.NONE);
+                    this.adapter.setSortStatusLabelByHeaderCellIndex(index, SortValue.NONE);
+                }
+                this.adapter.setClassNameByHeaderCellIndex(columnIndex, data_table_constants_cssClasses.HEADER_CELL_SORTED);
+                var currentSortValue = this.adapter.getAttributeByHeaderCellIndex(columnIndex, data_table_constants_strings.ARIA_SORT);
+                var sortValue = SortValue.NONE;
+                if (currentSortValue === SortValue.ASCENDING) {
+                    this.adapter.setClassNameByHeaderCellIndex(columnIndex, data_table_constants_cssClasses.HEADER_CELL_SORTED_DESCENDING);
+                    this.adapter.setAttributeByHeaderCellIndex(columnIndex, data_table_constants_strings.ARIA_SORT, SortValue.DESCENDING);
+                    sortValue = SortValue.DESCENDING;
+                } else if (currentSortValue === SortValue.DESCENDING) {
+                    this.adapter.removeClassNameByHeaderCellIndex(columnIndex, data_table_constants_cssClasses.HEADER_CELL_SORTED_DESCENDING);
+                    this.adapter.setAttributeByHeaderCellIndex(columnIndex, data_table_constants_strings.ARIA_SORT, SortValue.ASCENDING);
+                    sortValue = SortValue.ASCENDING;
+                } else {
+                    this.adapter.setAttributeByHeaderCellIndex(columnIndex, data_table_constants_strings.ARIA_SORT, SortValue.ASCENDING);
+                    sortValue = SortValue.ASCENDING;
+                }
+                this.adapter.setSortStatusLabelByHeaderCellIndex(columnIndex, sortValue);
+                this.adapter.notifySortAction({
+                    columnId: columnId,
+                    columnIndex: columnIndex,
+                    headerCell: headerCell,
+                    sortValue: sortValue
+                });
+            };
+            MDCDataTableFoundation.prototype.showProgress = function() {
+                var tableHeaderHeight = this.adapter.getTableHeaderHeight();
+                var height = this.adapter.getTableContainerHeight() - tableHeaderHeight;
+                var top = tableHeaderHeight;
+                this.adapter.setProgressIndicatorStyles({
+                    height: height + "px",
+                    top: top + "px"
+                });
+                this.adapter.addClass(data_table_constants_cssClasses.IN_PROGRESS);
+            };
+            MDCDataTableFoundation.prototype.hideProgress = function() {
+                this.adapter.removeClass(data_table_constants_cssClasses.IN_PROGRESS);
+            };
+            MDCDataTableFoundation.prototype.setHeaderRowCheckboxState = function() {
+                if (this.adapter.getSelectedRowCount() === 0) {
+                    this.adapter.setHeaderRowCheckboxChecked(false);
+                    this.adapter.setHeaderRowCheckboxIndeterminate(false);
+                } else if (this.adapter.getSelectedRowCount() === this.adapter.getRowCount()) {
+                    this.adapter.setHeaderRowCheckboxChecked(true);
+                    this.adapter.setHeaderRowCheckboxIndeterminate(false);
+                } else {
+                    this.adapter.setHeaderRowCheckboxIndeterminate(true);
+                    this.adapter.setHeaderRowCheckboxChecked(false);
+                }
+            };
+            MDCDataTableFoundation.prototype.selectRowAtIndex = function(rowIndex, selected) {
+                if (selected) {
+                    this.adapter.addClassAtRowIndex(rowIndex, data_table_constants_cssClasses.ROW_SELECTED);
+                    this.adapter.setAttributeAtRowIndex(rowIndex, data_table_constants_strings.ARIA_SELECTED, "true");
+                } else {
+                    this.adapter.removeClassAtRowIndex(rowIndex, data_table_constants_cssClasses.ROW_SELECTED);
+                    this.adapter.setAttributeAtRowIndex(rowIndex, data_table_constants_strings.ARIA_SELECTED, "false");
+                }
+            };
+            return MDCDataTableFoundation;
+        }(MDCFoundation);
+        /**
+ * @license
+ * Copyright 2019 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var MDCDataTable = function(_super) {
+            __extends(MDCDataTable, _super);
+            function MDCDataTable() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            MDCDataTable.attachTo = function(root) {
+                return new MDCDataTable(root);
+            };
+            MDCDataTable.prototype.initialize = function(checkboxFactory) {
+                if (checkboxFactory === void 0) {
+                    checkboxFactory = function(el) {
+                        return new MDCCheckbox(el);
+                    };
+                }
+                this.checkboxFactory = checkboxFactory;
+            };
+            MDCDataTable.prototype.initialSyncWithDOM = function() {
+                var _this = this;
+                this.headerRow = this.root.querySelector("." + data_table_constants_cssClasses.HEADER_ROW);
+                this.handleHeaderRowCheckboxChange = function() {
+                    _this.foundation.handleHeaderRowCheckboxChange();
+                };
+                this.headerRow.addEventListener("change", this.handleHeaderRowCheckboxChange);
+                this.headerRowClickListener = function(event) {
+                    _this.handleHeaderRowClick(event);
+                };
+                this.headerRow.addEventListener("click", this.headerRowClickListener);
+                this.content = this.root.querySelector("." + data_table_constants_cssClasses.CONTENT);
+                this.handleRowCheckboxChange = function(event) {
+                    _this.foundation.handleRowCheckboxChange(event);
+                };
+                this.content.addEventListener("change", this.handleRowCheckboxChange);
+                this.layout();
+            };
+            MDCDataTable.prototype.layout = function() {
+                this.foundation.layout();
+            };
+            MDCDataTable.prototype.getHeaderCells = function() {
+                return [].slice.call(this.root.querySelectorAll(selectors.HEADER_CELL));
+            };
+            MDCDataTable.prototype.getRows = function() {
+                return this.foundation.getRows();
+            };
+            MDCDataTable.prototype.getSelectedRowIds = function() {
+                return this.foundation.getSelectedRowIds();
+            };
+            MDCDataTable.prototype.setSelectedRowIds = function(rowIds) {
+                this.foundation.setSelectedRowIds(rowIds);
+            };
+            MDCDataTable.prototype.showProgress = function() {
+                this.getLinearProgress().open();
+                this.foundation.showProgress();
+            };
+            MDCDataTable.prototype.hideProgress = function() {
+                this.foundation.hideProgress();
+                this.getLinearProgress().close();
+            };
+            MDCDataTable.prototype.destroy = function() {
+                var e_1, _a;
+                if (this.handleHeaderRowCheckboxChange) {
+                    this.headerRow.removeEventListener("change", this.handleHeaderRowCheckboxChange);
+                }
+                if (this.headerRowClickListener) {
+                    this.headerRow.removeEventListener("click", this.headerRowClickListener);
+                }
+                if (this.handleRowCheckboxChange) {
+                    this.content.removeEventListener("change", this.handleRowCheckboxChange);
+                }
+                if (this.headerRowCheckbox) {
+                    this.headerRowCheckbox.destroy();
+                }
+                if (this.rowCheckboxList) {
+                    try {
+                        for (var _b = __values(this.rowCheckboxList), _c = _b.next(); !_c.done; _c = _b.next()) {
+                            var checkbox = _c.value;
+                            checkbox.destroy();
+                        }
+                    } catch (e_1_1) {
+                        e_1 = {
+                            error: e_1_1
+                        };
+                    } finally {
+                        try {
+                            if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                        } finally {
+                            if (e_1) throw e_1.error;
+                        }
+                    }
+                }
+            };
+            MDCDataTable.prototype.getDefaultFoundation = function() {
+                var _this = this;
+                var adapter = {
+                    addClass: function(className) {
+                        _this.root.classList.add(className);
+                    },
+                    removeClass: function(className) {
+                        _this.root.classList.remove(className);
+                    },
+                    getHeaderCellElements: function() {
+                        return _this.getHeaderCells();
+                    },
+                    getHeaderCellCount: function() {
+                        return _this.getHeaderCells().length;
+                    },
+                    getAttributeByHeaderCellIndex: function(index, attribute) {
+                        return _this.getHeaderCells()[index].getAttribute(attribute);
+                    },
+                    setAttributeByHeaderCellIndex: function(index, attribute, value) {
+                        _this.getHeaderCells()[index].setAttribute(attribute, value);
+                    },
+                    setClassNameByHeaderCellIndex: function(index, className) {
+                        _this.getHeaderCells()[index].classList.add(className);
+                    },
+                    removeClassNameByHeaderCellIndex: function(index, className) {
+                        _this.getHeaderCells()[index].classList.remove(className);
+                    },
+                    notifySortAction: function(data) {
+                        _this.emit(events.SORTED, data, true);
+                    },
+                    getTableContainerHeight: function() {
+                        var tableContainer = _this.root.querySelector("." + data_table_constants_cssClasses.TABLE_CONTAINER);
+                        if (!tableContainer) {
+                            throw new Error("MDCDataTable: Table container element not found.");
+                        }
+                        return tableContainer.getBoundingClientRect().height;
+                    },
+                    getTableHeaderHeight: function() {
+                        var tableHeader = _this.root.querySelector(selectors.HEADER_ROW);
+                        if (!tableHeader) {
+                            throw new Error("MDCDataTable: Table header element not found.");
+                        }
+                        return tableHeader.getBoundingClientRect().height;
+                    },
+                    setProgressIndicatorStyles: function(styles) {
+                        var progressIndicator = _this.root.querySelector(selectors.PROGRESS_INDICATOR);
+                        if (!progressIndicator) {
+                            throw new Error("MDCDataTable: Progress indicator element not found.");
+                        }
+                        progressIndicator.style.setProperty("height", styles.height);
+                        progressIndicator.style.setProperty("top", styles.top);
+                    },
+                    addClassAtRowIndex: function(rowIndex, className) {
+                        _this.getRows()[rowIndex].classList.add(className);
+                    },
+                    getRowCount: function() {
+                        return _this.getRows().length;
+                    },
+                    getRowElements: function() {
+                        return [].slice.call(_this.root.querySelectorAll(selectors.ROW));
+                    },
+                    getRowIdAtIndex: function(rowIndex) {
+                        return _this.getRows()[rowIndex].getAttribute(dataAttributes.ROW_ID);
+                    },
+                    getRowIndexByChildElement: function(el) {
+                        return _this.getRows().indexOf(closest(el, selectors.ROW));
+                    },
+                    getSelectedRowCount: function() {
+                        return _this.root.querySelectorAll(selectors.ROW_SELECTED).length;
+                    },
+                    isCheckboxAtRowIndexChecked: function(rowIndex) {
+                        return _this.rowCheckboxList[rowIndex].checked;
+                    },
+                    isHeaderRowCheckboxChecked: function() {
+                        return _this.headerRowCheckbox.checked;
+                    },
+                    isRowsSelectable: function() {
+                        return !!_this.root.querySelector(selectors.ROW_CHECKBOX) || !!_this.root.querySelector(selectors.HEADER_ROW_CHECKBOX);
+                    },
+                    notifyRowSelectionChanged: function(data) {
+                        _this.emit(events.ROW_SELECTION_CHANGED, {
+                            row: _this.getRowByIndex(data.rowIndex),
+                            rowId: _this.getRowIdByIndex(data.rowIndex),
+                            rowIndex: data.rowIndex,
+                            selected: data.selected
+                        }, true);
+                    },
+                    notifySelectedAll: function() {
+                        _this.emit(events.SELECTED_ALL, {}, true);
+                    },
+                    notifyUnselectedAll: function() {
+                        _this.emit(events.UNSELECTED_ALL, {}, true);
+                    },
+                    registerHeaderRowCheckbox: function() {
+                        if (_this.headerRowCheckbox) {
+                            _this.headerRowCheckbox.destroy();
+                        }
+                        var checkboxEl = _this.root.querySelector(selectors.HEADER_ROW_CHECKBOX);
+                        _this.headerRowCheckbox = _this.checkboxFactory(checkboxEl);
+                    },
+                    registerRowCheckboxes: function() {
+                        if (_this.rowCheckboxList) {
+                            _this.rowCheckboxList.forEach((function(checkbox) {
+                                checkbox.destroy();
+                            }));
+                        }
+                        _this.rowCheckboxList = [];
+                        _this.getRows().forEach((function(rowEl) {
+                            var checkbox = _this.checkboxFactory(rowEl.querySelector(selectors.ROW_CHECKBOX));
+                            _this.rowCheckboxList.push(checkbox);
+                        }));
+                    },
+                    removeClassAtRowIndex: function(rowIndex, className) {
+                        _this.getRows()[rowIndex].classList.remove(className);
+                    },
+                    setAttributeAtRowIndex: function(rowIndex, attr, value) {
+                        _this.getRows()[rowIndex].setAttribute(attr, value);
+                    },
+                    setHeaderRowCheckboxChecked: function(checked) {
+                        _this.headerRowCheckbox.checked = checked;
+                    },
+                    setHeaderRowCheckboxIndeterminate: function(indeterminate) {
+                        _this.headerRowCheckbox.indeterminate = indeterminate;
+                    },
+                    setRowCheckboxCheckedAtIndex: function(rowIndex, checked) {
+                        _this.rowCheckboxList[rowIndex].checked = checked;
+                    },
+                    setSortStatusLabelByHeaderCellIndex: function(columnIndex, sortValue) {
+                        var headerCell = _this.getHeaderCells()[columnIndex];
+                        var sortStatusLabel = headerCell.querySelector(selectors.SORT_STATUS_LABEL);
+                        if (!sortStatusLabel) return;
+                        sortStatusLabel.textContent = _this.getSortStatusMessageBySortValue(sortValue);
+                    }
+                };
+                return new MDCDataTableFoundation(adapter);
+            };
+            MDCDataTable.prototype.getRowByIndex = function(index) {
+                return this.getRows()[index];
+            };
+            MDCDataTable.prototype.getRowIdByIndex = function(index) {
+                return this.getRowByIndex(index).getAttribute(dataAttributes.ROW_ID);
+            };
+            MDCDataTable.prototype.handleHeaderRowClick = function(event) {
+                var headerCell = closest(event.target, selectors.HEADER_CELL_WITH_SORT);
+                if (!headerCell) {
+                    return;
+                }
+                var columnId = headerCell.getAttribute(dataAttributes.COLUMN_ID);
+                var columnIndex = this.getHeaderCells().indexOf(headerCell);
+                if (columnIndex === -1) {
+                    return;
+                }
+                this.foundation.handleSortAction({
+                    columnId: columnId,
+                    columnIndex: columnIndex,
+                    headerCell: headerCell
+                });
+            };
+            MDCDataTable.prototype.getSortStatusMessageBySortValue = function(sortValue) {
+                switch (sortValue) {
+                  case SortValue.ASCENDING:
+                    return messages.SORTED_IN_ASCENDING;
+
+                  case SortValue.DESCENDING:
+                    return messages.SORTED_IN_DESCENDING;
+
+                  default:
+                    return "";
+                }
+            };
+            MDCDataTable.prototype.getLinearProgressElement = function() {
+                var el = this.root.querySelector("." + data_table_constants_cssClasses.LINEAR_PROGRESS);
+                if (!el) {
+                    throw new Error("MDCDataTable: linear progress element is not found.");
+                }
+                return el;
+            };
+            MDCDataTable.prototype.getLinearProgress = function() {
+                if (!this.linearProgress) {
+                    var el = this.getLinearProgressElement();
+                    this.linearProgress = new MDCLinearProgress(el);
+                }
+                return this.linearProgress;
+            };
+            return MDCDataTable;
+        }(MDCComponent);
+        function MBDataTable_init(elem, showProgress) {
+            elem._dataTable = MDCDataTable.attachTo(elem);
+            MBDataTable_setProgress(elem, showProgress);
+        }
+        function MBDataTable_destroy(elem) {
+            elem._dataTable.destroy();
+        }
+        function MBDataTable_setProgress(elem, showProgress) {
+            if (showProgress) {
+                elem._dataTable.showProgress();
+            } else {
+                elem._dataTable.hideProgress();
+            }
         }
         /**
  * @license
@@ -6911,19 +15006,19 @@ PERFORMANCE OF THIS SOFTWARE.
             OUTLINED: "mdc-select--outlined",
             REQUIRED: "mdc-select--required",
             ROOT: "mdc-select",
-            SELECTED_ITEM_CLASS: "mdc-list-item--selected",
             WITH_LEADING_ICON: "mdc-select--with-leading-icon"
         };
         var select_constants_strings = {
             ARIA_CONTROLS: "aria-controls",
+            ARIA_DESCRIBEDBY: "aria-describedby",
             ARIA_SELECTED_ATTR: "aria-selected",
             CHANGE_EVENT: "MDCSelect:change",
+            HIDDEN_INPUT_SELECTOR: 'input[type="hidden"]',
             LABEL_SELECTOR: ".mdc-floating-label",
             LEADING_ICON_SELECTOR: ".mdc-select__icon",
             LINE_RIPPLE_SELECTOR: ".mdc-line-ripple",
             MENU_SELECTOR: ".mdc-select__menu",
             OUTLINE_SELECTOR: ".mdc-notched-outline",
-            SELECTED_ITEM_SELECTOR: "." + select_constants_cssClasses.SELECTED_ITEM_CLASS,
             SELECTED_TEXT_SELECTOR: ".mdc-select__selected-text",
             SELECT_ANCHOR_SELECTOR: ".mdc-select__anchor",
             VALUE_ATTR: "data-value"
@@ -6953,19 +15048,18 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCSelectFoundation = function(_super) {
+ */        var MDCSelectFoundation = function(_super) {
             __extends(MDCSelectFoundation, _super);
             function MDCSelectFoundation(adapter, foundationMap) {
                 if (foundationMap === void 0) {
                     foundationMap = {};
                 }
                 var _this = _super.call(this, __assign(__assign({}, MDCSelectFoundation.defaultAdapter), adapter)) || this;
-                _this.selectedIndex = select_constants_numbers.UNSET_INDEX;
-                _this.menuItemValues = [];
                 _this.disabled = false;
                 _this.isMenuOpen = false;
                 _this.useDefaultValidation = true;
                 _this.customValidity = true;
+                _this.lastSelectedIndex = select_constants_numbers.UNSET_INDEX;
                 _this.leadingIcon = foundationMap.leadingIcon;
                 _this.helperText = foundationMap.helperText;
                 return _this;
@@ -7009,8 +15103,11 @@ PERFORMANCE OF THIS SOFTWARE.
                         deactivateBottomLine: function() {
                             return undefined;
                         },
-                        getSelectedMenuItem: function() {
-                            return null;
+                        getSelectedIndex: function() {
+                            return -1;
+                        },
+                        setSelectedIndex: function() {
+                            return undefined;
                         },
                         hasLabel: function() {
                             return false;
@@ -7078,9 +15175,6 @@ PERFORMANCE OF THIS SOFTWARE.
                         setMenuWrapFocus: function() {
                             return undefined;
                         },
-                        setAttributeAtIndex: function() {
-                            return undefined;
-                        },
                         focusMenuItemAtIndex: function() {
                             return undefined;
                         },
@@ -7092,15 +15186,6 @@ PERFORMANCE OF THIS SOFTWARE.
                         },
                         getMenuItemTextAtIndex: function() {
                             return "";
-                        },
-                        getMenuItemAttr: function() {
-                            return "";
-                        },
-                        addClassAtIndex: function() {
-                            return undefined;
-                        },
-                        removeClassAtIndex: function() {
-                            return undefined;
                         },
                         isTypeaheadInProgress: function() {
                             return false;
@@ -7114,32 +15199,43 @@ PERFORMANCE OF THIS SOFTWARE.
                 configurable: true
             });
             MDCSelectFoundation.prototype.getSelectedIndex = function() {
-                return this.selectedIndex;
+                return this.adapter.getSelectedIndex();
             };
-            MDCSelectFoundation.prototype.setSelectedIndex = function(index, closeMenu) {
+            MDCSelectFoundation.prototype.setSelectedIndex = function(index, closeMenu, skipNotify) {
                 if (closeMenu === void 0) {
                     closeMenu = false;
+                }
+                if (skipNotify === void 0) {
+                    skipNotify = false;
                 }
                 if (index >= this.adapter.getMenuItemCount()) {
                     return;
                 }
-                this.removeSelectionAtIndex(this.selectedIndex);
-                this.setSelectionAtIndex(index);
+                if (index === select_constants_numbers.UNSET_INDEX) {
+                    this.adapter.setSelectedText("");
+                } else {
+                    this.adapter.setSelectedText(this.adapter.getMenuItemTextAtIndex(index).trim());
+                }
+                this.adapter.setSelectedIndex(index);
                 if (closeMenu) {
                     this.adapter.closeMenu();
                 }
-                this.handleChange();
+                if (!skipNotify && this.lastSelectedIndex !== index) {
+                    this.handleChange();
+                }
+                this.lastSelectedIndex = index;
             };
-            MDCSelectFoundation.prototype.setValue = function(value) {
-                var index = this.menuItemValues.indexOf(value);
-                this.setSelectedIndex(index);
+            MDCSelectFoundation.prototype.setValue = function(value, skipNotify) {
+                if (skipNotify === void 0) {
+                    skipNotify = false;
+                }
+                var index = this.adapter.getMenuItemValues().indexOf(value);
+                this.setSelectedIndex(index, false, skipNotify);
             };
             MDCSelectFoundation.prototype.getValue = function() {
-                var listItem = this.adapter.getSelectedMenuItem();
-                if (listItem) {
-                    return this.adapter.getMenuItemAttr(listItem, select_constants_strings.VALUE_ATTR) || "";
-                }
-                return "";
+                var index = this.adapter.getSelectedIndex();
+                var menuItemValues = this.adapter.getMenuItemValues();
+                return index !== select_constants_numbers.UNSET_INDEX ? menuItemValues[index] : "";
             };
             MDCSelectFoundation.prototype.getDisabled = function() {
                 return this.disabled;
@@ -7185,15 +15281,16 @@ PERFORMANCE OF THIS SOFTWARE.
                 }
             };
             MDCSelectFoundation.prototype.layoutOptions = function() {
-                this.menuItemValues = this.adapter.getMenuItemValues();
-                var selectedIndex = this.menuItemValues.indexOf(this.getValue());
-                this.setSelectionAtIndex(selectedIndex);
+                var menuItemValues = this.adapter.getMenuItemValues();
+                var selectedIndex = menuItemValues.indexOf(this.getValue());
+                this.setSelectedIndex(selectedIndex, false, true);
             };
             MDCSelectFoundation.prototype.handleMenuOpened = function() {
-                if (this.menuItemValues.length === 0) {
+                if (this.adapter.getMenuItemValues().length === 0) {
                     return;
                 }
-                var focusItemIndex = this.selectedIndex >= 0 ? this.selectedIndex : 0;
+                var selectedIndex = this.getSelectedIndex();
+                var focusItemIndex = selectedIndex >= 0 ? selectedIndex : 0;
                 this.adapter.focusMenuItemAtIndex(focusItemIndex);
             };
             MDCSelectFoundation.prototype.handleMenuClosed = function() {
@@ -7210,9 +15307,6 @@ PERFORMANCE OF THIS SOFTWARE.
                 var isRequired = this.adapter.hasClass(select_constants_cssClasses.REQUIRED);
                 if (isRequired && this.useDefaultValidation) {
                     this.setValid(this.isValid());
-                    if (this.helperText) {
-                        this.helperText.setValidity(this.isValid());
-                    }
                 }
             };
             MDCSelectFoundation.prototype.handleMenuItemAction = function(index) {
@@ -7250,7 +15344,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 var arrowDown = normalizeKey(event) === KEY.ARROW_DOWN;
                 if (!isSpace && event.key && event.key.length === 1 || isSpace && this.adapter.isTypeaheadInProgress()) {
                     var key = isSpace ? " " : event.key;
-                    var typeaheadNextIndex = this.adapter.typeaheadMatchItem(key, this.selectedIndex);
+                    var typeaheadNextIndex = this.adapter.typeaheadMatchItem(key, this.getSelectedIndex());
                     if (typeaheadNextIndex >= 0) {
                         this.setSelectedIndex(typeaheadNextIndex);
                     }
@@ -7260,10 +15354,10 @@ PERFORMANCE OF THIS SOFTWARE.
                 if (!isEnter && !isSpace && !arrowUp && !arrowDown) {
                     return;
                 }
-                if (arrowUp && this.selectedIndex > 0) {
-                    this.setSelectedIndex(this.selectedIndex - 1);
-                } else if (arrowDown && this.selectedIndex < this.adapter.getMenuItemCount() - 1) {
-                    this.setSelectedIndex(this.selectedIndex + 1);
+                if (arrowUp && this.getSelectedIndex() > 0) {
+                    this.setSelectedIndex(this.getSelectedIndex() - 1);
+                } else if (arrowDown && this.getSelectedIndex() < this.adapter.getMenuItemCount() - 1) {
+                    this.setSelectedIndex(this.getSelectedIndex() + 1);
                 }
                 this.openMenu();
                 event.preventDefault();
@@ -7306,10 +15400,11 @@ PERFORMANCE OF THIS SOFTWARE.
                     this.adapter.addClass(select_constants_cssClasses.INVALID);
                     this.adapter.addMenuClass(select_constants_cssClasses.MENU_INVALID);
                 }
+                this.syncHelperTextValidity(isValid);
             };
             MDCSelectFoundation.prototype.isValid = function() {
                 if (this.useDefaultValidation && this.adapter.hasClass(select_constants_cssClasses.REQUIRED) && !this.adapter.hasClass(select_constants_cssClasses.DISABLED)) {
-                    return this.selectedIndex !== select_constants_numbers.UNSET_INDEX && (this.selectedIndex !== 0 || Boolean(this.getValue()));
+                    return this.getSelectedIndex() !== select_constants_numbers.UNSET_INDEX && (this.getSelectedIndex() !== 0 || Boolean(this.getValue()));
                 }
                 return this.customValidity;
             };
@@ -7333,8 +15428,9 @@ PERFORMANCE OF THIS SOFTWARE.
                 }
                 this.adapter.setMenuWrapFocus(false);
                 this.setDisabled(this.adapter.hasClass(select_constants_cssClasses.DISABLED));
-                this.layoutOptions();
+                this.syncHelperTextValidity(!this.adapter.hasClass(select_constants_cssClasses.INVALID));
                 this.layout();
+                this.layoutOptions();
             };
             MDCSelectFoundation.prototype.blur = function() {
                 this.adapter.removeClass(select_constants_cssClasses.FOCUSED);
@@ -7343,30 +15439,24 @@ PERFORMANCE OF THIS SOFTWARE.
                 var isRequired = this.adapter.hasClass(select_constants_cssClasses.REQUIRED);
                 if (isRequired && this.useDefaultValidation) {
                     this.setValid(this.isValid());
-                    if (this.helperText) {
-                        this.helperText.setValidity(this.isValid());
-                    }
                 }
             };
-            MDCSelectFoundation.prototype.setSelectionAtIndex = function(index) {
-                this.selectedIndex = index;
-                if (index === select_constants_numbers.UNSET_INDEX) {
-                    this.adapter.setSelectedText("");
+            MDCSelectFoundation.prototype.syncHelperTextValidity = function(isValid) {
+                if (!this.helperText) {
                     return;
                 }
-                this.adapter.setSelectedText(this.adapter.getMenuItemTextAtIndex(index).trim());
-                this.adapter.addClassAtIndex(index, select_constants_cssClasses.SELECTED_ITEM_CLASS);
-                this.adapter.setAttributeAtIndex(index, select_constants_strings.ARIA_SELECTED_ATTR, "true");
-            };
-            MDCSelectFoundation.prototype.removeSelectionAtIndex = function(index) {
-                if (index !== select_constants_numbers.UNSET_INDEX) {
-                    this.adapter.removeClassAtIndex(index, select_constants_cssClasses.SELECTED_ITEM_CLASS);
-                    this.adapter.setAttributeAtIndex(index, select_constants_strings.ARIA_SELECTED_ATTR, "false");
+                this.helperText.setValidity(isValid);
+                var helperTextVisible = this.helperText.isVisible();
+                var helperTextId = this.helperText.getId();
+                if (helperTextVisible && helperTextId) {
+                    this.adapter.setSelectAnchorAttr(select_constants_strings.ARIA_DESCRIBEDBY, helperTextId);
+                } else {
+                    this.adapter.removeSelectAnchorAttr(select_constants_strings.ARIA_DESCRIBEDBY);
                 }
             };
             return MDCSelectFoundation;
         }(MDCFoundation);
-        var select_foundation = foundation_MDCSelectFoundation;
+        const select_foundation = null && MDCSelectFoundation;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -7417,7 +15507,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCSelectHelperTextFoundation = function(_super) {
+ */        var MDCSelectHelperTextFoundation = function(_super) {
             __extends(MDCSelectHelperTextFoundation, _super);
             function MDCSelectHelperTextFoundation(adapter) {
                 return _super.call(this, __assign(__assign({}, MDCSelectHelperTextFoundation.defaultAdapter), adapter)) || this;
@@ -7451,6 +15541,9 @@ PERFORMANCE OF THIS SOFTWARE.
                         setAttr: function() {
                             return undefined;
                         },
+                        getAttr: function() {
+                            return null;
+                        },
                         removeAttr: function() {
                             return undefined;
                         },
@@ -7462,6 +15555,12 @@ PERFORMANCE OF THIS SOFTWARE.
                 enumerable: true,
                 configurable: true
             });
+            MDCSelectHelperTextFoundation.prototype.getId = function() {
+                return this.adapter.getAttr("id");
+            };
+            MDCSelectHelperTextFoundation.prototype.isVisible = function() {
+                return this.adapter.getAttr(select_helper_text_constants_strings.ARIA_HIDDEN) !== "true";
+            };
             MDCSelectHelperTextFoundation.prototype.setContent = function(content) {
                 this.adapter.setContent(content);
             };
@@ -7478,9 +15577,6 @@ PERFORMANCE OF THIS SOFTWARE.
                 } else {
                     this.adapter.removeClass(select_helper_text_constants_cssClasses.HELPER_TEXT_VALIDATION_MSG_PERSISTENT);
                 }
-            };
-            MDCSelectHelperTextFoundation.prototype.showToScreenReader = function() {
-                this.adapter.removeAttr(select_helper_text_constants_strings.ARIA_HIDDEN);
             };
             MDCSelectHelperTextFoundation.prototype.setValidity = function(selectIsValid) {
                 var isValidationMsg = this.adapter.hasClass(select_helper_text_constants_cssClasses.HELPER_TEXT_VALIDATION_MSG);
@@ -7501,12 +15597,15 @@ PERFORMANCE OF THIS SOFTWARE.
                 this.adapter.removeAttr(select_helper_text_constants_strings.ROLE);
                 this.hide();
             };
+            MDCSelectHelperTextFoundation.prototype.showToScreenReader = function() {
+                this.adapter.removeAttr(select_helper_text_constants_strings.ARIA_HIDDEN);
+            };
             MDCSelectHelperTextFoundation.prototype.hide = function() {
                 this.adapter.setAttr(select_helper_text_constants_strings.ARIA_HIDDEN, "true");
             };
             return MDCSelectHelperTextFoundation;
         }(MDCFoundation);
-        var select_helper_text_foundation = foundation_MDCSelectHelperTextFoundation;
+        const select_helper_text_foundation = null && MDCSelectHelperTextFoundation;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -7528,7 +15627,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_MDCSelectHelperText = function(_super) {
+ */        var MDCSelectHelperText = function(_super) {
             __extends(MDCSelectHelperText, _super);
             function MDCSelectHelperText() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -7555,6 +15654,9 @@ PERFORMANCE OF THIS SOFTWARE.
                     hasClass: function(className) {
                         return _this.root.classList.contains(className);
                     },
+                    getAttr: function(attr) {
+                        return _this.root.getAttribute(attr);
+                    },
                     setAttr: function(attr, value) {
                         return _this.root.setAttribute(attr, value);
                     },
@@ -7565,10 +15667,10 @@ PERFORMANCE OF THIS SOFTWARE.
                         _this.root.textContent = content;
                     }
                 };
-                return new foundation_MDCSelectHelperTextFoundation(adapter);
+                return new MDCSelectHelperTextFoundation(adapter);
             };
             return MDCSelectHelperText;
-        }(component_MDCComponent);
+        }(MDCComponent);
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -7616,7 +15718,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */        var icon_foundation_INTERACTION_EVENTS = [ "click", "keydown" ];
-        var foundation_MDCSelectIconFoundation = function(_super) {
+        var MDCSelectIconFoundation = function(_super) {
             __extends(MDCSelectIconFoundation, _super);
             function MDCSelectIconFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCSelectIconFoundation.defaultAdapter), adapter)) || this;
@@ -7701,7 +15803,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCSelectIconFoundation;
         }(MDCFoundation);
-        var select_icon_foundation = foundation_MDCSelectIconFoundation;
+        const select_icon_foundation = null && MDCSelectIconFoundation;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -7723,7 +15825,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_MDCSelectIcon = function(_super) {
+ */        var MDCSelectIcon = function(_super) {
             __extends(MDCSelectIcon, _super);
             function MDCSelectIcon() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -7760,13 +15862,13 @@ PERFORMANCE OF THIS SOFTWARE.
                         return _this.unlisten(evtType, handler);
                     },
                     notifyIconAction: function() {
-                        return _this.emit(foundation_MDCSelectIconFoundation.strings.ICON_EVENT, {}, true);
+                        return _this.emit(MDCSelectIconFoundation.strings.ICON_EVENT, {}, true);
                     }
                 };
-                return new foundation_MDCSelectIconFoundation(adapter);
+                return new MDCSelectIconFoundation(adapter);
             };
             return MDCSelectIcon;
-        }(component_MDCComponent);
+        }(MDCComponent);
         /**
  * @license
  * Copyright 2016 Google Inc.
@@ -7788,7 +15890,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_MDCSelect = function(_super) {
+ */        var MDCSelect = function(_super) {
             __extends(MDCSelect, _super);
             function MDCSelect() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -7799,36 +15901,37 @@ PERFORMANCE OF THIS SOFTWARE.
             MDCSelect.prototype.initialize = function(labelFactory, lineRippleFactory, outlineFactory, menuFactory, iconFactory, helperTextFactory) {
                 if (labelFactory === void 0) {
                     labelFactory = function(el) {
-                        return new component_MDCFloatingLabel(el);
+                        return new MDCFloatingLabel(el);
                     };
                 }
                 if (lineRippleFactory === void 0) {
                     lineRippleFactory = function(el) {
-                        return new component_MDCLineRipple(el);
+                        return new MDCLineRipple(el);
                     };
                 }
                 if (outlineFactory === void 0) {
                     outlineFactory = function(el) {
-                        return new component_MDCNotchedOutline(el);
+                        return new MDCNotchedOutline(el);
                     };
                 }
                 if (menuFactory === void 0) {
                     menuFactory = function(el) {
-                        return new component_MDCMenu(el);
+                        return new MDCMenu(el);
                     };
                 }
                 if (iconFactory === void 0) {
                     iconFactory = function(el) {
-                        return new component_MDCSelectIcon(el);
+                        return new MDCSelectIcon(el);
                     };
                 }
                 if (helperTextFactory === void 0) {
                     helperTextFactory = function(el) {
-                        return new component_MDCSelectHelperText(el);
+                        return new MDCSelectHelperText(el);
                     };
                 }
                 this.selectAnchor = this.root.querySelector(select_constants_strings.SELECT_ANCHOR_SELECTOR);
                 this.selectedText = this.root.querySelector(select_constants_strings.SELECTED_TEXT_SELECTOR);
+                this.hiddenInput = this.root.querySelector(select_constants_strings.HIDDEN_INPUT_SELECTOR);
                 if (!this.selectedText) {
                     throw new Error("MDCSelect: Missing required element: The following selector must be present: " + ("'" + select_constants_strings.SELECTED_TEXT_SELECTOR + "'"));
                 }
@@ -7855,9 +15958,6 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             MDCSelect.prototype.initialSyncWithDOM = function() {
                 var _this = this;
-                this.handleChange = function() {
-                    _this.foundation.handleChange();
-                };
                 this.handleFocus = function() {
                     _this.foundation.handleFocus();
                 };
@@ -7887,9 +15987,16 @@ PERFORMANCE OF THIS SOFTWARE.
                 this.menu.listen(menu_surface_constants_strings.CLOSED_EVENT, this.handleMenuClosed);
                 this.menu.listen(menu_surface_constants_strings.OPENED_EVENT, this.handleMenuOpened);
                 this.menu.listen(menu_constants_strings.SELECTED_EVENT, this.handleMenuItemAction);
+                if (this.hiddenInput) {
+                    if (this.hiddenInput.value) {
+                        this.foundation.setValue(this.hiddenInput.value, true);
+                        this.foundation.layout();
+                        return;
+                    }
+                    this.hiddenInput.value = this.value;
+                }
             };
             MDCSelect.prototype.destroy = function() {
-                this.selectAnchor.removeEventListener("change", this.handleChange);
                 this.selectAnchor.removeEventListener("focus", this.handleFocus);
                 this.selectAnchor.removeEventListener("blur", this.handleBlur);
                 this.selectAnchor.removeEventListener("keydown", this.handleKeydown);
@@ -7938,6 +16045,9 @@ PERFORMANCE OF THIS SOFTWARE.
                 },
                 set: function(disabled) {
                     this.foundation.setDisabled(disabled);
+                    if (this.hiddenInput) {
+                        this.hiddenInput.disabled = disabled;
+                    }
                 },
                 enumerable: true,
                 configurable: true
@@ -7996,19 +16106,29 @@ PERFORMANCE OF THIS SOFTWARE.
             MDCSelect.prototype.layoutOptions = function() {
                 this.foundation.layoutOptions();
                 this.menu.layout();
+                this.menuItemValues = this.menu.items.map((function(el) {
+                    return el.getAttribute(select_constants_strings.VALUE_ATTR) || "";
+                }));
+                if (this.hiddenInput) {
+                    this.hiddenInput.value = this.value;
+                }
             };
             MDCSelect.prototype.getDefaultFoundation = function() {
                 var adapter = __assign(__assign(__assign(__assign({}, this.getSelectAdapterMethods()), this.getCommonAdapterMethods()), this.getOutlineAdapterMethods()), this.getLabelAdapterMethods());
-                return new foundation_MDCSelectFoundation(adapter, this.getFoundationMap());
+                return new MDCSelectFoundation(adapter, this.getFoundationMap());
             };
             MDCSelect.prototype.menuSetup = function(menuFactory) {
                 this.menuElement = this.root.querySelector(select_constants_strings.MENU_SELECTOR);
                 this.menu = menuFactory(this.menuElement);
                 this.menu.hasTypeahead = true;
+                this.menu.singleSelection = true;
+                this.menuItemValues = this.menu.items.map((function(el) {
+                    return el.getAttribute(select_constants_strings.VALUE_ATTR) || "";
+                }));
             };
             MDCSelect.prototype.createRipple = function() {
                 var _this = this;
-                var adapter = __assign(__assign({}, component_MDCRipple.createAdapter({
+                var adapter = __assign(__assign({}, MDCRipple.createAdapter({
                     root: this.selectAnchor
                 })), {
                     registerInteractionHandler: function(evtType, handler) {
@@ -8018,14 +16138,11 @@ PERFORMANCE OF THIS SOFTWARE.
                         _this.selectAnchor.removeEventListener(evtType, handler);
                     }
                 });
-                return new component_MDCRipple(this.selectAnchor, new foundation_MDCRippleFoundation(adapter));
+                return new MDCRipple(this.selectAnchor, new MDCRippleFoundation(adapter));
             };
             MDCSelect.prototype.getSelectAdapterMethods = function() {
                 var _this = this;
                 return {
-                    getSelectedMenuItem: function() {
-                        return _this.menuElement.querySelector(select_constants_strings.SELECTED_ITEM_SELECTOR);
-                    },
                     getMenuItemAttr: function(menuItem, attr) {
                         return menuItem.getAttribute(attr);
                     },
@@ -8068,11 +16185,12 @@ PERFORMANCE OF THIS SOFTWARE.
                     setMenuWrapFocus: function(wrapFocus) {
                         _this.menu.wrapFocus = wrapFocus;
                     },
-                    setAttributeAtIndex: function(index, attributeName, attributeValue) {
-                        _this.menu.items[index].setAttribute(attributeName, attributeValue);
+                    getSelectedIndex: function() {
+                        var index = _this.menu.selectedIndex;
+                        return index instanceof Array ? index[0] : index;
                     },
-                    removeAttributeAtIndex: function(index, attributeName) {
-                        _this.menu.items[index].removeAttribute(attributeName);
+                    setSelectedIndex: function(index) {
+                        _this.menu.selectedIndex = index;
                     },
                     focusMenuItemAtIndex: function(index) {
                         _this.menu.items[index].focus();
@@ -8081,18 +16199,10 @@ PERFORMANCE OF THIS SOFTWARE.
                         return _this.menu.items.length;
                     },
                     getMenuItemValues: function() {
-                        return _this.menu.items.map((function(el) {
-                            return el.getAttribute(select_constants_strings.VALUE_ATTR) || "";
-                        }));
+                        return _this.menuItemValues;
                     },
                     getMenuItemTextAtIndex: function(index) {
                         return _this.menu.getPrimaryTextAtIndex(index);
-                    },
-                    addClassAtIndex: function(index, className) {
-                        _this.menu.items[index].classList.add(className);
-                    },
-                    removeClassAtIndex: function(index, className) {
-                        _this.menu.items[index].classList.remove(className);
                     },
                     isTypeaheadInProgress: function() {
                         return _this.menu.typeaheadInProgress;
@@ -8129,6 +16239,9 @@ PERFORMANCE OF THIS SOFTWARE.
                             value: value,
                             index: index
                         }, true);
+                        if (_this.hiddenInput) {
+                            _this.hiddenInput.value = value;
+                        }
                     }
                 };
             };
@@ -8178,9 +16291,15 @@ PERFORMANCE OF THIS SOFTWARE.
                 };
             };
             return MDCSelect;
-        }(component_MDCComponent);
+        }(MDCComponent);
         function MBDatePicker_init(elem) {
-            elem._select = component_MDCSelect.attachTo(elem);
+            elem._select = MDCSelect.attachTo(elem);
+        }
+        function MBDatePicker_setDisabled(elem, value) {
+            elem._select.disabled = value;
+        }
+        function MBDatePicker_destroy(elem) {
+            elem._select.destroy();
         }
         function listItemClick(elem, elemText) {
             elem.innerText = elemText;
@@ -8360,7 +16479,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCDialogFoundation = function(_super) {
+ */        var MDCDialogFoundation = function(_super) {
             __extends(MDCDialogFoundation, _super);
             function MDCDialogFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCDialogFoundation.defaultAdapter), adapter)) || this;
@@ -8372,6 +16491,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 _this.scrimClickAction_ = dialog_constants_strings.CLOSE_ACTION;
                 _this.autoStackButtons_ = true;
                 _this.areButtonsStacked_ = false;
+                _this.suppressDefaultPressSelector = dialog_constants_strings.SUPPRESS_DEFAULT_PRESS_SELECTOR;
                 return _this;
             }
             Object.defineProperty(MDCDialogFoundation, "cssClasses", {
@@ -8534,6 +16654,12 @@ PERFORMANCE OF THIS SOFTWARE.
             MDCDialogFoundation.prototype.setAutoStackButtons = function(autoStack) {
                 this.autoStackButtons_ = autoStack;
             };
+            MDCDialogFoundation.prototype.getSuppressDefaultPressSelector = function() {
+                return this.suppressDefaultPressSelector;
+            };
+            MDCDialogFoundation.prototype.setSuppressDefaultPressSelector = function(selector) {
+                this.suppressDefaultPressSelector = selector;
+            };
             MDCDialogFoundation.prototype.layout = function() {
                 var _this = this;
                 if (this.layoutFrame_) {
@@ -8564,7 +16690,8 @@ PERFORMANCE OF THIS SOFTWARE.
                 if (action) {
                     return;
                 }
-                var isDefault = !this.adapter.eventTargetMatches(evt.target, dialog_constants_strings.SUPPRESS_DEFAULT_PRESS_SELECTOR);
+                var target = evt.composedPath ? evt.composedPath()[0] : evt.target;
+                var isDefault = !this.adapter.eventTargetMatches(target, this.suppressDefaultPressSelector);
                 if (isEnter && isDefault) {
                     this.adapter.clickDefaultButton();
                 }
@@ -8614,7 +16741,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCDialogFoundation;
         }(MDCFoundation);
-        var dialog_foundation = foundation_MDCDialogFoundation;
+        const dialog_foundation = null && MDCDialogFoundation;
         /**
  * @license
  * Copyright 2016 Google Inc.
@@ -8672,8 +16799,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_strings = foundation_MDCDialogFoundation.strings;
-        var component_MDCDialog = function(_super) {
+ */        var component_strings = MDCDialogFoundation.strings;
+        var MDCDialog = function(_super) {
             __extends(MDCDialog, _super);
             function MDCDialog() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -8738,7 +16865,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 try {
                     for (var _b = __values(this.buttons_), _c = _b.next(); !_c.done; _c = _b.next()) {
                         var buttonEl = _c.value;
-                        this.buttonRipples_.push(new component_MDCRipple(buttonEl));
+                        this.buttonRipples_.push(new MDCRipple(buttonEl));
                     }
                 } catch (e_1_1) {
                     e_1 = {
@@ -8869,23 +16996,23 @@ PERFORMANCE OF THIS SOFTWARE.
                         return _this.focusTrap_.trapFocus();
                     }
                 };
-                return new foundation_MDCDialogFoundation(adapter);
+                return new MDCDialogFoundation(adapter);
             };
             MDCDialog.prototype.getInitialFocusEl_ = function() {
-                return document.querySelector("[" + component_strings.INITIAL_FOCUS_ATTRIBUTE + "]");
+                return this.root.querySelector("[" + component_strings.INITIAL_FOCUS_ATTRIBUTE + "]");
             };
             return MDCDialog;
-        }(component_MDCComponent);
+        }(MDCComponent);
         function show(elem, dotNetObject, escapeKeyAction, scrimClickAction) {
-            elem._dialog = elem._dialog || component_MDCDialog.attachTo(elem);
+            elem._dialog = elem._dialog || MDCDialog.attachTo(elem);
             elem._dotNetObject = dotNetObject;
             return new Promise((function(resolve) {
                 var dialog = elem._dialog;
-                var openedCallback = function(event) {
+                var openedCallback = function openedCallback() {
                     dialog.unlisten("MDCDialog:opened", openedCallback);
                     dotNetObject.invokeMethodAsync("NotifyOpenedAsync");
                 };
-                var closingCallback = function(event) {
+                var closingCallback = function closingCallback(event) {
                     dialog.unlisten("MDCDialog:closing", closingCallback);
                     resolve(event.detail.action);
                 };
@@ -8897,8 +17024,9 @@ PERFORMANCE OF THIS SOFTWARE.
             }));
         }
         function hide(elem, dialogAction) {
-            if (elem._dialog) {
+            if (elem && elem._dialog) {
                 elem._dialog.close(dialogAction || "dismissed");
+                elem._dialog.destroy();
             }
         }
         /**
@@ -8958,7 +17086,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCDismissibleDrawerFoundation = function(_super) {
+ */        var MDCDismissibleDrawerFoundation = function(_super) {
             __extends(MDCDismissibleDrawerFoundation, _super);
             function MDCDismissibleDrawerFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCDismissibleDrawerFoundation.defaultAdapter), adapter)) || this;
@@ -9099,7 +17227,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCDismissibleDrawerFoundation;
         }(MDCFoundation);
-        var dismissible_foundation = foundation_MDCDismissibleDrawerFoundation;
+        const dismissible_foundation = null && MDCDismissibleDrawerFoundation;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -9121,7 +17249,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCModalDrawerFoundation = function(_super) {
+ */        var MDCModalDrawerFoundation = function(_super) {
             __extends(MDCModalDrawerFoundation, _super);
             function MDCModalDrawerFoundation() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -9136,8 +17264,8 @@ PERFORMANCE OF THIS SOFTWARE.
                 this.adapter.releaseFocus();
             };
             return MDCModalDrawerFoundation;
-        }(foundation_MDCDismissibleDrawerFoundation);
-        var modal_foundation = foundation_MDCModalDrawerFoundation;
+        }(MDCDismissibleDrawerFoundation);
+        const modal_foundation = null && MDCModalDrawerFoundation;
         /**
  * @license
  * Copyright 2016 Google Inc.
@@ -9185,8 +17313,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_cssClasses = foundation_MDCDismissibleDrawerFoundation.cssClasses, drawer_component_strings = foundation_MDCDismissibleDrawerFoundation.strings;
-        var component_MDCDrawer = function(_super) {
+ */        var component_cssClasses = MDCDismissibleDrawerFoundation.cssClasses, drawer_component_strings = MDCDismissibleDrawerFoundation.strings;
+        var MDCDrawer = function(_super) {
             __extends(MDCDrawer, _super);
             function MDCDrawer() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -9223,10 +17351,10 @@ PERFORMANCE OF THIS SOFTWARE.
                 }
                 if (listFactory === void 0) {
                     listFactory = function(el) {
-                        return new component_MDCList(el);
+                        return new MDCList(el);
                     };
                 }
-                var listEl = this.root.querySelector("." + foundation_MDCListFoundation.cssClasses.ROOT);
+                var listEl = this.root.querySelector("." + MDCListFoundation.cssClasses.ROOT);
                 if (listEl) {
                     this.list_ = listFactory(listEl);
                     this.list_.wrapFocus = true;
@@ -9291,7 +17419,7 @@ PERFORMANCE OF THIS SOFTWARE.
                         }
                     },
                     focusActiveNavigationItem: function() {
-                        var activeNavItemEl = _this.root.querySelector("." + foundation_MDCListFoundation.cssClasses.LIST_ITEM_ACTIVATED_CLASS);
+                        var activeNavItemEl = _this.root.querySelector("." + MDCListFoundation.cssClasses.LIST_ITEM_ACTIVATED_CLASS);
                         if (activeNavItemEl) {
                             activeNavItemEl.focus();
                         }
@@ -9311,23 +17439,32 @@ PERFORMANCE OF THIS SOFTWARE.
                 };
                 var DISMISSIBLE = component_cssClasses.DISMISSIBLE, MODAL = component_cssClasses.MODAL;
                 if (this.root.classList.contains(DISMISSIBLE)) {
-                    return new foundation_MDCDismissibleDrawerFoundation(adapter);
+                    return new MDCDismissibleDrawerFoundation(adapter);
                 } else if (this.root.classList.contains(MODAL)) {
-                    return new foundation_MDCModalDrawerFoundation(adapter);
+                    return new MDCModalDrawerFoundation(adapter);
                 } else {
                     throw new Error("MDCDrawer: Failed to instantiate component. Supported variants are " + DISMISSIBLE + " and " + MODAL + ".");
                 }
             };
             return MDCDrawer;
-        }(component_MDCComponent);
+        }(MDCComponent);
+        function MBDrawer_init(elem, isOpen) {
+            elem._drawer = MDCDrawer.attachTo(elem);
+            toggle(elem, isOpen);
+        }
+        function MBDrawer_destroy(elem) {
+            elem._drawer.destroy();
+        }
         function toggle(elem, isOpen) {
-            var drawer = component_MDCDrawer.attachTo(elem);
-            drawer.open = isOpen;
+            elem._drawer.open = isOpen;
         }
         function MBFloatingActionButton_init(elem, exited) {
-            elem._fab = component_MDCRipple.attachTo(elem);
+            elem._fab = MDCRipple.attachTo(elem);
             elem._exited = false;
             setExited(elem, exited);
+        }
+        function MBFloatingActionButton_destroy(elem) {
+            elem._fab.destroy();
         }
         function setExited(elem, exited) {
             if (elem) {
@@ -9338,9 +17475,49 @@ PERFORMANCE OF THIS SOFTWARE.
                 }
             }
         }
+        function syncScrollByID(gridHeaderID, gridBodyID) {
+            var headerDiv = document.getElementById(gridHeaderID);
+            var bodyDiv = document.getElementById(gridBodyID);
+            if (headerDiv != null && bodyDiv != null) {
+                headerDiv.scrollLeft = bodyDiv.scrollLeft;
+            }
+        }
+        function syncScrollByRef(gridHeaderRef, gridBodyRef) {
+            gridHeaderRef.scrollLeft = gridBodyRef.scrollLeft;
+        }
+        function getScrollBarWidth(className) {
+            var firstDiv = document.createElement("div");
+            firstDiv.style.position = "absolute";
+            firstDiv.style.visibility = "hidden";
+            firstDiv.style.whiteSpace = "nowrap";
+            firstDiv.style.left = "-9999px";
+            firstDiv.className = className;
+            document.body.appendChild(firstDiv);
+            var secondDiv = document.createElement("div");
+            firstDiv.appendChild(secondDiv);
+            var width = firstDiv.offsetWidth - secondDiv.offsetWidth;
+            document.body.removeChild(firstDiv);
+            return width;
+        }
+        function getTextWidth(className, textToMeasure) {
+            var ele = document.createElement("div");
+            ele.style.position = "absolute";
+            ele.style.visibility = "hidden";
+            ele.style.whiteSpace = "nowrap";
+            ele.style.left = "-9999px";
+            ele.className = className;
+            ele.innerText = textToMeasure;
+            document.body.appendChild(ele);
+            var width = window.getComputedStyle(ele).width;
+            document.body.removeChild(ele);
+            return width;
+        }
         function MBIconButton_init(elem) {
-            var iconButtonRipple = component_MDCRipple.attachTo(elem);
-            iconButtonRipple.unbounded = true;
+            elem._ripple = MDCRipple.attachTo(elem);
+            elem._ripple.unbounded = true;
+        }
+        function MBIconButton_destroy(elem) {
+            elem._ripple.destroy();
         }
         /**
  * @license
@@ -9395,7 +17572,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCIconButtonToggleFoundation = function(_super) {
+ */        var MDCIconButtonToggleFoundation = function(_super) {
             __extends(MDCIconButtonToggleFoundation, _super);
             function MDCIconButtonToggleFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCIconButtonToggleFoundation.defaultAdapter), adapter)) || this;
@@ -9481,7 +17658,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCIconButtonToggleFoundation;
         }(MDCFoundation);
-        var icon_button_foundation = foundation_MDCIconButtonToggleFoundation;
+        const icon_button_foundation = null && MDCIconButtonToggleFoundation;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -9503,8 +17680,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var icon_button_component_strings = foundation_MDCIconButtonToggleFoundation.strings;
-        var component_MDCIconButtonToggle = function(_super) {
+ */        var icon_button_component_strings = MDCIconButtonToggleFoundation.strings;
+        var MDCIconButtonToggle = function(_super) {
             __extends(MDCIconButtonToggle, _super);
             function MDCIconButtonToggle() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -9548,7 +17725,7 @@ PERFORMANCE OF THIS SOFTWARE.
                         return _this.root.setAttribute(attrName, attrValue);
                     }
                 };
-                return new foundation_MDCIconButtonToggleFoundation(adapter);
+                return new MDCIconButtonToggleFoundation(adapter);
             };
             Object.defineProperty(MDCIconButtonToggle.prototype, "ripple", {
                 get: function() {
@@ -9568,14 +17745,17 @@ PERFORMANCE OF THIS SOFTWARE.
                 configurable: true
             });
             MDCIconButtonToggle.prototype.createRipple = function() {
-                var ripple = new component_MDCRipple(this.root);
+                var ripple = new MDCRipple(this.root);
                 ripple.unbounded = true;
                 return ripple;
             };
             return MDCIconButtonToggle;
-        }(component_MDCComponent);
+        }(MDCComponent);
         function MBIconButtonToggle_init(elem) {
-            elem._iconButtonToggle = component_MDCIconButtonToggle.attachTo(elem);
+            elem._iconButtonToggle = MDCIconButtonToggle.attachTo(elem);
+        }
+        function MBIconButtonToggle_destroy(elem) {
+            elem._ripple.destroy();
         }
         function setOn(elem, isOn) {
             elem._iconButtonToggle.on = isOn;
@@ -9583,289 +17763,12 @@ PERFORMANCE OF THIS SOFTWARE.
         function click(elem) {
             elem._iconButtonToggle.root.click();
         }
-        /**
- * @license
- * Copyright 2017 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */        var linear_progress_constants_cssClasses = {
-            CLOSED_CLASS: "mdc-linear-progress--closed",
-            INDETERMINATE_CLASS: "mdc-linear-progress--indeterminate",
-            REVERSED_CLASS: "mdc-linear-progress--reversed"
-        };
-        var linear_progress_constants_strings = {
-            ARIA_VALUENOW: "aria-valuenow",
-            BUFFER_BAR_SELECTOR: ".mdc-linear-progress__buffer-bar",
-            FLEX_BASIS: "flex-basis",
-            PRIMARY_BAR_SELECTOR: ".mdc-linear-progress__primary-bar"
-        };
-        /**
- * @license
- * Copyright 2017 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */        var foundation_MDCLinearProgressFoundation = function(_super) {
-            __extends(MDCLinearProgressFoundation, _super);
-            function MDCLinearProgressFoundation(adapter) {
-                return _super.call(this, __assign(__assign({}, MDCLinearProgressFoundation.defaultAdapter), adapter)) || this;
-            }
-            Object.defineProperty(MDCLinearProgressFoundation, "cssClasses", {
-                get: function() {
-                    return linear_progress_constants_cssClasses;
-                },
-                enumerable: true,
-                configurable: true
-            });
-            Object.defineProperty(MDCLinearProgressFoundation, "strings", {
-                get: function() {
-                    return linear_progress_constants_strings;
-                },
-                enumerable: true,
-                configurable: true
-            });
-            Object.defineProperty(MDCLinearProgressFoundation, "defaultAdapter", {
-                get: function() {
-                    return {
-                        addClass: function() {
-                            return undefined;
-                        },
-                        forceLayout: function() {
-                            return undefined;
-                        },
-                        setBufferBarStyle: function() {
-                            return null;
-                        },
-                        setPrimaryBarStyle: function() {
-                            return null;
-                        },
-                        hasClass: function() {
-                            return false;
-                        },
-                        removeAttribute: function() {
-                            return undefined;
-                        },
-                        removeClass: function() {
-                            return undefined;
-                        },
-                        setAttribute: function() {
-                            return undefined;
-                        }
-                    };
-                },
-                enumerable: true,
-                configurable: true
-            });
-            MDCLinearProgressFoundation.prototype.init = function() {
-                this.isDeterminate = !this.adapter.hasClass(linear_progress_constants_cssClasses.INDETERMINATE_CLASS);
-                this.isReversed = this.adapter.hasClass(linear_progress_constants_cssClasses.REVERSED_CLASS);
-                this.progress = 0;
-                this.buffer = 1;
-            };
-            MDCLinearProgressFoundation.prototype.setDeterminate = function(isDeterminate) {
-                this.isDeterminate = isDeterminate;
-                if (this.isDeterminate) {
-                    this.adapter.removeClass(linear_progress_constants_cssClasses.INDETERMINATE_CLASS);
-                    this.adapter.setAttribute(linear_progress_constants_strings.ARIA_VALUENOW, this.progress.toString());
-                    this.setPrimaryBarProgress(this.progress);
-                    this.setBufferBarProgress(this.buffer);
-                    return;
-                }
-                if (this.isReversed) {
-                    this.adapter.removeClass(linear_progress_constants_cssClasses.REVERSED_CLASS);
-                    this.adapter.forceLayout();
-                    this.adapter.addClass(linear_progress_constants_cssClasses.REVERSED_CLASS);
-                }
-                this.adapter.addClass(linear_progress_constants_cssClasses.INDETERMINATE_CLASS);
-                this.adapter.removeAttribute(linear_progress_constants_strings.ARIA_VALUENOW);
-                this.setPrimaryBarProgress(1);
-                this.setBufferBarProgress(1);
-            };
-            MDCLinearProgressFoundation.prototype.getDeterminate = function() {
-                return this.isDeterminate;
-            };
-            MDCLinearProgressFoundation.prototype.setProgress = function(value) {
-                this.progress = value;
-                if (this.isDeterminate) {
-                    this.setPrimaryBarProgress(value);
-                    this.adapter.setAttribute(linear_progress_constants_strings.ARIA_VALUENOW, value.toString());
-                }
-            };
-            MDCLinearProgressFoundation.prototype.getProgress = function() {
-                return this.progress;
-            };
-            MDCLinearProgressFoundation.prototype.setBuffer = function(value) {
-                this.buffer = value;
-                if (this.isDeterminate) {
-                    this.setBufferBarProgress(value);
-                }
-            };
-            MDCLinearProgressFoundation.prototype.setReverse = function(isReversed) {
-                this.isReversed = isReversed;
-                if (!this.isDeterminate) {
-                    this.adapter.removeClass(linear_progress_constants_cssClasses.INDETERMINATE_CLASS);
-                    this.adapter.forceLayout();
-                    this.adapter.addClass(linear_progress_constants_cssClasses.INDETERMINATE_CLASS);
-                }
-                if (this.isReversed) {
-                    this.adapter.addClass(linear_progress_constants_cssClasses.REVERSED_CLASS);
-                    return;
-                }
-                this.adapter.removeClass(linear_progress_constants_cssClasses.REVERSED_CLASS);
-            };
-            MDCLinearProgressFoundation.prototype.open = function() {
-                this.adapter.removeClass(linear_progress_constants_cssClasses.CLOSED_CLASS);
-            };
-            MDCLinearProgressFoundation.prototype.close = function() {
-                this.adapter.addClass(linear_progress_constants_cssClasses.CLOSED_CLASS);
-            };
-            MDCLinearProgressFoundation.prototype.setPrimaryBarProgress = function(progressValue) {
-                var value = "scaleX(" + progressValue + ")";
-                var transformProp = typeof window !== "undefined" ? getCorrectPropertyName(window, "transform") : "transform";
-                this.adapter.setPrimaryBarStyle(transformProp, value);
-            };
-            MDCLinearProgressFoundation.prototype.setBufferBarProgress = function(progressValue) {
-                var value = progressValue * 100 + "%";
-                this.adapter.setBufferBarStyle(linear_progress_constants_strings.FLEX_BASIS, value);
-            };
-            return MDCLinearProgressFoundation;
-        }(MDCFoundation);
-        var linear_progress_foundation = foundation_MDCLinearProgressFoundation;
-        /**
- * @license
- * Copyright 2017 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */        var component_MDCLinearProgress = function(_super) {
-            __extends(MDCLinearProgress, _super);
-            function MDCLinearProgress() {
-                return _super !== null && _super.apply(this, arguments) || this;
-            }
-            MDCLinearProgress.attachTo = function(root) {
-                return new MDCLinearProgress(root);
-            };
-            Object.defineProperty(MDCLinearProgress.prototype, "determinate", {
-                set: function(value) {
-                    this.foundation.setDeterminate(value);
-                },
-                enumerable: true,
-                configurable: true
-            });
-            Object.defineProperty(MDCLinearProgress.prototype, "progress", {
-                set: function(value) {
-                    this.foundation.setProgress(value);
-                },
-                enumerable: true,
-                configurable: true
-            });
-            Object.defineProperty(MDCLinearProgress.prototype, "buffer", {
-                set: function(value) {
-                    this.foundation.setBuffer(value);
-                },
-                enumerable: true,
-                configurable: true
-            });
-            Object.defineProperty(MDCLinearProgress.prototype, "reverse", {
-                set: function(value) {
-                    this.foundation.setReverse(value);
-                },
-                enumerable: true,
-                configurable: true
-            });
-            MDCLinearProgress.prototype.open = function() {
-                this.foundation.open();
-            };
-            MDCLinearProgress.prototype.close = function() {
-                this.foundation.close();
-            };
-            MDCLinearProgress.prototype.getDefaultFoundation = function() {
-                var _this = this;
-                var adapter = {
-                    addClass: function(className) {
-                        _this.root.classList.add(className);
-                    },
-                    forceLayout: function() {
-                        _this.root.getBoundingClientRect();
-                    },
-                    setBufferBarStyle: function(styleProperty, value) {
-                        var bufferBar = _this.root.querySelector(foundation_MDCLinearProgressFoundation.strings.BUFFER_BAR_SELECTOR);
-                        if (bufferBar) {
-                            bufferBar.style.setProperty(styleProperty, value);
-                        }
-                    },
-                    setPrimaryBarStyle: function(styleProperty, value) {
-                        var primaryBar = _this.root.querySelector(foundation_MDCLinearProgressFoundation.strings.PRIMARY_BAR_SELECTOR);
-                        if (primaryBar) {
-                            primaryBar.style.setProperty(styleProperty, value);
-                        }
-                    },
-                    hasClass: function(className) {
-                        return _this.root.classList.contains(className);
-                    },
-                    removeAttribute: function(attributeName) {
-                        _this.root.removeAttribute(attributeName);
-                    },
-                    removeClass: function(className) {
-                        _this.root.classList.remove(className);
-                    },
-                    setAttribute: function(attributeName, value) {
-                        _this.root.setAttribute(attributeName, value);
-                    }
-                };
-                return new foundation_MDCLinearProgressFoundation(adapter);
-            };
-            return MDCLinearProgress;
-        }(component_MDCComponent);
         function MBLinearProgress_init(elem, progress, buffer) {
-            elem._linearProgress = component_MDCLinearProgress.attachTo(elem);
+            elem._linearProgress = MDCLinearProgress.attachTo(elem);
             MBLinearProgress_setProgress(elem, progress, buffer);
+        }
+        function MBLinearProgress_destroy(elem) {
+            elem._linearProgress.destroy();
         }
         function MBLinearProgress_setProgress(elem, progress, buffer) {
             elem._linearProgress.progress = progress;
@@ -9873,22 +17776,28 @@ PERFORMANCE OF THIS SOFTWARE.
         }
         function MBList_init(elem, keyboardInteractions, ripple) {
             if (keyboardInteractions == true) {
-                var list = component_MDCList.attachTo(elem);
+                elem._list = MDCList.attachTo(elem);
                 if (ripple == true) {
-                    list.listElements.map((function(elem) {
-                        return component_MDCRipple.attachTo(elem);
+                    elem._list.listElements.map((function(elem) {
+                        return MDCRipple.attachTo(elem);
                     }));
                 }
             }
         }
+        function MBList_destroy(elem) {
+            elem._list.destroy();
+        }
         function MBMenu_init(elem, dotNetObject) {
-            elem._menu = component_MDCMenu.attachTo(elem);
+            elem._menu = MDCMenu.attachTo(elem);
             return new Promise((function() {
-                elem._menu.foundation.handleItemAction = function() {
-                    elem._menu.open = false;
+                var closedCallback = function closedCallback() {
                     dotNetObject.invokeMethodAsync("NotifyClosedAsync");
                 };
+                elem._menu.listen("MDCMenuSurface:closed", closedCallback);
             }));
+        }
+        function MBMenu_destroy(elem) {
+            elem._menu.destroy();
         }
         function MBMenu_show(elem) {
             if (elem._menu) {
@@ -9949,7 +17858,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCRadioFoundation = function(_super) {
+ */        var MDCRadioFoundation = function(_super) {
             __extends(MDCRadioFoundation, _super);
             function MDCRadioFoundation(adapter) {
                 return _super.call(this, __assign(__assign({}, MDCRadioFoundation.defaultAdapter), adapter)) || this;
@@ -9996,7 +17905,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCRadioFoundation;
         }(MDCFoundation);
-        var radio_foundation = foundation_MDCRadioFoundation;
+        const radio_foundation = null && MDCRadioFoundation;
         /**
  * @license
  * Copyright 2016 Google Inc.
@@ -10018,7 +17927,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_MDCRadio = function(_super) {
+ */        var MDCRadio = function(_super) {
             __extends(MDCRadio, _super);
             function MDCRadio() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -10082,11 +17991,11 @@ PERFORMANCE OF THIS SOFTWARE.
                         return _this.nativeControl_.disabled = disabled;
                     }
                 };
-                return new foundation_MDCRadioFoundation(adapter);
+                return new MDCRadioFoundation(adapter);
             };
             MDCRadio.prototype.createRipple_ = function() {
                 var _this = this;
-                var adapter = __assign(__assign({}, component_MDCRipple.createAdapter(this)), {
+                var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), {
                     registerInteractionHandler: function(evtType, handler) {
                         return _this.nativeControl_.addEventListener(evtType, handler, applyPassive());
                     },
@@ -10100,11 +18009,11 @@ PERFORMANCE OF THIS SOFTWARE.
                         return true;
                     }
                 });
-                return new component_MDCRipple(this.root, new foundation_MDCRippleFoundation(adapter));
+                return new MDCRipple(this.root, new MDCRippleFoundation(adapter));
             };
             Object.defineProperty(MDCRadio.prototype, "nativeControl_", {
                 get: function() {
-                    var NATIVE_CONTROL_SELECTOR = foundation_MDCRadioFoundation.strings.NATIVE_CONTROL_SELECTOR;
+                    var NATIVE_CONTROL_SELECTOR = MDCRadioFoundation.strings.NATIVE_CONTROL_SELECTOR;
                     var el = this.root.querySelector(NATIVE_CONTROL_SELECTOR);
                     if (!el) {
                         throw new Error("Radio component requires a " + NATIVE_CONTROL_SELECTOR + " element");
@@ -10115,12 +18024,16 @@ PERFORMANCE OF THIS SOFTWARE.
                 configurable: true
             });
             return MDCRadio;
-        }(component_MDCComponent);
+        }(MDCComponent);
         function MBRadioButton_init(elem, formFieldElem, isChecked) {
-            elem._radio = component_MDCRadio.attachTo(elem);
+            elem._radio = MDCRadio.attachTo(elem);
             elem._radio.checked = isChecked;
-            var formField = component_MDCFormField.attachTo(formFieldElem);
-            formField.input = elem._radio;
+            elem._formField = MDCFormField.attachTo(formFieldElem);
+            elem._formField.input = elem._radio;
+        }
+        function MBRadioButton_destroy(elem) {
+            elem._radio.destroy();
+            elem._formField.destroy();
         }
         function MBRadioButton_setDisabled(elem, value) {
             elem._radio.disabled = value;
@@ -10128,20 +18041,1716 @@ PERFORMANCE OF THIS SOFTWARE.
         function MBRadioButton_setChecked(elem, isChecked) {
             elem._radio.checked = isChecked;
         }
-        function MBSelect_init(selectElem, dotNetObject) {
-            selectElem._select = component_MDCSelect.attachTo(selectElem);
+        /**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var constants_selectors = {
+            SEGMENT: ".mdc-segmented-button__segment"
+        };
+        var constants_events = {
+            SELECTED: "selected",
+            CHANGE: "change"
+        };
+        var segmented_button_constants_cssClasses = {
+            SINGLE_SELECT: "mdc-segmented-button--single-select"
+        };
+        /**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var MDCSegmentedButtonFoundation = function(_super) {
+            __extends(MDCSegmentedButtonFoundation, _super);
+            function MDCSegmentedButtonFoundation(adapter) {
+                return _super.call(this, __assign(__assign({}, MDCSegmentedButtonFoundation.defaultAdapter), adapter)) || this;
+            }
+            Object.defineProperty(MDCSegmentedButtonFoundation, "defaultAdapter", {
+                get: function() {
+                    return {
+                        hasClass: function() {
+                            return false;
+                        },
+                        getSegments: function() {
+                            return [];
+                        },
+                        selectSegment: function() {
+                            return undefined;
+                        },
+                        unselectSegment: function() {
+                            return undefined;
+                        },
+                        notifySelectedChange: function() {
+                            return undefined;
+                        }
+                    };
+                },
+                enumerable: true,
+                configurable: true
+            });
+            MDCSegmentedButtonFoundation.prototype.selectSegment = function(indexOrSegmentId) {
+                this.adapter.selectSegment(indexOrSegmentId);
+            };
+            MDCSegmentedButtonFoundation.prototype.unselectSegment = function(indexOrSegmentId) {
+                this.adapter.unselectSegment(indexOrSegmentId);
+            };
+            MDCSegmentedButtonFoundation.prototype.getSelectedSegments = function() {
+                return this.adapter.getSegments().filter((function(segmentDetail) {
+                    return segmentDetail.selected;
+                }));
+            };
+            MDCSegmentedButtonFoundation.prototype.isSegmentSelected = function(indexOrSegmentId) {
+                return this.adapter.getSegments().some((function(segmentDetail) {
+                    return (segmentDetail.index === indexOrSegmentId || segmentDetail.segmentId === indexOrSegmentId) && segmentDetail.selected;
+                }));
+            };
+            MDCSegmentedButtonFoundation.prototype.isSingleSelect = function() {
+                return this.adapter.hasClass(segmented_button_constants_cssClasses.SINGLE_SELECT);
+            };
+            MDCSegmentedButtonFoundation.prototype.handleSelected = function(detail) {
+                if (this.isSingleSelect()) {
+                    this.unselectPrevSelected(detail.index);
+                }
+                this.adapter.notifySelectedChange(detail);
+            };
+            MDCSegmentedButtonFoundation.prototype.unselectPrevSelected = function(index) {
+                var e_1, _a;
+                try {
+                    for (var _b = __values(this.getSelectedSegments()), _c = _b.next(); !_c.done; _c = _b.next()) {
+                        var selectedSegment = _c.value;
+                        if (selectedSegment.index !== index) {
+                            this.unselectSegment(selectedSegment.index);
+                        }
+                    }
+                } catch (e_1_1) {
+                    e_1 = {
+                        error: e_1_1
+                    };
+                } finally {
+                    try {
+                        if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
+                    } finally {
+                        if (e_1) throw e_1.error;
+                    }
+                }
+            };
+            return MDCSegmentedButtonFoundation;
+        }(MDCFoundation);
+        /**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var booleans = {
+            TRUE: "true",
+            FALSE: "false"
+        };
+        var constants_attributes = {
+            ARIA_CHECKED: "aria-checked",
+            ARIA_PRESSED: "aria-pressed",
+            DATA_SEGMENT_ID: "data-segment-id"
+        };
+        var segment_constants_events = {
+            CLICK: "click",
+            SELECTED: "selected"
+        };
+        var segment_constants_cssClasses = {
+            SELECTED: "mdc-segmented-button__segment--selected"
+        };
+        /**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var foundation_emptyClientRect = {
+            bottom: 0,
+            height: 0,
+            left: 0,
+            right: 0,
+            top: 0,
+            width: 0
+        };
+        var MDCSegmentedButtonSegmentFoundation = function(_super) {
+            __extends(MDCSegmentedButtonSegmentFoundation, _super);
+            function MDCSegmentedButtonSegmentFoundation(adapter) {
+                return _super.call(this, __assign(__assign({}, MDCSegmentedButtonSegmentFoundation.defaultAdapter), adapter)) || this;
+            }
+            Object.defineProperty(MDCSegmentedButtonSegmentFoundation, "defaultAdapter", {
+                get: function() {
+                    return {
+                        isSingleSelect: function() {
+                            return false;
+                        },
+                        getAttr: function() {
+                            return "";
+                        },
+                        setAttr: function() {
+                            return undefined;
+                        },
+                        addClass: function() {
+                            return undefined;
+                        },
+                        removeClass: function() {
+                            return undefined;
+                        },
+                        hasClass: function() {
+                            return false;
+                        },
+                        notifySelectedChange: function() {
+                            return undefined;
+                        },
+                        getRootBoundingClientRect: function() {
+                            return foundation_emptyClientRect;
+                        }
+                    };
+                },
+                enumerable: true,
+                configurable: true
+            });
+            MDCSegmentedButtonSegmentFoundation.prototype.isSelected = function() {
+                return this.adapter.hasClass(segment_constants_cssClasses.SELECTED);
+            };
+            MDCSegmentedButtonSegmentFoundation.prototype.setSelected = function() {
+                this.adapter.addClass(segment_constants_cssClasses.SELECTED);
+                this.setAriaAttr(booleans.TRUE);
+            };
+            MDCSegmentedButtonSegmentFoundation.prototype.setUnselected = function() {
+                this.adapter.removeClass(segment_constants_cssClasses.SELECTED);
+                this.setAriaAttr(booleans.FALSE);
+            };
+            MDCSegmentedButtonSegmentFoundation.prototype.getSegmentId = function() {
+                var _a;
+                return (_a = this.adapter.getAttr(constants_attributes.DATA_SEGMENT_ID)) !== null && _a !== void 0 ? _a : undefined;
+            };
+            MDCSegmentedButtonSegmentFoundation.prototype.handleClick = function() {
+                if (this.adapter.isSingleSelect()) {
+                    this.setSelected();
+                } else {
+                    this.toggleSelection();
+                }
+                this.adapter.notifySelectedChange(this.isSelected());
+            };
+            MDCSegmentedButtonSegmentFoundation.prototype.getDimensions = function() {
+                return this.adapter.getRootBoundingClientRect();
+            };
+            MDCSegmentedButtonSegmentFoundation.prototype.toggleSelection = function() {
+                if (this.isSelected()) {
+                    this.setUnselected();
+                } else {
+                    this.setSelected();
+                }
+            };
+            MDCSegmentedButtonSegmentFoundation.prototype.setAriaAttr = function(value) {
+                if (this.adapter.isSingleSelect()) {
+                    this.adapter.setAttr(constants_attributes.ARIA_CHECKED, value);
+                } else {
+                    this.adapter.setAttr(constants_attributes.ARIA_PRESSED, value);
+                }
+            };
+            return MDCSegmentedButtonSegmentFoundation;
+        }(MDCFoundation);
+        /**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var MDCSegmentedButtonSegment = function(_super) {
+            __extends(MDCSegmentedButtonSegment, _super);
+            function MDCSegmentedButtonSegment() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            Object.defineProperty(MDCSegmentedButtonSegment.prototype, "ripple", {
+                get: function() {
+                    return this.rippleComponent;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            MDCSegmentedButtonSegment.attachTo = function(root) {
+                return new MDCSegmentedButtonSegment(root);
+            };
+            MDCSegmentedButtonSegment.prototype.initialize = function(rippleFactory) {
+                var _this = this;
+                if (rippleFactory === void 0) {
+                    rippleFactory = function(el, foundation) {
+                        return new MDCRipple(el, foundation);
+                    };
+                }
+                var rippleAdapter = __assign(__assign({}, MDCRipple.createAdapter(this)), {
+                    computeBoundingRect: function() {
+                        return _this.foundation.getDimensions();
+                    }
+                });
+                this.rippleComponent = rippleFactory(this.root, new MDCRippleFoundation(rippleAdapter));
+            };
+            MDCSegmentedButtonSegment.prototype.initialSyncWithDOM = function() {
+                var _this = this;
+                this.handleClick = function() {
+                    _this.foundation.handleClick();
+                };
+                this.listen(segment_constants_events.CLICK, this.handleClick);
+            };
+            MDCSegmentedButtonSegment.prototype.destroy = function() {
+                this.ripple.destroy();
+                this.unlisten(segment_constants_events.CLICK, this.handleClick);
+                _super.prototype.destroy.call(this);
+            };
+            MDCSegmentedButtonSegment.prototype.getDefaultFoundation = function() {
+                var _this = this;
+                var adapter = {
+                    isSingleSelect: function() {
+                        return _this.isSingleSelect;
+                    },
+                    getAttr: function(attrName) {
+                        return _this.root.getAttribute(attrName);
+                    },
+                    setAttr: function(attrName, value) {
+                        _this.root.setAttribute(attrName, value);
+                    },
+                    addClass: function(className) {
+                        _this.root.classList.add(className);
+                    },
+                    removeClass: function(className) {
+                        _this.root.classList.remove(className);
+                    },
+                    hasClass: function(className) {
+                        return _this.root.classList.contains(className);
+                    },
+                    notifySelectedChange: function(selected) {
+                        _this.emit(segment_constants_events.SELECTED, {
+                            index: _this.index,
+                            selected: selected,
+                            segmentId: _this.getSegmentId()
+                        }, true);
+                    },
+                    getRootBoundingClientRect: function() {
+                        return _this.root.getBoundingClientRect();
+                    }
+                };
+                return new MDCSegmentedButtonSegmentFoundation(adapter);
+            };
+            MDCSegmentedButtonSegment.prototype.setIndex = function(index) {
+                this.index = index;
+            };
+            MDCSegmentedButtonSegment.prototype.setIsSingleSelect = function(isSingleSelect) {
+                this.isSingleSelect = isSingleSelect;
+            };
+            MDCSegmentedButtonSegment.prototype.isSelected = function() {
+                return this.foundation.isSelected();
+            };
+            MDCSegmentedButtonSegment.prototype.setSelected = function() {
+                this.foundation.setSelected();
+            };
+            MDCSegmentedButtonSegment.prototype.setUnselected = function() {
+                this.foundation.setUnselected();
+            };
+            MDCSegmentedButtonSegment.prototype.getSegmentId = function() {
+                return this.foundation.getSegmentId();
+            };
+            return MDCSegmentedButtonSegment;
+        }(MDCComponent);
+        /**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var MDCSegmentedButton = function(_super) {
+            __extends(MDCSegmentedButton, _super);
+            function MDCSegmentedButton() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            MDCSegmentedButton.attachTo = function(root) {
+                return new MDCSegmentedButton(root);
+            };
+            Object.defineProperty(MDCSegmentedButton.prototype, "segments", {
+                get: function() {
+                    return this.segments_.slice();
+                },
+                enumerable: true,
+                configurable: true
+            });
+            MDCSegmentedButton.prototype.initialize = function(segmentFactory) {
+                if (segmentFactory === void 0) {
+                    segmentFactory = function(el) {
+                        return new MDCSegmentedButtonSegment(el);
+                    };
+                }
+                this.segmentFactory = segmentFactory;
+                this.segments_ = this.instantiateSegments(this.segmentFactory);
+            };
+            MDCSegmentedButton.prototype.instantiateSegments = function(segmentFactory) {
+                var segmentElements = [].slice.call(this.root.querySelectorAll(constants_selectors.SEGMENT));
+                return segmentElements.map((function(el) {
+                    return segmentFactory(el);
+                }));
+            };
+            MDCSegmentedButton.prototype.initialSyncWithDOM = function() {
+                var _this = this;
+                this.handleSelected = function(event) {
+                    _this.foundation.handleSelected(event.detail);
+                };
+                this.listen(constants_events.SELECTED, this.handleSelected);
+                var isSingleSelect = this.foundation.isSingleSelect();
+                this.segments_.forEach((function(segment, index) {
+                    segment.setIndex(index);
+                    segment.setIsSingleSelect(isSingleSelect);
+                }));
+                var selectedSegments = this.segments_.filter((function(segment) {
+                    return segment.isSelected();
+                }));
+                if (isSingleSelect && selectedSegments.length == 0 && this.segments_.length > 0) {
+                    throw new Error("No segment selected in singleSelect mdc-segmented-button");
+                } else if (isSingleSelect && selectedSegments.length > 1) {
+                    throw new Error("Multiple segments selected in singleSelect mdc-segmented-button");
+                }
+            };
+            MDCSegmentedButton.prototype.destroy = function() {
+                this.segments_.forEach((function(segment) {
+                    segment.destroy();
+                }));
+                this.unlisten(constants_events.SELECTED, this.handleSelected);
+                _super.prototype.destroy.call(this);
+            };
+            MDCSegmentedButton.prototype.getDefaultFoundation = function() {
+                var _this = this;
+                var adapter = {
+                    hasClass: function(className) {
+                        return _this.root.classList.contains(className);
+                    },
+                    getSegments: function() {
+                        return _this.mappedSegments();
+                    },
+                    selectSegment: function(indexOrSegmentId) {
+                        var segmentDetail = _this.mappedSegments().find((function(_segmentDetail) {
+                            return _segmentDetail.index === indexOrSegmentId || _segmentDetail.segmentId === indexOrSegmentId;
+                        }));
+                        if (segmentDetail) {
+                            _this.segments_[segmentDetail.index].setSelected();
+                        }
+                    },
+                    unselectSegment: function(indexOrSegmentId) {
+                        var segmentDetail = _this.mappedSegments().find((function(_segmentDetail) {
+                            return _segmentDetail.index === indexOrSegmentId || _segmentDetail.segmentId === indexOrSegmentId;
+                        }));
+                        if (segmentDetail) {
+                            _this.segments_[segmentDetail.index].setUnselected();
+                        }
+                    },
+                    notifySelectedChange: function(detail) {
+                        _this.emit(constants_events.CHANGE, detail, true);
+                    }
+                };
+                return new MDCSegmentedButtonFoundation(adapter);
+            };
+            MDCSegmentedButton.prototype.getSelectedSegments = function() {
+                return this.foundation.getSelectedSegments();
+            };
+            MDCSegmentedButton.prototype.selectSegment = function(indexOrSegmentId) {
+                this.foundation.selectSegment(indexOrSegmentId);
+            };
+            MDCSegmentedButton.prototype.unselectSegment = function(indexOrSegmentId) {
+                this.foundation.unselectSegment(indexOrSegmentId);
+            };
+            MDCSegmentedButton.prototype.isSegmentSelected = function(indexOrSegmentId) {
+                return this.foundation.isSegmentSelected(indexOrSegmentId);
+            };
+            MDCSegmentedButton.prototype.mappedSegments = function() {
+                return this.segments_.map((function(segment, index) {
+                    return {
+                        index: index,
+                        selected: segment.isSelected(),
+                        segmentId: segment.getSegmentId()
+                    };
+                }));
+            };
+            return MDCSegmentedButton;
+        }(MDCComponent);
+        /**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+        /**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+        /**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        function MBSegmentedButtonMulti_init(elem, isSingleSelect, dotNetObject) {
+            elem._segmentedButton = MDCSegmentedButton.attachTo(elem);
+            elem._isSingleSelect = isSingleSelect;
             return new Promise((function() {
-                selectElem._select.foundation.handleMenuItemAction = function(index) {
-                    selectElem._select.foundation.setSelectedIndex(index);
+                elem._segmentedButton.foundation.adapter.notifySelectedChange = function(detail) {
+                    if (elem._isSingleSelect) {
+                        dotNetObject.invokeMethodAsync("NotifySingleSelectedAsync", detail.index);
+                    } else {
+                        dotNetObject.invokeMethodAsync("NotifyMultiSelectedAsync", elem._segmentedButton.segments.map((function(x) {
+                            return x.isSelected();
+                        })));
+                    }
+                };
+            }));
+        }
+        function MBSegmentedButtonMulti_destroy(elem) {
+            elem._segmentedButton.destroy();
+        }
+        function MBSegmentedButtonMulti_setDisabled(elem, value) {
+            elem._segmentedButton.disabled = value;
+        }
+        function MBSegmentedButtonMulti_setSelected(elem, selectedFlags) {
+            for (var i = 0; i < selectedFlags.length; i++) {
+                if (selectedFlags[i] == true) {
+                    elem._segmentedButton.segments[i].setSelected();
+                } else {
+                    elem._segmentedButton.segments[i].setUnselected();
+                }
+            }
+        }
+        function MBSelect_init(elem, dotNetObject) {
+            elem._select = MDCSelect.attachTo(elem);
+            return new Promise((function() {
+                elem._select.foundation.handleMenuItemAction = function(index) {
+                    elem._select.foundation.setSelectedIndex(index);
                     dotNetObject.invokeMethodAsync("NotifySelectedAsync", index);
                 };
             }));
+        }
+        function MBSelect_destroy(elem) {
+            elem._select.destroy();
         }
         function MBSelect_setDisabled(elem, value) {
             elem._select.disabled = value;
         }
         function setIndex(elem, index) {
             elem._select.selectedIndex = index;
+        }
+        /**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var slider_constants_cssClasses = {
+            DISABLED: "mdc-slider--disabled",
+            DISCRETE: "mdc-slider--discrete",
+            RANGE: "mdc-slider--range",
+            THUMB: "mdc-slider__thumb",
+            THUMB_KNOB: "mdc-slider__thumb-knob",
+            THUMB_TOP: "mdc-slider__thumb--top",
+            THUMB_WITH_INDICATOR: "mdc-slider__thumb--with-indicator",
+            TICK_MARKS: "mdc-slider--tick-marks",
+            TICK_MARKS_CONTAINER: "mdc-slider__tick-marks",
+            TICK_MARK_ACTIVE: "mdc-slider__tick-mark--active",
+            TICK_MARK_INACTIVE: "mdc-slider__tick-mark--inactive",
+            TRACK: "mdc-slider__track",
+            TRACK_ACTIVE: "mdc-slider__track--active_fill",
+            VALUE_INDICATOR_TEXT: "mdc-slider__value-indicator-text"
+        };
+        var slider_constants_numbers = {
+            BIG_STEP_FACTOR: 4,
+            THUMB_UPDATE_MIN_PX: 5
+        };
+        var slider_constants_attributes = {
+            ARIA_DISABLED: "aria-disabled",
+            ARIA_VALUEMAX: "aria-valuemax",
+            ARIA_VALUEMIN: "aria-valuemin",
+            ARIA_VALUENOW: "aria-valuenow",
+            ARIA_VALUETEXT: "aria-valuetext",
+            DATA_ATTR_BIG_STEP: "data-big-step",
+            DATA_ATTR_STEP: "data-step"
+        };
+        var slider_constants_events = {
+            CHANGE: "MDCSlider:change",
+            INPUT: "MDCSlider:input"
+        };
+        /**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var TickMark;
+        (function(TickMark) {
+            TickMark[TickMark["ACTIVE"] = 0] = "ACTIVE";
+            TickMark[TickMark["INACTIVE"] = 1] = "INACTIVE";
+        })(TickMark || (TickMark = {}));
+        var Thumb;
+        (function(Thumb) {
+            Thumb[Thumb["START"] = 1] = "START";
+            Thumb[Thumb["END"] = 2] = "END";
+        })(Thumb || (Thumb = {}));
+        /**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var HAS_WINDOW = typeof window !== "undefined";
+        var MDCSliderFoundation = function(_super) {
+            __extends(MDCSliderFoundation, _super);
+            function MDCSliderFoundation(adapter) {
+                var _this = _super.call(this, __assign(__assign({}, MDCSliderFoundation.defaultAdapter), adapter)) || this;
+                _this.initialStylesRemoved = false;
+                _this.isDisabled = false;
+                _this.isDiscrete = false;
+                _this.step = 1;
+                _this.bigStep = _this.step * slider_constants_numbers.BIG_STEP_FACTOR;
+                _this.hasTickMarks = false;
+                _this.isRange = false;
+                _this.thumb = null;
+                _this.downEventClientX = null;
+                _this.startThumbKnobWidth = 0;
+                _this.endThumbKnobWidth = 0;
+                return _this;
+            }
+            Object.defineProperty(MDCSliderFoundation, "defaultAdapter", {
+                get: function() {
+                    return {
+                        hasClass: function() {
+                            return false;
+                        },
+                        addClass: function() {
+                            return undefined;
+                        },
+                        removeClass: function() {
+                            return undefined;
+                        },
+                        addThumbClass: function() {
+                            return undefined;
+                        },
+                        removeThumbClass: function() {
+                            return undefined;
+                        },
+                        getAttribute: function() {
+                            return null;
+                        },
+                        getThumbAttribute: function() {
+                            return null;
+                        },
+                        setThumbAttribute: function() {
+                            return null;
+                        },
+                        getThumbKnobWidth: function() {
+                            return 0;
+                        },
+                        isThumbFocused: function() {
+                            return false;
+                        },
+                        focusThumb: function() {
+                            return undefined;
+                        },
+                        getThumbBoundingClientRect: function() {
+                            return {
+                                top: 0,
+                                right: 0,
+                                bottom: 0,
+                                left: 0,
+                                width: 0,
+                                height: 0
+                            };
+                        },
+                        getBoundingClientRect: function() {
+                            return {
+                                top: 0,
+                                right: 0,
+                                bottom: 0,
+                                left: 0,
+                                width: 0,
+                                height: 0
+                            };
+                        },
+                        isRTL: function() {
+                            return false;
+                        },
+                        setThumbStyleProperty: function() {
+                            return undefined;
+                        },
+                        removeThumbStyleProperty: function() {
+                            return undefined;
+                        },
+                        setTrackActiveStyleProperty: function() {
+                            return undefined;
+                        },
+                        removeTrackActiveStyleProperty: function() {
+                            return undefined;
+                        },
+                        setValueIndicatorText: function() {
+                            return undefined;
+                        },
+                        getValueToAriaValueTextFn: function() {
+                            return null;
+                        },
+                        updateTickMarks: function() {
+                            return undefined;
+                        },
+                        setPointerCapture: function() {
+                            return undefined;
+                        },
+                        emitChangeEvent: function() {
+                            return undefined;
+                        },
+                        emitInputEvent: function() {
+                            return undefined;
+                        },
+                        emitDragStartEvent: function() {
+                            return undefined;
+                        },
+                        emitDragEndEvent: function() {
+                            return undefined;
+                        },
+                        registerEventHandler: function() {
+                            return undefined;
+                        },
+                        deregisterEventHandler: function() {
+                            return undefined;
+                        },
+                        registerThumbEventHandler: function() {
+                            return undefined;
+                        },
+                        deregisterThumbEventHandler: function() {
+                            return undefined;
+                        },
+                        registerBodyEventHandler: function() {
+                            return undefined;
+                        },
+                        deregisterBodyEventHandler: function() {
+                            return undefined;
+                        },
+                        registerWindowEventHandler: function() {
+                            return undefined;
+                        },
+                        deregisterWindowEventHandler: function() {
+                            return undefined;
+                        }
+                    };
+                },
+                enumerable: true,
+                configurable: true
+            });
+            MDCSliderFoundation.prototype.init = function() {
+                var _this = this;
+                this.isDisabled = this.adapter.hasClass(slider_constants_cssClasses.DISABLED);
+                this.isDiscrete = this.adapter.hasClass(slider_constants_cssClasses.DISCRETE);
+                this.hasTickMarks = this.adapter.hasClass(slider_constants_cssClasses.TICK_MARKS);
+                this.isRange = this.adapter.hasClass(slider_constants_cssClasses.RANGE);
+                var min = this.convertAttributeValueToNumber(this.adapter.getThumbAttribute(slider_constants_attributes.ARIA_VALUEMIN, Thumb.END), slider_constants_attributes.ARIA_VALUEMIN);
+                var max = this.convertAttributeValueToNumber(this.adapter.getThumbAttribute(slider_constants_attributes.ARIA_VALUEMAX, Thumb.END), slider_constants_attributes.ARIA_VALUEMAX);
+                var value = this.convertAttributeValueToNumber(this.adapter.getThumbAttribute(slider_constants_attributes.ARIA_VALUENOW, Thumb.END), slider_constants_attributes.ARIA_VALUENOW);
+                var valueStart = this.isRange ? this.convertAttributeValueToNumber(this.adapter.getThumbAttribute(slider_constants_attributes.ARIA_VALUENOW, Thumb.START), slider_constants_attributes.ARIA_VALUENOW) : min;
+                this.validateProperties({
+                    min: min,
+                    max: max,
+                    value: value,
+                    valueStart: valueStart
+                });
+                this.min = min;
+                this.max = max;
+                this.value = value;
+                this.valueStart = valueStart;
+                this.valueBeforeDownEvent = value;
+                this.valueStartBeforeDownEvent = valueStart;
+                if (this.isDiscrete) {
+                    var step = this.convertAttributeValueToNumber(this.adapter.getAttribute(slider_constants_attributes.DATA_ATTR_STEP), slider_constants_attributes.DATA_ATTR_STEP);
+                    if (step <= 0) {
+                        throw new Error("MDCSliderFoundation: step must be a positive number. " + ("Current step: " + step));
+                    }
+                    this.step = step;
+                    var bigStep = this.adapter.getAttribute(slider_constants_attributes.DATA_ATTR_BIG_STEP);
+                    this.bigStep = bigStep !== null ? this.convertAttributeValueToNumber(bigStep, slider_constants_attributes.DATA_ATTR_BIG_STEP) : step * slider_constants_numbers.BIG_STEP_FACTOR;
+                }
+                this.mousedownOrTouchstartListener = this.handleMousedownOrTouchstart.bind(this);
+                this.moveListener = this.handleMove.bind(this);
+                this.pointerdownListener = this.handlePointerdown.bind(this);
+                this.pointerupListener = this.handlePointerup.bind(this);
+                this.thumbStartKeydownListener = function(event) {
+                    _this.handleThumbKeydown(event, Thumb.START);
+                };
+                this.thumbEndKeydownListener = function(event) {
+                    _this.handleThumbKeydown(event, Thumb.END);
+                };
+                this.thumbFocusOrMouseenterListener = this.handleThumbFocusOrMouseenter.bind(this);
+                this.thumbBlurOrMouseleaveListener = this.handleThumbBlurOrMouseleave.bind(this);
+                this.resizeListener = this.handleResize.bind(this);
+                this.registerEventHandlers();
+            };
+            MDCSliderFoundation.prototype.destroy = function() {
+                this.deregisterEventHandlers();
+            };
+            MDCSliderFoundation.prototype.getMin = function() {
+                return this.min;
+            };
+            MDCSliderFoundation.prototype.getMax = function() {
+                return this.max;
+            };
+            MDCSliderFoundation.prototype.getValue = function() {
+                return this.value;
+            };
+            MDCSliderFoundation.prototype.setValue = function(value) {
+                if (this.isRange && value < this.valueStart) {
+                    throw new Error("end thumb value (" + value + ") must be >= start thumb " + ("value (" + this.valueStart + ")"));
+                }
+                this.updateValue(value, Thumb.END);
+            };
+            MDCSliderFoundation.prototype.getValueStart = function() {
+                if (!this.isRange) {
+                    throw new Error("`valueStart` is only applicable for range sliders.");
+                }
+                return this.valueStart;
+            };
+            MDCSliderFoundation.prototype.setValueStart = function(valueStart) {
+                if (!this.isRange) {
+                    throw new Error("`valueStart` is only applicable for range sliders.");
+                }
+                if (this.isRange && valueStart > this.value) {
+                    throw new Error("start thumb value (" + valueStart + ") must be <= end thumb " + ("value (" + this.value + ")"));
+                }
+                this.updateValue(valueStart, Thumb.START);
+            };
+            MDCSliderFoundation.prototype.getStep = function() {
+                return this.step;
+            };
+            MDCSliderFoundation.prototype.getBigStep = function() {
+                return this.bigStep;
+            };
+            MDCSliderFoundation.prototype.getDisabled = function() {
+                return this.isDisabled;
+            };
+            MDCSliderFoundation.prototype.setDisabled = function(disabled) {
+                this.isDisabled = disabled;
+                if (disabled) {
+                    this.adapter.addClass(slider_constants_cssClasses.DISABLED);
+                    if (this.isRange) {
+                        this.adapter.setThumbAttribute("tabindex", "-1", Thumb.START);
+                        this.adapter.setThumbAttribute("aria-disabled", "true", Thumb.START);
+                    }
+                    this.adapter.setThumbAttribute("tabindex", "-1", Thumb.END);
+                    this.adapter.setThumbAttribute("aria-disabled", "true", Thumb.END);
+                } else {
+                    this.adapter.removeClass(slider_constants_cssClasses.DISABLED);
+                    if (this.isRange) {
+                        this.adapter.setThumbAttribute("tabindex", "0", Thumb.START);
+                        this.adapter.setThumbAttribute("aria-disabled", "false", Thumb.START);
+                    }
+                    this.adapter.setThumbAttribute("tabindex", "0", Thumb.END);
+                    this.adapter.setThumbAttribute("aria-disabled", "false", Thumb.END);
+                }
+            };
+            MDCSliderFoundation.prototype.getIsRange = function() {
+                return this.isRange;
+            };
+            MDCSliderFoundation.prototype.layout = function(_a) {
+                var skipUpdateUI = (_a === void 0 ? {} : _a).skipUpdateUI;
+                this.rect = this.adapter.getBoundingClientRect();
+                if (this.isRange) {
+                    this.startThumbKnobWidth = this.adapter.getThumbKnobWidth(Thumb.START);
+                    this.endThumbKnobWidth = this.adapter.getThumbKnobWidth(Thumb.END);
+                }
+                if (!skipUpdateUI) {
+                    this.updateUI();
+                }
+            };
+            MDCSliderFoundation.prototype.handleResize = function() {
+                this.layout();
+            };
+            MDCSliderFoundation.prototype.handleDown = function(event) {
+                if (this.isDisabled) return;
+                this.valueStartBeforeDownEvent = this.valueStart;
+                this.valueBeforeDownEvent = this.value;
+                var clientX = event.clientX != null ? event.clientX : event.targetTouches[0].clientX;
+                this.downEventClientX = clientX;
+                var value = this.mapClientXOnSliderScale(clientX);
+                this.thumb = this.getThumbFromDownEvent(clientX, value);
+                if (this.thumb === null) return;
+                this.adapter.emitDragStartEvent(value, this.thumb);
+                var newValueInCurrentRange = this.isRange && value >= this.valueStart && value <= this.value;
+                if (newValueInCurrentRange) return;
+                this.updateValue(value, this.thumb, {
+                    emitInputEvent: true
+                });
+            };
+            MDCSliderFoundation.prototype.handleMove = function(event) {
+                if (this.isDisabled) return;
+                event.preventDefault();
+                var clientX = event.clientX != null ? event.clientX : event.targetTouches[0].clientX;
+                var dragAlreadyStarted = this.thumb != null;
+                this.thumb = this.getThumbFromMoveEvent(clientX);
+                if (this.thumb === null) return;
+                var value = this.mapClientXOnSliderScale(clientX);
+                if (!dragAlreadyStarted) {
+                    this.adapter.emitDragStartEvent(value, this.thumb);
+                }
+                this.updateValue(value, this.thumb, {
+                    emitInputEvent: true
+                });
+            };
+            MDCSliderFoundation.prototype.handleUp = function() {
+                if (this.isDisabled || this.thumb === null) return;
+                var oldValue = this.thumb === Thumb.START ? this.valueStartBeforeDownEvent : this.valueBeforeDownEvent;
+                var newValue = this.thumb === Thumb.START ? this.valueStart : this.value;
+                if (oldValue !== newValue) {
+                    this.adapter.emitChangeEvent(newValue, this.thumb);
+                }
+                this.adapter.emitDragEndEvent(newValue, this.thumb);
+                this.thumb = null;
+            };
+            MDCSliderFoundation.prototype.handleThumbKeydown = function(event, thumb) {
+                if (this.isDisabled) return;
+                var key = normalizeKey(event);
+                if (key !== KEY.ARROW_LEFT && key !== KEY.ARROW_UP && key !== KEY.ARROW_RIGHT && key !== KEY.ARROW_DOWN && key !== KEY.HOME && key !== KEY.END && key !== KEY.PAGE_UP && key !== KEY.PAGE_DOWN) {
+                    return;
+                }
+                event.preventDefault();
+                var value = this.getValueForKey(key, thumb);
+                var currentValue = thumb === Thumb.START ? this.valueStart : this.value;
+                if (value === currentValue) return;
+                this.updateValue(this.getValueForKey(key, thumb), thumb, {
+                    emitChangeEvent: true,
+                    emitInputEvent: true
+                });
+            };
+            MDCSliderFoundation.prototype.handleThumbFocusOrMouseenter = function(event) {
+                if (!this.isDiscrete) return;
+                if (this.isRange) {
+                    this.adapter.addThumbClass(slider_constants_cssClasses.THUMB_WITH_INDICATOR, Thumb.START);
+                    this.adapter.addThumbClass(slider_constants_cssClasses.THUMB_WITH_INDICATOR, Thumb.END);
+                } else if (event.type === "focus") {
+                    this.adapter.addThumbClass(slider_constants_cssClasses.THUMB_WITH_INDICATOR, Thumb.END);
+                }
+            };
+            MDCSliderFoundation.prototype.handleThumbBlurOrMouseleave = function(event) {
+                if (!this.isDiscrete) return;
+                if (this.isRange && !this.adapter.isThumbFocused(Thumb.START) && !this.adapter.isThumbFocused(Thumb.END)) {
+                    this.adapter.removeThumbClass(slider_constants_cssClasses.THUMB_WITH_INDICATOR, Thumb.START);
+                    this.adapter.removeThumbClass(slider_constants_cssClasses.THUMB_WITH_INDICATOR, Thumb.END);
+                } else if (!this.isRange && event.type === "blur") {
+                    this.adapter.removeThumbClass(slider_constants_cssClasses.THUMB_WITH_INDICATOR, Thumb.END);
+                }
+            };
+            MDCSliderFoundation.prototype.handleMousedownOrTouchstart = function(event) {
+                var _this = this;
+                var moveEventType = event.type === "mousedown" ? "mousemove" : "touchmove";
+                this.adapter.registerBodyEventHandler(moveEventType, this.moveListener);
+                var upHandler = function() {
+                    _this.handleUp();
+                    _this.adapter.deregisterBodyEventHandler(moveEventType, _this.moveListener);
+                    _this.adapter.deregisterEventHandler("mouseup", upHandler);
+                    _this.adapter.deregisterEventHandler("touchend", upHandler);
+                };
+                this.adapter.registerBodyEventHandler("mouseup", upHandler);
+                this.adapter.registerBodyEventHandler("touchend", upHandler);
+                this.handleDown(event);
+            };
+            MDCSliderFoundation.prototype.handlePointerdown = function(event) {
+                this.adapter.setPointerCapture(event.pointerId);
+                this.adapter.registerEventHandler("pointermove", this.moveListener);
+                this.handleDown(event);
+            };
+            MDCSliderFoundation.prototype.getValueForKey = function(key, thumb) {
+                var delta = this.step || (this.max - this.min) / 100;
+                var deltaBigStep = this.bigStep || (this.max - this.min) / 10;
+                var value = thumb === Thumb.START ? this.valueStart : this.value;
+                switch (key) {
+                  case KEY.ARROW_LEFT:
+                    return this.adapter.isRTL() ? value + delta : value - delta;
+
+                  case KEY.ARROW_DOWN:
+                    return value - delta;
+
+                  case KEY.ARROW_RIGHT:
+                    return this.adapter.isRTL() ? value - delta : value + delta;
+
+                  case KEY.ARROW_UP:
+                    return value + delta;
+
+                  case KEY.HOME:
+                    return this.min;
+
+                  case KEY.END:
+                    return this.max;
+
+                  case KEY.PAGE_DOWN:
+                    return value - deltaBigStep;
+
+                  case KEY.PAGE_UP:
+                    return value + deltaBigStep;
+
+                  default:
+                    return value;
+                }
+            };
+            MDCSliderFoundation.prototype.getThumbFromDownEvent = function(clientX, value) {
+                if (!this.isRange) return Thumb.END;
+                var thumbStartRect = this.adapter.getThumbBoundingClientRect(Thumb.START);
+                var thumbEndRect = this.adapter.getThumbBoundingClientRect(Thumb.END);
+                var inThumbStartBounds = clientX >= thumbStartRect.left && clientX <= thumbStartRect.right;
+                var inThumbEndBounds = clientX >= thumbEndRect.left && clientX <= thumbEndRect.right;
+                if (inThumbStartBounds && inThumbEndBounds) {
+                    return null;
+                }
+                if (inThumbStartBounds) {
+                    return Thumb.START;
+                }
+                if (inThumbEndBounds) {
+                    return Thumb.END;
+                }
+                if (value < this.valueStart) {
+                    return Thumb.START;
+                }
+                if (value > this.value) {
+                    return Thumb.END;
+                }
+                return null;
+            };
+            MDCSliderFoundation.prototype.getThumbFromMoveEvent = function(clientX) {
+                if (this.thumb !== null) return this.thumb;
+                if (this.downEventClientX === null) {
+                    throw new Error("`downEventClientX` is null after move event.");
+                }
+                var moveDistanceUnderThreshold = Math.abs(this.downEventClientX - clientX) < slider_constants_numbers.THUMB_UPDATE_MIN_PX;
+                if (moveDistanceUnderThreshold) return this.thumb;
+                var draggedThumbToLeft = clientX < this.downEventClientX;
+                if (draggedThumbToLeft) {
+                    return this.adapter.isRTL() ? Thumb.END : Thumb.START;
+                } else {
+                    return this.adapter.isRTL() ? Thumb.START : Thumb.END;
+                }
+            };
+            MDCSliderFoundation.prototype.updateUI = function(thumb) {
+                this.updateThumbAriaAttributes(thumb);
+                this.updateThumbAndTrackUI(thumb);
+                this.updateValueIndicatorUI(thumb);
+                this.updateTickMarksUI();
+            };
+            MDCSliderFoundation.prototype.updateThumbAriaAttributes = function(thumb) {
+                if (!thumb) return;
+                var value = this.isRange && thumb === Thumb.START ? this.valueStart : this.value;
+                this.adapter.setThumbAttribute(slider_constants_attributes.ARIA_VALUENOW, String(value), thumb);
+                var valueToAriaValueTextFn = this.adapter.getValueToAriaValueTextFn();
+                if (valueToAriaValueTextFn) {
+                    this.adapter.setThumbAttribute(slider_constants_attributes.ARIA_VALUETEXT, valueToAriaValueTextFn(value), thumb);
+                }
+            };
+            MDCSliderFoundation.prototype.updateValueIndicatorUI = function(thumb) {
+                if (!this.isDiscrete || !thumb) return;
+                var value = this.isRange && thumb === Thumb.START ? this.valueStart : this.value;
+                this.adapter.setValueIndicatorText(value, thumb === Thumb.START ? Thumb.START : Thumb.END);
+            };
+            MDCSliderFoundation.prototype.updateTickMarksUI = function() {
+                if (!this.isDiscrete || !this.hasTickMarks) return;
+                var numTickMarksInactiveStart = (this.valueStart - this.min) / this.step;
+                var numTickMarksActive = (this.value - this.valueStart) / this.step + 1;
+                var numTickMarksInactiveEnd = (this.max - this.value) / this.step;
+                var tickMarksInactiveStart = Array.from({
+                    length: numTickMarksInactiveStart
+                }).fill(TickMark.INACTIVE);
+                var tickMarksActive = Array.from({
+                    length: numTickMarksActive
+                }).fill(TickMark.ACTIVE);
+                var tickMarksInactiveEnd = Array.from({
+                    length: numTickMarksInactiveEnd
+                }).fill(TickMark.INACTIVE);
+                this.adapter.updateTickMarks(tickMarksInactiveStart.concat(tickMarksActive).concat(tickMarksInactiveEnd));
+            };
+            MDCSliderFoundation.prototype.mapClientXOnSliderScale = function(clientX) {
+                var xPos = clientX - this.rect.left;
+                var pctComplete = xPos / this.rect.width;
+                if (this.adapter.isRTL()) {
+                    pctComplete = 1 - pctComplete;
+                }
+                var value = this.min + pctComplete * (this.max - this.min);
+                if (this.isDiscrete && value !== this.max && value !== this.min) {
+                    return this.quantize(value);
+                }
+                return value;
+            };
+            MDCSliderFoundation.prototype.updateValue = function(value, thumb, _a) {
+                var _b = _a === void 0 ? {} : _a, emitInputEvent = _b.emitInputEvent, emitChangeEvent = _b.emitChangeEvent;
+                value = this.clampValue(value, thumb);
+                if (this.isRange && thumb === Thumb.START) {
+                    if (this.valueStart === value) return;
+                    this.valueStart = value;
+                } else {
+                    if (this.value === value) return;
+                    this.value = value;
+                }
+                this.updateUI(thumb);
+                if (emitInputEvent) {
+                    this.adapter.emitInputEvent(thumb === Thumb.START ? this.valueStart : this.value, thumb);
+                }
+                if (emitChangeEvent) {
+                    this.adapter.emitChangeEvent(thumb === Thumb.START ? this.valueStart : this.value, thumb);
+                }
+            };
+            MDCSliderFoundation.prototype.quantize = function(value) {
+                var numSteps = Math.round(value / this.step);
+                return numSteps * this.step;
+            };
+            MDCSliderFoundation.prototype.clampValue = function(value, thumb) {
+                value = Math.min(Math.max(value, this.min), this.max);
+                var thumbStartMovedPastThumbEnd = this.isRange && thumb === Thumb.START && value > this.value;
+                if (thumbStartMovedPastThumbEnd) {
+                    return this.value;
+                }
+                var thumbEndMovedPastThumbStart = this.isRange && thumb === Thumb.END && value < this.valueStart;
+                if (thumbEndMovedPastThumbStart) {
+                    return this.valueStart;
+                }
+                return value;
+            };
+            MDCSliderFoundation.prototype.updateThumbAndTrackUI = function(thumb) {
+                var _this = this;
+                var _a = this, max = _a.max, min = _a.min;
+                var pctComplete = (this.value - this.valueStart) / (max - min);
+                var rangePx = pctComplete * this.rect.width;
+                var isRtl = this.adapter.isRTL();
+                var transformProp = HAS_WINDOW ? getCorrectPropertyName(window, "transform") : "transform";
+                if (this.isRange) {
+                    var thumbLeftPos_1 = this.adapter.isRTL() ? (max - this.value) / (max - min) * this.rect.width : (this.valueStart - min) / (max - min) * this.rect.width;
+                    var thumbRightPos_1 = thumbLeftPos_1 + rangePx;
+                    requestAnimationFrame((function() {
+                        var trackAnimatesFromRight = !isRtl && thumb === Thumb.START || isRtl && thumb !== Thumb.START;
+                        if (trackAnimatesFromRight) {
+                            _this.adapter.setTrackActiveStyleProperty("transform-origin", "right");
+                            _this.adapter.setTrackActiveStyleProperty("left", "unset");
+                            _this.adapter.setTrackActiveStyleProperty("right", _this.rect.width - thumbRightPos_1 + "px");
+                        } else {
+                            _this.adapter.setTrackActiveStyleProperty("transform-origin", "left");
+                            _this.adapter.setTrackActiveStyleProperty("right", "unset");
+                            _this.adapter.setTrackActiveStyleProperty("left", thumbLeftPos_1 + "px");
+                        }
+                        _this.adapter.setTrackActiveStyleProperty(transformProp, "scaleX(" + pctComplete + ")");
+                        var thumbStartPos = isRtl ? thumbRightPos_1 : thumbLeftPos_1;
+                        var thumbEndPos = _this.adapter.isRTL() ? thumbLeftPos_1 : thumbRightPos_1;
+                        if (thumb === Thumb.START || !thumb || !_this.initialStylesRemoved) {
+                            _this.adapter.setThumbStyleProperty(transformProp, "translateX(" + thumbStartPos + "px)", Thumb.START);
+                        }
+                        if (thumb === Thumb.END || !thumb || !_this.initialStylesRemoved) {
+                            _this.adapter.setThumbStyleProperty(transformProp, "translateX(" + thumbEndPos + "px)", Thumb.END);
+                        }
+                        _this.removeInitialStyles(isRtl);
+                        _this.updateOverlappingThumbsUI(thumbStartPos, thumbEndPos, thumb);
+                        _this.focusThumbIfDragging(thumb);
+                    }));
+                } else {
+                    requestAnimationFrame((function() {
+                        var thumbStartPos = isRtl ? _this.rect.width - rangePx : rangePx;
+                        _this.adapter.setThumbStyleProperty(transformProp, "translateX(" + thumbStartPos + "px)", Thumb.END);
+                        _this.adapter.setTrackActiveStyleProperty(transformProp, "scaleX(" + pctComplete + ")");
+                        _this.removeInitialStyles(isRtl);
+                        _this.focusThumbIfDragging(thumb);
+                    }));
+                }
+            };
+            MDCSliderFoundation.prototype.removeInitialStyles = function(isRtl) {
+                if (this.initialStylesRemoved) return;
+                var position = isRtl ? "right" : "left";
+                this.adapter.removeThumbStyleProperty(position, Thumb.END);
+                if (this.isRange) {
+                    this.adapter.removeThumbStyleProperty(position, Thumb.START);
+                }
+                this.initialStylesRemoved = true;
+                this.resetTrackAndThumbAnimation();
+            };
+            MDCSliderFoundation.prototype.resetTrackAndThumbAnimation = function() {
+                var _this = this;
+                if (!this.isDiscrete) return;
+                var transitionProp = HAS_WINDOW ? getCorrectPropertyName(window, "transition") : "transition";
+                var transitionDefault = "all 0s ease 0s";
+                this.adapter.setThumbStyleProperty(transitionProp, transitionDefault, Thumb.END);
+                if (this.isRange) {
+                    this.adapter.setThumbStyleProperty(transitionProp, transitionDefault, Thumb.START);
+                }
+                this.adapter.setTrackActiveStyleProperty(transitionProp, transitionDefault);
+                requestAnimationFrame((function() {
+                    _this.adapter.removeThumbStyleProperty(transitionProp, Thumb.END);
+                    _this.adapter.removeTrackActiveStyleProperty(transitionProp);
+                    if (_this.isRange) {
+                        _this.adapter.removeThumbStyleProperty(transitionProp, Thumb.START);
+                    }
+                }));
+            };
+            MDCSliderFoundation.prototype.updateOverlappingThumbsUI = function(thumbStartPos, thumbEndPos, thumb) {
+                var thumbsOverlap = false;
+                if (this.adapter.isRTL()) {
+                    var startThumbLeftEdge = thumbStartPos - this.startThumbKnobWidth / 2;
+                    var endThumbRightEdge = thumbEndPos + this.endThumbKnobWidth / 2;
+                    thumbsOverlap = endThumbRightEdge >= startThumbLeftEdge;
+                } else {
+                    var startThumbRightEdge = thumbStartPos + this.startThumbKnobWidth / 2;
+                    var endThumbLeftEdge = thumbEndPos - this.endThumbKnobWidth / 2;
+                    thumbsOverlap = startThumbRightEdge >= endThumbLeftEdge;
+                }
+                if (thumbsOverlap) {
+                    this.adapter.addThumbClass(slider_constants_cssClasses.THUMB_TOP, thumb || Thumb.END);
+                    this.adapter.removeThumbClass(slider_constants_cssClasses.THUMB_TOP, thumb === Thumb.START ? Thumb.END : Thumb.START);
+                } else {
+                    this.adapter.removeThumbClass(slider_constants_cssClasses.THUMB_TOP, Thumb.START);
+                    this.adapter.removeThumbClass(slider_constants_cssClasses.THUMB_TOP, Thumb.END);
+                }
+            };
+            MDCSliderFoundation.prototype.focusThumbIfDragging = function(thumb) {
+                if (!thumb) return;
+                if (this.thumb === null) return;
+                if (!this.adapter.isThumbFocused(thumb)) {
+                    this.adapter.focusThumb(thumb);
+                }
+            };
+            MDCSliderFoundation.prototype.convertAttributeValueToNumber = function(attributeValue, attributeName) {
+                if (attributeValue === null) {
+                    throw new Error("MDCSliderFoundation: `" + attributeName + "` must be non-null.");
+                }
+                var value = Number(attributeValue);
+                if (isNaN(value)) {
+                    throw new Error("MDCSliderFoundation: `" + attributeName + "` value is " + ("`" + attributeValue + "`, but must be a number."));
+                }
+                return value;
+            };
+            MDCSliderFoundation.prototype.validateProperties = function(_a) {
+                var min = _a.min, max = _a.max, value = _a.value, valueStart = _a.valueStart;
+                if (min >= max) {
+                    throw new Error("MDCSliderFoundation: min must be strictly less than max. " + ("Current: [min: " + min + ", max: " + max + "]"));
+                }
+                if (this.isRange) {
+                    if (value < min || value > max || valueStart < min || valueStart > max) {
+                        throw new Error("MDCSliderFoundation: values must be in [min, max] range. " + ("Current values: [start value: " + valueStart + ", end value: " + value + "]"));
+                    }
+                    if (valueStart > value) {
+                        throw new Error("MDCSliderFoundation: start value must be <= end value. " + ("Current values: [start value: " + valueStart + ", end value: " + value + "]"));
+                    }
+                } else {
+                    if (value < min || value > max) {
+                        throw new Error("MDCSliderFoundation: value must be in [min, max] range. " + ("Current value: " + value));
+                    }
+                }
+            };
+            MDCSliderFoundation.prototype.registerEventHandlers = function() {
+                this.adapter.registerWindowEventHandler("resize", this.resizeListener);
+                if (MDCSliderFoundation.SUPPORTS_POINTER_EVENTS) {
+                    this.adapter.registerEventHandler("pointerdown", this.pointerdownListener);
+                    this.adapter.registerEventHandler("pointerup", this.pointerupListener);
+                } else {
+                    this.adapter.registerEventHandler("mousedown", this.mousedownOrTouchstartListener);
+                    this.adapter.registerEventHandler("touchstart", this.mousedownOrTouchstartListener);
+                }
+                if (this.isRange) {
+                    this.adapter.registerThumbEventHandler(Thumb.START, "keydown", this.thumbStartKeydownListener);
+                    this.adapter.registerThumbEventHandler(Thumb.START, "focus", this.thumbFocusOrMouseenterListener);
+                    this.adapter.registerThumbEventHandler(Thumb.START, "mouseenter", this.thumbFocusOrMouseenterListener);
+                    this.adapter.registerThumbEventHandler(Thumb.START, "blur", this.thumbBlurOrMouseleaveListener);
+                    this.adapter.registerThumbEventHandler(Thumb.START, "mouseleave", this.thumbBlurOrMouseleaveListener);
+                }
+                this.adapter.registerThumbEventHandler(Thumb.END, "keydown", this.thumbEndKeydownListener);
+                this.adapter.registerThumbEventHandler(Thumb.END, "focus", this.thumbFocusOrMouseenterListener);
+                this.adapter.registerThumbEventHandler(Thumb.END, "mouseenter", this.thumbFocusOrMouseenterListener);
+                this.adapter.registerThumbEventHandler(Thumb.END, "blur", this.thumbBlurOrMouseleaveListener);
+                this.adapter.registerThumbEventHandler(Thumb.END, "mouseleave", this.thumbBlurOrMouseleaveListener);
+            };
+            MDCSliderFoundation.prototype.deregisterEventHandlers = function() {
+                this.adapter.deregisterWindowEventHandler("resize", this.resizeListener);
+                if (MDCSliderFoundation.SUPPORTS_POINTER_EVENTS) {
+                    this.adapter.deregisterEventHandler("pointerdown", this.pointerdownListener);
+                    this.adapter.deregisterEventHandler("pointerup", this.pointerupListener);
+                } else {
+                    this.adapter.deregisterEventHandler("mousedown", this.mousedownOrTouchstartListener);
+                    this.adapter.deregisterEventHandler("touchstart", this.mousedownOrTouchstartListener);
+                }
+                if (this.isRange) {
+                    this.adapter.deregisterThumbEventHandler(Thumb.START, "keydown", this.thumbStartKeydownListener);
+                    this.adapter.deregisterThumbEventHandler(Thumb.START, "focus", this.thumbFocusOrMouseenterListener);
+                    this.adapter.deregisterThumbEventHandler(Thumb.START, "mouseenter", this.thumbFocusOrMouseenterListener);
+                    this.adapter.deregisterThumbEventHandler(Thumb.START, "blur", this.thumbBlurOrMouseleaveListener);
+                    this.adapter.deregisterThumbEventHandler(Thumb.START, "mouseleave", this.thumbBlurOrMouseleaveListener);
+                }
+                this.adapter.deregisterThumbEventHandler(Thumb.END, "keydown", this.thumbEndKeydownListener);
+                this.adapter.deregisterThumbEventHandler(Thumb.END, "focus", this.thumbFocusOrMouseenterListener);
+                this.adapter.deregisterThumbEventHandler(Thumb.END, "mouseenter", this.thumbFocusOrMouseenterListener);
+                this.adapter.deregisterThumbEventHandler(Thumb.END, "blur", this.thumbBlurOrMouseleaveListener);
+                this.adapter.deregisterThumbEventHandler(Thumb.END, "mouseleave", this.thumbBlurOrMouseleaveListener);
+            };
+            MDCSliderFoundation.prototype.handlePointerup = function() {
+                this.handleUp();
+                this.adapter.deregisterEventHandler("pointermove", this.moveListener);
+            };
+            MDCSliderFoundation.SUPPORTS_POINTER_EVENTS = HAS_WINDOW && Boolean(window.PointerEvent);
+            return MDCSliderFoundation;
+        }(MDCFoundation);
+        /**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var MDCSlider = function(_super) {
+            __extends(MDCSlider, _super);
+            function MDCSlider() {
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.skipInitialUIUpdate = false;
+                _this.valueToAriaValueTextFn = null;
+                return _this;
+            }
+            MDCSlider.attachTo = function(root, options) {
+                if (options === void 0) {
+                    options = {};
+                }
+                return new MDCSlider(root, undefined, options);
+            };
+            MDCSlider.prototype.getDefaultFoundation = function() {
+                var _this = this;
+                var adapter = {
+                    hasClass: function(className) {
+                        return _this.root.classList.contains(className);
+                    },
+                    addClass: function(className) {
+                        _this.root.classList.add(className);
+                    },
+                    removeClass: function(className) {
+                        _this.root.classList.remove(className);
+                    },
+                    addThumbClass: function(className, thumb) {
+                        _this.getThumbEl(thumb).classList.add(className);
+                    },
+                    removeThumbClass: function(className, thumb) {
+                        _this.getThumbEl(thumb).classList.remove(className);
+                    },
+                    getAttribute: function(attribute) {
+                        return _this.root.getAttribute(attribute);
+                    },
+                    getThumbAttribute: function(attribute, thumb) {
+                        return _this.getThumbEl(thumb).getAttribute(attribute);
+                    },
+                    setThumbAttribute: function(attribute, value, thumb) {
+                        _this.getThumbEl(thumb).setAttribute(attribute, value);
+                    },
+                    isThumbFocused: function(thumb) {
+                        return _this.getThumbEl(thumb) === document.activeElement;
+                    },
+                    focusThumb: function(thumb) {
+                        _this.getThumbEl(thumb).focus();
+                    },
+                    getThumbKnobWidth: function(thumb) {
+                        return _this.getThumbEl(thumb).querySelector("." + slider_constants_cssClasses.THUMB_KNOB).getBoundingClientRect().width;
+                    },
+                    getThumbBoundingClientRect: function(thumb) {
+                        return _this.getThumbEl(thumb).getBoundingClientRect();
+                    },
+                    getBoundingClientRect: function() {
+                        return _this.root.getBoundingClientRect();
+                    },
+                    isRTL: function() {
+                        return getComputedStyle(_this.root).direction === "rtl";
+                    },
+                    setThumbStyleProperty: function(propertyName, value, thumb) {
+                        _this.getThumbEl(thumb).style.setProperty(propertyName, value);
+                    },
+                    removeThumbStyleProperty: function(propertyName, thumb) {
+                        _this.getThumbEl(thumb).style.removeProperty(propertyName);
+                    },
+                    setTrackActiveStyleProperty: function(propertyName, value) {
+                        _this.trackActive.style.setProperty(propertyName, value);
+                    },
+                    removeTrackActiveStyleProperty: function(propertyName) {
+                        _this.trackActive.style.removeProperty(propertyName);
+                    },
+                    setValueIndicatorText: function(value, thumb) {
+                        var valueIndicatorEl = _this.getThumbEl(thumb).querySelector("." + slider_constants_cssClasses.VALUE_INDICATOR_TEXT);
+                        valueIndicatorEl.textContent = String(value);
+                    },
+                    getValueToAriaValueTextFn: function() {
+                        return _this.valueToAriaValueTextFn;
+                    },
+                    updateTickMarks: function(tickMarks) {
+                        var tickMarksContainer = _this.root.querySelector("." + slider_constants_cssClasses.TICK_MARKS_CONTAINER);
+                        if (!tickMarksContainer) {
+                            tickMarksContainer = document.createElement("div");
+                            tickMarksContainer.classList.add(slider_constants_cssClasses.TICK_MARKS_CONTAINER);
+                            var track = _this.root.querySelector("." + slider_constants_cssClasses.TRACK);
+                            track.appendChild(tickMarksContainer);
+                        }
+                        if (tickMarks.length !== tickMarksContainer.children.length) {
+                            tickMarksContainer.innerHTML = "";
+                            _this.addTickMarks(tickMarksContainer, tickMarks);
+                        } else {
+                            _this.updateTickMarks(tickMarksContainer, tickMarks);
+                        }
+                    },
+                    setPointerCapture: function(pointerId) {
+                        _this.root.setPointerCapture(pointerId);
+                    },
+                    emitChangeEvent: function(value, thumb) {
+                        _this.emit(slider_constants_events.CHANGE, {
+                            value: value,
+                            thumb: thumb
+                        });
+                    },
+                    emitInputEvent: function(value, thumb) {
+                        _this.emit(slider_constants_events.INPUT, {
+                            value: value,
+                            thumb: thumb
+                        });
+                    },
+                    emitDragStartEvent: function() {},
+                    emitDragEndEvent: function() {},
+                    registerEventHandler: function(evtType, handler) {
+                        _this.listen(evtType, handler);
+                    },
+                    deregisterEventHandler: function(evtType, handler) {
+                        _this.unlisten(evtType, handler);
+                    },
+                    registerThumbEventHandler: function(thumb, evtType, handler) {
+                        _this.getThumbEl(thumb).addEventListener(evtType, handler);
+                    },
+                    deregisterThumbEventHandler: function(thumb, evtType, handler) {
+                        _this.getThumbEl(thumb).removeEventListener(evtType, handler);
+                    },
+                    registerBodyEventHandler: function(evtType, handler) {
+                        document.body.addEventListener(evtType, handler);
+                    },
+                    deregisterBodyEventHandler: function(evtType, handler) {
+                        document.body.removeEventListener(evtType, handler);
+                    },
+                    registerWindowEventHandler: function(evtType, handler) {
+                        window.addEventListener(evtType, handler);
+                    },
+                    deregisterWindowEventHandler: function(evtType, handler) {
+                        window.removeEventListener(evtType, handler);
+                    }
+                };
+                return new MDCSliderFoundation(adapter);
+            };
+            MDCSlider.prototype.initialize = function(_a) {
+                var skipInitialUIUpdate = (_a === void 0 ? {} : _a).skipInitialUIUpdate;
+                this.thumbs = [].slice.call(this.root.querySelectorAll("." + slider_constants_cssClasses.THUMB));
+                this.trackActive = this.root.querySelector("." + slider_constants_cssClasses.TRACK_ACTIVE);
+                if (skipInitialUIUpdate) {
+                    this.skipInitialUIUpdate = true;
+                }
+            };
+            MDCSlider.prototype.initialSyncWithDOM = function() {
+                this.createRipples();
+                this.foundation.layout({
+                    skipUpdateUI: this.skipInitialUIUpdate
+                });
+            };
+            MDCSlider.prototype.layout = function() {
+                this.foundation.layout();
+            };
+            MDCSlider.prototype.getValueStart = function() {
+                return this.foundation.getValueStart();
+            };
+            MDCSlider.prototype.setValueStart = function(valueStart) {
+                this.foundation.setValueStart(valueStart);
+            };
+            MDCSlider.prototype.getValue = function() {
+                return this.foundation.getValue();
+            };
+            MDCSlider.prototype.setValue = function(value) {
+                this.foundation.setValue(value);
+            };
+            MDCSlider.prototype.getDisabled = function() {
+                return this.foundation.getDisabled();
+            };
+            MDCSlider.prototype.setDisabled = function(disabled) {
+                this.foundation.setDisabled(disabled);
+            };
+            MDCSlider.prototype.setValueToAriaValueTextFn = function(mapFn) {
+                this.valueToAriaValueTextFn = mapFn;
+            };
+            MDCSlider.prototype.getThumbEl = function(thumb) {
+                return thumb === Thumb.END ? this.thumbs[this.thumbs.length - 1] : this.thumbs[0];
+            };
+            MDCSlider.prototype.addTickMarks = function(tickMarkContainer, tickMarks) {
+                var fragment = document.createDocumentFragment();
+                for (var i = 0; i < tickMarks.length; i++) {
+                    var div = document.createElement("div");
+                    var tickMarkClass = tickMarks[i] === TickMark.ACTIVE ? slider_constants_cssClasses.TICK_MARK_ACTIVE : slider_constants_cssClasses.TICK_MARK_INACTIVE;
+                    div.classList.add(tickMarkClass);
+                    fragment.appendChild(div);
+                }
+                tickMarkContainer.appendChild(fragment);
+            };
+            MDCSlider.prototype.updateTickMarks = function(tickMarkContainer, tickMarks) {
+                var tickMarkEls = Array.from(tickMarkContainer.children);
+                for (var i = 0; i < tickMarkEls.length; i++) {
+                    if (tickMarks[i] === TickMark.ACTIVE) {
+                        tickMarkEls[i].classList.add(slider_constants_cssClasses.TICK_MARK_ACTIVE);
+                        tickMarkEls[i].classList.remove(slider_constants_cssClasses.TICK_MARK_INACTIVE);
+                    } else {
+                        tickMarkEls[i].classList.add(slider_constants_cssClasses.TICK_MARK_INACTIVE);
+                        tickMarkEls[i].classList.remove(slider_constants_cssClasses.TICK_MARK_ACTIVE);
+                    }
+                }
+            };
+            MDCSlider.prototype.createRipples = function() {
+                var e_1, _a;
+                var rippleSurfaces = [].slice.call(this.root.querySelectorAll("." + slider_constants_cssClasses.THUMB));
+                try {
+                    for (var rippleSurfaces_1 = __values(rippleSurfaces), rippleSurfaces_1_1 = rippleSurfaces_1.next(); !rippleSurfaces_1_1.done; rippleSurfaces_1_1 = rippleSurfaces_1.next()) {
+                        var rippleSurface = rippleSurfaces_1_1.value;
+                        var ripple = new MDCRipple(rippleSurface);
+                        ripple.unbounded = true;
+                    }
+                } catch (e_1_1) {
+                    e_1 = {
+                        error: e_1_1
+                    };
+                } finally {
+                    try {
+                        if (rippleSurfaces_1_1 && !rippleSurfaces_1_1.done && (_a = rippleSurfaces_1.return)) _a.call(rippleSurfaces_1);
+                    } finally {
+                        if (e_1) throw e_1.error;
+                    }
+                }
+            };
+            return MDCSlider;
+        }(MDCComponent);
+        var lodash = __webpack_require__(486);
+        function MBSlider_init(elem, dotNetObject, eventType, delay) {
+            elem._slider = MDCSlider.attachTo(elem);
+            elem._eventType = eventType;
+            var debounceNotify = lodash.debounce((function() {
+                dotNetObject.invokeMethodAsync("NotifyChangedAsync", elem._slider.getValue());
+            }), delay);
+            var throttleNotify = lodash.throttle((function() {
+                dotNetObject.invokeMethodAsync("NotifyChangedAsync", elem._slider.getValue());
+            }), delay);
+            return new Promise((function() {
+                var thumbUpCallback = function thumbUpCallback() {
+                    dotNetObject.invokeMethodAsync("NotifyChangedAsync", elem._slider.getValue());
+                };
+                var debounceCallback = function debounceCallback() {
+                    debounceNotify();
+                };
+                var throttleCallback = function throttleCallback() {
+                    throttleNotify();
+                };
+                if (eventType == 0) {
+                    elem._slider.listen("MDCSlider:change", thumbUpCallback);
+                } else if (eventType == 1) {
+                    elem._slider.listen("MDCSlider:input", debounceCallback);
+                } else {
+                    elem._slider.listen("MDCSlider:input", throttleCallback);
+                }
+            }));
+        }
+        function MBSlider_destroy(elem) {
+            elem._slider.destroy();
+        }
+        function MBSlider_setValue(elem, value) {
+            elem._slider.setValue(value);
+        }
+        function MBSlider_setDisabled(elem, value) {
+            elem._slider.setDisabled(value);
         }
         /**
  * @license
@@ -10194,7 +19803,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCSwitchFoundation = function(_super) {
+ */        var MDCSwitchFoundation = function(_super) {
             __extends(MDCSwitchFoundation, _super);
             function MDCSwitchFoundation(adapter) {
                 return _super.call(this, __assign(__assign({}, MDCSwitchFoundation.defaultAdapter), adapter)) || this;
@@ -10266,7 +19875,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCSwitchFoundation;
         }(MDCFoundation);
-        var switch_foundation = foundation_MDCSwitchFoundation;
+        const switch_foundation = null && MDCSwitchFoundation;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -10288,7 +19897,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_MDCSwitch = function(_super) {
+ */        var MDCSwitch = function(_super) {
             __extends(MDCSwitch, _super);
             function MDCSwitch() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -10335,7 +19944,7 @@ PERFORMANCE OF THIS SOFTWARE.
                         return _this.nativeControl_.setAttribute(attr, value);
                     }
                 };
-                return new foundation_MDCSwitchFoundation(adapter);
+                return new MDCSwitchFoundation(adapter);
             };
             Object.defineProperty(MDCSwitch.prototype, "ripple", {
                 get: function() {
@@ -10366,9 +19975,9 @@ PERFORMANCE OF THIS SOFTWARE.
             });
             MDCSwitch.prototype.createRipple_ = function() {
                 var _this = this;
-                var RIPPLE_SURFACE_SELECTOR = foundation_MDCSwitchFoundation.strings.RIPPLE_SURFACE_SELECTOR;
+                var RIPPLE_SURFACE_SELECTOR = MDCSwitchFoundation.strings.RIPPLE_SURFACE_SELECTOR;
                 var rippleSurface = this.root.querySelector(RIPPLE_SURFACE_SELECTOR);
-                var adapter = __assign(__assign({}, component_MDCRipple.createAdapter(this)), {
+                var adapter = __assign(__assign({}, MDCRipple.createAdapter(this)), {
                     addClass: function(className) {
                         return rippleSurface.classList.add(className);
                     },
@@ -10394,21 +20003,24 @@ PERFORMANCE OF THIS SOFTWARE.
                         rippleSurface.style.setProperty(varName, value);
                     }
                 });
-                return new component_MDCRipple(this.root, new foundation_MDCRippleFoundation(adapter));
+                return new MDCRipple(this.root, new MDCRippleFoundation(adapter));
             };
             Object.defineProperty(MDCSwitch.prototype, "nativeControl_", {
                 get: function() {
-                    var NATIVE_CONTROL_SELECTOR = foundation_MDCSwitchFoundation.strings.NATIVE_CONTROL_SELECTOR;
+                    var NATIVE_CONTROL_SELECTOR = MDCSwitchFoundation.strings.NATIVE_CONTROL_SELECTOR;
                     return this.root.querySelector(NATIVE_CONTROL_SELECTOR);
                 },
                 enumerable: true,
                 configurable: true
             });
             return MDCSwitch;
-        }(component_MDCComponent);
+        }(MDCComponent);
         function MBSwitch_init(elem, checked) {
-            elem._switch = component_MDCSwitch.attachTo(elem);
+            elem._switch = MDCSwitch.attachTo(elem);
             elem._switch.checked = checked;
+        }
+        function MBSwitch_destroy(elem) {
+            elem._switch.destroy();
         }
         function MBSwitch_setChecked(elem, checked) {
             elem._switch.checked = checked;
@@ -10473,7 +20085,7 @@ PERFORMANCE OF THIS SOFTWARE.
             }
             return MDCTabScrollerRTL;
         }();
-        var rtl_scroller = MDCTabScrollerRTL;
+        const rtl_scroller = null && MDCTabScrollerRTL;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -10495,7 +20107,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var rtl_default_scroller_MDCTabScrollerRTLDefault = function(_super) {
+ */        var MDCTabScrollerRTLDefault = function(_super) {
             __extends(MDCTabScrollerRTLDefault, _super);
             function MDCTabScrollerRTLDefault() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -10539,7 +20151,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCTabScrollerRTLDefault;
         }(MDCTabScrollerRTL);
-        var rtl_default_scroller = rtl_default_scroller_MDCTabScrollerRTLDefault;
+        const rtl_default_scroller = null && MDCTabScrollerRTLDefault;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -10561,7 +20173,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var rtl_negative_scroller_MDCTabScrollerRTLNegative = function(_super) {
+ */        var MDCTabScrollerRTLNegative = function(_super) {
             __extends(MDCTabScrollerRTLNegative, _super);
             function MDCTabScrollerRTLNegative() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -10603,7 +20215,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCTabScrollerRTLNegative;
         }(MDCTabScrollerRTL);
-        var rtl_negative_scroller = rtl_negative_scroller_MDCTabScrollerRTLNegative;
+        const rtl_negative_scroller = null && MDCTabScrollerRTLNegative;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -10625,7 +20237,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var rtl_reverse_scroller_MDCTabScrollerRTLReverse = function(_super) {
+ */        var MDCTabScrollerRTLReverse = function(_super) {
             __extends(MDCTabScrollerRTLReverse, _super);
             function MDCTabScrollerRTLReverse() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -10667,7 +20279,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCTabScrollerRTLReverse;
         }(MDCTabScrollerRTL);
-        var rtl_reverse_scroller = rtl_reverse_scroller_MDCTabScrollerRTLReverse;
+        const rtl_reverse_scroller = null && MDCTabScrollerRTLReverse;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -10689,7 +20301,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCTabScrollerFoundation = function(_super) {
+ */        var MDCTabScrollerFoundation = function(_super) {
             __extends(MDCTabScrollerFoundation, _super);
             function MDCTabScrollerFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCTabScrollerFoundation.defaultAdapter), adapter)) || this;
@@ -10921,23 +20533,23 @@ PERFORMANCE OF THIS SOFTWARE.
                 var newScrollLeft = this.adapter.getScrollAreaScrollLeft();
                 if (newScrollLeft < 0) {
                     this.adapter.setScrollAreaScrollLeft(initialScrollLeft);
-                    return new rtl_negative_scroller_MDCTabScrollerRTLNegative(this.adapter);
+                    return new MDCTabScrollerRTLNegative(this.adapter);
                 }
                 var rootClientRect = this.adapter.computeScrollAreaClientRect();
                 var contentClientRect = this.adapter.computeScrollContentClientRect();
                 var rightEdgeDelta = Math.round(contentClientRect.right - rootClientRect.right);
                 this.adapter.setScrollAreaScrollLeft(initialScrollLeft);
                 if (rightEdgeDelta === newScrollLeft) {
-                    return new rtl_reverse_scroller_MDCTabScrollerRTLReverse(this.adapter);
+                    return new MDCTabScrollerRTLReverse(this.adapter);
                 }
-                return new rtl_default_scroller_MDCTabScrollerRTLDefault(this.adapter);
+                return new MDCTabScrollerRTLDefault(this.adapter);
             };
             MDCTabScrollerFoundation.prototype.isRTL_ = function() {
                 return this.adapter.getScrollContentStyleValue("direction") === "rtl";
             };
             return MDCTabScrollerFoundation;
         }(MDCFoundation);
-        var tab_scroller_foundation = foundation_MDCTabScrollerFoundation;
+        const tab_scroller_foundation = null && MDCTabScrollerFoundation;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -10998,7 +20610,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_MDCTabScroller = function(_super) {
+ */        var MDCTabScroller = function(_super) {
             __extends(MDCTabScroller, _super);
             function MDCTabScroller() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -11007,8 +20619,8 @@ PERFORMANCE OF THIS SOFTWARE.
                 return new MDCTabScroller(root);
             };
             MDCTabScroller.prototype.initialize = function() {
-                this.area_ = this.root.querySelector(foundation_MDCTabScrollerFoundation.strings.AREA_SELECTOR);
-                this.content_ = this.root.querySelector(foundation_MDCTabScrollerFoundation.strings.CONTENT_SELECTOR);
+                this.area_ = this.root.querySelector(MDCTabScrollerFoundation.strings.AREA_SELECTOR);
+                this.content_ = this.root.querySelector(MDCTabScrollerFoundation.strings.CONTENT_SELECTOR);
             };
             MDCTabScroller.prototype.initialSyncWithDOM = function() {
                 var _this = this;
@@ -11080,7 +20692,7 @@ PERFORMANCE OF THIS SOFTWARE.
                         return computeHorizontalScrollbarHeight(document);
                     }
                 };
-                return new foundation_MDCTabScrollerFoundation(adapter);
+                return new MDCTabScrollerFoundation(adapter);
             };
             MDCTabScroller.prototype.getScrollPosition = function() {
                 return this.foundation.getScrollPosition();
@@ -11095,7 +20707,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 this.foundation.scrollTo(scrollX);
             };
             return MDCTabScroller;
-        }(component_MDCComponent);
+        }(MDCComponent);
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -11146,7 +20758,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCTabIndicatorFoundation = function(_super) {
+ */        var MDCTabIndicatorFoundation = function(_super) {
             __extends(MDCTabIndicatorFoundation, _super);
             function MDCTabIndicatorFoundation(adapter) {
                 return _super.call(this, __assign(__assign({}, MDCTabIndicatorFoundation.defaultAdapter), adapter)) || this;
@@ -11197,7 +20809,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCTabIndicatorFoundation;
         }(MDCFoundation);
-        var tab_indicator_foundation = foundation_MDCTabIndicatorFoundation;
+        const tab_indicator_foundation = null && MDCTabIndicatorFoundation;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -11219,20 +20831,20 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var fading_foundation_MDCFadingTabIndicatorFoundation = function(_super) {
+ */        var MDCFadingTabIndicatorFoundation = function(_super) {
             __extends(MDCFadingTabIndicatorFoundation, _super);
             function MDCFadingTabIndicatorFoundation() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
             MDCFadingTabIndicatorFoundation.prototype.activate = function() {
-                this.adapter.addClass(foundation_MDCTabIndicatorFoundation.cssClasses.ACTIVE);
+                this.adapter.addClass(MDCTabIndicatorFoundation.cssClasses.ACTIVE);
             };
             MDCFadingTabIndicatorFoundation.prototype.deactivate = function() {
-                this.adapter.removeClass(foundation_MDCTabIndicatorFoundation.cssClasses.ACTIVE);
+                this.adapter.removeClass(MDCTabIndicatorFoundation.cssClasses.ACTIVE);
             };
             return MDCFadingTabIndicatorFoundation;
-        }(foundation_MDCTabIndicatorFoundation);
-        var fading_foundation = fading_foundation_MDCFadingTabIndicatorFoundation;
+        }(MDCTabIndicatorFoundation);
+        const fading_foundation = null && MDCFadingTabIndicatorFoundation;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -11254,32 +20866,32 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var sliding_foundation_MDCSlidingTabIndicatorFoundation = function(_super) {
+ */        var MDCSlidingTabIndicatorFoundation = function(_super) {
             __extends(MDCSlidingTabIndicatorFoundation, _super);
             function MDCSlidingTabIndicatorFoundation() {
                 return _super !== null && _super.apply(this, arguments) || this;
             }
             MDCSlidingTabIndicatorFoundation.prototype.activate = function(previousIndicatorClientRect) {
                 if (!previousIndicatorClientRect) {
-                    this.adapter.addClass(foundation_MDCTabIndicatorFoundation.cssClasses.ACTIVE);
+                    this.adapter.addClass(MDCTabIndicatorFoundation.cssClasses.ACTIVE);
                     return;
                 }
                 var currentClientRect = this.computeContentClientRect();
                 var widthDelta = previousIndicatorClientRect.width / currentClientRect.width;
                 var xPosition = previousIndicatorClientRect.left - currentClientRect.left;
-                this.adapter.addClass(foundation_MDCTabIndicatorFoundation.cssClasses.NO_TRANSITION);
+                this.adapter.addClass(MDCTabIndicatorFoundation.cssClasses.NO_TRANSITION);
                 this.adapter.setContentStyleProperty("transform", "translateX(" + xPosition + "px) scaleX(" + widthDelta + ")");
                 this.computeContentClientRect();
-                this.adapter.removeClass(foundation_MDCTabIndicatorFoundation.cssClasses.NO_TRANSITION);
-                this.adapter.addClass(foundation_MDCTabIndicatorFoundation.cssClasses.ACTIVE);
+                this.adapter.removeClass(MDCTabIndicatorFoundation.cssClasses.NO_TRANSITION);
+                this.adapter.addClass(MDCTabIndicatorFoundation.cssClasses.ACTIVE);
                 this.adapter.setContentStyleProperty("transform", "");
             };
             MDCSlidingTabIndicatorFoundation.prototype.deactivate = function() {
-                this.adapter.removeClass(foundation_MDCTabIndicatorFoundation.cssClasses.ACTIVE);
+                this.adapter.removeClass(MDCTabIndicatorFoundation.cssClasses.ACTIVE);
             };
             return MDCSlidingTabIndicatorFoundation;
-        }(foundation_MDCTabIndicatorFoundation);
-        var sliding_foundation = sliding_foundation_MDCSlidingTabIndicatorFoundation;
+        }(MDCTabIndicatorFoundation);
+        const sliding_foundation = null && MDCSlidingTabIndicatorFoundation;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -11301,7 +20913,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_MDCTabIndicator = function(_super) {
+ */        var MDCTabIndicator = function(_super) {
             __extends(MDCTabIndicator, _super);
             function MDCTabIndicator() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -11310,7 +20922,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 return new MDCTabIndicator(root);
             };
             MDCTabIndicator.prototype.initialize = function() {
-                this.content_ = this.root.querySelector(foundation_MDCTabIndicatorFoundation.strings.CONTENT_SELECTOR);
+                this.content_ = this.root.querySelector(MDCTabIndicatorFoundation.strings.CONTENT_SELECTOR);
             };
             MDCTabIndicator.prototype.computeContentClientRect = function() {
                 return this.foundation.computeContentClientRect();
@@ -11331,10 +20943,10 @@ PERFORMANCE OF THIS SOFTWARE.
                         return _this.content_.style.setProperty(prop, value);
                     }
                 };
-                if (this.root.classList.contains(foundation_MDCTabIndicatorFoundation.cssClasses.FADE)) {
-                    return new fading_foundation_MDCFadingTabIndicatorFoundation(adapter);
+                if (this.root.classList.contains(MDCTabIndicatorFoundation.cssClasses.FADE)) {
+                    return new MDCFadingTabIndicatorFoundation(adapter);
                 }
-                return new sliding_foundation_MDCSlidingTabIndicatorFoundation(adapter);
+                return new MDCSlidingTabIndicatorFoundation(adapter);
             };
             MDCTabIndicator.prototype.activate = function(previousIndicatorClientRect) {
                 this.foundation.activate(previousIndicatorClientRect);
@@ -11343,7 +20955,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 this.foundation.deactivate();
             };
             return MDCTabIndicator;
-        }(component_MDCComponent);
+        }(MDCComponent);
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -11397,7 +21009,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCTabFoundation = function(_super) {
+ */        var MDCTabFoundation = function(_super) {
             __extends(MDCTabFoundation, _super);
             function MDCTabFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCTabFoundation.defaultAdapter), adapter)) || this;
@@ -11503,7 +21115,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCTabFoundation;
         }(MDCFoundation);
-        var tab_foundation = foundation_MDCTabFoundation;
+        const tab_foundation = null && MDCTabFoundation;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -11525,7 +21137,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_MDCTab = function(_super) {
+ */        var MDCTab = function(_super) {
             __extends(MDCTab, _super);
             function MDCTab() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -11536,17 +21148,17 @@ PERFORMANCE OF THIS SOFTWARE.
             MDCTab.prototype.initialize = function(rippleFactory, tabIndicatorFactory) {
                 if (rippleFactory === void 0) {
                     rippleFactory = function(el, foundation) {
-                        return new component_MDCRipple(el, foundation);
+                        return new MDCRipple(el, foundation);
                     };
                 }
                 if (tabIndicatorFactory === void 0) {
                     tabIndicatorFactory = function(el) {
-                        return new component_MDCTabIndicator(el);
+                        return new MDCTabIndicator(el);
                     };
                 }
                 this.id = this.root.id;
-                var rippleSurface = this.root.querySelector(foundation_MDCTabFoundation.strings.RIPPLE_SELECTOR);
-                var rippleAdapter = __assign(__assign({}, component_MDCRipple.createAdapter(this)), {
+                var rippleSurface = this.root.querySelector(MDCTabFoundation.strings.RIPPLE_SELECTOR);
+                var rippleAdapter = __assign(__assign({}, MDCRipple.createAdapter(this)), {
                     addClass: function(className) {
                         return rippleSurface.classList.add(className);
                     },
@@ -11557,11 +21169,11 @@ PERFORMANCE OF THIS SOFTWARE.
                         return rippleSurface.style.setProperty(varName, value);
                     }
                 });
-                var rippleFoundation = new foundation_MDCRippleFoundation(rippleAdapter);
+                var rippleFoundation = new MDCRippleFoundation(rippleAdapter);
                 this.ripple_ = rippleFactory(this.root, rippleFoundation);
-                var tabIndicatorElement = this.root.querySelector(foundation_MDCTabFoundation.strings.TAB_INDICATOR_SELECTOR);
+                var tabIndicatorElement = this.root.querySelector(MDCTabFoundation.strings.TAB_INDICATOR_SELECTOR);
                 this.tabIndicator_ = tabIndicatorFactory(tabIndicatorElement);
-                this.content_ = this.root.querySelector(foundation_MDCTabFoundation.strings.CONTENT_SELECTOR);
+                this.content_ = this.root.querySelector(MDCTabFoundation.strings.CONTENT_SELECTOR);
             };
             MDCTab.prototype.initialSyncWithDOM = function() {
                 var _this = this;
@@ -11597,7 +21209,7 @@ PERFORMANCE OF THIS SOFTWARE.
                         return _this.tabIndicator_.deactivate();
                     },
                     notifyInteracted: function() {
-                        return _this.emit(foundation_MDCTabFoundation.strings.INTERACTED_EVENT, {
+                        return _this.emit(MDCTabFoundation.strings.INTERACTED_EVENT, {
                             tabId: _this.id
                         }, true);
                     },
@@ -11617,7 +21229,7 @@ PERFORMANCE OF THIS SOFTWARE.
                         return _this.root.focus();
                     }
                 };
-                return new foundation_MDCTabFoundation(adapter);
+                return new MDCTabFoundation(adapter);
             };
             Object.defineProperty(MDCTab.prototype, "active", {
                 get: function() {
@@ -11649,7 +21261,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 this.root.focus();
             };
             return MDCTab;
-        }(component_MDCComponent);
+        }(MDCComponent);
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -11726,7 +21338,7 @@ PERFORMANCE OF THIS SOFTWARE.
         KEYCODE_MAP.set(tab_bar_constants_numbers.HOME_KEYCODE, tab_bar_constants_strings.HOME_KEY);
         KEYCODE_MAP.set(tab_bar_constants_numbers.ENTER_KEYCODE, tab_bar_constants_strings.ENTER_KEY);
         KEYCODE_MAP.set(tab_bar_constants_numbers.SPACE_KEYCODE, tab_bar_constants_strings.SPACE_KEY);
-        var foundation_MDCTabBarFoundation = function(_super) {
+        var MDCTabBarFoundation = function(_super) {
             __extends(MDCTabBarFoundation, _super);
             function MDCTabBarFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCTabBarFoundation.defaultAdapter), adapter)) || this;
@@ -11992,7 +21604,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCTabBarFoundation;
         }(MDCFoundation);
-        var tab_bar_foundation = foundation_MDCTabBarFoundation;
+        const tab_bar_foundation = null && MDCTabBarFoundation;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -12014,9 +21626,9 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var tab_bar_component_strings = foundation_MDCTabBarFoundation.strings;
+ */        var tab_bar_component_strings = MDCTabBarFoundation.strings;
         var tabIdCounter = 0;
-        var component_MDCTabBar = function(_super) {
+        var MDCTabBar = function(_super) {
             __extends(MDCTabBar, _super);
             function MDCTabBar() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -12043,12 +21655,12 @@ PERFORMANCE OF THIS SOFTWARE.
             MDCTabBar.prototype.initialize = function(tabFactory, tabScrollerFactory) {
                 if (tabFactory === void 0) {
                     tabFactory = function(el) {
-                        return new component_MDCTab(el);
+                        return new MDCTab(el);
                     };
                 }
                 if (tabScrollerFactory === void 0) {
                     tabScrollerFactory = function(el) {
-                        return new component_MDCTabScroller(el);
+                        return new MDCTabScroller(el);
                     };
                 }
                 this.tabList_ = this.instantiateTabs_(tabFactory);
@@ -12062,7 +21674,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 this.handleKeyDown_ = function(evt) {
                     return _this.foundation.handleKeyDown(evt);
                 };
-                this.listen(foundation_MDCTabFoundation.strings.INTERACTED_EVENT, this.handleTabInteraction_);
+                this.listen(MDCTabFoundation.strings.INTERACTED_EVENT, this.handleTabInteraction_);
                 this.listen("keydown", this.handleKeyDown_);
                 for (var i = 0; i < this.tabList_.length; i++) {
                     if (this.tabList_[i].active) {
@@ -12073,7 +21685,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             MDCTabBar.prototype.destroy = function() {
                 _super.prototype.destroy.call(this);
-                this.unlisten(foundation_MDCTabFoundation.strings.INTERACTED_EVENT, this.handleTabInteraction_);
+                this.unlisten(MDCTabFoundation.strings.INTERACTED_EVENT, this.handleTabInteraction_);
                 this.unlisten("keydown", this.handleKeyDown_);
                 this.tabList_.forEach((function(tab) {
                     return tab.destroy();
@@ -12151,7 +21763,7 @@ PERFORMANCE OF THIS SOFTWARE.
                         }, true);
                     }
                 };
-                return new foundation_MDCTabBarFoundation(adapter);
+                return new MDCTabBarFoundation(adapter);
             };
             MDCTabBar.prototype.activateTab = function(index) {
                 this.foundation.activateTab(index);
@@ -12176,9 +21788,9 @@ PERFORMANCE OF THIS SOFTWARE.
                 return null;
             };
             return MDCTabBar;
-        }(component_MDCComponent);
+        }(MDCComponent);
         function MBTabBar_init(elem, dotNetObject) {
-            elem._tabBar = component_MDCTabBar.attachTo(elem);
+            elem._tabBar = MDCTabBar.attachTo(elem);
             return new Promise((function() {
                 elem._callback = function() {
                     var index = elem._tabBar.foundation.adapter.getFocusedTabIndex();
@@ -12187,14 +21799,23 @@ PERFORMANCE OF THIS SOFTWARE.
                 elem._tabBar.listen("MDCTabBar:activated", elem._callback);
             }));
         }
+        function MBTabBar_destroy(elem) {
+            elem._tabBar.destroy();
+        }
         function activateTab(elem, index) {
             elem._tabBar.unlisten("MDCTabBar:activated", elem._callback);
             elem._tabBar.activateTab(index);
             elem._tabBar.listen("MDCTabBar:activated", elem._callback);
         }
         function MBTextField_init(elem, helperTextElem, helperText, helperTextPersistent, performsValidation) {
-            elem._textField = component_MDCTextField.attachTo(elem);
+            elem._textField = MDCTextField.attachTo(elem);
             setHelperText(elem, helperTextElem, helperText, helperTextPersistent, performsValidation, false, "");
+        }
+        function MBTextField_destroy(elem) {
+            elem._textField.destroy();
+            if (elem._helperText) {
+                elem._helperText.destroy();
+            }
         }
         function MBTextField_setValue(elem, value) {
             elem._textField.value = value;
@@ -12205,7 +21826,7 @@ PERFORMANCE OF THIS SOFTWARE.
         function setHelperText(elem, helperTextElem, helperText, helperTextPersistent, performsValidation, shakeLabel, validationMessage) {
             if (helperText !== "" || performsValidation === true) {
                 if (!elem._helperText) {
-                    elem._helperText = component_MDCTextFieldHelperText.attachTo(helperTextElem);
+                    elem._helperText = MDCTextFieldHelperText.attachTo(helperTextElem);
                 }
                 if (validationMessage !== "") {
                     elem._helperText.root.innerHTML = sanitizeHTMLWithBreaks(validationMessage);
@@ -12256,6 +21877,581 @@ PERFORMANCE OF THIS SOFTWARE.
         }
         function escapeRegExp(str) {
             return str.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+        }
+        /**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var CssClasses;
+        (function(CssClasses) {
+            CssClasses["SHOWN"] = "mdc-tooltip--shown";
+            CssClasses["SHOWING"] = "mdc-tooltip--showing";
+            CssClasses["SHOWING_TRANSITION"] = "mdc-tooltip--showing-transition";
+            CssClasses["HIDE"] = "mdc-tooltip--hide";
+            CssClasses["HIDE_TRANSITION"] = "mdc-tooltip--hide-transition";
+            CssClasses["MULTILINE_TOOLTIP"] = "mdc-tooltip--multiline";
+        })(CssClasses || (CssClasses = {}));
+        var tooltip_constants_numbers = {
+            BOUNDED_ANCHOR_GAP: 4,
+            UNBOUNDED_ANCHOR_GAP: 8,
+            MIN_VIEWPORT_TOOLTIP_THRESHOLD: 32,
+            HIDE_DELAY_MS: 600,
+            SHOW_DELAY_MS: 500,
+            MIN_HEIGHT: 24,
+            MAX_WIDTH: 200
+        };
+        var tooltip_constants_events = {
+            HIDDEN: "MDCTooltip:hidden"
+        };
+        var XPosition;
+        (function(XPosition) {
+            XPosition[XPosition["DETECTED"] = 0] = "DETECTED";
+            XPosition[XPosition["START"] = 1] = "START";
+            XPosition[XPosition["CENTER"] = 2] = "CENTER";
+            XPosition[XPosition["END"] = 3] = "END";
+        })(XPosition || (XPosition = {}));
+        var YPosition;
+        (function(YPosition) {
+            YPosition[YPosition["DETECTED"] = 0] = "DETECTED";
+            YPosition[YPosition["ABOVE"] = 1] = "ABOVE";
+            YPosition[YPosition["BELOW"] = 2] = "BELOW";
+        })(YPosition || (YPosition = {}));
+        var AnchorBoundaryType;
+        (function(AnchorBoundaryType) {
+            AnchorBoundaryType[AnchorBoundaryType["BOUNDED"] = 0] = "BOUNDED";
+            AnchorBoundaryType[AnchorBoundaryType["UNBOUNDED"] = 1] = "UNBOUNDED";
+        })(AnchorBoundaryType || (AnchorBoundaryType = {}));
+        /**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var SHOWN = CssClasses.SHOWN, SHOWING = CssClasses.SHOWING, SHOWING_TRANSITION = CssClasses.SHOWING_TRANSITION, HIDE = CssClasses.HIDE, HIDE_TRANSITION = CssClasses.HIDE_TRANSITION, MULTILINE_TOOLTIP = CssClasses.MULTILINE_TOOLTIP;
+        var MDCTooltipFoundation = function(_super) {
+            __extends(MDCTooltipFoundation, _super);
+            function MDCTooltipFoundation(adapter) {
+                var _this = _super.call(this, __assign(__assign({}, MDCTooltipFoundation.defaultAdapter), adapter)) || this;
+                _this.isShown = false;
+                _this.anchorGap = tooltip_constants_numbers.BOUNDED_ANCHOR_GAP;
+                _this.xTooltipPos = XPosition.DETECTED;
+                _this.yTooltipPos = YPosition.DETECTED;
+                _this.minViewportTooltipThreshold = tooltip_constants_numbers.MIN_VIEWPORT_TOOLTIP_THRESHOLD;
+                _this.hideDelayMs = tooltip_constants_numbers.HIDE_DELAY_MS;
+                _this.showDelayMs = tooltip_constants_numbers.SHOW_DELAY_MS;
+                _this.frameId = null;
+                _this.hideTimeout = null;
+                _this.showTimeout = null;
+                _this.documentClickHandler = function() {
+                    _this.handleClick();
+                };
+                _this.documentKeydownHandler = function(evt) {
+                    _this.handleKeydown(evt);
+                };
+                return _this;
+            }
+            Object.defineProperty(MDCTooltipFoundation, "defaultAdapter", {
+                get: function() {
+                    return {
+                        getAttribute: function() {
+                            return null;
+                        },
+                        setAttribute: function() {
+                            return undefined;
+                        },
+                        addClass: function() {
+                            return undefined;
+                        },
+                        hasClass: function() {
+                            return false;
+                        },
+                        removeClass: function() {
+                            return undefined;
+                        },
+                        setStyleProperty: function() {
+                            return undefined;
+                        },
+                        getViewportWidth: function() {
+                            return 0;
+                        },
+                        getViewportHeight: function() {
+                            return 0;
+                        },
+                        getTooltipSize: function() {
+                            return {
+                                width: 0,
+                                height: 0
+                            };
+                        },
+                        getAnchorBoundingRect: function() {
+                            return {
+                                top: 0,
+                                right: 0,
+                                bottom: 0,
+                                left: 0,
+                                width: 0,
+                                height: 0
+                            };
+                        },
+                        getAnchorAttribute: function() {
+                            return null;
+                        },
+                        isRTL: function() {
+                            return false;
+                        },
+                        registerDocumentEventHandler: function() {
+                            return undefined;
+                        },
+                        deregisterDocumentEventHandler: function() {
+                            return undefined;
+                        },
+                        notifyHidden: function() {
+                            return undefined;
+                        }
+                    };
+                },
+                enumerable: true,
+                configurable: true
+            });
+            MDCTooltipFoundation.prototype.handleAnchorMouseEnter = function() {
+                var _this = this;
+                if (this.isShown) {
+                    this.show();
+                } else {
+                    this.showTimeout = setTimeout((function() {
+                        _this.show();
+                    }), this.showDelayMs);
+                }
+            };
+            MDCTooltipFoundation.prototype.handleAnchorFocus = function() {
+                var _this = this;
+                this.showTimeout = setTimeout((function() {
+                    _this.show();
+                }), this.showDelayMs);
+            };
+            MDCTooltipFoundation.prototype.handleAnchorMouseLeave = function() {
+                var _this = this;
+                this.clearShowTimeout();
+                this.hideTimeout = setTimeout((function() {
+                    _this.hide();
+                }), this.hideDelayMs);
+            };
+            MDCTooltipFoundation.prototype.handleAnchorBlur = function() {
+                this.hide();
+            };
+            MDCTooltipFoundation.prototype.handleClick = function() {
+                this.hide();
+            };
+            MDCTooltipFoundation.prototype.handleKeydown = function(evt) {
+                var key = normalizeKey(evt);
+                if (key === KEY.ESCAPE) {
+                    this.hide();
+                }
+            };
+            MDCTooltipFoundation.prototype.show = function() {
+                var _this = this;
+                this.clearHideTimeout();
+                this.clearShowTimeout();
+                if (this.isShown) {
+                    return;
+                }
+                this.isShown = true;
+                var showTooltipOptions = this.parseShowTooltipOptions();
+                if (!showTooltipOptions.hideFromScreenreader) {
+                    this.adapter.setAttribute("aria-hidden", "false");
+                }
+                this.adapter.removeClass(HIDE);
+                this.adapter.addClass(SHOWING);
+                if (this.isTooltipMultiline()) {
+                    this.adapter.addClass(MULTILINE_TOOLTIP);
+                }
+                var _a = this.calculateTooltipDistance(), top = _a.top, left = _a.left;
+                this.adapter.setStyleProperty("top", top + "px");
+                this.adapter.setStyleProperty("left", left + "px");
+                this.adapter.registerDocumentEventHandler("click", this.documentClickHandler);
+                this.adapter.registerDocumentEventHandler("keydown", this.documentKeydownHandler);
+                this.frameId = requestAnimationFrame((function() {
+                    _this.clearAllAnimationClasses();
+                    _this.adapter.addClass(SHOWN);
+                    _this.adapter.addClass(SHOWING_TRANSITION);
+                }));
+            };
+            MDCTooltipFoundation.prototype.hide = function() {
+                this.clearHideTimeout();
+                this.clearShowTimeout();
+                if (!this.isShown) {
+                    return;
+                }
+                if (this.frameId) {
+                    cancelAnimationFrame(this.frameId);
+                }
+                this.isShown = false;
+                this.adapter.setAttribute("aria-hidden", "true");
+                this.clearAllAnimationClasses();
+                this.adapter.addClass(HIDE);
+                this.adapter.addClass(HIDE_TRANSITION);
+                this.adapter.removeClass(SHOWN);
+                this.adapter.deregisterDocumentEventHandler("click", this.documentClickHandler);
+                this.adapter.deregisterDocumentEventHandler("keydown", this.documentKeydownHandler);
+            };
+            MDCTooltipFoundation.prototype.handleTransitionEnd = function() {
+                var isHidingTooltip = this.adapter.hasClass(HIDE);
+                this.adapter.removeClass(SHOWING);
+                this.adapter.removeClass(SHOWING_TRANSITION);
+                this.adapter.removeClass(HIDE);
+                this.adapter.removeClass(HIDE_TRANSITION);
+                if (isHidingTooltip) {
+                    this.adapter.notifyHidden();
+                }
+            };
+            MDCTooltipFoundation.prototype.clearAllAnimationClasses = function() {
+                this.adapter.removeClass(SHOWING_TRANSITION);
+                this.adapter.removeClass(HIDE_TRANSITION);
+            };
+            MDCTooltipFoundation.prototype.setTooltipPosition = function(position) {
+                var xPos = position.xPos, yPos = position.yPos;
+                if (xPos) {
+                    this.xTooltipPos = xPos;
+                }
+                if (yPos) {
+                    this.yTooltipPos = yPos;
+                }
+            };
+            MDCTooltipFoundation.prototype.setAnchorBoundaryType = function(type) {
+                if (type === AnchorBoundaryType.UNBOUNDED) {
+                    this.anchorGap = tooltip_constants_numbers.UNBOUNDED_ANCHOR_GAP;
+                } else {
+                    this.anchorGap = tooltip_constants_numbers.BOUNDED_ANCHOR_GAP;
+                }
+            };
+            MDCTooltipFoundation.prototype.parseShowTooltipOptions = function() {
+                var hideFromScreenreader = Boolean(this.adapter.getAnchorAttribute("data-tooltip-id"));
+                return {
+                    hideFromScreenreader: hideFromScreenreader
+                };
+            };
+            MDCTooltipFoundation.prototype.isTooltipMultiline = function() {
+                var tooltipSize = this.adapter.getTooltipSize();
+                return tooltipSize.height > tooltip_constants_numbers.MIN_HEIGHT && tooltipSize.width >= tooltip_constants_numbers.MAX_WIDTH;
+            };
+            MDCTooltipFoundation.prototype.calculateTooltipDistance = function() {
+                var anchorRect = this.adapter.getAnchorBoundingRect();
+                if (!anchorRect) {
+                    return {
+                        top: 0,
+                        left: 0
+                    };
+                }
+                var tooltipSize = this.adapter.getTooltipSize();
+                var top = this.calculateYTooltipDistance(anchorRect, tooltipSize.height);
+                var left = this.calculateXTooltipDistance(anchorRect, tooltipSize.width);
+                return {
+                    top: top,
+                    left: left
+                };
+            };
+            MDCTooltipFoundation.prototype.calculateXTooltipDistance = function(anchorRect, tooltipWidth) {
+                var startPos = anchorRect.left;
+                var endPos = anchorRect.right - tooltipWidth;
+                var centerPos = anchorRect.left + (anchorRect.width - tooltipWidth) / 2;
+                if (this.adapter.isRTL()) {
+                    startPos = anchorRect.right - tooltipWidth;
+                    endPos = anchorRect.left;
+                }
+                var positionOptions = this.determineValidPositionOptions(centerPos, startPos, endPos);
+                if (this.xTooltipPos === XPosition.START && positionOptions.has(startPos)) {
+                    return startPos;
+                }
+                if (this.xTooltipPos === XPosition.END && positionOptions.has(endPos)) {
+                    return endPos;
+                }
+                if (this.xTooltipPos === XPosition.CENTER && positionOptions.has(centerPos)) {
+                    return centerPos;
+                }
+                if (positionOptions.has(centerPos)) {
+                    return centerPos;
+                }
+                if (positionOptions.has(startPos)) {
+                    return startPos;
+                }
+                if (positionOptions.has(endPos)) {
+                    return endPos;
+                }
+                return centerPos;
+            };
+            MDCTooltipFoundation.prototype.determineValidPositionOptions = function(centerPos, startPos, endPos) {
+                var posWithinThreshold = new Set;
+                var posWithinViewport = new Set;
+                if (this.positionHonorsViewportThreshold(centerPos)) {
+                    posWithinThreshold.add(centerPos);
+                } else if (this.positionDoesntCollideWithViewport(centerPos)) {
+                    posWithinViewport.add(centerPos);
+                }
+                if (this.positionHonorsViewportThreshold(startPos)) {
+                    posWithinThreshold.add(startPos);
+                } else if (this.positionDoesntCollideWithViewport(startPos)) {
+                    posWithinViewport.add(startPos);
+                }
+                if (this.positionHonorsViewportThreshold(endPos)) {
+                    posWithinThreshold.add(endPos);
+                } else if (this.positionDoesntCollideWithViewport(endPos)) {
+                    posWithinViewport.add(endPos);
+                }
+                return posWithinThreshold.size ? posWithinThreshold : posWithinViewport;
+            };
+            MDCTooltipFoundation.prototype.positionHonorsViewportThreshold = function(leftPos) {
+                var viewportWidth = this.adapter.getViewportWidth();
+                var tooltipWidth = this.adapter.getTooltipSize().width;
+                return leftPos + tooltipWidth <= viewportWidth - this.minViewportTooltipThreshold && leftPos >= this.minViewportTooltipThreshold;
+            };
+            MDCTooltipFoundation.prototype.positionDoesntCollideWithViewport = function(leftPos) {
+                var viewportWidth = this.adapter.getViewportWidth();
+                var tooltipWidth = this.adapter.getTooltipSize().width;
+                return leftPos + tooltipWidth <= viewportWidth && leftPos >= 0;
+            };
+            MDCTooltipFoundation.prototype.calculateYTooltipDistance = function(anchorRect, tooltipHeight) {
+                var belowYPos = anchorRect.bottom + this.anchorGap;
+                var aboveYPos = anchorRect.top - (this.anchorGap + tooltipHeight);
+                var yPositionOptions = this.determineValidYPositionOptions(aboveYPos, belowYPos);
+                if (this.yTooltipPos === YPosition.ABOVE && yPositionOptions.has(aboveYPos)) {
+                    return aboveYPos;
+                } else if (this.yTooltipPos === YPosition.BELOW && yPositionOptions.has(belowYPos)) {
+                    return belowYPos;
+                }
+                if (yPositionOptions.has(belowYPos)) {
+                    return belowYPos;
+                }
+                if (yPositionOptions.has(aboveYPos)) {
+                    return aboveYPos;
+                }
+                return belowYPos;
+            };
+            MDCTooltipFoundation.prototype.determineValidYPositionOptions = function(aboveAnchorPos, belowAnchorPos) {
+                var posWithinThreshold = new Set;
+                var posWithinViewport = new Set;
+                if (this.yPositionHonorsViewportThreshold(aboveAnchorPos)) {
+                    posWithinThreshold.add(aboveAnchorPos);
+                } else if (this.yPositionDoesntCollideWithViewport(aboveAnchorPos)) {
+                    posWithinViewport.add(aboveAnchorPos);
+                }
+                if (this.yPositionHonorsViewportThreshold(belowAnchorPos)) {
+                    posWithinThreshold.add(belowAnchorPos);
+                } else if (this.yPositionDoesntCollideWithViewport(belowAnchorPos)) {
+                    posWithinViewport.add(belowAnchorPos);
+                }
+                return posWithinThreshold.size ? posWithinThreshold : posWithinViewport;
+            };
+            MDCTooltipFoundation.prototype.yPositionHonorsViewportThreshold = function(yPos) {
+                var viewportHeight = this.adapter.getViewportHeight();
+                var tooltipHeight = this.adapter.getTooltipSize().height;
+                return yPos + tooltipHeight + this.minViewportTooltipThreshold <= viewportHeight && yPos >= this.minViewportTooltipThreshold;
+            };
+            MDCTooltipFoundation.prototype.yPositionDoesntCollideWithViewport = function(yPos) {
+                var viewportHeight = this.adapter.getViewportHeight();
+                var tooltipHeight = this.adapter.getTooltipSize().height;
+                return yPos + tooltipHeight <= viewportHeight && yPos >= 0;
+            };
+            MDCTooltipFoundation.prototype.clearShowTimeout = function() {
+                if (this.showTimeout) {
+                    clearTimeout(this.showTimeout);
+                    this.showTimeout = null;
+                }
+            };
+            MDCTooltipFoundation.prototype.clearHideTimeout = function() {
+                if (this.hideTimeout) {
+                    clearTimeout(this.hideTimeout);
+                    this.hideTimeout = null;
+                }
+            };
+            MDCTooltipFoundation.prototype.destroy = function() {
+                if (this.frameId) {
+                    cancelAnimationFrame(this.frameId);
+                    this.frameId = null;
+                }
+                this.clearHideTimeout();
+                this.clearShowTimeout();
+                this.adapter.removeClass(SHOWN);
+                this.adapter.removeClass(SHOWING_TRANSITION);
+                this.adapter.removeClass(SHOWING);
+                this.adapter.removeClass(HIDE);
+                this.adapter.removeClass(HIDE_TRANSITION);
+                this.adapter.deregisterDocumentEventHandler("click", this.documentClickHandler);
+                this.adapter.deregisterDocumentEventHandler("keydown", this.documentKeydownHandler);
+            };
+            return MDCTooltipFoundation;
+        }(MDCFoundation);
+        const tooltip_foundation = null && MDCTooltipFoundation;
+        /**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var MDCTooltip = function(_super) {
+            __extends(MDCTooltip, _super);
+            function MDCTooltip() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            MDCTooltip.attachTo = function(root) {
+                return new MDCTooltip(root);
+            };
+            MDCTooltip.prototype.initialSyncWithDOM = function() {
+                var _this = this;
+                var tooltipId = this.root.getAttribute("id");
+                if (!tooltipId) {
+                    throw new Error("MDCTooltip: Tooltip component must have an id.");
+                }
+                this.anchorElem = document.querySelector('[aria-describedby="' + tooltipId + '"]') || document.querySelector('[data-tooltip-id="' + tooltipId + '"]');
+                if (!this.anchorElem) {
+                    throw new Error("MDCTooltip: Tooltip component requires an anchor element annotated with [aria-describedby] or [data-tooltip-id] anchor element.");
+                }
+                this.handleMouseEnter = function() {
+                    _this.foundation.handleAnchorMouseEnter();
+                };
+                this.handleFocus = function() {
+                    _this.foundation.handleAnchorFocus();
+                };
+                this.handleMouseLeave = function() {
+                    _this.foundation.handleAnchorMouseLeave();
+                };
+                this.handleBlur = function() {
+                    _this.foundation.handleAnchorBlur();
+                };
+                this.handleTransitionEnd = function() {
+                    _this.foundation.handleTransitionEnd();
+                };
+                this.anchorElem.addEventListener("mouseenter", this.handleMouseEnter);
+                this.anchorElem.addEventListener("focus", this.handleFocus);
+                this.anchorElem.addEventListener("mouseleave", this.handleMouseLeave);
+                this.anchorElem.addEventListener("blur", this.handleBlur);
+                this.listen("transitionend", this.handleTransitionEnd);
+            };
+            MDCTooltip.prototype.destroy = function() {
+                if (this.anchorElem) {
+                    this.anchorElem.removeEventListener("mouseenter", this.handleMouseEnter);
+                    this.anchorElem.removeEventListener("focus", this.handleFocus);
+                    this.anchorElem.removeEventListener("mouseleave", this.handleMouseLeave);
+                    this.anchorElem.removeEventListener("blur", this.handleBlur);
+                }
+                this.unlisten("transitionend", this.handleTransitionEnd);
+                _super.prototype.destroy.call(this);
+            };
+            MDCTooltip.prototype.setTooltipPosition = function(position) {
+                this.foundation.setTooltipPosition(position);
+            };
+            MDCTooltip.prototype.setAnchorBoundaryType = function(type) {
+                this.foundation.setAnchorBoundaryType(type);
+            };
+            MDCTooltip.prototype.getDefaultFoundation = function() {
+                var _this = this;
+                var adapter = {
+                    getAttribute: function(attr) {
+                        return _this.root.getAttribute(attr);
+                    },
+                    setAttribute: function(attr, value) {
+                        _this.root.setAttribute(attr, value);
+                    },
+                    addClass: function(className) {
+                        _this.root.classList.add(className);
+                    },
+                    hasClass: function(className) {
+                        return _this.root.classList.contains(className);
+                    },
+                    removeClass: function(className) {
+                        _this.root.classList.remove(className);
+                    },
+                    setStyleProperty: function(propertyName, value) {
+                        _this.root.style.setProperty(propertyName, value);
+                    },
+                    getViewportWidth: function() {
+                        return window.innerWidth;
+                    },
+                    getViewportHeight: function() {
+                        return window.innerHeight;
+                    },
+                    getTooltipSize: function() {
+                        return {
+                            width: _this.root.offsetWidth,
+                            height: _this.root.offsetHeight
+                        };
+                    },
+                    getAnchorBoundingRect: function() {
+                        return _this.anchorElem ? _this.anchorElem.getBoundingClientRect() : null;
+                    },
+                    getAnchorAttribute: function(attr) {
+                        return _this.anchorElem ? _this.anchorElem.getAttribute(attr) : null;
+                    },
+                    isRTL: function() {
+                        return getComputedStyle(_this.root).direction === "rtl";
+                    },
+                    registerDocumentEventHandler: function(evt, handler) {
+                        document.body.addEventListener(evt, handler);
+                    },
+                    deregisterDocumentEventHandler: function(evt, handler) {
+                        document.body.removeEventListener(evt, handler);
+                    },
+                    notifyHidden: function() {
+                        _this.emit(tooltip_constants_events.HIDDEN, {});
+                    }
+                };
+                return new MDCTooltipFoundation(adapter);
+            };
+            return MDCTooltip;
+        }(MDCComponent);
+        function MBTooltip_init(arrayOfReferences) {
+            arrayOfReferences.forEach((function(elem) {
+                return elem._tooltip = MDCTooltip.attachTo(elem);
+            }));
+        }
+        function MBTooltip_destroy(elem) {
+            elem._tooltip.destroy();
         }
         /**
  * @license
@@ -12317,7 +22513,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCTopAppBarBaseFoundation = function(_super) {
+ */        var MDCTopAppBarBaseFoundation = function(_super) {
             __extends(MDCTopAppBarBaseFoundation, _super);
             function MDCTopAppBarBaseFoundation(adapter) {
                 return _super.call(this, __assign(__assign({}, MDCTopAppBarBaseFoundation.defaultAdapter), adapter)) || this;
@@ -12382,7 +22578,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCTopAppBarBaseFoundation;
         }(MDCFoundation);
-        var top_app_bar_foundation = foundation_MDCTopAppBarBaseFoundation;
+        const top_app_bar_foundation = null && MDCTopAppBarBaseFoundation;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -12405,7 +22601,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */        var INITIAL_VALUE = 0;
-        var foundation_MDCTopAppBarFoundation = function(_super) {
+        var MDCTopAppBarFoundation = function(_super) {
             __extends(MDCTopAppBarFoundation, _super);
             function MDCTopAppBarFoundation(adapter) {
                 var _this = _super.call(this, adapter) || this;
@@ -12492,8 +22688,8 @@ PERFORMANCE OF THIS SOFTWARE.
                 this.handleTargetScroll();
             };
             return MDCTopAppBarFoundation;
-        }(foundation_MDCTopAppBarBaseFoundation);
-        var standard_foundation = foundation_MDCTopAppBarFoundation;
+        }(MDCTopAppBarBaseFoundation);
+        const standard_foundation = null && MDCTopAppBarFoundation;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -12515,7 +22711,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCFixedTopAppBarFoundation = function(_super) {
+ */        var MDCFixedTopAppBarFoundation = function(_super) {
             __extends(MDCFixedTopAppBarFoundation, _super);
             function MDCFixedTopAppBarFoundation() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -12537,8 +22733,8 @@ PERFORMANCE OF THIS SOFTWARE.
                 }
             };
             return MDCFixedTopAppBarFoundation;
-        }(foundation_MDCTopAppBarFoundation);
-        var fixed_foundation = foundation_MDCFixedTopAppBarFoundation;
+        }(MDCTopAppBarFoundation);
+        const fixed_foundation = null && MDCFixedTopAppBarFoundation;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -12560,7 +22756,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_MDCShortTopAppBarFoundation = function(_super) {
+ */        var MDCShortTopAppBarFoundation = function(_super) {
             __extends(MDCShortTopAppBarFoundation, _super);
             function MDCShortTopAppBarFoundation(adapter) {
                 var _this = _super.call(this, adapter) || this;
@@ -12620,8 +22816,8 @@ PERFORMANCE OF THIS SOFTWARE.
                 this.isCollapsed_ = true;
             };
             return MDCShortTopAppBarFoundation;
-        }(foundation_MDCTopAppBarBaseFoundation);
-        var short_foundation = foundation_MDCShortTopAppBarFoundation;
+        }(MDCTopAppBarBaseFoundation);
+        const short_foundation = null && MDCShortTopAppBarFoundation;
         /**
  * @license
  * Copyright 2018 Google Inc.
@@ -12643,7 +22839,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_MDCTopAppBar = function(_super) {
+ */        var MDCTopAppBar = function(_super) {
             __extends(MDCTopAppBar, _super);
             function MDCTopAppBar() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -12654,7 +22850,7 @@ PERFORMANCE OF THIS SOFTWARE.
             MDCTopAppBar.prototype.initialize = function(rippleFactory) {
                 if (rippleFactory === void 0) {
                     rippleFactory = function(el) {
-                        return component_MDCRipple.attachTo(el);
+                        return MDCRipple.attachTo(el);
                     };
                 }
                 this.navIcon_ = this.root.querySelector(top_app_bar_constants_strings.NAVIGATION_ICON_SELECTOR);
@@ -12736,1000 +22932,53 @@ PERFORMANCE OF THIS SOFTWARE.
                 };
                 var foundation;
                 if (this.root.classList.contains(top_app_bar_constants_cssClasses.SHORT_CLASS)) {
-                    foundation = new foundation_MDCShortTopAppBarFoundation(adapter);
+                    foundation = new MDCShortTopAppBarFoundation(adapter);
                 } else if (this.root.classList.contains(top_app_bar_constants_cssClasses.FIXED_CLASS)) {
-                    foundation = new foundation_MDCFixedTopAppBarFoundation(adapter);
+                    foundation = new MDCFixedTopAppBarFoundation(adapter);
                 } else {
-                    foundation = new foundation_MDCTopAppBarFoundation(adapter);
+                    foundation = new MDCTopAppBarFoundation(adapter);
                 }
                 return foundation;
             };
             return MDCTopAppBar;
-        }(component_MDCComponent);
+        }(MDCComponent);
         function MBTopAppBar_init(elem, scrollTarget) {
-            var topAppBar = component_MDCTopAppBar.attachTo(elem);
+            elem._topAppBar = MDCTopAppBar.attachTo(elem);
             if (scrollTarget) {
-                topAppBar.setScrollTarget(document.querySelector(scrollTarget));
+                elem._topAppBar.setScrollTarget(document.querySelector(scrollTarget));
             }
+        }
+        function MBTopAppBar_destroy(elem) {
+            elem._topAppBar.destroy();
         }
         window.MaterialBlazor = {
             MBAutoCompleteTextField: MBAutocompleteTextField_namespaceObject,
+            MBBladeSet: MBBladeSet_namespaceObject,
             MBButton: MBButton_namespaceObject,
             MBCard: MBCard_namespaceObject,
+            MBChipsSelectMulti: MBChipsSelectMulti_namespaceObject,
             MBCheckbox: MBCheckbox_namespaceObject,
             MBCircularProgress: MBCircularProgress_namespaceObject,
+            MBDataTable: MBDataTable_namespaceObject,
             MBDatePicker: MBDatePicker_namespaceObject,
             MBDialog: MBDialog_namespaceObject,
             MBDrawer: MBDrawer_namespaceObject,
             MBFloatingActionButton: MBFloatingActionButton_namespaceObject,
+            MBGrid: MBGrid_namespaceObject,
             MBIconButton: MBIconButton_namespaceObject,
             MBIconButtonToggle: MBIconButtonToggle_namespaceObject,
             MBLinearProgress: MBLinearProgress_namespaceObject,
             MBList: MBList_namespaceObject,
             MBMenu: MBMenu_namespaceObject,
             MBRadioButton: MBRadioButton_namespaceObject,
+            MBSegmentedButtonMulti: MBSegmentedButtonMulti_namespaceObject,
             MBSelect: MBSelect_namespaceObject,
+            MBSlider: MBSlider_namespaceObject,
             MBSwitch: MBSwitch_namespaceObject,
             MBTabBar: MBTabBar_namespaceObject,
             MBTextField: MBTextField_namespaceObject,
+            MBTooltip: MBTooltip_namespaceObject,
             MBTopAppBar: MBTopAppBar_namespaceObject
         };
-    }
-});
-
-/**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/material-components/material-components-web/blob/master/LICENSE
- */
-(function webpackUniversalModuleDefinition(root, factory) {
-    if (typeof exports === "object" && typeof module === "object") module.exports = factory(); else if (typeof define === "function" && define.amd) define([], factory); else if (typeof exports === "object") exports["tooltip"] = factory(); else root["mdc"] = root["mdc"] || {}, 
-    root["mdc"]["tooltip"] = factory();
-})(this, (function() {
-    return function(modules) {
-        var installedModules = {};
-        function __webpack_require__(moduleId) {
-            if (installedModules[moduleId]) {
-                return installedModules[moduleId].exports;
-            }
-            var module = installedModules[moduleId] = {
-                i: moduleId,
-                l: false,
-                exports: {}
-            };
-            modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-            module.l = true;
-            return module.exports;
-        }
-        __webpack_require__.m = modules;
-        __webpack_require__.c = installedModules;
-        __webpack_require__.d = function(exports, name, getter) {
-            if (!__webpack_require__.o(exports, name)) {
-                Object.defineProperty(exports, name, {
-                    enumerable: true,
-                    get: getter
-                });
-            }
-        };
-        __webpack_require__.r = function(exports) {
-            if (typeof Symbol !== "undefined" && Symbol.toStringTag) {
-                Object.defineProperty(exports, Symbol.toStringTag, {
-                    value: "Module"
-                });
-            }
-            Object.defineProperty(exports, "__esModule", {
-                value: true
-            });
-        };
-        __webpack_require__.t = function(value, mode) {
-            if (mode & 1) value = __webpack_require__(value);
-            if (mode & 8) return value;
-            if (mode & 4 && typeof value === "object" && value && value.__esModule) return value;
-            var ns = Object.create(null);
-            __webpack_require__.r(ns);
-            Object.defineProperty(ns, "default", {
-                enumerable: true,
-                value: value
-            });
-            if (mode & 2 && typeof value != "string") for (var key in value) __webpack_require__.d(ns, key, function(key) {
-                return value[key];
-            }.bind(null, key));
-            return ns;
-        };
-        __webpack_require__.n = function(module) {
-            var getter = module && module.__esModule ? function getDefault() {
-                return module["default"];
-            } : function getModuleExports() {
-                return module;
-            };
-            __webpack_require__.d(getter, "a", getter);
-            return getter;
-        };
-        __webpack_require__.o = function(object, property) {
-            return Object.prototype.hasOwnProperty.call(object, property);
-        };
-        __webpack_require__.p = "";
-        return __webpack_require__(__webpack_require__.s = "./packages/mdc-tooltip/index.ts");
-    }({
-        "./packages/mdc-base/component.ts": 
-        /*!****************************************!*\
-  !*** ./packages/mdc-base/component.ts ***!
-  \****************************************/
-        /*! no static exports found */ function(module, exports, __webpack_require__) {
-            "use strict";
-            /**
- * @license
- * Copyright 2016 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */            var __read = this && this.__read || function(o, n) {
-                var m = typeof Symbol === "function" && o[Symbol.iterator];
-                if (!m) return o;
-                var i = m.call(o), r, ar = [], e;
-                try {
-                    while ((n === void 0 || n-- > 0) && !(r = i.next()).done) {
-                        ar.push(r.value);
-                    }
-                } catch (error) {
-                    e = {
-                        error: error
-                    };
-                } finally {
-                    try {
-                        if (r && !r.done && (m = i["return"])) m.call(i);
-                    } finally {
-                        if (e) throw e.error;
-                    }
-                }
-                return ar;
-            };
-            var __spread = this && this.__spread || function() {
-                for (var ar = [], i = 0; i < arguments.length; i++) {
-                    ar = ar.concat(__read(arguments[i]));
-                }
-                return ar;
-            };
-            Object.defineProperty(exports, "__esModule", {
-                value: true
-            });
-            var foundation_1 = __webpack_require__(/*! ./foundation */ "./packages/mdc-base/foundation.ts");
-            var MDCComponent = function() {
-                function MDCComponent(root, foundation) {
-                    var args = [];
-                    for (var _i = 2; _i < arguments.length; _i++) {
-                        args[_i - 2] = arguments[_i];
-                    }
-                    this.root = root;
-                    this.initialize.apply(this, __spread(args));
-                    this.foundation = foundation === undefined ? this.getDefaultFoundation() : foundation;
-                    this.foundation.init();
-                    this.initialSyncWithDOM();
-                }
-                MDCComponent.attachTo = function(root) {
-                    return new MDCComponent(root, new foundation_1.MDCFoundation({}));
-                };
-                MDCComponent.prototype.initialize = function() {
-                    var _args = [];
-                    for (var _i = 0; _i < arguments.length; _i++) {
-                        _args[_i] = arguments[_i];
-                    }
-                };
-                MDCComponent.prototype.getDefaultFoundation = function() {
-                    throw new Error("Subclasses must override getDefaultFoundation to return a properly configured " + "foundation class");
-                };
-                MDCComponent.prototype.initialSyncWithDOM = function() {};
-                MDCComponent.prototype.destroy = function() {
-                    this.foundation.destroy();
-                };
-                MDCComponent.prototype.listen = function(evtType, handler, options) {
-                    this.root.addEventListener(evtType, handler, options);
-                };
-                MDCComponent.prototype.unlisten = function(evtType, handler, options) {
-                    this.root.removeEventListener(evtType, handler, options);
-                };
-                MDCComponent.prototype.emit = function(evtType, evtData, shouldBubble) {
-                    if (shouldBubble === void 0) {
-                        shouldBubble = false;
-                    }
-                    var evt;
-                    if (typeof CustomEvent === "function") {
-                        evt = new CustomEvent(evtType, {
-                            bubbles: shouldBubble,
-                            detail: evtData
-                        });
-                    } else {
-                        evt = document.createEvent("CustomEvent");
-                        evt.initCustomEvent(evtType, shouldBubble, false, evtData);
-                    }
-                    this.root.dispatchEvent(evt);
-                };
-                return MDCComponent;
-            }();
-            exports.MDCComponent = MDCComponent;
-            exports.default = MDCComponent;
-        },
-        "./packages/mdc-base/foundation.ts": 
-        /*!*****************************************!*\
-  !*** ./packages/mdc-base/foundation.ts ***!
-  \*****************************************/
-        /*! no static exports found */ function(module, exports, __webpack_require__) {
-            "use strict";
-            /**
- * @license
- * Copyright 2016 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */            Object.defineProperty(exports, "__esModule", {
-                value: true
-            });
-            var MDCFoundation = function() {
-                function MDCFoundation(adapter) {
-                    if (adapter === void 0) {
-                        adapter = {};
-                    }
-                    this.adapter = adapter;
-                }
-                Object.defineProperty(MDCFoundation, "cssClasses", {
-                    get: function get() {
-                        return {};
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(MDCFoundation, "strings", {
-                    get: function get() {
-                        return {};
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(MDCFoundation, "numbers", {
-                    get: function get() {
-                        return {};
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                Object.defineProperty(MDCFoundation, "defaultAdapter", {
-                    get: function get() {
-                        return {};
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                MDCFoundation.prototype.init = function() {};
-                MDCFoundation.prototype.destroy = function() {};
-                return MDCFoundation;
-            }();
-            exports.MDCFoundation = MDCFoundation;
-            exports.default = MDCFoundation;
-        },
-        "./packages/mdc-dom/keyboard.ts": 
-        /*!**************************************!*\
-  !*** ./packages/mdc-dom/keyboard.ts ***!
-  \**************************************/
-        /*! no static exports found */ function(module, exports, __webpack_require__) {
-            "use strict";
-            /**
- * @license
- * Copyright 2020 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */            Object.defineProperty(exports, "__esModule", {
-                value: true
-            });
-            exports.KEY = {
-                UNKNOWN: "Unknown",
-                BACKSPACE: "Backspace",
-                ENTER: "Enter",
-                SPACEBAR: "Spacebar",
-                PAGE_UP: "PageUp",
-                PAGE_DOWN: "PageDown",
-                END: "End",
-                HOME: "Home",
-                ARROW_LEFT: "ArrowLeft",
-                ARROW_UP: "ArrowUp",
-                ARROW_RIGHT: "ArrowRight",
-                ARROW_DOWN: "ArrowDown",
-                DELETE: "Delete",
-                ESCAPE: "Escape"
-            };
-            var normalizedKeys = new Set;
-            normalizedKeys.add(exports.KEY.BACKSPACE);
-            normalizedKeys.add(exports.KEY.ENTER);
-            normalizedKeys.add(exports.KEY.SPACEBAR);
-            normalizedKeys.add(exports.KEY.PAGE_UP);
-            normalizedKeys.add(exports.KEY.PAGE_DOWN);
-            normalizedKeys.add(exports.KEY.END);
-            normalizedKeys.add(exports.KEY.HOME);
-            normalizedKeys.add(exports.KEY.ARROW_LEFT);
-            normalizedKeys.add(exports.KEY.ARROW_UP);
-            normalizedKeys.add(exports.KEY.ARROW_RIGHT);
-            normalizedKeys.add(exports.KEY.ARROW_DOWN);
-            normalizedKeys.add(exports.KEY.DELETE);
-            normalizedKeys.add(exports.KEY.ESCAPE);
-            var KEY_CODE = {
-                BACKSPACE: 8,
-                ENTER: 13,
-                SPACEBAR: 32,
-                PAGE_UP: 33,
-                PAGE_DOWN: 34,
-                END: 35,
-                HOME: 36,
-                ARROW_LEFT: 37,
-                ARROW_UP: 38,
-                ARROW_RIGHT: 39,
-                ARROW_DOWN: 40,
-                DELETE: 46,
-                ESCAPE: 27
-            };
-            var mappedKeyCodes = new Map;
-            mappedKeyCodes.set(KEY_CODE.BACKSPACE, exports.KEY.BACKSPACE);
-            mappedKeyCodes.set(KEY_CODE.ENTER, exports.KEY.ENTER);
-            mappedKeyCodes.set(KEY_CODE.SPACEBAR, exports.KEY.SPACEBAR);
-            mappedKeyCodes.set(KEY_CODE.PAGE_UP, exports.KEY.PAGE_UP);
-            mappedKeyCodes.set(KEY_CODE.PAGE_DOWN, exports.KEY.PAGE_DOWN);
-            mappedKeyCodes.set(KEY_CODE.END, exports.KEY.END);
-            mappedKeyCodes.set(KEY_CODE.HOME, exports.KEY.HOME);
-            mappedKeyCodes.set(KEY_CODE.ARROW_LEFT, exports.KEY.ARROW_LEFT);
-            mappedKeyCodes.set(KEY_CODE.ARROW_UP, exports.KEY.ARROW_UP);
-            mappedKeyCodes.set(KEY_CODE.ARROW_RIGHT, exports.KEY.ARROW_RIGHT);
-            mappedKeyCodes.set(KEY_CODE.ARROW_DOWN, exports.KEY.ARROW_DOWN);
-            mappedKeyCodes.set(KEY_CODE.DELETE, exports.KEY.DELETE);
-            mappedKeyCodes.set(KEY_CODE.ESCAPE, exports.KEY.ESCAPE);
-            var navigationKeys = new Set;
-            navigationKeys.add(exports.KEY.PAGE_UP);
-            navigationKeys.add(exports.KEY.PAGE_DOWN);
-            navigationKeys.add(exports.KEY.END);
-            navigationKeys.add(exports.KEY.HOME);
-            navigationKeys.add(exports.KEY.ARROW_LEFT);
-            navigationKeys.add(exports.KEY.ARROW_UP);
-            navigationKeys.add(exports.KEY.ARROW_RIGHT);
-            navigationKeys.add(exports.KEY.ARROW_DOWN);
-            function normalizeKey(evt) {
-                var key = evt.key;
-                if (normalizedKeys.has(key)) {
-                    return key;
-                }
-                var mappedKey = mappedKeyCodes.get(evt.keyCode);
-                if (mappedKey) {
-                    return mappedKey;
-                }
-                return exports.KEY.UNKNOWN;
-            }
-            exports.normalizeKey = normalizeKey;
-            function isNavigationEvent(evt) {
-                return navigationKeys.has(normalizeKey(evt));
-            }
-            exports.isNavigationEvent = isNavigationEvent;
-        },
-        "./packages/mdc-tooltip/component.ts": 
-        /*!*******************************************!*\
-  !*** ./packages/mdc-tooltip/component.ts ***!
-  \*******************************************/
-        /*! no static exports found */ function(module, exports, __webpack_require__) {
-            "use strict";
-            /**
- * @license
- * Copyright 2020 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */            var __extends = this && this.__extends || function() {
-                var _extendStatics = function extendStatics(d, b) {
-                    _extendStatics = Object.setPrototypeOf || {
-                        __proto__: []
-                    } instanceof Array && function(d, b) {
-                        d.__proto__ = b;
-                    } || function(d, b) {
-                        for (var p in b) {
-                            if (b.hasOwnProperty(p)) d[p] = b[p];
-                        }
-                    };
-                    return _extendStatics(d, b);
-                };
-                return function(d, b) {
-                    _extendStatics(d, b);
-                    function __() {
-                        this.constructor = d;
-                    }
-                    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __);
-                };
-            }();
-            Object.defineProperty(exports, "__esModule", {
-                value: true
-            });
-            var component_1 = __webpack_require__(/*! @material/base/component */ "./packages/mdc-base/component.ts");
-            var foundation_1 = __webpack_require__(/*! ./foundation */ "./packages/mdc-tooltip/foundation.ts");
-            var MDCTooltip = function(_super) {
-                __extends(MDCTooltip, _super);
-                function MDCTooltip() {
-                    return _super !== null && _super.apply(this, arguments) || this;
-                }
-                MDCTooltip.attachTo = function(root) {
-                    return new MDCTooltip(root);
-                };
-                MDCTooltip.prototype.initialSyncWithDOM = function() {
-                    var _this = this;
-                    var tooltipId = this.root.getAttribute("id");
-                    if (!tooltipId) {
-                        throw new Error("MDCTooltip: Tooltip component must have an id.");
-                    }
-                    this.anchorElem = document.querySelector('[aria-describedby="' + tooltipId + '"]');
-                    if (!this.anchorElem) {
-                        throw new Error("MDCTooltip: Tooltip component requries an [aria-describedby] anchor element.");
-                    }
-                    this.handleMouseEnter = function() {
-                        _this.foundation.handleAnchorMouseEnter();
-                    };
-                    this.handleFocus = function() {
-                        _this.foundation.handleAnchorFocus();
-                    };
-                    this.handleMouseLeave = function() {
-                        _this.foundation.handleAnchorMouseLeave();
-                    };
-                    this.handleBlur = function() {
-                        _this.foundation.handleAnchorBlur();
-                    };
-                    this.handleTransitionEnd = function() {
-                        _this.foundation.handleTransitionEnd();
-                    };
-                    this.anchorElem.addEventListener("mouseenter", this.handleMouseEnter);
-                    this.anchorElem.addEventListener("focus", this.handleFocus);
-                    this.anchorElem.addEventListener("mouseleave", this.handleMouseLeave);
-                    this.anchorElem.addEventListener("blur", this.handleBlur);
-                    this.listen("transitionend", this.handleTransitionEnd);
-                };
-                MDCTooltip.prototype.destroy = function() {
-                    if (this.anchorElem) {
-                        this.anchorElem.removeEventListener("mouseenter", this.handleMouseEnter);
-                        this.anchorElem.removeEventListener("focus", this.handleFocus);
-                        this.anchorElem.removeEventListener("mouseleave", this.handleMouseLeave);
-                        this.anchorElem.removeEventListener("blur", this.handleBlur);
-                    }
-                    this.unlisten("transitionend", this.handleTransitionEnd);
-                    _super.prototype.destroy.call(this);
-                };
-                MDCTooltip.prototype.setTooltipPosition = function(pos) {
-                    this.foundation.setTooltipPosition(pos);
-                };
-                MDCTooltip.prototype.setAnchorBoundaryType = function(type) {
-                    this.foundation.setAnchorBoundaryType(type);
-                };
-                MDCTooltip.prototype.getDefaultFoundation = function() {
-                    var _this = this;
-                    var adapter = {
-                        getAttribute: function getAttribute(attr) {
-                            return _this.root.getAttribute(attr);
-                        },
-                        setAttribute: function setAttribute(attr, value) {
-                            _this.root.setAttribute(attr, value);
-                        },
-                        addClass: function addClass(className) {
-                            _this.root.classList.add(className);
-                        },
-                        removeClass: function removeClass(className) {
-                            _this.root.classList.remove(className);
-                        },
-                        setStyleProperty: function setStyleProperty(propertyName, value) {
-                            _this.root.style.setProperty(propertyName, value);
-                        },
-                        getViewportWidth: function getViewportWidth() {
-                            return window.innerWidth;
-                        },
-                        getViewportHeight: function getViewportHeight() {
-                            return window.innerHeight;
-                        },
-                        getTooltipSize: function getTooltipSize() {
-                            return {
-                                width: _this.root.offsetWidth,
-                                height: _this.root.offsetHeight
-                            };
-                        },
-                        getAnchorBoundingRect: function getAnchorBoundingRect() {
-                            return _this.anchorElem ? _this.anchorElem.getBoundingClientRect() : null;
-                        },
-                        isRTL: function isRTL() {
-                            return getComputedStyle(_this.root).direction === "rtl";
-                        },
-                        registerDocumentEventHandler: function registerDocumentEventHandler(evt, handler) {
-                            document.body.addEventListener(evt, handler);
-                        },
-                        deregisterDocumentEventHandler: function deregisterDocumentEventHandler(evt, handler) {
-                            document.body.removeEventListener(evt, handler);
-                        }
-                    };
-                    return new foundation_1.MDCTooltipFoundation(adapter);
-                };
-                return MDCTooltip;
-            }(component_1.MDCComponent);
-            exports.MDCTooltip = MDCTooltip;
-        },
-        "./packages/mdc-tooltip/constants.ts": 
-        /*!*******************************************!*\
-  !*** ./packages/mdc-tooltip/constants.ts ***!
-  \*******************************************/
-        /*! no static exports found */ function(module, exports, __webpack_require__) {
-            "use strict";
-            /**
- * @license
- * Copyright 2020 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */            Object.defineProperty(exports, "__esModule", {
-                value: true
-            });
-            var cssClasses = {
-                SHOWN: "mdc-tooltip--shown",
-                SHOWING: "mdc-tooltip--showing",
-                HIDE: "mdc-tooltip--hide"
-            };
-            exports.cssClasses = cssClasses;
-            var numbers = {
-                BOUNDED_ANCHOR_GAP: 4,
-                UNBOUNDED_ANCHOR_GAP: 8,
-                MIN_VIEWPORT_TOOLTIP_THRESHOLD: 32,
-                HIDE_DELAY_MS: 600
-            };
-            exports.numbers = numbers;
-            var Position;
-            (function(Position) {
-                Position[Position["DETECTED"] = 0] = "DETECTED";
-                Position[Position["START"] = 1] = "START";
-                Position[Position["CENTER"] = 2] = "CENTER";
-                Position[Position["END"] = 3] = "END";
-            })(Position || (Position = {}));
-            exports.Position = Position;
-            var AnchorBoundaryType;
-            (function(AnchorBoundaryType) {
-                AnchorBoundaryType[AnchorBoundaryType["BOUNDED"] = 0] = "BOUNDED";
-                AnchorBoundaryType[AnchorBoundaryType["UNBOUNDED"] = 1] = "UNBOUNDED";
-            })(AnchorBoundaryType || (AnchorBoundaryType = {}));
-            exports.AnchorBoundaryType = AnchorBoundaryType;
-        },
-        "./packages/mdc-tooltip/foundation.ts": 
-        /*!********************************************!*\
-  !*** ./packages/mdc-tooltip/foundation.ts ***!
-  \********************************************/
-        /*! no static exports found */ function(module, exports, __webpack_require__) {
-            "use strict";
-            /**
- * @license
- * Copyright 2020 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */            var __extends = this && this.__extends || function() {
-                var _extendStatics = function extendStatics(d, b) {
-                    _extendStatics = Object.setPrototypeOf || {
-                        __proto__: []
-                    } instanceof Array && function(d, b) {
-                        d.__proto__ = b;
-                    } || function(d, b) {
-                        for (var p in b) {
-                            if (b.hasOwnProperty(p)) d[p] = b[p];
-                        }
-                    };
-                    return _extendStatics(d, b);
-                };
-                return function(d, b) {
-                    _extendStatics(d, b);
-                    function __() {
-                        this.constructor = d;
-                    }
-                    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __);
-                };
-            }();
-            var __assign = this && this.__assign || function() {
-                __assign = Object.assign || function(t) {
-                    for (var s, i = 1, n = arguments.length; i < n; i++) {
-                        s = arguments[i];
-                        for (var p in s) {
-                            if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
-                        }
-                    }
-                    return t;
-                };
-                return __assign.apply(this, arguments);
-            };
-            Object.defineProperty(exports, "__esModule", {
-                value: true
-            });
-            var foundation_1 = __webpack_require__(/*! @material/base/foundation */ "./packages/mdc-base/foundation.ts");
-            var keyboard_1 = __webpack_require__(/*! @material/dom/keyboard */ "./packages/mdc-dom/keyboard.ts");
-            var constants_1 = __webpack_require__(/*! ./constants */ "./packages/mdc-tooltip/constants.ts");
-            var SHOWN = constants_1.cssClasses.SHOWN, SHOWING = constants_1.cssClasses.SHOWING, HIDE = constants_1.cssClasses.HIDE;
-            var MDCTooltipFoundation = function(_super) {
-                __extends(MDCTooltipFoundation, _super);
-                function MDCTooltipFoundation(adapter) {
-                    var _this = _super.call(this, __assign(__assign({}, MDCTooltipFoundation.defaultAdapter), adapter)) || this;
-                    _this.isShown = false;
-                    _this.anchorGap = constants_1.numbers.BOUNDED_ANCHOR_GAP;
-                    _this.tooltipPos = constants_1.Position.DETECTED;
-                    _this.minViewportTooltipThreshold = constants_1.numbers.MIN_VIEWPORT_TOOLTIP_THRESHOLD;
-                    _this.hideDelayMs = constants_1.numbers.HIDE_DELAY_MS;
-                    _this.frameId = null;
-                    _this.hideTimeout = null;
-                    _this.documentClickHandler = function() {
-                        _this.handleClick();
-                    };
-                    _this.documentKeydownHandler = function(evt) {
-                        _this.handleKeydown(evt);
-                    };
-                    return _this;
-                }
-                Object.defineProperty(MDCTooltipFoundation, "defaultAdapter", {
-                    get: function get() {
-                        return {
-                            getAttribute: function getAttribute() {
-                                return null;
-                            },
-                            setAttribute: function setAttribute() {
-                                return undefined;
-                            },
-                            addClass: function addClass() {
-                                return undefined;
-                            },
-                            removeClass: function removeClass() {
-                                return undefined;
-                            },
-                            setStyleProperty: function setStyleProperty() {
-                                return undefined;
-                            },
-                            getViewportWidth: function getViewportWidth() {
-                                return 0;
-                            },
-                            getViewportHeight: function getViewportHeight() {
-                                return 0;
-                            },
-                            getTooltipSize: function getTooltipSize() {
-                                return {
-                                    width: 0,
-                                    height: 0
-                                };
-                            },
-                            getAnchorBoundingRect: function getAnchorBoundingRect() {
-                                return {
-                                    top: 0,
-                                    right: 0,
-                                    bottom: 0,
-                                    left: 0,
-                                    width: 0,
-                                    height: 0
-                                };
-                            },
-                            isRTL: function isRTL() {
-                                return false;
-                            },
-                            registerDocumentEventHandler: function registerDocumentEventHandler() {
-                                return undefined;
-                            },
-                            deregisterDocumentEventHandler: function deregisterDocumentEventHandler() {
-                                return undefined;
-                            }
-                        };
-                    },
-                    enumerable: true,
-                    configurable: true
-                });
-                MDCTooltipFoundation.prototype.handleAnchorMouseEnter = function() {
-                    this.show();
-                };
-                MDCTooltipFoundation.prototype.handleAnchorFocus = function() {
-                    this.show();
-                };
-                MDCTooltipFoundation.prototype.handleAnchorMouseLeave = function() {
-                    var _this = this;
-                    this.hideTimeout = setTimeout((function() {
-                        _this.hide();
-                    }), this.hideDelayMs);
-                };
-                MDCTooltipFoundation.prototype.handleAnchorBlur = function() {
-                    this.hide();
-                };
-                MDCTooltipFoundation.prototype.handleClick = function() {
-                    this.hide();
-                };
-                MDCTooltipFoundation.prototype.handleKeydown = function(evt) {
-                    var key = keyboard_1.normalizeKey(evt);
-                    if (key === keyboard_1.KEY.ESCAPE) {
-                        this.hide();
-                    }
-                };
-                MDCTooltipFoundation.prototype.show = function() {
-                    var _this = this;
-                    this.clearHideTimeout();
-                    if (this.isShown) {
-                        return;
-                    }
-                    this.isShown = true;
-                    this.adapter.setAttribute("aria-hidden", "false");
-                    this.adapter.removeClass(HIDE);
-                    this.adapter.addClass(SHOWING);
-                    var _a = this.calculateTooltipDistance(), top = _a.top, left = _a.left;
-                    this.adapter.setStyleProperty("top", top + "px");
-                    this.adapter.setStyleProperty("left", left + "px");
-                    this.adapter.registerDocumentEventHandler("click", this.documentClickHandler);
-                    this.adapter.registerDocumentEventHandler("keydown", this.documentKeydownHandler);
-                    this.frameId = requestAnimationFrame((function() {
-                        _this.adapter.addClass(SHOWN);
-                    }));
-                };
-                MDCTooltipFoundation.prototype.hide = function() {
-                    this.clearHideTimeout();
-                    if (!this.isShown) {
-                        return;
-                    }
-                    if (this.frameId) {
-                        cancelAnimationFrame(this.frameId);
-                    }
-                    this.isShown = false;
-                    this.adapter.setAttribute("aria-hidden", "true");
-                    this.adapter.addClass(HIDE);
-                    this.adapter.removeClass(SHOWN);
-                    this.adapter.deregisterDocumentEventHandler("click", this.documentClickHandler);
-                    this.adapter.deregisterDocumentEventHandler("keydown", this.documentKeydownHandler);
-                };
-                MDCTooltipFoundation.prototype.handleTransitionEnd = function() {
-                    this.adapter.removeClass(SHOWING);
-                    this.adapter.removeClass(HIDE);
-                };
-                MDCTooltipFoundation.prototype.setTooltipPosition = function(pos) {
-                    this.tooltipPos = pos;
-                };
-                MDCTooltipFoundation.prototype.setAnchorBoundaryType = function(type) {
-                    if (type === constants_1.AnchorBoundaryType.UNBOUNDED) {
-                        this.anchorGap = constants_1.numbers.UNBOUNDED_ANCHOR_GAP;
-                    } else {
-                        this.anchorGap = constants_1.numbers.BOUNDED_ANCHOR_GAP;
-                    }
-                };
-                MDCTooltipFoundation.prototype.calculateTooltipDistance = function() {
-                    var anchorRect = this.adapter.getAnchorBoundingRect();
-                    var tooltipSize = this.adapter.getTooltipSize();
-                    if (!anchorRect) {
-                        return {
-                            top: 0,
-                            left: 0
-                        };
-                    }
-                    var yPos = anchorRect.bottom + this.anchorGap;
-                    var startPos = anchorRect.left;
-                    var endPos = anchorRect.right - tooltipSize.width;
-                    var centerPos = anchorRect.left + (anchorRect.width - tooltipSize.width) / 2;
-                    if (this.adapter.isRTL()) {
-                        startPos = anchorRect.right - tooltipSize.width;
-                        endPos = anchorRect.left;
-                    }
-                    var positionOptions = this.determineValidPositionOptions(centerPos, startPos, endPos);
-                    if (this.tooltipPos === constants_1.Position.START && positionOptions.has(startPos)) {
-                        return {
-                            top: yPos,
-                            left: startPos
-                        };
-                    }
-                    if (this.tooltipPos === constants_1.Position.END && positionOptions.has(endPos)) {
-                        return {
-                            top: yPos,
-                            left: endPos
-                        };
-                    }
-                    if (this.tooltipPos === constants_1.Position.CENTER && positionOptions.has(centerPos)) {
-                        return {
-                            top: yPos,
-                            left: centerPos
-                        };
-                    }
-                    if (positionOptions.has(centerPos)) {
-                        return {
-                            top: yPos,
-                            left: centerPos
-                        };
-                    }
-                    if (positionOptions.has(startPos)) {
-                        return {
-                            top: yPos,
-                            left: startPos
-                        };
-                    }
-                    if (positionOptions.has(endPos)) {
-                        return {
-                            top: yPos,
-                            left: endPos
-                        };
-                    }
-                    return {
-                        top: yPos,
-                        left: centerPos
-                    };
-                };
-                MDCTooltipFoundation.prototype.determineValidPositionOptions = function(centerPos, startPos, endPos) {
-                    var posWithinThreshold = new Set;
-                    var posWithinViewport = new Set;
-                    if (this.positionHonorsViewportThreshold(centerPos)) {
-                        posWithinThreshold.add(centerPos);
-                    } else if (this.positionDoesntCollideWithViewport(centerPos)) {
-                        posWithinViewport.add(centerPos);
-                    }
-                    if (this.positionHonorsViewportThreshold(startPos)) {
-                        posWithinThreshold.add(startPos);
-                    } else if (this.positionDoesntCollideWithViewport(startPos)) {
-                        posWithinViewport.add(startPos);
-                    }
-                    if (this.positionHonorsViewportThreshold(endPos)) {
-                        posWithinThreshold.add(endPos);
-                    } else if (this.positionDoesntCollideWithViewport(endPos)) {
-                        posWithinViewport.add(endPos);
-                    }
-                    return posWithinThreshold.size ? posWithinThreshold : posWithinViewport;
-                };
-                MDCTooltipFoundation.prototype.positionHonorsViewportThreshold = function(leftPos) {
-                    var viewportWidth = this.adapter.getViewportWidth();
-                    var tooltipWidth = this.adapter.getTooltipSize().width;
-                    return leftPos + tooltipWidth <= viewportWidth - this.minViewportTooltipThreshold && leftPos >= this.minViewportTooltipThreshold;
-                };
-                MDCTooltipFoundation.prototype.positionDoesntCollideWithViewport = function(leftPos) {
-                    var viewportWidth = this.adapter.getViewportWidth();
-                    var tooltipWidth = this.adapter.getTooltipSize().width;
-                    return leftPos + tooltipWidth <= viewportWidth && leftPos >= 0;
-                };
-                MDCTooltipFoundation.prototype.clearHideTimeout = function() {
-                    if (this.hideTimeout) {
-                        clearTimeout(this.hideTimeout);
-                        this.hideTimeout = null;
-                    }
-                };
-                MDCTooltipFoundation.prototype.destroy = function() {
-                    if (this.frameId) {
-                        cancelAnimationFrame(this.frameId);
-                        this.frameId = null;
-                    }
-                    this.clearHideTimeout();
-                    this.adapter.removeClass(SHOWN);
-                    this.adapter.removeClass(SHOWING);
-                    this.adapter.removeClass(HIDE);
-                    this.adapter.deregisterDocumentEventHandler("click", this.documentClickHandler);
-                    this.adapter.deregisterDocumentEventHandler("keydown", this.documentKeydownHandler);
-                };
-                return MDCTooltipFoundation;
-            }(foundation_1.MDCFoundation);
-            exports.MDCTooltipFoundation = MDCTooltipFoundation;
-            exports.default = MDCTooltipFoundation;
-        },
-        "./packages/mdc-tooltip/index.ts": 
-        /*!***************************************!*\
-  !*** ./packages/mdc-tooltip/index.ts ***!
-  \***************************************/
-        /*! no static exports found */ function(module, exports, __webpack_require__) {
-            "use strict";
-            /**
- * @license
- * Copyright 2020 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */            function __export(m) {
-                for (var p in m) {
-                    if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-                }
-            }
-            Object.defineProperty(exports, "__esModule", {
-                value: true
-            });
-            __export(__webpack_require__(/*! ./component */ "./packages/mdc-tooltip/component.ts"));
-            __export(__webpack_require__(/*! ./foundation */ "./packages/mdc-tooltip/foundation.ts"));
-            __export(__webpack_require__(/*! ./constants */ "./packages/mdc-tooltip/constants.ts"));
-        }
-    });
-}));
+    })();
+})();

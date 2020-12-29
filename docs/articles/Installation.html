@@ -98,11 +98,11 @@ implies these are intended for internal use by Material.Blazor, however Blazor h
 to Material Icons. You will to add five items to your index.html/_Host.cshtml. Place this in the <code>&lt;head&gt;</code> tag, replacing the unpkg CSS with your own
 if you have built a theme - you can see how we have done this in the <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website.WebAssembly/wwwroot/index.html#L14">Material.Blazor website's index.html</a>:</p>
 <pre><code class="lang-html">&lt;link href=&quot;https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp&quot; rel=&quot;stylesheet&quot;&gt;
-&lt;link href=&quot;https://unpkg.com/material-components-web@7.0.0/dist/material-components-web.css&quot; rel=&quot;stylesheet&quot; /&gt;
+&lt;link href=&quot;https://unpkg.com/material-components-web@8.0.0/dist/material-components-web.css&quot; rel=&quot;stylesheet&quot; /&gt;
 &lt;link href=&quot;_content/Material.Blazor/unbundled.css&quot; rel=&quot;stylesheet&quot; /&gt;
 </code></pre>
 <p>and at the end of <code>&lt;body&gt;</code>:</p>
-<pre><code class="lang-html">&lt;script src=&quot;https://unpkg.com/material-components-web@7.0.0/dist/material-components-web.js&quot;&gt;&lt;/script&gt;
+<pre><code class="lang-html">&lt;script src=&quot;https://unpkg.com/material-components-web@8.0.0/dist/material-components-web.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;_content/Material.Blazor/unbundled.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>We also provide minified <code>material.blazor.min.css</code> and <code>material.blazor.min.js</code>. Add the <code>Material.Blazor</code> namespace to your project as above. These will be needed
@@ -110,7 +110,7 @@ if you want to create your own theme using Material Theme SASS mixins - we have 
 <h2 id="package-versions">Package versions</h2>
 <p>Material.Blazor works with the following package versions:</p>
 <ul>
-<li><a href="https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#700-2020-06-23">Material Components v7.0.0</a>;</li>
+<li><a href="https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#800-2020-11-02">Material Components v8.0.0</a>;</li>
 <li><a href="https://fontawesome.com/changelog/latest">Font Awesome Icons version 5</a> are optional and can be included in your HTML <code>&lt;head&gt;</code> with the CDN link:
 <pre><code class="lang-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css&quot; integrity=&quot;sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==&quot; crossorigin=&quot;anonymous&quot; /&gt;
 </code></pre>

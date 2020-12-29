@@ -88,6 +88,12 @@
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
+      <h4><a class="xref" href="Material.Blazor.DialogChildComponent.html">DialogChildComponent</a></h4>
+      <section><p>A direct ancestor of <a class="xref" href="Material.Blazor.Internal.InputComponent-1.html">InputComponent&lt;T&gt;</a> for dialogs to reference when intiating child
+components. We cannot use <a class="xref" href="Material.Blazor.Internal.InputComponent-1.html">InputComponent&lt;T&gt;</a> directly because its generics get in the way.
+This class allows <a class="xref" href="Material.Blazor.MBDialog.html">MBDialog</a> to control when child components are instantiated with
+Material Components Web JS.</p>
+</section>
       <h4><a class="xref" href="Material.Blazor.MBAnimatedNavigation.html">MBAnimatedNavigation</a></h4>
       <section><p>This component works with <a class="xref" href="Material.Blazor.IMBAnimatedNavigationManager.html">IMBAnimatedNavigationManager</a> to navigate your page navigation.
 Place this component around your app's entire @Body render fragment (potentially in MainLayout.razor),
@@ -100,6 +106,10 @@ your user navigates from one page to another.</p>
       <h4><a class="xref" href="Material.Blazor.MBAutocompleteTextField.html">MBAutocompleteTextField</a></h4>
       <section><p>An autocomplete built using an <a class="xref" href="Material.Blazor.MBTextField.html">MBTextField</a> with the anchor and drop
 down list implementation from a Material Theme select.</p>
+</section>
+      <h4><a class="xref" href="Material.Blazor.MBBladeSet.html">MBBladeSet</a></h4>
+      <section><p>A blade display component. Adds blades to the right hand side of the viewport (or bock where this component is located), with
+blades displayed left to right in ascending order of when they were requested (newest blades to the right).</p>
 </section>
       <h4><a class="xref" href="Material.Blazor.MBButton.html">MBButton</a></h4>
       <section><p>This is a general purpose Material Theme button, with provision for standard MB styling, leading
@@ -115,6 +125,12 @@ placed inside an <a class="xref" href="Material.Blazor.MBCard.html">MBCard</a>.<
       <h4><a class="xref" href="Material.Blazor.MBCheckbox.html">MBCheckbox</a></h4>
       <section><p>This is a general purpose Material Theme check box accepting a boolean as a bound value. This
 check box does not implement indeteriminate state.</p>
+</section>
+      <h4><a class="xref" href="Material.Blazor.MBChipsSelectMulti-1.html">MBChipsSelectMulti&lt;TItem&gt;</a></h4>
+      <section><p>A Material Theme segmented button orientated as a multi-select.</p>
+</section>
+      <h4><a class="xref" href="Material.Blazor.MBChipsSelectSingle-1.html">MBChipsSelectSingle&lt;TItem&gt;</a></h4>
+      <section><p>A Material Theme segmented button orientated as a single-select.</p>
 </section>
       <h4><a class="xref" href="Material.Blazor.MBCircularProgress.html">MBCircularProgress</a></h4>
       <section><p>This is a general purpose Material Theme circular progress bar. Can be determinant or
@@ -157,11 +173,24 @@ gracefully before Material.Blazor removes the markup.</p>
 application of the &quot;mdc-fab--exited&quot; animated class and the choice of leading or trailing icons for
 the extended variant.</p>
 </section>
+      <h4><a class="xref" href="Material.Blazor.MBGrid-1.html">MBGrid&lt;TRowData&gt;</a></h4>
+      <section><p>A Material Theme grid capable of displaying icons, colored text, and text.</p>
+<p>N.B.: At this time the grid is in preview. Expect the API to change.</p>
+</section>
+      <h4><a class="xref" href="Material.Blazor.MBGridColumnConfiguration-1.html">MBGridColumnConfiguration&lt;TRowData&gt;</a></h4>
+      <section></section>
+      <h4><a class="xref" href="Material.Blazor.MBGridIconSpecification.html">MBGridIconSpecification</a></h4>
+      <section></section>
+      <h4><a class="xref" href="Material.Blazor.MBGridTextColorSpecification.html">MBGridTextColorSpecification</a></h4>
+      <section></section>
       <h4><a class="xref" href="Material.Blazor.MBIcon.html">MBIcon</a></h4>
       <section><p>Renders icons from any of the Material Icons, Font Awesome and Open Iconic
 foundries. Material Icons are essential for Material.Blazor and are included by the
 library's CSS, while you can elect whether to include Font Awesome and Open Iconic
 in your app.</p>
+</section>
+      <h4><a class="xref" href="Material.Blazor.MBIconBearingSelectElement-1.html">MBIconBearingSelectElement&lt;T&gt;</a></h4>
+      <section><p>A list item used by <a class="xref" href="Material.Blazor.MBSegmentedButtonMulti-1.html">MBSegmentedButtonMulti&lt;TItem&gt;</a></p>
 </section>
       <h4><a class="xref" href="Material.Blazor.MBIconButton.html">MBIconButton</a></h4>
       <section><p>This is a general purpose Material Theme icon button, with provision for standard MB styling, leading
@@ -188,9 +217,6 @@ list item.</p>
       <h4><a class="xref" href="Material.Blazor.MBListDivider.html">MBListDivider</a></h4>
       <section><p>A Material Theme list divider</p>
 </section>
-      <h4><a class="xref" href="Material.Blazor.MBListElement-1.html">MBListElement&lt;T&gt;</a></h4>
-      <section><p>A list item used by <a class="xref" href="Material.Blazor.MBSelect-1.html">MBSelect&lt;TItem&gt;</a>, <a class="xref" href="Material.Blazor.MBRadioButtonGroup-1.html">MBRadioButtonGroup&lt;TItem&gt;</a> and <a class="xref" href="Material.Blazor.MBPagedDataList-1.html">MBPagedDataList&lt;TItem&gt;</a></p>
-</section>
       <h4><a class="xref" href="Material.Blazor.MBListItem.html">MBListItem</a></h4>
       <section><p>This is a general purpose Material Theme list item.</p>
 </section>
@@ -200,12 +226,15 @@ list item.</p>
       <h4><a class="xref" href="Material.Blazor.MBMenuSelectionGroup.html">MBMenuSelectionGroup</a></h4>
       <section><p>A Material Theme menu selection group.</p>
 </section>
-      <h4><a class="xref" href="Material.Blazor.MBNumericDoubleField.html">MBNumericDoubleField</a></h4>
+      <h4><a class="xref" href="Material.Blazor.MBNumericDecimalField.html">MBNumericDecimalField</a></h4>
       <section><p>A Material Theme numeric input field. This wraps <a class="xref" href="Material.Blazor.MBTextField.html">MBTextField</a> and normally
 displays the numeric value as formatted text, but switches to a pure number on being selected.</p>
 </section>
+      <h4><a class="xref" href="Material.Blazor.MBNumericDoubleField.html">MBNumericDoubleField</a></h4>
+      <section><p>An double variant of <a class="xref" href="Material.Blazor.MBNumericDecimalField.html">MBNumericDecimalField</a>.</p>
+</section>
       <h4><a class="xref" href="Material.Blazor.MBNumericIntField.html">MBNumericIntField</a></h4>
-      <section><p>An integer variant of <a class="xref" href="Material.Blazor.MBNumericDoubleField.html">MBNumericDoubleField</a>.</p>
+      <section><p>An integer variant of <a class="xref" href="Material.Blazor.MBNumericDecimalField.html">MBNumericDecimalField</a>.</p>
 </section>
       <h4><a class="xref" href="Material.Blazor.MBPagedDataList-1.html">MBPagedDataList&lt;TItem&gt;</a></h4>
       <section><p>A paged data list using the &quot;wig pig&quot; construct allowing the consumer to free render the relevant paged data.</p>
@@ -214,17 +243,29 @@ displays the numeric value as formatted text, but switches to a pure number on b
       <section></section>
       <h4><a class="xref" href="Material.Blazor.MBRadioButton-1.html">MBRadioButton&lt;TItem&gt;</a></h4>
       <section><p>This is a general purpose Material Theme radio button. Accepts a generic class TItem
-and displays as checked if <a class="xref" href="Material.Blazor.Internal.InputComponentFoundation-1.html#Material_Blazor_Internal_InputComponentFoundation_1_Value">Value</a> equals <a class="xref" href="Material.Blazor.MBRadioButton-1.html#Material_Blazor_MBRadioButton_1_TargetCheckedValue">TargetCheckedValue</a>.</p>
+and displays as checked if <a class="xref" href="Material.Blazor.Internal.InputComponent-1.html#Material_Blazor_Internal_InputComponent_1_Value">Value</a> equals <a class="xref" href="Material.Blazor.MBRadioButton-1.html#Material_Blazor_MBRadioButton_1_TargetCheckedValue">TargetCheckedValue</a>.</p>
 </section>
       <h4><a class="xref" href="Material.Blazor.MBRadioButtonGroup-1.html">MBRadioButtonGroup&lt;TItem&gt;</a></h4>
       <section><p>A group of <a class="xref" href="Material.Blazor.MBRadioButton-1.html">MBRadioButton&lt;TItem&gt;</a>s displayed horizontally or vertically.</p>
 </section>
+      <h4><a class="xref" href="Material.Blazor.MBSegmentedButtonMulti-1.html">MBSegmentedButtonMulti&lt;TItem&gt;</a></h4>
+      <section><p>A Material Theme segmented button orientated as a multi-select.</p>
+</section>
+      <h4><a class="xref" href="Material.Blazor.MBSegmentedButtonSingle-1.html">MBSegmentedButtonSingle&lt;TItem&gt;</a></h4>
+      <section><p>A Material Theme segmented button orientated as a single-select.</p>
+</section>
       <h4><a class="xref" href="Material.Blazor.MBSelect-1.html">MBSelect&lt;TItem&gt;</a></h4>
       <section><p>A Material Theme select.</p>
+</section>
+      <h4><a class="xref" href="Material.Blazor.MBSelectElement-1.html">MBSelectElement&lt;T&gt;</a></h4>
+      <section><p>A list item used by <a class="xref" href="Material.Blazor.MBSelect-1.html">MBSelect&lt;TItem&gt;</a>, <a class="xref" href="Material.Blazor.MBRadioButtonGroup-1.html">MBRadioButtonGroup&lt;TItem&gt;</a> and <a class="xref" href="Material.Blazor.MBPagedDataList-1.html">MBPagedDataList&lt;TItem&gt;</a></p>
 </section>
       <h4><a class="xref" href="Material.Blazor.MBShield.html">MBShield</a></h4>
       <section><p>A shield similar to those from shield.io and used in GitHub. Implemented
 with HTML rather than SVG.</p>
+</section>
+      <h4><a class="xref" href="Material.Blazor.MBSlider.html">MBSlider</a></h4>
+      <section><p>A Material Theme single-thumb slider.</p>
 </section>
       <h4><a class="xref" href="Material.Blazor.MBSlidingContent-1.html">MBSlidingContent&lt;TItem&gt;</a></h4>
       <section><p>A Plus component that take a set of renderfragments in a list and transitions from one to another
@@ -320,6 +361,10 @@ is called without an <a class="xref" href="Material.Blazor.MBToastAnchor.html">M
 </section>
     <h3 id="enums">Enums
   </h3>
+      <h4><a class="xref" href="Material.Blazor.MB_Grid_ColumnType.html">MB_Grid_ColumnType</a></h4>
+      <section></section>
+      <h4><a class="xref" href="Material.Blazor.MB_Grid_Measurement.html">MB_Grid_Measurement</a></h4>
+      <section></section>
       <h4><a class="xref" href="Material.Blazor.MBButtonStyle.html">MBButtonStyle</a></h4>
       <section><p>Style for an <a class="xref" href="Material.Blazor.MBButton.html">MBButton</a> per Material Theme styling.</p>
 <p><a class="xref" href="Material.Blazor.MBCascadingDefaults.html">MBCascadingDefaults</a> has a default of <a class="xref" href="Material.Blazor.MBButtonStyle.html#Material_Blazor_MBButtonStyle_Text">Text</a></p>
@@ -365,6 +410,9 @@ is called without an <a class="xref" href="Material.Blazor.MBToastAnchor.html">M
 <p>See <a class="xref" href="Material.Blazor.MBIconHelper.html#Material_Blazor_MBIconHelper_MIFoundry_System_Nullable_Material_Blazor_MBIconMITheme__">MIFoundry(Nullable&lt;MBIconMITheme&gt;)</a>, <span class="xref">Material.Blazor.IconMI</span> and <span class="xref">Material.Blazor.IconFoundryMI</span></p>
 <p><a class="xref" href="Material.Blazor.MBCascadingDefaults.html">MBCascadingDefaults</a> has a default of <a class="xref" href="Material.Blazor.MBIconMITheme.html#Material_Blazor_MBIconMITheme_Filled">Filled</a></p>
 </section>
+      <h4><a class="xref" href="Material.Blazor.MBInputEventType.html">MBInputEventType</a></h4>
+      <section><p>Determines how an <a class="xref" href="Material.Blazor.MBSlider.html">MBSlider</a> responds to user events.</p>
+</section>
       <h4><a class="xref" href="Material.Blazor.MBItemValidation.html">MBItemValidation</a></h4>
       <section><p>A helper to determine how a <a class="xref" href="Material.Blazor.MBSelect-1.html">MBSelect&lt;TItem&gt;</a> or <a class="xref" href="Material.Blazor.MBRadioButtonGroup-1.html">MBRadioButtonGroup&lt;TItem&gt;</a> should handle an intial bound value not matching elements in the value list.</p>
 <p><a class="xref" href="Material.Blazor.MBCascadingDefaults.html">MBCascadingDefaults</a> has a default of <a class="xref" href="Material.Blazor.MBItemValidation.html#Material_Blazor_MBItemValidation_Exception">Exception</a></p>
@@ -380,6 +428,9 @@ is called without an <a class="xref" href="Material.Blazor.MBToastAnchor.html">M
       <section><p>Type for an <a class="xref" href="Material.Blazor.MBList-1.html">MBList&lt;TItem&gt;</a>.</p>
 <p><a class="xref" href="Material.Blazor.MBCascadingDefaults.html">MBCascadingDefaults</a> has a default of <a class="xref" href="Material.Blazor.MBListType.html#Material_Blazor_MBListType_Regular">Regular</a></p>
 </section>
+      <h4><a class="xref" href="Material.Blazor.MBMenuSurfacePositioning.html">MBMenuSurfacePositioning</a></h4>
+      <section><p>Determines the positioning and width of a menu surface.</p>
+</section>
       <h4><a class="xref" href="Material.Blazor.MBNumericInputMagnitude.html">MBNumericInputMagnitude</a></h4>
       <section><p>A helper to determine the magnitude adjustment when displaying or editting values using numeric input fields.</p>
 </section>
@@ -391,6 +442,9 @@ is called without an <a class="xref" href="Material.Blazor.MBToastAnchor.html">M
       <h4><a class="xref" href="Material.Blazor.MBShieldType.html">MBShieldType</a></h4>
       <section><p>Determines whether a <a class="xref" href="Material.Blazor.MBShield.html">MBShield</a> displays the label (left hand element), value (right hand element) or both.</p>
 <p>Defaults to <a class="xref" href="Material.Blazor.MBShieldType.html#Material_Blazor_MBShieldType_LabelAndValue">LabelAndValue</a></p>
+</section>
+      <h4><a class="xref" href="Material.Blazor.MBSliderType.html">MBSliderType</a></h4>
+      <section><p>Determines the type of an <a class="xref" href="Material.Blazor.MBSlider.html">MBSlider</a>.</p>
 </section>
       <h4><a class="xref" href="Material.Blazor.MBTextAlignStyle.html">MBTextAlignStyle</a></h4>
       <section><p>A helper to set the alignment of text in <a class="xref" href="Material.Blazor.MBTextField.html">MBTextField</a>, <a class="xref" href="Material.Blazor.MBTextArea.html">MBTextArea</a> and <a class="xref" href="Material.Blazor.MBSelect-1.html">MBSelect&lt;TItem&gt;</a>.</p>

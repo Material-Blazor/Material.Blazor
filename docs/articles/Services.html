@@ -104,6 +104,11 @@
 </tr>
 </tbody>
 </table>
+<h2 id="blades-arent-a-service">Blades Aren't a Service</h2>
+<p><a class="xref" href="../Material.Blazor/Components/BladeSet/MBBladeSet.html">MBBladeSet</a> doesn't use a service to allow the consumer to add and remove blades, but instead declares itself as a cascading value for enclosed components to
+access. The reason is that there's a good use case for MBBladeSet to be used on individual pages, meaning that all blades and their data should disappear when the user navigates
+away. A service would be poorly suited to this requirement.</p>
+<p>Our demonstration web app applies blades in <code>MainLayout.razor</code>, however you can use this component wherever makes sense for your app.</p>
 </article>
           </div>
           

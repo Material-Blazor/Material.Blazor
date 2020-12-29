@@ -145,20 +145,20 @@ Coupling this with the need to prevent Blazor rendering brought us to the two wa
 <h2 id="how-we-do-two-way-binding">How We Do Two Way Binding</h2>
 <p>When we first identified this issue during Material.Blazor's development we realized that our Blazor code needed to first render a
 new component and then immediately after instantiating it step out of MCW's way by applying <code>ShouldRender() =&gt; false;</code>
-in <code>InputComponentFoundation</code>. If we did no more, two way binding would be broken because subsequent attempts by the consumer (your project)
+in <code>InputComponent</code>. If we did no more, two way binding would be broken because subsequent attempts by the consumer (your project)
 to update Value are ignored, which is an unacceptable result. Fortunately each MCW component has a rich
 JavaScript library that includes both the ability to set a value in the future and to be notified of that value being changed by
 the user. We make use of this in our two way binding for the <code>Value</code> parameter, and do something similar for the <code>Disabled</code>
 parameter.</p>
 <p>The principle is like this:</p>
 <p><img src="../images/two-way-bind-flow.png" alt="Two Way Binding Flow"></p>
-<p>Each component inheriting from <code>InputComponentFoundation</code> implements this mechanism separately calling the JavaScript provided
+<p>Each component inheriting from <code>InputComponent</code> implements this mechanism separately calling the JavaScript provided
 by MCW for that component:</p>
 <ul>
-<li>Overrides <code>SetComponentValue</code> from <code>InputComponentFoundation</code> to call the relevant MCW code via JSInterop;</li>
+<li>Overrides <code>OnParametersSet</code> from <code>InputComponent</code> to call the relevant MCW code via JSInterop;</li>
 <li>Registers a JSInterop callback with MCW for notification of value changes;</li>
 <li>Overrides <code>OnDisabledSet</code> from <code>ComponentFoundation</code> for to either call MCW via JSInterop to set the disabled state or to do so directly via Blazor binding as relevant; and</li>
-<li><em>Does not</em> bind Value to any elements in the razor markup.</li>
+<li><em>Does not</em> bind Value to any elements in the razor markup except for <code>MBTextField</code> which binds directly to the <code>'&lt;input&gt;</code> block.</li>
 </ul>
 <p>Without this careful mechanism Blazor and MCW can enter an infinite positive feedback loop of values bouncing from current to previous value.</p>
 <h2 id="debouncing">Debouncing</h2>

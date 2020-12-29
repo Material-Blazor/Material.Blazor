@@ -111,11 +111,14 @@
 </li>
 </ul>
 <h2 id="ci-and-release-github-action-workflows">CI and Release GitHub Action workflows</h2>
-<p>These workflows are responsible for publishing two artifacts:</p>
+<p>These workflows are responsible for publishing three artifacts:</p>
 <ul>
-<li>The Material.Blazor DocFx pages in the Material.Blazor project, amalgamated with the Material.Blazor.WebAssembly published output to your gh-pages branch.</li>
-<li>The Material.Blazor NuGet package hosted as a GitHub package (Release) or a NuGet.org (CI).</li>
+<li>The Material.Blazor DocFx pages in the Material.Blazor project</li>
+<li>Material.Blazor.WebAssembly published output</li>
+<li>The Material.Blazor NuGet package</li>
 </ul>
+<p>The first two artifacts are combined and published in the repository gh-pages.</p>
+<p>The third artifact is hosted as a GitHub package (CI) or a NuGet package (Release).</p>
 <h3 id="wip-workflow">WIP Workflow</h3>
 <p>This workflow runs whenever a pull request is created, updated, or pushed.</p>
 <h4 id="forked-repository">Forked repository</h4>
