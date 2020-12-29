@@ -31,6 +31,7 @@ the markup specification. We term these "Core Components. Material.Blazor also h
 | [MBSegmentedButtonMulti](xref:C.MBSegmentedButtonMulti) | A [Material Multi-Select Segmented Button](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-segmented-button#segmented-buttons). Implements a multi-select segmented button. |
 | [MBSegmentedButtonSingle](xref:C.MBSegmentedButtonSingle) | A [Material Multi-Select Segmented Button](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-segmented-button#segmented-buttons). Implements a single-select segmented button. |
 | [MBSelect](xref:C.MBSelect) | A [Material Select Menu](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-select#select-menus). |
+| [MBSlider](xref:C.MBSlider) | A [Material Slider](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-slider#slider). A single-thumb continuous and discrete slider. |
 | [MBSwitch](xref:C.MBSwitch) | A [Material Switch](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-switch#selection-controls-switches). |
 | [MBTabBar](xref:C.MBTabBar) | A [Material Tab Bar](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-tab-bar#tab-bar). |
 | [MBTextArea](xref:C.MBTextArea) | A [Material Text Field](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-textfield#text-field) expressed as a text area. |
