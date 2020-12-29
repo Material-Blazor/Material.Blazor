@@ -115,6 +115,7 @@ namespace Material.Blazor
             {
                 throw new System.Exception("MBGrid requires column configuration definitions.");
             }
+            Logger.LogInformation("MBGrid.OnInitialized completed");
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -146,8 +147,8 @@ namespace Material.Blazor
 
         protected override async Task OnParametersSetAsync()
         {
-            Logger.LogDebug("OnParametersSetAsync entry");
-            Logger.LogDebug("                     HasCompletedFullRender: " + HasCompletedFullRender.ToString());
+            Logger.LogInformation("OnParametersSetAsync entry");
+            Logger.LogInformation("                     HasCompletedFullRender: " + HasCompletedFullRender.ToString());
 
             await base.OnParametersSetAsync();
 
@@ -155,12 +156,12 @@ namespace Material.Blazor
             {
                 //await MeasureWidths();
             }
-            Logger.LogDebug("                     exit");
+            Logger.LogInformation("                     exit");
         }
 
         private async Task MeasureWidths()
         {
-            Logger.LogDebug("MeasureWidths entered");
+            Logger.LogInformation("MeasureWidths entered");
 
             //
             // We are going to measure the actual sizes using JS if the Measurement is FitToData
@@ -183,7 +184,7 @@ namespace Material.Blazor
                     ColumnWidthArray[colIndex] = ConvertPxMeasureToFloat(
                         await JsRuntime.InvokeAsync<string>(
                             "MaterialBlazor.MBGrid.getTextWidth",
-                            "mb-grid-div-header",
+                            "mb-grid-header-td",
                             col.Title));
                     colIndex++;
                 }
@@ -212,7 +213,7 @@ namespace Material.Blazor
                                         var width = ConvertPxMeasureToFloat(
                                             await JsRuntime.InvokeAsync<string>(
                                                 "MaterialBlazor.MBGrid.getTextWidth",
-                                                "mb-grid-div-body",
+                                                "mb-grid-body-td",
                                                 formattedValue));
                                         if (width > ColumnWidthArray[colIndex])
                                         {
@@ -232,7 +233,7 @@ namespace Material.Blazor
                                                 var width = ConvertPxMeasureToFloat(
                                                     await JsRuntime.InvokeAsync<string>(
                                                         "MaterialBlazor.MBGrid.getTextWidth",
-                                                        "mb-grid-div-body",
+                                                        "mb-grid-body-td",
                                                         value.Text));
                                                 if (width > ColumnWidthArray[colIndex])
                                                 {
@@ -256,16 +257,19 @@ namespace Material.Blazor
                     }
                 }
 
-                for (var col = 0; col < ColumnWidthArray.Length; col++)
-                {
-                    // We need to add the padding(4L, 4R), border(1R), and 1 to account for fractional amounts from the mb-grid-td style
-                    ColumnWidthArray[col] += 4 + 4 + 1 + 1 + 6; // Plus 6 more for good measure (observed)
-                }
+                //for (var col = 0; col < ColumnWidthArray.Length; col++)
+                //{
+                //    // We need to add the padding(4L, 4R), border(1R), and 1 to account for fractional amounts from the mb-grid-td style
+                //    ColumnWidthArray[col] += 4 + 4 + 1 + 1;
+                //}
             }
-            Logger.LogDebug("MeasureWidths complete");
+            Logger.LogInformation("MeasureWidths complete");
         }
-        private float ConvertPxMeasureToFloat(string pxMeasure)
+        private static float ConvertPxMeasureToFloat(string pxMeasure)
         {
+            //          return Convert.ToSingle(pxMeasure.Substring(0, pxMeasure.Length - 2));
+            //          The c# 8.0 range (https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8#indices-and-ranges)
+            //          allows that to be converted to the following
             return Convert.ToSingle(pxMeasure[0..^2]);
         }
         protected async Task GridSyncScroll()
@@ -411,9 +415,7 @@ namespace Material.Blazor
                         ref rendSeq,
                         colCount == 0,
                         isHeaderRow,
-                        col,
-                        "mb-grid-backgroundcolor-header-background",
-                        ColumnWidthArray[colCount]);
+                        "mb-grid-backgroundcolor-header-background");
 
                     // Set the header colors
                     styleStr += " color: " + col.ForegroundColor.Name + ";";
@@ -529,9 +531,7 @@ namespace Material.Blazor
                                 ref rendSeq,
                                 colCount == 0,
                                 isHeaderRow,
-                                columnDefinition,
-                                rowBackgroundColorClass,
-                                ColumnWidthArray[colCount]);
+                                rowBackgroundColorClass);
                             builder.AddAttribute(rendSeq++, "mbgrid-td-normal", colCount.ToString()); ;
 
                             switch (columnDefinition.ColumnType)
@@ -651,14 +651,12 @@ namespace Material.Blazor
             builder.CloseElement(); // colgroup
         }
 
-        private string BuildNewGridTD(
+        private static string BuildNewGridTD(
             RenderTreeBuilder builder,
             ref int rendSeq,
             bool isFirstColumn,
             bool isHeaderRow,
-            MBGridColumnConfiguration<TRowData> col,
-            string rowBackgroundColorClass,
-            float columnWidth)
+            string rowBackgroundColorClass)
         {
             builder.OpenElement(rendSeq++, "td");
             builder.AddAttribute(rendSeq++, "class", "mb-grid-td " + rowBackgroundColorClass);
@@ -737,7 +735,7 @@ namespace Material.Blazor
 
             return false;
         }
-        private string ColorToCSSColor(Color color)
+        private static string ColorToCSSColor(Color color)
         {
             int rawColor = color.ToArgb();
             rawColor &= 0xFFFFFF;
