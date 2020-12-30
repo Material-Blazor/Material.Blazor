@@ -31,9 +31,14 @@
                                       Label="@GetAddLabel(bladeReference)"
                                       @onclick="@(() => Blades.AddBlade(bladeReference, "demo-blade"))"
                                       Disabled="@Blades.BladeReferences.Contains(bladeReference)"
-                                      ButtonStyle="@MBButtonStyle.Outlined"/>
+                                      ButtonStyle="@MBButtonStyle.Outlined" />
                         </p>
                     }
+
+                    <MBButton Label="Add All Blades"
+                              @onclick="@AddAllBlades"
+                              Disabled="@Blades.BladeReferences.Any()"
+                              ButtonStyle="@MBButtonStyle.Outlined" />
                 </Primary>
             </MBCard>
         </div>
@@ -53,9 +58,14 @@
                                       Label="@GetRemoveLabel(bladeReference)"
                                       @onclick="@(() => Blades.RemoveBlade(bladeReference))"
                                       Disabled="@(!Blades.BladeReferences.Contains(bladeReference))"
-                                      ButtonStyle="@MBButtonStyle.Outlined"/>
+                                      ButtonStyle="@MBButtonStyle.Outlined" />
                         </p>
                     }
+
+                    <MBButton Label="Remove All Blades"
+                              @onclick="@RemoveAllBlades"
+                              Disabled="@(Blades.BladeReferences.Count() < BladeReferences.Length)"
+                              ButtonStyle="@MBButtonStyle.Outlined" />
                 </Primary>
             </MBCard>
         </div>
@@ -86,4 +96,22 @@
 
 
     private void HandleBladeSetChange(object sender, EventArgs e) => InvokeAsync(StateHasChanged);
+
+
+    private void AddAllBlades()
+    {
+        foreach (var bladeReference in BladeReferences)
+        {
+            Blades.AddBlade(bladeReference, "demo-blade");
+        }
+    }
+
+
+    private void RemoveAllBlades()
+    {
+        foreach (var bladeReference in BladeReferences)
+        {
+            Blades.RemoveBlade(bladeReference);
+        }
+    }
 }
