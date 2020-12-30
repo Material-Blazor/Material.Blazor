@@ -171,9 +171,10 @@ namespace Material.Blazor
             ColumnWidthArray = new float[ColumnConfigurations.Count];
 
             // Measure the width of a vertical scrollbar (Used to set the padding of the header)
-            ScrollWidth = await JsRuntime.InvokeAsync<int>(
-                "MaterialBlazor.MBGrid.getScrollBarWidth",
-                "mb-grid-div-body");
+            //ScrollWidth = await JsRuntime.InvokeAsync<int>(
+            //    "MaterialBlazor.MBGrid.getScrollBarWidth",
+            //    "mb-grid-div-body");
+            ScrollWidth = 0;
 
             if (Measurement == MB_Grid_Measurement.FitToData)
             {
@@ -257,11 +258,11 @@ namespace Material.Blazor
                     }
                 }
 
-                //for (var col = 0; col < ColumnWidthArray.Length; col++)
-                //{
-                //    // We need to add the padding(4L, 4R), border(1R), and 1 to account for fractional amounts from the mb-grid-td style
-                //    ColumnWidthArray[col] += 4 + 4 + 1 + 1;
-                //}
+                for (var col = 0; col < ColumnWidthArray.Length; col++)
+                {
+                    // We fudge a bit because we were still getting an ellipsis on the longest text
+                    ColumnWidthArray[col] += 1;
+                }
             }
             Logger.LogInformation("MeasureWidths complete");
         }
@@ -394,7 +395,7 @@ namespace Material.Blazor
             {
                 builder.OpenElement(rendSeq++, "div");
                 builder.AddAttribute(rendSeq++, "class", "mb-grid-div-header mb-grid-backgroundcolor-header-background");
-                builder.AddAttribute(rendSeq++, "style", "padding-right: " + ScrollWidth.ToString() + "px; ");
+                //builder.AddAttribute(rendSeq++, "style", "padding-right: " + ScrollWidth.ToString() + "px; ");
                 builder.AddAttribute(rendSeq++, "id", GridHeaderID);
                 builder.AddElementReferenceCapture(rendSeq++, (__value) => { GridHeaderRef = __value; });
                 builder.OpenElement(rendSeq++, "table");

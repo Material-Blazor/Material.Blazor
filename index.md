@@ -1,12 +1,13 @@
 ﻿# Material.Blazor
 
-[![NuGet version](https://img.shields.io/nuget/v/Material.Blazor?logo=nuget&label=nuget%20version&style=flat-square)](https://www.nuget.org/packages/Material.Blazor/)
+[![NuGet version](https://img.shields.io/nuget/v/Material.Blazor?logo=nuget&label=nuget%20release&style=flat-square)](https://www.nuget.org/packages/Material.Blazor/)
+[![NuGet version](https://img.shields.io/nuget/vpre/Material.Blazor?logo=nuget&label=nuget%20pre-release&style=flat-square)](https://www.nuget.org/packages/Material.Blazor/)
 [![NuGet downloads](https://img.shields.io/nuget/dt/Material.Blazor?logo=nuget&label=nuget%20downloads&style=flat-square)](https://www.nuget.org/packages/Material.Blazor/)
 [![Gitter](https://img.shields.io/gitter/room/Material.Blazor/community?logo=gitter&style=flat-square)](https://gitter.im/Material-Blazor/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 <br />
 
->[!TIP]
+>[TIP]
 >Visit our website at https://material-blazor.com for a full Material.Blazor demonstration.
 
 # Lightweight Material Theme Razor Components for Blazor
