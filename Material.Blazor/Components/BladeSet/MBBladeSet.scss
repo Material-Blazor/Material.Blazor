@@ -1,16 +1,12 @@
 ﻿mb-bladeset {
     display: grid;
-    grid-template-columns: min-content auto min-content;
+    grid-template-columns: auto min-content;
     grid-gap: 0px;
     margin: 0px;
     padding: 0px;
     border: 0px;
     height: 100vh;
     overflow-y: hidden;
-}
-
-mb-bladeset-scroll-helper {
-    width: 0px;
 }
 
 mb-bladeset-main-content {

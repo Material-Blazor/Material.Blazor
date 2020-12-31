@@ -2,10 +2,8 @@
 
 
 <CascadingValue Value="@this" IsFixed="true">
-    <mb-bladeset @ref="@BladeSetElem">
-        <mb-bladeset-scroll-helper @ref="@ScrollHelperElementReference"></mb-bladeset-scroll-helper>
-
-        <mb-bladeset-main-content @ref="@MainContentElementReference" @attributes="@MainContentAttributes">
+    <mb-bladeset>
+        <mb-bladeset-main-content @attributes="@MainContentAttributes">
             @PageContent
         </mb-bladeset-main-content>
 

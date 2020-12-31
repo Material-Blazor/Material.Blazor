@@ -1,52 +1,24 @@
+const fps = 60;
+const waitDelay = 1000 / fps;
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-export async function openBlade(bladeSetElem, mainContentElem, scrollHelperElem, bladeElem, bladeContentElem, transitionMs): Promise<void> {
-    const transition = "width " + transitionMs + "ms";
-
-    let bladeSetWidth = bladeSetElem.getBoundingClientRect().width;
+export async function openBlade(bladeElem, bladeContentElem, transitionMs): Promise<void> {
+    let transition = "width " + transitionMs + "ms";
     let bladeContentWidth = bladeContentElem.getBoundingClientRect().width;
-    let mainContentWidth = getComputedStyle(mainContentElem).width;
-    let mainContentMinWidth = getComputedStyle(mainContentElem).minWidth;
     
-    let availableShrinkage = bladeContentWidth;
     bladeElem.style.transition = transition;
-    
-    if (mainContentMinWidth.substring(mainContentMinWidth.length - 2, mainContentMinWidth.length) == "px") {
-        availableShrinkage = Math.min(bladeContentWidth, parseInt(mainContentWidth) - parseInt(mainContentMinWidth));
-    }
-
-    if (false && availableShrinkage < bladeContentWidth) {
-        let scrollHelperWidth = bladeContentWidth - availableShrinkage;
-        scrollHelperElem.style.transition = "";
-        scrollHelperElem.style.width = scrollHelperWidth + "px";
-        scrollHelperElem.style.transition = transition;
-
-        bladeSetWidth += availableShrinkage;
-        bladeSetElem.style.width = bladeSetWidth + "px";
-        
-        bladeSetElem.scrollBy({
-            top: 0,
-            left: scrollHelperWidth,
-            behavior: "auto"
-        });
-
-        scrollHelperElem.style.width = "0px";
-    }
-
     bladeElem.style.width = bladeContentWidth + "px";
-
     bladeElem.scrollIntoView();
 
-    for (let i = 0; i < transitionMs; i++) {
-        await sleep(1);
+    let intervals = Math.ceil(transitionMs / waitDelay) + 1;
+
+    for (let i = 0; i < intervals; i++) {
+        await sleep(waitDelay);
         bladeElem.scrollIntoView();
     }
-
-    //await sleep(transitionMs);
-
-    //bladeSetElem.style.width = "";
 }
 
 export function closeBlade(bladeElem): void {

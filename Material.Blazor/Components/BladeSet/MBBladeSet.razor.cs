@@ -195,9 +195,6 @@ namespace Material.Blazor
         private Dictionary<string, BladeInfo> Blades { get; set; } = new();
         private Dictionary<string, object> MainContentAttributes { get; set; }
         private Dictionary<string, object> BladesAttributes { get; set; }
-        private ElementReference BladeSetElem { get; set; }
-        private ElementReference MainContentElementReference { get; set; }
-        private ElementReference ScrollHelperElementReference { get; set; }
 
 
         /// <summary>
@@ -294,58 +291,28 @@ namespace Material.Blazor
         {
             base.OnAfterRender(firstRender);
 
-            //var addedBlades = Blades.Values.Where(b => b.Status == BladeStatus.NewClosed);
-            //var removedBlades = Blades.Values.Where(b => b.Status == BladeStatus.ClosedToRemove);
+            if (addedBladesQueue.TryDequeue(out BladeInfo addedBlade))
+            {
+                await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBBladeSet.openBlade", addedBlade.BladeElementReference, addedBlade.BladeContentElementReference, transitionMs);
 
-            //if (addedBlades.Any() || removedBlades.Any())
-            //{
-                //foreach (var bladeInfo in addedBlades)
-                //{
-                //    await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBBladeSet.openBlade", BladeSetElem, MainContentElementReference, ScrollHelperElementReference, bladeInfo.BladeElementReference, bladeInfo.BladeContentElementReference, transitionMs);
+                addedBlade.Status = BladeStatus.Open;
 
-                //    bladeInfo.Status = BladeStatus.Open;
+                StateHasChanged();
 
-                //    BladeSetChanged.Invoke(this, null);
-                //}
+                BladeSetChanged.Invoke(this, null);
+            }
+            else if (removedBladesQueue.TryDequeue(out BladeInfo removedBlade))
+            {
+                await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBBladeSet.closeBlade", removedBlade.BladeElementReference, transitionMs);
 
-                //foreach (var bladeInfo in removedBlades)
-                //{
-                //    await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBBladeSet.closeBlade", bladeInfo.BladeElementReference);
+                await Task.Delay(transitionMs);
 
-                //    await Task.Delay(transitionMs);
+                Blades.Remove(removedBlade.BladeReference);
 
-                //    Blades.Remove(bladeInfo.BladeReference);
+                StateHasChanged();
 
-                //    StateHasChanged();
-
-                //    BladeSetChanged.Invoke(this, null);
-                //}
-
-                if (addedBladesQueue.TryDequeue(out BladeInfo addedBlade))
-                {
-                    await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBBladeSet.openBlade", BladeSetElem, MainContentElementReference, ScrollHelperElementReference, addedBlade.BladeElementReference, addedBlade.BladeContentElementReference, transitionMs);
-
-                    addedBlade.Status = BladeStatus.Open;
-
-                    StateHasChanged();
-
-                    BladeSetChanged.Invoke(this, null);
-                }
-                else if (removedBladesQueue.TryDequeue(out BladeInfo removedBlade))
-                {
-                    await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBBladeSet.closeBlade", removedBlade.BladeElementReference);
-
-                    await Task.Delay(transitionMs);
-
-                    Blades.Remove(removedBlade.BladeReference);
-
-                    StateHasChanged();
-
-                    BladeSetChanged.Invoke(this, null);
-                }
-
-                //StateHasChanged();
-            //}
+                BladeSetChanged.Invoke(this, null);
+            }
         }
     }
 }

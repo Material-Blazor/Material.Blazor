@@ -60,7 +60,7 @@ services.AddMBServices(
         MaxToastsShowing = 5
     },
 
-    animatedNavigationServiceConfiguration: new MBAnimatedNavigationManagerServiceConfiguration()
+    animatedNavigationManagerServiceConfiguration: new MBAnimatedNavigationManagerServiceConfiguration()
     {
         ApplyAnimation = true,
         AnimationTime = 300
