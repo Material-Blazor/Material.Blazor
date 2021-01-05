@@ -15,7 +15,7 @@ module.exports = {
     },
 
     output: {
-        filename: "MaterialBlazor.js",
+        filename: "intermediate.js",
         path: path.resolve(__dirname, 'wwwroot'),
     },
 

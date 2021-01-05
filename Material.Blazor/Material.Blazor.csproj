@@ -68,21 +68,23 @@
 
   <ItemGroup>
     <InputStaticAssetsScripts Include="components\**\*.ts;scripts\**\*.ts" />
-    <!-- (For debug) <OutputStaticAssetsScripts Include="wwwroot\bundled.min.js;wwwroot\bundled.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js" />-->
-    <OutputStaticAssetsScripts Include="wwwroot\bundled.min.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js" />
+    <OutputStaticAssetsScripts Include="wwwintermediateroot\materialblazor.js;wwwroot\materialblazor.min.js" />
   </ItemGroup>
 
   <ItemGroup>
     <InputStaticAssetsStyles Include="components\**\*.scss;styles\**\*.scss;" />
-    <OutputStaticAssetsStyles Include="wwwroot\bundled.min.css;wwwroot\unbundled.min.css;wwwroot\unbundled.css" />
+    <OutputStaticAssetsStyles Include="wwwintermediateroot\materialblazor.css;wwwroot\materialblazor.min.css" />
   </ItemGroup>
 
   <ItemGroup>
     <InputStaticAssets Include="components\**\*.ts;scripts\**\*.ts;components\**\*.scss;styles\**\*.scss;" />
-    <OutputStaticAssets Include="wwwroot\bundled.min.js;wwwroot\bundled.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js;wwwroot\bundled.min.css;wwwroot\unbundled.min.css;wwwroot\unbundled.css" />
+    <InputStaticAssets Remove="Styles\MaterialBlazor.scss" />
+    <InputStaticAssetsStyles Remove="Styles\MaterialBlazor.scss" />
+    <OutputStaticAssets Include="wwwintermediateroot\materialblazor.css;wwwroot\materialblazor.min.css;wwwintermediateroot\materialblazor.js;wwwroot\materialblazor.min.js" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwintermediateroot\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -113,6 +115,7 @@
   <Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
     <Message Importance="high" Text="***** MakeDir wwwroot (M.B Scripts)" />
     <MakeDir Directories="wwwroot" />
+    <MakeDir Directories="wwwintermediateroot" />
 
     <Message Importance="high" Text="***** npm install" />
     <Exec Command="npm install" />
@@ -130,25 +133,24 @@
     <Message Importance="high" Text="***** npm run build-min-js" />
     <Exec Command="npm run build-min-js" />
 
-    <!--<Message Importance="high" Text="***** npm run build-bundle-js (For debug)" />
-    <Exec Command="npm run build-bundle-js" />-->
-
-    <Message Importance="high" Text="***** npm run build-min-bundle-js" />
-    <Exec Command="npm run build-min-bundle-js" />
-
-    <Message Importance="high" Text="***** delete materialblazor.js" />
-    <Delete Files="wwwroot\materialblazor.js" />
+    <Message Importance="high" Text="***** delete intermediate.js" />
+    <Delete Files="wwwroot\intermediate.js" />
   </Target>
 
   <Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
     <Message Importance="high" Text="***** mkdir wwwroot (M.B Styles)" />
     <MakeDir Directories="wwwroot" />
+    <MakeDir Directories="wwwintermediateroot" />
 
     <Message Importance="high" Text="***** npm install" />
     <Exec Command="npm install" />
 
-    <Message Importance="high" Text="***** downloadfile" />
-    <DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" DestinationFolder="$(MSBuildProjectDirectory)\wwwroot" DestinationFilename="material-components-icons.css">
+    <Message Importance="high" Text="***** downloadfiles" />
+    <DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" DestinationFolder="$(MSBuildProjectDirectory)\wwwintermediateroot" DestinationFilename="material-components-icons.css">
+    </DownloadFile>
+    <DownloadFile SourceUrl="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" DestinationFolder="$(MSBuildProjectDirectory)\wwwintermediateroot" DestinationFilename="font-awesome-icons.css">
+    </DownloadFile>
+    <DownloadFile SourceUrl="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic.min.css" DestinationFolder="$(MSBuildProjectDirectory)\wwwintermediateroot" DestinationFilename="open-iconic-icons.css">
     </DownloadFile>
 
     <Message Importance="high" Text="***** npm run build-css" />
@@ -156,9 +158,6 @@
 
     <Message Importance="high" Text="***** npm run build-min-css" />
     <Exec Command="npm run build-min-css" />
-
-    <Message Importance="high" Text="***** npm run build-min-bundle-css" />
-    <Exec Command="npm run build-min-bundle-css" />
 
   </Target>
 

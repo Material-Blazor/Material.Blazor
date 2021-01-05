@@ -5,6 +5,7 @@
 //  
 //  Bugs:
 //      MeasureWidth execution time
+//      Padding resolution for GridHeader
 //      Resolve issue with ElementReferences
 //
 
@@ -275,7 +276,7 @@ namespace Material.Blazor
         }
         protected async Task GridSyncScroll()
         {
-            Logger.LogDebug("GridSyncScroll()");
+            Logger.LogInformation("GridSyncScroll()");
             await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBGrid.syncScrollByID", GridHeaderID, GridBodyID);
             //await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBGrid.syncScrollByRef", GridHeaderRef, GridBodyRef);
         }
@@ -292,18 +293,18 @@ namespace Material.Blazor
         {
             if (IsFirstRender)
             {
-                Logger.LogDebug("BuildRenderTree entered (IsFirstRender == true)");
+                Logger.LogInformation("BuildRenderTree entered (IsFirstRender == true)");
                 // We are going to render a DIV and nothing else
                 // We need to get into OnAfterRenderAsync so that we can use JS interop to measure
                 // the text
                 base.BuildRenderTree(builder);
                 builder.OpenElement(1, "div");
                 builder.CloseElement();
-                Logger.LogDebug("                leaving (IsFirstRender == true)");
+                Logger.LogInformation("                leaving (IsFirstRender == true)");
                 return;
             }
 
-            Logger.LogDebug("BuildRenderTree entered (IsFirstRender == false)");
+            Logger.LogInformation("BuildRenderTree entered (IsFirstRender == false)");
 
             OrderedGroupedData = null;
 
@@ -423,7 +424,6 @@ namespace Material.Blazor
                     styleStr += " background-color : " + col.BackgroundColor.Name + ";";
 
                     builder.AddAttribute(rendSeq++, "style", styleStr);
-                    builder.AddAttribute(rendSeq++, "mbgrid-td-normal", colCount.ToString());
                     builder.AddContent(rendSeq++, col.Title);
 
                     // Close this column TD
@@ -533,7 +533,6 @@ namespace Material.Blazor
                                 colCount == 0,
                                 isHeaderRow,
                                 rowBackgroundColorClass);
-                            builder.AddAttribute(rendSeq++, "mbgrid-td-normal", colCount.ToString()); ;
 
                             switch (columnDefinition.ColumnType)
                             {
@@ -632,7 +631,7 @@ namespace Material.Blazor
             }
 
             HasCompletedFullRender = true;
-            Logger.LogDebug("                leaving (IsFirstRender == false)");
+            Logger.LogInformation("                leaving (IsFirstRender == false)");
         }
 
         private void BuildColGroup(RenderTreeBuilder builder, ref int rendSeq)
