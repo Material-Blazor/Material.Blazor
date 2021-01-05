@@ -68,23 +68,23 @@
 
   <ItemGroup>
     <InputStaticAssetsScripts Include="components\**\*.ts;scripts\**\*.ts" />
-    <OutputStaticAssetsScripts Include="wwwintermediateroot\materialblazor.js;wwwroot\materialblazor.min.js" />
+    <OutputStaticAssetsScripts Include="workingwwwroot\materialblazor.js;wwwroot\materialblazor.min.js" />
   </ItemGroup>
 
   <ItemGroup>
     <InputStaticAssetsStyles Include="components\**\*.scss;styles\**\*.scss;" />
-    <OutputStaticAssetsStyles Include="wwwintermediateroot\materialblazor.css;wwwroot\materialblazor.min.css" />
+    <OutputStaticAssetsStyles Include="workingwwwroot\materialblazor.css;wwwroot\materialblazor.min.css" />
   </ItemGroup>
 
   <ItemGroup>
     <InputStaticAssets Include="components\**\*.ts;scripts\**\*.ts;components\**\*.scss;styles\**\*.scss;" />
     <InputStaticAssets Remove="Styles\MaterialBlazor.scss" />
     <InputStaticAssetsStyles Remove="Styles\MaterialBlazor.scss" />
-    <OutputStaticAssets Include="wwwintermediateroot\materialblazor.css;wwwroot\materialblazor.min.css;wwwintermediateroot\materialblazor.js;wwwroot\materialblazor.min.js" />
+    <OutputStaticAssets Include="workingwwwroot\materialblazor.css;wwwroot\materialblazor.min.css;workingwwwroot\materialblazor.js;wwwroot\materialblazor.min.js" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwintermediateroot\" />
+    <Folder Include="workingwwwroot\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -113,9 +113,9 @@
   </Target>
 
   <Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
-    <Message Importance="high" Text="***** MakeDir wwwroot (M.B Scripts)" />
+    <Message Importance="high" Text="***** MakeDir wwwroot and workingwwwroot (M.B Scripts)" />
     <MakeDir Directories="wwwroot" />
-    <MakeDir Directories="wwwintermediateroot" />
+    <MakeDir Directories="workingwwwroot" />
 
     <Message Importance="high" Text="***** npm install" />
     <Exec Command="npm install" />
@@ -138,19 +138,19 @@
   </Target>
 
   <Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
-    <Message Importance="high" Text="***** mkdir wwwroot (M.B Styles)" />
+    <Message Importance="high" Text="***** mkdir wwwroot and workingwwwroot (M.B Styles)" />
     <MakeDir Directories="wwwroot" />
-    <MakeDir Directories="wwwintermediateroot" />
+    <MakeDir Directories="workingwwwroot" />
 
     <Message Importance="high" Text="***** npm install" />
     <Exec Command="npm install" />
 
     <Message Importance="high" Text="***** downloadfiles" />
-    <DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" DestinationFolder="$(MSBuildProjectDirectory)\wwwintermediateroot" DestinationFilename="material-components-icons.css">
+    <DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" DestinationFolder="$(MSBuildProjectDirectory)\workingwwwroot" DestinationFilename="material-components-icons.css">
     </DownloadFile>
-    <DownloadFile SourceUrl="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" DestinationFolder="$(MSBuildProjectDirectory)\wwwintermediateroot" DestinationFilename="font-awesome-icons.css">
+    <DownloadFile SourceUrl="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" DestinationFolder="$(MSBuildProjectDirectory)\workingwwwroot" DestinationFilename="font-awesome-icons.css">
     </DownloadFile>
-    <DownloadFile SourceUrl="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic.min.css" DestinationFolder="$(MSBuildProjectDirectory)\wwwintermediateroot" DestinationFilename="open-iconic-icons.css">
+    <DownloadFile SourceUrl="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic.min.css" DestinationFolder="$(MSBuildProjectDirectory)\workingwwwroot" DestinationFilename="open-iconic-icons.css">
     </DownloadFile>
 
     <Message Importance="high" Text="***** npm run build-css" />

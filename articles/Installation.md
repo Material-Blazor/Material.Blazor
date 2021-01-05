@@ -4,65 +4,36 @@ title: Installation
 ---
 # Installation
 
-Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add the CSS and JS in your html (there are non-minified unbundled files for Material.Blazor.css & BlazorMds.js to reference if you need them for debugging purposes).
-Reference the `Material.Blazor` namespace with `@using Material.Blazor` to your `_Imports.razor` file. 
+Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add the CSS and JS in your html.
 
-## Directions for using Material.Blazor bundled CSS and JS
-
-***This is the recommended way to install Material.Blazor unless you need to theme with the Material Components Web SASS mixins.***
-
-We bundle the Material Theme CSS and JS into Material.Blazor for your convenience along with [Material Icons](https://material.io/resources/icons/?style=baseline) which are essential for Material.Blazor. You will need to add two items to your index.html/_Host.cshtml file. Place this in the the `<head>` tag:
-
-```html
-<link href="_content/Material.Blazor/bundled.min.css" rel="stylesheet">
-```
-
-and at the end of `<body>`:
-
-```html
-<script src="_content/Material.Blazor/bundled.min.js"></script>
-```
+There are non-minified files of MaterialBlazor.css & MaterialBlazor.js available to reference if you need them for debugging purposes. You will have to fork the repository and build to get the non-minified files.
 
 Add the `Material.Blazor` namespace to your project by appending `@using Material.Blazor` to the end of your project's _Imports.razor file. Do not use components from the `Material.Blazor.Internal` namespace: as the name
 implies these are intended for internal use by Material.Blazor, however Blazor has no mechanism for internally restricted Blazor components to mirror the `internal` directive for a C# class.
 
-## Alternative using unbundled CSS and JS
+## Obtaining the requisite CSS and JS
 
-***Use this for the CSS if you need to theme with the Material Components Web SASS mixins, although we recommend still using the JS bundle.***
-
-If you want, you can directly reference the Material Theme CSS and JS from the unpkg CDN (or download it for yourself). Again we package a reference 
-to Material Icons. You will to add five items to your index.html/_Host.cshtml. Place this in the `<head>` tag, replacing the unpkg CSS with your own
-if you have built a theme - you can see how we have done this in the [Material.Blazor website's index.html](https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website.WebAssembly/wwwroot/index.html#L14):
+If you want, you can directly reference the Material Theme CSS and JS from the unpkg CDN (or download it for yourself). We package the css for 
+ Material, Font Awesome, and Open Iconic icons. You will to add three items to your index.html/_Host.cshtml. Place this in the `<head>` tag:
 
 ```html
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
 <link href="https://unpkg.com/material-components-web@8.0.0/dist/material-components-web.css" rel="stylesheet" />
-<link href="_content/Material.Blazor/unbundled.css" rel="stylesheet" />
+<link href="_content/Material.Blazor/MaterialBlazor.min.css" rel="stylesheet" />
 ```
 
 and at the end of `<body>`:
 
 ```html
-<script src="https://unpkg.com/material-components-web@8.0.0/dist/material-components-web.js"></script>
-<script src="_content/Material.Blazor/unbundled.js"></script>
+<script src="_content/Material.Blazor/MaterialBlazor.min.js"></script>
 ```
 
-We also provide minified `material.blazor.min.css` and `material.blazor.min.js`. Add the `Material.Blazor` namespace to your project as above. These will be needed
-if you want to create your own theme using Material Theme SASS mixins - we have done this for [material-blazor.com](https://material-blazor.com)
-
+ Replace the unpkg CSS with your own
+if you have built a theme - you can see how we have done this in the [Material.Blazor website's index.html](https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website.WebAssembly/wwwroot/index.html#L14).
 ## Package versions
 
 Material.Blazor works with the following package versions:
 
-- [Material Components v8.0.0](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#800-2020-11-02);
-- [Font Awesome Icons version 5](https://fontawesome.com/changelog/latest) are optional and can be included in your HTML `<head>` with the CDN link:
-    ```html
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
-    ```
-- [Open Iconic Icons version 1.1](https://useiconic.com/open) are also optional and can be included in your HTML `<head>` with the CDN link:
-    ```html
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic.min.css" crossorigin="anonymous" rel="stylesheet" />
-    ```
+- [Material Components v8.0.0](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#800-2020-11-02)
 
 ## Services and Anchor
 

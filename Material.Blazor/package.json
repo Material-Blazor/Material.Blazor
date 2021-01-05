@@ -4,10 +4,10 @@
   "description": "NPM build steps for Material.Blazor",
   "repository": "https://github.com/Material-Blazor/Material.Blazor",
   "scripts": {
-    "build-css": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/MaterialBlazor.scss wwwintermediateroot/MaterialBlazor.css",
+    "build-css": "dart-sass --update --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/MaterialBlazor.scss workingwwwroot/MaterialBlazor.css",
     "build-min-css": "dart-sass --update --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/MaterialBlazor.scss wwwroot/MaterialBlazor.min.css",
-    "build-js": "terser wwwroot/intermediate.js --beautify --output wwwintermediateroot/MaterialBlazor.js",
-    "build-min-js": "terser wwwintermediateroot/MaterialBlazor.js --compress --mangle --ecma 2016 --output wwwroot/MaterialBlazor.min.js",
+    "build-js": "terser wwwroot/intermediate.js --beautify --output workingwwwroot/MaterialBlazor.js",
+    "build-min-js": "terser workingwwwroot/MaterialBlazor.js --compress --mangle --ecma 2016 --output wwwroot/MaterialBlazor.min.js",
     "build-scripts": "webpack --config webpack.config.js",
     "build-scripts-Comment1": "https://github.com/microsoft/TypeScript-Babel-Starter",
     "build-scripts-Comment2": "https://github.com/a-tarasyuk/webpack-typescript-babel"
