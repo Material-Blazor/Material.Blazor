@@ -44,10 +44,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Material.Blazor\Material.Blazor.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\videos\" />
   </ItemGroup>
@@ -55,6 +51,10 @@
   <ItemGroup>
     <InputStaticAssetsStyles Include="styles\*.scss;" />
     <OutputStaticAssetsStyles Include="wwwroot\css\asymmetric-theme.min.css;wwwroot\css\dark-square-theme.min.css;wwwroot\css\light-square-theme.min.css;wwwroot\css\material-default-theme.min.css;wwwroot\css\rounded-theme.min.css;" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Material.Blazor\Material.Blazor.csproj" />
   </ItemGroup>
 
   <Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent">

@@ -19,7 +19,7 @@ import * as MBMenu from '../Components/Menu/MBMenu';
 import * as MBRadioButton from '../Components/RadioButton/MBRadioButton';
 import * as MBSegmentedButtonMulti from '../Components/SegmentedButtonMulti/MBSegmentedButtonMulti';
 import * as MBSelect from '../Components/Select/MBSelect';
-//import * as MBSlider from '../Components/Slider/MBSlider';
+import * as MBSlider from '../Components/Slider/MBSlider';
 import * as MBSwitch from '../Components/Switch/MBSwitch';
 import * as MBTabBar from '../Components/TabBar/MBTabBar';
 import * as MBTextField from '../Components/TextField/MBTextField';
@@ -48,7 +48,7 @@ import * as MBTopAppBar from '../Components/TopAppBar/MBTopAppBar';
     MBRadioButton,
     MBSegmentedButtonMulti,
     MBSelect,
-//    MBSlider,
+    MBSlider,
     MBSwitch,
     MBTabBar,
     MBTextField,
