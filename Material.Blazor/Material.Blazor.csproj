@@ -18,7 +18,6 @@
     <PackageProjectUrl>https://material-blazor.com</PackageProjectUrl>
     <Product>Material.Blazor</Product>
     <UserSecretsId>d7509b6c-bc5c-4a56-a750-09c8ae4aeb85</UserSecretsId>
-    <NpmReturnCode>0</NpmReturnCode>
     <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 
@@ -77,21 +76,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <InputStaticAssets Include="components\**\*.ts;scripts\**\*.ts;components\**\*.scss;styles\**\*.scss;" />
-    <InputStaticAssets Remove="Styles\MaterialBlazor.scss" />
-    <InputStaticAssetsStyles Remove="Styles\MaterialBlazor.scss" />
-    <OutputStaticAssets Include="workingwwwroot\materialblazor.css;wwwroot\materialblazor.min.css;workingwwwroot\materialblazor.js;wwwroot\materialblazor.min.js" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="workingwwwroot\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
-  <!-- The NpmReturnCode parameter value is preset to 0 in the PropertyGroup -->
-  <!-- The inputs/outputs are 'close to correct' in that a newer TS source than output CSS (or newer SCSS source
-       than output JS) will trigger this check even though nothing needs to be built -->
-  <Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssets)" Outputs="@(OutputStaticAssets)" BeforeTargets="PreBuildEvent">
+  <Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
     <Exec Command="npm --version" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
     </Exec>
@@ -148,10 +137,10 @@
     <Message Importance="high" Text="***** downloadfiles" />
     <DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" DestinationFolder="$(MSBuildProjectDirectory)\workingwwwroot" DestinationFilename="material-components-icons.css">
     </DownloadFile>
-    <DownloadFile SourceUrl="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" DestinationFolder="$(MSBuildProjectDirectory)\workingwwwroot" DestinationFilename="font-awesome-icons.css">
+    <!--<DownloadFile SourceUrl="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" DestinationFolder="$(MSBuildProjectDirectory)\workingwwwroot" DestinationFilename="font-awesome-icons.css">
     </DownloadFile>
     <DownloadFile SourceUrl="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic.min.css" DestinationFolder="$(MSBuildProjectDirectory)\workingwwwroot" DestinationFilename="open-iconic-icons.css">
-    </DownloadFile>
+    </DownloadFile>-->
 
     <Message Importance="high" Text="***** npm run build-css" />
     <Exec Command="npm run build-css" />
