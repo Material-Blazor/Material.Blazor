@@ -124,7 +124,7 @@
                             <MBSelect Label="Additional css class" @bind-Value="@CssClass" Items="CssClassItems" ItemValidation="@MBItemValidation.DefaultToFirst" SelectInputStyle="@MBSelectInputStyle.Outlined" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
-                            <MBSelect Label="Close method" @bind-Value="@CloseMethod" Items="closeMethodItems" SelectInputStyle="@MBSelectInputStyle.Outlined" />
+                            <MBSelect Label="Close method" @bind-Value="@CloseMethod" Items="closeMethodItems" ItemValidation="@MBItemValidation.DefaultToFirst" SelectInputStyle="@MBSelectInputStyle.Outlined" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
                             <MBSelect Label="Heading" @bind-Value="@Heading" Items="headingItems" ItemValidation="@MBItemValidation.DefaultToFirst" SelectInputStyle="@MBSelectInputStyle.Outlined" />
@@ -133,7 +133,7 @@
                             <MBSelect Label="Icon" @bind-Value="@Icon" Items="iconItems" ItemValidation="@MBItemValidation.DefaultToFirst" SelectInputStyle="@MBSelectInputStyle.Outlined" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
-                            <MBSelect Label="Level" @bind-Value="@Level" Items="levelItems" SelectInputStyle="@MBSelectInputStyle.Outlined" />
+                            <MBSelect Label="Level" @bind-Value="@Level" Items="levelItems" ItemValidation="@MBItemValidation.DefaultToFirst" SelectInputStyle="@MBSelectInputStyle.Outlined" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
                             <MBSelect Label="Message" @bind-Value="@Message" Items="messageItems" ItemValidation="@MBItemValidation.DefaultToFirst" SelectInputStyle="@MBSelectInputStyle.Outlined" />
@@ -163,11 +163,11 @@
     private bool OverrideCssDefaults { get; set; }
 
     private readonly IEnumerable<MBSelectElement<MBToastPosition>> positionItems = from pos in (MBToastPosition[])Enum.GetValues(typeof(MBToastPosition))
-                                                                                 select new MBSelectElement<MBToastPosition>
-                                                                                 {
-                                                                                     SelectedValue = pos,
-                                                                                     Label = pos.ToString()
-                                                                                 };
+                                                                                   select new MBSelectElement<MBToastPosition>
+                                                                                   {
+                                                                                       SelectedValue = pos,
+                                                                                       Label = pos.ToString()
+                                                                                   };
 
 
     private string CssClass { get; set; }
@@ -175,16 +175,16 @@
     {
         new MBSelectElement<string> { SelectedValue = "", Label = "Default" },
         new MBSelectElement<string> { SelectedValue = "italic-class", Label = "Italic" },
-        };
+            };
 
 
     private MBToastCloseMethod CloseMethod { get; set; }
     private readonly IEnumerable<MBSelectElement<MBToastCloseMethod>> closeMethodItems = from c in (MBToastCloseMethod[])Enum.GetValues(typeof(MBToastCloseMethod))
-                                                                                       select new MBSelectElement<MBToastCloseMethod>
-                                                                                       {
-                                                                                           SelectedValue = c,
-                                                                                           Label = c.ToString()
-                                                                                       };
+                                                                                         select new MBSelectElement<MBToastCloseMethod>
+                                                                                         {
+                                                                                             SelectedValue = c,
+                                                                                             Label = c.ToString()
+                                                                                         };
 
     private string Heading { get; set; }
     private readonly MBSelectElement<string>[] headingItems = new MBSelectElement<string>[]
@@ -192,7 +192,7 @@
         new MBSelectElement<string> { SelectedValue = "", Label = "Default" },
         new MBSelectElement<string> { SelectedValue = "Run of the mill heading", Label = "Run of the mill heading" },
         new MBSelectElement<string> { SelectedValue = "Heading truncated and truncated and truncated and truncated", Label = "Heading that will be truncated" }
-        };
+            };
 
 
 #nullable enable annotations
@@ -214,16 +214,16 @@
         new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MBIconHelper.MIFoundry(theme: MBIconMITheme.Sharp) }, Label = "thumb_up (sharp)" },
         new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = MBIconHelper.FAFoundry() }, Label = "fa-ambulance" },
         new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = MBIconHelper.FAFoundry(relativeSize: MBIconFARelativeSize.ExtraSmall) }, Label = "fa-ambulance (x-small)" },
-        };
+            };
 
 
     private MBToastLevel Level { get; set; }
     private readonly IEnumerable<MBSelectElement<MBToastLevel>> levelItems = from c in (MBToastLevel[])Enum.GetValues(typeof(MBToastLevel))
-                                                                           select new MBSelectElement<MBToastLevel>
-                                                                           {
-                                                                               SelectedValue = c,
-                                                                               Label = c.ToString()
-                                                                           };
+                                                                             select new MBSelectElement<MBToastLevel>
+                                                                             {
+                                                                                 SelectedValue = c,
+                                                                                 Label = c.ToString()
+                                                                             };
 
 
     private string Message { get; set; }
@@ -232,7 +232,7 @@
         new MBSelectElement<string> { SelectedValue = "Run of the mill message", Label = "Run of the mill message" },
         new MBSelectElement<string> { SelectedValue = "Text <strong>bold</strong> and <u>underlined</u>", Label = "Message with markup" },
         new MBSelectElement<string> { SelectedValue = "Message truncated and truncated and truncated and truncated", Label = "Message that will be truncated" }
-        };
+            };
 
 
     private string ShowIcon { get; set; }
@@ -241,7 +241,7 @@
         new MBSelectElement<string> { SelectedValue = "", Label = "Default" },
         new MBSelectElement<string> { SelectedValue = "true", Label = "true" },
         new MBSelectElement<string> { SelectedValue = "false", Label = "false" }
-        };
+            };
 
 
     private string Timeout { get; set; }
@@ -251,7 +251,7 @@
         new MBSelectElement<string> { SelectedValue = "1000", Label = "1 second" },
         new MBSelectElement<string> { SelectedValue = "10000", Label = "10 seconds" },
         new MBSelectElement<string> { SelectedValue = "60000", Label = "60 seconds" }
-        };
+            };
 
 
     private void CustomiseClick()

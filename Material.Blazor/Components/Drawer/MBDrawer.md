@@ -6,7 +6,7 @@ title: MBDrawer
 
 ## Summary
 
-A [Material Drawer](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-drawer#navigation-drawers) using a render fragment for content. It features:
+A [Material Drawer](https://github.com/material-components/material-components-web/tree/v9.0.0/packages/mdc-drawer#navigation-drawers) using a render fragment for content. It features:
 
 ## Details
 

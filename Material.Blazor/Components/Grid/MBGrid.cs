@@ -42,6 +42,7 @@ namespace Material.Blazor
     /// </summary>
     public class MBGrid<TRowData> : ComponentFoundation
     {
+        #region Parameters
 #pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
         /// <summary>
         /// The configuration of each column to be displayed. See the definition of MBGridColumnConfiguration
@@ -93,7 +94,9 @@ namespace Material.Blazor
         /// </summary>
         [Parameter] public bool SupressHeader { get; set; } = false;
 #pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+        #endregion
 
+        #region Members
         private float[] ColumnWidthArray;
         private ElementReference GridBodyRef { get; set; }
         private ElementReference GridHeaderRef { get; set; }
@@ -107,59 +110,28 @@ namespace Material.Blazor
 
         //Instantiate a Singleton of the Semaphore with a value of 1. This means that only 1 thread can be granted access at a time.
         private static readonly SemaphoreSlim semaphoreSlim = new(1, 1);
+        #endregion
 
-        protected override void OnInitialized()
+        #region ConvertPxMeasureToFloat
+        private static float ConvertPxMeasureToFloat(string pxMeasure)
         {
-            base.OnInitialized();
-
-            if (ColumnConfigurations == null)
-            {
-                throw new System.Exception("MBGrid requires column configuration definitions.");
-            }
-            Logger.LogInformation("MBGrid.OnInitialized completed");
+            //          return Convert.ToSingle(pxMeasure.Substring(0, pxMeasure.Length - 2));
+            //          The c# 8.0 range (https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8#indices-and-ranges)
+            //          allows that to be converted to the following
+            return Convert.ToSingle(pxMeasure[0..^2]);
         }
+        #endregion
 
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+        #region GridSyncScroll
+        protected async Task GridSyncScroll()
         {
-            await semaphoreSlim.WaitAsync();
-            try
-            {
-                await base.OnAfterRenderAsync(firstRender);
-
-                Logger.LogInformation("OnAfterRenderAsync entered");
-                Logger.LogInformation("                   firstRender: " + firstRender.ToString());
-                Logger.LogInformation("                   IsFirstRender: " + IsFirstRender.ToString());
-                Logger.LogInformation("                   HasCompletedFullRender: " + HasCompletedFullRender.ToString());
-
-                if (IsFirstRender)
-                {
-                    IsFirstRender = false;
-                    await MeasureWidths();
-                    StateHasChanged();
-                }
-            }
-            finally
-            {
-                Logger.LogInformation("                   about to release semaphore");
-
-                semaphoreSlim.Release();
-            }
+            Logger.LogInformation("GridSyncScroll()");
+            await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBGrid.syncScrollByID", GridHeaderID, GridBodyID);
+            //await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBGrid.syncScrollByRef", GridHeaderRef, GridBodyRef);
         }
+        #endregion
 
-        protected override async Task OnParametersSetAsync()
-        {
-            Logger.LogInformation("OnParametersSetAsync entry");
-            Logger.LogInformation("                     HasCompletedFullRender: " + HasCompletedFullRender.ToString());
-
-            await base.OnParametersSetAsync();
-
-            if (HasCompletedFullRender)
-            {
-                //await MeasureWidths();
-            }
-            Logger.LogInformation("                     exit");
-        }
-
+        #region MeasureWidths
         private async Task MeasureWidths()
         {
             Logger.LogInformation("MeasureWidths entered");
@@ -267,20 +239,67 @@ namespace Material.Blazor
             }
             Logger.LogInformation("MeasureWidths complete");
         }
-        private static float ConvertPxMeasureToFloat(string pxMeasure)
-        {
-            //          return Convert.ToSingle(pxMeasure.Substring(0, pxMeasure.Length - 2));
-            //          The c# 8.0 range (https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8#indices-and-ranges)
-            //          allows that to be converted to the following
-            return Convert.ToSingle(pxMeasure[0..^2]);
-        }
-        protected async Task GridSyncScroll()
-        {
-            Logger.LogInformation("GridSyncScroll()");
-            await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBGrid.syncScrollByID", GridHeaderID, GridBodyID);
-            //await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBGrid.syncScrollByRef", GridHeaderRef, GridBodyRef);
-        }
+        #endregion
 
+        #region OnAfterRenderAsync
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            await semaphoreSlim.WaitAsync();
+            try
+            {
+                await base.OnAfterRenderAsync(firstRender);
+
+                Logger.LogInformation("OnAfterRenderAsync entered");
+                Logger.LogInformation("                   firstRender: " + firstRender.ToString());
+                Logger.LogInformation("                   IsFirstRender: " + IsFirstRender.ToString());
+                Logger.LogInformation("                   HasCompletedFullRender: " + HasCompletedFullRender.ToString());
+
+                if (IsFirstRender)
+                {
+                    IsFirstRender = false;
+                    await MeasureWidths();
+                    StateHasChanged();
+                }
+            }
+            finally
+            {
+                Logger.LogInformation("                   about to release semaphore");
+
+                semaphoreSlim.Release();
+            }
+        }
+        #endregion
+
+        #region OnInitialized
+        protected override void OnInitialized()
+        {
+            base.OnInitialized();
+
+            if (ColumnConfigurations == null)
+            {
+                throw new System.Exception("MBGrid requires column configuration definitions.");
+            }
+            Logger.LogInformation("MBGrid.OnInitialized completed");
+        }
+        #endregion
+
+        #region OnParametersSetAsync
+        protected override async Task OnParametersSetAsync()
+        {
+            Logger.LogInformation("OnParametersSetAsync entry");
+            Logger.LogInformation("                     HasCompletedFullRender: " + HasCompletedFullRender.ToString());
+
+            await base.OnParametersSetAsync();
+
+            if (HasCompletedFullRender)
+            {
+                //await MeasureWidths();
+            }
+            Logger.LogInformation("                     exit");
+        }
+        #endregion
+
+        #region StringComparer
         class StringComparer : IComparer<string>
         {
             public int Compare(string x, string y)
@@ -288,7 +307,9 @@ namespace Material.Blazor
                 return string.Compare(x, y, true);
             }
         }
+        #endregion
 
+        #region BuildRenderTree
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
             if (IsFirstRender)
@@ -633,7 +654,9 @@ namespace Material.Blazor
             HasCompletedFullRender = true;
             Logger.LogInformation("                leaving (IsFirstRender == false)");
         }
+        #endregion
 
+        #region BuildColGroup
         private void BuildColGroup(RenderTreeBuilder builder, ref int rendSeq)
         {
             // Create the sizing colgroup collection
@@ -650,7 +673,9 @@ namespace Material.Blazor
             }
             builder.CloseElement(); // colgroup
         }
+        #endregion
 
+        #region BuildNewGridTD
         private static string BuildNewGridTD(
             RenderTreeBuilder builder,
             ref int rendSeq,
@@ -688,7 +713,9 @@ namespace Material.Blazor
                 }
             }
         }
+        #endregion
 
+        #region CreateMeasurementStyle
         private string CreateMeasurementStyle(MBGridColumnConfiguration<TRowData> col, float columnWidth)
         {
             string subStyle = Measurement switch
@@ -715,8 +742,9 @@ namespace Material.Blazor
                     "min-width: " + columnWidth.ToString() + "px !important; ";
             }
         }
+        #endregion
 
-
+        #region OnMouseClickInternal
         //
         //  We set a click handler on the rows for now, and make the spans transparent. So we only
         //  get the row index. We raise our selection changed event when it changes.
@@ -735,12 +763,16 @@ namespace Material.Blazor
 
             return false;
         }
+        #endregion
+
+        #region ColorToCSSColor
         private static string ColorToCSSColor(Color color)
         {
             int rawColor = color.ToArgb();
             rawColor &= 0xFFFFFF;
             return "#" + rawColor.ToString("X6");
         }
+        #endregion
 
     }
 }

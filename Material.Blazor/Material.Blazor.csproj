@@ -67,16 +67,15 @@
 
   <ItemGroup>
     <InputStaticAssetsScripts Include="components\**\*.ts;scripts\**\*.ts" />
-    <OutputStaticAssetsScripts Include="workingwwwroot\materialblazor.js;wwwroot\materialblazor.min.js" />
+    <OutputStaticAssetsScripts Include="wwwroot\materialblazor.js;wwwroot\materialblazor.min.js" />
   </ItemGroup>
 
   <ItemGroup>
     <InputStaticAssetsStyles Include="components\**\*.scss;styles\**\*.scss;" />
-    <OutputStaticAssetsStyles Include="workingwwwroot\materialblazor.css;wwwroot\materialblazor.min.css" />
+    <OutputStaticAssetsStyles Include="wwwroot\materialblazor.css;wwwroot\materialblazor.min.css" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="workingwwwroot\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
@@ -102,9 +101,8 @@
   </Target>
 
   <Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
-    <Message Importance="high" Text="***** MakeDir wwwroot and workingwwwroot (M.B Scripts)" />
+    <Message Importance="high" Text="***** MakeDir wwwroot (M.B Scripts)" />
     <MakeDir Directories="wwwroot" />
-    <MakeDir Directories="workingwwwroot" />
 
     <Message Importance="high" Text="***** npm install" />
     <Exec Command="npm install" />
@@ -124,29 +122,28 @@
 
     <Message Importance="high" Text="***** delete intermediate.js" />
     <Delete Files="wwwroot\intermediate.js" />
+    
   </Target>
 
   <Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
-    <Message Importance="high" Text="***** mkdir wwwroot and workingwwwroot (M.B Styles)" />
+    <Message Importance="high" Text="***** mkdir wwwroot (M.B Styles)" />
     <MakeDir Directories="wwwroot" />
-    <MakeDir Directories="workingwwwroot" />
 
     <Message Importance="high" Text="***** npm install" />
     <Exec Command="npm install" />
 
     <Message Importance="high" Text="***** downloadfiles" />
-    <DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" DestinationFolder="$(MSBuildProjectDirectory)\workingwwwroot" DestinationFilename="material-components-icons.css">
+    <DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" DestinationFolder="$(MSBuildProjectDirectory)\wwwroot" DestinationFilename="material-components-icons.css">
     </DownloadFile>
-    <!--<DownloadFile SourceUrl="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" DestinationFolder="$(MSBuildProjectDirectory)\workingwwwroot" DestinationFilename="font-awesome-icons.css">
-    </DownloadFile>
-    <DownloadFile SourceUrl="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic.min.css" DestinationFolder="$(MSBuildProjectDirectory)\workingwwwroot" DestinationFilename="open-iconic-icons.css">
-    </DownloadFile>-->
 
     <Message Importance="high" Text="***** npm run build-css" />
     <Exec Command="npm run build-css" />
 
     <Message Importance="high" Text="***** npm run build-min-css" />
     <Exec Command="npm run build-min-css" />
+
+    <Message Importance="high" Text="***** delete material-components-icons.css" />
+    <Delete Files="wwwroot\material-components-icons.css" />
 
   </Target>
 

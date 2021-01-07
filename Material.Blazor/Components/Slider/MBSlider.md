@@ -6,7 +6,7 @@ title: MBSlider
 
 ## Summary
 
-A single thumb [Material Slider](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-slider#slider).
+A single thumb [Material Slider](https://github.com/material-components/material-components-web/tree/v9.0.0/packages/mdc-slider#slider).
 
 ## Details
 

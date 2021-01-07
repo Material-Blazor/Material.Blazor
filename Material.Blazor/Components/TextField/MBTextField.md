@@ -6,7 +6,7 @@ title: MBTextField
 
 ## Summary
 
-A fully-featured implementation of the suite of [Material Text Fields](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-textfield#text-field).
+A fully-featured implementation of the suite of [Material Text Fields](https://github.com/material-components/material-components-web/tree/v9.0.0/packages/mdc-textfield#text-field).
 
 ## Details
 

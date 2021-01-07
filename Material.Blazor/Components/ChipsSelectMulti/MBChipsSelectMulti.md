@@ -6,7 +6,7 @@ title: MBChipsSelectMulti
 
 ## Summary
 
-A [Material Chip Set](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-chips#chips) configured as a multi-select.
+A [Material Chip Set](https://github.com/material-components/material-components-web/tree/v9.0.0/packages/mdc-chips#chips) configured as a multi-select.
 
 ## Details
 

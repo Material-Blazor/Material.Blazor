@@ -6,7 +6,7 @@ title: MBIconButton
 
 ## Summary
 
-A [Material Icon Button](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-icon-button#icon-buttons) that accepts an icon and an optional icon foundry. Applies [density subsystem](xref:A.Density).
+A [Material Icon Button](https://github.com/material-components/material-components-web/tree/v9.0.0/packages/mdc-icon-button#icon-buttons) that accepts an icon and an optional icon foundry. Applies [density subsystem](xref:A.Density).
 
 &nbsp;
 

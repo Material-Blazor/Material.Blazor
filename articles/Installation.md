@@ -17,7 +17,7 @@ If you want, you can directly reference the Material Theme CSS and JS from the u
  Material icons. You will to add three items to your index.html/_Host.cshtml. Place this in the `<head>` tag:
 
 ```html
-<link href="https://unpkg.com/material-components-web@8.0.0/dist/material-components-web.css" rel="stylesheet" />
+<link href="https://unpkg.com/material-components-web@9.0.0/dist/material-components-web.css" rel="stylesheet" />
 <link href="_content/Material.Blazor/MaterialBlazor.min.css" rel="stylesheet" />
 ```
 
@@ -33,8 +33,8 @@ if you have built a theme - you can see how we have done this in the [Material.B
 
 Material.Blazor works with the following package versions:
 
-- [Material Components v8.0.0](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#800-2020-11-02)
-- [Font Awesome Icons version 5](https://fontawesome.com/changelog/latest) are optional and can be included in your HTML `<head>` with the CDN link:
+- [Material Components v9.0.0](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#800-2020-11-02)
+- [Font Awesome Icons version 5.15](https://fontawesome.com/changelog/latest) are optional and can be included in your HTML `<head>` with the CDN link:
     ```html
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     ```
