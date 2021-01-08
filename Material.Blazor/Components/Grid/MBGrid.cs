@@ -103,6 +103,7 @@ namespace Material.Blazor
         private string GridBodyID { get; set; } = Utilities.GenerateUniqueElementName();
         private string GridHeaderID { get; set; } = Utilities.GenerateUniqueElementName();
         private bool HasCompletedFullRender { get; set; } = false;
+        private bool HasRendered { get; set; } = false;
         private bool IsFirstRender { get; set; } = true;
         private List<KeyValuePair<string, List<TRowData>>> OrderedGroupedData { get; set; } = null;
         private float ScrollWidth { get; set; }
@@ -192,72 +193,6 @@ namespace Material.Blazor
 
             Logger.LogInformation("BuildRenderTree entered (IsFirstRender == false)");
 
-            OrderedGroupedData = null;
-
-            if (DataDictionary != null)
-            {
-                // Perform the sort(s)
-                IEnumerable<TRowData> sortedData;
-                if (SortExpressionFirst != null)
-                {
-                    if (SortExpressionSecond != null)
-                    {
-                        sortedData = DataDictionary.Values
-                                .OrderBy(SortExpressionFirst)
-                                .ThenBy(SortExpressionSecond);
-                    }
-                    else
-                    {
-                        sortedData = DataDictionary.Values
-                                .OrderBy(SortExpressionFirst);
-                    }
-                }
-                else
-                {
-                    {
-                        // No sorting at all
-                        sortedData = DataDictionary.Values;
-                    }
-                }
-
-                // Perform the grouping
-                OrderedGroupedData = new List<KeyValuePair<string, List<TRowData>>>();
-                if (GroupExpression == null)
-                {
-                    OrderedGroupedData.Add(new KeyValuePair<string, List<TRowData>>("FauxKey", new List<TRowData>(sortedData)));
-                }
-                else
-                {
-                    var groupedData = sortedData
-                        .GroupBy(GroupExpression)
-                        .ToDictionary(g => g.Key.ToString(), g => g.ToList());
-
-                    if (GroupOrderedList == null)
-                    {
-                        // We will default to alphabetical order
-                        var sortedGroupedData = new SortedDictionary<string, List<TRowData>>(groupedData, new StringComparer());
-                        foreach (var kvp in groupedData)
-                        {
-                            OrderedGroupedData.Add(new KeyValuePair<string, List<TRowData>>(kvp.Key, kvp.Value));
-                        }
-                    }
-                    else
-                    {
-                        foreach (var key in GroupOrderedList)
-                        {
-                            if (groupedData.ContainsKey(key))
-                            {
-                                OrderedGroupedData.Add(new KeyValuePair<string, List<TRowData>>(key, groupedData[key]));
-                            }
-                            else
-                            {
-                                var emptyList = new List<TRowData>();
-                                OrderedGroupedData.Add(new KeyValuePair<string, List<TRowData>>(key, emptyList));
-                            }
-                        }
-                    }
-                }
-            }
 
             //
             //  Using the column cfg and column data, render our list. Here is the layout.
@@ -578,11 +513,9 @@ namespace Material.Blazor
         }
         #endregion
 
-        #region MeasureWidths
-        private async Task MeasureWidths()
+        #region MeasureWidthsAsync
+        private async Task MeasureWidthsAsync()
         {
-            Logger.LogInformation("MeasureWidths entered");
-
             //
             // We are going to measure the actual sizes using JS if the Measurement is FitToData
             // We need to create the ColumnWidthArray regardless of the measurement type as we need to pass
@@ -684,7 +617,6 @@ namespace Material.Blazor
                     ColumnWidthArray[col] += 1;
                 }
             }
-            Logger.LogInformation("MeasureWidths complete");
         }
         #endregion
 
@@ -696,6 +628,8 @@ namespace Material.Blazor
             {
                 await base.OnAfterRenderAsync(firstRender);
 
+                HasRendered = true;
+
                 Logger.LogInformation("OnAfterRenderAsync entered");
                 Logger.LogInformation("                   firstRender: " + firstRender.ToString());
                 Logger.LogInformation("                   IsFirstRender: " + IsFirstRender.ToString());
@@ -704,8 +638,9 @@ namespace Material.Blazor
                 if (IsFirstRender)
                 {
                     IsFirstRender = false;
-                    await MeasureWidths();
-                    StateHasChanged();
+                    Logger.LogInformation("                   Calling MeasureWidthsAsync");
+                    await MeasureWidthsAsync();
+                    Logger.LogInformation("                   Returned from MeasureWidthsAsync");
                 }
             }
             finally
@@ -720,6 +655,7 @@ namespace Material.Blazor
         #region OnInitialized
         protected override void OnInitialized()
         {
+            Logger.LogInformation("MBGrid.OnInitialized entered");
             base.OnInitialized();
 
             if (ColumnConfigurations == null)
@@ -754,16 +690,94 @@ namespace Material.Blazor
         #region OnParametersSetAsync
         protected override async Task OnParametersSetAsync()
         {
-            Logger.LogInformation("OnParametersSetAsync entry");
-            Logger.LogInformation("                     HasCompletedFullRender: " + HasCompletedFullRender.ToString());
-
-            await base.OnParametersSetAsync();
-
-            if (HasCompletedFullRender)
+            await semaphoreSlim.WaitAsync();
+            try
             {
-                //await MeasureWidths();
+                Logger.LogInformation("OnParametersSetAsync entry");
+                Logger.LogInformation("                     HasRendered: " + HasRendered.ToString());
+                Logger.LogInformation("                     HasCompletedFullRender: " + HasCompletedFullRender.ToString());
+
+                await base.OnParametersSetAsync();
+
+                OrderedGroupedData = null;
+
+                if (DataDictionary != null)
+                {
+                    // Perform the sort(s)
+                    IEnumerable<TRowData> sortedData;
+                    if (SortExpressionFirst != null)
+                    {
+                        if (SortExpressionSecond != null)
+                        {
+                            sortedData = DataDictionary.Values
+                                    .OrderBy(SortExpressionFirst)
+                                    .ThenBy(SortExpressionSecond);
+                        }
+                        else
+                        {
+                            sortedData = DataDictionary.Values
+                                    .OrderBy(SortExpressionFirst);
+                        }
+                    }
+                    else
+                    {
+                        {
+                            // No sorting at all
+                            sortedData = DataDictionary.Values;
+                        }
+                    }
+
+                    // Perform the grouping
+                    OrderedGroupedData = new List<KeyValuePair<string, List<TRowData>>>();
+                    if (GroupExpression == null)
+                    {
+                        OrderedGroupedData.Add(new KeyValuePair<string, List<TRowData>>("FauxKey", new List<TRowData>(sortedData)));
+                    }
+                    else
+                    {
+                        var groupedData = sortedData
+                            .GroupBy(GroupExpression)
+                            .ToDictionary(g => g.Key.ToString(), g => g.ToList());
+
+                        if (GroupOrderedList == null)
+                        {
+                            // We will default to alphabetical order
+                            var sortedGroupedData = new SortedDictionary<string, List<TRowData>>(groupedData, new StringComparer());
+                            foreach (var kvp in groupedData)
+                            {
+                                OrderedGroupedData.Add(new KeyValuePair<string, List<TRowData>>(kvp.Key, kvp.Value));
+                            }
+                        }
+                        else
+                        {
+                            foreach (var key in GroupOrderedList)
+                            {
+                                if (groupedData.ContainsKey(key))
+                                {
+                                    OrderedGroupedData.Add(new KeyValuePair<string, List<TRowData>>(key, groupedData[key]));
+                                }
+                                else
+                                {
+                                    var emptyList = new List<TRowData>();
+                                    OrderedGroupedData.Add(new KeyValuePair<string, List<TRowData>>(key, emptyList));
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (HasRendered)
+                {
+                    Logger.LogInformation("                     Calling MeasureWidthsAsync");
+                    await MeasureWidthsAsync();
+                    Logger.LogInformation("                     Returned from MeasureWidthsAsync");
+                }
             }
-            Logger.LogInformation("                     exit");
+            finally
+            {
+                Logger.LogInformation("                     about to release semaphore");
+                semaphoreSlim.Release();
+            }
         }
         #endregion
 
