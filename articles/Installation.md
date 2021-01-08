@@ -6,7 +6,7 @@ title: Installation
 
 Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add the CSS and JS in your html.
 
-There are non-minified files of MaterialBlazor.css & MaterialBlazor.js available to reference if you need them for debugging purposes. You will have to fork the repository and build to get the non-minified files.
+There are non-minified files of MaterialBlazor.css & MaterialBlazor.js available to reference if you need them for debugging purposes.
 
 Add the `Material.Blazor` namespace to your project by appending `@using Material.Blazor` to the end of your project's _Imports.razor file. Do not use components from the `Material.Blazor.Internal` namespace: as the name
 implies these are intended for internal use by Material.Blazor, however Blazor has no mechanism for internally restricted Blazor components to mirror the `internal` directive for a C# class.

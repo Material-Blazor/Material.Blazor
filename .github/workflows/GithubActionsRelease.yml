@@ -99,8 +99,12 @@ jobs:
         path: siteDocFx
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
-    - name: Build and Publish Website 🔧
-      run: dotnet publish --configuration ${env:buildConfiguration} --output ${env:outputWeb} -p:InformationalVersion=${env:Version} ${env:projectWeb}
+    - name: Build Website 🔧
+      run: dotnet build --configuration ${env:buildConfiguration} --output ${env:outputWeb} -p:InformationalVersion=${env:Version} ${env:projectWeb}
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
+
+    - name: Publish Website 🔧
+      run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} -p:InformationalVersion=${env:Version} ${env:projectWeb}
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
