@@ -100,7 +100,7 @@ jobs:
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Build Website 🔧
-      run: dotnet build --configuration ${env:buildConfiguration} --output ${env:outputWeb} -p:InformationalVersion=${env:Version} ${env:projectWeb}
+      run: dotnet build --configuration ${env:buildConfiguration} -p:InformationalVersion=${env:Version} ${env:projectWeb}
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Publish Website 🔧
