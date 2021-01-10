@@ -49,6 +49,9 @@
 - name: MBDataTable
   topicUid: C.MBDataTable
 
+- name: MBDebouncedTextField
+  topicUid: C.MBDebouncedTextField
+
 - name: MBDialog
   topicUid: C.MBDialog
 
