@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Concurrent;
@@ -17,6 +18,9 @@ namespace Material.Blazor
     public partial class MBBladeSet
     {
         private const int transitionMs = 200;
+
+        [Inject] private protected ILogger<MBBladeSet> Logger { get; set; }
+
 
 
         /// <summary>
@@ -192,6 +196,15 @@ namespace Material.Blazor
         private readonly ConcurrentQueue<QueueElement> bladeSetActionQueue = new();
         private readonly ConcurrentQueue<BladeInfo> addedBladesQueue = new();
         private readonly ConcurrentQueue<BladeInfo> removedBladesQueue = new();
+
+        private string CachedBladesAdditionalCss { get; set; }
+        private string CachedBladesAdditionalStyles { get; set; }
+        private bool BladesAttributesSet { get; set; } = false;
+
+        private string CachedMainContentAdditionalCss { get; set; }
+        private string CachedMainContentAdditionalStyles { get; set; }
+        private bool MainContentAttributesSet { get; set; } = false;
+
         private Dictionary<string, BladeInfo> Blades { get; set; } = new();
         private Dictionary<string, object> MainContentAttributes { get; set; }
         private Dictionary<string, object> BladesAttributes { get; set; }
@@ -261,27 +274,46 @@ namespace Material.Blazor
         {
             base.OnParametersSet();
 
-            MainContentAttributes = new();
-            BladesAttributes = new();
-
-            if (!string.IsNullOrWhiteSpace(MainContentAdditionalCss))
+            if (!MainContentAttributesSet || CachedMainContentAdditionalCss != MainContentAdditionalCss || CachedMainContentAdditionalStyles != MainContentAdditionalStyles)
             {
-                MainContentAttributes.Add("class", MainContentAdditionalCss.Trim());
+                //Logger.LogInformation("MBBladeSet updating MainContentAttributeSet");
+
+                MainContentAttributesSet = true;
+                CachedMainContentAdditionalCss = MainContentAdditionalCss;
+                CachedMainContentAdditionalStyles = MainContentAdditionalStyles;
+                
+                MainContentAttributes = new();
+
+                if (!string.IsNullOrWhiteSpace(MainContentAdditionalCss))
+                {
+                    MainContentAttributes.Add("class", MainContentAdditionalCss.Trim());
+                }
+
+                if (!string.IsNullOrWhiteSpace(MainContentAdditionalStyles))
+                {
+                    MainContentAttributes.Add("style", MainContentAdditionalStyles.Trim());
+                }
             }
 
-            if (!string.IsNullOrWhiteSpace(MainContentAdditionalStyles))
+            if (!BladesAttributesSet || CachedBladesAdditionalCss != BladesAdditionalCss || CachedBladesAdditionalStyles != BladesAdditionalStyles)
             {
-                MainContentAttributes.Add("style", MainContentAdditionalStyles.Trim());
-            }
+                //Logger.LogInformation("MBBladeSet updating BladeAttributeSet");
 
-            if (!string.IsNullOrWhiteSpace(BladesAdditionalCss))
-            {
-                BladesAttributes.Add("class", BladesAdditionalCss.Trim());
-            }
+                BladesAttributesSet = true;
+                CachedBladesAdditionalCss = BladesAdditionalCss;
+                CachedBladesAdditionalStyles = BladesAdditionalStyles;
+                
+                BladesAttributes = new();
 
-            if (!string.IsNullOrWhiteSpace(BladesAdditionalStyles))
-            {
-                BladesAttributes.Add("style", BladesAdditionalStyles.Trim());
+                if (!string.IsNullOrWhiteSpace(BladesAdditionalCss))
+                {
+                    BladesAttributes.Add("class", BladesAdditionalCss.Trim());
+                }
+
+                if (!string.IsNullOrWhiteSpace(BladesAdditionalStyles))
+                {
+                    BladesAttributes.Add("style", BladesAdditionalStyles.Trim());
+                }
             }
         }
 
@@ -299,7 +331,7 @@ namespace Material.Blazor
 
                 StateHasChanged();
 
-                BladeSetChanged.Invoke(this, null);
+                BladeSetChanged?.Invoke(this, null);
             }
             else if (removedBladesQueue.TryDequeue(out BladeInfo removedBlade))
             {
@@ -311,7 +343,7 @@ namespace Material.Blazor
 
                 StateHasChanged();
 
-                BladeSetChanged.Invoke(this, null);
+                BladeSetChanged?.Invoke(this, null);
             }
         }
     }
