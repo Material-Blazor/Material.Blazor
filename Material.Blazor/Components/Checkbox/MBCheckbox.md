@@ -6,7 +6,7 @@ title: MBCheckbox
 
 ## Summary
 
-A [Material Checkbox](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-checkbox#selection-controls-checkboxes).
+A [Material Checkbox](https://github.com/material-components/material-components-web/tree/v9.0.0/packages/mdc-checkbox#selection-controls-checkboxes).
 
 - Accepts a boolean value;
 - Accepts a boolean for determination of indeterminate state; and

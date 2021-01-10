@@ -6,7 +6,7 @@ title: Tooltip
 
 ## Summary
 
-The Material Components Web framework will provide tooltips in the upcoming version 8.0.0. We decided to jump the gun and
+The Material Components Web framework will provide tooltips in the upcoming version 9.0.0. We decided to jump the gun and
 have included tooltips early. Tooltips are driven by [IMBTooltipService](xref:S.IMBTooltipService) which is registered by calling
 `services.AddMBServices();`, and are anchored by [MBAnchor](xref:C.MBAnchor).
 

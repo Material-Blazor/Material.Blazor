@@ -18,7 +18,6 @@
     <PackageProjectUrl>https://material-blazor.com</PackageProjectUrl>
     <Product>Material.Blazor</Product>
     <UserSecretsId>d7509b6c-bc5c-4a56-a750-09c8ae4aeb85</UserSecretsId>
-    <NpmReturnCode>0</NpmReturnCode>
     <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 
@@ -38,7 +37,7 @@
   <ItemGroup>
     <SupportedPlatform Include="browser" />
   </ItemGroup>
-  
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <WarningLevel>5</WarningLevel>
   </PropertyGroup>
@@ -49,14 +48,7 @@
     <Content Remove="tsconfig.json" />
   </ItemGroup>
 
-  <!-- Conditionally obtain references for the .NET Standard 2.1 target -->
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.1' ">
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.10" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.10" />
-  </ItemGroup>
-
-  <!-- Conditionally obtain references for the .NET Framework 5.0 target -->
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net5.0' ">
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.1" />
   </ItemGroup>
@@ -75,28 +67,19 @@
 
   <ItemGroup>
     <InputStaticAssetsScripts Include="components\**\*.ts;scripts\**\*.ts" />
-    <!-- (For debug) <OutputStaticAssetsScripts Include="wwwroot\bundled.min.js;wwwroot\bundled.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js" />-->
-    <OutputStaticAssetsScripts Include="wwwroot\bundled.min.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js" />
+    <OutputStaticAssetsScripts Include="wwwroot\materialblazor.js;wwwroot\materialblazor.min.js" />
   </ItemGroup>
 
   <ItemGroup>
     <InputStaticAssetsStyles Include="components\**\*.scss;styles\**\*.scss;" />
-    <OutputStaticAssetsStyles Include="wwwroot\bundled.min.css;wwwroot\unbundled.min.css;wwwroot\unbundled.css" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <InputStaticAssets Include="components\**\*.ts;scripts\**\*.ts;components\**\*.scss;styles\**\*.scss;" />
-    <OutputStaticAssets Include="wwwroot\bundled.min.js;wwwroot\bundled.js;wwwroot\unbundled.min.js;wwwroot\unbundled.js;wwwroot\bundled.min.css;wwwroot\unbundled.min.css;wwwroot\unbundled.css" />
+    <OutputStaticAssetsStyles Include="wwwroot\materialblazor.css;wwwroot\materialblazor.min.css" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 
-  <!-- The NpmReturnCode parameter value is preset to 0 in the PropertyGroup -->
-  <!-- The inputs/outputs are 'close to correct' in that a newer TS source than output CSS (or newer SCSS source
-       than output JS) will trigger this check even though nothing needs to be built -->
-  <Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssets)" Outputs="@(OutputStaticAssets)" BeforeTargets="PreBuildEvent">
+  <Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
     <Exec Command="npm --version" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
     </Exec>
@@ -127,7 +110,7 @@
     <Delete Files="node_modules\@material\segmented-button\segment\adapter.ts;node_modules\@material\segmented-button\segment\component.ts;node_modules\@material\segmented-button\segment\constants.ts;node_modules\@material\segmented-button\segment\foundation.ts;node_modules\@material\segmented-button\segment\index.ts" />
     <Delete Files="node_modules\@material\segmented-button\segmented-button\adapter.ts;node_modules\@material\segmented-button\segmented-button\component.ts;node_modules\@material\segmented-button\segmented-button\constants.ts;node_modules\@material\segmented-button\segmented-button\foundation.ts;node_modules\@material\segmented-button\segmented-button\index.ts" />
     <Delete Files="node_modules\@material\tooltip\component.ts;node_modules\@material\tooltip\constants.ts;node_modules\@material\tooltip\foundation.ts" />
-    
+
     <Message Importance="high" Text="***** npm run build-scripts" />
     <Exec Command="npm run build-scripts" />
 
@@ -137,14 +120,9 @@
     <Message Importance="high" Text="***** npm run build-min-js" />
     <Exec Command="npm run build-min-js" />
 
-    <!--<Message Importance="high" Text="***** npm run build-bundle-js (For debug)" />
-    <Exec Command="npm run build-bundle-js" />-->
-
-    <Message Importance="high" Text="***** npm run build-min-bundle-js" />
-    <Exec Command="npm run build-min-bundle-js" />
-
-    <Message Importance="high" Text="***** delete materialblazor.js" />
-    <Delete Files="wwwroot\materialblazor.js" />
+    <Message Importance="high" Text="***** delete intermediate.js" />
+    <Delete Files="wwwroot\intermediate.js" />
+    
   </Target>
 
   <Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
@@ -154,7 +132,7 @@
     <Message Importance="high" Text="***** npm install" />
     <Exec Command="npm install" />
 
-    <Message Importance="high" Text="***** downloadfile" />
+    <Message Importance="high" Text="***** downloadfiles" />
     <DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" DestinationFolder="$(MSBuildProjectDirectory)\wwwroot" DestinationFilename="material-components-icons.css">
     </DownloadFile>
 
@@ -164,8 +142,8 @@
     <Message Importance="high" Text="***** npm run build-min-css" />
     <Exec Command="npm run build-min-css" />
 
-    <Message Importance="high" Text="***** npm run build-min-bundle-css" />
-    <Exec Command="npm run build-min-bundle-css" />
+    <Message Importance="high" Text="***** delete material-components-icons.css" />
+    <Delete Files="wwwroot\material-components-icons.css" />
 
   </Target>
 

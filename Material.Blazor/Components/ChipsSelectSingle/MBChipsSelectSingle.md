@@ -6,7 +6,7 @@ title: MBChipsSelectSingle
 
 ## Summary
 
-A [Material Chip Set](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-chips#chips) configured as a single-select.
+A [Material Chip Set](https://github.com/material-components/material-components-web/tree/v9.0.0/packages/mdc-chips#chips) configured as a single-select.
 
 ## Details
 

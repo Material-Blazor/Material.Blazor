@@ -11,11 +11,11 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 
 **Updates**
 
-- Upgrade to [Material Components Web 8.0.0](https://github.com/material-components/material-components-web/tree/v8.0.0/packages).
+- Upgrade to [Material Components Web 9.0.0](https://github.com/material-components/material-components-web/tree/v9.0.0/packages).
 - Full implementation of Material Components Web JS `destroy()` function calls for every component's `Dispose()` process.
 - MBDataTable enhanced with pagination and linear progress implementation - no breaking changes.
-- MBPaginator now uses Material Component Web 8.0.0's markup, with some minor modification - no breaking changes.
-- Tooltips use Material Component Web 8.0.0 rather than preview packages - no breaking changes.
+- MBPaginator now uses Material Component Web 9.0.0's markup, with some minor modification - no breaking changes.
+- Tooltips use Material Component Web 9.0.0 rather than preview packages - no breaking changes.
 - Material.Blazor beginning to use `ILogger` to log warnings when validating component markup to help you during app development.
 - General bug fixes.
 - Material.Blazor 2.0.0 is compatible with .NET 5.0 only. If you need to build against older versions of .NET please continue to use Material.Blazor 1.1.4.
@@ -28,17 +28,18 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 - MBNumericDecimalField - a decimal variant of the existing numeric input fields.
 - MBChipsSelectMulti - a multi select variant of a chip set.
 - MBChipsSelectSingle - a single select variant of a chip set.
-- MBSegmentedButtonMulti - a multi select variant of segmented buttons, which have been added to Material Components Web 8.0.0.
-- MBSegmentedButtonSingle - a single select variant of segmented buttons, which have been added to Material Components Web 8.0.0.
+- MBSegmentedButtonMulti - a multi select variant of segmented buttons, which have been added to Material Components Web 9.0.0.
+- MBSegmentedButtonSingle - a single select variant of segmented buttons, which have been added to Material Components Web 9.0.0.
 - MBSlider - a continuous and discrete single-thumb slider.
 
 
 **Breaking Changes**
 
-- CDN packages now reference material components web 8.0.0, see [Installation article](xref:A.Installation).
-- If you are building a theme from material components web SASS, you need to reference version 8.0.0.
+- CDN packages now reference material components web 9.0.0, see [Installation article](xref:A.Installation).
+- If you are building a theme from material components web SASS, you need to reference version 9.0.0.
 - MBMenu `ToggleAsync()` is now return type `Task` rather than `Task<string>` in version 1.
 - MBRadioButtonGroup `EnableTouchWrapper` obsolete and removed.
+- The names and content of the  css and js resources required for MaterialBlazor have changed. Please see the installation article for details.
 
 <br />
 

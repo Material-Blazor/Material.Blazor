@@ -25,7 +25,7 @@ There are two ways to do theming that you can read about at [material.io](https:
 ## CSS Color Helpers
 
 There are `.scss` files spread among the components in the [Material.Blazor project](https://github.com/Material-Blazor/Material.Blazor/tree/main/Material.Blazor) that may help you. The principal
-thing we want you to know of is that we have built CSS variables for the entire Material color palette which you can view on the [Material Color Tool](https://material.io/resources/color/#!/?view.left=0&view.right=0) and which are defined in the [Material Components Web theme package](https://github.com/material-components/material-components-web/blob/v8.0.0/packages/mdc-theme/_color-palette.scss).
+thing we want you to know of is that we have built CSS variables for the entire Material color palette which you can view on the [Material Color Tool](https://material.io/resources/color/#!/?view.left=0&view.right=0) and which are defined in the [Material Components Web theme package](https://github.com/material-components/material-components-web/blob/v9.0.0/packages/mdc-theme/_color-palette.scss).
 
 We built a CSS variable both for each color in the palette and for the text color (light or dark) recommended to be used when the palette color is applied as a background.
 

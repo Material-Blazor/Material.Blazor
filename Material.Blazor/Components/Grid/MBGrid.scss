@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: row;
     flex-shrink: 0;
-    flex-grow: 1;
+    flex-grow: 0;
     flex-basis: auto;
     align-items: stretch;
 }
@@ -55,9 +55,6 @@
 .mb-grid-tr {
 }
 
-/* 
-    CAUTION -- the padding value is used in the method MeasureWidths
-*/
 .mb-grid-td {
     display: table-cell;
     flex: 0 0 auto;
@@ -100,4 +97,53 @@
 
 .mb-grid-backgroundcolor-row-selected {
     background-color: lightgreen;
+}
+
+.mb-grid-header-td {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: bolder;
+    border-collapse: collapse;
+    border-spacing: 0;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    text-align: left;
+    text-indent: unset;
+    display: table-cell;
+    flex: 0 0 auto;
+    padding: 4px;
+    font-size: inherit;
+    text-overflow: unset;
+    overflow: hidden;
+    box-sizing: border-box;
+    white-space: nowrap;
+    background: #d3d3d3;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    color: Black;
+    background-color: LightGray;
+}
+
+.mb-grid-body-td {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-weight: normal;
+    border-collapse: collapse;
+    border-spacing: 0;
+    -webkit-border-horizontal-spacing: 0px;
+    -webkit-border-vertical-spacing: 0px;
+    text-align: left;
+    text-indent: unset;
+    display: table-cell;
+    flex: 0 0 auto;
+    padding: 4px;
+    font-size: inherit;
+    text-overflow: unset;
+    overflow: hidden;
+    box-sizing: border-box;
+    white-space: nowrap;
+    background-color: khaki;
+    border-width: 0px 1px 0px 0px;
+    border-style: solid;
+    border-color: black;
+    color: #000000;
 }

@@ -6,7 +6,7 @@ title: MBCircularProgress
 
 ## Summary
 
-A [Material Circular Progress indicator](https://github.com/material-components/material-components-web/tree/v8.0.0/packages/mdc-circular-progress#circular-progress) with both determinate and indeterminate states plus a value for level of progress and a selection for small, medium or large variants.
+A [Material Circular Progress indicator](https://github.com/material-components/material-components-web/tree/v9.0.0/packages/mdc-circular-progress#circular-progress) with both determinate and indeterminate states plus a value for level of progress and a selection for small, medium or large variants.
 
 ## Reserved Attributes
 
