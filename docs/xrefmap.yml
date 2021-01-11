@@ -4862,6 +4862,40 @@ references:
   fullName.vb: Material.Blazor.MBGrid(Of TRowData).OnParametersSetAsync
   nameWithType: MBGrid<TRowData>.OnParametersSetAsync
   nameWithType.vb: MBGrid(Of TRowData).OnParametersSetAsync
+- uid: Material.Blazor.MBGrid`1.SetShouldRenderReturnValue(System.Boolean)
+  name: SetShouldRenderReturnValue(Boolean)
+  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_SetShouldRenderReturnValue_System_Boolean_
+  commentId: M:Material.Blazor.MBGrid`1.SetShouldRenderReturnValue(System.Boolean)
+  fullName: Material.Blazor.MBGrid<TRowData>.SetShouldRenderReturnValue(System.Boolean)
+  fullName.vb: Material.Blazor.MBGrid(Of TRowData).SetShouldRenderReturnValue(System.Boolean)
+  nameWithType: MBGrid<TRowData>.SetShouldRenderReturnValue(Boolean)
+  nameWithType.vb: MBGrid(Of TRowData).SetShouldRenderReturnValue(Boolean)
+- uid: Material.Blazor.MBGrid`1.SetShouldRenderReturnValue*
+  name: SetShouldRenderReturnValue
+  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_SetShouldRenderReturnValue_
+  commentId: Overload:Material.Blazor.MBGrid`1.SetShouldRenderReturnValue
+  isSpec: "True"
+  fullName: Material.Blazor.MBGrid<TRowData>.SetShouldRenderReturnValue
+  fullName.vb: Material.Blazor.MBGrid(Of TRowData).SetShouldRenderReturnValue
+  nameWithType: MBGrid<TRowData>.SetShouldRenderReturnValue
+  nameWithType.vb: MBGrid(Of TRowData).SetShouldRenderReturnValue
+- uid: Material.Blazor.MBGrid`1.ShouldRender
+  name: ShouldRender()
+  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_ShouldRender
+  commentId: M:Material.Blazor.MBGrid`1.ShouldRender
+  fullName: Material.Blazor.MBGrid<TRowData>.ShouldRender()
+  fullName.vb: Material.Blazor.MBGrid(Of TRowData).ShouldRender()
+  nameWithType: MBGrid<TRowData>.ShouldRender()
+  nameWithType.vb: MBGrid(Of TRowData).ShouldRender()
+- uid: Material.Blazor.MBGrid`1.ShouldRender*
+  name: ShouldRender
+  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_ShouldRender_
+  commentId: Overload:Material.Blazor.MBGrid`1.ShouldRender
+  isSpec: "True"
+  fullName: Material.Blazor.MBGrid<TRowData>.ShouldRender
+  fullName.vb: Material.Blazor.MBGrid(Of TRowData).ShouldRender
+  nameWithType: MBGrid<TRowData>.ShouldRender
+  nameWithType.vb: MBGrid(Of TRowData).ShouldRender
 - uid: Material.Blazor.MBGrid`1.SortExpressionFirst
   name: SortExpressionFirst
   href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_SortExpressionFirst

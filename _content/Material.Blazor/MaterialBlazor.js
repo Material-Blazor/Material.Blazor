@@ -1,5 +1,40 @@
 (() => {
     var __webpack_modules__ = {
+        926: module => {
+            function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+                try {
+                    var info = gen[key](arg);
+                    var value = info.value;
+                } catch (error) {
+                    reject(error);
+                    return;
+                }
+                if (info.done) {
+                    resolve(value);
+                } else {
+                    Promise.resolve(value).then(_next, _throw);
+                }
+            }
+            function _asyncToGenerator(fn) {
+                return function() {
+                    var self = this, args = arguments;
+                    return new Promise((function(resolve, reject) {
+                        var gen = fn.apply(self, args);
+                        function _next(value) {
+                            asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+                        }
+                        function _throw(err) {
+                            asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+                        }
+                        _next(undefined);
+                    }));
+                };
+            }
+            module.exports = _asyncToGenerator;
+        },
+        757: (module, __unused_webpack_exports, __webpack_require__) => {
+            module.exports = __webpack_require__(666);
+        },
         486: function(module, exports, __webpack_require__) {
             module = __webpack_require__.nmd(module);
             var __WEBPACK_AMD_DEFINE_RESULT__;
@@ -5369,6 +5404,485 @@
                     }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
                 } else {}
             }).call(this);
+        },
+        666: module => {
+            var runtime = function(exports) {
+                "use strict";
+                var Op = Object.prototype;
+                var hasOwn = Op.hasOwnProperty;
+                var undefined;
+                var $Symbol = typeof Symbol === "function" ? Symbol : {};
+                var iteratorSymbol = $Symbol.iterator || "@@iterator";
+                var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+                var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+                function define(obj, key, value) {
+                    Object.defineProperty(obj, key, {
+                        value: value,
+                        enumerable: true,
+                        configurable: true,
+                        writable: true
+                    });
+                    return obj[key];
+                }
+                try {
+                    define({}, "");
+                } catch (err) {
+                    define = function(obj, key, value) {
+                        return obj[key] = value;
+                    };
+                }
+                function wrap(innerFn, outerFn, self, tryLocsList) {
+                    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+                    var generator = Object.create(protoGenerator.prototype);
+                    var context = new Context(tryLocsList || []);
+                    generator._invoke = makeInvokeMethod(innerFn, self, context);
+                    return generator;
+                }
+                exports.wrap = wrap;
+                function tryCatch(fn, obj, arg) {
+                    try {
+                        return {
+                            type: "normal",
+                            arg: fn.call(obj, arg)
+                        };
+                    } catch (err) {
+                        return {
+                            type: "throw",
+                            arg: err
+                        };
+                    }
+                }
+                var GenStateSuspendedStart = "suspendedStart";
+                var GenStateSuspendedYield = "suspendedYield";
+                var GenStateExecuting = "executing";
+                var GenStateCompleted = "completed";
+                var ContinueSentinel = {};
+                function Generator() {}
+                function GeneratorFunction() {}
+                function GeneratorFunctionPrototype() {}
+                var IteratorPrototype = {};
+                IteratorPrototype[iteratorSymbol] = function() {
+                    return this;
+                };
+                var getProto = Object.getPrototypeOf;
+                var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+                if (NativeIteratorPrototype && NativeIteratorPrototype !== Op && hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+                    IteratorPrototype = NativeIteratorPrototype;
+                }
+                var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype);
+                GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
+                GeneratorFunctionPrototype.constructor = GeneratorFunction;
+                GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction");
+                function defineIteratorMethods(prototype) {
+                    [ "next", "throw", "return" ].forEach((function(method) {
+                        define(prototype, method, (function(arg) {
+                            return this._invoke(method, arg);
+                        }));
+                    }));
+                }
+                exports.isGeneratorFunction = function(genFun) {
+                    var ctor = typeof genFun === "function" && genFun.constructor;
+                    return ctor ? ctor === GeneratorFunction || (ctor.displayName || ctor.name) === "GeneratorFunction" : false;
+                };
+                exports.mark = function(genFun) {
+                    if (Object.setPrototypeOf) {
+                        Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+                    } else {
+                        genFun.__proto__ = GeneratorFunctionPrototype;
+                        define(genFun, toStringTagSymbol, "GeneratorFunction");
+                    }
+                    genFun.prototype = Object.create(Gp);
+                    return genFun;
+                };
+                exports.awrap = function(arg) {
+                    return {
+                        __await: arg
+                    };
+                };
+                function AsyncIterator(generator, PromiseImpl) {
+                    function invoke(method, arg, resolve, reject) {
+                        var record = tryCatch(generator[method], generator, arg);
+                        if (record.type === "throw") {
+                            reject(record.arg);
+                        } else {
+                            var result = record.arg;
+                            var value = result.value;
+                            if (value && typeof value === "object" && hasOwn.call(value, "__await")) {
+                                return PromiseImpl.resolve(value.__await).then((function(value) {
+                                    invoke("next", value, resolve, reject);
+                                }), (function(err) {
+                                    invoke("throw", err, resolve, reject);
+                                }));
+                            }
+                            return PromiseImpl.resolve(value).then((function(unwrapped) {
+                                result.value = unwrapped;
+                                resolve(result);
+                            }), (function(error) {
+                                return invoke("throw", error, resolve, reject);
+                            }));
+                        }
+                    }
+                    var previousPromise;
+                    function enqueue(method, arg) {
+                        function callInvokeWithMethodAndArg() {
+                            return new PromiseImpl((function(resolve, reject) {
+                                invoke(method, arg, resolve, reject);
+                            }));
+                        }
+                        return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
+                    }
+                    this._invoke = enqueue;
+                }
+                defineIteratorMethods(AsyncIterator.prototype);
+                AsyncIterator.prototype[asyncIteratorSymbol] = function() {
+                    return this;
+                };
+                exports.AsyncIterator = AsyncIterator;
+                exports.async = function(innerFn, outerFn, self, tryLocsList, PromiseImpl) {
+                    if (PromiseImpl === void 0) PromiseImpl = Promise;
+                    var iter = new AsyncIterator(wrap(innerFn, outerFn, self, tryLocsList), PromiseImpl);
+                    return exports.isGeneratorFunction(outerFn) ? iter : iter.next().then((function(result) {
+                        return result.done ? result.value : iter.next();
+                    }));
+                };
+                function makeInvokeMethod(innerFn, self, context) {
+                    var state = GenStateSuspendedStart;
+                    return function invoke(method, arg) {
+                        if (state === GenStateExecuting) {
+                            throw new Error("Generator is already running");
+                        }
+                        if (state === GenStateCompleted) {
+                            if (method === "throw") {
+                                throw arg;
+                            }
+                            return doneResult();
+                        }
+                        context.method = method;
+                        context.arg = arg;
+                        while (true) {
+                            var delegate = context.delegate;
+                            if (delegate) {
+                                var delegateResult = maybeInvokeDelegate(delegate, context);
+                                if (delegateResult) {
+                                    if (delegateResult === ContinueSentinel) continue;
+                                    return delegateResult;
+                                }
+                            }
+                            if (context.method === "next") {
+                                context.sent = context._sent = context.arg;
+                            } else if (context.method === "throw") {
+                                if (state === GenStateSuspendedStart) {
+                                    state = GenStateCompleted;
+                                    throw context.arg;
+                                }
+                                context.dispatchException(context.arg);
+                            } else if (context.method === "return") {
+                                context.abrupt("return", context.arg);
+                            }
+                            state = GenStateExecuting;
+                            var record = tryCatch(innerFn, self, context);
+                            if (record.type === "normal") {
+                                state = context.done ? GenStateCompleted : GenStateSuspendedYield;
+                                if (record.arg === ContinueSentinel) {
+                                    continue;
+                                }
+                                return {
+                                    value: record.arg,
+                                    done: context.done
+                                };
+                            } else if (record.type === "throw") {
+                                state = GenStateCompleted;
+                                context.method = "throw";
+                                context.arg = record.arg;
+                            }
+                        }
+                    };
+                }
+                function maybeInvokeDelegate(delegate, context) {
+                    var method = delegate.iterator[context.method];
+                    if (method === undefined) {
+                        context.delegate = null;
+                        if (context.method === "throw") {
+                            if (delegate.iterator["return"]) {
+                                context.method = "return";
+                                context.arg = undefined;
+                                maybeInvokeDelegate(delegate, context);
+                                if (context.method === "throw") {
+                                    return ContinueSentinel;
+                                }
+                            }
+                            context.method = "throw";
+                            context.arg = new TypeError("The iterator does not provide a 'throw' method");
+                        }
+                        return ContinueSentinel;
+                    }
+                    var record = tryCatch(method, delegate.iterator, context.arg);
+                    if (record.type === "throw") {
+                        context.method = "throw";
+                        context.arg = record.arg;
+                        context.delegate = null;
+                        return ContinueSentinel;
+                    }
+                    var info = record.arg;
+                    if (!info) {
+                        context.method = "throw";
+                        context.arg = new TypeError("iterator result is not an object");
+                        context.delegate = null;
+                        return ContinueSentinel;
+                    }
+                    if (info.done) {
+                        context[delegate.resultName] = info.value;
+                        context.next = delegate.nextLoc;
+                        if (context.method !== "return") {
+                            context.method = "next";
+                            context.arg = undefined;
+                        }
+                    } else {
+                        return info;
+                    }
+                    context.delegate = null;
+                    return ContinueSentinel;
+                }
+                defineIteratorMethods(Gp);
+                define(Gp, toStringTagSymbol, "Generator");
+                Gp[iteratorSymbol] = function() {
+                    return this;
+                };
+                Gp.toString = function() {
+                    return "[object Generator]";
+                };
+                function pushTryEntry(locs) {
+                    var entry = {
+                        tryLoc: locs[0]
+                    };
+                    if (1 in locs) {
+                        entry.catchLoc = locs[1];
+                    }
+                    if (2 in locs) {
+                        entry.finallyLoc = locs[2];
+                        entry.afterLoc = locs[3];
+                    }
+                    this.tryEntries.push(entry);
+                }
+                function resetTryEntry(entry) {
+                    var record = entry.completion || {};
+                    record.type = "normal";
+                    delete record.arg;
+                    entry.completion = record;
+                }
+                function Context(tryLocsList) {
+                    this.tryEntries = [ {
+                        tryLoc: "root"
+                    } ];
+                    tryLocsList.forEach(pushTryEntry, this);
+                    this.reset(true);
+                }
+                exports.keys = function(object) {
+                    var keys = [];
+                    for (var key in object) {
+                        keys.push(key);
+                    }
+                    keys.reverse();
+                    return function next() {
+                        while (keys.length) {
+                            var key = keys.pop();
+                            if (key in object) {
+                                next.value = key;
+                                next.done = false;
+                                return next;
+                            }
+                        }
+                        next.done = true;
+                        return next;
+                    };
+                };
+                function values(iterable) {
+                    if (iterable) {
+                        var iteratorMethod = iterable[iteratorSymbol];
+                        if (iteratorMethod) {
+                            return iteratorMethod.call(iterable);
+                        }
+                        if (typeof iterable.next === "function") {
+                            return iterable;
+                        }
+                        if (!isNaN(iterable.length)) {
+                            var i = -1, next = function next() {
+                                while (++i < iterable.length) {
+                                    if (hasOwn.call(iterable, i)) {
+                                        next.value = iterable[i];
+                                        next.done = false;
+                                        return next;
+                                    }
+                                }
+                                next.value = undefined;
+                                next.done = true;
+                                return next;
+                            };
+                            return next.next = next;
+                        }
+                    }
+                    return {
+                        next: doneResult
+                    };
+                }
+                exports.values = values;
+                function doneResult() {
+                    return {
+                        value: undefined,
+                        done: true
+                    };
+                }
+                Context.prototype = {
+                    constructor: Context,
+                    reset: function(skipTempReset) {
+                        this.prev = 0;
+                        this.next = 0;
+                        this.sent = this._sent = undefined;
+                        this.done = false;
+                        this.delegate = null;
+                        this.method = "next";
+                        this.arg = undefined;
+                        this.tryEntries.forEach(resetTryEntry);
+                        if (!skipTempReset) {
+                            for (var name in this) {
+                                if (name.charAt(0) === "t" && hasOwn.call(this, name) && !isNaN(+name.slice(1))) {
+                                    this[name] = undefined;
+                                }
+                            }
+                        }
+                    },
+                    stop: function() {
+                        this.done = true;
+                        var rootEntry = this.tryEntries[0];
+                        var rootRecord = rootEntry.completion;
+                        if (rootRecord.type === "throw") {
+                            throw rootRecord.arg;
+                        }
+                        return this.rval;
+                    },
+                    dispatchException: function(exception) {
+                        if (this.done) {
+                            throw exception;
+                        }
+                        var context = this;
+                        function handle(loc, caught) {
+                            record.type = "throw";
+                            record.arg = exception;
+                            context.next = loc;
+                            if (caught) {
+                                context.method = "next";
+                                context.arg = undefined;
+                            }
+                            return !!caught;
+                        }
+                        for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+                            var entry = this.tryEntries[i];
+                            var record = entry.completion;
+                            if (entry.tryLoc === "root") {
+                                return handle("end");
+                            }
+                            if (entry.tryLoc <= this.prev) {
+                                var hasCatch = hasOwn.call(entry, "catchLoc");
+                                var hasFinally = hasOwn.call(entry, "finallyLoc");
+                                if (hasCatch && hasFinally) {
+                                    if (this.prev < entry.catchLoc) {
+                                        return handle(entry.catchLoc, true);
+                                    } else if (this.prev < entry.finallyLoc) {
+                                        return handle(entry.finallyLoc);
+                                    }
+                                } else if (hasCatch) {
+                                    if (this.prev < entry.catchLoc) {
+                                        return handle(entry.catchLoc, true);
+                                    }
+                                } else if (hasFinally) {
+                                    if (this.prev < entry.finallyLoc) {
+                                        return handle(entry.finallyLoc);
+                                    }
+                                } else {
+                                    throw new Error("try statement without catch or finally");
+                                }
+                            }
+                        }
+                    },
+                    abrupt: function(type, arg) {
+                        for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+                            var entry = this.tryEntries[i];
+                            if (entry.tryLoc <= this.prev && hasOwn.call(entry, "finallyLoc") && this.prev < entry.finallyLoc) {
+                                var finallyEntry = entry;
+                                break;
+                            }
+                        }
+                        if (finallyEntry && (type === "break" || type === "continue") && finallyEntry.tryLoc <= arg && arg <= finallyEntry.finallyLoc) {
+                            finallyEntry = null;
+                        }
+                        var record = finallyEntry ? finallyEntry.completion : {};
+                        record.type = type;
+                        record.arg = arg;
+                        if (finallyEntry) {
+                            this.method = "next";
+                            this.next = finallyEntry.finallyLoc;
+                            return ContinueSentinel;
+                        }
+                        return this.complete(record);
+                    },
+                    complete: function(record, afterLoc) {
+                        if (record.type === "throw") {
+                            throw record.arg;
+                        }
+                        if (record.type === "break" || record.type === "continue") {
+                            this.next = record.arg;
+                        } else if (record.type === "return") {
+                            this.rval = this.arg = record.arg;
+                            this.method = "return";
+                            this.next = "end";
+                        } else if (record.type === "normal" && afterLoc) {
+                            this.next = afterLoc;
+                        }
+                        return ContinueSentinel;
+                    },
+                    finish: function(finallyLoc) {
+                        for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+                            var entry = this.tryEntries[i];
+                            if (entry.finallyLoc === finallyLoc) {
+                                this.complete(entry.completion, entry.afterLoc);
+                                resetTryEntry(entry);
+                                return ContinueSentinel;
+                            }
+                        }
+                    },
+                    catch: function(tryLoc) {
+                        for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+                            var entry = this.tryEntries[i];
+                            if (entry.tryLoc === tryLoc) {
+                                var record = entry.completion;
+                                if (record.type === "throw") {
+                                    var thrown = record.arg;
+                                    resetTryEntry(entry);
+                                }
+                                return thrown;
+                            }
+                        }
+                        throw new Error("illegal catch attempt");
+                    },
+                    delegateYield: function(iterable, resultName, nextLoc) {
+                        this.delegate = {
+                            iterator: values(iterable),
+                            resultName: resultName,
+                            nextLoc: nextLoc
+                        };
+                        if (this.method === "next") {
+                            this.arg = undefined;
+                        }
+                        return ContinueSentinel;
+                    }
+                };
+                return exports;
+            }(true ? module.exports : 0);
+            try {
+                regeneratorRuntime = runtime;
+            } catch (accidentalStrictMode) {
+                Function("r", "regeneratorRuntime = r")(runtime);
+            }
         }
     };
     var __webpack_module_cache__ = {};
@@ -5385,6 +5899,15 @@
         module.loaded = true;
         return module.exports;
     }
+    (() => {
+        __webpack_require__.n = module => {
+            var getter = module && module.__esModule ? () => module["default"] : () => module;
+            __webpack_require__.d(getter, {
+                a: getter
+            });
+            return getter;
+        };
+    })();
     (() => {
         __webpack_require__.d = (exports, definition) => {
             for (var key in definition) {
@@ -9376,6 +9899,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 _this.selectedIndex_ = list_constants_numbers.UNSET_INDEX;
                 _this.focusedItemIndex = list_constants_numbers.UNSET_INDEX;
                 _this.useActivatedClass_ = false;
+                _this.useSelectedAttr_ = false;
                 _this.ariaCurrentAttrValue_ = null;
                 _this.isCheckboxList_ = false;
                 _this.isRadioList_ = false;
@@ -9518,6 +10042,9 @@ PERFORMANCE OF THIS SOFTWARE.
             MDCListFoundation.prototype.setUseActivatedClass = function(useActivated) {
                 this.useActivatedClass_ = useActivated;
             };
+            MDCListFoundation.prototype.setUseSelectedAttribute = function(useSelected) {
+                this.useSelectedAttr_ = useSelected;
+            };
             MDCListFoundation.prototype.getSelectedIndex = function() {
                 return this.selectedIndex_;
             };
@@ -9562,6 +10089,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 var isEnd = normalizeKey(event) === "End";
                 var isEnter = normalizeKey(event) === "Enter";
                 var isSpace = normalizeKey(event) === "Spacebar";
+                var isLetterA = event.key === "A" || event.key === "a";
                 if (this.adapter.isRootFocused()) {
                     if (isArrowUp || isEnd) {
                         event.preventDefault();
@@ -9606,6 +10134,9 @@ PERFORMANCE OF THIS SOFTWARE.
                 } else if (isEnd) {
                     preventDefaultEvent(event);
                     this.focusLastElement();
+                } else if (isLetterA && event.ctrlKey && this.isCheckboxList_) {
+                    event.preventDefault();
+                    this.toggleAll(this.selectedIndex_ === list_constants_numbers.UNSET_INDEX ? [] : this.selectedIndex_);
                 } else if (isEnter || isSpace) {
                     if (isRootListItem) {
                         var target = event.target;
@@ -9686,6 +10217,11 @@ PERFORMANCE OF THIS SOFTWARE.
                 this.focusItemAtIndex(lastIndex);
                 return lastIndex;
             };
+            MDCListFoundation.prototype.focusInitialElement = function() {
+                var initialIndex = this.getFirstSelectedOrFocusedItemIndex();
+                this.focusItemAtIndex(initialIndex);
+                return initialIndex;
+            };
             MDCListFoundation.prototype.setEnabled = function(itemIndex, isEnabled) {
                 if (!this.isIndexValid_(itemIndex)) {
                     return;
@@ -9710,7 +10246,7 @@ PERFORMANCE OF THIS SOFTWARE.
                     this.adapter.removeClassForElementIndex(this.selectedIndex_, selectedClassName);
                 }
                 this.setAriaForSingleSelectionAtIndex_(index);
-                this.setTabindexAtIndex_(index);
+                this.setTabindexAtIndex(index);
                 if (index !== list_constants_numbers.UNSET_INDEX) {
                     this.adapter.addClassForElementIndex(index, selectedClassName);
                 }
@@ -9730,26 +10266,31 @@ PERFORMANCE OF THIS SOFTWARE.
                     this.adapter.setAttributeForElementIndex(index, ariaAttribute, ariaAttributeValue);
                 }
             };
+            MDCListFoundation.prototype.getSelectionAttribute = function() {
+                return this.useSelectedAttr_ ? list_constants_strings.ARIA_SELECTED : list_constants_strings.ARIA_CHECKED;
+            };
             MDCListFoundation.prototype.setRadioAtIndex_ = function(index) {
+                var selectionAttribute = this.getSelectionAttribute();
                 this.adapter.setCheckedCheckboxOrRadioAtIndex(index, true);
                 if (this.selectedIndex_ !== list_constants_numbers.UNSET_INDEX) {
-                    this.adapter.setAttributeForElementIndex(this.selectedIndex_, list_constants_strings.ARIA_CHECKED, "false");
+                    this.adapter.setAttributeForElementIndex(this.selectedIndex_, selectionAttribute, "false");
                 }
-                this.adapter.setAttributeForElementIndex(index, list_constants_strings.ARIA_CHECKED, "true");
+                this.adapter.setAttributeForElementIndex(index, selectionAttribute, "true");
                 this.selectedIndex_ = index;
             };
             MDCListFoundation.prototype.setCheckboxAtIndex_ = function(index) {
+                var selectionAttribute = this.getSelectionAttribute();
                 for (var i = 0; i < this.adapter.getListItemCount(); i++) {
                     var isChecked = false;
                     if (index.indexOf(i) >= 0) {
                         isChecked = true;
                     }
                     this.adapter.setCheckedCheckboxOrRadioAtIndex(i, isChecked);
-                    this.adapter.setAttributeForElementIndex(i, list_constants_strings.ARIA_CHECKED, isChecked ? "true" : "false");
+                    this.adapter.setAttributeForElementIndex(i, selectionAttribute, isChecked ? "true" : "false");
                 }
                 this.selectedIndex_ = index;
             };
-            MDCListFoundation.prototype.setTabindexAtIndex_ = function(index) {
+            MDCListFoundation.prototype.setTabindexAtIndex = function(index) {
                 if (this.focusedItemIndex === list_constants_numbers.UNSET_INDEX && index !== 0) {
                     this.adapter.setAttributeForElementIndex(0, "tabindex", "-1");
                 } else if (this.focusedItemIndex >= 0 && this.focusedItemIndex !== index) {
@@ -9766,6 +10307,10 @@ PERFORMANCE OF THIS SOFTWARE.
                 return this.isSingleSelectionList_ || this.isCheckboxList_ || this.isRadioList_;
             };
             MDCListFoundation.prototype.setTabindexToFirstSelectedOrFocusedItem = function() {
+                var targetIndex = this.getFirstSelectedOrFocusedItemIndex();
+                this.setTabindexAtIndex(targetIndex);
+            };
+            MDCListFoundation.prototype.getFirstSelectedOrFocusedItemIndex = function() {
                 var targetIndex = this.focusedItemIndex >= 0 ? this.focusedItemIndex : 0;
                 if (this.isSelectableList_()) {
                     if (typeof this.selectedIndex_ === "number" && this.selectedIndex_ !== list_constants_numbers.UNSET_INDEX) {
@@ -9776,7 +10321,7 @@ PERFORMANCE OF THIS SOFTWARE.
                         }));
                     }
                 }
-                this.setTabindexAtIndex_(targetIndex);
+                return targetIndex;
             };
             MDCListFoundation.prototype.isIndexValid_ = function(index) {
                 var _this = this;
@@ -9815,12 +10360,13 @@ PERFORMANCE OF THIS SOFTWARE.
                 }
             };
             MDCListFoundation.prototype.toggleCheckboxAtIndex_ = function(index, toggleCheckbox) {
+                var selectionAttribute = this.getSelectionAttribute();
                 var isChecked = this.adapter.isCheckboxCheckedAtIndex(index);
                 if (toggleCheckbox) {
                     isChecked = !isChecked;
                     this.adapter.setCheckedCheckboxOrRadioAtIndex(index, isChecked);
                 }
-                this.adapter.setAttributeForElementIndex(index, list_constants_strings.ARIA_CHECKED, isChecked ? "true" : "false");
+                this.adapter.setAttributeForElementIndex(index, selectionAttribute, isChecked ? "true" : "false");
                 var selectedIndexes = this.selectedIndex_ === list_constants_numbers.UNSET_INDEX ? [] : this.selectedIndex_.slice();
                 if (isChecked) {
                     selectedIndexes.push(index);
@@ -9834,6 +10380,20 @@ PERFORMANCE OF THIS SOFTWARE.
             MDCListFoundation.prototype.focusItemAtIndex = function(index) {
                 this.adapter.focusItemAtIndex(index);
                 this.focusedItemIndex = index;
+            };
+            MDCListFoundation.prototype.toggleAll = function(currentlySelectedIndexes) {
+                var count = this.adapter.getListItemCount();
+                if (currentlySelectedIndexes.length === count) {
+                    this.setCheckboxAtIndex_([]);
+                } else {
+                    var allIndexes = [];
+                    for (var i = 0; i < count; i++) {
+                        if (!this.adapter.listItemAtIndexHasClass(i, list_constants_cssClasses.LIST_ITEM_DISABLED_CLASS) || currentlySelectedIndexes.indexOf(i) > -1) {
+                            allIndexes.push(i);
+                        }
+                    }
+                    this.setCheckboxAtIndex_(allIndexes);
+                }
             };
             MDCListFoundation.prototype.typeaheadMatchItem = function(nextChar, startingIndex, skipFocus) {
                 var _this = this;
@@ -11382,26 +11942,59 @@ PERFORMANCE OF THIS SOFTWARE.
         function setDisabled(textElem, disabled) {
             textElem._textField.disabled = disabled;
         }
-        function openBlade(bladeSetElem, mainContentElem, scrollHelperElem, bladeElem, bladeContentElem) {
-            var bladeContentWidth = bladeContentElem.getBoundingClientRect().width;
-            var mainContentWidth = getComputedStyle(mainContentElem).width;
-            var mainContentMinWidth = getComputedStyle(mainContentElem).minWidth;
-            var availableShrinkage = bladeContentWidth;
-            if (mainContentMinWidth.substring(mainContentMinWidth.length - 2, mainContentMinWidth.length) == "px") {
-                availableShrinkage = Math.min(bladeContentWidth, parseInt(mainContentWidth) - parseInt(mainContentMinWidth));
-            }
-            if (availableShrinkage < bladeContentWidth) {
-                scrollHelperElem.style.transition = "";
-                scrollHelperElem.style.width = bladeContentWidth + "px";
-                bladeSetElem.scrollBy({
-                    top: 0,
-                    left: 5e3,
-                    behavior: "auto"
-                });
-                scrollHelperElem.style.transition = "width 200ms";
-                scrollHelperElem.style.width = "0px";
-            }
-            bladeElem.style.width = bladeContentWidth + "px";
+        var regenerator = __webpack_require__(757);
+        var regenerator_default = __webpack_require__.n(regenerator);
+        var asyncToGenerator = __webpack_require__(926);
+        var asyncToGenerator_default = __webpack_require__.n(asyncToGenerator);
+        var fps = 60;
+        var waitDelay = 1e3 / fps;
+        function sleep(ms) {
+            return new Promise((function(resolve) {
+                return setTimeout(resolve, ms);
+            }));
+        }
+        function openBlade(_x, _x2, _x3) {
+            return _openBlade.apply(this, arguments);
+        }
+        function _openBlade() {
+            _openBlade = asyncToGenerator_default()(regenerator_default().mark((function _callee(bladeElem, bladeContentElem, transitionMs) {
+                var transition, bladeContentWidth, intervals, i;
+                return regenerator_default().wrap((function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                          case 0:
+                            transition = "width " + transitionMs + "ms";
+                            bladeContentWidth = bladeContentElem.getBoundingClientRect().width;
+                            bladeElem.style.transition = transition;
+                            bladeElem.style.width = bladeContentWidth + "px";
+                            bladeElem.scrollIntoView();
+                            intervals = Math.ceil(transitionMs / waitDelay) + 1;
+                            i = 0;
+
+                          case 7:
+                            if (!(i < intervals)) {
+                                _context.next = 14;
+                                break;
+                            }
+                            _context.next = 10;
+                            return sleep(waitDelay);
+
+                          case 10:
+                            bladeElem.scrollIntoView();
+
+                          case 11:
+                            i++;
+                            _context.next = 7;
+                            break;
+
+                          case 14:
+                          case "end":
+                            return _context.stop();
+                        }
+                    }
+                }), _callee);
+            })));
+            return _openBlade.apply(this, arguments);
         }
         function closeBlade(bladeElem) {
             bladeElem.style.width = "0px";
@@ -13925,6 +14518,8 @@ PERFORMANCE OF THIS SOFTWARE.
             ANIMATION_READY_CLASS: "mdc-linear-progress--animation-ready"
         };
         var linear_progress_constants_strings = {
+            ARIA_VALUEMAX: "aria-valuemax",
+            ARIA_VALUEMIN: "aria-valuemin",
             ARIA_VALUENOW: "aria-valuenow",
             BUFFER_BAR_SELECTOR: ".mdc-linear-progress__buffer-bar",
             FLEX_BASIS: "flex-basis",
@@ -14060,6 +14655,8 @@ PERFORMANCE OF THIS SOFTWARE.
                 if (this.isDeterminate) {
                     this.adapter.removeClass(linear_progress_constants_cssClasses.INDETERMINATE_CLASS);
                     this.adapter.setAttribute(linear_progress_constants_strings.ARIA_VALUENOW, this.progress.toString());
+                    this.adapter.setAttribute(linear_progress_constants_strings.ARIA_VALUEMAX, "1");
+                    this.adapter.setAttribute(linear_progress_constants_strings.ARIA_VALUEMIN, "0");
                     this.setPrimaryBarProgress(this.progress);
                     this.setBufferBarProgress(this.buffer);
                     return;
@@ -14074,6 +14671,8 @@ PERFORMANCE OF THIS SOFTWARE.
                 }
                 this.adapter.addClass(linear_progress_constants_cssClasses.INDETERMINATE_CLASS);
                 this.adapter.removeAttribute(linear_progress_constants_strings.ARIA_VALUENOW);
+                this.adapter.removeAttribute(linear_progress_constants_strings.ARIA_VALUEMAX);
+                this.adapter.removeAttribute(linear_progress_constants_strings.ARIA_VALUEMIN);
                 this.setPrimaryBarProgress(1);
                 this.setBufferBarProgress(1);
             };
@@ -15025,7 +15624,8 @@ PERFORMANCE OF THIS SOFTWARE.
         };
         var select_constants_numbers = {
             LABEL_SCALE: .75,
-            UNSET_INDEX: -1
+            UNSET_INDEX: -1,
+            CLICK_DEBOUNCE_TIMEOUT_MS: 330
         };
         /**
  * @license
@@ -15060,6 +15660,8 @@ PERFORMANCE OF THIS SOFTWARE.
                 _this.useDefaultValidation = true;
                 _this.customValidity = true;
                 _this.lastSelectedIndex = select_constants_numbers.UNSET_INDEX;
+                _this.clickDebounceTimeout = 0;
+                _this.recentlyClicked = false;
                 _this.leadingIcon = foundationMap.leadingIcon;
                 _this.helperText = foundationMap.helperText;
                 return _this;
@@ -15324,9 +15926,10 @@ PERFORMANCE OF THIS SOFTWARE.
                 this.blur();
             };
             MDCSelectFoundation.prototype.handleClick = function(normalizedX) {
-                if (this.disabled) {
+                if (this.disabled || this.recentlyClicked) {
                     return;
                 }
+                this.setClickDebounceTimeout();
                 if (this.isMenuOpen) {
                     this.adapter.closeMenu();
                     return;
@@ -15453,6 +16056,14 @@ PERFORMANCE OF THIS SOFTWARE.
                 } else {
                     this.adapter.removeSelectAnchorAttr(select_constants_strings.ARIA_DESCRIBEDBY);
                 }
+            };
+            MDCSelectFoundation.prototype.setClickDebounceTimeout = function() {
+                var _this = this;
+                clearTimeout(this.clickDebounceTimeout);
+                this.clickDebounceTimeout = setTimeout((function() {
+                    _this.recentlyClicked = false;
+                }), select_constants_numbers.CLICK_DEBOUNCE_TIMEOUT_MS);
+                this.recentlyClicked = true;
             };
             return MDCSelectFoundation;
         }(MDCFoundation);
@@ -18699,6 +19310,7 @@ PERFORMANCE OF THIS SOFTWARE.
  */        var slider_constants_cssClasses = {
             DISABLED: "mdc-slider--disabled",
             DISCRETE: "mdc-slider--discrete",
+            INPUT: "mdc-slider__input",
             RANGE: "mdc-slider--range",
             THUMB: "mdc-slider__thumb",
             THUMB_KNOB: "mdc-slider__thumb-knob",
@@ -18713,7 +19325,7 @@ PERFORMANCE OF THIS SOFTWARE.
             VALUE_INDICATOR_TEXT: "mdc-slider__value-indicator-text"
         };
         var slider_constants_numbers = {
-            BIG_STEP_FACTOR: 4,
+            STEP_SIZE: 1,
             THUMB_UPDATE_MIN_PX: 5
         };
         var slider_constants_attributes = {
@@ -18722,8 +19334,11 @@ PERFORMANCE OF THIS SOFTWARE.
             ARIA_VALUEMIN: "aria-valuemin",
             ARIA_VALUENOW: "aria-valuenow",
             ARIA_VALUETEXT: "aria-valuetext",
-            DATA_ATTR_BIG_STEP: "data-big-step",
-            DATA_ATTR_STEP: "data-step"
+            INPUT_DISABLED: "disabled",
+            INPUT_MIN: "min",
+            INPUT_MAX: "max",
+            INPUT_VALUE: "value",
+            INPUT_STEP: "step"
         };
         var slider_constants_events = {
             CHANGE: "MDCSlider:change",
@@ -18789,8 +19404,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 _this.initialStylesRemoved = false;
                 _this.isDisabled = false;
                 _this.isDiscrete = false;
-                _this.step = 1;
-                _this.bigStep = _this.step * slider_constants_numbers.BIG_STEP_FACTOR;
+                _this.step = slider_constants_numbers.STEP_SIZE;
                 _this.hasTickMarks = false;
                 _this.isRange = false;
                 _this.thumb = null;
@@ -18820,20 +19434,29 @@ PERFORMANCE OF THIS SOFTWARE.
                         getAttribute: function() {
                             return null;
                         },
-                        getThumbAttribute: function() {
+                        getInputValue: function() {
+                            return "";
+                        },
+                        setInputValue: function() {
+                            return undefined;
+                        },
+                        getInputAttribute: function() {
                             return null;
                         },
-                        setThumbAttribute: function() {
+                        setInputAttribute: function() {
                             return null;
+                        },
+                        removeInputAttribute: function() {
+                            return null;
+                        },
+                        focusInput: function() {
+                            return undefined;
+                        },
+                        isInputFocused: function() {
+                            return false;
                         },
                         getThumbKnobWidth: function() {
                             return 0;
-                        },
-                        isThumbFocused: function() {
-                            return false;
-                        },
-                        focusThumb: function() {
-                            return undefined;
                         },
                         getThumbBoundingClientRect: function() {
                             return {
@@ -18906,6 +19529,12 @@ PERFORMANCE OF THIS SOFTWARE.
                         deregisterThumbEventHandler: function() {
                             return undefined;
                         },
+                        registerInputEventHandler: function() {
+                            return undefined;
+                        },
+                        deregisterInputEventHandler: function() {
+                            return undefined;
+                        },
                         registerBodyEventHandler: function() {
                             return undefined;
                         },
@@ -18929,10 +19558,10 @@ PERFORMANCE OF THIS SOFTWARE.
                 this.isDiscrete = this.adapter.hasClass(slider_constants_cssClasses.DISCRETE);
                 this.hasTickMarks = this.adapter.hasClass(slider_constants_cssClasses.TICK_MARKS);
                 this.isRange = this.adapter.hasClass(slider_constants_cssClasses.RANGE);
-                var min = this.convertAttributeValueToNumber(this.adapter.getThumbAttribute(slider_constants_attributes.ARIA_VALUEMIN, Thumb.END), slider_constants_attributes.ARIA_VALUEMIN);
-                var max = this.convertAttributeValueToNumber(this.adapter.getThumbAttribute(slider_constants_attributes.ARIA_VALUEMAX, Thumb.END), slider_constants_attributes.ARIA_VALUEMAX);
-                var value = this.convertAttributeValueToNumber(this.adapter.getThumbAttribute(slider_constants_attributes.ARIA_VALUENOW, Thumb.END), slider_constants_attributes.ARIA_VALUENOW);
-                var valueStart = this.isRange ? this.convertAttributeValueToNumber(this.adapter.getThumbAttribute(slider_constants_attributes.ARIA_VALUENOW, Thumb.START), slider_constants_attributes.ARIA_VALUENOW) : min;
+                var min = this.convertAttributeValueToNumber(this.adapter.getInputAttribute(slider_constants_attributes.INPUT_MIN, this.isRange ? Thumb.START : Thumb.END), slider_constants_attributes.INPUT_MIN);
+                var max = this.convertAttributeValueToNumber(this.adapter.getInputAttribute(slider_constants_attributes.INPUT_MAX, Thumb.END), slider_constants_attributes.INPUT_MAX);
+                var value = this.convertAttributeValueToNumber(this.adapter.getInputAttribute(slider_constants_attributes.INPUT_VALUE, Thumb.END), slider_constants_attributes.INPUT_VALUE);
+                var valueStart = this.isRange ? this.convertAttributeValueToNumber(this.adapter.getInputAttribute(slider_constants_attributes.INPUT_VALUE, Thumb.START), slider_constants_attributes.INPUT_VALUE) : min;
                 this.validateProperties({
                     min: min,
                     max: max,
@@ -18945,27 +19574,37 @@ PERFORMANCE OF THIS SOFTWARE.
                 this.valueStart = valueStart;
                 this.valueBeforeDownEvent = value;
                 this.valueStartBeforeDownEvent = valueStart;
-                if (this.isDiscrete) {
-                    var step = this.convertAttributeValueToNumber(this.adapter.getAttribute(slider_constants_attributes.DATA_ATTR_STEP), slider_constants_attributes.DATA_ATTR_STEP);
-                    if (step <= 0) {
-                        throw new Error("MDCSliderFoundation: step must be a positive number. " + ("Current step: " + step));
-                    }
-                    this.step = step;
-                    var bigStep = this.adapter.getAttribute(slider_constants_attributes.DATA_ATTR_BIG_STEP);
-                    this.bigStep = bigStep !== null ? this.convertAttributeValueToNumber(bigStep, slider_constants_attributes.DATA_ATTR_BIG_STEP) : step * slider_constants_numbers.BIG_STEP_FACTOR;
+                var stepAttr = this.adapter.getInputAttribute(slider_constants_attributes.INPUT_STEP, Thumb.END);
+                if (stepAttr) {
+                    this.step = this.convertAttributeValueToNumber(stepAttr, slider_constants_attributes.INPUT_STEP);
+                }
+                if (this.step <= 0) {
+                    throw new Error("MDCSliderFoundation: step must be a positive number. " + ("Current step: " + this.step));
                 }
                 this.mousedownOrTouchstartListener = this.handleMousedownOrTouchstart.bind(this);
                 this.moveListener = this.handleMove.bind(this);
                 this.pointerdownListener = this.handlePointerdown.bind(this);
                 this.pointerupListener = this.handlePointerup.bind(this);
-                this.thumbStartKeydownListener = function(event) {
-                    _this.handleThumbKeydown(event, Thumb.START);
+                this.thumbMouseenterListener = this.handleThumbMouseenter.bind(this);
+                this.thumbMouseleaveListener = this.handleThumbMouseleave.bind(this);
+                this.inputStartChangeListener = function() {
+                    _this.handleInputChange(Thumb.START);
                 };
-                this.thumbEndKeydownListener = function(event) {
-                    _this.handleThumbKeydown(event, Thumb.END);
+                this.inputEndChangeListener = function() {
+                    _this.handleInputChange(Thumb.END);
                 };
-                this.thumbFocusOrMouseenterListener = this.handleThumbFocusOrMouseenter.bind(this);
-                this.thumbBlurOrMouseleaveListener = this.handleThumbBlurOrMouseleave.bind(this);
+                this.inputStartFocusListener = function() {
+                    _this.handleInputFocus(Thumb.START);
+                };
+                this.inputEndFocusListener = function() {
+                    _this.handleInputFocus(Thumb.END);
+                };
+                this.inputStartBlurListener = function() {
+                    _this.handleInputBlur(Thumb.START);
+                };
+                this.inputEndBlurListener = function() {
+                    _this.handleInputBlur(Thumb.END);
+                };
                 this.resizeListener = this.handleResize.bind(this);
                 this.registerEventHandlers();
             };
@@ -19005,9 +19644,6 @@ PERFORMANCE OF THIS SOFTWARE.
             MDCSliderFoundation.prototype.getStep = function() {
                 return this.step;
             };
-            MDCSliderFoundation.prototype.getBigStep = function() {
-                return this.bigStep;
-            };
             MDCSliderFoundation.prototype.getDisabled = function() {
                 return this.isDisabled;
             };
@@ -19016,19 +19652,15 @@ PERFORMANCE OF THIS SOFTWARE.
                 if (disabled) {
                     this.adapter.addClass(slider_constants_cssClasses.DISABLED);
                     if (this.isRange) {
-                        this.adapter.setThumbAttribute("tabindex", "-1", Thumb.START);
-                        this.adapter.setThumbAttribute("aria-disabled", "true", Thumb.START);
+                        this.adapter.setInputAttribute(slider_constants_attributes.INPUT_DISABLED, "", Thumb.START);
                     }
-                    this.adapter.setThumbAttribute("tabindex", "-1", Thumb.END);
-                    this.adapter.setThumbAttribute("aria-disabled", "true", Thumb.END);
+                    this.adapter.setInputAttribute(slider_constants_attributes.INPUT_DISABLED, "", Thumb.END);
                 } else {
                     this.adapter.removeClass(slider_constants_cssClasses.DISABLED);
                     if (this.isRange) {
-                        this.adapter.setThumbAttribute("tabindex", "0", Thumb.START);
-                        this.adapter.setThumbAttribute("aria-disabled", "false", Thumb.START);
+                        this.adapter.removeInputAttribute(slider_constants_attributes.INPUT_DISABLED, Thumb.START);
                     }
-                    this.adapter.setThumbAttribute("tabindex", "0", Thumb.END);
-                    this.adapter.setThumbAttribute("aria-disabled", "false", Thumb.END);
+                    this.adapter.removeInputAttribute(slider_constants_attributes.INPUT_DISABLED, Thumb.END);
                 }
             };
             MDCSliderFoundation.prototype.getIsRange = function() {
@@ -19057,7 +19689,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 var value = this.mapClientXOnSliderScale(clientX);
                 this.thumb = this.getThumbFromDownEvent(clientX, value);
                 if (this.thumb === null) return;
-                this.adapter.emitDragStartEvent(value, this.thumb);
+                this.handleDragStart(event, value, this.thumb);
                 var newValueInCurrentRange = this.isRange && value >= this.valueStart && value <= this.value;
                 if (newValueInCurrentRange) return;
                 this.updateValue(value, this.thumb, {
@@ -19073,6 +19705,7 @@ PERFORMANCE OF THIS SOFTWARE.
                 if (this.thumb === null) return;
                 var value = this.mapClientXOnSliderScale(clientX);
                 if (!dragAlreadyStarted) {
+                    this.handleDragStart(event, value, this.thumb);
                     this.adapter.emitDragStartEvent(value, this.thumb);
                 }
                 this.updateValue(value, this.thumb, {
@@ -19089,38 +19722,18 @@ PERFORMANCE OF THIS SOFTWARE.
                 this.adapter.emitDragEndEvent(newValue, this.thumb);
                 this.thumb = null;
             };
-            MDCSliderFoundation.prototype.handleThumbKeydown = function(event, thumb) {
-                if (this.isDisabled) return;
-                var key = normalizeKey(event);
-                if (key !== KEY.ARROW_LEFT && key !== KEY.ARROW_UP && key !== KEY.ARROW_RIGHT && key !== KEY.ARROW_DOWN && key !== KEY.HOME && key !== KEY.END && key !== KEY.PAGE_UP && key !== KEY.PAGE_DOWN) {
+            MDCSliderFoundation.prototype.handleThumbMouseenter = function() {
+                if (!this.isDiscrete || !this.isRange) return;
+                this.adapter.addThumbClass(slider_constants_cssClasses.THUMB_WITH_INDICATOR, Thumb.START);
+                this.adapter.addThumbClass(slider_constants_cssClasses.THUMB_WITH_INDICATOR, Thumb.END);
+            };
+            MDCSliderFoundation.prototype.handleThumbMouseleave = function() {
+                if (!this.isDiscrete || !this.isRange) return;
+                if (this.adapter.isInputFocused(Thumb.START) || this.adapter.isInputFocused(Thumb.END)) {
                     return;
                 }
-                event.preventDefault();
-                var value = this.getValueForKey(key, thumb);
-                var currentValue = thumb === Thumb.START ? this.valueStart : this.value;
-                if (value === currentValue) return;
-                this.updateValue(this.getValueForKey(key, thumb), thumb, {
-                    emitChangeEvent: true,
-                    emitInputEvent: true
-                });
-            };
-            MDCSliderFoundation.prototype.handleThumbFocusOrMouseenter = function(event) {
-                if (!this.isDiscrete) return;
-                if (this.isRange) {
-                    this.adapter.addThumbClass(slider_constants_cssClasses.THUMB_WITH_INDICATOR, Thumb.START);
-                    this.adapter.addThumbClass(slider_constants_cssClasses.THUMB_WITH_INDICATOR, Thumb.END);
-                } else if (event.type === "focus") {
-                    this.adapter.addThumbClass(slider_constants_cssClasses.THUMB_WITH_INDICATOR, Thumb.END);
-                }
-            };
-            MDCSliderFoundation.prototype.handleThumbBlurOrMouseleave = function(event) {
-                if (!this.isDiscrete) return;
-                if (this.isRange && !this.adapter.isThumbFocused(Thumb.START) && !this.adapter.isThumbFocused(Thumb.END)) {
-                    this.adapter.removeThumbClass(slider_constants_cssClasses.THUMB_WITH_INDICATOR, Thumb.START);
-                    this.adapter.removeThumbClass(slider_constants_cssClasses.THUMB_WITH_INDICATOR, Thumb.END);
-                } else if (!this.isRange && event.type === "blur") {
-                    this.adapter.removeThumbClass(slider_constants_cssClasses.THUMB_WITH_INDICATOR, Thumb.END);
-                }
+                this.adapter.removeThumbClass(slider_constants_cssClasses.THUMB_WITH_INDICATOR, Thumb.START);
+                this.adapter.removeThumbClass(slider_constants_cssClasses.THUMB_WITH_INDICATOR, Thumb.END);
             };
             MDCSliderFoundation.prototype.handleMousedownOrTouchstart = function(event) {
                 var _this = this;
@@ -19141,38 +19754,34 @@ PERFORMANCE OF THIS SOFTWARE.
                 this.adapter.registerEventHandler("pointermove", this.moveListener);
                 this.handleDown(event);
             };
-            MDCSliderFoundation.prototype.getValueForKey = function(key, thumb) {
-                var delta = this.step || (this.max - this.min) / 100;
-                var deltaBigStep = this.bigStep || (this.max - this.min) / 10;
-                var value = thumb === Thumb.START ? this.valueStart : this.value;
-                switch (key) {
-                  case KEY.ARROW_LEFT:
-                    return this.adapter.isRTL() ? value + delta : value - delta;
-
-                  case KEY.ARROW_DOWN:
-                    return value - delta;
-
-                  case KEY.ARROW_RIGHT:
-                    return this.adapter.isRTL() ? value - delta : value + delta;
-
-                  case KEY.ARROW_UP:
-                    return value + delta;
-
-                  case KEY.HOME:
-                    return this.min;
-
-                  case KEY.END:
-                    return this.max;
-
-                  case KEY.PAGE_DOWN:
-                    return value - deltaBigStep;
-
-                  case KEY.PAGE_UP:
-                    return value + deltaBigStep;
-
-                  default:
-                    return value;
+            MDCSliderFoundation.prototype.handleInputChange = function(thumb) {
+                var value = Number(this.adapter.getInputValue(thumb));
+                if (thumb === Thumb.START) {
+                    this.setValueStart(value);
+                } else {
+                    this.setValue(value);
                 }
+            };
+            MDCSliderFoundation.prototype.handleInputFocus = function(thumb) {
+                if (!this.isDiscrete) return;
+                this.adapter.addThumbClass(slider_constants_cssClasses.THUMB_WITH_INDICATOR, thumb);
+                if (this.isRange) {
+                    var otherThumb = thumb === Thumb.START ? Thumb.END : Thumb.START;
+                    this.adapter.addThumbClass(slider_constants_cssClasses.THUMB_WITH_INDICATOR, otherThumb);
+                }
+            };
+            MDCSliderFoundation.prototype.handleInputBlur = function(thumb) {
+                if (!this.isDiscrete) return;
+                this.adapter.removeThumbClass(slider_constants_cssClasses.THUMB_WITH_INDICATOR, thumb);
+                if (this.isRange) {
+                    var otherThumb = thumb === Thumb.START ? Thumb.END : Thumb.START;
+                    this.adapter.removeThumbClass(slider_constants_cssClasses.THUMB_WITH_INDICATOR, otherThumb);
+                }
+            };
+            MDCSliderFoundation.prototype.handleDragStart = function(event, value, thumb) {
+                this.adapter.focusInput(thumb);
+                event.preventDefault();
+                this.adapter.emitDragStartEvent(value, thumb);
             };
             MDCSliderFoundation.prototype.getThumbFromDownEvent = function(clientX, value) {
                 if (!this.isRange) return Thumb.END;
@@ -19212,24 +19821,36 @@ PERFORMANCE OF THIS SOFTWARE.
                 }
             };
             MDCSliderFoundation.prototype.updateUI = function(thumb) {
-                this.updateThumbAriaAttributes(thumb);
+                this.updateThumbAndInputAttributes(thumb);
                 this.updateThumbAndTrackUI(thumb);
                 this.updateValueIndicatorUI(thumb);
                 this.updateTickMarksUI();
             };
-            MDCSliderFoundation.prototype.updateThumbAriaAttributes = function(thumb) {
+            MDCSliderFoundation.prototype.updateThumbAndInputAttributes = function(thumb) {
                 if (!thumb) return;
                 var value = this.isRange && thumb === Thumb.START ? this.valueStart : this.value;
-                this.adapter.setThumbAttribute(slider_constants_attributes.ARIA_VALUENOW, String(value), thumb);
+                var valueStr = String(value);
+                this.adapter.setInputAttribute(slider_constants_attributes.INPUT_VALUE, valueStr, thumb);
+                if (this.isRange && thumb === Thumb.START) {
+                    this.adapter.setInputAttribute(slider_constants_attributes.INPUT_MIN, valueStr, Thumb.END);
+                } else if (this.isRange && thumb === Thumb.END) {
+                    this.adapter.setInputAttribute(slider_constants_attributes.INPUT_MAX, valueStr, Thumb.START);
+                }
+                if (this.adapter.getInputValue(thumb) !== valueStr) {
+                    this.adapter.setInputValue(valueStr, thumb);
+                }
                 var valueToAriaValueTextFn = this.adapter.getValueToAriaValueTextFn();
                 if (valueToAriaValueTextFn) {
-                    this.adapter.setThumbAttribute(slider_constants_attributes.ARIA_VALUETEXT, valueToAriaValueTextFn(value), thumb);
+                    this.adapter.setInputAttribute(slider_constants_attributes.ARIA_VALUETEXT, valueToAriaValueTextFn(value), thumb);
                 }
             };
             MDCSliderFoundation.prototype.updateValueIndicatorUI = function(thumb) {
-                if (!this.isDiscrete || !thumb) return;
+                if (!this.isDiscrete) return;
                 var value = this.isRange && thumb === Thumb.START ? this.valueStart : this.value;
                 this.adapter.setValueIndicatorText(value, thumb === Thumb.START ? Thumb.START : Thumb.END);
+                if (!thumb && this.isRange) {
+                    this.adapter.setValueIndicatorText(this.valueStart, Thumb.START);
+                }
             };
             MDCSliderFoundation.prototype.updateTickMarksUI = function() {
                 if (!this.isDiscrete || !this.hasTickMarks) return;
@@ -19254,10 +19875,10 @@ PERFORMANCE OF THIS SOFTWARE.
                     pctComplete = 1 - pctComplete;
                 }
                 var value = this.min + pctComplete * (this.max - this.min);
-                if (this.isDiscrete && value !== this.max && value !== this.min) {
-                    return this.quantize(value);
+                if (value === this.max || value === this.min) {
+                    return value;
                 }
-                return value;
+                return this.quantize(value);
             };
             MDCSliderFoundation.prototype.updateValue = function(value, thumb, _a) {
                 var _b = _a === void 0 ? {} : _a, emitInputEvent = _b.emitInputEvent, emitChangeEvent = _b.emitChangeEvent;
@@ -19325,7 +19946,6 @@ PERFORMANCE OF THIS SOFTWARE.
                         }
                         _this.removeInitialStyles(isRtl);
                         _this.updateOverlappingThumbsUI(thumbStartPos, thumbEndPos, thumb);
-                        _this.focusThumbIfDragging(thumb);
                     }));
                 } else {
                     requestAnimationFrame((function() {
@@ -19333,7 +19953,6 @@ PERFORMANCE OF THIS SOFTWARE.
                         _this.adapter.setThumbStyleProperty(transformProp, "translateX(" + thumbStartPos + "px)", Thumb.END);
                         _this.adapter.setTrackActiveStyleProperty(transformProp, "scaleX(" + pctComplete + ")");
                         _this.removeInitialStyles(isRtl);
-                        _this.focusThumbIfDragging(thumb);
                     }));
                 }
             };
@@ -19384,13 +20003,6 @@ PERFORMANCE OF THIS SOFTWARE.
                     this.adapter.removeThumbClass(slider_constants_cssClasses.THUMB_TOP, Thumb.END);
                 }
             };
-            MDCSliderFoundation.prototype.focusThumbIfDragging = function(thumb) {
-                if (!thumb) return;
-                if (this.thumb === null) return;
-                if (!this.adapter.isThumbFocused(thumb)) {
-                    this.adapter.focusThumb(thumb);
-                }
-            };
             MDCSliderFoundation.prototype.convertAttributeValueToNumber = function(attributeValue, attributeName) {
                 if (attributeValue === null) {
                     throw new Error("MDCSliderFoundation: `" + attributeName + "` must be non-null.");
@@ -19429,17 +20041,17 @@ PERFORMANCE OF THIS SOFTWARE.
                     this.adapter.registerEventHandler("touchstart", this.mousedownOrTouchstartListener);
                 }
                 if (this.isRange) {
-                    this.adapter.registerThumbEventHandler(Thumb.START, "keydown", this.thumbStartKeydownListener);
-                    this.adapter.registerThumbEventHandler(Thumb.START, "focus", this.thumbFocusOrMouseenterListener);
-                    this.adapter.registerThumbEventHandler(Thumb.START, "mouseenter", this.thumbFocusOrMouseenterListener);
-                    this.adapter.registerThumbEventHandler(Thumb.START, "blur", this.thumbBlurOrMouseleaveListener);
-                    this.adapter.registerThumbEventHandler(Thumb.START, "mouseleave", this.thumbBlurOrMouseleaveListener);
+                    this.adapter.registerThumbEventHandler(Thumb.START, "mouseenter", this.thumbMouseenterListener);
+                    this.adapter.registerThumbEventHandler(Thumb.START, "mouseleave", this.thumbMouseleaveListener);
+                    this.adapter.registerInputEventHandler(Thumb.START, "change", this.inputStartChangeListener);
+                    this.adapter.registerInputEventHandler(Thumb.START, "focus", this.inputStartFocusListener);
+                    this.adapter.registerInputEventHandler(Thumb.START, "blur", this.inputStartBlurListener);
                 }
-                this.adapter.registerThumbEventHandler(Thumb.END, "keydown", this.thumbEndKeydownListener);
-                this.adapter.registerThumbEventHandler(Thumb.END, "focus", this.thumbFocusOrMouseenterListener);
-                this.adapter.registerThumbEventHandler(Thumb.END, "mouseenter", this.thumbFocusOrMouseenterListener);
-                this.adapter.registerThumbEventHandler(Thumb.END, "blur", this.thumbBlurOrMouseleaveListener);
-                this.adapter.registerThumbEventHandler(Thumb.END, "mouseleave", this.thumbBlurOrMouseleaveListener);
+                this.adapter.registerThumbEventHandler(Thumb.END, "mouseenter", this.thumbMouseenterListener);
+                this.adapter.registerThumbEventHandler(Thumb.END, "mouseleave", this.thumbMouseleaveListener);
+                this.adapter.registerInputEventHandler(Thumb.END, "change", this.inputEndChangeListener);
+                this.adapter.registerInputEventHandler(Thumb.END, "focus", this.inputEndFocusListener);
+                this.adapter.registerInputEventHandler(Thumb.END, "blur", this.inputEndBlurListener);
             };
             MDCSliderFoundation.prototype.deregisterEventHandlers = function() {
                 this.adapter.deregisterWindowEventHandler("resize", this.resizeListener);
@@ -19451,17 +20063,17 @@ PERFORMANCE OF THIS SOFTWARE.
                     this.adapter.deregisterEventHandler("touchstart", this.mousedownOrTouchstartListener);
                 }
                 if (this.isRange) {
-                    this.adapter.deregisterThumbEventHandler(Thumb.START, "keydown", this.thumbStartKeydownListener);
-                    this.adapter.deregisterThumbEventHandler(Thumb.START, "focus", this.thumbFocusOrMouseenterListener);
-                    this.adapter.deregisterThumbEventHandler(Thumb.START, "mouseenter", this.thumbFocusOrMouseenterListener);
-                    this.adapter.deregisterThumbEventHandler(Thumb.START, "blur", this.thumbBlurOrMouseleaveListener);
-                    this.adapter.deregisterThumbEventHandler(Thumb.START, "mouseleave", this.thumbBlurOrMouseleaveListener);
+                    this.adapter.deregisterThumbEventHandler(Thumb.START, "mouseenter", this.thumbMouseenterListener);
+                    this.adapter.deregisterThumbEventHandler(Thumb.START, "mouseleave", this.thumbMouseleaveListener);
+                    this.adapter.deregisterInputEventHandler(Thumb.START, "change", this.inputStartChangeListener);
+                    this.adapter.deregisterInputEventHandler(Thumb.START, "focus", this.inputStartFocusListener);
+                    this.adapter.deregisterInputEventHandler(Thumb.START, "blur", this.inputStartBlurListener);
                 }
-                this.adapter.deregisterThumbEventHandler(Thumb.END, "keydown", this.thumbEndKeydownListener);
-                this.adapter.deregisterThumbEventHandler(Thumb.END, "focus", this.thumbFocusOrMouseenterListener);
-                this.adapter.deregisterThumbEventHandler(Thumb.END, "mouseenter", this.thumbFocusOrMouseenterListener);
-                this.adapter.deregisterThumbEventHandler(Thumb.END, "blur", this.thumbBlurOrMouseleaveListener);
-                this.adapter.deregisterThumbEventHandler(Thumb.END, "mouseleave", this.thumbBlurOrMouseleaveListener);
+                this.adapter.deregisterThumbEventHandler(Thumb.END, "mouseenter", this.thumbMouseenterListener);
+                this.adapter.deregisterThumbEventHandler(Thumb.END, "mouseleave", this.thumbMouseleaveListener);
+                this.adapter.deregisterInputEventHandler(Thumb.END, "change", this.inputEndChangeListener);
+                this.adapter.deregisterInputEventHandler(Thumb.END, "focus", this.inputEndFocusListener);
+                this.adapter.deregisterInputEventHandler(Thumb.END, "blur", this.inputEndBlurListener);
             };
             MDCSliderFoundation.prototype.handlePointerup = function() {
                 this.handleUp();
@@ -19526,17 +20138,26 @@ PERFORMANCE OF THIS SOFTWARE.
                     getAttribute: function(attribute) {
                         return _this.root.getAttribute(attribute);
                     },
-                    getThumbAttribute: function(attribute, thumb) {
-                        return _this.getThumbEl(thumb).getAttribute(attribute);
+                    getInputValue: function(thumb) {
+                        return _this.getInput(thumb).value;
                     },
-                    setThumbAttribute: function(attribute, value, thumb) {
-                        _this.getThumbEl(thumb).setAttribute(attribute, value);
+                    setInputValue: function(value, thumb) {
+                        _this.getInput(thumb).value = value;
                     },
-                    isThumbFocused: function(thumb) {
-                        return _this.getThumbEl(thumb) === document.activeElement;
+                    getInputAttribute: function(attribute, thumb) {
+                        return _this.getInput(thumb).getAttribute(attribute);
                     },
-                    focusThumb: function(thumb) {
-                        _this.getThumbEl(thumb).focus();
+                    setInputAttribute: function(attribute, value, thumb) {
+                        _this.getInput(thumb).setAttribute(attribute, value);
+                    },
+                    removeInputAttribute: function(attribute, thumb) {
+                        _this.getInput(thumb).removeAttribute(attribute);
+                    },
+                    focusInput: function(thumb) {
+                        _this.getInput(thumb).focus();
+                    },
+                    isInputFocused: function(thumb) {
+                        return _this.getInput(thumb) === document.activeElement;
                     },
                     getThumbKnobWidth: function(thumb) {
                         return _this.getThumbEl(thumb).querySelector("." + slider_constants_cssClasses.THUMB_KNOB).getBoundingClientRect().width;
@@ -19599,8 +20220,12 @@ PERFORMANCE OF THIS SOFTWARE.
                             thumb: thumb
                         });
                     },
-                    emitDragStartEvent: function() {},
-                    emitDragEndEvent: function() {},
+                    emitDragStartEvent: function(_, thumb) {
+                        _this.getRipple(thumb).activate();
+                    },
+                    emitDragEndEvent: function(_, thumb) {
+                        _this.getRipple(thumb).deactivate();
+                    },
                     registerEventHandler: function(evtType, handler) {
                         _this.listen(evtType, handler);
                     },
@@ -19612,6 +20237,12 @@ PERFORMANCE OF THIS SOFTWARE.
                     },
                     deregisterThumbEventHandler: function(thumb, evtType, handler) {
                         _this.getThumbEl(thumb).removeEventListener(evtType, handler);
+                    },
+                    registerInputEventHandler: function(thumb, evtType, handler) {
+                        _this.getInput(thumb).addEventListener(evtType, handler);
+                    },
+                    deregisterInputEventHandler: function(thumb, evtType, handler) {
+                        _this.getInput(thumb).removeEventListener(evtType, handler);
                     },
                     registerBodyEventHandler: function(evtType, handler) {
                         document.body.addEventListener(evtType, handler);
@@ -19630,14 +20261,15 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             MDCSlider.prototype.initialize = function(_a) {
                 var skipInitialUIUpdate = (_a === void 0 ? {} : _a).skipInitialUIUpdate;
+                this.inputs = [].slice.call(this.root.querySelectorAll("." + slider_constants_cssClasses.INPUT));
                 this.thumbs = [].slice.call(this.root.querySelectorAll("." + slider_constants_cssClasses.THUMB));
                 this.trackActive = this.root.querySelector("." + slider_constants_cssClasses.TRACK_ACTIVE);
+                this.ripples = this.createRipples();
                 if (skipInitialUIUpdate) {
                     this.skipInitialUIUpdate = true;
                 }
             };
             MDCSlider.prototype.initialSyncWithDOM = function() {
-                this.createRipples();
                 this.foundation.layout({
                     skipUpdateUI: this.skipInitialUIUpdate
                 });
@@ -19669,6 +20301,12 @@ PERFORMANCE OF THIS SOFTWARE.
             MDCSlider.prototype.getThumbEl = function(thumb) {
                 return thumb === Thumb.END ? this.thumbs[this.thumbs.length - 1] : this.thumbs[0];
             };
+            MDCSlider.prototype.getInput = function(thumb) {
+                return thumb === Thumb.END ? this.inputs[this.inputs.length - 1] : this.inputs[0];
+            };
+            MDCSlider.prototype.getRipple = function(thumb) {
+                return thumb === Thumb.END ? this.ripples[this.ripples.length - 1] : this.ripples[0];
+            };
             MDCSlider.prototype.addTickMarks = function(tickMarkContainer, tickMarks) {
                 var fragment = document.createDocumentFragment();
                 for (var i = 0; i < tickMarks.length; i++) {
@@ -19692,25 +20330,46 @@ PERFORMANCE OF THIS SOFTWARE.
                 }
             };
             MDCSlider.prototype.createRipples = function() {
-                var e_1, _a;
+                var ripples = [];
                 var rippleSurfaces = [].slice.call(this.root.querySelectorAll("." + slider_constants_cssClasses.THUMB));
-                try {
-                    for (var rippleSurfaces_1 = __values(rippleSurfaces), rippleSurfaces_1_1 = rippleSurfaces_1.next(); !rippleSurfaces_1_1.done; rippleSurfaces_1_1 = rippleSurfaces_1.next()) {
-                        var rippleSurface = rippleSurfaces_1_1.value;
-                        var ripple = new MDCRipple(rippleSurface);
-                        ripple.unbounded = true;
-                    }
-                } catch (e_1_1) {
-                    e_1 = {
-                        error: e_1_1
-                    };
-                } finally {
-                    try {
-                        if (rippleSurfaces_1_1 && !rippleSurfaces_1_1.done && (_a = rippleSurfaces_1.return)) _a.call(rippleSurfaces_1);
-                    } finally {
-                        if (e_1) throw e_1.error;
-                    }
+                var _loop_1 = function(i) {
+                    var rippleSurface = rippleSurfaces[i];
+                    var input = this_1.inputs[i];
+                    var adapter = __assign(__assign({}, MDCRipple.createAdapter(this_1)), {
+                        addClass: function(className) {
+                            rippleSurface.classList.add(className);
+                        },
+                        computeBoundingRect: function() {
+                            return rippleSurface.getBoundingClientRect();
+                        },
+                        deregisterInteractionHandler: function(evtType, handler) {
+                            input.removeEventListener(evtType, handler);
+                        },
+                        isSurfaceActive: function() {
+                            return matches(input, ":active");
+                        },
+                        isUnbounded: function() {
+                            return true;
+                        },
+                        registerInteractionHandler: function(evtType, handler) {
+                            input.addEventListener(evtType, handler);
+                        },
+                        removeClass: function(className) {
+                            rippleSurface.classList.remove(className);
+                        },
+                        updateCssVariable: function(varName, value) {
+                            rippleSurface.style.setProperty(varName, value);
+                        }
+                    });
+                    var ripple = new MDCRipple(rippleSurface, new MDCRippleFoundation(adapter));
+                    ripple.unbounded = true;
+                    ripples.push(ripple);
+                };
+                var this_1 = this;
+                for (var i = 0; i < rippleSurfaces.length; i++) {
+                    _loop_1(i);
                 }
+                return ripples;
             };
             return MDCSlider;
         }(MDCComponent);
@@ -21901,6 +22560,7 @@ PERFORMANCE OF THIS SOFTWARE.
  * THE SOFTWARE.
  */        var CssClasses;
         (function(CssClasses) {
+            CssClasses["RICH"] = "mdc-tooltip--rich";
             CssClasses["SHOWN"] = "mdc-tooltip--shown";
             CssClasses["SHOWING"] = "mdc-tooltip--showing";
             CssClasses["SHOWING_TRANSITION"] = "mdc-tooltip--showing-transition";
@@ -21911,11 +22571,16 @@ PERFORMANCE OF THIS SOFTWARE.
         var tooltip_constants_numbers = {
             BOUNDED_ANCHOR_GAP: 4,
             UNBOUNDED_ANCHOR_GAP: 8,
-            MIN_VIEWPORT_TOOLTIP_THRESHOLD: 32,
+            MIN_VIEWPORT_TOOLTIP_THRESHOLD: 8,
             HIDE_DELAY_MS: 600,
             SHOW_DELAY_MS: 500,
             MIN_HEIGHT: 24,
             MAX_WIDTH: 200
+        };
+        var tooltip_constants_attributes = {
+            ARIA_EXPANDED: "aria-expanded",
+            ARIA_HASPOPUP: "aria-haspopup",
+            PERSISTENT: "data-mdc-tooltip-persistent"
         };
         var tooltip_constants_events = {
             HIDDEN: "MDCTooltip:hidden"
@@ -21959,7 +22624,67 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var SHOWN = CssClasses.SHOWN, SHOWING = CssClasses.SHOWING, SHOWING_TRANSITION = CssClasses.SHOWING_TRANSITION, HIDE = CssClasses.HIDE, HIDE_TRANSITION = CssClasses.HIDE_TRANSITION, MULTILINE_TOOLTIP = CssClasses.MULTILINE_TOOLTIP;
+ */        var AnimationFrame = function() {
+            function AnimationFrame() {
+                this.rafIDs = new Map;
+            }
+            AnimationFrame.prototype.request = function(key, callback) {
+                var _this = this;
+                this.cancel(key);
+                var frameID = requestAnimationFrame((function(frame) {
+                    _this.rafIDs.delete(key);
+                    callback(frame);
+                }));
+                this.rafIDs.set(key, frameID);
+            };
+            AnimationFrame.prototype.cancel = function(key) {
+                var rafID = this.rafIDs.get(key);
+                if (rafID) {
+                    cancelAnimationFrame(rafID);
+                    this.rafIDs.delete(key);
+                }
+            };
+            AnimationFrame.prototype.cancelAll = function() {
+                var _this = this;
+                this.rafIDs.forEach((function(_, key) {
+                    _this.cancel(key);
+                }));
+            };
+            AnimationFrame.prototype.getQueue = function() {
+                var queue = [];
+                this.rafIDs.forEach((function(_, key) {
+                    queue.push(key);
+                }));
+                return queue;
+            };
+            return AnimationFrame;
+        }();
+        /**
+ * @license
+ * Copyright 2020 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */        var RICH = CssClasses.RICH, SHOWN = CssClasses.SHOWN, SHOWING = CssClasses.SHOWING, SHOWING_TRANSITION = CssClasses.SHOWING_TRANSITION, HIDE = CssClasses.HIDE, HIDE_TRANSITION = CssClasses.HIDE_TRANSITION, MULTILINE_TOOLTIP = CssClasses.MULTILINE_TOOLTIP;
+        var AnimationKeys;
+        (function(AnimationKeys) {
+            AnimationKeys["POLL_ANCHOR"] = "poll_anchor";
+        })(AnimationKeys || (AnimationKeys = {}));
         var MDCTooltipFoundation = function(_super) {
             __extends(MDCTooltipFoundation, _super);
             function MDCTooltipFoundation(adapter) {
@@ -21971,14 +22696,31 @@ PERFORMANCE OF THIS SOFTWARE.
                 _this.minViewportTooltipThreshold = tooltip_constants_numbers.MIN_VIEWPORT_TOOLTIP_THRESHOLD;
                 _this.hideDelayMs = tooltip_constants_numbers.HIDE_DELAY_MS;
                 _this.showDelayMs = tooltip_constants_numbers.SHOW_DELAY_MS;
+                _this.anchorRect = null;
                 _this.frameId = null;
                 _this.hideTimeout = null;
                 _this.showTimeout = null;
-                _this.documentClickHandler = function() {
-                    _this.handleClick();
+                _this.animFrame = new AnimationFrame;
+                _this.documentClickHandler = function(evt) {
+                    _this.handleDocumentClick(evt);
                 };
                 _this.documentKeydownHandler = function(evt) {
                     _this.handleKeydown(evt);
+                };
+                _this.richTooltipMouseEnterHandler = function() {
+                    _this.handleRichTooltipMouseEnter();
+                };
+                _this.richTooltipMouseLeaveHandler = function() {
+                    _this.handleRichTooltipMouseLeave();
+                };
+                _this.richTooltipFocusOutHandler = function(evt) {
+                    _this.handleRichTooltipFocusOut(evt);
+                };
+                _this.windowScrollHandler = function() {
+                    _this.handleWindowChangeEvent();
+                };
+                _this.windowResizeHandler = function() {
+                    _this.handleWindowChangeEvent();
                 };
                 return _this;
             }
@@ -22028,13 +22770,37 @@ PERFORMANCE OF THIS SOFTWARE.
                         getAnchorAttribute: function() {
                             return null;
                         },
+                        setAnchorAttribute: function() {
+                            return null;
+                        },
                         isRTL: function() {
                             return false;
+                        },
+                        anchorContainsElement: function() {
+                            return false;
+                        },
+                        tooltipContainsElement: function() {
+                            return false;
+                        },
+                        focusAnchorElement: function() {
+                            return undefined;
+                        },
+                        registerEventHandler: function() {
+                            return undefined;
+                        },
+                        deregisterEventHandler: function() {
+                            return undefined;
                         },
                         registerDocumentEventHandler: function() {
                             return undefined;
                         },
                         deregisterDocumentEventHandler: function() {
+                            return undefined;
+                        },
+                        registerWindowEventHandler: function() {
+                            return undefined;
+                        },
+                        deregisterWindowEventHandler: function() {
                             return undefined;
                         },
                         notifyHidden: function() {
@@ -22045,6 +22811,17 @@ PERFORMANCE OF THIS SOFTWARE.
                 enumerable: true,
                 configurable: true
             });
+            MDCTooltipFoundation.prototype.init = function() {
+                this.isRich = this.adapter.hasClass(RICH);
+                this.isPersistent = this.adapter.getAttribute(tooltip_constants_attributes.PERSISTENT) === "true";
+                this.isInteractive = !!this.adapter.getAnchorAttribute(tooltip_constants_attributes.ARIA_EXPANDED) && this.adapter.getAnchorAttribute(tooltip_constants_attributes.ARIA_HASPOPUP) === "true";
+            };
+            MDCTooltipFoundation.prototype.getIsRich = function() {
+                return this.isRich;
+            };
+            MDCTooltipFoundation.prototype.getIsPersistent = function() {
+                return this.isPersistent;
+            };
             MDCTooltipFoundation.prototype.handleAnchorMouseEnter = function() {
                 var _this = this;
                 if (this.isShown) {
@@ -22055,8 +22832,13 @@ PERFORMANCE OF THIS SOFTWARE.
                     }), this.showDelayMs);
                 }
             };
-            MDCTooltipFoundation.prototype.handleAnchorFocus = function() {
+            MDCTooltipFoundation.prototype.handleAnchorFocus = function(evt) {
                 var _this = this;
+                var relatedTarget = evt.relatedTarget;
+                var tooltipContainsRelatedTarget = relatedTarget instanceof HTMLElement && this.adapter.tooltipContainsElement(relatedTarget);
+                if (tooltipContainsRelatedTarget) {
+                    return;
+                }
                 this.showTimeout = setTimeout((function() {
                     _this.show();
                 }), this.showDelayMs);
@@ -22068,17 +22850,61 @@ PERFORMANCE OF THIS SOFTWARE.
                     _this.hide();
                 }), this.hideDelayMs);
             };
-            MDCTooltipFoundation.prototype.handleAnchorBlur = function() {
+            MDCTooltipFoundation.prototype.handleAnchorBlur = function(evt) {
+                if (this.isRich) {
+                    var tooltipContainsRelatedTargetElement = evt.relatedTarget instanceof HTMLElement && this.adapter.tooltipContainsElement(evt.relatedTarget);
+                    if (tooltipContainsRelatedTargetElement) {
+                        return;
+                    }
+                }
                 this.hide();
             };
-            MDCTooltipFoundation.prototype.handleClick = function() {
+            MDCTooltipFoundation.prototype.handleAnchorClick = function() {
+                if (this.isShown) {
+                    this.hide();
+                } else {
+                    this.show();
+                }
+            };
+            MDCTooltipFoundation.prototype.handleDocumentClick = function(evt) {
+                var anchorOrTooltipContainsTargetElement = evt.target instanceof HTMLElement && (this.adapter.anchorContainsElement(evt.target) || this.adapter.tooltipContainsElement(evt.target));
+                if (this.isRich && this.isPersistent && anchorOrTooltipContainsTargetElement) {
+                    return;
+                }
                 this.hide();
             };
             MDCTooltipFoundation.prototype.handleKeydown = function(evt) {
                 var key = normalizeKey(evt);
                 if (key === KEY.ESCAPE) {
+                    var tooltipContainsActiveElement = document.activeElement instanceof HTMLElement && this.adapter.tooltipContainsElement(document.activeElement);
+                    if (tooltipContainsActiveElement) {
+                        this.adapter.focusAnchorElement();
+                    }
                     this.hide();
                 }
+            };
+            MDCTooltipFoundation.prototype.handleRichTooltipMouseEnter = function() {
+                this.show();
+            };
+            MDCTooltipFoundation.prototype.handleRichTooltipMouseLeave = function() {
+                var _this = this;
+                this.clearShowTimeout();
+                this.hideTimeout = setTimeout((function() {
+                    _this.hide();
+                }), this.hideDelayMs);
+            };
+            MDCTooltipFoundation.prototype.handleRichTooltipFocusOut = function(evt) {
+                var anchorOrTooltipContainsRelatedTargetElement = evt.relatedTarget instanceof HTMLElement && (this.adapter.anchorContainsElement(evt.relatedTarget) || this.adapter.tooltipContainsElement(evt.relatedTarget));
+                if (anchorOrTooltipContainsRelatedTargetElement) {
+                    return;
+                }
+                this.hide();
+            };
+            MDCTooltipFoundation.prototype.handleWindowChangeEvent = function() {
+                var _this = this;
+                this.animFrame.request(AnimationKeys.POLL_ANCHOR, (function() {
+                    _this.repositionTooltipOnAnchorMove();
+                }));
             };
             MDCTooltipFoundation.prototype.show = function() {
                 var _this = this;
@@ -22092,16 +22918,27 @@ PERFORMANCE OF THIS SOFTWARE.
                 if (!showTooltipOptions.hideFromScreenreader) {
                     this.adapter.setAttribute("aria-hidden", "false");
                 }
+                if (this.isRich) {
+                    if (this.isInteractive) {
+                        this.adapter.setAnchorAttribute("aria-expanded", "true");
+                    }
+                    this.adapter.registerEventHandler("focusout", this.richTooltipFocusOutHandler);
+                    if (!this.isPersistent) {
+                        this.adapter.registerEventHandler("mouseenter", this.richTooltipMouseEnterHandler);
+                        this.adapter.registerEventHandler("mouseleave", this.richTooltipMouseLeaveHandler);
+                    }
+                }
                 this.adapter.removeClass(HIDE);
                 this.adapter.addClass(SHOWING);
-                if (this.isTooltipMultiline()) {
+                if (this.isTooltipMultiline() && !this.isRich) {
                     this.adapter.addClass(MULTILINE_TOOLTIP);
                 }
-                var _a = this.calculateTooltipDistance(), top = _a.top, left = _a.left;
-                this.adapter.setStyleProperty("top", top + "px");
-                this.adapter.setStyleProperty("left", left + "px");
+                this.anchorRect = this.adapter.getAnchorBoundingRect();
+                this.positionTooltip();
                 this.adapter.registerDocumentEventHandler("click", this.documentClickHandler);
                 this.adapter.registerDocumentEventHandler("keydown", this.documentKeydownHandler);
+                this.adapter.registerWindowEventHandler("scroll", this.windowScrollHandler);
+                this.adapter.registerWindowEventHandler("resize", this.windowResizeHandler);
                 this.frameId = requestAnimationFrame((function() {
                     _this.clearAllAnimationClasses();
                     _this.adapter.addClass(SHOWN);
@@ -22119,12 +22956,24 @@ PERFORMANCE OF THIS SOFTWARE.
                 }
                 this.isShown = false;
                 this.adapter.setAttribute("aria-hidden", "true");
+                this.adapter.deregisterEventHandler("focusout", this.richTooltipFocusOutHandler);
+                if (this.isRich) {
+                    if (this.isInteractive) {
+                        this.adapter.setAnchorAttribute("aria-expanded", "false");
+                    }
+                    if (!this.isPersistent) {
+                        this.adapter.deregisterEventHandler("mouseenter", this.richTooltipMouseEnterHandler);
+                        this.adapter.deregisterEventHandler("mouseleave", this.richTooltipMouseLeaveHandler);
+                    }
+                }
                 this.clearAllAnimationClasses();
                 this.adapter.addClass(HIDE);
                 this.adapter.addClass(HIDE_TRANSITION);
                 this.adapter.removeClass(SHOWN);
                 this.adapter.deregisterDocumentEventHandler("click", this.documentClickHandler);
                 this.adapter.deregisterDocumentEventHandler("keydown", this.documentKeydownHandler);
+                this.adapter.deregisterWindowEventHandler("scroll", this.windowScrollHandler);
+                this.adapter.deregisterWindowEventHandler("resize", this.windowResizeHandler);
             };
             MDCTooltipFoundation.prototype.handleTransitionEnd = function() {
                 var isHidingTooltip = this.adapter.hasClass(HIDE);
@@ -22166,8 +23015,12 @@ PERFORMANCE OF THIS SOFTWARE.
                 var tooltipSize = this.adapter.getTooltipSize();
                 return tooltipSize.height > tooltip_constants_numbers.MIN_HEIGHT && tooltipSize.width >= tooltip_constants_numbers.MAX_WIDTH;
             };
-            MDCTooltipFoundation.prototype.calculateTooltipDistance = function() {
-                var anchorRect = this.adapter.getAnchorBoundingRect();
+            MDCTooltipFoundation.prototype.positionTooltip = function() {
+                var _a = this.calculateTooltipDistance(this.anchorRect), top = _a.top, left = _a.left;
+                this.adapter.setStyleProperty("top", top + "px");
+                this.adapter.setStyleProperty("left", left + "px");
+            };
+            MDCTooltipFoundation.prototype.calculateTooltipDistance = function(anchorRect) {
                 if (!anchorRect) {
                     return {
                         top: 0,
@@ -22183,14 +23036,17 @@ PERFORMANCE OF THIS SOFTWARE.
                 };
             };
             MDCTooltipFoundation.prototype.calculateXTooltipDistance = function(anchorRect, tooltipWidth) {
-                var startPos = anchorRect.left;
-                var endPos = anchorRect.right - tooltipWidth;
-                var centerPos = anchorRect.left + (anchorRect.width - tooltipWidth) / 2;
-                if (this.adapter.isRTL()) {
-                    startPos = anchorRect.right - tooltipWidth;
-                    endPos = anchorRect.left;
+                var isLTR = !this.adapter.isRTL();
+                var startPos, endPos, centerPos;
+                if (this.isRich) {
+                    startPos = isLTR ? anchorRect.left - tooltipWidth : anchorRect.right;
+                    endPos = isLTR ? anchorRect.right : anchorRect.left - tooltipWidth;
+                } else {
+                    startPos = isLTR ? anchorRect.left : anchorRect.right - tooltipWidth;
+                    endPos = isLTR ? anchorRect.right - tooltipWidth : anchorRect.left;
+                    centerPos = anchorRect.left + (anchorRect.width - tooltipWidth) / 2;
                 }
-                var positionOptions = this.determineValidPositionOptions(centerPos, startPos, endPos);
+                var positionOptions = this.isRich ? this.determineValidPositionOptions(startPos, endPos) : this.determineValidPositionOptions(centerPos, startPos, endPos);
                 if (this.xTooltipPos === XPosition.START && positionOptions.has(startPos)) {
                     return startPos;
                 }
@@ -22200,34 +23056,47 @@ PERFORMANCE OF THIS SOFTWARE.
                 if (this.xTooltipPos === XPosition.CENTER && positionOptions.has(centerPos)) {
                     return centerPos;
                 }
-                if (positionOptions.has(centerPos)) {
-                    return centerPos;
+                var possiblePositions = this.isRich ? [ endPos, startPos ] : [ centerPos, startPos, endPos ];
+                var validPosition = possiblePositions.find((function(pos) {
+                    return positionOptions.has(pos);
+                }));
+                if (validPosition) {
+                    return validPosition;
                 }
-                if (positionOptions.has(startPos)) {
-                    return startPos;
+                if (anchorRect.left < 0) {
+                    return this.minViewportTooltipThreshold;
+                } else {
+                    var viewportWidth = this.adapter.getViewportWidth();
+                    return viewportWidth - (tooltipWidth + this.minViewportTooltipThreshold);
                 }
-                if (positionOptions.has(endPos)) {
-                    return endPos;
-                }
-                return centerPos;
             };
-            MDCTooltipFoundation.prototype.determineValidPositionOptions = function(centerPos, startPos, endPos) {
+            MDCTooltipFoundation.prototype.determineValidPositionOptions = function() {
+                var e_1, _a;
+                var positions = [];
+                for (var _i = 0; _i < arguments.length; _i++) {
+                    positions[_i] = arguments[_i];
+                }
                 var posWithinThreshold = new Set;
                 var posWithinViewport = new Set;
-                if (this.positionHonorsViewportThreshold(centerPos)) {
-                    posWithinThreshold.add(centerPos);
-                } else if (this.positionDoesntCollideWithViewport(centerPos)) {
-                    posWithinViewport.add(centerPos);
-                }
-                if (this.positionHonorsViewportThreshold(startPos)) {
-                    posWithinThreshold.add(startPos);
-                } else if (this.positionDoesntCollideWithViewport(startPos)) {
-                    posWithinViewport.add(startPos);
-                }
-                if (this.positionHonorsViewportThreshold(endPos)) {
-                    posWithinThreshold.add(endPos);
-                } else if (this.positionDoesntCollideWithViewport(endPos)) {
-                    posWithinViewport.add(endPos);
+                try {
+                    for (var positions_1 = __values(positions), positions_1_1 = positions_1.next(); !positions_1_1.done; positions_1_1 = positions_1.next()) {
+                        var position = positions_1_1.value;
+                        if (this.positionHonorsViewportThreshold(position)) {
+                            posWithinThreshold.add(position);
+                        } else if (this.positionDoesntCollideWithViewport(position)) {
+                            posWithinViewport.add(position);
+                        }
+                    }
+                } catch (e_1_1) {
+                    e_1 = {
+                        error: e_1_1
+                    };
+                } finally {
+                    try {
+                        if (positions_1_1 && !positions_1_1.done && (_a = positions_1.return)) _a.call(positions_1);
+                    } finally {
+                        if (e_1) throw e_1.error;
+                    }
                 }
                 return posWithinThreshold.size ? posWithinThreshold : posWithinViewport;
             };
@@ -22283,6 +23152,14 @@ PERFORMANCE OF THIS SOFTWARE.
                 var tooltipHeight = this.adapter.getTooltipSize().height;
                 return yPos + tooltipHeight <= viewportHeight && yPos >= 0;
             };
+            MDCTooltipFoundation.prototype.repositionTooltipOnAnchorMove = function() {
+                var newAnchorRect = this.adapter.getAnchorBoundingRect();
+                if (!newAnchorRect || !this.anchorRect) return;
+                if (newAnchorRect.top !== this.anchorRect.top || newAnchorRect.left !== this.anchorRect.left || newAnchorRect.height !== this.anchorRect.height || newAnchorRect.width !== this.anchorRect.width) {
+                    this.anchorRect = newAnchorRect;
+                    this.positionTooltip();
+                }
+            };
             MDCTooltipFoundation.prototype.clearShowTimeout = function() {
                 if (this.showTimeout) {
                     clearTimeout(this.showTimeout);
@@ -22307,8 +23184,18 @@ PERFORMANCE OF THIS SOFTWARE.
                 this.adapter.removeClass(SHOWING);
                 this.adapter.removeClass(HIDE);
                 this.adapter.removeClass(HIDE_TRANSITION);
+                if (this.isRich) {
+                    this.adapter.deregisterEventHandler("focusout", this.richTooltipFocusOutHandler);
+                    if (!this.isPersistent) {
+                        this.adapter.deregisterEventHandler("mouseenter", this.richTooltipMouseEnterHandler);
+                        this.adapter.deregisterEventHandler("mouseleave", this.richTooltipMouseLeaveHandler);
+                    }
+                }
                 this.adapter.deregisterDocumentEventHandler("click", this.documentClickHandler);
                 this.adapter.deregisterDocumentEventHandler("keydown", this.documentKeydownHandler);
+                this.adapter.deregisterWindowEventHandler("scroll", this.windowScrollHandler);
+                this.adapter.deregisterWindowEventHandler("resize", this.windowResizeHandler);
+                this.animFrame.cancelAll();
             };
             return MDCTooltipFoundation;
         }(MDCFoundation);
@@ -22342,43 +23229,59 @@ PERFORMANCE OF THIS SOFTWARE.
             MDCTooltip.attachTo = function(root) {
                 return new MDCTooltip(root);
             };
-            MDCTooltip.prototype.initialSyncWithDOM = function() {
-                var _this = this;
+            MDCTooltip.prototype.initialize = function() {
                 var tooltipId = this.root.getAttribute("id");
                 if (!tooltipId) {
                     throw new Error("MDCTooltip: Tooltip component must have an id.");
                 }
-                this.anchorElem = document.querySelector('[aria-describedby="' + tooltipId + '"]') || document.querySelector('[data-tooltip-id="' + tooltipId + '"]');
-                if (!this.anchorElem) {
+                var anchorElem = document.querySelector('[aria-describedby="' + tooltipId + '"]') || document.querySelector('[data-tooltip-id="' + tooltipId + '"]');
+                if (!anchorElem) {
                     throw new Error("MDCTooltip: Tooltip component requires an anchor element annotated with [aria-describedby] or [data-tooltip-id] anchor element.");
                 }
+                this.anchorElem = anchorElem;
+            };
+            MDCTooltip.prototype.initialSyncWithDOM = function() {
+                var _this = this;
+                this.isTooltipRich = this.foundation.getIsRich();
+                this.isTooltipPersistent = this.foundation.getIsPersistent();
                 this.handleMouseEnter = function() {
                     _this.foundation.handleAnchorMouseEnter();
                 };
-                this.handleFocus = function() {
-                    _this.foundation.handleAnchorFocus();
+                this.handleFocus = function(evt) {
+                    _this.foundation.handleAnchorFocus(evt);
                 };
                 this.handleMouseLeave = function() {
                     _this.foundation.handleAnchorMouseLeave();
                 };
-                this.handleBlur = function() {
-                    _this.foundation.handleAnchorBlur();
+                this.handleBlur = function(evt) {
+                    _this.foundation.handleAnchorBlur(evt);
                 };
                 this.handleTransitionEnd = function() {
                     _this.foundation.handleTransitionEnd();
                 };
-                this.anchorElem.addEventListener("mouseenter", this.handleMouseEnter);
-                this.anchorElem.addEventListener("focus", this.handleFocus);
-                this.anchorElem.addEventListener("mouseleave", this.handleMouseLeave);
+                this.handleClick = function() {
+                    _this.foundation.handleAnchorClick();
+                };
                 this.anchorElem.addEventListener("blur", this.handleBlur);
+                if (this.isTooltipRich && this.isTooltipPersistent) {
+                    this.anchorElem.addEventListener("click", this.handleClick);
+                } else {
+                    this.anchorElem.addEventListener("mouseenter", this.handleMouseEnter);
+                    this.anchorElem.addEventListener("focus", this.handleFocus);
+                    this.anchorElem.addEventListener("mouseleave", this.handleMouseLeave);
+                }
                 this.listen("transitionend", this.handleTransitionEnd);
             };
             MDCTooltip.prototype.destroy = function() {
                 if (this.anchorElem) {
-                    this.anchorElem.removeEventListener("mouseenter", this.handleMouseEnter);
-                    this.anchorElem.removeEventListener("focus", this.handleFocus);
-                    this.anchorElem.removeEventListener("mouseleave", this.handleMouseLeave);
                     this.anchorElem.removeEventListener("blur", this.handleBlur);
+                    if (this.isTooltipRich && this.isTooltipPersistent) {
+                        this.anchorElem.removeEventListener("click", this.handleClick);
+                    } else {
+                        this.anchorElem.removeEventListener("mouseenter", this.handleMouseEnter);
+                        this.anchorElem.removeEventListener("focus", this.handleFocus);
+                        this.anchorElem.removeEventListener("mouseleave", this.handleMouseLeave);
+                    }
                 }
                 this.unlisten("transitionend", this.handleTransitionEnd);
                 _super.prototype.destroy.call(this);
@@ -22428,14 +23331,45 @@ PERFORMANCE OF THIS SOFTWARE.
                     getAnchorAttribute: function(attr) {
                         return _this.anchorElem ? _this.anchorElem.getAttribute(attr) : null;
                     },
+                    setAnchorAttribute: function(attr, value) {
+                        var _a;
+                        (_a = _this.anchorElem) === null || _a === void 0 ? void 0 : _a.setAttribute(attr, value);
+                    },
                     isRTL: function() {
                         return getComputedStyle(_this.root).direction === "rtl";
+                    },
+                    anchorContainsElement: function(element) {
+                        var _a;
+                        return !!((_a = _this.anchorElem) === null || _a === void 0 ? void 0 : _a.contains(element));
+                    },
+                    tooltipContainsElement: function(element) {
+                        return _this.root.contains(element);
+                    },
+                    focusAnchorElement: function() {
+                        var _a;
+                        (_a = _this.anchorElem) === null || _a === void 0 ? void 0 : _a.focus();
+                    },
+                    registerEventHandler: function(evt, handler) {
+                        if (_this.root instanceof HTMLElement) {
+                            _this.root.addEventListener(evt, handler);
+                        }
+                    },
+                    deregisterEventHandler: function(evt, handler) {
+                        if (_this.root instanceof HTMLElement) {
+                            _this.root.removeEventListener(evt, handler);
+                        }
                     },
                     registerDocumentEventHandler: function(evt, handler) {
                         document.body.addEventListener(evt, handler);
                     },
                     deregisterDocumentEventHandler: function(evt, handler) {
                         document.body.removeEventListener(evt, handler);
+                    },
+                    registerWindowEventHandler: function(evt, handler) {
+                        window.addEventListener(evt, handler);
+                    },
+                    deregisterWindowEventHandler: function(evt, handler) {
+                        window.removeEventListener(evt, handler);
                     },
                     notifyHidden: function() {
                         _this.emit(tooltip_constants_events.HIDDEN, {});
