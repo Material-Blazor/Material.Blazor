@@ -173,7 +173,7 @@
     private string CssClass { get; set; }
     private readonly MBSelectElement<string>[] CssClassItems = new MBSelectElement<string>[]
     {
-        new MBSelectElement<string> { SelectedValue = "", Label = "Default" },
+        new MBSelectElement<string> { SelectedValue = "", Label = "Toast Svc Default" },
         new MBSelectElement<string> { SelectedValue = "italic-class", Label = "Italic" },
             };
 
@@ -189,7 +189,7 @@
     private string Heading { get; set; }
     private readonly MBSelectElement<string>[] headingItems = new MBSelectElement<string>[]
     {
-        new MBSelectElement<string> { SelectedValue = "", Label = "Default" },
+        new MBSelectElement<string> { SelectedValue = "", Label = "Toast Svc Default" },
         new MBSelectElement<string> { SelectedValue = "Run of the mill heading", Label = "Run of the mill heading" },
         new MBSelectElement<string> { SelectedValue = "Heading truncated and truncated and truncated and truncated", Label = "Heading that will be truncated" }
             };
@@ -238,7 +238,7 @@
     private string ShowIcon { get; set; }
     private readonly MBSelectElement<string>[] showIconItems = new MBSelectElement<string>[]
     {
-        new MBSelectElement<string> { SelectedValue = "", Label = "Default" },
+        new MBSelectElement<string> { SelectedValue = "", Label = "Toast Svc Default" },
         new MBSelectElement<string> { SelectedValue = "true", Label = "true" },
         new MBSelectElement<string> { SelectedValue = "false", Label = "false" }
             };
@@ -247,7 +247,7 @@
     private string Timeout { get; set; }
     private readonly MBSelectElement<string>[] timeoutItems = new MBSelectElement<string>[]
     {
-        new MBSelectElement<string> { SelectedValue = "", Label = "Default" },
+        new MBSelectElement<string> { SelectedValue = "", Label = "Toast Svc Default" },
         new MBSelectElement<string> { SelectedValue = "1000", Label = "1 second" },
         new MBSelectElement<string> { SelectedValue = "10000", Label = "10 seconds" },
         new MBSelectElement<string> { SelectedValue = "60000", Label = "60 seconds" }
@@ -291,7 +291,7 @@
                 ToastService.Configuration = Utilities.GetDefaultToastServiceConfiguration();
             }
 
-            // TODO: free unmanaged resources (unmanaged objects) and override finalizer
+            // O: free unmanaged resources (unmanaged objects) and override finalizer
             // TODO: set large fields to null
             disposedValue = true;
         }

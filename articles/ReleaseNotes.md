@@ -39,7 +39,7 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 - If you are building a theme from material components web SASS, you need to reference version 9.0.0.
 - MBMenu `ToggleAsync()` is now return type `Task` rather than `Task<string>` in version 1.
 - MBRadioButtonGroup `EnableTouchWrapper` obsolete and removed.
-- The names and content of the  css and js resources required for MaterialBlazor have changed. Please see the installation article for details.
+- The names and content of the  css and js resources required for MaterialBlazor have changed. Please see [Installation article](xref:A.Installation) for details.
 
 <br />
 

@@ -62,25 +62,29 @@ namespace Material.Blazor
 
 
         private double DataStep { get; set; }
+        private Dictionary<string, object> DivAttributes { get; set; } = new();
         private ElementReference ElementReference { get; set; }
         private string Format { get; set; }
-        private Dictionary<string, object> MyAttributes { get; set; }
+        private MarkupString InputMarkup { get; set; }
         private IDisposable ObjectReference { get; set; }
+        private double RangePercentDecimal { get; set; }
+        private double Step { get; set; }
         private int TabIndex { get; set; }
-        private double ThumbEndPercent { get; set; }
+        private double ThumbEndPercent => 100 * RangePercentDecimal;
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override void OnInitialized()
         {
             base.OnInitialized();
-
+            
             Value = Math.Round(Value, (int)DecimalPlaces);
             ValueMin = Math.Round(ValueMin, (int)DecimalPlaces);
             ValueMax = Math.Round(ValueMax, (int)DecimalPlaces);
-            Format = $"N{DecimalPlaces}";
+            Step = Math.Pow(10, -DecimalPlaces);
+            Format = $"F{DecimalPlaces}";
             TabIndex = AppliedDisabled ? -1 : 0;
-            ThumbEndPercent = 100 * (Value - ValueMin) / (ValueMax - ValueMin);
+            RangePercentDecimal = (Value - ValueMin) / (ValueMax - ValueMin);
 
             if (ValueMax <= ValueMin)
             {
@@ -100,14 +104,16 @@ namespace Material.Blazor
                 .AddIf("mdc-slider--tick-marks", () => SliderType == MBSliderType.DiscreteWithTickmarks)
                 .AddIf("mdc-slider--disabled", () => AppliedDisabled);
 
-            MyAttributes =
+            DivAttributes =
                 (from a in AttributesToSplat()
                  select new KeyValuePair<string, object>(a.Key, a.Value))
                 .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
+            InputMarkup = new($"<input class=\"mdc-slider__input\" type=\"range\" value=\"{Value.ToString(Format)}\" step=\"{Step.ToString(Format)}\" min=\"{ValueMin.ToString(Format)}\" max=\"{ValueMax.ToString(Format)}\" name=\"volume\" aria-label=\"{AriaLabel}\">");
+
             if (SliderType != MBSliderType.Continuous)
             {
-                MyAttributes.Add("data-step", DataStep.ToString(Format));
+                DivAttributes.Add("data-step", DataStep.ToString(Format));
             }
 
             SetComponentValue += OnValueSetCallback;

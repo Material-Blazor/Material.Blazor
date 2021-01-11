@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Concurrent;
@@ -16,6 +17,12 @@ namespace Material.Blazor
     /// </summary>
     public partial class MBBladeSet
     {
+        private const int transitionMs = 200;
+
+        [Inject] private protected ILogger<MBBladeSet> Logger { get; set; }
+
+
+
         /// <summary>
         /// The three states in a blade's lifecycle.
         /// </summary>
@@ -186,13 +193,21 @@ namespace Material.Blazor
 
 
         private readonly SemaphoreSlim queueSemaphore = new(1, 1);
-        private readonly ConcurrentQueue<QueueElement> bladeSetAactionQueue = new();
+        private readonly ConcurrentQueue<QueueElement> bladeSetActionQueue = new();
+        private readonly ConcurrentQueue<BladeInfo> addedBladesQueue = new();
+        private readonly ConcurrentQueue<BladeInfo> removedBladesQueue = new();
+
+        private string CachedBladesAdditionalCss { get; set; }
+        private string CachedBladesAdditionalStyles { get; set; }
+        private bool BladesAttributesSet { get; set; } = false;
+
+        private string CachedMainContentAdditionalCss { get; set; }
+        private string CachedMainContentAdditionalStyles { get; set; }
+        private bool MainContentAttributesSet { get; set; } = false;
+
         private Dictionary<string, BladeInfo> Blades { get; set; } = new();
         private Dictionary<string, object> MainContentAttributes { get; set; }
         private Dictionary<string, object> BladesAttributes { get; set; }
-        private ElementReference BladeSetElem { get; set; }
-        private ElementReference MainContentElementReference { get; set; }
-        private ElementReference ScrollHelperElementReference { get; set; }
 
 
         /// <summary>
@@ -220,28 +235,31 @@ namespace Material.Blazor
         /// <returns></returns>
         private async Task QueueAction(QueueElement action)
         {
-            bladeSetAactionQueue.Enqueue(action);
+            bladeSetActionQueue.Enqueue(action);
 
             await queueSemaphore.WaitAsync();
 
             try
             {
-                if (bladeSetAactionQueue.TryDequeue(out QueueElement queueElement))
+                if (bladeSetActionQueue.TryDequeue(out QueueElement queueElement))
                 {
                     if (queueElement.BladeSetAction == BladeSetAction.Add)
                     {
-                        Blades.Add(queueElement.BladeReference, new() { BladeReference = queueElement.BladeReference, AdditionalCss = queueElement.AdditionalCss, AdditionalStyles = queueElement.AdditionalStyles, Status = BladeStatus.NewClosed });
+                        BladeInfo addedBlade = new() { BladeReference = queueElement.BladeReference, AdditionalCss = queueElement.AdditionalCss, AdditionalStyles = queueElement.AdditionalStyles, Status = BladeStatus.NewClosed };
+                        Blades.Add(queueElement.BladeReference, addedBlade);
+                        addedBladesQueue.Enqueue(addedBlade);
 
                         StateHasChanged();
                     }
                     else
                     {
                         Blades[queueElement.BladeReference].Status = BladeStatus.ClosedToRemove;
+                        removedBladesQueue.Enqueue(Blades[queueElement.BladeReference]);
 
                         StateHasChanged();
                     }
 
-                    await Task.Delay(220);
+                    await Task.Delay(transitionMs + 20);
                 }
             }
             finally
@@ -256,27 +274,46 @@ namespace Material.Blazor
         {
             base.OnParametersSet();
 
-            MainContentAttributes = new();
-            BladesAttributes = new();
-
-            if (!string.IsNullOrWhiteSpace(MainContentAdditionalCss))
+            if (!MainContentAttributesSet || CachedMainContentAdditionalCss != MainContentAdditionalCss || CachedMainContentAdditionalStyles != MainContentAdditionalStyles)
             {
-                MainContentAttributes.Add("class", MainContentAdditionalCss.Trim());
+                //Logger.LogInformation("MBBladeSet updating MainContentAttributeSet");
+
+                MainContentAttributesSet = true;
+                CachedMainContentAdditionalCss = MainContentAdditionalCss;
+                CachedMainContentAdditionalStyles = MainContentAdditionalStyles;
+                
+                MainContentAttributes = new();
+
+                if (!string.IsNullOrWhiteSpace(MainContentAdditionalCss))
+                {
+                    MainContentAttributes.Add("class", MainContentAdditionalCss.Trim());
+                }
+
+                if (!string.IsNullOrWhiteSpace(MainContentAdditionalStyles))
+                {
+                    MainContentAttributes.Add("style", MainContentAdditionalStyles.Trim());
+                }
             }
 
-            if (!string.IsNullOrWhiteSpace(MainContentAdditionalStyles))
+            if (!BladesAttributesSet || CachedBladesAdditionalCss != BladesAdditionalCss || CachedBladesAdditionalStyles != BladesAdditionalStyles)
             {
-                MainContentAttributes.Add("style", MainContentAdditionalStyles.Trim());
-            }
+                //Logger.LogInformation("MBBladeSet updating BladeAttributeSet");
 
-            if (!string.IsNullOrWhiteSpace(BladesAdditionalCss))
-            {
-                BladesAttributes.Add("class", BladesAdditionalCss.Trim());
-            }
+                BladesAttributesSet = true;
+                CachedBladesAdditionalCss = BladesAdditionalCss;
+                CachedBladesAdditionalStyles = BladesAdditionalStyles;
+                
+                BladesAttributes = new();
 
-            if (!string.IsNullOrWhiteSpace(BladesAdditionalStyles))
-            {
-                BladesAttributes.Add("style", BladesAdditionalStyles.Trim());
+                if (!string.IsNullOrWhiteSpace(BladesAdditionalCss))
+                {
+                    BladesAttributes.Add("class", BladesAdditionalCss.Trim());
+                }
+
+                if (!string.IsNullOrWhiteSpace(BladesAdditionalStyles))
+                {
+                    BladesAttributes.Add("style", BladesAdditionalStyles.Trim());
+                }
             }
         }
 
@@ -286,34 +323,27 @@ namespace Material.Blazor
         {
             base.OnAfterRender(firstRender);
 
-            var addedBlades = Blades.Values.Where(b => b.Status == BladeStatus.NewClosed);
-            var removedBlades = Blades.Values.Where(b => b.Status == BladeStatus.ClosedToRemove);
-
-            if (addedBlades.Any() || removedBlades.Any())
+            if (addedBladesQueue.TryDequeue(out BladeInfo addedBlade))
             {
-                foreach (var bladeInfo in addedBlades)
-                {
-                    await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBBladeSet.openBlade", BladeSetElem, MainContentElementReference, ScrollHelperElementReference, bladeInfo.BladeElementReference, bladeInfo.BladeContentElementReference);
-                    
-                    bladeInfo.Status = BladeStatus.Open;
-                    
-                    BladeSetChanged.Invoke(this, null);
-                }
+                await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBBladeSet.openBlade", addedBlade.BladeElementReference, addedBlade.BladeContentElementReference, transitionMs);
 
-                foreach (var bladeInfo in removedBlades)
-                {
-                    await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBBladeSet.closeBlade", bladeInfo.BladeElementReference);
-
-                    await Task.Delay(200);
-
-                    Blades.Remove(bladeInfo.BladeReference);
-
-                    StateHasChanged();
-
-                    BladeSetChanged.Invoke(this, null);
-                }
+                addedBlade.Status = BladeStatus.Open;
 
                 StateHasChanged();
+
+                BladeSetChanged?.Invoke(this, null);
+            }
+            else if (removedBladesQueue.TryDequeue(out BladeInfo removedBlade))
+            {
+                await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBBladeSet.closeBlade", removedBlade.BladeElementReference, transitionMs);
+
+                await Task.Delay(transitionMs);
+
+                Blades.Remove(removedBlade.BladeReference);
+
+                StateHasChanged();
+
+                BladeSetChanged?.Invoke(this, null);
             }
         }
     }
