@@ -180,19 +180,24 @@ namespace Material.Blazor
         {
             if (IsFirstRender)
             {
+#if LoggingVerbose
                 Logger.LogInformation("BuildRenderTree entered (IsFirstRender == true)");
+#endif
                 // We are going to render a DIV and nothing else
                 // We need to get into OnAfterRenderAsync so that we can use JS interop to measure
                 // the text
                 base.BuildRenderTree(builder);
                 builder.OpenElement(1, "div");
                 builder.CloseElement();
+#if LoggingVerbose
                 Logger.LogInformation("                leaving (IsFirstRender == true)");
+#endif
                 return;
             }
 
+#if LoggingVerbose
             Logger.LogInformation("BuildRenderTree entered (IsFirstRender == false)");
-
+#endif
 
             //
             //  Using the column cfg and column data, render our list. Here is the layout.
@@ -452,7 +457,9 @@ namespace Material.Blazor
             }
 
             HasCompletedFullRender = true;
+#if LoggingVerbose
             Logger.LogInformation("                leaving (IsFirstRender == false)");
+#endif
         }
         #endregion
 
@@ -507,7 +514,9 @@ namespace Material.Blazor
         #region GridSyncScroll
         protected async Task GridSyncScroll()
         {
+#if LoggingVerbose
             Logger.LogInformation("GridSyncScroll()");
+#endif
             await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBGrid.syncScrollByID", GridHeaderID, GridBodyID);
             //await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBGrid.syncScrollByRef", GridHeaderRef, GridBodyRef);
         }
@@ -524,9 +533,9 @@ namespace Material.Blazor
             ColumnWidthArray = new float[ColumnConfigurations.Count];
 
             // Measure the width of a vertical scrollbar (Used to set the padding of the header)
-            //ScrollWidth = await JsRuntime.InvokeAsync<int>(
-            //    "MaterialBlazor.MBGrid.getScrollBarWidth",
-            //    "mb-grid-div-body");
+            ScrollWidth = await JsRuntime.InvokeAsync<int>(
+                "MaterialBlazor.MBGrid.getScrollBarWidth",
+                "mb-grid-div-body");
             ScrollWidth = 0;
 
             if (Measurement == MB_Grid_Measurement.FitToData)
@@ -630,10 +639,12 @@ namespace Material.Blazor
 
                 HasRendered = true;
 
+#if LoggingVerbose
                 Logger.LogInformation("OnAfterRenderAsync entered");
                 Logger.LogInformation("                   firstRender: " + firstRender.ToString());
                 Logger.LogInformation("                   IsFirstRender: " + IsFirstRender.ToString());
                 Logger.LogInformation("                   HasCompletedFullRender: " + HasCompletedFullRender.ToString());
+#endif
 
                 if (IsFirstRender)
                 {
@@ -645,8 +656,9 @@ namespace Material.Blazor
             }
             finally
             {
+#if LoggingVerbose
                 Logger.LogInformation("                   about to release semaphore");
-
+#endif
                 semaphoreSlim.Release();
             }
         }
@@ -655,14 +667,18 @@ namespace Material.Blazor
         #region OnInitialized
         protected override void OnInitialized()
         {
+#if LoggingVerbose
             Logger.LogInformation("MBGrid.OnInitialized entered");
+#endif
             base.OnInitialized();
 
             if (ColumnConfigurations == null)
             {
                 throw new System.Exception("MBGrid requires column configuration definitions.");
             }
+#if LoggingVerbose
             Logger.LogInformation("MBGrid.OnInitialized completed");
+#endif
         }
         #endregion
 
@@ -693,9 +709,11 @@ namespace Material.Blazor
             await semaphoreSlim.WaitAsync();
             try
             {
+#if LoggingVerbose
                 Logger.LogInformation("OnParametersSetAsync entry");
                 Logger.LogInformation("                     HasRendered: " + HasRendered.ToString());
                 Logger.LogInformation("                     HasCompletedFullRender: " + HasCompletedFullRender.ToString());
+#endif
 
                 await base.OnParametersSetAsync();
 
@@ -775,7 +793,9 @@ namespace Material.Blazor
             }
             finally
             {
+#if LoggingVerbose
                 Logger.LogInformation("                     about to release semaphore");
+#endif
                 semaphoreSlim.Release();
             }
         }
