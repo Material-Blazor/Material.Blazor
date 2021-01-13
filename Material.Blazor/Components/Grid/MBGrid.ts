@@ -67,3 +67,43 @@ export function getTextWidth(className: string, textToMeasure: string): string {
 
     return width;
 }
+
+export function getTextWidths(
+    className: string,
+    currentWidths: number[],
+    textToMeasure: string[]): number[] {
+    // Create an element
+    const ele: HTMLDivElement = document.createElement('div');
+
+    // Set styles
+    ele.style.position = 'absolute';
+    ele.style.visibility = 'hidden';
+    ele.style.whiteSpace = 'nowrap';
+    ele.style.left = '-9999px';
+
+    // Set the class
+    ele.className = className;
+
+    // Append to the body
+    document.body.appendChild(ele);
+
+    for (let i = 0; i < textToMeasure.length; i++) {
+        // Set the text
+        ele.innerText = textToMeasure[i];
+
+        // Get the width
+        var width: string = window.getComputedStyle(ele).width;
+        var unadornedWidth: string = width.slice(0, width.indexOf("px"));
+        var numericWidth: number = parseFloat(unadornedWidth);
+        var indexMod = i % currentWidths.length;
+
+        if (numericWidth > currentWidths[indexMod]) {
+            currentWidths[indexMod] = numericWidth;
+        }
+    }
+
+    // Remove the element
+    document.body.removeChild(ele);
+
+    return currentWidths;
+}

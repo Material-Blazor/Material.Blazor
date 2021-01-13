@@ -4,7 +4,6 @@
 //      Move enumerations to MBEnumerations
 //  
 //  Bugs:
-//      MeasureWidth execution time
 //      Padding resolution for GridHeader
 //      Resolve issue with ElementReferences
 //
@@ -541,89 +540,85 @@ namespace Material.Blazor
             if (Measurement == MB_Grid_Measurement.FitToData)
             {
                 // Measure the header columns
+                var stringArrayHeader = new string[ColumnConfigurations.Count];
                 var colIndex = 0;
                 foreach (var col in ColumnConfigurations)
                 {
-                    ColumnWidthArray[colIndex] = ConvertPxMeasureToFloat(
-                        await JsRuntime.InvokeAsync<string>(
-                            "MaterialBlazor.MBGrid.getTextWidth",
-                            "mb-grid-header-td",
-                            col.Title));
+                    stringArrayHeader[colIndex] = col.Title;
                     colIndex++;
                 }
 
+                ColumnWidthArray = await JsRuntime.InvokeAsync<float[]>(
+                        "MaterialBlazor.MBGrid.getTextWidths",
+                        "mb-grid-header-td",
+                        ColumnWidthArray,
+                        stringArrayHeader);
+
                 // Measure the body columns
+                var stringArrayBody = new string[ColumnConfigurations.Count * DataDictionary.Count];
+                colIndex = 0;
                 foreach (var kvp in DataDictionary)
                 {
-                    IEnumerable<TRowData> enumerableData = DataDictionary.Values;
+                    var enumerableData = kvp.Value;
 
-                    foreach (var rowValues in enumerableData)
+                    foreach (var columnDefinition in ColumnConfigurations)
                     {
-                        colIndex = 0;
-                        foreach (var columnDefinition in ColumnConfigurations)
+                        switch (columnDefinition.ColumnType)
                         {
-                            switch (columnDefinition.ColumnType)
-                            {
-                                case MB_Grid_ColumnType.Icon:
-                                    // We let the column width get driven by the title
-                                    break;
+                            case MB_Grid_ColumnType.Icon:
+                                // We let the column width get driven by the title
+                                stringArrayBody[colIndex] = "";
+                                break;
 
-                                case MB_Grid_ColumnType.Text:
-                                    if (columnDefinition.DataExpression != null)
+                            case MB_Grid_ColumnType.Text:
+                                if (columnDefinition.DataExpression != null)
+                                {
+                                    var value = columnDefinition.DataExpression(enumerableData);
+                                    var formattedValue = string.IsNullOrEmpty(columnDefinition.FormatString) ? value?.ToString() : string.Format("{0:" + columnDefinition.FormatString + "}", value);
+                                    stringArrayBody[colIndex] = formattedValue;
+                                }
+                                break;
+
+                            case MB_Grid_ColumnType.TextColor:
+                                if (columnDefinition.DataExpression != null)
+                                {
+                                    try
                                     {
-                                        var value = columnDefinition.DataExpression(rowValues);
-                                        var formattedValue = string.IsNullOrEmpty(columnDefinition.FormatString) ? value?.ToString() : string.Format("{0:" + columnDefinition.FormatString + "}", value);
-                                        var width = ConvertPxMeasureToFloat(
-                                            await JsRuntime.InvokeAsync<string>(
-                                                "MaterialBlazor.MBGrid.getTextWidth",
-                                                "mb-grid-body-td",
-                                                formattedValue));
-                                        if (width > ColumnWidthArray[colIndex])
+                                        var value = (MBGridTextColorSpecification)columnDefinition.DataExpression(enumerableData);
+                                        if (!value.Supress)
                                         {
-                                            ColumnWidthArray[colIndex] = width;
+                                            stringArrayBody[colIndex] = value.Text;
+                                        }
+                                        else
+                                        {
+                                            stringArrayBody[colIndex] = "";
                                         }
                                     }
-                                    break;
-
-                                case MB_Grid_ColumnType.TextColor:
-                                    if (columnDefinition.DataExpression != null)
+                                    catch
                                     {
-                                        try
-                                        {
-                                            var value = (MBGridTextColorSpecification)columnDefinition.DataExpression(rowValues);
-                                            if (!value.Supress)
-                                            {
-                                                var width = ConvertPxMeasureToFloat(
-                                                    await JsRuntime.InvokeAsync<string>(
-                                                        "MaterialBlazor.MBGrid.getTextWidth",
-                                                        "mb-grid-body-td",
-                                                        value.Text));
-                                                if (width > ColumnWidthArray[colIndex])
-                                                {
-                                                    ColumnWidthArray[colIndex] = width;
-                                                }
-                                            }
-                                        }
-                                        catch
-                                        {
-                                            throw new Exception("Backing value incorrect for MBGrid.TextColor column.");
-                                        }
+                                        throw new Exception("Backing value incorrect for MBGrid.TextColor column.");
                                     }
-                                    break;
+                                }
+                                break;
 
-                                default:
-                                    throw new Exception("MBGrid -- Unknown column type");
-                            }
-
-                            colIndex++;
+                            default:
+                                throw new Exception("MBGrid -- Unknown column type");
                         }
+
+                        colIndex++;
                     }
                 }
+
+                ColumnWidthArray = await JsRuntime.InvokeAsync<float[]>(
+                        "MaterialBlazor.MBGrid.getTextWidths",
+                        "mb-grid-body-td",
+                        ColumnWidthArray,
+                        stringArrayBody);
 
                 for (var col = 0; col < ColumnWidthArray.Length; col++)
                 {
                     // We fudge a bit because we were still getting an ellipsis on the longest text
-                    ColumnWidthArray[col] += 1;
+                    //ColumnWidthArray[col] += 1;
                 }
             }
         }
@@ -652,6 +647,7 @@ namespace Material.Blazor
                     Logger.LogInformation("                   Calling MeasureWidthsAsync");
                     await MeasureWidthsAsync();
                     Logger.LogInformation("                   Returned from MeasureWidthsAsync");
+                    StateHasChanged();
                 }
             }
             finally
@@ -789,6 +785,7 @@ namespace Material.Blazor
                     Logger.LogInformation("                     Calling MeasureWidthsAsync");
                     await MeasureWidthsAsync();
                     Logger.LogInformation("                     Returned from MeasureWidthsAsync");
+                    StateHasChanged();
                 }
             }
             finally
