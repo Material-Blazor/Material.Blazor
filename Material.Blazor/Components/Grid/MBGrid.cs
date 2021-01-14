@@ -556,6 +556,7 @@ namespace Material.Blazor
 
                 // Measure the body columns
                 var stringArrayBody = new string[ColumnConfigurations.Count * DataDictionary.Count];
+//                var stringArrayBody = new string[ColumnConfigurations.Count];
                 colIndex = 0;
                 foreach (var kvp in DataDictionary)
                 {
@@ -607,8 +608,14 @@ namespace Material.Blazor
 
                         colIndex++;
                     }
-                }
 
+                    //ColumnWidthArray = await JsRuntime.InvokeAsync<float[]>(
+                    //        "MaterialBlazor.MBGrid.getTextWidths",
+                    //        "mb-grid-body-td",
+                    //        ColumnWidthArray,
+                    //        stringArrayBody);
+                    //colIndex = 0;
+                }
                 ColumnWidthArray = await JsRuntime.InvokeAsync<float[]>(
                         "MaterialBlazor.MBGrid.getTextWidths",
                         "mb-grid-body-td",
@@ -617,8 +624,13 @@ namespace Material.Blazor
 
                 for (var col = 0; col < ColumnWidthArray.Length; col++)
                 {
-                    // We fudge a bit because we were still getting an ellipsis on the longest text
-                    //ColumnWidthArray[col] += 1;
+                    //
+                    // We adjust a bit because we were still getting an ellipsis on the longest text.
+                    // This is caused by the fact that <Col style="width: 372.8px"/> creates
+                    // a 372px wide column
+                    //
+
+                    ColumnWidthArray[col] += 1;
                 }
             }
         }
