@@ -7,9 +7,9 @@
 
 
 <DemonstrationPage ComponentName="Blades"
-                   Title="Blades Demonstration"
                    DemoComponent="@this"
-                   RequiresDisableSelection="false">
+                   RequiresDisableSelection="false"
+                   Title="Blades Demonstration">
     <Description>
         <p>
             Demonstrates Material Blazor's blade functionality.
@@ -27,18 +27,18 @@
                     @foreach (var bladeReference in BladeReferences)
                     {
                         <p>
-                            <MBButton @key="@bladeReference"
-                                      Label="@GetAddLabel(bladeReference)"
-                                      @onclick="@(() => Blades.AddBlade(bladeReference, "demo-blade"))"
+                            <MBButton ButtonStyle="@MBButtonStyle.Outlined"
                                       Disabled="@Blades.BladeReferences.Contains(bladeReference)"
-                                      ButtonStyle="@MBButtonStyle.Outlined" />
+                                      @key="@bladeReference"
+                                      Label="@GetAddLabel(bladeReference)"
+                                      @onclick="@(() => AddSingleBlade(bladeReference))" />
                         </p>
                     }
 
-                    <MBButton Label="Add All Blades"
-                              @onclick="@AddAllBlades"
+                    <MBButton ButtonStyle="@MBButtonStyle.Outlined"
                               Disabled="@Blades.BladeReferences.Any()"
-                              ButtonStyle="@MBButtonStyle.Outlined" />
+                              Label="Add All Blades"
+                              @onclick="@AddAllBlades" />
                 </Primary>
             </MBCard>
         </div>
@@ -54,18 +54,18 @@
                     @foreach (var bladeReference in BladeReferences)
                     {
                         <p>
-                            <MBButton @key="@bladeReference"
-                                      Label="@GetRemoveLabel(bladeReference)"
-                                      @onclick="@(() => Blades.RemoveBlade(bladeReference))"
+                            <MBButton ButtonStyle="@MBButtonStyle.Outlined"
                                       Disabled="@(!Blades.BladeReferences.Contains(bladeReference))"
-                                      ButtonStyle="@MBButtonStyle.Outlined" />
+                                      @key="@bladeReference"
+                                      Label="@GetRemoveLabel(bladeReference)"
+                                      @onclick="@(() => RemoveSingleBlade(bladeReference))" />
                         </p>
                     }
 
-                    <MBButton Label="Remove All Blades"
-                              @onclick="@RemoveAllBlades"
+                    <MBButton ButtonStyle="@MBButtonStyle.Outlined"
                               Disabled="@(Blades.BladeReferences.Count() < BladeReferences.Length)"
-                              ButtonStyle="@MBButtonStyle.Outlined" />
+                              Label="Remove All Blades"
+                              @onclick="@RemoveAllBlades" />
                 </Primary>
             </MBCard>
         </div>
@@ -104,6 +104,16 @@
         {
             Blades.AddBlade(bladeReference, "demo-blade");
         }
+
+        ToastService.ShowToast(heading: "Blade action", message: "Add all blades", level: MBToastLevel.Success, showIcon: false);
+    }
+
+
+    private void AddSingleBlade(string bladeReference)
+    {
+        Blades.AddBlade(bladeReference, "demo-blade");
+
+        ToastService.ShowToast(heading: "Blade action", message: "Add single blade: " + bladeReference, level: MBToastLevel.Success, showIcon: false);
     }
 
 
@@ -113,5 +123,15 @@
         {
             Blades.RemoveBlade(bladeReference);
         }
+
+        ToastService.ShowToast(heading: "Blade action", message: "Removed all blades", level: MBToastLevel.Success, showIcon: false);
+    }
+
+
+    private void RemoveSingleBlade(string bladeReference)
+    {
+        Blades.RemoveBlade(bladeReference);
+
+        ToastService.ShowToast(heading: "Blade action", message: "Remove single blade: " + bladeReference, level: MBToastLevel.Success, showIcon: false);
     }
 }
