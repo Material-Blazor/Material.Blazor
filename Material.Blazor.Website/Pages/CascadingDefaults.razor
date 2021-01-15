@@ -1,9 +1,9 @@
 ﻿@page "/cascadingdefaults"
 
 
-<DemonstrationPage Title="Cascading Defaults Demonstration"
-                   DemoComponent="@this"
-                   DetailedArticle="CascadingDefaults">
+<DemonstrationPage DemoComponent="@this"
+                   DetailedArticle="CascadingDefaults"
+                   Title="Cascading Defaults Demonstration">
     <Description>
         <h2>Non-component</h2>
         <p>
@@ -42,7 +42,9 @@
                                 Dense, Outlined, Right Aligned Text Field and Weekdays Only
                             </h2>
 
-                            <MBCard AutoStyled="true" CardStyle="@MBCardStyle.Outlined" style="background-color: var(--mb-color-grey-100); color: var(--mb-color-blue-600); overflow: auto;">
+                            <MBCard AutoStyled="true"
+                                    CardStyle="@MBCardStyle.Outlined"
+                                    style="background-color: var(--mb-color-grey-100); color: var(--mb-color-blue-600); overflow: auto;">
                                 <Primary>
                                     <pre>private MBCascadingDefaults Defaults1 = new MBCascadingDefaults()
 {
@@ -60,8 +62,10 @@
                             </MBCard>
                         </div>
 
-                        <CascadingValue Value="@Defaults1" IsFixed="true">
-                            <CascadingDefaultsPanel IconButtonIconName="eco" StoreIconName="local_grocery_store" />
+                        <CascadingValue IsFixed="true"
+                                        Value="@Defaults1">
+                            <CascadingDefaultsPanel IconButtonIconName="eco"
+                                                    StoreIconName="local_grocery_store" />
                         </CascadingValue>
                     </div>
                 </Primary>
@@ -78,7 +82,9 @@
                                 Disabled, Small Font Awesome Icons
                             </h2>
 
-                            <MBCard AutoStyled="true" CardStyle="@MBCardStyle.Outlined" style="background-color: var(--mb-color-grey-100); color: var(--mb-color-blue-600); overflow: auto;">
+                            <MBCard AutoStyled="true"
+                                    CardStyle="@MBCardStyle.Outlined"
+                                    style="background-color: var(--mb-color-grey-100); color: var(--mb-color-blue-600); overflow: auto;">
                                 <Primary>
                                     <pre>private MBCascadingDefaults Defaults2 = new MBCascadingDefaults()
 {
@@ -91,8 +97,10 @@
                             </MBCard>
                         </div>
 
-                        <CascadingValue Value="@Defaults2" IsFixed="true">
-                            <CascadingDefaultsPanel IconButtonIconName="fa-frog" StoreIconName="fa-atom" />
+                        <CascadingValue IsFixed="true"
+                                        Value="@Defaults2">
+                            <CascadingDefaultsPanel IconButtonIconName="fa-frog"
+                                                    StoreIconName="fa-atom" />
                         </CascadingValue>
                     </div>
                 </Primary>

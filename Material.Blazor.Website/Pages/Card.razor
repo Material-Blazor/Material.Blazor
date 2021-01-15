@@ -5,8 +5,8 @@
 
 
 <DemonstrationPage ComponentName="Card"
-                   Title="Card Demonstration"
                    DemoComponent="@this"
+                   Title="Card Demonstration"
                    MaterialIOPage="mdc-card#cards"
                    RequiresDisableSelection="true">
     <Description>
@@ -17,7 +17,8 @@
 
     <PageContent>
         <div class="mdc-layout-grid__cell--span-4">
-            <MBCard AutoStyled="true" @onclick="@(() => CardClick("First card"))">
+            <MBCard AutoStyled="true"
+                    @onclick="@(() => CardClick("First card"))">
                 <PrimaryAction>
                     <div class="mdc-card__media mdc-card__media--16-9 mb-card__media" style="background-image: url(&quot;https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg&quot;);"></div>
                     <div class="mb-card__primary">
@@ -28,20 +29,26 @@
                 </PrimaryAction>
 
                 <ActionButtons>
-                    <MBButton Label="Read" @onclick="@ButtonClick" />
-                    <MBButton Label="Bookmark" @onclick="@ButtonClick" />
+                    <MBButton Label="Read"
+                              @onclick="@ButtonClick" />
+                    <MBButton Label="Bookmark"
+                              @onclick="@ButtonClick" />
                 </ActionButtons>
 
                 <ActionIcons>
-                    <MBIconButton Icon="share" @onclick="@IconButtonClick" />
-                    <MBIconButton Icon="more_vert" @onclick="@IconButtonClick" />
+                    <MBIconButton Icon="share"
+                                  @onclick="@IconButtonClick" />
+                    <MBIconButton Icon="more_vert"
+                                  @onclick="@IconButtonClick" />
                 </ActionIcons>
             </MBCard>
         </div>
 
 
         <div class="mdc-layout-grid__cell--span-4">
-            <MBCard class="mb-basic-with-text-over-media" AutoStyled="true" @onclick="@(() => CardClick("Second card"))">
+            <MBCard AutoStyled="true"
+                    class="mb-basic-with-text-over-media"
+                    @onclick="@(() => CardClick("Second card"))">
                 <PrimaryAction>
                     <div class="mdc-card__media mdc-card__media--16-9 mb-card__media" style="background-image: url(&quot;https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg&quot;);">
                         <div class="mdc-card__media-content mb-card__media-content">
@@ -57,7 +64,10 @@
 
 
         <div class="mdc-layout-grid__cell--span-4">
-            <MBCard class="mb-basic-with-header" AutoStyled="true" @onclick="@(() => CardClick("Third card"))" CardStyle="MBCardStyle.Outlined">
+            <MBCard AutoStyled="true"
+                    CardStyle="MBCardStyle.Outlined"
+                    class="mb-basic-with-header"
+                    @onclick="@(() => CardClick("Third card"))">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">Our Changing Planet</h2>
                     <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">by Kurt Wagner</h3>
@@ -69,20 +79,25 @@
                 </PrimaryAction>
 
                 <ActionButtons>
-                    <MBButton Label="Read" @onclick="@ButtonClick" />
-                    <MBButton Label="Bookmark" @onclick="@ButtonClick" />
+                    <MBButton Label="Read"
+                              @onclick="@ButtonClick" />
+                    <MBButton Label="Bookmark"
+                              @onclick="@ButtonClick" />
                 </ActionButtons>
 
                 <ActionIcons>
-                    <MBIconButton Icon="share" @onclick="@IconButtonClick" />
-                    <MBIconButton Icon="more_vert" @onclick="@IconButtonClick" />
+                    <MBIconButton Icon="share"
+                                  @onclick="@IconButtonClick" />
+                    <MBIconButton Icon="more_vert"
+                                  @onclick="@IconButtonClick" />
                 </ActionIcons>
             </MBCard>
         </div>
 
 
         <div class="mdc-layout-grid__cell--span-4">
-            <MBCard AutoStyled="true" @onclick="@(() => CardClick("Fourth card"))">
+            <MBCard AutoStyled="true"
+                    @onclick="@(() => CardClick("Fourth card"))">
                 <PrimaryAction>
                     <div class="mdc-card__media mdc-card__media--16-9 mb-card__media" style="background-image: url(&quot;https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg&quot;);"></div>
                     <div class="mb-card__primary">
@@ -93,15 +108,18 @@
                 </PrimaryAction>
 
                 <ActionButtons>
-                    <MBButton Label="Read" @onclick="@ButtonClick" />
-                    <MBButton Label="Bookmark" @onclick="@ButtonClick" />
+                    <MBButton Label="Read"
+                              @onclick="@ButtonClick" />
+                    <MBButton Label="Bookmark"
+                              @onclick="@ButtonClick" />
                 </ActionButtons>
             </MBCard>
         </div>
 
 
         <div class="mdc-layout-grid__cell--span-4">
-            <MBCard AutoStyled="true" @onclick="@(() => CardClick("Fifth card"))">
+            <MBCard AutoStyled="true"
+                    @onclick="@(() => CardClick("Fifth card"))">
                 <PrimaryAction>
                     <div class="mdc-card__media mdc-card__media--16-9 mb-card__media" style="background-image: url(&quot;https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg&quot;);"></div>
                     <div class="mb-card__primary">
@@ -112,15 +130,19 @@
                 </PrimaryAction>
 
                 <ActionIcons>
-                    <MBIconButton Icon="share" @onclick="@IconButtonClick" />
-                    <MBIconButton Icon="more_vert" @onclick="@IconButtonClick" />
+                    <MBIconButton Icon="share"
+                                  @onclick="@IconButtonClick" />
+                    <MBIconButton Icon="more_vert"
+                                  @onclick="@IconButtonClick" />
                 </ActionIcons>
             </MBCard>
         </div>
 
 
         <div class="mdc-layout-grid__cell--span-4">
-            <MBCard class="mb-ui-control" AutoStyled="true" @onclick="@(() => CardClick("Sixth card"))">
+            <MBCard AutoStyled="true"
+                    class="mb-ui-control" 
+                    @onclick="@(() => CardClick("Sixth card"))">
                 <PrimaryAction>
                     <div class="mdc-card__media mdc-card__media--square mb-card__media" style="background-image: url(&quot;https://material-components.github.io/material-components-web-catalog/static/media/photos/3x2/2.jpg&quot;);"></div>
                     <div class="mb-card__primary">
@@ -130,13 +152,17 @@
                 </PrimaryAction>
 
                 <ActionButtons>
-                    <MBButton Label="Read" @onclick="@ButtonClick" />
-                    <MBButton Label="Bookmark" @onclick="@ButtonClick" />
+                    <MBButton Label="Read"
+                              @onclick="@ButtonClick" />
+                    <MBButton Label="Bookmark"
+                              @onclick="@ButtonClick" />
                 </ActionButtons>
 
                 <ActionIcons>
-                    <MBIconButton Icon="share" @onclick="@IconButtonClick" />
-                    <MBIconButton Icon="more_vert" @onclick="@IconButtonClick" />
+                    <MBIconButton Icon="share"
+                                  @onclick="@IconButtonClick" />
+                    <MBIconButton Icon="more_vert"
+                                  @onclick="@IconButtonClick" />
                 </ActionIcons>
             </MBCard>
         </div>

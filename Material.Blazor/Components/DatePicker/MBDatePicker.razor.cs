@@ -34,15 +34,15 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Minimum date set by the consumer
+        /// Minimum date set by the consumer -- We cannot use the MinDate here as we go back up to a month
         /// </summary>
-        [Parameter] public DateTime MinDate { get; set; } = DateTime.MinValue;
+        [Parameter] public DateTime MinDate { get; set; } = DateTime.MinValue + new TimeSpan(31, 0, 0, 0);
 
 
         /// <summary>
-        /// Maximum date set by the consumer
+        /// Maximum date set by the consumer -- Again, same reason, can't use max date
         /// </summary>
-        [Parameter] public DateTime MaxDate { get; set; } = DateTime.MaxValue;
+        [Parameter] public DateTime MaxDate { get; set; } = DateTime.MaxValue - new TimeSpan(31, 0, 0, 0);
 
 
         /// <summary>
@@ -108,6 +108,15 @@ namespace Material.Blazor
             SetComponentValue += OnValueSetCallback;
 
             OnDisabledSet += OnDisabledSetCallback;
+
+            if (MinDate < DateTime.MinValue + new TimeSpan(31, 0, 0, 0))
+            {
+                throw new ArgumentOutOfRangeException("MinDate");
+            }
+            if (MaxDate > DateTime.MaxValue - new TimeSpan(31, 0, 0, 0))
+            {
+                throw new ArgumentOutOfRangeException("MaxDate");
+            }
         }
 
 

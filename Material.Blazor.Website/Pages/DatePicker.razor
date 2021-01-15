@@ -5,10 +5,10 @@
 
 
 <DemonstrationPage ComponentName="DatePicker"
-                   Title="Date Picker Demonstration"
                    DemoComponent="@this"
-                   RequiresDisableSelection="true"
-                   MinDensity="MBDensity.Minus4">
+                   MinDensity="MBDensity.Minus4"
+                   Title="Date Picker Demonstration"
+                   RequiresDisableSelection="true">
     <Description>
         <p>
             The Date Picker is a Plus components, using Material.Blazor's implementation of the <a href="https://material.io/components/pickers" target="_blank">Material Date Picker</a>.
@@ -28,12 +28,12 @@
                     </h3>
 
                     <p>
-                        <MBDatePicker Label="Filled"
-                                      @bind-Value="@Filled"
-                                      SelectInputStyle="MBSelectInputStyle.Filled"
-                                      MinDate="@Min"
+                        <MBDatePicker @bind-Value="@Filled"
+                                      Label="Filled"
                                       MaxDate="@Max"
-                                      MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"/>
+                                      MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
+                                      MinDate="@Min"
+                                      SelectInputStyle="MBSelectInputStyle.Filled" />
                     </p>
                 </Primary>
             </MBCard>
@@ -53,14 +53,14 @@
                     </h3>
 
                     <p>
-                        <MBDatePicker Label="Weekdays Outlined"
-                                      @bind-Value="@Outlined"
-                                      SelectInputStyle="MBSelectInputStyle.Outlined"
-                                      DateSelectionCriteria="MBDateSelectionCriteria.WeekdaysOnly"
-                                      MinDate="@Min"
-                                      MaxDate="@Max"
+                        <MBDatePicker @bind-Value="@Outlined"
+                                      Label="Weekdays Outlined"
                                       DateFormat="ddd MMM dd, yyyy"
-                                      MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed" />
+                                      DateSelectionCriteria="MBDateSelectionCriteria.WeekdaysOnly"
+                                      SelectInputStyle="MBSelectInputStyle.Outlined"
+                                      MaxDate="@Max"
+                                      MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
+                                      MinDate="@Min" />
                     </p>
                 </Primary>
             </MBCard>
