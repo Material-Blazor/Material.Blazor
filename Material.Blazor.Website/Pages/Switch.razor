@@ -5,11 +5,11 @@
 
 
 <DemonstrationPage ComponentName="Switch"
-                   Title="Switch Demonstration"
                    DemoComponent="@this"
                    MaterialIOPage="mdc-switch#selection-controls-switches"
                    MinDensity="MBDensity.Minus5"
-                   RequiresDisableSelection="true">
+                   RequiresDisableSelection="true"
+                   Title="Switch Demonstration">
     <Description>
         <p>
             Demonstrates switches.
@@ -28,9 +28,20 @@
                         Simple switch. Notice that density only affects the halo when selecting a switch.
                     </h3>
 
-                    <p><MBSwitch @bind-Value="@SwitchState1" Label="Simple Switch 1" class="supplied-test-class" id="supplied-test-id" /></p>
-                    <p><MBSwitch @bind-Value="@SwitchState2" Label="Simple Switch 2" /></p>
-                    <p><MBSwitch @bind-Value="@SwitchState3" Label="Simple Switch 3" /></p>
+                    <p>
+                        <MBSwitch @bind-Value="@SwitchState1"
+                                  class="supplied-test-class"
+                                  id="supplied-test-id"
+                                  Label="Simple Switch 1" />
+                    </p>
+                    <p>
+                        <MBSwitch @bind-Value="@SwitchState2"
+                                  Label="Simple Switch 2" />
+                    </p>
+                    <p>
+                        <MBSwitch @bind-Value="@SwitchState3"
+                                  Label="Simple Switch 3" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>
@@ -47,9 +58,14 @@
                         Shows two-way binding.
                     </h3>
 
-                    <p><MBSwitch @bind-Value="@ToggleTwoWayBindingState" Label="Bound Switch" /></p>
-
-                    <p><MBCheckbox @bind-Value="@ToggleTwoWayBindingState" Label="Bound Checkbox" /></p>
+                    <p>
+                        <MBSwitch @bind-Value="@ToggleTwoWayBindingState"
+                                  Label="Bound Switch" />
+                    </p>
+                    <p>
+                        <MBCheckbox @bind-Value="@ToggleTwoWayBindingState"
+                                    Label="Bound Checkbox" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>
@@ -66,12 +82,36 @@
                         Shows density subsystem from default to minus 5. Notice that density only affects the halo when selecting a switch.
                     </h3>
 
-                    <p><MBSwitch @bind-Value="@densityDefault" Label="Default Density" Density="@MBDensity.Default" /></p>
-                    <p><MBSwitch @bind-Value="@densityMinus1" Label="Density Minus 1" Density="@MBDensity.Minus1" /></p>
-                    <p><MBSwitch @bind-Value="@densityMinus2" Label="Density Minus 2" Density="@MBDensity.Minus2" /></p>
-                    <p><MBSwitch @bind-Value="@densityMinus3" Label="Density Minus 3" Density="@MBDensity.Minus3" /></p>
-                    <p><MBSwitch @bind-Value="@densityMinus4" Label="Density Minus 4" Density="@MBDensity.Minus4" /></p>
-                    <p><MBSwitch @bind-Value="@densityMinus5" Label="Density Minus 5" Density="@MBDensity.Minus5" /></p>
+                    <p>
+                        <MBSwitch @bind-Value="@densityDefault"
+                                  Density="@MBDensity.Default"
+                                  Label="Default Density" />
+                    </p>
+                    <p>
+                        <MBSwitch @bind-Value="@densityMinus1"
+                                  Density="@MBDensity.Minus1"
+                                  Label="Density Minus 1" />
+                    </p>
+                    <p>
+                        <MBSwitch @bind-Value="@densityMinus2"
+                                  Density="@MBDensity.Minus2"
+                                  Label="Density Minus 2" />
+                    </p>
+                    <p>
+                        <MBSwitch @bind-Value="@densityMinus3"
+                                  Density="@MBDensity.Minus3"
+                                  Label="Density Minus 3" />
+                    </p>
+                    <p>
+                        <MBSwitch @bind-Value="@densityMinus4"
+                                  Density="@MBDensity.Minus4"
+                                  Label="Density Minus 4" />
+                    </p>
+                    <p>
+                        <MBSwitch @bind-Value="@densityMinus5"
+                                  Density="@MBDensity.Minus5"
+                                  Label="Density Minus 5" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>

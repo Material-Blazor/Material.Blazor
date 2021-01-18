@@ -4,11 +4,11 @@
 
 
 <DemonstrationPage ComponentName="TabBar"
-                   Title="Tab Bar Demonstration"
                    DemoComponent="@this"
-                   MaterialIOPage="mdc-tab-bar#tab-bar"
                    IsGeneric="true"
-                   MinDensity="MBDensity.Minus4">
+                   MaterialIOPage="mdc-tab-bar#tab-bar"
+                   MinDensity="MBDensity.Minus4"
+                   Title="Tab Bar Demonstration">
     <Description>
         <p>
             Demonstrates the core Tab Bar component.
@@ -36,22 +36,21 @@
 
                             <p style="margin-bottom: 2em;"><MBButton Label="Go to Dog" @onclick="@DogButtonClick" /></p>
 
-                            <p>
-                                <MBTabBar @bind-Value="@TabIndex"
-                                          Items="@TabLabels"
-                                          Context="item"
-                                          StackIcons="@StackIcons">
+                            <MBTabBar @bind-Value="@TabIndex"
+                                      Context="item"
+                                      Items="@TabLabels"
+                                      StackIcons="@StackIcons"
+                                      style="margin: 6px; ">
 
-                                    <Icon>
-                                        @{ var name = "fa-" + item; }
-                                        <MBIcon IconName="@name" IconFoundry="MBIconHelper.FAFoundry()" />
-                                    </Icon>
+                                <Icon>
+                                    @{ var name = "fa-" + item; }
+                                    <MBIcon IconName="@name" IconFoundry="MBIconHelper.FAFoundry()" />
+                                </Icon>
 
-                                    <Label>
-                                        @item
-                                    </Label>
-                                </MBTabBar>
-                            </p>
+                                <Label>
+                                    @item
+                                </Label>
+                            </MBTabBar>
                         </Primary>
                     </MBCard>
                 </div>
