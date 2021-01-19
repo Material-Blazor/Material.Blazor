@@ -5,9 +5,9 @@
 
 
 <DemonstrationPage ComponentName="Icon"
-                   Title="Icon Demonstration"
                    DemoComponent="@this"
-                   DetailedArticle="Icon">
+                   DetailedArticle="Icon"
+                   Title="Icon Demonstration">
     <Description>
         <p>
             Shows several icons.
@@ -22,11 +22,25 @@
                         Icon
                     </h2>
 
-                    <p><MBIcon IconName="access_alarms" /></p>
-                    <p><MBIcon IconName="fa-dog" IconFoundry="@MBIconHelper.FAFoundry()" /></p>
-                    <p><MBIcon IconName="fa-cat" IconFoundry="@MBIconHelper.FAFoundry()" /></p>
-                    <p><MBIcon IconName="fa-horse" IconFoundry="@MBIconHelper.FAFoundry()" /></p>
-                    <p><MBIcon IconName="check" IconFoundry="@MBIconHelper.OIFoundry()" /></p>
+                    <p>
+                        <MBIcon IconName="access_alarms" />
+                    </p>
+                    <p>
+                        <MBIcon IconFoundry="@MBIconHelper.FAFoundry()"
+                                IconName="fa-dog" />
+                    </p>
+                    <p>
+                        <MBIcon IconFoundry="@MBIconHelper.FAFoundry()"
+                                IconName="fa-cat" />
+                    </p>
+                    <p>
+                        <MBIcon IconFoundry="@MBIconHelper.FAFoundry()"
+                                IconName="fa-horse" />
+                    </p>
+                    <p>
+                        <MBIcon IconFoundry="@MBIconHelper.OIFoundry()"
+                                IconName="check" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>

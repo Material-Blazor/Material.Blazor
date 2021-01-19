@@ -94,23 +94,19 @@
         ColumnConfigurations = new List<MBGridColumnConfiguration<Person>>();
 
         ColumnConfigurations.Add(new MBGridColumnConfiguration<Person>(
-            bold: true,
             dataExpression: c => c.Salutation,
             title: "Salutation",
-            width: 5));
+            width: 10));
         ColumnConfigurations.Add(new MBGridColumnConfiguration<Person>(
-            bold: true,
             dataExpression: c => c.GivenName,
             title: "Given name",
             width: 10));
         ColumnConfigurations.Add(new MBGridColumnConfiguration<Person>(
-            bold: true,
             dataExpression: c => c.FamilyName,
             title: "Family name",
             width: 15));
         ColumnConfigurations.Add(new MBGridColumnConfiguration<Person>(
-            bold: true,
-            width: 70));
+            width: 65));
     }
 
     protected async Task MBGridRowClicked(string guid)

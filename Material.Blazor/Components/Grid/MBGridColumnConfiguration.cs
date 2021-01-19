@@ -6,35 +6,44 @@ namespace Material.Blazor
 {
     public class MBGridColumnConfiguration<TRowData>
     {
-        public bool Bold { get; private set; }
-        public Color BackgroundColor { get; private set; }
+        public bool BoldHeader { get; private set; }
+        public Func<TRowData, object> BackgroundColorExpression { get; set; }
+        public Color BackgroundColorHeader { get; set; }
         public MB_Grid_ColumnType ColumnType { get; private set; }
         public Func<TRowData, object> DataExpression { get; set; }
-        public Color ForegroundColor { get; private set; }
+        public Func<TRowData, object> ForegroundColorExpression { get; set; }
+        public Color ForegroundColorHeader { get; set; }
         public string FormatString { get; set; }
-        public bool SupressDisplay { get; set; }
-        public string Title { get; private set; }
+        public bool IsPMI { get; set; }
+        public Func<TRowData, object> SupressDisplayExpression { get; set; }
+        public string Title { get; set; }
         public int Width { get; set; }
 
         private MBGridColumnConfiguration() { }
         public MBGridColumnConfiguration(
-            Color? backgroundColor = null,
-            bool bold = false,
+            Expression<Func<TRowData, object>> backgroundColorExpression = null,
+            Color? backgroundColorHeader = null,
+            bool boldHeader = true,
             MB_Grid_ColumnType columnType = MB_Grid_ColumnType.Text,
             Expression<Func<TRowData, object>> dataExpression = null,
-            Color? foregroundColor = null,
+            Expression<Func<TRowData, object>> foregroundColorExpression = null,
+            Color? foregroundColorHeader = null,
             string formatString = null,
-            bool supressDisplay = false,
+            bool isPMI = false,
+            Expression<Func<TRowData, object>> supressDisplayExpression = null,
             string title = "",
             int width = 10)
         {
-            BackgroundColor = backgroundColor ?? Color.LightGray;
-            Bold = bold;
+            BackgroundColorExpression = backgroundColorExpression?.Compile();// ?? Color.LightGray;
+            BackgroundColorHeader = backgroundColorHeader ?? Color.LightGray;
+            BoldHeader = boldHeader;
             ColumnType = columnType;
             DataExpression = dataExpression?.Compile();
-            ForegroundColor = foregroundColor ?? Color.Black;
+            ForegroundColorExpression = foregroundColorExpression?.Compile();// ?? Color.Black;
+            ForegroundColorHeader = foregroundColorHeader ?? Color.Black;
             FormatString = formatString;
-            SupressDisplay = supressDisplay;
+            IsPMI = isPMI;
+            SupressDisplayExpression = supressDisplayExpression?.Compile();
             Title = title;
             Width = width;
         }

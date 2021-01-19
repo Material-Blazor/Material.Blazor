@@ -100,69 +100,13 @@
 
 
 @code {
-    private string _defaultStyle;
-    private string DefaultStyle
-    {
-        get => _defaultStyle;
-        set
-        {
-            _defaultStyle = value;
+    private string DefaultStyle { get; set; }
 
-            ToastService.ShowToast(heading: "Default Style", message: $"Value: '{_defaultStyle}'", level: MBToastLevel.Success, showIcon: false);
-        }
-    }
+    private string FilledStyle { get; set; }
 
+    private string OutlinedStyle { get; set; }
 
+    private string PopupHelperText { get; set; }
 
-    private string _filledStyle;
-    private string FilledStyle
-    {
-        get => _filledStyle;
-        set
-        {
-            _filledStyle = value;
-
-            ToastService.ShowToast(heading: "Filled Style", message: $"Value: '{_filledStyle}'", level: MBToastLevel.Success, showIcon: false);
-        }
-    }
-
-
-
-    private string _outlinedStyle;
-    private string OutlinedStyle
-    {
-        get => _outlinedStyle;
-        set
-        {
-            _outlinedStyle = value;
-
-            ToastService.ShowToast(heading: "Outlined Style", message: $"Value: '{_outlinedStyle}'", level: MBToastLevel.Success, showIcon: false);
-        }
-    }
-
-
-    private string _popupHelperText;
-    private string PopupHelperText
-    {
-        get => _popupHelperText;
-        set
-        {
-            _popupHelperText = value;
-
-            ToastService.ShowToast(heading: "Popup Helper Text", message: $"Value: '{_popupHelperText}'", level: MBToastLevel.Success, showIcon: false);
-        }
-    }
-
-
-    private string _persistentHelperText;
-    private string PersistentHelperText
-    {
-        get => _persistentHelperText;
-        set
-        {
-            _persistentHelperText = value;
-
-            ToastService.ShowToast(heading: "Persistent Helper Text", message: $"Value: '{_persistentHelperText}'", level: MBToastLevel.Success, showIcon: false);
-        }
-    }
+    private string PersistentHelperText { get; set; }
 }

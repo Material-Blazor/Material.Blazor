@@ -5,11 +5,11 @@
 
 
 <DemonstrationPage ComponentName="IconButton"
-                   Title="Icon Button Demonstration"
                    DemoComponent="@this"
                    MaterialIOPage="mdc-icon-button#icon-buttons"
                    MinDensity="MBDensity.Minus3"
-                   RequiresDisableSelection="true">
+                   RequiresDisableSelection="true"
+                   Title="Icon Button Demonstration">
     <Description>
         <p>
             Shows an icon button and density.
@@ -24,10 +24,25 @@
                         Icon Button
                     </h2>
 
-                    <p><MBIconButton Icon="access_alarms" @onclick="@(() => ButtonClick("Icon Button"))" /></p>
-                    <p><MBIconButton Icon="fa-dog" IconFoundry="@MBIconHelper.FAFoundry()" @onclick="@(() => ButtonClick("Icon Button"))" /></p>
-                    <p><MBIconButton Icon="fa-cat" IconFoundry="@MBIconHelper.FAFoundry()" @onclick="@(() => ButtonClick("Icon Button"))" /></p>
-                    <p><MBIconButton Icon="fa-horse" IconFoundry="@MBIconHelper.FAFoundry()" @onclick="@(() => ButtonClick("Icon Button"))" /></p>
+                    <p>
+                        <MBIconButton Icon="access_alarms"
+                                      @onclick="@(() => ButtonClick("Icon Button"))" />
+                    </p>
+                    <p>
+                        <MBIconButton Icon="fa-dog"
+                                      IconFoundry="@MBIconHelper.FAFoundry()"
+                                      @onclick="@(() => ButtonClick("Icon Button"))" />
+                    </p>
+                    <p>
+                        <MBIconButton Icon="fa-cat"
+                                      IconFoundry="@MBIconHelper.FAFoundry()"
+                                      @onclick="@(() => ButtonClick("Icon Button"))" />
+                    </p>
+                    <p>
+                        <MBIconButton Icon="fa-horse"
+                                      IconFoundry="@MBIconHelper.FAFoundry()"
+                                      @onclick="@(() => ButtonClick("Icon Button"))" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>

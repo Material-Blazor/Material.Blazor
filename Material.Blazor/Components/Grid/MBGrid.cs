@@ -54,6 +54,12 @@ namespace Material.Blazor
         /// </summary>
         [Parameter] public Dictionary<string, TRowData> DataDictionary { get; set; }
         /// <summary>
+        /// The Group is an optional boolean indicating that grouping is to occur by a 
+        /// particular column. It is required because of the code generation error that prevents
+        /// setting a null GroupExpression in an external call
+        /// </summary>
+        [Parameter] public bool Group { get; set; } = false;
+        /// <summary>
         /// The GroupExpression is an optional expression indicating that grouping is to occur by a 
         /// particular column.
         /// </summary>
@@ -76,6 +82,10 @@ namespace Material.Blazor
         /// data widths (FitToData)
         /// </summary>
         [Parameter] public MB_Grid_Measurement Measurement { get; set; } = MB_Grid_Measurement.Percent;
+        /// <summary>
+        /// ObscurePMI controls whether or not columns marked as PMI are obscured.
+        /// </summary>
+        [Parameter] public bool ObscurePMI { get; set; }
         /// <summary>
         /// Callback for a mouse click
         /// </summary>
@@ -245,8 +255,8 @@ namespace Material.Blazor
                         "mb-grid-backgroundcolor-header-background");
 
                     // Set the header colors
-                    styleStr += " color: " + col.ForegroundColor.Name + ";";
-                    styleStr += " background-color : " + col.BackgroundColor.Name + ";";
+                    styleStr += " color: " + col.ForegroundColorHeader.Name + ";";
+                    styleStr += " background-color : " + col.BackgroundColorHeader.Name + ";";
 
                     builder.AddAttribute(rendSeq++, "style", styleStr);
                     builder.AddContent(rendSeq++, col.Title);
@@ -290,7 +300,7 @@ namespace Material.Blazor
 
                 foreach (var kvp in OrderedGroupedData)
                 {
-                    if (GroupExpression != null)
+                    if (Group)
                     {
                         // We output a row with the group name
                         // Do a div for this row
@@ -388,8 +398,27 @@ namespace Material.Blazor
 
                                 case MB_Grid_ColumnType.Text:
                                     // It's a text type column so add the text related styles
-                                    styleStr +=
-                                        " color: " + ColorToCSSColor(columnDefinition.ForegroundColor) + ";";
+                                    // We may be overriding the alternating row color added by class
+
+                                    if (columnDefinition.ForegroundColorExpression != null)
+                                    {
+                                        var value = columnDefinition.ForegroundColorExpression(rowValues);
+                                        styleStr +=
+                                            " color: " + ColorToCSSColor((Color)value) + "; ";
+                                    }
+
+                                    if (columnDefinition.BackgroundColorExpression != null)
+                                    {
+                                        var value = columnDefinition.BackgroundColorExpression(rowValues);
+                                        styleStr +=
+                                            " background-color: " + ColorToCSSColor((Color)value) + "; ";
+                                    }
+
+                                    if (columnDefinition.IsPMI && ObscurePMI)
+                                    {
+                                        styleStr +=
+                                            " filter: blur(0.25em); ";
+                                    }
 
                                     builder.AddAttribute(rendSeq++, "style", styleStr);
 
@@ -419,6 +448,12 @@ namespace Material.Blazor
                                                 styleStr +=
                                                     " color: " + ColorToCSSColor(value.ForegroundColor)
                                                     + "; background-color: " + ColorToCSSColor(value.BackgroundColor) + ";";
+
+                                                if (columnDefinition.IsPMI && ObscurePMI)
+                                                {
+                                                    styleStr +=
+                                                        " filter: blur(0.25em); ";
+                                                }
 
                                                 builder.AddAttribute(rendSeq++, "style", styleStr);
                                                 builder.AddContent(rendSeq++, value.Text);
@@ -556,7 +591,7 @@ namespace Material.Blazor
 
                 // Measure the body columns
                 var stringArrayBody = new string[ColumnConfigurations.Count * DataDictionary.Count];
-//                var stringArrayBody = new string[ColumnConfigurations.Count];
+                //                var stringArrayBody = new string[ColumnConfigurations.Count];
                 colIndex = 0;
                 foreach (var kvp in DataDictionary)
                 {
@@ -755,7 +790,7 @@ namespace Material.Blazor
 
                     // Perform the grouping
                     OrderedGroupedData = new List<KeyValuePair<string, List<TRowData>>>();
-                    if (GroupExpression == null)
+                    if (!Group)
                     {
                         OrderedGroupedData.Add(new KeyValuePair<string, List<TRowData>>("FauxKey", new List<TRowData>(sortedData)));
                     }

@@ -4,11 +4,11 @@
 
 
 <DemonstrationPage ComponentName="SegmentedButtonSingle"
-                   Title="Segmented Button Single-Select Demonstration"
                    DemoComponent="@this"
-                   MaterialIOPage="mdc-segmented-button#segmented-buttons"
                    IsGeneric="true"
-                   RequiresDisableSelection="false">
+                   MaterialIOPage="mdc-segmented-button#segmented-buttons"
+                   RequiresDisableSelection="false"
+                   Title="Segmented Button Single-Select Demonstration">
     <Description>
         <p>
             Segmented buttons with single-select capability.
@@ -24,11 +24,13 @@
                     </h2>
 
                     <p>
-                        <MBSegmentedButtonSingle @bind-Value="@selectedKitten" Items="@KittenBreeds" />
+                        <MBSegmentedButtonSingle @bind-Value="@selectedKitten"
+                                                 Items="@KittenBreeds" />
                     </p>
 
                     <p>
-                        <MBSegmentedButtonSingle @bind-Value="@selectedKitten" Items="@KittenBreeds" />
+                        <MBSegmentedButtonSingle @bind-Value="@selectedKitten"
+                                                 Items="@KittenBreeds" />
                     </p>
 
                     <p>@selectedKitten</p>
@@ -45,7 +47,8 @@
                     </h2>
 
                     <p>
-                        <MBRadioButtonGroup @bind-Value="@selectedKitten" Items="@KittenBreeds" />
+                        <MBRadioButtonGroup @bind-Value="@selectedKitten"
+                                            Items="@KittenBreeds" />
                     </p>
                 </Primary>
             </MBCard>
@@ -60,7 +63,7 @@
         new MBIconBearingSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MBIconBearingSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue", Icon="admin_panel_settings" },
         new MBIconBearingSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible", Icon="card_membership" }
-    };
+        };
 
 
     string selectedKitten = "brit-short";

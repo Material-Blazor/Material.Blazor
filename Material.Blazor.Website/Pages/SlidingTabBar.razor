@@ -4,10 +4,10 @@
 
 
 <DemonstrationPage ComponentName="SlidingTabBar"
-                   Title="Sliding Tab Bar Demonstration"
                    DemoComponent="@this"
-                   MaterialIOPage="mdc-tab-bar#tab-bar"
                    IsGeneric="true"
+                   Title="Sliding Tab Bar Demonstration"
+                   MaterialIOPage="mdc-tab-bar#tab-bar"
                    MinDensity="MBDensity.Minus4">
     <Description>
         <p>
@@ -17,7 +17,10 @@
     </Description>
 
     <Controls>
-        <p><MBSwitch @bind-Value="@StackIcons" Label="Stack Icons" /></p>
+        <p>
+            <MBSwitch @bind-Value="@StackIcons"
+                      Label="Stack Icons" />
+        </p>
     </Controls>
 
     <PageContent>
@@ -37,8 +40,8 @@
 
                     <p>
                         <MBSlidingTabBar @bind-Value="@FirstTabIndex"
-                                         Items="@SlidingTabItems"
                                          Context="item"
+                                         Items="@SlidingTabItems"
                                          StackIcons="@StackIcons">
 
                             <Label>
@@ -51,9 +54,9 @@
 
                             <Content>
                                 <h3 class="mdc-typography--headline6">@item.IconName.ToUpper()</h3>
-                                <p class="mdc-typography">@item.Text</p>
-                            </Content>
-                        </MBSlidingTabBar>
+                    <p class="mdc-typography">@item.Text</p>
+                    </Content>
+                    </MBSlidingTabBar>
                     </p>
                 </Primary>
             </MBCard>
@@ -73,8 +76,8 @@
 
                     <p>
                         <MBSlidingTabBar @bind-Value="@SecondTabIndex"
-                                         Items="@SecondTabIdentifiers"
-                                         Context="item">
+                                         Context="item"
+                                         Items="@SecondTabIdentifiers">
 
                             <Label>
                                 Tab @item
@@ -96,10 +99,10 @@
                                             </div>
                                             <div class="mdc-layout-grid__cell--span-12">
                                                 <MBTextArea @bind-Value="@Model.Area"
-                                                            Label="Text Area"
-                                                            TextInputStyle="@MBTextInputStyle.Outlined"
                                                             HelperText="Min 20 Characters"
                                                             HelperTextPersistent="true"
+                                                            Label="Text Area"
+                                                            TextInputStyle="@MBTextInputStyle.Outlined"
                                                             ValidationMessageFor="@(() => Model.Area)" />
                                             </div>
                                             <div class="mdc-layout-grid__cell--span-12">
@@ -111,9 +114,9 @@
                                             </div>
                                             <div class="mdc-layout-grid__cell--span-12">
                                                 <MBNumericDoubleField @bind-Value="@Model.NumericDouble"
+                                                                      DecimalPlaces="2"
                                                                       Label="Numeric Double"
                                                                       NumericFormat="N2"
-                                                                      DecimalPlaces="2"
                                                                       TextInputStyle="@MBTextInputStyle.Outlined"
                                                                       ValidationMessageFor="@(() => Model.NumericDouble)" />
                                             </div>
@@ -125,11 +128,11 @@
                                                                    ValidationMessageFor="@(() => Model.NumericInt)" />
                                             </div>
                                             <div class="mdc-layout-grid__cell--span-12" style="text-align: right;">
-                                                <MBButton style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                                <MBButton Label="submit"
                                                           type="submit"
-                                                          Label="submit" />
-                                                <MBButton style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                                                          Label="cancel" />
+                                                          style="margin: 0.75em 0.25em 0.25em 0.25em;" />
+                                                <MBButton Label="cancel"
+                                                          style="margin: 0.75em 0.25em 0.25em 0.25em;" />
                                             </div>
                                         </div>
                                     </EditForm>
@@ -137,27 +140,27 @@
                                 else
                                 {
                                     <h3 class="mdc-typography--headline6">@SlidingTabItems[item].IconName.ToUpper()</h3>
-                                    <p class="mdc-typography">@SlidingTabItems[item].Text</p>
-                                }
-                            </Content>
-                        </MBSlidingTabBar>
-                    </p>
-                </Primary>
-            </MBCard>
-        </div>
-    </PageContent>
-</DemonstrationPage>
+                        <p class="mdc-typography">@SlidingTabItems[item].Text</p>
+                    }
+                                </Content>
+                                </MBSlidingTabBar>
+                                </p>
+                            </Primary>
+                        </MBCard>
+                    </div>
+                </PageContent>
+            </DemonstrationPage>
 
 
-@code {
-    private bool StackIcons { get; set; } = false;
+            @code {
+                private bool StackIcons { get; set; } = false;
 
 
-    private int FirstTabIndex { get; set; } = 5;
+                private int FirstTabIndex { get; set; } = 5;
 
 
-    private SlidingTabItem[] SlidingTabItems { get; set; } =
-    {
+                private SlidingTabItem[] SlidingTabItems { get; set; } =
+                {
         new SlidingTabItem() { IconName="home", Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed pellentesque lobortis tortor, quis vestibulum libero faucibus ac. Aenean pretium, risus vel pulvinar bibendum, enim felis iaculis elit, a elementum metus nunc sed massa. Vivamus eros elit, faucibus auctor scelerisque eu, tincidunt quis turpis. Fusce fermentum quis odio molestie tincidunt. Morbi auctor mattis nibh, laoreet aliquet tellus congue a. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Nam vitae nunc tempor, scelerisque ligula sit amet, posuere massa. Nullam vitae arcu imperdiet, accumsan mi iaculis, eleifend purus. Etiam lacinia massa a orci elementum, faucibus euismod eros varius. Vivamus efficitur erat ac lacus mattis malesuada. Morbi semper ac erat sit amet sollicitudin. Morbi elit mi, malesuada eu sem ut, lacinia condimentum augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis et vestibulum risus, id venenatis quam. Fusce ultricies luctus ullamcorper. Phasellus laoreet egestas justo, eget consectetur risus." },
         new SlidingTabItem() { IconName="alarm", Text = "Curabitur nulla nibh, ultrices et tincidunt eget, consequat vel risus. Morbi luctus laoreet neque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla orci ante, pellentesque eu fermentum sed, gravida ornare metus. Sed elit purus, vehicula nec elit vitae, vulputate gravida purus. Sed quis ligula diam. Morbi fringilla arcu eget commodo placerat. Nullam a nisl sodales, tempor sapien non, consequat leo. Maecenas vehicula diam leo, aliquet egestas massa pulvinar ut. Aenean semper enim urna, in eleifend mi hendrerit feugiat. Mauris ut viverra ligula, nec interdum ligula. In in finibus tortor, ac accumsan tellus." },
         new SlidingTabItem() { IconName="book", Text = "Duis lorem sem, mollis at faucibus ut, viverra eu dolor. Nulla facilisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Vivamus euismod arcu eu lectus pellentesque, sed consequat purus bibendum. Nulla facilisi. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec in ligula rutrum, interdum turpis ut, pellentesque massa. Nulla laoreet efficitur libero, a euismod justo. Cras tincidunt non diam eu imperdiet. Integer quis tincidunt tortor. Nullam facilisis nec justo id faucibus. Nam pharetra accumsan pretium. Nunc ac justo non lacus accumsan euismod a ut enim." },
@@ -181,19 +184,19 @@
     };
 
 
-    public class SlidingTabItem
-    {
-        public string IconName;
-        public string Text;
-    }
+                public class SlidingTabItem
+                {
+                    public string IconName;
+                    public string Text;
+                }
 
 
-    public string[] Fruits = { "Avocado", "Banana", "Blackberry", "Blueberry", "Cantaloupe", "Cherry", "Clementine", "Dragonfruit", "Fig", "Grape", "Guava", "Honeydew", "Huckleberry", "Jujube", "Kiwi", "Kumquat", "Lime", "Nectarine", "Orange", "Papaya", "Passion Fruit", "Pineapple", "Plum", "Pomegranate", "Raspberry", "Satsuma", "Strawberry", "Tangerine", "Tomato", "Watermelon" };
+                public string[] Fruits = { "Avocado", "Banana", "Blackberry", "Blueberry", "Cantaloupe", "Cherry", "Clementine", "Dragonfruit", "Fig", "Grape", "Guava", "Honeydew", "Huckleberry", "Jujube", "Kiwi", "Kumquat", "Lime", "Nectarine", "Orange", "Papaya", "Passion Fruit", "Pineapple", "Plum", "Pomegranate", "Raspberry", "Satsuma", "Strawberry", "Tangerine", "Tomato", "Watermelon" };
 
 
-    private void AlarmButtonClick() => FirstTabIndex = 1;
+                private void AlarmButtonClick() => FirstTabIndex = 1;
 
-    private int[] SecondTabIdentifiers { get; set; } = { 1, 2, 3 };
-    private int SecondTabIndex { get; set; } = 0;
-    private FormValidation.FormModel Model { get; set; } = new();
-}
+                private int[] SecondTabIdentifiers { get; set; } = { 1, 2, 3 };
+                private int SecondTabIndex { get; set; } = 0;
+                private FormValidation.FormModel Model { get; set; } = new();
+            }

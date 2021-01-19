@@ -12,8 +12,8 @@
 
 
 <DemonstrationPage ComponentName="shield"
-                   Title="Shield Demonstration"
-                   DemoComponent="@this">
+                   DemoComponent="@this"
+                   Title="Shield Demonstration">
     <PageContent>
         <div class="mdc-layout-grid__cell--span-12">
             <MBCard AutoStyled="true">
@@ -31,9 +31,19 @@
                         </div>
                         <div class="mdc-layout-grid__cell--span-12">
                             <p>
-                                <MBShield Label="label one" Value="value one" Tooltip="Plain shield" />
-                                <MBShield Label="label two" Value="value two" LabelClass="my-label-two" ValueClass="my-label-two" Tooltip="LabelClass and ValueClass set" />
-                                <MBShield Label="label three" Value="value three" LabelIcon="edit" ValueIcon="edit" Tooltip="With icons" />
+                                <MBShield Label="label one"
+                                          Tooltip="Plain shield"
+                                          Value="value one" />
+                                <MBShield Label="label two"
+                                          LabelClass="my-label-two"
+                                          Tooltip="LabelClass and ValueClass set"
+                                          Value="value two"
+                                          ValueClass="my-label-two" />
+                                <MBShield Label="label three"
+                                          LabelIcon="edit"
+                                          Tooltip="With icons"
+                                          Value="value three"
+                                          ValueIcon="edit" />
                             </p>
                         </div>
                     </div>

@@ -4,12 +4,12 @@
 
 
 <DemonstrationPage ComponentName="Select"
-                   Title="Select Demonstration"
                    DemoComponent="@this"
-                   MaterialIOPage="mdc-select#select-menus"
                    IsGeneric="true"
+                   MaterialIOPage="mdc-select#select-menus"
                    MinDensity="MBDensity.Minus4"
-                   RequiresDisableSelection="true">
+                   RequiresDisableSelection="true"
+                   Title="Select Demonstration">
     <Description>
         <p>
             Filled and outlined text fields with icon usage, class and style application and finally density.
@@ -28,9 +28,26 @@
                         Default and explicit select styles.
                     </h3>
 
-                    <p><MBSelect Label="Default Style" @bind-Value="@DefaultStyle" Items="KittenBreeds" ItemValidation="@MBItemValidation.NoSelection" /></p>
-                    <p><MBSelect Label="Filled Style" @bind-Value="@FilledStyle" Items="KittenBreeds" SelectInputStyle="MBSelectInputStyle.Filled" ItemValidation="@MBItemValidation.NoSelection" /></p>
-                    <p><MBSelect Label="Outlined Style" @bind-Value="@OutlinedStyle" Items="KittenBreeds" SelectInputStyle="MBSelectInputStyle.Outlined" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                    <p>
+                        <MBSelect @bind-Value="@DefaultStyle"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Default Style" />
+                    </p>
+                    <p>
+                        <MBSelect @bind-Value="@FilledStyle"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Filled Style"
+                                  SelectInputStyle="MBSelectInputStyle.Filled" />
+                    </p>
+                    <p>
+                        <MBSelect @bind-Value="@OutlinedStyle"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Outlined Style"
+                                  SelectInputStyle="MBSelectInputStyle.Outlined" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>
@@ -146,48 +163,12 @@
         new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
         new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
-    };
+            };
 
 
-    private string _defaultStyle;
-    private string DefaultStyle
-    {
-        get => _defaultStyle;
-        set
-        {
-            _defaultStyle = value;
-
-            ToastService.ShowToast(heading: "Default Style", message: $"Value: '{_defaultStyle}'", level: MBToastLevel.Success, showIcon: false);
-        }
-    }
-
-
-
-    private string _filledStyle;
-    private string FilledStyle
-    {
-        get => _filledStyle;
-        set
-        {
-            _filledStyle = value;
-
-            ToastService.ShowToast(heading: "Filled Style", message: $"Value: '{_filledStyle}", level: MBToastLevel.Success, showIcon: false);
-        }
-    }
-
-
-
-    private string _outlinedStyle;
-    private string OutlinedStyle
-    {
-        get => _outlinedStyle;
-        set
-        {
-            _outlinedStyle = value;
-
-            ToastService.ShowToast(heading: "Outlined Style", message: $"Value: '{_outlinedStyle}", level: MBToastLevel.Success, showIcon: false);
-        }
-    }
+    private string DefaultStyle;
+    private string FilledStyle;
+    private string OutlinedStyle;
 
     private string Icon1;
     private string Icon2;

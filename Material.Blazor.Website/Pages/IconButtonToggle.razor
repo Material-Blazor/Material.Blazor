@@ -5,10 +5,10 @@
 
 
 <DemonstrationPage ComponentName="IconButtonToggle"
-                   Title="Icon Button Toggle Demonstration"
                    DemoComponent="@this"
                    MinDensity="MBDensity.Minus3"
-                   RequiresDisableSelection="true">
+                   RequiresDisableSelection="true"
+                   Title="Icon Button Toggle Demonstration">
     <Description>
         <p>
             Shows a toggle icon button and density.
@@ -27,10 +27,30 @@
                         Toggle icon bottons using a Font Awesome icon.
                     </h3>
 
-                    <p><MBIconButtonToggle @bind-Value="@ToggleState" IconOn="fa-dog" IconOff="fa-cat" IconFoundry="@MBIconHelper.FAFoundry()" /></p>
-                    <p><MBIconButtonToggle @bind-Value="@ToggleState" IconOn="fa-dog" IconOff="fa-cat" IconFoundry="@MBIconHelper.FAFoundry()" /></p>
-                    <p><MBIconButtonToggle @bind-Value="@ToggleState" IconOn="fa-dog" IconOff="fa-cat" IconFoundry="@MBIconHelper.FAFoundry()" /></p>
-                    <p><MBIconButtonToggle @bind-Value="@ToggleState" IconOn="fa-dog" IconOff="fa-cat" IconFoundry="@MBIconHelper.FAFoundry()" /></p>
+                    <p>
+                        <MBIconButtonToggle @bind-Value="@ToggleState"
+                                            IconFoundry="@MBIconHelper.FAFoundry()"
+                                            IconOff="fa-cat"
+                                            IconOn="fa-dog" />
+                    </p>
+                    <p>
+                        <MBIconButtonToggle @bind-Value="@ToggleState"
+                                            IconFoundry="@MBIconHelper.FAFoundry()"
+                                            IconOff="fa-cat"
+                                            IconOn="fa-dog" />
+                    </p>
+                    <p>
+                        <MBIconButtonToggle @bind-Value="@ToggleState"
+                                            IconFoundry="@MBIconHelper.FAFoundry()"
+                                            IconOff="fa-cat"
+                                            IconOn="fa-dog" />
+                    </p>
+                    <p>
+                        <MBIconButtonToggle @bind-Value="@ToggleState"
+                                            IconFoundry="@MBIconHelper.FAFoundry()"
+                                            IconOff="fa-cat"
+                                            IconOn="fa-dog" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>

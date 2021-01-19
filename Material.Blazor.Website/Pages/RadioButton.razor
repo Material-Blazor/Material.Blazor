@@ -4,12 +4,12 @@
 
 
 <DemonstrationPage ComponentName="RadioButton"
-                   Title="Radio Button Demonstration"
                    DemoComponent="@this"
-                   MaterialIOPage="mdc-radio#selection-controls-radio-buttons"
                    IsGeneric="true"
+                   MaterialIOPage="mdc-radio#selection-controls-radio-buttons"
                    MinDensity="MBDensity.Minus3"
-                   RequiresDisableSelection="true">
+                   RequiresDisableSelection="true"
+                   Title="Radio Button Demonstration">
     <Description>
         <p>
             Individual and grouped radio buttons.
@@ -31,27 +31,27 @@
 
                     <p>
                         <MBRadioButton @bind-Value="@Animal"
-                                       TargetCheckedValue=@AnimalEnum.Dog
+                                       class="supplied-test-class"
+                                       id="supplied-test-id"
                                        Label=@AnimalEnum.Dog.ToString()
                                        RadioGroupName="animal-group"
-                                       class="supplied-test-class"
-                                       id="supplied-test-id" />
+                                       TargetCheckedValue=@AnimalEnum.Dog />
 
                         <MBRadioButton @bind-Value="@Animal"
-                                       TargetCheckedValue=@AnimalEnum.Fish
                                        Label=@AnimalEnum.Fish.ToString()
-                                       RadioGroupName="animal-group" />
+                                       RadioGroupName="animal-group"
+                                       TargetCheckedValue=@AnimalEnum.Fish />
 
                         <MBRadioButton @bind-Value="@Animal"
-                                       TargetCheckedValue=@AnimalEnum.Zebra
                                        Label=@AnimalEnum.Zebra.ToString()
-                                       RadioGroupName="animal-group" />
+                                       RadioGroupName="animal-group"
+                                       TargetCheckedValue=@AnimalEnum.Zebra />
                     </p>
                     <p>
                         <MBRadioButton @bind-Value="@Animal"
-                                       TargetCheckedValue=@AnimalEnum.Dog
                                        Label=@RepeatedDogLabel
-                                       RadioGroupName="repeat-group" />
+                                       RadioGroupName="repeat-group"
+                                       TargetCheckedValue=@AnimalEnum.Dog />
 
                     </p>
                 </Primary>
