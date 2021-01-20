@@ -121,7 +121,7 @@ namespace Material.Blazor
         //Instantiate a Singleton of the Semaphore with a value of 1. This means that only 1 thread can be granted access at a time.
         private static readonly SemaphoreSlim semaphoreSlim = new(1, 1);
 
-        private bool ShouldRenderReturnValue { get; set; } = true;
+        private bool ShouldRenderValue { get; set; } = true;
 
         #endregion
 
@@ -187,7 +187,7 @@ namespace Material.Blazor
         #region BuildRenderTree
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
-            if (IsFirstRender)
+            if (IsFirstRender || (!ShouldRenderValue) || (ColumnWidthArray.Length != ColumnConfigurations.Count))
             {
 #if LoggingVerbose
                 Logger.LogInformation("BuildRenderTree entered (IsFirstRender == true)");
@@ -223,7 +223,7 @@ namespace Material.Blazor
             //
 
             base.BuildRenderTree(builder);
-            var rendSeq = 1;
+            var rendSeq = 2;
             string styleStr;
 
             // Based on the column config generate the column titles unless asked not to
@@ -845,17 +845,17 @@ namespace Material.Blazor
         }
         #endregion
 
-        #region SetShouldRenderReturnValue
-        public void SetShouldRenderReturnValue(bool shouldRenderReturnValue)
+        #region SetShouldRenderValue
+        public void SetShouldRenderValue(bool shouldRenderReturnValue)
         {
-            ShouldRenderReturnValue = shouldRenderReturnValue;
+            ShouldRenderValue = shouldRenderReturnValue;
         }
         #endregion
 
         #region ShouldRender
         protected override bool ShouldRender()
         {
-            return ShouldRenderReturnValue;
+            return ShouldRenderValue;
         }
         #endregion
 

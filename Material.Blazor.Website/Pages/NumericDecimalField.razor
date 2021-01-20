@@ -6,10 +6,10 @@
 
 
 <DemonstrationPage ComponentName="NumericDecimalField"
-                   Title="Numeric Decimal Field Demonstration"
                    DemoComponent="@this"
                    MinDensity="MBDensity.Minus4"
-                   RequiresDisableSelection="true">
+                   RequiresDisableSelection="true"
+                   Title="Numeric Decimal Field Demonstration">
     <Description>
         <p>
             Shows numeric decimal fields, which are Plus components.
@@ -31,27 +31,27 @@
                     </h3>
 
                     <p>
-                        <MBNumericDecimalField Label="Double 2dp"
-                                               @bind-Value="@DecimalValue"
-                                               NumericFormat="N2"
+                        <MBNumericDecimalField @bind-Value="@DecimalValue"
                                                DecimalPlaces="2"
+                                               Label="Double 2dp"
+                                               NumericFormat="N2"
                                                TextInputStyle="MBTextInputStyle.Outlined" />
                     </p>
 
                     <p>
-                        <MBNumericDecimalField Label="Money by format"
-                                               @bind-Value="@MoneyByFormat"
+                        <MBNumericDecimalField @bind-Value="@MoneyByFormat"
+                                               DecimalPlaces="2"
+                                               Label="Money by format"
                                                NumericFormat="C2"
-                                               DecimalPlaces="2"
                                                TextInputStyle="MBTextInputStyle.Outlined" />
                     </p>
 
                     <p>
-                        <MBNumericDecimalField Label="Money by prefix"
-                                              Prefix="£"
-                                               @bind-Value="@MoneyByPrefix"
-                                               NumericFormat="N2"
+                        <MBNumericDecimalField @bind-Value="@MoneyByPrefix"
                                                DecimalPlaces="2"
+                                               Label="Money by prefix"
+                                               NumericFormat="N2"
+                                               Prefix="£"
                                                TextInputStyle="MBTextInputStyle.Outlined" />
                     </p>
                 </Primary>
@@ -121,17 +121,17 @@
 
                     <p>
                         <MBNumericDecimalField Label="Popup Helper Text"
-                                              @bind-Value="@PopupHelperText"
-                                              NumericFormat="N2"
-                                              HelperText="Some helper text that pops up" />
+                                               @bind-Value="@PopupHelperText"
+                                               NumericFormat="N2"
+                                               HelperText="Some helper text that pops up" />
                     </p>
 
                     <p>
                         <MBNumericDecimalField Label="Persistent Helper Text"
-                                              @bind-Value="@PersistentHelperText"
-                                              NumericFormat="N2"
-                                              HelperText="Some persistent helper text"
-                                              HelperTextPersistent="true" />
+                                               @bind-Value="@PersistentHelperText"
+                                               NumericFormat="N2"
+                                               HelperText="Some persistent helper text"
+                                               HelperTextPersistent="true" />
                     </p>
                 </Primary>
             </MBCard>

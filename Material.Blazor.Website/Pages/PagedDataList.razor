@@ -12,9 +12,9 @@
         float: right;
     }
 
-    .my-float-right .mb-paginator {
-        justify-content: flex-end;
-    }
+        .my-float-right .mb-paginator {
+            justify-content: flex-end;
+        }
 
     .my-full-width {
         min-width: 100%;
@@ -33,9 +33,9 @@
 </style>
 
 <DemonstrationPage ComponentName="PagedDataList"
-                   Title="Paged Data List Demonstration"
                    DemoComponent="@this"
-                   IsGeneric="true">
+                   IsGeneric="true"
+                   Title="Paged Data List Demonstration">
     <Description>
         <p>
             Demonstrates a paged data list, which is a Material.Blazor Plus component. The paged data list is a complex component that uses the MBPaginator, MBSlidingContent and a nested render fragment construct
@@ -56,20 +56,22 @@
                     </h3>
 
                     <p>
-                        <MBPagedDataList @ref="@ColorsPagedDataList"
-                                         class="my-container"
-                                         PaginatorClass="my-float-right"
-                                         @bind-ItemsPerPage="@ColorsItemsPerPage"
+                        <MBPagedDataList @bind-ItemsPerPage="@ColorsItemsPerPage"
                                          @bind-PageNumber="@ColorsPageNumber"
+                                         class="my-container"
+                                         Data=@Colors
                                          ItemsPerPageSelection="@ColorsItemsPerPageSelection"
-                                         Data=@Colors>
+                                         PaginatorClass="my-float-right"
+                                         @ref="@ColorsPagedDataList">
 
                             <ListTemplate Context="listOfPeople">
                                 <div class="mdc-layout-grid__inner" style="margin-bottom: 1rem;">
                                     @foreach (var item in ColorsPagedDataList.CurrentPage)
                                     {
                                         <div @key="item" class="mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-2-phone">
-                                            <MBCard CardStyle="@MBCardStyle.Outlined" AutoStyled="true" style="@item.Style">
+                                            <MBCard AutoStyled="true"
+                                                    CardStyle="@MBCardStyle.Outlined"
+                                                    style="@item.Style">
                                                 <Primary>
                                                     <h4 class="mdc-typography--headline6">@item.ColorName @item.Intensity</h4>
                                                 </Primary>
@@ -97,14 +99,14 @@
                     </h3>
 
                     <p>
-                        <MBPagedDataList @ref="TwinListData"
+                        <MBPagedDataList @bind-ItemsPerPage="@TwinListItemsPerPage"
+                                         @bind-PageNumber="@TwinListPageNumber"
                                          class="my-container"
+                                         Data=@People
+                                         ItemsPerPageSelection="@PersonItemsPerPageSelection"
                                          ListTemplateClass="my-container"
                                          PaginatorClass="my-float-right"
-                                         @bind-ItemsPerPage="@TwinListItemsPerPage"
-                                         @bind-PageNumber="@TwinListPageNumber"
-                                         ItemsPerPageSelection="@PersonItemsPerPageSelection"
-                                         Data=@People>
+                                         @ref="TwinListData">
 
                             <ListTemplate Context="listOfPeople">
                                 @{
@@ -115,11 +117,11 @@
 
                                 <div class="mdc-layout-grid__inner" style="margin-bottom: 1rem;">
                                     <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
-                                        <MBList Items="@leftList"
-                                                Context="person"
-                                                ShowSeparators="true"
+                                        <MBList Context="person"
+                                                Items="@leftList"
+                                                ListStyle="MBListStyle.Outlined"
                                                 ListType="@MBListType.Avatar"
-                                                ListStyle="MBListStyle.Outlined">
+                                                ShowSeparators="true">
 
                                             <Icon><MBIcon IconName="local_grocery_store" /></Icon>
                                             <Title>@person.FamilyName</Title>
@@ -128,11 +130,11 @@
                                     </div>
 
                                     <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
-                                        <MBList Items="@rightList"
-                                                Context="person"
-                                                ShowSeparators="true"
+                                        <MBList Context="person"
+                                                Items="@rightList"
+                                                ListStyle="MBListStyle.Outlined"
                                                 ListType="@MBListType.Avatar"
-                                                ListStyle="MBListStyle.Outlined">
+                                                ShowSeparators="true">
 
                                             <Icon><MBIcon IconName="local_grocery_store" /></Icon>
                                             <Title>@person.FamilyName</Title>
@@ -160,20 +162,20 @@
                     </h3>
 
                     <p>
-                        <MBPagedDataList @ref="DataTableList"
-                                         class="my-container"
-                                         PaginatorClass="my-float-right"
-                                         @bind-ItemsPerPage="@DataTableItemsPerPage"
+                        <MBPagedDataList @bind-ItemsPerPage="@DataTableItemsPerPage"
                                          @bind-PageNumber="@DataTablePageNumber"
+                                         class="my-container"
+                                         Data=@People
                                          ItemsPerPageSelection="@PersonItemsPerPageSelection"
-                                         Data=@People>
+                                         PaginatorClass="my-float-right"
+                                         @ref="DataTableList">
 
                             <ListTemplate Context="listOfPeople">
                                 <div class="mdc-layout-grid__inner" style="margin-bottom: 1rem; overflow: auto;">
                                     <div class="mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
-                                        <MBDataTable Items="@DataTableList.CurrentPage"
+                                        <MBDataTable class="my-full-width"
                                                      Context="person"
-                                                     class="my-full-width">
+                                                     Items="@DataTableList.CurrentPage">
                                             <TableHeader>
                                                 <th class="mdc-data-table__header-cell my-header-bold" role="columnheader" scope="col">Salutation</th>
                                                 <th class="mdc-data-table__header-cell my-header-bold" role="columnheader" scope="col">Given Name</th>
@@ -207,12 +209,12 @@
                     </h3>
 
                     <p>
-                        <MBPagedDataList class="my-container"
-                                         PaginatorClass="my-float-right"
-                                         @bind-ItemsPerPage="@ItemAndListTemplateItemsPerPage"
+                        <MBPagedDataList @bind-ItemsPerPage="@ItemAndListTemplateItemsPerPage"
                                          @bind-PageNumber="@ItemAndListTemplatePageNumber"
+                                         class="my-container"
+                                         Data=@People
                                          ItemsPerPageSelection="@PersonItemsPerPageSelection"
-                                         Data=@People>
+                                         PaginatorClass="my-float-right">
 
                             <ListTemplate Context="listOfPeople">
                                 <table border=1 cellpadding=4>
@@ -254,12 +256,12 @@
                     </h3>
 
                     <p>
-                        <MBPagedDataList class="my-container"
-                                         PaginatorClass="my-float-right"
-                                         @bind-ItemsPerPage="@ItemTemplateItemsPerPage"
+                        <MBPagedDataList @bind-ItemsPerPage="@ItemTemplateItemsPerPage"
                                          @bind-PageNumber="@ItemTemplatePageNumber"
+                                         class="my-container"
+                                         Data=@People
                                          ItemsPerPageSelection="@PersonItemsPerPageSelection"
-                                         Data=@People>
+                                         PaginatorClass="my-float-right">
 
                             <ItemTemplate Context="person">
                                 <li @key=@person>
@@ -285,12 +287,12 @@
                     </h3>
 
                     <p>
-                        <MBPagedDataList class="my-container"
-                                         PaginatorClass="my-float-right"
-                                         @bind-ItemsPerPage="@SimpleItemsPerPage"
+                        <MBPagedDataList @bind-ItemsPerPage="@SimpleItemsPerPage"
                                          @bind-PageNumber="@SimplePageNumber"
+                                         class="my-container"
+                                         Data=@People
                                          ItemsPerPageSelection="@PersonItemsPerPageSelection"
-                                         Data=@People>
+                                         PaginatorClass="my-float-right">
                         </MBPagedDataList>
                     </p>
                 </Primary>
