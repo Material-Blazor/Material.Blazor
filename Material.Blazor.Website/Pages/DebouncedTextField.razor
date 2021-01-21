@@ -6,10 +6,10 @@
 
 
 <DemonstrationPage ComponentName="DebouncedTextField"
-                   Title="Debounced Text Field Demonstration"
                    DemoComponent="@this"
                    MinDensity="MBDensity.Minus4"
-                   RequiresDisableSelection="true">
+                   RequiresDisableSelection="true"
+                   Title="Debounced Text Field Demonstration">
     <Description>
         <p>
             Shows debounced text field which is a Plus component.
@@ -55,19 +55,19 @@
 
                     <p>
                         <MBDebouncedTextField @bind-Value="@Debounced"
+                                              DebounceInterval="@DebouncePeriod"
                                               Label="Debounced Text"
-                                              TextInputStyle="MBTextInputStyle.Outlined"
                                               LeadingIcon="account_balance_wallet"
-                                              DebounceInterval="@DebouncePeriod" />
+                                              TextInputStyle="MBTextInputStyle.Outlined" />
                     </p>
                     <p>Debounced text: <em>'@Debounced'</em></p>
 
                     <p>
                         <MBDebouncedTextField @bind-Value="@Prefilled"
+                                              DebounceInterval="@DebouncePeriod"
                                               Label="Pre-filled"
-                                              TextInputStyle="MBTextInputStyle.Outlined"
                                               LeadingIcon="account_balance_wallet"
-                                              DebounceInterval="@DebouncePeriod" />
+                                              TextInputStyle="MBTextInputStyle.Outlined" />
                     </p>
                     <p>Prefilled text: <em>'@Prefilled'</em></p>
                 </Primary>
@@ -89,17 +89,17 @@
 
                     <p>
                         <MBDebouncedTextField @bind-Value="@PopupHelperText"
-                                              Label="Popup Helper Text"
+                                              DebounceInterval="@DebouncePeriod"
                                               HelperText="Some helper text that pops up"
-                                              DebounceInterval="@DebouncePeriod" />
+                                              Label="Popup Helper Text" />
                     </p>
 
                     <p>
                         <MBDebouncedTextField @bind-Value="@PersistentHelperText"
-                                              Label="Persistent Helper Text"
+                                              DebounceInterval="@DebouncePeriod"
                                               HelperText="Some persistent helper text"
                                               HelperTextPersistent="true"
-                                              DebounceInterval="@DebouncePeriod" />
+                                              Label="Persistent Helper Text" />
                     </p>
                 </Primary>
             </MBCard>
@@ -120,14 +120,14 @@
 
                     <p>
                         <MBDebouncedTextField @bind-Value="@TwoWayBinding"
-                                              Label="Two Way Binding"
-                                              DebounceInterval="@DebouncePeriod" />
+                                              DebounceInterval="@DebouncePeriod"
+                                              Label="Two Way Binding" />
                     </p>
 
                     <p>
                         <MBDebouncedTextField @bind-Value="@TwoWayBinding"
-                                              Label="Two Way Binding"
-                                              DebounceInterval="@DebouncePeriod" />
+                                              DebounceInterval="@DebouncePeriod"
+                                              Label="Two Way Binding" />
                     </p>
                 </Primary>
             </MBCard>
@@ -142,7 +142,7 @@
         new MBSelectElement<int> { SelectedValue = 300, Label = "300 ms" },
         new MBSelectElement<int> { SelectedValue = 500, Label = "500 ms" },
         new MBSelectElement<int> { SelectedValue = 1000, Label = "1,000 ms" }
-    };
+        };
 
 
 
