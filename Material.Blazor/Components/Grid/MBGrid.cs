@@ -780,15 +780,5 @@ namespace Material.Blazor
         }
         #endregion
 
-        #region StringComparer
-        class StringComparer : IComparer<string>
-        {
-            public int Compare(string x, string y)
-            {
-                return string.Compare(x, y, true);
-            }
-        }
-        #endregion
-
     }
 }
