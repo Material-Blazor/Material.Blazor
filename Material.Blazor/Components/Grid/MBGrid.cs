@@ -42,67 +42,57 @@ namespace Material.Blazor
     public class MBGrid<TRowData> : ComponentFoundation
     {
         #region Parameters
-#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+
         /// <summary>
         /// The configuration of each column to be displayed. See the definition of MBGridColumnConfiguration
         /// for details.
         /// </summary>
         [Parameter] public List<MBGridColumnConfiguration<TRowData>> ColumnConfigurations { get; set; } = null;
+
         /// <summary>
-        /// TheDataDictionary contains the data to be displayed. The dictionary key must be a unique identifier
+        /// The GroupedDataDictionary contains the data to be displayed.
+        /// The outer dictionary key is used for grouping and is directly displayed.
+        /// The inner dictionary key must be a unique identifier
         /// that is used to indicate a row that has been clicked.
         /// </summary>
-        [Parameter] public Dictionary<string, TRowData> DataDictionary { get; set; }
+        [Parameter] public Dictionary<string, Dictionary<string, TRowData>> GroupedDataDictionary { get; set; }
+
         /// <summary>
-        /// The Group is an optional boolean indicating that grouping is to occur by a 
-        /// particular column. It is required because of the code generation error that prevents
-        /// setting a null GroupExpression in an external call
+        /// The Group is an optional boolean indicating that grouping is in effect.
         /// </summary>
         [Parameter] public bool Group { get; set; } = false;
-        /// <summary>
-        /// The GroupExpression is an optional expression indicating that grouping is to occur by a 
-        /// particular column.
-        /// </summary>
-        [Parameter] public Func<TRowData, object>? GroupExpression { get; set; } = null;
-        /// <summary>
-        /// If you are grouping (As determined by the presence of the GroupExpression) then it is
-        /// sometimes a requirement to show empty group headers. See the demo website for an example.
-        /// </summary>
-        [Parameter] public List<string> GroupOrderedList { get; set; }
+
         /// <summary>
         /// A boolean indicating whether the selected row is highlighted
         /// </summary>
         [Parameter] public bool HighlightSelectedRow { get; set; } = false;
+
         /// <summary>
         /// The KeyExpression is used to add a key to each row of the grid
         /// </summary>
         [Parameter] public Func<TRowData, object>? KeyExpression { get; set; } = null;
+
         /// <summary>
         /// Measurement determines the unit of size (EM, Percent, PX) or if the grid is to measure the
         /// data widths (FitToData)
         /// </summary>
         [Parameter] public MB_Grid_Measurement Measurement { get; set; } = MB_Grid_Measurement.Percent;
+
         /// <summary>
         /// ObscurePMI controls whether or not columns marked as PMI are obscured.
         /// </summary>
         [Parameter] public bool ObscurePMI { get; set; }
+
         /// <summary>
         /// Callback for a mouse click
         /// </summary>
         [Parameter] public EventCallback<string> OnMouseClick { get; set; }
-        /// <summary>
-        /// First sort expression
-        /// </summary>
-        [Parameter] public Func<TRowData, object>? SortExpressionFirst { get; set; } = null;
-        /// <summary>
-        /// Second sort expression
-        /// </summary>
-        [Parameter] public Func<TRowData, object>? SortExpressionSecond { get; set; } = null;
+
         /// <summary>
         /// Headers are optional
         /// </summary>
         [Parameter] public bool SupressHeader { get; set; } = false;
-#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+
         #endregion
 
         #region Members
@@ -759,73 +749,6 @@ namespace Material.Blazor
 #endif
 
                 await base.OnParametersSetAsync();
-
-                OrderedGroupedData = null;
-
-                if (DataDictionary != null)
-                {
-                    // Perform the sort(s)
-                    IEnumerable<TRowData> sortedData;
-                    if (SortExpressionFirst != null)
-                    {
-                        if (SortExpressionSecond != null)
-                        {
-                            sortedData = DataDictionary.Values
-                                    .OrderBy(SortExpressionFirst)
-                                    .ThenBy(SortExpressionSecond);
-                        }
-                        else
-                        {
-                            sortedData = DataDictionary.Values
-                                    .OrderBy(SortExpressionFirst);
-                        }
-                    }
-                    else
-                    {
-                        {
-                            // No sorting at all
-                            sortedData = DataDictionary.Values;
-                        }
-                    }
-
-                    // Perform the grouping
-                    OrderedGroupedData = new List<KeyValuePair<string, List<TRowData>>>();
-                    if (!Group)
-                    {
-                        OrderedGroupedData.Add(new KeyValuePair<string, List<TRowData>>("FauxKey", new List<TRowData>(sortedData)));
-                    }
-                    else
-                    {
-                        var groupedData = sortedData
-                            .GroupBy(GroupExpression)
-                            .ToDictionary(g => g.Key.ToString(), g => g.ToList());
-
-                        if (GroupOrderedList == null)
-                        {
-                            // We will default to alphabetical order
-                            var sortedGroupedData = new SortedDictionary<string, List<TRowData>>(groupedData, new StringComparer());
-                            foreach (var kvp in groupedData)
-                            {
-                                OrderedGroupedData.Add(new KeyValuePair<string, List<TRowData>>(kvp.Key, kvp.Value));
-                            }
-                        }
-                        else
-                        {
-                            foreach (var key in GroupOrderedList)
-                            {
-                                if (groupedData.ContainsKey(key))
-                                {
-                                    OrderedGroupedData.Add(new KeyValuePair<string, List<TRowData>>(key, groupedData[key]));
-                                }
-                                else
-                                {
-                                    var emptyList = new List<TRowData>();
-                                    OrderedGroupedData.Add(new KeyValuePair<string, List<TRowData>>(key, emptyList));
-                                }
-                            }
-                        }
-                    }
-                }
 
                 if (HasRendered)
                 {
