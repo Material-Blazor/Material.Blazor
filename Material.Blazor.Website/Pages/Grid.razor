@@ -19,15 +19,12 @@
     <PageContent>
         <div class="mdc-layout-grid__cell--span-12">
             <MBGrid ColumnConfigurations="@ColumnConfigurations"
-                    DataDictionary=@PeopleAsDictionary
-                    GroupExpression="@(PeopleAsDictionary => PeopleAsDictionary.Salutation)"
-                    GroupOrderedList="@GroupOrderedList"
+                    GroupedDataDictionary=@PeopleAsGroupedDictionary
+                    Group="true"
                     HighlightSelectedRow="@true"
                     KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
                     Measurement="@MB_Grid_Measurement.Percent"
                     OnMouseClick="@MBGridRowClicked"
-                    SortExpressionFirst="@(PeopleAsDictionary => PeopleAsDictionary.Salutation)"
-                    SortExpressionSecond="@(PeopleAsDictionary => PeopleAsDictionary.Salutation)"
                     TRowData="@Person" />
         </div>
     </PageContent>
@@ -71,7 +68,7 @@
         new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Mr", GivenName = "John", FamilyName = "Hume" },
     };
 
-    private Dictionary<string, Person> PeopleAsDictionary = new();
+    private Dictionary<string, Dictionary<string, Person>> PeopleAsGroupedDictionary = new();
     private List<string> GroupOrderedList = new();
     private List<MBGridColumnConfiguration<Person>> ColumnConfigurations { get; set; } = null;
 
@@ -79,17 +76,26 @@
     {
         base.OnInitialized();
 
-        foreach (var person in People)
-        {
-            PeopleAsDictionary.Add(person.UniqueIdentifier.ToString(), person);
-        }
-
         GroupOrderedList.Add("Dr");
         GroupOrderedList.Add("Mr");
         GroupOrderedList.Add("Ms");
         GroupOrderedList.Add("Prof");
         GroupOrderedList.Add("Professor");
         GroupOrderedList.Add("RtHon");
+
+        foreach (var salutation in GroupOrderedList)
+        {
+            var tempDictionary = new Dictionary<string, Person>();
+
+            foreach (var person in People)
+            {
+                if (person.Salutation == salutation)
+                {
+                    tempDictionary.Add(person.UniqueIdentifier.ToString(), person);
+                }
+            }
+            PeopleAsGroupedDictionary.Add(salutation, tempDictionary);
+        }
 
         ColumnConfigurations = new List<MBGridColumnConfiguration<Person>>();
 
@@ -115,7 +121,7 @@
 
         ToastService.ShowToast(
             heading: "Row clicked",
-            message: $"You clicked on '{PeopleAsDictionary[guid]}'",
+            message: $"You clicked on '{guid}'",
             level: MBToastLevel.Success,
             showIcon: false);
     }

@@ -51,7 +51,7 @@ namespace Material.Blazor
 
         /// <summary>
         /// The GroupedDataDictionary contains the data to be displayed.
-        /// The outer dictionary key is used for grouping and is directly displayed.
+        /// The outer dictionary key is used for grouping and is directly displayed if grouping is enabled.
         /// The inner dictionary key must be a unique identifier
         /// that is used to indicate a row that has been clicked.
         /// </summary>
@@ -104,7 +104,6 @@ namespace Material.Blazor
         private bool HasCompletedFullRender { get; set; } = false;
         private bool HasRendered { get; set; } = false;
         private bool IsFirstRender { get; set; } = true;
-        private List<KeyValuePair<string, List<TRowData>>> OrderedGroupedData { get; set; } = null;
         private float ScrollWidth { get; set; }
         private string SelectedKey { get; set; } = "";
 
@@ -271,7 +270,7 @@ namespace Material.Blazor
             // For the first pass we are going to skip this step and just display the raw content
             //
 
-            if (OrderedGroupedData != null)
+            if (GroupedDataDictionary != null)
             {
                 var isFirstGrouper = true;
 
@@ -288,7 +287,7 @@ namespace Material.Blazor
                 builder.OpenElement(rendSeq++, "tbody");
                 builder.AddAttribute(rendSeq++, "class", "mb-grid-tbody");
 
-                foreach (var kvp in OrderedGroupedData)
+                foreach (var kvp in GroupedDataDictionary)
                 {
                     if (Group)
                     {
@@ -311,9 +310,9 @@ namespace Material.Blazor
                     }
 
                     var rowCount = 0;
-                    foreach (TRowData rowValues in kvp.Value)
+                    foreach (var rowValues in kvp.Value)
                     {
-                        var rowKey = KeyExpression(rowValues).ToString(); ;
+                        var rowKey = KeyExpression(rowValues.Value).ToString();
 
                         string rowBackgroundColorClass;
                         if ((rowKey == SelectedKey) && HighlightSelectedRow)
@@ -366,7 +365,7 @@ namespace Material.Blazor
                                     {
                                         try
                                         {
-                                            var value = (MBGridIconSpecification)columnDefinition.DataExpression(rowValues);
+                                            var value = (MBGridIconSpecification)columnDefinition.DataExpression(rowValues.Value);
 
                                             // We need to add the color alignment to the base styles
                                             styleStr +=
@@ -392,14 +391,14 @@ namespace Material.Blazor
 
                                     if (columnDefinition.ForegroundColorExpression != null)
                                     {
-                                        var value = columnDefinition.ForegroundColorExpression(rowValues);
+                                        var value = columnDefinition.ForegroundColorExpression(rowValues.Value);
                                         styleStr +=
                                             " color: " + ColorToCSSColor((Color)value) + "; ";
                                     }
 
                                     if (columnDefinition.BackgroundColorExpression != null)
                                     {
-                                        var value = columnDefinition.BackgroundColorExpression(rowValues);
+                                        var value = columnDefinition.BackgroundColorExpression(rowValues.Value);
                                         styleStr +=
                                             " background-color: " + ColorToCSSColor((Color)value) + "; ";
                                     }
@@ -415,7 +414,7 @@ namespace Material.Blazor
                                     // Bind the object as our content.
                                     if (columnDefinition.DataExpression != null)
                                     {
-                                        var value = columnDefinition.DataExpression(rowValues);
+                                        var value = columnDefinition.DataExpression(rowValues.Value);
                                         var formattedValue = string.IsNullOrEmpty(columnDefinition.FormatString) ? value?.ToString() : string.Format("{0:" + columnDefinition.FormatString + "}", value);
                                         builder.AddContent(1, formattedValue);
                                     }
@@ -426,7 +425,7 @@ namespace Material.Blazor
                                     {
                                         try
                                         {
-                                            var value = (MBGridTextColorSpecification)columnDefinition.DataExpression(rowValues);
+                                            var value = (MBGridTextColorSpecification)columnDefinition.DataExpression(rowValues.Value);
 
                                             if (value.Supress)
                                             {
@@ -564,6 +563,15 @@ namespace Material.Blazor
 
             if (Measurement == MB_Grid_Measurement.FitToData)
             {
+                // Create a simple data dictionary from the GroupedDataDictionary
+                var dataList = new List<TRowData>();
+                foreach (var outerKVP in GroupedDataDictionary)
+                {
+                    foreach (var innerKVP in outerKVP.Value)
+                    {
+                        dataList.Add(innerKVP.Value);
+                    }
+                }
                 // Measure the header columns
                 var stringArrayHeader = new string[ColumnConfigurations.Count];
                 var colIndex = 0;
@@ -580,13 +588,10 @@ namespace Material.Blazor
                         stringArrayHeader);
 
                 // Measure the body columns
-                var stringArrayBody = new string[ColumnConfigurations.Count * DataDictionary.Count];
-                //                var stringArrayBody = new string[ColumnConfigurations.Count];
+                var stringArrayBody = new string[ColumnConfigurations.Count * dataList.Count];
                 colIndex = 0;
-                foreach (var kvp in DataDictionary)
+                foreach (var enumerableData in dataList)
                 {
-                    var enumerableData = kvp.Value;
-
                     foreach (var columnDefinition in ColumnConfigurations)
                     {
                         switch (columnDefinition.ColumnType)
@@ -633,13 +638,6 @@ namespace Material.Blazor
 
                         colIndex++;
                     }
-
-                    //ColumnWidthArray = await JsRuntime.InvokeAsync<float[]>(
-                    //        "MaterialBlazor.MBGrid.getTextWidths",
-                    //        "mb-grid-body-td",
-                    //        ColumnWidthArray,
-                    //        stringArrayBody);
-                    //colIndex = 0;
                 }
                 ColumnWidthArray = await JsRuntime.InvokeAsync<float[]>(
                         "MaterialBlazor.MBGrid.getTextWidths",
