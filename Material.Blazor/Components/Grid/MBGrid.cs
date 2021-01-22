@@ -50,17 +50,17 @@ namespace Material.Blazor
         [Parameter] public List<MBGridColumnConfiguration<TRowData>> ColumnConfigurations { get; set; } = null;
 
         /// <summary>
+        /// The Group is an optional boolean indicating that grouping is in effect.
+        /// </summary>
+        [Parameter] public bool Group { get; set; } = false;
+
+        /// <summary>
         /// The GroupedDataDictionary contains the data to be displayed.
         /// The outer dictionary key is used for grouping and is directly displayed if grouping is enabled.
         /// The inner dictionary key must be a unique identifier
         /// that is used to indicate a row that has been clicked.
         /// </summary>
         [Parameter] public Dictionary<string, Dictionary<string, TRowData>> GroupedDataDictionary { get; set; }
-
-        /// <summary>
-        /// The Group is an optional boolean indicating that grouping is in effect.
-        /// </summary>
-        [Parameter] public bool Group { get; set; } = false;
 
         /// <summary>
         /// A boolean indicating whether the selected row is highlighted
