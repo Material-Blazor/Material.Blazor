@@ -55,12 +55,12 @@ namespace Material.Blazor
         [Parameter] public bool Group { get; set; } = false;
 
         /// <summary>
-        /// The GroupedDataDictionary contains the data to be displayed.
-        /// The outer dictionary key is used for grouping and is directly displayed if grouping is enabled.
-        /// The inner dictionary key must be a unique identifier
+        /// The GroupedOrderedData contains the data to be displayed.
+        /// The outer key is used for grouping and is directly displayed if grouping is enabled.
+        /// The inner key must be a unique identifier
         /// that is used to indicate a row that has been clicked.
         /// </summary>
-        [Parameter] public Dictionary<string, Dictionary<string, TRowData>> GroupedDataDictionary { get; set; }
+        [Parameter] public List<KeyValuePair<string, List<KeyValuePair<string, TRowData>>>> GroupedOrderedData { get; set; }
 
         /// <summary>
         /// A boolean indicating whether the selected row is highlighted
@@ -270,7 +270,7 @@ namespace Material.Blazor
             // For the first pass we are going to skip this step and just display the raw content
             //
 
-            if (GroupedDataDictionary != null)
+            if (GroupedOrderedData != null)
             {
                 var isFirstGrouper = true;
 
@@ -287,7 +287,7 @@ namespace Material.Blazor
                 builder.OpenElement(rendSeq++, "tbody");
                 builder.AddAttribute(rendSeq++, "class", "mb-grid-tbody");
 
-                foreach (var kvp in GroupedDataDictionary)
+                foreach (var kvp in GroupedOrderedData)
                 {
                     if (Group)
                     {
@@ -565,7 +565,7 @@ namespace Material.Blazor
             {
                 // Create a simple data dictionary from the GroupedDataDictionary
                 var dataList = new List<TRowData>();
-                foreach (var outerKVP in GroupedDataDictionary)
+                foreach (var outerKVP in GroupedOrderedData)
                 {
                     foreach (var innerKVP in outerKVP.Value)
                     {

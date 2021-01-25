@@ -18,24 +18,40 @@
 
     <PageContent>
         <div class="mdc-layout-grid__cell--span-12">
-            <MBGrid ColumnConfigurations="@ColumnConfigurations2"
-                    GroupedDataDictionary=@PeopleAsGroupedDictionary
-                    Group="true"
-                    HighlightSelectedRow="@true"
-                    KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
-                    Measurement="@MB_Grid_Measurement.Percent"
-                    OnMouseClick="@MBGridRowClicked"
-                    TRowData="@Person" />
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Grouped grid showing the grouping column
+                    </h2>
+
+                    <MBGrid ColumnConfigurations="@ColumnConfigurations2"
+                            GroupedOrderedData=@PeopleAsGroupedOrderedData
+                            Group="true"
+                            HighlightSelectedRow="@true"
+                            KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
+                            Measurement="@MB_Grid_Measurement.Percent"
+                            OnMouseClick="@MBGridRowClicked"
+                            TRowData="@Person" />
+                </Primary>
+            </MBCard>
         </div>
         <div class="mdc-layout-grid__cell--span-12">
-            <MBGrid ColumnConfigurations="@ColumnConfigurations"
-                    GroupedDataDictionary=@PeopleAsGroupedDictionary
-                    Group="true"
-                    HighlightSelectedRow="@true"
-                    KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
-                    Measurement="@MB_Grid_Measurement.Percent"
-                    OnMouseClick="@MBGridRowClicked"
-                    TRowData="@Person" />
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Grouped grid hiding the grouping column
+                    </h2>
+
+                    <MBGrid ColumnConfigurations="@ColumnConfigurations"
+                            GroupedOrderedData=@PeopleAsGroupedOrderedData
+                            Group="true"
+                            HighlightSelectedRow="@true"
+                            KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
+                            Measurement="@MB_Grid_Measurement.Percent"
+                            OnMouseClick="@MBGridRowClicked"
+                            TRowData="@Person" />
+                </Primary>
+            </MBCard>
         </div>
     </PageContent>
 </DemonstrationPage>
@@ -78,7 +94,7 @@
         new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Mr", GivenName = "John", FamilyName = "Hume" },
     };
 
-    private Dictionary<string, Dictionary<string, Person>> PeopleAsGroupedDictionary = new();
+    private List<KeyValuePair<string, List<KeyValuePair<string, Person>>>> PeopleAsGroupedOrderedData = new();
     private List<string> GroupOrderedList = new();
     private List<MBGridColumnConfiguration<Person>> ColumnConfigurations { get; set; } = null;
     private List<MBGridColumnConfiguration<Person>> ColumnConfigurations2 { get; set; } = null;
@@ -96,16 +112,16 @@
 
         foreach (var salutation in GroupOrderedList)
         {
-            var tempDictionary = new Dictionary<string, Person>();
+            var tempList = new List<KeyValuePair<string, Person>>();
 
             foreach (var person in People)
             {
                 if (person.Salutation == salutation)
                 {
-                    tempDictionary.Add(person.UniqueIdentifier.ToString(), person);
+                    tempList.Add(new KeyValuePair<string, Person>(person.UniqueIdentifier.ToString(), person));
                 }
             }
-            PeopleAsGroupedDictionary.Add(salutation, tempDictionary);
+            PeopleAsGroupedOrderedData.Add(new KeyValuePair<string, List<KeyValuePair<string, Person>>>(salutation, tempList));
         }
 
         ColumnConfigurations = new List<MBGridColumnConfiguration<Person>>();
