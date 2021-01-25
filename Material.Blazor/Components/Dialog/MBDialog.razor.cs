@@ -23,6 +23,12 @@ namespace Material.Blazor
 
 
         /// <summary>
+        /// Render fragment for the dialog header.
+        /// </summary>
+        [Parameter] public RenderFragment Header { get; set; }
+
+
+        /// <summary>
         /// Render fragment for the dialog body.
         /// </summary>
         [Parameter] public RenderFragment Body { get; set; }
@@ -68,6 +74,7 @@ namespace Material.Blazor
         private ElementReference DialogElem { get; set; }
         private bool HasBody => Body != null;
         private bool HasButtons => Buttons != null;
+        private bool HasHeader => Header != null;
         private bool HasTitle => !string.IsNullOrWhiteSpace(Title);
         private List<DialogChildComponent> LayoutChildren { get; set; } = new List<DialogChildComponent>();
         private DotNetObjectReference<MBDialog> ObjectReference { get; set; }
@@ -75,6 +82,7 @@ namespace Material.Blazor
 
 
         private readonly string bodyId = Utilities.GenerateUniqueElementName();
+        private readonly string headerId = Utilities.GenerateUniqueElementName();
         private readonly string titleId = Utilities.GenerateUniqueElementName();
 
         private bool dialogHasInstantiated = false;

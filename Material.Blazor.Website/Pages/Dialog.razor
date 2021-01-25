@@ -122,6 +122,23 @@
         </div>
 
 
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true"
+                    @onclick="@ShowDialog7Async">
+                <PrimaryAction>
+                    <div class="mb-card__primary">
+                        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                            Header
+                        </h2>
+                        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                            Shows a dialog with a header
+                        </h3>
+                    </div>
+                </PrimaryAction>
+            </MBCard>
+        </div>
+
+
         <MBDialog @ref="@Dialog1"
                   Title="General dialog">
             <Body>
@@ -247,7 +264,56 @@
                           Label="Cancel" />
             </Buttons>
         </MBDialog>
+
+        <MBDialog EscapeKeyAction=""
+                            @ref="@Dialog7"
+                            ScrimClickAction=""
+                            Title="Logon Dialog">
+            <Header>
+                <h1>This is an h1 header</h1>
+                <h1>This is also an h1 header</h1>
+            </Header>
+            <Body>
+                <EditForm Model="@UserLogon"
+                          OnInvalidSubmit="@Dialog7Invalid"
+                          OnValidSubmit="@Dialog7Submitted">
+                    <DataAnnotationsValidator />
+
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <MBTextField @bind-Value="@UserLogon.UserID"
+                                         Label="User ID"
+                                         style="width: 100%; margin-top: 6px;"
+                                         TextInputStyle="@MBTextInputStyle.Outlined"
+                                         TrailingIcon="person"
+                                         ValidationMessageFor="@(() => UserLogon.UserID)" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <MBTextField @bind-Value="@UserLogon.Password"
+                                         HelperText="Min 8 Characters"
+                                         HelperTextPersistent="true"
+                                         Label="Password"
+                                         style="width: 100%;"
+                                         TextInputStyle="@MBTextInputStyle.Outlined"
+                                         TrailingIcon="lock_outline"
+                                         type="password"
+                                         ValidationMessageFor="@(() => UserLogon.Password)" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-12" style="text-align: right;">
+                            <MBButton Label="Logon"
+                                      style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                      type="submit" />
+                            <MBButton Label="Cancel"
+                                      @onclick="@Dialog7Canceled"
+                                      style="margin: 0.75em 0.25em 0.25em 0.25em;" />
+                        </div>
+                    </div>
+                </EditForm>
+            </Body>
+        </MBDialog>
+
     </PageContent>
+
 </DemonstrationPage>
 
 
@@ -260,6 +326,7 @@
     private MBDialog Dialog4 { get; set; }
     private MBDialog Dialog5 { get; set; }
     private MBDialog Dialog6 { get; set; }
+    private MBDialog Dialog7 { get; set; }
 
     private bool Check { get; set; }
 
@@ -280,7 +347,7 @@
         new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
         new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
-                        };
+                            };
 
     private async Task ShowDialog1Async()
     {
@@ -345,6 +412,30 @@
     {
         var result = await Dialog6.ShowAsync();
         ToastService.ShowToast(heading: "No Title Dialog", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+    }
+
+    private async Task ShowDialog7Async()
+    {
+        UserLogon = new UserLogonDefinition();
+        _ = Dialog7.ShowAsync();
+        await Task.CompletedTask;
+    }
+
+    private async Task Dialog7Submitted()
+    {
+        await Dialog7.HideAsync();
+        ToastService.ShowToast(heading: "Logon Dialog #2 Submit", message: $"User / Password: '{UserLogon.UserID}' / '{UserLogon.Password}'", level: MBToastLevel.Success, showIcon: false);
+    }
+
+    private void Dialog7Invalid()
+    {
+        ToastService.ShowToast(heading: "Logon Dialog #2 Invalid", message: $"Edit form was invalid", level: MBToastLevel.Warning, showIcon: false);
+    }
+
+    private async Task Dialog7Canceled()
+    {
+        await Dialog7.HideAsync();
+        ToastService.ShowToast(heading: "Logon Dialog #2 Canceled", message: "The cancel button was selected", level: MBToastLevel.Success, showIcon: false);
     }
 
     private class UserLogonDefinition

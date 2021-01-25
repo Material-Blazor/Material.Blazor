@@ -1,3 +1,31 @@
 ﻿.mb-dialog-overflow-visible.mdc-dialog__surface, .mb-dialog-overflow-visible.mdc-dialog__surface .mdc-dialog__content {
     overflow: visible !important;
 }
+
+.mb-dialog__header {
+    border-block-end-color: rgba(0, 0, 0, 0.6);
+    border-block-start-color: rgba(0, 0, 0, 0.6);
+    border-inline-end-color: rgba(0, 0, 0, 0.6);
+    border-inline-start-color: rgba(0, 0, 0, 0.6);
+    box-sizing: border-box;
+    caret-color: rgba(0, 0, 0, 0.6);
+    color: rgba(0, 0, 0, 0.6);
+    column-rule-color: rgba(0, 0, 0, 0.6);
+    min-block-size: auto;
+    min-height: auto;
+    min-inline-size: auto;
+    min-width: auto;
+    padding-block-end: 0px;
+    padding-block-start: 0px;
+    padding-inline-end: 24px;
+    padding-inline-start: 24px;
+    text-decoration: none solid rgba(0, 0, 0, 0.6);
+    border: 0px none rgba(0, 0, 0, 0.6);
+    flex: 1 1 auto;
+    font: 16px / 24px Roboto, sans-serif;
+    outline: rgba(0, 0, 0, 0.6) none 0px;
+    overflow: auto;
+    padding-left: 24px;
+    padding-right: 24px;
+    overflow: visible !important;
+}
