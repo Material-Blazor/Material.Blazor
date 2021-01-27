@@ -94,7 +94,7 @@
         new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Mr", GivenName = "John", FamilyName = "Hume" },
     };
 
-    private List<KeyValuePair<string, List<KeyValuePair<string, Person>>>> PeopleAsGroupedOrderedData = new();
+    private List<KeyValuePair<string, IEnumerable<KeyValuePair<string, Person>>>> PeopleAsGroupedOrderedData = new();
     private List<string> GroupOrderedList = new();
     private List<MBGridColumnConfiguration<Person>> ColumnConfigurations { get; set; } = null;
     private List<MBGridColumnConfiguration<Person>> ColumnConfigurations2 { get; set; } = null;
@@ -121,7 +121,7 @@
                     tempList.Add(new KeyValuePair<string, Person>(person.UniqueIdentifier.ToString(), person));
                 }
             }
-            PeopleAsGroupedOrderedData.Add(new KeyValuePair<string, List<KeyValuePair<string, Person>>>(salutation, tempList));
+            PeopleAsGroupedOrderedData.Add(new KeyValuePair<string, IEnumerable<KeyValuePair<string, Person>>>(salutation, tempList));
         }
 
         ColumnConfigurations = new List<MBGridColumnConfiguration<Person>>();

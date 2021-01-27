@@ -60,7 +60,7 @@ namespace Material.Blazor
         /// The inner key must be a unique identifier
         /// that is used to indicate a row that has been clicked.
         /// </summary>
-        [Parameter] public List<KeyValuePair<string, List<KeyValuePair<string, TRowData>>>> GroupedOrderedData { get; set; }
+        [Parameter] public IEnumerable<KeyValuePair<string, IEnumerable<KeyValuePair<string, TRowData>>>> GroupedOrderedData { get; set; }
 
         /// <summary>
         /// A boolean indicating whether the selected row is highlighted
