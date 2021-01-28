@@ -583,7 +583,7 @@ namespace Material.Blazor
 
                 ColumnWidthArray = await JsRuntime.InvokeAsync<float[]>(
                         "MaterialBlazor.MBGrid.getTextWidths",
-                        "mb-grid-header-td",
+                        "mb-grid-header-td-measure",
                         ColumnWidthArray,
                         stringArrayHeader);
 
@@ -641,7 +641,7 @@ namespace Material.Blazor
                 }
                 ColumnWidthArray = await JsRuntime.InvokeAsync<float[]>(
                         "MaterialBlazor.MBGrid.getTextWidths",
-                        "mb-grid-body-td",
+                        "mb-grid-body-td-measure",
                         ColumnWidthArray,
                         stringArrayBody);
 
