@@ -47,7 +47,7 @@ namespace Material.Blazor
         /// The configuration of each column to be displayed. See the definition of MBGridColumnConfiguration
         /// for details.
         /// </summary>
-        [Parameter] public List<MBGridColumnConfiguration<TRowData>> ColumnConfigurations { get; set; } = null;
+        [Parameter] public IEnumerable<MBGridColumnConfiguration<TRowData>> ColumnConfigurations { get; set; } = null;
 
         /// <summary>
         /// The Group is an optional boolean indicating that grouping is in effect.
@@ -176,7 +176,7 @@ namespace Material.Blazor
         #region BuildRenderTree
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
-            if (IsFirstRender || (!ShouldRenderValue) || (ColumnWidthArray.Length != ColumnConfigurations.Count))
+            if (IsFirstRender || (!ShouldRenderValue) || (ColumnWidthArray.Length != ColumnConfigurations.Count()))
             {
 #if LoggingVerbose
                 Logger.LogInformation("BuildRenderTree entered (IsFirstRender == true)");
@@ -296,7 +296,7 @@ namespace Material.Blazor
                         builder.OpenElement(rendSeq++, "tr");
                         builder.AddAttribute(rendSeq++, "class", "mb-grid-tr");
                         builder.OpenElement(rendSeq++, "td");
-                        builder.AddAttribute(rendSeq++, "colspan", ColumnConfigurations.Count.ToString());
+                        builder.AddAttribute(rendSeq++, "colspan", ColumnConfigurations.Count().ToString());
                         builder.AddAttribute(rendSeq++, "class", "mb-grid-td-group mb-grid-backgroundcolor-row-group");
                         if (isFirstGrouper)
                         {
@@ -553,7 +553,7 @@ namespace Material.Blazor
             // We need to create the ColumnWidthArray regardless of the measurement type as we need to pass
             // values to CreateTD
             //
-            ColumnWidthArray = new float[ColumnConfigurations.Count];
+            ColumnWidthArray = new float[ColumnConfigurations.Count()];
 
             // Measure the width of a vertical scrollbar (Used to set the padding of the header)
             ScrollWidth = await JsRuntime.InvokeAsync<int>(
@@ -573,7 +573,7 @@ namespace Material.Blazor
                     }
                 }
                 // Measure the header columns
-                var stringArrayHeader = new string[ColumnConfigurations.Count];
+                var stringArrayHeader = new string[ColumnConfigurations.Count()];
                 var colIndex = 0;
                 foreach (var col in ColumnConfigurations)
                 {
@@ -588,7 +588,7 @@ namespace Material.Blazor
                         stringArrayHeader);
 
                 // Measure the body columns
-                var stringArrayBody = new string[ColumnConfigurations.Count * dataList.Count];
+                var stringArrayBody = new string[ColumnConfigurations.Count() * dataList.Count];
                 colIndex = 0;
                 foreach (var enumerableData in dataList)
                 {
