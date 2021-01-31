@@ -176,7 +176,10 @@ namespace Material.Blazor
         #region BuildRenderTree
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
-            if (IsFirstRender || (!ShouldRenderValue) || (ColumnWidthArray.Length != ColumnConfigurations.Count()))
+            if (IsFirstRender ||
+                (!ShouldRenderValue) ||
+                (ColumnWidthArray == null) ||
+                ((ColumnWidthArray != null) && (ColumnWidthArray.Length != ColumnConfigurations.Count())))
             {
 #if LoggingVerbose
                 Logger.LogInformation("BuildRenderTree entered (IsFirstRender == true)");
@@ -548,6 +551,10 @@ namespace Material.Blazor
         #region MeasureWidthsAsync
         private async Task MeasureWidthsAsync()
         {
+            if (GroupedOrderedData == null)
+            {
+                return;
+            }
             //
             // We are going to measure the actual sizes using JS if the Measurement is FitToData
             // We need to create the ColumnWidthArray regardless of the measurement type as we need to pass
