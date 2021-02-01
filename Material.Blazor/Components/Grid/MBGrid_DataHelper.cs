@@ -11,20 +11,20 @@ namespace Material.Blazor
         public IEnumerable<KeyValuePair<string, IEnumerable<KeyValuePair<string, TRowData>>>>
             PrepareGridData(
                 IEnumerable<TRowData> data,
-                PropertyInfo groupKeyInfo,
-                PropertyInfo sortPropertyInfo1 = null,
-                Direction sortDirection1 = Direction.Ascending,
-                PropertyInfo sortPropertyInfo2 = null,
-                Direction sortDirection2 = Direction.Ascending,
+                PropertyInfo dataKeyInfo,
+                PropertyInfo orderPropertyInfo1 = null,
+                Direction orderDirection1 = Direction.Ascending,
+                PropertyInfo orderPropertyInfo2 = null,
+                Direction orderDirection2 = Direction.Ascending,
                 bool group = false,
-                PropertyInfo groupExpressionInfo = null,
+                PropertyInfo groupPropertyInfo = null,
                 IEnumerable<string> groupItemEnumerable = null,
                 Func<IEnumerable<TRowData>,
                     PropertyInfo,
                     Direction,
                     PropertyInfo,
                     Direction,
-                    IEnumerable<TRowData>> OrderItems = null,
+                    IEnumerable<TRowData>> OrderData = null,
                 Func<IEnumerable<TRowData>,
                     bool,
                     PropertyInfo,
@@ -35,23 +35,23 @@ namespace Material.Blazor
         {
             IEnumerable<TRowData> orderedData;
 
-            if (OrderItems == null)
+            if (OrderData == null)
             {
-                orderedData = orderItems(
+                orderedData = orderData(
                     data,
-                    sortPropertyInfo1,
-                    sortDirection1,
-                    sortPropertyInfo2,
-                    sortDirection2);
+                    orderPropertyInfo1,
+                    orderDirection1,
+                    orderPropertyInfo2,
+                    orderDirection2);
             }
             else
             {
-                orderedData = OrderItems(
+                orderedData = OrderData(
                     data,
-                    sortPropertyInfo1,
-                    sortDirection1,
-                    sortPropertyInfo2,
-                    sortDirection2);
+                    orderPropertyInfo1,
+                    orderDirection1,
+                    orderPropertyInfo2,
+                    orderDirection2);
             }
 
             if (GroupItems == null)
@@ -59,8 +59,8 @@ namespace Material.Blazor
                 return groupItems(
                     orderedData,
                     group,
-                    groupKeyInfo,
-                    groupExpressionInfo,
+                    dataKeyInfo,
+                    groupPropertyInfo,
                     groupItemEnumerable);
             }
             else
@@ -68,73 +68,73 @@ namespace Material.Blazor
                 return GroupItems(
                     orderedData,
                     group,
-                    groupKeyInfo,
-                    groupExpressionInfo,
+                    dataKeyInfo,
+                    groupPropertyInfo,
                     groupItemEnumerable);
             }
         }
 
-        IEnumerable<TRowData> orderItems(
+        private IEnumerable<TRowData> orderData(
             IEnumerable<TRowData> data,
-            PropertyInfo sortPropertyInfo1 = null,
-            Direction sortDirection1 = Direction.Ascending,
-            PropertyInfo sortPropertyInfo2 = null,
-            Direction sortDirection2 = Direction.Ascending
+            PropertyInfo orderPropertyInfo1,
+            Direction orderDirection1,
+            PropertyInfo orderPropertyInfo2,
+            Direction orderDirection2
             )
         {
-            // Perform the sort(s)
+            // Perform the group(s)
             IEnumerable<TRowData> orderedData;
 
-            if (sortPropertyInfo1 == null)
+            if (orderPropertyInfo1 == null)
             {
-                // No sorting
+                // No grouping
                 orderedData = data;
             }
             else
             {
-                if (sortPropertyInfo2 == null)
+                if (orderPropertyInfo2 == null)
                 {
-                    // Sorting by first property
-                    if (sortDirection1 == Direction.Ascending)
+                    // grouping by first property
+                    if (orderDirection1 == Direction.Ascending)
                     {
-                        orderedData = data.OrderBy(x => sortPropertyInfo1.GetValue(x));
+                        orderedData = data.OrderBy(x => orderPropertyInfo1.GetValue(x));
                     }
                     else
                     {
-                        orderedData = data.OrderByDescending(x => sortPropertyInfo1.GetValue(x));
+                        orderedData = data.OrderByDescending(x => orderPropertyInfo1.GetValue(x));
                     }
                 }
                 else
                 {
-                    // Sorting by both properties
-                    if (sortDirection1 == Direction.Ascending)
+                    // grouping by both properties
+                    if (orderDirection1 == Direction.Ascending)
                     {
-                        if (sortDirection2 == Direction.Ascending)
+                        if (orderDirection2 == Direction.Ascending)
                         {
                             orderedData = data
-                                    .OrderBy(x => sortPropertyInfo1.GetValue(x))
-                                    .ThenBy(x => sortPropertyInfo2.GetValue(x));
+                                    .OrderBy(x => orderPropertyInfo1.GetValue(x))
+                                    .ThenBy(x => orderPropertyInfo2.GetValue(x));
                         }
                         else
                         {
                             orderedData = data
-                                    .OrderBy(x => sortPropertyInfo1.GetValue(x))
-                                    .ThenByDescending(x => sortPropertyInfo2.GetValue(x));
+                                    .OrderBy(x => orderPropertyInfo1.GetValue(x))
+                                    .ThenByDescending(x => orderPropertyInfo2.GetValue(x));
                         }
                     }
                     else
                     {
-                        if (sortDirection2 == Direction.Ascending)
+                        if (orderDirection2 == Direction.Ascending)
                         {
                             orderedData = data
-                                    .OrderByDescending(x => sortPropertyInfo1.GetValue(x))
-                                    .ThenBy(x => sortPropertyInfo2.GetValue(x));
+                                    .OrderByDescending(x => orderPropertyInfo1.GetValue(x))
+                                    .ThenBy(x => orderPropertyInfo2.GetValue(x));
                         }
                         else
                         {
                             orderedData = data
-                                    .OrderByDescending(x => sortPropertyInfo1.GetValue(x))
-                                    .ThenByDescending(x => sortPropertyInfo2.GetValue(x));
+                                    .OrderByDescending(x => orderPropertyInfo1.GetValue(x))
+                                    .ThenByDescending(x => orderPropertyInfo2.GetValue(x));
                         }
                     }
                 }
@@ -142,13 +142,13 @@ namespace Material.Blazor
             return orderedData;
         }
 
-        IEnumerable<KeyValuePair<string, IEnumerable<KeyValuePair<string, TRowData>>>>
+        private IEnumerable<KeyValuePair<string, IEnumerable<KeyValuePair<string, TRowData>>>>
             groupItems(
                 IEnumerable<TRowData> orderedData,
-                bool group = false,
-                PropertyInfo groupKeyInfo = null,
-                PropertyInfo groupExpressionInfo = null,
-                IEnumerable<string> groupItems = null)
+                bool group,
+                PropertyInfo dataKeyInfo,
+                PropertyInfo groupPropertyInfo,
+                IEnumerable<string> groupItems)
         {
             List<KeyValuePair<string, IEnumerable<KeyValuePair<string, TRowData>>>> groupedOrderedData = new();
 
@@ -158,14 +158,14 @@ namespace Material.Blazor
                 var tempDataAsSingleGroup = new List<KeyValuePair<string, TRowData>>();
                 foreach (var db in orderedData)
                 {
-                    tempDataAsSingleGroup.Add(new KeyValuePair<string, TRowData>(groupKeyInfo.GetValue(db).ToString(), db));
+                    tempDataAsSingleGroup.Add(new KeyValuePair<string, TRowData>(dataKeyInfo.GetValue(db).ToString(), db));
                 }
                 groupedOrderedData.Add(new KeyValuePair<string, IEnumerable<KeyValuePair<string, TRowData>>>("FauxKey", tempDataAsSingleGroup));
             }
             else
             {
                 var groupedData = orderedData
-                    .GroupBy(x => groupExpressionInfo.GetValue(x))
+                    .GroupBy(x => groupPropertyInfo.GetValue(x))
                     .ToDictionary(g => g.Key.ToString(), g => g.ToList());
 
                 if (groupItems == null)
@@ -177,7 +177,7 @@ namespace Material.Blazor
                         var tempGroupedSortedData = new List<KeyValuePair<string, TRowData>>();
                         foreach (var db in kvp.Value)
                         {
-                            tempGroupedSortedData.Add(new KeyValuePair<string, TRowData>(groupKeyInfo.GetValue(db).ToString(), db));
+                            tempGroupedSortedData.Add(new KeyValuePair<string, TRowData>(dataKeyInfo.GetValue(db).ToString(), db));
                         }
                         groupedOrderedData.Add(new KeyValuePair<string, IEnumerable<KeyValuePair<string, TRowData>>>(kvp.Key, tempGroupedSortedData));
                     }
@@ -191,7 +191,7 @@ namespace Material.Blazor
                             var tempGroupedSortedData = new List<KeyValuePair<string, TRowData>>();
                             foreach (var db in groupedData[key])
                             {
-                                tempGroupedSortedData.Add(new KeyValuePair<string, TRowData>(groupKeyInfo.GetValue(db).ToString(), db));
+                                tempGroupedSortedData.Add(new KeyValuePair<string, TRowData>(dataKeyInfo.GetValue(db).ToString(), db));
                             }
                             groupedOrderedData.Add(new KeyValuePair<string, IEnumerable<KeyValuePair<string, TRowData>>>(key, tempGroupedSortedData));
                         }

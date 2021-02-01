@@ -164,25 +164,25 @@
             People,
             typeof(Person).GetProperty("UniqueIdentifier"),
             typeof(Person).GetProperty("FamilyName"),
-            sortPropertyInfo2: typeof(Person).GetProperty("GivenName")
+            orderPropertyInfo2: typeof(Person).GetProperty("GivenName")
             );
 
         PeopleAsGroupedData = new MBGrid_DataHelper<Person>().PrepareGridData(
             People,
             typeof(Person).GetProperty("UniqueIdentifier"),
             typeof(Person).GetProperty("FamilyName"),
-            sortPropertyInfo2: typeof(Person).GetProperty("GivenName"),
+            orderPropertyInfo2: typeof(Person).GetProperty("GivenName"),
             group: true,
-            groupExpressionInfo: typeof(Person).GetProperty("Salutation")
+            groupPropertyInfo: typeof(Person).GetProperty("Salutation")
             );
 
         PeopleAsGroupedDataWithGroupList = new MBGrid_DataHelper<Person>().PrepareGridData(
             People,
             typeof(Person).GetProperty("UniqueIdentifier"),
             typeof(Person).GetProperty("FamilyName"),
-            sortPropertyInfo2: typeof(Person).GetProperty("GivenName"),
+            orderPropertyInfo2: typeof(Person).GetProperty("GivenName"),
             group: true,
-            groupExpressionInfo: typeof(Person).GetProperty("Salutation"),
+            groupPropertyInfo: typeof(Person).GetProperty("Salutation"),
             groupItemEnumerable: GroupOrderedList
             );
 
