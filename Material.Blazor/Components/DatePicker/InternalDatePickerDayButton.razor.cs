@@ -40,6 +40,10 @@ namespace Material.Blazor.Internal
         /// </summary>
         [Parameter] public MBDateSelectionCriteria? DateSelectionCriteria { get; set; }
 
+        /// <summary>
+        /// Control whether a date is selectable by evaluating the method.
+        /// </summary>
+        [Parameter] public Func<DateTime, bool>? DateIsSelectable { get; set; }
 
         /// <summary>
         /// Minimum date set by the consumer
@@ -62,6 +66,11 @@ namespace Material.Blazor.Internal
             get
             {
                 if (DisplayDate.Month != StartOfDisplayMonth.Month)
+                {
+                    return true;
+                }
+
+                if (DateIsSelectable != null && DateIsSelectable != MBDatePicker.DateIsSelectableNotUsed && !DateIsSelectable(DisplayDate))
                 {
                     return true;
                 }

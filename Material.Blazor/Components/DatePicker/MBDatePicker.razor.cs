@@ -26,11 +26,17 @@ namespace Material.Blazor
         /// </summary>
         [Parameter] public string Label { get; set; }
 
-
         /// <summary>
         /// Date selection criteria
         /// </summary>
         [Parameter] public MBDateSelectionCriteria? DateSelectionCriteria { get; set; }
+
+
+        internal static readonly Func<DateTime, bool> DateIsSelectableNotUsed = (_) => true;
+        /// <summary>
+        /// Control whether a date is selectable by evaluating the method.
+        /// </summary>
+        [Parameter] public Func<DateTime, bool>? DateIsSelectable { get; set; } = DateIsSelectableNotUsed;
 
 
         /// <summary>

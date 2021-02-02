@@ -21,6 +21,12 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
+        /// Control whether a date is selectable by evaluating the method.
+        /// </summary>
+        [Parameter] public Func<DateTime, bool>? DateIsSelectable { get; set; }
+
+
+        /// <summary>
         /// Minimum date set by the consumer
         /// </summary>
         [Parameter] public DateTime MinDate { get; set; }
@@ -63,9 +69,9 @@ namespace Material.Blazor.Internal
             }
         }
 
-        private LinkedList<DateTime> Dates { get; set; } = new LinkedList<DateTime>();
+        private List<DateTime> Dates { get; set; } = new List<DateTime>();
 
-        private LinkedList<int> Years { get; set; } = new LinkedList<int>();
+        private List<int> Years { get; set; } = new List<int>();
 
         private DateTime InitialDate { get; set; }
 
@@ -83,8 +89,6 @@ namespace Material.Blazor.Internal
 
         private string MonthText => StartOfDisplayMonth.ToString("MMMM yyyy");
 
-        private int Year => StartOfDisplayMonth.Year;
-
         private bool IsFirstParametersSet { get; set; } = true;
 
 
@@ -101,7 +105,12 @@ namespace Material.Blazor.Internal
             ClassMapperInstance
                 .Add("mdc-typography--body2 mb-dp-container");
 
-            DaysOfWeek = (new DateTimeFormatInfo()).DayNames.Select(d => d.Substring(0, 1)).ToArray();
+            DaysOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedDayNames;
+            var rotate_by = (int)CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
+            if (rotate_by > 0)
+            {
+                DaysOfWeek = DaysOfWeek.Skip(rotate_by).Concat(DaysOfWeek.Take(rotate_by)).ToArray();
+            }
 
             ForceShouldRenderToTrue = true;
         }
@@ -133,28 +142,28 @@ namespace Material.Blazor.Internal
                 CachedComponentValue = ComponentValue;
                 CachedMinDate = MinDate;
                 CachedMaxDate = MaxDate;
-
                 var startDate = StartOfDisplayMonth = new DateTime(ComponentValue.Year, ComponentValue.Month, 1).AddMonths(MonthsOffset);
-                var endDate = startDate.AddMonths(1).AddDays(-1);
+                while (startDate.DayOfWeek != CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek)
+                {
+                    startDate = startDate.AddDays(-1);
+                }
+                var endDate = startDate.AddDays(6 * 7); // 6 lines of 7 days each
 
-                startDate = startDate.AddDays(-Convert.ToInt32(startDate.DayOfWeek));
-                endDate = endDate.AddDays(-Convert.ToInt32(endDate.DayOfWeek) + 7);
-
-                Dates = new LinkedList<DateTime>();
+                Dates = new List<DateTime>();
 
                 for (var date = startDate; date < endDate; date = date.AddDays(1))
                 {
-                    Dates.AddLast(date);
+                    Dates.Add(date);
                 }
 
                 var startYear = ((MinDate.Year - 1) / 4) * 4 + 1;
                 var endYear = ((MaxDate.Year + 3) / 4) * 4 + 1;
 
-                Years = new LinkedList<int>();
+                Years = new List<int>();
 
                 for (var year = startYear; year < endYear; year++)
                 {
-                    Years.AddLast(year);
+                    Years.Add(year);
                 }
 
                 ShowYearPad = false;

@@ -36,7 +36,7 @@
         <div class="mb-dp-year-pad">
             @foreach (var year in Years)
             {
-                <InternalDatePickerYearButton @key="@year" CurrentYear="@StartOfDisplayMonth.Year" DisplayYear="@year" OnItemClickAsync="@OnYearItemClick" MinDate="@MinDate" MaxDate="@MaxDate" CurrentYearId="@currentYearId" />
+                <InternalDatePickerYearButton @key="@year" CurrentYear="@StartOfDisplayMonth.Year" DisplayYear="@year" OnItemClickAsync="@OnYearItemClick" MinDate="@MinDate" MaxDate="@MaxDate" CurrentYearId="@currentYearId" DateIsSelectable="@DateIsSelectable" />
             }
         </div>
     }
@@ -52,7 +52,7 @@
             <div class="mdc-list mb-dp-day-pad__days-block">
                 @foreach (var date in Dates)
                 {
-                    <InternalDatePickerDayButton @key="@date" DateSelectionCriteria="@DateSelectionCriteria" CurrentDate="@ComponentValue" DisplayDate="@date" StartOfDisplayMonth="@StartOfDisplayMonth" OnItemClickAsync="@OnDayItemClickAsync" MinDate="@MinDate" MaxDate="@MaxDate" />
+                    <InternalDatePickerDayButton @key="@date" DateSelectionCriteria="@DateSelectionCriteria" DateIsSelectable="@DateIsSelectable" CurrentDate="@ComponentValue" DisplayDate="@date" StartOfDisplayMonth="@StartOfDisplayMonth" OnItemClickAsync="@OnDayItemClickAsync" MinDate="@MinDate" MaxDate="@MaxDate" />
                 }
             </div>
         </div>

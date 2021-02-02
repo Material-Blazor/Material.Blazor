@@ -65,6 +65,31 @@
                 </Primary>
             </MBCard>
         </div>
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Selectable dates
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Control which dates are selectable.
+                    </h3>
+
+                    <p>
+                        <MBDatePicker @bind-Value="@Outlined"
+                                      Label="Weekdays Outlined"
+                                      DateFormat="ddd MMM dd, yyyy"
+                                      DateIsSelectable="(date) => date.DayOfWeek is DayOfWeek.Monday or DayOfWeek.Wednesday or DayOfWeek.Friday or DayOfWeek.Sunday"
+                                      SelectInputStyle="MBSelectInputStyle.Outlined"
+                                      MaxDate="@Max"
+                                      MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
+                                      MinDate="@Min" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
     </PageContent>
 </DemonstrationPage>
 
