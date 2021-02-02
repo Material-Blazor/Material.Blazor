@@ -692,7 +692,7 @@
     /// Determines whether a toast notfication times out and whether it has a close button.
     /// <para>Defaults to <see cref="TimeoutAndCloseButton"/></para>
     /// </summary>
-    public enum MBToastCloseMethod 
+    public enum MBToastCloseMethod
     {
         /// <summary>
         /// Apply a timeout and show the close button. This is the default.
@@ -714,7 +714,7 @@
     /// <summary>
     /// Determines the type of a toast notfication. This is a required toast parameter without defaults.
     /// </summary>
-    public enum MBToastLevel 
+    public enum MBToastLevel
     {
         /// <summary>
         /// Informational toast.

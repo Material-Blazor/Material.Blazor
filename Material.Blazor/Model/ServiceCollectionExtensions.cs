@@ -7,19 +7,46 @@ namespace Material.Blazor
     public static class ServiceCollectionExtensions
     {
         /// <summary>
-        /// Adds Toast, Tooltip and Animated Navigation services for Material.Blazor. This is required for any app that uses one or more
+        /// Adds Snackbar, Toast, Tooltip and Animated Navigation services for Material.Blazor. This is required for any app that uses one or more
         /// of these components. The two configurations are optional.
         /// </summary>
         /// <param name="services"></param>
+        /// <param name="snackbarServiceConfiguration"></param>
         /// <param name="toastServiceConfiguration"></param>
         /// <param name="animatedNavigationManagerServiceConfiguration"></param>
         /// <returns></returns>
-        public static IServiceCollection AddMBServices(this IServiceCollection services, MBToastServiceConfiguration toastServiceConfiguration = null, MBAnimatedNavigationManagerServiceConfiguration animatedNavigationManagerServiceConfiguration = null)
+        public static IServiceCollection AddMBServices(this IServiceCollection services, MBSnackbarServiceConfiguration snackbarServiceConfiguration = null, MBToastServiceConfiguration toastServiceConfiguration = null, MBAnimatedNavigationManagerServiceConfiguration animatedNavigationManagerServiceConfiguration = null)
         {
             return services
-                .AddMBToastService( toastServiceConfiguration)
+                .AddMBSnackbarService(snackbarServiceConfiguration)
+                .AddMBToastService(toastServiceConfiguration)
                 .AddMBAnimatedNavigationService(animatedNavigationManagerServiceConfiguration)
                 .AddMBTooltipService();
+        }
+
+
+        /// <summary>
+        /// Adds a Material.Blazor <see cref="IMBSnackbarService"/> to the service collection to manage snackbar messages.
+        /// <example>
+        /// <para>You can optionally add configuration:</para>
+        /// <code>
+        /// services.AddMBSnackbarService(new MBSnackbarServiceConfiguration()
+        /// {
+        ///     Postion = MBSnackbarPosition.TopRight,
+        ///     CloseMethod = MBSnackbarCloseMethod.Timeout,
+        ///     ... etc
+        /// });
+        /// </code>
+        /// </example>
+        /// </summary>
+        private static IServiceCollection AddMBSnackbarService(this IServiceCollection services, MBSnackbarServiceConfiguration configuration = null)
+        {
+            if (configuration == null)
+            {
+                configuration = new MBSnackbarServiceConfiguration();
+            }
+
+            return services.AddScoped<IMBSnackbarService, SnackbarService>(serviceProvider => new SnackbarService(configuration));
         }
 
 

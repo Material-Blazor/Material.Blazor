@@ -1,6 +1,4 @@
-﻿using Material.Blazor;
-
-namespace Material.Blazor.Website
+﻿namespace Material.Blazor.Website
 {
     public static class Utilities
     {
@@ -20,6 +18,14 @@ namespace Material.Blazor.Website
             {
                 Position = MBToastPosition.TopRight,
                 CloseMethod = MBToastCloseMethod.Timeout,
+            };
+        }
+
+
+        public static MBSnackbarServiceConfiguration GetDefaultSnackbarServiceConfiguration()
+        {
+            return new MBSnackbarServiceConfiguration()
+            {
             };
         }
     }
