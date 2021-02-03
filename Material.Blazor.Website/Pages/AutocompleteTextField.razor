@@ -55,6 +55,29 @@
                 </Primary>
             </MBCard>
         </div>
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Allow custom value
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        The auto-complete items may only be suggestions, but custom values may be permitted.
+                    </h3>
+
+                    <style>
+                        li.mb-autocomplete-custom-value + li {
+                            border-top: 1px solid darkgray;
+                        }
+                    </style>
+
+                    <p><MBAutocompleteTextField Label="Any value is valid" @bind-Value="@CustomValue" SelectItems="@Fruits" AllowCustomValue="true" /></p>
+                </Primary>
+            </MBCard>
+        </div>
     </PageContent>
 </DemonstrationPage>
 
@@ -112,6 +135,19 @@
             _popupHelperText = value;
 
             ToastService.ShowToast(heading: "Popup Helper Text", message: $"Value: '{_popupHelperText}'", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private string _customValue = "Customberry";
+    private string CustomValue
+    {
+        get => _customValue;
+        set
+        {
+            _customValue = value;
+
+            ToastService.ShowToast(heading: "Custom Value", message: $"Value: '{_customValue}'", level: MBToastLevel.Success, showIcon: false);
         }
     }
 

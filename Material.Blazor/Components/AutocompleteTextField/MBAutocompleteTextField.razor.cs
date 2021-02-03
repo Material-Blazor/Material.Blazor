@@ -1,6 +1,5 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
@@ -23,9 +22,10 @@ namespace Material.Blazor
         private class SelectionInfo
         {
             public string SelectedText { get; set; }
-            public IEnumerable<string> SelectList { get; set; }
+            public string[] SelectList { get; set; }
+            public bool FirstValueIsCustomValue { get; set; }
             public bool PotentialMatchesFound => SelectList.Any();
-            public bool FullMatchFound => (SelectList.Count() == 1) && SelectList.Contains(SelectedText);
+            public bool FullMatchFound => (SelectList.Length == 1) && SelectList.Contains(SelectedText);
         }
 
 
@@ -127,8 +127,8 @@ namespace Material.Blazor
         /// <summary>
         /// List of items to select from.
         /// </summary>
-        [Parameter] public IEnumerable<string> SelectItems 
-        { 
+        [Parameter] public IEnumerable<string> SelectItems
+        {
             get => selectItems;
             set
             {
@@ -143,6 +143,11 @@ namespace Material.Blazor
             }
         }
 #nullable restore annotations
+
+        /// <summary>
+        /// When set, the value that the user enters does not have to match any of the selectable items.
+        /// </summary>
+        [Parameter] public bool AllowCustomValue { get; set; }
 
 
         private bool IsOpen { get; set; } = false;
@@ -235,11 +240,17 @@ namespace Material.Blazor
             var partialMatches = (from f in MySelectItems
                                   where partialMatchRegex.Matches(f.SearchTarget).Count > 0
                                   select f.Item).ToArray();
+            bool firstValueIsCustomValue = AllowCustomValue && fieldText != null && !partialMatches.Contains(fieldText);
+            if (firstValueIsCustomValue)
+            {
+                partialMatches = partialMatches.Prepend(fieldText).ToArray();
+            }
 
             return new SelectionInfo()
             {
                 SelectedText = fieldText,
-                SelectList = partialMatches
+                SelectList = partialMatches,
+                FirstValueIsCustomValue = firstValueIsCustomValue
             };
         }
 
