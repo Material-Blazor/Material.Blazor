@@ -4,13 +4,24 @@
     <Body>
         @Body
         <p>Please type <strong>@MyConfirmationPhrase</strong> @ActionPhrase.</p>
-        <p><MBTextField @bind-Value="@EnteredText" @oninput="@OnInput" class="mb-full-width" Disabled="ConfirmationDisabled" /></p>
+        <p>
+            <MBTextField @bind-Value="@EnteredText"
+                         class="mb-full-width"
+                         Disabled="ConfirmationDisabled"
+                         @oninput="@OnInput" />
+        </p>
     </Body>
     <Buttons>
         @if (ConfirmedButtons is null || UnconfirmedButtons is null)
         {
-            <MBButton Label="OK" LeadingIcon="@("check")" DialogAction="@ConfirmActionResult" Disabled="@(!Confirmed)" />
-            <MBButton Label="Cancel" LeadingIcon="@("cancel")" DialogAction="@CancelActionResult" ButtonStyle="MBButtonStyle.Text" />
+            <MBButton DialogAction="@ConfirmActionResult"
+                      Disabled="@(!Confirmed)"
+                      Label="OK"
+                      LeadingIcon="@("check")" />
+            <MBButton ButtonStyle="MBButtonStyle.Text"
+                      DialogAction="@CancelActionResult"
+                      Label="Cancel"
+                      LeadingIcon="@("cancel")" />
         }
         else
         {

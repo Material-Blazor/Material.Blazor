@@ -66,12 +66,12 @@
 
     <div id="@listboxId"
          class="mdc-select__menu mdc-menu mdc-menu-surface mb-dp-menu__surface-adjust @MenuClass">
-        <InternalDatePickerPanel @ref="Panel"
-                                 @bind-Value="@ComponentValue"
-                                 DateSelectionCriteria="@DateSelectionCriteria"
+        <InternalDatePickerPanel @bind-Value="@ComponentValue"
+                                 DateFormat="@DateFormat"
                                  DateIsSelectable="@DateIsSelectable"
-                                 MinDate="@MinDate"
+                                 DateSelectionCriteria="@DateSelectionCriteria"
                                  MaxDate="@MaxDate"
-                                 DateFormat="@DateFormat" />
+                                 MinDate="@MinDate"
+                                 @ref="Panel" />
     </div>
 </div>

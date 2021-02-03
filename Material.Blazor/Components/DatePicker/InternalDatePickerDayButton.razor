@@ -1,8 +1,8 @@
 ﻿@namespace Material.Blazor.Internal
 @inherits ComponentFoundation
 
-<MBButton @onclick="@OnClickAsync"
-          Label="@Day"
+<MBButton ButtonStyle="@ButtonStyle"
           class="mb-dp-day-pad__button"
-          ButtonStyle="@ButtonStyle"
-          Disabled="@ButtonDisabled" />
+          Disabled="@ButtonDisabled"
+          Label="@Day"
+          @onclick="@OnClickAsync" />

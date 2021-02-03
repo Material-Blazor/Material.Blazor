@@ -24,9 +24,20 @@
         @if (!ShowYearPad)
         {
             <div class="mb-dp-menu__right">
-                <MBIconButton @onclick="@OnPreviousMonthClick" class="mb-dp-menu__icon-button" Icon="chevron_left" IconFoundry="@foundry" Disabled="@PreviousMonthDisabled" />
-                <MBIconButton @onclick="@OnShowCurrentDateClick" class="mb-dp-menu__icon-button spaced" Icon="undo" IconFoundry="@foundry" />
-                <MBIconButton @onclick="@OnNextMonthClick" class="mb-dp-menu__icon-button spaced" Icon="chevron_right" IconFoundry="@foundry" Disabled="@NextMonthDisabled" />
+                <MBIconButton class="mb-dp-menu__icon-button"
+                              Disabled="@PreviousMonthDisabled"
+                              Icon="chevron_left"
+                              IconFoundry="@foundry"
+                              @onclick="@OnPreviousMonthClick" />
+                <MBIconButton class="mb-dp-menu__icon-button spaced"
+                              Icon="undo"
+                              IconFoundry="@foundry"
+                              @onclick="@OnShowCurrentDateClick" />
+                <MBIconButton class="mb-dp-menu__icon-button spaced"
+                              Disabled="@NextMonthDisabled"
+                              Icon="chevron_right"
+                              IconFoundry="@foundry"
+                              @onclick="@OnNextMonthClick" />
             </div>
         }
     </div>
@@ -36,7 +47,14 @@
         <div class="mb-dp-year-pad">
             @foreach (var year in Years)
             {
-                <InternalDatePickerYearButton @key="@year" CurrentYear="@StartOfDisplayMonth.Year" DisplayYear="@year" OnItemClickAsync="@OnYearItemClick" MinDate="@MinDate" MaxDate="@MaxDate" CurrentYearId="@currentYearId" DateIsSelectable="@DateIsSelectable" />
+                <InternalDatePickerYearButton CurrentYear="@StartOfDisplayMonth.Year"
+                                              CurrentYearId="@currentYearId"
+                                              DateIsSelectable="@DateIsSelectable"
+                                              DisplayYear="@year"
+                                              @key="@year"
+                                              MaxDate="@MaxDate"
+                                              MinDate="@MinDate"
+                                              OnItemClickAsync="@OnYearItemClick" />
             }
         </div>
     }
@@ -52,7 +70,15 @@
             <div class="mdc-list mb-dp-day-pad__days-block">
                 @foreach (var date in Dates)
                 {
-                    <InternalDatePickerDayButton @key="@date" DateSelectionCriteria="@DateSelectionCriteria" DateIsSelectable="@DateIsSelectable" CurrentDate="@ComponentValue" DisplayDate="@date" StartOfDisplayMonth="@StartOfDisplayMonth" OnItemClickAsync="@OnDayItemClickAsync" MinDate="@MinDate" MaxDate="@MaxDate" />
+                    <InternalDatePickerDayButton CurrentDate="@ComponentValue"
+                                                 DateIsSelectable="@DateIsSelectable"
+                                                 DateSelectionCriteria="@DateSelectionCriteria"
+                                                 DisplayDate="@date"
+                                                 @key="@date"
+                                                 MaxDate="@MaxDate"
+                                                 MinDate="@MinDate"
+                                                 OnItemClickAsync="@OnDayItemClickAsync"
+                                                 StartOfDisplayMonth="@StartOfDisplayMonth" />
                 }
             </div>
         </div>

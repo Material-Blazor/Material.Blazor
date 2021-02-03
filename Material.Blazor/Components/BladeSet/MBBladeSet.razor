@@ -12,7 +12,9 @@
             <mb-blades @attributes="@BladesAttributes">
                 @foreach (var bladeInfo in Blades.Values.OrderBy(b => b.Created))
                 {
-                    <mb-blade @key="@bladeInfo" @ref="@bladeInfo.BladeElementReference" @attributes="@bladeInfo.Attributes">
+                    <mb-blade @attributes="@bladeInfo.Attributes"
+                              @key="@bladeInfo"
+                              @ref="@bladeInfo.BladeElementReference">
                         <mb-blade-content @ref="@bladeInfo.BladeContentElementReference">
                             @BladeContent(bladeInfo.BladeReference)
                         </mb-blade-content>

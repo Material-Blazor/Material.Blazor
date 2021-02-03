@@ -3,19 +3,19 @@
 @inherits InputComponent<string>
 
 
-<MBTextField @ref="@TextField"
-             @attributes="AttributesToSplat()"
-             Value="@Value"
-             Label="@Label"
-             Prefix="@Prefix"
-             Suffix="@Suffix"
-             LeadingIcon="@LeadingIcon"
-             TrailingIcon="@TrailingIcon"
-             IconFoundry="@IconFoundry"
+<MBTextField @attributes="AttributesToSplat()"
              Density="@Density"
-             TextInputStyle="@TextInputStyle"
-             TextAlignStyle="@TextAlignStyle"
+             Disabled=@AppliedDisabled
              HelperText="@HelperText"
              HelperTextPersistent="@HelperTextPersistent"
+             IconFoundry="@IconFoundry"
+             Label="@Label"
+             LeadingIcon="@LeadingIcon"
              @oninput="@OnTextInput"
-             Disabled=@AppliedDisabled />
+             Prefix="@Prefix"
+             Suffix="@Suffix"
+             TextAlignStyle="@TextAlignStyle"
+             TextInputStyle="@TextInputStyle"
+             TrailingIcon="@TrailingIcon"
+             @ref="@TextField"
+             Value="@Value" />

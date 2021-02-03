@@ -8,7 +8,11 @@
             @attributes="@AttributesToSplat(SplatType.ExcludeEvents)"
             @onclick="@ToggleOnClick">
 
-        <MBIcon IconName="@IconOn" IconFoundry="@IconFoundry" class="mdc-icon-button__icon mdc-icon-button__icon--on mb-dp-menu__icon-button" />
-        <MBIcon IconName="@IconOff" IconFoundry="@IconFoundry" class="mdc-icon-button__icon mb-dp-menu__icon-button" />
+        <MBIcon class="mdc-icon-button__icon mdc-icon-button__icon--on mb-dp-menu__icon-button"
+                IconFoundry="@IconFoundry"
+                IconName="@IconOn" />
+        <MBIcon class="mdc-icon-button__icon mb-dp-menu__icon-button"
+                IconFoundry="@IconFoundry"
+                IconName="@IconOff" />
     </button>
 </div>

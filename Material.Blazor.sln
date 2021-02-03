@@ -48,13 +48,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "articles", "articles", "{FC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{5AF96DDC-150A-4287-B299-F33253610526}"
 	ProjectSection(SolutionItems) = preProject
-		images\gh-account-settings-1.png = images\gh-account-settings-1.png
-		images\gh-account-settings-2.png = images\gh-account-settings-2.png
-		images\gh-account-settings-3.png = images\gh-account-settings-3.png
-		images\gh-account-settings-4.png = images\gh-account-settings-4.png
-		images\gh-account-settings-5.png = images\gh-account-settings-5.png
-		images\vs-config.png = images\vs-config.png
-		images\vs-extensions.png = images\vs-extensions.png
+		articles\images\gh-account-settings-1.png = articles\images\gh-account-settings-1.png
+		articles\images\gh-account-settings-2.png = articles\images\gh-account-settings-2.png
+		articles\images\gh-account-settings-3.png = articles\images\gh-account-settings-3.png
+		articles\images\gh-account-settings-4.png = articles\images\gh-account-settings-4.png
+		articles\images\gh-account-settings-5.png = articles\images\gh-account-settings-5.png
+		articles\images\text-field-focus.png = articles\images\text-field-focus.png
+		articles\images\two-way-bind-flow.png = articles\images\two-way-bind-flow.png
+		articles\images\vs-config.png = articles\images\vs-config.png
+		articles\images\vs-extensions.png = articles\images\vs-extensions.png
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Material.Blazor.Website.Server", "Material.Blazor.Website.Server\Material.Blazor.Website.Server.csproj", "{E49274B8-0D30-4370-A4F8-B4AE3BE9736D}"
@@ -64,6 +66,21 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Material.Blazor.Website", "Material.Blazor.Website\Material.Blazor.Website.csproj", "{7FFD2944-C2C0-4657-85A5-9F70895B3C7E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Material.Blazor", "Material.Blazor\Material.Blazor.csproj", "{5E637DBB-3AAF-4C59-9A1F-79BFC8AAA67D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "guidelines", "guidelines", "{86740746-C4E6-45DF-BA84-8FB1C1200DD9}"
+	ProjectSection(SolutionItems) = preProject
+		guidelines\ProjectGuidelines.md = guidelines\ProjectGuidelines.md
+		guidelines\StylingGuidelines.md = guidelines\StylingGuidelines.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{777FB882-0F4D-48EB-9D7C-148C80549A63}"
+	ProjectSection(SolutionItems) = preProject
+		guidelines\images\screenshot-branch-protection.png = guidelines\images\screenshot-branch-protection.png
+		guidelines\images\screenshot-chart-complex.png = guidelines\images\screenshot-chart-complex.png
+		guidelines\images\screenshot-chart-simple.png = guidelines\images\screenshot-chart-simple.png
+		guidelines\images\screenshot-merge-button.png = guidelines\images\screenshot-merge-button.png
+		guidelines\images\screenshot-update-branch.png = guidelines\images\screenshot-update-branch.png
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -90,6 +107,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5AF96DDC-150A-4287-B299-F33253610526} = {FC5AA9B0-69D8-4BD3-8210-1BB2019D47AB}
+		{777FB882-0F4D-48EB-9D7C-148C80549A63} = {86740746-C4E6-45DF-BA84-8FB1C1200DD9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6EFB30DD-ABFD-4A38-96E1-D309BB538E62}

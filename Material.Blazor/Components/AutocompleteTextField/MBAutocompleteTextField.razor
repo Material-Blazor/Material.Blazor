@@ -3,23 +3,23 @@
 
 
 <div @attributes="@AttributesToSplat(SplatType.IdClassAndStyleOnly)">
-    <MBTextField @ref="@TextField"
-                 @attributes="@AttributesToSplat(SplatType.ExcludeIdClassAndStyle)"
-                 TextAlignStyle="@TextAlignStyle"
-                 TextInputStyle="@TextInputStyle"
-                 Label="@Label"
-                 LeadingIcon="@LeadingIcon"
-                 TrailingIcon="@TrailingIcon"
-                 IconFoundry="@IconFoundry"
+    <MBTextField @attributes="@AttributesToSplat(SplatType.ExcludeIdClassAndStyle)"
+                 @bind-Value="@SelectInfo.SelectedText"
                  Density="@Density"
                  Disabled="@AppliedDisabled"
                  HelperText="@HelperText"
                  HelperTextPersistent="@HelperTextPersistent"
-                 ValidationMessageFor="@ValidationMessageFor"
-                 @bind-Value="@SelectInfo.SelectedText"
-                 @oninput="@OnInput"
+                 IconFoundry="@IconFoundry"
+                 Label="@Label"
+                 LeadingIcon="@LeadingIcon"
                  @onchange="@OnTextChangeAsync"
-                 @onfocusout="@OnTextFocusOutAsync" />
+                 @onfocusout="@OnTextFocusOutAsync"
+                 @oninput="@OnInput"
+                 @ref="@TextField"
+                 TextAlignStyle="@TextAlignStyle"
+                 TextInputStyle="@TextInputStyle"
+                 TrailingIcon="@TrailingIcon"
+                 ValidationMessageFor="@ValidationMessageFor" />
 
     <div class="mdc-menu-surface--anchor">
         <div @ref="@MenuReference"

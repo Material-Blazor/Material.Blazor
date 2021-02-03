@@ -15,7 +15,10 @@
     </div>
 
     <div class="@PaginatorClass">
-        <MBPaginator @bind-ItemsPerPage="@BackingItemsPerPage" @bind-PageNumber="@BackingPageNumber" ItemsPerPageSelection="@ItemsPerPageSelection" ItemCount="@Data.Count()"></MBPaginator>
+        <MBPaginator @bind-ItemsPerPage="@BackingItemsPerPage"
+                     @bind-PageNumber="@BackingPageNumber"
+                     ItemCount="@Data.Count()"
+                     ItemsPerPageSelection="@ItemsPerPageSelection" />
     </div>
 </div>
 
@@ -28,21 +31,21 @@
 
         if (ItemTemplate == null)
         {
-            ItemTemplate = (item) => @:@{
-                <li @key="@KeyGenerator(item)">@item.ToString()</li>}
+            ItemTemplate = (item) =>@:@{
+        <li @key="@KeyGenerator(item)">@item.ToString()</li>}
             ;
         }
 
         if (ListTemplate == null)
         {
             ListTemplate = _ => @:@{
-            <ul>
-                @foreach (TItem item in CurrentPage)
-                {
-                    @ItemTemplate(item)
-                }
-            </ul>}
-            ;
-        }
+        <ul>
+            @foreach (TItem item in CurrentPage)
+            {
+                @ItemTemplate(item)
+            }
+        </ul>
+        ;
     }
+}
 }

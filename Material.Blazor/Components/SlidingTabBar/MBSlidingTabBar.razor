@@ -7,24 +7,24 @@
 @if (Icon is null && Label is null)
 {
     <MBTabBar @bind-Value="@ComponentValue"
-              Items="@Items"
               Context="item"
-              StackIcons="@StackIcons"
-              Disabled="@AppliedDisabled"
               Density="@Density"
-              GetKeysFunc="@GetKeysFunc">
+              Disabled="@AppliedDisabled"
+              GetKeysFunc="@GetKeysFunc"
+              Items="@Items"
+              StackIcons="@StackIcons">
 
     </MBTabBar>
 }
 else if (Label is null)
 {
     <MBTabBar @bind-Value="@ComponentValue"
-              Items="@Items"
               Context="item"
-              StackIcons="@StackIcons"
-              Disabled="@AppliedDisabled"
               Density="@Density"
-              GetKeysFunc="@GetKeysFunc">
+              Disabled="@AppliedDisabled"
+              GetKeysFunc="@GetKeysFunc"
+              Items="@Items"
+              StackIcons="@StackIcons">
 
         <Icon>@Icon(item)</Icon>
     </MBTabBar>
@@ -32,12 +32,12 @@ else if (Label is null)
 else if (Icon is null)
 {
     <MBTabBar @bind-Value="@ComponentValue"
-              Items="@Items"
               Context="item"
-              StackIcons="@StackIcons"
-              Disabled="@AppliedDisabled"
               Density="@Density"
-              GetKeysFunc="@GetKeysFunc">
+              Disabled="@AppliedDisabled"
+              GetKeysFunc="@GetKeysFunc"
+              Items="@Items"
+              StackIcons="@StackIcons">
 
         <Label>@Label(item)</Label>
     </MBTabBar>
@@ -45,12 +45,12 @@ else if (Icon is null)
 else
 {
     <MBTabBar @bind-Value="@ComponentValue"
-              Items="@Items"
               Context="item"
-              StackIcons="@StackIcons"
-              Disabled="@AppliedDisabled"
               Density="@Density"
-              GetKeysFunc="@GetKeysFunc">
+              Disabled="@AppliedDisabled"
+              GetKeysFunc="@GetKeysFunc"
+              Items="@Items"
+              StackIcons="@StackIcons">
 
         <Label>@Label(item)</Label>
         <Icon>@Icon(item)</Icon>
@@ -58,9 +58,9 @@ else
 }
 
 
-<MBSlidingContent Items="@Items"
+<MBSlidingContent Context="item"
                   ItemIndex="@Value"
-                  Context="item">
+                  Items="@Items">
 
     <Content>
         @Content(item)
