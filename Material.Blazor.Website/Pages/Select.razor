@@ -104,15 +104,15 @@
 
                     <p>
                         <MBSelect @bind-Value="@TwoWayBinding"
-                                  Label="Two Way Binding"
                                   Items="KittenBreeds"
-                                  ItemValidation="@MBItemValidation.NoSelection" />
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Two Way Binding" />
                     </p>
                     <p>
                         <MBSelect @bind-Value="@TwoWayBinding"
-                                  Label="Two Way Binding"
                                   Items="KittenBreeds"
-                                  ItemValidation="@MBItemValidation.NoSelection" />
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Two Way Binding" />
                     </p>
                 </Primary>
             </MBCard>
@@ -134,19 +134,19 @@
 
                     <p>
                         <MBSelect @bind-Value="@LeftAligned"
-                                  Label="Left Aligned"
                                   Items="KittenBreeds"
-                                  TextAlignStyle="@MBTextAlignStyle.Left"
                                   ItemValidation="@MBItemValidation.NoSelection"
-                                  MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed" />
+                                  Label="Left Aligned"
+                                  MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
+                                  TextAlignStyle="@MBTextAlignStyle.Left" />
                     </p>
                     <p>
                         <MBSelect @bind-Value="@RightAligned"
-                                  Label="Right Aligned"
                                   Items="KittenBreeds"
-                                  TextAlignStyle="@MBTextAlignStyle.Right"
                                   ItemValidation="@MBItemValidation.NoSelection"
-                                  MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed" />
+                                  Label="Right Aligned"
+                                  MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
+                                  TextAlignStyle="@MBTextAlignStyle.Right" />
                     </p>
                 </Primary>
             </MBCard>
@@ -167,43 +167,43 @@
 
                     <p>
                         <MBSelect @bind-Value="@FilledDensityDefault"
-                                  Label="Default Density"
-                                  Items="KittenBreeds"
                                   Density="@MBDensity.Default"
-                                  SelectInputStyle="MBSelectInputStyle.Filled"
-                                  ItemValidation="@MBItemValidation.NoSelection" />
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Default Density"
+                                  SelectInputStyle="MBSelectInputStyle.Filled" />
                     </p>
                     <p>
                         <MBSelect @bind-Value="@FilledDensityMinus1"
+                                  Density="@MBDensity.Minus1"
                                   Label="Density Minus 1"
                                   Items="KittenBreeds"
-                                  Density="@MBDensity.Minus1"
-                                  SelectInputStyle="MBSelectInputStyle.Filled"
-                                  ItemValidation="@MBItemValidation.NoSelection" />
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  SelectInputStyle="MBSelectInputStyle.Filled" />
                     </p>
                     <p>
                         <MBSelect @bind-Value="@FilledDensityMinus2"
-                                  Label="Density Minus 3"
-                                  Items="KittenBreeds"
                                   Density="@MBDensity.Minus2"
-                                  SelectInputStyle="MBSelectInputStyle.Filled"
-                                  ItemValidation="@MBItemValidation.NoSelection" />
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Density Minus 3"
+                                  SelectInputStyle="MBSelectInputStyle.Filled" />
                     </p>
                     <p>
                         <MBSelect @bind-Value="@FilledDensityMinus3"
-                                  Label="Density Minus 3"
-                                  Items="KittenBreeds"
                                   Density="@MBDensity.Minus3"
-                                  SelectInputStyle="MBSelectInputStyle.Filled"
-                                  ItemValidation="@MBItemValidation.NoSelection" />
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Density Minus 3"
+                                  SelectInputStyle="MBSelectInputStyle.Filled" />
                     </p>
                     <p>
                         <MBSelect @bind-Value="@FilledDensityMinus4"
-                                  Label="Density Minus 4"
-                                  Items="KittenBreeds"
                                   Density="@MBDensity.Minus4"
-                                  SelectInputStyle="MBSelectInputStyle.Filled"
-                                  ItemValidation="@MBItemValidation.NoSelection" />
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Density Minus 4"
+                                  SelectInputStyle="MBSelectInputStyle.Filled" />
                     </p>
                 </Primary>
             </MBCard>
@@ -224,43 +224,43 @@
 
                     <p>
                         <MBSelect @bind-Value="@OutlinedDensityDefault"
-                                  Label="Default Density"
-                                  Items="KittenBreeds"
                                   Density="@MBDensity.Default"
-                                  SelectInputStyle="MBSelectInputStyle.Outlined"
-                                  ItemValidation="@MBItemValidation.NoSelection" />
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Default Density"
+                                  SelectInputStyle="MBSelectInputStyle.Outlined" />
                     </p>
                     <p>
                         <MBSelect @bind-Value="@OutlinedDensityMinus1"
-                                  Label="Density Minus 1"
-                                  Items="KittenBreeds"
                                   Density="@MBDensity.Minus1"
-                                  SelectInputStyle="MBSelectInputStyle.Outlined"
-                                  ItemValidation="@MBItemValidation.NoSelection" />
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Density Minus 1"
+                                  SelectInputStyle="MBSelectInputStyle.Outlined" />
                     </p>
                     <p>
                         <MBSelect @bind-Value="@OutlinedDensityMinus2"
-                                  Label="Density Minus 3"
-                                  Items="KittenBreeds"
                                   Density="@MBDensity.Minus2"
-                                  SelectInputStyle="MBSelectInputStyle.Outlined"
-                                  ItemValidation="@MBItemValidation.NoSelection" />
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Density Minus 3"
+                                  SelectInputStyle="MBSelectInputStyle.Outlined" />
                     </p>
                     <p>
                         <MBSelect @bind-Value="@OutlinedDensityMinus3"
-                                  Label="Density Minus 3"
-                                  Items="KittenBreeds"
                                   Density="@MBDensity.Minus3"
-                                  SelectInputStyle="MBSelectInputStyle.Outlined"
-                                  ItemValidation="@MBItemValidation.NoSelection" />
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Density Minus 3"
+                                  SelectInputStyle="MBSelectInputStyle.Outlined" />
                     </p>
                     <p>
                         <MBSelect @bind-Value="@OutlinedDensityMinus4"
-                                  Label="Density Minus 4"
-                                  Items="KittenBreeds"
                                   Density="@MBDensity.Minus4"
-                                  SelectInputStyle="MBSelectInputStyle.Outlined"
-                                  ItemValidation="@MBItemValidation.NoSelection" />
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Density Minus 4"
+                                  SelectInputStyle="MBSelectInputStyle.Outlined" />
                     </p>
                 </Primary>
             </MBCard>
@@ -281,16 +281,16 @@
 
                     <p>
                         <MBSelect @bind-Value="@TwoWayBinding"
-                                  Label="Disabled Component"
+                                  Disabled="true"
                                   Items="KittenBreeds"
                                   ItemValidation="@MBItemValidation.NoSelection"
-                                  Disabled="true" />
+                                  Label="Disabled Component" />
                     </p>
                     <p>
                         <MBSelect @bind-Value="@TwoWayBinding"
-                                  Label="Items disabled"
                                   Items="KittenBreedsNoFake"
-                                  ItemValidation="@MBItemValidation.NoSelection" />
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Items disabled" />
                     </p>
                 </Primary>
             </MBCard>
@@ -305,7 +305,7 @@
         new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
         new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
-        };
+            };
     MBSelectElement<string>[] KittenBreedsNoFake = new MBSelectElement<string>[]
     {
         new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
@@ -313,7 +313,7 @@
         new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" },
         new MBSelectElement<string> { SelectedValue = "disabled1", Label = "Mr. Snuggles", Disabled = true },
         new MBSelectElement<string> { SelectedValue = "disabled2", Label = "Roger Rabbit", Disabled = true }
-        };
+            };
 
 
     private string DefaultStyle;
