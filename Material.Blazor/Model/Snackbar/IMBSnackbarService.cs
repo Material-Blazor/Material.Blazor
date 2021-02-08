@@ -54,9 +54,9 @@ namespace Material.Blazor
         /// when registering services. Failing that Material.Blazor provides defaults.
         /// </summary>
         /// <param name="message">Body text in the snackbar</param>
-        /// <param name="action">The action that is performed when the button in the snackbar is clicked (optional. if set, <see cref="action_text"/> must also be set)</param>
-        /// <param name="action_text">The text to display in the action button in the snackbar (optional. if set, <see cref="action"/> must also be set)</param>
-        /// <param name="dismiss_icon">Snackbars are intended to dismiss on their own after a few seconds, but a dedicated dismiss icon may be optionally included as well for accessibility purposes</param>
+        /// <param name="action">The action that is performed when the button in the snackbar is clicked (optional. if set, <see cref="actionText"/> must also be set)</param>
+        /// <param name="actionText">The text to display in the action button in the snackbar (optional. if set, <see cref="action"/> must also be set)</param>
+        /// <param name="dismissIcon">Snackbars are intended to dismiss on their own after a few seconds, but a dedicated dismiss icon may be optionally included as well for accessibility purposes</param>
         /// <param name="leading">By default, snackbars are centered horizontally within the viewport. On larger screens, they can optionally be displayed on the leading edge of the screen (the left side in LTR, or the right side in RTL)</param>
         /// <param name="stacked">Action buttons with long text should be positioned below the label instead of alongside it</param>
         /// <param name="timeout">Length of time before autodismiss</param>
