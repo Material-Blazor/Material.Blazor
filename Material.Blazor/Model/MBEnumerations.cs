@@ -231,7 +231,7 @@
     /// <para>See <see cref="MBIconHelper"/></para>
     /// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="MaterialIcons"/></para>
     /// </summary>
-    public enum MBIconFoundryName 
+    public enum MBIconFoundryName
     {
         /// <summary>
         /// Google Material Icons. This is the <see cref="MBCascadingDefaults"/> default.
@@ -256,7 +256,7 @@
     /// <para>See <see cref="MBIconHelper.MIFoundry(MBIconMITheme?)"/>, <seealso cref="IconMI"/> and <seealso cref="IconFoundryMI"/></para>
     /// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Filled"/></para>
     /// </summary>
-    public enum MBIconMITheme 
+    public enum MBIconMITheme
     {
         /// <summary>
         /// Filled theme, <c>class="material-icons"</c>. This is the <see cref="MBCascadingDefaults"/> default.
@@ -290,7 +290,7 @@
     /// <para>See <see cref="MBIconHelper.FAFoundry(MBIconFAStyle?, MBIconFARelativeSize?)"/>, <seealso cref="Internal.IconFA"/> and <seealso cref="IconFoundryFA"/></para>
     /// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Solid"/> (all other styles except <see cref="Brands"/> require a paid-for Font Awesome PRO licence)</para>
     /// </summary>
-    public enum MBIconFAStyle 
+    public enum MBIconFAStyle
     {
         /// <summary>
         /// Solid style, <c>class="fas ..."</c>. This is the <see cref="MBCascadingDefaults"/> default.
@@ -324,7 +324,7 @@
     /// <para>See <see cref="MBIconHelper.FAFoundry(MBIconFAStyle?, MBIconFARelativeSize?)"/>, <seealso cref="Internal.IconFA"/> and <seealso cref="IconFoundryFA"/></para>
     /// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Regular"/></para>
     /// </summary>
-    public enum MBIconFARelativeSize 
+    public enum MBIconFARelativeSize
     {
         /// <summary>
         /// Regular relative size (no markup applied). This is the <see cref="MBCascadingDefaults"/> default.

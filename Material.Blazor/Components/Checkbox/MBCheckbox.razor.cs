@@ -30,7 +30,8 @@ namespace Material.Blazor
         /// <summary>
         /// Set to True if the checkbox is indeterminate.
         /// </summary>
-        [Parameter] public bool IsIndeterminate
+        [Parameter]
+        public bool IsIndeterminate
         {
             get => _isIndetermimate;
             set

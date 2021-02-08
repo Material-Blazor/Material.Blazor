@@ -193,13 +193,13 @@ namespace Material.Blazor
             LineTwoClass = "mdc-list-item__secondary-text mb-full-width";
             LineThreeClass = "mdc-list-item__secondary-text" + ((NumberOfLines == 3) ? " line-three" : "") + " mb-full-width";
 
-            KeyGenerator = GetKeysFunc ?? delegate(TItem item) { return item; };
+            KeyGenerator = GetKeysFunc ?? delegate (TItem item) { return item; };
         }
 
 
         private async Task OnItemClickAsync(int index)
-        { 
-            if (KeyboardInteractions && !AppliedDisabled) await OnClick.InvokeAsync(index); 
+        {
+            if (KeyboardInteractions && !AppliedDisabled) await OnClick.InvokeAsync(index);
         }
 
         private async Task OnItemMouseDownAsync(int index)

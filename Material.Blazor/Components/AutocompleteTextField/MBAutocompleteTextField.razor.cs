@@ -127,7 +127,8 @@ namespace Material.Blazor
         /// <summary>
         /// List of items to select from.
         /// </summary>
-        [Parameter] public IEnumerable<string> SelectItems
+        [Parameter]
+        public IEnumerable<string> SelectItems
         {
             get => selectItems;
             set

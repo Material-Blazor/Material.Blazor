@@ -10,13 +10,13 @@ namespace Material.Blazor.Internal
         private MBToastServiceConfiguration configuration = new MBToastServiceConfiguration();
         ///<inheritdoc/>
         public MBToastServiceConfiguration Configuration
-        { 
-            get => configuration; 
+        {
+            get => configuration;
             set
-            { 
+            {
                 configuration = value;
                 configuration.OnValueChanged += ConfigurationChanged;
-                OnTriggerStateHasChanged?.Invoke(); 
+                OnTriggerStateHasChanged?.Invoke();
             }
         }
 

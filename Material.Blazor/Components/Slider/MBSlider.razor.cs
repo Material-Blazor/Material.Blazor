@@ -77,7 +77,7 @@ namespace Material.Blazor
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            
+
             Value = Math.Round(Value, (int)DecimalPlaces);
             ValueMin = Math.Round(ValueMin, (int)DecimalPlaces);
             ValueMax = Math.Round(ValueMax, (int)DecimalPlaces);

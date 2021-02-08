@@ -12,7 +12,7 @@ namespace Material.Blazor
         /// <inheritdoc/>
         MBIconFoundryName IMBIconFoundry.FoundryName => MBIconFoundryName.MaterialIcons;
 
-        
+
         /// <summary>
         /// The Material Icons theme.
         /// </summary>

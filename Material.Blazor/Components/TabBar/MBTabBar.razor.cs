@@ -58,7 +58,7 @@ namespace Material.Blazor
         /// </summary>
         [Parameter] public MBDensity? Density { get; set; }
 
-        
+
         private readonly object tabBarIdentifierObject = new object();
 
         private ElementReference ElementReference { get; set; }
@@ -89,7 +89,7 @@ namespace Material.Blazor
             ClassMapperInstance
                 .Add("mdc-tab-bar")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass);
-            
+
             SetComponentValue += OnValueSetCallback;
         }
 

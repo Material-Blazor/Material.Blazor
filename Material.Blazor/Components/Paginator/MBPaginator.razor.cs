@@ -170,8 +170,8 @@ namespace Material.Blazor
             BackingItemsPerPage = itemsPerPage;
             BackingPageNumber = Convert.ToInt32(PageNumber * ratio);
         }
-        
-        
+
+
         private void OnFirstClick()
         {
             BackingPageNumber = 0;

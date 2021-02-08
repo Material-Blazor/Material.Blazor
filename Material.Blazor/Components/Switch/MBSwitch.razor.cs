@@ -33,7 +33,7 @@ namespace Material.Blazor
         protected override void OnInitialized()
         {
             base.OnInitialized();
-            
+
             ClassMapperInstance
                 .Add("mdc-switch")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)

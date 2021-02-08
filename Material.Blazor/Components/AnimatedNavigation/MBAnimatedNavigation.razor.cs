@@ -10,7 +10,7 @@ namespace Material.Blazor
     /// but not surrounding your app bars and navigation menus - you don't want those to fade in and out when
     /// your user navigates from one page to another.
     /// </summary>
-    public partial class MBAnimatedNavigation: ComponentFoundation
+    public partial class MBAnimatedNavigation : ComponentFoundation
     {
         [Inject] private IMBAnimatedNavigationManager AnimatedNavigationService { get; set; }
         [Inject] private NavigationManager NavigationManager { get; set; }

@@ -8,7 +8,7 @@
         /// <inheritdoc/>
         MBIconFoundryName IMBIconFoundry.FoundryName => MBIconFoundryName.FontAwesome;
 
-        
+
         /// <summary>
         /// The Font Awesome style.
         /// </summary>

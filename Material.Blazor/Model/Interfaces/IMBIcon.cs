@@ -12,7 +12,7 @@ namespace Material.Blazor
         /// </summary>
         public string Class { get; }
 
-        
+
         /// <summary>
         /// Text supplied inside the icon tag.
         /// </summary>

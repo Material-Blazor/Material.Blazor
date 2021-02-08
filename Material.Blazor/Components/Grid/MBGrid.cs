@@ -9,20 +9,18 @@
 //
 
 
+using Material.Blazor.Internal;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
+using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Extensions.Logging;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-
-using Material.Blazor.Internal;
-
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Rendering;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.Extensions.Logging;
-using Microsoft.JSInterop;
 //
 //  Implements a scrollable, multi-column grid. When created we get a list of column
 //  config objects and a list of data objects with the column content for each

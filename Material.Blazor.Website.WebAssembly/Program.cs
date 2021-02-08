@@ -1,10 +1,10 @@
-﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using Material.Blazor;
+using Material.Blazor.Website;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Material.Blazor;
-using Material.Blazor.Website;
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Material.BlazorWebsite.WebAssembly
 {

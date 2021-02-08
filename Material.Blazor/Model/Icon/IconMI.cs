@@ -28,7 +28,7 @@ namespace Material.Blazor
         /// <inheritdoc />
         public string Text => IconName.ToLower();
 
-        
+
         private readonly Dictionary<string, object> _attributes = new Dictionary<string, object>();
         /// <inheritdoc />
         public IDictionary<string, object> Attributes => _attributes;
