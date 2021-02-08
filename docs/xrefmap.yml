@@ -55,9 +55,9 @@ references:
 - uid: A.ThemingAndCSS
   name: ThemingAndCSS
   href: articles/ThemingAndCSS.html
-- uid: A.Toast
-  name: Toast
-  href: articles/Toast.html
+- uid: A.ToastAndSnackbar
+  name: ToastAndSnackbar
+  href: articles/ToastAndSnackbar.html
 - uid: A.Tooltip
   name: Tooltip
   href: articles/Tooltip.html
@@ -236,6 +236,24 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.DialogChildComponent.RequestInstantiation
   nameWithType: DialogChildComponent.RequestInstantiation
+- uid: Material.Blazor.Direction
+  name: Direction
+  href: api/Material.Blazor.Direction.html
+  commentId: T:Material.Blazor.Direction
+  fullName: Material.Blazor.Direction
+  nameWithType: Direction
+- uid: Material.Blazor.Direction.Ascending
+  name: Ascending
+  href: api/Material.Blazor.Direction.html#Material_Blazor_Direction_Ascending
+  commentId: F:Material.Blazor.Direction.Ascending
+  fullName: Material.Blazor.Direction.Ascending
+  nameWithType: Direction.Ascending
+- uid: Material.Blazor.Direction.Descending
+  name: Descending
+  href: api/Material.Blazor.Direction.html#Material_Blazor_Direction_Descending
+  commentId: F:Material.Blazor.Direction.Descending
+  fullName: Material.Blazor.Direction.Descending
+  nameWithType: Direction.Descending
 - uid: Material.Blazor.IMBAnimatedNavigationManager
   name: IMBAnimatedNavigationManager
   href: api/Material.Blazor.IMBAnimatedNavigationManager.html
@@ -281,6 +299,25 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.IMBAnimatedNavigationManager.NavigationManager
   nameWithType: IMBAnimatedNavigationManager.NavigationManager
+- uid: Material.Blazor.IMBDialog
+  name: IMBDialog
+  href: api/Material.Blazor.IMBDialog.html
+  commentId: T:Material.Blazor.IMBDialog
+  fullName: Material.Blazor.IMBDialog
+  nameWithType: IMBDialog
+- uid: Material.Blazor.IMBDialog.RegisterLayoutAction(Material.Blazor.DialogChildComponent)
+  name: RegisterLayoutAction(DialogChildComponent)
+  href: api/Material.Blazor.IMBDialog.html#Material_Blazor_IMBDialog_RegisterLayoutAction_Material_Blazor_DialogChildComponent_
+  commentId: M:Material.Blazor.IMBDialog.RegisterLayoutAction(Material.Blazor.DialogChildComponent)
+  fullName: Material.Blazor.IMBDialog.RegisterLayoutAction(Material.Blazor.DialogChildComponent)
+  nameWithType: IMBDialog.RegisterLayoutAction(DialogChildComponent)
+- uid: Material.Blazor.IMBDialog.RegisterLayoutAction*
+  name: RegisterLayoutAction
+  href: api/Material.Blazor.IMBDialog.html#Material_Blazor_IMBDialog_RegisterLayoutAction_
+  commentId: Overload:Material.Blazor.IMBDialog.RegisterLayoutAction
+  isSpec: "True"
+  fullName: Material.Blazor.IMBDialog.RegisterLayoutAction
+  nameWithType: IMBDialog.RegisterLayoutAction
 - uid: Material.Blazor.IMBIcon
   name: IMBIcon
   href: api/Material.Blazor.IMBIcon.html
@@ -358,6 +395,41 @@ references:
   commentId: T:Material.Blazor.IMBIconFoundry
   fullName: Material.Blazor.IMBIconFoundry
   nameWithType: IMBIconFoundry
+- uid: Material.Blazor.IMBSnackbarService
+  name: IMBSnackbarService
+  href: api/Material.Blazor.IMBSnackbarService.html
+  commentId: T:Material.Blazor.IMBSnackbarService
+  fullName: Material.Blazor.IMBSnackbarService
+  nameWithType: IMBSnackbarService
+- uid: Material.Blazor.IMBSnackbarService.Configuration
+  name: Configuration
+  href: api/Material.Blazor.IMBSnackbarService.html#Material_Blazor_IMBSnackbarService_Configuration
+  commentId: P:Material.Blazor.IMBSnackbarService.Configuration
+  fullName: Material.Blazor.IMBSnackbarService.Configuration
+  nameWithType: IMBSnackbarService.Configuration
+- uid: Material.Blazor.IMBSnackbarService.Configuration*
+  name: Configuration
+  href: api/Material.Blazor.IMBSnackbarService.html#Material_Blazor_IMBSnackbarService_Configuration_
+  commentId: Overload:Material.Blazor.IMBSnackbarService.Configuration
+  isSpec: "True"
+  fullName: Material.Blazor.IMBSnackbarService.Configuration
+  nameWithType: IMBSnackbarService.Configuration
+- uid: Material.Blazor.IMBSnackbarService.ShowSnackbar(System.String,System.Action,System.String,System.Nullable{Material.Blazor.MBNotifierCloseMethod},System.Boolean,System.Boolean,System.Nullable{System.Int32},System.Boolean)
+  name: ShowSnackbar(String, Action, String, Nullable<MBNotifierCloseMethod>, Boolean, Boolean, Nullable<Int32>, Boolean)
+  href: api/Material.Blazor.IMBSnackbarService.html#Material_Blazor_IMBSnackbarService_ShowSnackbar_System_String_System_Action_System_String_System_Nullable_Material_Blazor_MBNotifierCloseMethod__System_Boolean_System_Boolean_System_Nullable_System_Int32__System_Boolean_
+  commentId: M:Material.Blazor.IMBSnackbarService.ShowSnackbar(System.String,System.Action,System.String,System.Nullable{Material.Blazor.MBNotifierCloseMethod},System.Boolean,System.Boolean,System.Nullable{System.Int32},System.Boolean)
+  name.vb: ShowSnackbar(String, Action, String, Nullable(Of MBNotifierCloseMethod), Boolean, Boolean, Nullable(Of Int32), Boolean)
+  fullName: Material.Blazor.IMBSnackbarService.ShowSnackbar(System.String, System.Action, System.String, System.Nullable<Material.Blazor.MBNotifierCloseMethod>, System.Boolean, System.Boolean, System.Nullable<System.Int32>, System.Boolean)
+  fullName.vb: Material.Blazor.IMBSnackbarService.ShowSnackbar(System.String, System.Action, System.String, System.Nullable(Of Material.Blazor.MBNotifierCloseMethod), System.Boolean, System.Boolean, System.Nullable(Of System.Int32), System.Boolean)
+  nameWithType: IMBSnackbarService.ShowSnackbar(String, Action, String, Nullable<MBNotifierCloseMethod>, Boolean, Boolean, Nullable<Int32>, Boolean)
+  nameWithType.vb: IMBSnackbarService.ShowSnackbar(String, Action, String, Nullable(Of MBNotifierCloseMethod), Boolean, Boolean, Nullable(Of Int32), Boolean)
+- uid: Material.Blazor.IMBSnackbarService.ShowSnackbar*
+  name: ShowSnackbar
+  href: api/Material.Blazor.IMBSnackbarService.html#Material_Blazor_IMBSnackbarService_ShowSnackbar_
+  commentId: Overload:Material.Blazor.IMBSnackbarService.ShowSnackbar
+  isSpec: "True"
+  fullName: Material.Blazor.IMBSnackbarService.ShowSnackbar
+  nameWithType: IMBSnackbarService.ShowSnackbar
 - uid: Material.Blazor.IMBToastService
   name: IMBToastService
   href: api/Material.Blazor.IMBToastService.html
@@ -377,15 +449,15 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.IMBToastService.Configuration
   nameWithType: IMBToastService.Configuration
-- uid: Material.Blazor.IMBToastService.ShowToast(Material.Blazor.MBToastLevel,System.String,System.String,System.Nullable{Material.Blazor.MBToastCloseMethod},System.String,System.String,Material.Blazor.IMBIconFoundry,System.Nullable{System.Boolean},System.Nullable{System.UInt32},System.Boolean)
-  name: ShowToast(MBToastLevel, String, String, Nullable<MBToastCloseMethod>, String, String, IMBIconFoundry, Nullable<Boolean>, Nullable<UInt32>, Boolean)
-  href: api/Material.Blazor.IMBToastService.html#Material_Blazor_IMBToastService_ShowToast_Material_Blazor_MBToastLevel_System_String_System_String_System_Nullable_Material_Blazor_MBToastCloseMethod__System_String_System_String_Material_Blazor_IMBIconFoundry_System_Nullable_System_Boolean__System_Nullable_System_UInt32__System_Boolean_
-  commentId: M:Material.Blazor.IMBToastService.ShowToast(Material.Blazor.MBToastLevel,System.String,System.String,System.Nullable{Material.Blazor.MBToastCloseMethod},System.String,System.String,Material.Blazor.IMBIconFoundry,System.Nullable{System.Boolean},System.Nullable{System.UInt32},System.Boolean)
-  name.vb: ShowToast(MBToastLevel, String, String, Nullable(Of MBToastCloseMethod), String, String, IMBIconFoundry, Nullable(Of Boolean), Nullable(Of UInt32), Boolean)
-  fullName: Material.Blazor.IMBToastService.ShowToast(Material.Blazor.MBToastLevel, System.String, System.String, System.Nullable<Material.Blazor.MBToastCloseMethod>, System.String, System.String, Material.Blazor.IMBIconFoundry, System.Nullable<System.Boolean>, System.Nullable<System.UInt32>, System.Boolean)
-  fullName.vb: Material.Blazor.IMBToastService.ShowToast(Material.Blazor.MBToastLevel, System.String, System.String, System.Nullable(Of Material.Blazor.MBToastCloseMethod), System.String, System.String, Material.Blazor.IMBIconFoundry, System.Nullable(Of System.Boolean), System.Nullable(Of System.UInt32), System.Boolean)
-  nameWithType: IMBToastService.ShowToast(MBToastLevel, String, String, Nullable<MBToastCloseMethod>, String, String, IMBIconFoundry, Nullable<Boolean>, Nullable<UInt32>, Boolean)
-  nameWithType.vb: IMBToastService.ShowToast(MBToastLevel, String, String, Nullable(Of MBToastCloseMethod), String, String, IMBIconFoundry, Nullable(Of Boolean), Nullable(Of UInt32), Boolean)
+- uid: Material.Blazor.IMBToastService.ShowToast(Material.Blazor.MBToastLevel,System.String,System.String,System.Nullable{Material.Blazor.MBNotifierCloseMethod},System.String,System.String,Material.Blazor.IMBIconFoundry,System.Nullable{System.Boolean},System.Nullable{System.UInt32},System.Boolean)
+  name: ShowToast(MBToastLevel, String, String, Nullable<MBNotifierCloseMethod>, String, String, IMBIconFoundry, Nullable<Boolean>, Nullable<UInt32>, Boolean)
+  href: api/Material.Blazor.IMBToastService.html#Material_Blazor_IMBToastService_ShowToast_Material_Blazor_MBToastLevel_System_String_System_String_System_Nullable_Material_Blazor_MBNotifierCloseMethod__System_String_System_String_Material_Blazor_IMBIconFoundry_System_Nullable_System_Boolean__System_Nullable_System_UInt32__System_Boolean_
+  commentId: M:Material.Blazor.IMBToastService.ShowToast(Material.Blazor.MBToastLevel,System.String,System.String,System.Nullable{Material.Blazor.MBNotifierCloseMethod},System.String,System.String,Material.Blazor.IMBIconFoundry,System.Nullable{System.Boolean},System.Nullable{System.UInt32},System.Boolean)
+  name.vb: ShowToast(MBToastLevel, String, String, Nullable(Of MBNotifierCloseMethod), String, String, IMBIconFoundry, Nullable(Of Boolean), Nullable(Of UInt32), Boolean)
+  fullName: Material.Blazor.IMBToastService.ShowToast(Material.Blazor.MBToastLevel, System.String, System.String, System.Nullable<Material.Blazor.MBNotifierCloseMethod>, System.String, System.String, Material.Blazor.IMBIconFoundry, System.Nullable<System.Boolean>, System.Nullable<System.UInt32>, System.Boolean)
+  fullName.vb: Material.Blazor.IMBToastService.ShowToast(Material.Blazor.MBToastLevel, System.String, System.String, System.Nullable(Of Material.Blazor.MBNotifierCloseMethod), System.String, System.String, Material.Blazor.IMBIconFoundry, System.Nullable(Of System.Boolean), System.Nullable(Of System.UInt32), System.Boolean)
+  nameWithType: IMBToastService.ShowToast(MBToastLevel, String, String, Nullable<MBNotifierCloseMethod>, String, String, IMBIconFoundry, Nullable<Boolean>, Nullable<UInt32>, Boolean)
+  nameWithType.vb: IMBToastService.ShowToast(MBToastLevel, String, String, Nullable(Of MBNotifierCloseMethod), String, String, IMBIconFoundry, Nullable(Of Boolean), Nullable(Of UInt32), Boolean)
 - uid: Material.Blazor.IMBToastService.ShowToast*
   name: ShowToast
   href: api/Material.Blazor.IMBToastService.html#Material_Blazor_IMBToastService_ShowToast_
@@ -393,6 +465,44 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.IMBToastService.ShowToast
   nameWithType: IMBToastService.ShowToast
+- uid: Material.Blazor.IMBTooltipService
+  name: IMBTooltipService
+  href: api/Material.Blazor.IMBTooltipService.html
+  commentId: T:Material.Blazor.IMBTooltipService
+  fullName: Material.Blazor.IMBTooltipService
+  nameWithType: IMBTooltipService
+- uid: Material.Blazor.IMBTooltipService.AddTooltip(System.Guid,MarkupString)
+  name: AddTooltip(Guid, MarkupString)
+  href: api/Material.Blazor.IMBTooltipService.html#Material_Blazor_IMBTooltipService_AddTooltip_System_Guid_MarkupString_
+  commentId: M:Material.Blazor.IMBTooltipService.AddTooltip(System.Guid,MarkupString)
+  fullName: Material.Blazor.IMBTooltipService.AddTooltip(System.Guid, MarkupString)
+  nameWithType: IMBTooltipService.AddTooltip(Guid, MarkupString)
+- uid: Material.Blazor.IMBTooltipService.AddTooltip(System.Guid,RenderFragment)
+  name: AddTooltip(Guid, RenderFragment)
+  href: api/Material.Blazor.IMBTooltipService.html#Material_Blazor_IMBTooltipService_AddTooltip_System_Guid_RenderFragment_
+  commentId: M:Material.Blazor.IMBTooltipService.AddTooltip(System.Guid,RenderFragment)
+  fullName: Material.Blazor.IMBTooltipService.AddTooltip(System.Guid, RenderFragment)
+  nameWithType: IMBTooltipService.AddTooltip(Guid, RenderFragment)
+- uid: Material.Blazor.IMBTooltipService.AddTooltip*
+  name: AddTooltip
+  href: api/Material.Blazor.IMBTooltipService.html#Material_Blazor_IMBTooltipService_AddTooltip_
+  commentId: Overload:Material.Blazor.IMBTooltipService.AddTooltip
+  isSpec: "True"
+  fullName: Material.Blazor.IMBTooltipService.AddTooltip
+  nameWithType: IMBTooltipService.AddTooltip
+- uid: Material.Blazor.IMBTooltipService.RemoveTooltip(System.Guid)
+  name: RemoveTooltip(Guid)
+  href: api/Material.Blazor.IMBTooltipService.html#Material_Blazor_IMBTooltipService_RemoveTooltip_System_Guid_
+  commentId: M:Material.Blazor.IMBTooltipService.RemoveTooltip(System.Guid)
+  fullName: Material.Blazor.IMBTooltipService.RemoveTooltip(System.Guid)
+  nameWithType: IMBTooltipService.RemoveTooltip(Guid)
+- uid: Material.Blazor.IMBTooltipService.RemoveTooltip*
+  name: RemoveTooltip
+  href: api/Material.Blazor.IMBTooltipService.html#Material_Blazor_IMBTooltipService_RemoveTooltip_
+  commentId: Overload:Material.Blazor.IMBTooltipService.RemoveTooltip
+  isSpec: "True"
+  fullName: Material.Blazor.IMBTooltipService.RemoveTooltip
+  nameWithType: IMBTooltipService.RemoveTooltip
 - uid: Material.Blazor.Internal
   name: Material.Blazor.Internal
   href: api/Material.Blazor.Internal.html
@@ -1314,6 +1424,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.Internal.InternalDatePickerDayButton.CurrentDate
   nameWithType: InternalDatePickerDayButton.CurrentDate
+- uid: Material.Blazor.Internal.InternalDatePickerDayButton.DateIsSelectable
+  name: DateIsSelectable
+  href: api/Material.Blazor.Internal.InternalDatePickerDayButton.html#Material_Blazor_Internal_InternalDatePickerDayButton_DateIsSelectable
+  commentId: P:Material.Blazor.Internal.InternalDatePickerDayButton.DateIsSelectable
+  fullName: Material.Blazor.Internal.InternalDatePickerDayButton.DateIsSelectable
+  nameWithType: InternalDatePickerDayButton.DateIsSelectable
+- uid: Material.Blazor.Internal.InternalDatePickerDayButton.DateIsSelectable*
+  name: DateIsSelectable
+  href: api/Material.Blazor.Internal.InternalDatePickerDayButton.html#Material_Blazor_Internal_InternalDatePickerDayButton_DateIsSelectable_
+  commentId: Overload:Material.Blazor.Internal.InternalDatePickerDayButton.DateIsSelectable
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.InternalDatePickerDayButton.DateIsSelectable
+  nameWithType: InternalDatePickerDayButton.DateIsSelectable
 - uid: Material.Blazor.Internal.InternalDatePickerDayButton.DateSelectionCriteria
   name: DateSelectionCriteria
   href: api/Material.Blazor.Internal.InternalDatePickerDayButton.html#Material_Blazor_Internal_InternalDatePickerDayButton_DateSelectionCriteria
@@ -1411,6 +1534,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.Internal.InternalDatePickerPanel.DateFormat
   nameWithType: InternalDatePickerPanel.DateFormat
+- uid: Material.Blazor.Internal.InternalDatePickerPanel.DateIsSelectable
+  name: DateIsSelectable
+  href: api/Material.Blazor.Internal.InternalDatePickerPanel.html#Material_Blazor_Internal_InternalDatePickerPanel_DateIsSelectable
+  commentId: P:Material.Blazor.Internal.InternalDatePickerPanel.DateIsSelectable
+  fullName: Material.Blazor.Internal.InternalDatePickerPanel.DateIsSelectable
+  nameWithType: InternalDatePickerPanel.DateIsSelectable
+- uid: Material.Blazor.Internal.InternalDatePickerPanel.DateIsSelectable*
+  name: DateIsSelectable
+  href: api/Material.Blazor.Internal.InternalDatePickerPanel.html#Material_Blazor_Internal_InternalDatePickerPanel_DateIsSelectable_
+  commentId: Overload:Material.Blazor.Internal.InternalDatePickerPanel.DateIsSelectable
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.InternalDatePickerPanel.DateIsSelectable
+  nameWithType: InternalDatePickerPanel.DateIsSelectable
 - uid: Material.Blazor.Internal.InternalDatePickerPanel.DateSelectionCriteria
   name: DateSelectionCriteria
   href: api/Material.Blazor.Internal.InternalDatePickerPanel.html#Material_Blazor_Internal_InternalDatePickerPanel_DateSelectionCriteria
@@ -1573,6 +1709,109 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.Internal.InternalDatePickerYearButton.OnItemClickAsync
   nameWithType: InternalDatePickerYearButton.OnItemClickAsync
+- uid: Material.Blazor.Internal.InternalSnackbar
+  name: InternalSnackbar
+  href: api/Material.Blazor.Internal.InternalSnackbar.html
+  commentId: T:Material.Blazor.Internal.InternalSnackbar
+  fullName: Material.Blazor.Internal.InternalSnackbar
+  nameWithType: InternalSnackbar
+- uid: Material.Blazor.Internal.InternalSnackbar.Closed
+  name: Closed()
+  href: api/Material.Blazor.Internal.InternalSnackbar.html#Material_Blazor_Internal_InternalSnackbar_Closed
+  commentId: M:Material.Blazor.Internal.InternalSnackbar.Closed
+  fullName: Material.Blazor.Internal.InternalSnackbar.Closed()
+  nameWithType: InternalSnackbar.Closed()
+- uid: Material.Blazor.Internal.InternalSnackbar.Closed*
+  name: Closed
+  href: api/Material.Blazor.Internal.InternalSnackbar.html#Material_Blazor_Internal_InternalSnackbar_Closed_
+  commentId: Overload:Material.Blazor.Internal.InternalSnackbar.Closed
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.InternalSnackbar.Closed
+  nameWithType: InternalSnackbar.Closed
+- uid: Material.Blazor.Internal.InternalSnackbar.Dispose
+  name: Dispose()
+  href: api/Material.Blazor.Internal.InternalSnackbar.html#Material_Blazor_Internal_InternalSnackbar_Dispose
+  commentId: M:Material.Blazor.Internal.InternalSnackbar.Dispose
+  fullName: Material.Blazor.Internal.InternalSnackbar.Dispose()
+  nameWithType: InternalSnackbar.Dispose()
+- uid: Material.Blazor.Internal.InternalSnackbar.Dispose*
+  name: Dispose
+  href: api/Material.Blazor.Internal.InternalSnackbar.html#Material_Blazor_Internal_InternalSnackbar_Dispose_
+  commentId: Overload:Material.Blazor.Internal.InternalSnackbar.Dispose
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.InternalSnackbar.Dispose
+  nameWithType: InternalSnackbar.Dispose
+- uid: Material.Blazor.Internal.InternalSnackbar.OnAfterRenderAsync(System.Boolean)
+  name: OnAfterRenderAsync(Boolean)
+  href: api/Material.Blazor.Internal.InternalSnackbar.html#Material_Blazor_Internal_InternalSnackbar_OnAfterRenderAsync_System_Boolean_
+  commentId: M:Material.Blazor.Internal.InternalSnackbar.OnAfterRenderAsync(System.Boolean)
+  fullName: Material.Blazor.Internal.InternalSnackbar.OnAfterRenderAsync(System.Boolean)
+  nameWithType: InternalSnackbar.OnAfterRenderAsync(Boolean)
+- uid: Material.Blazor.Internal.InternalSnackbar.OnAfterRenderAsync*
+  name: OnAfterRenderAsync
+  href: api/Material.Blazor.Internal.InternalSnackbar.html#Material_Blazor_Internal_InternalSnackbar_OnAfterRenderAsync_
+  commentId: Overload:Material.Blazor.Internal.InternalSnackbar.OnAfterRenderAsync
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.InternalSnackbar.OnAfterRenderAsync
+  nameWithType: InternalSnackbar.OnAfterRenderAsync
+- uid: Material.Blazor.Internal.InternalSnackbar.OnInitialized
+  name: OnInitialized()
+  href: api/Material.Blazor.Internal.InternalSnackbar.html#Material_Blazor_Internal_InternalSnackbar_OnInitialized
+  commentId: M:Material.Blazor.Internal.InternalSnackbar.OnInitialized
+  fullName: Material.Blazor.Internal.InternalSnackbar.OnInitialized()
+  nameWithType: InternalSnackbar.OnInitialized()
+- uid: Material.Blazor.Internal.InternalSnackbar.OnInitialized*
+  name: OnInitialized
+  href: api/Material.Blazor.Internal.InternalSnackbar.html#Material_Blazor_Internal_InternalSnackbar_OnInitialized_
+  commentId: Overload:Material.Blazor.Internal.InternalSnackbar.OnInitialized
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.InternalSnackbar.OnInitialized
+  nameWithType: InternalSnackbar.OnInitialized
+- uid: Material.Blazor.Internal.InternalSnackbar.Snackbar
+  name: Snackbar
+  href: api/Material.Blazor.Internal.InternalSnackbar.html#Material_Blazor_Internal_InternalSnackbar_Snackbar
+  commentId: P:Material.Blazor.Internal.InternalSnackbar.Snackbar
+  fullName: Material.Blazor.Internal.InternalSnackbar.Snackbar
+  nameWithType: InternalSnackbar.Snackbar
+- uid: Material.Blazor.Internal.InternalSnackbar.Snackbar*
+  name: Snackbar
+  href: api/Material.Blazor.Internal.InternalSnackbar.html#Material_Blazor_Internal_InternalSnackbar_Snackbar_
+  commentId: Overload:Material.Blazor.Internal.InternalSnackbar.Snackbar
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.InternalSnackbar.Snackbar
+  nameWithType: InternalSnackbar.Snackbar
+- uid: Material.Blazor.Internal.InternalSnackbarAnchor
+  name: InternalSnackbarAnchor
+  href: api/Material.Blazor.Internal.InternalSnackbarAnchor.html
+  commentId: T:Material.Blazor.Internal.InternalSnackbarAnchor
+  fullName: Material.Blazor.Internal.InternalSnackbarAnchor
+  nameWithType: InternalSnackbarAnchor
+- uid: Material.Blazor.Internal.InternalSnackbarAnchor.Dispose
+  name: Dispose()
+  href: api/Material.Blazor.Internal.InternalSnackbarAnchor.html#Material_Blazor_Internal_InternalSnackbarAnchor_Dispose
+  commentId: M:Material.Blazor.Internal.InternalSnackbarAnchor.Dispose
+  fullName: Material.Blazor.Internal.InternalSnackbarAnchor.Dispose()
+  nameWithType: InternalSnackbarAnchor.Dispose()
+- uid: Material.Blazor.Internal.InternalSnackbarAnchor.Dispose*
+  name: Dispose
+  href: api/Material.Blazor.Internal.InternalSnackbarAnchor.html#Material_Blazor_Internal_InternalSnackbarAnchor_Dispose_
+  commentId: Overload:Material.Blazor.Internal.InternalSnackbarAnchor.Dispose
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.InternalSnackbarAnchor.Dispose
+  nameWithType: InternalSnackbarAnchor.Dispose
+- uid: Material.Blazor.Internal.InternalSnackbarAnchor.OnInitialized
+  name: OnInitialized()
+  href: api/Material.Blazor.Internal.InternalSnackbarAnchor.html#Material_Blazor_Internal_InternalSnackbarAnchor_OnInitialized
+  commentId: M:Material.Blazor.Internal.InternalSnackbarAnchor.OnInitialized
+  fullName: Material.Blazor.Internal.InternalSnackbarAnchor.OnInitialized()
+  nameWithType: InternalSnackbarAnchor.OnInitialized()
+- uid: Material.Blazor.Internal.InternalSnackbarAnchor.OnInitialized*
+  name: OnInitialized
+  href: api/Material.Blazor.Internal.InternalSnackbarAnchor.html#Material_Blazor_Internal_InternalSnackbarAnchor_OnInitialized_
+  commentId: Overload:Material.Blazor.Internal.InternalSnackbarAnchor.OnInitialized
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.InternalSnackbarAnchor.OnInitialized
+  nameWithType: InternalSnackbarAnchor.OnInitialized
 - uid: Material.Blazor.Internal.InternalToastAnchor
   name: InternalToastAnchor
   href: api/Material.Blazor.Internal.InternalToastAnchor.html
@@ -1805,6 +2044,51 @@ references:
   fullName.vb: Material.Blazor.Internal.SingleSelectComponent(Of T, TListElement).ValidateItemList
   nameWithType: SingleSelectComponent<T, TListElement>.ValidateItemList
   nameWithType.vb: SingleSelectComponent(Of T, TListElement).ValidateItemList
+- uid: Material.Blazor.Internal.SnackbarInstance
+  name: SnackbarInstance
+  href: api/Material.Blazor.Internal.SnackbarInstance.html
+  commentId: T:Material.Blazor.Internal.SnackbarInstance
+  fullName: Material.Blazor.Internal.SnackbarInstance
+  nameWithType: SnackbarInstance
+- uid: Material.Blazor.Internal.SnackbarInstance.Id
+  name: Id
+  href: api/Material.Blazor.Internal.SnackbarInstance.html#Material_Blazor_Internal_SnackbarInstance_Id
+  commentId: P:Material.Blazor.Internal.SnackbarInstance.Id
+  fullName: Material.Blazor.Internal.SnackbarInstance.Id
+  nameWithType: SnackbarInstance.Id
+- uid: Material.Blazor.Internal.SnackbarInstance.Id*
+  name: Id
+  href: api/Material.Blazor.Internal.SnackbarInstance.html#Material_Blazor_Internal_SnackbarInstance_Id_
+  commentId: Overload:Material.Blazor.Internal.SnackbarInstance.Id
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.SnackbarInstance.Id
+  nameWithType: SnackbarInstance.Id
+- uid: Material.Blazor.Internal.SnackbarInstance.Settings
+  name: Settings
+  href: api/Material.Blazor.Internal.SnackbarInstance.html#Material_Blazor_Internal_SnackbarInstance_Settings
+  commentId: P:Material.Blazor.Internal.SnackbarInstance.Settings
+  fullName: Material.Blazor.Internal.SnackbarInstance.Settings
+  nameWithType: SnackbarInstance.Settings
+- uid: Material.Blazor.Internal.SnackbarInstance.Settings*
+  name: Settings
+  href: api/Material.Blazor.Internal.SnackbarInstance.html#Material_Blazor_Internal_SnackbarInstance_Settings_
+  commentId: Overload:Material.Blazor.Internal.SnackbarInstance.Settings
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.SnackbarInstance.Settings
+  nameWithType: SnackbarInstance.Settings
+- uid: Material.Blazor.Internal.SnackbarInstance.TimeStamp
+  name: TimeStamp
+  href: api/Material.Blazor.Internal.SnackbarInstance.html#Material_Blazor_Internal_SnackbarInstance_TimeStamp
+  commentId: P:Material.Blazor.Internal.SnackbarInstance.TimeStamp
+  fullName: Material.Blazor.Internal.SnackbarInstance.TimeStamp
+  nameWithType: SnackbarInstance.TimeStamp
+- uid: Material.Blazor.Internal.SnackbarInstance.TimeStamp*
+  name: TimeStamp
+  href: api/Material.Blazor.Internal.SnackbarInstance.html#Material_Blazor_Internal_SnackbarInstance_TimeStamp_
+  commentId: Overload:Material.Blazor.Internal.SnackbarInstance.TimeStamp
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.SnackbarInstance.TimeStamp
+  nameWithType: SnackbarInstance.TimeStamp
 - uid: Material.Blazor.Internal.StyleMapper
   name: StyleMapper
   href: api/Material.Blazor.Internal.StyleMapper.html
@@ -1878,6 +2162,12 @@ references:
   commentId: F:Material.Blazor.MB_Grid_Measurement.PX
   fullName: Material.Blazor.MB_Grid_Measurement.PX
   nameWithType: MB_Grid_Measurement.PX
+- uid: Material.Blazor.MBAnchor
+  name: MBAnchor
+  href: api/Material.Blazor.MBAnchor.html
+  commentId: T:Material.Blazor.MBAnchor
+  fullName: Material.Blazor.MBAnchor
+  nameWithType: MBAnchor
 - uid: Material.Blazor.MBAnimatedNavigation
   name: MBAnimatedNavigation
   href: api/Material.Blazor.MBAnimatedNavigation.html
@@ -1986,6 +2276,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBAutocompleteTextField.AllowBlankResult
   nameWithType: MBAutocompleteTextField.AllowBlankResult
+- uid: Material.Blazor.MBAutocompleteTextField.AllowCustomValue
+  name: AllowCustomValue
+  href: api/Material.Blazor.MBAutocompleteTextField.html#Material_Blazor_MBAutocompleteTextField_AllowCustomValue
+  commentId: P:Material.Blazor.MBAutocompleteTextField.AllowCustomValue
+  fullName: Material.Blazor.MBAutocompleteTextField.AllowCustomValue
+  nameWithType: MBAutocompleteTextField.AllowCustomValue
+- uid: Material.Blazor.MBAutocompleteTextField.AllowCustomValue*
+  name: AllowCustomValue
+  href: api/Material.Blazor.MBAutocompleteTextField.html#Material_Blazor_MBAutocompleteTextField_AllowCustomValue_
+  commentId: Overload:Material.Blazor.MBAutocompleteTextField.AllowCustomValue
+  isSpec: "True"
+  fullName: Material.Blazor.MBAutocompleteTextField.AllowCustomValue
+  nameWithType: MBAutocompleteTextField.AllowCustomValue
 - uid: Material.Blazor.MBAutocompleteTextField.Density
   name: Density
   href: api/Material.Blazor.MBAutocompleteTextField.html#Material_Blazor_MBAutocompleteTextField_Density
@@ -3792,6 +4095,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBDatePicker.DateFormat
   nameWithType: MBDatePicker.DateFormat
+- uid: Material.Blazor.MBDatePicker.DateIsSelectable
+  name: DateIsSelectable
+  href: api/Material.Blazor.MBDatePicker.html#Material_Blazor_MBDatePicker_DateIsSelectable
+  commentId: P:Material.Blazor.MBDatePicker.DateIsSelectable
+  fullName: Material.Blazor.MBDatePicker.DateIsSelectable
+  nameWithType: MBDatePicker.DateIsSelectable
+- uid: Material.Blazor.MBDatePicker.DateIsSelectable*
+  name: DateIsSelectable
+  href: api/Material.Blazor.MBDatePicker.html#Material_Blazor_MBDatePicker_DateIsSelectable_
+  commentId: Overload:Material.Blazor.MBDatePicker.DateIsSelectable
+  isSpec: "True"
+  fullName: Material.Blazor.MBDatePicker.DateIsSelectable
+  nameWithType: MBDatePicker.DateIsSelectable
 - uid: Material.Blazor.MBDatePicker.DateSelectionCriteria
   name: DateSelectionCriteria
   href: api/Material.Blazor.MBDatePicker.html#Material_Blazor_MBDatePicker_DateSelectionCriteria
@@ -4233,6 +4549,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBDialog.Buttons
   nameWithType: MBDialog.Buttons
+- uid: Material.Blazor.MBDialog.CustomHeader
+  name: CustomHeader
+  href: api/Material.Blazor.MBDialog.html#Material_Blazor_MBDialog_CustomHeader
+  commentId: P:Material.Blazor.MBDialog.CustomHeader
+  fullName: Material.Blazor.MBDialog.CustomHeader
+  nameWithType: MBDialog.CustomHeader
+- uid: Material.Blazor.MBDialog.CustomHeader*
+  name: CustomHeader
+  href: api/Material.Blazor.MBDialog.html#Material_Blazor_MBDialog_CustomHeader_
+  commentId: Overload:Material.Blazor.MBDialog.CustomHeader
+  isSpec: "True"
+  fullName: Material.Blazor.MBDialog.CustomHeader
+  nameWithType: MBDialog.CustomHeader
 - uid: Material.Blazor.MBDialog.Dispose(System.Boolean)
   name: Dispose(Boolean)
   href: api/Material.Blazor.MBDialog.html#Material_Blazor_MBDialog_Dispose_System_Boolean_
@@ -4272,6 +4601,23 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBDialog.HideAsync
   nameWithType: MBDialog.HideAsync
+- uid: Material.Blazor.MBDialog.Material#Blazor#IMBDialog#RegisterLayoutAction(Material.Blazor.DialogChildComponent)
+  name: IMBDialog.RegisterLayoutAction(DialogChildComponent)
+  href: api/Material.Blazor.MBDialog.html#Material_Blazor_MBDialog_Material_Blazor_IMBDialog_RegisterLayoutAction_Material_Blazor_DialogChildComponent_
+  commentId: M:Material.Blazor.MBDialog.Material#Blazor#IMBDialog#RegisterLayoutAction(Material.Blazor.DialogChildComponent)
+  name.vb: Material.Blazor.IMBDialog.RegisterLayoutAction(DialogChildComponent)
+  fullName: Material.Blazor.MBDialog.Material.Blazor.IMBDialog.RegisterLayoutAction(Material.Blazor.DialogChildComponent)
+  nameWithType: MBDialog.IMBDialog.RegisterLayoutAction(DialogChildComponent)
+  nameWithType.vb: MBDialog.Material.Blazor.IMBDialog.RegisterLayoutAction(DialogChildComponent)
+- uid: Material.Blazor.MBDialog.Material#Blazor#IMBDialog#RegisterLayoutAction*
+  name: IMBDialog.RegisterLayoutAction
+  href: api/Material.Blazor.MBDialog.html#Material_Blazor_MBDialog_Material_Blazor_IMBDialog_RegisterLayoutAction_
+  commentId: Overload:Material.Blazor.MBDialog.Material#Blazor#IMBDialog#RegisterLayoutAction
+  isSpec: "True"
+  name.vb: Material.Blazor.IMBDialog.RegisterLayoutAction
+  fullName: Material.Blazor.MBDialog.Material.Blazor.IMBDialog.RegisterLayoutAction
+  nameWithType: MBDialog.IMBDialog.RegisterLayoutAction
+  nameWithType.vb: MBDialog.Material.Blazor.IMBDialog.RegisterLayoutAction
 - uid: Material.Blazor.MBDialog.NotifyOpenedAsync
   name: NotifyOpenedAsync()
   href: api/Material.Blazor.MBDialog.html#Material_Blazor_MBDialog_NotifyOpenedAsync
@@ -4632,6 +4978,33 @@ references:
   commentId: F:Material.Blazor.MBFloatingActionButtonType.Regular
   fullName: Material.Blazor.MBFloatingActionButtonType.Regular
   nameWithType: MBFloatingActionButtonType.Regular
+- uid: Material.Blazor.MBGrid_DataHelper`1
+  name: MBGrid_DataHelper<TRowData>
+  href: api/Material.Blazor.MBGrid_DataHelper-1.html
+  commentId: T:Material.Blazor.MBGrid_DataHelper`1
+  name.vb: MBGrid_DataHelper(Of TRowData)
+  fullName: Material.Blazor.MBGrid_DataHelper<TRowData>
+  fullName.vb: Material.Blazor.MBGrid_DataHelper(Of TRowData)
+  nameWithType: MBGrid_DataHelper<TRowData>
+  nameWithType.vb: MBGrid_DataHelper(Of TRowData)
+- uid: Material.Blazor.MBGrid_DataHelper`1.PrepareGridData(System.Collections.Generic.IEnumerable{`0},System.Reflection.PropertyInfo,System.Reflection.PropertyInfo,Material.Blazor.Direction,System.Reflection.PropertyInfo,Material.Blazor.Direction,System.Boolean,System.Reflection.PropertyInfo,System.Collections.Generic.IEnumerable{System.String},System.Func{System.Collections.Generic.IEnumerable{`0},System.Reflection.PropertyInfo,Material.Blazor.Direction,System.Reflection.PropertyInfo,Material.Blazor.Direction,System.Collections.Generic.IEnumerable{`0}},System.Func{System.Collections.Generic.IEnumerable{`0},System.Boolean,System.Reflection.PropertyInfo,System.Reflection.PropertyInfo,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,`0}}}}})
+  name: PrepareGridData(IEnumerable<TRowData>, PropertyInfo, PropertyInfo, Direction, PropertyInfo, Direction, Boolean, PropertyInfo, IEnumerable<String>, Func<IEnumerable<TRowData>, PropertyInfo, Direction, PropertyInfo, Direction, IEnumerable<TRowData>>, Func<IEnumerable<TRowData>, Boolean, PropertyInfo, PropertyInfo, IEnumerable<String>, IEnumerable<KeyValuePair<String, IEnumerable<KeyValuePair<String, TRowData>>>>>)
+  href: api/Material.Blazor.MBGrid_DataHelper-1.html#Material_Blazor_MBGrid_DataHelper_1_PrepareGridData_System_Collections_Generic_IEnumerable__0__System_Reflection_PropertyInfo_System_Reflection_PropertyInfo_Material_Blazor_Direction_System_Reflection_PropertyInfo_Material_Blazor_Direction_System_Boolean_System_Reflection_PropertyInfo_System_Collections_Generic_IEnumerable_System_String__System_Func_System_Collections_Generic_IEnumerable__0__System_Reflection_PropertyInfo_Material_Blazor_Direction_System_Reflection_PropertyInfo_Material_Blazor_Direction_System_Collections_Generic_IEnumerable__0___System_Func_System_Collections_Generic_IEnumerable__0__System_Boolean_System_Reflection_PropertyInfo_System_Reflection_PropertyInfo_System_Collections_Generic_IEnumerable_System_String__System_Collections_Generic_IEnumerable_System_Collections_Generic_KeyValuePair_System_String_System_Collections_Generic_IEnumerable_System_Collections_Generic_KeyValuePair_System_String__0______
+  commentId: M:Material.Blazor.MBGrid_DataHelper`1.PrepareGridData(System.Collections.Generic.IEnumerable{`0},System.Reflection.PropertyInfo,System.Reflection.PropertyInfo,Material.Blazor.Direction,System.Reflection.PropertyInfo,Material.Blazor.Direction,System.Boolean,System.Reflection.PropertyInfo,System.Collections.Generic.IEnumerable{System.String},System.Func{System.Collections.Generic.IEnumerable{`0},System.Reflection.PropertyInfo,Material.Blazor.Direction,System.Reflection.PropertyInfo,Material.Blazor.Direction,System.Collections.Generic.IEnumerable{`0}},System.Func{System.Collections.Generic.IEnumerable{`0},System.Boolean,System.Reflection.PropertyInfo,System.Reflection.PropertyInfo,System.Collections.Generic.IEnumerable{System.String},System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,`0}}}}})
+  name.vb: PrepareGridData(IEnumerable(Of TRowData), PropertyInfo, PropertyInfo, Direction, PropertyInfo, Direction, Boolean, PropertyInfo, IEnumerable(Of String), Func(Of IEnumerable(Of TRowData), PropertyInfo, Direction, PropertyInfo, Direction, IEnumerable(Of TRowData)), Func(Of IEnumerable(Of TRowData), Boolean, PropertyInfo, PropertyInfo, IEnumerable(Of String), IEnumerable(Of KeyValuePair(Of String, IEnumerable(Of KeyValuePair(Of String, TRowData))))))
+  fullName: Material.Blazor.MBGrid_DataHelper<TRowData>.PrepareGridData(System.Collections.Generic.IEnumerable<TRowData>, System.Reflection.PropertyInfo, System.Reflection.PropertyInfo, Material.Blazor.Direction, System.Reflection.PropertyInfo, Material.Blazor.Direction, System.Boolean, System.Reflection.PropertyInfo, System.Collections.Generic.IEnumerable<System.String>, System.Func<System.Collections.Generic.IEnumerable<TRowData>, System.Reflection.PropertyInfo, Material.Blazor.Direction, System.Reflection.PropertyInfo, Material.Blazor.Direction, System.Collections.Generic.IEnumerable<TRowData>>, System.Func<System.Collections.Generic.IEnumerable<TRowData>, System.Boolean, System.Reflection.PropertyInfo, System.Reflection.PropertyInfo, System.Collections.Generic.IEnumerable<System.String>, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<System.String, System.Collections.Generic.IEnumerable<System.Collections.Generic.KeyValuePair<System.String, TRowData>>>>>)
+  fullName.vb: Material.Blazor.MBGrid_DataHelper(Of TRowData).PrepareGridData(System.Collections.Generic.IEnumerable(Of TRowData), System.Reflection.PropertyInfo, System.Reflection.PropertyInfo, Material.Blazor.Direction, System.Reflection.PropertyInfo, Material.Blazor.Direction, System.Boolean, System.Reflection.PropertyInfo, System.Collections.Generic.IEnumerable(Of System.String), System.Func(Of System.Collections.Generic.IEnumerable(Of TRowData), System.Reflection.PropertyInfo, Material.Blazor.Direction, System.Reflection.PropertyInfo, Material.Blazor.Direction, System.Collections.Generic.IEnumerable(Of TRowData)), System.Func(Of System.Collections.Generic.IEnumerable(Of TRowData), System.Boolean, System.Reflection.PropertyInfo, System.Reflection.PropertyInfo, System.Collections.Generic.IEnumerable(Of System.String), System.Collections.Generic.IEnumerable(Of System.Collections.Generic.KeyValuePair(Of System.String, System.Collections.Generic.IEnumerable(Of System.Collections.Generic.KeyValuePair(Of System.String, TRowData))))))
+  nameWithType: MBGrid_DataHelper<TRowData>.PrepareGridData(IEnumerable<TRowData>, PropertyInfo, PropertyInfo, Direction, PropertyInfo, Direction, Boolean, PropertyInfo, IEnumerable<String>, Func<IEnumerable<TRowData>, PropertyInfo, Direction, PropertyInfo, Direction, IEnumerable<TRowData>>, Func<IEnumerable<TRowData>, Boolean, PropertyInfo, PropertyInfo, IEnumerable<String>, IEnumerable<KeyValuePair<String, IEnumerable<KeyValuePair<String, TRowData>>>>>)
+  nameWithType.vb: MBGrid_DataHelper(Of TRowData).PrepareGridData(IEnumerable(Of TRowData), PropertyInfo, PropertyInfo, Direction, PropertyInfo, Direction, Boolean, PropertyInfo, IEnumerable(Of String), Func(Of IEnumerable(Of TRowData), PropertyInfo, Direction, PropertyInfo, Direction, IEnumerable(Of TRowData)), Func(Of IEnumerable(Of TRowData), Boolean, PropertyInfo, PropertyInfo, IEnumerable(Of String), IEnumerable(Of KeyValuePair(Of String, IEnumerable(Of KeyValuePair(Of String, TRowData))))))
+- uid: Material.Blazor.MBGrid_DataHelper`1.PrepareGridData*
+  name: PrepareGridData
+  href: api/Material.Blazor.MBGrid_DataHelper-1.html#Material_Blazor_MBGrid_DataHelper_1_PrepareGridData_
+  commentId: Overload:Material.Blazor.MBGrid_DataHelper`1.PrepareGridData
+  isSpec: "True"
+  fullName: Material.Blazor.MBGrid_DataHelper<TRowData>.PrepareGridData
+  fullName.vb: Material.Blazor.MBGrid_DataHelper(Of TRowData).PrepareGridData
+  nameWithType: MBGrid_DataHelper<TRowData>.PrepareGridData
+  nameWithType.vb: MBGrid_DataHelper(Of TRowData).PrepareGridData
 - uid: Material.Blazor.MBGrid`1
   name: MBGrid<TRowData>
   href: api/Material.Blazor.MBGrid-1.html
@@ -4675,23 +5048,6 @@ references:
   fullName.vb: Material.Blazor.MBGrid(Of TRowData).ColumnConfigurations
   nameWithType: MBGrid<TRowData>.ColumnConfigurations
   nameWithType.vb: MBGrid(Of TRowData).ColumnConfigurations
-- uid: Material.Blazor.MBGrid`1.DataDictionary
-  name: DataDictionary
-  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_DataDictionary
-  commentId: P:Material.Blazor.MBGrid`1.DataDictionary
-  fullName: Material.Blazor.MBGrid<TRowData>.DataDictionary
-  fullName.vb: Material.Blazor.MBGrid(Of TRowData).DataDictionary
-  nameWithType: MBGrid<TRowData>.DataDictionary
-  nameWithType.vb: MBGrid(Of TRowData).DataDictionary
-- uid: Material.Blazor.MBGrid`1.DataDictionary*
-  name: DataDictionary
-  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_DataDictionary_
-  commentId: Overload:Material.Blazor.MBGrid`1.DataDictionary
-  isSpec: "True"
-  fullName: Material.Blazor.MBGrid<TRowData>.DataDictionary
-  fullName.vb: Material.Blazor.MBGrid(Of TRowData).DataDictionary
-  nameWithType: MBGrid<TRowData>.DataDictionary
-  nameWithType.vb: MBGrid(Of TRowData).DataDictionary
 - uid: Material.Blazor.MBGrid`1.GridSyncScroll
   name: GridSyncScroll()
   href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_GridSyncScroll
@@ -4709,40 +5065,40 @@ references:
   fullName.vb: Material.Blazor.MBGrid(Of TRowData).GridSyncScroll
   nameWithType: MBGrid<TRowData>.GridSyncScroll
   nameWithType.vb: MBGrid(Of TRowData).GridSyncScroll
-- uid: Material.Blazor.MBGrid`1.GroupExpression
-  name: GroupExpression
-  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_GroupExpression
-  commentId: P:Material.Blazor.MBGrid`1.GroupExpression
-  fullName: Material.Blazor.MBGrid<TRowData>.GroupExpression
-  fullName.vb: Material.Blazor.MBGrid(Of TRowData).GroupExpression
-  nameWithType: MBGrid<TRowData>.GroupExpression
-  nameWithType.vb: MBGrid(Of TRowData).GroupExpression
-- uid: Material.Blazor.MBGrid`1.GroupExpression*
-  name: GroupExpression
-  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_GroupExpression_
-  commentId: Overload:Material.Blazor.MBGrid`1.GroupExpression
+- uid: Material.Blazor.MBGrid`1.Group
+  name: Group
+  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_Group
+  commentId: P:Material.Blazor.MBGrid`1.Group
+  fullName: Material.Blazor.MBGrid<TRowData>.Group
+  fullName.vb: Material.Blazor.MBGrid(Of TRowData).Group
+  nameWithType: MBGrid<TRowData>.Group
+  nameWithType.vb: MBGrid(Of TRowData).Group
+- uid: Material.Blazor.MBGrid`1.Group*
+  name: Group
+  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_Group_
+  commentId: Overload:Material.Blazor.MBGrid`1.Group
   isSpec: "True"
-  fullName: Material.Blazor.MBGrid<TRowData>.GroupExpression
-  fullName.vb: Material.Blazor.MBGrid(Of TRowData).GroupExpression
-  nameWithType: MBGrid<TRowData>.GroupExpression
-  nameWithType.vb: MBGrid(Of TRowData).GroupExpression
-- uid: Material.Blazor.MBGrid`1.GroupOrderedList
-  name: GroupOrderedList
-  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_GroupOrderedList
-  commentId: P:Material.Blazor.MBGrid`1.GroupOrderedList
-  fullName: Material.Blazor.MBGrid<TRowData>.GroupOrderedList
-  fullName.vb: Material.Blazor.MBGrid(Of TRowData).GroupOrderedList
-  nameWithType: MBGrid<TRowData>.GroupOrderedList
-  nameWithType.vb: MBGrid(Of TRowData).GroupOrderedList
-- uid: Material.Blazor.MBGrid`1.GroupOrderedList*
-  name: GroupOrderedList
-  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_GroupOrderedList_
-  commentId: Overload:Material.Blazor.MBGrid`1.GroupOrderedList
+  fullName: Material.Blazor.MBGrid<TRowData>.Group
+  fullName.vb: Material.Blazor.MBGrid(Of TRowData).Group
+  nameWithType: MBGrid<TRowData>.Group
+  nameWithType.vb: MBGrid(Of TRowData).Group
+- uid: Material.Blazor.MBGrid`1.GroupedOrderedData
+  name: GroupedOrderedData
+  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_GroupedOrderedData
+  commentId: P:Material.Blazor.MBGrid`1.GroupedOrderedData
+  fullName: Material.Blazor.MBGrid<TRowData>.GroupedOrderedData
+  fullName.vb: Material.Blazor.MBGrid(Of TRowData).GroupedOrderedData
+  nameWithType: MBGrid<TRowData>.GroupedOrderedData
+  nameWithType.vb: MBGrid(Of TRowData).GroupedOrderedData
+- uid: Material.Blazor.MBGrid`1.GroupedOrderedData*
+  name: GroupedOrderedData
+  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_GroupedOrderedData_
+  commentId: Overload:Material.Blazor.MBGrid`1.GroupedOrderedData
   isSpec: "True"
-  fullName: Material.Blazor.MBGrid<TRowData>.GroupOrderedList
-  fullName.vb: Material.Blazor.MBGrid(Of TRowData).GroupOrderedList
-  nameWithType: MBGrid<TRowData>.GroupOrderedList
-  nameWithType.vb: MBGrid(Of TRowData).GroupOrderedList
+  fullName: Material.Blazor.MBGrid<TRowData>.GroupedOrderedData
+  fullName.vb: Material.Blazor.MBGrid(Of TRowData).GroupedOrderedData
+  nameWithType: MBGrid<TRowData>.GroupedOrderedData
+  nameWithType.vb: MBGrid(Of TRowData).GroupedOrderedData
 - uid: Material.Blazor.MBGrid`1.HighlightSelectedRow
   name: HighlightSelectedRow
   href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_HighlightSelectedRow
@@ -4794,6 +5150,23 @@ references:
   fullName.vb: Material.Blazor.MBGrid(Of TRowData).Measurement
   nameWithType: MBGrid<TRowData>.Measurement
   nameWithType.vb: MBGrid(Of TRowData).Measurement
+- uid: Material.Blazor.MBGrid`1.ObscurePMI
+  name: ObscurePMI
+  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_ObscurePMI
+  commentId: P:Material.Blazor.MBGrid`1.ObscurePMI
+  fullName: Material.Blazor.MBGrid<TRowData>.ObscurePMI
+  fullName.vb: Material.Blazor.MBGrid(Of TRowData).ObscurePMI
+  nameWithType: MBGrid<TRowData>.ObscurePMI
+  nameWithType.vb: MBGrid(Of TRowData).ObscurePMI
+- uid: Material.Blazor.MBGrid`1.ObscurePMI*
+  name: ObscurePMI
+  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_ObscurePMI_
+  commentId: Overload:Material.Blazor.MBGrid`1.ObscurePMI
+  isSpec: "True"
+  fullName: Material.Blazor.MBGrid<TRowData>.ObscurePMI
+  fullName.vb: Material.Blazor.MBGrid(Of TRowData).ObscurePMI
+  nameWithType: MBGrid<TRowData>.ObscurePMI
+  nameWithType.vb: MBGrid(Of TRowData).ObscurePMI
 - uid: Material.Blazor.MBGrid`1.OnAfterRenderAsync(System.Boolean)
   name: OnAfterRenderAsync(Boolean)
   href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_OnAfterRenderAsync_System_Boolean_
@@ -4862,23 +5235,23 @@ references:
   fullName.vb: Material.Blazor.MBGrid(Of TRowData).OnParametersSetAsync
   nameWithType: MBGrid<TRowData>.OnParametersSetAsync
   nameWithType.vb: MBGrid(Of TRowData).OnParametersSetAsync
-- uid: Material.Blazor.MBGrid`1.SetShouldRenderReturnValue(System.Boolean)
-  name: SetShouldRenderReturnValue(Boolean)
-  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_SetShouldRenderReturnValue_System_Boolean_
-  commentId: M:Material.Blazor.MBGrid`1.SetShouldRenderReturnValue(System.Boolean)
-  fullName: Material.Blazor.MBGrid<TRowData>.SetShouldRenderReturnValue(System.Boolean)
-  fullName.vb: Material.Blazor.MBGrid(Of TRowData).SetShouldRenderReturnValue(System.Boolean)
-  nameWithType: MBGrid<TRowData>.SetShouldRenderReturnValue(Boolean)
-  nameWithType.vb: MBGrid(Of TRowData).SetShouldRenderReturnValue(Boolean)
-- uid: Material.Blazor.MBGrid`1.SetShouldRenderReturnValue*
-  name: SetShouldRenderReturnValue
-  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_SetShouldRenderReturnValue_
-  commentId: Overload:Material.Blazor.MBGrid`1.SetShouldRenderReturnValue
+- uid: Material.Blazor.MBGrid`1.SetShouldRenderValue(System.Boolean)
+  name: SetShouldRenderValue(Boolean)
+  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_SetShouldRenderValue_System_Boolean_
+  commentId: M:Material.Blazor.MBGrid`1.SetShouldRenderValue(System.Boolean)
+  fullName: Material.Blazor.MBGrid<TRowData>.SetShouldRenderValue(System.Boolean)
+  fullName.vb: Material.Blazor.MBGrid(Of TRowData).SetShouldRenderValue(System.Boolean)
+  nameWithType: MBGrid<TRowData>.SetShouldRenderValue(Boolean)
+  nameWithType.vb: MBGrid(Of TRowData).SetShouldRenderValue(Boolean)
+- uid: Material.Blazor.MBGrid`1.SetShouldRenderValue*
+  name: SetShouldRenderValue
+  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_SetShouldRenderValue_
+  commentId: Overload:Material.Blazor.MBGrid`1.SetShouldRenderValue
   isSpec: "True"
-  fullName: Material.Blazor.MBGrid<TRowData>.SetShouldRenderReturnValue
-  fullName.vb: Material.Blazor.MBGrid(Of TRowData).SetShouldRenderReturnValue
-  nameWithType: MBGrid<TRowData>.SetShouldRenderReturnValue
-  nameWithType.vb: MBGrid(Of TRowData).SetShouldRenderReturnValue
+  fullName: Material.Blazor.MBGrid<TRowData>.SetShouldRenderValue
+  fullName.vb: Material.Blazor.MBGrid(Of TRowData).SetShouldRenderValue
+  nameWithType: MBGrid<TRowData>.SetShouldRenderValue
+  nameWithType.vb: MBGrid(Of TRowData).SetShouldRenderValue
 - uid: Material.Blazor.MBGrid`1.ShouldRender
   name: ShouldRender()
   href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_ShouldRender
@@ -4896,40 +5269,6 @@ references:
   fullName.vb: Material.Blazor.MBGrid(Of TRowData).ShouldRender
   nameWithType: MBGrid<TRowData>.ShouldRender
   nameWithType.vb: MBGrid(Of TRowData).ShouldRender
-- uid: Material.Blazor.MBGrid`1.SortExpressionFirst
-  name: SortExpressionFirst
-  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_SortExpressionFirst
-  commentId: P:Material.Blazor.MBGrid`1.SortExpressionFirst
-  fullName: Material.Blazor.MBGrid<TRowData>.SortExpressionFirst
-  fullName.vb: Material.Blazor.MBGrid(Of TRowData).SortExpressionFirst
-  nameWithType: MBGrid<TRowData>.SortExpressionFirst
-  nameWithType.vb: MBGrid(Of TRowData).SortExpressionFirst
-- uid: Material.Blazor.MBGrid`1.SortExpressionFirst*
-  name: SortExpressionFirst
-  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_SortExpressionFirst_
-  commentId: Overload:Material.Blazor.MBGrid`1.SortExpressionFirst
-  isSpec: "True"
-  fullName: Material.Blazor.MBGrid<TRowData>.SortExpressionFirst
-  fullName.vb: Material.Blazor.MBGrid(Of TRowData).SortExpressionFirst
-  nameWithType: MBGrid<TRowData>.SortExpressionFirst
-  nameWithType.vb: MBGrid(Of TRowData).SortExpressionFirst
-- uid: Material.Blazor.MBGrid`1.SortExpressionSecond
-  name: SortExpressionSecond
-  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_SortExpressionSecond
-  commentId: P:Material.Blazor.MBGrid`1.SortExpressionSecond
-  fullName: Material.Blazor.MBGrid<TRowData>.SortExpressionSecond
-  fullName.vb: Material.Blazor.MBGrid(Of TRowData).SortExpressionSecond
-  nameWithType: MBGrid<TRowData>.SortExpressionSecond
-  nameWithType.vb: MBGrid(Of TRowData).SortExpressionSecond
-- uid: Material.Blazor.MBGrid`1.SortExpressionSecond*
-  name: SortExpressionSecond
-  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_SortExpressionSecond_
-  commentId: Overload:Material.Blazor.MBGrid`1.SortExpressionSecond
-  isSpec: "True"
-  fullName: Material.Blazor.MBGrid<TRowData>.SortExpressionSecond
-  fullName.vb: Material.Blazor.MBGrid(Of TRowData).SortExpressionSecond
-  nameWithType: MBGrid<TRowData>.SortExpressionSecond
-  nameWithType.vb: MBGrid(Of TRowData).SortExpressionSecond
 - uid: Material.Blazor.MBGrid`1.SupressHeader
   name: SupressHeader
   href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_SupressHeader
@@ -4956,15 +5295,15 @@ references:
   fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData)
   nameWithType: MBGridColumnConfiguration<TRowData>
   nameWithType.vb: MBGridColumnConfiguration(Of TRowData)
-- uid: Material.Blazor.MBGridColumnConfiguration`1.#ctor(System.Nullable{System.Drawing.Color},System.Boolean,Material.Blazor.MB_Grid_ColumnType,System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Nullable{System.Drawing.Color},System.String,System.Boolean,System.String,System.Int32)
-  name: MBGridColumnConfiguration(Nullable<Color>, Boolean, MB_Grid_ColumnType, Expression<Func<TRowData, Object>>, Nullable<Color>, String, Boolean, String, Int32)
-  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1__ctor_System_Nullable_System_Drawing_Color__System_Boolean_Material_Blazor_MB_Grid_ColumnType_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_Nullable_System_Drawing_Color__System_String_System_Boolean_System_String_System_Int32_
-  commentId: M:Material.Blazor.MBGridColumnConfiguration`1.#ctor(System.Nullable{System.Drawing.Color},System.Boolean,Material.Blazor.MB_Grid_ColumnType,System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Nullable{System.Drawing.Color},System.String,System.Boolean,System.String,System.Int32)
-  name.vb: MBGridColumnConfiguration(Nullable(Of Color), Boolean, MB_Grid_ColumnType, Expression(Of Func(Of TRowData, Object)), Nullable(Of Color), String, Boolean, String, Int32)
-  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.MBGridColumnConfiguration(System.Nullable<System.Drawing.Color>, System.Boolean, Material.Blazor.MB_Grid_ColumnType, System.Linq.Expressions.Expression<System.Func<TRowData, System.Object>>, System.Nullable<System.Drawing.Color>, System.String, System.Boolean, System.String, System.Int32)
-  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).MBGridColumnConfiguration(System.Nullable(Of System.Drawing.Color), System.Boolean, Material.Blazor.MB_Grid_ColumnType, System.Linq.Expressions.Expression(Of System.Func(Of TRowData, System.Object)), System.Nullable(Of System.Drawing.Color), System.String, System.Boolean, System.String, System.Int32)
-  nameWithType: MBGridColumnConfiguration<TRowData>.MBGridColumnConfiguration(Nullable<Color>, Boolean, MB_Grid_ColumnType, Expression<Func<TRowData, Object>>, Nullable<Color>, String, Boolean, String, Int32)
-  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).MBGridColumnConfiguration(Nullable(Of Color), Boolean, MB_Grid_ColumnType, Expression(Of Func(Of TRowData, Object)), Nullable(Of Color), String, Boolean, String, Int32)
+- uid: Material.Blazor.MBGridColumnConfiguration`1.#ctor(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Nullable{System.Drawing.Color},System.Boolean,Material.Blazor.MB_Grid_ColumnType,System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Nullable{System.Drawing.Color},System.String,System.Boolean,System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Int32)
+  name: MBGridColumnConfiguration(Expression<Func<TRowData, Object>>, Nullable<Color>, Boolean, MB_Grid_ColumnType, Expression<Func<TRowData, Object>>, Expression<Func<TRowData, Object>>, Nullable<Color>, String, Boolean, Expression<Func<TRowData, Object>>, String, Int32)
+  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1__ctor_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_Nullable_System_Drawing_Color__System_Boolean_Material_Blazor_MB_Grid_ColumnType_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_Linq_Expressions_Expression_System_Func__0_System_Object___System_Nullable_System_Drawing_Color__System_String_System_Boolean_System_Linq_Expressions_Expression_System_Func__0_System_Object___System_String_System_Int32_
+  commentId: M:Material.Blazor.MBGridColumnConfiguration`1.#ctor(System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Nullable{System.Drawing.Color},System.Boolean,Material.Blazor.MB_Grid_ColumnType,System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Nullable{System.Drawing.Color},System.String,System.Boolean,System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.String,System.Int32)
+  name.vb: MBGridColumnConfiguration(Expression(Of Func(Of TRowData, Object)), Nullable(Of Color), Boolean, MB_Grid_ColumnType, Expression(Of Func(Of TRowData, Object)), Expression(Of Func(Of TRowData, Object)), Nullable(Of Color), String, Boolean, Expression(Of Func(Of TRowData, Object)), String, Int32)
+  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.MBGridColumnConfiguration(System.Linq.Expressions.Expression<System.Func<TRowData, System.Object>>, System.Nullable<System.Drawing.Color>, System.Boolean, Material.Blazor.MB_Grid_ColumnType, System.Linq.Expressions.Expression<System.Func<TRowData, System.Object>>, System.Linq.Expressions.Expression<System.Func<TRowData, System.Object>>, System.Nullable<System.Drawing.Color>, System.String, System.Boolean, System.Linq.Expressions.Expression<System.Func<TRowData, System.Object>>, System.String, System.Int32)
+  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).MBGridColumnConfiguration(System.Linq.Expressions.Expression(Of System.Func(Of TRowData, System.Object)), System.Nullable(Of System.Drawing.Color), System.Boolean, Material.Blazor.MB_Grid_ColumnType, System.Linq.Expressions.Expression(Of System.Func(Of TRowData, System.Object)), System.Linq.Expressions.Expression(Of System.Func(Of TRowData, System.Object)), System.Nullable(Of System.Drawing.Color), System.String, System.Boolean, System.Linq.Expressions.Expression(Of System.Func(Of TRowData, System.Object)), System.String, System.Int32)
+  nameWithType: MBGridColumnConfiguration<TRowData>.MBGridColumnConfiguration(Expression<Func<TRowData, Object>>, Nullable<Color>, Boolean, MB_Grid_ColumnType, Expression<Func<TRowData, Object>>, Expression<Func<TRowData, Object>>, Nullable<Color>, String, Boolean, Expression<Func<TRowData, Object>>, String, Int32)
+  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).MBGridColumnConfiguration(Expression(Of Func(Of TRowData, Object)), Nullable(Of Color), Boolean, MB_Grid_ColumnType, Expression(Of Func(Of TRowData, Object)), Expression(Of Func(Of TRowData, Object)), Nullable(Of Color), String, Boolean, Expression(Of Func(Of TRowData, Object)), String, Int32)
 - uid: Material.Blazor.MBGridColumnConfiguration`1.#ctor*
   name: MBGridColumnConfiguration
   href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1__ctor_
@@ -4974,40 +5313,57 @@ references:
   fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).MBGridColumnConfiguration
   nameWithType: MBGridColumnConfiguration<TRowData>.MBGridColumnConfiguration
   nameWithType.vb: MBGridColumnConfiguration(Of TRowData).MBGridColumnConfiguration
-- uid: Material.Blazor.MBGridColumnConfiguration`1.BackgroundColor
-  name: BackgroundColor
-  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_BackgroundColor
-  commentId: P:Material.Blazor.MBGridColumnConfiguration`1.BackgroundColor
-  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.BackgroundColor
-  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).BackgroundColor
-  nameWithType: MBGridColumnConfiguration<TRowData>.BackgroundColor
-  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).BackgroundColor
-- uid: Material.Blazor.MBGridColumnConfiguration`1.BackgroundColor*
-  name: BackgroundColor
-  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_BackgroundColor_
-  commentId: Overload:Material.Blazor.MBGridColumnConfiguration`1.BackgroundColor
+- uid: Material.Blazor.MBGridColumnConfiguration`1.BackgroundColorExpression
+  name: BackgroundColorExpression
+  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_BackgroundColorExpression
+  commentId: P:Material.Blazor.MBGridColumnConfiguration`1.BackgroundColorExpression
+  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.BackgroundColorExpression
+  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).BackgroundColorExpression
+  nameWithType: MBGridColumnConfiguration<TRowData>.BackgroundColorExpression
+  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).BackgroundColorExpression
+- uid: Material.Blazor.MBGridColumnConfiguration`1.BackgroundColorExpression*
+  name: BackgroundColorExpression
+  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_BackgroundColorExpression_
+  commentId: Overload:Material.Blazor.MBGridColumnConfiguration`1.BackgroundColorExpression
   isSpec: "True"
-  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.BackgroundColor
-  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).BackgroundColor
-  nameWithType: MBGridColumnConfiguration<TRowData>.BackgroundColor
-  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).BackgroundColor
-- uid: Material.Blazor.MBGridColumnConfiguration`1.Bold
-  name: Bold
-  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_Bold
-  commentId: P:Material.Blazor.MBGridColumnConfiguration`1.Bold
-  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.Bold
-  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).Bold
-  nameWithType: MBGridColumnConfiguration<TRowData>.Bold
-  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).Bold
-- uid: Material.Blazor.MBGridColumnConfiguration`1.Bold*
-  name: Bold
-  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_Bold_
-  commentId: Overload:Material.Blazor.MBGridColumnConfiguration`1.Bold
+  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.BackgroundColorExpression
+  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).BackgroundColorExpression
+  nameWithType: MBGridColumnConfiguration<TRowData>.BackgroundColorExpression
+  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).BackgroundColorExpression
+- uid: Material.Blazor.MBGridColumnConfiguration`1.BackgroundColorHeader
+  name: BackgroundColorHeader
+  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_BackgroundColorHeader
+  commentId: P:Material.Blazor.MBGridColumnConfiguration`1.BackgroundColorHeader
+  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.BackgroundColorHeader
+  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).BackgroundColorHeader
+  nameWithType: MBGridColumnConfiguration<TRowData>.BackgroundColorHeader
+  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).BackgroundColorHeader
+- uid: Material.Blazor.MBGridColumnConfiguration`1.BackgroundColorHeader*
+  name: BackgroundColorHeader
+  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_BackgroundColorHeader_
+  commentId: Overload:Material.Blazor.MBGridColumnConfiguration`1.BackgroundColorHeader
   isSpec: "True"
-  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.Bold
-  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).Bold
-  nameWithType: MBGridColumnConfiguration<TRowData>.Bold
-  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).Bold
+  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.BackgroundColorHeader
+  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).BackgroundColorHeader
+  nameWithType: MBGridColumnConfiguration<TRowData>.BackgroundColorHeader
+  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).BackgroundColorHeader
+- uid: Material.Blazor.MBGridColumnConfiguration`1.BoldHeader
+  name: BoldHeader
+  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_BoldHeader
+  commentId: P:Material.Blazor.MBGridColumnConfiguration`1.BoldHeader
+  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.BoldHeader
+  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).BoldHeader
+  nameWithType: MBGridColumnConfiguration<TRowData>.BoldHeader
+  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).BoldHeader
+- uid: Material.Blazor.MBGridColumnConfiguration`1.BoldHeader*
+  name: BoldHeader
+  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_BoldHeader_
+  commentId: Overload:Material.Blazor.MBGridColumnConfiguration`1.BoldHeader
+  isSpec: "True"
+  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.BoldHeader
+  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).BoldHeader
+  nameWithType: MBGridColumnConfiguration<TRowData>.BoldHeader
+  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).BoldHeader
 - uid: Material.Blazor.MBGridColumnConfiguration`1.ColumnType
   name: ColumnType
   href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_ColumnType
@@ -5042,23 +5398,40 @@ references:
   fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).DataExpression
   nameWithType: MBGridColumnConfiguration<TRowData>.DataExpression
   nameWithType.vb: MBGridColumnConfiguration(Of TRowData).DataExpression
-- uid: Material.Blazor.MBGridColumnConfiguration`1.ForegroundColor
-  name: ForegroundColor
-  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_ForegroundColor
-  commentId: P:Material.Blazor.MBGridColumnConfiguration`1.ForegroundColor
-  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.ForegroundColor
-  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).ForegroundColor
-  nameWithType: MBGridColumnConfiguration<TRowData>.ForegroundColor
-  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).ForegroundColor
-- uid: Material.Blazor.MBGridColumnConfiguration`1.ForegroundColor*
-  name: ForegroundColor
-  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_ForegroundColor_
-  commentId: Overload:Material.Blazor.MBGridColumnConfiguration`1.ForegroundColor
+- uid: Material.Blazor.MBGridColumnConfiguration`1.ForegroundColorExpression
+  name: ForegroundColorExpression
+  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_ForegroundColorExpression
+  commentId: P:Material.Blazor.MBGridColumnConfiguration`1.ForegroundColorExpression
+  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.ForegroundColorExpression
+  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).ForegroundColorExpression
+  nameWithType: MBGridColumnConfiguration<TRowData>.ForegroundColorExpression
+  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).ForegroundColorExpression
+- uid: Material.Blazor.MBGridColumnConfiguration`1.ForegroundColorExpression*
+  name: ForegroundColorExpression
+  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_ForegroundColorExpression_
+  commentId: Overload:Material.Blazor.MBGridColumnConfiguration`1.ForegroundColorExpression
   isSpec: "True"
-  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.ForegroundColor
-  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).ForegroundColor
-  nameWithType: MBGridColumnConfiguration<TRowData>.ForegroundColor
-  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).ForegroundColor
+  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.ForegroundColorExpression
+  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).ForegroundColorExpression
+  nameWithType: MBGridColumnConfiguration<TRowData>.ForegroundColorExpression
+  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).ForegroundColorExpression
+- uid: Material.Blazor.MBGridColumnConfiguration`1.ForegroundColorHeader
+  name: ForegroundColorHeader
+  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_ForegroundColorHeader
+  commentId: P:Material.Blazor.MBGridColumnConfiguration`1.ForegroundColorHeader
+  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.ForegroundColorHeader
+  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).ForegroundColorHeader
+  nameWithType: MBGridColumnConfiguration<TRowData>.ForegroundColorHeader
+  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).ForegroundColorHeader
+- uid: Material.Blazor.MBGridColumnConfiguration`1.ForegroundColorHeader*
+  name: ForegroundColorHeader
+  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_ForegroundColorHeader_
+  commentId: Overload:Material.Blazor.MBGridColumnConfiguration`1.ForegroundColorHeader
+  isSpec: "True"
+  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.ForegroundColorHeader
+  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).ForegroundColorHeader
+  nameWithType: MBGridColumnConfiguration<TRowData>.ForegroundColorHeader
+  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).ForegroundColorHeader
 - uid: Material.Blazor.MBGridColumnConfiguration`1.FormatString
   name: FormatString
   href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_FormatString
@@ -5076,23 +5449,40 @@ references:
   fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).FormatString
   nameWithType: MBGridColumnConfiguration<TRowData>.FormatString
   nameWithType.vb: MBGridColumnConfiguration(Of TRowData).FormatString
-- uid: Material.Blazor.MBGridColumnConfiguration`1.SupressDisplay
-  name: SupressDisplay
-  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_SupressDisplay
-  commentId: P:Material.Blazor.MBGridColumnConfiguration`1.SupressDisplay
-  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.SupressDisplay
-  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).SupressDisplay
-  nameWithType: MBGridColumnConfiguration<TRowData>.SupressDisplay
-  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).SupressDisplay
-- uid: Material.Blazor.MBGridColumnConfiguration`1.SupressDisplay*
-  name: SupressDisplay
-  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_SupressDisplay_
-  commentId: Overload:Material.Blazor.MBGridColumnConfiguration`1.SupressDisplay
+- uid: Material.Blazor.MBGridColumnConfiguration`1.IsPMI
+  name: IsPMI
+  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_IsPMI
+  commentId: P:Material.Blazor.MBGridColumnConfiguration`1.IsPMI
+  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.IsPMI
+  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).IsPMI
+  nameWithType: MBGridColumnConfiguration<TRowData>.IsPMI
+  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).IsPMI
+- uid: Material.Blazor.MBGridColumnConfiguration`1.IsPMI*
+  name: IsPMI
+  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_IsPMI_
+  commentId: Overload:Material.Blazor.MBGridColumnConfiguration`1.IsPMI
   isSpec: "True"
-  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.SupressDisplay
-  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).SupressDisplay
-  nameWithType: MBGridColumnConfiguration<TRowData>.SupressDisplay
-  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).SupressDisplay
+  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.IsPMI
+  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).IsPMI
+  nameWithType: MBGridColumnConfiguration<TRowData>.IsPMI
+  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).IsPMI
+- uid: Material.Blazor.MBGridColumnConfiguration`1.SupressDisplayExpression
+  name: SupressDisplayExpression
+  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_SupressDisplayExpression
+  commentId: P:Material.Blazor.MBGridColumnConfiguration`1.SupressDisplayExpression
+  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.SupressDisplayExpression
+  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).SupressDisplayExpression
+  nameWithType: MBGridColumnConfiguration<TRowData>.SupressDisplayExpression
+  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).SupressDisplayExpression
+- uid: Material.Blazor.MBGridColumnConfiguration`1.SupressDisplayExpression*
+  name: SupressDisplayExpression
+  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_SupressDisplayExpression_
+  commentId: Overload:Material.Blazor.MBGridColumnConfiguration`1.SupressDisplayExpression
+  isSpec: "True"
+  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.SupressDisplayExpression
+  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).SupressDisplayExpression
+  nameWithType: MBGridColumnConfiguration<TRowData>.SupressDisplayExpression
+  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).SupressDisplayExpression
 - uid: Material.Blazor.MBGridColumnConfiguration`1.Title
   name: Title
   href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_Title
@@ -6540,6 +6930,30 @@ references:
   commentId: F:Material.Blazor.MBMenuSurfacePositioning.Regular
   fullName: Material.Blazor.MBMenuSurfacePositioning.Regular
   nameWithType: MBMenuSurfacePositioning.Regular
+- uid: Material.Blazor.MBNotifierCloseMethod
+  name: MBNotifierCloseMethod
+  href: api/Material.Blazor.MBNotifierCloseMethod.html
+  commentId: T:Material.Blazor.MBNotifierCloseMethod
+  fullName: Material.Blazor.MBNotifierCloseMethod
+  nameWithType: MBNotifierCloseMethod
+- uid: Material.Blazor.MBNotifierCloseMethod.DismissButton
+  name: DismissButton
+  href: api/Material.Blazor.MBNotifierCloseMethod.html#Material_Blazor_MBNotifierCloseMethod_DismissButton
+  commentId: F:Material.Blazor.MBNotifierCloseMethod.DismissButton
+  fullName: Material.Blazor.MBNotifierCloseMethod.DismissButton
+  nameWithType: MBNotifierCloseMethod.DismissButton
+- uid: Material.Blazor.MBNotifierCloseMethod.Timeout
+  name: Timeout
+  href: api/Material.Blazor.MBNotifierCloseMethod.html#Material_Blazor_MBNotifierCloseMethod_Timeout
+  commentId: F:Material.Blazor.MBNotifierCloseMethod.Timeout
+  fullName: Material.Blazor.MBNotifierCloseMethod.Timeout
+  nameWithType: MBNotifierCloseMethod.Timeout
+- uid: Material.Blazor.MBNotifierCloseMethod.TimeoutAndDismissButton
+  name: TimeoutAndDismissButton
+  href: api/Material.Blazor.MBNotifierCloseMethod.html#Material_Blazor_MBNotifierCloseMethod_TimeoutAndDismissButton
+  commentId: F:Material.Blazor.MBNotifierCloseMethod.TimeoutAndDismissButton
+  fullName: Material.Blazor.MBNotifierCloseMethod.TimeoutAndDismissButton
+  nameWithType: MBNotifierCloseMethod.TimeoutAndDismissButton
 - uid: Material.Blazor.MBNumericDecimalField
   name: MBNumericDecimalField
   href: api/Material.Blazor.MBNumericDecimalField.html
@@ -8997,6 +9411,191 @@ references:
   fullName.vb: Material.Blazor.MBSlidingTabBar(Of TItem).StackIcons
   nameWithType: MBSlidingTabBar<TItem>.StackIcons
   nameWithType.vb: MBSlidingTabBar(Of TItem).StackIcons
+- uid: Material.Blazor.MBSnackbarServiceConfiguration
+  name: MBSnackbarServiceConfiguration
+  href: api/Material.Blazor.MBSnackbarServiceConfiguration.html
+  commentId: T:Material.Blazor.MBSnackbarServiceConfiguration
+  fullName: Material.Blazor.MBSnackbarServiceConfiguration
+  nameWithType: MBSnackbarServiceConfiguration
+- uid: Material.Blazor.MBSnackbarServiceConfiguration.CloseMethod
+  name: CloseMethod
+  href: api/Material.Blazor.MBSnackbarServiceConfiguration.html#Material_Blazor_MBSnackbarServiceConfiguration_CloseMethod
+  commentId: P:Material.Blazor.MBSnackbarServiceConfiguration.CloseMethod
+  fullName: Material.Blazor.MBSnackbarServiceConfiguration.CloseMethod
+  nameWithType: MBSnackbarServiceConfiguration.CloseMethod
+- uid: Material.Blazor.MBSnackbarServiceConfiguration.CloseMethod*
+  name: CloseMethod
+  href: api/Material.Blazor.MBSnackbarServiceConfiguration.html#Material_Blazor_MBSnackbarServiceConfiguration_CloseMethod_
+  commentId: Overload:Material.Blazor.MBSnackbarServiceConfiguration.CloseMethod
+  isSpec: "True"
+  fullName: Material.Blazor.MBSnackbarServiceConfiguration.CloseMethod
+  nameWithType: MBSnackbarServiceConfiguration.CloseMethod
+- uid: Material.Blazor.MBSnackbarServiceConfiguration.DefaultCloseMethod
+  name: DefaultCloseMethod
+  href: api/Material.Blazor.MBSnackbarServiceConfiguration.html#Material_Blazor_MBSnackbarServiceConfiguration_DefaultCloseMethod
+  commentId: F:Material.Blazor.MBSnackbarServiceConfiguration.DefaultCloseMethod
+  fullName: Material.Blazor.MBSnackbarServiceConfiguration.DefaultCloseMethod
+  nameWithType: MBSnackbarServiceConfiguration.DefaultCloseMethod
+- uid: Material.Blazor.MBSnackbarServiceConfiguration.DefaultDismissIcon
+  name: DefaultDismissIcon
+  href: api/Material.Blazor.MBSnackbarServiceConfiguration.html#Material_Blazor_MBSnackbarServiceConfiguration_DefaultDismissIcon
+  commentId: F:Material.Blazor.MBSnackbarServiceConfiguration.DefaultDismissIcon
+  fullName: Material.Blazor.MBSnackbarServiceConfiguration.DefaultDismissIcon
+  nameWithType: MBSnackbarServiceConfiguration.DefaultDismissIcon
+- uid: Material.Blazor.MBSnackbarServiceConfiguration.DefaultLeading
+  name: DefaultLeading
+  href: api/Material.Blazor.MBSnackbarServiceConfiguration.html#Material_Blazor_MBSnackbarServiceConfiguration_DefaultLeading
+  commentId: F:Material.Blazor.MBSnackbarServiceConfiguration.DefaultLeading
+  fullName: Material.Blazor.MBSnackbarServiceConfiguration.DefaultLeading
+  nameWithType: MBSnackbarServiceConfiguration.DefaultLeading
+- uid: Material.Blazor.MBSnackbarServiceConfiguration.DefaultStacked
+  name: DefaultStacked
+  href: api/Material.Blazor.MBSnackbarServiceConfiguration.html#Material_Blazor_MBSnackbarServiceConfiguration_DefaultStacked
+  commentId: F:Material.Blazor.MBSnackbarServiceConfiguration.DefaultStacked
+  fullName: Material.Blazor.MBSnackbarServiceConfiguration.DefaultStacked
+  nameWithType: MBSnackbarServiceConfiguration.DefaultStacked
+- uid: Material.Blazor.MBSnackbarServiceConfiguration.DefaultTimeout
+  name: DefaultTimeout
+  href: api/Material.Blazor.MBSnackbarServiceConfiguration.html#Material_Blazor_MBSnackbarServiceConfiguration_DefaultTimeout
+  commentId: F:Material.Blazor.MBSnackbarServiceConfiguration.DefaultTimeout
+  fullName: Material.Blazor.MBSnackbarServiceConfiguration.DefaultTimeout
+  nameWithType: MBSnackbarServiceConfiguration.DefaultTimeout
+- uid: Material.Blazor.MBSnackbarServiceConfiguration.Leading
+  name: Leading
+  href: api/Material.Blazor.MBSnackbarServiceConfiguration.html#Material_Blazor_MBSnackbarServiceConfiguration_Leading
+  commentId: P:Material.Blazor.MBSnackbarServiceConfiguration.Leading
+  fullName: Material.Blazor.MBSnackbarServiceConfiguration.Leading
+  nameWithType: MBSnackbarServiceConfiguration.Leading
+- uid: Material.Blazor.MBSnackbarServiceConfiguration.Leading*
+  name: Leading
+  href: api/Material.Blazor.MBSnackbarServiceConfiguration.html#Material_Blazor_MBSnackbarServiceConfiguration_Leading_
+  commentId: Overload:Material.Blazor.MBSnackbarServiceConfiguration.Leading
+  isSpec: "True"
+  fullName: Material.Blazor.MBSnackbarServiceConfiguration.Leading
+  nameWithType: MBSnackbarServiceConfiguration.Leading
+- uid: Material.Blazor.MBSnackbarServiceConfiguration.Stacked
+  name: Stacked
+  href: api/Material.Blazor.MBSnackbarServiceConfiguration.html#Material_Blazor_MBSnackbarServiceConfiguration_Stacked
+  commentId: P:Material.Blazor.MBSnackbarServiceConfiguration.Stacked
+  fullName: Material.Blazor.MBSnackbarServiceConfiguration.Stacked
+  nameWithType: MBSnackbarServiceConfiguration.Stacked
+- uid: Material.Blazor.MBSnackbarServiceConfiguration.Stacked*
+  name: Stacked
+  href: api/Material.Blazor.MBSnackbarServiceConfiguration.html#Material_Blazor_MBSnackbarServiceConfiguration_Stacked_
+  commentId: Overload:Material.Blazor.MBSnackbarServiceConfiguration.Stacked
+  isSpec: "True"
+  fullName: Material.Blazor.MBSnackbarServiceConfiguration.Stacked
+  nameWithType: MBSnackbarServiceConfiguration.Stacked
+- uid: Material.Blazor.MBSnackbarServiceConfiguration.Timeout
+  name: Timeout
+  href: api/Material.Blazor.MBSnackbarServiceConfiguration.html#Material_Blazor_MBSnackbarServiceConfiguration_Timeout
+  commentId: P:Material.Blazor.MBSnackbarServiceConfiguration.Timeout
+  fullName: Material.Blazor.MBSnackbarServiceConfiguration.Timeout
+  nameWithType: MBSnackbarServiceConfiguration.Timeout
+- uid: Material.Blazor.MBSnackbarServiceConfiguration.Timeout*
+  name: Timeout
+  href: api/Material.Blazor.MBSnackbarServiceConfiguration.html#Material_Blazor_MBSnackbarServiceConfiguration_Timeout_
+  commentId: Overload:Material.Blazor.MBSnackbarServiceConfiguration.Timeout
+  isSpec: "True"
+  fullName: Material.Blazor.MBSnackbarServiceConfiguration.Timeout
+  nameWithType: MBSnackbarServiceConfiguration.Timeout
+- uid: Material.Blazor.MBSnackbarSettings
+  name: MBSnackbarSettings
+  href: api/Material.Blazor.MBSnackbarSettings.html
+  commentId: T:Material.Blazor.MBSnackbarSettings
+  fullName: Material.Blazor.MBSnackbarSettings
+  nameWithType: MBSnackbarSettings
+- uid: Material.Blazor.MBSnackbarSettings.Action
+  name: Action
+  href: api/Material.Blazor.MBSnackbarSettings.html#Material_Blazor_MBSnackbarSettings_Action
+  commentId: P:Material.Blazor.MBSnackbarSettings.Action
+  fullName: Material.Blazor.MBSnackbarSettings.Action
+  nameWithType: MBSnackbarSettings.Action
+- uid: Material.Blazor.MBSnackbarSettings.Action*
+  name: Action
+  href: api/Material.Blazor.MBSnackbarSettings.html#Material_Blazor_MBSnackbarSettings_Action_
+  commentId: Overload:Material.Blazor.MBSnackbarSettings.Action
+  isSpec: "True"
+  fullName: Material.Blazor.MBSnackbarSettings.Action
+  nameWithType: MBSnackbarSettings.Action
+- uid: Material.Blazor.MBSnackbarSettings.ActionText
+  name: ActionText
+  href: api/Material.Blazor.MBSnackbarSettings.html#Material_Blazor_MBSnackbarSettings_ActionText
+  commentId: P:Material.Blazor.MBSnackbarSettings.ActionText
+  fullName: Material.Blazor.MBSnackbarSettings.ActionText
+  nameWithType: MBSnackbarSettings.ActionText
+- uid: Material.Blazor.MBSnackbarSettings.ActionText*
+  name: ActionText
+  href: api/Material.Blazor.MBSnackbarSettings.html#Material_Blazor_MBSnackbarSettings_ActionText_
+  commentId: Overload:Material.Blazor.MBSnackbarSettings.ActionText
+  isSpec: "True"
+  fullName: Material.Blazor.MBSnackbarSettings.ActionText
+  nameWithType: MBSnackbarSettings.ActionText
+- uid: Material.Blazor.MBSnackbarSettings.CloseMethod
+  name: CloseMethod
+  href: api/Material.Blazor.MBSnackbarSettings.html#Material_Blazor_MBSnackbarSettings_CloseMethod
+  commentId: P:Material.Blazor.MBSnackbarSettings.CloseMethod
+  fullName: Material.Blazor.MBSnackbarSettings.CloseMethod
+  nameWithType: MBSnackbarSettings.CloseMethod
+- uid: Material.Blazor.MBSnackbarSettings.CloseMethod*
+  name: CloseMethod
+  href: api/Material.Blazor.MBSnackbarSettings.html#Material_Blazor_MBSnackbarSettings_CloseMethod_
+  commentId: Overload:Material.Blazor.MBSnackbarSettings.CloseMethod
+  isSpec: "True"
+  fullName: Material.Blazor.MBSnackbarSettings.CloseMethod
+  nameWithType: MBSnackbarSettings.CloseMethod
+- uid: Material.Blazor.MBSnackbarSettings.Leading
+  name: Leading
+  href: api/Material.Blazor.MBSnackbarSettings.html#Material_Blazor_MBSnackbarSettings_Leading
+  commentId: P:Material.Blazor.MBSnackbarSettings.Leading
+  fullName: Material.Blazor.MBSnackbarSettings.Leading
+  nameWithType: MBSnackbarSettings.Leading
+- uid: Material.Blazor.MBSnackbarSettings.Leading*
+  name: Leading
+  href: api/Material.Blazor.MBSnackbarSettings.html#Material_Blazor_MBSnackbarSettings_Leading_
+  commentId: Overload:Material.Blazor.MBSnackbarSettings.Leading
+  isSpec: "True"
+  fullName: Material.Blazor.MBSnackbarSettings.Leading
+  nameWithType: MBSnackbarSettings.Leading
+- uid: Material.Blazor.MBSnackbarSettings.Message
+  name: Message
+  href: api/Material.Blazor.MBSnackbarSettings.html#Material_Blazor_MBSnackbarSettings_Message
+  commentId: P:Material.Blazor.MBSnackbarSettings.Message
+  fullName: Material.Blazor.MBSnackbarSettings.Message
+  nameWithType: MBSnackbarSettings.Message
+- uid: Material.Blazor.MBSnackbarSettings.Message*
+  name: Message
+  href: api/Material.Blazor.MBSnackbarSettings.html#Material_Blazor_MBSnackbarSettings_Message_
+  commentId: Overload:Material.Blazor.MBSnackbarSettings.Message
+  isSpec: "True"
+  fullName: Material.Blazor.MBSnackbarSettings.Message
+  nameWithType: MBSnackbarSettings.Message
+- uid: Material.Blazor.MBSnackbarSettings.Stacked
+  name: Stacked
+  href: api/Material.Blazor.MBSnackbarSettings.html#Material_Blazor_MBSnackbarSettings_Stacked
+  commentId: P:Material.Blazor.MBSnackbarSettings.Stacked
+  fullName: Material.Blazor.MBSnackbarSettings.Stacked
+  nameWithType: MBSnackbarSettings.Stacked
+- uid: Material.Blazor.MBSnackbarSettings.Stacked*
+  name: Stacked
+  href: api/Material.Blazor.MBSnackbarSettings.html#Material_Blazor_MBSnackbarSettings_Stacked_
+  commentId: Overload:Material.Blazor.MBSnackbarSettings.Stacked
+  isSpec: "True"
+  fullName: Material.Blazor.MBSnackbarSettings.Stacked
+  nameWithType: MBSnackbarSettings.Stacked
+- uid: Material.Blazor.MBSnackbarSettings.Timeout
+  name: Timeout
+  href: api/Material.Blazor.MBSnackbarSettings.html#Material_Blazor_MBSnackbarSettings_Timeout
+  commentId: P:Material.Blazor.MBSnackbarSettings.Timeout
+  fullName: Material.Blazor.MBSnackbarSettings.Timeout
+  nameWithType: MBSnackbarSettings.Timeout
+- uid: Material.Blazor.MBSnackbarSettings.Timeout*
+  name: Timeout
+  href: api/Material.Blazor.MBSnackbarSettings.html#Material_Blazor_MBSnackbarSettings_Timeout_
+  commentId: Overload:Material.Blazor.MBSnackbarSettings.Timeout
+  isSpec: "True"
+  fullName: Material.Blazor.MBSnackbarSettings.Timeout
+  nameWithType: MBSnackbarSettings.Timeout
 - uid: Material.Blazor.MBSwitch
   name: MBSwitch
   href: api/Material.Blazor.MBSwitch.html
@@ -9688,62 +10287,6 @@ references:
   commentId: F:Material.Blazor.MBTextInputStyle.Outlined
   fullName: Material.Blazor.MBTextInputStyle.Outlined
   nameWithType: MBTextInputStyle.Outlined
-- uid: Material.Blazor.MBToastAnchor
-  name: MBToastAnchor
-  href: api/Material.Blazor.MBToastAnchor.html
-  commentId: T:Material.Blazor.MBToastAnchor
-  fullName: Material.Blazor.MBToastAnchor
-  nameWithType: MBToastAnchor
-- uid: Material.Blazor.MBToastAnchor.CloseToast(System.Guid)
-  name: CloseToast(Guid)
-  href: api/Material.Blazor.MBToastAnchor.html#Material_Blazor_MBToastAnchor_CloseToast_System_Guid_
-  commentId: M:Material.Blazor.MBToastAnchor.CloseToast(System.Guid)
-  fullName: Material.Blazor.MBToastAnchor.CloseToast(System.Guid)
-  nameWithType: MBToastAnchor.CloseToast(Guid)
-- uid: Material.Blazor.MBToastAnchor.CloseToast*
-  name: CloseToast
-  href: api/Material.Blazor.MBToastAnchor.html#Material_Blazor_MBToastAnchor_CloseToast_
-  commentId: Overload:Material.Blazor.MBToastAnchor.CloseToast
-  isSpec: "True"
-  fullName: Material.Blazor.MBToastAnchor.CloseToast
-  nameWithType: MBToastAnchor.CloseToast
-- uid: Material.Blazor.MBToastAnchor.OnInitialized
-  name: OnInitialized()
-  href: api/Material.Blazor.MBToastAnchor.html#Material_Blazor_MBToastAnchor_OnInitialized
-  commentId: M:Material.Blazor.MBToastAnchor.OnInitialized
-  fullName: Material.Blazor.MBToastAnchor.OnInitialized()
-  nameWithType: MBToastAnchor.OnInitialized()
-- uid: Material.Blazor.MBToastAnchor.OnInitialized*
-  name: OnInitialized
-  href: api/Material.Blazor.MBToastAnchor.html#Material_Blazor_MBToastAnchor_OnInitialized_
-  commentId: Overload:Material.Blazor.MBToastAnchor.OnInitialized
-  isSpec: "True"
-  fullName: Material.Blazor.MBToastAnchor.OnInitialized
-  nameWithType: MBToastAnchor.OnInitialized
-- uid: Material.Blazor.MBToastCloseMethod
-  name: MBToastCloseMethod
-  href: api/Material.Blazor.MBToastCloseMethod.html
-  commentId: T:Material.Blazor.MBToastCloseMethod
-  fullName: Material.Blazor.MBToastCloseMethod
-  nameWithType: MBToastCloseMethod
-- uid: Material.Blazor.MBToastCloseMethod.CloseButton
-  name: CloseButton
-  href: api/Material.Blazor.MBToastCloseMethod.html#Material_Blazor_MBToastCloseMethod_CloseButton
-  commentId: F:Material.Blazor.MBToastCloseMethod.CloseButton
-  fullName: Material.Blazor.MBToastCloseMethod.CloseButton
-  nameWithType: MBToastCloseMethod.CloseButton
-- uid: Material.Blazor.MBToastCloseMethod.Timeout
-  name: Timeout
-  href: api/Material.Blazor.MBToastCloseMethod.html#Material_Blazor_MBToastCloseMethod_Timeout
-  commentId: F:Material.Blazor.MBToastCloseMethod.Timeout
-  fullName: Material.Blazor.MBToastCloseMethod.Timeout
-  nameWithType: MBToastCloseMethod.Timeout
-- uid: Material.Blazor.MBToastCloseMethod.TimeoutAndCloseButton
-  name: TimeoutAndCloseButton
-  href: api/Material.Blazor.MBToastCloseMethod.html#Material_Blazor_MBToastCloseMethod_TimeoutAndCloseButton
-  commentId: F:Material.Blazor.MBToastCloseMethod.TimeoutAndCloseButton
-  fullName: Material.Blazor.MBToastCloseMethod.TimeoutAndCloseButton
-  nameWithType: MBToastCloseMethod.TimeoutAndCloseButton
 - uid: Material.Blazor.MBToastLevel
   name: MBToastLevel
   href: api/Material.Blazor.MBToastLevel.html
@@ -10453,12 +10996,12 @@ references:
   commentId: T:Material.Blazor.ServiceCollectionExtensions
   fullName: Material.Blazor.ServiceCollectionExtensions
   nameWithType: ServiceCollectionExtensions
-- uid: Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection,Material.Blazor.MBToastServiceConfiguration,Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration)
-  name: AddMBServices(IServiceCollection, MBToastServiceConfiguration, MBAnimatedNavigationManagerServiceConfiguration)
-  href: api/Material.Blazor.ServiceCollectionExtensions.html#Material_Blazor_ServiceCollectionExtensions_AddMBServices_IServiceCollection_Material_Blazor_MBToastServiceConfiguration_Material_Blazor_MBAnimatedNavigationManagerServiceConfiguration_
-  commentId: M:Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection,Material.Blazor.MBToastServiceConfiguration,Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration)
-  fullName: Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection, Material.Blazor.MBToastServiceConfiguration, Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration)
-  nameWithType: ServiceCollectionExtensions.AddMBServices(IServiceCollection, MBToastServiceConfiguration, MBAnimatedNavigationManagerServiceConfiguration)
+- uid: Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection,Material.Blazor.MBSnackbarServiceConfiguration,Material.Blazor.MBToastServiceConfiguration,Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration)
+  name: AddMBServices(IServiceCollection, MBSnackbarServiceConfiguration, MBToastServiceConfiguration, MBAnimatedNavigationManagerServiceConfiguration)
+  href: api/Material.Blazor.ServiceCollectionExtensions.html#Material_Blazor_ServiceCollectionExtensions_AddMBServices_IServiceCollection_Material_Blazor_MBSnackbarServiceConfiguration_Material_Blazor_MBToastServiceConfiguration_Material_Blazor_MBAnimatedNavigationManagerServiceConfiguration_
+  commentId: M:Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection,Material.Blazor.MBSnackbarServiceConfiguration,Material.Blazor.MBToastServiceConfiguration,Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration)
+  fullName: Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection, Material.Blazor.MBSnackbarServiceConfiguration, Material.Blazor.MBToastServiceConfiguration, Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration)
+  nameWithType: ServiceCollectionExtensions.AddMBServices(IServiceCollection, MBSnackbarServiceConfiguration, MBToastServiceConfiguration, MBAnimatedNavigationManagerServiceConfiguration)
 - uid: Material.Blazor.ServiceCollectionExtensions.AddMBServices*
   name: AddMBServices
   href: api/Material.Blazor.ServiceCollectionExtensions.html#Material_Blazor_ServiceCollectionExtensions_AddMBServices_
@@ -10469,6 +11012,9 @@ references:
 - uid: S.IMBAnimatedNavigationManager
   name: IMBAnimatedNavigationManager
   href: Material.Blazor/Model/AnimatedNavigation/IMBAnimatedNavigationManager.html
+- uid: S.IMBSnackbarService
+  name: IMBSnackbarService
+  href: Material.Blazor/Model/Snackbar/IMBSnackbarService.html
 - uid: S.IMBToastService
   name: IMBToastService
   href: Material.Blazor/Model/Toast/IMBToastService.html

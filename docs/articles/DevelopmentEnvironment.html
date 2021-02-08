@@ -87,13 +87,13 @@
 <li>The repo has Github Actions for <code>main</code>. In your forked repo, <a href="https://github.com/Material-Blazor/Material.Blazor/blob/develop/.github/workflows/GithubActionsMainWIP.yml"><code>GithubActionsMainWIP</code></a> will attempt to publish the documentation and this website to your GitHub pages:
 <ul>
 <li>If you want this to publish to <code>&lt;repository owner&gt;/github.io/Material.Blazor</code>, you will need to set up a Personal Access Token with write access to your repos - PATS are set up by clicking your icon at the top right on GitHub, then Settings and Developer Settings in the navigation menu to the left.
-<img src="../images/gh-account-settings-1.png" alt="GitHub Account Settings">
-<img src="../images/gh-account-settings-2.png" alt="GitHub Account Settings">
-<img src="../images/gh-account-settings-3.png" alt="GitHub Account Settings"></li>
+<img src="images/gh-account-settings-1.png" alt="GitHub Account Settings">
+<img src="images/gh-account-settings-2.png" alt="GitHub Account Settings">
+<img src="images/gh-account-settings-3.png" alt="GitHub Account Settings"></li>
 <li>Next go to the Settings of your forked repo and add a secret called &quot;GH_PAT&quot; using the contents of the PAT that you created in the previous step.
-<img src="../images/gh-account-settings-4.png" alt="GitHub Account Settings"></li>
+<img src="images/gh-account-settings-4.png" alt="GitHub Account Settings"></li>
 <li>Now go to the main settings for your forked repo and scroll down until the &quot;GitHub Pages&quot; section. Select the &quot;gh-pages branch&quot; as the Source.
-<img src="../images/gh-account-settings-5.png" alt="GitHub Account Settings"></li>
+<img src="images/gh-account-settings-5.png" alt="GitHub Account Settings"></li>
 <li>The docs should now publish next time you push to your <code>develop</code> branch on GitHub.</li>
 </ul>
 </li>
@@ -101,12 +101,13 @@
 <h2 id="configuring-the-development-environment">Configuring the development environment</h2>
 <ul>
 <li>To build the Blazor project you need to be using the latest preview version of Visual Studio 2019. This can be found at <a href="https://visualstudio.microsoft.com/vs/preview/">https://visualstudio.microsoft.com/vs/preview/</a>. The Community Edition is sufficient. During the installation you must include the &quot;ASP.NET and web development&quot; Workload using Visual Studio Installer.:
-<img src="../images/vs-config.png" alt="Visual Studio Workloads"></li>
+<img src="images/vs-config.png" alt="Visual Studio Workloads"></li>
 <li>Material.Blazor uses SASS for styling and uses Material Components Web SASS mixins, and additionally TypeScript with the Material Components Web's TypeScript. This is the reason you need to select &quot;Node.js development&quot; in the previous step.</li>
+<li>Unless you have a separate installation of NodeJs on your computer, you may need to add the directory path to npm.cmd to the OS environment variable PATH. Typically this would be &quot;C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\MSBuild\Microsoft\VisualStudio\NodeJs&quot;, but depends on the Visual Studio edition and version you're actually using. Make sure to restart Visual Studio after modifying the PATH variable.</li>
 <li>There are some Visual Studio extensions that you need or may want:
 <ul>
 <li>We like Markdown Editor, which will help you improve this page.
-<img src="../images/vs-extensions.png" alt="Visual Studio Extensions"></li>
+<img src="images/vs-extensions.png" alt="Visual Studio Extensions"></li>
 </ul>
 </li>
 </ul>

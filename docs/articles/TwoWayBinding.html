@@ -91,7 +91,7 @@ this gracefully.</p>
 <h2 id="how-mcw-manipulates-the-dom">How MCW Manipulates the DOM</h2>
 <p>Consider an empty outlined text field before and after a user gives it focus as below. Note how the label floats up and how both it and
 the border gain color:</p>
-<p><img src="../images/text-field-focus.png" alt="Text Field Gaining Focus"></p>
+<p><img src="images/text-field-focus.png" alt="Text Field Gaining Focus"></p>
 <p>The text field's markup however has three distinct state. First what any app environment (including your app using Material.Blazor) marks
 up in a page, then what this becomes once the text field has been initiated and manipulated by MCW and lastly
 how its state after receiving focus. The transition between the last two is animated by MCW.</p>
@@ -151,7 +151,7 @@ JavaScript library that includes both the ability to set a value in the future a
 the user. We make use of this in our two way binding for the <code>Value</code> parameter, and do something similar for the <code>Disabled</code>
 parameter.</p>
 <p>The principle is like this:</p>
-<p><img src="../images/two-way-bind-flow.png" alt="Two Way Binding Flow"></p>
+<p><img src="images/two-way-bind-flow.png" alt="Two Way Binding Flow"></p>
 <p>Each component inheriting from <code>InputComponent</code> implements this mechanism separately calling the JavaScript provided
 by MCW for that component:</p>
 <ul>

@@ -6046,7 +6046,7 @@
         __webpack_require__.r(MBGrid_namespaceObject);
         __webpack_require__.d(MBGrid_namespaceObject, {
             getScrollBarWidth: () => getScrollBarWidth,
-            getTextWidth: () => getTextWidth,
+            getTextWidths: () => getTextWidths,
             syncScrollByID: () => syncScrollByID,
             syncScrollByRef: () => syncScrollByRef
         });
@@ -6117,6 +6117,13 @@
             setDisabled: () => MBSlider_setDisabled,
             setValue: () => MBSlider_setValue
         });
+        var MBSnackbar_namespaceObject = {};
+        __webpack_require__.r(MBSnackbar_namespaceObject);
+        __webpack_require__.d(MBSnackbar_namespaceObject, {
+            destroy: () => MBSnackbar_destroy,
+            init: () => MBSnackbar_init,
+            open: () => MBSnackbar_open
+        });
         var MBSwitch_namespaceObject = {};
         __webpack_require__.r(MBSwitch_namespaceObject);
         __webpack_require__.d(MBSwitch_namespaceObject, {
@@ -6167,7 +6174,8 @@ INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
 LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
 OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
-***************************************************************************** */        var extendStatics = function(d, b) {
+***************************************************************************** */
+        var extendStatics = function(d, b) {
             extendStatics = Object.setPrototypeOf || {
                 __proto__: []
             } instanceof Array && function(d, b) {
@@ -6512,7 +6520,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCFoundation = function() {
+ */
+        var MDCFoundation = function() {
             function MDCFoundation(adapter) {
                 if (adapter === void 0) {
                     adapter = {};
@@ -6573,7 +6582,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCComponent = function() {
+ */
+        var MDCComponent = function() {
             function MDCComponent(root, foundation) {
                 var args = [];
                 for (var _i = 2; _i < arguments.length; _i++) {
@@ -6647,7 +6657,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        function applyPassive(globalObj) {
+ */
+        function applyPassive(globalObj) {
             if (globalObj === void 0) {
                 globalObj = window;
             }
@@ -6696,7 +6707,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        function closest(element, selector) {
+ */
+        function closest(element, selector) {
             if (element.closest) {
                 return element.closest(selector);
             }
@@ -6747,7 +6759,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var cssClasses = {
+ */
+        var cssClasses = {
             LABEL_FLOAT_ABOVE: "mdc-floating-label--float-above",
             LABEL_REQUIRED: "mdc-floating-label--required",
             LABEL_SHAKE: "mdc-floating-label--shake",
@@ -6774,7 +6787,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCFloatingLabelFoundation = function(_super) {
+ */
+        var MDCFloatingLabelFoundation = function(_super) {
             __extends(MDCFloatingLabelFoundation, _super);
             function MDCFloatingLabelFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCFloatingLabelFoundation.defaultAdapter), adapter)) || this;
@@ -6875,7 +6889,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCFloatingLabel = function(_super) {
+ */
+        var MDCFloatingLabel = function(_super) {
             __extends(MDCFloatingLabel, _super);
             function MDCFloatingLabel() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -6939,7 +6954,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var constants_cssClasses = {
+ */
+        var constants_cssClasses = {
             LINE_RIPPLE_ACTIVE: "mdc-line-ripple--active",
             LINE_RIPPLE_DEACTIVATING: "mdc-line-ripple--deactivating"
         };
@@ -6964,7 +6980,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCLineRippleFoundation = function(_super) {
+ */
+        var MDCLineRippleFoundation = function(_super) {
             __extends(MDCLineRippleFoundation, _super);
             function MDCLineRippleFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCLineRippleFoundation.defaultAdapter), adapter)) || this;
@@ -7055,7 +7072,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCLineRipple = function(_super) {
+ */
+        var MDCLineRipple = function(_super) {
             __extends(MDCLineRipple, _super);
             function MDCLineRipple() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -7119,7 +7137,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var strings = {
+ */
+        var strings = {
             NOTCH_ELEMENT_SELECTOR: ".mdc-notched-outline__notch"
         };
         var numbers = {
@@ -7151,7 +7170,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCNotchedOutlineFoundation = function(_super) {
+ */
+        var MDCNotchedOutlineFoundation = function(_super) {
             __extends(MDCNotchedOutlineFoundation, _super);
             function MDCNotchedOutlineFoundation(adapter) {
                 return _super.call(this, __assign(__assign({}, MDCNotchedOutlineFoundation.defaultAdapter), adapter)) || this;
@@ -7234,7 +7254,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCNotchedOutline = function(_super) {
+ */
+        var MDCNotchedOutline = function(_super) {
             __extends(MDCNotchedOutline, _super);
             function MDCNotchedOutline() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -7302,7 +7323,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var ripple_constants_cssClasses = {
+ */
+        var ripple_constants_cssClasses = {
             BG_FOCUSED: "mdc-ripple-upgraded--background-focused",
             FG_ACTIVATION: "mdc-ripple-upgraded--foreground-activation",
             FG_DEACTIVATION: "mdc-ripple-upgraded--foreground-deactivation",
@@ -7393,7 +7415,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var ACTIVATION_EVENT_TYPES = [ "touchstart", "pointerdown", "mousedown", "keydown" ];
+ */
+        var ACTIVATION_EVENT_TYPES = [ "touchstart", "pointerdown", "mousedown", "keydown" ];
         var POINTER_DEACTIVATION_EVENT_TYPES = [ "touchend", "pointerup", "mouseup", "contextmenu" ];
         var activatedTargets = [];
         var MDCRippleFoundation = function(_super) {
@@ -7869,7 +7892,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCRipple = function(_super) {
+ */
+        var MDCRipple = function(_super) {
             __extends(MDCRipple, _super);
             function MDCRipple() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -7996,7 +8020,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var character_counter_constants_cssClasses = {
+ */
+        var character_counter_constants_cssClasses = {
             ROOT: "mdc-text-field-character-counter"
         };
         var character_counter_constants_strings = {
@@ -8023,7 +8048,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCTextFieldCharacterCounterFoundation = function(_super) {
+ */
+        var MDCTextFieldCharacterCounterFoundation = function(_super) {
             __extends(MDCTextFieldCharacterCounterFoundation, _super);
             function MDCTextFieldCharacterCounterFoundation(adapter) {
                 return _super.call(this, __assign(__assign({}, MDCTextFieldCharacterCounterFoundation.defaultAdapter), adapter)) || this;
@@ -8081,7 +8107,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCTextFieldCharacterCounter = function(_super) {
+ */
+        var MDCTextFieldCharacterCounter = function(_super) {
             __extends(MDCTextFieldCharacterCounter, _super);
             function MDCTextFieldCharacterCounter() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -8128,7 +8155,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var textfield_constants_strings = {
+ */
+        var textfield_constants_strings = {
             ARIA_CONTROLS: "aria-controls",
             ARIA_DESCRIBEDBY: "aria-describedby",
             INPUT_SELECTOR: ".mdc-text-field__input",
@@ -8179,7 +8207,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var POINTERDOWN_EVENTS = [ "mousedown", "touchstart" ];
+ */
+        var POINTERDOWN_EVENTS = [ "mousedown", "touchstart" ];
         var INTERACTION_EVENTS = [ "click", "keydown" ];
         var MDCTextFieldFoundation = function(_super) {
             __extends(MDCTextFieldFoundation, _super);
@@ -8640,7 +8669,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var helper_text_constants_cssClasses = {
+ */
+        var helper_text_constants_cssClasses = {
             HELPER_TEXT_PERSISTENT: "mdc-text-field-helper-text--persistent",
             HELPER_TEXT_VALIDATION_MSG: "mdc-text-field-helper-text--validation-msg",
             ROOT: "mdc-text-field-helper-text"
@@ -8671,7 +8701,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCTextFieldHelperTextFoundation = function(_super) {
+ */
+        var MDCTextFieldHelperTextFoundation = function(_super) {
             __extends(MDCTextFieldHelperTextFoundation, _super);
             function MDCTextFieldHelperTextFoundation(adapter) {
                 return _super.call(this, __assign(__assign({}, MDCTextFieldHelperTextFoundation.defaultAdapter), adapter)) || this;
@@ -8792,7 +8823,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCTextFieldHelperText = function(_super) {
+ */
+        var MDCTextFieldHelperText = function(_super) {
             __extends(MDCTextFieldHelperText, _super);
             function MDCTextFieldHelperText() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -8857,7 +8889,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var icon_constants_strings = {
+ */
+        var icon_constants_strings = {
             ICON_EVENT: "MDCTextField:icon",
             ICON_ROLE: "button"
         };
@@ -8885,7 +8918,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_INTERACTION_EVENTS = [ "click", "keydown" ];
+ */
+        var foundation_INTERACTION_EVENTS = [ "click", "keydown" ];
         var MDCTextFieldIconFoundation = function(_super) {
             __extends(MDCTextFieldIconFoundation, _super);
             function MDCTextFieldIconFoundation(adapter) {
@@ -9001,7 +9035,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCTextFieldIcon = function(_super) {
+ */
+        var MDCTextFieldIcon = function(_super) {
             __extends(MDCTextFieldIcon, _super);
             function MDCTextFieldIcon() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -9066,7 +9101,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCTextField = function(_super) {
+ */
+        var MDCTextField = function(_super) {
             __extends(MDCTextField, _super);
             function MDCTextField() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -9515,7 +9551,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var list_constants_cssClasses = {
+ */
+        var list_constants_cssClasses = {
             LIST_ITEM_ACTIVATED_CLASS: "mdc-list-item--activated",
             LIST_ITEM_CLASS: "mdc-list-item",
             LIST_ITEM_DISABLED_CLASS: "mdc-list-item--disabled",
@@ -9566,7 +9603,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var KEY = {
+ */
+        var KEY = {
             UNKNOWN: "Unknown",
             BACKSPACE: "Backspace",
             ENTER: "Enter",
@@ -9669,7 +9707,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var ELEMENTS_KEY_ALLOWED_IN = [ "input", "button", "textarea", "select" ];
+ */
+        var ELEMENTS_KEY_ALLOWED_IN = [ "input", "button", "textarea", "select" ];
         var preventDefaultEvent = function(evt) {
             var target = evt.target;
             if (!target) {
@@ -9701,7 +9740,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        function initState() {
+ */
+        function initState() {
             var state = {
                 bufferClearTimeout: 0,
                 currentFirstChar: "",
@@ -9886,7 +9926,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        function isNumberArray(selectedIndex) {
+ */
+        function isNumberArray(selectedIndex) {
             return selectedIndex instanceof Array;
         }
         var MDCListFoundation = function(_super) {
@@ -10444,7 +10485,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCList = function(_super) {
+ */
+        var MDCList = function(_super) {
             __extends(MDCList, _super);
             function MDCList() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -10694,7 +10736,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var menu_surface_constants_cssClasses = {
+ */
+        var menu_surface_constants_cssClasses = {
             ANCHOR: "mdc-menu-surface--anchor",
             ANIMATING_CLOSED: "mdc-menu-surface--animating-closed",
             ANIMATING_OPEN: "mdc-menu-surface--animating-open",
@@ -10753,7 +10796,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCMenuSurfaceFoundation = function(_super) {
+ */
+        var MDCMenuSurfaceFoundation = function(_super) {
             __extends(MDCMenuSurfaceFoundation, _super);
             function MDCMenuSurfaceFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCMenuSurfaceFoundation.defaultAdapter), adapter)) || this;
@@ -11220,7 +11264,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var cachedCssTransformPropertyName_;
+ */
+        var cachedCssTransformPropertyName_;
         function getTransformPropertyName(globalObj, forceRefresh) {
             if (forceRefresh === void 0) {
                 forceRefresh = false;
@@ -11252,7 +11297,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCMenuSurface = function(_super) {
+ */
+        var MDCMenuSurface = function(_super) {
             __extends(MDCMenuSurface, _super);
             function MDCMenuSurface() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -11443,7 +11489,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var menu_constants_cssClasses = {
+ */
+        var menu_constants_cssClasses = {
             MENU_SELECTED_LIST_ITEM: "mdc-menu-item--selected",
             MENU_SELECTION_GROUP: "mdc-menu__selection-group",
             ROOT: "mdc-menu"
@@ -11486,7 +11533,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCMenuFoundation = function(_super) {
+ */
+        var MDCMenuFoundation = function(_super) {
             __extends(MDCMenuFoundation, _super);
             function MDCMenuFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCMenuFoundation.defaultAdapter), adapter)) || this;
@@ -11667,7 +11715,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCMenu = function(_super) {
+ */
+        var MDCMenu = function(_super) {
             __extends(MDCMenu, _super);
             function MDCMenu() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -12032,7 +12081,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var AnnouncerPriority;
+ */
+        var AnnouncerPriority;
         (function(AnnouncerPriority) {
             AnnouncerPriority["POLITE"] = "polite";
             AnnouncerPriority["ASSERTIVE"] = "assertive";
@@ -12111,7 +12161,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var InteractionTrigger;
+ */
+        var InteractionTrigger;
         (function(InteractionTrigger) {
             InteractionTrigger[InteractionTrigger["UNSPECIFIED"] = 0] = "UNSPECIFIED";
             InteractionTrigger[InteractionTrigger["CLICK"] = 1] = "CLICK";
@@ -12147,7 +12198,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCChipTrailingActionFoundation = function(_super) {
+ */
+        var MDCChipTrailingActionFoundation = function(_super) {
             __extends(MDCChipTrailingActionFoundation, _super);
             function MDCChipTrailingActionFoundation(adapter) {
                 return _super.call(this, __assign(__assign({}, MDCChipTrailingActionFoundation.defaultAdapter), adapter)) || this;
@@ -12253,7 +12305,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCChipTrailingAction = function(_super) {
+ */
+        var MDCChipTrailingAction = function(_super) {
             __extends(MDCChipTrailingAction, _super);
             function MDCChipTrailingAction() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -12351,7 +12404,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var Direction;
+ */
+        var Direction;
         (function(Direction) {
             Direction["LEFT"] = "left";
             Direction["RIGHT"] = "right";
@@ -12448,7 +12502,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var emptyClientRect = {
+ */
+        var emptyClientRect = {
             bottom: 0,
             height: 0,
             left: 0,
@@ -12838,7 +12893,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCChip = function(_super) {
+ */
+        var MDCChip = function(_super) {
             __extends(MDCChip, _super);
             function MDCChip() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -13110,7 +13166,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var chip_set_constants_strings = {
+ */
+        var chip_set_constants_strings = {
             CHIP_SELECTOR: ".mdc-chip"
         };
         var chip_set_constants_cssClasses = {
@@ -13138,7 +13195,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCChipSetFoundation = function(_super) {
+ */
+        var MDCChipSetFoundation = function(_super) {
             __extends(MDCChipSetFoundation, _super);
             function MDCChipSetFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCChipSetFoundation.defaultAdapter), adapter)) || this;
@@ -13363,7 +13421,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var _a = MDCChipFoundation.strings, INTERACTION_EVENT = _a.INTERACTION_EVENT, SELECTION_EVENT = _a.SELECTION_EVENT, REMOVAL_EVENT = _a.REMOVAL_EVENT, NAVIGATION_EVENT = _a.NAVIGATION_EVENT;
+ */
+        var _a = MDCChipFoundation.strings, INTERACTION_EVENT = _a.INTERACTION_EVENT, SELECTION_EVENT = _a.SELECTION_EVENT, REMOVAL_EVENT = _a.REMOVAL_EVENT, NAVIGATION_EVENT = _a.NAVIGATION_EVENT;
         var CHIP_SELECTOR = MDCChipSetFoundation.strings.CHIP_SELECTOR;
         var idCounter = 0;
         var MDCChipSet = function(_super) {
@@ -13551,7 +13610,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var cssPropertyNameMap = {
+ */
+        var cssPropertyNameMap = {
             animation: {
                 prefixed: "-webkit-animation",
                 standard: "animation"
@@ -13629,7 +13689,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var checkbox_constants_cssClasses = {
+ */
+        var checkbox_constants_cssClasses = {
             ANIM_CHECKED_INDETERMINATE: "mdc-checkbox--anim-checked-indeterminate",
             ANIM_CHECKED_UNCHECKED: "mdc-checkbox--anim-checked-unchecked",
             ANIM_INDETERMINATE_CHECKED: "mdc-checkbox--anim-indeterminate-checked",
@@ -13682,7 +13743,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCCheckboxFoundation = function(_super) {
+ */
+        var MDCCheckboxFoundation = function(_super) {
             __extends(MDCCheckboxFoundation, _super);
             function MDCCheckboxFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCCheckboxFoundation.defaultAdapter), adapter)) || this;
@@ -13868,7 +13930,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var CB_PROTO_PROPS = [ "checked", "indeterminate" ];
+ */
+        var CB_PROTO_PROPS = [ "checked", "indeterminate" ];
         var MDCCheckbox = function(_super) {
             __extends(MDCCheckbox, _super);
             function MDCCheckbox() {
@@ -14075,7 +14138,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var form_field_constants_cssClasses = {
+ */
+        var form_field_constants_cssClasses = {
             ROOT: "mdc-form-field"
         };
         var form_field_constants_strings = {
@@ -14102,7 +14166,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCFormFieldFoundation = function(_super) {
+ */
+        var MDCFormFieldFoundation = function(_super) {
             __extends(MDCFormFieldFoundation, _super);
             function MDCFormFieldFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCFormFieldFoundation.defaultAdapter), adapter)) || this;
@@ -14182,7 +14247,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCFormField = function(_super) {
+ */
+        var MDCFormField = function(_super) {
             __extends(MDCFormField, _super);
             function MDCFormField() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -14265,7 +14331,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var circular_progress_constants_cssClasses = {
+ */
+        var circular_progress_constants_cssClasses = {
             INDETERMINATE_CLASS: "mdc-circular-progress--indeterminate",
             CLOSED_CLASS: "mdc-circular-progress--closed"
         };
@@ -14296,7 +14363,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCCircularProgressFoundation = function(_super) {
+ */
+        var MDCCircularProgressFoundation = function(_super) {
             __extends(MDCCircularProgressFoundation, _super);
             function MDCCircularProgressFoundation(adapter) {
                 return _super.call(this, __assign(__assign({}, MDCCircularProgressFoundation.defaultAdapter), adapter)) || this;
@@ -14412,7 +14480,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCCircularProgress = function(_super) {
+ */
+        var MDCCircularProgress = function(_super) {
             __extends(MDCCircularProgress, _super);
             function MDCCircularProgress() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -14510,7 +14579,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var linear_progress_constants_cssClasses = {
+ */
+        var linear_progress_constants_cssClasses = {
             CLOSED_CLASS: "mdc-linear-progress--closed",
             CLOSED_ANIMATION_OFF_CLASS: "mdc-linear-progress--closed-animation-off",
             INDETERMINATE_CLASS: "mdc-linear-progress--indeterminate",
@@ -14553,7 +14623,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCLinearProgressFoundation = function(_super) {
+ */
+        var MDCLinearProgressFoundation = function(_super) {
             __extends(MDCLinearProgressFoundation, _super);
             function MDCLinearProgressFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCLinearProgressFoundation.defaultAdapter), adapter)) || this;
@@ -14780,7 +14851,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCLinearProgress = function(_super) {
+ */
+        var MDCLinearProgress = function(_super) {
             __extends(MDCLinearProgress, _super);
             function MDCLinearProgress() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -14901,7 +14973,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var data_table_constants_cssClasses = {
+ */
+        var data_table_constants_cssClasses = {
             CELL: "mdc-data-table__cell",
             CELL_NUMERIC: "mdc-data-table__cell--numeric",
             CONTENT: "mdc-data-table__content",
@@ -14994,7 +15067,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCDataTableFoundation = function(_super) {
+ */
+        var MDCDataTableFoundation = function(_super) {
             __extends(MDCDataTableFoundation, _super);
             function MDCDataTableFoundation(adapter) {
                 return _super.call(this, __assign(__assign({}, MDCDataTableFoundation.defaultAdapter), adapter)) || this;
@@ -15285,7 +15359,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCDataTable = function(_super) {
+ */
+        var MDCDataTable = function(_super) {
             __extends(MDCDataTable, _super);
             function MDCDataTable() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -15596,7 +15671,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var select_constants_cssClasses = {
+ */
+        var select_constants_cssClasses = {
             ACTIVATED: "mdc-select--activated",
             DISABLED: "mdc-select--disabled",
             FOCUSED: "mdc-select--focused",
@@ -15648,7 +15724,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCSelectFoundation = function(_super) {
+ */
+        var MDCSelectFoundation = function(_super) {
             __extends(MDCSelectFoundation, _super);
             function MDCSelectFoundation(adapter, foundationMap) {
                 if (foundationMap === void 0) {
@@ -16089,7 +16166,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var select_helper_text_constants_strings = {
+ */
+        var select_helper_text_constants_strings = {
             ARIA_HIDDEN: "aria-hidden",
             ROLE: "role"
         };
@@ -16118,7 +16196,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCSelectHelperTextFoundation = function(_super) {
+ */
+        var MDCSelectHelperTextFoundation = function(_super) {
             __extends(MDCSelectHelperTextFoundation, _super);
             function MDCSelectHelperTextFoundation(adapter) {
                 return _super.call(this, __assign(__assign({}, MDCSelectHelperTextFoundation.defaultAdapter), adapter)) || this;
@@ -16238,7 +16317,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCSelectHelperText = function(_super) {
+ */
+        var MDCSelectHelperText = function(_super) {
             __extends(MDCSelectHelperText, _super);
             function MDCSelectHelperText() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -16303,7 +16383,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var select_icon_constants_strings = {
+ */
+        var select_icon_constants_strings = {
             ICON_EVENT: "MDCSelect:icon",
             ICON_ROLE: "button"
         };
@@ -16328,7 +16409,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var icon_foundation_INTERACTION_EVENTS = [ "click", "keydown" ];
+ */
+        var icon_foundation_INTERACTION_EVENTS = [ "click", "keydown" ];
         var MDCSelectIconFoundation = function(_super) {
             __extends(MDCSelectIconFoundation, _super);
             function MDCSelectIconFoundation(adapter) {
@@ -16436,7 +16518,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCSelectIcon = function(_super) {
+ */
+        var MDCSelectIcon = function(_super) {
             __extends(MDCSelectIcon, _super);
             function MDCSelectIcon() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -16501,7 +16584,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCSelect = function(_super) {
+ */
+        var MDCSelect = function(_super) {
             __extends(MDCSelect, _super);
             function MDCSelect() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -16945,7 +17029,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var FOCUS_SENTINEL_CLASS = "mdc-dom-focus-sentinel";
+ */
+        var FOCUS_SENTINEL_CLASS = "mdc-dom-focus-sentinel";
         var FocusTrap = function() {
             function FocusTrap(root, options) {
                 if (options === void 0) {
@@ -17040,7 +17125,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var dialog_constants_cssClasses = {
+ */
+        var dialog_constants_cssClasses = {
             CLOSING: "mdc-dialog--closing",
             OPEN: "mdc-dialog--open",
             OPENING: "mdc-dialog--opening",
@@ -17090,7 +17176,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCDialogFoundation = function(_super) {
+ */
+        var MDCDialogFoundation = function(_super) {
             __extends(MDCDialogFoundation, _super);
             function MDCDialogFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCDialogFoundation.defaultAdapter), adapter)) || this;
@@ -17374,7 +17461,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        function createFocusTrapInstance(surfaceEl, focusTrapFactory, initialFocusEl) {
+ */
+        function createFocusTrapInstance(surfaceEl, focusTrapFactory, initialFocusEl) {
             return focusTrapFactory(surfaceEl, {
                 initialFocusEl: initialFocusEl
             });
@@ -17410,7 +17498,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_strings = MDCDialogFoundation.strings;
+ */
+        var component_strings = MDCDialogFoundation.strings;
         var MDCDialog = function(_super) {
             __extends(MDCDialog, _super);
             function MDCDialog() {
@@ -17661,7 +17750,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var drawer_constants_cssClasses = {
+ */
+        var drawer_constants_cssClasses = {
             ANIMATE: "mdc-drawer--animate",
             CLOSING: "mdc-drawer--closing",
             DISMISSIBLE: "mdc-drawer--dismissible",
@@ -17697,7 +17787,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCDismissibleDrawerFoundation = function(_super) {
+ */
+        var MDCDismissibleDrawerFoundation = function(_super) {
             __extends(MDCDismissibleDrawerFoundation, _super);
             function MDCDismissibleDrawerFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCDismissibleDrawerFoundation.defaultAdapter), adapter)) || this;
@@ -17860,7 +17951,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCModalDrawerFoundation = function(_super) {
+ */
+        var MDCModalDrawerFoundation = function(_super) {
             __extends(MDCModalDrawerFoundation, _super);
             function MDCModalDrawerFoundation() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -17898,7 +17990,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        function util_createFocusTrapInstance(surfaceEl, focusTrapFactory) {
+ */
+        function util_createFocusTrapInstance(surfaceEl, focusTrapFactory) {
             return focusTrapFactory(surfaceEl, {
                 skipInitialFocus: true
             });
@@ -17924,7 +18017,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var component_cssClasses = MDCDismissibleDrawerFoundation.cssClasses, drawer_component_strings = MDCDismissibleDrawerFoundation.strings;
+ */
+        var component_cssClasses = MDCDismissibleDrawerFoundation.cssClasses, drawer_component_strings = MDCDismissibleDrawerFoundation.strings;
         var MDCDrawer = function(_super) {
             __extends(MDCDrawer, _super);
             function MDCDrawer() {
@@ -18110,18 +18204,26 @@ PERFORMANCE OF THIS SOFTWARE.
             document.body.removeChild(firstDiv);
             return width;
         }
-        function getTextWidth(className, textToMeasure) {
+        function getTextWidths(className, currentWidths, textToMeasure) {
             var ele = document.createElement("div");
             ele.style.position = "absolute";
             ele.style.visibility = "hidden";
             ele.style.whiteSpace = "nowrap";
             ele.style.left = "-9999px";
             ele.className = className;
-            ele.innerText = textToMeasure;
             document.body.appendChild(ele);
-            var width = window.getComputedStyle(ele).width;
+            for (var i = 0; i < textToMeasure.length; i++) {
+                ele.innerText = textToMeasure[i];
+                var width = window.getComputedStyle(ele).width;
+                var unadornedWidth = width.slice(0, width.indexOf("px"));
+                var numericWidth = parseFloat(unadornedWidth);
+                var indexMod = i % currentWidths.length;
+                if (numericWidth > currentWidths[indexMod]) {
+                    currentWidths[indexMod] = numericWidth;
+                }
+            }
             document.body.removeChild(ele);
-            return width;
+            return currentWidths;
         }
         function MBIconButton_init(elem) {
             elem._ripple = MDCRipple.attachTo(elem);
@@ -18151,7 +18253,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var icon_button_constants_cssClasses = {
+ */
+        var icon_button_constants_cssClasses = {
             ICON_BUTTON_ON: "mdc-icon-button--on",
             ROOT: "mdc-icon-button"
         };
@@ -18183,7 +18286,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCIconButtonToggleFoundation = function(_super) {
+ */
+        var MDCIconButtonToggleFoundation = function(_super) {
             __extends(MDCIconButtonToggleFoundation, _super);
             function MDCIconButtonToggleFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCIconButtonToggleFoundation.defaultAdapter), adapter)) || this;
@@ -18291,7 +18395,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var icon_button_component_strings = MDCIconButtonToggleFoundation.strings;
+ */
+        var icon_button_component_strings = MDCIconButtonToggleFoundation.strings;
         var MDCIconButtonToggle = function(_super) {
             __extends(MDCIconButtonToggle, _super);
             function MDCIconButtonToggle() {
@@ -18441,7 +18546,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var radio_constants_strings = {
+ */
+        var radio_constants_strings = {
             NATIVE_CONTROL_SELECTOR: ".mdc-radio__native-control"
         };
         var radio_constants_cssClasses = {
@@ -18469,7 +18575,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCRadioFoundation = function(_super) {
+ */
+        var MDCRadioFoundation = function(_super) {
             __extends(MDCRadioFoundation, _super);
             function MDCRadioFoundation(adapter) {
                 return _super.call(this, __assign(__assign({}, MDCRadioFoundation.defaultAdapter), adapter)) || this;
@@ -18538,7 +18645,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCRadio = function(_super) {
+ */
+        var MDCRadio = function(_super) {
             __extends(MDCRadio, _super);
             function MDCRadio() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -18673,7 +18781,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var constants_selectors = {
+ */
+        var constants_selectors = {
             SEGMENT: ".mdc-segmented-button__segment"
         };
         var constants_events = {
@@ -18704,7 +18813,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCSegmentedButtonFoundation = function(_super) {
+ */
+        var MDCSegmentedButtonFoundation = function(_super) {
             __extends(MDCSegmentedButtonFoundation, _super);
             function MDCSegmentedButtonFoundation(adapter) {
                 return _super.call(this, __assign(__assign({}, MDCSegmentedButtonFoundation.defaultAdapter), adapter)) || this;
@@ -18801,7 +18911,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var booleans = {
+ */
+        var booleans = {
             TRUE: "true",
             FALSE: "false"
         };
@@ -18838,7 +18949,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var foundation_emptyClientRect = {
+ */
+        var foundation_emptyClientRect = {
             bottom: 0,
             height: 0,
             left: 0,
@@ -18946,7 +19058,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCSegmentedButtonSegment = function(_super) {
+ */
+        var MDCSegmentedButtonSegment = function(_super) {
             __extends(MDCSegmentedButtonSegment, _super);
             function MDCSegmentedButtonSegment() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -19062,7 +19175,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCSegmentedButton = function(_super) {
+ */
+        var MDCSegmentedButton = function(_super) {
             __extends(MDCSegmentedButton, _super);
             function MDCSegmentedButton() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -19173,72 +19287,7 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCSegmentedButton;
         }(MDCComponent);
-        /**
- * @license
- * Copyright 2020 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-        /**
- * @license
- * Copyright 2020 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-        /**
- * @license
- * Copyright 2020 Google Inc.
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */        function MBSegmentedButtonMulti_init(elem, isSingleSelect, dotNetObject) {
+        function MBSegmentedButtonMulti_init(elem, isSingleSelect, dotNetObject) {
             elem._segmentedButton = MDCSegmentedButton.attachTo(elem);
             elem._isSingleSelect = isSingleSelect;
             return new Promise((function() {
@@ -19307,7 +19356,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var slider_constants_cssClasses = {
+ */
+        var slider_constants_cssClasses = {
             DISABLED: "mdc-slider--disabled",
             DISCRETE: "mdc-slider--discrete",
             INPUT: "mdc-slider__input",
@@ -19365,7 +19415,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var TickMark;
+ */
+        var TickMark;
         (function(TickMark) {
             TickMark[TickMark["ACTIVE"] = 0] = "ACTIVE";
             TickMark[TickMark["INACTIVE"] = 1] = "INACTIVE";
@@ -19396,7 +19447,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var HAS_WINDOW = typeof window !== "undefined";
+ */
+        var HAS_WINDOW = typeof window !== "undefined";
         var MDCSliderFoundation = function(_super) {
             __extends(MDCSliderFoundation, _super);
             function MDCSliderFoundation(adapter) {
@@ -20103,7 +20155,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCSlider = function(_super) {
+ */
+        var MDCSlider = function(_super) {
             __extends(MDCSlider, _super);
             function MDCSlider() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -20432,7 +20485,478 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var switch_constants_cssClasses = {
+ */
+        var snackbar_constants_cssClasses = {
+            CLOSING: "mdc-snackbar--closing",
+            OPEN: "mdc-snackbar--open",
+            OPENING: "mdc-snackbar--opening"
+        };
+        var snackbar_constants_strings = {
+            ACTION_SELECTOR: ".mdc-snackbar__action",
+            ARIA_LIVE_LABEL_TEXT_ATTR: "data-mdc-snackbar-label-text",
+            CLOSED_EVENT: "MDCSnackbar:closed",
+            CLOSING_EVENT: "MDCSnackbar:closing",
+            DISMISS_SELECTOR: ".mdc-snackbar__dismiss",
+            LABEL_SELECTOR: ".mdc-snackbar__label",
+            OPENED_EVENT: "MDCSnackbar:opened",
+            OPENING_EVENT: "MDCSnackbar:opening",
+            REASON_ACTION: "action",
+            REASON_DISMISS: "dismiss",
+            SURFACE_SELECTOR: ".mdc-snackbar__surface"
+        };
+        var snackbar_constants_numbers = {
+            DEFAULT_AUTO_DISMISS_TIMEOUT_MS: 5e3,
+            INDETERMINATE: -1,
+            MAX_AUTO_DISMISS_TIMEOUT_MS: 1e4,
+            MIN_AUTO_DISMISS_TIMEOUT_MS: 4e3,
+            SNACKBAR_ANIMATION_CLOSE_TIME_MS: 75,
+            SNACKBAR_ANIMATION_OPEN_TIME_MS: 150,
+            ARIA_LIVE_DELAY_MS: 1e3
+        };
+        /**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+        var OPENING = snackbar_constants_cssClasses.OPENING, OPEN = snackbar_constants_cssClasses.OPEN, CLOSING = snackbar_constants_cssClasses.CLOSING;
+        var REASON_ACTION = snackbar_constants_strings.REASON_ACTION, REASON_DISMISS = snackbar_constants_strings.REASON_DISMISS;
+        var MDCSnackbarFoundation = function(_super) {
+            __extends(MDCSnackbarFoundation, _super);
+            function MDCSnackbarFoundation(adapter) {
+                var _this = _super.call(this, __assign(__assign({}, MDCSnackbarFoundation.defaultAdapter), adapter)) || this;
+                _this.isOpen_ = false;
+                _this.animationFrame_ = 0;
+                _this.animationTimer_ = 0;
+                _this.autoDismissTimer_ = 0;
+                _this.autoDismissTimeoutMs_ = snackbar_constants_numbers.DEFAULT_AUTO_DISMISS_TIMEOUT_MS;
+                _this.closeOnEscape_ = true;
+                return _this;
+            }
+            Object.defineProperty(MDCSnackbarFoundation, "cssClasses", {
+                get: function() {
+                    return snackbar_constants_cssClasses;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCSnackbarFoundation, "strings", {
+                get: function() {
+                    return snackbar_constants_strings;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCSnackbarFoundation, "numbers", {
+                get: function() {
+                    return snackbar_constants_numbers;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCSnackbarFoundation, "defaultAdapter", {
+                get: function() {
+                    return {
+                        addClass: function() {
+                            return undefined;
+                        },
+                        announce: function() {
+                            return undefined;
+                        },
+                        notifyClosed: function() {
+                            return undefined;
+                        },
+                        notifyClosing: function() {
+                            return undefined;
+                        },
+                        notifyOpened: function() {
+                            return undefined;
+                        },
+                        notifyOpening: function() {
+                            return undefined;
+                        },
+                        removeClass: function() {
+                            return undefined;
+                        }
+                    };
+                },
+                enumerable: true,
+                configurable: true
+            });
+            MDCSnackbarFoundation.prototype.destroy = function() {
+                this.clearAutoDismissTimer_();
+                cancelAnimationFrame(this.animationFrame_);
+                this.animationFrame_ = 0;
+                clearTimeout(this.animationTimer_);
+                this.animationTimer_ = 0;
+                this.adapter.removeClass(OPENING);
+                this.adapter.removeClass(OPEN);
+                this.adapter.removeClass(CLOSING);
+            };
+            MDCSnackbarFoundation.prototype.open = function() {
+                var _this = this;
+                this.clearAutoDismissTimer_();
+                this.isOpen_ = true;
+                this.adapter.notifyOpening();
+                this.adapter.removeClass(CLOSING);
+                this.adapter.addClass(OPENING);
+                this.adapter.announce();
+                this.runNextAnimationFrame_((function() {
+                    _this.adapter.addClass(OPEN);
+                    _this.animationTimer_ = setTimeout((function() {
+                        var timeoutMs = _this.getTimeoutMs();
+                        _this.handleAnimationTimerEnd_();
+                        _this.adapter.notifyOpened();
+                        if (timeoutMs !== snackbar_constants_numbers.INDETERMINATE) {
+                            _this.autoDismissTimer_ = setTimeout((function() {
+                                _this.close(REASON_DISMISS);
+                            }), timeoutMs);
+                        }
+                    }), snackbar_constants_numbers.SNACKBAR_ANIMATION_OPEN_TIME_MS);
+                }));
+            };
+            MDCSnackbarFoundation.prototype.close = function(reason) {
+                var _this = this;
+                if (reason === void 0) {
+                    reason = "";
+                }
+                if (!this.isOpen_) {
+                    return;
+                }
+                cancelAnimationFrame(this.animationFrame_);
+                this.animationFrame_ = 0;
+                this.clearAutoDismissTimer_();
+                this.isOpen_ = false;
+                this.adapter.notifyClosing(reason);
+                this.adapter.addClass(snackbar_constants_cssClasses.CLOSING);
+                this.adapter.removeClass(snackbar_constants_cssClasses.OPEN);
+                this.adapter.removeClass(snackbar_constants_cssClasses.OPENING);
+                clearTimeout(this.animationTimer_);
+                this.animationTimer_ = setTimeout((function() {
+                    _this.handleAnimationTimerEnd_();
+                    _this.adapter.notifyClosed(reason);
+                }), snackbar_constants_numbers.SNACKBAR_ANIMATION_CLOSE_TIME_MS);
+            };
+            MDCSnackbarFoundation.prototype.isOpen = function() {
+                return this.isOpen_;
+            };
+            MDCSnackbarFoundation.prototype.getTimeoutMs = function() {
+                return this.autoDismissTimeoutMs_;
+            };
+            MDCSnackbarFoundation.prototype.setTimeoutMs = function(timeoutMs) {
+                var minValue = snackbar_constants_numbers.MIN_AUTO_DISMISS_TIMEOUT_MS;
+                var maxValue = snackbar_constants_numbers.MAX_AUTO_DISMISS_TIMEOUT_MS;
+                var indeterminateValue = snackbar_constants_numbers.INDETERMINATE;
+                if (timeoutMs === snackbar_constants_numbers.INDETERMINATE || timeoutMs <= maxValue && timeoutMs >= minValue) {
+                    this.autoDismissTimeoutMs_ = timeoutMs;
+                } else {
+                    throw new Error("\n        timeoutMs must be an integer in the range " + minValue + "–" + maxValue + "\n        (or " + indeterminateValue + " to disable), but got '" + timeoutMs + "'");
+                }
+            };
+            MDCSnackbarFoundation.prototype.getCloseOnEscape = function() {
+                return this.closeOnEscape_;
+            };
+            MDCSnackbarFoundation.prototype.setCloseOnEscape = function(closeOnEscape) {
+                this.closeOnEscape_ = closeOnEscape;
+            };
+            MDCSnackbarFoundation.prototype.handleKeyDown = function(evt) {
+                var isEscapeKey = evt.key === "Escape" || evt.keyCode === 27;
+                if (isEscapeKey && this.getCloseOnEscape()) {
+                    this.close(REASON_DISMISS);
+                }
+            };
+            MDCSnackbarFoundation.prototype.handleActionButtonClick = function(_evt) {
+                this.close(REASON_ACTION);
+            };
+            MDCSnackbarFoundation.prototype.handleActionIconClick = function(_evt) {
+                this.close(REASON_DISMISS);
+            };
+            MDCSnackbarFoundation.prototype.clearAutoDismissTimer_ = function() {
+                clearTimeout(this.autoDismissTimer_);
+                this.autoDismissTimer_ = 0;
+            };
+            MDCSnackbarFoundation.prototype.handleAnimationTimerEnd_ = function() {
+                this.animationTimer_ = 0;
+                this.adapter.removeClass(snackbar_constants_cssClasses.OPENING);
+                this.adapter.removeClass(snackbar_constants_cssClasses.CLOSING);
+            };
+            MDCSnackbarFoundation.prototype.runNextAnimationFrame_ = function(callback) {
+                var _this = this;
+                cancelAnimationFrame(this.animationFrame_);
+                this.animationFrame_ = requestAnimationFrame((function() {
+                    _this.animationFrame_ = 0;
+                    clearTimeout(_this.animationTimer_);
+                    _this.animationTimer_ = setTimeout(callback, 0);
+                }));
+            };
+            return MDCSnackbarFoundation;
+        }(MDCFoundation);
+        const snackbar_foundation = null && MDCSnackbarFoundation;
+        /**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+        var ARIA_LIVE_DELAY_MS = snackbar_constants_numbers.ARIA_LIVE_DELAY_MS;
+        var ARIA_LIVE_LABEL_TEXT_ATTR = snackbar_constants_strings.ARIA_LIVE_LABEL_TEXT_ATTR;
+        function util_announce(ariaEl, labelEl) {
+            if (labelEl === void 0) {
+                labelEl = ariaEl;
+            }
+            var priority = ariaEl.getAttribute("aria-live");
+            var labelText = labelEl.textContent.trim();
+            if (!labelText || !priority) {
+                return;
+            }
+            ariaEl.setAttribute("aria-live", "off");
+            labelEl.textContent = "";
+            labelEl.innerHTML = '<span style="display: inline-block; width: 0; height: 1px;">&nbsp;</span>';
+            labelEl.setAttribute(ARIA_LIVE_LABEL_TEXT_ATTR, labelText);
+            setTimeout((function() {
+                ariaEl.setAttribute("aria-live", priority);
+                labelEl.removeAttribute(ARIA_LIVE_LABEL_TEXT_ATTR);
+                labelEl.textContent = labelText;
+            }), ARIA_LIVE_DELAY_MS);
+        }
+        /**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+        var SURFACE_SELECTOR = snackbar_constants_strings.SURFACE_SELECTOR, LABEL_SELECTOR = snackbar_constants_strings.LABEL_SELECTOR, ACTION_SELECTOR = snackbar_constants_strings.ACTION_SELECTOR, DISMISS_SELECTOR = snackbar_constants_strings.DISMISS_SELECTOR, OPENING_EVENT = snackbar_constants_strings.OPENING_EVENT, OPENED_EVENT = snackbar_constants_strings.OPENED_EVENT, CLOSING_EVENT = snackbar_constants_strings.CLOSING_EVENT, CLOSED_EVENT = snackbar_constants_strings.CLOSED_EVENT;
+        var MDCSnackbar = function(_super) {
+            __extends(MDCSnackbar, _super);
+            function MDCSnackbar() {
+                return _super !== null && _super.apply(this, arguments) || this;
+            }
+            MDCSnackbar.attachTo = function(root) {
+                return new MDCSnackbar(root);
+            };
+            MDCSnackbar.prototype.initialize = function(announcerFactory) {
+                if (announcerFactory === void 0) {
+                    announcerFactory = function() {
+                        return util_announce;
+                    };
+                }
+                this.announce_ = announcerFactory();
+            };
+            MDCSnackbar.prototype.initialSyncWithDOM = function() {
+                var _this = this;
+                this.surfaceEl_ = this.root.querySelector(SURFACE_SELECTOR);
+                this.labelEl_ = this.root.querySelector(LABEL_SELECTOR);
+                this.actionEl_ = this.root.querySelector(ACTION_SELECTOR);
+                this.handleKeyDown_ = function(evt) {
+                    return _this.foundation.handleKeyDown(evt);
+                };
+                this.handleSurfaceClick_ = function(evt) {
+                    var target = evt.target;
+                    if (_this.isActionButton_(target)) {
+                        _this.foundation.handleActionButtonClick(evt);
+                    } else if (_this.isActionIcon_(target)) {
+                        _this.foundation.handleActionIconClick(evt);
+                    }
+                };
+                this.registerKeyDownHandler_(this.handleKeyDown_);
+                this.registerSurfaceClickHandler_(this.handleSurfaceClick_);
+            };
+            MDCSnackbar.prototype.destroy = function() {
+                _super.prototype.destroy.call(this);
+                this.deregisterKeyDownHandler_(this.handleKeyDown_);
+                this.deregisterSurfaceClickHandler_(this.handleSurfaceClick_);
+            };
+            MDCSnackbar.prototype.open = function() {
+                this.foundation.open();
+            };
+            MDCSnackbar.prototype.close = function(reason) {
+                if (reason === void 0) {
+                    reason = "";
+                }
+                this.foundation.close(reason);
+            };
+            MDCSnackbar.prototype.getDefaultFoundation = function() {
+                var _this = this;
+                var adapter = {
+                    addClass: function(className) {
+                        return _this.root.classList.add(className);
+                    },
+                    announce: function() {
+                        return _this.announce_(_this.labelEl_);
+                    },
+                    notifyClosed: function(reason) {
+                        return _this.emit(CLOSED_EVENT, reason ? {
+                            reason: reason
+                        } : {});
+                    },
+                    notifyClosing: function(reason) {
+                        return _this.emit(CLOSING_EVENT, reason ? {
+                            reason: reason
+                        } : {});
+                    },
+                    notifyOpened: function() {
+                        return _this.emit(OPENED_EVENT, {});
+                    },
+                    notifyOpening: function() {
+                        return _this.emit(OPENING_EVENT, {});
+                    },
+                    removeClass: function(className) {
+                        return _this.root.classList.remove(className);
+                    }
+                };
+                return new MDCSnackbarFoundation(adapter);
+            };
+            Object.defineProperty(MDCSnackbar.prototype, "timeoutMs", {
+                get: function() {
+                    return this.foundation.getTimeoutMs();
+                },
+                set: function(timeoutMs) {
+                    this.foundation.setTimeoutMs(timeoutMs);
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCSnackbar.prototype, "closeOnEscape", {
+                get: function() {
+                    return this.foundation.getCloseOnEscape();
+                },
+                set: function(closeOnEscape) {
+                    this.foundation.setCloseOnEscape(closeOnEscape);
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCSnackbar.prototype, "isOpen", {
+                get: function() {
+                    return this.foundation.isOpen();
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCSnackbar.prototype, "labelText", {
+                get: function() {
+                    return this.labelEl_.textContent;
+                },
+                set: function(labelText) {
+                    this.labelEl_.textContent = labelText;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            Object.defineProperty(MDCSnackbar.prototype, "actionButtonText", {
+                get: function() {
+                    return this.actionEl_.textContent;
+                },
+                set: function(actionButtonText) {
+                    this.actionEl_.textContent = actionButtonText;
+                },
+                enumerable: true,
+                configurable: true
+            });
+            MDCSnackbar.prototype.registerKeyDownHandler_ = function(handler) {
+                this.listen("keydown", handler);
+            };
+            MDCSnackbar.prototype.deregisterKeyDownHandler_ = function(handler) {
+                this.unlisten("keydown", handler);
+            };
+            MDCSnackbar.prototype.registerSurfaceClickHandler_ = function(handler) {
+                this.surfaceEl_.addEventListener("click", handler);
+            };
+            MDCSnackbar.prototype.deregisterSurfaceClickHandler_ = function(handler) {
+                this.surfaceEl_.removeEventListener("click", handler);
+            };
+            MDCSnackbar.prototype.isActionButton_ = function(target) {
+                return Boolean(closest(target, ACTION_SELECTOR));
+            };
+            MDCSnackbar.prototype.isActionIcon_ = function(target) {
+                return Boolean(closest(target, DISMISS_SELECTOR));
+            };
+            return MDCSnackbar;
+        }(MDCComponent);
+        function MBSnackbar_init(elem, dotnetReference) {
+            elem._snackbar = new MDCSnackbar(elem);
+            elem._snackbar.listen("MDCSnackbar:closed", (function(r) {
+                dotnetReference.invokeMethodAsync("Closed", r);
+            }));
+        }
+        function MBSnackbar_destroy(elem) {
+            elem._snackbar.destroy();
+        }
+        function MBSnackbar_open(elem, timeoutMs) {
+            elem._snackbar.timeoutMs = timeoutMs;
+            elem._snackbar.open();
+        }
+        /**
+ * @license
+ * Copyright 2018 Google Inc.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+        var switch_constants_cssClasses = {
             CHECKED: "mdc-switch--checked",
             DISABLED: "mdc-switch--disabled"
         };
@@ -20462,7 +20986,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCSwitchFoundation = function(_super) {
+ */
+        var MDCSwitchFoundation = function(_super) {
             __extends(MDCSwitchFoundation, _super);
             function MDCSwitchFoundation(adapter) {
                 return _super.call(this, __assign(__assign({}, MDCSwitchFoundation.defaultAdapter), adapter)) || this;
@@ -20556,7 +21081,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCSwitch = function(_super) {
+ */
+        var MDCSwitch = function(_super) {
             __extends(MDCSwitch, _super);
             function MDCSwitch() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -20708,7 +21234,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var tab_scroller_constants_cssClasses = {
+ */
+        var tab_scroller_constants_cssClasses = {
             ANIMATING: "mdc-tab-scroller--animating",
             SCROLL_AREA_SCROLL: "mdc-tab-scroller__scroll-area--scroll",
             SCROLL_TEST: "mdc-tab-scroller__test"
@@ -20738,7 +21265,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCTabScrollerRTL = function() {
+ */
+        var MDCTabScrollerRTL = function() {
             function MDCTabScrollerRTL(adapter) {
                 this.adapter = adapter;
             }
@@ -20766,7 +21294,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCTabScrollerRTLDefault = function(_super) {
+ */
+        var MDCTabScrollerRTLDefault = function(_super) {
             __extends(MDCTabScrollerRTLDefault, _super);
             function MDCTabScrollerRTLDefault() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -20832,7 +21361,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCTabScrollerRTLNegative = function(_super) {
+ */
+        var MDCTabScrollerRTLNegative = function(_super) {
             __extends(MDCTabScrollerRTLNegative, _super);
             function MDCTabScrollerRTLNegative() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -20896,7 +21426,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCTabScrollerRTLReverse = function(_super) {
+ */
+        var MDCTabScrollerRTLReverse = function(_super) {
             __extends(MDCTabScrollerRTLReverse, _super);
             function MDCTabScrollerRTLReverse() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -20960,7 +21491,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCTabScrollerFoundation = function(_super) {
+ */
+        var MDCTabScrollerFoundation = function(_super) {
             __extends(MDCTabScrollerFoundation, _super);
             function MDCTabScrollerFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCTabScrollerFoundation.defaultAdapter), adapter)) || this;
@@ -21230,7 +21762,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var horizontalScrollbarHeight_;
+ */
+        var horizontalScrollbarHeight_;
         function computeHorizontalScrollbarHeight(documentObj, shouldCacheResult) {
             if (shouldCacheResult === void 0) {
                 shouldCacheResult = true;
@@ -21269,7 +21802,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCTabScroller = function(_super) {
+ */
+        var MDCTabScroller = function(_super) {
             __extends(MDCTabScroller, _super);
             function MDCTabScroller() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -21388,7 +21922,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var tab_indicator_constants_cssClasses = {
+ */
+        var tab_indicator_constants_cssClasses = {
             ACTIVE: "mdc-tab-indicator--active",
             FADE: "mdc-tab-indicator--fade",
             NO_TRANSITION: "mdc-tab-indicator--no-transition"
@@ -21417,7 +21952,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCTabIndicatorFoundation = function(_super) {
+ */
+        var MDCTabIndicatorFoundation = function(_super) {
             __extends(MDCTabIndicatorFoundation, _super);
             function MDCTabIndicatorFoundation(adapter) {
                 return _super.call(this, __assign(__assign({}, MDCTabIndicatorFoundation.defaultAdapter), adapter)) || this;
@@ -21490,7 +22026,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCFadingTabIndicatorFoundation = function(_super) {
+ */
+        var MDCFadingTabIndicatorFoundation = function(_super) {
             __extends(MDCFadingTabIndicatorFoundation, _super);
             function MDCFadingTabIndicatorFoundation() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -21525,7 +22062,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCSlidingTabIndicatorFoundation = function(_super) {
+ */
+        var MDCSlidingTabIndicatorFoundation = function(_super) {
             __extends(MDCSlidingTabIndicatorFoundation, _super);
             function MDCSlidingTabIndicatorFoundation() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -21572,7 +22110,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCTabIndicator = function(_super) {
+ */
+        var MDCTabIndicator = function(_super) {
             __extends(MDCTabIndicator, _super);
             function MDCTabIndicator() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -21636,7 +22175,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var tab_constants_cssClasses = {
+ */
+        var tab_constants_cssClasses = {
             ACTIVE: "mdc-tab--active"
         };
         var tab_constants_strings = {
@@ -21668,7 +22208,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCTabFoundation = function(_super) {
+ */
+        var MDCTabFoundation = function(_super) {
             __extends(MDCTabFoundation, _super);
             function MDCTabFoundation(adapter) {
                 var _this = _super.call(this, __assign(__assign({}, MDCTabFoundation.defaultAdapter), adapter)) || this;
@@ -21796,7 +22337,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCTab = function(_super) {
+ */
+        var MDCTab = function(_super) {
             __extends(MDCTab, _super);
             function MDCTab() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -21942,7 +22484,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var tab_bar_constants_strings = {
+ */
+        var tab_bar_constants_strings = {
             ARROW_LEFT_KEY: "ArrowLeft",
             ARROW_RIGHT_KEY: "ArrowRight",
             END_KEY: "End",
@@ -21983,7 +22526,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var ACCEPTABLE_KEYS = new Set;
+ */
+        var ACCEPTABLE_KEYS = new Set;
         ACCEPTABLE_KEYS.add(tab_bar_constants_strings.ARROW_LEFT_KEY);
         ACCEPTABLE_KEYS.add(tab_bar_constants_strings.ARROW_RIGHT_KEY);
         ACCEPTABLE_KEYS.add(tab_bar_constants_strings.END_KEY);
@@ -22285,7 +22829,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var tab_bar_component_strings = MDCTabBarFoundation.strings;
+ */
+        var tab_bar_component_strings = MDCTabBarFoundation.strings;
         var tabIdCounter = 0;
         var MDCTabBar = function(_super) {
             __extends(MDCTabBar, _super);
@@ -22558,7 +23103,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var CssClasses;
+ */
+        var CssClasses;
         (function(CssClasses) {
             CssClasses["RICH"] = "mdc-tooltip--rich";
             CssClasses["SHOWN"] = "mdc-tooltip--shown";
@@ -22624,7 +23170,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var AnimationFrame = function() {
+ */
+        var AnimationFrame = function() {
             function AnimationFrame() {
                 this.rafIDs = new Map;
             }
@@ -22680,7 +23227,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var RICH = CssClasses.RICH, SHOWN = CssClasses.SHOWN, SHOWING = CssClasses.SHOWING, SHOWING_TRANSITION = CssClasses.SHOWING_TRANSITION, HIDE = CssClasses.HIDE, HIDE_TRANSITION = CssClasses.HIDE_TRANSITION, MULTILINE_TOOLTIP = CssClasses.MULTILINE_TOOLTIP;
+ */
+        var RICH = CssClasses.RICH, SHOWN = CssClasses.SHOWN, SHOWING = CssClasses.SHOWING, SHOWING_TRANSITION = CssClasses.SHOWING_TRANSITION, HIDE = CssClasses.HIDE, HIDE_TRANSITION = CssClasses.HIDE_TRANSITION, MULTILINE_TOOLTIP = CssClasses.MULTILINE_TOOLTIP;
         var AnimationKeys;
         (function(AnimationKeys) {
             AnimationKeys["POLL_ANCHOR"] = "poll_anchor";
@@ -23221,7 +23769,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCTooltip = function(_super) {
+ */
+        var MDCTooltip = function(_super) {
             __extends(MDCTooltip, _super);
             function MDCTooltip() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -23408,7 +23957,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var top_app_bar_constants_cssClasses = {
+ */
+        var top_app_bar_constants_cssClasses = {
             FIXED_CLASS: "mdc-top-app-bar--fixed",
             FIXED_SCROLLED_CLASS: "mdc-top-app-bar--fixed-scrolled",
             SHORT_CLASS: "mdc-top-app-bar--short",
@@ -23447,7 +23997,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCTopAppBarBaseFoundation = function(_super) {
+ */
+        var MDCTopAppBarBaseFoundation = function(_super) {
             __extends(MDCTopAppBarBaseFoundation, _super);
             function MDCTopAppBarBaseFoundation(adapter) {
                 return _super.call(this, __assign(__assign({}, MDCTopAppBarBaseFoundation.defaultAdapter), adapter)) || this;
@@ -23534,7 +24085,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var INITIAL_VALUE = 0;
+ */
+        var INITIAL_VALUE = 0;
         var MDCTopAppBarFoundation = function(_super) {
             __extends(MDCTopAppBarFoundation, _super);
             function MDCTopAppBarFoundation(adapter) {
@@ -23645,7 +24197,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCFixedTopAppBarFoundation = function(_super) {
+ */
+        var MDCFixedTopAppBarFoundation = function(_super) {
             __extends(MDCFixedTopAppBarFoundation, _super);
             function MDCFixedTopAppBarFoundation() {
                 var _this = _super !== null && _super.apply(this, arguments) || this;
@@ -23690,7 +24243,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCShortTopAppBarFoundation = function(_super) {
+ */
+        var MDCShortTopAppBarFoundation = function(_super) {
             __extends(MDCShortTopAppBarFoundation, _super);
             function MDCShortTopAppBarFoundation(adapter) {
                 var _this = _super.call(this, adapter) || this;
@@ -23773,7 +24327,8 @@ PERFORMANCE OF THIS SOFTWARE.
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- */        var MDCTopAppBar = function(_super) {
+ */
+        var MDCTopAppBar = function(_super) {
             __extends(MDCTopAppBar, _super);
             function MDCTopAppBar() {
                 return _super !== null && _super.apply(this, arguments) || this;
@@ -23908,6 +24463,7 @@ PERFORMANCE OF THIS SOFTWARE.
             MBSegmentedButtonMulti: MBSegmentedButtonMulti_namespaceObject,
             MBSelect: MBSelect_namespaceObject,
             MBSlider: MBSlider_namespaceObject,
+            MBSnackbar: MBSnackbar_namespaceObject,
             MBSwitch: MBSwitch_namespaceObject,
             MBTabBar: MBTabBar_namespaceObject,
             MBTextField: MBTextField_namespaceObject,

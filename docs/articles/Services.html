@@ -80,7 +80,7 @@
             <article class="content wrap" id="_content" data-uid="A.Services">
 <h1 id="services">Services</h1>
 
-<p>Material.Blazor has services for both Toast notifications and an animated page navigation manager. These services and their functionality are optional.</p>
+<p>Material.Blazor has services for snackbar &amp; zoast notifications and an animated page navigation manager. These services and their functionality are optional.</p>
 <h2 id="services-list">Services List</h2>
 <table>
 <thead>
@@ -95,12 +95,16 @@
 <td style="text-align: left;">Manages fade out/in page navigation, wrapping Blazor's <code>NavigationManager.NavigateTo()</code> function. Requires an <a class="xref" href="../Material.Blazor/Components/AnimatedNavigation/MBAnimatedNavigation.html">MBAnimatedNavigation</a> component. This is purely optional and you can continue to use Blazor's navigation if you don't want animation.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Model/Toast/IMBToastService.html">IMBoastService</a></td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Model/Snackbar/IMBSnackbarService.html">IMBSnackbarService</a></td>
+<td style="text-align: left;">Manages snackbar notification. Requires an <a class="xref" href="../Material.Blazor/Components/Anchor/MBAnchor.html">MBAnchor</a> component and will throw an exception when you attempt to show a snackbar notification if this isn't found.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Model/Toast/IMBToastService.html">IMBToastService</a></td>
 <td style="text-align: left;">Manages toast notification. Requires an <a class="xref" href="../Material.Blazor/Components/Anchor/MBAnchor.html">MBAnchor</a> component and will throw an exception when you attempt to show a toast notification if this isn't found.</td>
 </tr>
 <tr>
-<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Model/Tooltip/IMBTooltipService.html">IMBooltipService</a></td>
-<td style="text-align: left;">Manages tooltips. Requires an <a class="xref" href="../Material.Blazor/Components/Anchor/MBAnchor.html">MBAnchor</a> component and will throw an exception when you attempt to show a toast notification if this isn't found.</td>
+<td style="text-align: left;"><a class="xref" href="../Material.Blazor/Model/Tooltip/IMBTooltipService.html">IMBTooltipService</a></td>
+<td style="text-align: left;">Manages tooltips. Requires an <a class="xref" href="../Material.Blazor/Components/Anchor/MBAnchor.html">MBAnchor</a> component and will throw an exception when you attempt to show a tooltip notification if this isn't found.</td>
 </tr>
 </tbody>
 </table>

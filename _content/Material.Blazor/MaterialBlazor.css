@@ -3,31 +3,31 @@
   font-family: "Material Icons";
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/materialicons/v70/flUhRq6tzZclQEJ-Vdg-IuiaDsNZ.ttf) format("truetype");
+  src: url(https://fonts.gstatic.com/s/materialicons/v77/flUhRq6tzZclQEJ-Vdg-IuiaDsNZ.ttf) format("truetype");
 }
 @font-face {
   font-family: "Material Icons Outlined";
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/materialiconsoutlined/v38/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUcd.otf) format("opentype");
+  src: url(https://fonts.gstatic.com/s/materialiconsoutlined/v45/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUcd.otf) format("opentype");
 }
 @font-face {
   font-family: "Material Icons Round";
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/materialiconsround/v37/LDItaoyNOAY6Uewc665JcIzCKsKc_M9flwmM.otf) format("opentype");
+  src: url(https://fonts.gstatic.com/s/materialiconsround/v44/LDItaoyNOAY6Uewc665JcIzCKsKc_M9flwmM.otf) format("opentype");
 }
 @font-face {
   font-family: "Material Icons Sharp";
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/materialiconssharp/v38/oPWQ_lt5nv4pWNJpghLP75WiFR4kLh3kvmvS.otf) format("opentype");
+  src: url(https://fonts.gstatic.com/s/materialiconssharp/v45/oPWQ_lt5nv4pWNJpghLP75WiFR4kLh3kvmvS.otf) format("opentype");
 }
 @font-face {
   font-family: "Material Icons Two Tone";
   font-style: normal;
   font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/materialiconstwotone/v36/hESh6WRmNCxEqUmNyh3JDeGxjVVyMg4tHGctNCu3.otf) format("opentype");
+  src: url(https://fonts.gstatic.com/s/materialiconstwotone/v43/hESh6WRmNCxEqUmNyh3JDeGxjVVyMg4tHGctNCu3.otf) format("opentype");
 }
 .material-icons {
   font-family: "Material Icons";
@@ -1150,6 +1150,13 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   overflow: visible !important;
 }
 
+.mb-dialog__header {
+  padding-bottom: 0px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 0px;
+}
+
 .mdc-icon-button.dense--5 {
   width: 28px;
   height: 28px;
@@ -1229,6 +1236,7 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
 }
 
 .mb-grid-td {
+  cursor: default;
   display: table-cell;
   flex: 0 0 auto;
   padding: 4px;
@@ -1272,7 +1280,7 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   background-color: lightgreen;
 }
 
-.mb-grid-header-td {
+.mb-grid-header-td-measure {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bolder;
   border-collapse: collapse;
@@ -1297,7 +1305,7 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   background-color: LightGray;
 }
 
-.mb-grid-body-td {
+.mb-grid-body-td-measure {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal;
   border-collapse: collapse;
@@ -1319,6 +1327,7 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   border-style: solid;
   border-color: black;
   color: #000000;
+  cursor: default;
 }
 
 .mdc-list.dense--5 .mdc-list-item, .mdc-list.dense--4 .mdc-list-item {

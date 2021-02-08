@@ -109,7 +109,7 @@ if you have built a theme - you can see how we have done this in the <a href="ht
 </li>
 </ul>
 <h2 id="services-and-anchor">Services and Anchor</h2>
-<p>Material.Blazor has three services for animated navigation, toasts, and tooltips. We strongly advise you to use these in your project
+<p>Material.Blazor has four services for animated navigation, snackbars, toasts, and tooltips. We strongly advise you to use these in your project
 because regular component tooltips will fail if you don't, although they are optional. To register the services:</p>
 <pre><code class="lang-csharp">services.AddMBServices(
     toastServiceConfiguration: new MBToastServiceConfiguration()
@@ -129,7 +129,7 @@ because regular component tooltips will fail if you don't, although they are opt
     }
 );
 </code></pre>
-<p>The two configurations are optional - see <a class="xref" href="../api/Material.Blazor.MBToastServiceConfiguration.html">MBToastServiceConfiguration</a> and <a class="xref" href="../api/Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.html">MBAnimatedNavigationManagerServiceConfiguration</a>.</p>
+<p>The three configurations are optional - see <a class="xref" href="../api/Material.Blazor.MBSnackbarServiceConfiguration.html">MBSnackbarServiceConfiguration</a>, <a class="xref" href="../api/Material.Blazor.MBToastServiceConfiguration.html">MBToastServiceConfiguration</a> and <a class="xref" href="../api/Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.html">MBAnimatedNavigationManagerServiceConfiguration</a>.</p>
 <p>When you use the services you must also place an anchor component at the top of <code>App.razor</code> - this must not be inside any other components or divs:</p>
 <pre><code class="lang-html">&lt;MBAnchor /&gt;
 </code></pre>

@@ -237,7 +237,7 @@
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_ColumnConfigurations.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.ColumnConfigurations%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L51">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L48">View Source</a>
   </span>
   <a id="Material_Blazor_MBGrid_1_ColumnConfigurations_" data-uid="Material.Blazor.MBGrid`1.ColumnConfigurations*"></a>
   <h4 id="Material_Blazor_MBGrid_1_ColumnConfigurations" data-uid="Material.Blazor.MBGrid`1.ColumnConfigurations">ColumnConfigurations</h4>
@@ -247,7 +247,7 @@ for details.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;MBGridColumnConfiguration&lt;TRowData&gt;&gt; ColumnConfigurations { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;MBGridColumnConfiguration&lt;TRowData&gt;&gt; ColumnConfigurations { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -259,27 +259,60 @@ for details.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Material.Blazor.MBGridColumnConfiguration-1.html">MBGridColumnConfiguration</a>&lt;TRowData&gt;&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Material.Blazor.MBGridColumnConfiguration-1.html">MBGridColumnConfiguration</a>&lt;TRowData&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_DataDictionary.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.DataDictionary%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_Group.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.Group%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L56">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L54">View Source</a>
   </span>
-  <a id="Material_Blazor_MBGrid_1_DataDictionary_" data-uid="Material.Blazor.MBGrid`1.DataDictionary*"></a>
-  <h4 id="Material_Blazor_MBGrid_1_DataDictionary" data-uid="Material.Blazor.MBGrid`1.DataDictionary">DataDictionary</h4>
-  <div class="markdown level1 summary"><p>TheDataDictionary contains the data to be displayed. The dictionary key must be a unique identifier
+  <a id="Material_Blazor_MBGrid_1_Group_" data-uid="Material.Blazor.MBGrid`1.Group*"></a>
+  <h4 id="Material_Blazor_MBGrid_1_Group" data-uid="Material.Blazor.MBGrid`1.Group">Group</h4>
+  <div class="markdown level1 summary"><p>The Group is an optional boolean indicating that grouping is in effect.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Group { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_GroupedOrderedData.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.GroupedOrderedData%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L63">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBGrid_1_GroupedOrderedData_" data-uid="Material.Blazor.MBGrid`1.GroupedOrderedData*"></a>
+  <h4 id="Material_Blazor_MBGrid_1_GroupedOrderedData" data-uid="Material.Blazor.MBGrid`1.GroupedOrderedData">GroupedOrderedData</h4>
+  <div class="markdown level1 summary"><p>The GroupedOrderedData contains the data to be displayed.
+The outer key is used for grouping and is directly displayed if grouping is enabled.
+The inner key must be a unique identifier
 that is used to indicate a row that has been clicked.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Dictionary&lt;string, TRowData&gt; DataDictionary { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;KeyValuePair&lt;string, IEnumerable&lt;KeyValuePair&lt;string, TRowData&gt;&gt;&gt;&gt; GroupedOrderedData { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -291,71 +324,7 @@ that is used to indicate a row that has been clicked.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, TRowData&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_GroupExpression.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.GroupExpression%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L61">View Source</a>
-  </span>
-  <a id="Material_Blazor_MBGrid_1_GroupExpression_" data-uid="Material.Blazor.MBGrid`1.GroupExpression*"></a>
-  <h4 id="Material_Blazor_MBGrid_1_GroupExpression" data-uid="Material.Blazor.MBGrid`1.GroupExpression">GroupExpression</h4>
-  <div class="markdown level1 summary"><p>The GroupExpression is an optional expression indicating that grouping is to occur by a
-particular column.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Func&lt;TRowData, object&gt; GroupExpression { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TRowData, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_GroupOrderedList.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.GroupOrderedList%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L66">View Source</a>
-  </span>
-  <a id="Material_Blazor_MBGrid_1_GroupOrderedList_" data-uid="Material.Blazor.MBGrid`1.GroupOrderedList*"></a>
-  <h4 id="Material_Blazor_MBGrid_1_GroupOrderedList" data-uid="Material.Blazor.MBGrid`1.GroupOrderedList">GroupOrderedList</h4>
-  <div class="markdown level1 summary"><p>If you are grouping (As determined by the presence of the GroupExpression) then it is
-sometimes a requirement to show empty group headers. See the demo website for an example.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public List&lt;string&gt; GroupOrderedList { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a>, TRowData&gt;&gt;&gt;&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -365,7 +334,7 @@ sometimes a requirement to show empty group headers. See the demo website for an
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_HighlightSelectedRow.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.HighlightSelectedRow%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L70">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L69">View Source</a>
   </span>
   <a id="Material_Blazor_MBGrid_1_HighlightSelectedRow_" data-uid="Material.Blazor.MBGrid`1.HighlightSelectedRow*"></a>
   <h4 id="Material_Blazor_MBGrid_1_HighlightSelectedRow" data-uid="Material.Blazor.MBGrid`1.HighlightSelectedRow">HighlightSelectedRow</h4>
@@ -396,7 +365,7 @@ sometimes a requirement to show empty group headers. See the demo website for an
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_KeyExpression.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.KeyExpression%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L74">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L76">View Source</a>
   </span>
   <a id="Material_Blazor_MBGrid_1_KeyExpression_" data-uid="Material.Blazor.MBGrid`1.KeyExpression*"></a>
   <h4 id="Material_Blazor_MBGrid_1_KeyExpression" data-uid="Material.Blazor.MBGrid`1.KeyExpression">KeyExpression</h4>
@@ -427,7 +396,7 @@ sometimes a requirement to show empty group headers. See the demo website for an
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_Measurement.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.Measurement%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L79">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L84">View Source</a>
   </span>
   <a id="Material_Blazor_MBGrid_1_Measurement_" data-uid="Material.Blazor.MBGrid`1.Measurement*"></a>
   <h4 id="Material_Blazor_MBGrid_1_Measurement" data-uid="Material.Blazor.MBGrid`1.Measurement">Measurement</h4>
@@ -456,10 +425,41 @@ data widths (FitToData)</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_ObscurePMI.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.ObscurePMI%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L90">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBGrid_1_ObscurePMI_" data-uid="Material.Blazor.MBGrid`1.ObscurePMI*"></a>
+  <h4 id="Material_Blazor_MBGrid_1_ObscurePMI" data-uid="Material.Blazor.MBGrid`1.ObscurePMI">ObscurePMI</h4>
+  <div class="markdown level1 summary"><p>ObscurePMI controls whether or not columns marked as PMI are obscured.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool ObscurePMI { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_OnMouseClick.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.OnMouseClick%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L83">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L96">View Source</a>
   </span>
   <a id="Material_Blazor_MBGrid_1_OnMouseClick_" data-uid="Material.Blazor.MBGrid`1.OnMouseClick*"></a>
   <h4 id="Material_Blazor_MBGrid_1_OnMouseClick" data-uid="Material.Blazor.MBGrid`1.OnMouseClick">OnMouseClick</h4>
@@ -487,72 +487,10 @@ data widths (FitToData)</p>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_SortExpressionFirst.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.SortExpressionFirst%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L87">View Source</a>
-  </span>
-  <a id="Material_Blazor_MBGrid_1_SortExpressionFirst_" data-uid="Material.Blazor.MBGrid`1.SortExpressionFirst*"></a>
-  <h4 id="Material_Blazor_MBGrid_1_SortExpressionFirst" data-uid="Material.Blazor.MBGrid`1.SortExpressionFirst">SortExpressionFirst</h4>
-  <div class="markdown level1 summary"><p>First sort expression</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Func&lt;TRowData, object&gt; SortExpressionFirst { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TRowData, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_SortExpressionSecond.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.SortExpressionSecond%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L91">View Source</a>
-  </span>
-  <a id="Material_Blazor_MBGrid_1_SortExpressionSecond_" data-uid="Material.Blazor.MBGrid`1.SortExpressionSecond*"></a>
-  <h4 id="Material_Blazor_MBGrid_1_SortExpressionSecond" data-uid="Material.Blazor.MBGrid`1.SortExpressionSecond">SortExpressionSecond</h4>
-  <div class="markdown level1 summary"><p>Second sort expression</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Func&lt;TRowData, object&gt; SortExpressionSecond { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TRowData, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_SupressHeader.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.SupressHeader%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L95">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L102">View Source</a>
   </span>
   <a id="Material_Blazor_MBGrid_1_SupressHeader_" data-uid="Material.Blazor.MBGrid`1.SupressHeader*"></a>
   <h4 id="Material_Blazor_MBGrid_1_SupressHeader" data-uid="Material.Blazor.MBGrid`1.SupressHeader">SupressHeader</h4>
@@ -585,7 +523,7 @@ data widths (FitToData)</p>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_BuildRenderTree_RenderTreeBuilder_.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.BuildRenderTree(RenderTreeBuilder)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L179">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L185">View Source</a>
   </span>
   <a id="Material_Blazor_MBGrid_1_BuildRenderTree_" data-uid="Material.Blazor.MBGrid`1.BuildRenderTree*"></a>
   <h4 id="Material_Blazor_MBGrid_1_BuildRenderTree_RenderTreeBuilder_" data-uid="Material.Blazor.MBGrid`1.BuildRenderTree(RenderTreeBuilder)">BuildRenderTree(RenderTreeBuilder)</h4>
@@ -617,7 +555,7 @@ data widths (FitToData)</p>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_GridSyncScroll.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.GridSyncScroll%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L508">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L549">View Source</a>
   </span>
   <a id="Material_Blazor_MBGrid_1_GridSyncScroll_" data-uid="Material.Blazor.MBGrid`1.GridSyncScroll*"></a>
   <h4 id="Material_Blazor_MBGrid_1_GridSyncScroll" data-uid="Material.Blazor.MBGrid`1.GridSyncScroll">GridSyncScroll()</h4>
@@ -647,7 +585,7 @@ data widths (FitToData)</p>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_OnAfterRenderAsync_System_Boolean_.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.OnAfterRenderAsync(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L624">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L678">View Source</a>
   </span>
   <a id="Material_Blazor_MBGrid_1_OnAfterRenderAsync_" data-uid="Material.Blazor.MBGrid`1.OnAfterRenderAsync*"></a>
   <h4 id="Material_Blazor_MBGrid_1_OnAfterRenderAsync_System_Boolean_" data-uid="Material.Blazor.MBGrid`1.OnAfterRenderAsync(System.Boolean)">OnAfterRenderAsync(Boolean)</h4>
@@ -696,7 +634,7 @@ data widths (FitToData)</p>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_OnInitialized.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.OnInitialized%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L656">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L714">View Source</a>
   </span>
   <a id="Material_Blazor_MBGrid_1_OnInitialized_" data-uid="Material.Blazor.MBGrid`1.OnInitialized*"></a>
   <h4 id="Material_Blazor_MBGrid_1_OnInitialized" data-uid="Material.Blazor.MBGrid`1.OnInitialized">OnInitialized()</h4>
@@ -711,7 +649,7 @@ data widths (FitToData)</p>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_OnParametersSetAsync.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.OnParametersSetAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L691">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L753">View Source</a>
   </span>
   <a id="Material_Blazor_MBGrid_1_OnParametersSetAsync_" data-uid="Material.Blazor.MBGrid`1.OnParametersSetAsync*"></a>
   <h4 id="Material_Blazor_MBGrid_1_OnParametersSetAsync" data-uid="Material.Blazor.MBGrid`1.OnParametersSetAsync">OnParametersSetAsync()</h4>
@@ -740,18 +678,18 @@ data widths (FitToData)</p>
   <div><a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnParametersSetAsync">ComponentFoundation.OnParametersSetAsync()</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_SetShouldRenderReturnValue_System_Boolean_.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.SetShouldRenderReturnValue(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_SetShouldRenderValue_System_Boolean_.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.SetShouldRenderValue(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L785">View Source</a>
   </span>
-  <a id="Material_Blazor_MBGrid_1_SetShouldRenderReturnValue_" data-uid="Material.Blazor.MBGrid`1.SetShouldRenderReturnValue*"></a>
-  <h4 id="Material_Blazor_MBGrid_1_SetShouldRenderReturnValue_System_Boolean_" data-uid="Material.Blazor.MBGrid`1.SetShouldRenderReturnValue(System.Boolean)">SetShouldRenderReturnValue(Boolean)</h4>
+  <a id="Material_Blazor_MBGrid_1_SetShouldRenderValue_" data-uid="Material.Blazor.MBGrid`1.SetShouldRenderValue*"></a>
+  <h4 id="Material_Blazor_MBGrid_1_SetShouldRenderValue_System_Boolean_" data-uid="Material.Blazor.MBGrid`1.SetShouldRenderValue(System.Boolean)">SetShouldRenderValue(Boolean)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SetShouldRenderReturnValue(bool shouldRenderReturnValue)</code></pre>
+    <pre><code class="lang-csharp hljs">public void SetShouldRenderValue(bool shouldRenderReturnValue)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -815,7 +753,7 @@ data widths (FitToData)</p>
                     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L43" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L40" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
