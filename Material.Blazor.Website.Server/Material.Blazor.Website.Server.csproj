@@ -8,6 +8,10 @@
     <UserSecretsId>6d666ee3-08b4-4baf-95e0-6ddc8d4b4cfa</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <DefineConstants>Logging</DefineConstants>
   </PropertyGroup>
