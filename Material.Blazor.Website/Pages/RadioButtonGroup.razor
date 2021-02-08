@@ -74,28 +74,28 @@
 
                     <p style="display: flex; flex-flow: column nowrap;">
                         <MBRadioButton @bind-Value="@Density"
-                                       TargetCheckedValue=@MBDensity.Default
-                                       Label="Default Density"
                                        Density="MBDensity.Default"
-                                       RadioGroupName="density-group" />
+                                       Label="Default Density"
+                                       RadioGroupName="density-group"
+                                       TargetCheckedValue=@MBDensity.Default />
 
                         <MBRadioButton @bind-Value="@Density"
-                                       TargetCheckedValue=@MBDensity.Minus1
-                                       Label="Density Minus 1"
                                        Density=@MBDensity.Minus1
-                                       RadioGroupName="density-group" />
+                                       Label="Density Minus 1"
+                                       RadioGroupName="density-group"
+                                       TargetCheckedValue=@MBDensity.Minus1 />
 
                         <MBRadioButton @bind-Value="@Density"
-                                       TargetCheckedValue=@MBDensity.Minus2
-                                       Label="Density Minus 2"
                                        Density=@MBDensity.Minus2
-                                       RadioGroupName="density-group" />
+                                       Label="Density Minus 2"
+                                       RadioGroupName="density-group"
+                                       TargetCheckedValue=@MBDensity.Minus2 />
 
                         <MBRadioButton @bind-Value="@Density"
-                                       TargetCheckedValue=@MBDensity.Minus3
-                                       Label="Density Minus 3"
                                        Density=@MBDensity.Minus3
-                                       RadioGroupName="density-group" />
+                                       Label="Density Minus 3"
+                                       RadioGroupName="density-group"
+                                       TargetCheckedValue=@MBDensity.Minus3 />
                     </p>
                 </Primary>
             </MBCard>
@@ -110,7 +110,7 @@
         new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
         new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
-        };
+            };
 
 
     private string _horizontalGroup;

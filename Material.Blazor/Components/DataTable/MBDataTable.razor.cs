@@ -67,7 +67,8 @@ namespace Material.Blazor
         /// <summary>
         /// Determines whether the data table has a progress bar.
         /// </summary>
-        [Parameter] public bool ShowProgress
+        [Parameter]
+        public bool ShowProgress
         {
             get => showProgress;
             set

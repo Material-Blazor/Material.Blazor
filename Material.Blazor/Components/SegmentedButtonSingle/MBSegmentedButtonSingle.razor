@@ -5,5 +5,7 @@
 
 
 <CascadingValue Value="@this" IsFixed="true">
-    <MBSegmentedButtonMulti @ref="@SegmentedButtonMulti" @bind-Value="@MultiValues" Items="@Items" />
+    <MBSegmentedButtonMulti @bind-Value="@MultiValues"
+                            Items="@Items"
+                            @ref="@SegmentedButtonMulti" />
 </CascadingValue>

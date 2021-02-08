@@ -281,7 +281,7 @@ namespace Material.Blazor
                 MainContentAttributesSet = true;
                 CachedMainContentAdditionalCss = MainContentAdditionalCss;
                 CachedMainContentAdditionalStyles = MainContentAdditionalStyles;
-                
+
                 MainContentAttributes = new();
 
                 if (!string.IsNullOrWhiteSpace(MainContentAdditionalCss))
@@ -302,7 +302,7 @@ namespace Material.Blazor
                 BladesAttributesSet = true;
                 CachedBladesAdditionalCss = BladesAdditionalCss;
                 CachedBladesAdditionalStyles = BladesAdditionalStyles;
-                
+
                 BladesAttributes = new();
 
                 if (!string.IsNullOrWhiteSpace(BladesAdditionalCss))

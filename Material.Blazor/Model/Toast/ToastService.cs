@@ -10,13 +10,13 @@ namespace Material.Blazor.Internal
         private MBToastServiceConfiguration configuration = new MBToastServiceConfiguration();
         ///<inheritdoc/>
         public MBToastServiceConfiguration Configuration
-        { 
-            get => configuration; 
+        {
+            get => configuration;
             set
-            { 
+            {
                 configuration = value;
                 configuration.OnValueChanged += ConfigurationChanged;
-                OnTriggerStateHasChanged?.Invoke(); 
+                OnTriggerStateHasChanged?.Invoke();
             }
         }
 
@@ -84,7 +84,7 @@ namespace Material.Blazor.Internal
 
             if (OnAdd is null)
             {
-                throw new InvalidOperationException($"Material.Blazor: you attempted to show a toast notification from a {Utilities.GetTypeName(typeof(IMBToastService))} but have not placed a {Utilities.GetTypeName(typeof(MBToastAnchor))} component at the top of either App.razor or MainLayout.razor");
+                throw new InvalidOperationException($"Material.Blazor: you attempted to show a toast notification from a {Utilities.GetTypeName(typeof(IMBToastService))} but have not placed a {Utilities.GetTypeName(typeof(MBAnchor))} component at the top of either App.razor or MainLayout.razor");
             }
 
             OnAdd?.Invoke(level, settings);

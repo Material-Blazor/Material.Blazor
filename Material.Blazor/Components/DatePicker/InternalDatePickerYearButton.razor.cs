@@ -47,7 +47,7 @@ namespace Material.Blazor.Internal
 
 
         private MBButtonStyle ButtonStyle => (DisplayYear == CurrentYear) ? MBButtonStyle.ContainedUnelevated : MBButtonStyle.Text;
-        
+
 
         private Dictionary<string, object> Attributes
         {

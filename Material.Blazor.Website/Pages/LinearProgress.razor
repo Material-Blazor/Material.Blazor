@@ -2,9 +2,9 @@
 
 
 <DemonstrationPage ComponentName="LinearProgress"
-                   Title="Linear Progress Demonstration"
                    DemoComponent="@this"
-                   MaterialIOPage="mdc-linear-progress#linear-progress">
+                   MaterialIOPage="mdc-linear-progress#linear-progress"
+                   Title="Linear Progress Demonstration">
     <Description>
         <p>
             Demonstrates linear progress indicators.
@@ -17,7 +17,10 @@
                                 Items="@ProgressLevels" />
         </p>
 
-        <p><MBSwitch @bind-Value="@ShowProgress" Label="Show Progress Indicators" /></p>
+        <p>
+            <MBSwitch @bind-Value="@ShowProgress"
+                      Label="Show Progress Indicators" />
+        </p>
     </Controls>
 
     <PageContent>
@@ -32,11 +35,27 @@
                         Indeterminate, determinate without buffer, determinate with buffer and reversed determinate without and with buffer.
                     </h3>
 
-                    <p><MBLinearProgress LinearProgressType="@LinearIndeterminate" /></p>
-                    <p><MBLinearProgress LinearProgressType="@LinearDeterminate" Value="@ProgressLevel" /></p>
-                    <p><MBLinearProgress LinearProgressType="@LinearDeterminate" Value="@ProgressLevel" BufferValue="@BufferLevel" /></p>
-                    <p><MBLinearProgress LinearProgressType="@LinearReversed" Value="@ProgressLevel" /></p>
-                    <p><MBLinearProgress LinearProgressType="@LinearReversed" Value="@ProgressLevel" BufferValue="@BufferLevel" /></p>
+                    <p>
+                        <MBLinearProgress LinearProgressType="@LinearIndeterminate" />
+                    </p>
+                    <p>
+                        <MBLinearProgress LinearProgressType="@LinearDeterminate"
+                                          Value="@ProgressLevel" />
+                    </p>
+                    <p>
+                        <MBLinearProgress BufferValue="@BufferLevel"
+                                          LinearProgressType="@LinearDeterminate"
+                                          Value="@ProgressLevel" />
+                    </p>
+                    <p>
+                        <MBLinearProgress LinearProgressType="@LinearReversed"
+                                          Value="@ProgressLevel" />
+                    </p>
+                    <p>
+                        <MBLinearProgress BufferValue="@BufferLevel"
+                                          LinearProgressType="@LinearReversed"
+                                          Value="@ProgressLevel" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>
@@ -50,7 +69,7 @@
         new MBSelectElement<double> { SelectedValue = 0.2, Label = "20% Progress" },
         new MBSelectElement<double> { SelectedValue = 0.5, Label = "50% Progress" },
         new MBSelectElement<double> { SelectedValue = 0.8, Label = "80% Progress" }
-        };
+                    };
 
     private double ProgressLevel { get; set; } = 0.2;
     double? BufferLevel => ProgressLevel + (1 - ProgressLevel) / 3;

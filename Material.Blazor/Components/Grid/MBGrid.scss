@@ -56,6 +56,7 @@
 }
 
 .mb-grid-td {
+    cursor: default;
     display: table-cell;
     flex: 0 0 auto;
     padding: 4px;
@@ -99,7 +100,7 @@
     background-color: lightgreen;
 }
 
-.mb-grid-header-td {
+.mb-grid-header-td-measure {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: bolder;
     border-collapse: collapse;
@@ -124,7 +125,7 @@
     background-color: LightGray;
 }
 
-.mb-grid-body-td {
+.mb-grid-body-td-measure {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     font-weight: normal;
     border-collapse: collapse;
@@ -146,4 +147,5 @@
     border-style: solid;
     border-color: black;
     color: #000000;
+    cursor: default;
 }

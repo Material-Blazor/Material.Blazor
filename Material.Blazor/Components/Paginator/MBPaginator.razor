@@ -10,18 +10,24 @@
             </div>
 
             @*<MBSelect class="mdc-data-table__pagination-rows-per-page-select"
-                      @bind-Value="@SelectItemsPerPage"
-                      Items="@ItemsPerPageItems"
-                      SelectInputStyle="@MBSelectInputStyle.Outlined"
-                      Density="MBDensity.Minus4" />*@
+                @bind-Value="@SelectItemsPerPage"
+                Items="@ItemsPerPageItems"
+                SelectInputStyle="@MBSelectInputStyle.Outlined"
+                Density="MBDensity.Minus4" />*@
 
             <div class="mdc-data-table__pagination-rows-per-page-select">
-                <MBIconButtonToggle @ref="@IconButtonToggle" @bind-Value="@ToggleOn" @onclick="@OnMenuToggleAsync" IconOn="arrow_drop_up" IconOff="arrow_drop_down" />
+                <MBIconButtonToggle @bind-Value="@ToggleOn"
+                                    IconOff="arrow_drop_down"
+                                    IconOn="arrow_drop_up"
+                                    @onclick="@OnMenuToggleAsync"
+                                    @ref="@IconButtonToggle" />
                 <div class="mdc-menu-surface--anchor">
                     <MBMenu @ref="Menu">
                         @foreach (var itemsPerPage in ItemsPerPageSelection)
                         {
-                            <MBListItem @key="@itemsPerPage" Label="@itemsPerPage.ToString("G0")" @onclick="@(() => OnMenuItemClick(itemsPerPage))" />
+                            <MBListItem @key="@itemsPerPage"
+                                        Label="@itemsPerPage.ToString("G0")"
+                                        @onclick="@(() => OnMenuItemClick(itemsPerPage))" />
                         }
                     </MBMenu>
                 </div>

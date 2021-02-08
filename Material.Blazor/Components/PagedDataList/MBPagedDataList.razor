@@ -15,7 +15,10 @@
     </div>
 
     <div class="@PaginatorClass">
-        <MBPaginator @bind-ItemsPerPage="@BackingItemsPerPage" @bind-PageNumber="@BackingPageNumber" ItemsPerPageSelection="@ItemsPerPageSelection" ItemCount="@Data.Count()"></MBPaginator>
+        <MBPaginator @bind-ItemsPerPage="@BackingItemsPerPage"
+                     @bind-PageNumber="@BackingPageNumber"
+                     ItemCount="@Data.Count()"
+                     ItemsPerPageSelection="@ItemsPerPageSelection" />
     </div>
 </div>
 

@@ -3,9 +3,9 @@
 @inject IMBToastService ToastService
 
 <DemonstrationPage ComponentName="Grid"
-                   Title="Grid Demonstration (EXPERIMENTAL)"
                    DemoComponent="@this"
-                   DetailedArticle="Grid">
+                   DetailedArticle="Grid"
+                   Title="Grid Demonstration (EXPERIMENTAL)">
     <Description>
         <p>
             Shows a grid using many of the grid features.
@@ -18,18 +18,81 @@
 
     <PageContent>
         <div class="mdc-layout-grid__cell--span-12">
-            <MBGrid ColumnConfigurations="@ColumnConfigurations"
-                    DataDictionary=@PeopleAsDictionary
-                    GroupExpression="@(PeopleAsDictionary => PeopleAsDictionary.Salutation)"
-                    GroupOrderedList="@GroupOrderedList"
-                    HighlightSelectedRow="@true"
-                    KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
-                    Measurement="@MB_Grid_Measurement.Percent"
-                    OnMouseClick="@MBGridRowClicked"
-                    SortExpressionFirst="@(PeopleAsDictionary => PeopleAsDictionary.Salutation)"
-                    SortExpressionSecond="@(PeopleAsDictionary => PeopleAsDictionary.Salutation)"
-                    TRowData="@Person" />
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Grid showing the raw data
+                    </h2>
+
+                    <MBGrid ColumnConfigurations="@ColumnConfigurations2"
+                            GroupedOrderedData=@PeopleAsRawData
+                            Group="false"
+                            HighlightSelectedRow="@true"
+                            KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
+                            Measurement="@MB_Grid_Measurement.Percent"
+                            OnMouseClick="@MBGridRowClicked"
+                            TRowData="@Person" />
+                </Primary>
+            </MBCard>
         </div>
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Grid showing the data sorted by family name then given name
+                    </h2>
+
+                    <MBGrid ColumnConfigurations="@ColumnConfigurations2"
+                            GroupedOrderedData=@PeopleAsOrderedData
+                            Group="false"
+                            HighlightSelectedRow="@true"
+                            KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
+                            Measurement="@MB_Grid_Measurement.Percent"
+                            OnMouseClick="@MBGridRowClicked"
+                            TRowData="@Person" />
+                </Primary>
+            </MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Sorted, Grouped grid hiding the grouping column without group list
+                    </h2>
+
+                    <MBGrid ColumnConfigurations="@ColumnConfigurations"
+                            GroupedOrderedData=@PeopleAsGroupedData
+                            Group="true"
+                            HighlightSelectedRow="@true"
+                            KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
+                            Measurement="@MB_Grid_Measurement.Percent"
+                            OnMouseClick="@MBGridRowClicked"
+                            TRowData="@Person" />
+                </Primary>
+            </MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Sorted, Grouped grid hiding the grouping column with group list
+                    </h2>
+
+                    <MBGrid ColumnConfigurations="@ColumnConfigurations"
+                            GroupedOrderedData=@PeopleAsGroupedDataWithGroupList
+                            Group="true"
+                            HighlightSelectedRow="@true"
+                            KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
+                            Measurement="@MB_Grid_Measurement.Percent"
+                            OnMouseClick="@MBGridRowClicked"
+                            TRowData="@Person" />
+                </Primary>
+            </MBCard>
+        </div>
+
     </PageContent>
 </DemonstrationPage>
 
@@ -62,6 +125,8 @@
         new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Prof", GivenName = "Esther", FamilyName = "Duflo" },
         new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Prof", GivenName = "Yoshinori", FamilyName = "Ohsumi" },
         new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Prof", GivenName = "Robert", FamilyName = "Merton" },
+        new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Mr", GivenName = "Steven", FamilyName = "McClintock" },
+        new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Mr", GivenName = "Joseph", FamilyName = "McClintock" },
         new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Prof", GivenName = "Barbara", FamilyName = "McClintock" },
         new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Mr", GivenName = "Boris", FamilyName = "Pasternak" },
         new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Mr", GivenName = "Willy", FamilyName = "Brandt" },
@@ -71,18 +136,17 @@
         new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Mr", GivenName = "John", FamilyName = "Hume" },
     };
 
-    private Dictionary<string, Person> PeopleAsDictionary = new();
+    private IEnumerable<KeyValuePair<string, IEnumerable<KeyValuePair<string, Person>>>> PeopleAsRawData;
+    private IEnumerable<KeyValuePair<string, IEnumerable<KeyValuePair<string, Person>>>> PeopleAsOrderedData;
+    private IEnumerable<KeyValuePair<string, IEnumerable<KeyValuePair<string, Person>>>> PeopleAsGroupedData;
+    private IEnumerable<KeyValuePair<string, IEnumerable<KeyValuePair<string, Person>>>> PeopleAsGroupedDataWithGroupList;
     private List<string> GroupOrderedList = new();
     private List<MBGridColumnConfiguration<Person>> ColumnConfigurations { get; set; } = null;
+    private List<MBGridColumnConfiguration<Person>> ColumnConfigurations2 { get; set; } = null;
 
     protected override void OnInitialized()
     {
         base.OnInitialized();
-
-        foreach (var person in People)
-        {
-            PeopleAsDictionary.Add(person.UniqueIdentifier.ToString(), person);
-        }
 
         GroupOrderedList.Add("Dr");
         GroupOrderedList.Add("Mr");
@@ -91,26 +155,68 @@
         GroupOrderedList.Add("Professor");
         GroupOrderedList.Add("RtHon");
 
+        PeopleAsRawData = new MBGrid_DataHelper<Person>().PrepareGridData(
+            People,
+            typeof(Person).GetProperty("UniqueIdentifier")
+            );
+
+        PeopleAsOrderedData = new MBGrid_DataHelper<Person>().PrepareGridData(
+            People,
+            typeof(Person).GetProperty("UniqueIdentifier"),
+            typeof(Person).GetProperty("FamilyName"),
+            orderPropertyInfo2: typeof(Person).GetProperty("GivenName")
+            );
+
+        PeopleAsGroupedData = new MBGrid_DataHelper<Person>().PrepareGridData(
+            People,
+            typeof(Person).GetProperty("UniqueIdentifier"),
+            typeof(Person).GetProperty("FamilyName"),
+            orderPropertyInfo2: typeof(Person).GetProperty("GivenName"),
+            group: true,
+            groupPropertyInfo: typeof(Person).GetProperty("Salutation")
+            );
+
+        PeopleAsGroupedDataWithGroupList = new MBGrid_DataHelper<Person>().PrepareGridData(
+            People,
+            typeof(Person).GetProperty("UniqueIdentifier"),
+            typeof(Person).GetProperty("FamilyName"),
+            orderPropertyInfo2: typeof(Person).GetProperty("GivenName"),
+            group: true,
+            groupPropertyInfo: typeof(Person).GetProperty("Salutation"),
+            groupItemEnumerable: GroupOrderedList
+            );
+
         ColumnConfigurations = new List<MBGridColumnConfiguration<Person>>();
 
         ColumnConfigurations.Add(new MBGridColumnConfiguration<Person>(
-            bold: true,
-            dataExpression: c => c.Salutation,
-            title: "Salutation",
-            width: 5));
-        ColumnConfigurations.Add(new MBGridColumnConfiguration<Person>(
-            bold: true,
             dataExpression: c => c.GivenName,
             title: "Given name",
             width: 10));
         ColumnConfigurations.Add(new MBGridColumnConfiguration<Person>(
-            bold: true,
             dataExpression: c => c.FamilyName,
             title: "Family name",
             width: 15));
         ColumnConfigurations.Add(new MBGridColumnConfiguration<Person>(
-            bold: true,
-            width: 70));
+            width: 75));
+
+
+        ColumnConfigurations2 = new List<MBGridColumnConfiguration<Person>>();
+
+        ColumnConfigurations2.Add(new MBGridColumnConfiguration<Person>(
+            dataExpression: c => c.Salutation,
+            title: "Salutation",
+            width: 10));
+        ColumnConfigurations2.Add(new MBGridColumnConfiguration<Person>(
+            dataExpression: c => c.GivenName,
+            title: "Given name",
+            width: 10));
+        ColumnConfigurations2.Add(new MBGridColumnConfiguration<Person>(
+            dataExpression: c => c.FamilyName,
+            title: "Family name",
+            width: 15));
+        ColumnConfigurations2.Add(new MBGridColumnConfiguration<Person>(
+            width: 65));
+
     }
 
     protected async Task MBGridRowClicked(string guid)
@@ -119,7 +225,7 @@
 
         ToastService.ShowToast(
             heading: "Row clicked",
-            message: $"You clicked on '{PeopleAsDictionary[guid]}'",
+            message: $"You clicked on '{guid}'",
             level: MBToastLevel.Success,
             showIcon: false);
     }

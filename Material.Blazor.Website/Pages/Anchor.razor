@@ -5,10 +5,10 @@
 
 
 <DemonstrationPage ComponentName="Anchor"
-                   Title="Anchor Demonstration"
                    DemoComponent="@this"
                    MinDensity="MBDensity.Default"
-                   RequiresDisableSelection="false">
+                   RequiresDisableSelection="false"
+                   Title="Anchor Demonstration">
     <Description>
         <p>
             Anchor component.
@@ -23,9 +23,11 @@
                         Anchor
                     </h2>
 
-                    <p>The Anchor is a non-visual component. If you use Toast and/or Tooltip components this
-                    must be placed in your app.razor or the layout page used for all application components
-                    that use toasts and tooltips.</p>
+                    <p>
+                        The Anchor is a non-visual component. If you use Snackbar, Toast and/or Tooltip components this
+                        must be placed in your app.razor or the layout page used for all application components
+                        that use snackbars, toasts and tooltips.
+                    </p>
                 </Primary>
             </MBCard>
         </div>

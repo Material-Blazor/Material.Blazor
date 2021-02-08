@@ -4,11 +4,11 @@
 
 
 <DemonstrationPage ComponentName="TextArea"
-                   Title="Text Area Demonstration"
                    DemoComponent="@this"
                    MaterialIOPage="mdc-textfield#text-field"
                    MinDensity="MBDensity.Minus4"
-                   RequiresDisableSelection="true">
+                   RequiresDisableSelection="true"
+                   Title="Text Area Demonstration">
     <Description>
         <p>
             Filled and outlined text fields with icon usage, class and style application and finally density.
@@ -23,7 +23,12 @@
                         Default Style
                     </h2>
 
-                    <p><MBTextArea Label="Filled" @bind-Value="@DefaultStyle" Rows="3" class="supplied-test-class" id="supplied-test-id" /></p>
+                    <MBTextArea @bind-Value="@DefaultStyle"
+                                class="supplied-test-class"
+                                id="supplied-test-id"
+                                Label="Filled"
+                                Rows="3"
+                                style="margin: 6px; " />
                 </Primary>
             </MBCard>
         </div>
@@ -37,7 +42,11 @@
                         Filled Style
                     </h2>
 
-                    <p><MBTextArea Label="Filled" @bind-Value="@FilledStyle" Rows="3" TextInputStyle="MBTextInputStyle.Filled" /></p>
+                    <MBTextArea @bind-Value="@FilledStyle"
+                                Label="Filled"
+                                Rows="3"
+                                style="margin: 6px; "
+                                TextInputStyle="MBTextInputStyle.Filled" />
                 </Primary>
             </MBCard>
         </div>
@@ -51,7 +60,11 @@
                         Outlined Style
                     </h2>
 
-                    <p><MBTextArea Label="Filled" @bind-Value="@OutlinedStyle" Rows="3" TextInputStyle="MBTextInputStyle.Outlined" /></p>
+                    <MBTextArea @bind-Value="@OutlinedStyle"
+                                Label="Filled"
+                                Rows="3"
+                                style="margin: 6px; "
+                                TextInputStyle="MBTextInputStyle.Outlined" />
                 </Primary>
             </MBCard>
         </div>
@@ -69,8 +82,16 @@
                         Shows persistent and non-persistent helper text.
                     </h3>
 
-                    <p><MBTextArea Label="Popup Helper Text" @bind-Value="@PopupHelperText" HelperText="Some helper text that pops up" /></p>
-                    <p><MBTextArea Label="Persistent Helper Text" @bind-Value="@PersistentHelperText" HelperText="Some persistent helper text" HelperTextPersistent="true" /></p>
+                    <MBTextArea @bind-Value="@PopupHelperText"
+                                HelperText="Some helper text that pops up"
+                                Label="Popup Helper Text"
+                                style="margin: 6px; " />
+
+                    <MBTextArea @bind-Value="@PersistentHelperText"
+                                Label="Persistent Helper Text"
+                                HelperText="Some persistent helper text"
+                                HelperTextPersistent="true"
+                                style="margin: 6px; " />
                 </Primary>
             </MBCard>
         </div>
@@ -79,69 +100,13 @@
 
 
 @code {
-    private string _defaultStyle;
-    private string DefaultStyle
-    {
-        get => _defaultStyle;
-        set
-        {
-            _defaultStyle = value;
+    private string DefaultStyle { get; set; }
 
-            ToastService.ShowToast(heading: "Default Style", message: $"Value: '{_defaultStyle}'", level: MBToastLevel.Success, showIcon: false);
-        }
-    }
+    private string FilledStyle { get; set; }
 
+    private string OutlinedStyle { get; set; }
 
+    private string PopupHelperText { get; set; }
 
-    private string _filledStyle;
-    private string FilledStyle
-    {
-        get => _filledStyle;
-        set
-        {
-            _filledStyle = value;
-
-            ToastService.ShowToast(heading: "Filled Style", message: $"Value: '{_filledStyle}", level: MBToastLevel.Success, showIcon: false);
-        }
-    }
-
-
-
-    private string _outlinedStyle;
-    private string OutlinedStyle
-    {
-        get => _outlinedStyle;
-        set
-        {
-            _outlinedStyle = value;
-
-            ToastService.ShowToast(heading: "Outlined Style", message: $"Value: '{_outlinedStyle}", level: MBToastLevel.Success, showIcon: false);
-        }
-    }
-
-
-    private string _popupHelperText;
-    private string PopupHelperText
-    {
-        get => _popupHelperText;
-        set
-        {
-            _popupHelperText = value;
-
-            ToastService.ShowToast(heading: "Popup Helper Text", message: $"Value: '{_popupHelperText}'", level: MBToastLevel.Success, showIcon: false);
-        }
-    }
-
-
-    private string _persistentHelperText;
-    private string PersistentHelperText
-    {
-        get => _persistentHelperText;
-        set
-        {
-            _persistentHelperText = value;
-
-            ToastService.ShowToast(heading: "Persistent Helper Text", message: $"Value: '{_persistentHelperText}'", level: MBToastLevel.Success, showIcon: false);
-        }
-    }
+    private string PersistentHelperText { get; set; }
 }

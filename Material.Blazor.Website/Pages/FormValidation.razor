@@ -6,9 +6,9 @@
 
 
 
-<DemonstrationPage Title="Form Validation"
-                   DemoComponent="@this"
-                   DetailedArticle="FormValidation">
+<DemonstrationPage DemoComponent="@this"
+                   DetailedArticle="FormValidation"
+                   Title="Form Validation">
     <Description>
         <p>
             Demonstrates native Blazor form validation displayed in the Material Theme style.
@@ -35,10 +35,10 @@
                             </div>
                             <div class="mdc-layout-grid__cell--span-12">
                                 <MBTextArea @bind-Value="@Model.Area"
-                                            Label="Text Area"
-                                            TextInputStyle="@MBTextInputStyle.Outlined"
                                             HelperText="Min 20 Characters"
                                             HelperTextPersistent="false"
+                                            Label="Text Area"
+                                            TextInputStyle="@MBTextInputStyle.Outlined"
                                             ValidationMessageFor="@(() => Model.Area)" />
                             </div>
                             <div class="mdc-layout-grid__cell--span-12">
@@ -50,9 +50,9 @@
                             </div>
                             <div class="mdc-layout-grid__cell--span-12">
                                 <MBNumericDoubleField @bind-Value="@Model.NumericDouble"
+                                                      DecimalPlaces="2"
                                                       Label="Numeric Double"
                                                       NumericFormat="N2"
-                                                      DecimalPlaces="2"
                                                       TextInputStyle="@MBTextInputStyle.Outlined"
                                                       ValidationMessageFor="@(() => Model.NumericDouble)" />
                             </div>
@@ -64,11 +64,11 @@
                                                    ValidationMessageFor="@(() => Model.NumericInt)" />
                             </div>
                             <div class="mdc-layout-grid__cell--span-12" style="text-align: right;">
-                                <MBButton style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                                          type="submit"
-                                          Label="submit" />
-                                <MBButton style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                                          Label="cancel" />
+                                <MBButton Label="submit"
+                                          style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                          type="submit" />
+                                <MBButton Label="cancel"
+                                          style="margin: 0.75em 0.25em 0.25em 0.25em;" />
                             </div>
                         </div>
                     </EditForm>
@@ -85,7 +85,7 @@
 
                     <div style="overflow-x: auto;">
                         <pre>
-                            <code>
+                        <code>
 private class FormModel
 {
     [Required(ErrorMessage = "The text field is required")]
@@ -131,7 +131,7 @@ private class FormModel
 
 
         [Required(ErrorMessage = "The text area is required")]
-        [MinLength(20, ErrorMessage ="The text area's minimum length is 20 characters")]
+        [MinLength(20, ErrorMessage = "The text area's minimum length is 20 characters")]
         public string Area { get; set; }
 
 

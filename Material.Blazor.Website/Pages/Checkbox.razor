@@ -5,11 +5,11 @@
 
 
 <DemonstrationPage ComponentName="Checkbox"
-                   Title="Checkbox Demonstration"
                    DemoComponent="@this"
                    MaterialIOPage="mdc-checkbox#selection-controls-checkboxes"
                    MinDensity="MBDensity.Minus3"
-                   RequiresDisableSelection="true">
+                   RequiresDisableSelection="true"
+                   Title="Checkbox Demonstration">
     <Description>
         <p>
             Demonstrates checkboxes and switches.
@@ -28,7 +28,12 @@
                         Simple checkbox.
                     </h3>
 
-                    <p><MBCheckbox @bind-Value="@CheckboxState" Label="Simple Checkbox" class="supplied-test-class" id="supplied-test-id" /></p>
+                    <p>
+                        <MBCheckbox @bind-Value="@CheckboxState"
+                                    class="supplied-test-class"
+                                    id="supplied-test-id"
+                                    Label="Simple Checkbox" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>
@@ -46,9 +51,15 @@
                         Shows two-way binding.
                     </h3>
 
-                    <p><MBCheckbox @bind-Value="@ToggleTwoWayBindingState" Label="Bound Checkbox" /></p>
+                    <p>
+                        <MBCheckbox @bind-Value="@ToggleTwoWayBindingState"
+                                    Label="Bound Checkbox" />
+                    </p>
 
-                    <p><MBSwitch @bind-Value="@ToggleTwoWayBindingState" Label="Bound Switch" /></p>
+                    <p>
+                        <MBSwitch @bind-Value="@ToggleTwoWayBindingState"
+                                  Label="Bound Switch" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>
@@ -67,8 +78,11 @@
                     </h3>
 
                     <p>
-                        <MBButton Label="Toggle Indeterminate" @onclick="@(() => IsIndeterminate = !IsIndeterminate)" />
-                        <MBCheckbox Label="Indeterminate" @bind-Value="@IndeterminateCheckboxValue" @bind-IsIndeterminate="@IsIndeterminate" />
+                        <MBButton Label="Toggle Indeterminate"
+                                  @onclick="@(() => IsIndeterminate = !IsIndeterminate)" />
+                        <MBCheckbox @bind-Value="@IndeterminateCheckboxValue"
+                                    @bind-IsIndeterminate="@IsIndeterminate"
+                                    Label="Indeterminate" />
                     </p>
 
                     <p>
@@ -92,21 +106,27 @@
                     </h3>
 
                     <p>
-                        <MBCheckbox Label="All Winter Wear" @bind-Value="@AllWinterWear" IsIndeterminate="@AllWinterWearIndeterminate" />
+                        <MBCheckbox @bind-Value="@AllWinterWear"
+                                    IsIndeterminate="@AllWinterWearIndeterminate"
+                                    Label="All Winter Wear" />
                     </p>
                     <p>
                         <ul style="list-style-type: none;">
                             <li>
-                                <MBCheckbox Label="Gloves" @bind-Value="@Gloves" />
+                                <MBCheckbox Label="Gloves"
+                                            @bind-Value="@Gloves" />
                             </li>
                             <li>
-                                <MBCheckbox Label="Hat" @bind-Value="@Hat" />
+                                <MBCheckbox Label="Hat"
+                                            @bind-Value="@Hat" />
                             </li>
                             <li>
-                                <MBCheckbox Label="Coat" @bind-Value="@Coat" />
+                                <MBCheckbox Label="Coat"
+                                            @bind-Value="@Coat" />
                             </li>
                             <li>
-                                <MBCheckbox Label="Boots" @bind-Value="@Boots" />
+                                <MBCheckbox Label="Boots"
+                                            @bind-Value="@Boots" />
                             </li>
                         </ul>
                     </p>
@@ -179,10 +199,46 @@
 
 
     private bool[] WinterWear = { false, true, true, false };
-    private bool Gloves { get => WinterWear[0]; set => WinterWear[0] = value; }
-    private bool Hat { get => WinterWear[1]; set => WinterWear[1] = value; }
-    private bool Coat { get => WinterWear[2]; set => WinterWear[2] = value; }
-    private bool Boots { get => WinterWear[3]; set => WinterWear[3] = value; }
+    private bool Gloves
+    {
+        get => WinterWear[0];
+        set
+        {
+            WinterWear[0] = value;
+
+            ToastService.ShowToast(heading: "Gloves clicked", message: value.ToString(), level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+    private bool Hat
+    {
+        get => WinterWear[1];
+        set
+        {
+            WinterWear[1] = value;
+
+            ToastService.ShowToast(heading: "Hat clicked", message: value.ToString(), level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+    private bool Coat
+    {
+        get => WinterWear[2];
+        set
+        {
+            WinterWear[2] = value;
+
+            ToastService.ShowToast(heading: "Coat clicked", message: value.ToString(), level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+    private bool Boots
+    {
+        get => WinterWear[3];
+        set
+        {
+            WinterWear[3] = value;
+
+            ToastService.ShowToast(heading: "Boots clicked", message: value.ToString(), level: MBToastLevel.Success, showIcon: false);
+        }
+    }
 
     private bool AllWinterWear
     {
@@ -193,6 +249,8 @@
             {
                 WinterWear[i] = value;
             }
+
+            ToastService.ShowToast(heading: "All winter wear clicked", message: value.ToString(), level: MBToastLevel.Success, showIcon: false);
 
             StateHasChanged();
         }

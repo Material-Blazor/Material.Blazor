@@ -1,7 +1,7 @@
 ﻿@page "/datatable"
 
 @using System.Linq
- 
+
 
 <style>
     .overflow-auto {
@@ -21,10 +21,10 @@
 
 
 <DemonstrationPage ComponentName="DataTable"
-                   Title="Data Table Demonstration"
                    DemoComponent="@this"
                    MaterialIOPage="mdc-data-table#data-tables"
-                   MinDensity="MBDensity.Minus4">
+                   MinDensity="MBDensity.Minus4"
+                   Title="Data Table Demonstration">
     <Description>
         <p>
             Demonstrates a data table. Material.Blazor presently only implements "Standard" data tables without row interaction.
@@ -41,9 +41,9 @@
 
                     <div class="overflow-auto">
                         <p>
-                            <MBDataTable Items="@Biscuits"
+                            <MBDataTable class="my-data-table"
                                          Context="item"
-                                         class="my-data-table">
+                                         Items="@Biscuits">
                                 <TableHeader>
                                     <th class="mdc-data-table__header-cell header-bold" role="columnheader" scope="col">Biscuit</th>
                                     <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric header-bold" role="columnheader" scope="col">Price</th>
@@ -69,17 +69,18 @@
                         Data Table with Progress Bar
                     </h2>
 
+                    <p>
+                        <MBSwitch @bind-Value="@ShowProgress"
+                                    Label="Show Progress" />
+                    </p>
+
                     <div class="overflow-auto">
                         <p>
-                            <MBSwitch @bind-Value="@ShowProgress" Lable="Show Progress" />
-                        </p>
-
-                        <p>
-                            <MBDataTable Items="@Biscuits"
+                            <MBDataTable class="my-data-table"
                                          Context="item"
                                          HasProgressBar="true"
-                                         ShowProgress="@ShowProgress"
-                                         class="my-data-table">
+                                         Items="@Biscuits"
+                                         ShowProgress="@ShowProgress">
                                 <TableHeader>
                                     <th class="mdc-data-table__header-cell header-bold" role="columnheader" scope="col">Biscuit</th>
                                     <th class="mdc-data-table__header-cell mdc-data-table__header-cell--numeric header-bold" role="columnheader" scope="col">Price</th>
@@ -107,9 +108,9 @@
 
                     <div class="overflow-auto">
                         <p>
-                            <MBDataTable Items="@SelectedPeople"
+                            <MBDataTable class="my-data-table"
                                          Context="item"
-                                         class="my-data-table">
+                                         Items="@SelectedPeople">
                                 <TableHeader>
                                     <th class="mdc-data-table__header-cell header-bold" role="columnheader" scope="col">Salutation</th>
                                     <th class="mdc-data-table__header-cell header-bold" role="columnheader" scope="col">Given Name</th>
@@ -124,7 +125,7 @@
                                     <MBPaginator @bind-ItemsPerPage="@PersonItemsPerPage"
                                                  @bind-PageNumber="@PersonPageNumber"
                                                  ItemsPerPageSelection="@PersonItemsPerPageSelection"
-                                                 ItemCount="@People.Length"/>
+                                                 ItemCount="@People.Length" />
                                 </Paginator>
                             </MBDataTable>
                         </p>
@@ -157,12 +158,12 @@
     };
 
     IEnumerable<MBSelectElement<MBDensity>> DensityItems => from d in (MBDensity[])Enum.GetValues(typeof(MBDensity))
-                                                          select new MBSelectElement<MBDensity>
-                                                          {
-                                                              SelectedValue = d,
-                                                              Label = d.ToString(),
-                                                              Disabled = false
-                                                          };
+                                                            select new MBSelectElement<MBDensity>
+                                                            {
+                                                                SelectedValue = d,
+                                                                Label = d.ToString(),
+                                                                Disabled = false
+                                                            };
 
 
     private class Person

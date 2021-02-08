@@ -50,7 +50,7 @@ namespace Material.Blazor
         /// </summary>
         public IMBIconFoundry? IconFoundry { get; set; }
 
-        
+
         /// <summary>
         /// How the toast message gets closed. See <see cref="MBToastCloseMethod"/>.
         /// </summary>
@@ -78,7 +78,7 @@ namespace Material.Blazor
         internal bool AppliedShowIcon => (AppliedIconName != null) && ((ShowIcon is null) ? Configuration?.ShowIcons ?? MBToastServiceConfiguration.DefaultShowIcons : (bool)ShowIcon);
 
         internal string AppliedIconName => string.IsNullOrWhiteSpace(IconName) ? ConfigIconName : IconName;
-        
+
         internal IMBIconFoundry AppliedIconFoundry => (IconFoundry is null) ? Configuration?.IconFoundry ?? new IconFoundryMI() : IconFoundry;
 
         internal MBToastCloseMethod AppliedCloseMethod => (CloseMethod is null) ? Configuration?.CloseMethod ?? MBToastServiceConfiguration.DefaultCloseMethod : (MBToastCloseMethod)CloseMethod;
@@ -140,7 +140,7 @@ namespace Material.Blazor
         /// CSS class for the toast message driven by <see cref="Level"/>.
         /// </summary>
         internal string ContainerLevelClass => $"mb-toast__{Level.ToString().ToLower()}";
-        
+
 
         /// <summary>
         /// CSS filter for the toast required for Material Icons Two-Tone theme.

@@ -6,10 +6,10 @@
 
 
 <DemonstrationPage ComponentName="NumericIntField"
-                   Title="Numeric Int Field Demonstration"
                    DemoComponent="@this"
                    MinDensity="MBDensity.Minus4"
-                   RequiresDisableSelection="true">
+                   RequiresDisableSelection="true"
+                   Title="Numeric Int Field Demonstration">
     <Description>
         <p>
             Shows numeric int text field, a Plus component.
@@ -31,8 +31,8 @@
                     </h3>
 
                     <p>
-                        <MBNumericIntField Label="Integer"
-                                           @bind-Value="@Integer"
+                        <MBNumericIntField @bind-Value="@Integer"
+                                           Label="Integer"
                                            NumericFormat="N0"
                                            TextInputStyle="MBTextInputStyle.Outlined" />
                     </p>
@@ -54,15 +54,15 @@
                     </h3>
 
                     <p>
-                        <MBNumericIntField Label="Popup Helper Text"
-                                           @bind-Value="@PopupHelperText"
+                        <MBNumericIntField @bind-Value="@PopupHelperText"
+                                           Label="Popup Helper Text"
                                            NumericFormat="N0"
                                            HelperText="Some helper text that pops up" />
                     </p>
 
                     <p>
-                        <MBNumericIntField Label="Persistent Helper Text"
-                                           @bind-Value="@PersistentHelperText"
+                        <MBNumericIntField @bind-Value="@PersistentHelperText"
+                                           Label="Persistent Helper Text"
                                            NumericFormat="N0"
                                            HelperText="Some persistent helper text"
                                            HelperTextPersistent="true" />

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 namespace Material.Blazor
 {
@@ -129,7 +128,7 @@ namespace Material.Blazor
         /// </summary>
         internal event Action OnValueChanged;
 
-        
+
         public MBToastServiceConfiguration()
         {
             InfoIconName = DefaultInfoIconName;

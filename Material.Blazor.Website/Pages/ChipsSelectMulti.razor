@@ -4,11 +4,11 @@
 
 
 <DemonstrationPage ComponentName="ChipsSelectMulti"
-                   Title="Chips Multi-Select Demonstration"
                    DemoComponent="@this"
-                   MaterialIOPage="mdc-chips#chips"
                    IsGeneric="true"
-                   RequiresDisableSelection="false">
+                   MaterialIOPage="mdc-chips#chips"
+                   RequiresDisableSelection="false"
+                   Title="Chips Multi-Select Demonstration">
     <Description>
         <p>
             Chips
@@ -25,11 +25,13 @@
                     </h2>
 
                     <p>
-                        <MBChipsSelectMulti @bind-Value="@SBValues" Items="@KittenBreeds" />
+                        <MBChipsSelectMulti @bind-Value="@SBValues"
+                                            Items="@KittenBreeds" />
                     </p>
 
                     <p>
-                        <MBChipsSelectMulti @bind-Value="@SBValues" Items="@KittenBreeds" />
+                        <MBChipsSelectMulti @bind-Value="@SBValues"
+                                            Items="@KittenBreeds" />
                     </p>
                 </Primary>
             </MBCard>
@@ -43,9 +45,21 @@
                         Checkboxes bound to buttons - display only and non-interactive.
                     </h2>
 
-                    <p><MBCheckbox Value="@CheckboxValues[0]" Label="@KittenBreeds[0].Label" Disabled="true" /></p>
-                    <p><MBCheckbox Value="@CheckboxValues[1]" Label="@KittenBreeds[1].Label" Disabled="true" /></p>
-                    <p><MBCheckbox Value="@CheckboxValues[2]" Label="Icelandic Invisible" Disabled="true" /></p>
+                    <p>
+                        <MBCheckbox Disabled="true"
+                                    Label="@KittenBreeds[0].Label"
+                                    Value="@CheckboxValues[0]" />
+                    </p>
+                    <p>
+                        <MBCheckbox Disabled="true"
+                                    Label="@KittenBreeds[1].Label"
+                                    Value="@CheckboxValues[1]" />
+                    </p>
+                    <p>
+                        <MBCheckbox Disabled="true"
+                                    Label="Icelandic Invisible"
+                                    Value="@CheckboxValues[2]" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>
@@ -59,10 +73,10 @@
         new MBIconBearingSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MBIconBearingSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue", Icon="admin_panel_settings" },
         new MBIconBearingSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible", Icon="card_membership" }
-    };
+            };
 
 
-    IList<string> sbvalues =new string[] { "brit-short", "ice-invis" };
+    IList<string> sbvalues = new string[] { "brit-short", "ice-invis" };
     IList<string> SBValues
     {
         get => sbvalues;

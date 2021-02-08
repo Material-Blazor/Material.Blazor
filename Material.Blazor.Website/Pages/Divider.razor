@@ -6,9 +6,9 @@
 
 
 <DemonstrationPage ComponentName="Divider"
-                   Title="Divider Demonstration"
                    DemoComponent="@this"
-                   MaterialIOPage="mdc-dialog#dialogs">
+                   MaterialIOPage="mdc-dialog#dialogs"
+                   Title="Divider Demonstration">
     <Description>
         <p>
             Divider samples.
@@ -24,11 +24,11 @@
                             Dividers
                         </h2>
                         <p>The following is a vanilla divider</p>
-                        <MBDivider/>
+                        <MBDivider />
                         <p>The following is an inset divider</p>
-                        <MBDivider Inset="true"/>
+                        <MBDivider Inset="true" />
                         <p>The following is a padded divider</p>
-                        <MBDivider Padded="true"/>
+                        <MBDivider Padded="true" />
                         <p>last paragraph</p>
                     </div>
                 </PrimaryAction>
@@ -107,7 +107,7 @@
         new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
         new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
-            };
+                };
 
     private async Task ShowDialog1Async()
     {

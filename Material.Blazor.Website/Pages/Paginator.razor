@@ -8,16 +8,16 @@
         float: right;
     }
 
-    .my-float-right .mb-paginator {
-        justify-content: flex-end;
-    }
+        .my-float-right .mb-paginator {
+            justify-content: flex-end;
+        }
 </style>
 
 <DemonstrationPage ComponentName="Paginator"
-                   Title="Paginator Demonstration"
                    DemoComponent="@this"
+                   IsGeneric="false"
                    MaterialIOPage="mdc-data-table#data-table-with-pagination"
-                   IsGeneric="false">
+                   Title="Paginator Demonstration">
     <Description>
         <p>
             Demonstrates both a simple paginator, which ia a Material.Blazor Plus component. The paginator is a Material.Blazor implementation of the
@@ -38,11 +38,11 @@
                     </h3>
 
                     <p>
-                        <MBPaginator class="my-float-right"
-                                     @bind-ItemsPerPage="@PaginatorItemsPerPage"
+                        <MBPaginator @bind-ItemsPerPage="@PaginatorItemsPerPage"
                                      @bind-PageNumber="@PaginatorPageNumber"
-                                     ItemsPerPageSelection="@PaginatorItemsPerPageSelection"
-                                     ItemCount="@PaginatorItems.Length" />
+                                     class="my-float-right"
+                                     ItemCount="@PaginatorItems.Length"
+                                     ItemsPerPageSelection="@PaginatorItemsPerPageSelection" />
                     </p>
 
                     <p>

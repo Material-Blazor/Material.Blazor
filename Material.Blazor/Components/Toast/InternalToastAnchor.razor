@@ -7,9 +7,7 @@
     <div class="mb-toast-container @PositionClass">
         @foreach (var toast in DisplayedToasts.OrderBy(x => x.TimeStamp))
         {
-            var toastId = toast.Id;
-
-            <div @key="@toastId" class="mdc-elevation--z5 mb-toast @toast.Settings.ContainerLevelClass @toast.Settings.StatusClass @toast.Settings.AppliedCssClass">
+            <div @key="@toast.Id" class="mdc-elevation--z5 mb-toast @toast.Settings.ContainerLevelClass @toast.Settings.StatusClass @toast.Settings.AppliedCssClass">
 
                 @if (toast.Settings.AppliedShowIcon)
                 {
@@ -17,7 +15,9 @@
                     var filterClass = iconHelper.RequiresColorFilter ? toast.Settings.IconFilterClass : "";
 
                     <div class="mb-toast-icon @filterClass">
-                        <MBIcon IconName="@toast.Settings.AppliedIconName" IconFoundry="@toast.Settings.IconFoundry" aria-hidden="true" />
+                        <MBIcon aria-hidden="true"
+                                IconFoundry="@toast.Settings.IconFoundry"
+                                IconName="@toast.Settings.AppliedIconName" />
                     </div>
                 }
 
@@ -29,7 +29,10 @@
 
                         @if (toast.Settings.CloseMethod != MBToastCloseMethod.Timeout)
                         {
-                            <MBButton @onclick="@(() => CloseToast(toastId))" LeadingIcon="close" ButtonStyle="@MBButtonStyle.Text" class="mb-toast-close-button" />
+                            <MBButton ButtonStyle="@MBButtonStyle.Text"
+                                      class="mb-toast-close-button"
+                                      LeadingIcon="close"
+                                      @onclick="@(() => CloseToast(toast.Id))" />
                         }
                     </div>
 

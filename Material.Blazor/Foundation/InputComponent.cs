@@ -92,7 +92,7 @@ namespace Material.Blazor.Internal
             set
             {
                 LogMBDebugVerbose($"ComponentValue setter entered: _componentValue is '{_cachedValue?.ToString() ?? "null"}' and new value is'{value?.ToString() ?? "null"}'");
-                
+
                 if (!EqualityComparer<T>.Default.Equals(value, _componentValue))
                 {
                     LogMBDebug($"ComponentValue setter changed _componentValue");

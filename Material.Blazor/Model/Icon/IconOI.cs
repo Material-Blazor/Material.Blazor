@@ -16,7 +16,7 @@ namespace Material.Blazor
         /// <inheritdoc />
         public string Text => "";
 
-        
+
         private readonly Dictionary<string, object> _attributes;
         /// <inheritdoc />
         public IDictionary<string, object> Attributes => _attributes;

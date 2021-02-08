@@ -10,6 +10,9 @@
 - name: IMBAnimatedNavigationManager
   topicUid: S.IMBAnimatedNavigationManager
 
+- name: IMBSnackbarService
+  topicUid: S.IMBSnackbarService
+
 - name: IMBToastService
   topicUid: S.IMBToastService
 

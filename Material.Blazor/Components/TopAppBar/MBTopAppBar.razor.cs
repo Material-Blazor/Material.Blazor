@@ -51,7 +51,7 @@ namespace Material.Blazor
         /// </summary>
         [Parameter] public MBTopAppBarType TopAppBarType { get; set; } = MBTopAppBarType.Standard;
 
-        
+
         private ElementReference HeaderElem { get; set; }
 
 

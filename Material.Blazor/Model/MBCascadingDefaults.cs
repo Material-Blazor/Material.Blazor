@@ -59,7 +59,7 @@ namespace Material.Blazor
         internal IEnumerable<string> AppliedAllowedSplattableAttributes => EssentialSplattableAttributes.Union(AllowedSplattableAttributes.Select(x => x.ToLower())).Distinct();
 
 
-        
+
         private MBItemValidation _itemValidation = MBItemValidation.Exception;
         /// <summary>
         /// Defines how radio button groups and selects validate mismtatch between item lists and initial value.
@@ -124,7 +124,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="iconFAStyle">The style parameter passed to the component</param>
         /// <returns>The <see cref="IconFAStyle"/> to apply.</returns>
-        internal MBIconFAStyle AppliedIconFAStyle(MBIconFAStyle? iconFAStyle = null) => iconFAStyle ?? IconFAStyle ;
+        internal MBIconFAStyle AppliedIconFAStyle(MBIconFAStyle? iconFAStyle = null) => iconFAStyle ?? IconFAStyle;
 
 
 

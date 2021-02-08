@@ -40,7 +40,10 @@ export function getScrollBarWidth(className: string): number {
     return width;
 }
 
-export function getTextWidth(className: string, textToMeasure: string): string {
+export function getTextWidths(
+    className: string,
+    currentWidths: number[],
+    textToMeasure: string[]): number[] {
     // Create an element
     const ele: HTMLDivElement = document.createElement('div');
 
@@ -53,17 +56,26 @@ export function getTextWidth(className: string, textToMeasure: string): string {
     // Set the class
     ele.className = className;
 
-    // Set the text
-    ele.innerText = textToMeasure;
-
     // Append to the body
     document.body.appendChild(ele);
 
-    // Get the width
-    const width: string = window.getComputedStyle(ele).width;
+    for (let i = 0; i < textToMeasure.length; i++) {
+        // Set the text
+        ele.innerText = textToMeasure[i];
+
+        // Get the width
+        var width: string = window.getComputedStyle(ele).width;
+        var unadornedWidth: string = width.slice(0, width.indexOf("px"));
+        var numericWidth: number = parseFloat(unadornedWidth);
+        var indexMod = i % currentWidths.length;
+
+        if (numericWidth > currentWidths[indexMod]) {
+            currentWidths[indexMod] = numericWidth;
+        }
+    }
 
     // Remove the element
     document.body.removeChild(ele);
 
-    return width;
+    return currentWidths;
 }

@@ -4,26 +4,23 @@
 //      Move enumerations to MBEnumerations
 //  
 //  Bugs:
-//      MeasureWidth execution time
 //      Padding resolution for GridHeader
 //      Resolve issue with ElementReferences
 //
 
 
+using Material.Blazor.Internal;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
+using Microsoft.AspNetCore.Components.Web;
+using Microsoft.Extensions.Logging;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-
-using Material.Blazor.Internal;
-
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Rendering;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.Extensions.Logging;
-using Microsoft.JSInterop;
 //
 //  Implements a scrollable, multi-column grid. When created we get a list of column
 //  config objects and a list of data objects with the column content for each
@@ -43,57 +40,67 @@ namespace Material.Blazor
     public class MBGrid<TRowData> : ComponentFoundation
     {
         #region Parameters
-#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+
         /// <summary>
         /// The configuration of each column to be displayed. See the definition of MBGridColumnConfiguration
         /// for details.
         /// </summary>
-        [Parameter] public List<MBGridColumnConfiguration<TRowData>> ColumnConfigurations { get; set; } = null;
+        [Parameter] public IEnumerable<MBGridColumnConfiguration<TRowData>> ColumnConfigurations { get; set; } = null;
+
+
         /// <summary>
-        /// TheDataDictionary contains the data to be displayed. The dictionary key must be a unique identifier
+        /// The Group is an optional boolean indicating that grouping is in effect.
+        /// </summary>
+        [Parameter] public bool Group { get; set; } = false;
+
+
+        /// <summary>
+        /// The GroupedOrderedData contains the data to be displayed.
+        /// The outer key is used for grouping and is directly displayed if grouping is enabled.
+        /// The inner key must be a unique identifier
         /// that is used to indicate a row that has been clicked.
         /// </summary>
-        [Parameter] public Dictionary<string, TRowData> DataDictionary { get; set; }
-        /// <summary>
-        /// The GroupExpression is an optional expression indicating that grouping is to occur by a 
-        /// particular column.
-        /// </summary>
-        [Parameter] public Func<TRowData, object>? GroupExpression { get; set; } = null;
-        /// <summary>
-        /// If you are grouping (As determined by the presence of the GroupExpression) then it is
-        /// sometimes a requirement to show empty group headers. See the demo website for an example.
-        /// </summary>
-        [Parameter] public List<string> GroupOrderedList { get; set; }
+        [Parameter] public IEnumerable<KeyValuePair<string, IEnumerable<KeyValuePair<string, TRowData>>>> GroupedOrderedData { get; set; }
+
+
         /// <summary>
         /// A boolean indicating whether the selected row is highlighted
         /// </summary>
         [Parameter] public bool HighlightSelectedRow { get; set; } = false;
+
+
+#nullable enable annotations
         /// <summary>
         /// The KeyExpression is used to add a key to each row of the grid
         /// </summary>
         [Parameter] public Func<TRowData, object>? KeyExpression { get; set; } = null;
+#nullable restore annotations
+
+
         /// <summary>
         /// Measurement determines the unit of size (EM, Percent, PX) or if the grid is to measure the
         /// data widths (FitToData)
         /// </summary>
         [Parameter] public MB_Grid_Measurement Measurement { get; set; } = MB_Grid_Measurement.Percent;
+
+        
+        /// <summary>
+        /// ObscurePMI controls whether or not columns marked as PMI are obscured.
+        /// </summary>
+        [Parameter] public bool ObscurePMI { get; set; }
+
+
         /// <summary>
         /// Callback for a mouse click
         /// </summary>
         [Parameter] public EventCallback<string> OnMouseClick { get; set; }
-        /// <summary>
-        /// First sort expression
-        /// </summary>
-        [Parameter] public Func<TRowData, object>? SortExpressionFirst { get; set; } = null;
-        /// <summary>
-        /// Second sort expression
-        /// </summary>
-        [Parameter] public Func<TRowData, object>? SortExpressionSecond { get; set; } = null;
+
+
         /// <summary>
         /// Headers are optional
         /// </summary>
         [Parameter] public bool SupressHeader { get; set; } = false;
-#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+
         #endregion
 
         #region Members
@@ -105,14 +112,13 @@ namespace Material.Blazor
         private bool HasCompletedFullRender { get; set; } = false;
         private bool HasRendered { get; set; } = false;
         private bool IsFirstRender { get; set; } = true;
-        private List<KeyValuePair<string, List<TRowData>>> OrderedGroupedData { get; set; } = null;
         private float ScrollWidth { get; set; }
         private string SelectedKey { get; set; } = "";
 
         //Instantiate a Singleton of the Semaphore with a value of 1. This means that only 1 thread can be granted access at a time.
         private static readonly SemaphoreSlim semaphoreSlim = new(1, 1);
 
-        private bool ShouldRenderReturnValue { get; set; } = true;
+        private bool ShouldRenderValue { get; set; } = true;
 
         #endregion
 
@@ -178,21 +184,29 @@ namespace Material.Blazor
         #region BuildRenderTree
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
-            if (IsFirstRender)
+            if (IsFirstRender ||
+                (!ShouldRenderValue) ||
+                (ColumnWidthArray == null) ||
+                ((ColumnWidthArray != null) && (ColumnWidthArray.Length != ColumnConfigurations.Count())))
             {
+#if LoggingVerbose
                 Logger.LogInformation("BuildRenderTree entered (IsFirstRender == true)");
+#endif
                 // We are going to render a DIV and nothing else
                 // We need to get into OnAfterRenderAsync so that we can use JS interop to measure
                 // the text
                 base.BuildRenderTree(builder);
                 builder.OpenElement(1, "div");
                 builder.CloseElement();
+#if LoggingVerbose
                 Logger.LogInformation("                leaving (IsFirstRender == true)");
+#endif
                 return;
             }
 
+#if LoggingVerbose
             Logger.LogInformation("BuildRenderTree entered (IsFirstRender == false)");
-
+#endif
 
             //
             //  Using the column cfg and column data, render our list. Here is the layout.
@@ -209,7 +223,7 @@ namespace Material.Blazor
             //
 
             base.BuildRenderTree(builder);
-            var rendSeq = 1;
+            var rendSeq = 2;
             string styleStr;
 
             // Based on the column config generate the column titles unless asked not to
@@ -241,8 +255,8 @@ namespace Material.Blazor
                         "mb-grid-backgroundcolor-header-background");
 
                     // Set the header colors
-                    styleStr += " color: " + col.ForegroundColor.Name + ";";
-                    styleStr += " background-color : " + col.BackgroundColor.Name + ";";
+                    styleStr += " color: " + col.ForegroundColorHeader.Name + ";";
+                    styleStr += " background-color : " + col.BackgroundColorHeader.Name + ";";
 
                     builder.AddAttribute(rendSeq++, "style", styleStr);
                     builder.AddContent(rendSeq++, col.Title);
@@ -267,7 +281,7 @@ namespace Material.Blazor
             // For the first pass we are going to skip this step and just display the raw content
             //
 
-            if (OrderedGroupedData != null)
+            if (GroupedOrderedData != null)
             {
                 var isFirstGrouper = true;
 
@@ -284,16 +298,16 @@ namespace Material.Blazor
                 builder.OpenElement(rendSeq++, "tbody");
                 builder.AddAttribute(rendSeq++, "class", "mb-grid-tbody");
 
-                foreach (var kvp in OrderedGroupedData)
+                foreach (var kvp in GroupedOrderedData)
                 {
-                    if (GroupExpression != null)
+                    if (Group)
                     {
                         // We output a row with the group name
                         // Do a div for this row
                         builder.OpenElement(rendSeq++, "tr");
                         builder.AddAttribute(rendSeq++, "class", "mb-grid-tr");
                         builder.OpenElement(rendSeq++, "td");
-                        builder.AddAttribute(rendSeq++, "colspan", ColumnConfigurations.Count.ToString());
+                        builder.AddAttribute(rendSeq++, "colspan", ColumnConfigurations.Count().ToString());
                         builder.AddAttribute(rendSeq++, "class", "mb-grid-td-group mb-grid-backgroundcolor-row-group");
                         if (isFirstGrouper)
                         {
@@ -307,9 +321,9 @@ namespace Material.Blazor
                     }
 
                     var rowCount = 0;
-                    foreach (TRowData rowValues in kvp.Value)
+                    foreach (var rowValues in kvp.Value)
                     {
-                        var rowKey = KeyExpression(rowValues).ToString(); ;
+                        var rowKey = KeyExpression(rowValues.Value).ToString();
 
                         string rowBackgroundColorClass;
                         if ((rowKey == SelectedKey) && HighlightSelectedRow)
@@ -362,7 +376,7 @@ namespace Material.Blazor
                                     {
                                         try
                                         {
-                                            var value = (MBGridIconSpecification)columnDefinition.DataExpression(rowValues);
+                                            var value = (MBGridIconSpecification)columnDefinition.DataExpression(rowValues.Value);
 
                                             // We need to add the color alignment to the base styles
                                             styleStr +=
@@ -384,15 +398,34 @@ namespace Material.Blazor
 
                                 case MB_Grid_ColumnType.Text:
                                     // It's a text type column so add the text related styles
-                                    styleStr +=
-                                        " color: " + ColorToCSSColor(columnDefinition.ForegroundColor) + ";";
+                                    // We may be overriding the alternating row color added by class
+
+                                    if (columnDefinition.ForegroundColorExpression != null)
+                                    {
+                                        var value = columnDefinition.ForegroundColorExpression(rowValues.Value);
+                                        styleStr +=
+                                            " color: " + ColorToCSSColor((Color)value) + "; ";
+                                    }
+
+                                    if (columnDefinition.BackgroundColorExpression != null)
+                                    {
+                                        var value = columnDefinition.BackgroundColorExpression(rowValues.Value);
+                                        styleStr +=
+                                            " background-color: " + ColorToCSSColor((Color)value) + "; ";
+                                    }
+
+                                    if (columnDefinition.IsPMI && ObscurePMI)
+                                    {
+                                        styleStr +=
+                                            " filter: blur(0.25em); ";
+                                    }
 
                                     builder.AddAttribute(rendSeq++, "style", styleStr);
 
                                     // Bind the object as our content.
                                     if (columnDefinition.DataExpression != null)
                                     {
-                                        var value = columnDefinition.DataExpression(rowValues);
+                                        var value = columnDefinition.DataExpression(rowValues.Value);
                                         var formattedValue = string.IsNullOrEmpty(columnDefinition.FormatString) ? value?.ToString() : string.Format("{0:" + columnDefinition.FormatString + "}", value);
                                         builder.AddContent(1, formattedValue);
                                     }
@@ -403,7 +436,7 @@ namespace Material.Blazor
                                     {
                                         try
                                         {
-                                            var value = (MBGridTextColorSpecification)columnDefinition.DataExpression(rowValues);
+                                            var value = (MBGridTextColorSpecification)columnDefinition.DataExpression(rowValues.Value);
 
                                             if (value.Supress)
                                             {
@@ -415,6 +448,12 @@ namespace Material.Blazor
                                                 styleStr +=
                                                     " color: " + ColorToCSSColor(value.ForegroundColor)
                                                     + "; background-color: " + ColorToCSSColor(value.BackgroundColor) + ";";
+
+                                                if (columnDefinition.IsPMI && ObscurePMI)
+                                                {
+                                                    styleStr +=
+                                                        " filter: blur(0.25em); ";
+                                                }
 
                                                 builder.AddAttribute(rendSeq++, "style", styleStr);
                                                 builder.AddContent(rendSeq++, value.Text);
@@ -452,7 +491,9 @@ namespace Material.Blazor
             }
 
             HasCompletedFullRender = true;
+#if LoggingVerbose
             Logger.LogInformation("                leaving (IsFirstRender == false)");
+#endif
         }
         #endregion
 
@@ -507,7 +548,9 @@ namespace Material.Blazor
         #region GridSyncScroll
         protected async Task GridSyncScroll()
         {
+#if LoggingVerbose
             Logger.LogInformation("GridSyncScroll()");
+#endif
             await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBGrid.syncScrollByID", GridHeaderID, GridBodyID);
             //await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBGrid.syncScrollByRef", GridHeaderRef, GridBodyRef);
         }
@@ -516,104 +559,115 @@ namespace Material.Blazor
         #region MeasureWidthsAsync
         private async Task MeasureWidthsAsync()
         {
+            if (GroupedOrderedData == null)
+            {
+                return;
+            }
             //
             // We are going to measure the actual sizes using JS if the Measurement is FitToData
             // We need to create the ColumnWidthArray regardless of the measurement type as we need to pass
             // values to CreateTD
             //
-            ColumnWidthArray = new float[ColumnConfigurations.Count];
+            ColumnWidthArray = new float[ColumnConfigurations.Count()];
 
             // Measure the width of a vertical scrollbar (Used to set the padding of the header)
-            //ScrollWidth = await JsRuntime.InvokeAsync<int>(
-            //    "MaterialBlazor.MBGrid.getScrollBarWidth",
-            //    "mb-grid-div-body");
+            ScrollWidth = await JsRuntime.InvokeAsync<int>(
+                "MaterialBlazor.MBGrid.getScrollBarWidth",
+                "mb-grid-div-body");
             ScrollWidth = 0;
 
             if (Measurement == MB_Grid_Measurement.FitToData)
             {
+                // Create a simple data dictionary from the GroupedDataDictionary
+                var dataList = new List<TRowData>();
+                foreach (var outerKVP in GroupedOrderedData)
+                {
+                    foreach (var innerKVP in outerKVP.Value)
+                    {
+                        dataList.Add(innerKVP.Value);
+                    }
+                }
                 // Measure the header columns
+                var stringArrayHeader = new string[ColumnConfigurations.Count()];
                 var colIndex = 0;
                 foreach (var col in ColumnConfigurations)
                 {
-                    ColumnWidthArray[colIndex] = ConvertPxMeasureToFloat(
-                        await JsRuntime.InvokeAsync<string>(
-                            "MaterialBlazor.MBGrid.getTextWidth",
-                            "mb-grid-header-td",
-                            col.Title));
+                    stringArrayHeader[colIndex] = col.Title;
                     colIndex++;
                 }
 
+                ColumnWidthArray = await JsRuntime.InvokeAsync<float[]>(
+                        "MaterialBlazor.MBGrid.getTextWidths",
+                        "mb-grid-header-td-measure",
+                        ColumnWidthArray,
+                        stringArrayHeader);
+
                 // Measure the body columns
-                foreach (var kvp in DataDictionary)
+                var stringArrayBody = new string[ColumnConfigurations.Count() * dataList.Count];
+                colIndex = 0;
+                foreach (var enumerableData in dataList)
                 {
-                    IEnumerable<TRowData> enumerableData = DataDictionary.Values;
-
-                    foreach (var rowValues in enumerableData)
+                    foreach (var columnDefinition in ColumnConfigurations)
                     {
-                        colIndex = 0;
-                        foreach (var columnDefinition in ColumnConfigurations)
+                        switch (columnDefinition.ColumnType)
                         {
-                            switch (columnDefinition.ColumnType)
-                            {
-                                case MB_Grid_ColumnType.Icon:
-                                    // We let the column width get driven by the title
-                                    break;
+                            case MB_Grid_ColumnType.Icon:
+                                // We let the column width get driven by the title
+                                stringArrayBody[colIndex] = "";
+                                break;
 
-                                case MB_Grid_ColumnType.Text:
-                                    if (columnDefinition.DataExpression != null)
+                            case MB_Grid_ColumnType.Text:
+                                if (columnDefinition.DataExpression != null)
+                                {
+                                    var value = columnDefinition.DataExpression(enumerableData);
+                                    var formattedValue = string.IsNullOrEmpty(columnDefinition.FormatString) ? value?.ToString() : string.Format("{0:" + columnDefinition.FormatString + "}", value);
+                                    stringArrayBody[colIndex] = formattedValue;
+                                }
+                                break;
+
+                            case MB_Grid_ColumnType.TextColor:
+                                if (columnDefinition.DataExpression != null)
+                                {
+                                    try
                                     {
-                                        var value = columnDefinition.DataExpression(rowValues);
-                                        var formattedValue = string.IsNullOrEmpty(columnDefinition.FormatString) ? value?.ToString() : string.Format("{0:" + columnDefinition.FormatString + "}", value);
-                                        var width = ConvertPxMeasureToFloat(
-                                            await JsRuntime.InvokeAsync<string>(
-                                                "MaterialBlazor.MBGrid.getTextWidth",
-                                                "mb-grid-body-td",
-                                                formattedValue));
-                                        if (width > ColumnWidthArray[colIndex])
+                                        var value = (MBGridTextColorSpecification)columnDefinition.DataExpression(enumerableData);
+                                        if (!value.Supress)
                                         {
-                                            ColumnWidthArray[colIndex] = width;
+                                            stringArrayBody[colIndex] = value.Text;
+                                        }
+                                        else
+                                        {
+                                            stringArrayBody[colIndex] = "";
                                         }
                                     }
-                                    break;
-
-                                case MB_Grid_ColumnType.TextColor:
-                                    if (columnDefinition.DataExpression != null)
+                                    catch
                                     {
-                                        try
-                                        {
-                                            var value = (MBGridTextColorSpecification)columnDefinition.DataExpression(rowValues);
-                                            if (!value.Supress)
-                                            {
-                                                var width = ConvertPxMeasureToFloat(
-                                                    await JsRuntime.InvokeAsync<string>(
-                                                        "MaterialBlazor.MBGrid.getTextWidth",
-                                                        "mb-grid-body-td",
-                                                        value.Text));
-                                                if (width > ColumnWidthArray[colIndex])
-                                                {
-                                                    ColumnWidthArray[colIndex] = width;
-                                                }
-                                            }
-                                        }
-                                        catch
-                                        {
-                                            throw new Exception("Backing value incorrect for MBGrid.TextColor column.");
-                                        }
+                                        throw new Exception("Backing value incorrect for MBGrid.TextColor column.");
                                     }
-                                    break;
+                                }
+                                break;
 
-                                default:
-                                    throw new Exception("MBGrid -- Unknown column type");
-                            }
-
-                            colIndex++;
+                            default:
+                                throw new Exception("MBGrid -- Unknown column type");
                         }
+
+                        colIndex++;
                     }
                 }
+                ColumnWidthArray = await JsRuntime.InvokeAsync<float[]>(
+                        "MaterialBlazor.MBGrid.getTextWidths",
+                        "mb-grid-body-td-measure",
+                        ColumnWidthArray,
+                        stringArrayBody);
 
                 for (var col = 0; col < ColumnWidthArray.Length; col++)
                 {
-                    // We fudge a bit because we were still getting an ellipsis on the longest text
+                    //
+                    // We adjust a bit because we were still getting an ellipsis on the longest text.
+                    // This is caused by the fact that <Col style="width: 372.8px"/> creates
+                    // a 372px wide column
+                    //
+
                     ColumnWidthArray[col] += 1;
                 }
             }
@@ -630,10 +684,12 @@ namespace Material.Blazor
 
                 HasRendered = true;
 
+#if LoggingVerbose
                 Logger.LogInformation("OnAfterRenderAsync entered");
                 Logger.LogInformation("                   firstRender: " + firstRender.ToString());
                 Logger.LogInformation("                   IsFirstRender: " + IsFirstRender.ToString());
                 Logger.LogInformation("                   HasCompletedFullRender: " + HasCompletedFullRender.ToString());
+#endif
 
                 if (IsFirstRender)
                 {
@@ -641,12 +697,14 @@ namespace Material.Blazor
                     Logger.LogInformation("                   Calling MeasureWidthsAsync");
                     await MeasureWidthsAsync();
                     Logger.LogInformation("                   Returned from MeasureWidthsAsync");
+                    StateHasChanged();
                 }
             }
             finally
             {
+#if LoggingVerbose
                 Logger.LogInformation("                   about to release semaphore");
-
+#endif
                 semaphoreSlim.Release();
             }
         }
@@ -655,14 +713,18 @@ namespace Material.Blazor
         #region OnInitialized
         protected override void OnInitialized()
         {
+#if LoggingVerbose
             Logger.LogInformation("MBGrid.OnInitialized entered");
+#endif
             base.OnInitialized();
 
             if (ColumnConfigurations == null)
             {
                 throw new System.Exception("MBGrid requires column configuration definitions.");
             }
+#if LoggingVerbose
             Logger.LogInformation("MBGrid.OnInitialized completed");
+#endif
         }
         #endregion
 
@@ -693,115 +755,43 @@ namespace Material.Blazor
             await semaphoreSlim.WaitAsync();
             try
             {
+#if LoggingVerbose
                 Logger.LogInformation("OnParametersSetAsync entry");
                 Logger.LogInformation("                     HasRendered: " + HasRendered.ToString());
                 Logger.LogInformation("                     HasCompletedFullRender: " + HasCompletedFullRender.ToString());
+#endif
 
                 await base.OnParametersSetAsync();
-
-                OrderedGroupedData = null;
-
-                if (DataDictionary != null)
-                {
-                    // Perform the sort(s)
-                    IEnumerable<TRowData> sortedData;
-                    if (SortExpressionFirst != null)
-                    {
-                        if (SortExpressionSecond != null)
-                        {
-                            sortedData = DataDictionary.Values
-                                    .OrderBy(SortExpressionFirst)
-                                    .ThenBy(SortExpressionSecond);
-                        }
-                        else
-                        {
-                            sortedData = DataDictionary.Values
-                                    .OrderBy(SortExpressionFirst);
-                        }
-                    }
-                    else
-                    {
-                        {
-                            // No sorting at all
-                            sortedData = DataDictionary.Values;
-                        }
-                    }
-
-                    // Perform the grouping
-                    OrderedGroupedData = new List<KeyValuePair<string, List<TRowData>>>();
-                    if (GroupExpression == null)
-                    {
-                        OrderedGroupedData.Add(new KeyValuePair<string, List<TRowData>>("FauxKey", new List<TRowData>(sortedData)));
-                    }
-                    else
-                    {
-                        var groupedData = sortedData
-                            .GroupBy(GroupExpression)
-                            .ToDictionary(g => g.Key.ToString(), g => g.ToList());
-
-                        if (GroupOrderedList == null)
-                        {
-                            // We will default to alphabetical order
-                            var sortedGroupedData = new SortedDictionary<string, List<TRowData>>(groupedData, new StringComparer());
-                            foreach (var kvp in groupedData)
-                            {
-                                OrderedGroupedData.Add(new KeyValuePair<string, List<TRowData>>(kvp.Key, kvp.Value));
-                            }
-                        }
-                        else
-                        {
-                            foreach (var key in GroupOrderedList)
-                            {
-                                if (groupedData.ContainsKey(key))
-                                {
-                                    OrderedGroupedData.Add(new KeyValuePair<string, List<TRowData>>(key, groupedData[key]));
-                                }
-                                else
-                                {
-                                    var emptyList = new List<TRowData>();
-                                    OrderedGroupedData.Add(new KeyValuePair<string, List<TRowData>>(key, emptyList));
-                                }
-                            }
-                        }
-                    }
-                }
 
                 if (HasRendered)
                 {
                     Logger.LogInformation("                     Calling MeasureWidthsAsync");
                     await MeasureWidthsAsync();
                     Logger.LogInformation("                     Returned from MeasureWidthsAsync");
+                    StateHasChanged();
                 }
             }
             finally
             {
+#if LoggingVerbose
                 Logger.LogInformation("                     about to release semaphore");
+#endif
                 semaphoreSlim.Release();
             }
         }
         #endregion
 
-        #region SetShouldRenderReturnValue
-        public void SetShouldRenderReturnValue(bool shouldRenderReturnValue)
+        #region SetShouldRenderValue
+        public void SetShouldRenderValue(bool shouldRenderReturnValue)
         {
-            ShouldRenderReturnValue = shouldRenderReturnValue;
+            ShouldRenderValue = shouldRenderReturnValue;
         }
         #endregion
 
         #region ShouldRender
         protected override bool ShouldRender()
         {
-            return ShouldRenderReturnValue;
-        }
-        #endregion
-
-        #region StringComparer
-        class StringComparer : IComparer<string>
-        {
-            public int Compare(string x, string y)
-            {
-                return string.Compare(x, y, true);
-            }
+            return ShouldRenderValue;
         }
         #endregion
 

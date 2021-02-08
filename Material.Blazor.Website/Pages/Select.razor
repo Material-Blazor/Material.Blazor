@@ -4,12 +4,12 @@
 
 
 <DemonstrationPage ComponentName="Select"
-                   Title="Select Demonstration"
                    DemoComponent="@this"
-                   MaterialIOPage="mdc-select#select-menus"
                    IsGeneric="true"
+                   MaterialIOPage="mdc-select#select-menus"
                    MinDensity="MBDensity.Minus4"
-                   RequiresDisableSelection="true">
+                   RequiresDisableSelection="true"
+                   Title="Select Demonstration">
     <Description>
         <p>
             Filled and outlined text fields with icon usage, class and style application and finally density.
@@ -28,9 +28,26 @@
                         Default and explicit select styles.
                     </h3>
 
-                    <p><MBSelect Label="Default Style" @bind-Value="@DefaultStyle" Items="KittenBreeds" ItemValidation="@MBItemValidation.NoSelection" /></p>
-                    <p><MBSelect Label="Filled Style" @bind-Value="@FilledStyle" Items="KittenBreeds" SelectInputStyle="MBSelectInputStyle.Filled" ItemValidation="@MBItemValidation.NoSelection" /></p>
-                    <p><MBSelect Label="Outlined Style" @bind-Value="@OutlinedStyle" Items="KittenBreeds" SelectInputStyle="MBSelectInputStyle.Outlined" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                    <p>
+                        <MBSelect @bind-Value="@DefaultStyle"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Default Style" />
+                    </p>
+                    <p>
+                        <MBSelect @bind-Value="@FilledStyle"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Filled Style"
+                                  SelectInputStyle="MBSelectInputStyle.Filled" />
+                    </p>
+                    <p>
+                        <MBSelect @bind-Value="@OutlinedStyle"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Outlined Style"
+                                  SelectInputStyle="MBSelectInputStyle.Outlined" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>
@@ -48,8 +65,55 @@
                         Icons - both using icons from the Material Icons, Font Awesome and Open Iconic foundries. Note how the menu surface is the same width as the select anchor.
                     </h3>
 
-                    <p><MBSelect Label="Filled With Icon" @bind-Value="@Icon1" Items="KittenBreeds" LeadingIcon="print" IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.TwoTone)" SelectInputStyle="MBSelectInputStyle.Filled" ItemValidation="@MBItemValidation.NoSelection" MenuSurfacePositioning="@MBMenuSurfacePositioning.FullWidth" /></p>
-                    <p><MBSelect Label="Outlined With Icon" @bind-Value="@Icon2" Items="KittenBreeds" LeadingIcon="fa-car-crash" IconFoundry="@MBIconHelper.FAFoundry()" SelectInputStyle="MBSelectInputStyle.Outlined" ItemValidation="@MBItemValidation.NoSelection" MenuSurfacePositioning="@MBMenuSurfacePositioning.FullWidth" /></p>
+                    <p>
+                        <MBSelect @bind-Value="@Icon1"
+                                  IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.TwoTone)"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Filled With Icon"
+                                  LeadingIcon="print"
+                                  MenuSurfacePositioning="@MBMenuSurfacePositioning.FullWidth"
+                                  SelectInputStyle="MBSelectInputStyle.Filled" />
+                    </p>
+                    <p>
+                        <MBSelect @bind-Value="@Icon2"
+                                  IconFoundry="@MBIconHelper.FAFoundry()"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Outlined With Icon"
+                                  LeadingIcon="fa-car-crash"
+                                  MenuSurfacePositioning="@MBMenuSurfacePositioning.FullWidth"
+                                  SelectInputStyle="MBSelectInputStyle.Outlined" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Two Way Binding
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows two way binding for selects.
+                    </h3>
+
+                    <p>
+                        <MBSelect @bind-Value="@TwoWayBinding"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Two Way Binding" />
+                    </p>
+                    <p>
+                        <MBSelect @bind-Value="@TwoWayBinding"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Two Way Binding" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>
@@ -68,27 +132,22 @@
                         particularly useful when a select menu might need to overflow its container, such as in a dialog: using a regular or full width menu surface variants in a dialog causes unwanted overflow results.
                     </h3>
 
-                    <p><MBSelect Label="Left Aligned" @bind-Value="@LeftAligned" Items="KittenBreeds" TextAlignStyle="@MBTextAlignStyle.Left" ItemValidation="@MBItemValidation.NoSelection" MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed" /></p>
-                    <p><MBSelect Label="Right Aligned" @bind-Value="@RightAligned" Items="KittenBreeds" TextAlignStyle="@MBTextAlignStyle.Right" ItemValidation="@MBItemValidation.NoSelection" MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed" /></p>
-                </Primary>
-            </MBCard>
-        </div>
-
-
-
-        <div class="mdc-layout-grid__cell--span-4">
-            <MBCard AutoStyled="true">
-                <Primary>
-                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Two Way Binding
-                    </h2>
-
-                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        Shows two way binding for selects.
-                    </h3>
-
-                    <p><MBSelect Label="Two Way Binding" @bind-Value="@TwoWayBinding" Items="KittenBreeds" ItemValidation="@MBItemValidation.NoSelection" /></p>
-                    <p><MBSelect Label="Two Way Binding" @bind-Value="@TwoWayBinding" Items="KittenBreeds" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                    <p>
+                        <MBSelect @bind-Value="@LeftAligned"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Left Aligned"
+                                  MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
+                                  TextAlignStyle="@MBTextAlignStyle.Left" />
+                    </p>
+                    <p>
+                        <MBSelect @bind-Value="@RightAligned"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Right Aligned"
+                                  MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
+                                  TextAlignStyle="@MBTextAlignStyle.Right" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>
@@ -106,11 +165,46 @@
                         Filled density subsystem from default to minus 4.
                     </h3>
 
-                    <p><MBSelect Label="Default Density" @bind-Value="@FilledDensityDefault" Items="KittenBreeds" Density="@MBDensity.Default" SelectInputStyle="MBSelectInputStyle.Filled" ItemValidation="@MBItemValidation.NoSelection" /></p>
-                    <p><MBSelect Label="Density Minus 1" @bind-Value="@FilledDensityMinus1" Items="KittenBreeds" Density="@MBDensity.Minus1" SelectInputStyle="MBSelectInputStyle.Filled" ItemValidation="@MBItemValidation.NoSelection" /></p>
-                    <p><MBSelect Label="Density Minus 3" @bind-Value="@FilledDensityMinus2" Items="KittenBreeds" Density="@MBDensity.Minus2" SelectInputStyle="MBSelectInputStyle.Filled" ItemValidation="@MBItemValidation.NoSelection" /></p>
-                    <p><MBSelect Label="Density Minus 3" @bind-Value="@FilledDensityMinus3" Items="KittenBreeds" Density="@MBDensity.Minus3" SelectInputStyle="MBSelectInputStyle.Filled" ItemValidation="@MBItemValidation.NoSelection" /></p>
-                    <p><MBSelect Label="Density Minus 4" @bind-Value="@FilledDensityMinus4" Items="KittenBreeds" Density="@MBDensity.Minus4" SelectInputStyle="MBSelectInputStyle.Filled" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                    <p>
+                        <MBSelect @bind-Value="@FilledDensityDefault"
+                                  Density="@MBDensity.Default"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Default Density"
+                                  SelectInputStyle="MBSelectInputStyle.Filled" />
+                    </p>
+                    <p>
+                        <MBSelect @bind-Value="@FilledDensityMinus1"
+                                  Density="@MBDensity.Minus1"
+                                  Label="Density Minus 1"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  SelectInputStyle="MBSelectInputStyle.Filled" />
+                    </p>
+                    <p>
+                        <MBSelect @bind-Value="@FilledDensityMinus2"
+                                  Density="@MBDensity.Minus2"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Density Minus 3"
+                                  SelectInputStyle="MBSelectInputStyle.Filled" />
+                    </p>
+                    <p>
+                        <MBSelect @bind-Value="@FilledDensityMinus3"
+                                  Density="@MBDensity.Minus3"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Density Minus 3"
+                                  SelectInputStyle="MBSelectInputStyle.Filled" />
+                    </p>
+                    <p>
+                        <MBSelect @bind-Value="@FilledDensityMinus4"
+                                  Density="@MBDensity.Minus4"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Density Minus 4"
+                                  SelectInputStyle="MBSelectInputStyle.Filled" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>
@@ -128,11 +222,76 @@
                         Outlined density subsystem from default to minus 4.
                     </h3>
 
-                    <p><MBSelect Label="Default Density" @bind-Value="@OutlinedDensityDefault" Items="KittenBreeds" Density="@MBDensity.Default" SelectInputStyle="MBSelectInputStyle.Outlined" ItemValidation="@MBItemValidation.NoSelection" /></p>
-                    <p><MBSelect Label="Density Minus 1" @bind-Value="@OutlinedDensityMinus1" Items="KittenBreeds" Density="@MBDensity.Minus1" SelectInputStyle="MBSelectInputStyle.Outlined" ItemValidation="@MBItemValidation.NoSelection" /></p>
-                    <p><MBSelect Label="Density Minus 3" @bind-Value="@OutlinedDensityMinus2" Items="KittenBreeds" Density="@MBDensity.Minus2" SelectInputStyle="MBSelectInputStyle.Outlined" ItemValidation="@MBItemValidation.NoSelection" /></p>
-                    <p><MBSelect Label="Density Minus 3" @bind-Value="@OutlinedDensityMinus3" Items="KittenBreeds" Density="@MBDensity.Minus3" SelectInputStyle="MBSelectInputStyle.Outlined" ItemValidation="@MBItemValidation.NoSelection" /></p>
-                    <p><MBSelect Label="Density Minus 4" @bind-Value="@OutlinedDensityMinus4" Items="KittenBreeds" Density="@MBDensity.Minus4" SelectInputStyle="MBSelectInputStyle.Outlined" ItemValidation="@MBItemValidation.NoSelection" /></p>
+                    <p>
+                        <MBSelect @bind-Value="@OutlinedDensityDefault"
+                                  Density="@MBDensity.Default"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Default Density"
+                                  SelectInputStyle="MBSelectInputStyle.Outlined" />
+                    </p>
+                    <p>
+                        <MBSelect @bind-Value="@OutlinedDensityMinus1"
+                                  Density="@MBDensity.Minus1"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Density Minus 1"
+                                  SelectInputStyle="MBSelectInputStyle.Outlined" />
+                    </p>
+                    <p>
+                        <MBSelect @bind-Value="@OutlinedDensityMinus2"
+                                  Density="@MBDensity.Minus2"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Density Minus 3"
+                                  SelectInputStyle="MBSelectInputStyle.Outlined" />
+                    </p>
+                    <p>
+                        <MBSelect @bind-Value="@OutlinedDensityMinus3"
+                                  Density="@MBDensity.Minus3"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Density Minus 3"
+                                  SelectInputStyle="MBSelectInputStyle.Outlined" />
+                    </p>
+                    <p>
+                        <MBSelect @bind-Value="@OutlinedDensityMinus4"
+                                  Density="@MBDensity.Minus4"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Density Minus 4"
+                                  SelectInputStyle="MBSelectInputStyle.Outlined" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Disabled
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows the component either entirely disabled or with some items disabled.
+                    </h3>
+
+                    <p>
+                        <MBSelect @bind-Value="@TwoWayBinding"
+                                  Disabled="true"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Disabled Component" />
+                    </p>
+                    <p>
+                        <MBSelect @bind-Value="@TwoWayBinding"
+                                  Items="KittenBreedsNoFake"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Items disabled" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>
@@ -146,48 +305,20 @@
         new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
         new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
-    };
-
-
-    private string _defaultStyle;
-    private string DefaultStyle
+            };
+    MBSelectElement<string>[] KittenBreedsNoFake = new MBSelectElement<string>[]
     {
-        get => _defaultStyle;
-        set
-        {
-            _defaultStyle = value;
-
-            ToastService.ShowToast(heading: "Default Style", message: $"Value: '{_defaultStyle}'", level: MBToastLevel.Success, showIcon: false);
-        }
-    }
+        new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" },
+        new MBSelectElement<string> { SelectedValue = "disabled1", Label = "Mr. Snuggles", Disabled = true },
+        new MBSelectElement<string> { SelectedValue = "disabled2", Label = "Roger Rabbit", Disabled = true }
+            };
 
 
-
-    private string _filledStyle;
-    private string FilledStyle
-    {
-        get => _filledStyle;
-        set
-        {
-            _filledStyle = value;
-
-            ToastService.ShowToast(heading: "Filled Style", message: $"Value: '{_filledStyle}", level: MBToastLevel.Success, showIcon: false);
-        }
-    }
-
-
-
-    private string _outlinedStyle;
-    private string OutlinedStyle
-    {
-        get => _outlinedStyle;
-        set
-        {
-            _outlinedStyle = value;
-
-            ToastService.ShowToast(heading: "Outlined Style", message: $"Value: '{_outlinedStyle}", level: MBToastLevel.Success, showIcon: false);
-        }
-    }
+    private string DefaultStyle;
+    private string FilledStyle;
+    private string OutlinedStyle;
 
     private string Icon1;
     private string Icon2;

@@ -5,8 +5,8 @@
 
 
 <div @ref="@SegmentedButtonReference"
-        @attributes="AttributesToSplat()"
-        role="@GroupRole">
+     @attributes="AttributesToSplat()"
+     role="@GroupRole">
 
     @for (int i = 0; i < ItemsArray.Length; i++)
     {
@@ -16,7 +16,9 @@
 
                 @if (!string.IsNullOrWhiteSpace(ItemsArray[i].Icon))
                 {
-                    <MBIcon IconName="@ItemsArray[i].Icon" IconFoundry="@IconFoundry" class="mdc-segmented-button__icon" />
+                    <MBIcon class="mdc-segmented-button__icon"
+                            IconFoundry="@IconFoundry"
+                            IconName="@ItemsArray[i].Icon" />
                 }
 
                 @if (!string.IsNullOrWhiteSpace(ItemsArray[i].Label))

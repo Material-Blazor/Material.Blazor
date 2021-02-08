@@ -4,9 +4,9 @@
 
 
 <DemonstrationPage ComponentName="Menu"
-                   Title="Menu Demonstration"
                    DemoComponent="@this"
-                   MaterialIOPage="mdc-menu#menus">
+                   MaterialIOPage="mdc-menu#menus"
+                   Title="Menu Demonstration">
     <Description>
         <p>
             Demonstrates a menu.
@@ -31,20 +31,38 @@
 
                     <div class="mdc-menu-surface--anchor">
                         <MBMenu @ref="@MenuElement">
-                            <MBListItem Label="One" @onclick="@(() => OnClickHandler("One"))" />
-                            <MBListItem Label="Two" @onclick="@(() => OnClickHandler("Two"))" />
-                            <MBListItem Label="Three" IconFoundry="@MBIconHelper.OIFoundry()" @onclick="@(() => OnClickHandler("Three"))" />
+                            <MBListItem Label="One"
+                                        @onclick="@(() => OnClickHandler("One"))" />
+                            <MBListItem Label="Two"
+                                        @onclick="@(() => OnClickHandler("Two"))" />
+                            <MBListItem Label="Three"
+                                        @onclick="@(() => OnClickHandler("Three"))" />
                             <MBListDivider />
-                            <MBListItem Label="Four" LeadingIcon="home" @onclick="@(() => OnClickHandler("Four"))" />
-                            <MBListItem Label="Five" LeadingIcon="alarm" @onclick="@(() => OnClickHandler("Five"))" />
-                            <MBListItem Label="Six" LeadingIcon="shield" IconFoundry="@MBIconHelper.OIFoundry()" @onclick="@(() => OnClickHandler("Six"))" />
+                            <MBListItem Label="Four"
+                                        LeadingIcon="home"
+                                        @onclick="@(() => OnClickHandler("Four"))" />
+                            <MBListItem Label="Five"
+                                        LeadingIcon="alarm"
+                                        @onclick="@(() => OnClickHandler("Five"))" />
+                            <MBListItem IconFoundry="@MBIconHelper.OIFoundry()"
+                                        Label="Six"
+                                        LeadingIcon="shield"
+                                        @onclick="@(() => OnClickHandler("Six"))" />
                             <MBListDivider />
                             <MBMenuSelectionGroup>
-                                <MBListItem Label="Seven" LeadingIcon="done" IsSelectedMenuItem="@SevenSelected" @onclick="@(() => OnClickHandler("Seven"))" />
-                                <MBListItem Label="Eight" LeadingIcon="done" IsSelectedMenuItem="@EightSelected" @onclick="@(() => OnClickHandler("Eight"))" />
+                                <MBListItem IsSelectedMenuItem="@SevenSelected"
+                                            Label="Seven"
+                                            LeadingIcon="done"
+                                            @onclick="@(() => OnClickHandler("Seven"))" />
+                                <MBListItem IsSelectedMenuItem="@EightSelected"
+                                            Label="Eight"
+                                            LeadingIcon="done"
+                                            @onclick="@(() => OnClickHandler("Eight"))" />
                             </MBMenuSelectionGroup>
                             <MBListDivider />
-                            <MBListItem Label="Nine (disabled)" Disabled="true" @onclick="@(() => OnClickHandler("Nine"))" />
+                            <MBListItem Disabled="true"
+                                        Label="Nine (disabled)"
+                                        @onclick="@(() => OnClickHandler("Nine"))" />
                         </MBMenu>
                     </div>
                 </Primary>

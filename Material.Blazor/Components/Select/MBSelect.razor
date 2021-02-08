@@ -77,7 +77,7 @@
 
             @foreach (var item in ItemDict.Values)
             {
-                var listClass = "mdc-list-item" + (item.SelectedValue.Equals(Value) ? " mdc-list-item--selected" : "");
+                var listClass = "mdc-list-item" + (item.SelectedValue.Equals(Value) ? " mdc-list-item--selected" : "") + (item.Disabled == true ? " mdc-list-item--disabled" : "");
                 var ariaSelected = item.SelectedValue.Equals(Value);
 
                 <li @key="@KeyGenerator(item.SelectedValue)"

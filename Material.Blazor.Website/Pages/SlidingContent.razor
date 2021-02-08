@@ -5,9 +5,9 @@
 
 
 <DemonstrationPage ComponentName="SlidingContent"
-                   Title="Sliding Content Demonstration"
                    DemoComponent="@this"
-                   IsGeneric="true">
+                   IsGeneric="true"
+                   Title="Sliding Content Demonstration">
     <Description>
         <p>
             Demonstrates Sliding Content, which is a <a href="https://material-blazor.com/docs/articles/PlusComponents.html" target="_blank">Material.Blazor Plus Component</a>. Sliding content is
@@ -28,10 +28,10 @@
                         "Previous" and "Next" buttons navigate panels, and the "Move to Paragraph 4" button is self explanatory.
                     </h3>
 
-                    <MBSlidingContent @ref="@Content"
+                    <MBSlidingContent @bind-ItemIndex="@Index"
+                                      Context="item"
                                       Items="@items"
-                                      @bind-ItemIndex="@Index"
-                                      Context="item">
+                                      @ref="@Content">
 
                         <Content>
                             <h3 class="mdc-typography--headline6">@item.Title</h3>
@@ -40,11 +40,23 @@
                     </MBSlidingContent>
 
                     <p @key="@Index">
-                        <MBButton Label="Previous" LeadingIcon="chevron_left" @onclick="@(() => Index--)" ButtonStyle="MBButtonStyle.ContainedRaised" Disabled="@DisablePrevious" />
-                        <MBButton Label="Next" TrailingIcon="chevron_right" @onclick="@(() => Index++)" ButtonStyle="MBButtonStyle.ContainedRaised" Disabled="@DisableNext" />
+                        <MBButton ButtonStyle="MBButtonStyle.ContainedRaised"
+                                  Disabled="@DisablePrevious"
+                                  Label="Previous"
+                                  LeadingIcon="chevron_left"
+                                  @onclick="@(() => Index--)" />
+                        <MBButton ButtonStyle="MBButtonStyle.ContainedRaised"
+                                  Disabled="@DisableNext"
+                                  Label="Next"
+                                  @onclick="@(() => Index++)"
+                                  TrailingIcon="chevron_right" />
                     </p>
 
-                    <p><MBButton Label="Move to Paragraph 4" @onclick="@(() => Index = 3)" ButtonStyle="MBButtonStyle.ContainedRaised" /></p>
+                    <p>
+                        <MBButton ButtonStyle="MBButtonStyle.ContainedRaised"
+                                  Label="Move to Paragraph 4"
+                                  @onclick="@(() => Index = 3)" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>

@@ -5,15 +5,15 @@
 
 
 <DemonstrationPage ComponentName="FloatingActionButton"
-                   Title="Floating Action Button (FAB) Demonstration"
                    DemoComponent="@this"
-                   MaterialIOPage="mdc-fab#floating-action-buttons">
+                   MaterialIOPage="mdc-fab#floating-action-buttons"
+                   Title="Floating Action Button (FAB) Demonstration">
     <Description>
         <p>
             Shows Floating Action Button (FAB) variants.
         </p>
     </Description>
-    
+
     <Controls>
         <p><MBSwitch @bind-Value="@Exited" Label="Applies the 'mdc-fab--exited' class" /></p>
     </Controls>
@@ -27,8 +27,8 @@
                     </h2>
 
                     <p>
-                        <MBFloatingActionButton Icon="access_alarms"
-                                                Exited="@Exited"
+                        <MBFloatingActionButton Exited="@Exited"
+                                                Icon="access_alarms"
                                                 @onclick="@(() => ButtonClick("Regular FAB"))" />
                     </p>
                 </Primary>
@@ -44,10 +44,10 @@
                     </h2>
 
                     <p>
-                        <MBFloatingActionButton Icon="favorite_border"
-                                                Exited="@Exited"
-                                                Type="@MBFloatingActionButtonType.Mini"
-                                                @onclick="@(() => ButtonClick("Mini FAB"))" />
+                        <MBFloatingActionButton Exited="@Exited"
+                                                Icon="favorite_border"
+                                                @onclick="@(() => ButtonClick("Mini FAB"))"
+                                                Type="@MBFloatingActionButtonType.Mini" />
                     </p>
                 </Primary>
             </MBCard>
@@ -62,23 +62,23 @@
                     </h2>
 
                     <p>
-                        <MBFloatingActionButton Icon="fa-hand-point-left"
+                        <MBFloatingActionButton Exited="@Exited"
+                                                Icon="fa-hand-point-left"
                                                 IconFoundry="MBIconHelper.FAFoundry()"
-                                                Label="Leading Icon"
-                                                Exited="@Exited"
-                                                Type="@MBFloatingActionButtonType.Extended"
                                                 IconTrailsLabel="false"
-                                                @onclick="@(() => ButtonClick("Extended FAB - leading icon"))" />
+                                                Label="Leading Icon"
+                                                @onclick="@(() => ButtonClick("Extended FAB - leading icon"))"
+                                                Type="@MBFloatingActionButtonType.Extended" />
                     </p>
 
                     <p>
-                        <MBFloatingActionButton Icon="fa-hand-point-right"
+                        <MBFloatingActionButton Exited="@Exited"
+                                                Icon="fa-hand-point-right"
                                                 IconFoundry="MBIconHelper.FAFoundry()"
-                                                Label="Trailing Icon"
-                                                Exited="@Exited"
-                                                Type="@MBFloatingActionButtonType.Extended"
                                                 IconTrailsLabel="true"
-                                                @onclick="@(() => ButtonClick("Extended FAB - trailing icon"))" />
+                                                Label="Trailing Icon"
+                                                @onclick="@(() => ButtonClick("Extended FAB - trailing icon"))"
+                                                Type="@MBFloatingActionButtonType.Extended" />
                     </p>
                 </Primary>
             </MBCard>

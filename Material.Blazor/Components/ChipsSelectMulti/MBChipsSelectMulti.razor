@@ -16,7 +16,9 @@
 
                 @if (!string.IsNullOrWhiteSpace(ItemsArray[i].Icon))
                 {
-                    <MBIcon IconName="@ItemsArray[i].Icon" IconFoundry="@IconFoundry" @attributes="@ChipIconAttributes[i]" />
+                    <MBIcon @attributes="@ChipIconAttributes[i]"
+                            IconFoundry="@IconFoundry"
+                            IconName="@ItemsArray[i].Icon" />
                 }
 
                 @if (!IsSingleSelect)

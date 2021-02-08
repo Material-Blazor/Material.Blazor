@@ -5,5 +5,7 @@
 
 
 <CascadingValue Value="@this" IsFixed="true">
-    <MBChipsSelectMulti @ref="@ChipsSelectMulti" @bind-Value="@MultiValues" Items="@Items" />
+    <MBChipsSelectMulti @bind-Value="@MultiValues"
+                        Items="@Items"
+                        @ref="@ChipsSelectMulti" />
 </CascadingValue>

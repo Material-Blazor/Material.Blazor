@@ -8,10 +8,10 @@
 
 
 <DemonstrationPage ComponentName="Dialog"
-                   Title="Dialog Demonstration"
                    DemoComponent="@this"
                    MaterialIOPage="mdc-dialog#dialogs"
-                   MinDensity="@MBDensity.Minus4">
+                   MinDensity="@MBDensity.Minus4"
+                   Title="Dialog Demonstration">
     <Description>
         <p>
             Dialog samples. Click each card to launch a dialog.
@@ -20,7 +20,8 @@
 
     <PageContent>
         <div class="mdc-layout-grid__cell--span-4">
-            <MBCard AutoStyled="true" @onclick="@ShowDialog1Async">
+            <MBCard AutoStyled="true"
+                    @onclick="@ShowDialog1Async">
                 <PrimaryAction>
                     <div class="mb-card__primary">
                         <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
@@ -37,7 +38,8 @@
 
 
         <div class="mdc-layout-grid__cell--span-4">
-            <MBCard AutoStyled="true" @onclick="@ShowDialog2Async">
+            <MBCard AutoStyled="true"
+                    @onclick="@ShowDialog2Async">
                 <PrimaryAction>
                     <div class="mb-card__primary">
                         <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
@@ -53,7 +55,8 @@
 
 
         <div class="mdc-layout-grid__cell--span-4">
-            <MBCard AutoStyled="true" @onclick="@ShowDialog3Async">
+            <MBCard AutoStyled="true"
+                    @onclick="@ShowDialog3Async">
                 <PrimaryAction>
                     <div class="mb-card__primary">
                         <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
@@ -69,7 +72,8 @@
 
 
         <div class="mdc-layout-grid__cell--span-4">
-            <MBCard AutoStyled="true" @onclick="@ShowDialog4Async">
+            <MBCard AutoStyled="true"
+                    @onclick="@ShowDialog4Async">
                 <PrimaryAction>
                     <div class="mb-card__primary">
                         <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
@@ -85,7 +89,8 @@
 
 
         <div class="mdc-layout-grid__cell--span-4">
-            <MBCard AutoStyled="true" @onclick="@ShowDialog5Async">
+            <MBCard AutoStyled="true"
+                    @onclick="@ShowDialog5Async">
                 <PrimaryAction>
                     <div class="mb-card__primary">
                         <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
@@ -101,7 +106,8 @@
 
 
         <div class="mdc-layout-grid__cell--span-4">
-            <MBCard AutoStyled="true" @onclick="@ShowDialog6Async">
+            <MBCard AutoStyled="true"
+                    @onclick="@ShowDialog6Async">
                 <PrimaryAction>
                     <div class="mb-card__primary">
                         <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
@@ -116,30 +122,54 @@
         </div>
 
 
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true"
+                    @onclick="@ShowDialog7Async">
+                <PrimaryAction>
+                    <div class="mb-card__primary">
+                        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                            Header
+                        </h2>
+                        <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                            Shows a dialog with a header
+                        </h3>
+                    </div>
+                </PrimaryAction>
+            </MBCard>
+        </div>
+
+
         <MBDialog @ref="@Dialog1"
                   Title="General dialog">
             <Body>
                 <p>Please choose a fruit.</p>
-                <MBCheckbox @bind-Value="@Check" Label="Check me" />
+                <MBCheckbox @bind-Value="@Check"
+                            Label="Check me" />
                 <MBRadioButtonGroup @bind-Value="@RadioButtonResult1"
                                     Items="@StringItems"
-                                    Vertical="true"
-                                    ItemValidation="@MBItemValidation.DefaultToFirst" />
+                                    ItemValidation="@MBItemValidation.DefaultToFirst"
+                                    Vertical="true" />
             </Body>
             <Buttons>
-                <MBButton Label="Orange" DialogAction="orange button clicked"></MBButton>
-                <MBButton Label="Apple" DialogAction="apple button clicked" ButtonStyle="@MBButtonStyle.Text"></MBButton>
+                <MBButton DialogAction="orange button clicked"
+                          Label="Orange" />
+                <MBButton ButtonStyle="@MBButtonStyle.Text"
+                          DialogAction="apple button clicked"
+                          Label="Apple" />
             </Buttons>
         </MBDialog>
 
 
-        <MBDialog @ref="@Dialog2"
-                  Title="General Dialog with Scrim and Escape Disabled (using HideAsync)"
+        <MBDialog EscapeKeyAction=""
+                  @ref="@Dialog2"
                   ScrimClickAction=""
-                  EscapeKeyAction="">
+                  Title="General Dialog with Scrim and Escape Disabled (using HideAsync)">
             <Body>
                 <p>Please choose a fruit.</p>
-                <p><MBCheckbox @bind-Value="@Check" Label="Check me" /></p>
+                <p>
+                    <MBCheckbox @bind-Value="@Check"
+                                Label="Check me" />
+                </p>
             </Body>
             <Buttons>
                 <MBButton Label="Orange" @onclick="@(() => OnButtonClick("orange notified by @onclick"))"></MBButton>
@@ -152,49 +182,59 @@
                   Title="Date Picker Dialog">
             <Body>
                 <p>Set the date.</p>
-                <MBDatePicker Label="The date" @bind-Value="@Date5" SelectInputStyle="MBSelectInputStyle.Outlined" MinDate="@MinDate" MaxDate="@MaxDate" MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"></MBDatePicker>
+                <MBDatePicker @bind-Value="@Date5"
+                              Label="The date"
+                              MaxDate="@MaxDate"
+                              MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
+                              MinDate="@MinDate"
+                              SelectInputStyle="MBSelectInputStyle.Outlined" />
             </Body>
             <Buttons>
-                <MBButton Label="Orange" DialogAction="orange"></MBButton>
-                <MBButton Label="Apple" DialogAction="apple" ButtonStyle="@MBButtonStyle.Text"></MBButton>
+                <MBButton DialogAction="orange"
+                          Label="Orange" />
+                <MBButton ButtonStyle="@MBButtonStyle.Text"
+                          DialogAction="apple"
+                          Label="Apple" />
             </Buttons>
         </MBDialog>
 
-        <MBDialog @ref="@Dialog4"
-                  Title="Logon Dialog"
+        <MBDialog EscapeKeyAction=""
+                  @ref="@Dialog4"
                   ScrimClickAction=""
-                  EscapeKeyAction="">
+                  Title="Logon Dialog">
             <Body>
-                <EditForm Model="@UserLogon" OnValidSubmit="@Dialog4Submitted" OnInvalidSubmit="@Dialog4Invalid">
+                <EditForm Model="@UserLogon"
+                          OnInvalidSubmit="@Dialog4Invalid"
+                          OnValidSubmit="@Dialog4Submitted">
                     <DataAnnotationsValidator />
 
                     <div class="mdc-layout-grid__inner">
                         <div class="mdc-layout-grid__cell--span-12">
                             <MBTextField @bind-Value="@UserLogon.UserID"
                                          Label="User ID"
-                                         TrailingIcon="person"
+                                         style="width: 100%; margin-top: 6px;"
                                          TextInputStyle="@MBTextInputStyle.Outlined"
-                                         ValidationMessageFor="@(() => UserLogon.UserID)"
-                                         style="width: 100%; margin-top: 6px;" />
+                                         TrailingIcon="person"
+                                         ValidationMessageFor="@(() => UserLogon.UserID)" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-12">
                             <MBTextField @bind-Value="@UserLogon.Password"
-                                         Label="Password"
-                                         TrailingIcon="lock_outline"
-                                         TextInputStyle="@MBTextInputStyle.Outlined"
                                          HelperText="Min 8 Characters"
                                          HelperTextPersistent="true"
-                                         ValidationMessageFor="@(() => UserLogon.Password)"
+                                         Label="Password"
+                                         style="width: 100%;"
+                                         TextInputStyle="@MBTextInputStyle.Outlined"
+                                         TrailingIcon="lock_outline"
                                          type="password"
-                                         style="width: 100%;" />
+                                         ValidationMessageFor="@(() => UserLogon.Password)" />
                         </div>
                         <div class="mdc-layout-grid__cell--span-12" style="text-align: right;">
-                            <MBButton style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                                      type="submit"
-                                      Label="Logon" />
-                            <MBButton @onclick="@Dialog4Canceled"
+                            <MBButton Label="Logon"
                                       style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                                      Label="Cancel" />
+                                      type="submit" />
+                            <MBButton Label="Cancel"
+                                      @onclick="@Dialog4Canceled"
+                                      style="margin: 0.75em 0.25em 0.25em 0.25em;" />
                         </div>
                     </div>
                 </EditForm>
@@ -204,8 +244,11 @@
         <MBDialog @ref="@Dialog5"
                   Title="No Body">
             <Buttons>
-                <MBButton Label="OK" DialogAction="ok"></MBButton>
-                <MBButton Label="Cancel" DialogAction="cancel" ButtonStyle="@MBButtonStyle.Text"></MBButton>
+                <MBButton DialogAction="ok"
+                          Label="OK" />
+                <MBButton ButtonStyle="@MBButtonStyle.Text"
+                          Label="Cancel"
+                          DialogAction="cancel" />
             </Buttons>
         </MBDialog>
 
@@ -214,11 +257,63 @@
                 <p>No Title</p>
             </Body>
             <Buttons>
-                <MBButton Label="OK" DialogAction="ok"></MBButton>
-                <MBButton Label="Cancel" DialogAction="cancel" ButtonStyle="@MBButtonStyle.Text"></MBButton>
+                <MBButton DialogAction="ok"
+                          Label="OK" />
+                <MBButton ButtonStyle="@MBButtonStyle.Text"
+                          DialogAction="cancel"
+                          Label="Cancel" />
             </Buttons>
         </MBDialog>
+
+        <MBDialog EscapeKeyAction=""
+                            @ref="@Dialog7"
+                            ScrimClickAction=""
+                            Title="Logon Dialog">
+            <CustomHeader>
+                <h1>This is an h1 header</h1>
+                <h1>This is also an h1 header</h1>
+            </CustomHeader>
+            <Body>
+                <EditForm Model="@UserLogon"
+                          OnInvalidSubmit="@Dialog7Invalid"
+                          OnValidSubmit="@Dialog7Submitted">
+                    <DataAnnotationsValidator />
+
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <MBTextField @bind-Value="@UserLogon.UserID"
+                                         Label="User ID"
+                                         style="width: 100%; margin-top: 6px;"
+                                         TextInputStyle="@MBTextInputStyle.Outlined"
+                                         TrailingIcon="person"
+                                         ValidationMessageFor="@(() => UserLogon.UserID)" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <MBTextField @bind-Value="@UserLogon.Password"
+                                         HelperText="Min 8 Characters"
+                                         HelperTextPersistent="true"
+                                         Label="Password"
+                                         style="width: 100%;"
+                                         TextInputStyle="@MBTextInputStyle.Outlined"
+                                         TrailingIcon="lock_outline"
+                                         type="password"
+                                         ValidationMessageFor="@(() => UserLogon.Password)" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-12" style="text-align: right;">
+                            <MBButton Label="Logon"
+                                      style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                      type="submit" />
+                            <MBButton Label="Cancel"
+                                      @onclick="@Dialog7Canceled"
+                                      style="margin: 0.75em 0.25em 0.25em 0.25em;" />
+                        </div>
+                    </div>
+                </EditForm>
+            </Body>
+        </MBDialog>
+
     </PageContent>
+
 </DemonstrationPage>
 
 
@@ -231,6 +326,7 @@
     private MBDialog Dialog4 { get; set; }
     private MBDialog Dialog5 { get; set; }
     private MBDialog Dialog6 { get; set; }
+    private MBDialog Dialog7 { get; set; }
 
     private bool Check { get; set; }
 
@@ -251,7 +347,7 @@
         new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
         new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
-                    };
+                            };
 
     private async Task ShowDialog1Async()
     {
@@ -316,6 +412,30 @@
     {
         var result = await Dialog6.ShowAsync();
         ToastService.ShowToast(heading: "No Title Dialog", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+    }
+
+    private async Task ShowDialog7Async()
+    {
+        UserLogon = new UserLogonDefinition();
+        _ = Dialog7.ShowAsync();
+        await Task.CompletedTask;
+    }
+
+    private async Task Dialog7Submitted()
+    {
+        await Dialog7.HideAsync();
+        ToastService.ShowToast(heading: "Logon Dialog #2 Submit", message: $"User / Password: '{UserLogon.UserID}' / '{UserLogon.Password}'", level: MBToastLevel.Success, showIcon: false);
+    }
+
+    private void Dialog7Invalid()
+    {
+        ToastService.ShowToast(heading: "Logon Dialog #2 Invalid", message: $"Edit form was invalid", level: MBToastLevel.Warning, showIcon: false);
+    }
+
+    private async Task Dialog7Canceled()
+    {
+        await Dialog7.HideAsync();
+        ToastService.ShowToast(heading: "Logon Dialog #2 Canceled", message: "The cancel button was selected", level: MBToastLevel.Success, showIcon: false);
     }
 
     private class UserLogonDefinition

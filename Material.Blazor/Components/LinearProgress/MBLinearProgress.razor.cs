@@ -30,7 +30,8 @@ namespace Material.Blazor
         /// <summary>
         /// Sets the buffer value (no buffer if not set).
         /// </summary>
-        [Parameter] public double? BufferValue
+        [Parameter]
+        public double? BufferValue
         {
             get => _bufferValue;
             set
@@ -39,7 +40,7 @@ namespace Material.Blazor
                 {
                     _bufferValue = value;
                     OnValueSetCallback(null, null);
-                }    
+                }
             }
         }
 

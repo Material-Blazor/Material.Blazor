@@ -27,8 +27,8 @@ namespace Material.Blazor
         /// The dialog title.
         /// </summary>
         [Parameter] public string Title { get; set; }
-        
-        
+
+
         /// <summary>
         /// Optional confirmation text. If omitted a random six digit code is generated for confirmation.
         /// </summary>
@@ -84,8 +84,8 @@ namespace Material.Blazor
         private string EnteredText { get; set; } = "";
         private bool Confirmed { get; set; } = false;
         private string MyConfirmationPhrase => string.IsNullOrWhiteSpace(ConfirmationPhrase) ? digitText : ConfirmationPhrase;
-        
-        
+
+
         private string digitText = "";
 
 

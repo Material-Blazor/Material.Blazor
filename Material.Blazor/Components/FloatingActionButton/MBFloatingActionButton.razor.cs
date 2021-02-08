@@ -39,7 +39,7 @@ namespace Material.Blazor
         /// </summary>
         [Parameter] public MBFloatingActionButtonType Type { get; set; }
 
-        
+
         /// <summary>
         /// Sets the label, which is ignored for anything other than the extended variant.
         /// </summary>
@@ -56,7 +56,8 @@ namespace Material.Blazor
         /// <summary>
         /// Leading icon if false, otherwise trailine, and only applied to the extended variant.
         /// </summary>
-        [Parameter] public bool Exited
+        [Parameter]
+        public bool Exited
         {
             get => exited;
             set

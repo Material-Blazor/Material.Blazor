@@ -17,6 +17,13 @@
                         <h2 id="@titleId" class="mdc-dialog__title">@Title</h2>
                     }
 
+                    @if (HasCustomHeader)
+                    {
+                        <div id="@headerId" class="mb-dialog__header">
+                            @CustomHeader
+                        </div>
+                    }
+
                     @if (HasBody)
                     {
                         <div id="@bodyId" class="mdc-dialog__content">

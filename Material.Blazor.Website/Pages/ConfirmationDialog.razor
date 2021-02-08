@@ -6,10 +6,10 @@
 
 
 <DemonstrationPage ComponentName="ConfirmationDialog"
-                   Title="ConfirmationDialog Demonstration"
                    DemoComponent="@this"
                    MaterialIOPage="mdc-dialog#dialogs"
-                   MinDensity="MBDensity.Minus4">
+                   MinDensity="MBDensity.Minus4"
+                   Title="ConfirmationDialog Demonstration">
     <Description>
         <p>
             ConfirmationDialog samples. Click each card to launch a dialog.
@@ -34,7 +34,8 @@
 
 
         <div class="mdc-layout-grid__cell--span-4">
-            <MBCard AutoStyled="true" @onclick="@ShowDialog3Async">
+            <MBCard AutoStyled="true"
+                    @onclick="@ShowDialog3Async">
                 <PrimaryAction>
                     <div class="mb-card__primary">
                         <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
@@ -50,7 +51,8 @@
 
 
         <div class="mdc-layout-grid__cell--span-4">
-            <MBCard AutoStyled="true" @onclick="@ShowDialog6Async">
+            <MBCard AutoStyled="true"
+                    @onclick="@ShowDialog6Async">
                 <PrimaryAction>
                     <div class="mb-card__primary">
                         <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
@@ -73,33 +75,55 @@
                       Title="Default confirmation dialog" />
 
 
-<MBConfirmationDialog @ref="@Dialog3"
-                      Title="Tailored confirmation dialog" ConfirmationPhrase="overridden confirmation"
-                      ActionPhrase="to play handball"
-                      ConfirmationDisabled="@DisableInput">
+<MBConfirmationDialog ActionPhrase="to play handball"
+                      ConfirmationDisabled="@DisableInput"
+                      @ref="@Dialog3"
+                      Title="Tailored confirmation dialog" ConfirmationPhrase="overridden confirmation">
     <Body>
         <p>Some markup before the confirmation message and input.</p>
-        <p><MBCheckbox @bind-Value="@DisableInput" Label="Disable confirmation input field" /></p>
+        <p>
+            <MBCheckbox @bind-Value="@DisableInput"
+                        Label="Disable confirmation input field" />
+        </p>
     </Body>
     <UnconfirmedButtons>
-        <MBButton Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
-        <MBButton Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
-        <MBButton Label="Bosh" LeadingIcon="sports_handball" Disabled="true" DialogAction="bosh" ButtonStyle="MBButtonStyle.ContainedRaised" />
+        <MBButton DialogAction="bish"
+                  Label="Bish"
+                  LeadingIcon="alarm_on" />
+        <MBButton DialogAction="bash"
+                  Label="Bash"
+                  LeadingIcon="accessibility_new" />
+        <MBButton ButtonStyle="MBButtonStyle.ContainedRaised"
+                  DialogAction="bosh"
+                  Disabled="true"
+                  Label="Bosh"
+                  LeadingIcon="sports_handball" />
     </UnconfirmedButtons>
     <ConfirmedButtons>
-        <MBButton Label="Bish" LeadingIcon="alarm_on" DialogAction="bish" />
-        <MBButton Label="Bash" LeadingIcon="accessibility_new" DialogAction="bash" />
-        <MBButton Label="Bosh" LeadingIcon="sports_handball" DialogAction="bosh" ButtonStyle="MBButtonStyle.ContainedRaised" />
+        <MBButton DialogAction="bish"
+                  Label="Bish"
+                  LeadingIcon="alarm_on" />
+        <MBButton DialogAction="bash"
+                  Label="Bash"
+                  LeadingIcon="accessibility_new" />
+        <MBButton ButtonStyle="MBButtonStyle.ContainedRaised"
+                  DialogAction="bosh"
+                  Label="Bosh"
+                  LeadingIcon="sports_handball" />
     </ConfirmedButtons>
 </MBConfirmationDialog>
 
 
-<MBConfirmationDialog @ref="@Dialog6"
-                      Title="Date Picker Confirmation Dialog"
-                      OverflowVisible="true">
+<MBConfirmationDialog OverflowVisible="true"
+                      @ref="@Dialog6"
+                      Title="Date Picker Confirmation Dialog">
     <Body>
         <p>Set the date.</p>
-        <MBDatePicker Label="The date" @bind-Value="@Date6" SelectInputStyle="MBSelectInputStyle.Outlined" MinDate="@MinDate" MaxDate="@MaxDate"></MBDatePicker>
+        <MBDatePicker @bind-Value="@Date6"
+                      Label="The date"
+                      MaxDate="@MaxDate"
+                      MinDate="@MinDate"
+                      SelectInputStyle="MBSelectInputStyle.Outlined" />
     </Body>
 </MBConfirmationDialog>
 

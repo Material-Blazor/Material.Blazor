@@ -17,7 +17,7 @@ namespace Material.Blazor.Internal
         private readonly string[] EventAttributeNames = { "onfocus", "onblur", "onfocusin", "onfocusout", "onmouseover", "onmouseout", "onmousemove", "onmousedown", "onmouseup", "onclick", "ondblclick", "onwheel", "onmousewheel", "oncontextmenu", "ondrag", "ondragend", "ondragenter", "ondragleave", "ondragover", "ondragstart", "ondrop", "onkeydown", "onkeyup", "onkeypress", "onchange", "oninput", "oninvalid", "onreset", "onselect", "onselectstart", "onselectionchange", "onsubmit", "onbeforecopy", "onbeforecut", "onbeforepaste", "oncopy", "oncut", "onpaste", "ontouchcancel", "ontouchend", "ontouchmove", "ontouchstart", "ontouchenter", "ontouchleave", "ongotpointercapture", "onlostpointercapture", "onpointercancel", "onpointerdown", "onpointerenter", "onpointerleave", "onpointermove", "onpointerout", "onpointerover", "onpointerup", "oncanplay", "oncanplaythrough", "oncuechange", "ondurationchange", "onemptied", "onpause", "onplay", "onplaying", "onratechange", "onseeked", "onseeking", "onstalled", "onstop", "onsuspend", "ontimeupdate", "onvolumechange", "onwaiting", "onloadstart", "ontimeout", "onabort", "onload", "onloadend", "onprogress", "onerror", "onactivate", "onbeforeactivate", "onbeforedeactivate", "ondeactivate", "onended", "onfullscreenchange", "onfullscreenerror", "onloadeddata", "onloadedmetadata", "onpointerlockchange", "onpointerlockerror", "onreadystatechange", "onscroll" };
         private readonly string[] AriaAttributeNames = { "aria-activedescendant", "aria-atomic", "aria-autocomplete", "aria-busy", "aria-checked", "aria-controls", "aria-describedat", "aria-describedby", "aria-disabled", "aria-dropeffect", "aria-expanded", "aria-flowto", "aria-grabbed", "aria-haspopup", "aria-hidden", "aria-invalid", "aria-label", "aria-labelledby", "aria-level", "aria-live", "aria-multiline", "aria-multiselectable", "aria-orientation", "aria-owns", "aria-posinset", "aria-pressed", "aria-readonly", "aria-relevant", "aria-required", "aria-selected", "aria-setsize", "aria-sort", "aria-valuemax", "aria-valuemin", "aria-valuenow", "aria-valuetext" };
         private bool? disabled = null;
-        
+
         [Inject] private protected IJSRuntime JsRuntime { get; set; }
         [Inject] private protected IMBTooltipService TooltipService { get; set; }
         [Inject] private protected ILogger<ComponentFoundation> Logger { get; set; }
@@ -37,7 +37,8 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Indicates whether the component is disabled.
         /// </summary>
-        [Parameter] public bool? Disabled
+        [Parameter]
+        public bool? Disabled
         {
             get => disabled;
             set
@@ -76,9 +77,9 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Attributes for splatting to be set by a component's OnInitialized() function.
         /// </summary>
-        private protected IDictionary<string, object> ComponentSetAttributes { get; set; } = new Dictionary<string, object>();        
-        
-        
+        private protected IDictionary<string, object> ComponentSetAttributes { get; set; } = new Dictionary<string, object>();
+
+
         /// <summary>
         /// Determines whether to apply the disabled attribute.
         /// </summary>
@@ -143,7 +144,7 @@ namespace Material.Blazor.Internal
             {
                 _ = DestroyMcwComponent();
             }
-            
+
             if (disposing && !string.IsNullOrWhiteSpace(Tooltip))
             {
                 TooltipService.RemoveTooltip(TooltipId);

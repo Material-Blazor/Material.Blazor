@@ -10,14 +10,20 @@
 
         @if (!string.IsNullOrWhiteSpace(LeadingIcon))
         {
-            <MBIcon IconName="@LeadingIcon" IconFoundry="@IconFoundry" class="mdc-button__icon" aria-hidden="true" />
+            <MBIcon aria-hidden="true"
+                    class="mdc-button__icon"
+                    IconFoundry="@IconFoundry"
+                    IconName="@LeadingIcon" />
         }
 
         <span class="mdc-button__label">@Label</span>
 
         @if (!string.IsNullOrWhiteSpace(TrailingIcon))
         {
-            <MBIcon IconName="@TrailingIcon" IconFoundry="@IconFoundry" class="mdc-button__icon" aria-hidden="true" />
+            <MBIcon aria-hidden="true"
+                    class="mdc-button__icon"
+                    IconFoundry="@IconFoundry"
+                    IconName="@TrailingIcon" />
         }
     </button>
 </div>

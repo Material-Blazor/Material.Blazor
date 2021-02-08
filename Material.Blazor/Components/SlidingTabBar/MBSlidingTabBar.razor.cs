@@ -30,8 +30,8 @@ namespace Material.Blazor
         /// The tab details plus items to be displayed under the tab bar depending upon tab index.
         /// </summary>
         [Parameter] public IEnumerable<TItem> Items { get; set; }
-        
-        
+
+
         /// <summary>
         /// Label render fragments.
         /// </summary>

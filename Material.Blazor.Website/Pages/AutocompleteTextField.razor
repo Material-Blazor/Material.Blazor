@@ -6,10 +6,10 @@
 
 
 <DemonstrationPage ComponentName="AutocompleteTextField"
-                   Title="Autocomplete Text Field Demonstration"
                    DemoComponent="@this"
                    MinDensity="MBDensity.Minus4"
-                   RequiresDisableSelection="true">
+                   RequiresDisableSelection="true"
+                   Title="Autocomplete Text Field Demonstration">
     <Description>
         <p>
             Shows autocomplete text fields which are Plus components.
@@ -30,9 +30,30 @@
                         the full variety of icon foundries. These are used across the page but it we don't attempt to show each variant everywhere - see the Text Field demo for this.
                     </h3>
 
-                    <p><MBAutocompleteTextField @bind-Value="@Autocomplete1" Label="Blanks disallowed" TextInputStyle="MBTextInputStyle.Filled" SelectItems="@Fruits" LeadingIcon="alarm" AllowBlankResult="false" /></p>
-                    <p><MBAutocompleteTextField @bind-Value="@Autocomplete2" Label="Blanks allowed" TextInputStyle="MBTextInputStyle.Outlined" SelectItems="@Fruits" AllowBlankResult="true" TrailingIcon="fa-dragon" IconFoundry="MBIconHelper.FAFoundry(relativeSize: MBIconFARelativeSize.Large)" /></p>
-                    <p><MBAutocompleteTextField @bind-Value="@Autocomplete3" Label="Whitespace ignored" TextInputStyle="MBTextInputStyle.Filled" SelectItems="@Fruits" AllowBlankResult="true" IgnoreWhitespace="true" /></p>
+                    <p>
+                        <MBAutocompleteTextField AllowBlankResult="false"
+                                                 @bind-Value="@Autocomplete1"
+                                                 Label="Blanks disallowed"
+                                                 LeadingIcon="alarm"
+                                                 SelectItems="@Fruits"
+                                                 TextInputStyle="MBTextInputStyle.Filled" />
+                    </p>
+                    <p>
+                        <MBAutocompleteTextField AllowBlankResult="true"
+                                                 @bind-Value="@Autocomplete2"
+                                                 Label="Blanks allowed"
+                                                 SelectItems="@Fruits"
+                                                 TextInputStyle="MBTextInputStyle.Outlined"
+                                                 TrailingIcon="fa-dragon" IconFoundry="MBIconHelper.FAFoundry(relativeSize: MBIconFARelativeSize.Large)" />
+                    </p>
+                    <p>
+                        <MBAutocompleteTextField AllowBlankResult="true"
+                                                 @bind-Value="@Autocomplete3"
+                                                 IgnoreWhitespace="true"
+                                                 Label="Whitespace ignored"
+                                                 SelectItems="@Fruits"
+                                                 TextInputStyle="MBTextInputStyle.Filled" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>
@@ -50,8 +71,47 @@
                         Shows persistent and non-persistent helper text.
                     </h3>
 
-                    <p><MBAutocompleteTextField Label="Popup Helper Text" @bind-Value="@PopupHelperText" SelectItems="@Fruits" HelperText="Some helper text that pops up" /></p>
-                    <p><MBAutocompleteTextField Label="Persistent Helper Text" @bind-Value="@PersistentHelperText" SelectItems="@Fruits" HelperText="Some persistent helper text" HelperTextPersistent="true" /></p>
+                    <p>
+                        <MBAutocompleteTextField @bind-Value="@PopupHelperText"
+                                                 HelperText="Some helper text that pops up"
+                                                 Label="Popup Helper Text"
+                                                 SelectItems="@Fruits" />
+                    </p>
+                    <p>
+                        <MBAutocompleteTextField @bind-Value="@PersistentHelperText"
+                                                 HelperText="Some persistent helper text"
+                                                 HelperTextPersistent="true"
+                                                 Label="Persistent Helper Text"
+                                                 SelectItems="@Fruits" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Allow custom value
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        The auto-complete items may only be suggestions, but custom values may be permitted. The custom value can be styled with the <code>mb-autocomplete-custom-value</code> class, which we don't define - it's for your use. See this page's code for an example.
+                    </h3>
+
+                    <style>
+                        li.mb-autocomplete-custom-value + li {
+                            border-top: 1px solid darkgray;
+                        }
+                    </style>
+
+                    <p>
+                        <MBAutocompleteTextField AllowCustomValue="true"
+                                                 @bind-Value="@CustomValue"
+                                                 Label="Any value is valid"
+                                                 SelectItems="@Fruits" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>
@@ -70,7 +130,11 @@
         {
             _autocomplete1 = value;
 
-            ToastService.ShowToast(heading: "Autocomplete blanks disallowed", message: $"Value: '{_autocomplete1}'", level: MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(
+                heading: "Autocomplete blanks disallowed",
+                level: MBToastLevel.Success,
+                message: $"Value: '{_autocomplete1}'",
+                showIcon: false);
         }
     }
 
@@ -84,7 +148,11 @@
         {
             _autocomplete2 = value;
 
-            ToastService.ShowToast(heading: "Autocomplete blanks allowed", message: $"Value: '{_autocomplete2}'", level: MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(
+                heading: "Autocomplete blanks allowed",
+                level: MBToastLevel.Success,
+                message: $"Value: '{_autocomplete2}'",
+                showIcon: false);
         }
     }
 
@@ -98,7 +166,11 @@
         {
             _autocomplete3 = value;
 
-            ToastService.ShowToast(heading: "Autocomplete whitespace ignored", message: $"Value: '{_autocomplete3}'", level: MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(
+                heading: "Autocomplete whitespace ignored",
+                level: MBToastLevel.Success,
+                message: $"Value: '{_autocomplete3}'",
+                showIcon: false);
         }
     }
 
@@ -111,7 +183,28 @@
         {
             _popupHelperText = value;
 
-            ToastService.ShowToast(heading: "Popup Helper Text", message: $"Value: '{_popupHelperText}'", level: MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(
+                heading: "Popup Helper Text",
+                level: MBToastLevel.Success,
+                message: $"Value: '{_popupHelperText}'",
+                showIcon: false);
+        }
+    }
+
+
+    private string _customValue = "Customberry";
+    private string CustomValue
+    {
+        get => _customValue;
+        set
+        {
+            _customValue = value;
+
+            ToastService.ShowToast(
+                heading: "Custom Value",
+                level: MBToastLevel.Success,
+                message: $"Value: '{_customValue}'",
+                showIcon: false);
         }
     }
 
@@ -124,7 +217,11 @@
         {
             _persistentHelperText = value;
 
-            ToastService.ShowToast(heading: "Persistent Helper Text", message: $"Value: '{_persistentHelperText}'", level: MBToastLevel.Success, showIcon: false);
+            ToastService.ShowToast(
+                heading: "Persistent Helper Text",
+                level: MBToastLevel.Success,
+                message: $"Value: '{_persistentHelperText}'",
+                showIcon: false);
         }
     }
 }

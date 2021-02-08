@@ -9,7 +9,8 @@
             @if (!string.IsNullOrWhiteSpace(LabelIcon))
             {
                 <span>
-                    <MBIcon IconName="@LabelIcon" IconFoundry="@IconFoundry" />
+                    <MBIcon IconFoundry="@IconFoundry"
+                            IconName="@LabelIcon" />
                 </span>
             }
 
@@ -23,10 +24,11 @@
             @if (!string.IsNullOrWhiteSpace(ValueIcon))
             {
                 <span>
-                    <MBIcon IconName="@ValueIcon" IconFoundry="@IconFoundry" />
+                    <MBIcon IconFoundry="@IconFoundry"
+                            IconName="@ValueIcon" />
                 </span>
             }
-            
+
             <span>@Value</span>
         </span>
     }

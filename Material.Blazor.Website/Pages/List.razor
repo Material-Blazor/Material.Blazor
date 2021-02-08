@@ -17,12 +17,12 @@
 
 
 <DemonstrationPage ComponentName="List"
-                   Title="List Demonstration"
                    DemoComponent="@this"
+                   IsGeneric="true"
                    MaterialIOPage="mdc-list#lists"
                    MinDensity="MBDensity.Minus4"
                    RequiresDisableSelection="true"
-                   IsGeneric="true">
+                   Title="List Demonstration">
     <Description>
         <p>
             Demonstrates lists.
@@ -35,13 +35,25 @@
                                 Items="@ListTypes" />
         </p>
 
-        <p><MBSwitch @bind-Value="@HideLineTwo" Label="Hide line two" /></p>
+        <p>
+            <MBSwitch @bind-Value="@HideLineTwo"
+                      Label="Hide line two" />
+        </p>
 
-        <p><MBSwitch @bind-Value="@HideLineThree" Label="Hide line three" /></p>
+        <p>
+            <MBSwitch @bind-Value="@HideLineThree"
+                      Label="Hide line three" />
+        </p>
 
-        <p><MBSwitch @bind-Value="@KeyboardInteractions" Label="Allow keyboard interactions" /></p>
+        <p>
+            <MBSwitch @bind-Value="@KeyboardInteractions"
+                      Label="Allow keyboard interactions" />
+        </p>
 
-        <p><MBSwitch @bind-Value="@Ripple" Label="Apply ripple" /></p>
+        <p>
+            <MBSwitch @bind-Value="@Ripple"
+                      Label="Apply ripple" />
+        </p>
     </Controls>
 
     <PageContent>
@@ -58,16 +70,16 @@
 
                     <div class="overflow-auto">
                         <p>
-                            <MBList Items="@SingleLineProducts"
-                                    Context="product"
-                                    ShowSeparators="true"
-                                    KeyboardInteractions="@KeyboardInteractions"
-                                    Ripple="@Ripple"
-                                    ListType="@ListType"
-                                    HideLineTwo="@HideLineTwo"
+                            <MBList Context="product"
                                     HideLineThree="@HideLineThree"
+                                    HideLineTwo="@HideLineTwo"
+                                    Items="@SingleLineProducts"
+                                    KeyboardInteractions="@KeyboardInteractions"
+                                    ListStyle="MBListStyle.Outlined"
+                                    ListType="@ListType"
                                     OnClick="OnSingleLineClick"
-                                    ListStyle="MBListStyle.Outlined">
+                                    Ripple="@Ripple"
+                                    ShowSeparators="true">
 
                                 <Icon><MBIcon IconName="local_grocery_store" /></Icon>
                                 <Title>@product.DisplayName</Title>
@@ -175,12 +187,12 @@
 
 @code {
     private IEnumerable<MBSelectElement<MBListType>> ListTypes => from t in (MBListType[])Enum.GetValues(typeof(MBListType))
-                                                                select new MBSelectElement<MBListType>
-                                                                {
-                                                                    SelectedValue = t,
-                                                                    Label = t.ToString(),
-                                                                    Disabled = false
-                                                                };
+                                                                  select new MBSelectElement<MBListType>
+                                                                  {
+                                                                      SelectedValue = t,
+                                                                      Label = t.ToString(),
+                                                                      Disabled = false
+                                                                  };
 
 
 

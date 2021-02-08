@@ -2,9 +2,9 @@
 
 
 <DemonstrationPage ComponentName="CircularProgress"
-                   Title="Circular Progress Demonstration"
                    DemoComponent="@this"
-                   MaterialIOPage="mdc-circular-progress#circular-progress">
+                   MaterialIOPage="mdc-circular-progress#circular-progress"
+                   Title="Circular Progress Demonstration">
     <Description>
         <p>
             Demonstrates circular progress indicators.
@@ -17,7 +17,10 @@
                                 Items="@ProgressLevels" />
         </p>
 
-        <p><MBSwitch @bind-Value="@ShowProgress" Label="Show Progress Indicators" /></p>
+        <p>
+            <MBSwitch @bind-Value="@ShowProgress"
+                      Label="Show Progress Indicators" />
+        </p>
     </Controls>
 
     <PageContent>
@@ -29,19 +32,33 @@
                     </h2>
 
                     <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        Small, medium and large indeterminate and determinate.
+                        Large, medium and small indeterminate and determinate.
                     </h3>
 
                     <p>
                         <MBCircularProgress CircularProgressType="@CircularIndeterminate" />
-                        <MBCircularProgress CircularProgressType="@CircularIndeterminate" CircularProgressSize="MBCircularProgressSize.Medium" />
-                        <MBCircularProgress CircularProgressType="@CircularIndeterminate" CircularProgressSize="MBCircularProgressSize.Small" />
                     </p>
-
                     <p>
-                        <MBCircularProgress Value="@ProgressLevel" CircularProgressType="@CircularDeterminate" />
-                        <MBCircularProgress Value="@ProgressLevel" CircularProgressType="@CircularDeterminate" CircularProgressSize="MBCircularProgressSize.Medium" />
-                        <MBCircularProgress Value="@ProgressLevel" CircularProgressType="@CircularDeterminate" CircularProgressSize="MBCircularProgressSize.Small" />
+                        <MBCircularProgress CircularProgressSize="MBCircularProgressSize.Medium"
+                                            CircularProgressType="@CircularIndeterminate" />
+                    </p>
+                    <p>
+                        <MBCircularProgress CircularProgressSize="MBCircularProgressSize.Small"
+                                            CircularProgressType="@CircularIndeterminate" />
+                    </p>
+                    <p>
+                        <MBCircularProgress CircularProgressType="@CircularDeterminate"
+                                            Value="@ProgressLevel" />
+                    </p>
+                    <p>
+                        <MBCircularProgress CircularProgressSize="MBCircularProgressSize.Medium"
+                                            CircularProgressType="@CircularDeterminate"
+                                            Value="@ProgressLevel" />
+                    </p>
+                    <p>
+                        <MBCircularProgress CircularProgressSize="MBCircularProgressSize.Small"
+                                            CircularProgressType="@CircularDeterminate"
+                                            Value="@ProgressLevel" />
                     </p>
                 </Primary>
             </MBCard>
@@ -56,7 +73,7 @@
         new MBSelectElement<double> { SelectedValue = 0.2, Label = "20% Progress" },
         new MBSelectElement<double> { SelectedValue = 0.5, Label = "50% Progress" },
         new MBSelectElement<double> { SelectedValue = 0.8, Label = "80% Progress" }
-        };
+                    };
 
     private double ProgressLevel { get; set; } = 0.2;
     double? BufferLevel => ProgressLevel + (1 - ProgressLevel) / 3;

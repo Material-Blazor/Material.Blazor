@@ -1,10 +1,9 @@
 ﻿@namespace Material.Blazor.Internal
 @inherits ComponentFoundation
 
-
-<MBButton @onclick="@OnClickAsync"
-          Label="@DisplayYear.ToString()"
-          class="mb-dp-year-pad__button"
+<MBButton @attributes="@Attributes"
           ButtonStyle="@ButtonStyle"
+          class="mb-dp-year-pad__button"
           Disabled="@ButtonDisabled"
-          @attributes="@Attributes" />
+          Label="@DisplayYear.ToString()"
+          @onclick="@OnClickAsync" />

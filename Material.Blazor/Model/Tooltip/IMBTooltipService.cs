@@ -4,17 +4,17 @@ using System;
 namespace Material.Blazor
 {
     /// <summary>
-    /// Interface for the Material.Blazor toast service, developed from the code base of Blazored Toast by Chris Sainty.
-    /// Works in conjunction with a <see cref="MBToastAnchor"/> that must be placed in either App.razor or
-    /// MainLayout.razor to avoid an exception being thrown when you first attempt to show a toast notification.
+    /// Interface for the Material.Blazor tooltip service, developed from the code base of Blazored Toast by Chris Sainty.
+    /// Works in conjunction with a <see cref="MBAnchor"/> that must be placed in either App.razor or
+    /// MainLayout.razor to avoid an exception being thrown when you first attempt to show a tooltip notification.
     /// 
     /// <para>
     /// Throws a <see cref="System.InvalidOperationException"/> if
     /// <see cref="AddTooltip(Guid, RenderFragment)"/>
-    /// is called without an <see cref="MBTooltipAnchor"/> component used in the app.
+    /// is called without an <see cref="MBAnchor"/> component used in the app.
     /// </para>
     /// </summary>
-    internal interface IMBTooltipService
+    public interface IMBTooltipService
     {
         /// <summary>
         /// A event that will be invoked when adding a tooltip
