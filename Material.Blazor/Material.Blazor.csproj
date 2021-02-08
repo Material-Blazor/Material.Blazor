@@ -21,6 +21,10 @@
     <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+  </PropertyGroup>
+  
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">
     <!--<DefineConstants>Logging</DefineConstants>-->
     <DefineConstants>Logging;LoggingVerbose</DefineConstants>
