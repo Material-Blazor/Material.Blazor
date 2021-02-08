@@ -14,9 +14,9 @@ namespace Material.Blazor.Internal
 
         private ElementReference SnackbarReference { get; set; }
         
-        private string Stacked => Snackbar.Settings.Stacked ? "mdc-snackbar--stacked" : null;
+        private string Stacked => Snackbar.Settings.AppliedStacked ? "mdc-snackbar--stacked" : null;
         
-        private string Leading => Snackbar.Settings.Leading ? "mdc-snackbar--leading" : null;
+        private string Leading => Snackbar.Settings.AppliedLeading ? "mdc-snackbar--leading" : null;
 
         private DotNetObjectReference<InternalSnackbar> ObjectReference { get; set; }
 
@@ -50,7 +50,7 @@ namespace Material.Blazor.Internal
             }
 
             Snackbar.Settings.Closed = true;
-            Snackbar.Settings.OnClose?.Invoke(Snackbar);
+            _ = Snackbar.Settings.OnClose?.Invoke(Snackbar);
         }
 
 

@@ -45,7 +45,7 @@ Material.Blazor works with the following package versions:
 
 ## Services and Anchor
 
-Material.Blazor has three services for animated navigation, toasts, and tooltips. We strongly advise you to use these in your project
+Material.Blazor has four services for animated navigation, snackbars, toasts, and tooltips. We strongly advise you to use these in your project
 because regular component tooltips will fail if you don't, although they are optional. To register the services:
 
 ```csharp
@@ -68,7 +68,7 @@ services.AddMBServices(
 );
 ```
 
-The two configurations are optional - see [MBToastServiceConfiguration](xref:Material.Blazor.MBToastServiceConfiguration) and [MBAnimatedNavigationManagerServiceConfiguration](xref:Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration).
+The three configurations are optional - see [MBSnackbarServiceConfiguration](xref:Material.Blazor.MBSnackbarServiceConfiguration), [MBToastServiceConfiguration](xref:Material.Blazor.MBToastServiceConfiguration) and [MBAnimatedNavigationManagerServiceConfiguration](xref:Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration).
 
 When you use the services you must also place an anchor component at the top of `App.razor` - this must not be inside any other components or divs:
 

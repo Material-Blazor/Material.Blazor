@@ -49,6 +49,9 @@
 - name: Theming and CSS
   topicUid: A.ThemingAndCSS
   
+- name: Snackbar
+  topicUid: A.Snackbar
+  
 - name: Toast
   topicUid: A.Toast
 

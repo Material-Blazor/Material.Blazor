@@ -5,12 +5,12 @@
     <div class="mdc-snackbar__surface" role="status" aria-relevant="additions">
         
         <div class="mdc-snackbar__label" aria-atomic="false">
-            @((MarkupString)(Snackbar.Settings.Message ?? ""))
+            @((MarkupString)(Snackbar.Settings.AppliedMessage))
         </div>
 
         @{
-            var hasAction = Snackbar.Settings.Action != null && Snackbar.Settings.ActionText != null;
-            var hasDismiss = Snackbar.Settings.DismissIcon || Snackbar.Settings.AppliedTimeout < 0;
+            var hasAction = Snackbar.Settings.AppliedAction != null && Snackbar.Settings.AppliedActionText != null;
+            var hasDismiss = Snackbar.Settings.AppliedDismissIcon || Snackbar.Settings.AppliedTimeout < 0;
         }
 
         @if (hasAction || hasDismiss)
@@ -18,9 +18,9 @@
             <div class="mdc-snackbar__actions" aria-atomic="true">
                 @if (hasAction)
                 {
-                    <button type="button" class="mdc-button mdc-snackbar__action" @onclick="Snackbar.Settings.Action">
+                    <button type="button" class="mdc-button mdc-snackbar__action" @onclick="Snackbar.Settings.AppliedAction">
                         <div class="mdc-button__ripple"></div>
-                        <span class="mdc-button__label">@Snackbar.Settings.ActionText</span>
+                        <span class="mdc-button__label">@Snackbar.Settings.AppliedActionText</span>
                     </button>
                 }
 

@@ -24,13 +24,13 @@ namespace Material.Blazor
         /// On larger screens, they can optionally be displayed on the leading edge of the screen (the left side in LTR, or the right side in RTL) by setting this property to true.
         /// Default: false.
         /// </summary>
-        public bool Leading { get; set; }
+        public bool? Leading { get; set; }
         /// <summary>
         /// Action buttons with long text should be positioned below the label instead of alongside it.
         /// This can be accomplished by setting this property to true.
         /// Default: false.
         /// </summary>
-        public bool Stacked { get; set; }
+        public bool? Stacked { get; set; }
         /// <summary>
         /// The message to be displayed in the snackbar.
         /// </summary>
@@ -39,7 +39,7 @@ namespace Material.Blazor
         /// Snackbars are intended to dismiss on their own after a few seconds, but a dedicated dismiss icon may be optionally included as well for accessibility purposes.
         /// By default, a dismiss icon is displayed. This can be disabled by setting this property to false.
         /// </summary>
-        public bool DismissIcon { get; set; }
+        public bool? DismissIcon { get; set; }
 
 
         private int? timeout;
@@ -73,7 +73,13 @@ namespace Material.Blazor
         /// </summary>
         internal MBSnackbarServiceConfiguration Configuration { get; set; }
 
-        internal int AppliedTimeout => (Timeout is null) ? Configuration?.Timeout ?? MBSnackbarServiceConfiguration.DefaultTimeout : (int)Timeout;
+        internal int AppliedTimeout => Timeout is not null ? Timeout.Value : Configuration?.Timeout ?? MBSnackbarServiceConfiguration.DefaultTimeout;
+        internal Action AppliedAction => Action; // No default action through Configuration.
+        internal string AppliedActionText => ActionText; // No default action through Configuration.
+        internal bool AppliedLeading => Leading is not null ? Leading.Value : Configuration?.Leading ?? MBSnackbarServiceConfiguration.DefaultLeading;
+        internal bool AppliedStacked => Stacked is not null ? Stacked.Value : Configuration?.Stacked ?? MBSnackbarServiceConfiguration.DefaultStacked;
+        internal string AppliedMessage => Message is not null ? Message : string.Empty;
+        internal bool AppliedDismissIcon => DismissIcon is not null ? DismissIcon.Value : Configuration?.DismissIcon ?? MBSnackbarServiceConfiguration.DefaultDismissIcon;
 
         internal Func<SnackbarInstance, Task> OnClose { get; set; }
         internal bool Closed { get; set; }

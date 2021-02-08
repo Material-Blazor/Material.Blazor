@@ -19,7 +19,8 @@ namespace Material.BlazorWebsite.WebAssembly
 
             builder.Services.AddMBServices(
                 animatedNavigationManagerServiceConfiguration: Utilities.GetDefaultAnimatedNavigationServiceConfiguration(),
-                toastServiceConfiguration: Utilities.GetDefaultToastServiceConfiguration()
+                toastServiceConfiguration: Utilities.GetDefaultToastServiceConfiguration(),
+                snackbarServiceConfiguration: Utilities.GetDefaultSnackbarServiceConfiguration()
             );
 
             await builder.Build().RunAsync();
