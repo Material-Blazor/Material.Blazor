@@ -21,6 +21,10 @@
         public static MBSnackbarServiceConfiguration GetDefaultSnackbarServiceConfiguration() =>
             new()
             {
+                DismissIcon = true,
+                Leading = false,
+                Stacked = false,
+                Timeout = 5000
             };
     }
 }

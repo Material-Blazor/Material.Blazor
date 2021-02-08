@@ -27,7 +27,8 @@ namespace Material.BlazorWebsite.Server
 
             services.AddMBServices(
                 animatedNavigationManagerServiceConfiguration: Utilities.GetDefaultAnimatedNavigationServiceConfiguration(),
-                toastServiceConfiguration: Utilities.GetDefaultToastServiceConfiguration()
+                toastServiceConfiguration: Utilities.GetDefaultToastServiceConfiguration(),
+                snackbarServiceConfiguration: Utilities.GetDefaultSnackbarServiceConfiguration()
             );
         }
 
