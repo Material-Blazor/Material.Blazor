@@ -21,10 +21,7 @@ namespace Material.Blazor
         public int? Timeout
         {
             get => timeout;
-            set
-            {
-                Setter(ref timeout, value switch { null => null, -1 => -1, _ => Math.Max(4000, Math.Min(value.Value, 10000)) });
-            }
+            set => Setter(ref timeout, value switch { null => null, -1 => -1, _ => Math.Max(4000, Math.Min(value.Value, 10000)) });
         }
 
 

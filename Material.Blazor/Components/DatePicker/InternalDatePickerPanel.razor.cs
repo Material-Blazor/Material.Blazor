@@ -20,10 +20,12 @@ namespace Material.Blazor.Internal
         [Parameter] public MBDateSelectionCriteria? DateSelectionCriteria { get; set; }
 
 
+#nullable enable annotations
         /// <summary>
         /// Control whether a date is selectable by evaluating the method.
         /// </summary>
         [Parameter] public Func<DateTime, bool>? DateIsSelectable { get; set; }
+#nullable restore annotations
 
 
         /// <summary>
@@ -105,7 +107,7 @@ namespace Material.Blazor.Internal
             ClassMapperInstance
                 .Add("mdc-typography--body2 mb-dp-container");
 
-            DaysOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedDayNames;
+            DaysOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedDayNames.Select(d => d[0..1]).ToArray();
             var rotate_by = (int)CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
             if (rotate_by > 0)
             {

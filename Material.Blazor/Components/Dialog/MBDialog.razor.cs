@@ -23,9 +23,9 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Render fragment for the dialog header.
+        /// Render fragment for the dialog custom header. This is outside of the Material Theme spec and is a "Plus" feature.
         /// </summary>
-        [Parameter] public RenderFragment Header { get; set; }
+        [Parameter] public RenderFragment CustomHeader { get; set; }
 
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Material.Blazor
         private ElementReference DialogElem { get; set; }
         private bool HasBody => Body != null;
         private bool HasButtons => Buttons != null;
-        private bool HasHeader => Header != null;
+        private bool HasCustomHeader => CustomHeader != null;
         private bool HasTitle => !string.IsNullOrWhiteSpace(Title);
         private List<DialogChildComponent> LayoutChildren { get; set; } = new List<DialogChildComponent>();
         private DotNetObjectReference<MBDialog> ObjectReference { get; set; }

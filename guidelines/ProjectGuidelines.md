@@ -1,3 +1,7 @@
+---
+uid: G.ProjectGuidelines
+title: ProjectGuidelines
+---
 # Material.Blazor Project Guidelines
 
 We do not want our repository to look like this:
@@ -49,7 +53,7 @@ The README file MUST be kept up to date.
 or outdated information in the README.)
 
 
-<h1>TBD - Beginning of text to bew rewritten...</h1>
+# TBD - Beginning of text to be rewritten...
 
 # Tests
 The project MUST have a CI environment configured.
@@ -81,9 +85,9 @@ The project MUST NOT depend on implicit dependencies and globally installed pack
 
 # Branches
 
-The main development branch MUST be called `develop` in the main repo for the project.
+The main development branch MUST be called `main` in the main repo for the project.
 
-Changes MUST NOT be committed directly to the `develop` branch by anyone.
+Changes MUST NOT be committed directly to the `main` branch by anyone.
 
 Every contributor to the project MUST create a private fork of the repo.
 
@@ -94,7 +98,7 @@ All feature branches SHOULD be created on the developer private fork.
 
 (If there is a good reason for that then optionally feature branches MAY be created on the original repo, but that SHOULD be avoided if possible. This is called a **"nonforking variant"** and the reason to use it should be clearly stated in the project's readme to avoid confusion among contributors.)
 
-Every feature branch MUST be branched from the up-to-date `develop` branch and it SHOULD be regularily rebased if there are any changes on `develop` before it gets merged.
+Every feature branch MUST be branched from the up-to-date `main` branch and it SHOULD be regularily rebased if there are any changes on `main` before it gets merged.
 (This is to avoid more complicated merge conflicts when the PR is stale for too long.)
 
 Feature and fix branches SHOULD be named using a convention:
@@ -224,7 +228,7 @@ but it MUST NOT use any real external hosts as default.
 
 # Rebasing
 
-The `develop` branch or any other branch MUST NOT be merged into the
+The `main` branch or any other branch MUST NOT be merged into the
 feature branches to keep the feature branches up-to-date.
 
 (Specifically, the "Update branch" button on GitHub MUST NOT be used

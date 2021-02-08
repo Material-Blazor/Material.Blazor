@@ -3,35 +3,33 @@
 
 <div @ref="SnackbarReference" class="mdc-snackbar @Stacked @Leading">
     <div class="mdc-snackbar__surface" role="status" aria-relevant="additions">
+        
         <div class="mdc-snackbar__label" aria-atomic="false">
             @((MarkupString)(Snackbar.Settings.Message ?? ""))
         </div>
+
         @{
-            var has_action = Snackbar.Settings.Action != null && Snackbar.Settings.ActionText != null;
-            var has_dismiss = Snackbar.Settings.DismissIcon || Snackbar.Settings.AppliedTimeout < 0;
+            var hasAction = Snackbar.Settings.Action != null && Snackbar.Settings.ActionText != null;
+            var hasDismiss = Snackbar.Settings.DismissIcon || Snackbar.Settings.AppliedTimeout < 0;
         }
-        @if (has_action || has_dismiss)
+
+        @if (hasAction || hasDismiss)
         {
             <div class="mdc-snackbar__actions" aria-atomic="true">
-                @if (has_action)
+                @if (hasAction)
                 {
                     <button type="button" class="mdc-button mdc-snackbar__action" @onclick="Snackbar.Settings.Action">
                         <div class="mdc-button__ripple"></div>
                         <span class="mdc-button__label">@Snackbar.Settings.ActionText</span>
                     </button>
                 }
-                @if (has_dismiss)
+
+                @if (hasDismiss)
                 {
                     <button class="mdc-icon-button mdc-snackbar__dismiss material-icons" title="Dismiss">close</button>
                 }
             </div>
         }
+
     </div>
 </div>
-
-@code {
-    private ElementReference SnackbarReference;
-    private string Stacked => Snackbar.Settings.Stacked ? "mdc-snackbar--stacked" : null;
-    private string Leading => Snackbar.Settings.Leading ? "mdc-snackbar--leading" : null;
-    [Parameter] public SnackbarInstance Snackbar { get; set; }
-}

@@ -40,14 +40,14 @@
                                           @onclick="@(() => SnackbarService.ShowSnackbar(
                                                               message: "Can't send photo. Retry in 5 seconds.",
                                                               action: () => SnackbarService.ShowSnackbar("You clicked the action", timeout: 4000),
-                                                              action_text: "retry"))"
+                                                              actionText: "retry"))"
                                           style="margin-bottom: 1rem;" />
 
                                 <MBButton ButtonStyle="@MBButtonStyle.ContainedRaised"
                                           Label="Undismissable"
                                           @onclick="@(() => SnackbarService.ShowSnackbar(
                                                               message: "Wait until I'm gone.",
-                                                              dismiss_icon: false))"
+                                                              dismissIcon: false))"
                                           style="margin-bottom: 1rem;" />
                             </p>
                         </div>
@@ -82,7 +82,7 @@
                                           @onclick="@(() => SnackbarService.ShowSnackbar(
                                                               message: "The action text is rather long, so the action icon is stacked",
                                                               action: () => SnackbarService.ShowSnackbar("You clicked the action", timeout: 4000),
-                                                              action_text: "This text is really rather long",
+                                                              actionText: "This text is really rather long",
                                                               stacked: true))"
                                           style="margin-bottom: 1rem;" />
 

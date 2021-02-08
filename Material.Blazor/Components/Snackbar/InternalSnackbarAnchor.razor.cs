@@ -16,8 +16,9 @@ namespace Material.Blazor.Internal
         [Inject] private IMBSnackbarService SnackbarService { get; set; }
 
 
-        private SnackbarInstance ActiveSnackbar;
-        private ConcurrentQueue<SnackbarInstance> PendingSnackbars = new ConcurrentQueue<SnackbarInstance>();
+        private SnackbarInstance ActiveSnackbar { get; set; }
+        private readonly ConcurrentQueue<SnackbarInstance> pendingSnackbars = new();
+
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override void OnInitialized()
@@ -26,6 +27,8 @@ namespace Material.Blazor.Internal
             SnackbarService.OnTriggerStateHasChanged += OnTriggerStateHasChanged;
         }
 
+
+        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         public new void Dispose()
         {
             SnackbarService.OnAdd -= AddSnackbar;
@@ -50,9 +53,10 @@ namespace Material.Blazor.Internal
                 Settings = settings
             };
 
-            PendingSnackbars.Enqueue(snackbarInstance);
-            ShowNextSnackbarAsync();
+            pendingSnackbars.Enqueue(snackbarInstance);
+            _ = ShowNextSnackbarAsync();
         }
+
 
         private void OnTriggerStateHasChanged()
         {
@@ -65,7 +69,11 @@ namespace Material.Blazor.Internal
                 // It is entirely possible that the renderer has been disposed, so just ignore errors on calling StateHasChanged
             }
         }
-        private readonly SemaphoreSlim queue_semaphore = new SemaphoreSlim(1, 1);
+        
+        
+        private readonly SemaphoreSlim queue_semaphore = new(1, 1);
+        
+        
         private async Task ShowNextSnackbarAsync()
         {
             await queue_semaphore.WaitAsync();
@@ -75,7 +83,7 @@ namespace Material.Blazor.Internal
                 {
                     return;
                 }
-                if (!PendingSnackbars.TryDequeue(out var snackbarInstance)) // if there is no next snackbar, don't do anything
+                if (!pendingSnackbars.TryDequeue(out var snackbarInstance)) // if there is no next snackbar, don't do anything
                 {
                     return;
                 }
@@ -90,9 +98,11 @@ namespace Material.Blazor.Internal
                 queue_semaphore.Release();
             }
         }
+
         private async Task RemoveClosedSnackbarAndDisplayNextAsync(SnackbarInstance instance)
         {
             await queue_semaphore.WaitAsync();
+
             try
             {
                 ActiveSnackbar = null;
@@ -102,6 +112,7 @@ namespace Material.Blazor.Internal
             {
                 queue_semaphore.Release();
             }
+
             await ShowNextSnackbarAsync();
         }
     }

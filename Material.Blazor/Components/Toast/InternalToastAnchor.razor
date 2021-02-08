@@ -7,9 +7,7 @@
     <div class="mb-toast-container @PositionClass">
         @foreach (var toast in DisplayedToasts.OrderBy(x => x.TimeStamp))
         {
-            var toastId = toast.Id;
-
-            <div @key="@toastId" class="mdc-elevation--z5 mb-toast @toast.Settings.ContainerLevelClass @toast.Settings.StatusClass @toast.Settings.AppliedCssClass">
+            <div @key="@toast.Id" class="mdc-elevation--z5 mb-toast @toast.Settings.ContainerLevelClass @toast.Settings.StatusClass @toast.Settings.AppliedCssClass">
 
                 @if (toast.Settings.AppliedShowIcon)
                 {
@@ -34,7 +32,7 @@
                             <MBButton ButtonStyle="@MBButtonStyle.Text"
                                       class="mb-toast-close-button"
                                       LeadingIcon="close"
-                                      @onclick="@(() => CloseToast(toastId))" />
+                                      @onclick="@(() => CloseToast(toast.Id))" />
                         }
                     </div>
 

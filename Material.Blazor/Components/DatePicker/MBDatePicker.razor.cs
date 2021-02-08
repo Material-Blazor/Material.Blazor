@@ -14,6 +14,9 @@ namespace Material.Blazor
     /// </summary>
     public partial class MBDatePicker : InputComponent<DateTime>
     {
+        private static readonly DateTime MinAllowableDate = DateTime.MinValue.AddMonths(1);
+        private static readonly DateTime MaxAllowableDate = DateTime.MaxValue.AddMonths(-1);
+
         /// <summary>
         /// The select style.
         /// <para>Overrides <see cref="MBCascadingDefaults.SelectInputStyle"/></para>
@@ -26,29 +29,32 @@ namespace Material.Blazor
         /// </summary>
         [Parameter] public string Label { get; set; }
 
+
         /// <summary>
         /// Date selection criteria
         /// </summary>
         [Parameter] public MBDateSelectionCriteria? DateSelectionCriteria { get; set; }
 
 
+#nullable enable annotations
         internal static readonly Func<DateTime, bool> DateIsSelectableNotUsed = (_) => true;
         /// <summary>
         /// Control whether a date is selectable by evaluating the method.
         /// </summary>
         [Parameter] public Func<DateTime, bool>? DateIsSelectable { get; set; } = DateIsSelectableNotUsed;
+#nullable restore annotations
 
 
         /// <summary>
         /// Minimum date set by the consumer -- We cannot use the MinDate here as we go back up to a month
         /// </summary>
-        [Parameter] public DateTime MinDate { get; set; } = DateTime.MinValue + new TimeSpan(31, 0, 0, 0);
+        [Parameter] public DateTime MinDate { get; set; } = MinAllowableDate;
 
 
         /// <summary>
         /// Maximum date set by the consumer -- Again, same reason, can't use max date
         /// </summary>
-        [Parameter] public DateTime MaxDate { get; set; } = DateTime.MaxValue - new TimeSpan(31, 0, 0, 0);
+        [Parameter] public DateTime MaxDate { get; set; } = MaxAllowableDate;
 
 
         /// <summary>
@@ -103,6 +109,16 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
+            if (MinDate < MinAllowableDate)
+            {
+                throw new ArgumentOutOfRangeException($"MinDate cannot be before {MinAllowableDate.ToShortDateString()}");
+            }
+
+            if (MaxDate > MaxAllowableDate)
+            {
+                throw new ArgumentOutOfRangeException($"MaxDate cannot be after {MaxAllowableDate.ToShortDateString()}");
+            }
+
             ClassMapperInstance
                 .Add("mdc-select")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
@@ -114,15 +130,6 @@ namespace Material.Blazor
             SetComponentValue += OnValueSetCallback;
 
             OnDisabledSet += OnDisabledSetCallback;
-
-            if (MinDate < DateTime.MinValue + new TimeSpan(31, 0, 0, 0))
-            {
-                throw new ArgumentOutOfRangeException("MinDate");
-            }
-            if (MaxDate > DateTime.MaxValue - new TimeSpan(31, 0, 0, 0))
-            {
-                throw new ArgumentOutOfRangeException("MaxDate");
-            }
         }
 
 

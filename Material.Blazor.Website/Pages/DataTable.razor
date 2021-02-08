@@ -69,11 +69,12 @@
                         Data Table with Progress Bar
                     </h2>
 
-                    <div class="overflow-auto">
-                        <p>
-                            <MBSwitch @bind-Value="@ShowProgress" Lable="Show Progress" />
-                        </p>
+                    <p>
+                        <MBSwitch @bind-Value="@ShowProgress"
+                                    Label="Show Progress" />
+                    </p>
 
+                    <div class="overflow-auto">
                         <p>
                             <MBDataTable class="my-data-table"
                                          Context="item"

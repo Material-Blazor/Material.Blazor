@@ -1,6 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Components;
-
+﻿using Microsoft.AspNetCore.Components;
 using System;
 using System.Threading.Tasks;
 
@@ -40,10 +38,14 @@ namespace Material.Blazor.Internal
         /// </summary>
         [Parameter] public MBDateSelectionCriteria? DateSelectionCriteria { get; set; }
 
+
+#nullable enable annotations
         /// <summary>
         /// Control whether a date is selectable by evaluating the method.
         /// </summary>
         [Parameter] public Func<DateTime, bool>? DateIsSelectable { get; set; }
+#nullable restore annotations
+
 
         /// <summary>
         /// Minimum date set by the consumer

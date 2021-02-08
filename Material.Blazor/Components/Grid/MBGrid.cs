@@ -47,10 +47,12 @@ namespace Material.Blazor
         /// </summary>
         [Parameter] public IEnumerable<MBGridColumnConfiguration<TRowData>> ColumnConfigurations { get; set; } = null;
 
+
         /// <summary>
         /// The Group is an optional boolean indicating that grouping is in effect.
         /// </summary>
         [Parameter] public bool Group { get; set; } = false;
+
 
         /// <summary>
         /// The GroupedOrderedData contains the data to be displayed.
@@ -60,15 +62,20 @@ namespace Material.Blazor
         /// </summary>
         [Parameter] public IEnumerable<KeyValuePair<string, IEnumerable<KeyValuePair<string, TRowData>>>> GroupedOrderedData { get; set; }
 
+
         /// <summary>
         /// A boolean indicating whether the selected row is highlighted
         /// </summary>
         [Parameter] public bool HighlightSelectedRow { get; set; } = false;
 
+
+#nullable enable annotations
         /// <summary>
         /// The KeyExpression is used to add a key to each row of the grid
         /// </summary>
         [Parameter] public Func<TRowData, object>? KeyExpression { get; set; } = null;
+#nullable restore annotations
+
 
         /// <summary>
         /// Measurement determines the unit of size (EM, Percent, PX) or if the grid is to measure the
@@ -76,15 +83,18 @@ namespace Material.Blazor
         /// </summary>
         [Parameter] public MB_Grid_Measurement Measurement { get; set; } = MB_Grid_Measurement.Percent;
 
+        
         /// <summary>
         /// ObscurePMI controls whether or not columns marked as PMI are obscured.
         /// </summary>
         [Parameter] public bool ObscurePMI { get; set; }
 
+
         /// <summary>
         /// Callback for a mouse click
         /// </summary>
         [Parameter] public EventCallback<string> OnMouseClick { get; set; }
+
 
         /// <summary>
         /// Headers are optional

@@ -65,8 +65,8 @@ namespace Material.Blazor
         void ShowSnackbar(
             string message,
             Action action = null,
-            string action_text = null,
-            bool dismiss_icon = true,
+            string actionText = null,
+            bool dismissIcon = true,
             bool leading = false,
             bool stacked = false,
             int? timeout = null,

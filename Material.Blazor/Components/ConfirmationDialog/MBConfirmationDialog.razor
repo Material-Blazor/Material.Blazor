@@ -14,14 +14,16 @@
     <Buttons>
         @if (ConfirmedButtons is null || UnconfirmedButtons is null)
         {
-            <MBButton DialogAction="@ConfirmActionResult"
+            <MBButton ButtonStyle="@(Confirmed ? MBButtonStyle.ContainedUnelevated : MBButtonStyle.Text)"
+                      DialogAction="@ConfirmActionResult"
                       Disabled="@(!Confirmed)"
                       Label="OK"
-                      LeadingIcon="@("check")" />
-            <MBButton ButtonStyle="MBButtonStyle.Text"
+                      LeadingIcon="check" />
+
+            <MBButton ButtonStyle="@MBButtonStyle.Text"
                       DialogAction="@CancelActionResult"
                       Label="Cancel"
-                      LeadingIcon="@("cancel")" />
+                      LeadingIcon="cancel" />
         }
         else
         {

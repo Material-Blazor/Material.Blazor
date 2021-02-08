@@ -7,7 +7,8 @@ namespace Material.Blazor.Internal
     /// </summary>
     internal class SnackbarService : IMBSnackbarService
     {
-        private MBSnackbarServiceConfiguration configuration = new MBSnackbarServiceConfiguration();
+        private MBSnackbarServiceConfiguration configuration = new ();
+
         ///<inheritdoc/>
         public MBSnackbarServiceConfiguration Configuration
         {
@@ -23,6 +24,7 @@ namespace Material.Blazor.Internal
 
         private event Action<MBSnackbarSettings> OnAdd;
         private event Action OnTriggerStateHasChanged;
+
 
         ///<inheritdoc/>
         event Action<MBSnackbarSettings> IMBSnackbarService.OnAdd
@@ -45,6 +47,7 @@ namespace Material.Blazor.Internal
             Configuration = configuration;
         }
 
+
         private void ConfigurationChanged() => OnTriggerStateHasChanged?.Invoke();
 
 
@@ -53,8 +56,8 @@ namespace Material.Blazor.Internal
         public void ShowSnackbar(
             string message,
             Action action = null,
-            string action_text = null,
-            bool dismiss_icon = true,
+            string actionText = null,
+            bool dismissIcon = true,
             bool leading = false,
             bool stacked = false,
             int? timeout = null,
@@ -72,8 +75,8 @@ namespace Material.Blazor.Internal
             {
                 Action = action,
                 Message = message,
-                ActionText = action_text,
-                DismissIcon = dismiss_icon,
+                ActionText = actionText,
+                DismissIcon = dismissIcon,
                 Leading = leading,
                 Stacked = stacked,
                 Timeout = timeout
