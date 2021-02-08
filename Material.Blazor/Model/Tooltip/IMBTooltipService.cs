@@ -14,7 +14,7 @@ namespace Material.Blazor
     /// is called without an <see cref="MBTooltipAnchor"/> component used in the app.
     /// </para>
     /// </summary>
-    internal interface IMBTooltipService
+    public interface IMBTooltipService
     {
         /// <summary>
         /// A event that will be invoked when adding a tooltip
