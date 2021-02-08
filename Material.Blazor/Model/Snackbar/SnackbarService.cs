@@ -57,7 +57,7 @@ namespace Material.Blazor.Internal
             string message,
             Action action = null,
             string actionText = null,
-            bool dismissIcon = true,
+            MBNotifierCloseMethod? closeMethod = null,
             bool leading = false,
             bool stacked = false,
             int? timeout = null,
@@ -76,7 +76,7 @@ namespace Material.Blazor.Internal
                 Action = action,
                 Message = message,
                 ActionText = actionText,
-                DismissIcon = dismissIcon,
+                CloseMethod = closeMethod,
                 Leading = leading,
                 Stacked = stacked,
                 Timeout = timeout

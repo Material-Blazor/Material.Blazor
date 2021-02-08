@@ -20,7 +20,7 @@ this gracefully.
 Consider an empty outlined text field before and after a user gives it focus as below. Note how the label floats up and how both it and
 the border gain color:
 
-<img src="../images/text-field-focus.png" alt="Text Field Gaining Focus"></img>
+<img src="/images/text-field-focus.png" alt="Text Field Gaining Focus"></img>
 
 The text field's markup however has three distinct state. First what any app environment (including your app using Material.Blazor) marks
 up in a page, then what this becomes once the text field has been initiated and manipulated by MCW and lastly 
@@ -87,7 +87,7 @@ parameter.
 
 The principle is like this:
 
-<img src="../images/two-way-bind-flow.png" alt="Two Way Binding Flow"></img>
+<img src="/images/two-way-bind-flow.png" alt="Two Way Binding Flow"></img>
 
 Each component inheriting from `InputComponent` implements this mechanism separately calling the JavaScript provided
 by MCW for that component:

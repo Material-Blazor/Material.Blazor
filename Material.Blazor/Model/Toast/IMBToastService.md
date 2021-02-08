@@ -10,7 +10,7 @@ Manages toast notification.
 
 ## Details
 
-- See the [toast article](xref:A.Toast) for usage details;
+- See the [toast article](xref:A.ToastAndSnackbar) for usage details;
 - Requires an [MBAnchor](xref:C.MBAnchor) component and will throw an exception when you attempt to show a toast notification if this isn't found; and
 - Accepts an optional [MBToastServiceConfiguration](xref:Material.Blazor.MBToastServiceConfiguration).
 

@@ -9,7 +9,7 @@ namespace Material.Blazor.Internal
 {
     /// <summary>
     /// An anchor component that displays toast notification that you display via
-    /// <see cref="IMBToastService.ShowToast(MBToastLevel, string, string, MBToastCloseMethod?, string, string, IMBIconFoundry?, bool?, uint?, bool)"/>.
+    /// <see cref="IMBToastService.ShowToast(MBToastLevel, string, string, MBNotifierCloseMethod?, string, string, IMBIconFoundry?, bool?, uint?, bool)"/>.
     /// Place this component at the top of either App.razor or MainLayout.razor.
     /// </summary>
     public partial class InternalToastAnchor : ComponentFoundation
@@ -102,7 +102,7 @@ namespace Material.Blazor.Internal
 
                 DisplayedToasts.Add(toastInstance);
 
-                if (toastInstance.Settings.AppliedCloseMethod != MBToastCloseMethod.CloseButton)
+                if (toastInstance.Settings.AppliedCloseMethod != MBNotifierCloseMethod.DismissButton)
                 {
                     InvokeAsync(() =>
                     {

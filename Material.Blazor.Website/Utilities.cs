@@ -14,14 +14,14 @@
             new()
             {
                 Position = MBToastPosition.TopRight,
-                CloseMethod = MBToastCloseMethod.Timeout,
+                CloseMethod = MBNotifierCloseMethod.Timeout,
             };
 
 
         public static MBSnackbarServiceConfiguration GetDefaultSnackbarServiceConfiguration() =>
             new()
             {
-                DismissIcon = true,
+                CloseMethod = MBNotifierCloseMethod.TimeoutAndDismissButton,
                 Leading = false,
                 Stacked = false,
                 Timeout = 5000

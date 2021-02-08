@@ -51,8 +51,8 @@
     "resource": [
       {
         "files": [
-          "images/**.png",
-          "images/**.jpg",
+          "**/images/**.png",
+          "**/images/**.jpg",
           ".nojekyll",
           "404.html",
           "*html.txt"

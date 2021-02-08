@@ -7,7 +7,7 @@
     public interface IMBDialog
     {
         /// <summary>
-        /// The child component should implement <see cref="DialogChildComponent"/> and call this when running <see cref="Microsoft.AspNetCore.Components.Componentbase.OnInitialized()"/>
+        /// The child component should implement <see cref="DialogChildComponent"/> and call this when running <code>OnInitialized()</code>.
         /// </summary>
         /// <param name="child">The child components that implements <see cref="DialogChildComponent"/></param>
         void RegisterLayoutAction(DialogChildComponent child);

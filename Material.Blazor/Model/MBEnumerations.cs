@@ -689,15 +689,15 @@
 
 
     /// <summary>
-    /// Determines whether a toast notfication times out and whether it has a close button.
-    /// <para>Defaults to <see cref="TimeoutAndCloseButton"/></para>
+    /// Determines whether a snackbar or a toast notfication times out and whether it has a dismiss button.
+    /// <para>Defaults to <see cref="TimeoutAndDismissButton"/></para>
     /// </summary>
-    public enum MBToastCloseMethod
+    public enum MBNotifierCloseMethod
     {
         /// <summary>
-        /// Apply a timeout and show the close button. This is the default.
+        /// Apply a timeout and show the dismiss button. This is the default.
         /// </summary>
-        TimeoutAndCloseButton,
+        TimeoutAndDismissButton,
 
         /// <summary>
         /// Apply a timeout only.
@@ -705,9 +705,9 @@
         Timeout,
 
         /// <summary>
-        /// Show the close button only.
+        /// Show the dismiss button only.
         /// </summary>
-        CloseButton
+        DismissButton
     }
 
 

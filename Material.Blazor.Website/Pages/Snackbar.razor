@@ -47,7 +47,7 @@
                                           Label="Undismissable"
                                           @onclick="@(() => SnackbarService.ShowSnackbar(
                                                               message: "Wait until I'm gone.",
-                                                              dismissIcon: false))"
+                                                              closeMethod: MBNotifierCloseMethod.Timeout))"
                                           style="margin-bottom: 1rem;" />
                             </p>
                         </div>
@@ -116,7 +116,7 @@
                                           Label="Disabled timeout"
                                           @onclick="@(() => SnackbarService.ShowSnackbar(
                                                               message: "You need to dismiss this message yourself",
-                                                              timeout: -1))"
+                                                              closeMethod: MBNotifierCloseMethod.DismissButton))"
                                           style="margin-bottom: 1rem;" />
                                 <MBButton ButtonStyle="@MBButtonStyle.ContainedRaised"
                                           Label="Shortest timeout"

@@ -10,7 +10,7 @@ Manages snackbar notification.
 
 ## Details
 
-- See the [snackbar article](xref:A.Snackbar) for usage details;
+- See the [snackbar article](xref:A.ToastAndSnackbar) for usage details;
 - Requires an [MBAnchor](xref:C.MBAnchor) component and will throw an exception when you attempt to show a snackbar notification if this isn't found; and
 - Accepts an optional [MBSnackbarServiceConfiguration](xref:Material.Blazor.MBSnackbarServiceConfiguration).
 
