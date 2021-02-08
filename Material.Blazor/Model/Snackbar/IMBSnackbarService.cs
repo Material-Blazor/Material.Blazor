@@ -4,20 +4,20 @@ namespace Material.Blazor
 {
     /// <summary>
     /// Interface for the Material.Blazor snackbar service, developed from the code base of Blazored Snackbar by Chris Sainty.
-    /// Works in conjunction with a <see cref="MBSnackbarAnchor"/> that must be placed in either App.razor or
+    /// Works in conjunction with a <see cref="MBAnchor"/> that must be placed in either App.razor or
     /// MainLayout.razor to avoid an exception being thrown when you first attempt to show a snackbar notification.
     /// 
     /// <para>
     /// Throws a <see cref="System.InvalidOperationException"/> if
     /// <see cref="ShowSnackbar"/>
-    /// is called without an <see cref="MBSnackbarAnchor"/> component used in the app.
+    /// is called without an <see cref="MBAnchor"/> component used in the app.
     /// </para>
     /// <example>
     /// <para>You can optionally add configuration when you add this to the service collection:</para>
     /// <code>
-    /// services.AddMBSnackbarService(new MBSnackbarServiceConfiguration()
+    /// services.AddMBServices(snackbarServiceConfiguration: new MBSnackbarServiceConfiguration()
     /// {
-    ///     Postion = MBSnackbarPosition.TopRight,
+    ///     Timeout = 4000,
     ///     CloseMethod = MBSnackbarCloseMethod.Timeout,
     ///     ... etc
     /// });
@@ -54,9 +54,9 @@ namespace Material.Blazor
         /// when registering services. Failing that Material.Blazor provides defaults.
         /// </summary>
         /// <param name="message">Body text in the snackbar</param>
-        /// <param name="action">The action that is performed when the button in the snackbar is clicked (optional. if set, <see cref="actionText"/> must also be set)</param>
-        /// <param name="actionText">The text to display in the action button in the snackbar (optional. if set, <see cref="action"/> must also be set)</param>
-        /// <param name="dismissIcon">Snackbars are intended to dismiss on their own after a few seconds, but a dedicated dismiss icon may be optionally included as well for accessibility purposes</param>
+        /// <param name="action">The action that is performed when the button in the snackbar is clicked (optional. if set, 'actionText' must also be set)</param>
+        /// <param name="actionText">The text to display in the action button in the snackbar (optional. if set, 'action' must also be set)</param>
+        /// <param name="closeMethod">Snackbars are intended to dismiss on their own after a few seconds, but a dedicated dismiss icon may be optionally included as well for accessibility purposes</param>
         /// <param name="leading">By default, snackbars are centered horizontally within the viewport. On larger screens, they can optionally be displayed on the leading edge of the screen (the left side in LTR, or the right side in RTL)</param>
         /// <param name="stacked">Action buttons with long text should be positioned below the label instead of alongside it</param>
         /// <param name="timeout">Length of time before autodismiss</param>

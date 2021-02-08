@@ -10,8 +10,7 @@ Manages tooltips.
 
 ## Details
 
-- Requires a [MBAnchor](xref:C.MBAnchor) component and will throw an exception when you attempt to show a tooltip notification if this isn't found; and
-- Accepts an optional [MBTooltipServiceConfiguration](xref:Material.Blazor.MBTooltipServiceConfiguration).
+Requires a [MBAnchor](xref:C.MBAnchor) component and will throw an exception when you attempt to show a tooltip notification if this isn't found;
 
 &nbsp;
 
