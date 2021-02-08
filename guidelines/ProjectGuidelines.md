@@ -16,7 +16,7 @@ Note: Those are actual screenshots of real life commercial projects before and a
 
 # Introduction
 
-This documment explains how the Material.Blazor project is set up and developed
+This document explains how the Material.Blazor project is set up and developed
 using Git in general and GitHub in particular.
 It consists of rules that proved to work well over the years in
 multiple commercial and open-source projects,
@@ -53,7 +53,7 @@ The README file MUST be kept up to date.
 or outdated information in the README.)
 
 
-# TBD - Beginning of text to be rewritten...
+<h1> TBD - Beginning of text to be rewritten...</h1>
 
 # Tests
 The project MUST have a CI environment configured.
