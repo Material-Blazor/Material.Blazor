@@ -9,7 +9,7 @@ namespace Material.Blazor
     /// 
     /// <para>
     /// Throws a <see cref="System.InvalidOperationException"/> if
-    /// <see cref="ShowToast(MBToastLevel, string, string, MBToastCloseMethod?, string, string, IMBIconFoundry?, bool?, uint?, bool)"/>
+    /// <see cref="ShowToast(MBToastLevel, string, string, MBNotifierCloseMethod?, string, string, IMBIconFoundry?, bool?, uint?, bool)"/>
     /// is called without an <see cref="MBToastAnchor"/> component used in the app.
     /// </para>
     /// <example>
@@ -68,7 +68,7 @@ namespace Material.Blazor
             MBToastLevel level,
             string message,
             string heading = null,
-            MBToastCloseMethod? closeMethod = null,
+            MBNotifierCloseMethod? closeMethod = null,
             string cssClass = null,
             string iconName = null,
             IMBIconFoundry? iconFoundry = null,

@@ -66,7 +66,7 @@ namespace Material.Blazor
             string message,
             Action action = null,
             string actionText = null,
-            bool dismissIcon = true,
+            MBNotifierCloseMethod? closeMethod = null,
             bool leading = false,
             bool stacked = false,
             int? timeout = null,

@@ -27,7 +27,7 @@
                             <h5 class="mdc-typography--subtitle1">@((MarkupString)toast.Settings.AppliedHeading)</h5>
                         </div>
 
-                        @if (toast.Settings.CloseMethod != MBToastCloseMethod.Timeout)
+                        @if (toast.Settings.CloseMethod != MBNotifierCloseMethod.Timeout)
                         {
                             <MBButton ButtonStyle="@MBButtonStyle.Text"
                                       class="mb-toast-close-button"

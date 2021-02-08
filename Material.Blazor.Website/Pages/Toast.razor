@@ -219,9 +219,9 @@
                                             };
 
 
-    private MBToastCloseMethod CloseMethod { get; set; }
-    private readonly IEnumerable<MBSelectElement<MBToastCloseMethod>> closeMethodItems = from c in (MBToastCloseMethod[])Enum.GetValues(typeof(MBToastCloseMethod))
-                                                                                         select new MBSelectElement<MBToastCloseMethod>
+    private MBNotifierCloseMethod CloseMethod { get; set; }
+    private readonly IEnumerable<MBSelectElement<MBNotifierCloseMethod>> closeMethodItems = from c in (MBNotifierCloseMethod[])Enum.GetValues(typeof(MBNotifierCloseMethod))
+                                                                                         select new MBSelectElement<MBNotifierCloseMethod>
                                                                                          {
                                                                                              SelectedValue = c,
                                                                                              Label = c.ToString()

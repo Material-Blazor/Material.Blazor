@@ -10,7 +10,7 @@
 
         @{
             var hasAction = Snackbar.Settings.AppliedAction != null && Snackbar.Settings.AppliedActionText != null;
-            var hasDismiss = Snackbar.Settings.AppliedDismissIcon || Snackbar.Settings.AppliedTimeout < 0;
+            var hasDismiss = Snackbar.Settings.AppliedCloseMethod != MBNotifierCloseMethod.Timeout;
         }
 
         @if (hasAction || hasDismiss)

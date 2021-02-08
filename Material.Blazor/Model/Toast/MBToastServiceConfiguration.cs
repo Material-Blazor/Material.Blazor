@@ -11,7 +11,7 @@ namespace Material.Blazor
         public const MBToastPosition DefaultPosition = MBToastPosition.BottomRight;
         public const string DefaultCloseButtonIcon = "close";
         public const bool DefaultShowIcons = true;
-        public const MBToastCloseMethod DefaultCloseMethod = MBToastCloseMethod.TimeoutAndCloseButton;
+        public const MBNotifierCloseMethod DefaultCloseMethod = MBNotifierCloseMethod.TimeoutAndDismissButton;
         public const int DefaultTimeout = 3000;
         public const string DefaultInfoIconName = "notifications";
         public const string DefaultSuccessIconName = "done";
@@ -40,16 +40,16 @@ namespace Material.Blazor
         public bool ShowIcons { get => showIcons; set => Setter(ref showIcons, value); }
 
 
-        private MBToastCloseMethod closeMethod = DefaultCloseMethod;
+        private MBNotifierCloseMethod closeMethod = DefaultCloseMethod;
         /// <summary>
-        /// Determines how the toast closes. Defaults to <see cref="MBToastCloseMethod.TimeoutAndCloseButton"/>.
+        /// Determines how the toast closes. Defaults to <see cref="MBNotifierCloseMethod.TimeoutAndDismissButton"/>.
         /// </summary>
-        public MBToastCloseMethod CloseMethod { get => closeMethod; set => Setter(ref closeMethod, value); }
+        public MBNotifierCloseMethod CloseMethod { get => closeMethod; set => Setter(ref closeMethod, value); }
 
 
         private uint timeout = DefaultTimeout;
         /// <summary>
-        /// Timeout in milliseconds until the toast automatically closes. Defaults to 3000 and ignored if <see cref="MBToastServiceConfiguration.CloseMethod"/> is <see cref="MBToastCloseMethod.CloseButton"/>.
+        /// Timeout in milliseconds until the toast automatically closes. Defaults to 3000 and ignored if <see cref="MBToastServiceConfiguration.CloseMethod"/> is <see cref="MBNotifierCloseMethod.DismissButton"/>.
         /// </summary>
         public uint Timeout { get => timeout; set => Setter(ref timeout, value); }
 

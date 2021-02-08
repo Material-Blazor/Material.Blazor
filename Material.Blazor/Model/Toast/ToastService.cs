@@ -54,7 +54,7 @@ namespace Material.Blazor.Internal
             MBToastLevel level,
             string message,
             string heading = null,
-            MBToastCloseMethod? closeMethod = null,
+            MBNotifierCloseMethod? closeMethod = null,
             string cssClass = null,
             string iconName = null,
             IMBIconFoundry? iconFoundry = null,

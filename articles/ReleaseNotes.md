@@ -31,6 +31,7 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 - MBSegmentedButtonMulti - a multi select variant of segmented buttons, which have been added to Material Components Web 9.0.0.
 - MBSegmentedButtonSingle - a single select variant of segmented buttons, which have been added to Material Components Web 9.0.0.
 - MBSlider - a continuous and discrete single-thumb slider.
+- MBSnackbar - a core Material Theme snackbar component.
 
 
 **Breaking Changes**

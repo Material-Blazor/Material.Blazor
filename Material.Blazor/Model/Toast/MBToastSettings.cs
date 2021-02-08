@@ -52,9 +52,9 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// How the toast message gets closed. See <see cref="MBToastCloseMethod"/>.
+        /// How the toast message gets closed. See <see cref="MBNotifierCloseMethod"/>.
         /// </summary>
-        public MBToastCloseMethod? CloseMethod { get; set; }
+        public MBNotifierCloseMethod? CloseMethod { get; set; }
 
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace Material.Blazor
 
         internal IMBIconFoundry AppliedIconFoundry => (IconFoundry is null) ? Configuration?.IconFoundry ?? new IconFoundryMI() : IconFoundry;
 
-        internal MBToastCloseMethod AppliedCloseMethod => (CloseMethod is null) ? Configuration?.CloseMethod ?? MBToastServiceConfiguration.DefaultCloseMethod : (MBToastCloseMethod)CloseMethod;
+        internal MBNotifierCloseMethod AppliedCloseMethod => (CloseMethod is null) ? Configuration?.CloseMethod ?? MBToastServiceConfiguration.DefaultCloseMethod : (MBNotifierCloseMethod)CloseMethod;
 
         internal uint AppliedTimeout => (Timeout is null) ? Configuration?.Timeout ?? MBToastServiceConfiguration.DefaultTimeout : (uint)Timeout;
 
