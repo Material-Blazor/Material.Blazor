@@ -661,33 +661,33 @@ namespace Material.Blazor
         /// <summary>
         /// The standard variety.
         /// </summary>
-        Standard,
+        Standard = 0,
 
         /// <summary>
         /// The fixed variety.
         /// </summary>
-        Fixed,
+        Fixed = 1 << 0,
 
 
         /// <summary>
         /// The dense variety.
         /// </summary>
-        Dense,
+        Dense = 1 << 1,
 
         /// <summary>
         /// The prominent variety.
         /// </summary>
-        Prominent,
+        Prominent = 1 << 2,
 
         /// <summary>
         /// The short variety.
         /// </summary>
-        Short,
+        Short = 1 << 3,
 
         /// <summary>
         /// The short collapsed variety.
         /// </summary>
-        ShortCollapsed
+        ShortCollapsed = 1 << 4
     }
 
 
