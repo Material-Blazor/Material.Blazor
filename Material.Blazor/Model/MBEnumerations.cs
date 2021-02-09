@@ -1,4 +1,6 @@
-﻿namespace Material.Blazor
+﻿using System;
+
+namespace Material.Blazor
 {
     /// <summary>
     /// Determines what attributes to splat from <see cref="SplatAttributes"/>. Can be specified with bitwise or, eg:
@@ -653,6 +655,7 @@
     /// <summary>
     /// Material Theme top app bar type applied to an <see cref="MBTopAppBar"/>.
     /// </summary>
+    [Flags]
     public enum MBTopAppBarType
     {
         /// <summary>
