@@ -62,8 +62,11 @@ namespace Material.Blazor
 
             ClassMapperInstance
                 .Add("mdc-top-app-bar")
-                .AddIf($"mdc-top-app-bar--{TopAppBarType.ToString().ToLower()}", () => TopAppBarType != MBTopAppBarType.Standard && TopAppBarType != MBTopAppBarType.ShortCollapsed)
-                .AddIf($"mdc-top-app-bar--short mdc-top-app-bar--short-collapsed", () => TopAppBarType == MBTopAppBarType.ShortCollapsed)
+                .AddIf("mdc-top-app-bar--fixed", () => (TopAppBarType & MBTopAppBarType.Fixed) == MBTopAppBarType.Fixed)
+                .AddIf("mdc-top-app-bar--dense", () => (TopAppBarType & MBTopAppBarType.Dense) == MBTopAppBarType.Dense)
+                .AddIf("mdc-top-app-bar--prominent", () => (TopAppBarType & MBTopAppBarType.Prominent) == MBTopAppBarType.Prominent)
+                .AddIf("mdc-top-app-bar--short", () => (TopAppBarType & MBTopAppBarType.Short) == MBTopAppBarType.Short)
+                .AddIf("mdc-top-app-bar--short mdc-top-app-bar--short-collapsed", () => (TopAppBarType & MBTopAppBarType.ShortCollapsed) == MBTopAppBarType.ShortCollapsed)
                 .Add("app-bar");
         }
 
