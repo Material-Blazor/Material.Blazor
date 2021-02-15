@@ -8,10 +8,13 @@
 
     <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-            <MBIconButton @attributes="@AttributesToSplat(SplatType.EventsOnly)"
-                          class="mdc-top-app-bar__action-item--unbounded"
-                          Icon="@NavIcon"
-                          IconFoundry="@IconFoundry" />
+            @if (NavIcon != null)
+            {
+                <MBIconButton @attributes="@AttributesToSplat(SplatType.EventsOnly)"
+                              class="mdc-top-app-bar__action-item--unbounded"
+                              Icon="@NavIcon"
+                              IconFoundry="@IconFoundry" />
+            }
 
             <span class="mdc-top-app-bar__title">@Title</span>
         </section>
