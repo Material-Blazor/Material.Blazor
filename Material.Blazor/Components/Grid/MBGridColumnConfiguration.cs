@@ -6,7 +6,6 @@ namespace Material.Blazor
 {
     public class MBGridColumnConfiguration<TRowData>
     {
-        public bool BoldHeader { get; private set; }
         public Func<TRowData, object> BackgroundColorExpression { get; set; }
         public Color BackgroundColorHeader { get; set; }
         public MB_Grid_ColumnType ColumnType { get; private set; }
@@ -23,7 +22,6 @@ namespace Material.Blazor
         public MBGridColumnConfiguration(
             Expression<Func<TRowData, object>> backgroundColorExpression = null,
             Color? backgroundColorHeader = null,
-            bool boldHeader = true,
             MB_Grid_ColumnType columnType = MB_Grid_ColumnType.Text,
             Expression<Func<TRowData, object>> dataExpression = null,
             Expression<Func<TRowData, object>> foregroundColorExpression = null,
@@ -36,7 +34,6 @@ namespace Material.Blazor
         {
             BackgroundColorExpression = backgroundColorExpression?.Compile();// ?? Color.LightGray;
             BackgroundColorHeader = backgroundColorHeader ?? Color.LightGray;
-            BoldHeader = boldHeader;
             ColumnType = columnType;
             DataExpression = dataExpression?.Compile();
             ForegroundColorExpression = foregroundColorExpression?.Compile();// ?? Color.Black;
