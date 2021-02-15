@@ -506,16 +506,6 @@ namespace Material.Blazor
         }
         #endregion
 
-        #region ConvertPxMeasureToFloat
-        private static float ConvertPxMeasureToFloat(string pxMeasure)
-        {
-            //          return Convert.ToSingle(pxMeasure.Substring(0, pxMeasure.Length - 2));
-            //          The c# 8.0 range (https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8#indices-and-ranges)
-            //          allows that to be converted to the following
-            return Convert.ToSingle(pxMeasure[0..^2]);
-        }
-        #endregion
-
         #region CreateMeasurementStyle
         private string CreateMeasurementStyle(MBGridColumnConfiguration<TRowData> col, float columnWidth)
         {
