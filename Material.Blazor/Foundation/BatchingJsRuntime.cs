@@ -8,8 +8,12 @@ using System.Timers;
 
 namespace Material.Blazor.Internal
 {
+    /// <inheritdoc/>
     internal class BatchingJsRuntime : IBatchingJsRuntime
     {
+        /// <summary>
+        /// A javascript call represented by its identifier and arguments
+        /// </summary>
         public class Call
         {
             public string Identifier { get; set; }
@@ -45,6 +49,7 @@ namespace Material.Blazor.Internal
             }
         }
 
+        /// <inheritdoc/>
         public async Task InvokeVoidAsync(string identifier, params object[] args)
         {
             calls.Enqueue(new Call(identifier, args));
@@ -68,6 +73,7 @@ namespace Material.Blazor.Internal
             }
         }
 
+        /// <inheritdoc/>
         public ValueTask<T> InvokeAsync<T>(string identifier, params object[] args)
         {
             return js.InvokeAsync<T>(identifier, args);
