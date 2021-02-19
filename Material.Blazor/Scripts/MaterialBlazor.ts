@@ -26,6 +26,7 @@ import * as MBTabBar from '../Components/TabBar/MBTabBar';
 import * as MBTextField from '../Components/TextField/MBTextField';
 import * as MBTooltip from '../Components/Tooltip/MBTooltip';
 import * as MBTopAppBar from '../Components/TopAppBar/MBTopAppBar';
+import * as BatchingJsRuntime from './BatchingJsRuntime';
 
 (<any>window).MaterialBlazor = {
     MBAutoCompleteTextField,
@@ -55,5 +56,6 @@ import * as MBTopAppBar from '../Components/TopAppBar/MBTopAppBar';
     MBTabBar,
     MBTextField,
     MBTooltip,
-    MBTopAppBar
+    MBTopAppBar,
+    BatchingJsRuntime
 };
