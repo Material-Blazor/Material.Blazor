@@ -29,12 +29,12 @@ namespace Material.Blazor.Internal
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-        public new void Dispose()
+        public new async ValueTask DisposeAsync()
         {
             SnackbarService.OnAdd -= AddSnackbar;
             SnackbarService.OnTriggerStateHasChanged -= OnTriggerStateHasChanged;
 
-            base.Dispose();
+            await base.DisposeAsync();
         }
 
 

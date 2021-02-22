@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,14 @@ namespace Material.Blazor.Internal
     /// <summary>
     /// The base class for all Material.Blazor components.
     /// </summary>
-    public abstract class ComponentFoundation : ComponentBase, IDisposable
+    public abstract class ComponentFoundation : ComponentBase, IAsyncDisposable
     {
         private readonly string[] ReservedAttributes = { "disabled" };
         private readonly string[] EventAttributeNames = { "onfocus", "onblur", "onfocusin", "onfocusout", "onmouseover", "onmouseout", "onmousemove", "onmousedown", "onmouseup", "onclick", "ondblclick", "onwheel", "onmousewheel", "oncontextmenu", "ondrag", "ondragend", "ondragenter", "ondragleave", "ondragover", "ondragstart", "ondrop", "onkeydown", "onkeyup", "onkeypress", "onchange", "oninput", "oninvalid", "onreset", "onselect", "onselectstart", "onselectionchange", "onsubmit", "onbeforecopy", "onbeforecut", "onbeforepaste", "oncopy", "oncut", "onpaste", "ontouchcancel", "ontouchend", "ontouchmove", "ontouchstart", "ontouchenter", "ontouchleave", "ongotpointercapture", "onlostpointercapture", "onpointercancel", "onpointerdown", "onpointerenter", "onpointerleave", "onpointermove", "onpointerout", "onpointerover", "onpointerup", "oncanplay", "oncanplaythrough", "oncuechange", "ondurationchange", "onemptied", "onpause", "onplay", "onplaying", "onratechange", "onseeked", "onseeking", "onstalled", "onstop", "onsuspend", "ontimeupdate", "onvolumechange", "onwaiting", "onloadstart", "ontimeout", "onabort", "onload", "onloadend", "onprogress", "onerror", "onactivate", "onbeforeactivate", "onbeforedeactivate", "ondeactivate", "onended", "onfullscreenchange", "onfullscreenerror", "onloadeddata", "onloadedmetadata", "onpointerlockchange", "onpointerlockerror", "onreadystatechange", "onscroll" };
         private readonly string[] AriaAttributeNames = { "aria-activedescendant", "aria-atomic", "aria-autocomplete", "aria-busy", "aria-checked", "aria-controls", "aria-describedat", "aria-describedby", "aria-disabled", "aria-dropeffect", "aria-expanded", "aria-flowto", "aria-grabbed", "aria-haspopup", "aria-hidden", "aria-invalid", "aria-label", "aria-labelledby", "aria-level", "aria-live", "aria-multiline", "aria-multiselectable", "aria-orientation", "aria-owns", "aria-posinset", "aria-pressed", "aria-readonly", "aria-relevant", "aria-required", "aria-selected", "aria-setsize", "aria-sort", "aria-valuemax", "aria-valuemin", "aria-valuenow", "aria-valuetext" };
         private bool? disabled = null;
 
-        [Inject] private protected IBatchingJsRuntime JsRuntime { get; set; }
+        [Inject] private protected IJSRuntime JsRuntime { get; set; }
         [Inject] private protected IMBTooltipService TooltipService { get; set; }
         [Inject] private protected ILogger<ComponentFoundation> Logger { get; set; }
 
@@ -128,11 +129,11 @@ namespace Material.Blazor.Internal
         private protected virtual async Task DestroyMcwComponent() => await Task.CompletedTask;
 
 
-        ~ComponentFoundation() => Dispose(false);
+        ~ComponentFoundation() => DisposeAsync(false);
 
 
         private bool _disposed;
-        protected virtual void Dispose(bool disposing)
+        protected virtual async ValueTask DisposeAsync(bool disposing)
         {
             if (_disposed)
             {
@@ -141,7 +142,7 @@ namespace Material.Blazor.Internal
 
             if (HasInstantiated)
             {
-                _ = DestroyMcwComponent();
+                await DestroyMcwComponent();
             }
 
             if (disposing && !string.IsNullOrWhiteSpace(Tooltip))
@@ -155,10 +156,10 @@ namespace Material.Blazor.Internal
         }
 
 
-        public void Dispose()
+        public async ValueTask DisposeAsync()
         {
             // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-            Dispose(disposing: true);
+            await DisposeAsync(disposing: true);
             GC.SuppressFinalize(this);
         }
 
@@ -296,17 +297,6 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// Material.Blazor components *must always* override this at the start of `OnParametersSet().
-        /// </summary>
-        protected override async Task OnParametersSetAsync()
-        {
-            await base.OnParametersSetAsync();
-
-            CheckAttributeValidity();
-        }
-
-
-        /// <summary>
         /// Material.Blazor allows a user to limit unmatched attributes that will be splatted to a defined list in <see cref="MBCascadingDefaults"/>.
         /// This method checks validity against that list.
         /// </summary>
@@ -352,25 +342,14 @@ namespace Material.Blazor.Internal
         /// Material.Blazor components generally *should not* override this because it handles the case where components need
         /// to be adjusted when inside an <c>MBDialog</c> or <c>MBCard</c>. 
         /// </summary>
-        protected override void OnAfterRender(bool firstRender)
+        protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)
             {
-                _ = InstantiateMcwComponent();
+                await InstantiateMcwComponent();
                 HasInstantiated = true;
                 AddTooltip();
             }
-        }
-
-
-        /// <summary>
-        /// Material.Blazor components generally *should not* override this because it handles the case where components need
-        /// to be adjusted when inside an <c>MBDialog</c> or <c>MBCard</c>. 
-        /// </summary>
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            OnAfterRender(firstRender);
-            await Task.CompletedTask;
         }
 
 

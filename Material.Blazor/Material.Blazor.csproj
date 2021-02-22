@@ -64,9 +64,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Scripts\BatchingJsRuntime.ts">
-      <SubType>Code</SubType>
-    </None>
     <None Update="Scripts\MaterialBlazor.ts">
       <SubType>Code</SubType>
     </None>
@@ -79,7 +76,6 @@
 
   <ItemGroup>
     <InputStaticAssetsStyles Include="components\**\*.scss;styles\**\*.scss;" />
-    <InputStaticAssetsScripts Remove="Scripts\BatchingJsRuntime.ts" />
     <OutputStaticAssetsStyles Include="wwwroot\materialblazor.css;wwwroot\materialblazor.min.css" />
   </ItemGroup>
 

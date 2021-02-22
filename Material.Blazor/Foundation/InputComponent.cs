@@ -225,17 +225,6 @@ namespace Material.Blazor.Internal
         }
 
 
-        /// <para>
-        /// Components must call base.OnInitialized() otherwise rendering in dialogs will be unpredictable.
-        /// </para>
-        protected override async Task OnInitializedAsync()
-        {
-            await base.OnInitializedAsync();
-
-            OnInitDialog();
-        }
-
-
         private void OnInitDialog()
         {
             if (Dialog != null && !Dialog.DialogHasInstantiated)
@@ -299,14 +288,6 @@ namespace Material.Blazor.Internal
             CommonParametersSet();
         }
 
-        /// <inheritdoc/>
-        protected override async Task OnParametersSetAsync()
-        {
-            await base.OnParametersSetAsync();
-
-            CommonParametersSet();
-        }
-
         private void CommonParametersSet()
         {
             LogMBDebugVerbose($"OnParametersSet setter entered: _cachedValue is '{_cachedValue?.ToString() ?? "null"}' and Value is'{Value?.ToString() ?? "null"}'");
@@ -364,25 +345,15 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Material.Blazor components descending from MdcInputComponentBase _*must not*_ override OnAfterRenderAsync(bool).
         /// </summary>
-        protected override void OnAfterRender(bool firstRender)
+        protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (_instantiate)
             {
                 _instantiate = false;
-                _ = InstantiateMcwComponent();
+                await InstantiateMcwComponent();
                 HasInstantiated = true;
                 AddTooltip();
             }
-        }
-
-
-        /// <summary>
-        /// Material.Blazor components descending from MdcInputComponentBase _*must not*_ override OnAfterRenderAsync(bool).
-        /// </summary>
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            OnAfterRender(firstRender);
-            await Task.CompletedTask;
         }
 
 
