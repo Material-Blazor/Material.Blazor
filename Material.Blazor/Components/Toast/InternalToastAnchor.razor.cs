@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Material.Blazor.Internal
 {
@@ -34,12 +35,12 @@ namespace Material.Blazor.Internal
         }
 
 
-        public new void Dispose()
+        public new async ValueTask DisposeAsync()
         {
             ToastService.OnAdd -= AddToast;
             ToastService.OnTriggerStateHasChanged -= OnTriggerStateHasChanged;
 
-            base.Dispose();
+            await base.DisposeAsync();
         }
 
 
