@@ -20,6 +20,7 @@ env:
   outputMB: ${{github.workspace}}\siteMB
   outputWeb: ${{github.workspace}}\siteWeb
   projectMB: 'Material.Blazor/Material.Blazor.csproj'
+  projectTest: 'Material.Blazor.Test/Material.Blazor.Test.csproj'
   projectWeb: 'Material.Blazor.Website.WebAssembly/Material.Blazor.Website.WebAssembly.csproj'
 
 jobs:
@@ -85,6 +86,9 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: '12'
+
+    - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
+      run: dotnet test --configuration ${env:buildConfiguration} ${env:projectTest}
 
     - name: Create documentation 🔧
       run: .\docfx\docfx docfx.json

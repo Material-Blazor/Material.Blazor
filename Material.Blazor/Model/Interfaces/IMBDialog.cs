@@ -16,6 +16,6 @@
         /// <summary>
         /// True once the dialog has instantiated components for the first time.
         /// </summary>
-        internal bool DialogHasInstantiated { get; }
+        bool DialogHasInstantiated { get; }
     }
 }

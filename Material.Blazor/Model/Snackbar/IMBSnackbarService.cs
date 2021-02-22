@@ -29,14 +29,14 @@ namespace Material.Blazor
         /// <summary>
         /// Snackbar service configuration
         /// </summary>
-        public MBSnackbarServiceConfiguration Configuration { get; set; }
+        MBSnackbarServiceConfiguration Configuration { get; set; }
 
 
 
         /// <summary>
         /// A event that will be invoked when showing a snackbar
         /// </summary>
-        internal event Action<MBSnackbarSettings> OnAdd;
+        event Action<MBSnackbarSettings> OnAdd;
 
 
 
@@ -44,7 +44,7 @@ namespace Material.Blazor
         /// A event that will be invoked when snackbars should call StateHasChanged. This will
         /// be when the configuration is updated.
         /// </summary>
-        internal event Action OnTriggerStateHasChanged;
+        event Action OnTriggerStateHasChanged;
 
 
 

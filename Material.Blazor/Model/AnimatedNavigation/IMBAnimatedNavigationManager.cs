@@ -32,25 +32,25 @@ namespace Material.Blazor
         /// <summary>
         /// The Blazor <see cref="NavigationManager"/>.
         /// </summary>
-        public NavigationManager NavigationManager { get; set; }
+        NavigationManager NavigationManager { get; set; }
 
 
         /// <summary>
         /// Animated Navigation Service configuration.
         /// </summary>
-        public MBAnimatedNavigationManagerServiceConfiguration Configuration { get; set; }
+        MBAnimatedNavigationManagerServiceConfiguration Configuration { get; set; }
 
 
         /// <summary>
         /// The calculated fade out time in milliseconds.
         /// </summary>
-        internal int FadeOutTime { get; }
+        int FadeOutTime { get; }
 
 
         /// <summary>
         /// The calculated fade in time in milliseconds.
         /// </summary>
-        internal int FadeInTime { get; }
+        int FadeInTime { get; }
 
 
 
@@ -59,20 +59,20 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="uri">The destination URI. This can be absolute, or relative to the base URI (as returned by Microsoft.AspNetCore.Components.NavigationManager.BaseUri).</param>
         /// <param name="forceLoad">If true, bypasses client-side routing and forces the browser to load the new page from the server, whether or not the URI would normally be handled by the client-side router.</param>
-        public void NavigateTo(string uri, bool forceLoad = false);
+        void NavigateTo(string uri, bool forceLoad = false);
 
 
         /// <summary>
         /// Called by <see cref="MBAnimatedNavigation"/> to register itself with the service.
         /// </summary>
         /// <param name="navigationComponent"></param>
-        internal void RegisterNavigationComponent(MBAnimatedNavigation navigationComponent);
+        void RegisterNavigationComponent(MBAnimatedNavigation navigationComponent);
 
 
         /// <summary>
         /// Called by <see cref="MBAnimatedNavigation"/> to deregister itself with the service.
         /// </summary>
         /// <param name="navigationComponent"></param>
-        internal void DeregisterNavigationComponent(MBAnimatedNavigation navigationComponent);
+        void DeregisterNavigationComponent(MBAnimatedNavigation navigationComponent);
     }
 }
