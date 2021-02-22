@@ -3,6 +3,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Timers;
 
@@ -18,24 +19,34 @@ namespace Material.Blazor.Internal
         {
             public string Identifier { get; set; }
             public object[] Args { get; set; }
+            public Task Task => TaskCompletionSource.Task;
+            private TaskCompletionSource TaskCompletionSource { get; set; }
             public Call(string identifier, object[] args)
             {
                 Identifier = identifier;
                 Args = args;
+                TaskCompletionSource = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
+            }
+            public void MarkComplete()
+            {
+                TaskCompletionSource.SetResult();
+            }
+            public void MarkFailed()
+            {
+                TaskCompletionSource.SetException(new Exception());
             }
         }
         private readonly IJSRuntime js;
         private DateTime last_execution;
-        private readonly Timer timer;
+        private readonly System.Timers.Timer timer;
         private readonly ConcurrentQueue<Call> calls = new ConcurrentQueue<Call>();
         public BatchingJsRuntime(IJSRuntime js)
         {
             this.js = js;
-            timer = new Timer(20);
+            timer = new System.Timers.Timer(20);
             timer.Elapsed += Timer_Elapsed;
         }
-
-        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        private async void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             last_execution = DateTime.UtcNow;
             var some_calls = new List<Call>(capacity: calls.Count);
@@ -45,32 +56,30 @@ namespace Material.Blazor.Internal
             }
             if (some_calls.Any())
             {
-                _ = js.InvokeVoidAsync("MaterialBlazor.BatchingJsRuntime.applyBatch", some_calls);
+                var results = await js.InvokeAsync<object[]>("MaterialBlazor.BatchingJsRuntime.applyBatch", some_calls);
+                foreach (var (call, result) in some_calls.Zip(results, (c, r) => (c, r)))
+                {
+                    if (result == null)
+                    {
+                        call.MarkComplete();
+                    }
+                    else
+                    {
+                        call.MarkFailed();
+                    }
+                }
             }
         }
-
         /// <inheritdoc/>
         public async Task InvokeVoidAsync(string identifier, params object[] args)
         {
-            calls.Enqueue(new Call(identifier, args));
-            if (last_execution.AddMilliseconds(20) < DateTime.UtcNow)
-            {
-                last_execution = DateTime.UtcNow;
-                var some_calls = new List<Call>(capacity: calls.Count);
-                while (calls.TryDequeue(out var call))
-                {
-                    some_calls.Add(call);
-                }
-                if (some_calls.Any())
-                {
-                    await js.InvokeVoidAsync("MaterialBlazor.BatchingJsRuntime.applyBatch", some_calls);
-                }
-            }
-            else
-            {
-                timer.Stop();
-                timer.Start();
-            }
+            await js.InvokeVoidAsync(identifier, args);
+            return;
+            var call = new Call(identifier, args);
+            calls.Enqueue(call);
+            timer.Stop();
+            timer.Start();
+            await call.Task;
         }
 
         /// <inheritdoc/>
