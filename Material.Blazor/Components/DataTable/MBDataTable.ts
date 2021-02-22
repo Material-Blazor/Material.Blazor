@@ -1,8 +1,10 @@
 ﻿import { MDCDataTable } from '@material/data-table';
 
-export function init(elem, showProgress) {
+export function init(elem, hasProgress, showProgress) {
     elem._dataTable = MDCDataTable.attachTo(elem);
-    setProgress(elem, showProgress);
+    if (hasProgress) {
+       setProgress(elem, showProgress);
+    }
 }
 
 export function destroy(elem) {
