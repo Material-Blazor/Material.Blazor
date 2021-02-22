@@ -29,14 +29,14 @@ namespace Material.Blazor
         /// <summary>
         /// Toast service configuration
         /// </summary>
-        public MBToastServiceConfiguration Configuration { get; set; }
+        MBToastServiceConfiguration Configuration { get; set; }
 
 
 
         /// <summary>
         /// A event that will be invoked when showing a toast
         /// </summary>
-        internal event Action<MBToastLevel, MBToastSettings> OnAdd;
+        event Action<MBToastLevel, MBToastSettings> OnAdd;
 
 
 
@@ -44,7 +44,7 @@ namespace Material.Blazor
         /// A event that will be invoked when toasts should call StateHasChanged. This will
         /// be when the configuration is updated.
         /// </summary>
-        internal event Action OnTriggerStateHasChanged;
+        event Action OnTriggerStateHasChanged;
 
 
 

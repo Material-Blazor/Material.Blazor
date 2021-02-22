@@ -19,21 +19,21 @@ namespace Material.Blazor
         /// <summary>
         /// A event that will be invoked when adding a tooltip
         /// </summary>
-        internal event Action<Guid, RenderFragment> OnAddRenderFragment;
+        event Action<Guid, RenderFragment> OnAddRenderFragment;
 
 
 
         /// <summary>
         /// A event that will be invoked when adding a tooltip
         /// </summary>
-        internal event Action<Guid, MarkupString> OnAddMarkupString;
+        event Action<Guid, MarkupString> OnAddMarkupString;
 
 
 
         /// <summary>
         /// A event that will be invoked when removing a tooltip
         /// </summary>
-        internal event Action<Guid> OnRemove;
+        event Action<Guid> OnRemove;
 
 
 
