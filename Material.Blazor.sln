@@ -66,6 +66,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Material.Blazor.Website.Web
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Material.Blazor.Website", "Material.Blazor.Website\Material.Blazor.Website.csproj", "{7FFD2944-C2C0-4657-85A5-9F70895B3C7E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Material.Blazor.Test", "Material.Blazor.Test\Material.Blazor.Test.csproj", "{3DC1AB88-B54B-40F8-A3BF-FA7F3671AFD6}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Material.Blazor", "Material.Blazor\Material.Blazor.csproj", "{5E637DBB-3AAF-4C59-9A1F-79BFC8AAA67D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "guidelines", "guidelines", "{86740746-C4E6-45DF-BA84-8FB1C1200DD9}"
@@ -82,8 +84,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{777FB8
 		guidelines\images\screenshot-merge-button.png = guidelines\images\screenshot-merge-button.png
 		guidelines\images\screenshot-update-branch.png = guidelines\images\screenshot-update-branch.png
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing.csproj", "{3DC1AB88-B54B-40F8-A3BF-FA7F3671AFD6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
