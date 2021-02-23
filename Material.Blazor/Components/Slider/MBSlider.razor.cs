@@ -66,7 +66,7 @@ namespace Material.Blazor
         private ElementReference ElementReference { get; set; }
         private string Format { get; set; }
         private MarkupString InputMarkup { get; set; }
-        private IDisposable ObjectReference { get; set; }
+        private DotNetObjectReference<MBSlider> ObjectReference { get; set; }
         private double RangePercentDecimal { get; set; }
         private double Step { get; set; }
         private int TabIndex { get; set; }
