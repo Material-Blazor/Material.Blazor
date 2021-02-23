@@ -83,7 +83,7 @@ namespace Material.Blazor
         /// </summary>
         [Parameter] public MB_Grid_Measurement Measurement { get; set; } = MB_Grid_Measurement.Percent;
 
-        
+
         /// <summary>
         /// ObscurePMI controls whether or not columns marked as PMI are obscured.
         /// </summary>

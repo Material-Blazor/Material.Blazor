@@ -69,11 +69,11 @@ namespace Material.Blazor.Internal
                 // It is entirely possible that the renderer has been disposed, so just ignore errors on calling StateHasChanged
             }
         }
-        
-        
+
+
         private readonly SemaphoreSlim queue_semaphore = new(1, 1);
-        
-        
+
+
         private async Task ShowNextSnackbarAsync()
         {
             await queue_semaphore.WaitAsync();

@@ -13,9 +13,9 @@ namespace Material.Blazor.Internal
 
 
         private ElementReference SnackbarReference { get; set; }
-        
+
         private string Stacked => Snackbar.Settings.AppliedStacked ? "mdc-snackbar--stacked" : null;
-        
+
         private string Leading => Snackbar.Settings.AppliedLeading ? "mdc-snackbar--leading" : null;
 
         private DotNetObjectReference<InternalSnackbar> ObjectReference { get; set; }
@@ -56,11 +56,11 @@ namespace Material.Blazor.Internal
 
         /// <inheritdoc/>
         private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSnackbar.init", SnackbarReference, ObjectReference, Snackbar.Settings.AppliedTimeout);
-        
-        
+
+
         /// <inheritdoc/>
         private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSnackbar.destroy", SnackbarReference);
-        
+
 
     }
 }
