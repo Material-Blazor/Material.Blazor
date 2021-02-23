@@ -362,7 +362,7 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// Material.Blazor components descending from MdcInputComponentBase _*must not*_ override OnAfterRenderAsync(bool).
+        /// Material.Blazor components descending from <see cref="InputComponent{T}"/> _*must not*_ override OnAfterRenderAsync(bool).
         /// </summary>
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {

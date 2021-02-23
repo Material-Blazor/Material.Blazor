@@ -125,12 +125,6 @@ namespace Material.Blazor
         }
 
 
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            await base.OnAfterRenderAsync(firstRender);
-        }
-
-
         private void OnTextInput(ChangeEventArgs eventArgs)
         {
             Timer?.Dispose();

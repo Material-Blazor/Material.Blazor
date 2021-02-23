@@ -373,6 +373,14 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
+        /// Material.Blazor components descending from <see cref="ComponentFoundation"/> _*must not*_ override OnAfterRender(bool).
+        /// </summary>
+        protected sealed override void OnAfterRender(bool firstRender)
+        {
+        }
+
+
+        /// <summary>
         /// Material.Blazor components generally *should not* override this because it handles the case where components need
         /// to be adjusted when inside an <c>MBDialog</c> or <c>MBCard</c>. 
         /// </summary>
