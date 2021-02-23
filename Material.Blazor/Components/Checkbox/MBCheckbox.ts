@@ -20,6 +20,9 @@ export function setChecked(elem, checked) {
 }
 
 export function setIndeterminate(elem, indeterminate) {
+    if (elem?._checkbox == null) {
+        return;
+    }
     elem._checkbox.indeterminate = indeterminate;
 }
 
