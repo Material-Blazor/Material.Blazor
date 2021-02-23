@@ -241,7 +241,7 @@ namespace Material.Blazor
 
             try
             {
-                if (bladeSetActionQueue.TryDequeue(out QueueElement queueElement))
+                if (bladeSetActionQueue.TryDequeue(out var queueElement))
                 {
                     if (queueElement.BladeSetAction == BladeSetAction.Add)
                     {
@@ -323,7 +323,7 @@ namespace Material.Blazor
         {
             base.OnAfterRender(firstRender);
 
-            if (addedBladesQueue.TryDequeue(out BladeInfo addedBlade))
+            if (addedBladesQueue.TryDequeue(out var addedBlade))
             {
                 await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBBladeSet.openBlade", addedBlade.BladeElementReference, addedBlade.BladeContentElementReference, transitionMs);
 
@@ -333,7 +333,7 @@ namespace Material.Blazor
 
                 BladeSetChanged?.Invoke(this, null);
             }
-            else if (removedBladesQueue.TryDequeue(out BladeInfo removedBlade))
+            else if (removedBladesQueue.TryDequeue(out var removedBlade))
             {
                 await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBBladeSet.closeBlade", removedBlade.BladeElementReference, transitionMs);
 

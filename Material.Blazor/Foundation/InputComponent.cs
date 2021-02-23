@@ -77,7 +77,7 @@ namespace Material.Blazor.Internal
         /// form validation for the embedded <see cref="MBTextField"/>, because a debounced field
         /// should not be in a form.
         /// </summary>
-        private bool IgnoreFormField => this is MBDebouncedTextField || this is MultiSelectComponent<T, MBSelectElement<T>>;
+        private bool IgnoreFormField => this is MBDebouncedTextField or MultiSelectComponent<T, MBSelectElement<T>>;
 
 
         /// <summary>
@@ -402,7 +402,7 @@ namespace Material.Blazor.Internal
 
             var customAttributes = GetExpressionCustomAttributes<TItem>(accessor);
 
-            return customAttributes.Where(a => a.GetType() == typeof(RequiredAttribute)).Any();
+            return customAttributes.Any(a => a.GetType() == typeof(RequiredAttribute));
         }
 
 

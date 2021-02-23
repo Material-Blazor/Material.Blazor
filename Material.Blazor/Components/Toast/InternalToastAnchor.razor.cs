@@ -94,7 +94,7 @@ namespace Material.Blazor.Internal
 
         private void FlushPendingToasts()
         {
-            bool FlushNext() => PendingToasts.Count() > 0 && (ToastService.Configuration.MaxToastsShowing <= 0 || DisplayedToasts.Where(t => t.Settings.Status != ToastStatus.Hide).Count() < ToastService.Configuration.MaxToastsShowing);
+            bool FlushNext() => PendingToasts.Count > 0 && (ToastService.Configuration.MaxToastsShowing <= 0 || DisplayedToasts.Count(t => t.Settings.Status != ToastStatus.Hide) < ToastService.Configuration.MaxToastsShowing);
 
             while (FlushNext())
             {
@@ -108,7 +108,7 @@ namespace Material.Blazor.Internal
                     {
                         var timeout = toastInstance.Settings.AppliedTimeout;
                         var toastTimer = new System.Timers.Timer(toastInstance.Settings.AppliedTimeout);
-                        toastTimer.Elapsed += (sender, args) => { CloseToast(toastInstance.Id); };
+                        toastTimer.Elapsed += (sender, args) => CloseToast(toastInstance.Id);
                         toastTimer.AutoReset = false;
                         toastTimer.Start();
                     });
@@ -149,7 +149,7 @@ namespace Material.Blazor.Internal
                 }
 
                 var toastTimer = new System.Timers.Timer(500);
-                toastTimer.Elapsed += (sender, args) => { RemoveToast(toastId); };
+                toastTimer.Elapsed += (sender, args) => RemoveToast(toastId);
                 toastTimer.AutoReset = false;
                 toastTimer.Start();
 
@@ -175,7 +175,7 @@ namespace Material.Blazor.Internal
 
                     toastInstance.Settings.Status = ToastStatus.Hide;
 
-                    if (DisplayedToasts.Where(x => x.Settings.Status == ToastStatus.FadeOut).Count() == 0)
+                    if (!DisplayedToasts.Any(x => x.Settings.Status == ToastStatus.FadeOut))
                     {
                         DisplayedToasts.RemoveAll(x => x.Settings.Status == ToastStatus.Hide);
                     }

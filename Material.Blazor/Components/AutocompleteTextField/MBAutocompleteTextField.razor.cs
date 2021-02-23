@@ -24,7 +24,6 @@ namespace Material.Blazor
             public string SelectedText { get; set; }
             public string[] SelectList { get; set; }
             public bool FirstValueIsCustomValue { get; set; }
-            public bool PotentialMatchesFound => SelectList.Any();
             public bool FullMatchFound => (SelectList.Length == 1) && SelectList.Contains(SelectedText);
         }
 
@@ -33,7 +32,7 @@ namespace Material.Blazor
         {
             public string Item { get; set; }
             public bool IgnoreWhitespace { get; set; }
-            public string SearchTarget => IgnoreWhitespace ? Regex.Replace(Item, @"\s+", String.Empty) : Item;
+            public string SearchTarget => IgnoreWhitespace ? Regex.Replace(Item, @"\s+", string.Empty) : Item;
         }
 
 
@@ -241,7 +240,7 @@ namespace Material.Blazor
             var partialMatches = (from f in MySelectItems
                                   where partialMatchRegex.Matches(f.SearchTarget).Count > 0
                                   select f.Item).ToArray();
-            bool firstValueIsCustomValue = AllowCustomValue && fieldText != null && !partialMatches.Contains(fieldText);
+            var firstValueIsCustomValue = AllowCustomValue && fieldText != null && !partialMatches.Contains(fieldText);
             if (firstValueIsCustomValue)
             {
                 partialMatches = partialMatches.Prepend(fieldText).ToArray();

@@ -7,7 +7,7 @@ namespace Material.Blazor.Internal
     /// </summary>
     internal class SnackbarService : IMBSnackbarService
     {
-        private MBSnackbarServiceConfiguration configuration = new ();
+        private MBSnackbarServiceConfiguration configuration = new();
 
         ///<inheritdoc/>
         public MBSnackbarServiceConfiguration Configuration

@@ -175,9 +175,15 @@ namespace Material.Blazor
         {
             get
             {
-                if (HasFocus) return "";
+                if (HasFocus)
+                {
+                    return "";
+                }
 
-                if (!(NumericSingularFormat is null) && Utilities.DecimalEqual(Math.Abs(ComponentValue), 1)) return NumericSingularFormat;
+                if (!(NumericSingularFormat is null) && Utilities.DecimalEqual(Math.Abs(ComponentValue), 1))
+                {
+                    return NumericSingularFormat;
+                }
 
                 return NumericFormat;
             }
@@ -189,7 +195,7 @@ namespace Material.Blazor
         {
             base.OnInitialized();
 
-            bool allowSign = !(Min != null && Min >= 0);
+            var allowSign = !(Min != null && Min >= 0);
 
             FocusedMultiplier = Convert.ToDecimal(Math.Pow(10, (int)FocusedMagnitude));
             UnfocusedMultiplier = Convert.ToDecimal(Math.Pow(10, (int)UnfocusedMagnitude));
@@ -229,7 +235,7 @@ namespace Material.Blazor
 
         private decimal NumericValue(string displayText)
         {
-            int myRounding = MyDecimalPlaces + Convert.ToInt32(Math.Log(Convert.ToDouble(AppliedMultiplier)));
+            var myRounding = MyDecimalPlaces + Convert.ToInt32(Math.Log(Convert.ToDouble(AppliedMultiplier)));
 
             if (!Regex.IsMatch(displayText))
             {
