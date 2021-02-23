@@ -215,7 +215,7 @@ namespace Material.Blazor.Internal
 
 
         /// <inheritdoc/>
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+        protected override async Task OnAfterRenderAsync(bool firstRender) // TODO: this prevents us from marking OnAfterRenderAsync in InputComponent as sealed. Consider alternatives!
         {
             if (!firstRender && ScrollToYear)
             {
