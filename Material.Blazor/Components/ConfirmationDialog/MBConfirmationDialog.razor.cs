@@ -104,14 +104,7 @@ namespace Material.Blazor
 
         private void OnInput(ChangeEventArgs args)
         {
-            if (args.Value.ToString() == MyConfirmationPhrase)
-            {
-                Confirmed = true;
-            }
-            else
-            {
-                Confirmed = false;
-            }
+            Confirmed = args.Value.ToString() == MyConfirmationPhrase;
         }
 
 
@@ -153,7 +146,7 @@ namespace Material.Blazor
 
             var result = digits[0].ToString();
 
-            for (int i = 1; i < digits.Length; i++)
+            for (var i = 1; i < digits.Length; i++)
             {
                 digits[i] += (digits[i] >= digits[i - 1]) ? 1 : 0;
                 result += digits[i].ToString();

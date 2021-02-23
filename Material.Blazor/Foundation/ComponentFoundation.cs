@@ -177,9 +177,9 @@ namespace Material.Blazor.Internal
             var eventAttributes = new Dictionary<string, object>();
             var requiredAttributes = new Dictionary<string, object>();
 
-            var unmatchedId = (UnmatchedAttributes?.Where(a => a.Key == "id").FirstOrDefault().Value ?? "").ToString();
-            var unmatchedClass = (UnmatchedAttributes?.Where(a => a.Key == "class").FirstOrDefault().Value ?? "").ToString();
-            var unmatchedStyle = (UnmatchedAttributes?.Where(a => a.Key == "style").FirstOrDefault().Value ?? "").ToString();
+            var unmatchedId = (UnmatchedAttributes?.FirstOrDefault(a => a.Key == "id").Value ?? "").ToString();
+            var unmatchedClass = (UnmatchedAttributes?.FirstOrDefault(a => a.Key == "class").Value ?? "").ToString();
+            var unmatchedStyle = (UnmatchedAttributes?.FirstOrDefault(a => a.Key == "style").Value ?? "").ToString();
             var nonStylisticAttributes = new Dictionary<string, object>(UnmatchedAttributes?.Where(a => !stylisticAttributes.Contains(a.Key.ToLower())) ?? new Dictionary<string, object>());
 
             // merge ComponentSetAttributes into the dictionary
@@ -198,29 +198,52 @@ namespace Material.Blazor.Internal
                     .GroupBy(g => g.Key)
                     .ToDictionary(pair => pair.Key, pair => pair.First().Value);
 
-                if (AppliedDisabled) allAttributes.Add("disabled", AppliedDisabled);
+                if (AppliedDisabled)
+                {
+                    allAttributes.Add("disabled", AppliedDisabled);
+                }
 
-                if (splatType == SplatType.ExcludeIdClassAndStyle) return allAttributes;
+                if (splatType == SplatType.ExcludeIdClassAndStyle)
+                {
+                    return allAttributes;
+                }
 
                 htmlAttributes = allAttributes
                                     .Where(kvp => !EventAttributeNames.Contains(kvp.Key))
                                     .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
-                if (splatType == SplatType.HtmlExcludingIdClassAndStyle) return htmlAttributes;
+                if (splatType == SplatType.HtmlExcludingIdClassAndStyle)
+                {
+                    return htmlAttributes;
+                }
 
                 eventAttributes = allAttributes
                                     .Where(kvp => EventAttributeNames.Contains(kvp.Key))
                                     .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
-                if (splatType == SplatType.EventsOnly) return eventAttributes;
+                if (splatType == SplatType.EventsOnly)
+                {
+                    return eventAttributes;
+                }
             }
 
             var classString = (ClassMapperInstance.ToString() + " " + unmatchedClass).Trim();
             var styleString = (StyleMapperInstance.ToString() + " " + unmatchedStyle).Trim();
 
-            if (!string.IsNullOrWhiteSpace(unmatchedId)) idClassAndStyle.Add("id", unmatchedId);
-            if (!string.IsNullOrWhiteSpace(classString)) idClassAndStyle.Add("class", classString);
-            if (!string.IsNullOrWhiteSpace(styleString)) idClassAndStyle.Add("style", styleString);
+            if (!string.IsNullOrWhiteSpace(unmatchedId))
+            {
+                idClassAndStyle.Add("id", unmatchedId);
+            }
+
+            if (!string.IsNullOrWhiteSpace(classString))
+            {
+                idClassAndStyle.Add("class", classString);
+            }
+
+            if (!string.IsNullOrWhiteSpace(styleString))
+            {
+                idClassAndStyle.Add("style", styleString);
+            }
 
             foreach (var item in idClassAndStyle)
             {
@@ -320,7 +343,7 @@ namespace Material.Blazor.Internal
 
             var reserved = UnmatchedAttributes.Keys.Intersect(ReservedAttributes);
 
-            if (reserved.Count() > 0)
+            if (reserved.Any())
             {
                 throw new ArgumentException(
                     $"Material.Blazor: You cannot use {string.Join(", ", reserved.Select(x => $"'{x}'"))} attributes in {Utilities.GetTypeName(GetType())}. Material.Blazor reserves the 'display' HTML attributes for internal use; use the 'Display' parameter instead");
@@ -333,7 +356,7 @@ namespace Material.Blazor.Internal
                         .Except(AriaAttributeNames)
                         .Except(CascadingDefaults.AppliedAllowedSplattableAttributes);
 
-            if (forbidden.Count() > 0)
+            if (forbidden.Any())
             {
                 var message = $"You cannot use {string.Join(", ", forbidden.Select(x => $"'{x}'"))} attributes in {Utilities.GetTypeName(GetType())}. Either remove the attribute or change 'ConstrainSplattableAttributes' or 'AllowedSplattableAttributes' in your MBCascadingDefaults";
 

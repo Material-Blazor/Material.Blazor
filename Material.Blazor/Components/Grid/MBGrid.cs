@@ -245,7 +245,7 @@ namespace Material.Blazor
                 // For each column output a TD
                 var isHeaderRow = true;
                 var colCount = 0;
-                foreach (MBGridColumnConfiguration<TRowData> col in ColumnConfigurations)
+                foreach (var col in ColumnConfigurations)
                 {
                     styleStr = BuildNewGridTD(
                         builder,
@@ -360,7 +360,7 @@ namespace Material.Blazor
                         // For each column output a td
                         var colCount = 0;
                         var isHeaderRow = false;
-                        foreach (MBGridColumnConfiguration<TRowData> columnDefinition in ColumnConfigurations)
+                        foreach (var columnDefinition in ColumnConfigurations)
                         {
                             styleStr = BuildNewGridTD(
                                 builder,
@@ -719,6 +719,7 @@ namespace Material.Blazor
         #endregion
 
         #region OnMouseClickInternal
+        // TODO: return value seems unnecessary
         private bool OnMouseClickInternal(string newRowKey)
         {
             //

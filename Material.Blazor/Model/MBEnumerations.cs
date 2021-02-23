@@ -6,6 +6,7 @@ namespace Material.Blazor
     /// Determines what attributes to splat from <see cref="SplatAttributes"/>. Can be specified with bitwise or, eg:
     /// <code>@attributes="<see cref="AttributesToSplat"/>(<see cref="IdClassAndStyleOnly"/> | <see cref="HtmlExcludingIdClassAndStyle"/>)"</code>
     /// </summary>
+    [Flags]
     internal enum SplatType : ushort
     {
         /// <summary>

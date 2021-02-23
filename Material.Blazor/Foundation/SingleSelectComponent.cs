@@ -56,24 +56,24 @@ namespace Material.Blazor.Internal
                 throw new ArgumentException(componentName + " requires a non-empty Items parameter.");
             }
 
-            if (items.GroupBy(i => i.SelectedValue).Where(g => g.Count() > 1).Any())
+            if (items.GroupBy(i => i.SelectedValue).Any(g => g.Count() > 1))
             {
                 throw new ArgumentException(componentName + " has multiple enties in the List with the same SelectedValue");
             }
 
-            if (!items.Where(i => Equals(i.SelectedValue, Value)).Any())
+            if (!items.Any(i => Equals(i.SelectedValue, Value)))
             {
                 switch (appliedItemValidation)
                 {
                     case MBItemValidation.DefaultToFirst:
-                        T defaultValue = items.FirstOrDefault().SelectedValue;
+                        var defaultValue = items.FirstOrDefault().SelectedValue;
                         _ = ValueChanged.InvokeAsync(defaultValue);
                         AllowNextRender = true;
                         return (true, defaultValue);
 
                     case MBItemValidation.Exception:
-                        string itemList = "{ ";
-                        string prepend = "";
+                        var itemList = "{ ";
+                        var prepend = "";
 
                         foreach (var item in items)
                         {

@@ -140,7 +140,7 @@ namespace Material.Blazor.Internal
                             orderby tooltip.TimeStamp
                             select tooltip).ToArray();
 
-                if (refs.Count() > 0)
+                if (refs.Length > 0)
                 {
                     await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTooltip.init", refs.Select(r => r.ElementReference));
 

@@ -119,7 +119,7 @@ namespace Material.Blazor
                 .AddIf("mdc-select--with-leading-icon", () => !string.IsNullOrWhiteSpace(LeadingIcon))
                 .AddIf("mdc-select--disabled", () => AppliedDisabled);
 
-            SelectedText = hasValue ? Items.Where(i => object.Equals(i.SelectedValue, ComponentValue)).FirstOrDefault().Label : "";
+            SelectedText = hasValue ? Items.FirstOrDefault(i => object.Equals(i.SelectedValue, ComponentValue))?.Label : "";
             FloatingLabelClass = string.IsNullOrWhiteSpace(SelectedText) ? "" : "mdc-floating-label--float-above";
 
             SetComponentValue += OnValueSetCallback;
