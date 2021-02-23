@@ -5,5 +5,5 @@ export function init(arrayOfReferences) {
 }
 
 export function destroy(elem) {
-    elem._tooltip.destroy();
+    elem?._tooltip?.destroy();
 }

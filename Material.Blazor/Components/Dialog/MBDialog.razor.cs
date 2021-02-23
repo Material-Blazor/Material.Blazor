@@ -189,7 +189,7 @@ namespace Material.Blazor
         {
             if (IsOpen)
             {
-                await JsRuntime.InvokeAsync<string>("MaterialBlazor.MBDialog.hide", DialogElem);
+                await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDialog.hide", DialogElem);
                 IsOpen = false;
                 dialogHasInstantiated = false;
                 StateHasChanged();

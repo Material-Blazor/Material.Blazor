@@ -6,7 +6,7 @@ export function init(elem, isOpen) {
 }
 
 export function destroy(elem) {
-    elem._drawer.destroy();
+    elem?._drawer?.destroy();
 }
 
 export function toggle(elem, isOpen) {

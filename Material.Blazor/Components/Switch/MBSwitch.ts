@@ -6,7 +6,7 @@ export function init(elem, checked) {
 }
 
 export function destroy(elem) {
-    elem._switch.destroy();
+    elem?._switch?.destroy();
 }
 
 export function setChecked(elem, checked) {

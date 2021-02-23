@@ -15,7 +15,7 @@ export function init(elem, isSingleSelect, dotNetObject) {
 }
 
 export function destroy(elem) {
-    elem._segmentedButton.destroy();
+    elem?._segmentedButton?.destroy();
 }
 
 export function setDisabled(elem, value) {

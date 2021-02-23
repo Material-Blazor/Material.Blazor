@@ -26,8 +26,10 @@ import * as MBTabBar from '../Components/TabBar/MBTabBar';
 import * as MBTextField from '../Components/TextField/MBTextField';
 import * as MBTooltip from '../Components/Tooltip/MBTooltip';
 import * as MBTopAppBar from '../Components/TopAppBar/MBTopAppBar';
+import * as Batching from './Batching';
 
 (<any>window).MaterialBlazor = {
+    Batching,
     MBAutoCompleteTextField,
     MBBladeSet,
     MBButton,

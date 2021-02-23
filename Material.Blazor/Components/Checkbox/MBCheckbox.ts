@@ -11,8 +11,8 @@ export function init(elem, formFieldElem, checked, indeterminate) {
 }
 
 export function destroy(elem) {
-    elem._checkbox.destroy();
-    elem._formField.destroy();
+    elem?._checkbox?.destroy();
+    elem?._formField?.destroy();
 }
 
 export function setChecked(elem, checked) {

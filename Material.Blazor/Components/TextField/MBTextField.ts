@@ -6,9 +6,9 @@ export function init(elem, helperTextElem, helperText, helperTextPersistent, per
 }
 
 export function destroy(elem) {
-    elem._textField.destroy();
+    elem?._textField?.destroy();
 
-    if (elem._helperText) {
+    if (elem?._helperText) {
         elem._helperText.destroy();
     }
 }

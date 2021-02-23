@@ -12,7 +12,7 @@ export function init(elem, dotNetObject) {
 }
 
 export function destroy(elem) {
-    elem._tabBar.destroy();
+    elem?._tabBar?.destroy();
 }
 
 export function activateTab(elem, index) {

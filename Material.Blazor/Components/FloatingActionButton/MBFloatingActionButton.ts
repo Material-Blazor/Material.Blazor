@@ -7,7 +7,7 @@ export function init(elem, exited) {
 }
 
 export function destroy(elem) {
-    elem._fab.destroy();
+    elem?._fab?.destroy();
 }
 
 export function setExited(elem, exited) {
