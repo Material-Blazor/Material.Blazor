@@ -56,9 +56,9 @@ namespace Material.Blazor
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
-            base.OnInitialized();
+            await base.OnInitializedAsync();
 
             ClassMapperInstance
                 .Add("mdc-top-app-bar")

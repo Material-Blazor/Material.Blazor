@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace Material.Blazor.Internal
 {
@@ -27,19 +28,20 @@ namespace Material.Blazor.Internal
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
+            await base.OnInitializedAsync();
             ToastService.OnAdd += AddToast;
             ToastService.OnTriggerStateHasChanged += OnTriggerStateHasChanged;
         }
 
 
-        public new void Dispose()
+        protected override async ValueTask DisposeAsync(bool disposing)
         {
             ToastService.OnAdd -= AddToast;
             ToastService.OnTriggerStateHasChanged -= OnTriggerStateHasChanged;
 
-            base.Dispose();
+            await base.DisposeAsync(disposing);
         }
 
 

@@ -100,9 +100,9 @@ namespace Material.Blazor.Internal
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
-            base.OnInitialized();
+            await base.OnInitializedAsync();
 
             ClassMapperInstance
                 .Add("mdc-typography--body2 mb-dp-container");
@@ -119,9 +119,9 @@ namespace Material.Blazor.Internal
 
 
         /// <inheritdoc/>
-        protected override void OnParametersSet()
+        protected override async Task OnParametersSetAsync()
         {
-            base.OnParametersSet();
+            await base.OnParametersSetAsync();
 
             if (IsFirstParametersSet)
             {
@@ -215,7 +215,7 @@ namespace Material.Blazor.Internal
 
 
         /// <inheritdoc/>
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+        protected override async Task OnAfterRenderAsync(bool firstRender) // TODO: this prevents us from marking OnAfterRenderAsync in InputComponent as sealed. Consider alternatives!
         {
             if (!firstRender && ScrollToYear)
             {

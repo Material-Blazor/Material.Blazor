@@ -209,12 +209,19 @@ namespace Material.Blazor.Internal
         protected string FieldClass => !IgnoreFormField ? (EditContext?.FieldCssClass(FieldIdentifier) ?? string.Empty) : string.Empty;
 
 
-        /// <para>
-        /// Components must call base.OnInitialized() otherwise rendering in dialogs will be unpredictable.
-        /// </para>
-        protected override void OnInitialized()
+        protected sealed override void OnInitialized()
         {
+            // for consistency, we only ever use OnInitializedAsync. To prevent ourselves from using OnInitialized accidentally, we seal this method from here on.
             base.OnInitialized();
+        }
+
+
+        /// <para>
+        /// Components must call base.OnInitializedAsync() otherwise rendering in dialogs will be unpredictable.
+        /// </para>
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
 
             OnInitDialog();
 
@@ -222,17 +229,6 @@ namespace Material.Blazor.Internal
             {
                 LogMBWarning($"{GetType()} is in a form but has EditContext features disabled because it is considered a valid Material.Blazor form field type");
             }
-        }
-
-
-        /// <para>
-        /// Components must call base.OnInitialized() otherwise rendering in dialogs will be unpredictable.
-        /// </para>
-        protected override async Task OnInitializedAsync()
-        {
-            await base.OnInitializedAsync();
-
-            OnInitDialog();
         }
 
 
@@ -289,14 +285,6 @@ namespace Material.Blazor.Internal
 
             // For derived components, retain the usual lifecycle with OnInit/OnParametersSet/etc.
             await base.SetParametersAsync(ParameterView.Empty);
-        }
-
-        /// <inheritdoc/>
-        protected override void OnParametersSet()
-        {
-            base.OnParametersSet();
-
-            CommonParametersSet();
         }
 
         /// <inheritdoc/>
@@ -362,9 +350,9 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// Material.Blazor components descending from MdcInputComponentBase _*must not*_ override OnAfterRenderAsync(bool).
+        /// Material.Blazor components descending from <see cref="InputComponent{T}"/> _*must not*_ override OnAfterRenderAsync(bool).
         /// </summary>
-        protected override void OnAfterRender(bool firstRender)
+        protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (_instantiate)
             {
@@ -373,15 +361,6 @@ namespace Material.Blazor.Internal
                 HasInstantiated = true;
                 AddTooltip();
             }
-        }
-
-
-        /// <summary>
-        /// Material.Blazor components descending from MdcInputComponentBase _*must not*_ override OnAfterRenderAsync(bool).
-        /// </summary>
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            OnAfterRender(firstRender);
             await Task.CompletedTask;
         }
 

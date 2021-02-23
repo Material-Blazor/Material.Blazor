@@ -66,7 +66,7 @@ namespace Material.Blazor
         private ElementReference ElementReference { get; set; }
         private string Format { get; set; }
         private MarkupString InputMarkup { get; set; }
-        private IDisposable ObjectReference { get; set; }
+        private DotNetObjectReference<MBSlider> ObjectReference { get; set; }
         private double RangePercentDecimal { get; set; }
         private double Step { get; set; }
         private int TabIndex { get; set; }
@@ -74,9 +74,9 @@ namespace Material.Blazor
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
-            base.OnInitialized();
+            await base.OnInitializedAsync();
 
             Value = Math.Round(Value, (int)DecimalPlaces);
             ValueMin = Math.Round(ValueMin, (int)DecimalPlaces);
@@ -124,7 +124,7 @@ namespace Material.Blazor
 
 
         private bool _disposed = false;
-        protected override void Dispose(bool disposing)
+        protected override async ValueTask DisposeAsync(bool disposing)
         {
             if (_disposed)
             {
@@ -138,7 +138,7 @@ namespace Material.Blazor
 
             _disposed = true;
 
-            base.Dispose(disposing);
+            await base.DisposeAsync(disposing);
         }
 
 

@@ -23,8 +23,9 @@ namespace Material.Blazor.Internal
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
+            await base.OnInitializedAsync();
             TooltipService.OnAddRenderFragment += AddTooltipRenderFragment;
             TooltipService.OnAddMarkupString += AddTooltipMarkupString;
             TooltipService.OnRemove += RemoveTooltip;
@@ -122,7 +123,7 @@ namespace Material.Blazor.Internal
                     _semProtectTooltips.Release();
                 }
 
-                StateHasChanged();
+                await InvokeAsync(StateHasChanged);
             });
         }
 

@@ -22,18 +22,18 @@ namespace Material.Blazor.Internal
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
+            await base.OnInitializedAsync();
             ObjectReference = DotNetObjectReference.Create(this);
-            base.OnInitialized();
         }
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-        public new void Dispose()
+        protected override async ValueTask DisposeAsync(bool disposing)
         {
             ObjectReference?.Dispose();
-            base.Dispose();
+            await base.DisposeAsync(disposing);
         }
 
 

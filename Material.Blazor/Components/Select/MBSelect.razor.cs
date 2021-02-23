@@ -100,9 +100,9 @@ namespace Material.Blazor
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
-            base.OnInitialized();
+            await base.OnInitializedAsync();
 
             ItemDict = Items.ToDictionary(i => i.SelectedValue);
 
@@ -130,16 +130,16 @@ namespace Material.Blazor
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-        protected override void OnParametersSet()
+        protected override async Task OnParametersSetAsync()
         {
-            base.OnParametersSet();
+            await base.OnParametersSetAsync();
 
             KeyGenerator = GetKeysFunc ?? delegate (TItem item) { return item; };
         }
 
 
         private bool _disposed = false;
-        protected override void Dispose(bool disposing)
+        protected override async ValueTask DisposeAsync(bool disposing)
         {
             if (_disposed)
             {
@@ -153,7 +153,7 @@ namespace Material.Blazor
 
             _disposed = true;
 
-            base.Dispose(disposing);
+            await base.DisposeAsync(disposing);
         }
 
 

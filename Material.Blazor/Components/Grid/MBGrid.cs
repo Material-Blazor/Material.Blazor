@@ -701,12 +701,12 @@ namespace Material.Blazor
         #endregion
 
         #region OnInitialized
-        protected override void OnInitialized()
+        protected override async Task OnInitializedAsync()
         {
 #if LoggingVerbose
             Logger.LogInformation("MBGrid.OnInitialized entered");
 #endif
-            base.OnInitialized();
+            await base.OnInitializedAsync();
 
             if (ColumnConfigurations == null)
             {

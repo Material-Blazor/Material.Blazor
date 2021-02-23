@@ -6,22 +6,20 @@ export function init(textElem, menuElem, dotNetObject): any {
     menuElem._menu = MDCMenu.attachTo(menuElem);
     //menuElem._menuSurface = mdc.menuSurface.MDCMenuSurface.attachTo(menuElem);
 
-    return new Promise(() => {
-        menuElem._menu.foundation.handleItemAction = listItem => {
-            menuElem._menu.open = false;
-            dotNetObject.invokeMethodAsync('NotifySelectedAsync', listItem.innerText);
-        };
+    menuElem._menu.foundation.handleItemAction = listItem => {
+        menuElem._menu.open = false;
+        dotNetObject.invokeMethodAsync('NotifySelectedAsync', listItem.innerText);
+    };
 
-        menuElem._menu.foundation.adapter.handleMenuSurfaceOpened = () => {
-            menuElem._menu.foundation.setDefaultFocusState(0);
-        };
+    menuElem._menu.foundation.adapter.handleMenuSurfaceOpened = () => {
+        menuElem._menu.foundation.setDefaultFocusState(0);
+    };
 
-        const closedCallback = () => {
-            dotNetObject.invokeMethodAsync('NotifyClosedAsync');
-        };
-        
-        menuElem._menu.listen('MDCMenuSurface:closed', closedCallback);
-    });
+    const closedCallback = () => {
+        dotNetObject.invokeMethodAsync('NotifyClosedAsync');
+    };
+
+    menuElem._menu.listen('MDCMenuSurface:closed', closedCallback);
 }
 
 export function destroy(textElem, menuElem): any {

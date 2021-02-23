@@ -11,7 +11,7 @@ namespace Material.Blazor.Internal
     /// <summary>
     /// The base class for all Material.Blazor components.
     /// </summary>
-    public abstract class ComponentFoundation : ComponentBase, IDisposable
+    public abstract class ComponentFoundation : ComponentBase, IAsyncDisposable
     {
         private readonly string[] ReservedAttributes = { "disabled" };
         private readonly string[] EventAttributeNames = { "onfocus", "onblur", "onfocusin", "onfocusout", "onmouseover", "onmouseout", "onmousemove", "onmousedown", "onmouseup", "onclick", "ondblclick", "onwheel", "onmousewheel", "oncontextmenu", "ondrag", "ondragend", "ondragenter", "ondragleave", "ondragover", "ondragstart", "ondrop", "onkeydown", "onkeyup", "onkeypress", "onchange", "oninput", "oninvalid", "onreset", "onselect", "onselectstart", "onselectionchange", "onsubmit", "onbeforecopy", "onbeforecut", "onbeforepaste", "oncopy", "oncut", "onpaste", "ontouchcancel", "ontouchend", "ontouchmove", "ontouchstart", "ontouchenter", "ontouchleave", "ongotpointercapture", "onlostpointercapture", "onpointercancel", "onpointerdown", "onpointerenter", "onpointerleave", "onpointermove", "onpointerout", "onpointerover", "onpointerup", "oncanplay", "oncanplaythrough", "oncuechange", "ondurationchange", "onemptied", "onpause", "onplay", "onplaying", "onratechange", "onseeked", "onseeking", "onstalled", "onstop", "onsuspend", "ontimeupdate", "onvolumechange", "onwaiting", "onloadstart", "ontimeout", "onabort", "onload", "onloadend", "onprogress", "onerror", "onactivate", "onbeforeactivate", "onbeforedeactivate", "ondeactivate", "onended", "onfullscreenchange", "onfullscreenerror", "onloadeddata", "onloadedmetadata", "onpointerlockchange", "onpointerlockerror", "onreadystatechange", "onscroll" };
@@ -129,11 +129,8 @@ namespace Material.Blazor.Internal
         private protected virtual async Task DestroyMcwComponent() => await Task.CompletedTask;
 
 
-        ~ComponentFoundation() => Dispose(false);
-
-
         private bool _disposed;
-        protected virtual void Dispose(bool disposing)
+        protected virtual async ValueTask DisposeAsync(bool disposing)
         {
             if (_disposed)
             {
@@ -142,7 +139,7 @@ namespace Material.Blazor.Internal
 
             if (HasInstantiated)
             {
-                _ = DestroyMcwComponent();
+                await DestroyMcwComponent();
             }
 
             if (disposing && !string.IsNullOrWhiteSpace(Tooltip))
@@ -156,10 +153,10 @@ namespace Material.Blazor.Internal
         }
 
 
-        public void Dispose()
+        public async ValueTask DisposeAsync()
         {
             // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-            Dispose(disposing: true);
+            await DisposeAsync(disposing: true);
             GC.SuppressFinalize(this);
         }
 
@@ -311,11 +308,9 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Material.Blazor components *must always* override this at the start of `OnParametersSet().
         /// </summary>
-        protected override void OnParametersSet()
+        protected sealed override void OnParametersSet()
         {
-            base.OnParametersSet();
-
-            CheckAttributeValidity();
+            // for consistency, we only ever use OnParametersSetAsync. To prevent ourselves from using OnParametersSet accidentally, we seal this method from here on.
         }
 
 
@@ -373,17 +368,11 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// Material.Blazor components generally *should not* override this because it handles the case where components need
-        /// to be adjusted when inside an <c>MBDialog</c> or <c>MBCard</c>. 
+        /// Material.Blazor components descending from <see cref="ComponentFoundation"/> _*must not*_ override OnAfterRender(bool).
         /// </summary>
-        protected override void OnAfterRender(bool firstRender)
+        protected sealed override void OnAfterRender(bool firstRender)
         {
-            if (firstRender)
-            {
-                _ = InstantiateMcwComponent();
-                HasInstantiated = true;
-                AddTooltip();
-            }
+            // for consistency, we only ever use OnAfterRenderAsync. To prevent ourselves from using OnAfterRender accidentally, we seal this method from here on.
         }
 
 
@@ -393,7 +382,12 @@ namespace Material.Blazor.Internal
         /// </summary>
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            OnAfterRender(firstRender);
+            if (firstRender)
+            {
+                await InstantiateMcwComponent();
+                HasInstantiated = true;
+                AddTooltip();
+            }
             await Task.CompletedTask;
         }
 

@@ -13,29 +13,28 @@ export function init(elem, dotNetObject, eventType, delay) {
         dotNetObject.invokeMethodAsync('NotifyChangedAsync', elem._slider.getValue());
     }, delay); 
 
-    return new Promise(() => {
-        const thumbUpCallback = () => {
-            dotNetObject.invokeMethodAsync('NotifyChangedAsync', elem._slider.getValue());
-        };
+    const thumbUpCallback = () => {
+        dotNetObject.invokeMethodAsync('NotifyChangedAsync', elem._slider.getValue());
+    };
 
-        const debounceCallback = () => {
-            debounceNotify();
-        };
+    const debounceCallback = () => {
+        debounceNotify();
+    };
 
-        const throttleCallback = () => {
-            throttleNotify();
-        };
+    const throttleCallback = () => {
+        throttleNotify();
+    };
 
-        if (eventType == 0) {
-            elem._slider.listen('MDCSlider:change', thumbUpCallback);
-        }
-        else if (eventType == 1) {
-            elem._slider.listen('MDCSlider:input', debounceCallback);
-        }
-        else {
-            elem._slider.listen('MDCSlider:input', throttleCallback);
-        }
-    });}
+    if (eventType == 0) {
+        elem._slider.listen('MDCSlider:change', thumbUpCallback);
+    }
+    else if (eventType == 1) {
+        elem._slider.listen('MDCSlider:input', debounceCallback);
+    }
+    else {
+        elem._slider.listen('MDCSlider:input', throttleCallback);
+    }
+}
 
 export function destroy(elem) {
     elem._slider.destroy();
