@@ -209,12 +209,19 @@ namespace Material.Blazor.Internal
         protected string FieldClass => !IgnoreFormField ? (EditContext?.FieldCssClass(FieldIdentifier) ?? string.Empty) : string.Empty;
 
 
-        /// <para>
-        /// Components must call base.OnInitialized() otherwise rendering in dialogs will be unpredictable.
-        /// </para>
-        protected override void OnInitialized()
+        protected sealed override void OnInitialized()
         {
+            // for consistency, we only ever use OnInitializedAsync. To prevent ourselves from using OnInitialized accidentally, we seal this method from here on.
             base.OnInitialized();
+        }
+
+
+        /// <para>
+        /// Components must call base.OnInitializedAsync() otherwise rendering in dialogs will be unpredictable.
+        /// </para>
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
 
             OnInitDialog();
 
@@ -222,17 +229,6 @@ namespace Material.Blazor.Internal
             {
                 LogMBWarning($"{GetType()} is in a form but has EditContext features disabled because it is considered a valid Material.Blazor form field type");
             }
-        }
-
-
-        /// <para>
-        /// Components must call base.OnInitialized() otherwise rendering in dialogs will be unpredictable.
-        /// </para>
-        protected override async Task OnInitializedAsync()
-        {
-            await base.OnInitializedAsync();
-
-            OnInitDialog();
         }
 
 
