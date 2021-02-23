@@ -194,9 +194,21 @@ namespace Material.Blazor
         /// <returns>The <see cref="MBButtonStyle"/> to apply.</returns>
         internal MBButtonStyle AppliedStyle(MBButtonStyle? style, MBCard card, MBDialog dialog)
         {
-            if (style != null) return (MBButtonStyle)style;
-            if (card != null) return CardActionButtonStyle;
-            if (dialog != null) return DialogActionButtonStyle;
+            if (style != null)
+            {
+                return (MBButtonStyle)style;
+            }
+
+            if (card != null)
+            {
+                return CardActionButtonStyle;
+            }
+
+            if (dialog != null)
+            {
+                return DialogActionButtonStyle;
+            }
+
             return ButtonStyle;
         }
 
