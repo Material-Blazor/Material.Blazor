@@ -39,9 +39,16 @@ namespace Material.Blazor
                 if (value != _isIndetermimate)
                 {
                     _isIndetermimate = value;
-                    InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBCheckbox.setIndeterminate", ElementReference, _isIndetermimate));
+                    _ = UpdateIndeterminateStateAsync();
                 }
             }
+        }
+
+
+
+        private async Task UpdateIndeterminateStateAsync()
+        {
+            await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBCheckbox.setIndeterminate", ElementReference, IsIndeterminate);
         }
 
         /// <summary>
