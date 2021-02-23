@@ -18,7 +18,7 @@ namespace Material.Blazor.Internal
         private readonly string[] AriaAttributeNames = { "aria-activedescendant", "aria-atomic", "aria-autocomplete", "aria-busy", "aria-checked", "aria-controls", "aria-describedat", "aria-describedby", "aria-disabled", "aria-dropeffect", "aria-expanded", "aria-flowto", "aria-grabbed", "aria-haspopup", "aria-hidden", "aria-invalid", "aria-label", "aria-labelledby", "aria-level", "aria-live", "aria-multiline", "aria-multiselectable", "aria-orientation", "aria-owns", "aria-posinset", "aria-pressed", "aria-readonly", "aria-relevant", "aria-required", "aria-selected", "aria-setsize", "aria-sort", "aria-valuemax", "aria-valuemin", "aria-valuenow", "aria-valuetext" };
         private bool? disabled = null;
 
-        [Inject] private protected IJSRuntime JsRuntime { get; set; }
+        [Inject] private protected IBatchingJsRuntime JsRuntime { get; set; }
         [Inject] private protected IMBTooltipService TooltipService { get; set; }
         [Inject] private protected ILogger<ComponentFoundation> Logger { get; set; }
 

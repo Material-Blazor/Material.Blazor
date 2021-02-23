@@ -1,5 +1,6 @@
 ﻿using Bunit;
 using Material.Blazor;
+using Material.Blazor.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -15,10 +16,11 @@ namespace Testing
         {
             ctx = new();
             _ = ctx.Services
+                .AddSingleton(new Mock<IBatchingJsRuntime>().Object)
                 .AddSingleton(new Mock<IMBTooltipService>().Object)
                 .AddSingleton(new Mock<IMBToastService>().Object)
                 .AddSingleton(new Mock<IMBSnackbarService>().Object)
-                .AddSingleton(new Mock<ILogger<Material.Blazor.Internal.ComponentFoundation>>().Object)
+                .AddSingleton(new Mock<ILogger<ComponentFoundation>>().Object)
                 .AddSingleton(new Mock<IMBAnimatedNavigationManager>()
                     .Chain(m => m.SetupGet(anm => anm.Configuration).Returns(new MBAnimatedNavigationManagerServiceConfiguration()))
                     .Object)
