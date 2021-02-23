@@ -3,12 +3,10 @@
 export function init(elem, dotNetObject) {
     elem._select = MDCSelect.attachTo(elem);
 
-    return new Promise(() => {
-        elem._select.foundation.handleMenuItemAction = index => {
-            elem._select.foundation.setSelectedIndex(index);
-            dotNetObject.invokeMethodAsync('NotifySelectedAsync', index);
-        };
-    });
+    elem._select.foundation.handleMenuItemAction = index => {
+        elem._select.foundation.setSelectedIndex(index);
+        dotNetObject.invokeMethodAsync('NotifySelectedAsync', index);
+    };
 }
 
 export function destroy(elem) {

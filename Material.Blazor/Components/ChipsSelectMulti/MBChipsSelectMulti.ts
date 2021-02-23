@@ -3,26 +3,24 @@
 export function init(elem, isSingleSelect, dotNetObject) {
     elem._chipSet = MDCChipSet.attachTo(elem);
     elem._isSingleSelect = isSingleSelect;
-    
-    return new Promise(() => {
-        const clickedCallback = () => {
-            if (elem._isSingleSelect) {
-                var selectedChips = elem._chipSet.chips.filter(x => x.foundation.isSelected());
 
-                if (selectedChips.length == 0) {
-                    dotNetObject.invokeMethodAsync('NotifySingleSelectedAsync', -1);
-                }
-                else {
-                    dotNetObject.invokeMethodAsync('NotifySingleSelectedAsync', elem._chipSet.chips.findIndex(x => x.id === selectedChips[0].id));
-                }
+    const clickedCallback = () => {
+        if (elem._isSingleSelect) {
+            var selectedChips = elem._chipSet.chips.filter(x => x.foundation.isSelected());
+
+            if (selectedChips.length == 0) {
+                dotNetObject.invokeMethodAsync('NotifySingleSelectedAsync', -1);
             }
             else {
-                dotNetObject.invokeMethodAsync('NotifyMultiSelectedAsync', elem._chipSet.chips.map(x => x.foundation.isSelected()));
+                dotNetObject.invokeMethodAsync('NotifySingleSelectedAsync', elem._chipSet.chips.findIndex(x => x.id === selectedChips[0].id));
             }
-        };
+        }
+        else {
+            dotNetObject.invokeMethodAsync('NotifyMultiSelectedAsync', elem._chipSet.chips.map(x => x.foundation.isSelected()));
+        }
+    };
 
-        elem._chipSet.listen('MDCChip:selection', clickedCallback);
-    });
+    elem._chipSet.listen('MDCChip:selection', clickedCallback);
 }
 
 export function destroy(elem) {

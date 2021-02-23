@@ -3,13 +3,11 @@
 export function init(elem, dotNetObject) {
     elem._menu = MDCMenu.attachTo(elem);
 
-    return new Promise(() => {
-        const closedCallback = () => {
-            dotNetObject.invokeMethodAsync('NotifyClosedAsync');
-        };
+    const closedCallback = () => {
+        dotNetObject.invokeMethodAsync('NotifyClosedAsync');
+    };
 
-        elem._menu.listen('MDCMenuSurface:closed', closedCallback);
-    });
+    elem._menu.listen('MDCMenuSurface:closed', closedCallback);
 }
 
 export function destroy(elem) {
