@@ -393,7 +393,12 @@ namespace Material.Blazor.Internal
         /// </summary>
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            OnAfterRender(firstRender);
+            if (firstRender)
+            {
+                _ = InstantiateMcwComponent();
+                HasInstantiated = true;
+                AddTooltip();
+            }
             await Task.CompletedTask;
         }
 
