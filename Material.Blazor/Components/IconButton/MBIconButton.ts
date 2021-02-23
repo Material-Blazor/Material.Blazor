@@ -6,5 +6,5 @@ export function init(elem): void {
 }
 
 export function destroy(elem): void {
-    elem._ripple.destroy();
+    elem?._ripple?.destroy();
 }

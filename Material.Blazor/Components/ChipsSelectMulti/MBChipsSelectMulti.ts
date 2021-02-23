@@ -24,7 +24,7 @@ export function init(elem, isSingleSelect, dotNetObject) {
 }
 
 export function destroy(elem) {
-    elem._chipSet.destroy();
+    elem?._chipSet?.destroy();
 }
 
 export function setDisabled(elem, value) {

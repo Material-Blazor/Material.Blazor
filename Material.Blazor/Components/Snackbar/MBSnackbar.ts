@@ -10,5 +10,5 @@ export function init(elem, dotnetReference, timeoutMs: number) {
 }
 
 export function destroy(elem) {
-    elem._snackbar.destroy();
+    elem?._snackbar?.destroy();
 }

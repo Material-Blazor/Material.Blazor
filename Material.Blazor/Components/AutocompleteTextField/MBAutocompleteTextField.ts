@@ -23,8 +23,8 @@ export function init(textElem, menuElem, dotNetObject): any {
 }
 
 export function destroy(textElem, menuElem): any {
-    textElem._textField.destroy();
-    menuElem._menu.destroy();
+    textElem?._textField?.destroy();
+    menuElem?._menu?.destroy();
 }
 
 export function open(menuElem): void {

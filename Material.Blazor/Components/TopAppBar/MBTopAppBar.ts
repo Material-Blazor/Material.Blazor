@@ -8,5 +8,5 @@ export function init(elem, scrollTarget) {
 }
 
 export function destroy(elem) {
-    elem._topAppBar.destroy();
+    elem?._topAppBar?.destroy();
 }

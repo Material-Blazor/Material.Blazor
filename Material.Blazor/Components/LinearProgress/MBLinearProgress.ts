@@ -6,7 +6,7 @@ export function init(elem, progress, buffer) {
 }
 
 export function destroy(elem): void {
-    elem._linearProgress.destroy();
+    elem?._linearProgress?.destroy();
 }
 
 export function setProgress(elem, progress, buffer) {

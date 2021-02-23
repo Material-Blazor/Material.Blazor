@@ -10,7 +10,7 @@ export function init(elem, dotNetObject) {
 }
 
 export function destroy(elem) {
-    elem._select.destroy();
+    elem?._select?.destroy();
 }
 
 export function setDisabled(elem, value) {

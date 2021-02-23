@@ -9,7 +9,7 @@ export function setDisabled(elem, value) {
 }
 
 export function destroy(elem) {
-    elem._select.destroy();
+    elem?._select?.destroy();
 }
 
 export function listItemClick(elem, elemText) {

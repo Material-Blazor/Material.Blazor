@@ -37,7 +37,7 @@ export function init(elem, dotNetObject, eventType, delay) {
 }
 
 export function destroy(elem) {
-    elem._slider.destroy();
+    elem?._slider?.destroy();
 }
 
 export function setValue(elem, value) {

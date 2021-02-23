@@ -11,7 +11,7 @@ export function init(elem, dotNetObject) {
 }
 
 export function destroy(elem) {
-    elem._menu.destroy();
+    elem?._menu?.destroy();
 }
 
 export function show(elem) {

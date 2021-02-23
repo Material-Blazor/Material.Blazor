@@ -12,7 +12,5 @@ export function init(elem, keyboardInteractions, ripple) {
 }
 
 export function destroy(elem) {
-    if (elem._list != undefined) {
-        elem._list.destroy();
-    }
+    elem?._list?.destroy();
 }

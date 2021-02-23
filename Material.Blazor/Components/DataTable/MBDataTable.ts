@@ -8,7 +8,7 @@ export function init(elem, hasProgress, showProgress) {
 }
 
 export function destroy(elem) {
-    elem._dataTable.destroy();
+    elem?._dataTable?.destroy();
 }
 
 export function setProgress(elem, showProgress) {

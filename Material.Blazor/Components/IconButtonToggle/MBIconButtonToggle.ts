@@ -5,7 +5,7 @@ export function init(elem) {
 }
 
 export function destroy(elem): void {
-    elem._iconButtonToggle.destroy();
+    elem?._iconButtonToggle?.destroy();
 }
 
 export function setOn(elem, isOn) {
