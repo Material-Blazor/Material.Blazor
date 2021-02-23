@@ -139,7 +139,7 @@ namespace Material.Blazor.Internal
 
             if (HasInstantiated)
             {
-                _ = DestroyMcwComponent();
+                await DestroyMcwComponent();
             }
 
             if (disposing && !string.IsNullOrWhiteSpace(Tooltip))
