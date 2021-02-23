@@ -292,14 +292,6 @@ namespace Material.Blazor.Internal
         }
 
         /// <inheritdoc/>
-        protected override void OnParametersSet()
-        {
-            base.OnParametersSet();
-
-            CommonParametersSet();
-        }
-
-        /// <inheritdoc/>
         protected override async Task OnParametersSetAsync()
         {
             await base.OnParametersSetAsync();

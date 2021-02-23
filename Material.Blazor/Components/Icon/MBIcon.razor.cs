@@ -1,6 +1,7 @@
 ﻿using Material.Blazor.Internal;
 
 using Microsoft.AspNetCore.Components;
+using System.Threading.Tasks;
 
 namespace Material.Blazor
 {
@@ -36,9 +37,9 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        protected override void OnParametersSet()
+        protected override async Task OnParametersSetAsync()
         {
-            base.OnParametersSet();
+            await base.OnParametersSetAsync();
 
             IconHelper = new MBIconHelper(CascadingDefaults, IconName, IconFoundry);
             ComponentPureHtmlAttributes = IconHelper.Attributes;

@@ -311,11 +311,9 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Material.Blazor components *must always* override this at the start of `OnParametersSet().
         /// </summary>
-        protected override void OnParametersSet()
+        protected sealed override void OnParametersSet()
         {
-            base.OnParametersSet();
-
-            CheckAttributeValidity();
+            // for consistency, we only ever use OnParametersSetAsync. To prevent ourselves from using OnParametersSet accidentally, we seal this method from here on.
         }
 
 
@@ -377,6 +375,7 @@ namespace Material.Blazor.Internal
         /// </summary>
         protected sealed override void OnAfterRender(bool firstRender)
         {
+            // for consistency, we only ever use OnAfterRenderAsync. To prevent ourselves from using OnAfterRender accidentally, we seal this method from here on.
         }
 
 
