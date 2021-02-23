@@ -107,7 +107,7 @@ namespace Material.Blazor
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         private bool _disposed = false;
-        protected override void Dispose(bool disposing)
+        protected override async ValueTask DisposeAsync(bool disposing)
         {
             if (_disposed)
             {
@@ -121,7 +121,7 @@ namespace Material.Blazor
 
             _disposed = true;
 
-            base.Dispose(disposing);
+            await base.DisposeAsync(disposing);
         }
 
 

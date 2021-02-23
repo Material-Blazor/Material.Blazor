@@ -36,12 +36,12 @@ namespace Material.Blazor.Internal
         }
 
 
-        public new void Dispose()
+        protected override async ValueTask DisposeAsync(bool disposing)
         {
             ToastService.OnAdd -= AddToast;
             ToastService.OnTriggerStateHasChanged -= OnTriggerStateHasChanged;
 
-            base.Dispose();
+            await base.DisposeAsync(disposing);
         }
 
 
