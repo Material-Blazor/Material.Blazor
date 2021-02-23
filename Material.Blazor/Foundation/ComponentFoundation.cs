@@ -388,7 +388,7 @@ namespace Material.Blazor.Internal
         {
             if (firstRender)
             {
-                _ = InstantiateMcwComponent();
+                await InstantiateMcwComponent();
                 HasInstantiated = true;
                 AddTooltip();
             }
