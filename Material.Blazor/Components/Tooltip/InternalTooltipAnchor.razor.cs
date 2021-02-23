@@ -123,7 +123,7 @@ namespace Material.Blazor.Internal
                     _semProtectTooltips.Release();
                 }
 
-                StateHasChanged();
+                await InvokeAsync(StateHasChanged);
             });
         }
 
