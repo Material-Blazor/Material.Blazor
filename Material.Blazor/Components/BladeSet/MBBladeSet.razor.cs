@@ -20,7 +20,7 @@ namespace Material.Blazor
         private const int transitionMs = 200;
 
         [Inject] private protected ILogger<MBBladeSet> Logger { get; set; }
-
+        [Inject] private protected IJSRuntime JsRuntime { get; set; }
 
 
         /// <summary>
@@ -68,6 +68,12 @@ namespace Material.Blazor
             /// Additional style attributes the blade. Used only for add actions.
             /// </summary>
             public string AdditionalStyles { get; set; }
+
+
+            /// <summary>
+            /// Optional action supplied by the consumer to be called once the blade has been removed. Passes the blade reference.
+            /// </summary>
+            public Action<string> OnRemoved { get; set; }
         }
 
 
@@ -95,9 +101,9 @@ namespace Material.Blazor
 
 
             /// <summary>
-            /// Parameters for the blade component. Used only for add actions.
+            /// Optional action supplied by the consumer to be called once the blade has been removed. Passes the blade reference.
             /// </summary>
-            public object Parameters { get; set; }
+            public Action<string> OnRemoved { get; set; }
 
 
             /// <summary>
@@ -159,9 +165,6 @@ namespace Material.Blazor
                 }
             }
         }
-
-
-        [Inject] private protected IJSRuntime JsRuntime { get; set; }
 
 
         /// <summary>
@@ -232,9 +235,11 @@ namespace Material.Blazor
         /// Adds the specified blade then animating its opening sequence.
         /// </summary>
         /// <param name="bladeReference">A string reference that the MBBladeSet component passes back via Context so the consumer can display the correct blade contents.</param>
+        /// <param name="parameters">Optional parameters of type (or descending from) <see cref="MBBladeComponentParameters"/></param>
         /// <param name="additionalCss">CSS styles to be applied to the &lt;mb-blade&gt; block.</param>
         /// <param name="additionalStyles">Style attributes to be applied to the &lt;mb-blade&gt; block.</param>
-        public async Task AddBladeAsync<TComponent, TParameters>(string bladeReference, TParameters parameters, string additionalCss = "", string additionalStyles = "") where TParameters : MBBladeComponentParameters
+        /// <param name="onRemoved">Action called back when the blade is removed, receiving the blade reference as the parameter</param>
+        public async Task AddBladeAsync<TComponent, TParameters>(string bladeReference, TParameters parameters = null, string additionalCss = "", string additionalStyles = "", Action<string> onRemoved = null) where TParameters : MBBladeComponentParameters
         {
             AddQueueElement queueElement = new()
             {
@@ -242,6 +247,7 @@ namespace Material.Blazor
                 BladeReference = bladeReference,
                 AdditionalCss = additionalCss,
                 AdditionalStyles = additionalStyles,
+                OnRemoved = onRemoved,
                 BladeContent = new RenderFragment(builder =>
                 {
                     var i = 0;
@@ -306,6 +312,7 @@ namespace Material.Blazor
                             BladeContent = addQueueElement.BladeContent,
                             AdditionalCss = addQueueElement.AdditionalCss,
                             AdditionalStyles = addQueueElement.AdditionalStyles,
+                            OnRemoved = addQueueElement.OnRemoved,
                             Status = BladeStatus.NewClosed
                         };
                         
@@ -396,7 +403,9 @@ namespace Material.Blazor
 
                 await Task.Delay(transitionMs);
 
-                Blades.Remove(removedBlade.BladeReference);
+                _ = Blades.Remove(removedBlade.BladeReference);
+
+                removedBlade.OnRemoved?.Invoke(removedBlade.BladeReference);
 
                 StateHasChanged();
 
