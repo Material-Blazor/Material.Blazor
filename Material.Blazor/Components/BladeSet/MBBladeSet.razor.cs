@@ -38,7 +38,7 @@ namespace Material.Blazor
         /// <summary>
         /// Structs for queued blade add/remove actions.
         /// </summary>
-        private struct QueueElement
+        private class QueueElement
         {
             /// <summary>
             /// The queued operation.
@@ -53,15 +53,51 @@ namespace Material.Blazor
 
 
             /// <summary>
-            /// Additional CSS for the blade.
+            /// The blade component. Used only for add actions.
+            /// </summary>
+            public IComponent BaseComponent { get; set; }
+
+
+            /// <summary>
+            /// Parameters for the blade component. Used only for add actions.
+            /// </summary>
+            public object BaseParameters { get; set; }
+
+
+            /// <summary>
+            /// True if parameters are supplied.
+            /// </summary>
+            public bool HasParameters { get; set; }
+
+
+            /// <summary>
+            /// Additional CSS for the blade. Used only for add actions.
             /// </summary>
             public string AdditionalCss { get; set; }
 
 
             /// <summary>
-            /// Additional style attributes the blade.
+            /// Additional style attributes the blade. Used only for add actions.
             /// </summary>
             public string AdditionalStyles { get; set; }
+        }
+
+
+        /// <summary>
+        /// Structs for queued blade add/remove actions.
+        /// </summary>
+        private class QueueElement<TParameters> : QueueElement where TParameters : MBBladeComponentParameters
+        {
+            /// <summary>
+            /// The blade component. Used only for add actions.
+            /// </summary>
+            public IMBBladeComponent<TParameters> Component { get => (IMBBladeComponent<TParameters>)BaseComponent; set => BaseComponent = value; }
+
+
+            /// <summary>
+            /// Parameters for the blade component. Used only for add actions.
+            /// </summary>
+            public TParameters Parameters { get => (TParameters)BaseParameters; set => BaseParameters = value; }
         }
 
 
@@ -216,7 +252,11 @@ namespace Material.Blazor
         /// <param name="bladeReference">A string reference that the MBBladeSet component passes back via Context so the consumer can display the correct blade contents.</param>
         /// <param name="additionalCss">CSS styles to be applied to the &lt;mb-blade&gt; block.</param>
         /// <param name="additionalStyles">Style attributes to be applied to the &lt;mb-blade&gt; block.</param>
-        public void AddBlade(string bladeReference, string additionalCss = "", string additionalStyles = "") => _ = QueueAction(new() { BladeSetAction = BladeSetAction.Add, BladeReference = bladeReference, AdditionalCss = additionalCss, AdditionalStyles = additionalStyles });
+        public async Task AddBladeAsync<TParam>(string bladeReference, IMBBladeComponent<TParam> component, TParam parameters, string additionalCss = "", string additionalStyles = "") where TParam : MBBladeComponentParameters
+        {
+            QueueElement<TParam> queueElement = new() { BladeSetAction = BladeSetAction.Add, Component = component, Parameters = parameters, BladeReference = bladeReference, AdditionalCss = additionalCss, AdditionalStyles = additionalStyles };
+            await QueueAction(queueElement).ConfigureAwait(false);
+        }
 
 
         /// <summary>
@@ -224,7 +264,11 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="bladeReference">The reference of the blade to be removed.</param>
         /// <returns></returns>
-        public void RemoveBlade(string bladeReference) => _ = QueueAction(new() { BladeSetAction = BladeSetAction.Remove, BladeReference = bladeReference });
+        public async Task RemoveBladeAsync(string bladeReference)
+        {
+            QueueElement queueElement = new() { BladeSetAction = BladeSetAction.Remove, BladeReference = bladeReference };
+            await QueueAction(queueElement).ConfigureAwait(false);
+        }
 
 
         /// <summary>
