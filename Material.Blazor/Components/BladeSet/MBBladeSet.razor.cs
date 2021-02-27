@@ -30,44 +30,32 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Actions for the concurrent queue.
+        /// Base class for concurrent queue elements
         /// </summary>
-        private enum BladeSetAction { Add, Remove }
-
-
-        /// <summary>
-        /// Structs for queued blade add/remove actions.
-        /// </summary>
-        private class QueueElement
+        private abstract class QueueElement
         {
-            /// <summary>
-            /// The queued operation.
-            /// </summary>
-            public BladeSetAction BladeSetAction { get; set; }
-
-
             /// <summary>
             /// The blade referene to be operated on.
             /// </summary>
             public string BladeReference { get; set; }
+        }
 
 
+        /// <summary>
+        /// Queue element for adding blades.
+        /// </summary>
+        private class AddQueueElement : QueueElement
+        {
             /// <summary>
-            /// The blade component. Used only for add actions.
+            /// The blade's content as a render fragment.
             /// </summary>
-            public IComponent BaseComponent { get; set; }
+            public RenderFragment BladeContent { get; set; }
 
 
             /// <summary>
             /// Parameters for the blade component. Used only for add actions.
             /// </summary>
-            public object BaseParameters { get; set; }
-
-
-            /// <summary>
-            /// True if parameters are supplied.
-            /// </summary>
-            public bool HasParameters { get; set; }
+            public object Parameters { get; set; }
 
 
             /// <summary>
@@ -84,21 +72,9 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Structs for queued blade add/remove actions.
+        /// Queue element for removing blades.
         /// </summary>
-        private class QueueElement<TParameters> : QueueElement where TParameters : MBBladeComponentParameters
-        {
-            /// <summary>
-            /// The blade component. Used only for add actions.
-            /// </summary>
-            public IMBBladeComponent<TParameters> Component { get => (IMBBladeComponent<TParameters>)BaseComponent; set => BaseComponent = value; }
-
-
-            /// <summary>
-            /// Parameters for the blade component. Used only for add actions.
-            /// </summary>
-            public TParameters Parameters { get => (TParameters)BaseParameters; set => BaseParameters = value; }
-        }
+        private class RemoveQueueElement : QueueElement { }
 
 
         /// <summary>
@@ -110,6 +86,18 @@ namespace Material.Blazor
             /// The blade's reference.
             /// </summary>
             public string BladeReference { get; init; }
+
+
+            /// <summary>
+            /// The blade's content as a render fragment.
+            /// </summary>
+            public RenderFragment BladeContent { get; set; }
+
+
+            /// <summary>
+            /// Parameters for the blade component. Used only for add actions.
+            /// </summary>
+            public object Parameters { get; set; }
 
 
             /// <summary>
@@ -183,12 +171,6 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Render fragment for each blade.
-        /// </summary>
-        [Parameter] public RenderFragment<string> BladeContent { get; set; }
-
-
-        /// <summary>
         /// Additional CSS classes to apply to the mb-bladeset-main-content block that contains page content.
         /// </summary>
         [Parameter] public string MainContentAdditionalCss { get; set; }
@@ -252,9 +234,24 @@ namespace Material.Blazor
         /// <param name="bladeReference">A string reference that the MBBladeSet component passes back via Context so the consumer can display the correct blade contents.</param>
         /// <param name="additionalCss">CSS styles to be applied to the &lt;mb-blade&gt; block.</param>
         /// <param name="additionalStyles">Style attributes to be applied to the &lt;mb-blade&gt; block.</param>
-        public async Task AddBladeAsync<TParam>(string bladeReference, IMBBladeComponent<TParam> component, TParam parameters, string additionalCss = "", string additionalStyles = "") where TParam : MBBladeComponentParameters
+        public async Task AddBladeAsync<TComponent, TParameters>(string bladeReference, TParameters parameters, string additionalCss = "", string additionalStyles = "") where TParameters : MBBladeComponentParameters
         {
-            QueueElement<TParam> queueElement = new() { BladeSetAction = BladeSetAction.Add, Component = component, Parameters = parameters, BladeReference = bladeReference, AdditionalCss = additionalCss, AdditionalStyles = additionalStyles };
+            AddQueueElement queueElement = new()
+            {
+                Parameters = parameters,
+                BladeReference = bladeReference,
+                AdditionalCss = additionalCss,
+                AdditionalStyles = additionalStyles,
+                BladeContent = new RenderFragment(builder =>
+                {
+                    var i = 0;
+                    builder.OpenComponent(i++, typeof(TComponent));
+                    builder.AddAttribute(i++, nameof(MBBladeComponent<MBBladeComponentParameters>.BladeReference), bladeReference);
+                    builder.AddAttribute(i++, nameof(MBBladeComponent<MBBladeComponentParameters>.Parameters), parameters);
+                    builder.CloseComponent();
+                })
+            };
+            
             await QueueAction(queueElement).ConfigureAwait(false);
         }
 
@@ -266,7 +263,11 @@ namespace Material.Blazor
         /// <returns></returns>
         public async Task RemoveBladeAsync(string bladeReference)
         {
-            QueueElement queueElement = new() { BladeSetAction = BladeSetAction.Remove, BladeReference = bladeReference };
+            QueueElement queueElement = new RemoveQueueElement()
+            {
+                BladeReference = bladeReference
+            };
+
             await QueueAction(queueElement).ConfigureAwait(false);
         }
 
@@ -287,18 +288,30 @@ namespace Material.Blazor
             {
                 if (bladeSetActionQueue.TryDequeue(out var queueElement))
                 {
-                    if (queueElement.BladeSetAction == BladeSetAction.Add)
+                    if (queueElement is RemoveQueueElement)
                     {
-                        BladeInfo addedBlade = new() { BladeReference = queueElement.BladeReference, AdditionalCss = queueElement.AdditionalCss, AdditionalStyles = queueElement.AdditionalStyles, Status = BladeStatus.NewClosed };
-                        Blades.Add(queueElement.BladeReference, addedBlade);
-                        addedBladesQueue.Enqueue(addedBlade);
+                        Blades[queueElement.BladeReference].Status = BladeStatus.ClosedToRemove;
+                        
+                        removedBladesQueue.Enqueue(Blades[queueElement.BladeReference]);
 
                         StateHasChanged();
                     }
                     else
                     {
-                        Blades[queueElement.BladeReference].Status = BladeStatus.ClosedToRemove;
-                        removedBladesQueue.Enqueue(Blades[queueElement.BladeReference]);
+                        var addQueueElement = queueElement as AddQueueElement;
+                        
+                        BladeInfo addedBlade = new()
+                        {
+                            BladeReference = addQueueElement.BladeReference,
+                            BladeContent = addQueueElement.BladeContent,
+                            AdditionalCss = addQueueElement.AdditionalCss,
+                            AdditionalStyles = addQueueElement.AdditionalStyles,
+                            Status = BladeStatus.NewClosed
+                        };
+                        
+                        Blades.Add(queueElement.BladeReference, addedBlade);
+
+                        addedBladesQueue.Enqueue(addedBlade);
 
                         StateHasChanged();
                     }
