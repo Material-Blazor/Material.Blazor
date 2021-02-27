@@ -1,0 +1,20 @@
+﻿@inherits MBBladeComponent<MBBladeComponentParameters>
+
+
+<div class="mdc-top-app-bar--dense-fixed-adjust" style="width: 333px;">
+    <div class="mdc-layout-grid">
+        <div class="mdc-layout-grid__inner">
+            <div class="mdc-layout-grid__cell--span-12">
+                <MBIconButton Icon="close" @onclick="@CloseBladeAsync" />
+            </div>
+
+            <div class="mdc-layout-grid__cell--span-12">
+                <h3 class="mdc-typography--headline6">Blade @BladeReference</h3>
+            </div>
+
+            <div class="mdc-layout-grid__cell--span-12">
+                <p>A simple, mostly empty blade</p>
+            </div>
+        </div>
+    </div>
+</div>

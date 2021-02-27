@@ -1,0 +1,106 @@
+﻿@inherits MBBladeComponent<BladeTypeCContent.BladeParameters>
+
+
+<div class="mdc-top-app-bar--dense-fixed-adjust" style="width: 333px;">
+    <div class="mdc-layout-grid">
+        <div class="mdc-layout-grid__inner">
+            <div class="mdc-layout-grid__cell--span-12">
+                <MBIconButton Icon="close" @onclick="@CloseBladeAsync" />
+            </div>
+
+            <div class="mdc-layout-grid__cell--span-12">
+                <h3 class="mdc-typography--headline6">Blade @BladeReference</h3>
+            </div>
+
+            <div class="mdc-layout-grid__cell--span-12">
+                <p>A form</p>
+            </div>
+
+            <div class="mdc-layout-grid__cell--span-12">
+                <EditForm Model="@Model">
+                    <DataAnnotationsValidator />
+
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12" style="margin-top: 6px;">
+                            <MBTextField @bind-Value="@Model.Text"
+                                         style="width: 100%"
+                                         Density="@MBDensity.Minus4"
+                                         Label="Text Field"
+                                         TextInputStyle="@MBTextInputStyle.Outlined"
+                                         ValidationMessageFor="@(() => Model.Text)" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <MBTextArea @bind-Value="@Model.Area"
+                                        style="width: 100%"
+                                        Density="@MBDensity.Minus4"
+                                        Label="Text Area"
+                                        TextInputStyle="@MBTextInputStyle.Outlined"
+                                        HelperText="Min 20 Characters"
+                                        HelperTextPersistent="true"
+                                        ValidationMessageFor="@(() => Model.Area)" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <MBAutocompleteTextField @bind-Value="@Model.Autocomplete"
+                                                     style="width: 100%"
+                                                     Density="@MBDensity.Minus4"
+                                                     Label="Autocomplete Text Field"
+                                                     SelectItems="@Fruits"
+                                                     TextInputStyle="@MBTextInputStyle.Outlined"
+                                                     ValidationMessageFor="@(() => Model.Autocomplete)" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <MBNumericDoubleField @bind-Value="@Model.NumericDouble"
+                                                  style="width: 100%"
+                                                  Density="@MBDensity.Minus4"
+                                                  Label="Numeric Double"
+                                                  NumericFormat="N2"
+                                                  DecimalPlaces="2"
+                                                  TextInputStyle="@MBTextInputStyle.Outlined"
+                                                  ValidationMessageFor="@(() => Model.NumericDouble)" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <MBNumericIntField @bind-Value="@Model.NumericInt"
+                                               style="width: 100%"
+                                               Density="@MBDensity.Minus4"
+                                               Label="Numeric Int"
+                                               NumericFormat="N0"
+                                               TextInputStyle="@MBTextInputStyle.Outlined"
+                                               ValidationMessageFor="@(() => Model.NumericInt)" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-12" style="text-align: right;">
+                            <MBButton style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                      type="submit"
+                                      Label="submit" />
+                            <MBButton style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                      Label="cancel" />
+                        </div>
+                    </div>
+                </EditForm>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    public class BladeParameters : MBBladeComponentParameters
+    {
+        public string TextFieldContent { get; set; }
+        public string TextAreaContent { get; set; }
+    }
+
+    private FormValidation.FormModel Model { get; set; } = new();
+
+    public string[] Fruits = { "Avocado", "Banana", "Blackberry", "Blueberry", "Cantaloupe", "Cherry", "Clementine", "Dragonfruit", "Fig", "Grape", "Guava", "Honeydew", "Huckleberry", "Jujube", "Kiwi", "Kumquat", "Lime", "Nectarine", "Orange", "Papaya", "Passion Fruit", "Pineapple", "Plum", "Pomegranate", "Raspberry", "Satsuma", "Strawberry", "Tangerine", "Tomato", "Watermelon" };
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        if (Parameters != null)
+        {
+            Model.Text = Parameters.TextFieldContent;
+            Model.Area = Parameters.TextAreaContent;
+        }
+    }
+}

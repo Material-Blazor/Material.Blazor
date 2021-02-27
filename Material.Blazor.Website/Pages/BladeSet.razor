@@ -24,14 +24,14 @@
                         Add Blades
                     </h2>
 
-                    @foreach (var bladeReference in BladeReferences)
+                    @foreach (var blade in BladeDefinitions)
                     {
                         <p>
                             <MBButton ButtonStyle="@MBButtonStyle.Outlined"
-                                      Disabled="@Blades.BladeReferences.Contains(bladeReference)"
-                                      @key="@bladeReference"
-                                      Label="@GetAddLabel(bladeReference)"
-                                      @onclick="@(() => AddSingleBlade(bladeReference))" />
+                                      Disabled="@Blades.BladeReferences.Contains(blade.Reference)"
+                                      @key="@blade.Reference"
+                                      Label="@GetAddLabel(blade.Reference)"
+                                      @onclick="@(() => blade.AddBlade(Blades, ToastService))" />
                         </p>
                     }
 
@@ -51,19 +51,19 @@
                         Remove Blades
                     </h2>
 
-                    @foreach (var bladeReference in BladeReferences)
+                    @foreach (var blade in BladeDefinitions)
                     {
                         <p>
                             <MBButton ButtonStyle="@MBButtonStyle.Outlined"
-                                      Disabled="@(!Blades.BladeReferences.Contains(bladeReference))"
-                                      @key="@bladeReference"
-                                      Label="@GetRemoveLabel(bladeReference)"
-                                      @onclick="@(() => RemoveSingleBlade(bladeReference))" />
+                                      Disabled="@(!Blades.BladeReferences.Contains(blade.Reference))"
+                                      @key="@blade.Reference"
+                                      Label="@GetRemoveLabel(blade.Reference)"
+                                      @onclick="@(() => blade.RemoveBlade(Blades))" />
                         </p>
                     }
 
                     <MBButton ButtonStyle="@MBButtonStyle.Outlined"
-                              Disabled="@(Blades.BladeReferences.Count() < BladeReferences.Length)"
+                              Disabled="@(!Blades.BladeReferences.Any())"
                               Label="Remove All Blades"
                               @onclick="@RemoveAllBlades" />
                 </Primary>
@@ -75,9 +75,21 @@
 
 
 @code {
+    class BladeInfo
+    {
+        public string Reference { get; set; }
+        public Action<MBBladeSet, IMBToastService> AddBlade { get; set; }
+        public Action<MBBladeSet> RemoveBlade { get; set; }
+    }
+
     [CascadingParameter] private MBBladeSet Blades { get; set; }
 
-    public readonly static string[] BladeReferences = { "One", "Two", "Three" };
+    readonly static BladeInfo[] BladeDefinitions =
+    {
+        new() { Reference = "Type A", AddBlade = AddBladeTypeA, RemoveBlade = RemoveBladeTypeA },
+        new() { Reference = "Type B", AddBlade = AddBladeTypeB, RemoveBlade = RemoveBladeTypeB },
+        new() { Reference = "Type C", AddBlade = AddBladeTypeC, RemoveBlade = RemoveBladeTypeC }
+    };
 
     private string GetAddLabel(string reference) => $"Add Blade {reference}";
 
@@ -100,38 +112,65 @@
 
     private void AddAllBlades()
     {
-        foreach (var bladeReference in BladeReferences)
+        foreach (var blade in BladeDefinitions.OrderBy(x => x.Reference))
         {
-            Blades.AddBlade(bladeReference, "demo-blade");
+            blade.AddBlade(Blades, ToastService);
         }
-
-        ToastService.ShowToast(heading: "Blade action", message: "Add all blades", level: MBToastLevel.Success, showIcon: false);
     }
 
 
-    private void AddSingleBlade(string bladeReference)
+    private static void AddBladeTypeA(MBBladeSet blades, IMBToastService toastService)
     {
-        Blades.AddBlade(bladeReference, "demo-blade");
+        _ = blades.AddBladeAsync<BladeTypeAContent, MBBladeComponentParameters>("Type A", additionalCss: "demo-blade", onRemoved: (string reference) => RemovedToast(toastService, reference)).ConfigureAwait(false);
 
-        ToastService.ShowToast(heading: "Blade action", message: "Add single blade: " + bladeReference, level: MBToastLevel.Success, showIcon: false);
+        AddedToast(toastService, "Type A");
+    }
+
+
+    private static void AddBladeTypeB(MBBladeSet blades, IMBToastService toastService)
+    {
+        _ = blades.AddBladeAsync<BladeTypeBContent, MBBladeComponentParameters>("Type B", additionalCss: "demo-blade", onRemoved: (string reference) => RemovedToast(toastService, reference)).ConfigureAwait(false);
+
+        AddedToast(toastService, "Type B");
+    }
+
+
+    private static void AddBladeTypeC(MBBladeSet blades, IMBToastService toastService)
+    {
+        _ = blades.AddBladeAsync<BladeTypeCContent, BladeTypeCContent.BladeParameters>("Type C", new() { TextFieldContent = "From parameter", TextAreaContent = "From parameter" }, additionalCss: "demo-blade", onRemoved: (string reference) => RemovedToast(toastService, reference)).ConfigureAwait(false);
+
+        AddedToast(toastService, "Type C");
     }
 
 
     private void RemoveAllBlades()
     {
-        foreach (var bladeReference in BladeReferences)
+        foreach (var blade in BladeDefinitions.OrderByDescending(x => x.Reference))
         {
-            Blades.RemoveBlade(bladeReference);
+            blade.RemoveBlade(Blades);
         }
-
-        ToastService.ShowToast(heading: "Blade action", message: "Removed all blades", level: MBToastLevel.Success, showIcon: false);
     }
 
 
-    private void RemoveSingleBlade(string bladeReference)
+    private static void RemoveBladeTypeA(MBBladeSet blades)
     {
-        Blades.RemoveBlade(bladeReference);
-
-        ToastService.ShowToast(heading: "Blade action", message: "Remove single blade: " + bladeReference, level: MBToastLevel.Success, showIcon: false);
+        _ = blades.RemoveBladeAsync("Type A").ConfigureAwait(false);
     }
+
+
+    private static void RemoveBladeTypeB(MBBladeSet blades)
+    {
+        _ = blades.RemoveBladeAsync("Type B").ConfigureAwait(false);
+    }
+
+
+    private static void RemoveBladeTypeC(MBBladeSet blades)
+    {
+        _ = blades.RemoveBladeAsync("Type C").ConfigureAwait(false);
+    }
+
+
+    private static void AddedToast(IMBToastService toastService, string bladeReference) => toastService.ShowToast(heading: "Blade action", message: $"Added blade: {bladeReference}", level: MBToastLevel.Success, showIcon: false);
+
+    private static void RemovedToast(IMBToastService toastService, string bladeReference) => toastService.ShowToast(heading: "Blade action", message: $"Removed blade: {bladeReference}", level: MBToastLevel.Success, showIcon: false);
 }
