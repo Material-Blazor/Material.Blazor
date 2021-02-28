@@ -170,7 +170,7 @@ namespace Material.Blazor
                 Key = Utilities.GenerateUniqueElementName();
                 IsOpen = true;
                 AfterRenderShowAction = true;
-                StateHasChanged();
+                await InvokeAsync(StateHasChanged).ConfigureAwait(false);
                 Tcs = new TaskCompletionSource<string>();
                 var ret = await Tcs.Task;
                 dialogHasInstantiated = false;
