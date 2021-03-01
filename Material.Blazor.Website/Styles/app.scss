@@ -2,6 +2,8 @@
 @use "@material/top-app-bar";
 
 
+@use 'sass:color';
+
 @mixin app-classes() {
     /*
      * App layout styling
@@ -11,6 +13,42 @@
         margin: 0 !important;
         background-color: theme.$background;
         color: theme.$on-surface;
+    }
+
+
+    :root {
+        --mb-scroll-color: var(--mdc-theme-primary);
+        --mb-scroll-track-color: rgba(0, 0, 0, 0);
+        --mb-scrollbar-width: thin;
+        --mb-scroll-webkit-margin-right: 4px;
+        --mb-scroll-webkit-width: 8px;
+        --mb-scroll-webkit-border-radius: 4px;
+    }
+
+
+    .mb-custom-scrollbars {
+        scrollbar-width: var(--mb-scrollbar-width);
+        scrollbar-color: var(--mb-scroll-color) var(--mb-scroll-track-color);
+        /* Scrollbar width */
+        ::-webkit-scrollbar {
+            width: var(--mb-scroll-webkit-width);
+            height: var(--mb-scroll-webkit-width);
+        }
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background-color: var(--mb-scroll-track-color);
+            margin-right: var(--mb-scroll-webkit-margin-right);
+        }
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: var(--mb-scroll-color);
+            border-radius: var(--mb-scroll-webkit-border-radius);
+        }
+    }
+
+    .mb-custom-scrollbars * {
+        scrollbar-width: inherit;
+        scrollbar-color: inherit;
     }
 
     app {
