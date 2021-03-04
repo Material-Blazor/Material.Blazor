@@ -1,4 +1,5 @@
 ﻿using Microsoft.JSInterop;
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,16 +47,29 @@ namespace Material.Blazor.Internal
             {
                 return;
             }
-            var errors = await js.InvokeAsync<string[]>("MaterialBlazor.Batching.apply", batch);
-            foreach (var (call, error) in batch.Zip(errors))
+            try
             {
-                if (error != null)
+                var errors = await js.InvokeAsync<string[]>("MaterialBlazor.Batching.apply", batch);
+                foreach (var (call, error) in batch.Zip(errors))
                 {
-                    call.TaskCompletionSource.SetException(new JSException(error));
+                    if (error != null)
+                    {
+                        call.TaskCompletionSource.SetException(new JSException(error));
+                    }
+                    else
+                    {
+                        call.TaskCompletionSource.SetResult();
+                    }
                 }
-                else
+            }
+            catch (Exception ex)
+            {
+                foreach (var call in batch)
                 {
-                    call.TaskCompletionSource.SetResult();
+                    if (!call.TaskCompletionSource.Task.IsCompleted)
+                    {
+                        call.TaskCompletionSource.SetException(ex);
+                    }
                 }
             }
         }
