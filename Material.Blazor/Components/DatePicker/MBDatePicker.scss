@@ -165,7 +165,7 @@ $dp-day-pad-weekdays-size: $dp-button-size + $dp-button-margin;
 }
 
 .mb-dp-day-pad__button_other_month {
-    opacity: 0.4;
+    visibility: hidden;
 }
 
 
