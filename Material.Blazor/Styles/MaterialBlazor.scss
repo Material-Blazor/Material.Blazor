@@ -2,6 +2,8 @@
 
 @use "../wwwroot/material-components-icons.css";
 
+@use '_colors.scss';
+
 @use '../Components/AutocompleteTextField/MBAutocompleteTextField.scss';
 @use '../Components/BladeSet/MBBladeSet.scss';
 @use '../Components/Button/MBButton.scss';
