@@ -119,10 +119,10 @@
                             }
                         </style>
                         <MBDatePicker @bind-Value="@Outlined"
-                                      Label="Custom selectable dates"
+                                      Label="Custom style"
                                       class="custom-style"
                                       DateFormat="ddd MMM dd, yyyy"
-                                      DateIsSelectable="(date) => date.DayOfWeek is DayOfWeek.Monday or DayOfWeek.Wednesday or DayOfWeek.Friday or DayOfWeek.Sunday"
+                                      DateSelectionCriteria="MBDateSelectionCriteria.WeekdaysOnly"
                                       SelectInputStyle="MBSelectInputStyle.Outlined"
                                       MaxDate="@Max"
                                       MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
