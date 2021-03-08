@@ -90,6 +90,47 @@
                 </Primary>
             </MBCard>
         </div>
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Custom style
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        In a typical month, the first day of that month doesn't coincide with the first day of the week.
+                        Similarly, the last week of a month will usually end with a few days in the next month.
+
+                        By default, this date picker component will not show these days. You can override this behavior by overriding the CSS classes <code>mb-dp-day-pad__button_earlier_month</code> and <code>mb-dp-day-pad__button_later_month</code>.
+                    </h3>
+
+                    <p>
+                        <style>
+                            .custom-style .mb-dp-day-pad__button_earlier_month {
+                                opacity: .3;
+                                visibility: unset !important;
+                                font-style: italic;
+                            }
+
+                            .custom-style .mb-dp-day-pad__button_later_month {
+                                opacity: .7;
+                                visibility: unset !important;
+                            }
+                        </style>
+                        <MBDatePicker @bind-Value="@Outlined"
+                                      Label="Custom style"
+                                      class="custom-style"
+                                      DateFormat="ddd MMM dd, yyyy"
+                                      DateSelectionCriteria="MBDateSelectionCriteria.WeekdaysOnly"
+                                      SelectInputStyle="MBSelectInputStyle.Outlined"
+                                      MaxDate="@Max"
+                                      MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
+                                      MinDate="@Min" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
     </PageContent>
 </DemonstrationPage>
 

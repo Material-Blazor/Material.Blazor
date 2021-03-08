@@ -1,8 +1,13 @@
 ﻿@namespace Material.Blazor.Internal
 @inherits ComponentFoundation
 
-@{ 
-    var classes = $"mb-dp-day-pad__button {(DisplayDate.Month != StartOfDisplayMonth.Month ? "mb-dp-day-pad__button_other_month" : "")}";
+@{
+    var classes = DisplayDate.Month.CompareTo(StartOfDisplayMonth.Month) switch
+    {
+        -1 => "mb-dp-day-pad__button mb-dp-day-pad__button_earlier_month",
+        1 => "mb-dp-day-pad__button mb-dp-day-pad__button_later_month",
+        _ => "mb-dp-day-pad__button",
+    };
 }
 <MBButton ButtonStyle="@ButtonStyle"
           class="@classes"
