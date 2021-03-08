@@ -12,12 +12,14 @@ export function apply(calls) {
                 methodLookup[identifier] = eval(identifier);
             }
             var f = methodLookup[identifier];
-            f(...args);
+            if (args == null) {
+                f();
+            } else {
+                f(...args);
+            }
             return null;
         } catch (e) {
-            debugger;
-            console.log(e);
-            return "failed"; // TODO more detailed error handling!
+            return e.message;
         }
     });
 }

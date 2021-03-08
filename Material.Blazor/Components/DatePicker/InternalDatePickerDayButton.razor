@@ -1,8 +1,11 @@
 ﻿@namespace Material.Blazor.Internal
 @inherits ComponentFoundation
 
+@{ 
+    var classes = $"mb-dp-day-pad__button {(DisplayDate.Month != StartOfDisplayMonth.Month ? "mb-dp-day-pad__button_other_month" : "")}";
+}
 <MBButton ButtonStyle="@ButtonStyle"
-          class="mb-dp-day-pad__button"
+          class="@classes"
           Disabled="@ButtonDisabled"
           Label="@Day"
           @onclick="@OnClickAsync" />
