@@ -7,7 +7,7 @@ namespace Material.Blazor
     /// <code>@attributes="<see cref="AttributesToSplat"/>(<see cref="IdClassAndStyleOnly"/> | <see cref="HtmlExcludingIdClassAndStyle"/>)"</code>
     /// </summary>
     [Flags]
-    internal enum SplatType : ushort
+    public enum SplatType : ushort
     {
         /// <summary>
         /// Return all attributes including class and style, also including values from <see cref="ClassMapper"/> and <see cref="StyleMapper"/>.

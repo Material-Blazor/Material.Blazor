@@ -83,7 +83,7 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Determines whether to apply the disabled attribute.
         /// </summary>
-        internal bool AppliedDisabled => CascadingDefaults.AppliedDisabled(Disabled);
+        protected bool AppliedDisabled => CascadingDefaults.AppliedDisabled(Disabled);
 
 
         /// <summary>
@@ -166,7 +166,7 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Attributes ready for splatting in components. Guaranteed not null, unlike UnmatchedAttributes. Default parameter is <see cref="SplatType.All".
         /// </summary>
-        internal IReadOnlyDictionary<string, object> AttributesToSplat(SplatType splatType = SplatType.All)
+        protected IReadOnlyDictionary<string, object> AttributesToSplat(SplatType splatType = SplatType.All)
         {
             var allAttributes = new Dictionary<string, object>(ComponentPureHtmlAttributes);
             var idClassAndStyle = new Dictionary<string, object>();
