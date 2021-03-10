@@ -82,12 +82,6 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// Attributes for splatting to be set by a component's OnInitialized() function.
-        /// </summary>
-        private protected IDictionary<string, object> ComponentSetAttributes { get; set; } = new Dictionary<string, object>();
-
-
-        /// <summary>
         /// Determines whether to apply the disabled attribute.
         /// </summary>
         internal bool AppliedDisabled => CascadingDefaults.AppliedDisabled(Disabled);
@@ -177,11 +171,6 @@ namespace Material.Blazor.Internal
 
             var nonStylisticAttributes = new Dictionary<string, object>(UnmatchedAttributes ?? new Dictionary<string, object>());
 
-            // merge ComponentSetAttributes into the dictionary
-            nonStylisticAttributes = nonStylisticAttributes.Union(ComponentSetAttributes)
-                    .GroupBy(g => g.Key)
-                    .ToDictionary(pair => pair.Key, pair => pair.First().Value);
-
             if (!string.IsNullOrWhiteSpace(Tooltip))
             {
                 nonStylisticAttributes.Add("aria-describedby", TooltipId.ToString());
@@ -203,11 +192,6 @@ namespace Material.Blazor.Internal
             var allAttributes = new Dictionary<string, object>(ComponentPureHtmlAttributes);
 
             var nonStylisticAttributes = new Dictionary<string, object>(UnmatchedAttributes ?? new Dictionary<string, object>());
-
-            // merge ComponentSetAttributes into the dictionary
-            nonStylisticAttributes = nonStylisticAttributes.Union(ComponentSetAttributes)
-                    .GroupBy(g => g.Key)
-                    .ToDictionary(pair => pair.Key, pair => pair.First().Value);
 
             if (!string.IsNullOrWhiteSpace(Tooltip))
             {
@@ -235,11 +219,6 @@ namespace Material.Blazor.Internal
             var allAttributes = new Dictionary<string, object>(ComponentPureHtmlAttributes);
 
             var nonStylisticAttributes = new Dictionary<string, object>(UnmatchedAttributes ?? new Dictionary<string, object>());
-
-            // merge ComponentSetAttributes into the dictionary
-            nonStylisticAttributes = nonStylisticAttributes.Union(ComponentSetAttributes)
-                    .GroupBy(g => g.Key)
-                    .ToDictionary(pair => pair.Key, pair => pair.First().Value);
 
             if (!string.IsNullOrWhiteSpace(Tooltip))
             {
