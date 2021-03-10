@@ -2,8 +2,10 @@
 
 @inherits InputComponent<decimal>
 
-
-<MBTextField @attributes="@AttributesToSplat()"
+<MBTextField class="@(@class)"
+             style="@style"
+             id="@id"
+             @attributes="@AttributesToSplat()"
              @bind-Value="@FormattedValue"
              Density="@Density"
              Disabled="@AppliedDisabled"

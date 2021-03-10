@@ -1,4 +1,7 @@
 ﻿@namespace Material.Blazor
 @inherits ComponentFoundation
 
-<i @attributes="@AttributesToSplat()">@IconHelper.Text</i>
+<i class="@MappedClassesAndUserClasses"
+   style="@MappedStylesAndUserStyles"
+   id="@id"
+   @attributes="@AttributesToSplat()">@IconHelper.Text</i>

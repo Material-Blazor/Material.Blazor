@@ -4,12 +4,14 @@
 
 
 <div @ref="@ElementReference"
-     @attributes="AttributesToSplat(SplatType.IdClassAndStyleOnly)">
+     class="@MappedClassesAndUserClasses"
+     style="@MappedStylesAndUserStyles"
+     id="@id">
 
     <div class="mdc-switch__track"></div>
     <div class="mdc-switch__thumb-underlay">
         <div class="mdc-switch__thumb">
-            <input @attributes="AttributesToSplat(SplatType.ExcludeIdClassAndStyle)"
+            <input @attributes="AttributesToSplat()"
                    class="mdc-switch__native-control" 
                    role="switch"
                    type="checkbox" 

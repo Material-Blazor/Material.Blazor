@@ -3,9 +3,12 @@
 @inherits InputComponent<bool>
 
 
-<div @attributes="@AttributesToSplat(SplatType.EventsOnly)">
+<div @attributes="@EventAttributesToSplat()">
     <button @ref="@ElementReference"
-            @attributes="@AttributesToSplat(SplatType.ExcludeEvents)"
+            class="@MappedClassesAndUserClasses"
+            style="@MappedStylesAndUserStyles"
+            id="@id"
+            @attributes="@OtherAttributesToSplat()"
             @onclick="@ToggleOnClick">
 
         <MBIcon class="mdc-icon-button__icon mdc-icon-button__icon--on mb-dp-menu__icon-button"

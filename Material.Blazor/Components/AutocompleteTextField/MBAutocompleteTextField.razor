@@ -2,8 +2,10 @@
 @inherits InputComponent<string>
 
 
-<div @attributes="@AttributesToSplat(SplatType.IdClassAndStyleOnly)">
-    <MBTextField @attributes="@AttributesToSplat(SplatType.ExcludeIdClassAndStyle)"
+<div class="@MappedClassesAndUserClasses"
+     style="@MappedStylesAndUserStyles"
+     id="@id">
+    <MBTextField @attributes="@AttributesToSplat()"
                  @bind-Value="@SelectInfo.SelectedText"
                  Density="@Density"
                  Disabled="@AppliedDisabled"

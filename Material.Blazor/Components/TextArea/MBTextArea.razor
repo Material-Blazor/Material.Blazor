@@ -4,7 +4,9 @@
 
 
 <label @ref="ElementReference"
-       @attributes="@AttributesToSplat(SplatType.IdClassAndStyleOnly)">
+       class="@MappedClassesAndUserClasses"
+       style="@MappedStylesAndUserStyles"
+       id="@id">
 
     @if (AppliedInputStyle == MBTextInputStyle.Outlined)
     {
@@ -32,7 +34,7 @@
     }
 
     <span class="mdc-text-field__resizer">
-        <textarea @attributes="@AttributesToSplat(SplatType.ExcludeIdClassAndStyle)"
+        <textarea @attributes="@AttributesToSplat()"
                   id="@CrossReferenceId"
                   class="mdc-text-field__input @AppliedTextInputStyleClass @FieldClass"
                   @bind="@ComponentValue"

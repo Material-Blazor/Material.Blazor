@@ -3,7 +3,10 @@
 @inherits InputComponent<string>
 
 
-<MBTextField @attributes="AttributesToSplat()"
+<MBTextField class="@(@class)"
+             style="@style"
+             id="@id"
+             @attributes="AttributesToSplat()"
              Density="@Density"
              Disabled=@AppliedDisabled
              HelperText="@HelperText"

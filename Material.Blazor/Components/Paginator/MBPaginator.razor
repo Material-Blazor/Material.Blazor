@@ -2,7 +2,10 @@
 @inherits ComponentFoundation
 
 
-<div @attributes="@AttributesToSplat()">
+<div class="@MappedClassesAndUserClasses"
+     style="@MappedStylesAndUserStyles"
+     id="@id"
+     @attributes="@AttributesToSplat()">
     <div class="mdc-data-table__pagination-trailing">
         <div class="mdc-data-table__pagination-rows-per-page">
             <div class="mdc-data-table__pagination-rows-per-page-label">

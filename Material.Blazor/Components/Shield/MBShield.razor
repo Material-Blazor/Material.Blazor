@@ -2,7 +2,10 @@
 @inherits ComponentFoundation
 
 
-<span @attributes="AttributesToSplat()">
+<span class="@MappedClassesAndUserClasses"
+      style="@MappedStylesAndUserStyles"
+      id="@id"
+      @attributes="AttributesToSplat()">
     @if (ShieldType != MBShieldType.ValueOnly)
     {
         <span class="mb-shield--label @LabelClass" style="@LabelStyle">

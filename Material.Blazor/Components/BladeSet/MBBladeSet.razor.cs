@@ -140,30 +140,6 @@ namespace Material.Blazor
             /// JSInterop element ref for the mb-blade-content block.
             /// </summary>
             public readonly DateTime Created = DateTime.UtcNow;
-
-
-            /// <summary>
-            /// Attributes to splat on to the mb-blade element.
-            /// </summary>
-            public Dictionary<string, object> Attributes
-            {
-                get
-                {
-                    Dictionary<string, object> result = new();
-
-                    if (!string.IsNullOrWhiteSpace(AdditionalCss))
-                    {
-                        result.Add("class", AdditionalCss.Trim());
-                    }
-
-                    if (!string.IsNullOrWhiteSpace(AdditionalStyles))
-                    {
-                        result.Add("style", AdditionalStyles.Trim());
-                    }
-
-                    return result;
-                }
-            }
         }
 
 
@@ -227,8 +203,6 @@ namespace Material.Blazor
         private bool MainContentAttributesSet { get; set; } = false;
 
         private Dictionary<string, BladeInfo> Blades { get; set; } = new();
-        private Dictionary<string, object> MainContentAttributes { get; set; }
-        private Dictionary<string, object> BladesAttributes { get; set; }
 
 
         /// <summary>
@@ -345,18 +319,6 @@ namespace Material.Blazor
                 MainContentAttributesSet = true;
                 CachedMainContentAdditionalCss = MainContentAdditionalCss;
                 CachedMainContentAdditionalStyles = MainContentAdditionalStyles;
-
-                MainContentAttributes = new();
-
-                if (!string.IsNullOrWhiteSpace(MainContentAdditionalCss))
-                {
-                    MainContentAttributes.Add("class", MainContentAdditionalCss.Trim());
-                }
-
-                if (!string.IsNullOrWhiteSpace(MainContentAdditionalStyles))
-                {
-                    MainContentAttributes.Add("style", MainContentAdditionalStyles.Trim());
-                }
             }
 
             if (!BladesAttributesSet || CachedBladesAdditionalCss != BladesAdditionalCss || CachedBladesAdditionalStyles != BladesAdditionalStyles)
@@ -366,18 +328,6 @@ namespace Material.Blazor
                 BladesAttributesSet = true;
                 CachedBladesAdditionalCss = BladesAdditionalCss;
                 CachedBladesAdditionalStyles = BladesAdditionalStyles;
-
-                BladesAttributes = new();
-
-                if (!string.IsNullOrWhiteSpace(BladesAdditionalCss))
-                {
-                    BladesAttributes.Add("class", BladesAdditionalCss.Trim());
-                }
-
-                if (!string.IsNullOrWhiteSpace(BladesAdditionalStyles))
-                {
-                    BladesAttributes.Add("style", BladesAdditionalStyles.Trim());
-                }
             }
         }
 

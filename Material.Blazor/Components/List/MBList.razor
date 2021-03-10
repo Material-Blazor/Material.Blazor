@@ -3,7 +3,10 @@
 @typeparam TItem
 
 
-<ul @attributes="@AttributesToSplat()"
+<ul class="@MappedClassesAndUserClasses"
+    style="@MappedStylesAndUserStyles"
+    id="@id"
+    @attributes="@AttributesToSplat()"
     @ref="@ElementReference"
     @key="@AppliedDisabled"
     aria-orientation="vertical">

@@ -56,6 +56,13 @@ namespace Material.Blazor.Internal
         }
 
 
+        [Parameter] public string id { get; set; }
+        [Parameter] public string @class { get; set; }
+        protected string MappedClassesAndUserClasses => string.Join(" ", ClassMapperInstance.ToString(), @class);
+        [Parameter] public string style { get; set; }
+        protected string MappedStylesAndUserStyles => string.Join(" ", StyleMapperInstance.ToString(), style);
+
+
         /// <summary>
         /// A markup capable tooltip.
         /// </summary>
@@ -161,23 +168,14 @@ namespace Material.Blazor.Internal
         }
 
 
-
-        private readonly string[] stylisticAttributes = { "id", "class", "style" };
         /// <summary>
-        /// Attributes ready for splatting in components. Guaranteed not null, unlike UnmatchedAttributes. Default parameter is <see cref="SplatType.All".
+        /// Attributes ready for splatting in components. Guaranteed not null, unlike UnmatchedAttributes.
         /// </summary>
-        internal IReadOnlyDictionary<string, object> AttributesToSplat(SplatType splatType = SplatType.All)
+        internal IReadOnlyDictionary<string, object> AttributesToSplat()
         {
             var allAttributes = new Dictionary<string, object>(ComponentPureHtmlAttributes);
-            var idClassAndStyle = new Dictionary<string, object>();
-            var htmlAttributes = new Dictionary<string, object>(ComponentPureHtmlAttributes);
-            var eventAttributes = new Dictionary<string, object>();
-            var requiredAttributes = new Dictionary<string, object>();
 
-            var unmatchedId = (UnmatchedAttributes?.FirstOrDefault(a => a.Key == "id").Value ?? "").ToString();
-            var unmatchedClass = (UnmatchedAttributes?.FirstOrDefault(a => a.Key == "class").Value ?? "").ToString();
-            var unmatchedStyle = (UnmatchedAttributes?.FirstOrDefault(a => a.Key == "style").Value ?? "").ToString();
-            var nonStylisticAttributes = new Dictionary<string, object>(UnmatchedAttributes?.Where(a => !stylisticAttributes.Contains(a.Key.ToLower())) ?? new Dictionary<string, object>());
+            var nonStylisticAttributes = new Dictionary<string, object>(UnmatchedAttributes ?? new Dictionary<string, object>());
 
             // merge ComponentSetAttributes into the dictionary
             nonStylisticAttributes = nonStylisticAttributes.Union(ComponentSetAttributes)
@@ -189,119 +187,74 @@ namespace Material.Blazor.Internal
                 nonStylisticAttributes.Add("aria-describedby", TooltipId.ToString());
             }
 
-            if (splatType != SplatType.IdClassAndStyleOnly)
+            allAttributes = allAttributes.Union(nonStylisticAttributes)
+                .GroupBy(g => g.Key)
+                .ToDictionary(pair => pair.Key, pair => pair.First().Value);
+
+            if (AppliedDisabled)
             {
-                allAttributes = allAttributes.Union(nonStylisticAttributes)
+                allAttributes.Add("disabled", AppliedDisabled);
+            }
+
+            return allAttributes;
+        }
+        internal IReadOnlyDictionary<string, object> OtherAttributesToSplat()
+        {
+            var allAttributes = new Dictionary<string, object>(ComponentPureHtmlAttributes);
+
+            var nonStylisticAttributes = new Dictionary<string, object>(UnmatchedAttributes ?? new Dictionary<string, object>());
+
+            // merge ComponentSetAttributes into the dictionary
+            nonStylisticAttributes = nonStylisticAttributes.Union(ComponentSetAttributes)
                     .GroupBy(g => g.Key)
                     .ToDictionary(pair => pair.Key, pair => pair.First().Value);
 
-                if (AppliedDisabled)
-                {
-                    allAttributes.Add("disabled", AppliedDisabled);
-                }
-
-                if (splatType == SplatType.ExcludeIdClassAndStyle)
-                {
-                    return allAttributes;
-                }
-
-                htmlAttributes = allAttributes
-                                    .Where(kvp => !EventAttributeNames.Contains(kvp.Key))
-                                    .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-
-                if (splatType == SplatType.HtmlExcludingIdClassAndStyle)
-                {
-                    return htmlAttributes;
-                }
-
-                eventAttributes = allAttributes
-                                    .Where(kvp => EventAttributeNames.Contains(kvp.Key))
-                                    .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-
-                if (splatType == SplatType.EventsOnly)
-                {
-                    return eventAttributes;
-                }
-            }
-
-            var classString = (ClassMapperInstance.ToString() + " " + unmatchedClass).Trim();
-            var styleString = (StyleMapperInstance.ToString() + " " + unmatchedStyle).Trim();
-
-            if (!string.IsNullOrWhiteSpace(unmatchedId))
+            if (!string.IsNullOrWhiteSpace(Tooltip))
             {
-                idClassAndStyle.Add("id", unmatchedId);
+                nonStylisticAttributes.Add("aria-describedby", TooltipId.ToString());
             }
 
-            if (!string.IsNullOrWhiteSpace(classString))
+            allAttributes = allAttributes.Union(nonStylisticAttributes)
+                .GroupBy(g => g.Key)
+                .ToDictionary(pair => pair.Key, pair => pair.First().Value);
+
+            if (AppliedDisabled)
             {
-                idClassAndStyle.Add("class", classString);
+                allAttributes.Add("disabled", AppliedDisabled);
             }
 
-            if (!string.IsNullOrWhiteSpace(styleString))
+            var htmlAttributes = allAttributes
+                                .Where(kvp => !EventAttributeNames.Contains(kvp.Key))
+                                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+
+            return htmlAttributes;
+        }
+
+        internal IReadOnlyDictionary<string, object> EventAttributesToSplat()
+        {
+            var allAttributes = new Dictionary<string, object>(ComponentPureHtmlAttributes);
+
+            var nonStylisticAttributes = new Dictionary<string, object>(UnmatchedAttributes ?? new Dictionary<string, object>());
+
+            // merge ComponentSetAttributes into the dictionary
+            nonStylisticAttributes = nonStylisticAttributes.Union(ComponentSetAttributes)
+                    .GroupBy(g => g.Key)
+                    .ToDictionary(pair => pair.Key, pair => pair.First().Value);
+
+            if (!string.IsNullOrWhiteSpace(Tooltip))
             {
-                idClassAndStyle.Add("style", styleString);
+                nonStylisticAttributes.Add("aria-describedby", TooltipId.ToString());
             }
 
-            foreach (var item in idClassAndStyle)
-            {
-                if (allAttributes.ContainsKey(item.Key))
-                {
-                    allAttributes[item.Key] += " " + item.Value;
-                }
-                else
-                {
-                    allAttributes.Add(item.Key, item.Value);
-                }
-            }
+            allAttributes = allAttributes.Union(nonStylisticAttributes)
+                .GroupBy(g => g.Key)
+                .ToDictionary(pair => pair.Key, pair => pair.First().Value);
 
-            if (splatType == SplatType.IdClassAndStyleOnly)
-            {
-                return idClassAndStyle;
-            }
-            else if (splatType == SplatType.All)
-            {
-                return allAttributes;
-            }
+            var eventAttributes = allAttributes
+                                .Where(kvp => EventAttributeNames.Contains(kvp.Key))
+                                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
 
-            if ((ushort)(splatType & SplatType.IdClassAndStyleOnly) > 0)
-            {
-                foreach (var item in idClassAndStyle)
-                {
-                    if (requiredAttributes.ContainsKey(item.Key))
-                    {
-                        requiredAttributes[item.Key] += " " + item.Value;
-                    }
-                    else
-                    {
-                        requiredAttributes.Add(item.Key, item.Value);
-                    }
-                }
-            }
-
-            if ((ushort)(splatType & SplatType.HtmlExcludingIdClassAndStyle) > 0)
-            {
-                foreach (var item in htmlAttributes)
-                {
-                    if (requiredAttributes.ContainsKey(item.Key))
-                    {
-                        requiredAttributes[item.Key] += " " + item.Value;
-                    }
-                    else
-                    {
-                        requiredAttributes.Add(item.Key, item.Value);
-                    }
-                }
-            }
-
-            if ((ushort)(splatType & SplatType.EventsOnly) > 0)
-            {
-                foreach (var item in eventAttributes)
-                {
-                    requiredAttributes.Add(item.Key, item.Value);
-                }
-            }
-
-            return requiredAttributes;
+            return eventAttributes;
         }
 
 

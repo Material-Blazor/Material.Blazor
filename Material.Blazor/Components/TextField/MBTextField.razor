@@ -4,7 +4,9 @@
 
 
 <label @ref="@ElementReference"
-       @attributes="@AttributesToSplat(SplatType.IdClassAndStyleOnly)">
+       class="@MappedClassesAndUserClasses"
+       style="@MappedStylesAndUserStyles"
+       id="@id">
 
     @if (AppliedInputStyle == MBTextInputStyle.Outlined)
     {
@@ -42,7 +44,7 @@
     }
 
     <input @ref="@InputReference"
-           @attributes="@AttributesToSplat(SplatType.ExcludeIdClassAndStyle)"
+           @attributes="@AttributesToSplat()"
            id="@CrossReferenceId"
            class="mdc-text-field__input @AppliedTextInputStyleClass @FieldClass"
            @bind="@ComponentValue">

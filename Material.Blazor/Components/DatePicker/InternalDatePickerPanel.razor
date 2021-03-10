@@ -2,8 +2,7 @@
 
 @inherits InputComponent<DateTime>
 
-
-<div @attributes="@AttributesToSplat()">
+<div class="mdc-typography--body2 mb-dp-container">
 
     <ul class="mdc-list mb-dp-list">
         <li class="mdc-list-item mdc-list-item--selected mb-dp-list-item"
@@ -49,7 +48,6 @@
             {
                 <InternalDatePickerYearButton CurrentYear="@StartOfDisplayMonth.Year"
                                               CurrentYearId="@currentYearId"
-                                              DateIsSelectable="@DateIsSelectable"
                                               DisplayYear="@year"
                                               @key="@year"
                                               MaxDate="@MaxDate"

@@ -2,7 +2,10 @@
 @inherits ComponentFoundation
 
 
-<li @attributes="@AttributesToSplat()"
+<li class="@MappedClassesAndUserClasses"
+    style="@MappedStylesAndUserStyles"
+    id="@id"
+    @attributes="@AttributesToSplat()"
     role="menuitem">
 
     @if (LeadingIcon != null)

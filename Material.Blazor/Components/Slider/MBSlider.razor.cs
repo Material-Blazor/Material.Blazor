@@ -62,7 +62,7 @@ namespace Material.Blazor
 
 
         private double DataStep { get; set; }
-        private Dictionary<string, object> DivAttributes { get; set; } = new();
+        private string DataStepValue => (SliderType == MBSliderType.Continuous) ? null : DataStep.ToString(Format);
         private ElementReference ElementReference { get; set; }
         private string Format { get; set; }
         private MarkupString InputMarkup { get; set; }
@@ -104,17 +104,7 @@ namespace Material.Blazor
                 .AddIf("mdc-slider--tick-marks", () => SliderType == MBSliderType.DiscreteWithTickmarks)
                 .AddIf("mdc-slider--disabled", () => AppliedDisabled);
 
-            DivAttributes =
-                (from a in AttributesToSplat()
-                 select new KeyValuePair<string, object>(a.Key, a.Value))
-                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-
             InputMarkup = new($"<input class=\"mdc-slider__input\" type=\"range\" value=\"{Value.ToString(Format)}\" step=\"{Step.ToString(Format)}\" min=\"{ValueMin.ToString(Format)}\" max=\"{ValueMax.ToString(Format)}\" name=\"volume\" aria-label=\"{AriaLabel}\">");
-
-            if (SliderType != MBSliderType.Continuous)
-            {
-                DivAttributes.Add("data-step", DataStep.ToString(Format));
-            }
 
             SetComponentValue += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
