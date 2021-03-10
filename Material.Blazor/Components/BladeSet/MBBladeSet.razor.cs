@@ -231,7 +231,7 @@ namespace Material.Blazor
                     builder.CloseComponent();
                 })
             };
-            
+
             await QueueAction(queueElement).ConfigureAwait(false);
         }
 
@@ -271,7 +271,7 @@ namespace Material.Blazor
                     if (queueElement is RemoveQueueElement)
                     {
                         Blades[queueElement.BladeReference].Status = BladeStatus.ClosedToRemove;
-                        
+
                         removedBladesQueue.Enqueue(Blades[queueElement.BladeReference]);
 
                         StateHasChanged();
@@ -279,7 +279,7 @@ namespace Material.Blazor
                     else
                     {
                         var addQueueElement = queueElement as AddQueueElement;
-                        
+
                         BladeInfo addedBlade = new()
                         {
                             BladeReference = addQueueElement.BladeReference,
@@ -289,7 +289,7 @@ namespace Material.Blazor
                             OnRemoved = addQueueElement.OnRemoved,
                             Status = BladeStatus.NewClosed
                         };
-                        
+
                         Blades.Add(queueElement.BladeReference, addedBlade);
 
                         addedBladesQueue.Enqueue(addedBlade);
