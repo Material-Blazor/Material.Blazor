@@ -102,7 +102,7 @@ namespace Material.Blazor
         {
             await base.OnInitializedAsync();
 
-            ClassMapperInstance
+            ConditionalCssClasses
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass);
         }
 

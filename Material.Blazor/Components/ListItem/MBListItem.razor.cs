@@ -46,7 +46,7 @@ namespace Material.Blazor
         {
             await base.OnInitializedAsync();
 
-            ClassMapperInstance
+            ConditionalCssClasses
                 .AddIf("mdc-menu-item--selected", () => IsSelectedMenuItem)
                 .AddIf("mdc-list-item--disabled mb-list-item--disabled", () => AppliedDisabled);
         }

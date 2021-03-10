@@ -51,7 +51,7 @@ namespace Material.Blazor
         {
             await base.OnInitializedAsync();
 
-            ClassMapperInstance
+            ConditionalCssClasses
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-card__action mdc-card__action--icon", () => (Card != null));
         }

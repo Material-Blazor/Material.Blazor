@@ -76,7 +76,7 @@ namespace Material.Blazor
             ForceShouldRenderToTrue = true;
             IntialValue = Value;
 
-            ClassMapperInstance
+            ConditionalCssClasses
                 // TODO in a future version of mdc, mdc-circular-progress--{size} might actually be defined. In that case the following three lines may be adjusted.
                 .AddIf("mb-circular-progress--small", () => CircularProgressSize == MBCircularProgressSize.Small)
                 .AddIf("mb-circular-progress--medium", () => CircularProgressSize == MBCircularProgressSize.Medium)

@@ -2,8 +2,8 @@
 @inherits InputComponent<double>
 
 <div @ref="@ElementReference"
-     class="mdc-slider @MappedClassesAndUserClasses"
-     style="@MappedStylesAndUserStyles"
+     class="mdc-slider @ActiveConditionalClasses @(@class)"
+     style="@style"
      id="@id"
      data-step="@DataStepValue"
      @attributes="@AttributesToSplat()">

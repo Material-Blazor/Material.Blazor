@@ -4,8 +4,8 @@
 
 
 <div @ref="@ElementReference"
-     class="mdc-data-table @MappedClassesAndUserClasses"
-     style="@MappedStylesAndUserStyles"
+     class="mdc-data-table @ActiveConditionalClasses @(@class)"
+     style="@style"
      id="@id"
      @attributes="@AttributesToSplat()">
 

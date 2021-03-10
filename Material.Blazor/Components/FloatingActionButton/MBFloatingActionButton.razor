@@ -6,8 +6,8 @@
 {
     <div class="mdc-touch-target-wrapper">
         <button @ref="@ElementReference"
-                class="mdc-fab @MappedClassesAndUserClasses"
-                style="@MappedStylesAndUserStyles"
+                class="mdc-fab @ActiveConditionalClasses @(@class)"
+                style="@style"
                 id="@id"
                 @attributes="@AttributesToSplat()">
 
@@ -22,8 +22,8 @@
 else
 {
     <button @ref="@ElementReference"
-            class="@MappedClassesAndUserClasses"
-            style="@MappedStylesAndUserStyles"
+            class="@ActiveConditionalClasses @(@class)"
+            style="@style"
             id="@id"
             @attributes="@AttributesToSplat()">
 

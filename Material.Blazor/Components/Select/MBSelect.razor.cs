@@ -110,7 +110,7 @@ namespace Material.Blazor
 
             (hasValue, ComponentValue) = ValidateItemList(ItemDict.Values, CascadingDefaults.AppliedItemValidation(ItemValidation));
 
-            ClassMapperInstance
+            ConditionalCssClasses
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-select--filled", () => AppliedInputStyle == MBSelectInputStyle.Filled)
                 .AddIf("mdc-select--outlined", () => AppliedInputStyle == MBSelectInputStyle.Outlined)

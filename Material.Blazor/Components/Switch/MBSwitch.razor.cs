@@ -34,7 +34,7 @@ namespace Material.Blazor
         {
             await base.OnInitializedAsync();
 
-            ClassMapperInstance
+            ConditionalCssClasses
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-switch--disabled", () => AppliedDisabled)
                 .AddIf("mdc-switch--checked", () => ComponentValue);

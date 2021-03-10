@@ -3,8 +3,8 @@
 
 
 <CascadingValue Value="@this" IsFixed="true">
-    <div class="mdc-card @MappedClassesAndUserClasses"
-         style="@MappedStylesAndUserStyles"
+    <div class="mdc-card @ActiveConditionalClasses @(@class)"
+         style="@style"
          id="@id"
          @attributes="@OtherAttributesToSplat()">
 

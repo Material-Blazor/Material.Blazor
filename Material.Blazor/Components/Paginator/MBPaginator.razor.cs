@@ -122,7 +122,7 @@ namespace Material.Blazor
 
             var requiresBorder = DataTableCascadingValue != null && DataTableCascadingValue == MBDataTable<string>.DataTableReference;
 
-            ClassMapperInstance
+            ConditionalCssClasses
                 .AddIf("no-border", () => !requiresBorder);
 
             if (ItemsPerPage == 0)

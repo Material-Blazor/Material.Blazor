@@ -2,8 +2,8 @@
 @inherits ComponentFoundation
 
 
-<span class="mb-shield @MappedClassesAndUserClasses"
-      style="@MappedStylesAndUserStyles"
+<span class="mb-shield @ActiveConditionalClasses @(@class)"
+      style="@style"
       id="@id"
       @attributes="AttributesToSplat()">
     @if (ShieldType != MBShieldType.ValueOnly)

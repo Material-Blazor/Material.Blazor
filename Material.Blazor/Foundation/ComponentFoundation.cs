@@ -68,14 +68,13 @@ namespace Material.Blazor.Internal
         /// Additional CSS classes for the component.
         /// </summary>
         [Parameter] public string @class { get; set; }
-        protected string MappedClassesAndUserClasses => string.Join(" ", ClassMapperInstance.ToString(), @class);
+        protected string ActiveConditionalClasses => ConditionalCssClasses.ToString();
 
 
         /// <summary>
         /// Additional CSS style for the component.
         /// </summary>
         [Parameter] public string style { get; set; }
-        protected string MappedStylesAndUserStyles => string.Join(" ", StyleMapperInstance.ToString(), style);
 
 
         /// <summary>
@@ -118,13 +117,7 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Allows a component to build or map out a group of CSS classes to be applied to the component. Use this in <see cref="OnInitialialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
         /// </summary>
-        private protected ClassMapper ClassMapperInstance { get; } = new ClassMapper();
-
-
-        /// <summary>
-        /// Allows a component to build or map out a group of HTML styles to be applied to the component. Use this in <see cref="OnInitialialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
-        /// </summary>
-        private protected StyleMapper StyleMapperInstance { get; } = new StyleMapper();
+        private protected ConditionalCssClasses ConditionalCssClasses { get; } = new ConditionalCssClasses();
 
 
         /// <summary>

@@ -86,7 +86,7 @@ namespace Material.Blazor
 
             ObjectReference = DotNetObjectReference.Create(this);
 
-            ClassMapperInstance
+            ConditionalCssClasses
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass);
 
             SetComponentValue += OnValueSetCallback;

@@ -37,7 +37,7 @@ namespace Material.Blazor
 
             (hasValue, ComponentValue) = ValidateItemList(Items, appliedItemValidation);
 
-            ClassMapperInstance.AddIf("mb-mdc-radio-group-vertical", () => Vertical);
+            ConditionalCssClasses.AddIf("mb-mdc-radio-group-vertical", () => Vertical);
         }
 
 

@@ -60,7 +60,7 @@ namespace Material.Blazor
         {
             await base.OnInitializedAsync();
 
-            ClassMapperInstance
+            ConditionalCssClasses
                 .AddIf("mdc-top-app-bar--fixed", () => (TopAppBarType & MBTopAppBarType.Fixed) == MBTopAppBarType.Fixed)
                 .AddIf("mdc-top-app-bar--dense", () => (TopAppBarType & MBTopAppBarType.Dense) == MBTopAppBarType.Dense)
                 .AddIf("mdc-top-app-bar--prominent", () => (TopAppBarType & MBTopAppBarType.Prominent) == MBTopAppBarType.Prominent)

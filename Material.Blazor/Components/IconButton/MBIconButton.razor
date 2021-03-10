@@ -3,8 +3,8 @@
 
 
 <button @ref="@ElementReference"
-        class="mdc-icon-button @MappedClassesAndUserClasses"
-        style="@MappedStylesAndUserStyles"
+        class="mdc-icon-button @ActiveConditionalClasses @(@class)"
+        style="@style"
         id="@id"
         @attributes="@AttributesToSplat()">
 

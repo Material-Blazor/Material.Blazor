@@ -98,7 +98,7 @@ namespace Material.Blazor
 
             DataStep = (ValueMax - ValueMin) / NumSteps;
 
-            ClassMapperInstance
+            ConditionalCssClasses
                 .AddIf("mdc-slider--discrete", () => SliderType != MBSliderType.Continuous)
                 .AddIf("mdc-slider--tick-marks", () => SliderType == MBSliderType.DiscreteWithTickmarks)
                 .AddIf("mdc-slider--disabled", () => AppliedDisabled);

@@ -6,8 +6,8 @@
 {
     <div @key="@Key"
          @ref="DialogElem"
-         class="mdc-dialog @MappedClassesAndUserClasses"
-         style="@MappedStylesAndUserStyles"
+         class="mdc-dialog @ActiveConditionalClasses @(@class)"
+         style="@style"
          id="@id"
          @attributes="@MyAttributes"
          aria-modal="true">

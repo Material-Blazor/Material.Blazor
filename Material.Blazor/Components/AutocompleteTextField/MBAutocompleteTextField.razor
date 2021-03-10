@@ -2,8 +2,8 @@
 @inherits InputComponent<string>
 
 
-<div class="mb-autocomplete @MappedClassesAndUserClasses"
-     style="@MappedStylesAndUserStyles"
+<div class="mb-autocomplete @ActiveConditionalClasses @(@class)"
+     style="@style"
      id="@id">
     <MBTextField @attributes="@AttributesToSplat()"
                  @bind-Value="@SelectInfo.SelectedText"

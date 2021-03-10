@@ -4,8 +4,8 @@
 
 
 <label @ref="@ElementReference"
-       class="mdc-text-field @MappedClassesAndUserClasses"
-       style="@MappedStylesAndUserStyles"
+       class="mdc-text-field @ActiveConditionalClasses @(@class)"
+       style="@style"
        id="@id">
 
     @if (AppliedInputStyle == MBTextInputStyle.Outlined)

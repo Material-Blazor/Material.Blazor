@@ -3,8 +3,8 @@
 
 
 <div @ref="@ElementReference"
-     class="mdc-linear-progress @MappedClassesAndUserClasses"
-     style="@MappedStylesAndUserStyles"
+     class="mdc-linear-progress @ActiveConditionalClasses @(@class)"
+     style="@style"
      id="@id"
      @attributes="AttributesToSplat()"
      role="progressbar" 

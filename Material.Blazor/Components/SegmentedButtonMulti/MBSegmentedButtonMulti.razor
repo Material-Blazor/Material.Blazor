@@ -5,8 +5,8 @@
 
 
 <div @ref="@SegmentedButtonReference"
-     class="mdc-segmented-button @MappedClassesAndUserClasses"
-     style="@MappedStylesAndUserStyles"
+     class="mdc-segmented-button @ActiveConditionalClasses @(@class)"
+     style="@style"
      id="@id"
      @attributes="AttributesToSplat()"
      role="@GroupRole">

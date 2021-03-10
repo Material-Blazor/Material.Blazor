@@ -48,7 +48,7 @@ namespace Material.Blazor
         {
             await base.OnInitializedAsync();
 
-            ClassMapperInstance
+            ConditionalCssClasses
                 .AddIf("mdc-drawer--dismissible", () => IsDismissible)
                 .AddIf("mdc-drawer--open", () => StartOpen);
 

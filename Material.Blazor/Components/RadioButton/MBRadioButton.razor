@@ -7,8 +7,8 @@
 <div @ref="@FormReference" class="mdc-form-field">
 
     <div @ref="@RadioButtonReference" 
-         class="mdc-radio mdc-radio--touch @MappedClassesAndUserClasses"
-         style="@MappedStylesAndUserStyles"
+         class="mdc-radio mdc-radio--touch @ActiveConditionalClasses @(@class)"
+         style="@style"
          id="@id"
          @attributes="@AttributesToSplat()">
 

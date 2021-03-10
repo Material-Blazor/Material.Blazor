@@ -27,7 +27,7 @@ namespace Material.Blazor
         {
             await base.OnInitializedAsync();
 
-            ClassMapperInstance
+            ConditionalCssClasses
                 .AddIf("mdc-list-divider--inset", () => Inset)
                 .AddIf("mdc-list-divider--padded", () => Padded);
         }
