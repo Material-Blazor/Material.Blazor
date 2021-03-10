@@ -63,7 +63,6 @@ namespace Material.Blazor
             IntialValue = Value;
 
             ClassMapperInstance
-                .Add("mdc-linear-progress")
                 .AddIf("mdc-linear-progress--indeterminate", () => LinearProgressType == MBLinearProgressType.Indeterminate)
                 .AddIf("mdc-linear-progress--reversed", () => LinearProgressType == MBLinearProgressType.ReversedDeterminate)
                 .AddIf("mdc-linear-progress--closed", () => LinearProgressType == MBLinearProgressType.Closed);

@@ -36,7 +36,6 @@ namespace Material.Blazor
             await base.OnInitializedAsync();
 
             ClassMapperInstance
-                .Add("mdc-menu mdc-menu-surface mdc-menu-surface--fixed")
                 .AddIf(GetMenuSurfacePositioningClass(MenuSurfacePositioning), () => MenuSurfacePositioning != MBMenuSurfacePositioning.Regular);
 
             ObjectReference = DotNetObjectReference.Create(this);

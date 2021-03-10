@@ -37,7 +37,6 @@ namespace Material.Blazor
             IsSingleSelect = ChipsSelectSingle != null;
 
             ClassMapperInstance
-                .Add("mdc-chip-set")
                 .AddIf("mdc-chip-set--filter", () => !IsSingleSelect)
                 .AddIf("mdc-chip-set--choice", () => IsSingleSelect);
 

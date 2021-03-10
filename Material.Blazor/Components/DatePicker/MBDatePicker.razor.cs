@@ -120,7 +120,6 @@ namespace Material.Blazor
             }
 
             ClassMapperInstance
-                .Add("mdc-select")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-select--filled", () => AppliedInputStyle == MBSelectInputStyle.Filled)
                 .AddIf("mdc-select--outlined", () => AppliedInputStyle == MBSelectInputStyle.Outlined)

@@ -150,7 +150,6 @@ namespace Material.Blazor
             await base.OnInitializedAsync();
 
             ClassMapperInstance
-                .Add("mdc-text-field")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
                 .AddIf("mdc-text-field--filled", () => AppliedInputStyle == MBTextInputStyle.Filled)

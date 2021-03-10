@@ -87,7 +87,6 @@ namespace Material.Blazor
             ObjectReference = DotNetObjectReference.Create(this);
 
             ClassMapperInstance
-                .Add("mdc-tab-bar")
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass);
 
             SetComponentValue += OnValueSetCallback;

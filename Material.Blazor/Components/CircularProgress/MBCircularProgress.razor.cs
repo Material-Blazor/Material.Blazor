@@ -77,7 +77,6 @@ namespace Material.Blazor
             IntialValue = Value;
 
             ClassMapperInstance
-                .Add("mdc-circular-progress")
                 .AddIf("mdc-circular-progress--small", () => CircularProgressSize == MBCircularProgressSize.Small)
                 .AddIf("mdc-circular-progress--medium", () => CircularProgressSize == MBCircularProgressSize.Medium)
                 .AddIf("mdc-circular-progress--large", () => CircularProgressSize == MBCircularProgressSize.Large)

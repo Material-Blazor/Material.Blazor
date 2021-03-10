@@ -100,9 +100,6 @@ namespace Material.Blazor
         {
             await base.OnInitializedAsync();
 
-            ClassMapperInstance
-                .Add("mdc-dialog");
-
             ObjectReference = DotNetObjectReference.Create(this);
 
             BuildMyAttributes();
