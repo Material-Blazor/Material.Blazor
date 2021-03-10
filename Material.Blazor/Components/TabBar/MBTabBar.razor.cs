@@ -14,13 +14,6 @@ namespace Material.Blazor
     public partial class MBTabBar<TItem> : InputComponent<int>
     {
         /// <summary>
-        /// A constant string to identify a cascading value to <see cref="MBIcon"/>, so that the
-        /// icon can apply styling for use in a tab bar.
-        /// </summary>
-        internal const string TabBarIdentifier = "adc2d67b-9dfc-4e0c-b411-438707a248dc";
-
-
-        /// <summary>
         /// Stack icons vertically if True, otherwise icons are leading.
         /// </summary>
         [Parameter] public bool StackIcons { get; set; }
@@ -58,8 +51,6 @@ namespace Material.Blazor
         /// </summary>
         [Parameter] public MBDensity? Density { get; set; }
 
-
-        private readonly object tabBarIdentifierObject = new object();
 
         private ElementReference ElementReference { get; set; }
         private DotNetObjectReference<MBTabBar<TItem>> ObjectReference { get; set; }

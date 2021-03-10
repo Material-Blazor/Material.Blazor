@@ -20,12 +20,10 @@ namespace Material.Blazor
             {
                 return;
             }
-            builder.AddContent(0, IconHelper.Render(@class: string.Join(" ", @class, TabBarIdentifier != null ? "mdc-tab__icon" : null), style: style, attributes: AttributesToSplat()));
+            builder.AddContent(0, IconHelper.Render(@class: @class, style: style, attributes: AttributesToSplat()));
         }
 
 
-
-        [CascadingParameter(Name = MBTabBar<object>.TabBarIdentifier)] private object TabBarIdentifier { get; set; }
 
 #nullable enable annotations
         /// <summary>
