@@ -167,73 +167,47 @@ namespace Material.Blazor.Internal
         /// </summary>
         internal IReadOnlyDictionary<string, object> AttributesToSplat()
         {
-            var allAttributes = new Dictionary<string, object>(ComponentPureHtmlAttributes);
-
-            var nonStylisticAttributes = new Dictionary<string, object>(UnmatchedAttributes ?? new Dictionary<string, object>());
-
-            if (!string.IsNullOrWhiteSpace(Tooltip))
-            {
-                nonStylisticAttributes.Add("aria-describedby", TooltipId.ToString());
-            }
-
-            allAttributes = allAttributes.Union(nonStylisticAttributes)
+            var allAttributes = ComponentPureHtmlAttributes
+                .Union(UnmatchedAttributes ?? new Dictionary<string, object>())
                 .GroupBy(g => g.Key)
                 .ToDictionary(pair => pair.Key, pair => pair.First().Value);
 
             if (AppliedDisabled)
             {
                 allAttributes.Add("disabled", AppliedDisabled);
+            }
+            if (!string.IsNullOrWhiteSpace(Tooltip))
+            {
+                allAttributes.Add("aria-describedby", TooltipId.ToString());
             }
 
             return allAttributes;
         }
         internal IReadOnlyDictionary<string, object> OtherAttributesToSplat()
         {
-            var allAttributes = new Dictionary<string, object>(ComponentPureHtmlAttributes);
-
-            var nonStylisticAttributes = new Dictionary<string, object>(UnmatchedAttributes ?? new Dictionary<string, object>());
-
-            if (!string.IsNullOrWhiteSpace(Tooltip))
-            {
-                nonStylisticAttributes.Add("aria-describedby", TooltipId.ToString());
-            }
-
-            allAttributes = allAttributes.Union(nonStylisticAttributes)
+            var htmlAttributes = ComponentPureHtmlAttributes
+                .Union(UnmatchedAttributes ?? new Dictionary<string, object>())
+                .Where(kvp => !EventAttributeNames.Contains(kvp.Key))
                 .GroupBy(g => g.Key)
                 .ToDictionary(pair => pair.Key, pair => pair.First().Value);
 
             if (AppliedDisabled)
             {
-                allAttributes.Add("disabled", AppliedDisabled);
+                htmlAttributes.Add("disabled", AppliedDisabled);
             }
-
-            var htmlAttributes = allAttributes
-                                .Where(kvp => !EventAttributeNames.Contains(kvp.Key))
-                                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+            if (!string.IsNullOrWhiteSpace(Tooltip))
+            {
+                htmlAttributes.Add("aria-describedby", TooltipId.ToString());
+            }
 
             return htmlAttributes;
         }
 
         internal IReadOnlyDictionary<string, object> EventAttributesToSplat()
         {
-            var allAttributes = new Dictionary<string, object>(ComponentPureHtmlAttributes);
-
-            var nonStylisticAttributes = new Dictionary<string, object>(UnmatchedAttributes ?? new Dictionary<string, object>());
-
-            if (!string.IsNullOrWhiteSpace(Tooltip))
-            {
-                nonStylisticAttributes.Add("aria-describedby", TooltipId.ToString());
-            }
-
-            allAttributes = allAttributes.Union(nonStylisticAttributes)
-                .GroupBy(g => g.Key)
-                .ToDictionary(pair => pair.Key, pair => pair.First().Value);
-
-            var eventAttributes = allAttributes
-                                .Where(kvp => EventAttributeNames.Contains(kvp.Key))
-                                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-
-            return eventAttributes;
+            return UnmatchedAttributes ?? new Dictionary<string, object>()
+                .Where(kvp => EventAttributeNames.Contains(kvp.Key))
+                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         }
 
 
