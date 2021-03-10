@@ -15,7 +15,7 @@ namespace Material.Blazor
         /// <param name="style"></param>
         /// <param name="attributes"></param>
         /// <returns></returns>
-        delegate RenderFragment IconFragment(string @class, string style, IReadOnlyDictionary<string, object> attributes);
+        delegate RenderFragment IconFragment(string @class, string style, IEnumerable<KeyValuePair<string, object>> attributes);
 
 
 

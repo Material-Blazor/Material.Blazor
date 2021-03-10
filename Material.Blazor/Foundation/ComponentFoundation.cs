@@ -101,12 +101,6 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// Attributes That the component can elect to set for inclusion in SplatAttributes.
-        /// </summary>
-        private protected IDictionary<string, object> ComponentPureHtmlAttributes { get; set; } = new Dictionary<string, object>(StringComparer.CurrentCultureIgnoreCase);
-
-
-        /// <summary>
         /// Allows a component to build or map out a group of CSS classes to be applied to the component. Use this in <see cref="OnInitialialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
         /// </summary>
         private protected ClassMapper ClassMapperInstance { get; } = new ClassMapper();
@@ -165,49 +159,47 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Attributes ready for splatting in components. Guaranteed not null, unlike UnmatchedAttributes.
         /// </summary>
-        internal IReadOnlyDictionary<string, object> AttributesToSplat()
+        internal IEnumerable<KeyValuePair<string, object>> AttributesToSplat()
         {
-            var allAttributes = ComponentPureHtmlAttributes
-                .Union(UnmatchedAttributes ?? new Dictionary<string, object>())
-                .GroupBy(g => g.Key)
-                .ToDictionary(pair => pair.Key, pair => pair.First().Value);
+            foreach (var attribute in UnmatchedAttributes ?? new Dictionary<string, object>())
+            {
+                yield return attribute;
+            }
 
             if (AppliedDisabled)
             {
-                allAttributes.Add("disabled", AppliedDisabled);
+                yield return new KeyValuePair<string, object>("disabled", AppliedDisabled);
             }
             if (!string.IsNullOrWhiteSpace(Tooltip))
             {
-                allAttributes.Add("aria-describedby", TooltipId.ToString());
+                yield return new KeyValuePair<string, object>("aria-describedby", TooltipId.ToString());
             }
-
-            return allAttributes;
         }
-        internal IReadOnlyDictionary<string, object> OtherAttributesToSplat()
+        internal IEnumerable<KeyValuePair<string, object>> OtherAttributesToSplat()
         {
-            var htmlAttributes = ComponentPureHtmlAttributes
-                .Union(UnmatchedAttributes ?? new Dictionary<string, object>())
-                .Where(kvp => !EventAttributeNames.Contains(kvp.Key))
-                .GroupBy(g => g.Key)
-                .ToDictionary(pair => pair.Key, pair => pair.First().Value);
+            foreach (var attribute in UnmatchedAttributes ?? new Dictionary<string, object>())
+            {
+                if (EventAttributeNames.Contains(attribute.Key))
+                {
+                    continue;
+                }
+                yield return attribute;
+            }
 
             if (AppliedDisabled)
             {
-                htmlAttributes.Add("disabled", AppliedDisabled);
+                yield return new KeyValuePair<string, object>("disabled", AppliedDisabled);
             }
             if (!string.IsNullOrWhiteSpace(Tooltip))
             {
-                htmlAttributes.Add("aria-describedby", TooltipId.ToString());
+                yield return new KeyValuePair<string, object>("aria-describedby", TooltipId.ToString());
             }
-
-            return htmlAttributes;
         }
 
-        internal IReadOnlyDictionary<string, object> EventAttributesToSplat()
+        internal IEnumerable<KeyValuePair<string, object>> EventAttributesToSplat()
         {
             return UnmatchedAttributes ?? new Dictionary<string, object>()
-                .Where(kvp => EventAttributeNames.Contains(kvp.Key))
-                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
+                .Where(kvp => EventAttributeNames.Contains(kvp.Key));
         }
 
 
