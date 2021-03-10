@@ -56,9 +56,24 @@ namespace Material.Blazor.Internal
         }
 
 
+        /// <summary>
+        /// The HTML id attribute is used to specify a unique id for an HTML element.
+        ///
+        /// You cannot have more than one element with the same id in an HTML document.
+        /// </summary>
         [Parameter] public string id { get; set; }
+
+
+        /// <summary>
+        /// Additional CSS classes for the component.
+        /// </summary>
         [Parameter] public string @class { get; set; }
         protected string MappedClassesAndUserClasses => string.Join(" ", ClassMapperInstance.ToString(), @class);
+
+
+        /// <summary>
+        /// Additional CSS style for the component.
+        /// </summary>
         [Parameter] public string style { get; set; }
         protected string MappedStylesAndUserStyles => string.Join(" ", StyleMapperInstance.ToString(), style);
 
