@@ -61,20 +61,26 @@ namespace Material.Blazor.Internal
         ///
         /// You cannot have more than one element with the same id in an HTML document.
         /// </summary>
+#pragma warning disable IDE1006 // Naming Styles
         [Parameter] public string id { get; set; }
+#pragma warning restore IDE1006 // Naming Styles
 
 
         /// <summary>
         /// Additional CSS classes for the component.
         /// </summary>
+#pragma warning disable IDE1006 // Naming Styles
         [Parameter] public string @class { get; set; }
+#pragma warning restore IDE1006 // Naming Styles
         protected string ActiveConditionalClasses => ConditionalCssClasses.ToString();
 
 
         /// <summary>
         /// Additional CSS style for the component.
         /// </summary>
+#pragma warning disable IDE1006 // Naming Styles
         [Parameter] public string style { get; set; }
+#pragma warning restore IDE1006 // Naming Styles
 
 
         /// <summary>
