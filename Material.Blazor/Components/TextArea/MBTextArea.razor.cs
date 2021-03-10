@@ -116,11 +116,6 @@ namespace Material.Blazor
                 .AddIf("mdc-text-field--no-label", () => !ShowLabel)
                 .AddIf("mdc-text-field--disabled", () => AppliedDisabled);
 
-            if (!string.IsNullOrWhiteSpace(Label))
-            {
-                ComponentPureHtmlAttributes.Add("aria-label", Label);
-            }
-
             FloatingLabelClass = string.IsNullOrEmpty(ComponentValue) ? "" : "mdc-floating-label--float-above";
 
             SetComponentValue += OnValueSetCallback;

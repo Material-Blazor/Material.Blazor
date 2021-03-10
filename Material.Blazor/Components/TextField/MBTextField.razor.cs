@@ -160,18 +160,6 @@ namespace Material.Blazor
                 .AddIf("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
                 .AddIf("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
 
-            if (!string.IsNullOrWhiteSpace(Label))
-            {
-                ComponentPureHtmlAttributes.Add("aria-label", Label);
-                ComponentPureHtmlAttributes.Add("aria-labelledby", labelId);
-            }
-
-            if (HasHelperText)
-            {
-                ComponentPureHtmlAttributes.Add("aria-controls", helperTextId);
-                ComponentPureHtmlAttributes.Add("aria-describedby", helperTextId);
-            }
-
             FloatingLabelClass = string.IsNullOrEmpty(ComponentValue) ? "" : "mdc-floating-label--float-above";
 
             SetComponentValue += OnValueSetCallback;
