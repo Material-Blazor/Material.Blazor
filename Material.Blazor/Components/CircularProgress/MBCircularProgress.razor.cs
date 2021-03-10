@@ -77,16 +77,12 @@ namespace Material.Blazor
             IntialValue = Value;
 
             ClassMapperInstance
-                .AddIf("mdc-circular-progress--small", () => CircularProgressSize == MBCircularProgressSize.Small)
-                .AddIf("mdc-circular-progress--medium", () => CircularProgressSize == MBCircularProgressSize.Medium)
-                .AddIf("mdc-circular-progress--large", () => CircularProgressSize == MBCircularProgressSize.Large)
+                // TODO in a future version of mdc, mdc-circular-progress--{size} might actually be defined. In that case the following three lines may be adjusted.
+                .AddIf("mb-circular-progress--small", () => CircularProgressSize == MBCircularProgressSize.Small)
+                .AddIf("mb-circular-progress--medium", () => CircularProgressSize == MBCircularProgressSize.Medium)
+                .AddIf("mb-circular-progress--large", () => CircularProgressSize == MBCircularProgressSize.Large)
                 .AddIf("mdc-circular-progress--indeterminate", () => CircularProgressType == MBCircularProgressType.Indeterminate)
                 .AddIf("mdc-circular-progress--closed", () => CircularProgressType == MBCircularProgressType.Closed);
-
-            StyleMapperInstance
-                .AddIf("width:24px;height:24px;", () => CircularProgressSize == MBCircularProgressSize.Small)
-                .AddIf("width:36px;height:36px;", () => CircularProgressSize == MBCircularProgressSize.Medium)
-                .AddIf("width:48px;height:48px;", () => CircularProgressSize == MBCircularProgressSize.Large);
 
             SetComponentValue += OnValueSetCallback;
         }
