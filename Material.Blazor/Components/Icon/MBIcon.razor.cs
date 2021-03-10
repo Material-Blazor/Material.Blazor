@@ -1,6 +1,7 @@
 ﻿using Material.Blazor.Internal;
 
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
 using System.Threading.Tasks;
 
 namespace Material.Blazor
@@ -13,6 +14,17 @@ namespace Material.Blazor
     /// </summary>
     public partial class MBIcon : ComponentFoundation
     {
+        protected override void BuildRenderTree(RenderTreeBuilder builder)
+        {
+            if (IconHelper == null)
+            {
+                return;
+            }
+            builder.AddContent(0, IconHelper.Render(@class: string.Join(" ", @class, TabBarIdentifier != null ? "mdc-tab__icon" : null), style: style, attributes: AttributesToSplat()));
+        }
+
+
+
         [CascadingParameter(Name = MBTabBar<object>.TabBarIdentifier)] private object TabBarIdentifier { get; set; }
 
 #nullable enable annotations
@@ -42,16 +54,6 @@ namespace Material.Blazor
             await base.OnParametersSetAsync();
 
             IconHelper = new MBIconHelper(CascadingDefaults, IconName, IconFoundry);
-            ComponentPureHtmlAttributes = IconHelper.Attributes;
-
-            //
-            // Has to be here, the string in Add/AddIf is evaluated only once at the
-            // time of the add.
-            //
-            ClassMapperInstance
-                .Clear()
-                .Add(IconHelper.Class)
-                .AddIf("mdc-tab__icon", () => TabBarIdentifier != null);
         }
     }
 }
