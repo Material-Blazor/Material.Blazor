@@ -68,6 +68,8 @@ namespace Material.Blazor
         };
 
 
+        private string SizeStyle { get; set; }
+
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override async Task OnInitializedAsync()
         {
@@ -76,11 +78,15 @@ namespace Material.Blazor
             ForceShouldRenderToTrue = true;
             IntialValue = Value;
 
+            SizeStyle = CircularProgressSize switch
+            {
+                MBCircularProgressSize.Small => "height: 24px; width: 24px;",
+                MBCircularProgressSize.Medium => "height: 36px; width: 36px;",
+                MBCircularProgressSize.Large => "height: 48px; width: 48px;",
+                _ => ""
+            };
+
             ConditionalCssClasses
-                // TODO in a future version of mdc, mdc-circular-progress--{size} might actually be defined. In that case the following three lines may be adjusted.
-                .AddIf("mb-circular-progress--small", () => CircularProgressSize == MBCircularProgressSize.Small)
-                .AddIf("mb-circular-progress--medium", () => CircularProgressSize == MBCircularProgressSize.Medium)
-                .AddIf("mb-circular-progress--large", () => CircularProgressSize == MBCircularProgressSize.Large)
                 .AddIf("mdc-circular-progress--indeterminate", () => CircularProgressType == MBCircularProgressType.Indeterminate)
                 .AddIf("mdc-circular-progress--closed", () => CircularProgressType == MBCircularProgressType.Closed);
 
