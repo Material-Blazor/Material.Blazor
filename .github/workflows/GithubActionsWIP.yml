@@ -127,7 +127,7 @@ jobs:
       if: ((github.repository != 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false)
 
     - name: Generate the second NuGet package 🔧
-      run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMBC} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:projectMBC}
+      run: dotnet pack --configuration ${env:buildConfiguration} --output ${env:outputMBC} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:projectMBC}
 
     - name: Display MaterialBlazorCss package output Ꙫ
       run: dir ${env:outputMBC}
