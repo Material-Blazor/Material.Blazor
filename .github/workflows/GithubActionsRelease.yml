@@ -18,8 +18,10 @@ env:
   buildConfiguration: 'Release'
   outputDocFx: ${{github.workspace}}\siteDocFx
   outputMB: ${{github.workspace}}\siteMB
+  outputMBC: ${{github.workspace}}\siteMBC
   outputWeb: ${{github.workspace}}\siteWeb
   projectMB: 'Material.Blazor/Material.Blazor.csproj'
+  projectMBC: 'Material.Blazor/Material.Blazor.Css.csproj'
   projectTest: 'Material.Blazor.Test/Material.Blazor.Test.csproj'
   projectWeb: 'Material.Blazor.Website.WebAssembly/Material.Blazor.Website.WebAssembly.csproj'
 
@@ -118,7 +120,7 @@ jobs:
         path: siteWeb
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
-    - name: Generate NuGet package 🔧
+    - name: Generate the first NuGet package 🔧
       run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:InformationalVersion=${env:Version} ${env:projectMB}
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
@@ -128,6 +130,18 @@ jobs:
 
     - name: Upload Package 🚀
       run: dotnet nuget push ${env:outputMB}\*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
+
+    - name: Generate the second NuGet package 🔧
+      run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMBC} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:InformationalVersion=${env:Version} ${env:projectMBC}
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
+
+    - name: Display MaterialBlazorCss package output Ꙫ
+      run: dir ${env:outputMBC}
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
+
+    - name: Upload Package 🚀
+      run: dotnet nuget push ${env:outputMBC}\*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
 ############################################################################################################

@@ -1,0 +1,69 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFrameworks>net5.0</TargetFrameworks>
+    <RazorLangVersion>3.0</RazorLangVersion>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <VersionPrefix>2.0.0</VersionPrefix>
+    <VersionSuffix>aaa1</VersionSuffix>
+    <PackageLicenseFile></PackageLicenseFile>
+    <Authors>Simon Ziegler of Dioptra and Mark Stega of Optimium Health</Authors>
+    <Company>Material.Blazor</Company>
+    <Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io. API and other documentation can be found at https://material-blazor.com/docs.</Description>
+    <RepositoryUrl>https://github.com/Material-Blazor/Material.Blazor</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <NeutralLanguage>en</NeutralLanguage>
+    <Copyright>Dioptra and Optimium Health</Copyright>
+    <PackageProjectUrl>https://material-blazor.com</PackageProjectUrl>
+    <Product>Material.Blazor.Css</Product>
+    <UserSecretsId>d7509b6c-bc5c-4a56-a750-09c8ae4aeb85</UserSecretsId>
+    <Configurations>Debug;Release</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InputStaticAssetsStyles Include="styles\**\*.scss;" />
+    <OutputStaticAssetsStyles Include="wwwroot\material.css;wwwroot\material.min.css" />
+  </ItemGroup>
+
+  <Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
+    <Exec Command="npm --version" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
+      <Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
+    </Exec>
+  </Target>
+
+  <Target Name="ErrorOutput" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' != '0' ">
+    <Message Importance="high" Text="**********************************************************************************" />
+    <Message Importance="high" Text="**********************************************************************************" />
+    <Message Importance="high" Text="**********************************************************************************" />
+    <Message Importance="high" Text="***** 'npm --version' return code was $(NpmReturnCode)" />
+    <Message Importance="high" Text="CSS and JS not built due to the lack of a proper development environment" />
+    <Message Importance="high" Text="See https://material-blazor.com/docs/articles/DevelopmentEnvironment.html" />
+    <Message Importance="high" Text="If the return code is 1, check package.json and package-lock.json" />
+    <Message Importance="high" Text="If the return code is 9009, npm is not present" />
+    <Message Importance="high" Text="For other non-zero return codes, check npm documentation" />
+    <Message Importance="high" Text="**********************************************************************************" />
+    <Message Importance="high" Text="**********************************************************************************" />
+    <Message Importance="high" Text="**********************************************************************************" />
+  </Target>
+
+  <Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
+    <Message Importance="high" Text="***** mkdir wwwroot (M.B.C Styles)" />
+    <MakeDir Directories="wwwroot" />
+
+    <Message Importance="high" Text="***** npm install" />
+    <Exec Command="npm install" />
+
+    <Message Importance="high" Text="***** npm run build-css" />
+    <Exec Command="npm run build-css" />
+
+    <Message Importance="high" Text="***** npm run build-min-css" />
+    <Exec Command="npm run build-min-css" />
+
+  </Target>
+
+</Project>
