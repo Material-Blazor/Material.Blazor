@@ -22,6 +22,8 @@ if ($args.Count -gt 0) {
         echo $args | Set-Content -Encoding Ascii pages
         echo "Crawling pages $args"
     } else {
+        $pages=$(Get-ChildItem ..\Material.Blazor.Website\Pages\ -Filter *.razor | ForEach-Object { Get-Content ..\Material.Blazor.Website\Pages\$_ -First 1 } | ForEach-Object { $_.SubString(8, $_.Length - 9) })
+        echo $pages | Set-Content -Encoding Ascii pages
         echo "Crawling all pages"
     }
 } else {

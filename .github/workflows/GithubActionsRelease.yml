@@ -21,7 +21,7 @@ env:
   outputMBC: ${{github.workspace}}\siteMBC
   outputWeb: ${{github.workspace}}\siteWeb
   projectMB: 'Material.Blazor/Material.Blazor.csproj'
-  projectMBC: 'Material.Blazor/Material.Blazor.Css.csproj'
+  projectMBC: 'Material.Blazor.Css/Material.Blazor.Css.csproj'
   projectTest: 'Material.Blazor.Test/Material.Blazor.Test.csproj'
   projectWeb: 'Material.Blazor.Website.WebAssembly/Material.Blazor.Website.WebAssembly.csproj'
 
