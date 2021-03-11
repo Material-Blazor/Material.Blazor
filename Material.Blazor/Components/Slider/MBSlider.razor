@@ -5,8 +5,8 @@
      class="mdc-slider @ActiveConditionalClasses @(@class)"
      style="@style"
      id="@id"
-     data-step="@DataStepValue"
-     @attributes="@AttributesToSplat()">
+     @attributes="@AttributesToSplat()"
+     data-step="@DataStepValue">
     @*Would use the following line, except that Blazor reserves the 'value' tag for its bindings and removes it from the rendered markup. Use of a MarkupString gets around this so that Material Compoents Web gets access to the value tag.*@
     @*<input class="mdc-slider__input" type="range" value="@ValueMin.ToString(Format)" step="@Step" min="@ValueMin.ToString(Format)" max="@ValueMax.ToString(Format)" name="volume" aria-label="@AriaLabel">*@
     @InputMarkup

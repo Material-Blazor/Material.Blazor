@@ -44,11 +44,11 @@
     }
 
     <input @ref="@InputReference"
+           @attributes="@AttributesToSplat()"
            aria-label="@Label"
            aria-labelledby="@(Label == null ? null : labelId)"
            aria-controls="@(HasHelperText ? helperTextId : null)"
            aria-describedby="@(HasHelperText ? helperTextId : null)"
-           @attributes="@AttributesToSplat()"
            id="@CrossReferenceId"
            class="mdc-text-field__input @AppliedTextInputStyleClass @FieldClass"
            @bind="@ComponentValue">
