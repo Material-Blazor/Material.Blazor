@@ -351,3 +351,7 @@ healthchecksdb
 _exported_templates
 site*
 api/*
+
+# temporary files in the comparison helper
+comparison/pages
+comparison/report.md
