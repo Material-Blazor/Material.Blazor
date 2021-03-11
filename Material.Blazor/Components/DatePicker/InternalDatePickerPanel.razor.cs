@@ -218,7 +218,7 @@ namespace Material.Blazor.Internal
             {
                 ScrollToYear = false;
 
-                await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.scrollToYear", "mb-datepicker-scroll-to-this-year");
+                await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.scrollToYear", currentYearId);
             }
         }
     }

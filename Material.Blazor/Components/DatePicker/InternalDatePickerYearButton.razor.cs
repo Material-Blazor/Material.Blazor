@@ -52,7 +52,7 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// We want to scroll to the current year when the year picker opens. So the year that's currently active needs an ID.
         /// </summary>
-        private string CurrentYearIdHelper => (DisplayYear == CurrentYear) ? "mb-datepicker-scroll-to-this-year" : null;
+        private string CurrentYearIdHelper => (DisplayYear == CurrentYear) ? CurrentYearId : null;
 
         private bool ButtonDisabled => (MaxDate < new DateTime(DisplayYear, 1, 1)) || (MinDate > new DateTime(DisplayYear, 12, 31));
 
