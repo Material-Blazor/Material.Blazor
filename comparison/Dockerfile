@@ -17,6 +17,7 @@ WORKDIR /out
 
 ARG baseline=https://material-blazor.com/
 ARG fork=https://stefanloerwald.github.io/Material.Blazor/
+ARG force="no"
 
 RUN /bin/bash ./crawl_all.sh "$baseline" "$fork"
 RUN cat ./differences* > report

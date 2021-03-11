@@ -1,4 +1,10 @@
 if ($args.Count -gt 0) {
+    if ($args.Contains("--force")) {
+        $args[$args.IndexOf("--force")] = ""
+        $force=date
+    } else {
+        $force="no"
+    }
     if ($args.Contains("--fork")) {
         $fork_args_index=$args.IndexOf("--fork")
         $args[$fork_args_index] = ""
@@ -19,6 +25,8 @@ if ($args.Count -gt 0) {
         echo "Crawling all pages"
     }
 } else {
+    $force="no"
+
     $fork="https://stefanloerwald.github.io/Material.Blazor/"
     echo "Using default fork $fork"
     
@@ -32,7 +40,7 @@ if ($args.Count -gt 0) {
 
 
 
-docker build -t mb_comparison --build-arg fork=$fork .
+docker build -t mb_comparison --build-arg fork=$fork --build-arg force=$force .
 docker create --name mb_comparison mb_comparison
 docker cp mb_comparison:/out/report report.md
 docker rm mb_comparison
