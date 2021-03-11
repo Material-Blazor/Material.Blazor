@@ -18,6 +18,6 @@ do
         fi
     fi
     i=$((i+1))
-    google-chrome --headless --disable-gpu --run-all-compositor-stages-before-draw --virtual-time-budget=200000 --dump-dom --no-sandbox $2$3 | grep -v "base href" | sed 's/integrity="\(.*\)"/integrity="..."/' | sed 's/[a-f0-9]\{8\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{12\}/guid/g' > $1_$3.html 2> /dev/null
+    google-chrome --headless --disable-dev-shm-usage --disable-gpu --run-all-compositor-stages-before-draw --virtual-time-budget=200000 --dump-dom --no-sandbox $2$3 | grep -v "base href" | sed 's/integrity="\(.*\)"/integrity="..."/' | sed 's/[a-f0-9]\{8\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{12\}/guid/g' > $1_$3.html 2> /dev/null
 done
 
