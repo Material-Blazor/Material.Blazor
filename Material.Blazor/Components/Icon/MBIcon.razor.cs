@@ -12,15 +12,16 @@ namespace Material.Blazor
     /// library's CSS, while you can elect whether to include Font Awesome and Open Iconic
     /// in your app.
     /// </summary>
-    public partial class MBIcon : ComponentFoundation
+    public class MBIcon : ComponentFoundation
     {
+        [CascadingParameter(Name = "IsInsideMBTabBar")] private bool IsInsideMBTabBar { get; set; }
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
             if (IconHelper == null)
             {
                 return;
             }
-            builder.AddContent(0, IconHelper.Render(@class: @class, style: style, attributes: AttributesToSplat()));
+            builder.AddContent(0, IconHelper.Render(@class: string.Join(" ", (IsInsideMBTabBar ? "mdc-tab__icon" : ""), @class), style: style, attributes: AttributesToSplat()));
         }
 
 

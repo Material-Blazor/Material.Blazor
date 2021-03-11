@@ -32,7 +32,9 @@
                         <span class="mdc-tab__content">
                             @if (Icon != null)
                             {
-                                @Icon(item)
+                                <CascadingValue Name="IsInsideMBTabBar" Value="true">
+                                    @Icon(item)
+                                </CascadingValue>
                             }
 
                             @if (Label != null)
