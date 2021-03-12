@@ -12,10 +12,8 @@ env:
   buildConfiguration: 'Release'
   outputDocFx: ${{github.workspace}}\siteDocFx
   outputMB: ${{github.workspace}}\siteMB
-  outputMBC: ${{github.workspace}}\siteMBC
   outputWeb: ${{github.workspace}}\siteWeb
   projectMB: 'Material.Blazor/Material.Blazor.csproj'
-  projectMBC: 'Material.Blazor.Css/Material.Blazor.Css.csproj'
   projectTest: 'Material.Blazor.Test/Material.Blazor.Test.csproj'
   projectWeb: 'Material.Blazor.Website.WebAssembly/Material.Blazor.Website.WebAssembly.csproj'
 
@@ -122,29 +120,6 @@ jobs:
 
     - name: Upload Package (Forked repository) 🚀
       run: nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.GH_PAT}}
-      if: ((github.repository != 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false)
-
-    - name: Generate the second NuGet package 🔧
-      run: dotnet pack --configuration ${env:buildConfiguration} --output ${env:outputMBC} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:projectMBC}
-
-    - name: Display MaterialBlazorCss package output Ꙫ
-      run: dir ${env:outputMBC}
-
-# We'd like to push to a the main repository but now getting errors of authorization
-
-    - name: Upload Package (Main repository) 🚀
-      run: nuget push ${env:outputMBC}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
-      env:
-        NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      if: ((github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false)
-
-# We'd like to push to a forked repository; The push appears to work but the packages are not visible
-# Pending a service response we only do the push of the CI build in the Material-Blazor/Material.Blazor repository
-
-    - name: Upload Package (Forked repository) 🚀
-      run: nuget push ${env:outputMBC}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GH_PAT}}
       if: ((github.repository != 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false)
