@@ -76,7 +76,7 @@
 
   <ItemGroup>
     <InputStaticAssetsStyles Include="components\**\*.scss;styles\**\*.scss;" />
-    <OutputStaticAssetsStyles Include="wwwroot\materialblazor.css;wwwroot\materialblazor.min.css" />
+    <OutputStaticAssetsStyles Include="wwwroot\materialblazor.css;wwwroot\materialblazor.min.css;wwwroot\material.css;wwwroot\material.min.css" />
   </ItemGroup>
 
   <ItemGroup>
@@ -148,6 +148,12 @@
 
     <Message Importance="high" Text="***** delete material-components-icons.css" />
     <Delete Files="wwwroot\material-components-icons.css" />
+
+    <Message Importance="high" Text="***** npm run build-material-css" />
+    <Exec Command="npm run build-material-css" />
+
+    <Message Importance="high" Text="***** npm run build-material-min-css" />
+    <Exec Command="npm run build-material-min-css" />
 
   </Target>
 
