@@ -91,7 +91,7 @@ jobs:
         DOCFX_SOURCE_BRANCH_NAME: main
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
-    - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'site'.
+    - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'siteDocFx'.
       uses: actions/upload-artifact@v1
       with:
         name: siteDocFx
