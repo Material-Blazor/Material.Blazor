@@ -19,7 +19,7 @@ env:
   buildConfiguration: 'Release'
   outputDocFx: ${{github.workspace}}\siteDocFx
   outputMB: ${{github.workspace}}\siteMB
-  outputWeb: ${{github.workspace}}\siteWeb
+  outputWeb: ${{github.workspace}}/siteWeb
   projectMB: 'Material.Blazor/Material.Blazor.csproj'
   projectTest: 'Material.Blazor.Test/Material.Blazor.Test.csproj'
   projectWeb: 'Material.Blazor.Website.WebAssembly/Material.Blazor.Website.WebAssembly.csproj'
@@ -27,12 +27,9 @@ env:
 jobs:
 
 ############################################################################################################
-# BuildMaterialBlazor (1st of 2 jobs), second job publishes to gh-pages
-#   Output: Material.Blazor DocFx pages (uploaded as artifacts)
-#   Output: Material.Blazor NuGet package (published as CI)
-#   Output: Material.Blazor.Website.WebAssembly (uploaded as artifacts)
+# This job is only to display some CI information
 ############################################################################################################
-  buildmaterialblazor:
+  info:
     runs-on: windows-latest
 
     steps:
@@ -79,15 +76,36 @@ jobs:
 
     - name: Show Tag name Ꙫ
       run: echo GitHub indicates that this is a tag creation with ${{steps.get_tag.outputs.tag}}
-      if: github.event_name != 'workflow_dispatch' && contains(github.ref, 'refs/tag')
+      if: contains(github.ref, 'refs/tag')
+      
+############################################################################################################
+# Run the test project. Should this fail, the deploy step (job deployghpages) is skipped
+############################################################################################################
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
       if: github.event_name != 'workflow_dispatch'
 
     - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
-      run: dotnet test --configuration ${env:buildConfiguration} ${env:projectTest}
+      run: dotnet test --configuration ${{env.buildConfiguration}} ${{env.projectTest}}
       if: github.event_name != 'workflow_dispatch'
+      
+############################################################################################################
+# Build documentation
+############################################################################################################
+  build-documentation:
+
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v2
 
     - name: Create documentation 🔧
       run: .\docfx\docfx docfx.json
@@ -102,12 +120,28 @@ jobs:
         path: siteDocFx
       if: github.event_name != 'workflow_dispatch' 
 
-    - name: Build Website 🔧
-      run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectWeb}
-      if: github.event_name != 'workflow_dispatch'
 
+############################################################################################################
+# Build website
+############################################################################################################
+  build-website:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Set ciSuffix as env variable
+      run: echo "ciSuffix=ci.$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v2
+
+    - name: Build Website 🔧
+      run: dotnet build --configuration ${{env.buildConfiguration}} --version-suffix ${{env.ciSuffix}} ${{env.projectWeb}}
+      if: github.event_name != 'workflow_dispatch'
+      
     - name: Publish Website 🔧
-      run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} --version-suffix ${env:ciSuffix} ${env:projectWeb}
+      run: dotnet publish --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} --version-suffix ${{env.ciSuffix}} ${{env.projectWeb}}
       if: github.event_name != 'workflow_dispatch'
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
@@ -118,17 +152,16 @@ jobs:
       if: github.event_name != 'workflow_dispatch'
 
     - name: Generate the first NuGet package 🔧
-      run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:projectMB}
+      run: dotnet pack --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${{env.ciSuffix}} ${{env.projectMB}}
       if: github.event_name != 'workflow_dispatch'
-
     - name: Display MaterialBlazor package output Ꙫ
-      run: dir ${env:outputMB}
+      run: dir ${{env.outputMB}}
       if: github.event_name != 'workflow_dispatch'
 
 # We'd like to push to a the main repository but now getting errors of authorization
 
     - name: Upload Package (Main repository) 🚀
-      run: nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      run: nuget push ${{env.outputMB}}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       if: github.event_name != 'workflow_dispatch' && ((github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false)
@@ -137,7 +170,7 @@ jobs:
 # Pending a service response we only do the push of the CI build in the Material-Blazor/Material.Blazor repository
 
     - name: Upload Package (Forked repository) 🚀
-      run: nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      run: nuget push ${{env.outputMB}}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GH_PAT}}
       if: github.event_name != 'workflow_dispatch' && ((github.repository != 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false)
@@ -146,7 +179,7 @@ jobs:
 # deployghpages
 ############################################################################################################
   deployghpages:
-    needs: [buildmaterialblazor]
+    needs: [test, build-documentation, build-website]
     if: github.event_name != 'pull_request' # for PRs, we only need to make sure the build works (the job above), we don't need to deploy anything.
 
     runs-on: ubuntu-latest
@@ -182,12 +215,12 @@ jobs:
 
     # this step deploys to Material-Blazor/Material.Blazor.Current when we are in the main repo
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@releases/v3
+      uses: JamesIves/github-pages-deploy-action@4.1.0
       with:
-        ACCESS_TOKEN: ${{secrets.GH_PAT}}
-        BRANCH: gh-pages
-        FOLDER: 'deployroot'
-        REPOSITORY_NAME: Material-Blazor/Material.Blazor.Current
+        ssh-key: ${{secrets.DEPLOY_KEY_CURRENT}}
+        branch: gh-pages
+        folder: 'deployroot'
+        repository-name: Material-Blazor/Material.Blazor.Current
       if: github.event_name != 'workflow_dispatch' && (github.repository == 'Material-Blazor/Material.Blazor')
 
     # this step rewrites the base href when we are NOT in the main repo
@@ -200,11 +233,11 @@ jobs:
 
     # this step deploys to the current repo's gh-pages branch when we are NOT in the main repo
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@releases/v3
+      uses: JamesIves/github-pages-deploy-action@4.1.0
       with:
-        ACCESS_TOKEN: ${{secrets.GH_PAT}}
-        BRANCH: gh-pages
-        FOLDER: 'deployroot'
+        token: ${{secrets.GH_PAT}}
+        branch: gh-pages
+        folder: 'deployroot'
       if: github.event_name != 'workflow_dispatch' && (github.repository != 'Material-Blazor/Material.Blazor')
 
 ############################################################################################################
