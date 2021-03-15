@@ -11,7 +11,7 @@ env:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   outputDocFx: ${{github.workspace}}\siteDocFx
-  outputMB: ${{github.workspace}}\siteMB
+  outputMB: ${{github.workspace}}/siteMB
   outputWeb: ${{github.workspace}}/siteWeb
   projectMB: 'Material.Blazor/Material.Blazor.csproj'
   projectTest: 'Material.Blazor.Test/Material.Blazor.Test.csproj'
