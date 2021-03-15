@@ -126,6 +126,7 @@ jobs:
 ############################################################################################################
   deployghpages:
     needs: [buildmaterialblazor]
+    if: github.event_name != 'pull_request' # for PRs, we only need to make sure the build works (the job above), we don't need to deploy anything.
 
     runs-on: ubuntu-latest
 
@@ -162,7 +163,7 @@ jobs:
         ACCESS_TOKEN: ${{secrets.GH_PAT}}
         BRANCH: gh-pages
         FOLDER: 'deployroot'
-        repository-name: Material-Blazor/Material.Blazor.Current
+        REPOSITORY_NAME: Material-Blazor/Material.Blazor.Current
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     # this step rewrites the base href when we are NOT in the main repo
