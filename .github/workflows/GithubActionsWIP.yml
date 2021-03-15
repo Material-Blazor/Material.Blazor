@@ -6,6 +6,13 @@ on:
 
   pull_request:
     branches: [ main ]
+  
+  workflow_dispatch:
+    inputs:
+      baseline:
+        description: 'The repo to use as baseline. If left empty, it defaults to the current release of MB, i.e. material-blazor.com. Enter the github username, e.g. stefanloerwald'
+        required: false
+        default: ''
 
 env:
   buildPlatform: 'Any CPU'
@@ -28,86 +35,97 @@ jobs:
 #   Output: Material.Blazor.Website.WebAssembly (uploaded as artifacts)
 ############################################################################################################
   buildmaterialblazor:
-
     runs-on: windows-latest
 
     steps:
 
     - name: DotNet info
       run: dotnet --info
+      if: github.event_name != 'workflow_dispatch'
 
     - name: Set ciSuffix as env variable
       run: echo "ciSuffix=ci.$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
       shell: bash
+      if: github.event_name != 'workflow_dispatch'
 
     - name: Echo ciSuffix
       run: echo "CI suffix is $ciSuffix"
       shell: bash
+      if: github.event_name != 'workflow_dispatch'
 
     - name: Get the branch
       id: get_branch
       run: echo ::set-output name=branch::${GITHUB_REF/refs\/heads\//}
       shell: bash
+      if: github.event_name != 'workflow_dispatch'
 
     - name: Get the pullrequest
       id: get_pullrequest
       run: echo ::set-output name=pullrequest::${GITHUB_REF/refs\/pull\//}
       shell: bash
+      if: github.event_name != 'workflow_dispatch'
 
     - name: Get the tag
       id: get_tag
       run: echo ::set-output name=tag::${GITHUB_REF/refs\/tags\//}
       shell: bash
+      if: github.event_name != 'workflow_dispatch'
 
     - name: Show branch name Ꙫ
       run: echo GitHub indicates that this is a branch push request of ${{steps.get_branch.outputs.branch}}
-      if: contains(github.ref, 'refs/heads')
+      if: github.event_name != 'workflow_dispatch' && contains(github.ref, 'refs/heads')
 
     - name: Show PR name Ꙫ
       run: echo GitHub indicates that this is a pull request called ${{steps.get_pullrequest.outputs.pullrequest}}
-      if: contains(github.ref, 'refs/pull')
+      if: github.event_name != 'workflow_dispatch' && contains(github.ref, 'refs/pull')
 
     - name: Show Tag name Ꙫ
       run: echo GitHub indicates that this is a tag creation with ${{steps.get_tag.outputs.tag}}
-      if: contains(github.ref, 'refs/tag')
+      if: github.event_name != 'workflow_dispatch' && contains(github.ref, 'refs/tag')
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
+      if: github.event_name != 'workflow_dispatch'
 
     - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
       run: dotnet test --configuration ${env:buildConfiguration} ${env:projectTest}
+      if: github.event_name != 'workflow_dispatch'
 
     - name: Create documentation 🔧
       run: .\docfx\docfx docfx.json
       env:
         DOCFX_SOURCE_BRANCH_NAME: main
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
+      if: github.event_name != 'workflow_dispatch' && (github.repository != 'Material-Blazor/Material.Blazor')
 
     - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'siteDocFx'.
       uses: actions/upload-artifact@v1
       with:
         name: siteDocFx
         path: siteDocFx
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
+      if: github.event_name != 'workflow_dispatch' && (github.repository != 'Material-Blazor/Material.Blazor')
 
     - name: Build Website 🔧
       run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectWeb}
+      if: github.event_name != 'workflow_dispatch'
 
     - name: Publish Website 🔧
       run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} --version-suffix ${env:ciSuffix} ${env:projectWeb}
+      if: github.event_name != 'workflow_dispatch'
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v1
       with:
         name: siteWeb
         path: siteWeb
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
+      if: github.event_name != 'workflow_dispatch' && (github.repository != 'Material-Blazor/Material.Blazor')
 
     - name: Generate the first NuGet package 🔧
       run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:projectMB}
+      if: github.event_name != 'workflow_dispatch'
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${env:outputMB}
+      if: github.event_name != 'workflow_dispatch'
 
 # We'd like to push to a the main repository but now getting errors of authorization
 
@@ -115,7 +133,7 @@ jobs:
       run: nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      if: ((github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false)
+      if: github.event_name != 'workflow_dispatch' && ((github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false)
 
 # We'd like to push to a forked repository; The push appears to work but the packages are not visible
 # Pending a service response we only do the push of the CI build in the Material-Blazor/Material.Blazor repository
@@ -124,7 +142,7 @@ jobs:
       run: nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GH_PAT}}
-      if: ((github.repository != 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false)
+      if: github.event_name != 'workflow_dispatch' && ((github.repository != 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false)
 
     - name: Generate the second NuGet package 🔧
       run: dotnet pack --configuration ${env:buildConfiguration} --output ${env:outputMBC} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:projectMBC}
@@ -160,31 +178,31 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
+      if: github.event_name != 'workflow_dispatch' && (github.repository != 'Material-Blazor/Material.Blazor')
 #      if: (github.repository != 'Material-Blazor/Material.Blazor') && contains(github.ref, 'refs/heads')
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v1
       with:
         name: siteDocFx
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
+      if: github.event_name != 'workflow_dispatch' && (github.repository != 'Material-Blazor/Material.Blazor')
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v1
       with:
         name: siteWeb
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
+      if: github.event_name != 'workflow_dispatch' && (github.repository != 'Material-Blazor/Material.Blazor')
 
     - name: Configure deployment directory structure Ꙫ
       run: mv siteWeb/wwwroot deployroot; mv siteDocFx deployroot/docs
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
+      if: github.event_name != 'workflow_dispatch' && (github.repository != 'Material-Blazor/Material.Blazor')
 
     - name: Base Href Rewrite 👉
       uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       with:
         html_path: 'deployroot/index.html'
         base_href: '/Material.Blazor/'
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
+      if: github.event_name != 'workflow_dispatch' && (github.repository != 'Material-Blazor/Material.Blazor')
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
@@ -192,4 +210,127 @@ jobs:
         ACCESS_TOKEN: ${{secrets.GH_PAT}}
         BRANCH: gh-pages
         FOLDER: 'deployroot'
+      if: github.event_name != 'workflow_dispatch' && (github.repository != 'Material-Blazor/Material.Blazor')
+
+############################################################################################################
+# comparison
+############################################################################################################
+  # step 1: identify all the pages that should be compared
+  findpages:
+    needs: [deployghpages]
+    outputs:
+      pages: ${{ steps.setpages.outputs.pages }}
+    runs-on: ubuntu-latest
+    if: (github.repository != 'Material-Blazor/Material.Blazor') && !contains(github.event.head_commit.message, '[no-compare]')
+    steps:
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v2
       if: (github.repository != 'Material-Blazor/Material.Blazor')
+    - name: Find pages
+      id: setpages
+      # all blazor pages are in the folder Material.Blazor.Website/Pages and are razor files
+      # These files have a route attribute as their first line (@page "/pagename")
+      # Everything between the quotation mark is the page route
+      run: |
+        allpages=$(find Material.Blazor.Website/Pages -name *.razor | xargs -L 1 head -n 1 | sed 's/.*"\(.*\)".*/"\1"/' | paste -sd ",")
+        echo "::set-output name=pages::[${allpages}]"
+  # step 2: perform comparisons
+  compare:
+    needs: [findpages]
+    runs-on: ubuntu-latest
+    if: (github.repository != 'Material-Blazor/Material.Blazor') && !contains(github.event.head_commit.message, '[no-compare]')
+    # we use the result of the last job to parallelize the crawling of pages
+    strategy:
+      matrix:
+        label: ${{fromJSON(needs.findpages.outputs.pages)}}
+    steps:
+    - name: Create output directories
+      run: mkdir baseline fork report
+    - name: Create baseline URL prefix
+      id: baselineprefix
+      run: |
+        [ "${{ github.event.inputs.baseline }}" = "" ] && prefix="material-blazor.com" || prefix="${{ github.event.inputs.baseline }}.github.io/Material.Blazor"
+        echo "::set-output name=prefix::${prefix}"
+    - name: Crawl baseline page
+      uses: stefanloerwald/HeadlessChrome@v1.0.0
+      with:
+        page: https://${{ steps.baselineprefix.outputs.prefix }}${{matrix.label}}
+        outputfile: baseline${{matrix.label}}.html
+        maxretries: 5
+        retryongrepmatch: 'blazor-error-ui" style|splash-background-video' # if there is an error on page or the page contains the video splash screen, retry, as it's not the page we actually want
+        virtualtimebudget: 2000000
+    - name: Crawl this fork's page
+      uses: stefanloerwald/HeadlessChrome@v1.0.0
+      with:
+        page: https://${{github.actor}}.github.io/Material.Blazor${{matrix.label}}
+        outputfile: fork${{matrix.label}}.html
+        maxretries: 5
+        retryongrepmatch: 'blazor-error-ui" style|splash-background-video' # if there is an error on page or the page contains the video splash screen, retry, as it's not the page we actually want
+        virtualtimebudget: 2000000
+    # A few things need to be ignored to make a sensible comparison:
+    # some files have integrity hashes. Those change often, so ignore those
+    # many elements have GUIDs as attributes etc. GUIDs are usually generated dynamically, so differ on each page render
+    - name: normalize
+      run: |
+        grep -v "base href" baseline${{matrix.label}}.html | sed 's/integrity="\(.*\)"/integrity="..."/' | sed 's/[a-f0-9]\{8\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{12\}/guid/g' > tmp
+        mv tmp baseline${{matrix.label}}.html        
+        grep -v "base href" fork${{matrix.label}}.html | sed 's/integrity="\(.*\)"/integrity="..."/' | sed 's/[a-f0-9]\{8\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{12\}/guid/g' > tmp
+        mv tmp fork${{matrix.label}}.html
+    # We only want to see the differences, so we run diff with -d
+    # We also don't want to be notified of whitespace-only changes, so we ignore those with -w
+    # The exit code of diff is non-zero when there is a non-empty difference, but we need to continue running this job regardless
+    - name: diff
+      run: |
+        echo "### Differences on page '${{matrix.label}}'" > report${{matrix.label}}.md
+        echo "\`\`\`diff" >> report${{matrix.label}}.md
+        diff -d -w baseline${{matrix.label}}.html fork${{matrix.label}}.html >> report${{matrix.label}}.md || true
+        echo "\`\`\`" >> report${{matrix.label}}.md
+    # We need to pass the report on to the next build job, so we need to upload it as artifact
+    - name: Upload report artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: report
+        path: report${{matrix.label}}.md
+  # step 3: aggregate/summarise comparisons
+  aggregate:
+    needs: [compare]
+    runs-on: ubuntu-latest
+    if: (github.repository != 'Material-Blazor/Material.Blazor') && !contains(github.event.head_commit.message, '[no-compare]')
+    steps:
+    - name: Download all the individual reports
+      uses: actions/download-artifact@v1
+      with:
+        name: report
+    - name: Create baseline URL prefix
+      id: baselineprefix
+      run: |
+        [ "${{ github.event.inputs.baseline }}" = "" ] && prefix="material-blazor.com" || prefix="${{ github.event.inputs.baseline }}.github.io/Material.Blazor"
+        echo "::set-output name=prefix::${prefix}"
+    - name: Aggregate reports
+      run: |
+        echo "# Comparison between ${{ steps.baselineprefix.outputs.prefix }} and ${{github.actor}}.github.io/Material.Blazor" > all_reports.md
+        echo "Number of pages compared:" >> all_reports.md
+        ls -a -1 report/.*md report/*md | wc -l >> all_reports.md
+        cat report/.*md report/*md >> all_reports.md
+    - name: Summarise report for auto-generated issue
+      run: |
+        echo "Number of pages compared:" > meta_report.md
+        ls -a -1 report/.*md report/*md | wc -l >> meta_report.md
+        echo ""  >> meta_report.md
+        echo "Estimates on size of difference per page:"  >> meta_report.md
+        wc -l report/.*md report/*md >> meta_report.md
+        echo "" >> meta_report.md
+        echo "The report is available as artifact on https://github.com/${{github.actor}}/Material.Blazor/actions/runs/${{github.run_id}}" >> meta_report.md
+    - name: Upload report artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: report
+        path: all_reports.md
+    - name: Create issue from file
+      uses: peter-evans/create-issue-from-file@v2
+      with:
+        title: Comparison of ${{ steps.baselineprefix.outputs.prefix }} and ${{github.actor}}.github.io/Material.Blazor
+        content-filepath: meta_report.md
+        labels: report, automated issue
+        token: ${{secrets.GH_PAT}}
+
