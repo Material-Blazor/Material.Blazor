@@ -158,12 +158,12 @@ jobs:
 
     # this step deploys to Material-Blazor/Material.Blazor.Current when we are in the main repo
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@releases/v3
+      uses: JamesIves/github-pages-deploy-action@releases/v4.1.0
       with:
-        SSH_KEY: ${{secrets.DEPLOY_KEY_CURRENT}}
-        BRANCH: gh-pages
-        FOLDER: 'deployroot'
-        REPOSITORY_NAME: Material-Blazor/Material.Blazor.Current
+        ssh-key: ${{secrets.DEPLOY_KEY_CURRENT}}
+        branch: gh-pages
+        folder: 'deployroot'
+        repository-name: Material-Blazor/Material.Blazor.Current
       if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     # this step rewrites the base href when we are NOT in the main repo
@@ -176,9 +176,9 @@ jobs:
 
     # this step deploys to the current repo's gh-pages branch when we are NOT in the main repo
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@releases/v3
+      uses: JamesIves/github-pages-deploy-action@releases/v4.1.0
       with:
-        ACCESS_TOKEN: ${{secrets.GH_PAT}}
-        BRANCH: gh-pages
-        FOLDER: 'deployroot'
+        token: ${{secrets.GH_PAT}}
+        branch: gh-pages
+        folder: 'deployroot'
       if: (github.repository != 'Material-Blazor/Material.Blazor')
