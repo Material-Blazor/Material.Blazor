@@ -4,7 +4,7 @@ title: Installation
 ---
 # Installation
 
-Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add the CSS and JS in your html.
+Either fork this repo or reference the Material.Blazor Nuget package. Once the package is referenced in your project you will need to add the CSS and JS in your html.
 
 There are non-minified files of MaterialBlazor.css & MaterialBlazor.js available to reference if you need them for debugging purposes.
 
@@ -27,8 +27,15 @@ and at the end of `<body>`:
 <script src="_content/Material.Blazor/MaterialBlazor.min.js"></script>
 ```
 
- Replace the unpkg CSS with your own
+ Replace the unpkg CSS (or the Material.Blazor.Css CSS) with your own
 if you have built a theme - you can see how we have done this in the [Material.Blazor website's index.html](https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website.WebAssembly/wwwroot/index.html#L14).
+
+Alternatively, you can choose to install the Material.Blazor.Css Nuget package. This package contains the matching Material css for Material.Blazor. It has both the minified and 'raw' css. If you choose this method of obtaining the CSS the first link above becomes:
+
+```html
+<link href="_content/Material.Blazor.Css/Material.min.css" rel="stylesheet" />
+```
+
 ## Package versions
 
 Material.Blazor works with the following package versions:
