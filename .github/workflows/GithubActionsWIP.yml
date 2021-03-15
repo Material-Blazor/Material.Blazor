@@ -79,7 +79,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
-      run: dotnet test --configuration ${env:buildConfiguration} ${env:projectTest}
+      run: dotnet test --configuration ${env.buildConfiguration} ${env.projectTest}
 
 ############################################################################################################
 # Build documentation
@@ -120,10 +120,10 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Build Website 🔧
-      run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectWeb}
+      run: dotnet build --configuration ${env.buildConfiguration} --version-suffix ${env.ciSuffix} ${env.projectWeb}
 
     - name: Publish Website 🔧
-      run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} --version-suffix ${env:ciSuffix} ${env:projectWeb}
+      run: dotnet publish --no-build --configuration ${env.buildConfiguration} --output ${env.outputWeb} --version-suffix ${env.ciSuffix} ${env.projectWeb}
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v1
@@ -132,15 +132,15 @@ jobs:
         path: siteWeb
 
     - name: Generate the first NuGet package 🔧
-      run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:projectMB}
+      run: dotnet pack --no-build --configuration ${env.buildConfiguration} --output ${env.outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env.ciSuffix} ${env.projectMB}
 
     - name: Display MaterialBlazor package output Ꙫ
-      run: dir ${env:outputMB}
+      run: dir ${env.outputMB}
 
 # We'd like to push to a the main repository but now getting errors of authorization
 
     - name: Upload Package (Main repository) 🚀
-      run: nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      run: nuget push ${env.outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       if: ((github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false)
@@ -149,7 +149,7 @@ jobs:
 # Pending a service response we only do the push of the CI build in the Material-Blazor/Material.Blazor repository
 
     - name: Upload Package (Forked repository) 🚀
-      run: nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      run: nuget push ${env.outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GH_PAT}}
       if: ((github.repository != 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false)
