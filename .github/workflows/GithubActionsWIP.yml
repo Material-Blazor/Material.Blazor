@@ -227,7 +227,7 @@ jobs:
         [ "${{ github.event.inputs.baseline }}" = "" ] && prefix="material-blazor.com" || prefix="${{ github.event.inputs.baseline }}.github.io/Material.Blazor"
         echo "::set-output name=prefix::${prefix}"
     - name: Crawl baseline page
-      uses: stefanloerwald/HeadlessChrome@v0.19
+      uses: stefanloerwald/HeadlessChrome@v1.0.0
       with:
         page: https://${{ steps.baselineprefix.outputs.prefix }}${{matrix.label}}
         outputfile: baseline${{matrix.label}}.html
@@ -235,7 +235,7 @@ jobs:
         retryongrepmatch: 'blazor-error-ui" style|splash-background-video' # if there is an error on page or the page contains the video splash screen, retry, as it's not the page we actually want
         virtualtimebudget: 2000000
     - name: Crawl this fork's page
-      uses: stefanloerwald/HeadlessChrome@v0.19
+      uses: stefanloerwald/HeadlessChrome@v1.0.0
       with:
         page: https://${{github.actor}}.github.io/Material.Blazor${{matrix.label}}
         outputfile: fork${{matrix.label}}.html
