@@ -79,14 +79,12 @@ jobs:
       run: .\docfx\docfx docfx.json
       env:
         DOCFX_SOURCE_BRANCH_NAME: main
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
 
     - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'siteDocFx'.
       uses: actions/upload-artifact@v1
       with:
         name: siteDocFx
         path: siteDocFx
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
 
     - name: Build Website 🔧
       run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectWeb}
@@ -99,7 +97,6 @@ jobs:
       with:
         name: siteWeb
         path: siteWeb
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
 
     - name: Generate the first NuGet package 🔧
       run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:projectMB}
@@ -129,31 +126,47 @@ jobs:
 ############################################################################################################
   deployghpages:
     needs: [buildmaterialblazor]
+    if: github.event_name != 'pull_request' # for PRs, we only need to make sure the build works (the job above), we don't need to deploy anything.
 
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
 #      if: (github.repository != 'Material-Blazor/Material.Blazor') && contains(github.ref, 'refs/heads')
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v1
       with:
         name: siteDocFx
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v1
       with:
         name: siteWeb
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
 
     - name: Configure deployment directory structure Ꙫ
       run: mv siteWeb/wwwroot deployroot; mv siteDocFx deployroot/docs
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
 
+    # this step rewrites the base href when we are in the main repo and about to deploy to the Material.Blazor.Current repo
+    - name: Base Href Rewrite 👉
+      uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
+      with:
+        html_path: 'deployroot/index.html'
+        base_href: '/Material.Blazor.Current/'
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
+
+    # this step deploys to Material-Blazor/Material.Blazor.Current when we are in the main repo
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        ACCESS_TOKEN: ${{secrets.GH_PAT}}
+        BRANCH: gh-pages
+        FOLDER: 'deployroot'
+        REPOSITORY_NAME: Material-Blazor/Material.Blazor.Current
+      if: (github.repository == 'Material-Blazor/Material.Blazor')
+
+    # this step rewrites the base href when we are NOT in the main repo
     - name: Base Href Rewrite 👉
       uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       with:
@@ -161,6 +174,7 @@ jobs:
         base_href: '/Material.Blazor/'
       if: (github.repository != 'Material-Blazor/Material.Blazor')
 
+    # this step deploys to the current repo's gh-pages branch when we are NOT in the main repo
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
