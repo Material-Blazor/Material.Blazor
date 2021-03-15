@@ -813,7 +813,8 @@ namespace Material.Blazor
                             SupressHeader = (bool)parameter.Value;
                             break;
                         default:
-                            throw new ArgumentException($"Unknown parameter: {parameter.Name}");
+                            Logger.LogInformation("MBGrid encountered an unknown parameter:" + parameter.Name);
+                            break;
                     }
                 }
 
