@@ -20,12 +20,9 @@ env:
 jobs:
 
 ############################################################################################################
-# BuildMaterialBlazor (1st of 2 jobs), second job publishes to gh-pages
-#   Output: Material.Blazor DocFx pages (uploaded as artifacts)
-#   Output: Material.Blazor NuGet package (published as CI)
-#   Output: Material.Blazor.Website.WebAssembly (uploaded as artifacts)
+# This job is only to display some CI information
 ############################################################################################################
-  buildmaterialblazor:
+  info:
 
     runs-on: windows-latest
 
@@ -68,12 +65,32 @@ jobs:
     - name: Show Tag name Ꙫ
       run: echo GitHub indicates that this is a tag creation with ${{steps.get_tag.outputs.tag}}
       if: contains(github.ref, 'refs/tag')
+############################################################################################################
+# Run the test project. Should this fail, the deploy step (job deployghpages) is skipped
+############################################################################################################
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
 
     - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
       run: dotnet test --configuration ${env:buildConfiguration} ${env:projectTest}
+
+############################################################################################################
+# Build documentation
+############################################################################################################
+  build-documentation:
+
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v2
 
     - name: Create documentation 🔧
       run: .\docfx\docfx docfx.json
@@ -85,6 +102,22 @@ jobs:
       with:
         name: siteDocFx
         path: siteDocFx
+
+
+############################################################################################################
+# Build website
+############################################################################################################
+  build-website:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Set ciSuffix as env variable
+      run: echo "ciSuffix=ci.$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v2
 
     - name: Build Website 🔧
       run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectWeb}
@@ -125,7 +158,7 @@ jobs:
 # deployghpages
 ############################################################################################################
   deployghpages:
-    needs: [buildmaterialblazor]
+    needs: [test, build-documentation, build-website]
     if: github.event_name != 'pull_request' # for PRs, we only need to make sure the build works (the job above), we don't need to deploy anything.
 
     runs-on: ubuntu-latest
