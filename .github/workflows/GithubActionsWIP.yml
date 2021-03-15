@@ -12,7 +12,7 @@ env:
   buildConfiguration: 'Release'
   outputDocFx: ${{github.workspace}}\siteDocFx
   outputMB: ${{github.workspace}}\siteMB
-  outputWeb: ${{github.workspace}}\siteWeb
+  outputWeb: ${{github.workspace}}/siteWeb
   projectMB: 'Material.Blazor/Material.Blazor.csproj'
   projectTest: 'Material.Blazor.Test/Material.Blazor.Test.csproj'
   projectWeb: 'Material.Blazor.Website.WebAssembly/Material.Blazor.Website.WebAssembly.csproj'
