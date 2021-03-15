@@ -160,7 +160,7 @@ jobs:
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
-        ACCESS_TOKEN: ${{secrets.GH_PAT}}
+        SSH_KEY: ${{secrets.DEPLOY_KEY_CURRENT}}
         BRANCH: gh-pages
         FOLDER: 'deployroot'
         REPOSITORY_NAME: Material-Blazor/Material.Blazor.Current
