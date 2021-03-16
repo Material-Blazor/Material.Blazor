@@ -313,7 +313,7 @@ jobs:
     - name: Crawl this fork's page
       uses: stefanloerwald/HeadlessChrome@v1.0.1
       with:
-        page: https://${{github.actor}}.github.io/Material.Blazor${{matrix.label}}
+        page: https://${{github.repository_owner}}.github.io/Material.Blazor${{matrix.label}}
         outputfile: fork${{matrix.label}}.html
         maxretries: 5
         retryongrepmatch: 'blazor-error-ui" style|splash-background-video' # if there is an error on page or the page contains the video splash screen, retry, as it's not the page we actually want
