@@ -183,7 +183,6 @@ jobs:
 ############################################################################################################
   permissions:
     runs-on: ubuntu-latest
-    if: github.event_name != 'pull_request' || github.repository != 'Material-Blazor/Material.Blazor'
     steps:
       # Check for write permission
       - name: Check user permission
