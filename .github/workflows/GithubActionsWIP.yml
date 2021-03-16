@@ -118,7 +118,7 @@ jobs:
       with:
         name: siteDocFx
         path: siteDocFx
-      if: github.event_name != 'workflow_dispatch' 
+      if: (github.event_name != 'workflow_dispatch' ) && (github.repository != 'Material-Blazor/Material.Blazor')
 
 
 ############################################################################################################
@@ -149,9 +149,9 @@ jobs:
       with:
         name: siteWeb
         path: siteWeb
-      if: github.event_name != 'workflow_dispatch'
+      if: (github.event_name != 'workflow_dispatch') && (github.repository != 'Material-Blazor/Material.Blazor')
 
-    - name: Generate the first NuGet package 🔧
+    - name: Generate the NuGet package 🔧
       run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:projectMB}
       if: github.event_name != 'workflow_dispatch'
 
@@ -161,7 +161,7 @@ jobs:
 
 # We'd like to push to a the main repository but now getting errors of authorization
 
-    - name: Upload Package (Main repository) 🚀
+    - name: Upload Package (Main repository) 🔺
       run: nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
@@ -170,7 +170,7 @@ jobs:
 # We'd like to push to a forked repository; The push appears to work but the packages are not visible
 # Pending a service response we only do the push of the CI build in the Material-Blazor/Material.Blazor repository
 
-    - name: Upload Package (Forked repository) 🚀
+    - name: Upload Package (Forked repository) 🔺
       run: nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GH_PAT}}
@@ -183,7 +183,6 @@ jobs:
 ############################################################################################################
   permissions:
     runs-on: ubuntu-latest
-    if: github.event_name != 'pull_request' || github.repository != 'Material-Blazor/Material.Blazor'
     steps:
       # Check for write permission
       - name: Check user permission
@@ -203,7 +202,7 @@ jobs:
     needs: [test, build-documentation, build-website, permissions]
      # for PRs, we only need to make sure the build works (the job above), we don't need to deploy anything.
      # On forks, PRs against main will run the deploy step only if initiated by the fork owner 
-    if: github.event_name != 'pull_request' || needs.permissions.outputs.has-permission
+    if: ((github.event_name != 'pull_request') || (needs.permissions.outputs.has-permission)) && (github.repository != 'Material-Blazor/Material.Blazor')
 
     runs-on: ubuntu-latest
 
