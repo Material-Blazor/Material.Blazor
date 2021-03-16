@@ -200,13 +200,14 @@ jobs:
 ############################################################################################################
   deployghpages:
     needs: [test, build-documentation, build-website, permissions]
-     # On M.B:
-     #      'Pushes' and 'pull requests' against main need to deploy to Material.Blazor.Current
-     # On forks:
-     #      'Pushes' and 'pull requests' against main will run the deploy step only if initiated by the fork
-     #      owner. The deploy is to the fork
-     #if: ((github.event_name != 'pull_request') || (needs.permissions.outputs.has-permission)) ||
-     #(  (github.repository == 'Material-Blazor/Material.Blazor') && (needs.permissions.outputs.has-permission))
+
+    # On M.B:
+    #      'Pushes' and 'pull requests' against main deploy to Material.Blazor.Current if initiated by
+    #      someone with write permission
+    # On forks:
+    #      'Pushes' and 'pull requests' against main deploy to the fork initiated by 
+    #      someone with write permission
+
     if: (needs.permissions.outputs.has-permission)
 
     runs-on: ubuntu-latest
