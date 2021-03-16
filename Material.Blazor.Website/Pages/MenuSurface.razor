@@ -35,9 +35,9 @@
                                     <div class="mdc-typography mdc-typography--subtitle1">
                                         alice.smith@domain.com
                                     </div>
+                                    <MBIconButton Icon="logout" @onclick="@(() => OnClick("logout"))"/>
+                                    <MBIconButton Icon="settings" @onclick="@(() => OnClick("settings"))"/>
                                 </div>
-                                <MBIconButton Icon="logout"/>
-                                <MBIconButton Icon="settings"/>
                             </MBMenuSurface>
                         </div>
                     </p>
@@ -55,4 +55,8 @@
         await MenuSurfaceElement.ToggleAsync();
     }
 
+    private void OnClick(string notification)
+    {
+        ToastService.ShowToast(heading: "Button Clicked", message: notification, level: MBToastLevel.Success, showIcon: false);
+    }
 }
