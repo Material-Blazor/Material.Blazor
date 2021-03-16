@@ -202,13 +202,13 @@ jobs:
     needs: [test, build-documentation, build-website, permissions]
 
     # On M.B:
-    #      'Pushes' and 'pull requests' against main deploy to Material.Blazor.Current if initiated by
+    #      'pushes' against main deploy to Material.Blazor.Current if initiated by
     #      someone with write permission
     # On forks:
     #      'Pushes' and 'pull requests' against main deploy to the fork initiated by 
     #      someone with write permission
 
-    if: (needs.permissions.outputs.has-permission)
+    if: (needs.permissions.outputs.has-permission) &&  ( ( (github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push')) || (github.repository != 'Material-Blazor/Material.Blazor'))
 
     runs-on: ubuntu-latest
 
