@@ -118,7 +118,7 @@ jobs:
       with:
         name: siteDocFx
         path: siteDocFx
-      if: (github.event_name != 'workflow_dispatch' ) && (github.repository != 'Material-Blazor/Material.Blazor')
+      if: github.event_name != 'workflow_dispatch' 
 
 
 ############################################################################################################
@@ -149,7 +149,7 @@ jobs:
       with:
         name: siteWeb
         path: siteWeb
-      if: (github.event_name != 'workflow_dispatch') && (github.repository != 'Material-Blazor/Material.Blazor')
+      if: (github.event_name != 'workflow_dispatch')
 
     - name: Generate the NuGet package 🔧
       run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:projectMB}
@@ -200,9 +200,14 @@ jobs:
 ############################################################################################################
   deployghpages:
     needs: [test, build-documentation, build-website, permissions]
-     # for PRs, we only need to make sure the build works (the job above), we don't need to deploy anything.
-     # On forks, PRs against main will run the deploy step only if initiated by the fork owner 
-    if: ((github.event_name != 'pull_request') || (needs.permissions.outputs.has-permission)) && (github.repository != 'Material-Blazor/Material.Blazor')
+     # On M.B:
+     #      'Pushes' and 'pull requests' against main need to deploy to Material.Blazor.Current
+     # On forks:
+     #      'Pushes' and 'pull requests' against main will run the deploy step only if initiated by the fork
+     #      owner. The deploy is to the fork
+     #if: ((github.event_name != 'pull_request') || (needs.permissions.outputs.has-permission)) ||
+     #(  (github.repository == 'Material-Blazor/Material.Blazor') && (needs.permissions.outputs.has-permission))
+    if: (needs.permissions.outputs.has-permission)
 
     runs-on: ubuntu-latest
 
