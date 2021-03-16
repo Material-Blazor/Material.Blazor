@@ -176,12 +176,34 @@ jobs:
         NUGET_AUTH_TOKEN: ${{secrets.GH_PAT}}
       if: github.event_name != 'workflow_dispatch' && ((github.repository != 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false)
 
+
+
+############################################################################################################
+# permission check
+############################################################################################################
+  permissions:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.repository != 'Material-Blazor/Material.Blazor'
+    steps:
+      # Check for write permission
+      - name: Check user permission
+        id: check
+        uses: scherermichael-oss/action-has-permission@master
+        with:
+          required-permission: write
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    outputs:
+      has-permission: ${{ steps.check.outputs.has-permission }}
+
 ############################################################################################################
 # deployghpages
 ############################################################################################################
   deployghpages:
-    needs: [test, build-documentation, build-website]
-    if: github.event_name != 'pull_request' # for PRs, we only need to make sure the build works (the job above), we don't need to deploy anything.
+    needs: [test, build-documentation, build-website, permissions]
+     # for PRs, we only need to make sure the build works (the job above), we don't need to deploy anything.
+     # On forks, PRs against main will run the deploy step only if initiated by the fork owner 
+    if: github.event_name != 'pull_request' || needs.permissions.outputs.has-permission
 
     runs-on: ubuntu-latest
 
@@ -281,7 +303,7 @@ jobs:
         [ "${{ github.event.inputs.baseline }}" = "" ] && prefix="material-blazor.github.io/Material.Blazor.Current" || prefix="${{ github.event.inputs.baseline }}.github.io/Material.Blazor"
         echo "::set-output name=prefix::${prefix}"
     - name: Crawl baseline page
-      uses: stefanloerwald/HeadlessChrome@v1.0.0
+      uses: stefanloerwald/HeadlessChrome@v1.0.1
       with:
         page: https://${{ steps.baselineprefix.outputs.prefix }}${{matrix.label}}
         outputfile: baseline${{matrix.label}}.html
@@ -289,7 +311,7 @@ jobs:
         retryongrepmatch: 'blazor-error-ui" style|splash-background-video' # if there is an error on page or the page contains the video splash screen, retry, as it's not the page we actually want
         virtualtimebudget: 2000000
     - name: Crawl this fork's page
-      uses: stefanloerwald/HeadlessChrome@v1.0.0
+      uses: stefanloerwald/HeadlessChrome@v1.0.1
       with:
         page: https://${{github.actor}}.github.io/Material.Blazor${{matrix.label}}
         outputfile: fork${{matrix.label}}.html
