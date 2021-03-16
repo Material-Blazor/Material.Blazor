@@ -156,8 +156,6 @@ namespace Material.Blazor.Internal
                 TooltipService.RemoveTooltip(TooltipId);
             }
 
-            // TODO: free unmanaged resources (unmanaged objects) and override finalizer
-            // TODO: set large fields to null
             _disposed = true;
         }
 
