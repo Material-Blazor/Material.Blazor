@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
     inputs:
       baseline:
-        description: 'The repo to use as baseline. If left empty, it defaults to the current release of MB, i.e. material-blazor.com. Enter the github username, e.g. stefanloerwald'
+        description: 'The repo to use as baseline. If left empty, it defaults to the current version of MB, i.e. material-blazor.github.io/Material.Blazor.Current. Enter the github username, e.g. stefanloerwald'
         required: false
         default: ''
 
@@ -278,7 +278,7 @@ jobs:
     - name: Create baseline URL prefix
       id: baselineprefix
       run: |
-        [ "${{ github.event.inputs.baseline }}" = "" ] && prefix="material-blazor.com" || prefix="${{ github.event.inputs.baseline }}.github.io/Material.Blazor"
+        [ "${{ github.event.inputs.baseline }}" = "" ] && prefix="material-blazor.github.io/Material.Blazor.Current" || prefix="${{ github.event.inputs.baseline }}.github.io/Material.Blazor"
         echo "::set-output name=prefix::${prefix}"
     - name: Crawl baseline page
       uses: stefanloerwald/HeadlessChrome@v1.0.0
@@ -333,7 +333,7 @@ jobs:
     - name: Create baseline URL prefix
       id: baselineprefix
       run: |
-        [ "${{ github.event.inputs.baseline }}" = "" ] && prefix="material-blazor.com" || prefix="${{ github.event.inputs.baseline }}.github.io/Material.Blazor"
+        [ "${{ github.event.inputs.baseline }}" = "" ] && prefix="material-blazor.github.io/Material.Blazor.Current" || prefix="${{ github.event.inputs.baseline }}.github.io/Material.Blazor"
         echo "::set-output name=prefix::${prefix}"
     - name: Aggregate reports
       run: |
