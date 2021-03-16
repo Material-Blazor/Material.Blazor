@@ -18,7 +18,7 @@ env:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   outputDocFx: ${{github.workspace}}\siteDocFx
-  outputMB: ${{github.workspace}}\siteMB
+  outputMB: ${{github.workspace}}/siteMB
   outputWeb: ${{github.workspace}}/siteWeb
   projectMB: 'Material.Blazor/Material.Blazor.csproj'
   projectTest: 'Material.Blazor.Test/Material.Blazor.Test.csproj'
@@ -126,7 +126,7 @@ jobs:
 ############################################################################################################
   build-website:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - name: Set ciSuffix as env variable
@@ -137,11 +137,11 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Build Website 🔧
-      run: dotnet build --configuration ${{env.buildConfiguration}} --version-suffix ${{env.ciSuffix}} ${{env.projectWeb}}
+      run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectWeb}
       if: github.event_name != 'workflow_dispatch'
       
     - name: Publish Website 🔧
-      run: dotnet publish --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} --version-suffix ${{env.ciSuffix}} ${{env.projectWeb}}
+      run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} --version-suffix ${env:ciSuffix} ${env:projectWeb}
       if: github.event_name != 'workflow_dispatch'
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
@@ -152,16 +152,17 @@ jobs:
       if: github.event_name != 'workflow_dispatch'
 
     - name: Generate the first NuGet package 🔧
-      run: dotnet pack --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${{env.ciSuffix}} ${{env.projectMB}}
+      run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:projectMB}
       if: github.event_name != 'workflow_dispatch'
+
     - name: Display MaterialBlazor package output Ꙫ
-      run: dir ${{env.outputMB}}
+      run: dir ${env:outputMB}
       if: github.event_name != 'workflow_dispatch'
 
 # We'd like to push to a the main repository but now getting errors of authorization
 
     - name: Upload Package (Main repository) 🚀
-      run: nuget push ${{env.outputMB}}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      run: nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       if: github.event_name != 'workflow_dispatch' && ((github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false)
@@ -170,7 +171,7 @@ jobs:
 # Pending a service response we only do the push of the CI build in the Material-Blazor/Material.Blazor repository
 
     - name: Upload Package (Forked repository) 🚀
-      run: nuget push ${{env.outputMB}}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      run: nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GH_PAT}}
       if: github.event_name != 'workflow_dispatch' && ((github.repository != 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false)
