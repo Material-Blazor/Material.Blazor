@@ -165,6 +165,7 @@ jobs:
 # This is hard-skipped when we only want to perform a comparison (github.event_name != 'workflow_dispatch')
 ############################################################################################################
   build-package:
+    needs: [test]
 
     runs-on: windows-latest
     if: github.event_name != 'workflow_dispatch'
