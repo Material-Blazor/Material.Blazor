@@ -242,7 +242,7 @@ jobs:
   deployghpages:
     needs: [test, build-documentation, build-website, permissions]
 
-    if: (needs.permissions.outputs.has-permission) && (github.repository != 'Material-Blazor/Material.Blazor') && (github.event_name == 'push' || github.event_name == 'pull_request')
+    if: (needs.permissions.outputs.has-permission) && (github.repository != 'Material-Blazor/Material.Blazor')
 
     runs-on: ubuntu-latest
 
