@@ -80,6 +80,7 @@ jobs:
       
 ############################################################################################################
 # Run the test project. Should this fail, the deploy step (job deployghpages) is skipped
+# This is soft-skipped when we only want to perform a comparison (github.event_name != 'workflow_dispatch')
 ############################################################################################################
   test:
     runs-on: ubuntu-latest
@@ -87,6 +88,7 @@ jobs:
     steps:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
+      if: github.event_name != 'workflow_dispatch'
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
@@ -98,6 +100,8 @@ jobs:
       
 ############################################################################################################
 # Build documentation
+# This is soft-skipped when we only want to perform a comparison (github.event_name != 'workflow_dispatch')
+# A soft-skip is necessary, because the comparison job has to occur after build-docs, if it is built.
 ############################################################################################################
   build-documentation:
 
@@ -106,6 +110,7 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
+      if: github.event_name != 'workflow_dispatch'
 
     - name: Create documentation 🔧
       run: .\docfx\docfx docfx.json
@@ -123,6 +128,8 @@ jobs:
 
 ############################################################################################################
 # Build website
+# This is soft-skipped when we only want to perform a comparison (github.event_name != 'workflow_dispatch')
+# A soft-skip is necessary, because the comparison job has to occur after build-website, if it is built.
 ############################################################################################################
   build-website:
 
@@ -132,9 +139,11 @@ jobs:
     - name: Set ciSuffix as env variable
       run: echo "ciSuffix=ci.$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
       shell: bash
+      if: github.event_name != 'workflow_dispatch'
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
+      if: github.event_name != 'workflow_dispatch'
 
     - name: Build Website 🔧
       run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectWeb}
@@ -149,15 +158,33 @@ jobs:
       with:
         name: siteWeb
         path: siteWeb
-      if: (github.event_name != 'workflow_dispatch')
+      if: github.event_name != 'workflow_dispatch'
+
+############################################################################################################
+# Build package
+# This is hard-skipped when we only want to perform a comparison (github.event_name != 'workflow_dispatch')
+############################################################################################################
+  build-package:
+
+    runs-on: windows-latest
+    if: github.event_name != 'workflow_dispatch'
+
+    steps:
+    - name: Set ciSuffix as env variable
+      run: echo "ciSuffix=ci.$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
+      shell: bash
+
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v2
+
+    - name: Build Website 🔧
+      run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectMB}
 
     - name: Generate the NuGet package 🔧
       run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:projectMB}
-      if: github.event_name != 'workflow_dispatch'
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${env:outputMB}
-      if: github.event_name != 'workflow_dispatch'
 
 # We'd like to push to a the main repository but now getting errors of authorization
 
@@ -165,7 +192,7 @@ jobs:
       run: nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-      if: github.event_name != 'workflow_dispatch' && ((github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false)
+      if: (github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false
 
 # We'd like to push to a forked repository; The push appears to work but the packages are not visible
 # Pending a service response we only do the push of the CI build in the Material-Blazor/Material.Blazor repository
@@ -174,12 +201,17 @@ jobs:
       run: nuget push ${env:outputMB}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GH_PAT}}
-      if: github.event_name != 'workflow_dispatch' && ((github.repository != 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false)
+      if: (github.repository != 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false
 
 
 
 ############################################################################################################
 # permission check
+# On forks, we want to limit deploy-on-PR to users with write permission on the fork.
+# This step will set the output variable has-permission to true/false accordingly.
+# In any job that requires the permission, simply
+# - add `needs: [permissions]`
+# - add `if: needs.permissions.outputs.has-permission`
 ############################################################################################################
   permissions:
     runs-on: ubuntu-latest
@@ -197,18 +229,19 @@ jobs:
 
 ############################################################################################################
 # deployghpages
+# We deploy to GH pages in the following conditions
+# - on any fork on push
+# - on any fork on PR by an authorized user
+# We NEVER deploy to GH pages on Material-Blazor/Material.Blazor in this WIP workflow:
+# Material.Blazor.Current is handled by deployghpages-mbcurrent below.
+#
+# This is soft-skipped when we only want to perform a comparison (github.event_name != 'workflow_dispatch')
+# A soft-skip is necessary, because the comparison job has to occur after build-website, if it is built.
 ############################################################################################################
   deployghpages:
     needs: [test, build-documentation, build-website, permissions]
 
-    # On M.B:
-    #      'pushes' against main deploy to Material.Blazor.Current if initiated by
-    #      someone with write permission
-    # On forks:
-    #      'Pushes' and 'pull requests' against main deploy to the fork initiated by 
-    #      someone with write permission
-
-    if: (needs.permissions.outputs.has-permission) &&  ( ( (github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push')) || (github.repository != 'Material-Blazor/Material.Blazor'))
+    if: (needs.permissions.outputs.has-permission) && (github.repository != 'Material-Blazor/Material.Blazor') && (github.event_name == 'push' || github.event_name == 'pull_request')
 
     runs-on: ubuntu-latest
 
@@ -233,13 +266,56 @@ jobs:
       run: mv siteWeb/wwwroot deployroot; mv siteDocFx deployroot/docs
       if: github.event_name != 'workflow_dispatch'
 
+    # this step rewrites the base href
+    - name: Base Href Rewrite 👉
+      uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
+      with:
+        html_path: 'deployroot/index.html'
+        base_href: '/Material.Blazor/'
+      if: github.event_name != 'workflow_dispatch'
+
+    # this step deploys to the current repo's gh-pages branch
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@4.1.0
+      with:
+        token: ${{secrets.GH_PAT}}
+        branch: gh-pages
+        folder: 'deployroot'
+      if: github.event_name != 'workflow_dispatch'
+
+############################################################################################################
+# deployghpages-mbcurrent
+# The current version of Material.Blazor is viewable on GH-pages in addition to material-blazor.com
+############################################################################################################
+  deployghpages-mbcurrent:
+    needs: [test, build-documentation, build-website, permissions]
+    if: (github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push')
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v2
+
+    - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
+      uses: actions/download-artifact@v1
+      with:
+        name: siteDocFx
+
+    - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
+      uses: actions/download-artifact@v1
+      with:
+        name: siteWeb
+
+    - name: Configure deployment directory structure Ꙫ
+      run: mv siteWeb/wwwroot deployroot; mv siteDocFx deployroot/docs
+
     # this step rewrites the base href when we are in the main repo and about to deploy to the Material.Blazor.Current repo
     - name: Base Href Rewrite 👉
       uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
       with:
         html_path: 'deployroot/index.html'
         base_href: '/Material.Blazor.Current/'
-      if: github.event_name != 'workflow_dispatch' && (github.repository == 'Material-Blazor/Material.Blazor')
 
     # this step deploys to Material-Blazor/Material.Blazor.Current when we are in the main repo
     - name: Deploy 🚀
@@ -249,39 +325,22 @@ jobs:
         branch: gh-pages
         folder: 'deployroot'
         repository-name: Material-Blazor/Material.Blazor.Current
-      if: github.event_name != 'workflow_dispatch' && (github.repository == 'Material-Blazor/Material.Blazor')
-
-    # this step rewrites the base href when we are NOT in the main repo
-    - name: Base Href Rewrite 👉
-      uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
-      with:
-        html_path: 'deployroot/index.html'
-        base_href: '/Material.Blazor/'
-      if: github.event_name != 'workflow_dispatch' && (github.repository != 'Material-Blazor/Material.Blazor')
-
-    # this step deploys to the current repo's gh-pages branch when we are NOT in the main repo
-    - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.1.0
-      with:
-        token: ${{secrets.GH_PAT}}
-        branch: gh-pages
-        folder: 'deployroot'
-      if: github.event_name != 'workflow_dispatch' && (github.repository != 'Material-Blazor/Material.Blazor')
 
 ############################################################################################################
 # comparison
 ############################################################################################################
-  # step 1: identify all the pages that should be compared
+  # job 1: identify all the pages that should be compared
   findpages:
     needs: [deployghpages]
+    if: (github.repository != 'Material-Blazor/Material.Blazor') && !contains(github.event.head_commit.message, '[no-compare]')
     outputs:
       pages: ${{ steps.setpages.outputs.pages }}
     runs-on: ubuntu-latest
-    if: (github.repository != 'Material-Blazor/Material.Blazor') && !contains(github.event.head_commit.message, '[no-compare]')
     steps:
+    
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
-      if: (github.repository != 'Material-Blazor/Material.Blazor')
+      
     - name: Find pages
       id: setpages
       # all blazor pages are in the folder Material.Blazor.Website/Pages and are razor files
@@ -290,7 +349,8 @@ jobs:
       run: |
         allpages=$(find Material.Blazor.Website/Pages -name *.razor | xargs -L 1 head -n 1 | sed 's/.*"\(.*\)".*/"\1"/' | paste -sd ",")
         echo "::set-output name=pages::[${allpages}]"
-  # step 2: perform comparisons
+        
+  # job 2: perform comparisons
   compare:
     needs: [findpages]
     runs-on: ubuntu-latest
