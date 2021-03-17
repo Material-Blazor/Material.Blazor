@@ -32,8 +32,6 @@ namespace Material.Blazor.Internal
         [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object> UnmatchedAttributes { get; set; }
 
 
-
-
         /// <summary>
         /// Indicates whether the component is disabled.
         /// </summary>
