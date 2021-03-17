@@ -238,6 +238,7 @@ jobs:
 #
 # This is soft-skipped when we only want to perform a comparison (github.event_name != 'workflow_dispatch')
 # A soft-skip is necessary, because the comparison job has to occur after build-website, if it is built.
+#
 ############################################################################################################
   deployghpages:
     needs: [test, build-documentation, build-website, permissions]
