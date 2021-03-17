@@ -1,5 +1,8 @@
 ﻿# Material.Blazor
 
+
+
+
 ## Lightweight Material Theme razor components for Blazor
 
 Material.Blazor is a lightweight [Material Theme](https://material.io/) [web development platform](https://material.io/develop/web/) (version 9.0.0) component library for [ASP.NET Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor) that is rigorously faithful to the Material Theme's design philosophy, markup and code usage. Material Theme has very specific and detailed guidance showing web designers how to build web apps with HTML, CSS and JavaScript. Since neither Blazor or WebAssembly are directly supported, Blazor developers either need to roll their own components or use a component library such as Material.Blazor.
