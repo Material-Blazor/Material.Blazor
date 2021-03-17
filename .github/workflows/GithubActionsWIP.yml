@@ -344,11 +344,12 @@ jobs:
       
     - name: Find pages
       id: setpages
-      # all blazor pages are in the folder Material.Blazor.Website/Pages and are razor files
-      # These files have a route attribute as their first line (@page "/pagename")
-      # Everything between the quotation mark is the page route
+      # all blazor pages are in the folder Material.Blazor.Website/Pages and are razor files: find Material.Blazor.Website/Pages -name *.razor
+      # Collect all route attributes in them (@page "/pagename"): grep "@page" -h
+      # Everything between the quotation mark is the page route: sed 's/.*"\(.*\)".*/"\1"/'
+      # We need the result as a comma-separated list, not line by line: paste -sd ","
       run: |
-        allpages=$(find Material.Blazor.Website/Pages -name *.razor | xargs -L 1 head -n 1 | sed 's/.*"\(.*\)".*/"\1"/' | paste -sd ",")
+        allpages=$(find Material.Blazor.Website/Pages -name *.razor | xargs grep "@page" -h | sed 's/.*"\(.*\)".*/"\1"/' | paste -sd ",")
         echo "::set-output name=pages::[${allpages}]"
         
   # job 2: perform comparisons
