@@ -26,11 +26,17 @@ env:
   projectWeb: 'Material.Blazor.Website.WebAssembly/Material.Blazor.Website.WebAssembly.csproj'
 
 jobs:
-
+  is-pr-closed:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+  is-not-pr-closed:
+    runs-on: ubuntu-latest
+    if: github.event_name != 'pull_request' || github.event.action != 'closed'
 ############################################################################################################
 # This job is only to display some CI information
 ############################################################################################################
   info:
+    needs: [is-not-pr-closed]
     runs-on: windows-latest
 
     steps:
@@ -84,6 +90,7 @@ jobs:
 # This is soft-skipped when we only want to perform a comparison (github.event_name != 'workflow_dispatch')
 ############################################################################################################
   test:
+    needs: [is-not-pr-closed]
     runs-on: ubuntu-latest
 
     steps:
@@ -107,7 +114,7 @@ jobs:
 # A soft-skip is necessary, because the comparison job has to occur after build-docs, if it is built.
 ############################################################################################################
   build-documentation:
-
+    needs: [is-not-pr-closed]
     runs-on: windows-latest
 
     steps:
@@ -137,7 +144,7 @@ jobs:
 # A soft-skip is necessary, because the comparison job has to occur after build-website, if it is built.
 ############################################################################################################
   build-website:
-
+    needs: [is-not-pr-closed]
     runs-on: windows-latest
 
     steps:
@@ -224,6 +231,7 @@ jobs:
 # - add `if: needs.permissions.outputs.has-permission`
 ############################################################################################################
   permissions:
+    needs: [is-not-pr-closed]
     runs-on: ubuntu-latest
     steps:
       # Check for write permission
@@ -473,6 +481,7 @@ jobs:
 # Pull requests: automated comparison (internal only)
 ############################################################################################################
   delete-pr-repo:
+    needs: [ is-pr-closed ]
     runs-on: ubuntu-latest
     if: github.repository == 'Material-Blazor/Material.Blazor' && github.event_name == 'pull_request' && github.event.action == 'closed' && startsWith(github.event.pull_request.head.label, 'Material-Blazor')
     steps:
@@ -487,6 +496,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
       - run: echo "${{ steps.create.outputs.data }}"
   create-pr-repo:
+    needs: [is-not-pr-closed]
     runs-on: ubuntu-latest
     if: github.repository == 'Material-Blazor/Material.Blazor' && github.event_name == 'pull_request' && startsWith(github.event.pull_request.head.label, 'Material-Blazor')
     steps:
