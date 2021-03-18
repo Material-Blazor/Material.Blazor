@@ -486,6 +486,10 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository == 'Material-Blazor/Material.Blazor' && github.event_name == 'pull_request'
     steps:
+      - name: debug
+        run: |
+          echo " ${{ github.event.action }} "
+          echo " ${{ github.event }} "
       - uses: octokit/request-action@v2.x
         id: create
         if: github.event.action == 'opened' || github.event.action == 'reopened'
@@ -496,7 +500,6 @@ jobs:
           name: MB-PR-${{github.event.number}}
           description: This is an automatically generated repo for PR ${{github.event.number}} against the Material.Blazor repo. Do not modify.
           visibility: private
-        env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
   deploy-to-pr-repo:
     needs: [ create-pr-repo, test, build-documentation, build-website ]
