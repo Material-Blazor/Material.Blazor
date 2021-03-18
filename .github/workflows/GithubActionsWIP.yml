@@ -6,7 +6,7 @@ on:
 
   pull_request:
     branches: [ main ]
-    types: [opened, reopened, edited, closed]
+    types: [opened, reopened, edited, synchronize, closed]
 
   workflow_dispatch:
     inputs:
@@ -487,7 +487,7 @@ jobs:
   deploy-to-pr-repo:
     needs: [ create-pr-repo, test, build-documentation, build-website ]
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'edited')
+    if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'edited' || github.event.action == 'synchronize')
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
