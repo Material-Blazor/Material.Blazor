@@ -720,13 +720,11 @@ namespace Material.Blazor
         #endregion
 
         #region OnMouseClickInternal
-        // TODO: return value seems unnecessary
-        private bool OnMouseClickInternal(string newRowKey)
+        private void OnMouseClickInternal(string newRowKey)
         {
-            //
-            //  We set a click handler on the rows for now, and make the spans transparent. So we only
-            //  get the row index. We raise our selection changed event when it changes.
-            //
+#if LoggingVerbose
+            Logger.LogInformation("OnMouseClickInternal with HighlightSelectedRow:" + HighlightSelectedRow.ToString());
+#endif
             if (newRowKey != SelectedKey)
             {
                 SelectedKey = newRowKey;
@@ -736,8 +734,6 @@ namespace Material.Blazor
             {
                 OnMouseClick.InvokeAsync(newRowKey);
             }
-
-            return false;
         }
         #endregion
 
@@ -859,11 +855,17 @@ namespace Material.Blazor
                     // parameters. Hashing isn't perfect so there is some tiny possibility that new parameters
                     // are present and the same hash value was computed.
                     ShouldRenderValue = false;
+#if LoggingVerbose
+                    Logger.LogInformation("                   EQUAL hash");
+#endif
                 }
                 else
                 { 
                     ShouldRenderValue = true;
                     oldParameterHash = newParameterHash;
+#if LoggingVerbose
+                    Logger.LogInformation("                   DIFFERING hash");
+#endif
                 }
             }
             finally
