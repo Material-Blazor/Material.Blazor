@@ -533,5 +533,129 @@ jobs:
           sleep 5
           i=$((i+1))
         done
-  #TODO continue with a comparison!
-
+############################################################################################################
+# comparison in PRs
+############################################################################################################
+  # job 1: identify all the pages that should be compared
+  pr-findpages:
+    needs: [wait-for-pr-gh-pages-non-404]
+    outputs:
+      pages: ${{ steps.setpages.outputs.pages }}
+    runs-on: ubuntu-latest
+    steps:
+    
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v2
+      
+    - name: Find pages
+      id: setpages
+      # all blazor pages are in the folder Material.Blazor.Website/Pages and are razor files: find Material.Blazor.Website/Pages -name *.razor
+      # Collect all route attributes in them (@page "/pagename"): grep "@page" -h
+      # Everything between the quotation mark is the page route: sed 's/.*"\(.*\)".*/"\1"/'
+      # We need the result as a comma-separated list, not line by line: paste -sd ","
+      run: |
+        allpages=$(find Material.Blazor.Website/Pages -name *.razor | xargs grep "@page" -h | sed 's/.*"\(.*\)".*/"\1"/' | paste -sd ",")
+        echo "::set-output name=pages::[${allpages}]"
+        
+  # job 2: perform comparisons
+  pr-compare:
+    needs: [pr-findpages]
+    runs-on: ubuntu-latest
+    # we use the result of the last job to parallelize the crawling of pages
+    strategy:
+      matrix:
+        label: ${{fromJSON(needs.pr-findpages.outputs.pages)}}
+    steps:
+    - name: Create output directories
+      run: mkdir baseline fork report
+    - name: Crawl baseline page
+      uses: stefanloerwald/HeadlessChrome@v1.0.1
+      with:
+        page: https://material-blazor.github.io/Material.Blazor.Current${{matrix.label}}
+        outputfile: baseline${{matrix.label}}.html
+        maxretries: 5
+        retryongrepmatch: 'blazor-error-ui" style|splash-background-video' # if there is an error on page or the page contains the video splash screen, retry, as it's not the page we actually want
+        virtualtimebudget: 2000000
+    - name: Crawl this PR's page
+      uses: stefanloerwald/HeadlessChrome@v1.0.1
+      with:
+        page: https://material-blazor.github.io/MB-PR-${{github.event.number}}${{matrix.label}}
+        outputfile: fork${{matrix.label}}.html
+        maxretries: 5
+        retryongrepmatch: 'blazor-error-ui" style|splash-background-video' # if there is an error on page or the page contains the video splash screen, retry, as it's not the page we actually want
+        virtualtimebudget: 2000000
+    # A few things need to be ignored to make a sensible comparison:
+    # some files have integrity hashes. Those change often, so ignore those
+    # many elements have GUIDs as attributes etc. GUIDs are usually generated dynamically, so differ on each page render
+    - name: normalize
+      run: |
+        grep -v "base href" baseline${{matrix.label}}.html | sed 's/integrity="\(.*\)"/integrity="..."/' | sed 's/[a-f0-9]\{8\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{12\}/guid/g' > tmp
+        mv tmp baseline${{matrix.label}}.html        
+        grep -v "base href" fork${{matrix.label}}.html | sed 's/integrity="\(.*\)"/integrity="..."/' | sed 's/[a-f0-9]\{8\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{12\}/guid/g' > tmp
+        mv tmp fork${{matrix.label}}.html
+    # We only want to see the differences, so we run diff with -d
+    # We also don't want to be notified of whitespace-only changes, so we ignore those with -w
+    # The exit code of diff is non-zero when there is a non-empty difference, but we need to continue running this job regardless
+    - name: diff
+      run: |
+        echo "### Differences on page '${{matrix.label}}'" > report${{matrix.label}}.md
+        echo "\`\`\`diff" >> report${{matrix.label}}.md
+        diff -d -w baseline${{matrix.label}}.html fork${{matrix.label}}.html >> report${{matrix.label}}.md || true
+        echo "\`\`\`" >> report${{matrix.label}}.md
+    # We need to pass the report on to the next build job, so we need to upload it as artifact
+    - name: Upload report artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: report
+        path: report${{matrix.label}}.md
+  # step 3: aggregate/summarise comparisons
+  pr-aggregate:
+    needs: [pr-compare]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download all the individual reports
+      uses: actions/download-artifact@v1
+      with:
+        name: report
+    - name: Aggregate reports
+      run: |
+        echo "# Comparison between https://material-blazor.github.io/Material.Blazor.Current and https://material-blazor.github.io/MB-PR-${{github.event.number}}" > all_reports.md
+        echo "Number of pages compared:" >> all_reports.md
+        ls -a -1 report/.*md report/*md | wc -l >> all_reports.md
+        cat report/.*md report/*md >> all_reports.md
+    - name: Summarise report for auto-generated issue
+      id: report-summary
+      run: |
+        echo "Hello! Your PR was automatically checked for differences in the demo page." > meta_report.md
+        echo ""  >> meta_report.md
+        echo "We do this to maintain high quality of the library." >> meta_report.md
+        echo "Below you'll find a summary of the differences we found." >> meta_report.md
+        echo ""  >> meta_report.md
+        echo "Number of pages compared:" >> meta_report.md
+        ls -a -1 report/.*md report/*md | wc -l >> meta_report.md
+        echo ""  >> meta_report.md
+        echo "Estimates on size of difference per page:"  >> meta_report.md
+        wc -l report/.*md report/*md | grep -v -E "^\W*0\W+" >> meta_report.md
+        echo "" >> meta_report.md
+        echo "The report is available as artifact on https://github.com/Material-Blazor/Material.Blazor/actions/runs/${{github.run_id}}" >> meta_report.md
+        echo "" >> meta_report.md
+        echo "" >> meta_report.md
+        meta_report=$(cat meta_report.md)
+        echo "::set-output name=meta_report::${meta_report}"
+    - name: Upload report artifact
+      uses: actions/upload-artifact@v1
+      with:
+        name: report
+        path: all_reports.md
+    - name: Add a comment to this PR
+      uses: octokit/request-action@v2.x
+      id: create
+      with:
+        route: POST /repos/{org}/{repo}/issues/{issue_number}/comments
+        org: Material-Blazor
+        repo: Material.Blazor
+        accept: 'application/vnd.github.v3+json'
+        issue_number: ${{github.event.number}}
+        body: ${{steps.report-summary.outputs.meta_report}}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
