@@ -470,10 +470,11 @@ jobs:
       - run: echo "${{ steps.create.outputs.data }}"
   create-pr-repo:
     runs-on: ubuntu-latest
-    if: github.repository == 'Material-Blazor/Material.Blazor' && github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened')
+    if: github.repository == 'Material-Blazor/Material.Blazor' && github.event_name == 'pull_request'
     steps:
       - uses: octokit/request-action@v2.x
         id: create
+        if: github.event.action == 'opened' || github.event.action == 'reopened'
         with:
           route: POST /orgs/{org}/repos
           org: Material-Blazor
@@ -483,8 +484,6 @@ jobs:
           visibility: private
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-      - run: echo "${{ steps.create.outputs.data }}"
-        if: always()
   deploy-to-pr-repo:
     needs: [ create-pr-repo, test, build-documentation, build-website ]
     runs-on: ubuntu-latest
