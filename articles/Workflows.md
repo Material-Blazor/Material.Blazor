@@ -21,3 +21,5 @@ We crawl all pages of the demo website for both forks and PRs and compare them a
 
 For forks, the workflow run will create a new issue with the summary of the comparison.
 For pull requests against the Material.Blazor repo, a comment will be added to the pull request.
+
+![image](https://user-images.githubusercontent.com/10850250/111618192-bd20b100-87ec-11eb-82e4-d8b6c772f2b9.png)
