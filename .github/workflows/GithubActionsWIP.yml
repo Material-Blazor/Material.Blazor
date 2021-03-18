@@ -657,7 +657,13 @@ jobs:
         echo ""  >> meta_report.md
         echo "### Estimates on size of difference per page"  >> meta_report.md
         echo ""  >> meta_report.md
-        wc -l report/.*md report/*md | grep -v -E "^\W*3\W+" >> meta_report.md
+        # line count for all files: wc -l report/.*md report/*md 
+        # ignore total: sed '$d'
+        # ignore files with exactly line count 3, beacuse that's an empty diff: grep -v -E "^\W*3\W+"
+        # swap columns of the output of wc -l such that the line count is now after the filename: awk ' { t = $1; $1 = $2; $2 = t; print; } '
+        # add a colon after the filename: sed 's/ /: /'
+        # add a - for enumeration at the start of each line: sed 's/^/- /'
+        wc -l report/.*md report/*md | sed '$d' | grep -v -E "^\W*3\W+" | awk ' { t = $1; $1 = $2; $2 = t; print; } ' | sed 's/ /: /' | sed 's/^/- /' >> meta_report.md
         echo "" >> meta_report.md
         echo "## Details" >> meta_report.md
         echo "The report is available as artifact on https://github.com/Material-Blazor/Material.Blazor/actions/runs/${{github.run_id}}" >> meta_report.md
