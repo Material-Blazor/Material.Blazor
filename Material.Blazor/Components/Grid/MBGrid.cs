@@ -855,11 +855,17 @@ namespace Material.Blazor
                     // parameters. Hashing isn't perfect so there is some tiny possibility that new parameters
                     // are present and the same hash value was computed.
                     ShouldRenderValue = false;
+#if LoggingVerbose
+                    Logger.LogInformation("                   EQUAL hash");
+#endif
                 }
                 else
                 { 
                     ShouldRenderValue = true;
                     oldParameterHash = newParameterHash;
+#if LoggingVerbose
+                    Logger.LogInformation("                   DIFFERING hash");
+#endif
                 }
             }
             finally
