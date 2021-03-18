@@ -93,6 +93,8 @@ jobs:
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
+      with:
+        persist-credentials: false
       if: github.event_name != 'workflow_dispatch'
 
     - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
@@ -111,6 +113,8 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
+      with:
+        persist-credentials: false
       if: github.event_name != 'workflow_dispatch'
 
     - name: Create documentation 🔧
@@ -144,6 +148,8 @@ jobs:
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
+      with:
+        persist-credentials: false
       if: github.event_name != 'workflow_dispatch'
 
     - name: Build Website 🔧
@@ -178,6 +184,8 @@ jobs:
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
+      with:
+        persist-credentials: false
 
     - name: Build Material.Blazor 🔧
       run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectMB}
@@ -250,6 +258,8 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
+      with:
+        persist-credentials: false
       if: github.event_name != 'workflow_dispatch'
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
@@ -298,6 +308,8 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
+      with:
+        persist-credentials: false
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v1
@@ -342,6 +354,8 @@ jobs:
     
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
+      with:
+        persist-credentials: false
       
     - name: Find pages
       id: setpages
@@ -491,6 +505,8 @@ jobs:
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
+      with:
+        persist-credentials: false
       
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v1
@@ -545,6 +561,8 @@ jobs:
     
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
+      with:
+        persist-credentials: false
       
     - name: Find pages
       id: setpages
