@@ -29,9 +29,13 @@ jobs:
   is-pr-closed:
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    steps:
+    - name: Nothing to see here
   is-not-pr-closed:
     runs-on: ubuntu-latest
     if: github.event_name != 'pull_request' || github.event.action != 'closed'
+    steps:
+    - name: Nothing to see here
 ############################################################################################################
 # This job is only to display some CI information
 ############################################################################################################
