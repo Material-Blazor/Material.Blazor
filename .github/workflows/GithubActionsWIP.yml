@@ -6,7 +6,8 @@ on:
 
   pull_request:
     branches: [ main ]
-  
+    types: [opened, reopened, edited, closed]
+
   workflow_dispatch:
     inputs:
       baseline:
@@ -451,4 +452,70 @@ jobs:
         content-filepath: meta_report.md
         labels: report, automated issue
         token: ${{secrets.GH_PAT}}
+
+
+  delete-pr-repo:
+    runs-on: ubuntu-latest
+    if: github.repository == 'Material-Blazor/Material.Blazor' && github.event_name == 'pull_request' && github.event.action == 'closed'
+    steps:
+      - uses: octokit/request-action@v2.x
+        id: create
+        with:
+          route: DELETE /repos/{org}/{repo}
+          org: Material-Blazor
+          accept: 'application/vnd.github.v3+json'
+          repo: MB-PR-${{github.event.number}}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+      - run: echo "${{ steps.create.outputs.data }}"
+  create-pr-repo:
+    runs-on: ubuntu-latest
+    if: github.repository == 'Material-Blazor/Material.Blazor' && github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened')
+    steps:
+      - uses: octokit/request-action@v2.x
+        id: create
+        with:
+          route: POST /orgs/{org}/repos
+          org: Material-Blazor
+          accept: 'application/vnd.github.v3+json'
+          name: MB-PR-${{github.event.number}}
+          description: This is an automatically generated repo for PR ${{github.event.number}} against the Material.Blazor repo. Do not modify.
+          visibility: private
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+      - run: echo "${{ steps.create.outputs.data }}"
+        if: always()
+  deploy-to-pr-repo:
+    needs: [ create-pr-repo ]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'edited')
+    steps:
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v2
+    - name: Create some content
+      run: |
+        mkdir deployroot
+        echo "Hello PR" > deployroot/Readme.md
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@4.1.0
+      with:
+        token: ${{secrets.GH_PAT}}
+        branch: gh-pages
+        folder: 'deployroot'
+        repository-name: Material-Blazor/MB-PR-${{github.event.number}}
+  wait-for-pr-gh-pages-non-404:
+    needs: [ deploy-to-pr-repo ]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Waiting...
+      run: |
+        i=0
+        while :
+        do
+          curl --fail https://material-blazor.github.io/MB-PR-${{github.event.number}}/?attempt=$i && break
+          echo "The page https://material-blazor.github.io/MB-PR-${{github.event.number}}/?attempt=$i doesn't seem available yet"
+          sleep 5
+          i=$((i+1))
+        done
+  #TODO continue with a comparison!
 
