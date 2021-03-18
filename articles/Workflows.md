@@ -18,3 +18,6 @@ https://material-blazor.com reflects the state of the most recent release of Mat
 One of the key principles behind Material.Blazor is correctness. Components should create the exact markup specified by the material components web project. To detect regressions, we perform side-by-side comparisons of new versions against the current version.
 
 We crawl all pages of the demo website for both forks and PRs and compare them against the most recent version of Material.Blazor.
+
+For forks, the workflow run will create a new issue with the summary of the comparison.
+For pull requests against the Material.Blazor repo, a comment will be added to the pull request.
