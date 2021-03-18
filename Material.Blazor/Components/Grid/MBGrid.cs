@@ -825,6 +825,7 @@ namespace Material.Blazor
 
                 if (HighlightSelectedRow)
                 {
+
                     newParameterHash = HashCode
                         .OfEach(ColumnConfigurations)
                         .And(Group)
