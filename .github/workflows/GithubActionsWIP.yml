@@ -484,7 +484,7 @@ jobs:
       - run: echo "${{ steps.create.outputs.data }}"
   create-pr-repo:
     runs-on: ubuntu-latest
-    if: github.repository == 'Material-Blazor/Material.Blazor' && github.event_name == 'pull_request'
+    if: github.repository == 'Material-Blazor/Material.Blazor' && github.event_name == 'pull_request' && startsWith(github.event.pull_request.head.label, 'Material-Blazor')
     steps:
       - name: debug
         run: |
