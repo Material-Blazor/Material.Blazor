@@ -500,7 +500,7 @@ jobs:
           name: MB-PR-${{github.event.number}}
           description: This is an automatically generated repo for PR ${{github.event.number}} against the Material.Blazor repo. Do not modify.
           visibility: private
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
   deploy-to-pr-repo:
     needs: [ create-pr-repo, test, build-documentation, build-website ]
     runs-on: ubuntu-latest
