@@ -633,13 +633,14 @@ jobs:
         echo "We do this to maintain high quality of the library." >> meta_report.md
         echo "Below you'll find a summary of the differences we found." >> meta_report.md
         echo ""  >> meta_report.md
-        echo "Number of pages compared:" >> meta_report.md
+        echo "Number of pages compared is" >> meta_report.md
         ls -a -1 report/.*md report/*md | wc -l >> meta_report.md
         echo ""  >> meta_report.md
-        echo "Estimates on size of difference per page:"  >> meta_report.md
-        wc -l report/.*md report/*md | grep -v -E "^\W*0\W+" >> meta_report.md
+        echo "Estimates on size of difference per page"  >> meta_report.md
+        echo ""  >> meta_report.md
+        wc -l report/.*md report/*md | grep -v -E "^\W*3\W+" >> meta_report.md
         echo "" >> meta_report.md
-        echo "The report is available as artifact on https://github.com/Material-Blazor/Material.Blazor/actions/runs/${{github.run_id}}" >> meta_report.md
+        echo "The report is available as artifact on github.com/Material-Blazor/Material.Blazor/actions/runs/${{github.run_id}}" >> meta_report.md
         echo "" >> meta_report.md
         echo "" >> meta_report.md
         meta_report=$(cat meta_report.md)
