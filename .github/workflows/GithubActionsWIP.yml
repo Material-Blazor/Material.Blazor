@@ -625,7 +625,10 @@ jobs:
     - name: Summarise report for auto-generated issue
       id: report-summary
       run: |
-        echo "Hello! Your PR was automatically checked for differences in the demo page." > meta_report.md
+        echo "Hello! This comment was created automatically by the PR workflow, not by a human." > meta_report.md
+        echo ""  >> meta_report.md
+        echo ""  >> meta_report.md
+        echo "Your PR was automatically checked for differences in the demo page." >> meta_report.md
         echo ""  >> meta_report.md
         echo "We do this to maintain high quality of the library." >> meta_report.md
         echo "Below you'll find a summary of the differences we found." >> meta_report.md
@@ -640,7 +643,10 @@ jobs:
         echo "" >> meta_report.md
         echo "" >> meta_report.md
         meta_report=$(cat meta_report.md)
-        echo "::set-output name=meta_report::'${meta_report}'"
+        meta_report="${meta_report//'%'/'%25'}"
+        meta_report="${meta_report//$'\n'/'%0A'}"
+        meta_report="${meta_report//$'\r'/'%0D'}"
+        echo "::set-output name=meta_report::$meta_report"
     - name: Upload report artifact
       uses: actions/upload-artifact@v1
       with:
@@ -655,6 +661,6 @@ jobs:
         repo: Material.Blazor
         accept: 'application/vnd.github.v3+json'
         issue_number: ${{github.event.number}}
-        body: "${{steps.report-summary.outputs.meta_report}}"
+        body: "${{ steps.report-summary.outputs.meta_report }}"
       env:
         GITHUB_TOKEN: ${{ secrets.GH_PAT }}
