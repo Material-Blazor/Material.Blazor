@@ -474,7 +474,7 @@ jobs:
 ############################################################################################################
   delete-pr-repo:
     runs-on: ubuntu-latest
-    if: github.repository == 'Material-Blazor/Material.Blazor' && github.event_name == 'pull_request' && github.event.action == 'closed'
+    if: github.repository == 'Material-Blazor/Material.Blazor' && github.event_name == 'pull_request' && github.event.action == 'closed' && startsWith(github.event.pull_request.head.label, 'Material-Blazor')
     steps:
       - uses: octokit/request-action@v2.x
         id: create
