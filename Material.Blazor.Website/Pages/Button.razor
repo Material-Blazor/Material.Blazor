@@ -28,11 +28,30 @@
                         Default and explicit button styles.
                     </h3>
 
-                    <p><MBButton Label="Default (Text) Style" @onclick="@(() => ButtonClick("Default Style"))" /></p>
-                    <p><MBButton Label="Explicit Text Style" ButtonStyle="@MBButtonStyle.Text" @onclick="@(() => ButtonClick("Text Style"))" /></p>
-                    <p><MBButton Label="Outlined Style" ButtonStyle="@MBButtonStyle.Outlined" @onclick="@(() => ButtonClick("Outlined Style"))" /></p>
-                    <p><MBButton Label="Contained Style" ButtonStyle="@MBButtonStyle.ContainedUnelevated" @onclick="@(() => ButtonClick("Contained Style"))" /></p>
-                    <p><MBButton Label="Contained Raised Style" ButtonStyle="@MBButtonStyle.ContainedRaised" @onclick="@(() => ButtonClick("Contained Raised Style"))" /></p>
+                    <p>
+                        <MBButton Label="Default (Text) Style"
+                                  @onclick="@(() => ButtonClick("Default Style"))" />
+                    </p>
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.Text"
+                                  Label="Explicit Text Style"
+                                  @onclick="@(() => ButtonClick("Text Style"))" />
+                    </p>
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.Outlined"
+                                  Label="Outlined Style"
+                                  @onclick="@(() => ButtonClick("Outlined Style"))" />
+                    </p>
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.ContainedUnelevated"
+                                  Label="Contained Style"
+                                  @onclick="@(() => ButtonClick("Contained Style"))" />
+                    </p>
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.ContainedRaised"
+                                  Label="Contained Raised Style"
+                                  @onclick="@(() => ButtonClick("Contained Raised Style"))" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>
@@ -50,8 +69,18 @@
                         Leading and trailing icons - both using the default Material Icons.
                     </h3>
 
-                    <p><MBButton Label="Leading Icon" LeadingIcon="flight_takeoff" ButtonStyle="@MBButtonStyle.Outlined" @onclick="@(() => ButtonClick("Leading Icon"))" /></p>
-                    <p><MBButton Label="Trailing Icon" TrailingIcon="flight_land" ButtonStyle="@MBButtonStyle.Outlined" @onclick="@(() => ButtonClick("Trailing Icon"))" /></p>
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.Outlined"
+                                  Label="Leading Icon"
+                                  LeadingIcon="flight_takeoff"
+                                  @onclick="@(() => ButtonClick("Leading Icon"))" />
+                    </p>
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.Outlined"
+                                  Label="Trailing Icon"
+                                  @onclick="@(() => ButtonClick("Trailing Icon"))"
+                                  TrailingIcon="flight_land" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>
@@ -75,8 +104,18 @@
                         Applying CSS class and HTML style attributes.
                     </h3>
 
-                    <p><MBButton Label="Green by class" class="button-green" ButtonStyle="@MBButtonStyle.ContainedUnelevated" @onclick="@(() => ButtonClick("Green by class"))" /></p>
-                    <p><MBButton Label="Amber by style" style="--mdc-theme-primary: var(--mb-color-amber-800);" ButtonStyle="@MBButtonStyle.ContainedUnelevated" @onclick="@(() => ButtonClick("Amber by style"))" /></p>
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.ContainedUnelevated"
+                                  Label="Green by class"
+                                  class="button-green"
+                                  @onclick="@(() => ButtonClick("Green by class"))" />
+                    </p>
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.ContainedUnelevated"
+                                  Label="Amber by style"
+                                  @onclick="@(() => ButtonClick("Amber by style"))"
+                                  style="--mdc-theme-primary: var(--mb-color-amber-800);" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>
@@ -94,10 +133,30 @@
                         Shows density subsystem from default to minus 3.
                     </h3>
 
-                    <p><MBButton Label="Default Density" Density="@MBDensity.Default" ButtonStyle="@MBButtonStyle.ContainedUnelevated" @onclick="@(() => ButtonClick("Button Default Density"))" /></p>
-                    <p><MBButton Label="Density Minus 1" Density="@MBDensity.Minus1" ButtonStyle="@MBButtonStyle.ContainedUnelevated" @onclick="@(() => ButtonClick("Button Density Minus 1"))" /></p>
-                    <p><MBButton Label="Density Minus 2" Density="@MBDensity.Minus2" ButtonStyle="@MBButtonStyle.ContainedUnelevated" @onclick="@(() => ButtonClick("Button Density Minus 2"))" /></p>
-                    <p><MBButton Label="Density Minus 3" Density="@MBDensity.Minus3" ButtonStyle="@MBButtonStyle.ContainedUnelevated" @onclick="@(() => ButtonClick("Button Density Minus 3"))" /></p>
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.ContainedUnelevated"
+                                  Density="@MBDensity.Default"
+                                  Label="Default Density"
+                                  @onclick="@(() => ButtonClick("Button Default Density"))" />
+                    </p>
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.ContainedUnelevated"
+                                  Density="@MBDensity.Minus1"
+                                  Label="Density Minus 1"
+                                  @onclick="@(() => ButtonClick("Button Density Minus 1"))" />
+                    </p>
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.ContainedUnelevated"
+                                  Density="@MBDensity.Minus2"
+                                  Label="Density Minus 2"
+                                  @onclick="@(() => ButtonClick("Button Density Minus 2"))" />
+                    </p>
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.ContainedUnelevated"
+                                  Density="@MBDensity.Minus3"
+                                  Label="Density Minus 3"
+                                  @onclick="@(() => ButtonClick("Button Density Minus 3"))" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>

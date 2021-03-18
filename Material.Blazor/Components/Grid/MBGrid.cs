@@ -821,16 +821,35 @@ namespace Material.Blazor
 #if LoggingVerbose
                 Logger.LogInformation("                   about to compute parameter hash");
 #endif
-                var newParameterHash = HashCode
-                    .OfEach(ColumnConfigurations)
-                    .And(Group)
-                    .AndEach(GroupedOrderedData)
-                    .And(HighlightSelectedRow)
-                    .And(KeyExpression)
-                    .And(Measurement)
-                    .And(ObscurePMI)
-                    .And(OnMouseClick)
-                    .And(SupressHeader);
+                HashCode newParameterHash;
+
+                if (HighlightSelectedRow)
+                {
+                    newParameterHash = HashCode
+                        .OfEach(ColumnConfigurations)
+                        .And(Group)
+                        .AndEach(GroupedOrderedData)
+                        .And(HighlightSelectedRow)
+                        .And(KeyExpression)
+                        .And(Measurement)
+                        .And(ObscurePMI)
+                        .And(OnMouseClick)
+                        .And(SelectedKey)   // Not a parameter but if we don't include this we won't re-render after selecting a row
+                        .And(SupressHeader);
+                }
+                else
+                {
+                    newParameterHash = HashCode
+                        .OfEach(ColumnConfigurations)
+                        .And(Group)
+                        .AndEach(GroupedOrderedData)
+                        .And(HighlightSelectedRow)
+                        .And(KeyExpression)
+                        .And(Measurement)
+                        .And(ObscurePMI)
+                        .And(OnMouseClick)
+                        .And(SupressHeader);
+                }
 #if LoggingVerbose
                 Logger.LogInformation("                   hash == " + ((int)newParameterHash).ToString());
 #endif

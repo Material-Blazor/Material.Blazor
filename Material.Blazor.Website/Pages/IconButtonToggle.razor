@@ -68,8 +68,17 @@
                         Shows two-way binding for toggle buttons using Open Iconic icons.
                     </h3>
 
-                    <p><MBIconButtonToggle @bind-Value="@ToggleTwoWayBindingState" IconOn="check" IconOff="minus" IconFoundry="@MBIconHelper.OIFoundry()" /></p>
-                    <p><MBIconButtonToggle @bind-Value="@ToggleTwoWayBindingState" IconOn="check" IconOff="minus" IconFoundry="@MBIconHelper.OIFoundry()" /></p>
+                    <p>
+                        <MBIconButtonToggle @bind-Value="@ToggleTwoWayBindingState"
+                                            IconFoundry="@MBIconHelper.OIFoundry()"
+                                            IconOff="minus"
+                                            IconOn="check" />
+                    </p>
+                    <p>
+                        <MBIconButtonToggle @bind-Value="@ToggleTwoWayBindingState"
+                                            IconFoundry="@MBIconHelper.OIFoundry()"
+                                            IconOn="check" IconOff="minus" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>
@@ -87,10 +96,38 @@
                         Shows density subsystem from default to minus 3, with FontAwesome Icons fonts.
                     </h3>
 
-                    <p><MBIconButtonToggle @bind-Value="@ToggleState" IconOn="fa-dog" IconOff="fa-cat" IconFoundry="@MBIconHelper.FAFoundry()" Density="@MBDensity.Default" @onclick="@(() => ButtonClick("Icon Button Toggle Default Density"))" /></p>
-                    <p><MBIconButtonToggle @bind-Value="@ToggleState" IconOn="fa-dog" IconOff="fa-cat" IconFoundry="@MBIconHelper.FAFoundry()" Density="@MBDensity.Minus1" @onclick="@(() => ButtonClick("Icon Button Toggle Density Minus 1"))" /></p>
-                    <p><MBIconButtonToggle @bind-Value="@ToggleState" IconOn="fa-dog" IconOff="fa-cat" IconFoundry="@MBIconHelper.FAFoundry()" Density="@MBDensity.Minus2" @onclick="@(() => ButtonClick("Icon Button Toggle Density Minus 2"))" /></p>
-                    <p><MBIconButtonToggle @bind-Value="@ToggleState" IconOn="fa-dog" IconOff="fa-cat" IconFoundry="@MBIconHelper.FAFoundry()" Density="@MBDensity.Minus3" @onclick="@(() => ButtonClick("Icon Button Toggle Density Minus 3"))" /></p>
+                    <p>
+                        <MBIconButtonToggle @bind-Value="@ToggleState"
+                                            IconFoundry="@MBIconHelper.FAFoundry()"
+                                            IconOff="fa-cat"
+                                            IconOn="fa-dog"
+                                            Density="@MBDensity.Default"
+                                            @onclick="@(() => ButtonClick("Icon Button Toggle Default Density"))" />
+                    </p>
+                    <p>
+                        <MBIconButtonToggle @bind-Value="@ToggleState"
+                                            Density="@MBDensity.Minus1"
+                                            IconFoundry="@MBIconHelper.FAFoundry()"
+                                            IconOff="fa-cat"
+                                            IconOn="fa-dog"
+                                            @onclick="@(() => ButtonClick("Icon Button Toggle Density Minus 1"))" />
+                    </p>
+                    <p>
+                        <MBIconButtonToggle @bind-Value="@ToggleState"
+                                            Density="@MBDensity.Minus2"
+                                            IconFoundry="@MBIconHelper.FAFoundry()"
+                                            IconOff="fa-cat"
+                                            IconOn="fa-dog"
+                                            @onclick="@(() => ButtonClick("Icon Button Toggle Density Minus 2"))" />
+                    </p>
+                    <p>
+                        <MBIconButtonToggle @bind-Value="@ToggleState"
+                                            Density="@MBDensity.Minus3"
+                                            IconFoundry="@MBIconHelper.FAFoundry()"
+                                            IconOff="fa-cat"
+                                            IconOn="fa-dog"
+                                            @onclick="@(() => ButtonClick("Icon Button Toggle Density Minus 3"))" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>
