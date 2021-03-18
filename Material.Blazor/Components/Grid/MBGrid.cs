@@ -830,6 +830,7 @@ namespace Material.Blazor
                     .And(Measurement)
                     .And(ObscurePMI)
                     .And(OnMouseClick)
+                    .And(SelectedKey)   // Not a parameter but if we don't include this we won't re-render after selecting a row
                     .And(SupressHeader);
 #if LoggingVerbose
                 Logger.LogInformation("                   hash == " + ((int)newParameterHash).ToString());

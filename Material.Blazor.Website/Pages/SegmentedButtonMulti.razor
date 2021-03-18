@@ -46,18 +46,18 @@
 
                     <p>
                         <MBCheckbox Disabled="true"
-                                    Value="@CheckboxValues[0]"
-                                    Label="@KittenBreeds[0].Label" />
+                                    Label="@KittenBreeds[0].Label"
+                                    Value="@CheckboxValues[0]" />
                     </p>
                     <p>
                         <MBCheckbox Disabled="true"
-                                    Value="@CheckboxValues[1]"
-                                    Label="@KittenBreeds[1].Label" />
+                                    Label="@KittenBreeds[1].Label"
+                                    Value="@CheckboxValues[1]" />
                     </p>
                     <p>
                         <MBCheckbox Disabled="true"
-                                    Value="@CheckboxValues[2]"
-                                    Label="@KittenBreeds[2].Label" />
+                                    Label="@KittenBreeds[2].Label"
+                                    Value="@CheckboxValues[2]" />
                     </p>
                 </Primary>
             </MBCard>
@@ -72,7 +72,7 @@
         new MBIconBearingSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MBIconBearingSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue", Icon="admin_panel_settings" },
         new MBIconBearingSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible", Icon="card_membership" }
-    };
+        };
 
 
     IList<string> sbvalues = new string[] { "brit-short", "ice-invis" };
