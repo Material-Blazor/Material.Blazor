@@ -468,6 +468,10 @@ jobs:
         token: ${{secrets.GH_PAT}}
 
 
+
+############################################################################################################
+# Pull requests: automated comparison (internal only)
+############################################################################################################
   delete-pr-repo:
     runs-on: ubuntu-latest
     if: github.repository == 'Material-Blazor/Material.Blazor' && github.event_name == 'pull_request' && github.event.action == 'closed'
