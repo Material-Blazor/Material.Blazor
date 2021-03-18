@@ -486,6 +486,10 @@ jobs:
     runs-on: ubuntu-latest
     if: github.repository == 'Material-Blazor/Material.Blazor' && github.event_name == 'pull_request'
     steps:
+      - name: debug
+        run: |
+          echo " ${{ github.event.action }} "
+          echo " ${{ github.event }} "
       - uses: octokit/request-action@v2.x
         id: create
         if: github.event.action == 'opened' || github.event.action == 'reopened'
