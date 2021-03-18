@@ -486,16 +486,32 @@ jobs:
       - run: echo "${{ steps.create.outputs.data }}"
         if: always()
   deploy-to-pr-repo:
-    needs: [ create-pr-repo ]
+    needs: [ create-pr-repo, test, build-documentation, build-website ]
     runs-on: ubuntu-latest
     if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'edited')
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
-    - name: Create some content
-      run: |
-        mkdir deployroot
-        echo "Hello PR" > deployroot/Readme.md
+      
+    - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
+      uses: actions/download-artifact@v1
+      with:
+        name: siteDocFx
+
+    - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
+      uses: actions/download-artifact@v1
+      with:
+        name: siteWeb
+
+    - name: Configure deployment directory structure Ꙫ
+      run: mv siteWeb/wwwroot deployroot; mv siteDocFx deployroot/docs
+
+    # this step rewrites the base href when we are in the main repo and about to deploy to the Material.Blazor.Current repo
+    - name: Base Href Rewrite 👉
+      uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
+      with:
+        html_path: 'deployroot/index.html'
+        base_href: '/MB-PR-${{github.event.number}}/'
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@4.1.0
       with:
