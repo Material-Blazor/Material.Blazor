@@ -18,7 +18,7 @@ namespace Material.Blazor
         public static IServiceCollection AddMBServices(this IServiceCollection services, MBSnackbarServiceConfiguration snackbarServiceConfiguration = null, MBToastServiceConfiguration toastServiceConfiguration = null, MBAnimatedNavigationManagerServiceConfiguration animatedNavigationManagerServiceConfiguration = null)
         {
             return services
-                .AddScoped<IBatchingJsRuntime, BatchingJsRuntime>()
+                .AddScoped<IBatchingJSRuntime, BatchingJSRuntime>()
                 .AddMBSnackbarService(snackbarServiceConfiguration)
                 .AddMBToastService(toastServiceConfiguration)
                 .AddMBAnimatedNavigationService(animatedNavigationManagerServiceConfiguration)

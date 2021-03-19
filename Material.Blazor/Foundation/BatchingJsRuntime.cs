@@ -7,17 +7,22 @@ using System.Timers;
 
 namespace Material.Blazor.Internal
 {
-    internal class BatchingJsRuntime : IBatchingJsRuntime
+    /// <inheritdoc/>
+    internal class BatchingJSRuntime : IBatchingJSRuntime
     {
         /// <summary>
         /// A javascript call represented by its identifier and arguments
         /// </summary>
-        public class Call
+        private class Call
         {
             public string Identifier { get; private set; }
+
             public object[] Args { get; private set; }
-            public Task Task => TaskCompletionSource.Task;
+
             public TaskCompletionSource TaskCompletionSource { get; private set; }
+
+            public Task Task => TaskCompletionSource.Task;
+
             public Call(string identifier, object[] args)
             {
                 Identifier = identifier;
@@ -25,28 +30,36 @@ namespace Material.Blazor.Internal
                 TaskCompletionSource = new TaskCompletionSource(TaskCreationOptions.RunContinuationsAsynchronously);
             }
         }
-        private readonly IJSRuntime js;
-        private readonly ConcurrentQueue<Call> queuedCalls = new ConcurrentQueue<Call>();
-        private readonly Timer timer = new Timer(10);
 
-        public BatchingJsRuntime(IJSRuntime js)
+
+        private readonly IJSRuntime js;
+        private readonly ConcurrentQueue<Call> queuedCalls = new();
+        private readonly Timer timer = new(10);
+
+
+        public BatchingJSRuntime(IJSRuntime js)
         {
             this.js = js;
             timer.Elapsed += Timer_Elapsed;
         }
 
+
         private async void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
             List<Call> batch = new();
+
             while (queuedCalls.TryDequeue(out var call))
             {
                 batch.Add(call);
             }
+
             if (!batch.Any())
             {
                 return;
             }
+
             var errors = await js.InvokeAsync<string[]>("MaterialBlazor.Batching.apply", batch);
+            
             foreach (var (call, error) in batch.Zip(errors))
             {
                 if (error != null)
@@ -60,12 +73,8 @@ namespace Material.Blazor.Internal
             }
         }
 
-        /// <summary>
-        /// Same as <see cref="JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime, string, object[])"/>, except calls are batched in 20ms intervals.
-        /// </summary>
-        /// <param name="identifier"></param>
-        /// <param name="args"></param>
-        /// <returns></returns>
+
+        /// <inheritdoc/>
         public async Task InvokeVoidAsync(string identifier, params object[] args)
         {
             var call = new Call(identifier, args);
@@ -73,14 +82,10 @@ namespace Material.Blazor.Internal
             timer.Start();
             await call.Task;
         }
-        /// <summary>
-        /// Same as <see cref="JSRuntimeExtensions.InvokeAsync{TValue}(IJSRuntime, string, object?[]?)"/>
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="identifier"></param>
-        /// <param name="args"></param>
-        /// <returns></returns>
-        public async Task<T> InvokeAsync<T>(string identifier, params object[] args)
+
+
+        /// <inheritdoc/>
+        public async ValueTask<T> InvokeAsync<T>(string identifier, params object[] args)
         {
             return await js.InvokeAsync<T>(identifier, args);
         }

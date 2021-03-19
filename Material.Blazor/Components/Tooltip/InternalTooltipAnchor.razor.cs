@@ -114,7 +114,7 @@ namespace Material.Blazor.Internal
                 {
                     if (Tooltips.TryGetValue(id, out var instance))
                     {
-                        await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTooltip.destroy", instance.ElementReference).ConfigureAwait(false);
+                        //await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTooltip.destroy", instance.ElementReference).ConfigureAwait(false);
                         Tooltips.Remove(id);
                     }
                 }

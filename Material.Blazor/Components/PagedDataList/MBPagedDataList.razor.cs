@@ -1,6 +1,5 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;

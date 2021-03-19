@@ -1,10 +1,29 @@
-﻿using System.Threading.Tasks;
+﻿using Microsoft.JSInterop;
+using System.Threading.Tasks;
 
 namespace Material.Blazor.Internal
 {
-    public interface IBatchingJsRuntime
+    /// <summary>
+    /// A service that wraps IJSRuntime, batching calls to InvokeVoidAsync().
+    /// </summary>
+    public interface IBatchingJSRuntime
     {
-        Task<T> InvokeAsync<T>(string identifier, params object[] args);
+        /// <summary>
+        /// Same as <see cref="JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime, string, object[])"/>, except calls are batched in 20ms intervals.
+        /// </summary>
+        /// <param name="identifier"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
         Task InvokeVoidAsync(string identifier, params object[] args);
+
+
+        /// <summary>
+        /// Same as <see cref="JSRuntimeExtensions.InvokeAsync{TValue}(IJSRuntime, string, object?[]?)"/>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="identifier"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>        
+        ValueTask<T> InvokeAsync<T>(string identifier, params object[] args);
     }
 }

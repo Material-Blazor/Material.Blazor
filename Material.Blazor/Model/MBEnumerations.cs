@@ -517,9 +517,9 @@ namespace Material.Blazor
     ///// **** [20-07-16 02:56:26.727]Warning:[MetadataCommand.ExtractMetadata]Invalid triple slash comment is ignored: <!-- Badly formed XML comment ignored for member "T:Material.Blazor.MBNumericInputMagnitude" -->
 
 
-    ///// A helper to determine the magnitude adjustment when displaying or editting values using <see cref="MBNumericDoubleField"/> and <see cref="MBNumericIntField">.
+    ///// A helper to determine the magnitude adjustment when displaying or editing values using <see cref="MBNumericDoubleField"/> and <see cref="MBNumericIntField">.
     /// <summary>
-    /// A helper to determine the magnitude adjustment when displaying or editting values using numeric input fields.
+    /// A helper to determine the magnitude adjustment when displaying or editing values using numeric input fields.
     /// </summary>
     public enum MBNumericInputMagnitude
     {
@@ -529,12 +529,12 @@ namespace Material.Blazor
         Normal = 0,
 
         /// <summary>
-        /// Percentages where the numeric input needs to multiply the value by 100 when displaying or editting (formatted display can be handled by standard percent C# formatting).
+        /// Percentages where the numeric input needs to multiply the value by 100 when displaying or editing (formatted display can be handled by standard percent C# formatting).
         /// </summary>
         Percent = 2,
 
         /// <summary>
-        /// Basis points where the numeric input needs to multiply the value by 10 000 when displaying or editting (formatted display is not handled by standard percent C# formatting which lacks support for basis points).
+        /// Basis points where the numeric input needs to multiply the value by 10 000 when displaying or editing (formatted display is not handled by standard percent C# formatting which lacks support for basis points).
         /// </summary>
         BasisPoints = 4
     }
