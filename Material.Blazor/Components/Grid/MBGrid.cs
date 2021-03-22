@@ -794,7 +794,7 @@ namespace Material.Blazor
                             HighlightSelectedRow = (bool)parameter.Value;
                             break;
                         case nameof(KeyExpression):
-                            KeyExpression = (Func<TRowData, object>?)parameter.Value;
+                            KeyExpression = parameter.Value as Func<TRowData, object>;
                             break;
                         case nameof(Measurement):
                             Measurement = (MB_Grid_Measurement)parameter.Value;
