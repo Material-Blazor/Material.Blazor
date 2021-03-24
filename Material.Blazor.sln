@@ -45,6 +45,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "articles", "articles", "{FC
 		articles\Tooltip.md = articles\Tooltip.md
 		articles\TwoWayBinding.md = articles\TwoWayBinding.md
 		articles\Utilities.md = articles\Utilities.md
+		articles\Workflows.md = articles\Workflows.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "images", "images", "{5AF96DDC-150A-4287-B299-F33253610526}"
