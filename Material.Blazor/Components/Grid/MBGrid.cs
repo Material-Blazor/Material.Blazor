@@ -794,7 +794,7 @@ namespace Material.Blazor
                             HighlightSelectedRow = (bool)parameter.Value;
                             break;
                         case nameof(KeyExpression):
-                            KeyExpression = (Func<TRowData, object>?)parameter.Value;
+                            KeyExpression = (Func<TRowData, object>)parameter.Value;
                             break;
                         case nameof(Measurement):
                             Measurement = (MB_Grid_Measurement)parameter.Value;
@@ -809,7 +809,9 @@ namespace Material.Blazor
                             SupressHeader = (bool)parameter.Value;
                             break;
                         default:
+#if LoggingVerbose
                             Logger.LogInformation("MBGrid encountered an unknown parameter:" + parameter.Name);
+#endif
                             break;
                     }
                 }
@@ -824,7 +826,6 @@ namespace Material.Blazor
                     newParameterHash = HashCode
                         .OfEach(ColumnConfigurations)
                         .And(Group)
-                        .AndEach(GroupedOrderedData)
                         .And(HighlightSelectedRow)
                         .And(KeyExpression)
                         .And(Measurement)
@@ -838,7 +839,6 @@ namespace Material.Blazor
                     newParameterHash = HashCode
                         .OfEach(ColumnConfigurations)
                         .And(Group)
-                        .AndEach(GroupedOrderedData)
                         .And(HighlightSelectedRow)
                         .And(KeyExpression)
                         .And(Measurement)
@@ -846,6 +846,83 @@ namespace Material.Blazor
                         .And(OnMouseClick)
                         .And(SupressHeader);
                 }
+
+                //
+                // We have to implement the double loop for grouped ordered data as the OfEach/AndEach
+                // do not recurse into the second enumerable and certainly don't look at the rowValues
+                //
+                if ((GroupedOrderedData != null) && (ColumnConfigurations != null))
+                {
+                    foreach (var kvp in GroupedOrderedData)
+                    {
+                        foreach (var rowValues in kvp.Value)
+                        {
+                            var rowKey = KeyExpression(rowValues.Value).ToString();
+
+                            newParameterHash = new HashCode(HashCode.CombineHashCodes(
+                                newParameterHash.value,
+                                HashCode.Of(rowKey)));
+
+                            foreach (var columnDefinition in ColumnConfigurations)
+                            {
+                                switch (columnDefinition.ColumnType)
+                                {
+                                    case MB_Grid_ColumnType.Icon:
+                                        if (columnDefinition.DataExpression != null)
+                                        {
+                                            try
+                                            {
+                                                var value = (MBGridIconSpecification)columnDefinition.DataExpression(rowValues.Value);
+
+                                                newParameterHash = new HashCode(HashCode.CombineHashCodes(
+                                                    newParameterHash.value,
+                                                    HashCode.Of(value)));
+                                            }
+                                            catch
+                                            {
+                                                throw new Exception("Backing value incorrect for MBGrid.Icon column.");
+                                            }
+                                        }
+                                        break;
+
+                                    case MB_Grid_ColumnType.Text:
+                                        if (columnDefinition.DataExpression != null)
+                                        {
+                                            var value = columnDefinition.DataExpression(rowValues.Value);
+                                            var formattedValue = string.IsNullOrEmpty(columnDefinition.FormatString) ? value?.ToString() : string.Format("{0:" + columnDefinition.FormatString + "}", value);
+
+                                            newParameterHash = new HashCode(HashCode.CombineHashCodes(
+                                                newParameterHash.value,
+                                                HashCode.Of(value)));
+                                        }
+                                        break;
+
+                                    case MB_Grid_ColumnType.TextColor:
+                                        if (columnDefinition.DataExpression != null)
+                                        {
+                                            try
+                                            {
+                                                var value = (MBGridTextColorSpecification)columnDefinition.DataExpression(rowValues.Value);
+
+                                                newParameterHash = new HashCode(HashCode.CombineHashCodes(
+                                                    newParameterHash.value,
+                                                    HashCode.Of(value)));
+                                            }
+                                            catch
+                                            {
+                                                throw new Exception("Backing value incorrect for MBGrid.TextColor column.");
+                                            }
+                                        }
+                                        break;
+
+                                    default:
+                                        throw new Exception("MBGrid -- Unknown column type");
+                                }
+                            }
+                        }
+                    }
+                }
+
 #if LoggingVerbose
                 Logger.LogInformation("                   hash == " + ((int)newParameterHash).ToString());
 #endif
@@ -860,7 +937,7 @@ namespace Material.Blazor
 #endif
                 }
                 else
-                { 
+                {
                     ShouldRenderValue = true;
                     oldParameterHash = newParameterHash;
 #if LoggingVerbose
@@ -899,13 +976,13 @@ namespace Material.Blazor
     public struct HashCode : IEquatable<HashCode>
     {
         private const int EmptyCollectionPrimeNumber = 19;
-        private readonly int value;
+        public readonly int value;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HashCode"/> struct.
         /// </summary>
         /// <param name="value">The value.</param>
-        private HashCode(int value) => this.value = value;
+        public HashCode(int value) => this.value = value;
 
         /// <summary>
         /// Performs an implicit conversion from <see cref="HashCode"/> to <see cref="int"/>.
@@ -996,7 +1073,7 @@ namespace Material.Blazor
             throw new NotSupportedException(
                 "Implicitly convert this struct to an int to get the hash code.");
 
-        private static int CombineHashCodes(int h1, int h2)
+        public static int CombineHashCodes(int h1, int h2)
         {
             unchecked
             {
