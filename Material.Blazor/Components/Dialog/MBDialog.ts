@@ -15,16 +15,13 @@ export function show(elem, dotNetObject, escapeKeyAction, scrimClickAction): any
     dialog.escapeKeyAction = escapeKeyAction;
     dialog.scrimClickAction = scrimClickAction;
 
-    return new Promise(resolve => {
+    const closingCallback = event => {
+        dialog.unlisten('MDCDialog:closing', closingCallback);
+        dotNetObject.invokeMethodAsync('NotifyClosed', event.detail.action);
+    };
 
-        const closingCallback = event => {
-            dialog.unlisten('MDCDialog:closing', closingCallback);
-            resolve(event.detail.action);
-        };
-
-        dialog.listen('MDCDialog:closing', closingCallback);
-        dialog.open();
-    });
+    dialog.listen('MDCDialog:closing', closingCallback);
+    dialog.open();
 }
 
 export function hide(elem, dialogAction) {

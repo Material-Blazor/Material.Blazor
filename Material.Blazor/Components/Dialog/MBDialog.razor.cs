@@ -209,6 +209,13 @@ namespace Material.Blazor
             await Task.CompletedTask;
         }
 
+        [JSInvokable("NotifyClosed")]
+        public void NotifyClosed(string reason)
+        {
+            Tcs?.SetResult(reason);
+            IsOpen = false;
+        }
+
 
         /// <summary>
         /// Shows the dialog on the next render after a show action. Also on the next render after the dialog is initiated each
@@ -225,8 +232,7 @@ namespace Material.Blazor
                 try
                 {
                     AfterRenderShowAction = false;
-                    Tcs.SetResult(await JsRuntime.InvokeAsync<string>("MaterialBlazor.MBDialog.show", DialogElem, ObjectReference, EscapeKeyAction, ScrimClickAction));
-                    IsOpen = false;
+                    await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDialog.show", DialogElem, ObjectReference, EscapeKeyAction, ScrimClickAction);
                     StateHasChanged();
                 }
                 catch
