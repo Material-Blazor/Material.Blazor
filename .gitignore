@@ -340,7 +340,6 @@ ASALocalRun/
 healthchecksdb
 
 #Generated CSS and JS files
-**/Material.Blazor/workingwwwroot/*.*
 **/Material.Blazor/wwwroot/*.*
 **/Material.Blazor.Website/wwwroot/css/*.*
 
@@ -351,3 +350,7 @@ healthchecksdb
 _exported_templates
 site*
 api/*
+
+# temporary files in the comparison helper
+comparison/pages
+comparison/report.md

@@ -1,3 +1,5 @@
+#define LoggingVerbose
+
 // ToDo:
 //
 //  Cleanup:
@@ -14,9 +16,9 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.Logging;
-using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
@@ -78,6 +80,13 @@ namespace Material.Blazor
 
 
         /// <summary>
+        /// LogIdentification is added to logging message to allow differentiation between multiple grids
+        /// on a single page or component
+        /// </summary>
+        [Parameter] public string LogIdentification { get; set; } = null;
+
+
+        /// <summary>
         /// Measurement determines the unit of size (EM, Percent, PX) or if the grid is to measure the
         /// data widths (FitToData)
         /// </summary>
@@ -94,7 +103,6 @@ namespace Material.Blazor
         /// Callback for a mouse click
         /// </summary>
         [Parameter] public EventCallback<string> OnMouseClick { get; set; }
-
 
         /// <summary>
         /// Headers are optional
@@ -190,7 +198,7 @@ namespace Material.Blazor
                 ((ColumnWidthArray != null) && (ColumnWidthArray.Length != ColumnConfigurations.Count())))
             {
 #if LoggingVerbose
-                Logger.LogInformation("BuildRenderTree entered (IsFirstRender == true)");
+                Log("BuildRenderTree (Simple) entered (IsFirstRender == " + IsFirstRender.ToString());
 #endif
                 // We are going to render a DIV and nothing else
                 // We need to get into OnAfterRenderAsync so that we can use JS interop to measure
@@ -199,13 +207,13 @@ namespace Material.Blazor
                 builder.OpenElement(1, "div");
                 builder.CloseElement();
 #if LoggingVerbose
-                Logger.LogInformation("                leaving (IsFirstRender == true)");
+                Log("                (Simple) leaving");
 #endif
                 return;
             }
 
 #if LoggingVerbose
-            Logger.LogInformation("BuildRenderTree entered (IsFirstRender == false)");
+            Log("BuildRenderTree entered (IsFirstRender == false)");
 #endif
 
             //
@@ -492,7 +500,7 @@ namespace Material.Blazor
 
             HasCompletedFullRender = true;
 #if LoggingVerbose
-            Logger.LogInformation("                leaving (IsFirstRender == false)");
+            Log("                leaving (IsFirstRender == false)");
 #endif
         }
         #endregion
@@ -539,11 +547,27 @@ namespace Material.Blazor
         protected async Task GridSyncScroll()
         {
 #if LoggingVerbose
-            Logger.LogInformation("GridSyncScroll()");
+            Log("GridSyncScroll()");
 #endif
             await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBGrid.syncScrollByID", GridHeaderID, GridBodyID);
             //await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBGrid.syncScrollByRef", GridHeaderRef, GridBodyRef);
         }
+        #endregion
+
+        #region Logging
+
+        private void Log(string message)
+        {
+            if (string.IsNullOrWhiteSpace(LogIdentification))
+            {
+                Logger.LogDebug(message);
+            }
+            else
+            {
+                Logger.LogDebug("[" + LogIdentification + "] " + message);
+            }
+        }
+
         #endregion
 
         #region MeasureWidthsAsync
@@ -675,25 +699,25 @@ namespace Material.Blazor
                 HasRendered = true;
 
 #if LoggingVerbose
-                Logger.LogInformation("OnAfterRenderAsync entered");
-                Logger.LogInformation("                   firstRender: " + firstRender.ToString());
-                Logger.LogInformation("                   IsFirstRender: " + IsFirstRender.ToString());
-                Logger.LogInformation("                   HasCompletedFullRender: " + HasCompletedFullRender.ToString());
+                Log("OnAfterRenderAsync entered");
+                Log("                   firstRender: " + firstRender.ToString());
+                Log("                   IsFirstRender: " + IsFirstRender.ToString());
+                Log("                   HasCompletedFullRender: " + HasCompletedFullRender.ToString());
 #endif
 
                 if (IsFirstRender)
                 {
                     IsFirstRender = false;
-                    Logger.LogInformation("                   Calling MeasureWidthsAsync");
+                    Log("                   Calling MeasureWidthsAsync");
                     await MeasureWidthsAsync();
-                    Logger.LogInformation("                   Returned from MeasureWidthsAsync");
+                    Log("                   Returned from MeasureWidthsAsync");
                     StateHasChanged();
                 }
             }
             finally
             {
 #if LoggingVerbose
-                Logger.LogInformation("                   about to release semaphore");
+                Log("                   about to release semaphore (OnAfterRenderAsync)");
 #endif
                 semaphoreSlim.Release();
             }
@@ -704,7 +728,7 @@ namespace Material.Blazor
         protected override async Task OnInitializedAsync()
         {
 #if LoggingVerbose
-            Logger.LogInformation("MBGrid.OnInitialized entered");
+            Log("MBGrid.OnInitialized entered");
 #endif
             await base.OnInitializedAsync();
 
@@ -713,19 +737,17 @@ namespace Material.Blazor
                 throw new System.Exception("MBGrid requires column configuration definitions.");
             }
 #if LoggingVerbose
-            Logger.LogInformation("MBGrid.OnInitialized completed");
+            Log("MBGrid.OnInitialized completed");
 #endif
         }
         #endregion
 
         #region OnMouseClickInternal
-        // TODO: return value seems unnecessary
-        private bool OnMouseClickInternal(string newRowKey)
+        private void OnMouseClickInternal(string newRowKey)
         {
-            //
-            //  We set a click handler on the rows for now, and make the spans transparent. So we only
-            //  get the row index. We raise our selection changed event when it changes.
-            //
+#if LoggingVerbose
+            Log("OnMouseClickInternal with HighlightSelectedRow:" + HighlightSelectedRow.ToString());
+#endif
             if (newRowKey != SelectedKey)
             {
                 SelectedKey = newRowKey;
@@ -735,8 +757,6 @@ namespace Material.Blazor
             {
                 OnMouseClick.InvokeAsync(newRowKey);
             }
-
-            return false;
         }
         #endregion
 
@@ -747,35 +767,219 @@ namespace Material.Blazor
             try
             {
 #if LoggingVerbose
-                Logger.LogInformation("OnParametersSetAsync entry");
-                Logger.LogInformation("                     HasRendered: " + HasRendered.ToString());
-                Logger.LogInformation("                     HasCompletedFullRender: " + HasCompletedFullRender.ToString());
+                Log("OnParametersSetAsync entry");
+                Log("                     HasRendered: " + HasRendered.ToString());
+                Log("                     HasCompletedFullRender: " + HasCompletedFullRender.ToString());
 #endif
 
                 await base.OnParametersSetAsync();
 
                 if (HasRendered)
                 {
-                    Logger.LogInformation("                     Calling MeasureWidthsAsync");
+                    Log("                     Calling MeasureWidthsAsync");
                     await MeasureWidthsAsync();
-                    Logger.LogInformation("                     Returned from MeasureWidthsAsync");
+                    Log("                     Returned from MeasureWidthsAsync");
                     StateHasChanged();
                 }
             }
             finally
             {
 #if LoggingVerbose
-                Logger.LogInformation("                     about to release semaphore");
+                Log("                     about to release semaphore (OnParametersSetAsync)");
 #endif
                 semaphoreSlim.Release();
             }
         }
-        #endregion
 
-        #region SetShouldRenderValue
-        public void SetShouldRenderValue(bool shouldRenderReturnValue)
+        private int oldParameterHash { get; set; } = -1;
+        public override Task SetParametersAsync(ParameterView parameters)
         {
-            ShouldRenderValue = shouldRenderReturnValue;
+#if LoggingVerbose
+            Log("SetParametersAsync entry");
+#endif
+            semaphoreSlim.WaitAsync();
+            try
+            {
+                foreach (var parameter in parameters)
+                {
+                    switch (parameter.Name)
+                    {
+                        case nameof(ColumnConfigurations):
+                            ColumnConfigurations = (IEnumerable<MBGridColumnConfiguration<TRowData>>)parameter.Value;
+                            break;
+                        case nameof(Group):
+                            Group = (bool)parameter.Value;
+                            break;
+                        case nameof(GroupedOrderedData):
+                            GroupedOrderedData = (IEnumerable<KeyValuePair<string, IEnumerable<KeyValuePair<string, TRowData>>>>)parameter.Value;
+                            break;
+                        case nameof(HighlightSelectedRow):
+                            HighlightSelectedRow = (bool)parameter.Value;
+                            break;
+                        case nameof(KeyExpression):
+                            KeyExpression = (Func<TRowData, object>)parameter.Value;
+                            break;
+                        case nameof(LogIdentification):
+                            LogIdentification = (string)parameter.Value;
+                            break;
+                        case nameof(Measurement):
+                            Measurement = (MB_Grid_Measurement)parameter.Value;
+                            break;
+                        case nameof(ObscurePMI):
+                            ObscurePMI = (bool)parameter.Value;
+                            break;
+                        case nameof(OnMouseClick):
+                            OnMouseClick = (EventCallback<string>)parameter.Value;
+                            break;
+                        case nameof(SupressHeader):
+                            SupressHeader = (bool)parameter.Value;
+                            break;
+                        default:
+#if LoggingVerbose
+                            Log("MBGrid encountered an unknown parameter:" + parameter.Name);
+#endif
+                            break;
+                    }
+                }
+
+#if LoggingVerbose
+                Log("                   about to compute parameter hash");
+#endif
+                HashCode newParameterHash;
+
+                if (HighlightSelectedRow)
+                {
+                    newParameterHash = HashCode
+                        .OfEach(ColumnConfigurations)
+                        .And(Group)
+                        .And(HighlightSelectedRow)
+                        .And(KeyExpression)
+                        .And(Measurement)
+                        .And(ObscurePMI)
+                        .And(OnMouseClick)
+                        .And(SelectedKey)   // Not a parameter but if we don't include this we won't re-render after selecting a row
+                        .And(SupressHeader);
+                }
+                else
+                {
+                    newParameterHash = HashCode
+                        .OfEach(ColumnConfigurations)
+                        .And(Group)
+                        .And(HighlightSelectedRow)
+                        .And(KeyExpression)
+                        .And(Measurement)
+                        .And(ObscurePMI)
+                        .And(OnMouseClick)
+                        .And(SupressHeader);
+                }
+
+                //
+                // We have to implement the double loop for grouped ordered data as the OfEach/AndEach
+                // do not recurse into the second enumerable and certainly don't look at the rowValues
+                //
+                if ((GroupedOrderedData != null) && (ColumnConfigurations != null))
+                {
+                    foreach (var kvp in GroupedOrderedData)
+                    {
+                        foreach (var rowValues in kvp.Value)
+                        {
+                            var rowKey = KeyExpression(rowValues.Value).ToString();
+
+                            newParameterHash = new HashCode(HashCode.CombineHashCodes(
+                                newParameterHash.value,
+                                HashCode.Of(rowKey)));
+
+                            foreach (var columnDefinition in ColumnConfigurations)
+                            {
+                                switch (columnDefinition.ColumnType)
+                                {
+                                    case MB_Grid_ColumnType.Icon:
+                                        if (columnDefinition.DataExpression != null)
+                                        {
+                                            try
+                                            {
+                                                var value = (MBGridIconSpecification)columnDefinition.DataExpression(rowValues.Value);
+
+                                                newParameterHash = new HashCode(HashCode.CombineHashCodes(
+                                                    newParameterHash.value,
+                                                    HashCode.Of(value)));
+                                            }
+                                            catch
+                                            {
+                                                throw new Exception("Backing value incorrect for MBGrid.Icon column.");
+                                            }
+                                        }
+                                        break;
+
+                                    case MB_Grid_ColumnType.Text:
+                                        if (columnDefinition.DataExpression != null)
+                                        {
+                                            var value = columnDefinition.DataExpression(rowValues.Value);
+                                            var formattedValue = string.IsNullOrEmpty(columnDefinition.FormatString) ? value?.ToString() : string.Format("{0:" + columnDefinition.FormatString + "}", value);
+
+                                            newParameterHash = new HashCode(HashCode.CombineHashCodes(
+                                                newParameterHash.value,
+                                                HashCode.Of(value)));
+                                        }
+                                        break;
+
+                                    case MB_Grid_ColumnType.TextColor:
+                                        if (columnDefinition.DataExpression != null)
+                                        {
+                                            try
+                                            {
+                                                var value = (MBGridTextColorSpecification)columnDefinition.DataExpression(rowValues.Value);
+
+                                                newParameterHash = new HashCode(HashCode.CombineHashCodes(
+                                                    newParameterHash.value,
+                                                    HashCode.Of(value)));
+                                            }
+                                            catch
+                                            {
+                                                throw new Exception("Backing value incorrect for MBGrid.TextColor column.");
+                                            }
+                                        }
+                                        break;
+
+                                    default:
+                                        throw new Exception("MBGrid -- Unknown column type");
+                                }
+                            }
+                        }
+                    }
+                }
+
+#if LoggingVerbose
+                Log("                   hash == " + ((int)newParameterHash).ToString());
+#endif
+                if (newParameterHash == oldParameterHash)
+                {
+                    // This is a call to ParametersSetAsync with what in all likelyhood is the same
+                    // parameters. Hashing isn't perfect so there is some tiny possibility that new parameters
+                    // are present and the same hash value was computed.
+                    ShouldRenderValue = false;
+#if LoggingVerbose
+                    Log("                   EQUAL hash");
+#endif
+                }
+                else
+                {
+                    ShouldRenderValue = true;
+                    oldParameterHash = newParameterHash;
+#if LoggingVerbose
+                    Log("                   DIFFERING hash");
+#endif
+                }
+            }
+            finally
+            {
+#if LoggingVerbose
+                Log("                   about to release semaphore (SetParametersAsync)");
+#endif
+                semaphoreSlim.Release();
+            }
+
+            return base.SetParametersAsync(ParameterView.Empty);
         }
         #endregion
 
@@ -787,4 +991,148 @@ namespace Material.Blazor
         #endregion
 
     }
+
+    #region HashCode 
+
+    /// <summary>
+    /// A hash code used to help with implementing <see cref="object.GetHashCode()"/>.
+    /// 
+    /// This code is from the blog post at https://rehansaeed.com/gethashcode-made-easy/
+    /// </summary>
+    public struct HashCode : IEquatable<HashCode>
+    {
+        private const int EmptyCollectionPrimeNumber = 19;
+        public readonly int value;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="HashCode"/> struct.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        public HashCode(int value) => this.value = value;
+
+        /// <summary>
+        /// Performs an implicit conversion from <see cref="HashCode"/> to <see cref="int"/>.
+        /// </summary>
+        /// <param name="hashCode">The hash code.</param>
+        /// <returns>The result of the conversion.</returns>
+        public static implicit operator int(HashCode hashCode) => hashCode.value;
+
+        /// <summary>
+        /// Implements the operator ==.
+        /// </summary>
+        /// <param name="left">The left.</param>
+        /// <param name="right">The right.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator ==(HashCode left, HashCode right) => left.Equals(right);
+
+        /// <summary>
+        /// Implements the operator !=.
+        /// </summary>
+        /// <param name="left">The left.</param>
+        /// <param name="right">The right.</param>
+        /// <returns>The result of the operator.</returns>
+        public static bool operator !=(HashCode left, HashCode right) => !(left == right);
+
+        /// <summary>
+        /// Takes the hash code of the specified item.
+        /// </summary>
+        /// <typeparam name="T">The type of the item.</typeparam>
+        /// <param name="item">The item.</param>
+        /// <returns>The new hash code.</returns>
+        public static HashCode Of<T>(T item) => new HashCode(GetHashCode(item));
+
+        /// <summary>
+        /// Takes the hash code of the specified items.
+        /// </summary>
+        /// <typeparam name="T">The type of the items.</typeparam>
+        /// <param name="items">The collection.</param>
+        /// <returns>The new hash code.</returns>
+        public static HashCode OfEach<T>(IEnumerable<T> items) =>
+            items == null ? new HashCode(0) : new HashCode(GetHashCode(items, 0));
+
+        /// <summary>
+        /// Adds the hash code of the specified item.
+        /// </summary>
+        /// <typeparam name="T">The type of the item.</typeparam>
+        /// <param name="item">The item.</param>
+        /// <returns>The new hash code.</returns>
+        public HashCode And<T>(T item) =>
+            new HashCode(CombineHashCodes(this.value, GetHashCode(item)));
+
+        /// <summary>
+        /// Adds the hash code of the specified items in the collection.
+        /// </summary>
+        /// <typeparam name="T">The type of the items.</typeparam>
+        /// <param name="items">The collection.</param>
+        /// <returns>The new hash code.</returns>
+        public HashCode AndEach<T>(IEnumerable<T> items)
+        {
+            if (items == null)
+            {
+                return new HashCode(this.value);
+            }
+
+            return new HashCode(GetHashCode(items, this.value));
+        }
+
+        /// <inheritdoc />
+        public bool Equals(HashCode other) => this.value.Equals(other.value);
+
+        /// <inheritdoc />
+        public override bool Equals(object obj)
+        {
+            if (obj is HashCode)
+            {
+                return this.Equals((HashCode)obj);
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Throws <see cref="NotSupportedException" />.
+        /// </summary>
+        /// <returns>Does not return.</returns>
+        /// <exception cref="NotSupportedException">Implicitly convert this struct to an <see cref="int" /> to get the hash code.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() =>
+            throw new NotSupportedException(
+                "Implicitly convert this struct to an int to get the hash code.");
+
+        public static int CombineHashCodes(int h1, int h2)
+        {
+            unchecked
+            {
+                // Code copied from System.Tuple so it must be the best way to combine hash codes or at least a good one.
+                return ((h1 << 5) + h1) ^ h2;
+            }
+        }
+
+        private static int GetHashCode<T>(T item) => item?.GetHashCode() ?? 0;
+
+        private static int GetHashCode<T>(IEnumerable<T> items, int startHashCode)
+        {
+            var temp = startHashCode;
+
+            var enumerator = items.GetEnumerator();
+            if (enumerator.MoveNext())
+            {
+                temp = CombineHashCodes(temp, GetHashCode(enumerator.Current));
+
+                while (enumerator.MoveNext())
+                {
+                    temp = CombineHashCodes(temp, GetHashCode(enumerator.Current));
+                }
+            }
+            else
+            {
+                temp = CombineHashCodes(temp, EmptyCollectionPrimeNumber);
+            }
+
+            return temp;
+        }
+    }
+
+    #endregion
+
 }

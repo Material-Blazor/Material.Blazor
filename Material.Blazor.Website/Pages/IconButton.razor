@@ -60,10 +60,30 @@
                         Shows density subsystem from default to minus 3, with alternative Material Icons fonts.
                     </h3>
 
-                    <p><MBIconButton Icon="access_alarms" Density="@MBDensity.Default" @onclick="@(() => ButtonClick("Icon Button Default Density"))" IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.Outlined)" /></p>
-                    <p><MBIconButton Icon="access_alarms" Density="@MBDensity.Minus1" @onclick="@(() => ButtonClick("Icon Button Density Minus 1"))" IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.Round)" /></p>
-                    <p><MBIconButton Icon="access_alarms" Density="@MBDensity.Minus2" @onclick="@(() => ButtonClick("Icon Button Density Minus 2"))" IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.Sharp)" /></p>
-                    <p><MBIconButton Icon="access_alarms" Density="@MBDensity.Minus3" @onclick="@(() => ButtonClick("Icon Button Density Minus 3"))" IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.TwoTone)" /></p>
+                    <p>
+                        <MBIconButton Density="@MBDensity.Default"
+                                      Icon="access_alarms"
+                                      IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.Outlined)"
+                                      @onclick="@(() => ButtonClick("Icon Button Default Density"))" />
+                    </p>
+                    <p>
+                        <MBIconButton Density="@MBDensity.Minus1"
+                                      Icon="access_alarms"
+                                      IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.Round)"
+                                      @onclick="@(() => ButtonClick("Icon Button Density Minus 1"))" />
+                    </p>
+                    <p>
+                        <MBIconButton Density="@MBDensity.Minus2"
+                                      Icon="access_alarms"
+                                      IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.Sharp)"
+                                      @onclick="@(() => ButtonClick("Icon Button Density Minus 2"))" />
+                    </p>
+                    <p>
+                        <MBIconButton Density="@MBDensity.Minus3"
+                                      Icon="access_alarms"
+                                      IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.TwoTone)"
+                                      @onclick="@(() => ButtonClick("Icon Button Density Minus 3"))" />
+                    </p>
                 </Primary>
             </MBCard>
         </div>

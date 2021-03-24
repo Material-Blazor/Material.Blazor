@@ -67,11 +67,6 @@ namespace Material.Blazor.Internal
         {
             get
             {
-                if (DisplayDate.Month != StartOfDisplayMonth.Month)
-                {
-                    return true;
-                }
-
                 if (DateIsSelectable != null && DateIsSelectable != MBDatePicker.DateIsSelectableNotUsed && !DateIsSelectable(DisplayDate))
                 {
                     return true;

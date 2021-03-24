@@ -4,20 +4,17 @@ title: Installation
 ---
 # Installation
 
-Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add the CSS and JS in your html.
-
-There are non-minified files of MaterialBlazor.css & MaterialBlazor.js available to reference if you need them for debugging purposes.
+Either fork this repo or reference the Material.Blazor Nuget package. Once the package is referenced in your project you will need to add the CSS and JS in your html.
 
 Add the `Material.Blazor` namespace to your project by appending `@using Material.Blazor` to the end of your project's _Imports.razor file. Do not use components from the `Material.Blazor.Internal` namespace: as the name
 implies these are intended for internal use by Material.Blazor, however Blazor has no mechanism for internally restricted Blazor components to mirror the `internal` directive for a C# class.
 
 ## Obtaining the requisite CSS and JS
 
-If you want, you can directly reference the Material Theme CSS and JS from the unpkg CDN (or download it for yourself). We package the css for 
- Material icons. You will to add three items to your index.html/_Host.cshtml. Place this in the `<head>` tag:
+You will to add three items to your index.html/_Host.cshtml. Place this in the `<head>` tag:
 
 ```html
-<link href="https://unpkg.com/material-components-web@9.0.0/dist/material-components-web.css" rel="stylesheet" />
+<link href="_content/Material.Blazor/Material.min.css" rel="stylesheet" />
 <link href="_content/Material.Blazor/MaterialBlazor.min.css" rel="stylesheet" />
 ```
 
@@ -27,8 +24,14 @@ and at the end of `<body>`:
 <script src="_content/Material.Blazor/MaterialBlazor.min.js"></script>
 ```
 
- Replace the unpkg CSS with your own
+ Replace the Material.min.css with your own
 if you have built a theme - you can see how we have done this in the [Material.Blazor website's index.html](https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website.WebAssembly/wwwroot/index.html#L14).
+
+Material.Blazor.min.css includes the Material icons for convenience. If you wish to use either (or both) Font Awesome or Open Iconic icon sets see the next section for the additional css required.
+
+The non-minified versions of each of the css and js packages are also available if needed for debugging.
+
+
 ## Package versions
 
 Material.Blazor works with the following package versions:

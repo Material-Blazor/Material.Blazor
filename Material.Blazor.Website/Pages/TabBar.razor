@@ -34,7 +34,10 @@
                                 Demonstrates a regular tab bar for which you need to control tabbed content. This example uses the Font Awesome foundry for icons.
                             </h3>
 
-                            <p style="margin-bottom: 2em;"><MBButton Label="Go to Dog" @onclick="@DogButtonClick" /></p>
+                            <p style="margin-bottom: 2em;">
+                                <MBButton Label="Go to Dog"
+                                          @onclick="@DogButtonClick" />
+                            </p>
 
                             <MBTabBar @bind-Value="@TabIndex"
                                       Context="item"
@@ -44,7 +47,8 @@
 
                                 <Icon>
                                     @{ var name = "fa-" + item; }
-                                    <MBIcon IconName="@name" IconFoundry="MBIconHelper.FAFoundry()" />
+                                    <MBIcon IconFoundry="MBIconHelper.FAFoundry()"
+                                            IconName="@name" />
                                 </Icon>
 
                                 <Label>

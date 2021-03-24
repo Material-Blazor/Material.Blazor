@@ -164,6 +164,13 @@ $dp-day-pad-weekdays-size: $dp-button-size + $dp-button-margin;
     }
 }
 
+.mb-dp-day-pad__button_earlier_month {
+    visibility: hidden;
+}
+.mb-dp-day-pad__button_later_month {
+    visibility: hidden;
+}
+
 
 /*
     Year pad
