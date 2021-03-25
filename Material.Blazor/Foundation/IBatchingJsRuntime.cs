@@ -9,7 +9,7 @@ namespace Material.Blazor.Internal
     public interface IBatchingJSRuntime
     {
         /// <summary>
-        /// Same as <see cref="JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime, string, object[])"/>, except calls are batched in 20ms intervals.
+        /// Same as <see cref="JSRuntimeExtensions.InvokeVoidAsync(IJSRuntime, string, object[])"/>, except calls are batched in 10ms intervals.
         /// </summary>
         /// <param name="identifier"></param>
         /// <param name="args"></param>
