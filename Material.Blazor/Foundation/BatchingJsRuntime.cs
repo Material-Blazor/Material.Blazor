@@ -97,7 +97,7 @@ namespace Material.Blazor.Internal
 
 
         /// <inheritdoc/>
-        public async ValueTask<T> InvokeAsync<T>(string identifier, params object[] args)
+        public async Task<T> InvokeAsync<T>(string identifier, params object[] args)
         {
             return await js.InvokeAsync<T>(identifier, args);
         }

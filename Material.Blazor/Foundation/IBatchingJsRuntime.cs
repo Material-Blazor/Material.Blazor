@@ -24,6 +24,6 @@ namespace Material.Blazor.Internal
         /// <param name="identifier"></param>
         /// <param name="args"></param>
         /// <returns></returns>        
-        ValueTask<T> InvokeAsync<T>(string identifier, params object[] args);
+        Task<T> InvokeAsync<T>(string identifier, params object[] args);
     }
 }
