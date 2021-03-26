@@ -78,7 +78,7 @@ namespace Material.Blazor
 
                     if (HasProgressBar && HasInstantiated)
                     {
-                        InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDataTable.setProgress", ElementReference, showProgress));
+                        InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDataTable.setProgress", ElementReference, showProgress));
                     }
                 }
             }

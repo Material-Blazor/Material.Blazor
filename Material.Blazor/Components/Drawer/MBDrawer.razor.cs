@@ -68,7 +68,7 @@ namespace Material.Blazor
         public void Toggle(bool open)
         {
             isOpen = open;
-            InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDrawer.toggle", DrawerElem, isOpen));
+            InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDrawer.toggle", DrawerElem, isOpen));
         }
 
 

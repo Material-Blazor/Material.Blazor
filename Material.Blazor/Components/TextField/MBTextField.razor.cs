@@ -199,7 +199,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback() => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.setValue", ElementReference, Value));
+        protected void OnValueSetCallback() => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.setValue", ElementReference, Value));
 
 
         /// <summary>
@@ -207,7 +207,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback() => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.setDisabled", ElementReference, AppliedDisabled));
+        protected void OnDisabledSetCallback() => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.setDisabled", ElementReference, AppliedDisabled));
 
 
         /// <inheritdoc/>
@@ -228,7 +228,7 @@ namespace Material.Blazor
                 var fieldIdentifier = FieldIdentifier.Create(ValidationMessageFor);
                 var validationMessage = string.Join("<br />", EditContext.GetValidationMessages(fieldIdentifier));
 
-                InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.setHelperText", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
+                InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.setHelperText", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
             }
         }
     }

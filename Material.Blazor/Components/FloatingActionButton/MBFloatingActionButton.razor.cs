@@ -67,7 +67,7 @@ namespace Material.Blazor
 
                     if (HasInstantiated)
                     {
-                        InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBFloatingActionButton.setExited", ElementReference, Exited));
+                        InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBFloatingActionButton.setExited", ElementReference, Exited));
                     }
                 }
             }
