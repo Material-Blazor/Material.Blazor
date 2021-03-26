@@ -224,10 +224,9 @@ namespace Material.Blazor
                 OnRemoved = onRemoved,
                 BladeContent = new RenderFragment(builder =>
                 {
-                    var i = 0;
-                    builder.OpenComponent(i++, typeof(TComponent));
-                    builder.AddAttribute(i++, nameof(MBBladeComponent<MBBladeComponentParameters>.BladeReference), bladeReference);
-                    builder.AddAttribute(i++, nameof(MBBladeComponent<MBBladeComponentParameters>.Parameters), parameters);
+                    builder.OpenComponent(0, typeof(TComponent));
+                    builder.AddAttribute(1, nameof(MBBladeComponent<MBBladeComponentParameters>.BladeReference), bladeReference);
+                    builder.AddAttribute(2, nameof(MBBladeComponent<MBBladeComponentParameters>.Parameters), parameters);
                     builder.CloseComponent();
                 })
             };
