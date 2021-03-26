@@ -10,10 +10,6 @@ export function init(elem, dotNetObject) {
     elem._menu.listen('MDCMenuSurface:closed', closedCallback);
 }
 
-export function destroy(elem) {
-    elem?._menu?.destroy();
-}
-
 export function show(elem) {
     if (elem._menu) {
         elem._menu.open();
