@@ -184,7 +184,7 @@ namespace Material.Blazor
 
 
         private bool _disposed = false;
-        protected override async ValueTask DisposeAsync(bool disposing)
+        protected override void Dispose(bool disposing)
         {
             if (_disposed)
             {
@@ -198,7 +198,7 @@ namespace Material.Blazor
 
             _disposed = true;
 
-            await base.DisposeAsync(disposing);
+            base.Dispose(disposing);
         }
 
 
