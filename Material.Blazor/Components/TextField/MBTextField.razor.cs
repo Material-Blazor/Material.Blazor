@@ -226,14 +226,7 @@ namespace Material.Blazor
             if (ValidationMessageFor != null)
             {
                 var fieldIdentifier = FieldIdentifier.Create(ValidationMessageFor);
-                var validationMessage = "";
-                var separator = "";
-
-                foreach (var message in EditContext.GetValidationMessages(fieldIdentifier))
-                {
-                    validationMessage += separator + message;
-                    separator = "<br />";
-                }
+                var validationMessage = string.Join("<br />", EditContext.GetValidationMessages(fieldIdentifier));
 
                 InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.setHelperText", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
             }
