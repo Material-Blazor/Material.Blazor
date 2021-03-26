@@ -59,6 +59,6 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => SegmentedButtonMulti.SetSingleSelectValue(Value);
+        protected void OnValueSetCallback() => SegmentedButtonMulti.SetSingleSelectValue(Value);
     }
 }

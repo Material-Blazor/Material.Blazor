@@ -130,7 +130,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTabBar.activateTab", ElementReference, Value).ConfigureAwait(false));
+        protected void OnValueSetCallback() => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTabBar.activateTab", ElementReference, Value).ConfigureAwait(false));
 
 
         /// <inheritdoc/>

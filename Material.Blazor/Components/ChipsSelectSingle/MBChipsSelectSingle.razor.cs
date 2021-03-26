@@ -60,6 +60,6 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => ChipsSelectMulti.SetSingleSelectValue(Value);
+        protected void OnValueSetCallback() => ChipsSelectMulti.SetSingleSelectValue(Value);
     }
 }

@@ -186,7 +186,7 @@ namespace Material.Blazor
         /// <summary>
         /// Invoked without arguments at the outset of a blade being added or removed from the bladeset.
         /// </summary>
-        public event EventHandler BladeSetChanged;
+        public event Action BladeSetChanged;
 
 
         private readonly SemaphoreSlim queueSemaphore = new(1, 1);
@@ -345,7 +345,7 @@ namespace Material.Blazor
 
                 StateHasChanged();
 
-                BladeSetChanged?.Invoke(this, null);
+                BladeSetChanged?.Invoke();
             }
             else if (removedBladesQueue.TryDequeue(out var removedBlade))
             {
@@ -359,7 +359,7 @@ namespace Material.Blazor
 
                 StateHasChanged();
 
-                BladeSetChanged?.Invoke(this, null);
+                BladeSetChanged?.Invoke();
             }
         }
     }

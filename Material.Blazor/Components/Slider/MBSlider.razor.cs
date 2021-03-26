@@ -147,7 +147,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSlider.setValue", ElementReference, Value));
+        protected void OnValueSetCallback() => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSlider.setValue", ElementReference, Value));
 
 
         /// <summary>
@@ -155,7 +155,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSlider.setDisabled", ElementReference, AppliedDisabled));
+        protected void OnDisabledSetCallback() => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSlider.setDisabled", ElementReference, AppliedDisabled));
 
 
         /// <inheritdoc/>

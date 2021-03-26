@@ -39,13 +39,13 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// Derived components can use this to get a callback from SetParametrs(Async) when the consumer changes
+        /// Derived components can use this to get a callback from SetParameters(Async) when the consumer changes
         /// the value. This allows a component to take action with Material Theme js to update the DOM to reflect
         /// the data change visually. An example is a select where the relevant list item needs to be
         /// automatically clicked to get Material Theme to update the value shown in the
         /// <c>&lt;input&gt;</c> HTML tag.
         /// </summary>
-        protected event EventHandler SetComponentValue;
+        protected event Action SetComponentValue;
 
 
         /// <summary>
@@ -312,7 +312,7 @@ namespace Material.Blazor.Internal
                     _componentValue = Value;
                     if (HasInstantiated)
                     {
-                        SetComponentValue?.Invoke(this, null);
+                        SetComponentValue?.Invoke();
                     }
                 }
             }

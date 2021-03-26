@@ -38,7 +38,7 @@ namespace Material.Blazor
                 if (value != _bufferValue)
                 {
                     _bufferValue = value;
-                    OnValueSetCallback(null, null);
+                    OnValueSetCallback();
                 }
             }
         }
@@ -75,7 +75,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBLinearProgress.setProgress", ElementReference, Value, MyBufferValue));
+        protected void OnValueSetCallback() => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBLinearProgress.setProgress", ElementReference, Value, MyBufferValue));
 
 
         /// <inheritdoc/>
