@@ -159,10 +159,9 @@ namespace Material.Blazor
         /// For Material Theme to notify of menu item selection via JS Interop.
         /// </summary>
         [JSInvokable]
-        public async Task NotifySelectedAsync(int index)
+        public void NotifySelectedAsync(int index)
         {
             ComponentValue = ItemDict.Values.ElementAt(index).SelectedValue;
-            await Task.CompletedTask;
         }
 
 

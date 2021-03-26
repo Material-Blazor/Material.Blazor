@@ -135,10 +135,9 @@ namespace Material.Blazor
         /// For Material Theme to notify of slider value changes via JS Interop.
         /// </summary>
         [JSInvokable]
-        public async Task NotifyChangedAsync(double value)
+        public void NotifyChangedAsync(double value)
         {
             ComponentValue = value;
-            await Task.CompletedTask;
         }
 
 

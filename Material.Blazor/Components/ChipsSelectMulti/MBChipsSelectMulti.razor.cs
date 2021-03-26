@@ -102,11 +102,10 @@ namespace Material.Blazor
         /// For Material Theme to notify of menu item selection via JS Interop.
         /// </summary>
         [JSInvokable]
-        public async Task NotifyMultiSelectedAsync(bool[] selected)
+        public void NotifyMultiSelectedAsync(bool[] selected)
         {
             var selectedIndexes = Enumerable.Range(0, selected.Length).Where(i => selected[i]);
             ComponentValue = ItemsArray.Where((item, index) => selectedIndexes.Contains(index)).Select(x => x.SelectedValue).ToArray();
-            await Task.CompletedTask;
         }
 
 
@@ -114,10 +113,9 @@ namespace Material.Blazor
         /// For Material Theme to notify of menu item selection via JS Interop.
         /// </summary>
         [JSInvokable]
-        public async Task NotifySingleSelectedAsync(int index)
+        public void NotifySingleSelectedAsync(int index)
         {
             ComponentValue = new TItem[] { ItemsArray[index].SelectedValue };
-            await Task.CompletedTask;
         }
 
 

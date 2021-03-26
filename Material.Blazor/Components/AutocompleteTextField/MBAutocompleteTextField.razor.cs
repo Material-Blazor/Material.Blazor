@@ -309,7 +309,7 @@ namespace Material.Blazor
         /// </summary>
         /// <returns></returns>
         [JSInvokable]
-        public async Task NotifyClosedAsync()
+        public void NotifyClosedAsync()
         {
             IsOpen = false;
 
@@ -322,8 +322,6 @@ namespace Material.Blazor
             }
 
             StateHasChanged();
-
-            await Task.CompletedTask;
         }
 
 
@@ -332,11 +330,11 @@ namespace Material.Blazor
         /// </summary>
         /// <returns></returns>
         [JSInvokable]
-        public async Task NotifySelectedAsync(string value)
+        public void NotifySelectedAsync(string value)
         {
             ComponentValue = value;
 
-            await NotifyClosedAsync();
+            NotifyClosedAsync();
         }
 
 

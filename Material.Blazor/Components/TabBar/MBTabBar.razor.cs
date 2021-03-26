@@ -117,11 +117,9 @@ namespace Material.Blazor
         /// </summary>
         /// <returns></returns>
         [JSInvokable]
-        public async Task NotifyActivatedAsync(int index)
+        public void NotifyActivatedAsync(int index)
         {
             ComponentValue = index;
-
-            await Task.CompletedTask;
         }
 
 
