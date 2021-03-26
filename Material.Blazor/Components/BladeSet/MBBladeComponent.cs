@@ -36,10 +36,10 @@ namespace Material.Blazor
         /// <summary>
         /// A utility function to close the blade, calling BladeSet.RemoveBladeAsync(), passing the blade reference.
         /// </summary>
-        public async Task CloseBladeAsync()
+        public Task CloseBladeAsync()
         {
             IsOpen = false;
-            await BladeSet.RemoveBladeAsync(BladeReference);
+            return BladeSet.RemoveBladeAsync(BladeReference);
         }
     }
 }
