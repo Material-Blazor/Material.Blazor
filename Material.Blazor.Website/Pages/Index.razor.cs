@@ -6,8 +6,8 @@ namespace Material.Blazor.Website.Pages
 {
     public partial class Index
     {
-        [Inject] IJSRuntime JsRuntime { get; set; }
-        [Inject] IMBAnimatedNavigationManager AnimatedNavigationManager { get; set; }
+        [Inject] private IJSRuntime JsRuntime { get; set; }
+        [Inject] private IMBAnimatedNavigationManager AnimatedNavigationManager { get; set; }
 
 #if DEBUG
         private string BuildMode { get; set; } = "debug";
