@@ -8,10 +8,6 @@ export function setDisabled(elem, value) {
     elem._select.disabled = value;
 }
 
-export function destroy(elem) {
-    elem?._select?.destroy();
-}
-
 export function listItemClick(elem, elemText) {
     elem.innerText = elemText;
     elem.click();

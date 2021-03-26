@@ -5,14 +5,6 @@ export function init(elem, helperTextElem, helperText, helperTextPersistent, per
     setHelperText(elem, helperTextElem, helperText, helperTextPersistent, performsValidation, false, "");
 }
 
-export function destroy(elem) {
-    elem?._textField?.destroy();
-
-    if (elem?._helperText) {
-        elem._helperText.destroy();
-    }
-}
-
 export function setValue(elem, value) {
     elem._textField.value = value;
 }
