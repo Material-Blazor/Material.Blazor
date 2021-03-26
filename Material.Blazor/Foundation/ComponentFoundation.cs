@@ -127,7 +127,7 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Components should override this with a function to be called when Material.Blazor wants to run Material Components Web instantiation via JS Interop - always gets called from <see cref="OnAfterRenderAsync()"/>, which should not be overridden.
         /// </summary>
-        private protected virtual async Task InstantiateMcwComponent() => await Task.CompletedTask;
+        private protected virtual Task InstantiateMcwComponent() => Task.CompletedTask;
 
 
         private bool _disposed;
@@ -281,7 +281,7 @@ namespace Material.Blazor.Internal
         {
             if (firstRender)
             {
-                await InstantiateMcwComponent();
+                await InstantiateMcwComponent().ConfigureAwait(false);
                 HasInstantiated = true;
                 AddTooltip();
             }

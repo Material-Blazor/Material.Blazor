@@ -45,9 +45,9 @@ namespace Material.Blazor
 
 
 
-        private async Task UpdateIndeterminateStateAsync()
+        private Task UpdateIndeterminateStateAsync()
         {
-            await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBCheckbox.setIndeterminate", ElementReference, IsIndeterminate);
+            return JsRuntime.InvokeVoidAsync("MaterialBlazor.MBCheckbox.setIndeterminate", ElementReference, IsIndeterminate);
         }
 
         /// <summary>
@@ -105,6 +105,6 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBCheckbox.init", ElementReference, FormReference, ComponentValue, IsIndeterminate);
+        private protected override Task InstantiateMcwComponent() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBCheckbox.init", ElementReference, FormReference, ComponentValue, IsIndeterminate);
     }
 }

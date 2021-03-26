@@ -211,14 +211,14 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
+        private protected override Task InstantiateMcwComponent() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
 
 
         /// <summary>
         /// Selects the text field - used by <see cref="MBNumericDoubleField"/>.
         /// </summary>
         /// <returns></returns>
-        internal async Task SetType(string value, string type, bool formNoValidate) => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.setType", ElementReference, value, InputReference, type, formNoValidate);
+        internal Task SetType(string value, string type, bool formNoValidate) => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.setType", ElementReference, value, InputReference, type, formNoValidate);
 
 
         private void OnValidationStateChangedCallback(object sender, EventArgs e)

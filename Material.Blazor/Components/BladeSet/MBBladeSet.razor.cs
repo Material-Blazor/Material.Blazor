@@ -213,7 +213,7 @@ namespace Material.Blazor
         /// <param name="additionalCss">CSS styles to be applied to the &lt;mb-blade&gt; block.</param>
         /// <param name="additionalStyles">Style attributes to be applied to the &lt;mb-blade&gt; block.</param>
         /// <param name="onRemoved">Action called back when the blade is removed, receiving the blade reference as the parameter</param>
-        public async Task AddBladeAsync<TComponent, TParameters>(string bladeReference, TParameters parameters = null, string additionalCss = "", string additionalStyles = "", Action<string> onRemoved = null) where TParameters : MBBladeComponentParameters
+        public Task AddBladeAsync<TComponent, TParameters>(string bladeReference, TParameters parameters = null, string additionalCss = "", string additionalStyles = "", Action<string> onRemoved = null) where TParameters : MBBladeComponentParameters
         {
             AddQueueElement queueElement = new()
             {
@@ -232,7 +232,7 @@ namespace Material.Blazor
                 })
             };
 
-            await QueueAction(queueElement).ConfigureAwait(false);
+            return QueueAction(queueElement);
         }
 
 
@@ -241,14 +241,14 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="bladeReference">The reference of the blade to be removed.</param>
         /// <returns></returns>
-        public async Task RemoveBladeAsync(string bladeReference)
+        public Task RemoveBladeAsync(string bladeReference)
         {
             QueueElement queueElement = new RemoveQueueElement()
             {
                 BladeReference = bladeReference
             };
 
-            await QueueAction(queueElement).ConfigureAwait(false);
+            return QueueAction(queueElement);
         }
 
 
