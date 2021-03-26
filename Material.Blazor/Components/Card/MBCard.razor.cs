@@ -1,8 +1,5 @@
 ﻿using Material.Blazor.Internal;
-
 using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
-
 using System.Threading.Tasks;
 
 namespace Material.Blazor
