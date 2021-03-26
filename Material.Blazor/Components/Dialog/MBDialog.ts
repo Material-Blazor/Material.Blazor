@@ -8,7 +8,7 @@ export function show(elem, dotNetObject, escapeKeyAction, scrimClickAction): any
 
     const openedCallback = () => {
         dialog.unlisten('MDCDialog:opened', openedCallback);
-        dotNetObject.invokeMethodAsync('NotifyOpenedAsync');
+        dotNetObject.invokeMethodAsync('NotifyOpened');
     };
     dialog.listen('MDCDialog:opened', openedCallback);
 

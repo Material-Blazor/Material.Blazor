@@ -5,7 +5,7 @@ export function init(elem, dotNetObject) {
 
     elem._callback = () => {
         let index = elem._tabBar.foundation.adapter.getFocusedTabIndex();
-        dotNetObject.invokeMethodAsync('NotifyActivatedAsync', index);
+        dotNetObject.invokeMethodAsync('NotifyActivated', index);
     };
 
     elem._tabBar.listen('MDCTabBar:activated', elem._callback);

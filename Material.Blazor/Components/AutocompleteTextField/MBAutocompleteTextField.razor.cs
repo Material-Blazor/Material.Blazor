@@ -309,7 +309,7 @@ namespace Material.Blazor
         /// </summary>
         /// <returns></returns>
         [JSInvokable]
-        public void NotifyClosedAsync()
+        public void NotifyClosed()
         {
             IsOpen = false;
 
@@ -330,11 +330,11 @@ namespace Material.Blazor
         /// </summary>
         /// <returns></returns>
         [JSInvokable]
-        public void NotifySelectedAsync(string value)
+        public void NotifySelected(string value)
         {
             ComponentValue = value;
 
-            NotifyClosedAsync();
+            NotifyClosed();
         }
 
 

@@ -117,7 +117,7 @@ namespace Material.Blazor
         /// </summary>
         /// <returns></returns>
         [JSInvokable]
-        public void NotifyActivatedAsync(int index)
+        public void NotifyActivated(int index)
         {
             ComponentValue = index;
         }

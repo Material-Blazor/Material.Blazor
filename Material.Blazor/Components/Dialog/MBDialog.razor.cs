@@ -199,7 +199,7 @@ namespace Material.Blazor
 
 
         [JSInvokable]
-        public void NotifyOpenedAsync()
+        public void NotifyOpened()
         {
             AfterDialogInitialization = true;
             StateHasChanged();

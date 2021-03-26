@@ -6,15 +6,15 @@ export function init(elem, dotNetObject, eventType, delay) {
     elem._eventType = eventType;
 
     let debounceNotify = _.debounce(function () {
-        dotNetObject.invokeMethodAsync('NotifyChangedAsync', elem._slider.getValue());
+        dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
     }, delay); 
 
     let throttleNotify = _.throttle(function () {
-        dotNetObject.invokeMethodAsync('NotifyChangedAsync', elem._slider.getValue());
+        dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
     }, delay); 
 
     const thumbUpCallback = () => {
-        dotNetObject.invokeMethodAsync('NotifyChangedAsync', elem._slider.getValue());
+        dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
     };
 
     const debounceCallback = () => {

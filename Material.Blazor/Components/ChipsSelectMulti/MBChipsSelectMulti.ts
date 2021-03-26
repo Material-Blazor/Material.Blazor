@@ -9,14 +9,14 @@ export function init(elem, isSingleSelect, dotNetObject) {
             var selectedChips = elem._chipSet.chips.filter(x => x.foundation.isSelected());
 
             if (selectedChips.length == 0) {
-                dotNetObject.invokeMethodAsync('NotifySingleSelectedAsync', -1);
+                dotNetObject.invokeMethodAsync('NotifySingleSelected', -1);
             }
             else {
-                dotNetObject.invokeMethodAsync('NotifySingleSelectedAsync', elem._chipSet.chips.findIndex(x => x.id === selectedChips[0].id));
+                dotNetObject.invokeMethodAsync('NotifySingleSelected', elem._chipSet.chips.findIndex(x => x.id === selectedChips[0].id));
             }
         }
         else {
-            dotNetObject.invokeMethodAsync('NotifyMultiSelectedAsync', elem._chipSet.chips.map(x => x.foundation.isSelected()));
+            dotNetObject.invokeMethodAsync('NotifyMultiSelected', elem._chipSet.chips.map(x => x.foundation.isSelected()));
         }
     };
 

@@ -63,7 +63,7 @@ namespace Material.Blazor
         /// For Material Theme to notify of menu closure via JS Interop.
         /// </summary>
         [JSInvokable]
-        public void NotifyClosedAsync()
+        public void NotifyClosed()
         {
             IsOpen = false;
         }
