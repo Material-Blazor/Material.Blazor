@@ -10,7 +10,3 @@ export function init(elem, keyboardInteractions, ripple) {
         }
     }
 }
-
-export function destroy(elem) {
-    elem?._list?.destroy();
-}

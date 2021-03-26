@@ -1,7 +1,6 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
-using Microsoft.JSInterop;
 using System;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -190,7 +189,7 @@ namespace Material.Blazor
 
 
         private bool _disposed = false;
-        protected override async ValueTask DisposeAsync(bool disposing)
+        protected override void Dispose(bool disposing)
         {
             if (_disposed)
             {
@@ -204,7 +203,7 @@ namespace Material.Blazor
 
             _disposed = true;
 
-            await base.DisposeAsync(disposing);
+            base.Dispose(disposing);
         }
 
 
@@ -226,10 +225,6 @@ namespace Material.Blazor
 
         /// <inheritdoc/>
         private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
-
-
-        /// <inheritdoc/>
-        private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTextField.destroy", ElementReference);
 
 
         /// <summary>

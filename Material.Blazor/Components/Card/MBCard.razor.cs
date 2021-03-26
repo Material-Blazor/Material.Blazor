@@ -1,8 +1,5 @@
 ﻿using Material.Blazor.Internal;
-
 using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
-
 using System.Threading.Tasks;
 
 namespace Material.Blazor
@@ -39,6 +36,36 @@ namespace Material.Blazor
 
 
         /// <summary>
+        /// Non-semantic content that falls outside the <code>mdc-card__content</code> block. See https://github.com/material-components/material-components-web/tree/master/packages/mdc-card#non-semantic-content
+        /// </summary>
+        [Parameter] public RenderFragment NonSemanticContent { get; set; }
+
+
+        /// <summary>
+        /// The primary action's tabindex attribute - defaults to 0.
+        /// </summary>
+        [Parameter] public int PrimaryActionTabIndex { get; set; } = 0;
+
+
+        /// <summary>
+        /// The primary action's aria-selected attribute - defaults to false.
+        /// </summary>
+        [Parameter] public bool PrimaryActionAriaSelected { get; set; } = false;
+
+
+        /// <summary>
+        /// The primary action's aria-controls attribute - defaults to "".
+        /// </summary>
+        [Parameter] public string PrimaryActionAriaControls { get; set; } = "";
+
+
+        /// <summary>
+        /// The primary action's role attribute - defaults to "".
+        /// </summary>
+        [Parameter] public string PrimaryActionRole { get; set; } = "";
+
+
+        /// <summary>
         /// A render fragment where you place <see cref="MBButton"/>s as action buttons.
         /// </summary>
         [Parameter] public RenderFragment ActionButtons { get; set; }
@@ -50,8 +77,8 @@ namespace Material.Blazor
         [Parameter] public RenderFragment ActionIcons { get; set; }
 
 
-        private string PrimaryClass => AutoStyled ? "mb-card__primary" : "";
-        private string PrimaryActionClass => AutoStyled ? "mb-card__primary-action" : "";
+        private string PrimaryClass => AutoStyled ? "mb-card__autostyled" : "";
+        private string PrimaryActionClass => AutoStyled ? "mb-card__autostyled-action" : "";
         private ElementReference PrimaryActionReference { get; set; }
 
 
@@ -72,16 +99,6 @@ namespace Material.Blazor
             if (PrimaryAction != null)
             {
                 await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBCard.init", PrimaryActionReference);
-            }
-        }
-
-
-        /// <inheritdoc/>
-        private protected override async Task DestroyMcwComponent()
-        {
-            if (PrimaryAction != null)
-            {
-                await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBCard.destroy", PrimaryActionReference);
             }
         }
     }

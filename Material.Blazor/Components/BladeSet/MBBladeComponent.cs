@@ -28,8 +28,18 @@ namespace Material.Blazor
 
 
         /// <summary>
+        /// Indicates whether the blade is open.
+        /// </summary>
+        public bool IsOpen { get; private set; } = true;
+
+
+        /// <summary>
         /// A utility function to close the blade, calling BladeSet.RemoveBladeAsync(), passing the blade reference.
         /// </summary>
-        protected async Task CloseBladeAsync() => await BladeSet.RemoveBladeAsync(BladeReference).ConfigureAwait(false);
+        public Task CloseBladeAsync()
+        {
+            IsOpen = false;
+            return BladeSet.RemoveBladeAsync(BladeReference);
+        }
     }
 }

@@ -8,7 +8,3 @@ export function init(elem, dotnetReference, timeoutMs: number) {
     elem._snackbar.timeoutMs = timeoutMs;
     elem._snackbar.open();
 }
-
-export function destroy(elem) {
-    elem?._snackbar?.destroy();
-}

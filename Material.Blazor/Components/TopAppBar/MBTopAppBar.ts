@@ -6,7 +6,3 @@ export function init(elem, scrollTarget) {
         elem._topAppBar.setScrollTarget(document.querySelector(scrollTarget));
     }
 }
-
-export function destroy(elem) {
-    elem?._topAppBar?.destroy();
-}

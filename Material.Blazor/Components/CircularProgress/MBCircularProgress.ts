@@ -5,10 +5,6 @@ export function init(elem, progress) {
     setProgress(elem, progress);
 }
 
-export function destroy(elem) {
-    elem?._circularProgress?.destroy();
-}
-
 export function setProgress(elem, progress) {
     elem._circularProgress.progress = progress;
 }

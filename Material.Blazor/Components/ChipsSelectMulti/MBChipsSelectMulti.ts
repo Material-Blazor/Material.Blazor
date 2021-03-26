@@ -23,10 +23,6 @@ export function init(elem, isSingleSelect, dotNetObject) {
     elem._chipSet.listen('MDCChip:selection', clickedCallback);
 }
 
-export function destroy(elem) {
-    elem?._chipSet?.destroy();
-}
-
 export function setDisabled(elem, value) {
     elem._chipSet.disabled = value;
 }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -114,7 +113,6 @@ namespace Material.Blazor.Internal
                 {
                     if (Tooltips.TryGetValue(id, out var instance))
                     {
-                        await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTooltip.destroy", instance.ElementReference).ConfigureAwait(false);
                         Tooltips.Remove(id);
                     }
                 }

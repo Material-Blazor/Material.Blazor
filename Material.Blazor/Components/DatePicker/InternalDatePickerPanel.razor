@@ -18,7 +18,12 @@
     <div class="mb-dp-menu">
         <div class="mb-dp-menu__left">
             <span>@MonthText</span>
-            <MBIconButtonToggle @bind-Value="@ShowYearPad" class="mb-dp-menu__icon-button" IconOn="arrow_drop_up" IconOff="arrow_drop_down" IconFoundry="@foundry" />
+            <MBIconButtonToggle @bind-Value="@ShowYearPad"
+                                class="mb-dp-menu__icon-button"
+                                IconOn="arrow_drop_up"
+                                IconOff="arrow_drop_down"
+                                IconFoundry="@foundry"
+                                type="button"/>
         </div>
 
         @if (!ShowYearPad)
@@ -28,16 +33,21 @@
                               Disabled="@PreviousMonthDisabled"
                               Icon="chevron_left"
                               IconFoundry="@foundry"
-                              @onclick="@OnPreviousMonthClick" />
+                              @onclick="@OnPreviousMonthClick"
+                              type="button"/>
+
                 <MBIconButton class="mb-dp-menu__icon-button spaced"
                               Icon="undo"
                               IconFoundry="@foundry"
-                              @onclick="@OnShowCurrentDateClick" />
+                              @onclick="@OnShowCurrentDateClick" 
+                              type="button"/>
+
                 <MBIconButton class="mb-dp-menu__icon-button spaced"
                               Disabled="@NextMonthDisabled"
                               Icon="chevron_right"
                               IconFoundry="@foundry"
-                              @onclick="@OnNextMonthClick" />
+                              @onclick="@OnNextMonthClick" 
+                              type="button"/>
             </div>
         }
     </div>
@@ -49,12 +59,12 @@
             {
                 <InternalDatePickerYearButton CurrentYear="@StartOfDisplayMonth.Year"
                                               CurrentYearId="@currentYearId"
-                                              DateIsSelectable="@DateIsSelectable"
                                               DisplayYear="@year"
                                               @key="@year"
                                               MaxDate="@MaxDate"
                                               MinDate="@MinDate"
-                                              OnItemClickAsync="@OnYearItemClick" />
+                                              OnItemClickAsync="@OnYearItemClick" 
+                                              type="button"/>
             }
         </div>
     }
@@ -78,7 +88,8 @@
                                                  MaxDate="@MaxDate"
                                                  MinDate="@MinDate"
                                                  OnItemClickAsync="@OnDayItemClickAsync"
-                                                 StartOfDisplayMonth="@StartOfDisplayMonth" />
+                                                 StartOfDisplayMonth="@StartOfDisplayMonth" 
+                                                 type="button"/>
                 }
             </div>
         </div>

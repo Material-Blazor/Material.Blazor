@@ -10,11 +10,6 @@ export function init(elem, formFieldElem, checked, indeterminate) {
     elem._formField.input = elem._checkbox;
 }
 
-export function destroy(elem) {
-    elem?._checkbox?.destroy();
-    elem?._formField?.destroy();
-}
-
 export function setChecked(elem, checked) {
     elem._checkbox.checked = checked;
 }

@@ -128,7 +128,7 @@ namespace Material.Blazor
 
 
         private bool _disposed = false;
-        protected override async ValueTask DisposeAsync(bool disposing)
+        protected override void Dispose(bool disposing)
         {
             if (_disposed)
             {
@@ -142,7 +142,7 @@ namespace Material.Blazor
 
             _disposed = true;
 
-            await base.DisposeAsync(disposing);
+            base.Dispose(disposing);
         }
 
 
@@ -170,7 +170,7 @@ namespace Material.Blazor
                 Key = Utilities.GenerateUniqueElementName();
                 IsOpen = true;
                 AfterRenderShowAction = true;
-                StateHasChanged();
+                await InvokeAsync(StateHasChanged).ConfigureAwait(false);
                 Tcs = new TaskCompletionSource<string>();
                 var ret = await Tcs.Task;
                 dialogHasInstantiated = false;

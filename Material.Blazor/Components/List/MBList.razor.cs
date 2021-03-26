@@ -1,7 +1,6 @@
 ﻿using Material.Blazor.Internal;
 
 using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -186,8 +185,15 @@ namespace Material.Blazor
             HasLineThree = LineThree != null && !HideLineThree;
 
             NumberOfLines = 1;
-            if (HasLineTwo) NumberOfLines++;
-            if (HasLineThree) NumberOfLines++;
+            if (HasLineTwo)
+            {
+                NumberOfLines++;
+            }
+
+            if (HasLineThree)
+            {
+                NumberOfLines++;
+            }
 
             TitleClass = (NumberOfLines == 1) ? "" : "mdc-list-item__primary-text";
             LineTwoClass = "mdc-list-item__secondary-text mb-full-width";
@@ -199,22 +205,34 @@ namespace Material.Blazor
 
         private async Task OnItemClickAsync(int index)
         {
-            if (KeyboardInteractions && !AppliedDisabled) await OnClick.InvokeAsync(index);
+            if (KeyboardInteractions && !AppliedDisabled)
+            {
+                await OnClick.InvokeAsync(index);
+            }
         }
 
         private async Task OnItemMouseDownAsync(int index)
         {
-            if (KeyboardInteractions && !AppliedDisabled) await OnMouseDown.InvokeAsync(index);
+            if (KeyboardInteractions && !AppliedDisabled)
+            {
+                await OnMouseDown.InvokeAsync(index);
+            }
         }
 
         private async Task OnItemKeyDownAsync(int index)
         {
-            if (KeyboardInteractions && !AppliedDisabled) await OnKeyDown.InvokeAsync(index);
+            if (KeyboardInteractions && !AppliedDisabled)
+            {
+                await OnKeyDown.InvokeAsync(index);
+            }
         }
 
         private async Task OnItemTouchStartAsync(int index)
         {
-            if (KeyboardInteractions && !AppliedDisabled) await OnTouchStart.InvokeAsync(index);
+            if (KeyboardInteractions && !AppliedDisabled)
+            {
+                await OnTouchStart.InvokeAsync(index);
+            }
         }
 
 
@@ -228,9 +246,5 @@ namespace Material.Blazor
 
         /// <inheritdoc/>
         private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBList.init", ElementReference, KeyboardInteractions && !AppliedDisabled, Ripple);
-
-
-        /// <inheritdoc/>
-        private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBList.destroy", ElementReference);
     }
 }
