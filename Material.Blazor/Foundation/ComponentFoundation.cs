@@ -13,9 +13,14 @@ namespace Material.Blazor.Internal
     /// </summary>
     public abstract class ComponentFoundation : ComponentBase, IDisposable
     {
-        private static readonly ImmutableArray<string> ReservedAttributes = ImmutableArray.Create("disabled");
-        private static readonly ImmutableArray<string> EventAttributeNames = ImmutableArray.Create("onfocus", "onblur", "onfocusin", "onfocusout", "onmouseover", "onmouseout", "onmousemove", "onmousedown", "onmouseup", "onclick", "ondblclick", "onwheel", "onmousewheel", "oncontextmenu", "ondrag", "ondragend", "ondragenter", "ondragleave", "ondragover", "ondragstart", "ondrop", "onkeydown", "onkeyup", "onkeypress", "onchange", "oninput", "oninvalid", "onreset", "onselect", "onselectstart", "onselectionchange", "onsubmit", "onbeforecopy", "onbeforecut", "onbeforepaste", "oncopy", "oncut", "onpaste", "ontouchcancel", "ontouchend", "ontouchmove", "ontouchstart", "ontouchenter", "ontouchleave", "ongotpointercapture", "onlostpointercapture", "onpointercancel", "onpointerdown", "onpointerenter", "onpointerleave", "onpointermove", "onpointerout", "onpointerover", "onpointerup", "oncanplay", "oncanplaythrough", "oncuechange", "ondurationchange", "onemptied", "onpause", "onplay", "onplaying", "onratechange", "onseeked", "onseeking", "onstalled", "onstop", "onsuspend", "ontimeupdate", "onvolumechange", "onwaiting", "onloadstart", "ontimeout", "onabort", "onload", "onloadend", "onprogress", "onerror", "onactivate", "onbeforeactivate", "onbeforedeactivate", "ondeactivate", "onended", "onfullscreenchange", "onfullscreenerror", "onloadeddata", "onloadedmetadata", "onpointerlockchange", "onpointerlockerror", "onreadystatechange", "onscroll");
-        private static readonly ImmutableArray<string> AriaAttributeNames = ImmutableArray.Create("aria-activedescendant", "aria-atomic", "aria-autocomplete", "aria-busy", "aria-checked", "aria-controls", "aria-describedat", "aria-describedby", "aria-disabled", "aria-dropeffect", "aria-expanded", "aria-flowto", "aria-grabbed", "aria-haspopup", "aria-hidden", "aria-invalid", "aria-label", "aria-labelledby", "aria-level", "aria-live", "aria-multiline", "aria-multiselectable", "aria-orientation", "aria-owns", "aria-posinset", "aria-pressed", "aria-readonly", "aria-relevant", "aria-required", "aria-selected", "aria-setsize", "aria-sort", "aria-valuemax", "aria-valuemin", "aria-valuenow", "aria-valuetext");
+        /// <summary>
+        /// A list of unmatched attributes that are used by and therefore essential for Material.Blazor. Works with 
+        /// <see cref="ConstrainSplattableAttributes"/> and <see cref="AllowedSplattableAttributes"/>.
+        /// </summary>
+        /// <remarks>
+        /// Includes "formnovalidate", "max", "min", "role", "step", "tabindex", "type", "data-prev-page" 
+        /// </remarks>
+        private static readonly ImmutableArray<string> EssentialSplattableAttributes = ImmutableArray.Create("formnovalidate", "max", "min", "role", "step", "tabindex", "type", "data-prev-page");
         private bool? disabled = null;
 
         [Inject] private protected IBatchingJSRuntime JsRuntime { get; set; }
@@ -178,7 +183,7 @@ namespace Material.Blazor.Internal
         {
             foreach (var attribute in UnmatchedAttributes ?? new Dictionary<string, object>())
             {
-                if (EventAttributeNames.Contains(attribute.Key))
+                if (attribute.Key.StartsWith("on")) // this is only a heuristic, as it's not technically guaranteed that all attributes that are non-event do not start with "on". However, it is impossible to list all event names, as with .net 6, the list of event names is not limited anymore.
                 {
                     continue;
                 }
@@ -198,7 +203,7 @@ namespace Material.Blazor.Internal
         internal IEnumerable<KeyValuePair<string, object>> EventAttributesToSplat()
         {
             return UnmatchedAttributes ?? new Dictionary<string, object>()
-                .Where(kvp => EventAttributeNames.Contains(kvp.Key));
+                .Where(kvp => kvp.Key.StartsWith("on")); // this is only a heuristic, as it's not technically guaranteed that all attributes that are non-event do not start with "on". However, it is impossible to list all event names, as with .net 6, the list of event names is not limited anymore.
         }
 
 
@@ -233,33 +238,31 @@ namespace Material.Blazor.Internal
                 return;
             }
 
-            var reserved = UnmatchedAttributes.Keys.Intersect(ReservedAttributes);
-
-            if (reserved.Any())
+            if (UnmatchedAttributes.Keys.Contains("disabled"))
             {
                 throw new ArgumentException(
-                    $"Material.Blazor: You cannot use {string.Join(", ", reserved.Select(x => $"'{x}'"))} attributes in {Utilities.GetTypeName(GetType())}. Material.Blazor reserves the 'display' HTML attributes for internal use; use the 'Display' parameter instead");
+                    $"Material.Blazor: You cannot use 'disabled' attribute in {Utilities.GetTypeName(GetType())}. Material.Blazor reserves the disabled attribute for internal use; use the 'Disabled' parameter instead");
+            }
+
+            if (!CascadingDefaults.ConstrainSplattableAttributes)
+            {
+                // nothing to check, as the ConstrainSplattableAttributes feature is disabled.
+                return;
             }
 
             var forbidden =
-                    UnmatchedAttributes
-                        .Select(kvp => kvp.Key)
-                        .Except(EventAttributeNames)
-                        .Except(AriaAttributeNames)
-                        .Except(CascadingDefaults.AppliedAllowedSplattableAttributes);
+                UnmatchedAttributes.Keys
+                    .Where(n => !n.StartsWith("on"))         // heuristic: filter event attributes. Unlikely that other attributes will start with "on" as well.
+                    .Where(n => !n.StartsWith("aria-"))      // heuristic: filter aria attributes. Unlikely that other attributes will start with "aria-" as well.
+                    .Where(n => !n.StartsWith("__internal")) // heuristic: filter .NET __internal_stopPropagation_onclick and similar generated attribute names.
+                    .Except(EssentialSplattableAttributes)   // filter common attribute names
+                    .Except(CascadingDefaults.AllowedSplattableAttributes, StringComparer.InvariantCultureIgnoreCase); // filter user-specified attribute names, ignoring case
 
             if (forbidden.Any())
             {
-                var message = $"You cannot use {string.Join(", ", forbidden.Select(x => $"'{x}'"))} attributes in {Utilities.GetTypeName(GetType())}. Either remove the attribute or change 'ConstrainSplattableAttributes' or 'AllowedSplattableAttributes' in your MBCascadingDefaults";
+                var message = $"You cannot use {string.Join(", ", forbidden.Select(x => $"'{x}'"))} attribute(s) in {Utilities.GetTypeName(GetType())}. Either remove the attribute or change 'ConstrainSplattableAttributes' or 'AllowedSplattableAttributes' in your MBCascadingDefaults";
 
-                if (CascadingDefaults.ConstrainSplattableAttributes)
-                {
-                    throw new ArgumentException($"Material.Blazor: {message}");
-                }
-                else
-                {
-                    LogMBWarning(message);
-                }
+                throw new ArgumentException($"Material.Blazor: {message}");
             }
         }
 
