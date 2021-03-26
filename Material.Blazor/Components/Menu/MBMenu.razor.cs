@@ -62,8 +62,7 @@ namespace Material.Blazor
         /// <summary>
         /// For Material Theme to notify of menu closure via JS Interop.
         /// </summary>
-        [JSInvokable("NotifyClosedAsync")]
-        //[System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "<Pending>")]
+        [JSInvokable]
         public async Task NotifyClosedAsync()
         {
             IsOpen = false;

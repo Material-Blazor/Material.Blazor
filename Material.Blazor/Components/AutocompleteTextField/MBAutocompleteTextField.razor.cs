@@ -308,7 +308,7 @@ namespace Material.Blazor
         /// For Material Theme to notify when the drop down is closed via JS Interop.
         /// </summary>
         /// <returns></returns>
-        [JSInvokable("NotifyClosedAsync")]
+        [JSInvokable]
         public async Task NotifyClosedAsync()
         {
             IsOpen = false;
@@ -331,7 +331,7 @@ namespace Material.Blazor
         /// For Material Theme to notify of menu item selection via JS Interop.
         /// </summary>
         /// <returns></returns>
-        [JSInvokable("NotifySelectedAsync")]
+        [JSInvokable]
         public async Task NotifySelectedAsync(string value)
         {
             ComponentValue = value;

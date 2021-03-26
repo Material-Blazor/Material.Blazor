@@ -198,7 +198,7 @@ namespace Material.Blazor
         }
 
 
-        [JSInvokable("NotifyOpenedAsync")]
+        [JSInvokable]
         public async Task NotifyOpenedAsync()
         {
             AfterDialogInitialization = true;
@@ -206,7 +206,7 @@ namespace Material.Blazor
             await Task.CompletedTask;
         }
 
-        [JSInvokable("NotifyClosed")]
+        [JSInvokable]
         public void NotifyClosed(string reason)
         {
             Tcs?.SetResult(reason);

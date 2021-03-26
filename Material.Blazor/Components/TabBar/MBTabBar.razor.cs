@@ -116,7 +116,7 @@ namespace Material.Blazor
         /// For Material Theme to notify when a tab is clicked via JS Interop.
         /// </summary>
         /// <returns></returns>
-        [JSInvokable("NotifyActivatedAsync")]
+        [JSInvokable]
         public async Task NotifyActivatedAsync(int index)
         {
             ComponentValue = index;
