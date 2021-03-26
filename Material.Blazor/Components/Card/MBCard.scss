@@ -15,6 +15,15 @@
     margin: 0
 }
 
+.mb-card__secondary, .mb-card__subtitle {
+    color: rgba(0,0,0,.54);
+    color: var(--mdc-theme-text-secondary-on-background,rgba(0,0,0,.54))
+}
+
+.mb-card__secondary {
+    padding: 0 1rem 8px
+}
+
 .mb-card__media.mdc-card__media--square {
     width: 110px
 }
