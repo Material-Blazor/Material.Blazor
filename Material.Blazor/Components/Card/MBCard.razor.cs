@@ -104,15 +104,5 @@ namespace Material.Blazor
                 await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBCard.init", PrimaryActionReference);
             }
         }
-
-
-        /// <inheritdoc/>
-        private protected override async Task DestroyMcwComponent()
-        {
-            if (PrimaryAction != null)
-            {
-                //await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBCard.destroy", PrimaryActionReference);
-            }
-        }
     }
 }

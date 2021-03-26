@@ -171,9 +171,5 @@ namespace Material.Blazor
 
         /// <inheritdoc/>
         private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSlider.init", ElementReference, ObjectReference, EventType, ContinuousInputDelay);
-
-
-        /// <inheritdoc/>
-        private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSlider.destroy", ElementReference);
     }
 }

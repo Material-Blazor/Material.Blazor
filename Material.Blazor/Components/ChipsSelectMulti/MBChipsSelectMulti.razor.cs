@@ -143,10 +143,6 @@ namespace Material.Blazor
         private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBChipsSelectMulti.init", ChipsReference, IsSingleSelect, ObjectReference);
 
 
-        /// <inheritdoc/>
-        private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBChipsSelectMulti.destroy", ChipsReference);
-
-
         /// <summary>
         /// Used by <see cref="MBSegmentedButtonSingle{TItem}"/> to set the value.
         /// </summary>

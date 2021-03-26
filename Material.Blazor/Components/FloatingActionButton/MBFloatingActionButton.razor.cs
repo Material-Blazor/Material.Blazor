@@ -93,9 +93,5 @@ namespace Material.Blazor
 
         /// <inheritdoc/>
         private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBFloatingActionButton.init", ElementReference, Exited);
-
-
-        /// <inheritdoc/>
-        private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBFloatingActionButton.destroy", ElementReference);
     }
 }

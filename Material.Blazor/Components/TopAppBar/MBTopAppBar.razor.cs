@@ -73,9 +73,5 @@ namespace Material.Blazor
 
         /// <inheritdoc/>
         private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTopAppBar.init", HeaderElem, ScrollTarget);
-
-
-        /// <inheritdoc/>
-        private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTopAppBar.destroy", HeaderElem);
     }
 }

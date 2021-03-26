@@ -145,9 +145,5 @@ namespace Material.Blazor
 
         /// <inheritdoc/>
         private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTabBar.init", ElementReference, ObjectReference).ConfigureAwait(false);
-
-
-        /// <inheritdoc/>
-        private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTabBar.destroy", ElementReference).ConfigureAwait(false);
     }
 }

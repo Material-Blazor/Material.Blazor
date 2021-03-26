@@ -97,10 +97,6 @@ namespace Material.Blazor
         private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBMenu.init", ElementReference, ObjectReference);
 
 
-        /// <inheritdoc/>
-        private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBMenu.destroy", ElementReference);
-
-
         /// <summary>
         /// Returns a menu surface class determined by the parameter.
         /// </summary>

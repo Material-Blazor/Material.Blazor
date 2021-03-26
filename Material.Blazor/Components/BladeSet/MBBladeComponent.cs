@@ -39,7 +39,7 @@ namespace Material.Blazor
         public async Task CloseBladeAsync()
         {
             IsOpen = false;
-            await BladeSet.RemoveBladeAsync(BladeReference).ConfigureAwait(false);
+            await BladeSet.RemoveBladeAsync(BladeReference);
         }
     }
 }

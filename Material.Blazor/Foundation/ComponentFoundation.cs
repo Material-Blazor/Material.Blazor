@@ -123,12 +123,6 @@ namespace Material.Blazor.Internal
         private protected virtual async Task InstantiateMcwComponent() => await Task.CompletedTask;
 
 
-        /// <summary>
-        /// Components should override this with a function to be called when Material.Blazor wants to run Material Components Web instantiation via JS Interop - always gets called from <see cref="OnAfterRenderAsync()"/>, which should not be overridden.
-        /// </summary>
-        private protected virtual async Task DestroyMcwComponent() => await Task.CompletedTask;
-
-
         private bool _disposed;
         protected virtual async ValueTask DisposeAsync(bool disposing)
         {
@@ -136,11 +130,6 @@ namespace Material.Blazor.Internal
             {
                 return;
             }
-
-            //if (HasInstantiated)
-            //{
-            //    await DestroyMcwComponent();
-            //}
 
             if (disposing && !string.IsNullOrWhiteSpace(Tooltip))
             {
@@ -150,6 +139,7 @@ namespace Material.Blazor.Internal
             // TODO: free unmanaged resources (unmanaged objects) and override finalizer
             // TODO: set large fields to null
             _disposed = true;
+            await Task.CompletedTask;
         }
 
 

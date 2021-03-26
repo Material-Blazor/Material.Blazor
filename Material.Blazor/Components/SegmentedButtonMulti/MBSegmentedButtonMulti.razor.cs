@@ -131,10 +131,6 @@ namespace Material.Blazor
         private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSegmentedButtonMulti.init", SegmentedButtonReference, IsSingleSelect, ObjectReference);
 
 
-        /// <inheritdoc/>
-        private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSegmentedButtonMulti.destroy", SegmentedButtonReference);
-
-
         /// <summary>
         /// Used by <see cref="MBSegmentedButtonSingle{TItem}"/> to set the value.
         /// </summary>
