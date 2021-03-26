@@ -438,7 +438,7 @@ namespace Material.Blazor.Internal
         protected void LogMBDebug(EventId eventId, string message, params object[] args) => Logger.LogDebug(eventId, $"MATERIAL.BLAZOR DEBUG - {message}", args);
 #else
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
-        protected void LogMBDebug(EventId eventId, string message, params object[] args) {}
+        protected void LogMBDebug(EventId eventId, string message, params object[] args) { }
 #endif
 
 
@@ -466,7 +466,7 @@ namespace Material.Blazor.Internal
         protected void LogMBDebug(string message, params object[] args) => Logger.LogDebug($"MATERIAL.BLAZOR DEBUG - {message}", args);
 #else
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
-        protected void LogMBDebug(string message, params object[] args) {}
+        protected void LogMBDebug(string message, params object[] args) { }
 #endif
 
 
@@ -494,7 +494,7 @@ namespace Material.Blazor.Internal
         protected void LogMBDebugVerbose(EventId eventId, string message, params object[] args) => Logger.LogDebug(eventId, $"MATERIAL.BLAZOR DEBUG - {message}", args);
 #else
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
-        protected void LogMBDebugVerbose(EventId eventId, string message, params object[] args) {}
+        protected void LogMBDebugVerbose(EventId eventId, string message, params object[] args) { }
 #endif
 
 
@@ -522,7 +522,7 @@ namespace Material.Blazor.Internal
         protected void LogMBDebugVerbose(string message, params object[] args) => Logger.LogDebug($"MATERIAL.BLAZOR DEBUG - {message}", args);
 #else
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
-        protected void LogMBDebugVerbose(string message, params object[] args) {}
+        protected void LogMBDebugVerbose(string message, params object[] args) { }
 #endif
 
 
