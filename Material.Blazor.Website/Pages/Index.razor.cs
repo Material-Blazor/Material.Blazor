@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Runtime.InteropServices;
-using System.Threading.Tasks;
 
 namespace Material.Blazor.Website.Pages
 {

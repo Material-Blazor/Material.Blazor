@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Material.Blazor
+﻿namespace Material.Blazor
 {
     /// <summary>
     /// Material Icons foundry details.
