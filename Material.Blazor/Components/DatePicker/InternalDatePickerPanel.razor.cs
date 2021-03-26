@@ -104,9 +104,6 @@ namespace Material.Blazor.Internal
         {
             await base.OnInitializedAsync();
 
-            ClassMapperInstance
-                .Add("mdc-typography--body2 mb-dp-container");
-
             DaysOfWeek = CultureInfo.CurrentCulture.DateTimeFormat.AbbreviatedDayNames.Select(d => d[0..1]).ToArray();
             var rotate_by = (int)CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
             if (rotate_by > 0)

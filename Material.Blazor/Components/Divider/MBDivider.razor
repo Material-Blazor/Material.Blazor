@@ -2,5 +2,8 @@
 @inherits ComponentFoundation
 
 
-<hr @attributes="@AttributesToSplat()"
+<hr class="mdc-list-divider @ActiveConditionalClasses @(@class)"
+    style="@style"
+    id="@id"
+    @attributes="@AttributesToSplat()"
     role="separator" />

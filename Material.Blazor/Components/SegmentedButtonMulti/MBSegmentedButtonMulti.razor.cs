@@ -34,8 +34,7 @@ namespace Material.Blazor
 
             IsSingleSelect = SegmentedButtonSingle != null;
 
-            ClassMapperInstance
-                .Add("mdc-segmented-button")
+            ConditionalCssClasses
                 .AddIf("mdc-segmented-button--single-select", () => IsSingleSelect);
 
             ItemsArray = Items.ToArray();

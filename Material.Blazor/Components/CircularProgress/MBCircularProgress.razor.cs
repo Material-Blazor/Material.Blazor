@@ -67,6 +67,8 @@ namespace Material.Blazor
         };
 
 
+        private string SizeStyle { get; set; }
+
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override async Task OnInitializedAsync()
         {
@@ -75,18 +77,17 @@ namespace Material.Blazor
             ForceShouldRenderToTrue = true;
             IntialValue = Value;
 
-            ClassMapperInstance
-                .Add("mdc-circular-progress")
-                .AddIf("mdc-circular-progress--small", () => CircularProgressSize == MBCircularProgressSize.Small)
-                .AddIf("mdc-circular-progress--medium", () => CircularProgressSize == MBCircularProgressSize.Medium)
-                .AddIf("mdc-circular-progress--large", () => CircularProgressSize == MBCircularProgressSize.Large)
+            SizeStyle = CircularProgressSize switch
+            {
+                MBCircularProgressSize.Small => "height: 24px; width: 24px;",
+                MBCircularProgressSize.Medium => "height: 36px; width: 36px;",
+                MBCircularProgressSize.Large => "height: 48px; width: 48px;",
+                _ => ""
+            };
+
+            ConditionalCssClasses
                 .AddIf("mdc-circular-progress--indeterminate", () => CircularProgressType == MBCircularProgressType.Indeterminate)
                 .AddIf("mdc-circular-progress--closed", () => CircularProgressType == MBCircularProgressType.Closed);
-
-            StyleMapperInstance
-                .AddIf("width:24px;height:24px;", () => CircularProgressSize == MBCircularProgressSize.Small)
-                .AddIf("width:36px;height:36px;", () => CircularProgressSize == MBCircularProgressSize.Medium)
-                .AddIf("width:48px;height:48px;", () => CircularProgressSize == MBCircularProgressSize.Large);
 
             SetComponentValue += OnValueSetCallback;
         }

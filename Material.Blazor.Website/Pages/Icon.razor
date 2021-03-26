@@ -24,22 +24,27 @@
 
                     <p>
                         <MBIcon IconName="access_alarms" />
+                        Material Icons (default foundry)
+                    </p>
+                    <p>
+                        <MBIcon IconFoundry="@MBIconHelper.MIFoundry(MBIconMITheme.TwoTone)"
+                                IconName="access_alarms" />
+                        Material Two-Tone Icons
                     </p>
                     <p>
                         <MBIcon IconFoundry="@MBIconHelper.FAFoundry()"
                                 IconName="fa-dog" />
+                        FontAwesome Foundry
                     </p>
                     <p>
-                        <MBIcon IconFoundry="@MBIconHelper.FAFoundry()"
+                        <MBIcon IconFoundry="@MBIconHelper.FAFoundry(relativeSize: MBIconFARelativeSize.FiveTimes)"
                                 IconName="fa-cat" />
-                    </p>
-                    <p>
-                        <MBIcon IconFoundry="@MBIconHelper.FAFoundry()"
-                                IconName="fa-horse" />
+                        FontAwesome Foundry with relativeSize: 5x
                     </p>
                     <p>
                         <MBIcon IconFoundry="@MBIconHelper.OIFoundry()"
                                 IconName="check" />
+                        Open Iconic foundry
                     </p>
                 </Primary>
             </MBCard>

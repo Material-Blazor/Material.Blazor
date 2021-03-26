@@ -6,6 +6,9 @@
 {
     <div class="mdc-touch-target-wrapper">
         <button @ref="@ElementReference"
+                class="mdc-fab @ActiveConditionalClasses @(@class)"
+                style="@style"
+                id="@id"
                 @attributes="@AttributesToSplat()">
 
             <div class="mdc-fab__ripple"></div>
@@ -19,6 +22,9 @@
 else
 {
     <button @ref="@ElementReference"
+            class="mdc-fab @ActiveConditionalClasses @(@class)"
+            style="@style"
+            id="@id"
             @attributes="@AttributesToSplat()">
 
         <div class="mdc-fab__ripple"></div>

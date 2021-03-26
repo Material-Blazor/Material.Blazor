@@ -4,7 +4,10 @@
 @typeparam TItem
 
 
-<div @attributes="@AttributesToSplat()">
+<div class="@ActiveConditionalClasses @(@class)"
+     style="@style"
+     id="@id"
+     @attributes="@AttributesToSplat()">
 
     @foreach (var item in Items)
     {

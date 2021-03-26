@@ -5,6 +5,9 @@
 
 
 <div @ref="ElementReference"
+     class="mdc-tab-bar @ActiveConditionalClasses @(@class)"
+     style="@style"
+     id="@id"
      @attributes="@AttributesToSplat()"
      role="tablist">
 
@@ -29,7 +32,7 @@
                         <span class="mdc-tab__content">
                             @if (Icon != null)
                             {
-                                <CascadingValue Value="@tabBarIdentifierObject" Name="@TabBarIdentifier" IsFixed="true">
+                                <CascadingValue Name="IsInsideMBTabBar" Value="true" IsFixed="true">
                                     @Icon(item)
                                 </CascadingValue>
                             }

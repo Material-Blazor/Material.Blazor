@@ -1,6 +1,7 @@
 ﻿using Material.Blazor.Internal;
 
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
 using System.Threading.Tasks;
 
 namespace Material.Blazor
@@ -11,9 +12,19 @@ namespace Material.Blazor
     /// library's CSS, while you can elect whether to include Font Awesome and Open Iconic
     /// in your app.
     /// </summary>
-    public partial class MBIcon : ComponentFoundation
+    public class MBIcon : ComponentFoundation
     {
-        [CascadingParameter(Name = MBTabBar<object>.TabBarIdentifier)] private object TabBarIdentifier { get; set; }
+        [CascadingParameter(Name = "IsInsideMBTabBar")] private bool IsInsideMBTabBar { get; set; }
+        protected override void BuildRenderTree(RenderTreeBuilder builder)
+        {
+            if (IconHelper == null)
+            {
+                return;
+            }
+            builder.AddContent(0, IconHelper.Render(@class: string.Join(" ", (IsInsideMBTabBar ? "mdc-tab__icon" : ""), @class), style: style, attributes: AttributesToSplat()));
+        }
+
+
 
 #nullable enable annotations
         /// <summary>
@@ -42,16 +53,6 @@ namespace Material.Blazor
             await base.OnParametersSetAsync();
 
             IconHelper = new MBIconHelper(CascadingDefaults, IconName, IconFoundry);
-            ComponentPureHtmlAttributes = IconHelper.Attributes;
-
-            //
-            // Has to be here, the string in Add/AddIf is evaluated only once at the
-            // time of the add.
-            //
-            ClassMapperInstance
-                .Clear()
-                .Add(IconHelper.Class)
-                .AddIf("mdc-tab__icon", () => TabBarIdentifier != null);
         }
     }
 }

@@ -2,8 +2,10 @@
 
 @inherits InputComponent<int>
 
-
-<MBNumericDecimalField @attributes="@AttributesToSplat()"
+<MBNumericDecimalField class="@(@class)"
+                       style="@style"
+                       id="@id"
+                       @attributes="@AttributesToSplat()"
                        @bind-Value="@DecimalValue"
                        DecimalPlaces="0"
                        Density="@Density"

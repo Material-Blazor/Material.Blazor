@@ -106,19 +106,13 @@ namespace Material.Blazor
         {
             await base.OnInitializedAsync();
 
-            ClassMapperInstance
-                .Add("mdc-text-field mdc-text-field--textarea")
+            ConditionalCssClasses
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
                 .AddIf("mdc-text-field--filled", () => AppliedInputStyle == MBTextInputStyle.Filled)
                 .AddIf("mdc-text-field--outlined", () => AppliedInputStyle == MBTextInputStyle.Outlined)
                 .AddIf("mdc-text-field--no-label", () => !ShowLabel)
                 .AddIf("mdc-text-field--disabled", () => AppliedDisabled);
-
-            if (!string.IsNullOrWhiteSpace(Label))
-            {
-                ComponentPureHtmlAttributes.Add("aria-label", Label);
-            }
 
             FloatingLabelClass = string.IsNullOrEmpty(ComponentValue) ? "" : "mdc-floating-label--float-above";
 

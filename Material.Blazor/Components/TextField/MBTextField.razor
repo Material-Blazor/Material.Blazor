@@ -4,7 +4,9 @@
 
 
 <label @ref="@ElementReference"
-       @attributes="@AttributesToSplat(SplatType.IdClassAndStyleOnly)">
+       class="mdc-text-field @ActiveConditionalClasses @(@class)"
+       style="@style"
+       id="@id">
 
     @if (AppliedInputStyle == MBTextInputStyle.Outlined)
     {
@@ -42,7 +44,11 @@
     }
 
     <input @ref="@InputReference"
-           @attributes="@AttributesToSplat(SplatType.ExcludeIdClassAndStyle)"
+           @attributes="@AttributesToSplat()"
+           aria-label="@Label"
+           aria-labelledby="@(Label == null ? null : labelId)"
+           aria-controls="@(HasHelperText ? helperTextId : null)"
+           aria-describedby="@(HasHelperText ? helperTextId : null)"
            id="@CrossReferenceId"
            class="mdc-text-field__input @AppliedTextInputStyleClass @FieldClass"
            @bind="@ComponentValue">

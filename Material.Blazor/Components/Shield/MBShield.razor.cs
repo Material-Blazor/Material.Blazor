@@ -81,9 +81,6 @@ namespace Material.Blazor
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-
-            ClassMapperInstance
-                .Add("mb-shield");
         }
     }
 }

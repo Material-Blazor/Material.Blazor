@@ -3,7 +3,10 @@
 
 
 <CascadingValue Value="@this" IsFixed="true">
-    <div @attributes="@AttributesToSplat(SplatType.ExcludeEvents)">
+    <div class="mdc-card @ActiveConditionalClasses @(@class)"
+         style="@style"
+         id="@id"
+         @attributes="@OtherAttributesToSplat()">
         <div class="mdc-card__content">
             @if (Primary != null)
             {
@@ -15,7 +18,7 @@
             @if (PrimaryAction != null)
             {
                 <div @ref="@PrimaryActionReference"
-                     @attributes="@AttributesToSplat(SplatType.EventsOnly)"
+                     @attributes="@EventAttributesToSplat()"
                      class="mdc-card__primary-action @PrimaryActionClass"
                      tabindex="@PrimaryActionTabIndex"
                      role="@PrimaryActionRole"
@@ -25,6 +28,7 @@
                     @PrimaryAction
                 </div>
             }
+
 
             @if (ActionButtons != null || ActionIcons != null)
             {

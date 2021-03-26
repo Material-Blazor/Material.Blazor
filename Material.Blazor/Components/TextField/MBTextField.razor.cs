@@ -148,8 +148,7 @@ namespace Material.Blazor
         {
             await base.OnInitializedAsync();
 
-            ClassMapperInstance
-                .Add("mdc-text-field")
+            ConditionalCssClasses
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf(FieldClass, () => !string.IsNullOrWhiteSpace(FieldClass))
                 .AddIf("mdc-text-field--filled", () => AppliedInputStyle == MBTextInputStyle.Filled)
@@ -158,18 +157,6 @@ namespace Material.Blazor
                 .AddIf("mdc-text-field--disabled", () => AppliedDisabled)
                 .AddIf("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
                 .AddIf("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
-
-            if (!string.IsNullOrWhiteSpace(Label))
-            {
-                ComponentPureHtmlAttributes.Add("aria-label", Label);
-                ComponentPureHtmlAttributes.Add("aria-labelledby", labelId);
-            }
-
-            if (HasHelperText)
-            {
-                ComponentPureHtmlAttributes.Add("aria-controls", helperTextId);
-                ComponentPureHtmlAttributes.Add("aria-describedby", helperTextId);
-            }
 
             FloatingLabelClass = string.IsNullOrEmpty(ComponentValue) ? "" : "mdc-floating-label--float-above";
 

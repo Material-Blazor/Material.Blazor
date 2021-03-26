@@ -7,6 +7,9 @@
 <div @ref="@FormReference" class="mdc-form-field">
 
     <div @ref="@RadioButtonReference" 
+         class="mdc-radio mdc-radio--touch @ActiveConditionalClasses @(@class)"
+         style="@style"
+         id="@id"
          @attributes="@AttributesToSplat()">
 
         <input class="mdc-radio__native-control"

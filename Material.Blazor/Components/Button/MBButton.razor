@@ -4,6 +4,9 @@
 
 <div class="mdc-touch-target-wrapper">
     <button @ref="@ElementReference"
+            class="mdc-button @ActiveConditionalClasses @(@class)"
+            style="@style"
+            id="@id"
             @attributes="@AttributesToSplat()"
             data-mdc-dialog-action="@DialogAction">
         <div class="mdc-button__ripple"></div>

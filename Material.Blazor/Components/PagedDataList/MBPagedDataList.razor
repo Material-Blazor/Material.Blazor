@@ -3,7 +3,10 @@
 @inherits ComponentFoundation
 
 
-<div @attributes="@AttributesToSplat()">
+<div class="@ActiveConditionalClasses @(@class)"
+     style="@style"
+     id="@id"
+     @attributes="@AttributesToSplat()">
 
     <div class="@ContentClass @ListTemplateClass">
         @ListTemplate(@:@{

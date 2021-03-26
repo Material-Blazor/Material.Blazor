@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,9 +13,9 @@ namespace Material.Blazor.Internal
     /// </summary>
     public abstract class ComponentFoundation : ComponentBase, IDisposable
     {
-        private readonly string[] ReservedAttributes = { "disabled" };
-        private readonly string[] EventAttributeNames = { "onfocus", "onblur", "onfocusin", "onfocusout", "onmouseover", "onmouseout", "onmousemove", "onmousedown", "onmouseup", "onclick", "ondblclick", "onwheel", "onmousewheel", "oncontextmenu", "ondrag", "ondragend", "ondragenter", "ondragleave", "ondragover", "ondragstart", "ondrop", "onkeydown", "onkeyup", "onkeypress", "onchange", "oninput", "oninvalid", "onreset", "onselect", "onselectstart", "onselectionchange", "onsubmit", "onbeforecopy", "onbeforecut", "onbeforepaste", "oncopy", "oncut", "onpaste", "ontouchcancel", "ontouchend", "ontouchmove", "ontouchstart", "ontouchenter", "ontouchleave", "ongotpointercapture", "onlostpointercapture", "onpointercancel", "onpointerdown", "onpointerenter", "onpointerleave", "onpointermove", "onpointerout", "onpointerover", "onpointerup", "oncanplay", "oncanplaythrough", "oncuechange", "ondurationchange", "onemptied", "onpause", "onplay", "onplaying", "onratechange", "onseeked", "onseeking", "onstalled", "onstop", "onsuspend", "ontimeupdate", "onvolumechange", "onwaiting", "onloadstart", "ontimeout", "onabort", "onload", "onloadend", "onprogress", "onerror", "onactivate", "onbeforeactivate", "onbeforedeactivate", "ondeactivate", "onended", "onfullscreenchange", "onfullscreenerror", "onloadeddata", "onloadedmetadata", "onpointerlockchange", "onpointerlockerror", "onreadystatechange", "onscroll" };
-        private readonly string[] AriaAttributeNames = { "aria-activedescendant", "aria-atomic", "aria-autocomplete", "aria-busy", "aria-checked", "aria-controls", "aria-describedat", "aria-describedby", "aria-disabled", "aria-dropeffect", "aria-expanded", "aria-flowto", "aria-grabbed", "aria-haspopup", "aria-hidden", "aria-invalid", "aria-label", "aria-labelledby", "aria-level", "aria-live", "aria-multiline", "aria-multiselectable", "aria-orientation", "aria-owns", "aria-posinset", "aria-pressed", "aria-readonly", "aria-relevant", "aria-required", "aria-selected", "aria-setsize", "aria-sort", "aria-valuemax", "aria-valuemin", "aria-valuenow", "aria-valuetext" };
+        private static readonly ImmutableArray<string> ReservedAttributes = ImmutableArray.Create("disabled");
+        private static readonly ImmutableArray<string> EventAttributeNames = ImmutableArray.Create("onfocus", "onblur", "onfocusin", "onfocusout", "onmouseover", "onmouseout", "onmousemove", "onmousedown", "onmouseup", "onclick", "ondblclick", "onwheel", "onmousewheel", "oncontextmenu", "ondrag", "ondragend", "ondragenter", "ondragleave", "ondragover", "ondragstart", "ondrop", "onkeydown", "onkeyup", "onkeypress", "onchange", "oninput", "oninvalid", "onreset", "onselect", "onselectstart", "onselectionchange", "onsubmit", "onbeforecopy", "onbeforecut", "onbeforepaste", "oncopy", "oncut", "onpaste", "ontouchcancel", "ontouchend", "ontouchmove", "ontouchstart", "ontouchenter", "ontouchleave", "ongotpointercapture", "onlostpointercapture", "onpointercancel", "onpointerdown", "onpointerenter", "onpointerleave", "onpointermove", "onpointerout", "onpointerover", "onpointerup", "oncanplay", "oncanplaythrough", "oncuechange", "ondurationchange", "onemptied", "onpause", "onplay", "onplaying", "onratechange", "onseeked", "onseeking", "onstalled", "onstop", "onsuspend", "ontimeupdate", "onvolumechange", "onwaiting", "onloadstart", "ontimeout", "onabort", "onload", "onloadend", "onprogress", "onerror", "onactivate", "onbeforeactivate", "onbeforedeactivate", "ondeactivate", "onended", "onfullscreenchange", "onfullscreenerror", "onloadeddata", "onloadedmetadata", "onpointerlockchange", "onpointerlockerror", "onreadystatechange", "onscroll");
+        private static readonly ImmutableArray<string> AriaAttributeNames = ImmutableArray.Create("aria-activedescendant", "aria-atomic", "aria-autocomplete", "aria-busy", "aria-checked", "aria-controls", "aria-describedat", "aria-describedby", "aria-disabled", "aria-dropeffect", "aria-expanded", "aria-flowto", "aria-grabbed", "aria-haspopup", "aria-hidden", "aria-invalid", "aria-label", "aria-labelledby", "aria-level", "aria-live", "aria-multiline", "aria-multiselectable", "aria-orientation", "aria-owns", "aria-posinset", "aria-pressed", "aria-readonly", "aria-relevant", "aria-required", "aria-selected", "aria-setsize", "aria-sort", "aria-valuemax", "aria-valuemin", "aria-valuenow", "aria-valuetext");
         private bool? disabled = null;
 
         [Inject] private protected IBatchingJSRuntime JsRuntime { get; set; }
@@ -29,8 +30,6 @@ namespace Material.Blazor.Internal
         /// Gets or sets a collection of additional attributes that will be applied to the created element.
         /// </summary>
         [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object> UnmatchedAttributes { get; set; }
-
-
 
 
         /// <summary>
@@ -56,6 +55,33 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
+        /// The HTML id attribute is used to specify a unique id for an HTML element.
+        ///
+        /// You cannot have more than one element with the same id in an HTML document.
+        /// </summary>
+#pragma warning disable IDE1006 // Naming Styles
+        [Parameter] public string id { get; set; }
+#pragma warning restore IDE1006 // Naming Styles
+
+
+        /// <summary>
+        /// Additional CSS classes for the component.
+        /// </summary>
+#pragma warning disable IDE1006 // Naming Styles
+        [Parameter] public string @class { get; set; }
+#pragma warning restore IDE1006 // Naming Styles
+        protected string ActiveConditionalClasses => ConditionalCssClasses.ToString();
+
+
+        /// <summary>
+        /// Additional CSS style for the component.
+        /// </summary>
+#pragma warning disable IDE1006 // Naming Styles
+        [Parameter] public string style { get; set; }
+#pragma warning restore IDE1006 // Naming Styles
+
+
+        /// <summary>
         /// A markup capable tooltip.
         /// </summary>
         [Parameter] public string Tooltip { get; set; }
@@ -71,12 +97,6 @@ namespace Material.Blazor.Internal
         /// Tooltip id for aria-describedby attribute.
         /// </summary>
         private Guid TooltipId { get; set; } = Guid.NewGuid();
-
-
-        /// <summary>
-        /// Attributes for splatting to be set by a component's OnInitialized() function.
-        /// </summary>
-        private protected IDictionary<string, object> ComponentSetAttributes { get; set; } = new Dictionary<string, object>();
 
 
         /// <summary>
@@ -99,21 +119,9 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// Attributes That the component can elect to set for inclusion in SplatAttributes.
-        /// </summary>
-        private protected IDictionary<string, object> ComponentPureHtmlAttributes { get; set; } = new Dictionary<string, object>(StringComparer.CurrentCultureIgnoreCase);
-
-
-        /// <summary>
         /// Allows a component to build or map out a group of CSS classes to be applied to the component. Use this in <see cref="OnInitialialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
         /// </summary>
-        private protected ClassMapper ClassMapperInstance { get; } = new ClassMapper();
-
-
-        /// <summary>
-        /// Allows a component to build or map out a group of HTML styles to be applied to the component. Use this in <see cref="OnInitialialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
-        /// </summary>
-        private protected StyleMapper StyleMapperInstance { get; } = new StyleMapper();
+        private protected ConditionalCssClasses ConditionalCssClasses { get; } = new ConditionalCssClasses();
 
 
         /// <summary>
@@ -135,8 +143,6 @@ namespace Material.Blazor.Internal
                 TooltipService.RemoveTooltip(TooltipId);
             }
 
-            // TODO: free unmanaged resources (unmanaged objects) and override finalizer
-            // TODO: set large fields to null
             _disposed = true;
         }
 
@@ -149,147 +155,50 @@ namespace Material.Blazor.Internal
         }
 
 
-
-        private readonly string[] stylisticAttributes = { "id", "class", "style" };
         /// <summary>
-        /// Attributes ready for splatting in components. Guaranteed not null, unlike UnmatchedAttributes. Default parameter is <see cref="SplatType.All".
+        /// Attributes ready for splatting in components. Guaranteed not null, unlike UnmatchedAttributes.
         /// </summary>
-        internal IReadOnlyDictionary<string, object> AttributesToSplat(SplatType splatType = SplatType.All)
+        internal IEnumerable<KeyValuePair<string, object>> AttributesToSplat()
         {
-            var allAttributes = new Dictionary<string, object>(ComponentPureHtmlAttributes);
-            var idClassAndStyle = new Dictionary<string, object>();
-            var htmlAttributes = new Dictionary<string, object>(ComponentPureHtmlAttributes);
-            var eventAttributes = new Dictionary<string, object>();
-            var requiredAttributes = new Dictionary<string, object>();
+            foreach (var attribute in UnmatchedAttributes ?? new Dictionary<string, object>())
+            {
+                yield return attribute;
+            }
 
-            var unmatchedId = (UnmatchedAttributes?.FirstOrDefault(a => a.Key == "id").Value ?? "").ToString();
-            var unmatchedClass = (UnmatchedAttributes?.FirstOrDefault(a => a.Key == "class").Value ?? "").ToString();
-            var unmatchedStyle = (UnmatchedAttributes?.FirstOrDefault(a => a.Key == "style").Value ?? "").ToString();
-            var nonStylisticAttributes = new Dictionary<string, object>(UnmatchedAttributes?.Where(a => !stylisticAttributes.Contains(a.Key.ToLower())) ?? new Dictionary<string, object>());
-
-            // merge ComponentSetAttributes into the dictionary
-            nonStylisticAttributes = nonStylisticAttributes.Union(ComponentSetAttributes)
-                    .GroupBy(g => g.Key)
-                    .ToDictionary(pair => pair.Key, pair => pair.First().Value);
-
+            if (AppliedDisabled)
+            {
+                yield return new KeyValuePair<string, object>("disabled", AppliedDisabled);
+            }
             if (!string.IsNullOrWhiteSpace(Tooltip))
             {
-                nonStylisticAttributes.Add("aria-describedby", TooltipId.ToString());
+                yield return new KeyValuePair<string, object>("aria-describedby", TooltipId.ToString());
             }
-
-            if (splatType != SplatType.IdClassAndStyleOnly)
+        }
+        internal IEnumerable<KeyValuePair<string, object>> OtherAttributesToSplat()
+        {
+            foreach (var attribute in UnmatchedAttributes ?? new Dictionary<string, object>())
             {
-                allAttributes = allAttributes.Union(nonStylisticAttributes)
-                    .GroupBy(g => g.Key)
-                    .ToDictionary(pair => pair.Key, pair => pair.First().Value);
-
-                if (AppliedDisabled)
+                if (EventAttributeNames.Contains(attribute.Key))
                 {
-                    allAttributes.Add("disabled", AppliedDisabled);
+                    continue;
                 }
-
-                if (splatType == SplatType.ExcludeIdClassAndStyle)
-                {
-                    return allAttributes;
-                }
-
-                htmlAttributes = allAttributes
-                                    .Where(kvp => !EventAttributeNames.Contains(kvp.Key))
-                                    .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-
-                if (splatType == SplatType.HtmlExcludingIdClassAndStyle)
-                {
-                    return htmlAttributes;
-                }
-
-                eventAttributes = allAttributes
-                                    .Where(kvp => EventAttributeNames.Contains(kvp.Key))
-                                    .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-
-                if (splatType == SplatType.EventsOnly)
-                {
-                    return eventAttributes;
-                }
+                yield return attribute;
             }
 
-            var classString = (ClassMapperInstance.ToString() + " " + unmatchedClass).Trim();
-            var styleString = (StyleMapperInstance.ToString() + " " + unmatchedStyle).Trim();
-
-            if (!string.IsNullOrWhiteSpace(unmatchedId))
+            if (AppliedDisabled)
             {
-                idClassAndStyle.Add("id", unmatchedId);
+                yield return new KeyValuePair<string, object>("disabled", AppliedDisabled);
             }
-
-            if (!string.IsNullOrWhiteSpace(classString))
+            if (!string.IsNullOrWhiteSpace(Tooltip))
             {
-                idClassAndStyle.Add("class", classString);
+                yield return new KeyValuePair<string, object>("aria-describedby", TooltipId.ToString());
             }
+        }
 
-            if (!string.IsNullOrWhiteSpace(styleString))
-            {
-                idClassAndStyle.Add("style", styleString);
-            }
-
-            foreach (var item in idClassAndStyle)
-            {
-                if (allAttributes.ContainsKey(item.Key))
-                {
-                    allAttributes[item.Key] += " " + item.Value;
-                }
-                else
-                {
-                    allAttributes.Add(item.Key, item.Value);
-                }
-            }
-
-            if (splatType == SplatType.IdClassAndStyleOnly)
-            {
-                return idClassAndStyle;
-            }
-            else if (splatType == SplatType.All)
-            {
-                return allAttributes;
-            }
-
-            if ((ushort)(splatType & SplatType.IdClassAndStyleOnly) > 0)
-            {
-                foreach (var item in idClassAndStyle)
-                {
-                    if (requiredAttributes.ContainsKey(item.Key))
-                    {
-                        requiredAttributes[item.Key] += " " + item.Value;
-                    }
-                    else
-                    {
-                        requiredAttributes.Add(item.Key, item.Value);
-                    }
-                }
-            }
-
-            if ((ushort)(splatType & SplatType.HtmlExcludingIdClassAndStyle) > 0)
-            {
-                foreach (var item in htmlAttributes)
-                {
-                    if (requiredAttributes.ContainsKey(item.Key))
-                    {
-                        requiredAttributes[item.Key] += " " + item.Value;
-                    }
-                    else
-                    {
-                        requiredAttributes.Add(item.Key, item.Value);
-                    }
-                }
-            }
-
-            if ((ushort)(splatType & SplatType.EventsOnly) > 0)
-            {
-                foreach (var item in eventAttributes)
-                {
-                    requiredAttributes.Add(item.Key, item.Value);
-                }
-            }
-
-            return requiredAttributes;
+        internal IEnumerable<KeyValuePair<string, object>> EventAttributesToSplat()
+        {
+            return UnmatchedAttributes ?? new Dictionary<string, object>()
+                .Where(kvp => EventAttributeNames.Contains(kvp.Key));
         }
 
 

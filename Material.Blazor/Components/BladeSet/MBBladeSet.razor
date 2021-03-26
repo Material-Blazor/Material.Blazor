@@ -3,16 +3,17 @@
 
 <CascadingValue Value="@this" IsFixed="true">
     <mb-bladeset>
-        <mb-bladeset-main-content @attributes="@MainContentAttributes">
+        <mb-bladeset-main-content class="@MainContentAdditionalCss" style="@MainContentAdditionalStyles">
             @PageContent
         </mb-bladeset-main-content>
 
         @if (Blades.Any())
         {
-            <mb-blades @attributes="@BladesAttributes">
+            <mb-blades class="@BladesAdditionalCss" style="@BladesAdditionalStyles">
                 @foreach (var bladeInfo in Blades.Values.OrderBy(b => b.Created))
                 {
-                    <mb-blade @attributes="@bladeInfo.Attributes"
+                    <mb-blade class="@bladeInfo.AdditionalCss"
+                              style="@bladeInfo.AdditionalStyles"
                               @key="@bladeInfo"
                               @ref="@bladeInfo.BladeElementReference">
                         <mb-blade-content @ref="@bladeInfo.BladeContentElementReference">

@@ -3,14 +3,16 @@
 
 
 <header @ref="HeaderElem"
-        @attributes="AttributesToSplat(SplatType.ExcludeEvents)"
-        id="app-bar">
+        class="mdc-top-app-bar @ActiveConditionalClasses @(@class)"
+        style="@style"
+        id="@id"
+        @attributes="@OtherAttributesToSplat()">
 
     <div class="mdc-top-app-bar__row">
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
             @if (NavIcon != null)
             {
-                <MBIconButton @attributes="@AttributesToSplat(SplatType.EventsOnly)"
+                <MBIconButton @attributes="@EventAttributesToSplat()"
                               class="mdc-top-app-bar__action-item--unbounded"
                               Icon="@NavIcon"
                               IconFoundry="@IconFoundry" />

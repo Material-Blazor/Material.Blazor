@@ -118,8 +118,7 @@ namespace Material.Blazor
                 throw new ArgumentOutOfRangeException($"MaxDate cannot be after {MaxAllowableDate.ToShortDateString()}");
             }
 
-            ClassMapperInstance
-                .Add("mdc-select")
+            ConditionalCssClasses
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-select--filled", () => AppliedInputStyle == MBSelectInputStyle.Filled)
                 .AddIf("mdc-select--outlined", () => AppliedInputStyle == MBSelectInputStyle.Outlined)

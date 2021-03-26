@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Components.Rendering;
+using System.Collections.Generic;
 
 namespace Material.Blazor
 {
@@ -7,8 +8,7 @@ namespace Material.Blazor
     /// </summary>
     internal class IconMI : IMBIcon
     {
-        /// <inheritdoc />
-        public string Class
+        private string MaterialIconsTheme
         {
             get
             {
@@ -25,21 +25,29 @@ namespace Material.Blazor
         }
 
 
-        /// <inheritdoc />
-        public string Text => IconName.ToLower();
-
-
-        private readonly Dictionary<string, object> _attributes = new Dictionary<string, object>();
-        /// <inheritdoc />
-        public IDictionary<string, object> Attributes => _attributes;
-
-
-        /// <inheritdoc />
-        public string IconName { get; }
+        private string IconName { get; }
 
 
         /// <inheritdoc />
         public bool RequiresColorFilter => Theme == MBIconMITheme.TwoTone;
+
+
+        /// <inheritdoc />
+        public IMBIcon.IconFragment Render => (@class, style, attributes) => (RenderTreeBuilder builder) =>
+        {
+            builder.OpenElement(0, "i");
+            builder.AddAttribute(1, "class", string.Join(" ", MaterialIconsTheme, @class));
+            if (style != null)
+            {
+                builder.AddAttribute(2, "style", style);
+            }
+            if (attributes != null)
+            {
+                builder.AddMultipleAttributes(3, attributes);
+            }
+            builder.AddContent(4, IconName.ToLower());
+            builder.CloseElement();
+        };
 
 
         /// <summary>

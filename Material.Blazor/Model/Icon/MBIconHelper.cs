@@ -1,5 +1,6 @@
 ﻿using Material.Blazor.Internal;
-
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
 using System;
 using System.Collections.Generic;
 
@@ -11,24 +12,11 @@ namespace Material.Blazor
     public class MBIconHelper : IMBIcon
     {
         /// <inheritdoc/>
-        public string Class => UnderlyingIcon.Class;
-
-
-        /// <inheritdoc/>
-        public string Text => UnderlyingIcon.Text;
-
-
-        /// <inheritdoc/>
-        public IDictionary<string, object> Attributes => UnderlyingIcon.Attributes;
-
-
-        /// <inheritdoc/>
-        public string IconName => UnderlyingIcon.IconName;
-
-
-        /// <inheritdoc/>
         public bool RequiresColorFilter => UnderlyingIcon.RequiresColorFilter;
 
+
+        /// <inheritdoc/>
+        public IMBIcon.IconFragment Render => UnderlyingIcon.Render;
 
         private readonly IMBIcon UnderlyingIcon;
 

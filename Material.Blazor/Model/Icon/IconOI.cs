@@ -1,6 +1,5 @@
 ﻿using Material.Blazor.Internal;
-
-using System.Collections.Generic;
+using Microsoft.AspNetCore.Components.Rendering;
 
 namespace Material.Blazor
 {
@@ -9,25 +8,29 @@ namespace Material.Blazor
     /// </summary>
     internal class IconOI : IMBIcon
     {
-        /// <inheritdoc />
-        public string Class => "oi";
-
-
-        /// <inheritdoc />
-        public string Text => "";
-
-
-        private readonly Dictionary<string, object> _attributes;
-        /// <inheritdoc />
-        public IDictionary<string, object> Attributes => _attributes;
-
-
-        /// <inheritdoc />
-        public string IconName { get; }
+        private string IconName { get; }
 
 
         /// <inheritdoc />
         public bool RequiresColorFilter => false;
+
+
+        /// <inheritdoc />
+        public IMBIcon.IconFragment Render => (@class, style, attributes) => (RenderTreeBuilder builder) =>
+        {
+            builder.OpenElement(0, "i");
+            builder.AddAttribute(1, "class", string.Join(" ", "oi", @class));
+            if (style != null)
+            {
+                builder.AddAttribute(2, "style", style);
+            }
+            builder.AddAttribute(3, "data-glyph", IconName);
+            if (attributes != null)
+            {
+                builder.AddMultipleAttributes(4, attributes);
+            }
+            builder.CloseElement();
+        };
 
 
 #nullable enable annotations
@@ -35,11 +38,6 @@ namespace Material.Blazor
         public IconOI(MBCascadingDefaults cascadingDefaults, string iconName, IconFoundryOI? foundry = null)
         {
             IconName = iconName;
-
-            _attributes = new Dictionary<string, object>
-            {
-                { "data-glyph", iconName }
-            };
         }
 #pragma warning restore IDE0060 // Remove unused parameter
 #nullable restore annotations

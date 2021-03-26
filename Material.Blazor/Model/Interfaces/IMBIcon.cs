@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Components;
+using System.Collections.Generic;
 
 namespace Material.Blazor
 {
@@ -8,27 +9,20 @@ namespace Material.Blazor
     public interface IMBIcon
     {
         /// <summary>
-        /// Value applied to the icon <c>class</c> attribute.
+        /// A delegate that applies user-defined class, style, and other attributes to the icon.
         /// </summary>
-        string Class { get; }
+        /// <param name="class"></param>
+        /// <param name="style"></param>
+        /// <param name="attributes"></param>
+        /// <returns></returns>
+        delegate RenderFragment IconFragment(string @class, string style, IEnumerable<KeyValuePair<string, object>> attributes);
+
 
 
         /// <summary>
-        /// Text supplied inside the icon tag.
+        /// The delegate that combines all the information of the icon into markup.
         /// </summary>
-        string Text { get; }
-
-
-        /// <summary>
-        /// Attributes to be splatted inside the icon tag.
-        /// </summary>
-        IDictionary<string, object> Attributes { get; }
-
-
-        /// <summary>
-        /// The icon name for the relevant foundry (e.g. MI "alarm", FA "fa-arro-down" or OI "shield").
-        /// </summary>
-        string IconName { get; }
+        IconFragment Render { get; }
 
 
         /// <summary>

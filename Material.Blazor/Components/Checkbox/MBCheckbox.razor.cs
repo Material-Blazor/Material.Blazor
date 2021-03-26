@@ -78,8 +78,7 @@ namespace Material.Blazor
         {
             await base.OnInitializedAsync();
 
-            ClassMapperInstance
-                .Add("mdc-checkbox mdc-checkbox--touch")
+            ConditionalCssClasses
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-checkbox--selected", () => Value)
                 .AddIf("mdc-checkbox--disabled", () => AppliedDisabled);

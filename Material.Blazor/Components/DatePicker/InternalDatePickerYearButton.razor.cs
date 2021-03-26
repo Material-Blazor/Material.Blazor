@@ -49,20 +49,10 @@ namespace Material.Blazor.Internal
         private MBButtonStyle ButtonStyle => (DisplayYear == CurrentYear) ? MBButtonStyle.ContainedUnelevated : MBButtonStyle.Text;
 
 
-        private Dictionary<string, object> Attributes
-        {
-            get
-            {
-                var result = new Dictionary<string, object>();
-
-                if (DisplayYear == CurrentYear)
-                {
-                    result.Add("id", CurrentYearId);
-                }
-
-                return result;
-            }
-        }
+        /// <summary>
+        /// We want to scroll to the current year when the year picker opens. So the year that's currently active needs an ID.
+        /// </summary>
+        private string CurrentYearIdHelper => (DisplayYear == CurrentYear) ? CurrentYearId : null;
 
         private bool ButtonDisabled => (MaxDate < new DateTime(DisplayYear, 1, 1)) || (MinDate > new DateTime(DisplayYear, 12, 31));
 

@@ -3,7 +3,10 @@
 @typeparam TItem
 
 
-<ul @attributes="@AttributesToSplat()"
+<ul class="mdc-list @ActiveConditionalClasses @(@class)"
+    style="@style"
+    id="@id"
+    @attributes="@AttributesToSplat()"
     @ref="@ElementReference"
     @key="@AppliedDisabled"
     aria-orientation="vertical">
