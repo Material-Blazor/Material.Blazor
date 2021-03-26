@@ -30,10 +30,10 @@ namespace Material.Blazor.Internal
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-        protected override async ValueTask DisposeAsync(bool disposing)
+        protected override void Dispose(bool disposing)
         {
             ObjectReference?.Dispose();
-            await base.DisposeAsync(disposing);
+            base.Dispose(disposing);
         }
 
 
@@ -56,11 +56,5 @@ namespace Material.Blazor.Internal
 
         /// <inheritdoc/>
         private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSnackbar.init", SnackbarReference, ObjectReference, Snackbar.Settings.AppliedTimeout);
-
-
-        /// <inheritdoc/>
-        private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSnackbar.destroy", SnackbarReference);
-
-
     }
 }

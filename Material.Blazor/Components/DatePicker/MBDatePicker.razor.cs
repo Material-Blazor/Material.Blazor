@@ -1,7 +1,6 @@
 ﻿using Material.Blazor.Internal;
 
 using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
 
 using System;
 using System.Threading.Tasks;
@@ -154,9 +153,5 @@ namespace Material.Blazor
 
         /// <inheritdoc/>
         private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.init", ElementReference);
-
-
-        /// <inheritdoc/>
-        private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.destroy", ElementReference);
     }
 }

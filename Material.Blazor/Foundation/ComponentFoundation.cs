@@ -11,14 +11,14 @@ namespace Material.Blazor.Internal
     /// <summary>
     /// The base class for all Material.Blazor components.
     /// </summary>
-    public abstract class ComponentFoundation : ComponentBase, IAsyncDisposable
+    public abstract class ComponentFoundation : ComponentBase, IDisposable
     {
         private static readonly ImmutableArray<string> ReservedAttributes = ImmutableArray.Create("disabled");
         private static readonly ImmutableArray<string> EventAttributeNames = ImmutableArray.Create("onfocus", "onblur", "onfocusin", "onfocusout", "onmouseover", "onmouseout", "onmousemove", "onmousedown", "onmouseup", "onclick", "ondblclick", "onwheel", "onmousewheel", "oncontextmenu", "ondrag", "ondragend", "ondragenter", "ondragleave", "ondragover", "ondragstart", "ondrop", "onkeydown", "onkeyup", "onkeypress", "onchange", "oninput", "oninvalid", "onreset", "onselect", "onselectstart", "onselectionchange", "onsubmit", "onbeforecopy", "onbeforecut", "onbeforepaste", "oncopy", "oncut", "onpaste", "ontouchcancel", "ontouchend", "ontouchmove", "ontouchstart", "ontouchenter", "ontouchleave", "ongotpointercapture", "onlostpointercapture", "onpointercancel", "onpointerdown", "onpointerenter", "onpointerleave", "onpointermove", "onpointerout", "onpointerover", "onpointerup", "oncanplay", "oncanplaythrough", "oncuechange", "ondurationchange", "onemptied", "onpause", "onplay", "onplaying", "onratechange", "onseeked", "onseeking", "onstalled", "onstop", "onsuspend", "ontimeupdate", "onvolumechange", "onwaiting", "onloadstart", "ontimeout", "onabort", "onload", "onloadend", "onprogress", "onerror", "onactivate", "onbeforeactivate", "onbeforedeactivate", "ondeactivate", "onended", "onfullscreenchange", "onfullscreenerror", "onloadeddata", "onloadedmetadata", "onpointerlockchange", "onpointerlockerror", "onreadystatechange", "onscroll");
         private static readonly ImmutableArray<string> AriaAttributeNames = ImmutableArray.Create("aria-activedescendant", "aria-atomic", "aria-autocomplete", "aria-busy", "aria-checked", "aria-controls", "aria-describedat", "aria-describedby", "aria-disabled", "aria-dropeffect", "aria-expanded", "aria-flowto", "aria-grabbed", "aria-haspopup", "aria-hidden", "aria-invalid", "aria-label", "aria-labelledby", "aria-level", "aria-live", "aria-multiline", "aria-multiselectable", "aria-orientation", "aria-owns", "aria-posinset", "aria-pressed", "aria-readonly", "aria-relevant", "aria-required", "aria-selected", "aria-setsize", "aria-sort", "aria-valuemax", "aria-valuemin", "aria-valuenow", "aria-valuetext");
         private bool? disabled = null;
 
-        [Inject] private protected IBatchingJsRuntime JsRuntime { get; set; }
+        [Inject] private protected IBatchingJSRuntime JsRuntime { get; set; }
         [Inject] private protected IMBTooltipService TooltipService { get; set; }
         [Inject] private protected ILogger<ComponentFoundation> Logger { get; set; }
 
@@ -130,23 +130,12 @@ namespace Material.Blazor.Internal
         private protected virtual async Task InstantiateMcwComponent() => await Task.CompletedTask;
 
 
-        /// <summary>
-        /// Components should override this with a function to be called when Material.Blazor wants to run Material Components Web instantiation via JS Interop - always gets called from <see cref="OnAfterRenderAsync()"/>, which should not be overridden.
-        /// </summary>
-        private protected virtual async Task DestroyMcwComponent() => await Task.CompletedTask;
-
-
         private bool _disposed;
-        protected virtual async ValueTask DisposeAsync(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (_disposed)
             {
                 return;
-            }
-
-            if (HasInstantiated)
-            {
-                await DestroyMcwComponent();
             }
 
             if (disposing && !string.IsNullOrWhiteSpace(Tooltip))
@@ -158,10 +147,10 @@ namespace Material.Blazor.Internal
         }
 
 
-        public async ValueTask DisposeAsync()
+        public void Dispose()
         {
             // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-            await DisposeAsync(disposing: true);
+            Dispose(disposing: true);
             GC.SuppressFinalize(this);
         }
 
@@ -358,7 +347,7 @@ namespace Material.Blazor.Internal
         protected void LogMBDebug(EventId eventId, string message, params object[] args) => Logger.LogDebug(eventId, $"MATERIAL.BLAZOR DEBUG - {message}", args);
 #else
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
-        protected void LogMBDebug(EventId eventId, string message, params object[] args) {}
+        protected void LogMBDebug(EventId eventId, string message, params object[] args) { }
 #endif
 
 
@@ -386,7 +375,7 @@ namespace Material.Blazor.Internal
         protected void LogMBDebug(string message, params object[] args) => Logger.LogDebug($"MATERIAL.BLAZOR DEBUG - {message}", args);
 #else
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
-        protected void LogMBDebug(string message, params object[] args) {}
+        protected void LogMBDebug(string message, params object[] args) { }
 #endif
 
 
@@ -414,7 +403,7 @@ namespace Material.Blazor.Internal
         protected void LogMBDebugVerbose(EventId eventId, string message, params object[] args) => Logger.LogDebug(eventId, $"MATERIAL.BLAZOR DEBUG - {message}", args);
 #else
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
-        protected void LogMBDebugVerbose(EventId eventId, string message, params object[] args) {}
+        protected void LogMBDebugVerbose(EventId eventId, string message, params object[] args) { }
 #endif
 
 
@@ -442,7 +431,7 @@ namespace Material.Blazor.Internal
         protected void LogMBDebugVerbose(string message, params object[] args) => Logger.LogDebug($"MATERIAL.BLAZOR DEBUG - {message}", args);
 #else
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
-        protected void LogMBDebugVerbose(string message, params object[] args) {}
+        protected void LogMBDebugVerbose(string message, params object[] args) { }
 #endif
 
 

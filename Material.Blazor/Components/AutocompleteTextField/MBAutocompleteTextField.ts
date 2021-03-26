@@ -22,11 +22,6 @@ export function init(textElem, menuElem, dotNetObject): any {
     menuElem._menu.listen('MDCMenuSurface:closed', closedCallback);
 }
 
-export function destroy(textElem, menuElem): any {
-    textElem?._textField?.destroy();
-    menuElem?._menu?.destroy();
-}
-
 export function open(menuElem): void {
     menuElem._menu.open = true;
     menuElem._menu.foundation.setDefaultFocusState(0);

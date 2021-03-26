@@ -1,7 +1,6 @@
 ﻿using Material.Blazor.Internal;
 
 using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.Logging;
 using Microsoft.JSInterop;
 
 using System;
@@ -138,7 +137,7 @@ namespace Material.Blazor
 
 
         private bool _disposed = false;
-        protected override async ValueTask DisposeAsync(bool disposing)
+        protected override void Dispose(bool disposing)
         {
             if (_disposed)
             {
@@ -152,7 +151,7 @@ namespace Material.Blazor
 
             _disposed = true;
 
-            await base.DisposeAsync(disposing);
+            base.Dispose(disposing);
         }
 
 
@@ -185,9 +184,5 @@ namespace Material.Blazor
 
         /// <inheritdoc/>
         private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSelect.init", SelectReference, ObjectReference);
-
-
-        /// <inheritdoc/>
-        private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSelect.destroy", SelectReference);
     }
 }

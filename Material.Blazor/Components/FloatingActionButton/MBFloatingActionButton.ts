@@ -6,10 +6,6 @@ export function init(elem, exited) {
     setExited(elem, exited);
 }
 
-export function destroy(elem) {
-    elem?._fab?.destroy();
-}
-
 export function setExited(elem, exited) {
     if (elem) {
         if (exited != elem._exited) {

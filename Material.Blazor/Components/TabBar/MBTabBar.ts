@@ -11,10 +11,6 @@ export function init(elem, dotNetObject) {
     elem._tabBar.listen('MDCTabBar:activated', elem._callback);
 }
 
-export function destroy(elem) {
-    elem?._tabBar?.destroy();
-}
-
 export function activateTab(elem, index) {
     elem._tabBar.unlisten('MDCTabBar:activated', elem._callback);
     elem._tabBar.activateTab(index);

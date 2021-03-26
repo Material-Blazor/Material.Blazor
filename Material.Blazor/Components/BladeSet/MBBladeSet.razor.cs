@@ -274,7 +274,7 @@ namespace Material.Blazor
 
                         removedBladesQueue.Enqueue(Blades[queueElement.BladeReference]);
 
-                        StateHasChanged();
+                        await InvokeAsync(StateHasChanged).ConfigureAwait(false);
                     }
                     else
                     {
@@ -294,7 +294,7 @@ namespace Material.Blazor
 
                         addedBladesQueue.Enqueue(addedBlade);
 
-                        StateHasChanged();
+                        await InvokeAsync(StateHasChanged).ConfigureAwait(false);
                     }
 
                     await Task.Delay(transitionMs + 20);

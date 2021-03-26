@@ -112,14 +112,14 @@
                         <p>
                             <MBList Items="@TwoLineProducts"
                                     Context="product"
-                                    ShowSeparators="true"
-                                    KeyboardInteractions="@KeyboardInteractions"
-                                    Ripple="@Ripple"
-                                    ListType="@ListType"
-                                    HideLineTwo="@HideLineTwo"
                                     HideLineThree="@HideLineThree"
+                                    HideLineTwo="@HideLineTwo"
+                                    KeyboardInteractions="@KeyboardInteractions"
+                                    ListStyle="MBListStyle.Outlined"
+                                    ListType="@ListType"
+                                    Ripple="@Ripple"
                                     OnClick="OnTwoLineClick"
-                                    ListStyle="MBListStyle.Outlined">
+                                    ShowSeparators="true">
 
                                 <Icon><MBIcon IconName="local_grocery_store" /></Icon>
                                 <Title>@product.DisplayName</Title>
@@ -154,17 +154,19 @@
                         <p>
                             <MBList Items="@ThreeLineProducts"
                                     Context="product"
-                                    ShowSeparators="true"
-                                    KeyboardInteractions="@KeyboardInteractions"
-                                    Ripple="@Ripple"
-                                    ListType="@ListType"
-                                    HideLineTwo="@HideLineTwo"
+                                    GetKeysFunc="@((item) => item.ProductId)"
                                     HideLineThree="@HideLineThree"
-                                    OnClick="OnThreeLineClick"
+                                    HideLineTwo="@HideLineTwo"
+                                    KeyboardInteractions="@KeyboardInteractions"
                                     ListStyle="MBListStyle.Outlined"
-                                    GetKeysFunc="@((item) => item.ProductId)">
+                                    ListType="@ListType"
+                                    OnClick="OnThreeLineClick"
+                                    Ripple="@Ripple"
+                                    ShowSeparators="true">
 
-                                <Icon><MBIcon IconName="local_grocery_store" /></Icon>
+                                <Icon>
+                                    <MBIcon IconName="local_grocery_store" />
+                                </Icon>
                                 <Title>@product.DisplayName</Title>
                                 <LineTwo>@product.LineTwo</LineTwo>
                                 <LineThree>@product.LineThree</LineThree>

@@ -1,8 +1,7 @@
 ﻿@charset "UTF-8";
 
-@use "../wwwroot/material-components-icons.css";
-
 @use '_colors.scss';
+@use "_material-components-icons.scss";
 
 @use '../Components/AutocompleteTextField/MBAutocompleteTextField.scss';
 @use '../Components/BladeSet/MBBladeSet.scss';

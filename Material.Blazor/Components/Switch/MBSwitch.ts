@@ -5,10 +5,6 @@ export function init(elem, checked) {
     elem._switch.checked = checked;
 }
 
-export function destroy(elem) {
-    elem?._switch?.destroy();
-}
-
 export function setChecked(elem, checked) {
     elem._switch.checked = checked;
 }

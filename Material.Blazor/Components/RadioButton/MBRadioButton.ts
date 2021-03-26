@@ -8,11 +8,6 @@ export function init(elem, formFieldElem, isChecked) {
     elem._formField.input = elem._radio;
 }
 
-export function destroy(elem) {
-    elem?._radio?.destroy();
-    elem?._formField?.destroy();
-}
-
 export function setDisabled(elem, value) {
     elem._radio.disabled = value;
 }

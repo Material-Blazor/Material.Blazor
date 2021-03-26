@@ -4,7 +4,6 @@ using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 
 namespace Material.Blazor
@@ -81,7 +80,7 @@ namespace Material.Blazor
 
 
         private bool _disposed = false;
-        protected override async ValueTask DisposeAsync(bool disposing)
+        protected override void Dispose(bool disposing)
         {
             if (_disposed)
             {
@@ -95,7 +94,7 @@ namespace Material.Blazor
 
             _disposed = true;
 
-            await base.DisposeAsync(disposing);
+            base.Dispose(disposing);
         }
 
 
@@ -140,10 +139,6 @@ namespace Material.Blazor
 
         /// <inheritdoc/>
         private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBChipsSelectMulti.init", ChipsReference, IsSingleSelect, ObjectReference);
-
-
-        /// <inheritdoc/>
-        private protected override async Task DestroyMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBChipsSelectMulti.destroy", ChipsReference);
 
 
         /// <summary>
