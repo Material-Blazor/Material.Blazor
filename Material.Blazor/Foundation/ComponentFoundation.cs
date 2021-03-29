@@ -281,9 +281,16 @@ namespace Material.Blazor.Internal
         {
             if (firstRender)
             {
-                await InstantiateMcwComponent();
-                HasInstantiated = true;
-                AddTooltip();
+                try
+                {
+                    await InstantiateMcwComponent();
+                    HasInstantiated = true;
+                    AddTooltip();
+                }
+                catch (Exception e)
+                {
+                    LogMBError(e, "Instantiating a component failed.");
+                }
             }
             await Task.CompletedTask;
         }
