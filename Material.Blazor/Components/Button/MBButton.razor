@@ -2,14 +2,48 @@
 @inherits ComponentFoundation
 
 
-<div class="mdc-touch-target-wrapper">
+@if (AppliedTouchTarget)
+{
+    <div class="mdc-touch-target-wrapper">
+        <button @ref="@ElementReference"
+                class="mdc-button @ActiveConditionalClasses @(@class)"
+                style="@style"
+                id="@id"
+                @attributes="@AttributesToSplat()"
+                data-mdc-dialog-action="@DialogAction">
+
+            <div class="mdc-button__ripple" />
+
+            @if (!string.IsNullOrWhiteSpace(LeadingIcon))
+            {
+                <MBIcon aria-hidden="true"
+                        class="mdc-button__icon"
+                        IconFoundry="@IconFoundry"
+                        IconName="@LeadingIcon" />
+            }
+
+            <span class="mdc-button__label">@Label</span>
+
+            @if (!string.IsNullOrWhiteSpace(TrailingIcon))
+            {
+                <MBIcon aria-hidden="true"
+                        class="mdc-button__icon"
+                        IconFoundry="@IconFoundry"
+                        IconName="@TrailingIcon" />
+            }
+        </button>
+    </div>
+}
+else
+{
     <button @ref="@ElementReference"
             class="mdc-button @ActiveConditionalClasses @(@class)"
             style="@style"
             id="@id"
             @attributes="@AttributesToSplat()"
             data-mdc-dialog-action="@DialogAction">
-        <div class="mdc-button__ripple"></div>
+
+        <div class="mdc-button__ripple" />
 
         @if (!string.IsNullOrWhiteSpace(LeadingIcon))
         {
@@ -29,4 +63,4 @@
                     IconName="@TrailingIcon" />
         }
     </button>
-</div>
+}

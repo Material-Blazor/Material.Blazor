@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Material.Blazor
@@ -541,7 +541,21 @@ namespace Material.Blazor
         /*************************************************************************************************************
          * 
          * 
-         *      COMPONENT DENSITY
+         *      COMPONENT ACCESSIBILITY
+         * 
+         * 
+         ************************************************************************************************************/
+
+        private bool _TouchTarget = true;
+        public bool TouchTarget { get => _TouchTarget; set => SetParameter(ref _TouchTarget, value); }
+        internal bool AppliedTouchTarget(bool? touchTarget) => touchTarget ?? TouchTarget;
+
+
+
+        /*************************************************************************************************************
+         * 
+         * 
+         *      VERSION
          * 
          * 
          ************************************************************************************************************/
