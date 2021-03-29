@@ -1,14 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
-
+<Project Sdk="Microsoft.NET.Sdk.Razor">
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="bunit" Version="1.0.0-preview-01" />
-    <PackageReference Include="bunit.core" Version="1.0.0-preview-01" />
-    <PackageReference Include="bunit.web" Version="1.0.0-preview-01" />
-    <PackageReference Include="bunit.xunit" Version="1.0.0-preview-01" />
+    <PackageReference Include="bunit" Version="1.0.0-preview-02" />
+    <PackageReference Include="bunit.core" Version="1.0.0-preview-02" />
+    <PackageReference Include="bunit.web" Version="1.0.0-preview-02" />
+    <PackageReference Include="bunit.xunit" Version="1.0.0-preview-02" />
     <PackageReference Include="Moq" Version="4.16.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
@@ -17,9 +16,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Material.Blazor\Material.Blazor.csproj" />
   </ItemGroup>
-
 </Project>
