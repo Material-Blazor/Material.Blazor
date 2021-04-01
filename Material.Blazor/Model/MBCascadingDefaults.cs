@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace Material.Blazor
@@ -33,30 +32,15 @@ namespace Material.Blazor
         /// </summary>
         public bool ConstrainSplattableAttributes { get => _constrainSplattableAttributes; set => SetParameter(ref _constrainSplattableAttributes, value); }
 
-        /// <summary>
-        /// A list of unmatched attributes that are used by and therefore essential for Material.Blazor. Works with 
-        /// <see cref="ConstrainSplattableAttributes"/> and <see cref="AllowedSplattableAttributes"/>.
-        /// </summary>
-        /// <remarks>
-        /// Includes "formnovalidate", "id", "max", "min", "role", "step", "tabindex" and "type"
-        /// </remarks>
-        public readonly IEnumerable<string> EssentialSplattableAttributes = new string[] { "class", "style", "formnovalidate", "id", "max", "min", "role", "step", "tabindex", "type", "data-prev-page" };
 
 
-
-        private IEnumerable<string> _allowedSplattableAttributes = Array.Empty<string>();
+        private IEnumerable<string> _allowedSplattableAttributes = Enumerable.Empty<string>();
         /// <summary>
         /// Further attributes that can be set as allowable when <see cref="Internal.ComponentFoundation"/>
         /// performs unmatched attribute validation. Works with <see cref="ConstrainSplattableAttributes"/>
         /// and <see cref="EssentialSplattableAttributes"/>.
         /// </summary>
         public IEnumerable<string> AllowedSplattableAttributes { get => _allowedSplattableAttributes; set => SetParameter(ref _allowedSplattableAttributes, value); }
-
-        /// <summary>
-        /// An enumerable of allowable attributes formed from a distinct union of <see cref="EssentialSplattableAttributes"/>
-        /// and <see cref="AllowedSplattableAttributes"/>
-        /// </summary>
-        internal IEnumerable<string> AppliedAllowedSplattableAttributes => EssentialSplattableAttributes.Union(AllowedSplattableAttributes.Select(x => x.ToLower())).Distinct();
 
 
 
