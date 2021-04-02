@@ -1,10 +1,16 @@
 @namespace Material.Blazor
 @inherits InputComponent<bool>
 
+@code {
+    private static readonly RenderFragment<RenderFragment> TouchWrapper = (content) =>@<div class="mdc-touch-target-wrapper">@content</div>;
+    private static readonly RenderFragment<RenderFragment> NoTouchWrapper = (content) => content;
+}
 
-@if (AppliedTouchTarget)
-{
-    <div @ref="@FormReference" class="mdc-form-field">
+@{ var optionalTouchWrapper = AppliedTouchTarget ? TouchWrapper : NoTouchWrapper; }
+
+<div @ref="@FormReference" class="mdc-form-field">
+
+    @optionalTouchWrapper(@<text>
         <div class="mdc-touch-target-wrapper">
             <div @ref="@ElementReference"
                  class="mdc-checkbox mdc-checkbox--touch @ActiveConditionalClasses @(@class)"
@@ -30,33 +36,5 @@
             </div>
         </div>
         <label for="@CrossReferenceId">@Label</label>
-    </div>
-}
-else
-{
-    <div @ref="@FormReference" class="mdc-form-field" style="width: 100%">
-        <div @ref="@ElementReference"
-             class="mdc-checkbox mdc-checkbox--touch @ActiveConditionalClasses @(@class)"
-             style="@style"
-             id="@id"
-             @attributes="@EventAttributesToSplat()">
-
-            <input @bind="@CheckedValue"
-                   @attributes="OtherAttributesToSplat()"
-                   type="checkbox"
-                   class="mdc-checkbox__native-control @FieldClass"
-                   id="@CrossReferenceId" />
-            <div class="mdc-checkbox__background">
-                <svg class="mdc-checkbox__checkmark"
-                     viewBox="0 0 24 24">
-                    <path class="mdc-checkbox__checkmark-path"
-                          fill="none"
-                          d="M1.73,12.91 8.1,19.28 22.79,4.59" />
-                </svg>
-                <div class="mdc-checkbox__mixedmark"></div>
-            </div>
-            <div class="mdc-checkbox__ripple"></div>
-        </div>
-        <label for="@CrossReferenceId">@Label</label>
-    </div>
-}
+    </text>);
+</div>

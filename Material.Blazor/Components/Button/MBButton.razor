@@ -1,76 +1,13 @@
 ﻿@namespace Material.Blazor
 @inherits ComponentFoundation
 
-@*@if (AppliedTouchTarget)
-    {
-        <div class="mdc-touch-target-wrapper">
-                    <button @ref="@ElementReference"
-                            class="mdc-button @ActiveConditionalClasses @(@class)"
-                            style="@style"
-                            id="@id"
-                            @attributes="@AttributesToSplat()"
-                            data-mdc-dialog-action="@DialogAction">
-
-                        <div class="mdc-button__ripple" />
-
-                        @if (!string.IsNullOrWhiteSpace(LeadingIcon))
-                        {
-                            <MBIcon aria-hidden="true"
-                                    class="mdc-button__icon"
-                                    IconFoundry="@IconFoundry"
-                                    IconName="@LeadingIcon" />
-                        }
-
-                        <span class="mdc-button__label">@Label</span>
-
-                        @if (!string.IsNullOrWhiteSpace(TrailingIcon))
-                        {
-                            <MBIcon aria-hidden="true"
-                                    class="mdc-button__icon"
-                                    IconFoundry="@IconFoundry"
-                                    IconName="@TrailingIcon" />
-                        }
-                    </button>
-                </div>
-            }
-            else
-            {
-                <button @ref="@ElementReference"
-                        class="mdc-button @ActiveConditionalClasses @(@class)"
-                        style="@style"
-                        id="@id"
-                        @attributes="@AttributesToSplat()"
-                        data-mdc-dialog-action="@DialogAction">
-
-                    <div class="mdc-button__ripple" />
-
-                    @if (!string.IsNullOrWhiteSpace(LeadingIcon))
-                    {
-                        <MBIcon aria-hidden="true"
-                                class="mdc-button__icon"
-                                IconFoundry="@IconFoundry"
-                                IconName="@LeadingIcon" />
-                    }
-
-                    <span class="mdc-button__label">@Label</span>
-
-                    @if (!string.IsNullOrWhiteSpace(TrailingIcon))
-                    {
-                        <MBIcon aria-hidden="true"
-                                class="mdc-button__icon"
-                                IconFoundry="@IconFoundry"
-                                IconName="@TrailingIcon" />
-                    }
-                </button>
-            }*@
-
 @code {
     private static readonly RenderFragment<RenderFragment> TouchWrapper = (content) =>@<div class="mdc-touch-target-wrapper">@content</div>;
     private static readonly RenderFragment<RenderFragment> NoTouchWrapper = (content) => content;
 }
-@{
-    var optionalTouchWrapper = AppliedTouchTarget ? TouchWrapper : NoTouchWrapper;
-}
+
+@{ var optionalTouchWrapper = AppliedTouchTarget ? TouchWrapper : NoTouchWrapper; }
+
 @optionalTouchWrapper(@<text>
     <button @ref="@ElementReference"
             class="mdc-button @ActiveConditionalClasses @(@class)"
@@ -99,4 +36,4 @@
                     IconName="@TrailingIcon" />
         }
     </button>
-</text>                                            )
+</text>);
