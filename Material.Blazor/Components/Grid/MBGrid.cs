@@ -1,4 +1,5 @@
-#define LoggingVerbose
+#define Logging
+#define xLoggingVerbose
 
 // ToDo:
 //
@@ -197,7 +198,7 @@ namespace Material.Blazor
                 (ColumnWidthArray == null) ||
                 ((ColumnWidthArray != null) && (ColumnWidthArray.Length != ColumnConfigurations.Count())))
             {
-#if LoggingVerbose
+#if Logging
                 Log("BuildRenderTree (Simple) entered (IsFirstRender == " + IsFirstRender.ToString());
 #endif
                 // We are going to render a DIV and nothing else
@@ -206,13 +207,13 @@ namespace Material.Blazor
                 base.BuildRenderTree(builder);
                 builder.OpenElement(1, "div");
                 builder.CloseElement();
-#if LoggingVerbose
+#if Logging
                 Log("                (Simple) leaving");
 #endif
                 return;
             }
 
-#if LoggingVerbose
+#if Logging
             Log("BuildRenderTree entered (IsFirstRender == false)");
 #endif
 
@@ -499,7 +500,7 @@ namespace Material.Blazor
             }
 
             HasCompletedFullRender = true;
-#if LoggingVerbose
+#if Logging
             Log("                leaving (IsFirstRender == false)");
 #endif
         }
@@ -546,7 +547,7 @@ namespace Material.Blazor
         #region GridSyncScroll
         protected async Task GridSyncScroll()
         {
-#if LoggingVerbose
+#if Logging
             Log("GridSyncScroll()");
 #endif
             await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBGrid.syncScrollByID", GridHeaderID, GridBodyID);
@@ -698,7 +699,7 @@ namespace Material.Blazor
 
                 HasRendered = true;
 
-#if LoggingVerbose
+#if Logging
                 Log("OnAfterRenderAsync entered");
                 Log("                   firstRender: " + firstRender.ToString());
                 Log("                   IsFirstRender: " + IsFirstRender.ToString());
@@ -716,7 +717,7 @@ namespace Material.Blazor
             }
             finally
             {
-#if LoggingVerbose
+#if Logging
                 Log("                   about to release semaphore (OnAfterRenderAsync)");
 #endif
                 semaphoreSlim.Release();
@@ -727,7 +728,7 @@ namespace Material.Blazor
         #region OnInitialized
         protected override async Task OnInitializedAsync()
         {
-#if LoggingVerbose
+#if Logging
             Log("MBGrid.OnInitialized entered");
 #endif
             await base.OnInitializedAsync();
@@ -736,7 +737,7 @@ namespace Material.Blazor
             {
                 throw new System.Exception("MBGrid requires column configuration definitions.");
             }
-#if LoggingVerbose
+#if Logging
             Log("MBGrid.OnInitialized completed");
 #endif
         }
@@ -745,7 +746,7 @@ namespace Material.Blazor
         #region OnMouseClickInternal
         private void OnMouseClickInternal(string newRowKey)
         {
-#if LoggingVerbose
+#if Logging
             Log("OnMouseClickInternal with HighlightSelectedRow:" + HighlightSelectedRow.ToString());
 #endif
             if (newRowKey != SelectedKey)
@@ -766,7 +767,7 @@ namespace Material.Blazor
             await semaphoreSlim.WaitAsync();
             try
             {
-#if LoggingVerbose
+#if Logging
                 Log("OnParametersSetAsync entry");
                 Log("                     HasRendered: " + HasRendered.ToString());
                 Log("                     HasCompletedFullRender: " + HasCompletedFullRender.ToString());
@@ -784,17 +785,19 @@ namespace Material.Blazor
             }
             finally
             {
-#if LoggingVerbose
+#if Logging
                 Log("                     about to release semaphore (OnParametersSetAsync)");
 #endif
                 semaphoreSlim.Release();
             }
         }
+        #endregion
 
+        #region SetParametersAsync
         private int oldParameterHash { get; set; } = -1;
         public override Task SetParametersAsync(ParameterView parameters)
         {
-#if LoggingVerbose
+#if Logging
             Log("SetParametersAsync entry");
 #endif
             semaphoreSlim.WaitAsync();
@@ -842,7 +845,7 @@ namespace Material.Blazor
                     }
                 }
 
-#if LoggingVerbose
+#if Logging
                 Log("                   about to compute parameter hash");
 #endif
                 HashCode newParameterHash;
@@ -949,7 +952,7 @@ namespace Material.Blazor
                     }
                 }
 
-#if LoggingVerbose
+#if Logging
                 Log("                   hash == " + ((int)newParameterHash).ToString());
 #endif
                 if (newParameterHash == oldParameterHash)
@@ -957,8 +960,15 @@ namespace Material.Blazor
                     // This is a call to ParametersSetAsync with what in all likelyhood is the same
                     // parameters. Hashing isn't perfect so there is some tiny possibility that new parameters
                     // are present and the same hash value was computed.
-                    ShouldRenderValue = false;
-#if LoggingVerbose
+                    if (HasCompletedFullRender)
+                    {
+                        ShouldRenderValue = false;
+                    }
+                    else
+                    {
+                        ShouldRenderValue = true;
+                    }
+#if Logging
                     Log("                   EQUAL hash");
 #endif
                 }
@@ -966,14 +976,14 @@ namespace Material.Blazor
                 {
                     ShouldRenderValue = true;
                     oldParameterHash = newParameterHash;
-#if LoggingVerbose
+#if Logging
                     Log("                   DIFFERING hash");
 #endif
                 }
             }
             finally
             {
-#if LoggingVerbose
+#if Logging
                 Log("                   about to release semaphore (SetParametersAsync)");
 #endif
                 semaphoreSlim.Release();
