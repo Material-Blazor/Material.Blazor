@@ -99,7 +99,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="surfacePositioning"></param>
         /// <returns></returns>
-        internal static string GetMenuSurfacePositioningClass(MBMenuSurfacePositioning surfacePositioning) =>
+        private static string GetMenuSurfacePositioningClass(MBMenuSurfacePositioning surfacePositioning) =>
             surfacePositioning switch
             {
                 MBMenuSurfacePositioning.FullWidth => "mdc-menu-surface--fullwidth",
