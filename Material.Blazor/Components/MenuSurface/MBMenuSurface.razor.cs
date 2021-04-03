@@ -72,7 +72,7 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Toggles the menu open and closed. NEED TO RETURN <code>Task</code> RATHER THAN <code>Task&lt;string&gt;</code> IN VERSION 2.0.0
+        /// Toggles the menu open and closed.
         /// </summary>
         /// <returns></returns>
         public async Task ToggleAsync()
