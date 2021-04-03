@@ -172,13 +172,13 @@ namespace Material.Blazor.Internal
         }
 
 
-        private async Task OnDayItemClickAsync(DateTime dateTime)
+        private Task OnDayItemClickAsync(DateTime dateTime)
         {
             ComponentValue = dateTime;
             CachedComponentValue = Value;
             MonthsOffset = 0;
             SetParameters(true);
-            await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", ListItemReference, CachedComponentValueText);
+            return JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", ListItemReference, CachedComponentValueText);
         }
 
 

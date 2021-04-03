@@ -92,7 +92,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBRadioButton.setChecked", RadioButtonReference, Value.Equals(TargetCheckedValue)).ConfigureAwait(false));
+        protected void OnValueSetCallback() => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBRadioButton.setChecked", RadioButtonReference, Value.Equals(TargetCheckedValue)).ConfigureAwait(false));
 
 
         /// <summary>
@@ -100,16 +100,15 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBRadioButton.setDisabled", RadioButtonReference, AppliedDisabled));
+        protected void OnDisabledSetCallback() => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBRadioButton.setDisabled", RadioButtonReference, AppliedDisabled));
 
 
-        private async Task OnInternalItemClickAsync()
+        private void OnInternalItemClick()
         {
             ComponentValue = TargetCheckedValue;
-            await Task.CompletedTask;
         }
 
 
-        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBRadioButton.init", RadioButtonReference, FormReference, Value?.Equals(TargetCheckedValue) ?? false).ConfigureAwait(false);
+        private protected override Task InstantiateMcwComponent() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBRadioButton.init", RadioButtonReference, FormReference, Value?.Equals(TargetCheckedValue) ?? false);
     }
 }

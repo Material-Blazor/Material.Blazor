@@ -89,23 +89,21 @@ namespace Material.Blazor
         /// <summary>
         /// For Material Theme to notify of menu item selection via JS Interop.
         /// </summary>
-        [JSInvokable("NotifyMultiSelectedAsync")]
-        public async Task NotifyMultiSelectedAsync(bool[] selected)
+        [JSInvokable]
+        public void NotifyMultiSelected(bool[] selected)
         {
             var selectedIndexes = Enumerable.Range(0, selected.Length).Where(i => selected[i]);
             ComponentValue = ItemsArray.Where((item, index) => selectedIndexes.Contains(index)).Select(x => x.SelectedValue).ToArray();
-            await Task.CompletedTask;
         }
 
 
         /// <summary>
         /// For Material Theme to notify of menu item selection via JS Interop.
         /// </summary>
-        [JSInvokable("NotifySingleSelectedAsync")]
-        public async Task NotifySingleSelectedAsync(int index)
+        [JSInvokable]
+        public void NotifySingleSelected(int index)
         {
             ComponentValue = new TItem[] { ItemsArray[index].SelectedValue };
-            await Task.CompletedTask;
         }
 
 
@@ -114,7 +112,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSegmentedButtonMulti.setSelected", SegmentedButtonReference, Items.Select(x => Value.Contains(x.SelectedValue)).ToArray()));
+        protected void OnValueSetCallback() => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSegmentedButtonMulti.setSelected", SegmentedButtonReference, Items.Select(x => Value.Contains(x.SelectedValue)).ToArray()));
 
 
         /// <summary>
@@ -122,11 +120,11 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSegmentedButtonMulti.setDisabled", SegmentedButtonReference, AppliedDisabled));
+        protected void OnDisabledSetCallback() => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSegmentedButtonMulti.setDisabled", SegmentedButtonReference, AppliedDisabled));
 
 
         /// <inheritdoc/>
-        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSegmentedButtonMulti.init", SegmentedButtonReference, IsSingleSelect, ObjectReference);
+        private protected override Task InstantiateMcwComponent() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSegmentedButtonMulti.init", SegmentedButtonReference, IsSingleSelect, ObjectReference);
 
 
         /// <summary>
@@ -136,7 +134,7 @@ namespace Material.Blazor
         internal void SetSingleSelectValue(TItem value)
         {
             Value = new TItem[] { value };
-            OnValueSetCallback(this, null);
+            OnValueSetCallback();
         }
     }
 }

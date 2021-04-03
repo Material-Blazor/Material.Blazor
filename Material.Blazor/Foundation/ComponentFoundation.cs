@@ -52,7 +52,7 @@ namespace Material.Blazor.Internal
 
                     if (HasInstantiated)
                     {
-                        OnDisabledSet?.Invoke(this, null);
+                        OnDisabledSet?.Invoke();
                     }
                 }
             }
@@ -120,7 +120,7 @@ namespace Material.Blazor.Internal
         /// Derived components can use this to get a callback from the <see cref="AppliedDisabled"/> setter when the consumer changes the value.
         /// This allows a component to take action with Material Theme js to update the DOM to reflect the data change visually. 
         /// </summary>
-        private protected event EventHandler OnDisabledSet;
+        private protected event Action OnDisabledSet;
 
 
         /// <summary>
@@ -132,7 +132,7 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Components should override this with a function to be called when Material.Blazor wants to run Material Components Web instantiation via JS Interop - always gets called from <see cref="OnAfterRenderAsync()"/>, which should not be overridden.
         /// </summary>
-        private protected virtual async Task InstantiateMcwComponent() => await Task.CompletedTask;
+        private protected virtual Task InstantiateMcwComponent() => Task.CompletedTask;
 
 
         private bool _disposed;
@@ -286,7 +286,7 @@ namespace Material.Blazor.Internal
             {
                 try
                 {
-                    await InstantiateMcwComponent();
+                    await InstantiateMcwComponent().ConfigureAwait(false);
                     HasInstantiated = true;
                     AddTooltip();
                 }
@@ -295,7 +295,6 @@ namespace Material.Blazor.Internal
                     LogMBError(e, "Instantiating a component failed.");
                 }
             }
-            await Task.CompletedTask;
         }
 
 

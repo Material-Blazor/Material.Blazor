@@ -4,7 +4,7 @@ export function init(elem, dotNetObject) {
     elem._menu = MDCMenu.attachTo(elem);
 
     const closedCallback = () => {
-        dotNetObject.invokeMethodAsync('NotifyClosedAsync');
+        dotNetObject.invokeMethodAsync('NotifyClosed');
     };
 
     elem._menu.listen('MDCMenuSurface:closed', closedCallback);

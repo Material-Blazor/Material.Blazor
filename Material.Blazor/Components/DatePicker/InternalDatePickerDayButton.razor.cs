@@ -96,6 +96,6 @@ namespace Material.Blazor.Internal
         }
 
 
-        private async Task OnClickAsync() => await OnItemClickAsync.InvokeAsync(DisplayDate);
+        private Task OnClickAsync() => OnItemClickAsync.InvokeAsync(DisplayDate);
     }
 }

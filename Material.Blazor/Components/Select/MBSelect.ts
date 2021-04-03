@@ -5,7 +5,7 @@ export function init(elem, dotNetObject) {
 
     elem._select.foundation.handleMenuItemAction = index => {
         elem._select.foundation.setSelectedIndex(index);
-        dotNetObject.invokeMethodAsync('NotifySelectedAsync', index);
+        dotNetObject.invokeMethodAsync('NotifySelected', index);
     };
 }
 

@@ -216,17 +216,17 @@ namespace Material.Blazor
         }
 
 
-        private async Task OnFocusInAsync()
+        private Task OnFocusInAsync()
         {
             HasFocus = true;
-            await TextField.SetType(FormattedValue, "number", true);
+            return TextField.SetType(FormattedValue, "number", true);
         }
 
 
-        private async Task OnFocusOutAsync()
+        private Task OnFocusOutAsync()
         {
             HasFocus = false;
-            await TextField.SetType(FormattedValue, "text", false);
+            return TextField.SetType(FormattedValue, "text", false);
         }
 
 

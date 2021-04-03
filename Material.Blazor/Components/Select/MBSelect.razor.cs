@@ -158,11 +158,10 @@ namespace Material.Blazor
         /// <summary>
         /// For Material Theme to notify of menu item selection via JS Interop.
         /// </summary>
-        [JSInvokable("NotifySelectedAsync")]
-        public async Task NotifySelectedAsync(int index)
+        [JSInvokable]
+        public void NotifySelected(int index)
         {
             ComponentValue = ItemDict.Values.ElementAt(index).SelectedValue;
-            await Task.CompletedTask;
         }
 
 
@@ -171,7 +170,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSelect.setIndex", SelectReference, ItemDict.Keys.ToList().IndexOf(Value)));
+        protected void OnValueSetCallback() => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSelect.setIndex", SelectReference, ItemDict.Keys.ToList().IndexOf(Value)));
 
 
         /// <summary>
@@ -179,10 +178,10 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSelect.setDisabled", SelectReference, AppliedDisabled));
+        protected void OnDisabledSetCallback() => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSelect.setDisabled", SelectReference, AppliedDisabled));
 
 
         /// <inheritdoc/>
-        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSelect.init", SelectReference, ObjectReference);
+        private protected override Task InstantiateMcwComponent() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSelect.init", SelectReference, ObjectReference);
     }
 }

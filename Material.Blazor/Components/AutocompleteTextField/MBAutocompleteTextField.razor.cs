@@ -308,8 +308,8 @@ namespace Material.Blazor
         /// For Material Theme to notify when the drop down is closed via JS Interop.
         /// </summary>
         /// <returns></returns>
-        [JSInvokable("NotifyClosedAsync")]
-        public async Task NotifyClosedAsync()
+        [JSInvokable]
+        public void NotifyClosed()
         {
             IsOpen = false;
 
@@ -322,8 +322,6 @@ namespace Material.Blazor
             }
 
             StateHasChanged();
-
-            await Task.CompletedTask;
         }
 
 
@@ -331,12 +329,12 @@ namespace Material.Blazor
         /// For Material Theme to notify of menu item selection via JS Interop.
         /// </summary>
         /// <returns></returns>
-        [JSInvokable("NotifySelectedAsync")]
-        public async Task NotifySelectedAsync(string value)
+        [JSInvokable]
+        public void NotifySelected(string value)
         {
             ComponentValue = value;
 
-            await NotifyClosedAsync();
+            NotifyClosed();
         }
 
 
@@ -361,6 +359,6 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBAutoCompleteTextField.init", TextField.ElementReference, MenuReference, ObjectReference);
+        private protected override Task InstantiateMcwComponent() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBAutoCompleteTextField.init", TextField.ElementReference, MenuReference, ObjectReference);
     }
 }

@@ -78,7 +78,7 @@ namespace Material.Blazor
 
                     if (HasProgressBar && HasInstantiated)
                     {
-                        InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDataTable.setProgress", ElementReference, showProgress));
+                        InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDataTable.setProgress", ElementReference, showProgress));
                     }
                 }
             }
@@ -116,6 +116,6 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDataTable.init", ElementReference, HasProgressBar, ShowProgress);
+        private protected override Task InstantiateMcwComponent() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDataTable.init", ElementReference, HasProgressBar, ShowProgress);
     }
 }

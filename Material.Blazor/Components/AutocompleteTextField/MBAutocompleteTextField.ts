@@ -8,7 +8,7 @@ export function init(textElem, menuElem, dotNetObject): any {
 
     menuElem._menu.foundation.handleItemAction = listItem => {
         menuElem._menu.open = false;
-        dotNetObject.invokeMethodAsync('NotifySelectedAsync', listItem.innerText);
+        dotNetObject.invokeMethodAsync('NotifySelected', listItem.innerText);
     };
 
     menuElem._menu.foundation.adapter.handleMenuSurfaceOpened = () => {
@@ -16,7 +16,7 @@ export function init(textElem, menuElem, dotNetObject): any {
     };
 
     const closedCallback = () => {
-        dotNetObject.invokeMethodAsync('NotifyClosedAsync');
+        dotNetObject.invokeMethodAsync('NotifyClosed');
     };
 
     menuElem._menu.listen('MDCMenuSurface:closed', closedCallback);
