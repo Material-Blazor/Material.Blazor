@@ -1,0 +1,23 @@
+﻿@inherits TestComponentBase
+
+
+<SnapshotTest Setup="Setup">
+<TestInput>
+    <MBTextField Label="Hello" />
+</TestInput>
+<ExpectedOutput>
+    <label class="mdc-text-field   mdc-text-field--filled      ">
+        <span class="mdc-text-field__ripple"></span>
+        <span class="mdc-floating-label " for="mb_8c160aed-d058-4aab-aeca-eaa0babefca2" id="mb_c5f2927d-c099-49fe-ba66-132b230ff2b5">Hello</span>
+        <input aria-label="Hello" aria-labelledby="mb_c5f2927d-c099-49fe-ba66-132b230ff2b5" id="mb_8c160aed-d058-4aab-aeca-eaa0babefca2" class="mdc-text-field__input  ">
+        <span class="mdc-line-ripple"></span>
+    </label>
+</ExpectedOutput>
+
+@code {
+    void Setup(SnapshotTest test)
+    {
+        test.Services.AddLogging().AddMBServices();
+    }
+}
+</SnapshotTest>

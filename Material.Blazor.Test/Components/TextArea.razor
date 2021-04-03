@@ -1,0 +1,25 @@
+﻿@inherits TestComponentBase
+
+
+<SnapshotTest Setup="Setup">
+<TestInput>
+    <MBTextArea Label="Hello" />
+</TestInput>
+<ExpectedOutput>
+    <label class="mdc-text-field mdc-text-field--textarea   mdc-text-field--filled    ">
+        <span class="mdc-text-field__ripple"></span>
+        <span class="mdc-floating-label " for="mb_119d8167-0733-4dcd-b9ea-779df1eb00c6" id="mb_b81827cc-faf3-4d1a-a87f-48a1d8e79a1d">Hello</span>
+        <span class="mdc-text-field__resizer">
+            <textarea id="mb_119d8167-0733-4dcd-b9ea-779df1eb00c6" class="mdc-text-field__input  " aria-label="Hello" aria-labelledby="mb_b81827cc-faf3-4d1a-a87f-48a1d8e79a1d" rows="0" cols="0"></textarea>
+        </span>
+        <span class="mdc-line-ripple"></span>
+    </label>
+</ExpectedOutput>
+
+@code {
+    void Setup(SnapshotTest test)
+    {
+        test.Services.AddLogging().AddMBServices();
+    }
+}
+</SnapshotTest>

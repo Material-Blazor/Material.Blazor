@@ -1,0 +1,23 @@
+﻿@inherits TestComponentBase
+
+
+<SnapshotTest Setup="Setup">
+    <TestInput>
+        <MBNumericDoubleField Label="Hello" />
+    </TestInput>
+    <ExpectedOutput>
+        <label class="mdc-text-field   mdc-text-field--filled      ">
+            <span class="mdc-text-field__ripple"></span>
+            <span class="mdc-floating-label mdc-floating-label--float-above" for="mb_e0de39f3-0ce5-46e5-b717-63ab243d0e95" id="mb_8f710e66-46bd-468d-aaa1-d6ef063f9cec">Hello</span>
+            <input step="0.01" aria-label="Hello" aria-labelledby="mb_8f710e66-46bd-468d-aaa1-d6ef063f9cec" id="mb_e0de39f3-0ce5-46e5-b717-63ab243d0e95" class="mdc-text-field__input  mb-align-right " value="0">
+            <span class="mdc-line-ripple"></span>
+        </label>
+    </ExpectedOutput>
+
+    @code {
+        void Setup(SnapshotTest test)
+        {
+            test.Services.AddLogging().AddMBServices();
+        }
+    }
+</SnapshotTest>
