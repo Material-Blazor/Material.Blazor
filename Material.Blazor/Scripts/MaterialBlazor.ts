@@ -16,6 +16,7 @@ import * as MBIconButtonToggle from '../Components/IconButtonToggle/MBIconButton
 import * as MBLinearProgress from '../Components/LinearProgress/MBLinearProgress';
 import * as MBList from '../Components/List/MBList';
 import * as MBMenu from '../Components/Menu/MBMenu';
+import * as MBMenuSurface from '../Components/MenuSurface/MBMenuSurface';
 import * as MBRadioButton from '../Components/RadioButton/MBRadioButton';
 import * as MBSegmentedButtonMulti from '../Components/SegmentedButtonMulti/MBSegmentedButtonMulti';
 import * as MBSelect from '../Components/Select/MBSelect';
@@ -48,6 +49,7 @@ import * as Batching from './Batching';
     MBLinearProgress,
     MBList,
     MBMenu,
+    MBMenuSurface,
     MBRadioButton,
     MBSegmentedButtonMulti,
     MBSelect,

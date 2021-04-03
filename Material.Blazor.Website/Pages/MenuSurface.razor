@@ -1,0 +1,63 @@
+﻿@page "/menusurface"
+
+@inject IMBToastService ToastService
+
+<DemonstrationPage ComponentName="MenuSurface"
+                    DemoComponent="@this"
+                    MaterialIOPage="mdc-menu-surface#menu-surface"
+                    Title="Menu surface Demonstration">
+    <Description>
+        <p>
+            Demonstrates a menu surface.
+        </p>
+    </Description>
+    
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Menu Surface Example
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Allows the definition of freeform menus. Click the button to open the menu.
+                    </h3>
+
+                    <p>
+                        <MBIconButton @onclick="@OpenMenuSurfaceAsync" Icon="account_circle" />
+                        <div class="mdc-menu-surface--anchor">
+                            <MBMenuSurface @ref="MenuSurfaceElement"  >
+                                <div style="padding: 10px">
+                                    <div style="height:80px; width:80px; background-size: contain; background-image: url('_content/Material.Blazor.Website/icon-512.png');"></div>
+                                    <div class="mdc-typography mdc-typography--headline6">
+                                        Alice Smith
+                                    </div>
+                                    <div class="mdc-typography mdc-typography--subtitle1">
+                                        alice.smith@domain.com
+                                    </div>
+                                    <MBIconButton Icon="logout" @onclick="@(() => OnClick("logout"))"/>
+                                    <MBIconButton Icon="settings" @onclick="@(() => OnClick("settings"))"/>
+                                </div>
+                            </MBMenuSurface>
+                        </div>
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+
+</DemonstrationPage>
+
+@code {
+    private MBMenuSurface MenuSurfaceElement { get; set; }
+    private async Task OpenMenuSurfaceAsync()
+    {
+        await MenuSurfaceElement.ToggleAsync();
+    }
+
+    private void OnClick(string notification)
+    {
+        ToastService.ShowToast(heading: "Button Clicked", message: notification, level: MBToastLevel.Success, showIcon: false);
+    }
+}
