@@ -35,7 +35,7 @@ namespace Material.Blazor
         {
             await base.OnInitializedAsync();
 
-            ConditionalCssClasses
+            _ = ConditionalCssClasses
                 .AddIf(GetMenuSurfacePositioningClass(MenuSurfacePositioning), () => MenuSurfacePositioning != MBMenuSurfacePositioning.Regular);
 
             ObjectReference = DotNetObjectReference.Create(this);
