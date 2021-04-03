@@ -1,10 +1,16 @@
 ﻿@namespace Material.Blazor
 @inherits ComponentFoundation
 
+@code {
+    private static readonly RenderFragment<RenderFragment> TouchWrapper = (content) =>@<div class="mdc-touch-target-wrapper">@content</div>;
+private static readonly RenderFragment<RenderFragment> NoTouchWrapper = (content) => content;
+}
+
+@{ var optionalTouchWrapper = AppliedTouchTarget ? TouchWrapper : NoTouchWrapper; }
 
 @if (Type == MBFloatingActionButtonType.Mini)
 {
-    <div class="mdc-touch-target-wrapper">
+    @optionalTouchWrapper(@<text>
         <button @ref="@ElementReference"
                 class="mdc-fab @ActiveConditionalClasses @(@class)"
                 style="@style"
@@ -17,7 +23,7 @@
                     IconName="@Icon" />
             <div class="mdc-fab__touch"></div>
         </button>
-    </div>
+        </text>);
 }
 else
 {

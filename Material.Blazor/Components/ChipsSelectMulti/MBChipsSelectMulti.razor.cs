@@ -18,7 +18,13 @@ namespace Material.Blazor
         /// </summary>
         [CascadingParameter] private MBChipsSelectSingle<TItem> ChipsSelectSingle { get; set; }
 
+        /// <summary>
+        /// Inclusion of touch target
+        /// </summary>
+        [Parameter] public bool? TouchTarget { get; set; }
 
+
+        private bool AppliedTouchTarget => CascadingDefaults.AppliedTouchTarget(TouchTarget);
         private Dictionary<string, object>[] ChipAttributes { get; set; }
         private Dictionary<string, object>[] ChipIconAttributes { get; set; }
         private Dictionary<string, object>[] ChipSpanAttributes { get; set; }

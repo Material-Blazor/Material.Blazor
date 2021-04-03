@@ -18,7 +18,13 @@ namespace Material.Blazor
         /// </summary>
         [CascadingParameter] private MBSegmentedButtonSingle<TItem> SegmentedButtonSingle { get; set; }
 
+        /// <summary>
+        /// Inclusion of touch target
+        /// </summary>
+        [Parameter] public bool? TouchTarget { get; set; }
 
+
+        private bool AppliedTouchTarget => CascadingDefaults.AppliedTouchTarget(TouchTarget);
         private MBIconBearingSelectElement<TItem>[] ItemsArray { get; set; }
         private bool IsSingleSelect { get; set; }
         private IDisposable ObjectReference { get; set; }
