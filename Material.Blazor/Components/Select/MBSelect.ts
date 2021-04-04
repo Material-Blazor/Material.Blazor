@@ -3,10 +3,9 @@
 export function init(elem, dotNetObject) {
     elem._select = MDCSelect.attachTo(elem);
 
-    elem._select.foundation.handleMenuItemAction = index => {
-        elem._select.foundation.setSelectedIndex(index);
-        dotNetObject.invokeMethodAsync('NotifySelected', index);
-    };
+    elem._select.listen('MDCSelect:change', () => {
+        dotNetObject.invokeMethodAsync('NotifySelected', elem._select.selectedIndex);
+    });
 }
 
 export function setDisabled(elem, value) {
