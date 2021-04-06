@@ -1,15 +1,28 @@
 ﻿@namespace Material.Blazor
-@inherits InputComponent<double>
+@inherits InputComponent<decimal>
 
 <div @ref="@ElementReference"
      class="mdc-slider @ActiveConditionalClasses @(@class)"
      style="@style"
      id="@id"
-     @attributes="@AttributesToSplat()"
-     data-step="@DataStepValue">
-    @*Would use the following line, except that Blazor reserves the 'value' tag for its bindings and removes it from the rendered markup. Use of a MarkupString gets around this so that Material Compoents Web gets access to the value tag.*@
-    @*<input class="mdc-slider__input" type="range" value="@ValueMin.ToString(Format)" step="@Step" min="@ValueMin.ToString(Format)" max="@ValueMax.ToString(Format)" name="volume" aria-label="@AriaLabel">*@
+     @attributes="@AttributesToSplat()" >
+
+
+    @*  Would use the following except that Blazor reserves the 'value' tag for its bindings and removes it
+        from the rendered markup. Use of a MarkupString gets around this so that Material Compoents Web gets
+        access to the value tag.*@
+
+    @*<input class="mdc-slider__input"
+           type="range"
+           value="@ValueMin.ToString(Format)"
+           step="@Step"
+           min="@ValueMin.ToString(Format)"
+           max="@ValueMax.ToString(Format)"
+           name="volume"
+           aria-label="@AriaLabel">*@
+
     @InputMarkup
+
     <div class="mdc-slider__track">
         <div class="mdc-slider__track--inactive"></div>
         <div class="mdc-slider__track--active">
@@ -21,7 +34,7 @@
     {
         <div class="mdc-slider__tick-marks">
 
-            @{ double currValue = ValueMin - DataStep / 2; }
+            @{ decimal currValue = ValueMin - ValueStepIncrement / 2; }
 
             @while (currValue < ValueMax)
             {
@@ -34,7 +47,7 @@
                     <div class="mdc-slider__tick-mark--inactive"></div>
                 }
 
-                currValue += DataStep;
+                currValue += ValueStepIncrement;
             }
         </div>
     }

@@ -28,11 +28,11 @@
                         Continuous Slider
                     </h2>
 
-                    <p>With non-continuous input, yielding a value of @Value1a.ToString("N2")</p>
+                    <p>With non-continuous input, 0-100 range, 0 decimal, yielding a value of @Value1a.ToString("N0")</p>
                     <p>
                         <MBSlider AriaLabel="Continuous Slider"
                                   @bind-Value="@Value1a"
-                                  DecimalPlaces="2"
+                                  DecimalPlaces="0"
                                   SliderType="@MBSliderType.Continuous"
                                   ValueMax="100"
                                   ValueMin="0" />
@@ -40,18 +40,18 @@
                     <p>
                         <MBSlider AriaLabel="Continuous Slider"
                                   @bind-Value="@Value1a"
-                                  DecimalPlaces="2"
+                                  DecimalPlaces="0"
                                   SliderType="@MBSliderType.Continuous"
                                   ValueMax="100"
                                   ValueMin="0" />
                     </p>
 
-                    <p>With continuous input and 300ms debounce delay, yielding a value of @Value1b.ToString("N2")</p>
+                    <p>With continuous input, 0-100 range, 1 decimal, and 300ms debounce delay, yielding a value of @Value1b.ToString("N1")</p>
                     <p>
                         <MBSlider AriaLabel="Continuous Slider"
                                   @bind-Value="@Value1b"
                                   ContinuousInputDelay="@DebounceDelay"
-                                  DecimalPlaces="2"
+                                  DecimalPlaces="1"
                                   EventType="@MBInputEventType.OnInputDebounced"
                                   SliderType="@MBSliderType.Continuous"
                                   ValueMin="0" ValueMax="100" />
@@ -60,14 +60,14 @@
                         <MBSlider AriaLabel="Continuous Slider"
                                   @bind-Value="@Value1b"
                                   ContinuousInputDelay="@DebounceDelay"
-                                  DecimalPlaces="2"
+                                  DecimalPlaces="1"
                                   EventType="@MBInputEventType.OnInputDebounced"
                                   SliderType="@MBSliderType.Continuous"
                                   ValueMax="100"
                                   ValueMin="0" />
                     </p>
 
-                    <p>With continuous input and 300ms throttle delay, yielding a value of @Value1c.ToString("N2")</p>
+                    <p>With continuous input, 0-100 range, 2 decimal, and 300ms throttle delay, yielding a value of @Value1c.ToString("N2")</p>
                     <p>
                         <MBSlider AriaLabel="Continuous Slider"
                                   @bind-Value="@Value1c"
@@ -100,11 +100,12 @@
                         Discrete Sliders
                     </h2>
 
-                    <p>With non-continuous input, yielding a value of @Value2a.ToString("N2")</p>
+                    <p>With non-continuous input, tickmarks, 0-10 range, 0 decimal, 2 steps, yielding a value of @Value2a.ToString("N0")</p>
                     <p>
                         <MBSlider AriaLabel="Discrete Slider"
                                   @bind-Value="@Value2a"
                                   DecimalPlaces="0"
+                                  NumSteps="2"
                                   SliderType="@MBSliderType.Discrete"
                                   ValueMax="10"
                                   ValueMin="0" />
@@ -113,18 +114,20 @@
                         <MBSlider AriaLabel="Discrete Slider"
                                   @bind-Value="@Value2a"
                                   DecimalPlaces="0"
+                                  NumSteps="2"
                                   SliderType="@MBSliderType.DiscreteWithTickmarks"
                                   ValueMax="10"
                                   ValueMin="0" />
                     </p>
 
-                    <p>With continuous input and 300ms debounce delay, yielding a value of @Value2b.ToString("N2")</p>
+                    <p>With continuous input, tickmarks, 0-10 range, 0 decimal, 10 steps, and 300ms debounce delay, yielding a value of @Value2b.ToString("N0")</p>
                     <p>
                         <MBSlider AriaLabel="Discrete Slider"
                                   @bind-Value="@Value2b"
                                   ContinuousInputDelay="@DebounceDelay"
                                   DecimalPlaces="0"
                                   EventType="@MBInputEventType.OnInputDebounced"
+                                  NumSteps="10"
                                   SliderType="@MBSliderType.Discrete"
                                   ValueMax="10"
                                   ValueMin="0" />
@@ -135,18 +138,20 @@
                                   ContinuousInputDelay="@DebounceDelay"
                                   DecimalPlaces="0"
                                   EventType="@MBInputEventType.OnInputDebounced"
+                                  NumSteps="10"
                                   SliderType="@MBSliderType.DiscreteWithTickmarks"
                                   ValueMax="10"
                                   ValueMin="0" />
                     </p>
 
-                    <p>With continuous input and 300ms throttle delay, yielding a value of @Value2c.ToString("N2")</p>
+                    <p>With continuous input, tickmarks, 0-10 range, 1 decimal, 20 steps, and 300ms throttle delay, yielding a value of @Value2c.ToString("N1")</p>
                     <p>
                         <MBSlider AriaLabel="Discrete Slider"
                                   @bind-Value="@Value2c"
                                   ContinuousInputDelay="@DebounceDelay"
-                                  DecimalPlaces="0"
+                                  DecimalPlaces="1"
                                   EventType="@MBInputEventType.OnInputThrottled"
+                                  NumSteps="20"
                                   SliderType="@MBSliderType.Discrete"
                                   ValueMax="10"
                                   ValueMin="0" />
@@ -157,6 +162,7 @@
                                   ContinuousInputDelay="@DebounceDelay"
                                   DecimalPlaces="0"
                                   EventType="@MBInputEventType.OnInputThrottled"
+                                  NumSteps="20"
                                   SliderType="@MBSliderType.DiscreteWithTickmarks"
                                   ValueMax="10"
                                   ValueMin="0" />
@@ -165,27 +171,6 @@
             </MBCard>
 
 
-            <div class="mdc-layout-grid__cell--span-12">
-                <MBCard AutoStyled="true">
-                    <Primary>
-                        <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                            Test Slider
-                        </h2>
-
-                        <p>Discrete with tickmarks, 0-10, 1 decimal, 1 step, yielding a value of @Value3.ToString("N2")</p>
-                        <p>
-                            <MBSlider AriaLabel="Discrete Slider"
-                                      @bind-Value="@Value3"
-                                      DecimalPlaces="1"
-                                      NumSteps="1"
-                                      SliderType="@MBSliderType.DiscreteWithTickmarks"
-                                      ValueMax="10"
-                                      ValueMin="0" />
-                        </p>
-                    </Primary>
-                </MBCard>
-            </div>
-
         </div>
 
     </PageContent>
@@ -193,13 +178,12 @@
 
 
 @code {
-    double Value1a = 16.67;
-    double Value1b = 33.33;
-    double Value1c = 66.67;
-    double Value2a = 3;
-    double Value2b = 5;
-    double Value2c = 7;
-    double Value3 = 5;
+    decimal Value1a = 16.67M;
+    decimal Value1b = 33.33M;
+    decimal Value1c = 66.67M;
+    decimal Value2a = 5;
+    decimal Value2b = 3;
+    decimal Value2c = 7.5M;
 
     uint DebounceDelay = 300;
 }
