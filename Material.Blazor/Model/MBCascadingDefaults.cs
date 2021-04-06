@@ -37,8 +37,7 @@ namespace Material.Blazor
         private IEnumerable<string> _allowedSplattableAttributes = Enumerable.Empty<string>();
         /// <summary>
         /// Further attributes that can be set as allowable when <see cref="Internal.ComponentFoundation"/>
-        /// performs unmatched attribute validation. Works with <see cref="ConstrainSplattableAttributes"/>
-        /// and <see cref="EssentialSplattableAttributes"/>.
+        /// performs unmatched attribute validation. Works with <see cref="ConstrainSplattableAttributes"/>.
         /// </summary>
         public IEnumerable<string> AllowedSplattableAttributes { get => _allowedSplattableAttributes; set => SetParameter(ref _allowedSplattableAttributes, value); }
 

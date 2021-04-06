@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 namespace Material.Blazor
 {
     /// <summary>
-    /// A component added to a blade via <see cref="MBBladeSet.AddBlade(string, MBBladeComponent{TParam}, TParam, string, string)"/>
+    /// A component added to a blade via <see cref="MBBladeSet.AddBladeAsync{TComponent, TParameters}(string, TParameters, string, string, System.Action{string})"/>
     /// must implement this interface.
     /// </summary>
     public abstract class MBBladeComponent<TParam> : ComponentBase where TParam : MBBladeComponentParameters
@@ -34,7 +34,7 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// A utility function to close the blade, calling BladeSet.RemoveBladeAsync(), passing the blade reference.
+        /// A utility function to close the blade, calling <see cref="MBBladeSet.RemoveBladeAsync(string)"/>, passing the blade reference.
         /// </summary>
         public Task CloseBladeAsync()
         {
