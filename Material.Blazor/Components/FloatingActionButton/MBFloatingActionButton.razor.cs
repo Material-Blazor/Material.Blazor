@@ -15,6 +15,11 @@ namespace Material.Blazor
     {
         [CascadingParameter] private MBCard Card { get; set; }
 
+        /// <summary>
+        /// Inclusion of touch target
+        /// </summary>
+        [Parameter] public bool? TouchTarget { get; set; }
+
 
 #nullable enable annotations
         /// <summary>
@@ -50,6 +55,8 @@ namespace Material.Blazor
         /// </summary>
         [Parameter] public bool IconTrailsLabel { get; set; }
 
+
+        private bool AppliedTouchTarget => CascadingDefaults.AppliedTouchTarget(TouchTarget);
 
         private bool exited;
         /// <summary>

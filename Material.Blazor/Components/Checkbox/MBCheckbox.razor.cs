@@ -14,12 +14,6 @@ namespace Material.Blazor
     public partial class MBCheckbox : InputComponent<bool>
     {
         /// <summary>
-        /// The check box label.
-        /// </summary>
-        [Parameter] public string Label { get; set; }
-
-
-        /// <summary>
         /// The checkbox's density.
         /// </summary>
         [Parameter] public MBDensity? Density { get; set; }
@@ -44,6 +38,18 @@ namespace Material.Blazor
         }
 
 
+        /// <summary>
+        /// The check box label.
+        /// </summary>
+        [Parameter] public string Label { get; set; }
+
+
+        /// <summary>
+        /// Inclusion of touch target
+        /// </summary>
+        [Parameter] public bool? TouchTarget { get; set; }
+
+        private bool AppliedTouchTarget => CascadingDefaults.AppliedTouchTarget(TouchTarget);
 
         private Task UpdateIndeterminateStateAsync()
         {

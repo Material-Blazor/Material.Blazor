@@ -13,7 +13,8 @@
 
     @for (int i = 0; i < ItemsArray.Length; i++)
     {
-        <div @key="@KeyGenerator(ItemsArray[i].SelectedValue)" class="mdc-touch-target-wrapper">
+        @*TODO check whether this loop over i is correct. Isn't i bound by reference? *@
+        <MBTouchTargetWrapper @key="@KeyGenerator(ItemsArray[i].SelectedValue)" ApplyTouchTargetWrapper="AppliedTouchTarget">
             <button @attributes="@SegmentAttributes[i]">
                 <div class="mdc-segmented-button__ripple"></div>
 
@@ -31,6 +32,6 @@
 
                 <div class="mdc-segmented-button__touch"></div>
             </button>
-        </div>
+        </MBTouchTargetWrapper>
     }
 </div>
