@@ -554,6 +554,17 @@ namespace Material.Blazor
 
 
 
+        /// <summary>
+        /// Returns a shallow copy of the cascading defaults.
+        /// </summary>
+        /// <returns></returns>
+        public MBCascadingDefaults ShallowCopy()
+        {
+            return (MBCascadingDefaults)MemberwiseClone();
+        }
+
+
+
         private void SetParameter<T>(ref T privateParameter, T value)
         {
             if (!value.Equals(privateParameter))
