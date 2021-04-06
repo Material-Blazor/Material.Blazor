@@ -1,16 +1,9 @@
 @namespace Material.Blazor
 @inherits InputComponent<bool>
 
-@code {
-    private static readonly RenderFragment<RenderFragment> TouchWrapper = (content) =>@<div class="mdc-touch-target-wrapper">@content</div>;
-    private static readonly RenderFragment<RenderFragment> NoTouchWrapper = (content) => content;
-}
-
-@{ var optionalTouchWrapper = AppliedTouchTarget ? TouchWrapper : NoTouchWrapper; }
-
 <div @ref="@FormReference" class="mdc-form-field">
 
-    @optionalTouchWrapper(@<text>
+    <MBTouchTargetWrapper ApplyTouchTargetWrapper="AppliedTouchTarget">
         <div class="mdc-touch-target-wrapper">
             <div @ref="@ElementReference"
                  class="mdc-checkbox mdc-checkbox--touch @ActiveConditionalClasses @(@class)"
@@ -36,5 +29,5 @@
             </div>
         </div>
         <label for="@CrossReferenceId">@Label</label>
-    </text>);
+    </MBTouchTargetWrapper>
 </div>

@@ -1,14 +1,7 @@
 ﻿@namespace Material.Blazor
 @inherits ComponentFoundation
 
-@code {
-    private static readonly RenderFragment<RenderFragment> TouchWrapper = (content) =>@<div class="mdc-touch-target-wrapper">@content</div>;
-    private static readonly RenderFragment<RenderFragment> NoTouchWrapper = (content) => content;
-}
-
-@{ var optionalTouchWrapper = AppliedTouchTarget ? TouchWrapper : NoTouchWrapper; }
-
-@optionalTouchWrapper(@<text>
+<MBTouchTargetWrapper ApplyTouchTargetWrapper="AppliedTouchTarget">
     <button @ref="@ElementReference"
             class="mdc-button @ActiveConditionalClasses @(@class)"
             style="@style"
@@ -36,4 +29,4 @@
                     IconName="@TrailingIcon" />
         }
     </button>
-</text>);
+</MBTouchTargetWrapper>
