@@ -98,7 +98,10 @@ namespace Material.Blazor
                 if (value != ItemsPerPage)
                 {
                     ItemsPerPage = value;
-                    if (HasRendered) ItemsPerPageChanged.InvokeAsync(value);
+                    if (HasRendered)
+                    {
+                        ItemsPerPageChanged.InvokeAsync(value);
+                    }
                 }
             }
         }

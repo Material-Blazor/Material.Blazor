@@ -15,7 +15,7 @@ namespace Material.Blazor.Internal
     {
         /// <summary>
         /// A list of unmatched attributes that are used by and therefore essential for Material.Blazor. Works with 
-        /// <see cref="ConstrainSplattableAttributes"/> and <see cref="AllowedSplattableAttributes"/>.
+        /// <see cref="MBCascadingDefaults.ConstrainSplattableAttributes"/> and <see cref="MBCascadingDefaults.AllowedSplattableAttributes"/>.
         /// </summary>
         /// <remarks>
         /// Includes "formnovalidate", "max", "min", "role", "step", "tabindex", "type", "data-prev-page" 
@@ -124,13 +124,13 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// Allows a component to build or map out a group of CSS classes to be applied to the component. Use this in <see cref="OnInitialialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
+        /// Allows a component to build or map out a group of CSS classes to be applied to the component. Use this in <see cref="ComponentBase.OnInitialized()"/>, <see cref="OnParametersSet()"/> or their asynchronous counterparts.
         /// </summary>
         private protected ConditionalCssClasses ConditionalCssClasses { get; } = new ConditionalCssClasses();
 
 
         /// <summary>
-        /// Components should override this with a function to be called when Material.Blazor wants to run Material Components Web instantiation via JS Interop - always gets called from <see cref="OnAfterRenderAsync()"/>, which should not be overridden.
+        /// Components should override this with a function to be called when Material.Blazor wants to run Material Components Web instantiation via JS Interop - always gets called from <see cref="OnAfterRenderAsync(bool)"/>, which should not be overridden.
         /// </summary>
         private protected virtual Task InstantiateMcwComponent() => Task.CompletedTask;
 
@@ -208,16 +208,25 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// Material.Blazor components *must always* override this at the start of `OnParametersSet().
+        /// Material.Blazor components use <see cref="OnParametersSetAsync()"/> only.
         /// </summary>
         protected sealed override void OnParametersSet()
         {
-            // for consistency, we only ever use OnParametersSetAsync. To prevent ourselves from using OnParametersSet accidentally, we seal this method from here on.
+            // For consistency, we only ever use OnParametersSetAsync. To prevent ourselves from using OnParametersSet accidentally, we seal this method from here on.
         }
 
 
         /// <summary>
-        /// Material.Blazor components *must always* override this at the start of `OnParametersSet().
+        /// Material.Blazor components use <see cref="OnInitializedAsync()"/> only.
+        /// </summary>
+        protected sealed override void OnInitialized()
+        {
+            // For consistency, we only ever use OnInitializedAsync. To prevent ourselves from using OnInitialized accidentally, we seal this method from here on.
+        }
+
+
+        /// <summary>
+        /// When overriding this, call <c>await base.OnParametersSetAsync();</c> before any user code unless there is a very good reason not to.
         /// </summary>
         protected override async Task OnParametersSetAsync()
         {
@@ -268,7 +277,7 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// Material.Blazor components descending from <see cref="ComponentFoundation"/> _*must not*_ override OnAfterRender(bool).
+        /// Material.Blazor components descending from <see cref="ComponentFoundation"/> _*must not*_ override <see cref="ComponentBase.OnAfterRender(bool)"/>.
         /// </summary>
         protected sealed override void OnAfterRender(bool firstRender)
         {

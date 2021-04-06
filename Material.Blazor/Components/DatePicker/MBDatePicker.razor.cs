@@ -97,7 +97,6 @@ namespace Material.Blazor
         }
 
 
-        private readonly string key = Utilities.GenerateUniqueElementName();
         private readonly string labelId = Utilities.GenerateUniqueElementName();
         private readonly string listboxId = Utilities.GenerateUniqueElementName();
         private readonly string selectedTextId = Utilities.GenerateUniqueElementName();
