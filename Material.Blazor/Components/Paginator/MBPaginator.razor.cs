@@ -74,7 +74,10 @@ namespace Material.Blazor
                 if (ItemsPerPage == 0)
                 {
                     PageNumber = value;
-                    if (HasRendered) PageNumberChanged.InvokeAsync(value);
+                    if (HasRendered)
+                    {
+                        PageNumberChanged.InvokeAsync(value);
+                    }
                 }
                 else
                 {
@@ -83,7 +86,10 @@ namespace Material.Blazor
                     if (clampedValue != PageNumber)
                     {
                         PageNumber = clampedValue;
-                        if (HasRendered) PageNumberChanged.InvokeAsync(value);
+                        if (HasRendered)
+                        {
+                            PageNumberChanged.InvokeAsync(value);
+                        }
                     }
                 }
             }
