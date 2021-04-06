@@ -141,7 +141,14 @@ namespace Material.Blazor.Internal
 
                 if (refs.Length > 0)
                 {
-                    await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTooltip.init", refs.Select(r => r.ElementReference));
+                    try
+                    {
+                        await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTooltip.init", refs.Select(r => r.ElementReference));
+                    }
+                    catch (Exception e)
+                    {
+                        LogMBError(e, "Instantiating a tooltip failed.");
+                    }
 
                     foreach (var item in refs)
                     {
