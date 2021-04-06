@@ -156,7 +156,6 @@ namespace Material.Blazor
         private ElementReference MenuReference { get; set; }
         private SelectionItem[] MySelectItems { get; set; }
         private SelectionInfo SelectInfo { get; set; } = new SelectionInfo();
-        private ElementReference SelectReference { get; set; }
         private MBTextField TextField { get; set; }
 
 

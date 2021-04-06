@@ -13,7 +13,6 @@ namespace Material.Blazor
     public partial class MBAnimatedNavigation : ComponentFoundation
     {
         [Inject] private IMBAnimatedNavigationManager AnimatedNavigationService { get; set; }
-        [Inject] private NavigationManager NavigationManager { get; set; }
 
 
         /// <summary>
@@ -70,7 +69,7 @@ namespace Material.Blazor
             {
                 PageClass = FadeOut;
                 await Task.Delay(AnimatedNavigationService.FadeOutTime);
-                NavigationManager.NavigateTo(uri, forceLoad);
+                AnimatedNavigationService.NavigationManager.NavigateTo(uri, forceLoad);
                 PageClass = FadeIn;
             });
         }

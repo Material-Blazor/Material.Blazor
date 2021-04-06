@@ -209,13 +209,6 @@ namespace Material.Blazor.Internal
         protected string FieldClass => !IgnoreFormField ? (EditContext?.FieldCssClass(FieldIdentifier) ?? string.Empty) : string.Empty;
 
 
-        protected sealed override void OnInitialized()
-        {
-            // for consistency, we only ever use OnInitializedAsync. To prevent ourselves from using OnInitialized accidentally, we seal this method from here on.
-            base.OnInitialized();
-        }
-
-
         /// <para>
         /// Components must call base.OnInitializedAsync() otherwise rendering in dialogs will be unpredictable.
         /// </para>

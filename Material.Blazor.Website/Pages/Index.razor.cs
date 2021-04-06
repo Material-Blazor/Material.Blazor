@@ -1,12 +1,10 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
 using System.Runtime.InteropServices;
 
 namespace Material.Blazor.Website.Pages
 {
     public partial class Index
     {
-        [Inject] private IJSRuntime JsRuntime { get; set; }
         [Inject] private IMBAnimatedNavigationManager AnimatedNavigationManager { get; set; }
 
 #if DEBUG

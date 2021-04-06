@@ -18,7 +18,6 @@ namespace Material.Blazor.Internal
 
 
         private readonly SemaphoreSlim _semProtectTooltips = new SemaphoreSlim(1, 1);
-        private readonly SemaphoreSlim _onAfterRenderSemaphore = new SemaphoreSlim(1, 1);
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
