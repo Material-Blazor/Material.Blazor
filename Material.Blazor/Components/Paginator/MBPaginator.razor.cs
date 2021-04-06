@@ -11,7 +11,7 @@ namespace Material.Blazor
 {
     public partial class MBPaginator : ComponentFoundation
     {
-        [CascadingParameter(Name = MBDataTable<string>.DataTableCascadingValue)] private string DataTableCascadingValue { get; set; }
+        [CascadingParameter(Name = "IsWithinDataTable")] private bool RequiresBorder { get; set; }
 
 
         /// <summary>
@@ -120,10 +120,8 @@ namespace Material.Blazor
         {
             await base.OnInitializedAsync();
 
-            var requiresBorder = DataTableCascadingValue != null && DataTableCascadingValue == MBDataTable<string>.DataTableReference;
-
             ConditionalCssClasses
-                .AddIf("no-border", () => !requiresBorder);
+                .AddIf("no-border", () => !RequiresBorder);
 
             if (ItemsPerPage == 0)
             {
