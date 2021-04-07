@@ -212,6 +212,21 @@ namespace Material.Blazor
 
 
 
+        private string _dateFormat = "D";
+        /// <summary>
+        /// The default date format for an <see cref="MBDatePicker"/>, initialized to "D" (culture specific C# long date pattern) if not explicitly set.
+        /// </summary>
+        public string DateFormat { get => _dateFormat; set => SetParameter(ref _dateFormat, value); }
+
+        /// <summary>
+        /// The date format to apply to an <see cref="MBDatePicker"/>.
+        /// </summary>
+        /// <param name="style">The style parameter passed to the <see cref="MBCard"/></param>
+        /// <returns>The <see cref="MBCardStyle"/> to apply.</returns>
+        internal string AppliedDateFormat(string? format = null) => string.IsNullOrWhiteSpace(format) ? DateFormat : format;
+
+
+
         private MBListStyle _listStyle = MBListStyle.None;
         /// <summary>
         /// The default style for an <see cref="MBList{TItem}"/>, initialized to <see cref="MBListStyle.None"/> if not explicitly set.
