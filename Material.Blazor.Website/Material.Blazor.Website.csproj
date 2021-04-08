@@ -62,17 +62,18 @@
     <ProjectReference Include="..\Material.Blazor\Material.Blazor.csproj" />
   </ItemGroup>
 
-  <Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent">
-    <Message Importance="high" Text="***** npm install" />
-    <Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
+  <Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" Condition=" '$(SkipNpm)' == '' ">
+    <Exec Command="npm --version" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
       <Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
     </Exec>
   </Target>
 
-  <Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
+  <Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)$(SkipNpm)' == '0' ">
     <Message Importance="high" Text="***** mkdir wwwroot and wwwroot\css (M.B.W Styles)" />
     <Exec Command="mkdir wwwroot\css" IgnoreExitCode="true" />
 
+    <Message Importance="high" Text="***** npm install" />
+    <Exec Command="npm install" />
     <!-- Don't build unminified themes -->
     <Message Importance="high" Text="***** build material default theme" />
     <Exec Command="npm run build-min-material-default" />

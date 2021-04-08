@@ -150,7 +150,7 @@ jobs:
 # This is soft-skipped when we only want to perform a comparison (github.event_name != 'workflow_dispatch')
 # A soft-skip is necessary, because the comparison job has to occur after build-website, if it is built.
 ############################################################################################################
-  build-website:
+  build-website-dotnet-only:
     name: Build website
     runs-on: windows-latest
 
@@ -167,6 +167,80 @@ jobs:
       if: github.event_name != 'workflow_dispatch'
 
     - name: Build Website 🔧
+      run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectWeb} -p:"SkipNpm=1"
+      if: github.event_name != 'workflow_dispatch'
+
+    - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
+      uses: actions/upload-artifact@v1
+      with:
+        name: siteWeb
+        path: siteWeb
+      if: github.event_name != 'workflow_dispatch'
+
+      ############################################################################################################
+# Build website
+# This is soft-skipped when we only want to perform a comparison (github.event_name != 'workflow_dispatch')
+# A soft-skip is necessary, because the comparison job has to occur after build-website, if it is built.
+############################################################################################################
+  build-website-npm-only:
+    name: Build website
+    runs-on: windows-latest
+
+    steps:
+    - name: Set ciSuffix as env variable
+      run: echo "ciSuffix=ci.$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
+      shell: bash
+      if: github.event_name != 'workflow_dispatch'
+
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+      if: github.event_name != 'workflow_dispatch'
+
+    - name: Build assets (library) 🔧
+      run: dotnet build  -target:'CheckIfNpmExists;BuildStyles;BuildScripts' .\Material.Blazor\Material.Blazor.csproj --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectWeb}
+      if: github.event_name != 'workflow_dispatch'
+
+    - name: Build assets (demo) 🔧
+      run: dotnet build  -target:'CheckIfNpmExists;BuildStyles' .\Material.Blazor.Website\Material.Blazor.Website.csproj --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectWeb}
+      if: github.event_name != 'workflow_dispatch'
+
+    - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
+      uses: actions/upload-artifact@v1
+      with:
+        name: siteWeb
+        path: siteWeb
+      if: github.event_name != 'workflow_dispatch'
+
+      ############################################################################################################
+# Build website
+# This is soft-skipped when we only want to perform a comparison (github.event_name != 'workflow_dispatch')
+# A soft-skip is necessary, because the comparison job has to occur after build-website, if it is built.
+############################################################################################################
+  build-website:
+    name: Build website
+    runs-on: windows-latest
+
+    steps:
+    - name: Set ciSuffix as env variable
+      run: echo "ciSuffix=ci.$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
+      shell: bash
+      if: github.event_name != 'workflow_dispatch'
+
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+      if: github.event_name != 'workflow_dispatch'
+
+    - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
+      uses: actions/download-artifact@v1
+      with:
+        name: siteWeb
+      if: github.event_name != 'workflow_dispatch'
+
+    - name: Build Website (full build. should be quick now.) 🔧
       run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectWeb}
       if: github.event_name != 'workflow_dispatch'
       
@@ -174,7 +248,7 @@ jobs:
       run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} --version-suffix ${env:ciSuffix} ${env:projectWeb}
       if: github.event_name != 'workflow_dispatch'
 
-    - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
+    - name: Reupload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v1
       with:
         name: siteWeb
@@ -478,10 +552,26 @@ jobs:
         name: report
         path: all_reports.md
     - name: Create issue from file
+      id: ciff
       uses: peter-evans/create-issue-from-file@v2
       with:
         title: Comparison of ${{ steps.baselineprefix.outputs.prefix }} and ${{github.actor}}.github.io/Material.Blazor
         content-filepath: meta_report.md
         labels: report, automated issue
         token: ${{secrets.GH_PAT}}
+    - name: Leave a comment to auto-close the issue when this PR is closed, if this is a PR
+      uses: octokit/request-action@v2.x
+      if: (github.event_name == 'pull_request')
+      with:
+        route: POST /repos/{org}/{repo}/issues/{issue_number}/comments
+        org: ${{github.actor}}
+        repo: Material.Blazor
+        accept: 'application/vnd.github.v3+json'
+        issue_number: ${{github.event.number}}
+        body: |
+          |
+          "Closes #${{steps.ciff.outputs.issue-number}} (comparison report issue)"
+        # in the body above, the two dashes are an absolute necessity! https://github.com/octokit/request-action/issues/79
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_PAT }}
 

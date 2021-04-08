@@ -100,7 +100,7 @@
     <Message Importance="high" Text="**********************************************************************************" />
   </Target>
 
-  <Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
+  <Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)$(SkipNpm)' == '0' ">
     <Message Importance="high" Text="***** MakeDir wwwroot (M.B Scripts)" />
     <MakeDir Directories="wwwroot" />
 
@@ -125,7 +125,7 @@
     
   </Target>
 
-  <Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
+  <Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)$(SkipNpm)' == '0' ">
     <Message Importance="high" Text="***** mkdir wwwroot (M.B Styles)" />
     <MakeDir Directories="wwwroot" />
 
