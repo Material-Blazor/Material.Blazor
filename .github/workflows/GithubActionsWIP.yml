@@ -27,6 +27,7 @@ env:
 
 jobs:
   is-on-fork:
+    name: Running on a fork?
     runs-on: ubuntu-latest
     if: github.repository != 'Material-Blazor/Material.Blazor'
     steps:
