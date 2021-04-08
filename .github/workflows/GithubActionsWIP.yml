@@ -198,19 +198,31 @@ jobs:
         persist-credentials: false
       if: github.event_name != 'workflow_dispatch'
 
+    - name: Create output directories
+      run: |
+        mkdir static_assets
+        mkdir static_assets/library
+        mkdir static_assets/demo
+      shell: bash
+      if: github.event_name != 'workflow_dispatch'
+
     - name: Build assets (library) 🔧
-      run: dotnet build  -target:'CheckIfNpmExists;BuildStyles;BuildScripts' .\Material.Blazor\Material.Blazor.csproj --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} --output ${env:outputWeb}
+      run: |
+        dotnet build  -target:'CheckIfNpmExists;BuildStyles;BuildScripts' .\Material.Blazor\Material.Blazor.csproj --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix}
+        cp  ./Material.Blazor/wwwroot/* static_assets/library/
       if: github.event_name != 'workflow_dispatch'
 
     - name: Build assets (demo) 🔧
-      run: dotnet build  -target:'CheckIfNpmExists;BuildStyles' .\Material.Blazor.Website\Material.Blazor.Website.csproj --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} --output ${env:outputWeb}
+      run: |
+        dotnet build  -target:'CheckIfNpmExists;BuildStyles' .\Material.Blazor.Website\Material.Blazor.Website.csproj --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix}
+        cp  ./Material.Blazor.Website/wwwroot/* static_assets/demo/
       if: github.event_name != 'workflow_dispatch'
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v1
       with:
-        name: siteWeb
-        path: siteWeb
+        name: static_assets
+        path: static_assets
       if: github.event_name != 'workflow_dispatch'
 
       ############################################################################################################
@@ -239,6 +251,19 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: siteWeb
+      if: github.event_name != 'workflow_dispatch'
+
+    - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
+      uses: actions/download-artifact@v1
+      with:
+        name: static_assets
+      if: github.event_name != 'workflow_dispatch'
+
+    - name: Copy files to appropriate locations
+      run: |
+        cp static_assets/library/* ./Material.Blazor/wwwroot/
+        cp static_assets/demo/* ./Material.Blazor.Website/wwwroot/
+      shell: bash
       if: github.event_name != 'workflow_dispatch'
 
     - name: Build Website (full build. should be quick now.) 🔧
