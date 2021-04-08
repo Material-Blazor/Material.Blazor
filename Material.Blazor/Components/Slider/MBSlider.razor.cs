@@ -59,14 +59,13 @@ namespace Material.Blazor
         [Parameter] public string AriaLabel { get; set; } = "Slider";
 
 
-        private decimal ValueStepIncrement { get; set; }
         private ElementReference ElementReference { get; set; }
         private string Format { get; set; }
         private MarkupString InputMarkup { get; set; }
         private DotNetObjectReference<MBSlider> ObjectReference { get; set; }
         private decimal RangePercentDecimal { get; set; }
         private int TabIndex { get; set; }
-        private decimal ThumbEndPercent => 100 * RangePercentDecimal;
+        private decimal ValueStepIncrement { get; set; }
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
