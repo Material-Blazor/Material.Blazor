@@ -253,10 +253,6 @@ jobs:
         cp static_assets/demo/* ./Material.Blazor.Website/wwwroot/css/
       shell: bash
       if: github.event_name != 'workflow_dispatch'
-
-    - name: Build Website (full build. should be quick now.) 🔧
-      run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${{needs.ci-identifier.outputs.ciSuffix}} ${env:projectWeb}
-      if: github.event_name != 'workflow_dispatch'
       
     - name: Publish Website 🔧
       run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} --version-suffix ${{needs.ci-identifier.outputs.ciSuffix}} ${env:projectWeb}
