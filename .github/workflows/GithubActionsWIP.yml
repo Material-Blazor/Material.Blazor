@@ -220,6 +220,7 @@ jobs:
 ############################################################################################################
   build-website:
     name: Build website
+    needs: [build-website-dotnet-only, build-website-npm-only]
     runs-on: windows-latest
 
     steps:
