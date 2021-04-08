@@ -5,7 +5,7 @@
      class="mdc-slider @ActiveConditionalClasses @(@class)"
      style="@style"
      id="@id"
-     @attributes="@AttributesToSplat()" >
+     @attributes="@AttributesToSplat()">
 
 
     @*  Would use the following except that Blazor reserves the 'value' tag for its bindings and removes it
@@ -13,13 +13,13 @@
         access to the value tag.*@
 
     @*<input class="mdc-slider__input"
-           type="range"
-           value="@ValueMin.ToString(Format)"
-           step="@Step"
-           min="@ValueMin.ToString(Format)"
-           max="@ValueMax.ToString(Format)"
-           name="volume"
-           aria-label="@AriaLabel">*@
+        type="range"
+        value="@ValueMin.ToString(Format)"
+        step="@Step"
+        min="@ValueMin.ToString(Format)"
+        max="@ValueMax.ToString(Format)"
+        name="volume"
+        aria-label="@AriaLabel">*@
 
     @InputMarkup
 
@@ -52,8 +52,7 @@
         </div>
     }
 
-    <div class="mdc-slider__thumb"
-         style="left: calc(@ThumbEndPercent% - 24px)">
+    <div class="mdc-slider__thumb">
         @*role="slider"
             tabindex="@TabIndex"
             aria-label="@AriaLabel"
