@@ -171,10 +171,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: compilation
-        path: |
-          ${{ github.workspace }}\Material.Blazor\
-          ${{ github.workspace }}\Material.Blazor.Website\
-          ${{ github.workspace }}\Material.Blazor.Website.WebAssembly\
+        path: ${{ github.workspace }}\Material.Blazor  ${{ github.workspace }}\Material.Blazor.Website\  ${{ github.workspace }}\Material.Blazor.Website.WebAssembly\
       if: github.event_name != 'workflow_dispatch'
 
       ############################################################################################################
