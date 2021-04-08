@@ -171,7 +171,9 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: compilation
-        path: .
+        path: |
+          Material.Blazor/
+          Material.Blazor.Website/
       if: github.event_name != 'workflow_dispatch'
 
       ############################################################################################################
