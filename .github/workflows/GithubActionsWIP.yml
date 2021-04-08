@@ -172,9 +172,8 @@ jobs:
       with:
         name: compilation
         path: |
-          Material.Blazor/
-          Material.Blazor.Website/
-          Material.Blazor.Website.WebAssembly/
+          .
+          !.git/
       if: github.event_name != 'workflow_dispatch'
 
       ############################################################################################################
