@@ -167,7 +167,7 @@ jobs:
       if: github.event_name != 'workflow_dispatch'
 
     - name: Build Website 🔧
-      run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectWeb} -p:"SkipNpm=1"
+      run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectWeb} -p:"SkipNpm=1" --output ${env:outputWeb}
       if: github.event_name != 'workflow_dispatch'
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
@@ -199,11 +199,11 @@ jobs:
       if: github.event_name != 'workflow_dispatch'
 
     - name: Build assets (library) 🔧
-      run: dotnet build  -target:'CheckIfNpmExists;BuildStyles;BuildScripts' .\Material.Blazor\Material.Blazor.csproj --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix}
+      run: dotnet build  -target:'CheckIfNpmExists;BuildStyles;BuildScripts' .\Material.Blazor\Material.Blazor.csproj --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} --output ${env:outputWeb}
       if: github.event_name != 'workflow_dispatch'
 
     - name: Build assets (demo) 🔧
-      run: dotnet build  -target:'CheckIfNpmExists;BuildStyles' .\Material.Blazor.Website\Material.Blazor.Website.csproj --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix}
+      run: dotnet build  -target:'CheckIfNpmExists;BuildStyles' .\Material.Blazor.Website\Material.Blazor.Website.csproj --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} --output ${env:outputWeb}
       if: github.event_name != 'workflow_dispatch'
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
