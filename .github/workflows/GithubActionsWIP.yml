@@ -40,6 +40,15 @@ jobs:
     steps:
     - name: Nothing to see here
       run: echo ""
+  ci-identifier:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Create CI suffix
+      id: create
+      run: echo "::set-output name=ciSuffix::ci.$(date +'%Y-%m-%d--%H%M')"
+    outputs:
+      ciSuffix: ${{ steps.create.outputs.ciSuffix }}
+    
 ############################################################################################################
 # This job is only to display some CI information
 ############################################################################################################
@@ -51,16 +60,6 @@ jobs:
 
     - name: DotNet info
       run: dotnet --info
-      if: github.event_name != 'workflow_dispatch'
-
-    - name: Set ciSuffix as env variable
-      run: echo "ciSuffix=ci.$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
-      shell: bash
-      if: github.event_name != 'workflow_dispatch'
-
-    - name: Echo ciSuffix
-      run: echo "CI suffix is $ciSuffix"
-      shell: bash
       if: github.event_name != 'workflow_dispatch'
 
     - name: Get the branch
@@ -151,15 +150,11 @@ jobs:
 # A soft-skip is necessary, because the comparison job has to occur after build-website, if it is built.
 ############################################################################################################
   build-website-dotnet-only:
+    needs: [ci-identifier]
     name: Build website (.NET)
     runs-on: windows-latest
 
     steps:
-    - name: Set ciSuffix as env variable
-      run: echo "ciSuffix=ci.$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
-      shell: bash
-      if: github.event_name != 'workflow_dispatch'
-
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
       with:
@@ -167,7 +162,7 @@ jobs:
       if: github.event_name != 'workflow_dispatch'
 
     - name: Build Website 🔧
-      run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectWeb} -p:"SkipNpm=1" --output ${env:outputWeb}
+      run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${{needs.ci-identifier.outputs.ciSuffix}} ${env:projectWeb} -p:"SkipNpm=1" --output ${env:outputWeb}
       if: github.event_name != 'workflow_dispatch'
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
@@ -183,15 +178,11 @@ jobs:
 # A soft-skip is necessary, because the comparison job has to occur after build-website, if it is built.
 ############################################################################################################
   build-website-npm-only:
+    needs: [ci-identifier]
     name: Build website (NPM)
     runs-on: windows-latest
 
     steps:
-    - name: Set ciSuffix as env variable
-      run: echo "ciSuffix=ci.$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
-      shell: bash
-      if: github.event_name != 'workflow_dispatch'
-
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
       with:
@@ -208,13 +199,13 @@ jobs:
 
     - name: Build assets (library) 🔧
       run: |
-        dotnet build  -target:'CheckIfNpmExists;BuildStyles;BuildScripts' .\Material.Blazor\Material.Blazor.csproj --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix}
+        dotnet build  -target:'CheckIfNpmExists;BuildStyles;BuildScripts' .\Material.Blazor\Material.Blazor.csproj --configuration ${env:buildConfiguration} --version-suffix ${{needs.ci-identifier.outputs.ciSuffix}}
         cp  ./Material.Blazor/wwwroot/* static_assets/library/
       if: github.event_name != 'workflow_dispatch'
 
     - name: Build assets (demo) 🔧
       run: |
-        dotnet build  -target:'CheckIfNpmExists;BuildStyles' .\Material.Blazor.Website\Material.Blazor.Website.csproj --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix}
+        dotnet build  -target:'CheckIfNpmExists;BuildStyles' .\Material.Blazor.Website\Material.Blazor.Website.csproj --configuration ${env:buildConfiguration} --version-suffix ${{needs.ci-identifier.outputs.ciSuffix}}
         cp  ./Material.Blazor.Website/wwwroot/css/* static_assets/demo/
       if: github.event_name != 'workflow_dispatch'
 
@@ -232,15 +223,10 @@ jobs:
 ############################################################################################################
   build-website:
     name: Build website (full)
-    needs: [build-website-dotnet-only, build-website-npm-only]
+    needs: [build-website-dotnet-only, build-website-npm-only, ci-identifier]
     runs-on: windows-latest
 
     steps:
-    - name: Set ciSuffix as env variable
-      run: echo "ciSuffix=ci.$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
-      shell: bash
-      if: github.event_name != 'workflow_dispatch'
-
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
       with:
@@ -269,11 +255,11 @@ jobs:
       if: github.event_name != 'workflow_dispatch'
 
     - name: Build Website (full build. should be quick now.) 🔧
-      run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectWeb}
+      run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${{needs.ci-identifier.outputs.ciSuffix}} ${env:projectWeb}
       if: github.event_name != 'workflow_dispatch'
       
     - name: Publish Website 🔧
-      run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} --version-suffix ${env:ciSuffix} ${env:projectWeb}
+      run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} --version-suffix ${{needs.ci-identifier.outputs.ciSuffix}} ${env:projectWeb}
       if: github.event_name != 'workflow_dispatch'
 
     - name: Reupload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
@@ -289,23 +275,19 @@ jobs:
 ############################################################################################################
   build-package:
     name: Build nuget package
-    needs: [test]
+    needs: [test, ci-identifier]
 
     runs-on: windows-latest
     if: github.event_name != 'workflow_dispatch'
 
     steps:
-    - name: Set ciSuffix as env variable
-      run: echo "ciSuffix=ci.$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
-      shell: bash
-
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
       with:
         persist-credentials: false
 
     - name: Build Material.Blazor 🔧
-      run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectMB}
+      run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${{needs.ci-identifier.outputs.ciSuffix}} ${env:projectMB}
 
     - name: Generate the NuGet package 🔧
       run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:projectMB}
@@ -598,7 +580,7 @@ jobs:
         issue_number: ${{github.event.number}}
         body: |
           |
-          "Closes #${{steps.ciff.outputs.issue-number}} (comparison report issue)"
+          Closes #${{steps.ciff.outputs.issue-number}} (comparison report issue)
         # in the body above, the two dashes are an absolute necessity! https://github.com/octokit/request-action/issues/79
       env:
         GITHUB_TOKEN: ${{ secrets.GH_PAT }}
