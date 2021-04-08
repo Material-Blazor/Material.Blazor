@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Material.Blazor.Internal
@@ -14,10 +14,7 @@ namespace Material.Blazor.Internal
     /// </summary>
     public partial class InternalTooltipAnchor : ComponentFoundation
     {
-        private Dictionary<Guid, TooltipInstance> Tooltips { get; set; } = new Dictionary<Guid, TooltipInstance>();
-
-
-        private readonly SemaphoreSlim _semProtectTooltips = new SemaphoreSlim(1, 1);
+        private ConcurrentDictionary<Guid, TooltipInstance> Tooltips { get; set; } = new();
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -38,29 +35,14 @@ namespace Material.Blazor.Internal
         /// <param name="content"></param>
         private void AddTooltipRenderFragment(Guid id, RenderFragment content)
         {
-            InvokeAsync(async () =>
+            _ = Tooltips.TryAdd(id, new TooltipInstance
             {
-                await _semProtectTooltips.WaitAsync();
-
-                try
-                {
-                    var instance = new TooltipInstance
-                    {
-                        Id = id,
-                        TimeStamp = DateTime.Now,
-                        RenderFragmentContent = content,
-                        Initiated = false
-                    };
-
-                    Tooltips.TryAdd(id, instance);
-                }
-                finally
-                {
-                    _semProtectTooltips.Release();
-                }
-
-                StateHasChanged();
+                Id = id,
+                TimeStamp = DateTime.Now,
+                RenderFragmentContent = content,
+                Initiated = false
             });
+            _ = InvokeAsync(StateHasChanged);
         }
 
 
@@ -72,29 +54,14 @@ namespace Material.Blazor.Internal
         /// <param name="content"></param>
         private void AddTooltipMarkupString(Guid id, MarkupString content)
         {
-            InvokeAsync(async () =>
+            _ = Tooltips.TryAdd(id, new TooltipInstance
             {
-                await _semProtectTooltips.WaitAsync();
-
-                try
-                {
-                    var instance = new TooltipInstance
-                    {
-                        Id = id,
-                        TimeStamp = DateTime.Now,
-                        MarkupStringContent = content,
-                        Initiated = false
-                    };
-
-                    Tooltips.TryAdd(id, instance);
-                }
-                finally
-                {
-                    _semProtectTooltips.Release();
-                }
-
-                StateHasChanged();
+                Id = id,
+                TimeStamp = DateTime.Now,
+                MarkupStringContent = content,
+                Initiated = false
             });
+            _ = InvokeAsync(StateHasChanged);
         }
 
 
@@ -104,60 +71,28 @@ namespace Material.Blazor.Internal
         /// <param name="id"></param>
         internal void RemoveTooltip(Guid id)
         {
-            InvokeAsync(async () =>
-            {
-                await _semProtectTooltips.WaitAsync();
-
-                try
-                {
-                    if (Tooltips.TryGetValue(id, out var instance))
-                    {
-                        Tooltips.Remove(id);
-                    }
-                }
-                finally
-                {
-                    _semProtectTooltips.Release();
-                }
-
-                await InvokeAsync(StateHasChanged);
-            });
+            _ = Tooltips.Remove(id, out var _);
+            _ = InvokeAsync(StateHasChanged);
         }
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            await _semProtectTooltips.WaitAsync();
+            var refs = (from tooltip in Tooltips.Values
+                        where !tooltip.Initiated &&
+                              !string.IsNullOrWhiteSpace(tooltip.ElementReference.Id)
+                        orderby tooltip.TimeStamp
+                        select tooltip).ToArray();
 
-            try
+            if (refs.Length > 0)
             {
-                var refs = (from tooltip in Tooltips.Values
-                            where !tooltip.Initiated &&
-                                  !string.IsNullOrWhiteSpace(tooltip.ElementReference.Id)
-                            orderby tooltip.TimeStamp
-                            select tooltip).ToArray();
+                await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTooltip.init", refs.Select(r => r.ElementReference));
 
-                if (refs.Length > 0)
+                foreach (var item in refs)
                 {
-                    try
-                    {
-                        await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTooltip.init", refs.Select(r => r.ElementReference));
-                    }
-                    catch (Exception e)
-                    {
-                        LogMBError(e, "Instantiating a tooltip failed.");
-                    }
-
-                    foreach (var item in refs)
-                    {
-                        item.Initiated = true;
-                    }
+                    item.Initiated = true;
                 }
-            }
-            finally
-            {
-                _semProtectTooltips.Release();
             }
         }
     }
