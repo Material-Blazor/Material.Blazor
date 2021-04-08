@@ -290,7 +290,7 @@ jobs:
       run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${{needs.ci-identifier.outputs.ciSuffix}} ${env:projectMB}
 
     - name: Generate the NuGet package 🔧
-      run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:projectMB}
+      run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${{needs.ci-identifier.outputs.ciSuffix}} ${env:projectMB}
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${env:outputMB}
