@@ -15,12 +15,6 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// It's timestamp for when it was raised.
-        /// </summary>
-        public DateTime TimeStamp { get; set; }
-
-
-        /// <summary>
         /// The tooltip's content.
         /// </summary>
         public RenderFragment RenderFragmentContent { get; set; }

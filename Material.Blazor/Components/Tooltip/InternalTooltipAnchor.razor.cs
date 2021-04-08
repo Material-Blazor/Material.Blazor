@@ -38,7 +38,6 @@ namespace Material.Blazor.Internal
             _ = Tooltips.TryAdd(id, new TooltipInstance
             {
                 Id = id,
-                TimeStamp = DateTime.Now,
                 RenderFragmentContent = content,
                 Initiated = false
             });
@@ -57,7 +56,6 @@ namespace Material.Blazor.Internal
             _ = Tooltips.TryAdd(id, new TooltipInstance
             {
                 Id = id,
-                TimeStamp = DateTime.Now,
                 MarkupStringContent = content,
                 Initiated = false
             });
@@ -82,7 +80,6 @@ namespace Material.Blazor.Internal
             var refs = (from tooltip in Tooltips.Values
                         where !tooltip.Initiated &&
                               !string.IsNullOrWhiteSpace(tooltip.ElementReference.Id)
-                        orderby tooltip.TimeStamp
                         select tooltip).ToArray();
 
             if (refs.Length > 0)
