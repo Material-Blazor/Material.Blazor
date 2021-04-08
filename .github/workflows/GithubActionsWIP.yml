@@ -166,12 +166,24 @@ jobs:
         dotnet build --configuration ${env:buildConfiguration} --version-suffix ${{needs.ci-identifier.outputs.ciSuffix}} ${env:projectMB} -p:"SkipNpm=1"
         dotnet build --configuration ${env:buildConfiguration} --version-suffix ${{needs.ci-identifier.outputs.ciSuffix}} ${env:projectWeb} -p:"SkipNpm=1"
       if: github.event_name != 'workflow_dispatch'
-
+      
     - name: Upload Compilation Artifacts 🔺
       uses: actions/upload-artifact@v1
       with:
-        name: compilation
-        path: ${{ github.workspace }}\Material.Blazor  ${{ github.workspace }}\Material.Blazor.Website\  ${{ github.workspace }}\Material.Blazor.Website.WebAssembly\
+        name: compilation-mb
+        path: ${{ github.workspace }}\Material.Blazor\
+      if: github.event_name != 'workflow_dispatch'
+    - name: Upload Compilation Artifacts 🔺
+      uses: actions/upload-artifact@v1
+      with:
+        name: compilation-mb.w
+        path: ${{ github.workspace }}\Material.Blazor.Website\
+      if: github.event_name != 'workflow_dispatch'
+    - name: Upload Compilation Artifacts 🔺
+      uses: actions/upload-artifact@v1
+      with:
+        name: compilation-mb.w.w
+        path: ${{ github.workspace }}\Material.Blazor.Website.WebAssembly\
       if: github.event_name != 'workflow_dispatch'
 
       ############################################################################################################
@@ -229,14 +241,26 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
+    - name: Download Artifacts 🔻
       uses: actions/download-artifact@v1
       with:
-        name: compilation
-        path: .
+        name: compilation-mb
+        path: Material.Blazor/
+      if: github.event_name != 'workflow_dispatch'
+    - name: Download Artifacts 🔻
+      uses: actions/download-artifact@v1
+      with:
+        name: compilation-mb.w
+        path: Material.Blazor.Website/
+      if: github.event_name != 'workflow_dispatch'
+    - name: Download Artifacts 🔻
+      uses: actions/download-artifact@v1
+      with:
+        name: compilation-mb.w.w
+        path: Material.Blazor.Website.WebAssembly/
       if: github.event_name != 'workflow_dispatch'
 
-    - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
+    - name: Download Artifacts 🔻
       uses: actions/download-artifact@v1
       with:
         name: static_assets
