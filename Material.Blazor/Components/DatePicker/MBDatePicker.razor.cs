@@ -59,7 +59,7 @@ namespace Material.Blazor
         /// <summary>
         /// Specification for date format
         /// </summary>
-        [Parameter] public string DateFormat { get; set; } = "D";
+        [Parameter] public string DateFormat { get; set; }
 
 
         /// <summary>
@@ -76,6 +76,7 @@ namespace Material.Blazor
 
 
         private MBDensity AppliedDensity => CascadingDefaults.AppliedSelectDensity(Density);
+        private string AppliedDateFormat => CascadingDefaults.AppliedDateFormat(DateFormat);
         private MBSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
         private ElementReference ElementReference { get; set; }
         private bool IsOpen { get; set; } = false;
@@ -138,7 +139,7 @@ namespace Material.Blazor
         protected void OnValueSetCallback()
         {
             Panel.SetParameters(true, Value);
-            InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, DateFormat)).ConfigureAwait(false));
+            InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, AppliedDateFormat)).ConfigureAwait(false));
         }
 
 
