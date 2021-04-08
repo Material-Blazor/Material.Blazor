@@ -8,13 +8,15 @@ The Material.Blazor project makes use of GitHub workflows to automate a range of
 
 - Deploy releases to nuget
 - Deploy the demo page (https://material-blazor.com) for every release
+- Deploy a demo page (https://material-blazor.com) for the most recent state of the project (i.e. the state the `main` branch)
 - Perform basic sanity checks for pull requests
 - Perform side-by-side comparison checks for pull requests against the current state of Material.Blazor
 
 # Difference between official demo pages
 
 There are two demo pages for Material.Blazor: https://material-blazor.com and https://material-blazor.github.io/Material.Blazor.Current.
-https://material-blazor.com reflects the state of the most recent release of Material.Blazor. Use this as a reference when designing your website. https://material-blazor.github.io/Material.Blazor.Current reflects the state of the main branch of the Material.Blazor repo. Its main purpose is to facilitate the development of the library.
+https://material-blazor.com reflects the state of the most recent release of Material.Blazor. Use this as a reference when designing your website.
+https://material-blazor.github.io/Material.Blazor.Current reflects the state of the main branch of the Material.Blazor repo. Its main purpose is to facilitate the development of the library.
 
 # Side-by-side comparisons
 
@@ -34,7 +36,7 @@ These workflows are responsible for publishing three artifacts:
 * The Material.Blazor NuGet package 
 * The Material.Blazor Side-by-side Comparison report 
 
-The gh-pages branch is created in the repository  of either Material.Blazor or Material.Blazor.Current;
+The gh-pages branch is created in the repository of either Material.Blazor or Material.Blazor.Current;
 
 The NuGet package is published as a GitHub package (CI) or a NuGet.org package (Release).
 
