@@ -215,7 +215,7 @@ jobs:
     - name: Build assets (demo) 🔧
       run: |
         dotnet build  -target:'CheckIfNpmExists;BuildStyles' .\Material.Blazor.Website\Material.Blazor.Website.csproj --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix}
-        cp  ./Material.Blazor.Website/wwwroot/* static_assets/demo/
+        cp  ./Material.Blazor.Website/wwwroot/css/* static_assets/demo/
       if: github.event_name != 'workflow_dispatch'
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
@@ -263,8 +263,8 @@ jobs:
       run: |
         mkdir ./Material.Blazor/wwwroot/ || true
         cp static_assets/library/* ./Material.Blazor/wwwroot/
-        mkdir ./Material.Blazor.Website/wwwroot/ || true
-        cp static_assets/demo/* ./Material.Blazor.Website/wwwroot/
+        mkdir ./Material.Blazor.Website/wwwroot/css/ || true
+        cp static_assets/demo/* ./Material.Blazor.Website/wwwroot/css/
       shell: bash
       if: github.event_name != 'workflow_dispatch'
 
