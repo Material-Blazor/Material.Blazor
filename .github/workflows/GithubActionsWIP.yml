@@ -261,7 +261,9 @@ jobs:
 
     - name: Copy files to appropriate locations
       run: |
+        mkdir ./Material.Blazor/wwwroot/
         cp static_assets/library/* ./Material.Blazor/wwwroot/
+        mkdir ./Material.Blazor.Website/wwwroot/
         cp static_assets/demo/* ./Material.Blazor.Website/wwwroot/
       shell: bash
       if: github.event_name != 'workflow_dispatch'
