@@ -11,8 +11,9 @@
      @attributes="AttributesToSplat()"
      role="grid">
 
-    @for (int i = 0; i < ItemsArray.Length; i++)
+    @for (int j = 0; j < ItemsArray.Length; j++)
     {
+        int i = j;
         <MBTouchTargetWrapper @key="@KeyGenerator(ItemsArray[i].SelectedValue)" ApplyTouchTargetWrapper="AppliedTouchTarget">
             <div @attributes="@ChipAttributes[i]">
                 <div class="mdc-chip__ripple"></div>
