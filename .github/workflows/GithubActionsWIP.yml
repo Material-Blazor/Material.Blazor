@@ -201,6 +201,11 @@ jobs:
       shell: bash
       if: github.event_name != 'workflow_dispatch'
 
+    - uses: actions/cache@v2
+      with:
+        path: '**/node_modules'
+        key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
     - name: Build assets (library) 🔧
       run: |
         dotnet build  -target:'CheckIfNpmExists;BuildStyles;BuildScripts' -p:"NoUnminified=true" .\Material.Blazor\Material.Blazor.csproj --configuration ${env:buildConfiguration} --version-suffix ${{needs.ci-identifier.outputs.ciSuffix}}
