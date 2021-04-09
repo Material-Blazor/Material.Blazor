@@ -114,7 +114,7 @@
     <Message Importance="high" Text="***** npm run build-scripts" />
     <Exec Command="npm run build-scripts" />
 
-    <Message Importance="high" Text="***** npm run build-js" />
+    <Message Importance="high" Text="***** npm run build-js" Condition=" '$(NoUnminified)' == '' " />
     <Exec Command="npm run build-js" />
 
     <Message Importance="high" Text="***** npm run build-min-js" />
@@ -137,7 +137,7 @@
     </DownloadFile>-->
 
     <Message Importance="high" Text="***** npm run build-css" />
-    <Exec Command="npm run build-css" />
+    <Exec Command="npm run build-css" Condition=" '$(NoUnminified)' == '' " />
 
     <Message Importance="high" Text="***** npm run build-min-css" />
     <Exec Command="npm run build-min-css" />
@@ -146,7 +146,7 @@
     <Delete Files="wwwroot\material-components-icons.css" />-->
 
     <Message Importance="high" Text="***** npm run build-material-css" />
-    <Exec Command="npm run build-material-css" />
+    <Exec Command="npm run build-material-css" Condition=" '$(NoUnminified)' == '' " />
 
     <Message Importance="high" Text="***** npm run build-material-min-css" />
     <Exec Command="npm run build-material-min-css" />
