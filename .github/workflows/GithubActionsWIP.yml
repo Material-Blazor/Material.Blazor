@@ -152,7 +152,7 @@ jobs:
   build-website-dotnet-only:
     needs: [ci-identifier]
     name: Build website (.NET)
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
