@@ -545,6 +545,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: report
+        path: report
     - name: Create baseline URL prefix
       id: baselineprefix
       run: |
