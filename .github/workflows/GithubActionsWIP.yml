@@ -370,12 +370,14 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: siteDocFx
+        path: siteDocFx
       if: github.event_name != 'workflow_dispatch'
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v2
       with:
         name: siteWeb
+        path: siteWeb
       if: github.event_name != 'workflow_dispatch'
 
     - name: Configure deployment directory structure Ꙫ
@@ -420,11 +422,15 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: siteDocFx
+        path: siteDocFx
+      if: github.event_name != 'workflow_dispatch'
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
       uses: actions/download-artifact@v2
       with:
         name: siteWeb
+        path: siteWeb
+      if: github.event_name != 'workflow_dispatch'
 
     - name: Configure deployment directory structure Ꙫ
       run: mv siteWeb/wwwroot deployroot; mv siteDocFx deployroot/docs
