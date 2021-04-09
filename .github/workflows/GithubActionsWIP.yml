@@ -258,8 +258,8 @@ jobs:
       shell: bash
       if: github.event_name != 'workflow_dispatch'
 
-    #- name: Restore Material.Blazor 🔧
-    #  run: dotnet restore ${env:projectWeb}
+    - name: Restore Material.Blazor 🔧
+      run: dotnet restore ${env:projectWeb}
       
     - name: Publish Website 🔧
       run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} --version-suffix ${{needs.ci-identifier.outputs.ciSuffix}} ${env:projectWeb}
