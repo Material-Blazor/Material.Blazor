@@ -34,6 +34,7 @@ jobs:
     - name: Nothing to see here
       run: echo ""
   is-on-material-blazor:
+    name: Running on Material-Blazor/Material.Blazor?
     runs-on: ubuntu-latest
     if: github.repository == 'Material-Blazor/Material.Blazor'
     steps:
@@ -43,6 +44,7 @@ jobs:
 # This job is only to display some CI information
 ############################################################################################################
   info:
+    name: Display CI information
     runs-on: windows-latest
 
     steps:
@@ -96,6 +98,7 @@ jobs:
 # This is soft-skipped when we only want to perform a comparison (github.event_name != 'workflow_dispatch')
 ############################################################################################################
   test:
+    name: Run .NET tests
     runs-on: ubuntu-latest
 
     steps:
@@ -119,6 +122,7 @@ jobs:
 # A soft-skip is necessary, because the comparison job has to occur after build-docs, if it is built.
 ############################################################################################################
   build-documentation:
+    name: Build documentation
     runs-on: windows-latest
 
     steps:
@@ -147,6 +151,7 @@ jobs:
 # A soft-skip is necessary, because the comparison job has to occur after build-website, if it is built.
 ############################################################################################################
   build-website:
+    name: Build website
     runs-on: windows-latest
 
     steps:
@@ -181,6 +186,7 @@ jobs:
 # This is hard-skipped when we only want to perform a comparison (github.event_name != 'workflow_dispatch')
 ############################################################################################################
   build-package:
+    name: Build nuget package
     needs: [test]
 
     runs-on: windows-latest
@@ -233,6 +239,7 @@ jobs:
 # - add `if: needs.permissions.outputs.has-permission`
 ############################################################################################################
   permissions:
+    name: Check permissions
     runs-on: ubuntu-latest
     steps:
       # Check for write permission
@@ -258,6 +265,7 @@ jobs:
 # A soft-skip is necessary, because the comparison job has to occur after build-website, if it is built.
 ############################################################################################################
   deployghpages:
+    name: Deploy to GitHub pages
     needs: [test, build-documentation, build-website, permissions, is-on-fork]
 
     if: (needs.permissions.outputs.has-permission)
@@ -311,6 +319,7 @@ jobs:
 # The current version of Material.Blazor is viewable on GH-pages in addition to material-blazor.com
 ############################################################################################################
   deployghpages-mbcurrent:
+    name: Deploy to GitHub pages (Material-Blazor/Material.Blazor.Current)
     needs: [test, build-documentation, build-website, permissions, is-on-material-blazor]
     if: (github.event_name == 'push')
 
@@ -358,6 +367,7 @@ jobs:
 ############################################################################################################
   # job 1: identify all the pages that should be compared
   findpages:
+    name: Find pages to compare
     needs: [deployghpages]
     if: (!contains(github.event.head_commit.message, '[no-compare]'))
     outputs:
@@ -381,6 +391,7 @@ jobs:
         echo "::set-output name=pages::[${allpages}]"
   # job 2: perform comparisons
   compare:
+    name: Compare pages
     needs: [findpages]
     runs-on: ubuntu-latest
     # we use the result of the last job to parallelize the crawling of pages
@@ -437,6 +448,7 @@ jobs:
         path: report${{matrix.label}}.md
   # step 3: aggregate/summarise comparisons
   aggregate:
+    name: Aggregate comparison results
     needs: [compare]
     runs-on: ubuntu-latest
     steps:
