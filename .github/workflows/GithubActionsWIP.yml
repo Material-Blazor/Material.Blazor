@@ -170,23 +170,11 @@ jobs:
     - name: Upload Compilation Artifacts 🔺
       uses: actions/upload-artifact@v1
       with:
-        name: compilation-mb
-        path: ${{ github.workspace }}\Material.Blazor\
-      if: github.event_name != 'workflow_dispatch'
-    - name: Upload Compilation Artifacts 🔺
-      uses: actions/upload-artifact@v1
-      with:
-        name: compilation-mb.w
-        path: ${{ github.workspace }}\Material.Blazor.Website\
-      if: github.event_name != 'workflow_dispatch'
-    - name: Upload Compilation Artifacts 🔺
-      uses: actions/upload-artifact@v1
-      with:
-        name: compilation-mb.w.w
-        path: ${{ github.workspace }}\Material.Blazor.Website.WebAssembly\
+        name: compilation-obj
+        path: ${{ github.workspace }}/*/obj/
       if: github.event_name != 'workflow_dispatch'
 
-      ############################################################################################################
+############################################################################################################
 # Build website
 # This is soft-skipped when we only want to perform a comparison (github.event_name != 'workflow_dispatch')
 # A soft-skip is necessary, because the comparison job has to occur after build-website, if it is built.
@@ -241,23 +229,15 @@ jobs:
     runs-on: windows-latest
 
     steps:
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v2
+      with:
+        persist-credentials: false
     - name: Download Artifacts 🔻
       uses: actions/download-artifact@v1
       with:
-        name: compilation-mb
-        path: Material.Blazor/
-      if: github.event_name != 'workflow_dispatch'
-    - name: Download Artifacts 🔻
-      uses: actions/download-artifact@v1
-      with:
-        name: compilation-mb.w
-        path: Material.Blazor.Website/
-      if: github.event_name != 'workflow_dispatch'
-    - name: Download Artifacts 🔻
-      uses: actions/download-artifact@v1
-      with:
-        name: compilation-mb.w.w
-        path: Material.Blazor.Website.WebAssembly/
+        name: compilation-obj
+        path: ./
       if: github.event_name != 'workflow_dispatch'
 
     - name: Download Artifacts 🔻
