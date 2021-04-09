@@ -244,6 +244,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: static_assets
+        path: static_assets
       if: github.event_name != 'workflow_dispatch'
 
     - name: Copy files to appropriate locations
