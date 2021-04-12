@@ -69,8 +69,19 @@ namespace Material.Blazor.Internal
         /// <param name="id"></param>
         internal void RemoveTooltip(Guid id)
         {
-            _ = Tooltips.Remove(id, out var _);
-            _ = InvokeAsync(StateHasChanged);
+            try
+            {
+                _ = Tooltips.Remove(id, out var _);
+                _ = InvokeAsync(StateHasChanged);
+            }
+            catch (Exception ex)
+            {
+                // Ignore ObjectDisposedException to avoid exceptions being thrown when the user closes browser and tooltips are showing.
+                if (ex is not ObjectDisposedException)
+                {
+                    throw;
+                }
+            }
         }
 
 
