@@ -11,9 +11,9 @@
      @attributes="AttributesToSplat()"
      role="@GroupRole">
 
-    @for (int i = 0; i < ItemsArray.Length; i++)
+    @for (int j = 0; j < ItemsArray.Length; j++)
     {
-        @*TODO check whether this loop over i is correct. Isn't i bound by reference? *@
+        int i = j;
         <MBTouchTargetWrapper @key="@KeyGenerator(ItemsArray[i].SelectedValue)" ApplyTouchTargetWrapper="AppliedTouchTarget">
             <button @attributes="@SegmentAttributes[i]">
                 <div class="mdc-segmented-button__ripple"></div>

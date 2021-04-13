@@ -139,7 +139,7 @@ jobs:
       if: github.event_name != 'workflow_dispatch'
 
     - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'siteDocFx'.
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: siteDocFx
         path: siteDocFx
@@ -171,11 +171,11 @@ jobs:
       if: github.event_name != 'workflow_dispatch'
       
     - name: Publish Website 🔧
-      run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} --version-suffix ${env:ciSuffix} ${env:projectWeb}
+      run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} --version-suffix ${env:ciSuffix} ${env:projectWeb} -p:BlazorEnableCompression=false
       if: github.event_name != 'workflow_dispatch'
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: siteWeb
         path: siteWeb
@@ -280,15 +280,17 @@ jobs:
       if: github.event_name != 'workflow_dispatch'
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
-      uses: actions/download-artifact@v1
+      uses: actions/download-artifact@v2
       with:
         name: siteDocFx
+        path: siteDocFx
       if: github.event_name != 'workflow_dispatch'
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
-      uses: actions/download-artifact@v1
+      uses: actions/download-artifact@v2
       with:
         name: siteWeb
+        path: siteWeb
       if: github.event_name != 'workflow_dispatch'
 
     - name: Configure deployment directory structure Ꙫ
@@ -330,14 +332,16 @@ jobs:
         persist-credentials: false
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
-      uses: actions/download-artifact@v1
+      uses: actions/download-artifact@v2
       with:
         name: siteDocFx
+        path: siteDocFx
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'site' folder.
-      uses: actions/download-artifact@v1
+      uses: actions/download-artifact@v2
       with:
         name: siteWeb
+        path: siteWeb
 
     - name: Configure deployment directory structure Ꙫ
       run: mv siteWeb/wwwroot deployroot; mv siteDocFx deployroot/docs
@@ -438,7 +442,7 @@ jobs:
         echo "\`\`\`" >> report${{matrix.label}}.md
     # We need to pass the report on to the next build job, so we need to upload it as artifact
     - name: Upload report artifact
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: report
         path: report${{matrix.label}}.md
@@ -449,9 +453,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Download all the individual reports
-      uses: actions/download-artifact@v1
+      uses: actions/download-artifact@v2
       with:
         name: report
+        path: report
     - name: Create baseline URL prefix
       id: baselineprefix
       run: |
@@ -473,7 +478,7 @@ jobs:
         echo "" >> meta_report.md
         echo "The report is available as artifact on https://github.com/${{github.actor}}/Material.Blazor/actions/runs/${{github.run_id}}" >> meta_report.md
     - name: Upload report artifact
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: report
         path: all_reports.md
