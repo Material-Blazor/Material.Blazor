@@ -18,10 +18,24 @@ namespace Material.Blazor.Internal
         [Parameter] public Func<T, object> GetKeysFunc { get; set; }
 
 
+        private IEnumerable<TListElement> _items;
         /// <summary>
         /// The item list to be represented as radio buttons
         /// </summary>
-        [Parameter] public IEnumerable<TListElement> Items { get; set; }
+        [Parameter] public IEnumerable<TListElement> Items
+        {
+            get => _items;
+            set
+            {
+                if ((value == null && _items != null) || (value != null && _items == null) || (value != null && _items != null && !value.SequenceEqual(_items)))
+                {
+                    _items = value;
+                    AllowNextRender = true;
+                    InstantiateAfterNextRender = true;
+                    InvokeAsync(StateHasChanged);
+                }
+            }
+        }
 
 
         /// <summary>

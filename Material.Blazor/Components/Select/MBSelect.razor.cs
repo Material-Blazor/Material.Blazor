@@ -100,12 +100,6 @@ namespace Material.Blazor
         {
             await base.OnInitializedAsync();
 
-            ItemDict = Items.ToDictionary(i => i.SelectedValue);
-
-            bool hasValue;
-
-            (hasValue, ComponentValue) = ValidateItemList(ItemDict.Values, CascadingDefaults.AppliedItemValidation(ItemValidation));
-
             ConditionalCssClasses
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-select--filled", () => AppliedInputStyle == MBSelectInputStyle.Filled)
@@ -113,9 +107,6 @@ namespace Material.Blazor
                 .AddIf("mdc-select--no-label", () => !ShowLabel)
                 .AddIf("mdc-select--with-leading-icon", () => !string.IsNullOrWhiteSpace(LeadingIcon))
                 .AddIf("mdc-select--disabled", () => AppliedDisabled);
-
-            SelectedText = hasValue ? Items.FirstOrDefault(i => object.Equals(i.SelectedValue, ComponentValue))?.Label : "";
-            FloatingLabelClass = string.IsNullOrWhiteSpace(SelectedText) ? "" : "mdc-floating-label--float-above";
 
             SetComponentValue += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
@@ -128,6 +119,15 @@ namespace Material.Blazor
         protected override async Task OnParametersSetAsync()
         {
             await base.OnParametersSetAsync();
+
+            ItemDict = Items.ToDictionary(i => i.SelectedValue);
+
+            bool hasValue;
+
+            (hasValue, ComponentValue) = ValidateItemList(ItemDict.Values, CascadingDefaults.AppliedItemValidation(ItemValidation));
+
+            SelectedText = hasValue ? Items.FirstOrDefault(i => object.Equals(i.SelectedValue, ComponentValue))?.Label : "";
+            FloatingLabelClass = string.IsNullOrWhiteSpace(SelectedText) ? "" : "mdc-floating-label--float-above";
 
             KeyGenerator = GetKeysFunc ?? delegate (TItem item) { return item; };
         }
