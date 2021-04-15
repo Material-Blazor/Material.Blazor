@@ -15,6 +15,8 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 - Full implementation of Material Components Web JS `destroy()` function calls for every component's `Dispose()` process.
 - MBDataTable enhanced with pagination and linear progress implementation - no breaking changes.
 - MBPaginator now uses Material Component Web 9.0.0's markup, with some minor modification - no breaking changes.
+- MBSnackbar now supports a parameter of 'AdditionalClass' which is applied to the snackbar. See the Snackbar demo page for a simple example of styling for Error/Warning/Info/Success messages.
+- MBToast now supports centerleft, centercenter, and centerright positions. It also had the fixed width removed and toasts adjust width dynamically.
 - Tooltips use Material Component Web 9.0.0 rather than preview packages - no breaking changes.
 - Material.Blazor beginning to use `ILogger` to log warnings when validating component markup to help you during app development.
 - General bug fixes.
@@ -42,6 +44,9 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 - MBRadioButtonGroup `EnableTouchWrapper` obsolete and removed.
 - `MBToastCloseMethod` enum renamed to `MBNotifierCloseMethod`, and enum value names have changed. This is now used by both toasts and snackbars.
 - The names and content of the  css and js resources required for MaterialBlazor have changed. Please see [Installation article](xref:A.Installation) for details.
+
+**Deprecated Components**
+- MBToast is now deprecated in favor of the Material styled MBSnackbar. It will remain part of Material.Blazor 2.n, however no maintenance is planned during the Material.Blazor 2.n series of releases. It will be removed from the next major Material.Blazor release. 
 
 <br />
 

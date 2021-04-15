@@ -97,6 +97,7 @@
                 </Primary>
             </MBCard>
         </div>
+
         <div class="mdc-layout-grid__cell--span-12">
             <MBCard AutoStyled="true">
                 <Primary>
@@ -136,5 +137,102 @@
                 </Primary>
             </MBCard>
         </div>
+
+        <style>
+            .snackbar-error {
+                background-color: red;
+                color: white;
+            }
+                .snackbar-error .mdc-snackbar__label,
+                .snackbar-error .mdc-snackbar__dismiss {
+                    background-color: red;
+                    color: white;
+                }
+
+            .snackbar-warning {
+                background-color: yellow;
+                color: black;
+            }
+
+                .snackbar-warning .mdc-snackbar__label,
+                .snackbar-warning .mdc-snackbar__dismiss {
+                    background-color: yellow;
+                    color: black;
+                }
+
+            .snackbar-info {
+                background-color: blue;
+                color: white;
+            }
+
+                .snackbar-info .mdc-snackbar__label,
+                .snackbar-info .mdc-snackbar__dismiss {
+                    background-color: blue;
+                    color: white;
+                }
+
+            .snackbar-success {
+                background-color: lightgreen;
+                color: black;
+            }
+
+                .snackbar-success .mdc-snackbar__label,
+                .snackbar-success .mdc-snackbar__dismiss {
+                    background-color: lightgreen;
+                    color: black;
+                }
+        </style>
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                                Style the Snackbar
+                            </h2>
+
+                            <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                                Use of AdditionalClass
+                            </h3>
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <p>
+                                <MBButton ButtonStyle="@MBButtonStyle.ContainedRaised"
+                                          Label="Error"
+                                          @onclick="@(() => SnackbarService.ShowSnackbar(
+                                                              additionalClass: "snackbar-error",
+                                                              closeMethod: MBNotifierCloseMethod.DismissButton,
+                                                              message: "This is an error message, you need to dismiss this message yourself"
+                                                              ))"
+                                          style="margin-bottom: 1rem;" />
+                                <MBButton ButtonStyle="@MBButtonStyle.ContainedRaised"
+                                          Label="Warning"
+                                          @onclick="@(() => SnackbarService.ShowSnackbar(
+                                                              additionalClass: "snackbar-warning",
+                                                              message: "This is a warning message",
+                                                              timeout: 5000))"
+                                          style="margin-bottom: 1rem;" />
+                                <MBButton ButtonStyle="@MBButtonStyle.ContainedRaised"
+                                          Label="Info"
+                                          @onclick="@(() => SnackbarService.ShowSnackbar(
+                                                              additionalClass: "snackbar-info",
+                                                              message: "This is an informational message",
+                                                              timeout: 5000))"
+                                          style="margin-bottom: 1rem;" />
+                                <MBButton ButtonStyle="@MBButtonStyle.ContainedRaised"
+                                          Label="Success"
+                                          @onclick="@(() => SnackbarService.ShowSnackbar(
+                                                              additionalClass: "snackbar-success",
+                                                              message: "This is a success message",
+                                                              timeout: 5000))"
+                                          style="margin-bottom: 1rem;" />
+                            </p>
+                        </div>
+                    </div>
+                </Primary>
+            </MBCard>
+        </div>
+
     </PageContent>
 </DemonstrationPage>

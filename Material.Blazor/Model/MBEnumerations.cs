@@ -710,14 +710,29 @@ namespace Material.Blazor
         TopLeft,
 
         /// <summary>
-        /// Top left right, newest toasts on top.
+        /// Top right, newest toasts on top.
         /// </summary>
         TopRight,
 
         /// <summary>
-        /// Top left center, newest toasts on top.
+        /// Top center, newest toasts on top.
         /// </summary>
         TopCenter,
+
+        /// <summary>
+        /// Center left positioning, newest toasts on top.
+        /// </summary>
+        CenterLeft,
+
+        /// <summary>
+        /// Center right, newest toasts on top.
+        /// </summary>
+        CenterRight,
+
+        /// <summary>
+        /// Center center, newest toasts on top.
+        /// </summary>
+        CenterCenter,
 
         /// <summary>
         /// Bottom left positioning, newest toasts on the bottom.
