@@ -74,13 +74,9 @@ namespace Material.Blazor.Internal
                 _ = Tooltips.Remove(id, out var _);
                 _ = InvokeAsync(StateHasChanged);
             }
-            catch (Exception ex)
+            catch (ObjectDisposedException ex)
             {
                 // Ignore ObjectDisposedException to avoid exceptions being thrown when the user closes browser and tooltips are showing.
-                if (ex is not ObjectDisposedException)
-                {
-                    throw;
-                }
             }
         }
 
