@@ -1,6 +1,6 @@
 {
   "name": "material.blazor",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "NPM build steps for Material.Blazor",
   "repository": "https://github.com/Material-Blazor/Material.Blazor",
   "scripts": {

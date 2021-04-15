@@ -81,6 +81,7 @@ $icon-horizontal-padding: 12px;
         top: $toast-margin-large;
     }
 
+
     .mb-toast__centerleft {
         top: $toast-margin-center-vertical;
         left: $toast-margin-large;
@@ -89,14 +90,16 @@ $icon-horizontal-padding: 12px;
 
     .mb-toast__centerright {
         top: $toast-margin-center-vertical;
-        right: $toast-margin-center-horizontal;
+        right: $toast-margin-large;
         left: initial;
         margin-left: 0;
     }
 
     .mb-toast__centercenter {
         top: $toast-margin-center-vertical;
+        left: $toast-margin-center-horizontal;
     }
+
 
     .mb-toast__bottomleft {
         bottom: $toast-margin-large;
