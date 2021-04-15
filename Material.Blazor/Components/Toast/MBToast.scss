@@ -2,6 +2,8 @@
 $toast-height: 66px;
 $toast-spacing: 8px;
 $toast-margin: 8px;
+$toast-margin-center-horizontal: 50vw;
+$toast-margin-center-vertical: 50vh;
 $toast-margin-large: 12px;
 $body-padding-right: 6px;
 $heading-margin-top: 6px;
@@ -57,6 +59,63 @@ $icon-horizontal-padding: 12px;
     margin-left: $center-margin-left;
 }
 
+
+
+
+@media (min-width: 576px) {
+
+    .mb-toast__topleft {
+        top: $toast-margin-large;
+        left: $toast-margin-large;
+        margin-left: 0;
+    }
+
+    .mb-toast__topright {
+        top: $toast-margin-large;
+        right: $toast-margin-large;
+        left: initial;
+        margin-left: 0;
+    }
+
+    .mb-toast__topcenter {
+        top: $toast-margin-large;
+    }
+
+    .mb-toast__centerleft {
+        top: $toast-margin-center-vertical;
+        left: $toast-margin-large;
+        margin-left: 0;
+    }
+
+    .mb-toast__centerright {
+        top: $toast-margin-center-vertical;
+        right: $toast-margin-center-horizontal;
+        left: initial;
+        margin-left: 0;
+    }
+
+    .mb-toast__centercenter {
+        top: $toast-margin-center-vertical;
+    }
+
+    .mb-toast__bottomleft {
+        bottom: $toast-margin-large;
+        left: $toast-margin-large;
+        margin-left: 0;
+    }
+
+    .mb-toast__bottomright {
+        bottom: $toast-margin-large;
+        right: $toast-margin-large;
+        left: initial;
+        margin-left: 0;
+    }
+
+    .mb-toast__bottomcenter {
+        bottom: $toast-margin-large;
+    }
+}
+
 .mb-toast {
     display: flex;
     flex-flow: row nowrap;
@@ -65,7 +124,8 @@ $icon-horizontal-padding: 12px;
     box-sizing: padding-box;
     height: $toast-height;
     max-height: $toast-height;
-    width: $toast-width;
+/*    width: $toast-width;
+*/
     border-radius: var(--mb-toast-border-radius);
 }
 
@@ -295,44 +355,5 @@ $icon-horizontal-padding: 12px;
 
     .mdc-button__icon {
         margin: 0 !important;
-    }
-}
-
-
-
-@media (min-width: 576px) {
-
-    .mb-toast__topleft {
-        top: $toast-margin-large;
-        left: $toast-margin-large;
-        margin-left: 0;
-    }
-
-    .mb-toast__topright {
-        top: $toast-margin-large;
-        right: $toast-margin-large;
-        left: initial;
-        margin-left: 0;
-    }
-
-    .mb-toast__topcenter {
-        top: $toast-margin-large;
-    }
-
-    .mb-toast__bottomleft {
-        bottom: $toast-margin-large;
-        left: $toast-margin-large;
-        margin-left: 0;
-    }
-
-    .mb-toast__bottomright {
-        bottom: $toast-margin-large;
-        right: $toast-margin-large;
-        left: initial;
-        margin-left: 0;
-    }
-
-    .mb-toast__bottomcenter {
-        bottom: $toast-margin-large;
     }
 }

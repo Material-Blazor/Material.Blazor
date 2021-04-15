@@ -56,6 +56,7 @@ namespace Material.Blazor
         /// <param name="message">Body text in the snackbar</param>
         /// <param name="action">The action that is performed when the button in the snackbar is clicked (optional. if set, 'actionText' must also be set)</param>
         /// <param name="actionText">The text to display in the action button in the snackbar (optional. if set, 'action' must also be set)</param>
+        /// <param name="additionalClass">The name of a class to be added to the snackbar surface</param>
         /// <param name="closeMethod">Snackbars are intended to dismiss on their own after a few seconds, but a dedicated dismiss icon may be optionally included as well for accessibility purposes</param>
         /// <param name="leading">By default, snackbars are centered horizontally within the viewport. On larger screens, they can optionally be displayed on the leading edge of the screen (the left side in LTR, or the right side in RTL)</param>
         /// <param name="stacked">Action buttons with long text should be positioned below the label instead of alongside it</param>
@@ -66,6 +67,7 @@ namespace Material.Blazor
             string message,
             Action action = null,
             string actionText = null,
+            string additionalClass = null,
             MBNotifierCloseMethod? closeMethod = null,
             bool leading = false,
             bool stacked = false,

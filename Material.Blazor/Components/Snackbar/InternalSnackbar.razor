@@ -1,10 +1,16 @@
 ﻿@namespace Material.Blazor.Internal
 @inherits ComponentFoundation
 
-<div @ref="SnackbarReference" class="mdc-snackbar @Stacked @Leading">
-    <div class="mdc-snackbar__surface" role="status" aria-relevant="additions">
-        
-        <div class="mdc-snackbar__label" aria-atomic="false">
+<div class="mdc-snackbar @Stacked @Leading"
+     @ref="SnackbarReference">
+
+    <div aria-relevant="additions"
+         class="mdc-snackbar__surface @Snackbar.Settings.AdditionalClass"
+         role="status">
+
+        <div aria-atomic="false"
+             class="mdc-snackbar__label">
+
             @((MarkupString)(Snackbar.Settings.AppliedMessage))
         </div>
 
@@ -15,18 +21,31 @@
 
         @if (hasAction || hasDismiss)
         {
-            <div class="mdc-snackbar__actions" aria-atomic="true">
+            <div aria-atomic="true"
+                 class="mdc-snackbar__actions">
+
                 @if (hasAction)
                 {
-                    <button type="button" class="mdc-button mdc-snackbar__action" @onclick="Snackbar.Settings.AppliedAction">
-                        <div class="mdc-button__ripple"></div>
-                        <span class="mdc-button__label">@Snackbar.Settings.AppliedActionText</span>
+                    <button class="mdc-button mdc-snackbar__action"
+                            type="button"
+                            @onclick="Snackbar.Settings.AppliedAction">
+
+                        <div class="mdc-button__ripple">
+
+                        </div>
+
+                        <span class="mdc-button__label">
+                            @Snackbar.Settings.AppliedActionText
+                        </span>
                     </button>
                 }
 
                 @if (hasDismiss)
                 {
-                    <button class="mdc-icon-button mdc-snackbar__dismiss material-icons" title="Dismiss">close</button>
+                    <button class="mdc-icon-button mdc-snackbar__dismiss material-icons"
+                            title="Dismiss">
+                        close
+                    </button>
                 }
             </div>
         }

@@ -24,6 +24,12 @@ namespace Material.Blazor
 
 
         /// <summary>
+        /// The optional additional class to apply to the snackbar surface
+        /// </summary>
+        public string AdditionalClass { get; set; }
+
+
+        /// <summary>
         /// By default, snackbars are centered horizontally within the viewport.
         /// On larger screens, they can optionally be displayed on the leading edge of the screen (the left side in LTR, or the right side in RTL) by setting this property to true.
         /// Default: false.
