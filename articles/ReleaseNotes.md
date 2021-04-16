@@ -5,7 +5,7 @@ title: ReleaseNotes
 # Release Notes
 
 #### [2.0.0](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0)
-In Pre-Release Q4 2020 and Q1 2021
+In Pre-Release Q4 2020 to Q2 2021
 
 _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VERSIONS._
 
@@ -27,6 +27,7 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 
 - MBBladeSet - a blade implementation inspired by Microsoft Azure blades.
 - MBGrid (EXPERIMENTAL) - a capable grid component. This is not yet styled to look like Material Theme and we may or may not keep it in Material.Blazor. We recommend not using MBGrid for anything other than experiment or contributing to its development.
+- MBMenuSurface - a stripped back menu surface that accepts a render fragment for its contents (thanks @HannahKiekens).
 - MBNumericDecimalField - a decimal variant of the existing numeric input fields.
 - MBChipsSelectMulti - a multi select variant of a chip set.
 - MBChipsSelectSingle - a single select variant of a chip set.
@@ -41,12 +42,14 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 - CDN packages now reference material components web 9.0.0, see [Installation article](xref:A.Installation).
 - If you are building a theme from material components web SASS, you need to reference version 9.0.0.
 - MBMenu `ToggleAsync()` is now return type `Task` rather than `Task<string>` in version 1.
+- MBSelect and other single select components now allow for dynamic update of the `Items` parameter.
 - MBSlider value changed to be of type decimal
 - MBRadioButtonGroup `EnableTouchWrapper` obsolete and removed.
 - `MBToastCloseMethod` enum renamed to `MBNotifierCloseMethod`, and enum value names have changed. This is now used by both toasts and snackbars.
 - The names and content of the  css and js resources required for MaterialBlazor have changed. Please see [Installation article](xref:A.Installation) for details.
 
 **Deprecated Components**
+
 - MBToast is now deprecated in favor of the Material styled MBSnackbar. It will remain part of Material.Blazor 2.n, however no maintenance is planned during the Material.Blazor 2.n series of releases. It will be removed from the next major Material.Blazor release. 
 
 <br />
