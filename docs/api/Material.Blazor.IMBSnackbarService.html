@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Interface IMBSnackbarService
    ">
-    <meta name="generator" content="docfx 2.56.1.0">
+    <meta name="generator" content="docfx 2.56.7.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -89,7 +89,7 @@ Works in conjunction with a <a class="xref" href="Material.Blazor.MBAnchor.html"
 MainLayout.razor to avoid an exception being thrown when you first attempt to show a snackbar notification.</p>
 <p>
 Throws a <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a> if
-<a class="xref" href="Material.Blazor.IMBSnackbarService.html#Material_Blazor_IMBSnackbarService_ShowSnackbar_System_String_System_Action_System_String_System_Nullable_Material_Blazor_MBNotifierCloseMethod__System_Boolean_System_Boolean_System_Nullable_System_Int32__System_Boolean_">ShowSnackbar(String, Action, String, Nullable&lt;MBNotifierCloseMethod&gt;, Boolean, Boolean, Nullable&lt;Int32&gt;, Boolean)</a>
+<a class="xref" href="Material.Blazor.IMBSnackbarService.html#Material_Blazor_IMBSnackbarService_ShowSnackbar_System_String_System_Action_System_String_System_String_System_Nullable_Material_Blazor_MBNotifierCloseMethod__System_Boolean_System_Boolean_System_Nullable_System_Int32__System_Boolean_">ShowSnackbar(String, Action, String, String, Nullable&lt;MBNotifierCloseMethod&gt;, Boolean, Boolean, Nullable&lt;Int32&gt;, Boolean)</a>
 is called without an <a class="xref" href="Material.Blazor.MBAnchor.html">MBAnchor</a> component used in the app.
 </p>
 <example>
@@ -146,13 +146,13 @@ is called without an <a class="xref" href="Material.Blazor.MBAnchor.html">MBAnch
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_IMBSnackbarService_ShowSnackbar_System_String_System_Action_System_String_System_Nullable_Material_Blazor_MBNotifierCloseMethod__System_Boolean_System_Boolean_System_Nullable_System_Int32__System_Boolean_.md&amp;value=---%0Auid%3A%20Material.Blazor.IMBSnackbarService.ShowSnackbar(System.String%2CSystem.Action%2CSystem.String%2CSystem.Nullable%7BMaterial.Blazor.MBNotifierCloseMethod%7D%2CSystem.Boolean%2CSystem.Boolean%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_IMBSnackbarService_ShowSnackbar_System_String_System_Action_System_String_System_String_System_Nullable_Material_Blazor_MBNotifierCloseMethod__System_Boolean_System_Boolean_System_Nullable_System_Int32__System_Boolean_.md&amp;value=---%0Auid%3A%20Material.Blazor.IMBSnackbarService.ShowSnackbar(System.String%2CSystem.Action%2CSystem.String%2CSystem.String%2CSystem.Nullable%7BMaterial.Blazor.MBNotifierCloseMethod%7D%2CSystem.Boolean%2CSystem.Boolean%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Model/Snackbar/IMBSnackbarService.cs/#L65">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Model/Snackbar/IMBSnackbarService.cs/#L66">View Source</a>
   </span>
   <a id="Material_Blazor_IMBSnackbarService_ShowSnackbar_" data-uid="Material.Blazor.IMBSnackbarService.ShowSnackbar*"></a>
-  <h4 id="Material_Blazor_IMBSnackbarService_ShowSnackbar_System_String_System_Action_System_String_System_Nullable_Material_Blazor_MBNotifierCloseMethod__System_Boolean_System_Boolean_System_Nullable_System_Int32__System_Boolean_" data-uid="Material.Blazor.IMBSnackbarService.ShowSnackbar(System.String,System.Action,System.String,System.Nullable{Material.Blazor.MBNotifierCloseMethod},System.Boolean,System.Boolean,System.Nullable{System.Int32},System.Boolean)">ShowSnackbar(String, Action, String, Nullable&lt;MBNotifierCloseMethod&gt;, Boolean, Boolean, Nullable&lt;Int32&gt;, Boolean)</h4>
+  <h4 id="Material_Blazor_IMBSnackbarService_ShowSnackbar_System_String_System_Action_System_String_System_String_System_Nullable_Material_Blazor_MBNotifierCloseMethod__System_Boolean_System_Boolean_System_Nullable_System_Int32__System_Boolean_" data-uid="Material.Blazor.IMBSnackbarService.ShowSnackbar(System.String,System.Action,System.String,System.String,System.Nullable{Material.Blazor.MBNotifierCloseMethod},System.Boolean,System.Boolean,System.Nullable{System.Int32},System.Boolean)">ShowSnackbar(String, Action, String, String, Nullable&lt;MBNotifierCloseMethod&gt;, Boolean, Boolean, Nullable&lt;Int32&gt;, Boolean)</h4>
   <div class="markdown level1 summary"><p>Shows a snackbar using the supplied settings. Only the level and message parameters are required, with
 the remainder haveing defaults specified by the <a class="xref" href="Material.Blazor.MBSnackbarServiceConfiguration.html">MBSnackbarServiceConfiguration</a> that you can supply
 when registering services. Failing that Material.Blazor provides defaults.</p>
@@ -160,7 +160,7 @@ when registering services. Failing that Material.Blazor provides defaults.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">void ShowSnackbar(string message, Action action = null, string actionText = null, MBNotifierCloseMethod? closeMethod = default(MBNotifierCloseMethod? ), bool leading = false, bool stacked = false, int? timeout = default(int? ), bool debug = false)</code></pre>
+    <pre><code class="lang-csharp hljs">void ShowSnackbar(string message, Action action = null, string actionText = null, string additionalClass = null, MBNotifierCloseMethod? closeMethod = default(MBNotifierCloseMethod? ), bool leading = false, bool stacked = false, int? timeout = default(int? ), bool debug = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -188,6 +188,12 @@ when registering services. Failing that Material.Blazor provides defaults.</p>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">actionText</span></td>
         <td><p>The text to display in the action button in the snackbar (optional. if set, 'action' must also be set)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">additionalClass</span></td>
+        <td><p>The name of a class to be added to the snackbar surface</p>
 </td>
       </tr>
       <tr>
@@ -222,6 +228,69 @@ when registering services. Failing that Material.Blazor provides defaults.</p>
       </tr>
     </tbody>
   </table>
+  <h3 id="events">Events
+  </h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_IMBSnackbarService_OnAdd.md&amp;value=---%0Auid%3A%20Material.Blazor.IMBSnackbarService.OnAdd%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Model/Snackbar/IMBSnackbarService.cs/#L39">View Source</a>
+  </span>
+  <h4 id="Material_Blazor_IMBSnackbarService_OnAdd" data-uid="Material.Blazor.IMBSnackbarService.OnAdd">OnAdd</h4>
+  <div class="markdown level1 summary"><p>A event that will be invoked when showing a snackbar</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event Action&lt;MBSnackbarSettings&gt; OnAdd</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="Material.Blazor.MBSnackbarSettings.html">MBSnackbarSettings</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_IMBSnackbarService_OnTriggerStateHasChanged.md&amp;value=---%0Auid%3A%20Material.Blazor.IMBSnackbarService.OnTriggerStateHasChanged%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Model/Snackbar/IMBSnackbarService.cs/#L47">View Source</a>
+  </span>
+  <h4 id="Material_Blazor_IMBSnackbarService_OnTriggerStateHasChanged" data-uid="Material.Blazor.IMBSnackbarService.OnTriggerStateHasChanged">OnTriggerStateHasChanged</h4>
+  <div class="markdown level1 summary"><p>A event that will be invoked when snackbars should call StateHasChanged. This will
+be when the configuration is updated.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">event Action OnTriggerStateHasChanged</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.action">Action</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 </article>
           </div>
           
@@ -238,7 +307,8 @@ when registering services. Failing that Material.Blazor provides defaults.</p>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In This Article</h5>
+                <div></div>
               </nav>
             </div>
           </div>

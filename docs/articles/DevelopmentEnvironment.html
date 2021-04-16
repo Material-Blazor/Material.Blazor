@@ -8,7 +8,7 @@
     <title>DevelopmentEnvironment </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="DevelopmentEnvironment ">
-    <meta name="generator" content="docfx 2.56.1.0">
+    <meta name="generator" content="docfx 2.56.7.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -111,28 +111,6 @@
 </ul>
 </li>
 </ul>
-<h2 id="ci-and-release-github-action-workflows">CI and Release GitHub Action workflows</h2>
-<p>These workflows are responsible for publishing three artifacts:</p>
-<ul>
-<li>The Material.Blazor DocFx pages in the Material.Blazor project</li>
-<li>Material.Blazor.WebAssembly published output</li>
-<li>The Material.Blazor NuGet package</li>
-</ul>
-<p>The first two artifacts are combined and published in the repository gh-pages.</p>
-<p>The third artifact is hosted as a GitHub package (CI) or a NuGet package (Release).</p>
-<h3 id="wip-workflow">WIP Workflow</h3>
-<p>This workflow runs whenever a pull request is created, updated, or pushed.</p>
-<h4 id="forked-repository">Forked repository</h4>
-<p>Regardless of the trigger, all three artifacts are published. The DocFx pages reside locally in the forked repository, the NuGet package is identified as a CI build &amp; published to NuGet packages in the forked repository, and the Website is published into the gh-pages branch of a Material.Blazor.Website repository with the same owner as the forked Material.Blazor repository.</p>
-<p>NOTE -- An issue exists when publishing the CI package to a forked repository in that the publish appears to work but the packages are not visible. For this reason (pending a service request response) the publish of the CI package is temporarily disabled.</p>
-<h4 id="material-blazormaterialblazor-repository">Material-Blazor\Material.Blazor repository</h4>
-<p>Regardless of the trigger, the WebSite &amp; DocFx pages are not built. On a Push trigger the the Material.Blazor Nuget package identified as a CI build is built and then published to the Material.Blazor repository . It is up to a developer to have checked the publishing results of the documentation and website in the forked repository prior to initiating a release workflow.</p>
-<h3 id="release-workflow">Release Workflow</h3>
-<h4 id="forked-repository-1">Forked repository</h4>
-<p>Upon creation of a tag no actions are performed in the multiple jobs. At the current time we see no reason to create releases in the forked repositories.</p>
-<h4 id="material-blazormaterialblazor-repository-1">Material-Blazor\Material.Blazor repository</h4>
-<p>All three artifacts are produced. The documentation is in the Material-Blazor\Material.Blazor\gh-pages branch.
-The Material.Blazor NuGet package is published to NuGet.org. The Website is in the Material.Blazor\Material.Blazor.Website\gh-pages branch.</p>
 </article>
           </div>
           
@@ -146,7 +124,8 @@ The Material.Blazor NuGet package is published to NuGet.org. The Website is in t
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In This Article</h5>
+                <div></div>
               </nav>
             </div>
           </div>

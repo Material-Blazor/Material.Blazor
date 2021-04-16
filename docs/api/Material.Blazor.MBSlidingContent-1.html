@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class MBSlidingContent&lt;TItem&gt;
    ">
-    <meta name="generator" content="docfx 2.56.1.0">
+    <meta name="generator" content="docfx 2.56.7.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -155,7 +155,8 @@ with slight sideways motion and fade, or &quot;sliding&quot;. Only renders the c
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RenderFragment&lt;TItem&gt; Content { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Parameter]
+public RenderFragment&lt;TItem&gt; Content { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -167,7 +168,7 @@ with slight sideways motion and fade, or &quot;sliding&quot;. Only renders the c
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">RenderFragment</span>&lt;TItem&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.renderfragment-1">RenderFragment</a>&lt;TItem&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -186,7 +187,8 @@ with slight sideways motion and fade, or &quot;sliding&quot;. Only renders the c
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int ItemIndex { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Parameter]
+public int ItemIndex { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -217,7 +219,8 @@ with slight sideways motion and fade, or &quot;sliding&quot;. Only renders the c
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public EventCallback&lt;int&gt; ItemIndexChanged { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Parameter]
+public EventCallback&lt;int&gt; ItemIndexChanged { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -229,7 +232,7 @@ with slight sideways motion and fade, or &quot;sliding&quot;. Only renders the c
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventCallback</span>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/microsoft.aspnetcore.components.eventcallback-1">EventCallback</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -248,7 +251,8 @@ with slight sideways motion and fade, or &quot;sliding&quot;. Only renders the c
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IEnumerable&lt;TItem&gt; Items { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Parameter]
+public IEnumerable&lt;TItem&gt; Items { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -269,18 +273,18 @@ with slight sideways motion and fade, or &quot;sliding&quot;. Only renders the c
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBSlidingContent_1_OnAfterRender_System_Boolean_.md&amp;value=---%0Auid%3A%20Material.Blazor.MBSlidingContent%601.OnAfterRender(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBSlidingContent_1_OnAfterRenderAsync_System_Boolean_.md&amp;value=---%0Auid%3A%20Material.Blazor.MBSlidingContent%601.OnAfterRenderAsync(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/SlidingContent/MBSlidingContent.razor.cs/#L117">View Source</a>
   </span>
-  <a id="Material_Blazor_MBSlidingContent_1_OnAfterRender_" data-uid="Material.Blazor.MBSlidingContent`1.OnAfterRender*"></a>
-  <h4 id="Material_Blazor_MBSlidingContent_1_OnAfterRender_System_Boolean_" data-uid="Material.Blazor.MBSlidingContent`1.OnAfterRender(System.Boolean)">OnAfterRender(Boolean)</h4>
+  <a id="Material_Blazor_MBSlidingContent_1_OnAfterRenderAsync_" data-uid="Material.Blazor.MBSlidingContent`1.OnAfterRenderAsync*"></a>
+  <h4 id="Material_Blazor_MBSlidingContent_1_OnAfterRenderAsync_System_Boolean_" data-uid="Material.Blazor.MBSlidingContent`1.OnAfterRenderAsync(System.Boolean)">OnAfterRenderAsync(Boolean)</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnAfterRender(bool firstRender)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override Task OnAfterRenderAsync(bool firstRender)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -299,21 +303,51 @@ with slight sideways motion and fade, or &quot;sliding&quot;. Only renders the c
       </tr>
     </tbody>
   </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBSlidingContent_1_OnInitialized.md&amp;value=---%0Auid%3A%20Material.Blazor.MBSlidingContent%601.OnInitialized%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBSlidingContent_1_OnInitializedAsync.md&amp;value=---%0Auid%3A%20Material.Blazor.MBSlidingContent%601.OnInitializedAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/SlidingContent/MBSlidingContent.razor.cs/#L79">View Source</a>
   </span>
-  <a id="Material_Blazor_MBSlidingContent_1_OnInitialized_" data-uid="Material.Blazor.MBSlidingContent`1.OnInitialized*"></a>
-  <h4 id="Material_Blazor_MBSlidingContent_1_OnInitialized" data-uid="Material.Blazor.MBSlidingContent`1.OnInitialized">OnInitialized()</h4>
+  <a id="Material_Blazor_MBSlidingContent_1_OnInitializedAsync_" data-uid="Material.Blazor.MBSlidingContent`1.OnInitializedAsync*"></a>
+  <h4 id="Material_Blazor_MBSlidingContent_1_OnInitializedAsync" data-uid="Material.Blazor.MBSlidingContent`1.OnInitializedAsync">OnInitializedAsync()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnInitialized()</code></pre>
+    <pre><code class="lang-csharp hljs">protected override Task OnInitializedAsync()</code></pre>
   </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 </article>
           </div>
           
@@ -330,7 +364,8 @@ with slight sideways motion and fade, or &quot;sliding&quot;. Only renders the c
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In This Article</h5>
+                <div></div>
               </nav>
             </div>
           </div>

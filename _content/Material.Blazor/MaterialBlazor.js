@@ -1,5 +1,22 @@
 (() => {
     var __webpack_modules__ = {
+        228: module => {
+            function _arrayLikeToArray(arr, len) {
+                if (len == null || len > arr.length) len = arr.length;
+                for (var i = 0, arr2 = new Array(len); i < len; i++) {
+                    arr2[i] = arr[i];
+                }
+                return arr2;
+            }
+            module.exports = _arrayLikeToArray;
+        },
+        646: (module, __unused_webpack_exports, __webpack_require__) => {
+            var arrayLikeToArray = __webpack_require__(228);
+            function _arrayWithoutHoles(arr) {
+                if (Array.isArray(arr)) return arrayLikeToArray(arr);
+            }
+            module.exports = _arrayWithoutHoles;
+        },
         926: module => {
             function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
                 try {
@@ -32,8 +49,72 @@
             }
             module.exports = _asyncToGenerator;
         },
+        860: module => {
+            function _iterableToArray(iter) {
+                if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter);
+            }
+            module.exports = _iterableToArray;
+        },
+        206: module => {
+            function _nonIterableSpread() {
+                throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+            }
+            module.exports = _nonIterableSpread;
+        },
+        319: (module, __unused_webpack_exports, __webpack_require__) => {
+            var arrayWithoutHoles = __webpack_require__(646);
+            var iterableToArray = __webpack_require__(860);
+            var unsupportedIterableToArray = __webpack_require__(379);
+            var nonIterableSpread = __webpack_require__(206);
+            function _toConsumableArray(arr) {
+                return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
+            }
+            module.exports = _toConsumableArray;
+        },
+        379: (module, __unused_webpack_exports, __webpack_require__) => {
+            var arrayLikeToArray = __webpack_require__(228);
+            function _unsupportedIterableToArray(o, minLen) {
+                if (!o) return;
+                if (typeof o === "string") return arrayLikeToArray(o, minLen);
+                var n = Object.prototype.toString.call(o).slice(8, -1);
+                if (n === "Object" && o.constructor) n = o.constructor.name;
+                if (n === "Map" || n === "Set") return Array.from(o);
+                if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
+            }
+            module.exports = _unsupportedIterableToArray;
+        },
         757: (module, __unused_webpack_exports, __webpack_require__) => {
             module.exports = __webpack_require__(666);
+        },
+        854: (__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+            "use strict";
+            __webpack_require__.r(__webpack_exports__);
+            __webpack_require__.d(__webpack_exports__, {
+                apply: () => apply
+            });
+            var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(319);
+            var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = __webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
+            var methodLookup = {};
+            function apply(calls) {
+                return calls.map((function(call) {
+                    var identifier = call.identifier;
+                    var args = call.args;
+                    try {
+                        if (!(identifier in methodLookup)) {
+                            methodLookup[identifier] = eval(identifier);
+                        }
+                        var f = methodLookup[identifier];
+                        if (args == null) {
+                            f();
+                        } else {
+                            f.apply(void 0, _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(args));
+                        }
+                        return null;
+                    } catch (e) {
+                        return e.message;
+                    }
+                }));
+            }
         },
         486: function(module, exports, __webpack_require__) {
             module = __webpack_require__.nmd(module);
@@ -5958,7 +6039,6 @@
         __webpack_require__.r(MBAutocompleteTextField_namespaceObject);
         __webpack_require__.d(MBAutocompleteTextField_namespaceObject, {
             close: () => MBAutocompleteTextField_close,
-            destroy: () => destroy,
             init: () => init,
             open: () => MBAutocompleteTextField_open,
             setDisabled: () => setDisabled,
@@ -5973,19 +6053,16 @@
         var MBButton_namespaceObject = {};
         __webpack_require__.r(MBButton_namespaceObject);
         __webpack_require__.d(MBButton_namespaceObject, {
-            destroy: () => MBButton_destroy,
             init: () => MBButton_init
         });
         var MBCard_namespaceObject = {};
         __webpack_require__.r(MBCard_namespaceObject);
         __webpack_require__.d(MBCard_namespaceObject, {
-            destroy: () => MBCard_destroy,
             init: () => MBCard_init
         });
         var MBChipsSelectMulti_namespaceObject = {};
         __webpack_require__.r(MBChipsSelectMulti_namespaceObject);
         __webpack_require__.d(MBChipsSelectMulti_namespaceObject, {
-            destroy: () => MBChipsSelectMulti_destroy,
             init: () => MBChipsSelectMulti_init,
             setDisabled: () => MBChipsSelectMulti_setDisabled,
             setSelected: () => setSelected
@@ -5993,7 +6070,6 @@
         var MBCheckbox_namespaceObject = {};
         __webpack_require__.r(MBCheckbox_namespaceObject);
         __webpack_require__.d(MBCheckbox_namespaceObject, {
-            destroy: () => MBCheckbox_destroy,
             init: () => MBCheckbox_init,
             setChecked: () => setChecked,
             setDisabled: () => MBCheckbox_setDisabled,
@@ -6002,21 +6078,18 @@
         var MBCircularProgress_namespaceObject = {};
         __webpack_require__.r(MBCircularProgress_namespaceObject);
         __webpack_require__.d(MBCircularProgress_namespaceObject, {
-            destroy: () => MBCircularProgress_destroy,
             init: () => MBCircularProgress_init,
             setProgress: () => setProgress
         });
         var MBDataTable_namespaceObject = {};
         __webpack_require__.r(MBDataTable_namespaceObject);
         __webpack_require__.d(MBDataTable_namespaceObject, {
-            destroy: () => MBDataTable_destroy,
             init: () => MBDataTable_init,
             setProgress: () => MBDataTable_setProgress
         });
         var MBDatePicker_namespaceObject = {};
         __webpack_require__.r(MBDatePicker_namespaceObject);
         __webpack_require__.d(MBDatePicker_namespaceObject, {
-            destroy: () => MBDatePicker_destroy,
             init: () => MBDatePicker_init,
             listItemClick: () => listItemClick,
             scrollToYear: () => scrollToYear,
@@ -6031,14 +6104,12 @@
         var MBDrawer_namespaceObject = {};
         __webpack_require__.r(MBDrawer_namespaceObject);
         __webpack_require__.d(MBDrawer_namespaceObject, {
-            destroy: () => MBDrawer_destroy,
             init: () => MBDrawer_init,
             toggle: () => toggle
         });
         var MBFloatingActionButton_namespaceObject = {};
         __webpack_require__.r(MBFloatingActionButton_namespaceObject);
         __webpack_require__.d(MBFloatingActionButton_namespaceObject, {
-            destroy: () => MBFloatingActionButton_destroy,
             init: () => MBFloatingActionButton_init,
             setExited: () => setExited
         });
@@ -6053,42 +6124,43 @@
         var MBIconButton_namespaceObject = {};
         __webpack_require__.r(MBIconButton_namespaceObject);
         __webpack_require__.d(MBIconButton_namespaceObject, {
-            destroy: () => MBIconButton_destroy,
             init: () => MBIconButton_init
         });
         var MBIconButtonToggle_namespaceObject = {};
         __webpack_require__.r(MBIconButtonToggle_namespaceObject);
         __webpack_require__.d(MBIconButtonToggle_namespaceObject, {
             click: () => click,
-            destroy: () => MBIconButtonToggle_destroy,
             init: () => MBIconButtonToggle_init,
             setOn: () => setOn
         });
         var MBLinearProgress_namespaceObject = {};
         __webpack_require__.r(MBLinearProgress_namespaceObject);
         __webpack_require__.d(MBLinearProgress_namespaceObject, {
-            destroy: () => MBLinearProgress_destroy,
             init: () => MBLinearProgress_init,
             setProgress: () => MBLinearProgress_setProgress
         });
         var MBList_namespaceObject = {};
         __webpack_require__.r(MBList_namespaceObject);
         __webpack_require__.d(MBList_namespaceObject, {
-            destroy: () => MBList_destroy,
             init: () => MBList_init
         });
         var MBMenu_namespaceObject = {};
         __webpack_require__.r(MBMenu_namespaceObject);
         __webpack_require__.d(MBMenu_namespaceObject, {
-            destroy: () => MBMenu_destroy,
             hide: () => MBMenu_hide,
             init: () => MBMenu_init,
             show: () => MBMenu_show
         });
+        var MBMenuSurface_namespaceObject = {};
+        __webpack_require__.r(MBMenuSurface_namespaceObject);
+        __webpack_require__.d(MBMenuSurface_namespaceObject, {
+            hide: () => MBMenuSurface_hide,
+            init: () => MBMenuSurface_init,
+            show: () => MBMenuSurface_show
+        });
         var MBRadioButton_namespaceObject = {};
         __webpack_require__.r(MBRadioButton_namespaceObject);
         __webpack_require__.d(MBRadioButton_namespaceObject, {
-            destroy: () => MBRadioButton_destroy,
             init: () => MBRadioButton_init,
             setChecked: () => MBRadioButton_setChecked,
             setDisabled: () => MBRadioButton_setDisabled
@@ -6096,7 +6168,6 @@
         var MBSegmentedButtonMulti_namespaceObject = {};
         __webpack_require__.r(MBSegmentedButtonMulti_namespaceObject);
         __webpack_require__.d(MBSegmentedButtonMulti_namespaceObject, {
-            destroy: () => MBSegmentedButtonMulti_destroy,
             init: () => MBSegmentedButtonMulti_init,
             setDisabled: () => MBSegmentedButtonMulti_setDisabled,
             setSelected: () => MBSegmentedButtonMulti_setSelected
@@ -6104,7 +6175,6 @@
         var MBSelect_namespaceObject = {};
         __webpack_require__.r(MBSelect_namespaceObject);
         __webpack_require__.d(MBSelect_namespaceObject, {
-            destroy: () => MBSelect_destroy,
             init: () => MBSelect_init,
             setDisabled: () => MBSelect_setDisabled,
             setIndex: () => setIndex
@@ -6112,7 +6182,6 @@
         var MBSlider_namespaceObject = {};
         __webpack_require__.r(MBSlider_namespaceObject);
         __webpack_require__.d(MBSlider_namespaceObject, {
-            destroy: () => MBSlider_destroy,
             init: () => MBSlider_init,
             setDisabled: () => MBSlider_setDisabled,
             setValue: () => MBSlider_setValue
@@ -6120,14 +6189,11 @@
         var MBSnackbar_namespaceObject = {};
         __webpack_require__.r(MBSnackbar_namespaceObject);
         __webpack_require__.d(MBSnackbar_namespaceObject, {
-            destroy: () => MBSnackbar_destroy,
-            init: () => MBSnackbar_init,
-            open: () => MBSnackbar_open
+            init: () => MBSnackbar_init
         });
         var MBSwitch_namespaceObject = {};
         __webpack_require__.r(MBSwitch_namespaceObject);
         __webpack_require__.d(MBSwitch_namespaceObject, {
-            destroy: () => MBSwitch_destroy,
             init: () => MBSwitch_init,
             setChecked: () => MBSwitch_setChecked,
             setDisabled: () => MBSwitch_setDisabled
@@ -6136,13 +6202,11 @@
         __webpack_require__.r(MBTabBar_namespaceObject);
         __webpack_require__.d(MBTabBar_namespaceObject, {
             activateTab: () => activateTab,
-            destroy: () => MBTabBar_destroy,
             init: () => MBTabBar_init
         });
         var MBTextField_namespaceObject = {};
         __webpack_require__.r(MBTextField_namespaceObject);
         __webpack_require__.d(MBTextField_namespaceObject, {
-            destroy: () => MBTextField_destroy,
             init: () => MBTextField_init,
             setDisabled: () => MBTextField_setDisabled,
             setHelperText: () => setHelperText,
@@ -6152,13 +6216,11 @@
         var MBTooltip_namespaceObject = {};
         __webpack_require__.r(MBTooltip_namespaceObject);
         __webpack_require__.d(MBTooltip_namespaceObject, {
-            destroy: () => MBTooltip_destroy,
             init: () => MBTooltip_init
         });
         var MBTopAppBar_namespaceObject = {};
         __webpack_require__.r(MBTopAppBar_namespaceObject);
         __webpack_require__.d(MBTopAppBar_namespaceObject, {
-            destroy: () => MBTopAppBar_destroy,
             init: () => MBTopAppBar_init
         });
         /*! *****************************************************************************
@@ -11960,23 +12022,17 @@ PERFORMANCE OF THIS SOFTWARE.
         function init(textElem, menuElem, dotNetObject) {
             textElem._textField = MDCTextField.attachTo(textElem);
             menuElem._menu = MDCMenu.attachTo(menuElem);
-            return new Promise((function() {
-                menuElem._menu.foundation.handleItemAction = function(listItem) {
-                    menuElem._menu.open = false;
-                    dotNetObject.invokeMethodAsync("NotifySelectedAsync", listItem.innerText);
-                };
-                menuElem._menu.foundation.adapter.handleMenuSurfaceOpened = function() {
-                    menuElem._menu.foundation.setDefaultFocusState(0);
-                };
-                var closedCallback = function closedCallback() {
-                    dotNetObject.invokeMethodAsync("NotifyClosedAsync");
-                };
-                menuElem._menu.listen("MDCMenuSurface:closed", closedCallback);
-            }));
-        }
-        function destroy(textElem, menuElem) {
-            textElem._textField.destroy();
-            menuElem._menu.destroy();
+            menuElem._menu.foundation.handleItemAction = function(listItem) {
+                menuElem._menu.open = false;
+                dotNetObject.invokeMethodAsync("NotifySelected", listItem.innerText);
+            };
+            menuElem._menu.foundation.adapter.handleMenuSurfaceOpened = function() {
+                menuElem._menu.foundation.setDefaultFocusState(0);
+            };
+            var closedCallback = function closedCallback() {
+                dotNetObject.invokeMethodAsync("NotifyClosed");
+            };
+            menuElem._menu.listen("MDCMenuSurface:closed", closedCallback);
         }
         function MBAutocompleteTextField_open(menuElem) {
             menuElem._menu.open = true;
@@ -12051,14 +12107,8 @@ PERFORMANCE OF THIS SOFTWARE.
         function MBButton_init(elem) {
             elem._ripple = MDCRipple.attachTo(elem);
         }
-        function MBButton_destroy(elem) {
-            elem._ripple.destroy();
-        }
         function MBCard_init(elem) {
             elem._ripple = MDCRipple.attachTo(elem);
-        }
-        function MBCard_destroy(elem) {
-            elem._ripple.destroy();
         }
         /**
  * @license
@@ -13556,30 +13606,25 @@ PERFORMANCE OF THIS SOFTWARE.
         function MBChipsSelectMulti_init(elem, isSingleSelect, dotNetObject) {
             elem._chipSet = MDCChipSet.attachTo(elem);
             elem._isSingleSelect = isSingleSelect;
-            return new Promise((function() {
-                var clickedCallback = function clickedCallback() {
-                    if (elem._isSingleSelect) {
-                        var selectedChips = elem._chipSet.chips.filter((function(x) {
-                            return x.foundation.isSelected();
-                        }));
-                        if (selectedChips.length == 0) {
-                            dotNetObject.invokeMethodAsync("NotifySingleSelectedAsync", -1);
-                        } else {
-                            dotNetObject.invokeMethodAsync("NotifySingleSelectedAsync", elem._chipSet.chips.findIndex((function(x) {
-                                return x.id === selectedChips[0].id;
-                            })));
-                        }
+            var clickedCallback = function clickedCallback() {
+                if (elem._isSingleSelect) {
+                    var selectedChips = elem._chipSet.chips.filter((function(x) {
+                        return x.foundation.isSelected();
+                    }));
+                    if (selectedChips.length == 0) {
+                        dotNetObject.invokeMethodAsync("NotifySingleSelected", -1);
                     } else {
-                        dotNetObject.invokeMethodAsync("NotifyMultiSelectedAsync", elem._chipSet.chips.map((function(x) {
-                            return x.foundation.isSelected();
+                        dotNetObject.invokeMethodAsync("NotifySingleSelected", elem._chipSet.chips.findIndex((function(x) {
+                            return x.id === selectedChips[0].id;
                         })));
                     }
-                };
-                elem._chipSet.listen("MDCChip:selection", clickedCallback);
-            }));
-        }
-        function MBChipsSelectMulti_destroy(elem) {
-            elem._chipSet.destroy();
+                } else {
+                    dotNetObject.invokeMethodAsync("NotifyMultiSelected", elem._chipSet.chips.map((function(x) {
+                        return x.foundation.isSelected();
+                    })));
+                }
+            };
+            elem._chipSet.listen("MDCChip:selection", clickedCallback);
         }
         function MBChipsSelectMulti_setDisabled(elem, value) {
             elem._chipSet.disabled = value;
@@ -14297,14 +14342,13 @@ PERFORMANCE OF THIS SOFTWARE.
             elem._formField = MDCFormField.attachTo(formFieldElem);
             elem._formField.input = elem._checkbox;
         }
-        function MBCheckbox_destroy(elem) {
-            elem._checkbox.destroy();
-            elem._formField.destroy();
-        }
         function setChecked(elem, checked) {
             elem._checkbox.checked = checked;
         }
         function setIndeterminate(elem, indeterminate) {
+            if ((elem === null || elem === void 0 ? void 0 : elem._checkbox) == null) {
+                return;
+            }
             elem._checkbox.indeterminate = indeterminate;
         }
         function MBCheckbox_setDisabled(elem, disabled) {
@@ -14551,9 +14595,6 @@ PERFORMANCE OF THIS SOFTWARE.
         function MBCircularProgress_init(elem, progress) {
             elem._circularProgress = MDCCircularProgress.attachTo(elem);
             setProgress(elem, progress);
-        }
-        function MBCircularProgress_destroy(elem) {
-            elem._circularProgress.destroy();
         }
         function setProgress(elem, progress) {
             elem._circularProgress.progress = progress;
@@ -15636,12 +15677,11 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCDataTable;
         }(MDCComponent);
-        function MBDataTable_init(elem, showProgress) {
+        function MBDataTable_init(elem, hasProgress, showProgress) {
             elem._dataTable = MDCDataTable.attachTo(elem);
-            MBDataTable_setProgress(elem, showProgress);
-        }
-        function MBDataTable_destroy(elem) {
-            elem._dataTable.destroy();
+            if (hasProgress) {
+                MBDataTable_setProgress(elem, showProgress);
+            }
         }
         function MBDataTable_setProgress(elem, showProgress) {
             if (showProgress) {
@@ -16993,9 +17033,6 @@ PERFORMANCE OF THIS SOFTWARE.
         function MBDatePicker_setDisabled(elem, value) {
             elem._select.disabled = value;
         }
-        function MBDatePicker_destroy(elem) {
-            elem._select.destroy();
-        }
         function listItemClick(elem, elemText) {
             elem.innerText = elemText;
             elem.click();
@@ -17003,9 +17040,9 @@ PERFORMANCE OF THIS SOFTWARE.
         function scrollToYear(id) {
             var element = document.getElementById(id);
             element === null || element === void 0 ? void 0 : element.scrollIntoView({
-                behavior: "smooth",
-                block: "center",
-                inline: "start"
+                behavior: "auto",
+                block: "nearest",
+                inline: "nearest"
             });
         }
         /**
@@ -17706,22 +17743,20 @@ PERFORMANCE OF THIS SOFTWARE.
         function show(elem, dotNetObject, escapeKeyAction, scrimClickAction) {
             elem._dialog = elem._dialog || MDCDialog.attachTo(elem);
             elem._dotNetObject = dotNetObject;
-            return new Promise((function(resolve) {
-                var dialog = elem._dialog;
-                var openedCallback = function openedCallback() {
-                    dialog.unlisten("MDCDialog:opened", openedCallback);
-                    dotNetObject.invokeMethodAsync("NotifyOpenedAsync");
-                };
-                var closingCallback = function closingCallback(event) {
-                    dialog.unlisten("MDCDialog:closing", closingCallback);
-                    resolve(event.detail.action);
-                };
-                dialog.listen("MDCDialog:opened", openedCallback);
-                dialog.listen("MDCDialog:closing", closingCallback);
-                dialog.escapeKeyAction = escapeKeyAction;
-                dialog.scrimClickAction = scrimClickAction;
-                dialog.open();
-            }));
+            var dialog = elem._dialog;
+            var openedCallback = function openedCallback() {
+                dialog.unlisten("MDCDialog:opened", openedCallback);
+                dotNetObject.invokeMethodAsync("NotifyOpened");
+            };
+            dialog.listen("MDCDialog:opened", openedCallback);
+            dialog.escapeKeyAction = escapeKeyAction;
+            dialog.scrimClickAction = scrimClickAction;
+            var closingCallback = function closingCallback(event) {
+                dialog.unlisten("MDCDialog:closing", closingCallback);
+                dotNetObject.invokeMethodAsync("NotifyClosed", event.detail.action);
+            };
+            dialog.listen("MDCDialog:closing", closingCallback);
+            dialog.open();
         }
         function hide(elem, dialogAction) {
             if (elem && elem._dialog) {
@@ -18157,9 +18192,6 @@ PERFORMANCE OF THIS SOFTWARE.
             elem._drawer = MDCDrawer.attachTo(elem);
             toggle(elem, isOpen);
         }
-        function MBDrawer_destroy(elem) {
-            elem._drawer.destroy();
-        }
         function toggle(elem, isOpen) {
             elem._drawer.open = isOpen;
         }
@@ -18167,9 +18199,6 @@ PERFORMANCE OF THIS SOFTWARE.
             elem._fab = MDCRipple.attachTo(elem);
             elem._exited = false;
             setExited(elem, exited);
-        }
-        function MBFloatingActionButton_destroy(elem) {
-            elem._fab.destroy();
         }
         function setExited(elem, exited) {
             if (elem) {
@@ -18228,9 +18257,6 @@ PERFORMANCE OF THIS SOFTWARE.
         function MBIconButton_init(elem) {
             elem._ripple = MDCRipple.attachTo(elem);
             elem._ripple.unbounded = true;
-        }
-        function MBIconButton_destroy(elem) {
-            elem._ripple.destroy();
         }
         /**
  * @license
@@ -18470,9 +18496,6 @@ PERFORMANCE OF THIS SOFTWARE.
         function MBIconButtonToggle_init(elem) {
             elem._iconButtonToggle = MDCIconButtonToggle.attachTo(elem);
         }
-        function MBIconButtonToggle_destroy(elem) {
-            elem._ripple.destroy();
-        }
         function setOn(elem, isOn) {
             elem._iconButtonToggle.on = isOn;
         }
@@ -18482,9 +18505,6 @@ PERFORMANCE OF THIS SOFTWARE.
         function MBLinearProgress_init(elem, progress, buffer) {
             elem._linearProgress = MDCLinearProgress.attachTo(elem);
             MBLinearProgress_setProgress(elem, progress, buffer);
-        }
-        function MBLinearProgress_destroy(elem) {
-            elem._linearProgress.destroy();
         }
         function MBLinearProgress_setProgress(elem, progress, buffer) {
             elem._linearProgress.progress = progress;
@@ -18500,20 +18520,12 @@ PERFORMANCE OF THIS SOFTWARE.
                 }
             }
         }
-        function MBList_destroy(elem) {
-            elem._list.destroy();
-        }
         function MBMenu_init(elem, dotNetObject) {
             elem._menu = MDCMenu.attachTo(elem);
-            return new Promise((function() {
-                var closedCallback = function closedCallback() {
-                    dotNetObject.invokeMethodAsync("NotifyClosedAsync");
-                };
-                elem._menu.listen("MDCMenuSurface:closed", closedCallback);
-            }));
-        }
-        function MBMenu_destroy(elem) {
-            elem._menu.destroy();
+            var closedCallback = function closedCallback() {
+                dotNetObject.invokeMethodAsync("NotifyClosed");
+            };
+            elem._menu.listen("MDCMenuSurface:closed", closedCallback);
         }
         function MBMenu_show(elem) {
             if (elem._menu) {
@@ -18523,6 +18535,23 @@ PERFORMANCE OF THIS SOFTWARE.
         function MBMenu_hide(elem) {
             if (elem._menu) {
                 elem._menu.open = false;
+            }
+        }
+        function MBMenuSurface_init(elem, dotNetObject) {
+            elem._menu = MDCMenuSurface.attachTo(elem);
+            var closedCallback = function closedCallback() {
+                dotNetObject.invokeMethodAsync("NotifyClosed");
+            };
+            elem._menu.listen("MDCMenuSurface:closed", closedCallback);
+        }
+        function MBMenuSurface_show(elem) {
+            if (elem._menu) {
+                elem._menu.open();
+            }
+        }
+        function MBMenuSurface_hide(elem) {
+            if (elem._menu) {
+                elem._menu.close();
             }
         }
         /**
@@ -18749,10 +18778,6 @@ PERFORMANCE OF THIS SOFTWARE.
             elem._radio.checked = isChecked;
             elem._formField = MDCFormField.attachTo(formFieldElem);
             elem._formField.input = elem._radio;
-        }
-        function MBRadioButton_destroy(elem) {
-            elem._radio.destroy();
-            elem._formField.destroy();
         }
         function MBRadioButton_setDisabled(elem, value) {
             elem._radio.disabled = value;
@@ -19290,20 +19315,15 @@ PERFORMANCE OF THIS SOFTWARE.
         function MBSegmentedButtonMulti_init(elem, isSingleSelect, dotNetObject) {
             elem._segmentedButton = MDCSegmentedButton.attachTo(elem);
             elem._isSingleSelect = isSingleSelect;
-            return new Promise((function() {
-                elem._segmentedButton.foundation.adapter.notifySelectedChange = function(detail) {
-                    if (elem._isSingleSelect) {
-                        dotNetObject.invokeMethodAsync("NotifySingleSelectedAsync", detail.index);
-                    } else {
-                        dotNetObject.invokeMethodAsync("NotifyMultiSelectedAsync", elem._segmentedButton.segments.map((function(x) {
-                            return x.isSelected();
-                        })));
-                    }
-                };
-            }));
-        }
-        function MBSegmentedButtonMulti_destroy(elem) {
-            elem._segmentedButton.destroy();
+            elem._segmentedButton.foundation.adapter.notifySelectedChange = function(detail) {
+                if (elem._isSingleSelect) {
+                    dotNetObject.invokeMethodAsync("NotifySingleSelected", detail.index);
+                } else {
+                    dotNetObject.invokeMethodAsync("NotifyMultiSelected", elem._segmentedButton.segments.map((function(x) {
+                        return x.isSelected();
+                    })));
+                }
+            };
         }
         function MBSegmentedButtonMulti_setDisabled(elem, value) {
             elem._segmentedButton.disabled = value;
@@ -19319,15 +19339,9 @@ PERFORMANCE OF THIS SOFTWARE.
         }
         function MBSelect_init(elem, dotNetObject) {
             elem._select = MDCSelect.attachTo(elem);
-            return new Promise((function() {
-                elem._select.foundation.handleMenuItemAction = function(index) {
-                    elem._select.foundation.setSelectedIndex(index);
-                    dotNetObject.invokeMethodAsync("NotifySelectedAsync", index);
-                };
+            elem._select.listen("MDCSelect:change", (function() {
+                dotNetObject.invokeMethodAsync("NotifySelected", elem._select.selectedIndex);
             }));
-        }
-        function MBSelect_destroy(elem) {
-            elem._select.destroy();
         }
         function MBSelect_setDisabled(elem, value) {
             elem._select.disabled = value;
@@ -20431,32 +20445,27 @@ PERFORMANCE OF THIS SOFTWARE.
             elem._slider = MDCSlider.attachTo(elem);
             elem._eventType = eventType;
             var debounceNotify = lodash.debounce((function() {
-                dotNetObject.invokeMethodAsync("NotifyChangedAsync", elem._slider.getValue());
+                dotNetObject.invokeMethodAsync("NotifyChanged", elem._slider.getValue());
             }), delay);
             var throttleNotify = lodash.throttle((function() {
-                dotNetObject.invokeMethodAsync("NotifyChangedAsync", elem._slider.getValue());
+                dotNetObject.invokeMethodAsync("NotifyChanged", elem._slider.getValue());
             }), delay);
-            return new Promise((function() {
-                var thumbUpCallback = function thumbUpCallback() {
-                    dotNetObject.invokeMethodAsync("NotifyChangedAsync", elem._slider.getValue());
-                };
-                var debounceCallback = function debounceCallback() {
-                    debounceNotify();
-                };
-                var throttleCallback = function throttleCallback() {
-                    throttleNotify();
-                };
-                if (eventType == 0) {
-                    elem._slider.listen("MDCSlider:change", thumbUpCallback);
-                } else if (eventType == 1) {
-                    elem._slider.listen("MDCSlider:input", debounceCallback);
-                } else {
-                    elem._slider.listen("MDCSlider:input", throttleCallback);
-                }
-            }));
-        }
-        function MBSlider_destroy(elem) {
-            elem._slider.destroy();
+            var thumbUpCallback = function thumbUpCallback() {
+                dotNetObject.invokeMethodAsync("NotifyChanged", elem._slider.getValue());
+            };
+            var debounceCallback = function debounceCallback() {
+                debounceNotify();
+            };
+            var throttleCallback = function throttleCallback() {
+                throttleNotify();
+            };
+            if (eventType == 0) {
+                elem._slider.listen("MDCSlider:change", thumbUpCallback);
+            } else if (eventType == 1) {
+                elem._slider.listen("MDCSlider:input", debounceCallback);
+            } else {
+                elem._slider.listen("MDCSlider:input", throttleCallback);
+            }
         }
         function MBSlider_setValue(elem, value) {
             elem._slider.setValue(value);
@@ -20921,16 +20930,11 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCSnackbar;
         }(MDCComponent);
-        function MBSnackbar_init(elem, dotnetReference) {
+        function MBSnackbar_init(elem, dotnetReference, timeoutMs) {
             elem._snackbar = new MDCSnackbar(elem);
             elem._snackbar.listen("MDCSnackbar:closed", (function(r) {
                 dotnetReference.invokeMethodAsync("Closed", r);
             }));
-        }
-        function MBSnackbar_destroy(elem) {
-            elem._snackbar.destroy();
-        }
-        function MBSnackbar_open(elem, timeoutMs) {
             elem._snackbar.timeoutMs = timeoutMs;
             elem._snackbar.open();
         }
@@ -21203,9 +21207,6 @@ PERFORMANCE OF THIS SOFTWARE.
         function MBSwitch_init(elem, checked) {
             elem._switch = MDCSwitch.attachTo(elem);
             elem._switch.checked = checked;
-        }
-        function MBSwitch_destroy(elem) {
-            elem._switch.destroy();
         }
         function MBSwitch_setChecked(elem, checked) {
             elem._switch.checked = checked;
@@ -22995,16 +22996,11 @@ PERFORMANCE OF THIS SOFTWARE.
         }(MDCComponent);
         function MBTabBar_init(elem, dotNetObject) {
             elem._tabBar = MDCTabBar.attachTo(elem);
-            return new Promise((function() {
-                elem._callback = function() {
-                    var index = elem._tabBar.foundation.adapter.getFocusedTabIndex();
-                    dotNetObject.invokeMethodAsync("NotifyActivatedAsync", index);
-                };
-                elem._tabBar.listen("MDCTabBar:activated", elem._callback);
-            }));
-        }
-        function MBTabBar_destroy(elem) {
-            elem._tabBar.destroy();
+            elem._callback = function() {
+                var index = elem._tabBar.foundation.adapter.getFocusedTabIndex();
+                dotNetObject.invokeMethodAsync("NotifyActivated", index);
+            };
+            elem._tabBar.listen("MDCTabBar:activated", elem._callback);
         }
         function activateTab(elem, index) {
             elem._tabBar.unlisten("MDCTabBar:activated", elem._callback);
@@ -23014,12 +23010,6 @@ PERFORMANCE OF THIS SOFTWARE.
         function MBTextField_init(elem, helperTextElem, helperText, helperTextPersistent, performsValidation) {
             elem._textField = MDCTextField.attachTo(elem);
             setHelperText(elem, helperTextElem, helperText, helperTextPersistent, performsValidation, false, "");
-        }
-        function MBTextField_destroy(elem) {
-            elem._textField.destroy();
-            if (elem._helperText) {
-                elem._helperText.destroy();
-            }
         }
         function MBTextField_setValue(elem, value) {
             elem._textField.value = value;
@@ -23928,13 +23918,84 @@ PERFORMANCE OF THIS SOFTWARE.
             };
             return MDCTooltip;
         }(MDCComponent);
-        function MBTooltip_init(arrayOfReferences) {
-            arrayOfReferences.forEach((function(elem) {
-                return elem._tooltip = MDCTooltip.attachTo(elem);
-            }));
+        function _createForOfIteratorHelper(o, allowArrayLike) {
+            var it;
+            if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) {
+                if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
+                    if (it) o = it;
+                    var i = 0;
+                    var F = function F() {};
+                    return {
+                        s: F,
+                        n: function n() {
+                            if (i >= o.length) return {
+                                done: true
+                            };
+                            return {
+                                done: false,
+                                value: o[i++]
+                            };
+                        },
+                        e: function e(_e) {
+                            throw _e;
+                        },
+                        f: F
+                    };
+                }
+                throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+            }
+            var normalCompletion = true, didErr = false, err;
+            return {
+                s: function s() {
+                    it = o[Symbol.iterator]();
+                },
+                n: function n() {
+                    var step = it.next();
+                    normalCompletion = step.done;
+                    return step;
+                },
+                e: function e(_e2) {
+                    didErr = true;
+                    err = _e2;
+                },
+                f: function f() {
+                    try {
+                        if (!normalCompletion && it["return"] != null) it["return"]();
+                    } finally {
+                        if (didErr) throw err;
+                    }
+                }
+            };
         }
-        function MBTooltip_destroy(elem) {
-            elem._tooltip.destroy();
+        function _unsupportedIterableToArray(o, minLen) {
+            if (!o) return;
+            if (typeof o === "string") return _arrayLikeToArray(o, minLen);
+            var n = Object.prototype.toString.call(o).slice(8, -1);
+            if (n === "Object" && o.constructor) n = o.constructor.name;
+            if (n === "Map" || n === "Set") return Array.from(o);
+            if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
+        }
+        function _arrayLikeToArray(arr, len) {
+            if (len == null || len > arr.length) len = arr.length;
+            for (var i = 0, arr2 = new Array(len); i < len; i++) {
+                arr2[i] = arr[i];
+            }
+            return arr2;
+        }
+        function MBTooltip_init(arrayOfReferences) {
+            var _iterator = _createForOfIteratorHelper(arrayOfReferences), _step;
+            try {
+                for (_iterator.s(); !(_step = _iterator.n()).done; ) {
+                    var elem = _step.value;
+                    try {
+                        MDCTooltip.attachTo(elem);
+                    } catch (e) {}
+                }
+            } catch (err) {
+                _iterator.e(err);
+            } finally {
+                _iterator.f();
+            }
         }
         /**
  * @license
@@ -24437,10 +24498,9 @@ PERFORMANCE OF THIS SOFTWARE.
                 elem._topAppBar.setScrollTarget(document.querySelector(scrollTarget));
             }
         }
-        function MBTopAppBar_destroy(elem) {
-            elem._topAppBar.destroy();
-        }
+        var Batching = __webpack_require__(854);
         window.MaterialBlazor = {
+            Batching: Batching,
             MBAutoCompleteTextField: MBAutocompleteTextField_namespaceObject,
             MBBladeSet: MBBladeSet_namespaceObject,
             MBButton: MBButton_namespaceObject,
@@ -24459,6 +24519,7 @@ PERFORMANCE OF THIS SOFTWARE.
             MBLinearProgress: MBLinearProgress_namespaceObject,
             MBList: MBList_namespaceObject,
             MBMenu: MBMenu_namespaceObject,
+            MBMenuSurface: MBMenuSurface_namespaceObject,
             MBRadioButton: MBRadioButton_namespaceObject,
             MBSegmentedButtonMulti: MBSegmentedButtonMulti_namespaceObject,
             MBSelect: MBSelect_namespaceObject,

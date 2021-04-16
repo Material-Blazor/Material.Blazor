@@ -1,104 +1,4 @@
 @charset "UTF-8";
-@font-face {
-  font-family: "Material Icons";
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/materialicons/v77/flUhRq6tzZclQEJ-Vdg-IuiaDsNZ.ttf) format("truetype");
-}
-@font-face {
-  font-family: "Material Icons Outlined";
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/materialiconsoutlined/v45/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUcd.otf) format("opentype");
-}
-@font-face {
-  font-family: "Material Icons Round";
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/materialiconsround/v44/LDItaoyNOAY6Uewc665JcIzCKsKc_M9flwmM.otf) format("opentype");
-}
-@font-face {
-  font-family: "Material Icons Sharp";
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/materialiconssharp/v45/oPWQ_lt5nv4pWNJpghLP75WiFR4kLh3kvmvS.otf) format("opentype");
-}
-@font-face {
-  font-family: "Material Icons Two Tone";
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/materialiconstwotone/v43/hESh6WRmNCxEqUmNyh3JDeGxjVVyMg4tHGctNCu3.otf) format("opentype");
-}
-.material-icons {
-  font-family: "Material Icons";
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-}
-
-.material-icons-outlined {
-  font-family: "Material Icons Outlined";
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-}
-
-.material-icons-round {
-  font-family: "Material Icons Round";
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-}
-
-.material-icons-sharp {
-  font-family: "Material Icons Sharp";
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-}
-
-.material-icons-two-tone {
-  font-family: "Material Icons Two Tone";
-  font-weight: normal;
-  font-style: normal;
-  font-size: 24px;
-  line-height: 1;
-  letter-spacing: normal;
-  text-transform: none;
-  display: inline-block;
-  white-space: nowrap;
-  word-wrap: normal;
-  direction: ltr;
-}
-
 :root {
   --mb-text-color-light: white;
   --mb-text-color-dark: black;
@@ -610,6 +510,363 @@
   --mb-color-on-blue-grey-700: var(--mb-text-color-light);
   --mb-color-on-blue-grey-800: var(--mb-text-color-light);
   --mb-color-on-blue-grey-900: var(--mb-text-color-light);
+  --mb-color-red-50-rgb: 255, 235, 238;
+  --mb-color-red-100-rgb: 255, 205, 210;
+  --mb-color-red-200-rgb: 239, 154, 154;
+  --mb-color-red-300-rgb: 229, 115, 115;
+  --mb-color-red-400-rgb: 239, 83, 80;
+  --mb-color-red-500-rgb: 244, 67, 54;
+  --mb-color-red-600-rgb: 229, 57, 53;
+  --mb-color-red-700-rgb: 211, 47, 47;
+  --mb-color-red-800-rgb: 198, 40, 40;
+  --mb-color-red-900-rgb: 183, 28, 28;
+  --mb-color-red-a100-rgb: 255, 138, 128;
+  --mb-color-red-a200-rgb: 255, 82, 82;
+  --mb-color-red-a400-rgb: 255, 23, 68;
+  --mb-color-red-a700-rgb: 213, 0, 0;
+  --mb-color-pink-50-rgb: 252, 228, 236;
+  --mb-color-pink-100-rgb: 248, 187, 208;
+  --mb-color-pink-200-rgb: 244, 143, 177;
+  --mb-color-pink-300-rgb: 240, 98, 146;
+  --mb-color-pink-400-rgb: 236, 64, 122;
+  --mb-color-pink-500-rgb: 233, 30, 99;
+  --mb-color-pink-600-rgb: 216, 27, 96;
+  --mb-color-pink-700-rgb: 194, 24, 91;
+  --mb-color-pink-800-rgb: 173, 20, 87;
+  --mb-color-pink-900-rgb: 136, 14, 79;
+  --mb-color-pink-a100-rgb: 255, 128, 171;
+  --mb-color-pink-a200-rgb: 255, 64, 129;
+  --mb-color-pink-a400-rgb: 245, 0, 87;
+  --mb-color-pink-a700-rgb: 197, 17, 98;
+  --mb-color-purple-50-rgb: 243, 229, 245;
+  --mb-color-purple-100-rgb: 225, 190, 231;
+  --mb-color-purple-200-rgb: 206, 147, 216;
+  --mb-color-purple-300-rgb: 186, 104, 200;
+  --mb-color-purple-400-rgb: 171, 71, 188;
+  --mb-color-purple-500-rgb: 156, 39, 176;
+  --mb-color-purple-600-rgb: 142, 36, 170;
+  --mb-color-purple-700-rgb: 123, 31, 162;
+  --mb-color-purple-800-rgb: 106, 27, 154;
+  --mb-color-purple-900-rgb: 74, 20, 140;
+  --mb-color-purple-a100-rgb: 234, 128, 252;
+  --mb-color-purple-a200-rgb: 224, 64, 251;
+  --mb-color-purple-a400-rgb: 213, 0, 249;
+  --mb-color-purple-a700-rgb: 170, 0, 255;
+  --mb-color-deep-purple-50-rgb: 237, 231, 246;
+  --mb-color-deep-purple-100-rgb: 209, 196, 233;
+  --mb-color-deep-purple-200-rgb: 179, 157, 219;
+  --mb-color-deep-purple-300-rgb: 149, 117, 205;
+  --mb-color-deep-purple-400-rgb: 126, 87, 194;
+  --mb-color-deep-purple-500-rgb: 103, 58, 183;
+  --mb-color-deep-purple-600-rgb: 94, 53, 177;
+  --mb-color-deep-purple-700-rgb: 81, 45, 168;
+  --mb-color-deep-purple-800-rgb: 69, 39, 160;
+  --mb-color-deep-purple-900-rgb: 49, 27, 146;
+  --mb-color-deep-purple-a100-rgb: 179, 136, 255;
+  --mb-color-deep-purple-a200-rgb: 124, 77, 255;
+  --mb-color-deep-purple-a400-rgb: 101, 31, 255;
+  --mb-color-deep-purple-a700-rgb: 98, 0, 234;
+  --mb-color-indigo-50-rgb: 232, 234, 246;
+  --mb-color-indigo-100-rgb: 197, 202, 233;
+  --mb-color-indigo-200-rgb: 159, 168, 218;
+  --mb-color-indigo-300-rgb: 121, 134, 203;
+  --mb-color-indigo-400-rgb: 92, 107, 192;
+  --mb-color-indigo-500-rgb: 63, 81, 181;
+  --mb-color-indigo-600-rgb: 57, 73, 171;
+  --mb-color-indigo-700-rgb: 48, 63, 159;
+  --mb-color-indigo-800-rgb: 40, 53, 147;
+  --mb-color-indigo-900-rgb: 26, 35, 126;
+  --mb-color-indigo-a100-rgb: 140, 158, 255;
+  --mb-color-indigo-a200-rgb: 83, 109, 254;
+  --mb-color-indigo-a400-rgb: 61, 90, 254;
+  --mb-color-indigo-a700-rgb: 48, 79, 254;
+  --mb-color-blue-50-rgb: 227, 242, 253;
+  --mb-color-blue-100-rgb: 187, 222, 251;
+  --mb-color-blue-200-rgb: 144, 202, 249;
+  --mb-color-blue-300-rgb: 100, 181, 246;
+  --mb-color-blue-400-rgb: 66, 165, 245;
+  --mb-color-blue-500-rgb: 33, 150, 243;
+  --mb-color-blue-600-rgb: 30, 136, 229;
+  --mb-color-blue-700-rgb: 25, 118, 210;
+  --mb-color-blue-800-rgb: 21, 101, 192;
+  --mb-color-blue-900-rgb: 13, 71, 161;
+  --mb-color-blue-a100-rgb: 130, 177, 255;
+  --mb-color-blue-a200-rgb: 68, 138, 255;
+  --mb-color-blue-a400-rgb: 41, 121, 255;
+  --mb-color-blue-a700-rgb: 41, 98, 255;
+  --mb-color-light-blue-50-rgb: 225, 245, 254;
+  --mb-color-light-blue-100-rgb: 179, 229, 252;
+  --mb-color-light-blue-200-rgb: 129, 212, 250;
+  --mb-color-light-blue-300-rgb: 79, 195, 247;
+  --mb-color-light-blue-400-rgb: 41, 182, 246;
+  --mb-color-light-blue-500-rgb: 3, 169, 244;
+  --mb-color-light-blue-600-rgb: 3, 155, 229;
+  --mb-color-light-blue-700-rgb: 2, 136, 209;
+  --mb-color-light-blue-800-rgb: 2, 119, 189;
+  --mb-color-light-blue-900-rgb: 1, 87, 155;
+  --mb-color-light-blue-a100-rgb: 128, 216, 255;
+  --mb-color-light-blue-a200-rgb: 64, 196, 255;
+  --mb-color-light-blue-a400-rgb: 0, 176, 255;
+  --mb-color-light-blue-a700-rgb: 0, 145, 234;
+  --mb-color-cyan-50-rgb: 224, 247, 250;
+  --mb-color-cyan-100-rgb: 178, 235, 242;
+  --mb-color-cyan-200-rgb: 128, 222, 234;
+  --mb-color-cyan-300-rgb: 77, 208, 225;
+  --mb-color-cyan-400-rgb: 38, 198, 218;
+  --mb-color-cyan-500-rgb: 0, 188, 212;
+  --mb-color-cyan-600-rgb: 0, 172, 193;
+  --mb-color-cyan-700-rgb: 0, 151, 167;
+  --mb-color-cyan-800-rgb: 0, 131, 143;
+  --mb-color-cyan-900-rgb: 0, 96, 100;
+  --mb-color-cyan-a100-rgb: 132, 255, 255;
+  --mb-color-cyan-a200-rgb: 24, 255, 255;
+  --mb-color-cyan-a400-rgb: 0, 229, 255;
+  --mb-color-cyan-a700-rgb: 0, 184, 212;
+  --mb-color-teal-50-rgb: 224, 242, 241;
+  --mb-color-teal-100-rgb: 178, 223, 219;
+  --mb-color-teal-200-rgb: 128, 203, 196;
+  --mb-color-teal-300-rgb: 77, 182, 172;
+  --mb-color-teal-400-rgb: 38, 166, 154;
+  --mb-color-teal-500-rgb: 0, 150, 136;
+  --mb-color-teal-600-rgb: 0, 137, 123;
+  --mb-color-teal-700-rgb: 0, 121, 107;
+  --mb-color-teal-800-rgb: 0, 105, 92;
+  --mb-color-teal-900-rgb: 0, 77, 64;
+  --mb-color-teal-a100-rgb: 167, 255, 235;
+  --mb-color-teal-a200-rgb: 100, 255, 218;
+  --mb-color-teal-a400-rgb: 29, 233, 182;
+  --mb-color-teal-a700-rgb: 0, 191, 165;
+  --mb-color-green-50-rgb: 232, 245, 233;
+  --mb-color-green-100-rgb: 200, 230, 201;
+  --mb-color-green-200-rgb: 165, 214, 167;
+  --mb-color-green-300-rgb: 129, 199, 132;
+  --mb-color-green-400-rgb: 102, 187, 106;
+  --mb-color-green-500-rgb: 76, 175, 80;
+  --mb-color-green-600-rgb: 67, 160, 71;
+  --mb-color-green-700-rgb: 56, 142, 60;
+  --mb-color-green-800-rgb: 46, 125, 50;
+  --mb-color-green-900-rgb: 27, 94, 32;
+  --mb-color-green-a100-rgb: 185, 246, 202;
+  --mb-color-green-a200-rgb: 105, 240, 174;
+  --mb-color-green-a400-rgb: 0, 230, 118;
+  --mb-color-green-a700-rgb: 0, 200, 83;
+  --mb-color-light-green-50-rgb: 241, 248, 233;
+  --mb-color-light-green-100-rgb: 220, 237, 200;
+  --mb-color-light-green-200-rgb: 197, 225, 165;
+  --mb-color-light-green-300-rgb: 174, 213, 129;
+  --mb-color-light-green-400-rgb: 156, 204, 101;
+  --mb-color-light-green-500-rgb: 139, 195, 74;
+  --mb-color-light-green-600-rgb: 124, 179, 66;
+  --mb-color-light-green-700-rgb: 104, 159, 56;
+  --mb-color-light-green-800-rgb: 85, 139, 47;
+  --mb-color-light-green-900-rgb: 51, 105, 30;
+  --mb-color-light-green-a100-rgb: 204, 255, 144;
+  --mb-color-light-green-a200-rgb: 178, 255, 89;
+  --mb-color-light-green-a400-rgb: 118, 255, 3;
+  --mb-color-light-green-a700-rgb: 100, 221, 23;
+  --mb-color-lime-50-rgb: 249, 251, 231;
+  --mb-color-lime-100-rgb: 240, 244, 195;
+  --mb-color-lime-200-rgb: 230, 238, 156;
+  --mb-color-lime-300-rgb: 220, 231, 117;
+  --mb-color-lime-400-rgb: 212, 225, 87;
+  --mb-color-lime-500-rgb: 205, 220, 57;
+  --mb-color-lime-600-rgb: 192, 202, 51;
+  --mb-color-lime-700-rgb: 175, 180, 43;
+  --mb-color-lime-800-rgb: 158, 157, 36;
+  --mb-color-lime-900-rgb: 130, 119, 23;
+  --mb-color-lime-a100-rgb: 244, 255, 129;
+  --mb-color-lime-a200-rgb: 238, 255, 65;
+  --mb-color-lime-a400-rgb: 198, 255, 0;
+  --mb-color-lime-a700-rgb: 174, 234, 0;
+  --mb-color-yellow-50-rgb: 255, 253, 231;
+  --mb-color-yellow-100-rgb: 255, 249, 196;
+  --mb-color-yellow-200-rgb: 255, 245, 157;
+  --mb-color-yellow-300-rgb: 255, 241, 118;
+  --mb-color-yellow-400-rgb: 255, 238, 88;
+  --mb-color-yellow-500-rgb: 255, 235, 59;
+  --mb-color-yellow-600-rgb: 253, 216, 53;
+  --mb-color-yellow-700-rgb: 251, 192, 45;
+  --mb-color-yellow-800-rgb: 249, 168, 37;
+  --mb-color-yellow-900-rgb: 245, 127, 23;
+  --mb-color-yellow-a100-rgb: 255, 255, 141;
+  --mb-color-yellow-a200-rgb: 255, 255, 0;
+  --mb-color-yellow-a400-rgb: 255, 234, 0;
+  --mb-color-yellow-a700-rgb: 255, 214, 0;
+  --mb-color-amber-50-rgb: 255, 248, 225;
+  --mb-color-amber-100-rgb: 255, 236, 179;
+  --mb-color-amber-200-rgb: 255, 224, 130;
+  --mb-color-amber-300-rgb: 255, 213, 79;
+  --mb-color-amber-400-rgb: 255, 202, 40;
+  --mb-color-amber-500-rgb: 255, 193, 7;
+  --mb-color-amber-600-rgb: 255, 179, 0;
+  --mb-color-amber-700-rgb: 255, 160, 0;
+  --mb-color-amber-800-rgb: 255, 143, 0;
+  --mb-color-amber-900-rgb: 255, 111, 0;
+  --mb-color-amber-a100-rgb: 255, 229, 127;
+  --mb-color-amber-a200-rgb: 255, 215, 64;
+  --mb-color-amber-a400-rgb: 255, 196, 0;
+  --mb-color-amber-a700-rgb: 255, 171, 0;
+  --mb-color-orange-50-rgb: 255, 243, 224;
+  --mb-color-orange-100-rgb: 255, 224, 178;
+  --mb-color-orange-200-rgb: 255, 204, 128;
+  --mb-color-orange-300-rgb: 255, 183, 77;
+  --mb-color-orange-400-rgb: 255, 167, 38;
+  --mb-color-orange-500-rgb: 255, 152, 0;
+  --mb-color-orange-600-rgb: 251, 140, 0;
+  --mb-color-orange-700-rgb: 245, 124, 0;
+  --mb-color-orange-800-rgb: 239, 108, 0;
+  --mb-color-orange-900-rgb: 230, 81, 0;
+  --mb-color-orange-a100-rgb: 255, 209, 128;
+  --mb-color-orange-a200-rgb: 255, 171, 64;
+  --mb-color-orange-a400-rgb: 255, 145, 0;
+  --mb-color-orange-a700-rgb: 255, 109, 0;
+  --mb-color-deep-orange-50-rgb: 251, 233, 231;
+  --mb-color-deep-orange-100-rgb: 255, 204, 188;
+  --mb-color-deep-orange-200-rgb: 255, 171, 145;
+  --mb-color-deep-orange-300-rgb: 255, 138, 101;
+  --mb-color-deep-orange-400-rgb: 255, 112, 67;
+  --mb-color-deep-orange-500-rgb: 255, 87, 34;
+  --mb-color-deep-orange-600-rgb: 244, 81, 30;
+  --mb-color-deep-orange-700-rgb: 230, 74, 25;
+  --mb-color-deep-orange-800-rgb: 216, 67, 21;
+  --mb-color-deep-orange-900-rgb: 191, 54, 12;
+  --mb-color-deep-orange-a100-rgb: 255, 158, 128;
+  --mb-color-deep-orange-a200-rgb: 255, 110, 64;
+  --mb-color-deep-orange-a400-rgb: 255, 61, 0;
+  --mb-color-deep-orange-a700-rgb: 221, 44, 0;
+  --mb-color-brown-50-rgb: 239, 235, 233;
+  --mb-color-brown-100-rgb: 215, 204, 200;
+  --mb-color-brown-200-rgb: 188, 170, 164;
+  --mb-color-brown-300-rgb: 161, 136, 127;
+  --mb-color-brown-400-rgb: 141, 110, 99;
+  --mb-color-brown-500-rgb: 121, 85, 72;
+  --mb-color-brown-600-rgb: 109, 76, 65;
+  --mb-color-brown-700-rgb: 93, 64, 55;
+  --mb-color-brown-800-rgb: 78, 52, 46;
+  --mb-color-brown-900-rgb: 62, 39, 35;
+  --mb-color-grey-50-rgb: 250, 250, 250;
+  --mb-color-grey-100-rgb: 245, 245, 245;
+  --mb-color-grey-200-rgb: 238, 238, 238;
+  --mb-color-grey-300-rgb: 224, 224, 224;
+  --mb-color-grey-400-rgb: 189, 189, 189;
+  --mb-color-grey-500-rgb: 158, 158, 158;
+  --mb-color-grey-600-rgb: 117, 117, 117;
+  --mb-color-grey-700-rgb: 97, 97, 97;
+  --mb-color-grey-800-rgb: 66, 66, 66;
+  --mb-color-grey-900-rgb: 33, 33, 33;
+  --mb-color-blue-grey-50-rgb: 236, 239, 241;
+  --mb-color-blue-grey-100-rgb: 207, 216, 220;
+  --mb-color-blue-grey-200-rgb: 176, 190, 197;
+  --mb-color-blue-grey-300-rgb: 144, 164, 174;
+  --mb-color-blue-grey-400-rgb: 120, 144, 156;
+  --mb-color-blue-grey-500-rgb: 96, 125, 139;
+  --mb-color-blue-grey-600-rgb: 84, 110, 122;
+  --mb-color-blue-grey-700-rgb: 69, 90, 100;
+  --mb-color-blue-grey-800-rgb: 55, 71, 79;
+  --mb-color-blue-grey-900-rgb: 38, 50, 56;
+}
+
+/*
+ * source for this file is "https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+*/
+@font-face {
+  font-family: "Material Icons";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v81/flUhRq6tzZclQEJ-Vdg-IuiaDsNZ.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Material Icons Outlined";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialiconsoutlined/v51/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUcd.otf) format("opentype");
+}
+@font-face {
+  font-family: "Material Icons Round";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialiconsround/v50/LDItaoyNOAY6Uewc665JcIzCKsKc_M9flwmM.otf) format("opentype");
+}
+@font-face {
+  font-family: "Material Icons Sharp";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialiconssharp/v51/oPWQ_lt5nv4pWNJpghLP75WiFR4kLh3kvmvS.otf) format("opentype");
+}
+@font-face {
+  font-family: "Material Icons Two Tone";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialiconstwotone/v49/hESh6WRmNCxEqUmNyh3JDeGxjVVyMg4tHGctNCu3.otf) format("opentype");
+}
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+}
+
+.material-icons-outlined {
+  font-family: "Material Icons Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+}
+
+.material-icons-round {
+  font-family: "Material Icons Round";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+}
+
+.material-icons-sharp {
+  font-family: "Material Icons Sharp";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+}
+
+.material-icons-two-tone {
+  font-family: "Material Icons Two Tone";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
 }
 
 .mb-autocomplete {
@@ -879,7 +1136,7 @@ mb-blade-content {
   margin: 48px 0;
 }
 
-.mb-card__primary {
+.mb-card__autostyled {
   padding: 1rem;
 }
 
@@ -919,7 +1176,7 @@ mb-blade-content {
   color: #fff;
 }
 
-.mb-ui-control .mb-card__primary-action {
+.mb-ui-control .mb-card__autostyled-action {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-direction: row;
@@ -1094,6 +1351,14 @@ mb-blade-content {
   border-radius: 16px;
 }
 
+.mb-dp-day-pad__button_earlier_month {
+  visibility: hidden;
+}
+
+.mb-dp-day-pad__button_later_month {
+  visibility: hidden;
+}
+
 /*
     Year pad
 */
@@ -1189,6 +1454,7 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
 }
 
 .mb-grid-div-header {
+  font-family: Arial;
   font-weight: bolder;
   padding: 0;
   overflow-x: hidden;
@@ -1204,10 +1470,11 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
 }
 
 .mb-grid-div-body {
+  font-family: Arial;
   background: lightblue;
   font-weight: normal;
   padding: 0;
-  overflow-x: auto;
+  overflow-x: scroll;
   overflow-y: scroll;
   text-align: left;
   box-sizing: border-box;
@@ -1245,6 +1512,7 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   overflow: hidden;
   box-sizing: border-box;
   white-space: nowrap;
+  letter-spacing: initial;
 }
 
 .mb-grid-td-group {
@@ -1281,7 +1549,7 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
 }
 
 .mb-grid-header-td-measure {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Arial;
   font-weight: bolder;
   border-collapse: collapse;
   border-spacing: 0;
@@ -1294,6 +1562,7 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   padding: 4px;
   font-size: inherit;
   text-overflow: unset;
+  letter-spacing: initial;
   overflow: hidden;
   box-sizing: border-box;
   white-space: nowrap;
@@ -1306,7 +1575,7 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
 }
 
 .mb-grid-body-td-measure {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Arial;
   font-weight: normal;
   border-collapse: collapse;
   border-spacing: 0;
@@ -1319,6 +1588,7 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   padding: 4px;
   font-size: inherit;
   text-overflow: unset;
+  letter-spacing: initial;
   overflow: hidden;
   box-sizing: border-box;
   white-space: nowrap;
@@ -4106,15 +4376,68 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   margin-left: -140px;
 }
 
+@media (min-width: 576px) {
+  .mb-toast__topleft {
+    top: 12px;
+    left: 12px;
+    margin-left: 0;
+  }
+
+  .mb-toast__topright {
+    top: 12px;
+    right: 12px;
+    left: initial;
+    margin-left: 0;
+  }
+
+  .mb-toast__topcenter {
+    top: 12px;
+  }
+
+  .mb-toast__centerleft {
+    top: 50vh;
+    left: 12px;
+    margin-left: 0;
+  }
+
+  .mb-toast__centerright {
+    top: 50vh;
+    right: 12px;
+    left: initial;
+    margin-left: 0;
+  }
+
+  .mb-toast__centercenter {
+    top: 50vh;
+    left: 50vw;
+  }
+
+  .mb-toast__bottomleft {
+    bottom: 12px;
+    left: 12px;
+    margin-left: 0;
+  }
+
+  .mb-toast__bottomright {
+    bottom: 12px;
+    right: 12px;
+    left: initial;
+    margin-left: 0;
+  }
+
+  .mb-toast__bottomcenter {
+    bottom: 12px;
+  }
+}
 .mb-toast {
   display: flex;
   flex-flow: row nowrap;
   margin: 4px 0;
   padding: 0 6px 0 0;
-  box-sizing: padding-box;
+  box-sizing: border-box;
   height: 66px;
   max-height: 66px;
-  width: 280px;
+  min-width: 280px;
   border-radius: var(--mb-toast-border-radius);
 }
 
@@ -4326,77 +4649,8 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   margin: 0 !important;
 }
 
-@media (min-width: 576px) {
-  .mb-toast__topleft {
-    top: 12px;
-    left: 12px;
-    margin-left: 0;
-  }
-
-  .mb-toast__topright {
-    top: 12px;
-    right: 12px;
-    left: initial;
-    margin-left: 0;
-  }
-
-  .mb-toast__topcenter {
-    top: 12px;
-  }
-
-  .mb-toast__bottomleft {
-    bottom: 12px;
-    left: 12px;
-    margin-left: 0;
-  }
-
-  .mb-toast__bottomright {
-    bottom: 12px;
-    right: 12px;
-    left: initial;
-    margin-left: 0;
-  }
-
-  .mb-toast__bottomcenter {
-    bottom: 12px;
-  }
-}
 .mb-top-app-bar__title-right {
   padding: 0 20px 0 0 !important;
-}
-
-:root {
-  --mb-scroll-color: var(--mdc-theme-primary);
-  --mb-scroll-track-color: rgba(0, 0, 0, 0);
-  --mb-scrollbar-width: thin;
-  --mb-scroll-webkit-margin-right: 4px;
-  --mb-scroll-webkit-width: 8px;
-  --mb-scroll-webkit-border-radius: 4px;
-}
-
-.mb-custom-scrollbars {
-  scrollbar-width: var(--mb-scrollbar-width);
-  scrollbar-color: var(--mb-scroll-color) var(--mb-scroll-track-color);
-  /* Scrollbar width */
-  /* Track */
-  /* Handle */
-}
-.mb-custom-scrollbars ::-webkit-scrollbar {
-  width: var(--mb-scroll-webkit-width);
-  height: var(--mb-scroll-webkit-width);
-}
-.mb-custom-scrollbars ::-webkit-scrollbar-track {
-  background-color: var(--mb-scroll-track-color);
-  margin-right: var(--mb-scroll-webkit-margin-right);
-}
-.mb-custom-scrollbars ::-webkit-scrollbar-thumb {
-  background: var(--mb-scroll-color);
-  border-radius: var(--mb-scroll-webkit-border-radius);
-}
-
-.mb-custom-scrollbars * {
-  scrollbar-width: inherit;
-  scrollbar-color: inherit;
 }
 
 .mb-align-left {

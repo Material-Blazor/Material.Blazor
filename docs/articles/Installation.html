@@ -8,7 +8,7 @@
     <title>Installation </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Installation ">
-    <meta name="generator" content="docfx 2.56.1.0">
+    <meta name="generator" content="docfx 2.56.7.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -80,21 +80,21 @@
             <article class="content wrap" id="_content" data-uid="A.Installation">
 <h1 id="installation">Installation</h1>
 
-<p>Either fork this repo or use the Nuget package linked at the top of this document. Once the package is referenced in your project you will need to add the CSS and JS in your html.</p>
-<p>There are non-minified files of MaterialBlazor.css &amp; MaterialBlazor.js available to reference if you need them for debugging purposes.</p>
+<p>Either fork this repo or reference the Material.Blazor Nuget package. Once the package is referenced in your project you will need to add the CSS and JS in your html.</p>
 <p>Add the <code>Material.Blazor</code> namespace to your project by appending <code>@using Material.Blazor</code> to the end of your project's _Imports.razor file. Do not use components from the <code>Material.Blazor.Internal</code> namespace: as the name
 implies these are intended for internal use by Material.Blazor, however Blazor has no mechanism for internally restricted Blazor components to mirror the <code>internal</code> directive for a C# class.</p>
 <h2 id="obtaining-the-requisite-css-and-js">Obtaining the requisite CSS and JS</h2>
-<p>If you want, you can directly reference the Material Theme CSS and JS from the unpkg CDN (or download it for yourself). We package the css for
-Material icons. You will to add three items to your index.html/_Host.cshtml. Place this in the <code>&lt;head&gt;</code> tag:</p>
-<pre><code class="lang-html">&lt;link href=&quot;https://unpkg.com/material-components-web@9.0.0/dist/material-components-web.css&quot; rel=&quot;stylesheet&quot; /&gt;
+<p>You will to add three items to your index.html/_Host.cshtml. Place this in the <code>&lt;head&gt;</code> tag:</p>
+<pre><code class="lang-html">&lt;link href=&quot;_content/Material.Blazor/Material.min.css&quot; rel=&quot;stylesheet&quot; /&gt;
 &lt;link href=&quot;_content/Material.Blazor/MaterialBlazor.min.css&quot; rel=&quot;stylesheet&quot; /&gt;
 </code></pre>
 <p>and at the end of <code>&lt;body&gt;</code>:</p>
 <pre><code class="lang-html">&lt;script src=&quot;_content/Material.Blazor/MaterialBlazor.min.js&quot;&gt;&lt;/script&gt;
 </code></pre>
-<p>Replace the unpkg CSS with your own
+<p>Replace the Material.min.css with your own
 if you have built a theme - you can see how we have done this in the <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website.WebAssembly/wwwroot/index.html#L14">Material.Blazor website's index.html</a>.</p>
+<p>Material.Blazor.min.css includes the Material icons for convenience. If you wish to use either (or both) Font Awesome or Open Iconic icon sets see the next section for the additional css required.</p>
+<p>The non-minified versions of each of the css and js packages are also available if needed for debugging.</p>
 <h2 id="package-versions">Package versions</h2>
 <p>Material.Blazor works with the following package versions:</p>
 <ul>
@@ -155,7 +155,8 @@ because regular component tooltips will fail if you don't, although they are opt
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In This Article</h5>
+                <div></div>
               </nav>
             </div>
           </div>

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Namespace Material.Blazor.Internal
    ">
-    <meta name="generator" content="docfx 2.56.1.0">
+    <meta name="generator" content="docfx 2.56.7.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -88,23 +88,13 @@
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
-      <h4><a class="xref" href="Material.Blazor.Internal.ClassAndStyleMapper.html">ClassAndStyleMapper</a></h4>
-      <section><p>The definition of ClassAndStyleMapper and ClassAndStyleMapperExtensions
-ultimately define a list of parameterless functions that conditionally return a string
-if true, a null if false.</p>
-<p>
-The Func&lt;string> items are enumerated and evaluated when either <a class="xref" href="Material.Blazor.Internal.ClassAndStyleMapper.html#Material_Blazor_Internal_ClassAndStyleMapper_ToClassString">ToClassString()</a> or <a class="xref" href="Material.Blazor.Internal.ClassAndStyleMapper.html#Material_Blazor_Internal_ClassAndStyleMapper_ToStyleString">ToStyleString()</a> are called.
-</p>
-</section>
-      <h4><a class="xref" href="Material.Blazor.Internal.ClassAndStyleMapperExtensions.html">ClassAndStyleMapperExtensions</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Material.Blazor.Internal.ClassMapper.html">ClassMapper</a></h4>
-      <section></section>
       <h4><a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html">ComponentFoundation</a></h4>
       <section><p>The base class for all Material.Blazor components.</p>
 </section>
-      <h4><a class="xref" href="Material.Blazor.Internal.ComponentFoundationExtensions.html">ComponentFoundationExtensions</a></h4>
-      <section><p>Static utilities.</p>
+      <h4><a class="xref" href="Material.Blazor.Internal.ConditionalCssClasses.html">ConditionalCssClasses</a></h4>
+      <section><p>This is a helper class to conditionally apply CSS classes to an HTML element.
+Classes are added with the <a class="xref" href="Material.Blazor.Internal.ConditionalCssClasses.html#Material_Blazor_Internal_ConditionalCssClasses_AddIf_System_String_System_Func_System_Boolean__">AddIf(String, Func&lt;Boolean&gt;)</a> method.
+On <a class="xref" href="Material.Blazor.Internal.ConditionalCssClasses.html#Material_Blazor_Internal_ConditionalCssClasses_ToString">ToString()</a>, just the classes satisfying the condition are returned, joined into one string.</p>
 </section>
       <h4><a class="xref" href="Material.Blazor.Internal.InputComponent-1.html">InputComponent&lt;T&gt;</a></h4>
       <section><p>This is like InputBase from Microsoft.AspNetCore.Components.Forms, except that it treats
@@ -123,7 +113,7 @@ The Func&lt;string> items are enumerated and evaluated when either <a class="xre
       <section></section>
       <h4><a class="xref" href="Material.Blazor.Internal.InternalSnackbarAnchor.html">InternalSnackbarAnchor</a></h4>
       <section><p>An anchor component that displays snackbar notification that you display via
-<a class="xref" href="Material.Blazor.IMBSnackbarService.html#Material_Blazor_IMBSnackbarService_ShowSnackbar_System_String_System_Action_System_String_System_Nullable_Material_Blazor_MBNotifierCloseMethod__System_Boolean_System_Boolean_System_Nullable_System_Int32__System_Boolean_">ShowSnackbar(String, Action, String, Nullable&lt;MBNotifierCloseMethod&gt;, Boolean, Boolean, Nullable&lt;Int32&gt;, Boolean)</a>.
+<a class="xref" href="Material.Blazor.IMBSnackbarService.html#Material_Blazor_IMBSnackbarService_ShowSnackbar_System_String_System_Action_System_String_System_String_System_Nullable_Material_Blazor_MBNotifierCloseMethod__System_Boolean_System_Boolean_System_Nullable_System_Int32__System_Boolean_">ShowSnackbar(String, Action, String, String, Nullable&lt;MBNotifierCloseMethod&gt;, Boolean, Boolean, Nullable&lt;Int32&gt;, Boolean)</a>.
 Place this component at the top of either App.razor or MainLayout.razor.</p>
 </section>
       <h4><a class="xref" href="Material.Blazor.Internal.InternalToastAnchor.html">InternalToastAnchor</a></h4>
@@ -145,8 +135,11 @@ Place this component at the top of either App.razor or MainLayout.razor.</p>
       <h4><a class="xref" href="Material.Blazor.Internal.SnackbarInstance.html">SnackbarInstance</a></h4>
       <section><p>An instance of a snackbar message.</p>
 </section>
-      <h4><a class="xref" href="Material.Blazor.Internal.StyleMapper.html">StyleMapper</a></h4>
-      <section></section>
+    <h3 id="interfaces">Interfaces
+  </h3>
+      <h4><a class="xref" href="Material.Blazor.Internal.IBatchingJSRuntime.html">IBatchingJSRuntime</a></h4>
+      <section><p>A service that wraps IJSRuntime, batching calls to InvokeVoidAsync().</p>
+</section>
 </article>
           </div>
           
@@ -157,7 +150,8 @@ Place this component at the top of either App.razor or MainLayout.razor.</p>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In This Article</h5>
+                <div></div>
               </nav>
             </div>
           </div>

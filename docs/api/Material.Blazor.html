@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Namespace Material.Blazor
    ">
-    <meta name="generator" content="docfx 2.56.1.0">
+    <meta name="generator" content="docfx 2.56.7.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -110,6 +110,14 @@ your user navigates from one page to another.</p>
       <section><p>An autocomplete built using an <a class="xref" href="Material.Blazor.MBTextField.html">MBTextField</a> with the anchor and drop
 down list implementation from a Material Theme select.</p>
 </section>
+      <h4><a class="xref" href="Material.Blazor.MBBladeComponent-1.html">MBBladeComponent&lt;TParam&gt;</a></h4>
+      <section><p>A component added to a blade via <a class="xref" href="Material.Blazor.MBBladeSet.html#Material_Blazor_MBBladeSet_AddBladeAsync__2_System_String___1_System_String_System_String_System_Action_System_String__">AddBladeAsync&lt;TComponent, TParameters&gt;(String, TParameters, String, String, Action&lt;String&gt;)</a>
+must implement this interface.</p>
+</section>
+      <h4><a class="xref" href="Material.Blazor.MBBladeComponentParameters.html">MBBladeComponentParameters</a></h4>
+      <section><p>Parameters passed to a new blade via <a class="xref" href="Material.Blazor.MBBladeSet.html#Material_Blazor_MBBladeSet_AddBladeAsync__2_System_String___1_System_String_System_String_System_Action_System_String__">AddBladeAsync&lt;TComponent, TParameters&gt;(String, TParameters, String, String, Action&lt;String&gt;)</a> must take
+one parameter of a class implementing this interface. That class then holds all the parameters required for the component.</p>
+</section>
       <h4><a class="xref" href="Material.Blazor.MBBladeSet.html">MBBladeSet</a></h4>
       <section><p>A blade display component. Adds blades to the right hand side of the viewport (or bock where this component is located), with
 blades displayed left to right in ascending order of when they were requested (newest blades to the right).</p>
@@ -194,9 +202,6 @@ foundries. Material Icons are essential for Material.Blazor and are included by 
 library's CSS, while you can elect whether to include Font Awesome and Open Iconic
 in your app.</p>
 </section>
-      <h4><a class="xref" href="Material.Blazor.MBIconBearingSelectElement-1.html">MBIconBearingSelectElement&lt;T&gt;</a></h4>
-      <section><p>A list item used by <a class="xref" href="Material.Blazor.MBSegmentedButtonMulti-1.html">MBSegmentedButtonMulti&lt;TItem&gt;</a></p>
-</section>
       <h4><a class="xref" href="Material.Blazor.MBIconButton.html">MBIconButton</a></h4>
       <section><p>This is a general purpose Material Theme icon button, with provision for standard MB styling, leading
 and trailing icons and all standard Blazor events. Adds the &quot;mdc-card__action--icon&quot; class when
@@ -231,6 +236,9 @@ list item.</p>
       <h4><a class="xref" href="Material.Blazor.MBMenuSelectionGroup.html">MBMenuSelectionGroup</a></h4>
       <section><p>A Material Theme menu selection group.</p>
 </section>
+      <h4><a class="xref" href="Material.Blazor.MBMenuSurface.html">MBMenuSurface</a></h4>
+      <section><p>This is a general purpose Material Theme menu.</p>
+</section>
       <h4><a class="xref" href="Material.Blazor.MBNumericDecimalField.html">MBNumericDecimalField</a></h4>
       <section><p>A Material Theme numeric input field. This wraps <a class="xref" href="Material.Blazor.MBTextField.html">MBTextField</a> and normally
 displays the numeric value as formatted text, but switches to a pure number on being selected.</p>
@@ -261,9 +269,6 @@ and displays as checked if <a class="xref" href="Material.Blazor.Internal.InputC
 </section>
       <h4><a class="xref" href="Material.Blazor.MBSelect-1.html">MBSelect&lt;TItem&gt;</a></h4>
       <section><p>A Material Theme select.</p>
-</section>
-      <h4><a class="xref" href="Material.Blazor.MBSelectElement-1.html">MBSelectElement&lt;T&gt;</a></h4>
-      <section><p>A list item used by <a class="xref" href="Material.Blazor.MBSelect-1.html">MBSelect&lt;TItem&gt;</a>, <a class="xref" href="Material.Blazor.MBRadioButtonGroup-1.html">MBRadioButtonGroup&lt;TItem&gt;</a> and <a class="xref" href="Material.Blazor.MBPagedDataList-1.html">MBPagedDataList&lt;TItem&gt;</a></p>
 </section>
       <h4><a class="xref" href="Material.Blazor.MBShield.html">MBShield</a></h4>
       <section><p>A shield similar to those from shield.io and used in GitHub. Implemented
@@ -313,10 +318,19 @@ the <a class="xref" href="Material.Blazor.MBToastServiceConfiguration.html">MBTo
       <h4><a class="xref" href="Material.Blazor.MBTopAppBar.html">MBTopAppBar</a></h4>
       <section><p>A Material Theme top app bar</p>
 </section>
+      <h4><a class="xref" href="Material.Blazor.MBTouchTargetWrapper.html">MBTouchTargetWrapper</a></h4>
+      <section><p>Optionally applies a &lt;div&gt; element with class 'mdc-touch-target-wrapper' around the child content.</p>
+</section>
       <h4><a class="xref" href="Material.Blazor.MBVersion.html">MBVersion</a></h4>
       <section></section>
       <h4><a class="xref" href="Material.Blazor.ServiceCollectionExtensions.html">ServiceCollectionExtensions</a></h4>
       <section></section>
+    <h3 id="structs">Structs
+  </h3>
+      <h4><a class="xref" href="Material.Blazor.HashCode.html">HashCode</a></h4>
+      <section><p>A hash code used to help with implementing <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gethashcode#System_Object_GetHashCode">GetHashCode()</a>.</p>
+<p>This code is from the blog post at <a href="https://rehansaeed.com/gethashcode-made-easy/">https://rehansaeed.com/gethashcode-made-easy/</a></p>
+</section>
     <h3 id="interfaces">Interfaces
   </h3>
       <h4><a class="xref" href="Material.Blazor.IMBAnimatedNavigationManager.html">IMBAnimatedNavigationManager</a></h4>
@@ -358,7 +372,7 @@ Works in conjunction with a <a class="xref" href="Material.Blazor.MBAnchor.html"
 MainLayout.razor to avoid an exception being thrown when you first attempt to show a snackbar notification.</p>
 <p>
 Throws a <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a> if
-<a class="xref" href="Material.Blazor.IMBSnackbarService.html#Material_Blazor_IMBSnackbarService_ShowSnackbar_System_String_System_Action_System_String_System_Nullable_Material_Blazor_MBNotifierCloseMethod__System_Boolean_System_Boolean_System_Nullable_System_Int32__System_Boolean_">ShowSnackbar(String, Action, String, Nullable&lt;MBNotifierCloseMethod&gt;, Boolean, Boolean, Nullable&lt;Int32&gt;, Boolean)</a>
+<a class="xref" href="Material.Blazor.IMBSnackbarService.html#Material_Blazor_IMBSnackbarService_ShowSnackbar_System_String_System_Action_System_String_System_String_System_Nullable_Material_Blazor_MBNotifierCloseMethod__System_Boolean_System_Boolean_System_Nullable_System_Int32__System_Boolean_">ShowSnackbar(String, Action, String, String, Nullable&lt;MBNotifierCloseMethod&gt;, Boolean, Boolean, Nullable&lt;Int32&gt;, Boolean)</a>
 is called without an <a class="xref" href="Material.Blazor.MBAnchor.html">MBAnchor</a> component used in the app.
 </p>
 <example>
@@ -396,7 +410,7 @@ Works in conjunction with a <a class="xref" href="Material.Blazor.MBAnchor.html"
 MainLayout.razor to avoid an exception being thrown when you first attempt to show a tooltip notification.</p>
 <p>
 Throws a <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a> if
-<a class="xref" href="Material.Blazor.IMBTooltipService.html#Material_Blazor_IMBTooltipService_AddTooltip_System_Guid_RenderFragment_">AddTooltip(Guid, RenderFragment)</a>
+<a class="xref" href="Material.Blazor.IMBTooltipService.html#Material_Blazor_IMBTooltipService_AddTooltip_System_Int64_Microsoft_AspNetCore_Components_RenderFragment_">AddTooltip(Int64, RenderFragment)</a>
 is called without an <a class="xref" href="Material.Blazor.MBAnchor.html">MBAnchor</a> component used in the app.
 </p>
 </section>
@@ -479,7 +493,7 @@ is called without an <a class="xref" href="Material.Blazor.MBAnchor.html">MBAnch
 <p>Defaults to <a class="xref" href="Material.Blazor.MBNotifierCloseMethod.html#Material_Blazor_MBNotifierCloseMethod_TimeoutAndDismissButton">TimeoutAndDismissButton</a></p>
 </section>
       <h4><a class="xref" href="Material.Blazor.MBNumericInputMagnitude.html">MBNumericInputMagnitude</a></h4>
-      <section><p>A helper to determine the magnitude adjustment when displaying or editting values using numeric input fields.</p>
+      <section><p>A helper to determine the magnitude adjustment when displaying or editing values using numeric input fields.</p>
 </section>
       <h4><a class="xref" href="Material.Blazor.MBSelectInputStyle.html">MBSelectInputStyle</a></h4>
       <section><p>Material Theme select input style applied to <a class="xref" href="Material.Blazor.MBSelect-1.html">MBSelect&lt;TItem&gt;</a>.</p>
@@ -517,6 +531,11 @@ is called without an <a class="xref" href="Material.Blazor.MBAnchor.html">MBAnch
       <h4><a class="xref" href="Material.Blazor.MBTopAppBarType.html">MBTopAppBarType</a></h4>
       <section><p>Material Theme top app bar type applied to an <a class="xref" href="Material.Blazor.MBTopAppBar.html">MBTopAppBar</a>.</p>
 </section>
+    <h3 id="delegates">Delegates
+  </h3>
+      <h4><a class="xref" href="Material.Blazor.IMBIcon.IconFragment.html">IMBIcon.IconFragment</a></h4>
+      <section><p>A delegate that applies user-defined class, style, and other attributes to the icon.</p>
+</section>
 </article>
           </div>
           
@@ -527,7 +546,8 @@ is called without an <a class="xref" href="Material.Blazor.MBAnchor.html">MBAnch
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In This Article</h5>
+                <div></div>
               </nav>
             </div>
           </div>

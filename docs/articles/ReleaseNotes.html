@@ -8,7 +8,7 @@
     <title>ReleaseNotes </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="ReleaseNotes ">
-    <meta name="generator" content="docfx 2.56.1.0">
+    <meta name="generator" content="docfx 2.56.7.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -80,41 +80,91 @@
             <article class="content wrap" id="_content" data-uid="A.ReleaseNotes">
 <h1 id="release-notes">Release Notes</h1>
 
-<h4 id="200"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0">2.0.0</a></h4>
-<p>In Pre-Release Q4 2020 and Q1 2021</p>
+<h4 id="200"><a href="https://github.com/Material-Blazor/Material.Blazor">2.0.0</a></h4>
+<p>In Pre-Release Q4 2020 to Q2 2021</p>
 <p><em>NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VERSIONS.</em></p>
+<p><strong>Deprecated Components</strong></p>
+<ul>
+<li>MBToast is now deprecated in favor of the Material styled MBSnackbar. It will remain part of Material.Blazor 2.n, however no maintenance is planned during the Material.Blazor 2.n series of releases. It will be removed from the next major Material.Blazor release.</li>
+</ul>
+<br>
+<h4 id="200-preview4"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.4">2.0.0-preview.4</a></h4>
+<p>2021-04-16</p>
 <p><strong>Updates</strong></p>
 <ul>
-<li>Upgrade to <a href="https://github.com/material-components/material-components-web/tree/v9.0.0/packages">Material Components Web 9.0.0</a>.</li>
 <li>Full implementation of Material Components Web JS <code>destroy()</code> function calls for every component's <code>Dispose()</code> process.</li>
 <li>MBDataTable enhanced with pagination and linear progress implementation - no breaking changes.</li>
-<li>MBPaginator now uses Material Component Web 9.0.0's markup, with some minor modification - no breaking changes.</li>
-<li>Tooltips use Material Component Web 9.0.0 rather than preview packages - no breaking changes.</li>
+<li>MBSnackbar now supports a parameter of 'AdditionalClass' which is applied to the snackbar. See the Snackbar demo page for a simple example of styling for Error/Warning/Info/Success messages.</li>
+<li>MBToast now supports centerleft, centercenter, and centerright positions. It also had the fixed width removed and toasts adjust width dynamically.</li>
 <li>Material.Blazor beginning to use <code>ILogger</code> to log warnings when validating component markup to help you during app development.</li>
+<li>General bug fixes.</li>
+<li>Substantial GitHub workflow upgrade orientated towards quality assurance by @StefanLoerwald, including an automated diff of every page on the demo website resulting from a PR.</li>
+</ul>
+<p><strong>New components</strong></p>
+<ul>
+<li>MBMenuSurface - a stripped back menu surface that accepts a render fragment for its contents (thanks @HannahKiekens).</li>
+<li>MBNumericDecimalField - a decimal variant of the existing numeric input fields.</li>
+</ul>
+<p><strong>Breaking Changes</strong></p>
+<ul>
+<li>MBMenu <code>ToggleAsync()</code> is now return type <code>Task</code> rather than <code>Task&lt;string&gt;</code> in version 1.</li>
+<li>MBSelect and other single select components now allow for dynamic update of the <code>Items</code> parameter.</li>
+<li>MBSlider value changed to be of type decimal</li>
+<li>MBRadioButtonGroup <code>EnableTouchWrapper</code> obsolete and removed.</li>
+<li><code>MBToastCloseMethod</code> enum renamed to <code>MBNotifierCloseMethod</code>, and enum value names have changed. This is now used by both toasts and snackbars.</li>
+<li>The names and content of the  css and js resources required for MaterialBlazor have changed. Please see <a class="xref" href="Installation.html">Installation article</a> for details.</li>
+</ul>
+<br>
+<h4 id="200-preview3"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.3">2.0.0-preview.3</a></h4>
+<p>2021-02-08</p>
+<p><strong>Updates</strong></p>
+<ul>
+<li>General bug fixes.</li>
+<li>Additional functionality in MBGrid.</li>
+</ul>
+<p><strong>New components</strong></p>
+<ul>
+<li>MBSnackbar - a core Material Theme snackbar component.</li>
+</ul>
+<p><strong>Breaking Changes</strong></p>
+<br>
+<h4 id="200-preview2"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.2">2.0.0-preview.2</a></h4>
+<p>2021-01-11</p>
+<p><strong>Updates</strong></p>
+<ul>
+<li>General bug fixes.</li>
+<li>Animation improvements to MBBladeSet.</li>
+<li>Additional functionality in MBGrid.</li>
+<li>Upgrade to <a href="https://github.com/material-components/material-components-web/tree/v9.0.0/packages">Material Components Web 9.0.0</a>.</li>
+<li>Tooltips use Material Component Web 9.0.0 rather than preview packages - no breaking changes.</li>
+<li>MBPaginator now uses Material Component Web 9.0.0's markup, with some minor modification - no breaking changes.</li>
+</ul>
+<p><strong>New components</strong></p>
+<p><strong>Breaking Changes</strong></p>
+<ul>
+<li>CDN packages now reference material components web 9.0.0, see <a class="xref" href="Installation.html">Installation article</a>.</li>
+<li>If you are building a theme from material components web SASS, you need to reference version 9.0.0.</li>
+</ul>
+<br>
+<h4 id="200-preview1"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.1">2.0.0-preview.1</a></h4>
+<p>2020-12-29</p>
+<p><strong>Updates</strong></p>
+<ul>
 <li>General bug fixes.</li>
 <li>Material.Blazor 2.0.0 is compatible with .NET 5.0 only. If you need to build against older versions of .NET please continue to use Material.Blazor 1.1.4.</li>
 </ul>
 <p><strong>New components</strong></p>
 <ul>
 <li>MBBladeSet - a blade implementation inspired by Microsoft Azure blades.</li>
-<li>MBGrid (EXPERIMENTAL) - a capable grid component. This is not yet styled to look like Material Theme and we may or may not keep it in Material.Blazor. We recommend not using MBGrid for anything other than experiment or contributing to its development.</li>
-<li>MBNumericDecimalField - a decimal variant of the existing numeric input fields.</li>
 <li>MBChipsSelectMulti - a multi select variant of a chip set.</li>
 <li>MBChipsSelectSingle - a single select variant of a chip set.</li>
+<li>MBGrid (EXPERIMENTAL) - a capable grid component. This is not yet styled to look like Material Theme and we may or may not keep it in Material.Blazor. We recommend not using MBGrid for anything other than experiment or contributing to its development.</li>
 <li>MBSegmentedButtonMulti - a multi select variant of segmented buttons, which have been added to Material Components Web 9.0.0.</li>
 <li>MBSegmentedButtonSingle - a single select variant of segmented buttons, which have been added to Material Components Web 9.0.0.</li>
 <li>MBSlider - a continuous and discrete single-thumb slider.</li>
-<li>MBSnackbar - a core Material Theme snackbar component.</li>
 </ul>
 <p><strong>Breaking Changes</strong></p>
-<ul>
-<li>CDN packages now reference material components web 9.0.0, see <a class="xref" href="Installation.html">Installation article</a>.</li>
-<li>If you are building a theme from material components web SASS, you need to reference version 9.0.0.</li>
-<li>MBMenu <code>ToggleAsync()</code> is now return type <code>Task</code> rather than <code>Task&lt;string&gt;</code> in version 1.</li>
-<li>MBRadioButtonGroup <code>EnableTouchWrapper</code> obsolete and removed.</li>
-<li><code>MBToastCloseMethod</code> enum renamed to <code>MBNotifierCloseMethod</code>, and enum value names have changed. This is now used by both toasts and snackbars.</li>
-<li>The names and content of the  css and js resources required for MaterialBlazor have changed. Please see <a class="xref" href="Installation.html">Installation article</a> for details.</li>
-</ul>
+<p><strong>Deprecated Components</strong></p>
 <br>
 <h4 id="114"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/1.1.4">1.1.4</a></h4>
 <p>06 November 2020</p>
@@ -227,7 +277,8 @@
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
-              <!-- <p><a class="back-to-top" href="#top">Back to top</a><p> -->
+                <h5>In This Article</h5>
+                <div></div>
               </nav>
             </div>
           </div>
