@@ -71,7 +71,6 @@ namespace Material.Blazor
         private MBDensity AppliedDensity => CascadingDefaults.AppliedSelectDensity(Density);
         private MBSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
         private string FloatingLabelClass { get; set; } = "";
-        private Dictionary<TItem, MBSelectElement<TItem>> ItemDict { get; set; }
         private string MenuClass => MBMenu.GetMenuSurfacePositioningClass(MenuSurfacePositioning);
         private DotNetObjectReference<MBSelect<TItem>> ObjectReference { get; set; }
         private ElementReference SelectReference { get; set; }
@@ -100,6 +99,13 @@ namespace Material.Blazor
         {
             await base.OnInitializedAsync();
 
+            bool hasValue;
+
+            (hasValue, ComponentValue) = ValidateItemList(Items, CascadingDefaults.AppliedItemValidation(ItemValidation));
+
+            SelectedText = hasValue ? Items.FirstOrDefault(i => i.SelectedValue.Equals(ComponentValue))?.Label : "";
+            FloatingLabelClass = string.IsNullOrWhiteSpace(SelectedText) ? "" : "mdc-floating-label--float-above";
+
             ConditionalCssClasses
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-select--filled", () => AppliedInputStyle == MBSelectInputStyle.Filled)
@@ -119,15 +125,6 @@ namespace Material.Blazor
         protected override async Task OnParametersSetAsync()
         {
             await base.OnParametersSetAsync();
-
-            ItemDict = Items.ToDictionary(i => i.SelectedValue);
-
-            bool hasValue;
-
-            (hasValue, ComponentValue) = ValidateItemList(ItemDict.Values, CascadingDefaults.AppliedItemValidation(ItemValidation));
-
-            SelectedText = hasValue ? Items.FirstOrDefault(i => object.Equals(i.SelectedValue, ComponentValue))?.Label : "";
-            FloatingLabelClass = string.IsNullOrWhiteSpace(SelectedText) ? "" : "mdc-floating-label--float-above";
 
             KeyGenerator = GetKeysFunc ?? delegate (TItem item) { return item; };
         }
@@ -158,7 +155,7 @@ namespace Material.Blazor
         [JSInvokable]
         public void NotifySelected(int index)
         {
-            ComponentValue = ItemDict.Values.ElementAt(index).SelectedValue;
+            ComponentValue = Items.ElementAt(index).SelectedValue;
         }
 
 
@@ -167,7 +164,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback() => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSelect.setIndex", SelectReference, ItemDict.Keys.ToList().IndexOf(Value)));
+        protected void OnValueSetCallback() => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSelect.setIndex", SelectReference, Items.Select(x => x.SelectedValue).ToList().IndexOf(Value)));
 
 
         /// <summary>

@@ -30,6 +30,17 @@ namespace Material.Blazor.Internal
                 if ((value == null && _items != null) || (value != null && _items == null) || (value != null && _items != null && !value.SequenceEqual(_items)))
                 {
                     _items = value;
+
+                    if (HasInstantiated)
+                    {
+                        var (_, validatedValue) = ValidateItemList(_items, CascadingDefaults.AppliedItemValidation(ItemValidation));
+
+                        if (!validatedValue.Equals(Value))
+                        {
+                            Value = validatedValue;
+                        }
+                    }
+
                     AllowNextRender = true;
                     InstantiateAfterNextRender = true;
                     InvokeAsync(StateHasChanged);
