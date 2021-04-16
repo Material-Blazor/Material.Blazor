@@ -223,7 +223,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="style">The style parameter passed to the <see cref="MBCard"/></param>
         /// <returns>The <see cref="MBCardStyle"/> to apply.</returns>
-        internal string AppliedDateFormat(string? format = null) => string.IsNullOrWhiteSpace(format) ? DateFormat : format;
+        internal string AppliedDateFormat(string format = null) => string.IsNullOrWhiteSpace(format) ? DateFormat : format;
 
 
 
