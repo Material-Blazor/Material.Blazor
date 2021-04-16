@@ -427,9 +427,9 @@ jobs:
     # tooltips have ids too, in the format mb-tooltip-123
     - name: normalize
       run: |
-        grep -v "base href" baseline${{matrix.label}}.html | sed 's/integrity="\(.*\)"/integrity="..."/' | sed's/mb-tooltip-[0-9]+/mb-tooltip-id/' | sed 's/[a-f0-9]\{8\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{12\}/guid/g' > tmp
+        grep -v "base href" baseline${{matrix.label}}.html | sed 's/integrity="\(.*\)"/integrity="..."/' | sed 's/mb-tooltip-[0-9]+/mb-tooltip-id/' | sed 's/[a-f0-9]\{8\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{12\}/guid/g' > tmp
         mv tmp baseline${{matrix.label}}.html        
-        grep -v "base href" fork${{matrix.label}}.html | sed 's/integrity="\(.*\)"/integrity="..."/' | sed's/mb-tooltip-[0-9]+/mb-tooltip-id/' | sed 's/[a-f0-9]\{8\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{12\}/guid/g' > tmp
+        grep -v "base href" fork${{matrix.label}}.html | sed 's/integrity="\(.*\)"/integrity="..."/' | sed 's/mb-tooltip-[0-9]+/mb-tooltip-id/' | sed 's/[a-f0-9]\{8\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{12\}/guid/g' > tmp
         mv tmp fork${{matrix.label}}.html
     # We only want to see the differences, so we run diff with -d
     # We also don't want to be notified of whitespace-only changes, so we ignore those with -w
