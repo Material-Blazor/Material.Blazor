@@ -15,5 +15,5 @@ export function listItemClick(elem, elemText) {
 
 export function scrollToYear(id) {
     var element = document.getElementById(id);
-    element?.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'start' });
+    element?.scrollIntoView({ behavior: 'auto', block: 'nearest', inline: 'nearest' });
 }

@@ -78,7 +78,7 @@
 
         <ul class="mdc-list">
 
-            @foreach (var item in ItemDict.Values)
+            @foreach (var item in Items)
             {
                 var listClass = "mdc-list-item" + (item.SelectedValue.Equals(Value) ? " mdc-list-item--selected" : "") + (item.Disabled == true ? " mdc-list-item--disabled" : "");
                 var ariaSelected = item.SelectedValue.Equals(Value);

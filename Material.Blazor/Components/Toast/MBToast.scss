@@ -124,11 +124,11 @@ $icon-horizontal-padding: 12px;
     flex-flow: row nowrap;
     margin: $toast-spacing/2 0;
     padding: 0 $body-padding-right 0 0;
-    box-sizing: padding-box;
+    box-sizing: border-box;
     height: $toast-height;
     max-height: $toast-height;
-/*    width: $toast-width;
-*/
+    min-width: $toast-width;
+
     border-radius: var(--mb-toast-border-radius);
 }
 

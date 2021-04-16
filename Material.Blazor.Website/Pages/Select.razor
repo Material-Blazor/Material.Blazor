@@ -295,6 +295,35 @@
                 </Primary>
             </MBCard>
         </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Dynamically update Items
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        <code>Items</code> can by dynamically updated with the toggle button. Note that if you remove items from the list,
+                        you must change <code>Value</code> accordingly to avoid exceptions if you have <code>ItemValidation="@MBItemValidation.Exception"</code>.
+                    </h3>
+
+                    <p>
+                        <MBIconButtonToggle @bind-Value="@ExtendDynamicItems"
+                                            IconOn="remove"
+                                            IconOff="add" />
+                    </p>
+                    <p>
+                        <MBSelect @bind-Value="@ExtendedValue"
+                                  Items="@DynamicItems"
+                                  ItemValidation="@MBItemValidation.DefaultToFirst"
+                                  Label="Items disabled" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
     </PageContent>
 </DemonstrationPage>
 
@@ -305,7 +334,17 @@
         new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
         new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
-            };
+    };
+
+    MBSelectElement<string>[] KittenBreedsExtended = new MBSelectElement<string>[]
+    {
+        new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" },
+        new MBSelectElement<string> { SelectedValue = "tabby", Label = "Tabby" },
+        new MBSelectElement<string> { SelectedValue = "siam", Label = "Siamese" }
+    };
+
     MBSelectElement<string>[] KittenBreedsNoFake = new MBSelectElement<string>[]
     {
         new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
@@ -313,7 +352,7 @@
         new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" },
         new MBSelectElement<string> { SelectedValue = "disabled1", Label = "Mr. Snuggles", Disabled = true },
         new MBSelectElement<string> { SelectedValue = "disabled2", Label = "Roger Rabbit", Disabled = true }
-            };
+    };
 
 
     private string DefaultStyle;
@@ -339,4 +378,9 @@
     private string OutlinedDensityMinus2;
     private string OutlinedDensityMinus3;
     private string OutlinedDensityMinus4;
+
+    private string ExtendedValue;
+
+    private bool ExtendDynamicItems = false;
+    private MBSelectElement<string>[] DynamicItems => ExtendDynamicItems ? KittenBreedsExtended : KittenBreeds;
 }

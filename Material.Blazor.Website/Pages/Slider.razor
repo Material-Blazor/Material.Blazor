@@ -101,6 +101,7 @@
                     </h2>
 
                     <p>With non-continuous input, tickmarks on the second slider, 0-10 range, 0 decimal, 2 steps, yielding a value of @Value2a.ToString("N0")</p>
+                    <p>Before you think this slider doesn't work, it only accepts three positions - full left, center and full right.</p>
                     <p>
                         <MBSlider AriaLabel="Discrete Slider"
                                   @bind-Value="@Value2a"
@@ -160,7 +161,7 @@
                         <MBSlider AriaLabel="Discrete Slider"
                                   @bind-Value="@Value2c"
                                   ContinuousInputDelay="@DebounceDelay"
-                                  DecimalPlaces="0"
+                                  DecimalPlaces="1"
                                   EventType="@MBInputEventType.OnInputThrottled"
                                   NumSteps="20"
                                   SliderType="@MBSliderType.DiscreteWithTickmarks"
@@ -178,8 +179,8 @@
 
 
 @code {
-    decimal Value1a = 16.67M;
-    decimal Value1b = 33.33M;
+    decimal Value1a = 17M;
+    decimal Value1b = 33.3M;
     decimal Value1c = 66.67M;
     decimal Value2a = 5;
     decimal Value2b = 3;

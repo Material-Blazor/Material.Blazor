@@ -21,11 +21,16 @@ namespace Material.Blazor.Internal
         private ValidationMessageStore _parsingValidationMessages;
         private Type _nullableUnderlyingType;
         private bool _hasSetInitialParameters;
-        protected bool _instantiate = false;
 
 
         [CascadingParameter] private EditContext CascadedEditContext { get; set; }
         [CascadingParameter] private IMBDialog Dialog { get; set; }
+        
+        
+        /// <summary>
+        /// If set to true, the compoent is instantiated after the next render.
+        /// </summary>
+        private protected bool InstantiateAfterNextRender { get; set; } = false;
 
 
         /// <summary>
@@ -233,7 +238,7 @@ namespace Material.Blazor.Internal
             }
             else
             {
-                _instantiate = true;
+                InstantiateAfterNextRender = true;
             }
         }
 
@@ -315,7 +320,7 @@ namespace Material.Blazor.Internal
         /// <inheritdoc/>
         public override void RequestInstantiation()
         {
-            _instantiate = true;
+            InstantiateAfterNextRender = true;
             AllowNextRender = true;
             InvokeAsync(StateHasChanged);
         }
@@ -347,9 +352,9 @@ namespace Material.Blazor.Internal
         /// </summary>
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            if (_instantiate)
+            if (InstantiateAfterNextRender)
             {
-                _instantiate = false;
+                InstantiateAfterNextRender = false;
                 _ = InstantiateMcwComponent();
                 HasInstantiated = true;
                 AddTooltip();
