@@ -21,6 +21,7 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 - Material.Blazor beginning to use `ILogger` to log warnings when validating component markup to help you during app development.
 - General bug fixes.
 - Material.Blazor 2.0.0 is compatible with .NET 5.0 only. If you need to build against older versions of .NET please continue to use Material.Blazor 1.1.4.
+- Substantial GitHub sorkflow upgrade orientated towards quality assurance by @StefanLoerwald, including an automated diff of every page on the demo website resulting from a PR.
 
 
 **New components**
