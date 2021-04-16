@@ -9,7 +9,7 @@ namespace Material.Blazor
     /// <summary>
     /// A Material Theme single-thumb slider.
     /// </summary>
-    public partial class MBSlider : InputComponent<double>
+    public partial class MBSlider : InputComponent<decimal>
     {
         /// <summary>
         /// The type of slider - defaults to <see cref="MBSliderType.Continuous"/>.
@@ -20,13 +20,13 @@ namespace Material.Blazor
         /// <summary>
         /// The minimum slider value.
         /// </summary>
-        [Parameter] public double ValueMin { get; set; } = 0;
+        [Parameter] public decimal ValueMin { get; set; } = 0;
 
 
         /// <summary>
         /// The maximum slider value.
         /// </summary>
-        [Parameter] public double ValueMax { get; set; } = 100;
+        [Parameter] public decimal ValueMax { get; set; } = 100;
 
 
         /// <summary>
@@ -59,16 +59,12 @@ namespace Material.Blazor
         [Parameter] public string AriaLabel { get; set; } = "Slider";
 
 
-        private double DataStep { get; set; }
-        private string DataStepValue => (SliderType == MBSliderType.Continuous) ? null : DataStep.ToString(Format);
         private ElementReference ElementReference { get; set; }
         private string Format { get; set; }
         private MarkupString InputMarkup { get; set; }
         private DotNetObjectReference<MBSlider> ObjectReference { get; set; }
-        private double RangePercentDecimal { get; set; }
-        private double Step { get; set; }
         private int TabIndex { get; set; }
-        private double ThumbEndPercent => 100 * RangePercentDecimal;
+        private decimal ValueStepIncrement { get; set; }
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -79,10 +75,8 @@ namespace Material.Blazor
             Value = Math.Round(Value, (int)DecimalPlaces);
             ValueMin = Math.Round(ValueMin, (int)DecimalPlaces);
             ValueMax = Math.Round(ValueMax, (int)DecimalPlaces);
-            Step = Math.Pow(10, -DecimalPlaces);
-            Format = $"F{DecimalPlaces}";
+            Format = $"N{DecimalPlaces}";
             TabIndex = AppliedDisabled ? -1 : 0;
-            RangePercentDecimal = (Value - ValueMin) / (ValueMax - ValueMin);
 
             if (ValueMax <= ValueMin)
             {
@@ -94,14 +88,21 @@ namespace Material.Blazor
                 throw new ArgumentException($"{GetType()} must have Value ({Value}) between ValueMin ({ValueMin}) and ValueMax ({ValueMax})");
             }
 
-            DataStep = (ValueMax - ValueMin) / NumSteps;
+            if (SliderType == MBSliderType.Continuous)
+            {
+                ValueStepIncrement = Convert.ToDecimal(Math.Pow(10, -DecimalPlaces));
+            }
+            else
+            {
+                ValueStepIncrement = (ValueMax - ValueMin) / NumSteps;
+            }
 
             ConditionalCssClasses
                 .AddIf("mdc-slider--discrete", () => SliderType != MBSliderType.Continuous)
                 .AddIf("mdc-slider--tick-marks", () => SliderType == MBSliderType.DiscreteWithTickmarks)
                 .AddIf("mdc-slider--disabled", () => AppliedDisabled);
 
-            InputMarkup = new($"<input class=\"mdc-slider__input\" type=\"range\" value=\"{Value.ToString(Format)}\" step=\"{Step.ToString(Format)}\" min=\"{ValueMin.ToString(Format)}\" max=\"{ValueMax.ToString(Format)}\" name=\"volume\" aria-label=\"{AriaLabel}\">");
+            InputMarkup = new($"<input class=\"mdc-slider__input\" type=\"range\" value=\"{Value.ToString(Format)}\" step=\"{ValueStepIncrement}\" min=\"{ValueMin.ToString(Format)}\" max=\"{ValueMax.ToString(Format)}\" name=\"volume\" aria-label=\"{AriaLabel}\">");
 
             SetComponentValue += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
@@ -133,7 +134,7 @@ namespace Material.Blazor
         /// For Material Theme to notify of slider value changes via JS Interop.
         /// </summary>
         [JSInvokable]
-        public void NotifyChanged(double value)
+        public void NotifyChanged(decimal value)
         {
             ComponentValue = value;
         }

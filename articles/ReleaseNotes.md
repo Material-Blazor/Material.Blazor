@@ -41,6 +41,7 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 - CDN packages now reference material components web 9.0.0, see [Installation article](xref:A.Installation).
 - If you are building a theme from material components web SASS, you need to reference version 9.0.0.
 - MBMenu `ToggleAsync()` is now return type `Task` rather than `Task<string>` in version 1.
+- MBSlider value changed to be of type decimal
 - MBRadioButtonGroup `EnableTouchWrapper` obsolete and removed.
 - `MBToastCloseMethod` enum renamed to `MBNotifierCloseMethod`, and enum value names have changed. This is now used by both toasts and snackbars.
 - The names and content of the  css and js resources required for MaterialBlazor have changed. Please see [Installation article](xref:A.Installation) for details.
