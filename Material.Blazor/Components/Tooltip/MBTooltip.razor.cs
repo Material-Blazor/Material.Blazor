@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Material.Blazor.Internal;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Threading.Tasks;
 
