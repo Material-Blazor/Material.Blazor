@@ -63,7 +63,9 @@ namespace Material.Blazor
         private string Format { get; set; }
         private MarkupString InputMarkup { get; set; }
         private DotNetObjectReference<MBSlider> ObjectReference { get; set; }
+        private decimal RangePercentDecimal { get; set; }
         private int TabIndex { get; set; }
+        private decimal ThumbEndPercent => 100 * RangePercentDecimal;
         private decimal ValueStepIncrement { get; set; }
 
 
@@ -77,6 +79,7 @@ namespace Material.Blazor
             ValueMax = Math.Round(ValueMax, (int)DecimalPlaces);
             Format = $"N{DecimalPlaces}";
             TabIndex = AppliedDisabled ? -1 : 0;
+            RangePercentDecimal = (Value - ValueMin) / (ValueMax - ValueMin);
 
             if (ValueMax <= ValueMin)
             {

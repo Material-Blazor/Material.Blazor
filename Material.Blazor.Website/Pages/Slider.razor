@@ -160,7 +160,7 @@
                         <MBSlider AriaLabel="Discrete Slider"
                                   @bind-Value="@Value2c"
                                   ContinuousInputDelay="@DebounceDelay"
-                                  DecimalPlaces="0"
+                                  DecimalPlaces="1"
                                   EventType="@MBInputEventType.OnInputThrottled"
                                   NumSteps="20"
                                   SliderType="@MBSliderType.DiscreteWithTickmarks"
@@ -178,8 +178,8 @@
 
 
 @code {
-    decimal Value1a = 16.67M;
-    decimal Value1b = 33.33M;
+    decimal Value1a = 17M;
+    decimal Value1b = 33.3M;
     decimal Value1c = 66.67M;
     decimal Value2a = 5;
     decimal Value2b = 3;
