@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using System;
 
 namespace Material.Blazor.Internal
 {
@@ -8,12 +7,6 @@ namespace Material.Blazor.Internal
     /// </summary>
     internal class TooltipInstance
     {
-        /// <summary>
-        /// The tooltip's unique id.
-        /// </summary>
-        public Guid Id { get; set; }
-
-
         /// <summary>
         /// The tooltip's content.
         /// </summary>

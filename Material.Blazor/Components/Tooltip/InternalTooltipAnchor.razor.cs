@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +13,7 @@ namespace Material.Blazor.Internal
     /// </summary>
     public partial class InternalTooltipAnchor : ComponentFoundation
     {
-        private ConcurrentDictionary<Guid, TooltipInstance> Tooltips { get; set; } = new();
+        private ConcurrentDictionary<long, TooltipInstance> Tooltips { get; } = new();
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -33,11 +32,10 @@ namespace Material.Blazor.Internal
         /// </summary>
         /// <param name="id"></param>
         /// <param name="content"></param>
-        private void AddTooltipRenderFragment(Guid id, RenderFragment content)
+        private void AddTooltipRenderFragment(long id, RenderFragment content)
         {
             _ = Tooltips.TryAdd(id, new TooltipInstance
             {
-                Id = id,
                 RenderFragmentContent = content,
                 Initiated = false
             });
@@ -51,11 +49,10 @@ namespace Material.Blazor.Internal
         /// </summary>
         /// <param name="id"></param>
         /// <param name="content"></param>
-        private void AddTooltipMarkupString(Guid id, MarkupString content)
+        private void AddTooltipMarkupString(long id, MarkupString content)
         {
             _ = Tooltips.TryAdd(id, new TooltipInstance
             {
-                Id = id,
                 MarkupStringContent = content,
                 Initiated = false
             });
@@ -67,7 +64,7 @@ namespace Material.Blazor.Internal
         /// Removes a tooltip from the anchor.
         /// </summary>
         /// <param name="id"></param>
-        internal void RemoveTooltip(Guid id)
+        internal void RemoveTooltip(long id)
         {
             try
             {

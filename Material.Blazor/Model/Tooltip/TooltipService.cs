@@ -8,11 +8,12 @@ namespace Material.Blazor.Internal
     /// </summary>
     internal class TooltipService : IMBTooltipService
     {
-        private event Action<Guid, RenderFragment> OnAddRenderFragment;
-        private event Action<Guid, MarkupString> OnAddMarkupString;
+        private event Action<long, RenderFragment> OnAddRenderFragment;
+        private event Action<long, MarkupString> OnAddMarkupString;
+        private event Action<long> OnRemove;
 
         /// <inheritdoc/>
-        event Action<Guid, RenderFragment> IMBTooltipService.OnAddRenderFragment
+        event Action<long, RenderFragment> IMBTooltipService.OnAddRenderFragment
         {
             add => OnAddRenderFragment += value;
             remove => OnAddRenderFragment -= value;
@@ -21,7 +22,7 @@ namespace Material.Blazor.Internal
 
 
         /// <inheritdoc/>
-        event Action<Guid, MarkupString> IMBTooltipService.OnAddMarkupString
+        event Action<long, MarkupString> IMBTooltipService.OnAddMarkupString
         {
             add => OnAddMarkupString += value;
             remove => OnAddMarkupString -= value;
@@ -30,10 +31,7 @@ namespace Material.Blazor.Internal
 
 
         /// <inheritdoc/>
-        private event Action<Guid> OnRemove;
-
-        /// <inheritdoc/>
-        event Action<Guid> IMBTooltipService.OnRemove
+        event Action<long> IMBTooltipService.OnRemove
         {
             add => OnRemove += value;
             remove => OnRemove -= value;
@@ -42,7 +40,7 @@ namespace Material.Blazor.Internal
 
 
         /// <inheritdoc/>
-        public void AddTooltip(Guid id, RenderFragment content)
+        public void AddTooltip(long id, RenderFragment content)
         {
             if (OnAddRenderFragment is null)
             {
@@ -55,7 +53,7 @@ namespace Material.Blazor.Internal
 
 
         /// <inheritdoc/>
-        public void AddTooltip(Guid id, MarkupString content)
+        public void AddTooltip(long id, MarkupString content)
         {
             if (OnAddMarkupString is null)
             {
@@ -68,7 +66,7 @@ namespace Material.Blazor.Internal
 
 
         /// <inheritdoc/>
-        public void RemoveTooltip(Guid id)
+        public void RemoveTooltip(long id)
         {
             if (OnRemove is null)
             {

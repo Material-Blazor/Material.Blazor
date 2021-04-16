@@ -6,11 +6,11 @@
 {
     <div>
         @*The tooltips are added into the DOM by order of their ID to help blazor keep the DOM changes minimal*@
-        @foreach (var tooltip in Tooltips.Values.OrderBy(x => x.Id))
+        @foreach (var (id, tooltip) in Tooltips.OrderBy(x => x.Key))
         {
-            <div @key="@tooltip.Id"
+            <div @key="@id"
                  @ref="@tooltip.ElementReference"
-                 id="@tooltip.Id"
+                 id="mb-tooltip-@id"
                  class="mdc-tooltip"
                  role="tooltip"
                  aria-hidden="true"
