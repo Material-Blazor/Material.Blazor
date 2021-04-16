@@ -24,8 +24,8 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 
 **Updates**
 
-- Full implementation of Material Components Web JS `destroy()` function calls for every component's `Dispose()` process.
 - MBDataTable enhanced with pagination and linear progress implementation - no breaking changes.
+- MBGrid is now Phase 1 feature complete.
 - MBSnackbar now supports a parameter of 'AdditionalClass' which is applied to the snackbar. See the Snackbar demo page for a simple example of styling for Error/Warning/Info/Success messages.
 - MBToast now supports centerleft, centercenter, and centerright positions. It also had the fixed width removed and toasts adjust width dynamically.
 - Material.Blazor beginning to use `ILogger` to log warnings when validating component markup to help you during app development.
@@ -118,9 +118,6 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 
 
 **Breaking Changes**
-
-
-**Deprecated Components**
 
 
 <br />
