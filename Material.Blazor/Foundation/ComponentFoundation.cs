@@ -101,7 +101,7 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Tooltip id for aria-describedby attribute.
         /// </summary>
-        private Guid TooltipId { get; set; } = Guid.NewGuid();
+        private long? TooltipId { get; set; }
 
 
         /// <summary>
@@ -143,9 +143,10 @@ namespace Material.Blazor.Internal
                 return;
             }
 
-            if (disposing && !string.IsNullOrWhiteSpace(Tooltip))
+            if (disposing && TooltipId != null)
             {
-                TooltipService.RemoveTooltip(TooltipId);
+                TooltipService.RemoveTooltip(TooltipId.Value);
+                TooltipId = null;
             }
 
             _disposed = true;
@@ -176,7 +177,7 @@ namespace Material.Blazor.Internal
             }
             if (!string.IsNullOrWhiteSpace(Tooltip))
             {
-                yield return new KeyValuePair<string, object>("aria-describedby", TooltipId.ToString());
+                yield return new KeyValuePair<string, object>("aria-describedby", $"mb-tooltip-{TooltipId.Value}");
             }
         }
         internal IEnumerable<KeyValuePair<string, object>> OtherAttributesToSplat()
@@ -196,7 +197,7 @@ namespace Material.Blazor.Internal
             }
             if (!string.IsNullOrWhiteSpace(Tooltip))
             {
-                yield return new KeyValuePair<string, object>("aria-describedby", TooltipId.ToString());
+                yield return new KeyValuePair<string, object>("aria-describedby", $"mb-tooltip-{TooltipId.Value}");
             }
         }
 
@@ -222,6 +223,12 @@ namespace Material.Blazor.Internal
         protected sealed override void OnInitialized()
         {
             // For consistency, we only ever use OnInitializedAsync. To prevent ourselves from using OnInitialized accidentally, we seal this method from here on.
+
+            // the only thing we do here, is creating an ID for the tooltip, if we have one
+            if (!string.IsNullOrWhiteSpace(Tooltip))
+            {
+                TooltipId = TooltipIdProvider.NextId();
+            }
         }
 
 
@@ -314,7 +321,7 @@ namespace Material.Blazor.Internal
         {
             if (!string.IsNullOrWhiteSpace(Tooltip))
             {
-                TooltipService.AddTooltip(TooltipId, new MarkupString(Tooltip));
+                TooltipService.AddTooltip(TooltipId.Value, (MarkupString)Tooltip);
             }
         }
 

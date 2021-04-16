@@ -10,7 +10,7 @@ namespace Material.Blazor
     /// 
     /// <para>
     /// Throws a <see cref="System.InvalidOperationException"/> if
-    /// <see cref="AddTooltip(Guid, RenderFragment)"/>
+    /// <see cref="AddTooltip(long, RenderFragment)"/>
     /// is called without an <see cref="MBAnchor"/> component used in the app.
     /// </para>
     /// </summary>
@@ -19,21 +19,21 @@ namespace Material.Blazor
         /// <summary>
         /// A event that will be invoked when adding a tooltip
         /// </summary>
-        event Action<Guid, RenderFragment> OnAddRenderFragment;
+        event Action<long, RenderFragment> OnAddRenderFragment;
 
 
 
         /// <summary>
         /// A event that will be invoked when adding a tooltip
         /// </summary>
-        event Action<Guid, MarkupString> OnAddMarkupString;
+        event Action<long, MarkupString> OnAddMarkupString;
 
 
 
         /// <summary>
         /// A event that will be invoked when removing a tooltip
         /// </summary>
-        event Action<Guid> OnRemove;
+        event Action<long> OnRemove;
 
 
 
@@ -42,7 +42,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="id"></param>
         /// <param name="content"></param>
-        void AddTooltip(Guid id, RenderFragment content);
+        void AddTooltip(long id, RenderFragment content);
 
 
 
@@ -51,7 +51,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="id"></param>
         /// <param name="content"></param>
-        void AddTooltip(Guid id, MarkupString content);
+        void AddTooltip(long id, MarkupString content);
 
 
 
@@ -59,6 +59,6 @@ namespace Material.Blazor
         /// Removes the tooltip with the specified id.
         /// </summary>
         /// <param name="id"></param>
-        void RemoveTooltip(Guid id);
+        void RemoveTooltip(long id);
     }
 }
