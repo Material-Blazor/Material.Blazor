@@ -88,12 +88,18 @@
 <li>MBToast is now deprecated in favor of the Material styled MBSnackbar. It will remain part of Material.Blazor 2.n, however no maintenance is planned during the Material.Blazor 2.n series of releases. It will be removed from the next major Material.Blazor release.</li>
 </ul>
 <br>
+<h4 id="200-preview5"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.5">2.0.0-preview.5</a></h4>
+<p>2021-04-19</p>
+<p><strong>Updates</strong></p>
+<ul>
+<li>Fixed a regression in MBDatepicker where the state after user interaction was not displayed correctly.</li>
+</ul>
 <h4 id="200-preview4"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.4">2.0.0-preview.4</a></h4>
 <p>2021-04-16</p>
 <p><strong>Updates</strong></p>
 <ul>
-<li>Full implementation of Material Components Web JS <code>destroy()</code> function calls for every component's <code>Dispose()</code> process.</li>
 <li>MBDataTable enhanced with pagination and linear progress implementation - no breaking changes.</li>
+<li>MBGrid is now Phase 1 feature complete.</li>
 <li>MBSnackbar now supports a parameter of 'AdditionalClass' which is applied to the snackbar. See the Snackbar demo page for a simple example of styling for Error/Warning/Info/Success messages.</li>
 <li>MBToast now supports centerleft, centercenter, and centerright positions. It also had the fixed width removed and toasts adjust width dynamically.</li>
 <li>Material.Blazor beginning to use <code>ILogger</code> to log warnings when validating component markup to help you during app development.</li>
@@ -113,6 +119,7 @@
 <li>MBRadioButtonGroup <code>EnableTouchWrapper</code> obsolete and removed.</li>
 <li><code>MBToastCloseMethod</code> enum renamed to <code>MBNotifierCloseMethod</code>, and enum value names have changed. This is now used by both toasts and snackbars.</li>
 <li>The names and content of the  css and js resources required for MaterialBlazor have changed. Please see <a class="xref" href="Installation.html">Installation article</a> for details.</li>
+<li>The CSS utility class <code>mb-card__primary</code> was renamed to <code>mb-card__autostyled</code>.</li>
 </ul>
 <br>
 <h4 id="200-preview3"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.3">2.0.0-preview.3</a></h4>
@@ -164,7 +171,6 @@
 <li>MBSlider - a continuous and discrete single-thumb slider.</li>
 </ul>
 <p><strong>Breaking Changes</strong></p>
-<p><strong>Deprecated Components</strong></p>
 <br>
 <h4 id="114"><a href="https://github.com/Material-Blazor/Material.Blazor/tree/1.1.4">1.1.4</a></h4>
 <p>06 November 2020</p>
