@@ -173,7 +173,7 @@ namespace Material.Blazor.Internal
         private async Task OnDayItemClickAsync(DateTime dateTime)
         {
             // Invoke JS first. if ComponentValue is set first we are at risk of this element being re-rendered before this line is run, making ListItemReference stale and causing a JS exception.
-            await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", ListItemReference, CachedComponentValueText);
+            await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", ListItemReference, Utilities.DateToString(dateTime, DateFormat));
             ComponentValue = dateTime;
             CachedComponentValue = Value;
             MonthsOffset = 0;
