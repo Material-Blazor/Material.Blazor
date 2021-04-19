@@ -25,6 +25,10 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 
 - Fixed a regression in MBDatepicker where the state after user interaction was not displayed correctly.
 
+**New components**
+
+**Breaking Changes**
+
 
 #### [2.0.0-preview.4](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.4)
 2021-04-16
