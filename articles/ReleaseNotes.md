@@ -47,6 +47,7 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 - MBRadioButtonGroup `EnableTouchWrapper` obsolete and removed.
 - `MBToastCloseMethod` enum renamed to `MBNotifierCloseMethod`, and enum value names have changed. This is now used by both toasts and snackbars.
 - The names and content of the  css and js resources required for MaterialBlazor have changed. Please see [Installation article](xref:A.Installation) for details.
+- The CSS utility class `mb-card__primary` was renamed to `mb-card__autostyled`. 
 
 <br />
 
