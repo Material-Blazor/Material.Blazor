@@ -83,6 +83,40 @@
                 </Primary>
             </MBCard>
         </div>
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Hide FAB on click
+                    </h2>
+
+                    <p>
+                        <MBFloatingActionButton Exited="Exited"
+                                                Icon="visibility_off"
+                                                @onclick="@(() => Exited = true)" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        This FAB is shown when all the other's are not shown and vice versa.
+                    </h2>
+
+                    <p>
+                        <MBFloatingActionButton Exited="!Exited"
+                                                Icon="visibility"
+                                                @onclick="@(() => Exited = false)" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
     </PageContent>
 </DemonstrationPage>
 
