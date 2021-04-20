@@ -92,7 +92,8 @@ namespace Material.Blazor
 
             ConditionalCssClasses
                 .AddIf("mdc-fab--mini mdc-fab--touch", () => Type == MBFloatingActionButtonType.Mini)
-                .AddIf("mdc-fab--extended", () => Type == MBFloatingActionButtonType.Extended);
+                .AddIf("mdc-fab--extended", () => Type == MBFloatingActionButtonType.Extended)
+                .AddIf("mdc-fab--exited", () => Exited);
         }
 
 
