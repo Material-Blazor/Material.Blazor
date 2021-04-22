@@ -61,6 +61,12 @@ namespace Material.Blazor
         [Parameter] public bool OverflowVisible { get; set; } = false;
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        [Parameter] public bool EagerRendering { get; set; }
+
+        private bool IsOpen;
         private ElementReference DialogElem { get; set; }
         private bool HasBody => Body != null;
         private bool HasButtons => Buttons != null;
@@ -134,6 +140,21 @@ namespace Material.Blazor
         public async Task<string> ShowAsync()
         {
             Tcs = new TaskCompletionSource<string>();
+            if (EagerRendering)
+            {
+                await InvokeShowAsync();
+            }
+            else
+            {
+                IsOpen = true;
+                await InvokeAsync(StateHasChanged);
+            }
+            var ret = await Tcs.Task;
+            return ret;
+        }
+
+        private async Task InvokeShowAsync()
+        {
             try
             {
                 await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDialog.show", DialogElem, ObjectReference, EscapeKeyAction, ScrimClickAction);
@@ -142,10 +163,17 @@ namespace Material.Blazor
             {
                 Tcs?.SetCanceled();
             }
-            var ret = await Tcs.Task;
-            return ret;
         }
 
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (IsOpen && !EagerRendering)
+            {
+                await InvokeShowAsync();
+            }
+            await base.OnAfterRenderAsync(firstRender);
+        }
 
 
         /// <summary>
@@ -155,6 +183,7 @@ namespace Material.Blazor
         /// <returns></returns>
         public Task HideAsync()
         {
+            IsOpen = false;
             return JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDialog.hide", DialogElem);
         }
 
@@ -171,7 +200,8 @@ namespace Material.Blazor
         [JSInvokable]
         public void NotifyClosed(string reason)
         {
-            Tcs?.SetResult(reason);
+            IsOpen = false;
+            Tcs?.TrySetResult(reason);
         }
     }
 }

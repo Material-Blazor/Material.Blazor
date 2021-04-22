@@ -1,6 +1,11 @@
 ﻿@namespace Material.Blazor
 @inherits ComponentFoundation
 
+@if (!EagerRendering && !IsOpen)
+{
+    return;
+}
+
 <div @ref="DialogElem"
      class="mdc-dialog @ActiveConditionalClasses @(@class)"
      style="@style"
