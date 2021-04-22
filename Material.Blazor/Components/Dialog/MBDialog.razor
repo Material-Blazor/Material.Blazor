@@ -1,49 +1,45 @@
 ﻿@namespace Material.Blazor
 @inherits ComponentFoundation
 
+<div @key="@Key"
+     @ref="DialogElem"
+     class="mdc-dialog @ActiveConditionalClasses @(@class)"
+     style="@style"
+     id="@id"
+     @attributes="@MyAttributes"
+     aria-modal="true">
 
-@if (IsOpen)
-{
-    <div @key="@Key"
-         @ref="DialogElem"
-         class="mdc-dialog @ActiveConditionalClasses @(@class)"
-         style="@style"
-         id="@id"
-         @attributes="@MyAttributes"
-         aria-modal="true">
+    <CascadingValue Value="@this" IsFixed="true">
+        <div class="mdc-dialog__container">
+            <div class="mdc-dialog__surface @OverflowClass">
+                @if (HasTitle)
+                {
+                    <h2 id="@titleId" class="mdc-dialog__title">@Title</h2>
+                }
 
-        <CascadingValue Value="@this" IsFixed="true">
-            <div class="mdc-dialog__container">
-                <div class="mdc-dialog__surface @OverflowClass">
-                    @if (HasTitle)
-                    {
-                        <h2 id="@titleId" class="mdc-dialog__title">@Title</h2>
-                    }
+                @if (HasCustomHeader)
+                {
+                    <div id="@headerId" class="mb-dialog__header">
+                        @CustomHeader
+                    </div>
+                }
 
-                    @if (HasCustomHeader)
-                    {
-                        <div id="@headerId" class="mb-dialog__header">
-                            @CustomHeader
-                        </div>
-                    }
+                @if (HasBody)
+                {
+                    <div id="@bodyId" class="mdc-dialog__content">
+                        @Body
+                    </div>
+                }
 
-                    @if (HasBody)
-                    {
-                        <div id="@bodyId" class="mdc-dialog__content">
-                            @Body
-                        </div>
-                    }
-
-                    @if (HasButtons)
-                    {
-                        <footer class="mdc-dialog__actions">
-                            @Buttons
-                        </footer>
-                    }
-                </div>
+                @if (HasButtons)
+                {
+                    <footer class="mdc-dialog__actions">
+                        @Buttons
+                    </footer>
+                }
             </div>
-        </CascadingValue>
+        </div>
+    </CascadingValue>
 
-        <div class="mdc-dialog__scrim"></div>
-    </div>
-}
+    <div class="mdc-dialog__scrim"></div>
+</div>

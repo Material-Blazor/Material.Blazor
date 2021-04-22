@@ -86,7 +86,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback() => InvokeAsync(() => AllowNextRender = true);
+        protected void OnDisabledSetCallback() => InvokeAsync(AllowNextShouldRender);
 
 
         /// <inheritdoc/>
