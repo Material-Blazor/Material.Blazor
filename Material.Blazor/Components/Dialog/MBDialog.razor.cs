@@ -74,7 +74,6 @@ namespace Material.Blazor
         private readonly string headerId = Utilities.GenerateUniqueElementName();
         private readonly string titleId = Utilities.GenerateUniqueElementName();
 
-        private string Key { get; set; } = Utilities.GenerateUniqueElementName();
         private Dictionary<string, object> MyAttributes { get; set; }
         private TaskCompletionSource<string> Tcs { get; set; }
 
@@ -144,14 +143,7 @@ namespace Material.Blazor
                 Tcs?.SetCanceled();
             }
             var ret = await Tcs.Task;
-            ResetDialog();
             return ret;
-        }
-
-        private void ResetDialog()
-        {
-            Key = Utilities.GenerateUniqueElementName();
-            OpenedSource = new();
         }
 
 
@@ -166,14 +158,14 @@ namespace Material.Blazor
             return JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDialog.hide", DialogElem);
         }
 
-        private TaskCompletionSource OpenedSource = new();
+        private readonly TaskCompletionSource OpenedSource = new();
         internal Task Opened => OpenedSource.Task;
 
 
         [JSInvokable]
         public void NotifyOpened()
         {
-            OpenedSource.SetResult();
+            OpenedSource.TrySetResult();
         }
 
         [JSInvokable]
