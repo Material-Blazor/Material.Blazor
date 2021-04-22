@@ -24,7 +24,6 @@ namespace Testing
                 .AddSingleton(new Mock<IMBAnimatedNavigationManager>()
                     .Chain(m => m.SetupGet(anm => anm.Configuration).Returns(new MBAnimatedNavigationManagerServiceConfiguration()))
                     .Object)
-                .AddSingleton(new Mock<IMBDialog>().Object)
                 .AddSingleton(new Mock<IMBIcon>().Object)
                 .AddSingleton(new Mock<IMBIconFoundry>().Object);
         }
