@@ -86,9 +86,14 @@ jobs:
     - name: version
       run: |
         echo "${{ needs.version.outputs.identifier }}"
-    - name: branch
+    - name: branch if on main
       run: |
         echo "${{ needs.branch.outputs.identifier }}"
+      if: needs.branch.outputs.identifier == 'main'
+    - name: branch if not on main
+      run: |
+        echo "${{ needs.branch.outputs.identifier }}"
+      if: needs.branch.outputs.identifier != 'main'
 ############################################################################################################
 # Build documentation
 ############################################################################################################
@@ -163,7 +168,7 @@ jobs:
 
     - name: Upload Package 🚀
       run: dotnet nuget push ${env:outputMB}\*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
-      if: (false && '${{needs.branch.outputs.identifier}}' == 'main') # this check is important to allow testing this workflow on a non-main branch without deploying to nuget.
+      if: ${{ false && needs.branch.outputs.identifier == 'main' }} # this check is important to allow testing this workflow on a non-main branch without deploying to nuget.
 ############################################################################################################
 # deployghpages
 ############################################################################################################
@@ -203,7 +208,7 @@ jobs:
         token: ${{secrets.GH_PAT}}
         branch: gh-pages
         folder: 'deployroot'
-      if: (false && '${{needs.branch.outputs.identifier}}' == 'main') # this check is important to allow testing this workflow on a non-main branch without deploying to nuget.
+      if: ${{ false && needs.branch.outputs.identifier == 'main' }} # this check is important to allow testing this workflow on a non-main branch without deploying to nuget.
 ############################################################################################################
 # Create release
 ############################################################################################################
@@ -215,7 +220,7 @@ jobs:
     if: (github.repository == 'Material-Blazor/Material.Blazor')
     steps:
     - name: Create Release
-      if: (false && '${{needs.branch.outputs.identifier}}' == 'main') # this check is important to allow testing this workflow on a non-main branch without deploying to nuget.
+      if: ${{ false && needs.branch.outputs.identifier == 'main' }} # this check is important to allow testing this workflow on a non-main branch without deploying to nuget.
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
