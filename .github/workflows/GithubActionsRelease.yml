@@ -84,11 +84,9 @@ jobs:
     runs-on: windows-latest
     steps:
     - name: version
-      id: show
       run: |
         echo "${{ needs.version.outputs.identifier }}"
     - name: branch
-      id: show
       run: |
         echo "${{ needs.branch.outputs.identifier }}"
 ############################################################################################################
