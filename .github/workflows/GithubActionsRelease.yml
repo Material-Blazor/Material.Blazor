@@ -76,25 +76,6 @@ jobs:
     outputs:
       identifier: ${{ steps.get.outputs.identifier }}
 ############################################################################################################
-# Test step outputs
-############################################################################################################
-  test-steps:
-    needs: [version, branch]
-    name: TEST
-    runs-on: windows-latest
-    steps:
-    - name: version
-      run: |
-        echo "${{ needs.version.outputs.identifier }}"
-    - name: branch if on main
-      run: |
-        echo "${{ needs.branch.outputs.identifier }}"
-      if: needs.branch.outputs.identifier == 'main'
-    - name: branch if not on main
-      run: |
-        echo "${{ needs.branch.outputs.identifier }}"
-      if: needs.branch.outputs.identifier != 'main'
-############################################################################################################
 # Build documentation
 ############################################################################################################
   build-documentation:
