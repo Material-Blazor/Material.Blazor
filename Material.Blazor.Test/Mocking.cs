@@ -49,7 +49,6 @@ namespace Testing
         public void TryRenderMBDialog()
         {
             var cut = ctx.RenderComponent<MBDialog>();
-            cut.SetParametersAndRender(ComponentParameter.CreateParameter(nameof(MBDialog.EagerRendering), true));
             cut.MarkupMatches(@"
 <div class=""mdc-dialog"" aria-modal=""true"">
     <div class=""mdc-dialog__container"">
