@@ -76,6 +76,22 @@ jobs:
     outputs:
       identifier: ${{ steps.get.outputs.identifier }}
 ############################################################################################################
+# Test step outputs
+############################################################################################################
+  test-steps:
+    needs: [version, branch]
+    name: TEST
+    runs-on: windows-latest
+    steps:
+    - name: version
+      id: show
+      run: |
+        echo "${{ needs.version.outputs.identifier }}"
+    - name: branch
+      id: show
+      run: |
+        echo "${{ needs.branch.outputs.identifier }}"
+############################################################################################################
 # Build documentation
 ############################################################################################################
   build-documentation:
