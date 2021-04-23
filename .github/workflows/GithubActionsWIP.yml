@@ -84,6 +84,23 @@ jobs:
     - name: Show Tag name Ꙫ
       run: echo GitHub indicates that this is a tag creation with ${{steps.get_tag.outputs.tag}}
       if: github.event_name != 'workflow_dispatch' && contains(github.ref, 'refs/tag')
+
+############################################################################################################
+# Store the version information
+############################################################################################################
+  version:
+    name: Set version suffix
+    runs-on: ubuntu-latest
+
+    steps:
+    - id: get
+      run: |
+        echo "::set-output name=suffix::ci.$(date +'%Y-%m-%d--%H%M')"
+    - id: show
+      run: |
+        echo "${{ steps.get.outputs.suffix }}"
+    outputs:
+      suffix: ${{ steps.get.outputs.suffix }}
       
 ############################################################################################################
 # Run the test project. Should this fail, the deploy step (job deployghpages) is skipped
@@ -144,14 +161,10 @@ jobs:
 ############################################################################################################
   build-website:
     name: Build website
+    needs: [version]
     runs-on: windows-latest
 
     steps:
-    - name: Set ciSuffix as env variable
-      run: echo "ciSuffix=ci.$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
-      shell: bash
-      if: github.event_name != 'workflow_dispatch'
-
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
       with:
@@ -159,11 +172,11 @@ jobs:
       if: github.event_name != 'workflow_dispatch'
 
     - name: Build Website 🔧
-      run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectWeb}
+      run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${{needs.version.outputs.suffix}} ${env:projectWeb}
       if: github.event_name != 'workflow_dispatch'
       
     - name: Publish Website 🔧
-      run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} --version-suffix ${env:ciSuffix} ${env:projectWeb} -p:BlazorEnableCompression=false
+      run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} --version-suffix ${{needs.version.outputs.suffix}} ${env:projectWeb} -p:BlazorEnableCompression=false
       if: github.event_name != 'workflow_dispatch'
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
@@ -179,26 +192,22 @@ jobs:
 ############################################################################################################
   build-package:
     name: Build nuget package
-    needs: [test]
+    needs: [test, version]
 
     runs-on: windows-latest
     if: github.event_name != 'workflow_dispatch'
 
     steps:
-    - name: Set ciSuffix as env variable
-      run: echo "ciSuffix=ci.$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
-      shell: bash
-
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
       with:
         persist-credentials: false
 
     - name: Build Material.Blazor 🔧
-      run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${env:ciSuffix} ${env:projectMB}
+      run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${{needs.version.outputs.suffix}} ${env:projectMB}
 
     - name: Generate the NuGet package 🔧
-      run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${env:ciSuffix} ${env:projectMB}
+      run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${{needs.version.outputs.suffix}} ${env:projectMB}
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${env:outputMB}
