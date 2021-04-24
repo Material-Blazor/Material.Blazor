@@ -76,11 +76,14 @@ namespace Material.Blazor
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-        protected override async Task OnInitializedAsync()
+        protected override void OnParametersSet()
         {
-            await base.OnInitializedAsync();
+            base.OnParametersSet();
 
-            CurrentItem = Items.ElementAt(_itemIndex);
+            if (Items != null)
+            {
+                CurrentItem = Items.ElementAt(_itemIndex);
+            }
         }
 
 
