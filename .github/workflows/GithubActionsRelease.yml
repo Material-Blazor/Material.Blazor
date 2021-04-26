@@ -195,7 +195,7 @@ jobs:
 ############################################################################################################
   create-release:
     name: Create release
-    needs: [deployghpages, build-and-deploy-package, branch]
+    needs: [deployghpages, build-and-deploy-package, branch, version]
 
     runs-on: ubuntu-latest
     if: (github.repository == 'Material-Blazor/Material.Blazor')
@@ -206,7 +206,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{steps.get_branch.outputs.branch}}
-        release_name: Release ${{steps.get_tag.outputs.tag}}
+        tag_name: ${{needs.version.outputs.identifier}}
+        release_name: Release ${{needs.version.outputs.identifier}}
         draft: false
         prerelease: false
