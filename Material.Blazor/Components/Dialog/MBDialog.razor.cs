@@ -77,6 +77,7 @@ namespace Material.Blazor
         private TaskCompletionSource OpenedTaskCompletionSource = new();
         internal Task Opened => OpenedTaskCompletionSource.Task;
         private bool IsOpen { get; set; }
+        private bool IsOpening { get; set; }
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -117,9 +118,21 @@ namespace Material.Blazor
             CloseReasonTaskCompletionSource = new();
             OpenedTaskCompletionSource = new();
             IsOpen = true;
+            IsOpening = true;
             await InvokeAsync(StateHasChanged);
-            await InvokeShowAsync();
             return await CloseReasonTaskCompletionSource.Task;
+        }
+
+
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (IsOpening)
+            {
+                IsOpening = false;
+                await InvokeShowAsync();
+            }
+            await base.OnAfterRenderAsync(firstRender);
         }
 
 
