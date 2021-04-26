@@ -14,7 +14,9 @@ namespace Material.Blazor.Internal
     /// </summary>
     public partial class InternalTooltipAnchor : ComponentFoundation
     {
-        private ConcurrentDictionary<long, TooltipInstance> Tooltips { get; } = new();
+        private ConcurrentQueue<KeyValuePair<long, TooltipInstance>> NewTooltips { get; } = new();
+        private ConcurrentQueue<long> OldTooltips { get; } = new();
+        private Dictionary<long, TooltipInstance> Tooltips { get; } = new();
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -35,11 +37,11 @@ namespace Material.Blazor.Internal
         /// <param name="content"></param>
         private void AddTooltipRenderFragment(long id, RenderFragment content)
         {
-            _ = Tooltips.TryAdd(id, new TooltipInstance
+            NewTooltips.Enqueue(new KeyValuePair<long, TooltipInstance>(id, new TooltipInstance
             {
                 RenderFragmentContent = content,
                 Initiated = false
-            });
+            }));
             _ = InvokeAsync(StateHasChanged);
         }
 
@@ -52,11 +54,11 @@ namespace Material.Blazor.Internal
         /// <param name="content"></param>
         private void AddTooltipMarkupString(long id, MarkupString content)
         {
-            _ = Tooltips.TryAdd(id, new TooltipInstance
+            NewTooltips.Enqueue(new KeyValuePair<long, TooltipInstance>(id, new TooltipInstance
             {
                 MarkupStringContent = content,
                 Initiated = false
-            });
+            }));
             _ = InvokeAsync(StateHasChanged);
         }
 
@@ -69,7 +71,7 @@ namespace Material.Blazor.Internal
         {
             try
             {
-                _ = Tooltips.Remove(id, out var _);
+                OldTooltips.Enqueue(id);
                 _ = InvokeAsync(StateHasChanged);
             }
             catch (ObjectDisposedException ex)
@@ -95,6 +97,23 @@ namespace Material.Blazor.Internal
                 {
                     item.Initiated = true;
                 }
+            }
+        }
+
+
+        /// <summary>
+        /// Before we render any tooltip, let's update the list of tooltips that need to be rendered.
+        /// </summary>
+        private void OnBeforeRender()
+        {
+            while (NewTooltips.TryDequeue(out var kvp))
+            {
+                var (key, tooltip) = kvp;
+                Tooltips.Add(key, tooltip);
+            }
+            while (OldTooltips.TryDequeue(out var key))
+            {
+                Tooltips.Remove(key);
             }
         }
     }
