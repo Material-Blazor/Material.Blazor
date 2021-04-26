@@ -175,6 +175,11 @@ namespace Material.Blazor
         /// Do not use. This method is used internally for receiving the "dialog closed" event from javascript.
         /// </summary>
         [JSInvokable]
-        public void NotifyClosed(string reason) => CloseReasonTaskCompletionSource?.TrySetResult(reason);
+        public async Task NotifyClosed(string reason)
+        {
+            CloseReasonTaskCompletionSource?.TrySetResult(reason);
+            IsOpen = false;
+            await InvokeAsync(StateHasChanged);
+        }
     }
 }
