@@ -113,10 +113,10 @@ jobs:
         persist-credentials: false
 
     - name: Build Website 🔧
-      run: dotnet build --configuration ${env:buildConfiguration} -p:InformationalVersion=${{needs.version.outputs.identifier}} ${env:projectWeb}      
+      run: dotnet build --configuration ${env:buildConfiguration} -p:Version=${{needs.version.outputs.identifier}} ${env:projectWeb}      
       
     - name: Publish Website 🔧
-      run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} -p:InformationalVersion=${{needs.version.outputs.identifier}} ${env:projectWeb} -p:BlazorEnableCompression=false      
+      run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} -p:Version=${{needs.version.outputs.identifier}} ${env:projectWeb} -p:BlazorEnableCompression=false      
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v2
@@ -139,10 +139,10 @@ jobs:
         persist-credentials: false
 
     - name: Build Material.Blazor 🔧
-      run: dotnet build --configuration ${env:buildConfiguration} -p:InformationalVersion=${{needs.version.outputs.identifier}} ${env:projectMB}
+      run: dotnet build --configuration ${env:buildConfiguration} -p:Version=${{needs.version.outputs.identifier}} ${env:projectMB}
 
     - name: Generate the NuGet package 🔧
-      run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:InformationalVersion=${{needs.version.outputs.identifier}} ${env:projectMB}
+      run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{needs.version.outputs.identifier}} ${env:projectMB}
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${env:outputMB}
