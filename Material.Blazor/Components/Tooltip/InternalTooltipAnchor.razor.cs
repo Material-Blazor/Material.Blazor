@@ -14,8 +14,8 @@ namespace Material.Blazor.Internal
     /// </summary>
     public partial class InternalTooltipAnchor : ComponentFoundation
     {
-        private ConcurrentDictionary<long, TooltipInstance> NewTooltips { get; } = new();
-        private ConcurrentBag<long> OldTooltips { get; } = new();
+        private ConcurrentQueue<KeyValuePair<long, TooltipInstance>> NewTooltips { get; } = new();
+        private ConcurrentQueue<long> OldTooltips { get; } = new();
         private Dictionary<long, TooltipInstance> Tooltips { get; } = new();
 
 
@@ -37,11 +37,11 @@ namespace Material.Blazor.Internal
         /// <param name="content"></param>
         private void AddTooltipRenderFragment(long id, RenderFragment content)
         {
-            _ = NewTooltips.TryAdd(id, new TooltipInstance
+            NewTooltips.Enqueue(new KeyValuePair<long, TooltipInstance>(id, new TooltipInstance
             {
                 RenderFragmentContent = content,
                 Initiated = false
-            });
+            }));
             _ = InvokeAsync(StateHasChanged);
         }
 
@@ -54,11 +54,11 @@ namespace Material.Blazor.Internal
         /// <param name="content"></param>
         private void AddTooltipMarkupString(long id, MarkupString content)
         {
-            _ = NewTooltips.TryAdd(id, new TooltipInstance
+            NewTooltips.Enqueue(new KeyValuePair<long, TooltipInstance>(id, new TooltipInstance
             {
                 MarkupStringContent = content,
                 Initiated = false
-            });
+            }));
             _ = InvokeAsync(StateHasChanged);
         }
 
@@ -71,7 +71,7 @@ namespace Material.Blazor.Internal
         {
             try
             {
-                OldTooltips.Add(id);
+                OldTooltips.Enqueue(id);
                 _ = InvokeAsync(StateHasChanged);
             }
             catch (ObjectDisposedException ex)
@@ -106,11 +106,12 @@ namespace Material.Blazor.Internal
         /// </summary>
         private void OnBeforeRender()
         {
-            foreach (var (key, tooltip) in NewTooltips)
+            while (NewTooltips.TryDequeue(out var kvp))
             {
+                var (key, tooltip) = kvp;
                 Tooltips.Add(key, tooltip);
             }
-            foreach (var key in OldTooltips)
+            while (OldTooltips.TryDequeue(out var key))
             {
                 Tooltips.Remove(key);
             }
