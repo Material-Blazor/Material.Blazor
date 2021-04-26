@@ -29,7 +29,10 @@ namespace Material.Blazor
                 if (value != _isIndetermimate)
                 {
                     _isIndetermimate = value;
-                    _ = UpdateIndeterminateStateAsync();
+                    if (HasInstantiated)
+                    {
+                        _ = UpdateIndeterminateStateAsync();
+                    }
                 }
             }
         }

@@ -23,7 +23,9 @@ namespace Material.Blazor.Internal
         private static readonly ImmutableArray<string> EssentialSplattableAttributes = ImmutableArray.Create("formnovalidate", "max", "min", "role", "step", "tabindex", "type", "data-prev-page");
         private bool? disabled = null;
 
-        [Inject] private protected IBatchingJSRuntime JsRuntime { get; set; }
+        [Inject] private IBatchingJSRuntime InjectedJsRuntime { get; set; }
+        protected IBatchingJSRuntime JsRuntime { get; set; }
+        [CascadingParameter] private MBDialog ParentDialog { get; set; }
         [Inject] private protected IMBTooltipService TooltipService { get; set; }
         [Inject] private protected ILogger<ComponentFoundation> Logger { get; set; }
 
@@ -222,6 +224,7 @@ namespace Material.Blazor.Internal
         /// </summary>
         protected sealed override void OnInitialized()
         {
+            JsRuntime = ParentDialog == null ? InjectedJsRuntime : new DialogAwareBatchingJSRuntime(InjectedJsRuntime, ParentDialog);
             // For consistency, we only ever use OnInitializedAsync. To prevent ourselves from using OnInitialized accidentally, we seal this method from here on.
 
             // the only thing we do here, is creating an ID for the tooltip, if we have one

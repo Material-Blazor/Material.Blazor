@@ -15,7 +15,7 @@ namespace Material.Blazor.Internal
     /// [CascadingParameter] EditContext as optional.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public abstract class InputComponent<T> : DialogChildComponent
+    public abstract class InputComponent<T> : ComponentFoundation
     {
         private bool _previousParsingAttemptFailed;
         private ValidationMessageStore _parsingValidationMessages;
@@ -24,13 +24,6 @@ namespace Material.Blazor.Internal
 
 
         [CascadingParameter] private EditContext CascadedEditContext { get; set; }
-        [CascadingParameter] private IMBDialog Dialog { get; set; }
-        
-        
-        /// <summary>
-        /// If set to true, the compoent is instantiated after the next render.
-        /// </summary>
-        private protected bool InstantiateAfterNextRender { get; set; } = false;
 
 
         /// <summary>
@@ -183,7 +176,7 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Allows <see cref="ShouldRender()"/> to return "true" for the next render only.
         /// </summary>
-        internal bool AllowNextRender = false;
+        private bool AllowNextRender = false;
 
 
         /// <summary>
@@ -221,24 +214,9 @@ namespace Material.Blazor.Internal
         {
             await base.OnInitializedAsync();
 
-            OnInitDialog();
-
             if (EditContext != null && IgnoreFormField)
             {
                 LogMBWarning($"{GetType()} is in a form but has EditContext features disabled because it is considered a valid Material.Blazor form field type");
-            }
-        }
-
-
-        private void OnInitDialog()
-        {
-            if (Dialog != null && !Dialog.DialogHasInstantiated)
-            {
-                Dialog.RegisterLayoutAction(this);
-            }
-            else
-            {
-                InstantiateAfterNextRender = true;
             }
         }
 
@@ -317,15 +295,6 @@ namespace Material.Blazor.Internal
         }
 
 
-        /// <inheritdoc/>
-        public override void RequestInstantiation()
-        {
-            InstantiateAfterNextRender = true;
-            AllowNextRender = true;
-            InvokeAsync(StateHasChanged);
-        }
-
-
         private protected void AllowNextShouldRender()
         {
             AllowNextRender = true;
@@ -344,22 +313,6 @@ namespace Material.Blazor.Internal
             }
 
             return false;
-        }
-
-
-        /// <summary>
-        /// Material.Blazor components descending from <see cref="InputComponent{T}"/> _*must not*_ override OnAfterRenderAsync(bool).
-        /// </summary>
-        protected override async Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (InstantiateAfterNextRender)
-            {
-                InstantiateAfterNextRender = false;
-                _ = InstantiateMcwComponent();
-                HasInstantiated = true;
-                AddTooltip();
-            }
-            await Task.CompletedTask;
         }
 
 

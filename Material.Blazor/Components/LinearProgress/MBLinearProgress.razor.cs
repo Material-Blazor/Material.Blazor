@@ -35,7 +35,10 @@ namespace Material.Blazor
                 if (value != _bufferValue)
                 {
                     _bufferValue = value;
-                    OnValueSetCallback();
+                    if (HasInstantiated)
+                    {
+                        OnValueSetCallback();
+                    }
                 }
             }
         }

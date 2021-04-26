@@ -234,7 +234,8 @@
                                       type="submit" />
                             <MBButton Label="Cancel"
                                       @onclick="@Dialog4Canceled"
-                                      style="margin: 0.75em 0.25em 0.25em 0.25em;" />
+                                      style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                      type="button" />
                         </div>
                     </div>
                 </EditForm>
@@ -266,9 +267,9 @@
         </MBDialog>
 
         <MBDialog EscapeKeyAction=""
-                            @ref="@Dialog7"
-                            ScrimClickAction=""
-                            Title="Logon Dialog">
+                  @ref="@Dialog7"
+                  ScrimClickAction=""
+                  Title="Logon Dialog">
             <CustomHeader>
                 <h1>This is an h1 header</h1>
                 <h1>This is also an h1 header</h1>
@@ -305,7 +306,8 @@
                                       type="submit" />
                             <MBButton Label="Cancel"
                                       @onclick="@Dialog7Canceled"
-                                      style="margin: 0.75em 0.25em 0.25em 0.25em;" />
+                                      style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                      type="button"/>
                         </div>
                     </div>
                 </EditForm>
@@ -347,7 +349,7 @@
         new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
         new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
-                            };
+    };
 
     private async Task ShowDialog1Async()
     {
@@ -439,7 +441,6 @@
     }
 
     private class UserLogonDefinition
-
     {
         [Required(ErrorMessage = "UserID is required")]
         public string UserID { get; set; }

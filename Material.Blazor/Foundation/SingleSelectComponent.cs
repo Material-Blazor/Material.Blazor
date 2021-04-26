@@ -41,8 +41,7 @@ namespace Material.Blazor.Internal
                         }
                     }
 
-                    AllowNextRender = true;
-                    InstantiateAfterNextRender = true;
+                    AllowNextShouldRender();
                     InvokeAsync(StateHasChanged);
                 }
             }
@@ -93,7 +92,7 @@ namespace Material.Blazor.Internal
                     case MBItemValidation.DefaultToFirst:
                         var defaultValue = items.FirstOrDefault().SelectedValue;
                         _ = ValueChanged.InvokeAsync(defaultValue);
-                        AllowNextRender = true;
+                        AllowNextShouldRender();
                         return (true, defaultValue);
 
                     case MBItemValidation.Exception:
@@ -112,7 +111,7 @@ namespace Material.Blazor.Internal
 
                     case MBItemValidation.NoSelection:
                         _ = ValueChanged.InvokeAsync(default);
-                        AllowNextRender = true;
+                        AllowNextShouldRender();
                         return (false, default);
                 }
             }

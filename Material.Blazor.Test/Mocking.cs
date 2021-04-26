@@ -24,7 +24,6 @@ namespace Testing
                 .AddSingleton(new Mock<IMBAnimatedNavigationManager>()
                     .Chain(m => m.SetupGet(anm => anm.Configuration).Returns(new MBAnimatedNavigationManagerServiceConfiguration()))
                     .Object)
-                .AddSingleton(new Mock<IMBDialog>().Object)
                 .AddSingleton(new Mock<IMBIcon>().Object)
                 .AddSingleton(new Mock<IMBIconFoundry>().Object);
         }
@@ -50,7 +49,11 @@ namespace Testing
         public void TryRenderMBDialog()
         {
             var cut = ctx.RenderComponent<MBDialog>();
-            cut.MarkupMatches("");
+            cut.MarkupMatches(@"
+<div class=""mdc-dialog"" aria-modal=""true"">
+    <div class=""mdc-dialog__container""></div>
+    <div class=""mdc-dialog__scrim""></div>
+</div>");
         }
     }
 }
