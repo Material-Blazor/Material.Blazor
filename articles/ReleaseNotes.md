@@ -18,6 +18,24 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 <br />
 
 
+#### [2.0.0-preview.6](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.5)
+2021-04-26
+
+**Updates**
+
+- Added build task to deduplicate license comments in js file
+
+- MBDialog initialization restructured in order to fix a race condition.
+
+- MBSlidingContent initialization to account for 'late' creation of the Items list.
+
+- MBTooltip anchor modified to fix a race condition
+
+**New components**
+
+**Breaking Changes**
+
+
 #### [2.0.0-preview.5](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.5)
 2021-04-19
 
