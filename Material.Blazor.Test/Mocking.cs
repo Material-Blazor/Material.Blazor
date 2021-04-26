@@ -51,10 +51,7 @@ namespace Testing
             var cut = ctx.RenderComponent<MBDialog>();
             cut.MarkupMatches(@"
 <div class=""mdc-dialog"" aria-modal=""true"">
-    <div class=""mdc-dialog__container"">
-        <div class=""mdc-dialog__surface "">
-        </div>
-    </div>
+    <div class=""mdc-dialog__container""></div>
     <div class=""mdc-dialog__scrim""></div>
 </div>");
         }
