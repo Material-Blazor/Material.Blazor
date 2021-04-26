@@ -1,8 +1,6 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Material.Blazor
@@ -74,7 +72,6 @@ namespace Material.Blazor
         private readonly string headerId = Utilities.GenerateUniqueElementName();
         private readonly string titleId = Utilities.GenerateUniqueElementName();
 
-        private Dictionary<string, object> MyAttributes { get; set; }
         private TaskCompletionSource<string> CloseReasonTaskCompletionSource { get; set; }
 
         private TaskCompletionSource OpenedTaskCompletionSource = new();
@@ -88,26 +85,6 @@ namespace Material.Blazor
             await base.OnInitializedAsync();
 
             ObjectReference = DotNetObjectReference.Create(this);
-
-            BuildMyAttributes();
-        }
-
-
-        private void BuildMyAttributes()
-        {
-            MyAttributes = (from a in AttributesToSplat()
-                            select new KeyValuePair<string, object>(a.Key, a.Value))
-                            .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
-
-            if (HasTitle)
-            {
-                MyAttributes.Add("aria-labelledby", titleId);
-            }
-
-            if (HasBody)
-            {
-                MyAttributes.Add("aria-describedby", bodyId);
-            }
         }
 
 

@@ -5,7 +5,9 @@
      class="mdc-dialog @ActiveConditionalClasses @(@class)"
      style="@style"
      id="@id"
-     @attributes="@MyAttributes"
+     @attributes="@AttributesToSplat()"
+     aria-labelledby="@(HasTitle ? titleId : (HasCustomHeader ? headerId : null))"
+     aria-describedby="@(HasBody ? bodyId : null)"
      aria-modal="true">
 
     <CascadingValue Value="@this" IsFixed="true">
