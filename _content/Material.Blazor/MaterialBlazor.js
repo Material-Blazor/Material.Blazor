@@ -23018,6 +23018,9 @@ PERFORMANCE OF THIS SOFTWARE.
             elem._textField.disabled = value;
         }
         function setHelperText(elem, helperTextElem, helperText, helperTextPersistent, performsValidation, shakeLabel, validationMessage) {
+            if (!elem || !helperTextElem) {
+                return;
+            }
             if (helperText !== "" || performsValidation === true) {
                 if (!elem._helperText) {
                     elem._helperText = MDCTextFieldHelperText.attachTo(helperTextElem);

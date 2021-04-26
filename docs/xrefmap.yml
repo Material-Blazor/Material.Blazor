@@ -223,25 +223,6 @@ references:
   commentId: N:Material.Blazor
   fullName: Material.Blazor
   nameWithType: Material.Blazor
-- uid: Material.Blazor.DialogChildComponent
-  name: DialogChildComponent
-  href: api/Material.Blazor.DialogChildComponent.html
-  commentId: T:Material.Blazor.DialogChildComponent
-  fullName: Material.Blazor.DialogChildComponent
-  nameWithType: DialogChildComponent
-- uid: Material.Blazor.DialogChildComponent.RequestInstantiation
-  name: RequestInstantiation()
-  href: api/Material.Blazor.DialogChildComponent.html#Material_Blazor_DialogChildComponent_RequestInstantiation
-  commentId: M:Material.Blazor.DialogChildComponent.RequestInstantiation
-  fullName: Material.Blazor.DialogChildComponent.RequestInstantiation()
-  nameWithType: DialogChildComponent.RequestInstantiation()
-- uid: Material.Blazor.DialogChildComponent.RequestInstantiation*
-  name: RequestInstantiation
-  href: api/Material.Blazor.DialogChildComponent.html#Material_Blazor_DialogChildComponent_RequestInstantiation_
-  commentId: Overload:Material.Blazor.DialogChildComponent.RequestInstantiation
-  isSpec: "True"
-  fullName: Material.Blazor.DialogChildComponent.RequestInstantiation
-  nameWithType: DialogChildComponent.RequestInstantiation
 - uid: Material.Blazor.Direction
   name: Direction
   href: api/Material.Blazor.Direction.html
@@ -523,38 +504,6 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.IMBAnimatedNavigationManager.RegisterNavigationComponent
   nameWithType: IMBAnimatedNavigationManager.RegisterNavigationComponent
-- uid: Material.Blazor.IMBDialog
-  name: IMBDialog
-  href: api/Material.Blazor.IMBDialog.html
-  commentId: T:Material.Blazor.IMBDialog
-  fullName: Material.Blazor.IMBDialog
-  nameWithType: IMBDialog
-- uid: Material.Blazor.IMBDialog.DialogHasInstantiated
-  name: DialogHasInstantiated
-  href: api/Material.Blazor.IMBDialog.html#Material_Blazor_IMBDialog_DialogHasInstantiated
-  commentId: P:Material.Blazor.IMBDialog.DialogHasInstantiated
-  fullName: Material.Blazor.IMBDialog.DialogHasInstantiated
-  nameWithType: IMBDialog.DialogHasInstantiated
-- uid: Material.Blazor.IMBDialog.DialogHasInstantiated*
-  name: DialogHasInstantiated
-  href: api/Material.Blazor.IMBDialog.html#Material_Blazor_IMBDialog_DialogHasInstantiated_
-  commentId: Overload:Material.Blazor.IMBDialog.DialogHasInstantiated
-  isSpec: "True"
-  fullName: Material.Blazor.IMBDialog.DialogHasInstantiated
-  nameWithType: IMBDialog.DialogHasInstantiated
-- uid: Material.Blazor.IMBDialog.RegisterLayoutAction(Material.Blazor.DialogChildComponent)
-  name: RegisterLayoutAction(DialogChildComponent)
-  href: api/Material.Blazor.IMBDialog.html#Material_Blazor_IMBDialog_RegisterLayoutAction_Material_Blazor_DialogChildComponent_
-  commentId: M:Material.Blazor.IMBDialog.RegisterLayoutAction(Material.Blazor.DialogChildComponent)
-  fullName: Material.Blazor.IMBDialog.RegisterLayoutAction(Material.Blazor.DialogChildComponent)
-  nameWithType: IMBDialog.RegisterLayoutAction(DialogChildComponent)
-- uid: Material.Blazor.IMBDialog.RegisterLayoutAction*
-  name: RegisterLayoutAction
-  href: api/Material.Blazor.IMBDialog.html#Material_Blazor_IMBDialog_RegisterLayoutAction_
-  commentId: Overload:Material.Blazor.IMBDialog.RegisterLayoutAction
-  isSpec: "True"
-  fullName: Material.Blazor.IMBDialog.RegisterLayoutAction
-  nameWithType: IMBDialog.RegisterLayoutAction
 - uid: Material.Blazor.IMBIcon
   name: IMBIcon
   href: api/Material.Blazor.IMBIcon.html
@@ -858,6 +807,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.Internal.ComponentFoundation.id
   nameWithType: ComponentFoundation.id
+- uid: Material.Blazor.Internal.ComponentFoundation.JsRuntime
+  name: JsRuntime
+  href: api/Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_JsRuntime
+  commentId: P:Material.Blazor.Internal.ComponentFoundation.JsRuntime
+  fullName: Material.Blazor.Internal.ComponentFoundation.JsRuntime
+  nameWithType: ComponentFoundation.JsRuntime
+- uid: Material.Blazor.Internal.ComponentFoundation.JsRuntime*
+  name: JsRuntime
+  href: api/Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_JsRuntime_
+  commentId: Overload:Material.Blazor.Internal.ComponentFoundation.JsRuntime
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.ComponentFoundation.JsRuntime
+  nameWithType: ComponentFoundation.JsRuntime
 - uid: Material.Blazor.Internal.ComponentFoundation.LogMBCritical(EventId,System.Exception,System.String,System.Object[])
   name: LogMBCritical(EventId, Exception, String, Object[])
   href: api/Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBCritical_EventId_System_Exception_System_String_System_Object___
@@ -1430,23 +1392,6 @@ references:
   fullName.vb: Material.Blazor.Internal.InputComponent(Of T).FormatValueToString
   nameWithType: InputComponent<T>.FormatValueToString
   nameWithType.vb: InputComponent(Of T).FormatValueToString
-- uid: Material.Blazor.Internal.InputComponent`1.OnAfterRenderAsync(System.Boolean)
-  name: OnAfterRenderAsync(Boolean)
-  href: api/Material.Blazor.Internal.InputComponent-1.html#Material_Blazor_Internal_InputComponent_1_OnAfterRenderAsync_System_Boolean_
-  commentId: M:Material.Blazor.Internal.InputComponent`1.OnAfterRenderAsync(System.Boolean)
-  fullName: Material.Blazor.Internal.InputComponent<T>.OnAfterRenderAsync(System.Boolean)
-  fullName.vb: Material.Blazor.Internal.InputComponent(Of T).OnAfterRenderAsync(System.Boolean)
-  nameWithType: InputComponent<T>.OnAfterRenderAsync(Boolean)
-  nameWithType.vb: InputComponent(Of T).OnAfterRenderAsync(Boolean)
-- uid: Material.Blazor.Internal.InputComponent`1.OnAfterRenderAsync*
-  name: OnAfterRenderAsync
-  href: api/Material.Blazor.Internal.InputComponent-1.html#Material_Blazor_Internal_InputComponent_1_OnAfterRenderAsync_
-  commentId: Overload:Material.Blazor.Internal.InputComponent`1.OnAfterRenderAsync
-  isSpec: "True"
-  fullName: Material.Blazor.Internal.InputComponent<T>.OnAfterRenderAsync
-  fullName.vb: Material.Blazor.Internal.InputComponent(Of T).OnAfterRenderAsync
-  nameWithType: InputComponent<T>.OnAfterRenderAsync
-  nameWithType.vb: InputComponent(Of T).OnAfterRenderAsync
 - uid: Material.Blazor.Internal.InputComponent`1.OnInitializedAsync
   name: OnInitializedAsync()
   href: api/Material.Blazor.Internal.InputComponent-1.html#Material_Blazor_Internal_InputComponent_1_OnInitializedAsync
@@ -1481,23 +1426,6 @@ references:
   fullName.vb: Material.Blazor.Internal.InputComponent(Of T).OnParametersSetAsync
   nameWithType: InputComponent<T>.OnParametersSetAsync
   nameWithType.vb: InputComponent(Of T).OnParametersSetAsync
-- uid: Material.Blazor.Internal.InputComponent`1.RequestInstantiation
-  name: RequestInstantiation()
-  href: api/Material.Blazor.Internal.InputComponent-1.html#Material_Blazor_Internal_InputComponent_1_RequestInstantiation
-  commentId: M:Material.Blazor.Internal.InputComponent`1.RequestInstantiation
-  fullName: Material.Blazor.Internal.InputComponent<T>.RequestInstantiation()
-  fullName.vb: Material.Blazor.Internal.InputComponent(Of T).RequestInstantiation()
-  nameWithType: InputComponent<T>.RequestInstantiation()
-  nameWithType.vb: InputComponent(Of T).RequestInstantiation()
-- uid: Material.Blazor.Internal.InputComponent`1.RequestInstantiation*
-  name: RequestInstantiation
-  href: api/Material.Blazor.Internal.InputComponent-1.html#Material_Blazor_Internal_InputComponent_1_RequestInstantiation_
-  commentId: Overload:Material.Blazor.Internal.InputComponent`1.RequestInstantiation
-  isSpec: "True"
-  fullName: Material.Blazor.Internal.InputComponent<T>.RequestInstantiation
-  fullName.vb: Material.Blazor.Internal.InputComponent(Of T).RequestInstantiation
-  nameWithType: InputComponent<T>.RequestInstantiation
-  nameWithType.vb: InputComponent(Of T).RequestInstantiation
 - uid: Material.Blazor.Internal.InputComponent`1.SetComponentValue
   name: SetComponentValue
   href: api/Material.Blazor.Internal.InputComponent-1.html#Material_Blazor_Internal_InputComponent_1_SetComponentValue
@@ -4978,40 +4906,6 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBDialog.HideAsync
   nameWithType: MBDialog.HideAsync
-- uid: Material.Blazor.MBDialog.Material#Blazor#IMBDialog#DialogHasInstantiated
-  name: IMBDialog.DialogHasInstantiated
-  href: api/Material.Blazor.MBDialog.html#Material_Blazor_MBDialog_Material_Blazor_IMBDialog_DialogHasInstantiated
-  commentId: P:Material.Blazor.MBDialog.Material#Blazor#IMBDialog#DialogHasInstantiated
-  name.vb: Material.Blazor.IMBDialog.DialogHasInstantiated
-  fullName: Material.Blazor.MBDialog.Material.Blazor.IMBDialog.DialogHasInstantiated
-  nameWithType: MBDialog.IMBDialog.DialogHasInstantiated
-  nameWithType.vb: MBDialog.Material.Blazor.IMBDialog.DialogHasInstantiated
-- uid: Material.Blazor.MBDialog.Material#Blazor#IMBDialog#DialogHasInstantiated*
-  name: IMBDialog.DialogHasInstantiated
-  href: api/Material.Blazor.MBDialog.html#Material_Blazor_MBDialog_Material_Blazor_IMBDialog_DialogHasInstantiated_
-  commentId: Overload:Material.Blazor.MBDialog.Material#Blazor#IMBDialog#DialogHasInstantiated
-  isSpec: "True"
-  name.vb: Material.Blazor.IMBDialog.DialogHasInstantiated
-  fullName: Material.Blazor.MBDialog.Material.Blazor.IMBDialog.DialogHasInstantiated
-  nameWithType: MBDialog.IMBDialog.DialogHasInstantiated
-  nameWithType.vb: MBDialog.Material.Blazor.IMBDialog.DialogHasInstantiated
-- uid: Material.Blazor.MBDialog.Material#Blazor#IMBDialog#RegisterLayoutAction(Material.Blazor.DialogChildComponent)
-  name: IMBDialog.RegisterLayoutAction(DialogChildComponent)
-  href: api/Material.Blazor.MBDialog.html#Material_Blazor_MBDialog_Material_Blazor_IMBDialog_RegisterLayoutAction_Material_Blazor_DialogChildComponent_
-  commentId: M:Material.Blazor.MBDialog.Material#Blazor#IMBDialog#RegisterLayoutAction(Material.Blazor.DialogChildComponent)
-  name.vb: Material.Blazor.IMBDialog.RegisterLayoutAction(DialogChildComponent)
-  fullName: Material.Blazor.MBDialog.Material.Blazor.IMBDialog.RegisterLayoutAction(Material.Blazor.DialogChildComponent)
-  nameWithType: MBDialog.IMBDialog.RegisterLayoutAction(DialogChildComponent)
-  nameWithType.vb: MBDialog.Material.Blazor.IMBDialog.RegisterLayoutAction(DialogChildComponent)
-- uid: Material.Blazor.MBDialog.Material#Blazor#IMBDialog#RegisterLayoutAction*
-  name: IMBDialog.RegisterLayoutAction
-  href: api/Material.Blazor.MBDialog.html#Material_Blazor_MBDialog_Material_Blazor_IMBDialog_RegisterLayoutAction_
-  commentId: Overload:Material.Blazor.MBDialog.Material#Blazor#IMBDialog#RegisterLayoutAction
-  isSpec: "True"
-  name.vb: Material.Blazor.IMBDialog.RegisterLayoutAction
-  fullName: Material.Blazor.MBDialog.Material.Blazor.IMBDialog.RegisterLayoutAction
-  nameWithType: MBDialog.IMBDialog.RegisterLayoutAction
-  nameWithType.vb: MBDialog.Material.Blazor.IMBDialog.RegisterLayoutAction
 - uid: Material.Blazor.MBDialog.NotifyClosed(System.String)
   name: NotifyClosed(String)
   href: api/Material.Blazor.MBDialog.html#Material_Blazor_MBDialog_NotifyClosed_System_String_

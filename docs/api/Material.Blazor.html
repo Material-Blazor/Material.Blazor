@@ -88,12 +88,6 @@
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
-      <h4><a class="xref" href="Material.Blazor.DialogChildComponent.html">DialogChildComponent</a></h4>
-      <section><p>A direct ancestor of <a class="xref" href="Material.Blazor.Internal.InputComponent-1.html">InputComponent&lt;T&gt;</a> for dialogs to reference when intiating child
-components. We cannot use <a class="xref" href="Material.Blazor.Internal.InputComponent-1.html">InputComponent&lt;T&gt;</a> directly because its generics get in the way.
-This class allows <a class="xref" href="Material.Blazor.MBDialog.html">MBDialog</a> to control when child components are instantiated with
-Material Components Web JS.</p>
-</section>
       <h4><a class="xref" href="Material.Blazor.MBAnchor.html">MBAnchor</a></h4>
       <section><p>An anchor component for snackbars, toasts and tooltips to be placed in App.razor, MainLayout.razor or Index.razor.</p>
 </section>
@@ -168,10 +162,7 @@ a modfied Material Theme select input as also applied in <a class="xref" href="M
       <section><p>A Material Theme debounced text field.</p>
 </section>
       <h4><a class="xref" href="Material.Blazor.MBDialog.html">MBDialog</a></h4>
-      <section><p>This is a general purpose Material Theme dialog. The Material.Blazor dialog implementation does not render a dialog at all until
-it is shown by the consumer. At this stage it is rendered and Material Theme is permitted to control it's opening and to
-intiate it and its embedded components. Likewise when the dialog is closed, Material Theme is permitted to close the dialog
-gracefully before Material.Blazor removes the markup.</p>
+      <section><p>This is a general purpose Material Theme dialog.</p>
 </section>
       <h4><a class="xref" href="Material.Blazor.MBDivider.html">MBDivider</a></h4>
       <section><p>A Material Theme divider.</p>
@@ -355,10 +346,6 @@ is called without a <a class="xref" href="Material.Blazor.MBAnimatedNavigation.h
     AnimationTime = 300
 });</code></pre>
 </example>
-</section>
-      <h4><a class="xref" href="Material.Blazor.IMBDialog.html">IMBDialog</a></h4>
-      <section><p>An interface implemented by <a class="xref" href="Material.Blazor.MBDialog.html">MBDialog</a> to allow child components to
-register themselves for Material Theme js instantiation.</p>
 </section>
       <h4><a class="xref" href="Material.Blazor.IMBIcon.html">IMBIcon</a></h4>
       <section><p>Interface providing markup elements for an icon in a given foundry.</p>

@@ -91,9 +91,8 @@
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
     <div class="level1"><a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html">ComponentFoundation</a></div>
-    <div class="level2"><a class="xref" href="Material.Blazor.DialogChildComponent.html">DialogChildComponent</a></div>
-    <div class="level3"><a class="xref" href="Material.Blazor.Internal.InputComponent-1.html">InputComponent</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.datetime">DateTime</a>&gt;</div>
-    <div class="level4"><span class="xref">InternalDatePickerPanel</span></div>
+    <div class="level2"><a class="xref" href="Material.Blazor.Internal.InputComponent-1.html">InputComponent</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.datetime">DateTime</a>&gt;</div>
+    <div class="level3"><span class="xref">InternalDatePickerPanel</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
@@ -135,10 +134,10 @@
       <a class="xref" href="Material.Blazor.Internal.InputComponent-1.html#Material_Blazor_Internal_InputComponent_1_SetParametersAsync_ParameterView_">InputComponent&lt;DateTime&gt;.SetParametersAsync(ParameterView)</a>
     </div>
     <div>
-      <a class="xref" href="Material.Blazor.Internal.InputComponent-1.html#Material_Blazor_Internal_InputComponent_1_RequestInstantiation">InputComponent&lt;DateTime&gt;.RequestInstantiation()</a>
+      <a class="xref" href="Material.Blazor.Internal.InputComponent-1.html#Material_Blazor_Internal_InputComponent_1_ShouldRender">InputComponent&lt;DateTime&gt;.ShouldRender()</a>
     </div>
     <div>
-      <a class="xref" href="Material.Blazor.Internal.InputComponent-1.html#Material_Blazor_Internal_InputComponent_1_ShouldRender">InputComponent&lt;DateTime&gt;.ShouldRender()</a>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_JsRuntime">ComponentFoundation.JsRuntime</a>
     </div>
     <div>
       <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_CascadingDefaults">ComponentFoundation.CascadingDefaults</a>
@@ -438,7 +437,8 @@
   </span>
   <a id="Material_Blazor_Internal_InternalDatePickerPanel_OnAfterRenderAsync_" data-uid="Material.Blazor.Internal.InternalDatePickerPanel.OnAfterRenderAsync*"></a>
   <h4 id="Material_Blazor_Internal_InternalDatePickerPanel_OnAfterRenderAsync_System_Boolean_" data-uid="Material.Blazor.Internal.InternalDatePickerPanel.OnAfterRenderAsync(System.Boolean)">OnAfterRenderAsync(Boolean)</h4>
-  <div class="markdown level1 summary"><p>Material.Blazor components descending from <a class="xref" href="Material.Blazor.Internal.InputComponent-1.html">InputComponent&lt;T&gt;</a> <em><em>must not</em></em> override OnAfterRenderAsync(bool).</p>
+  <div class="markdown level1 summary"><p>Material.Blazor components generally <em>should not</em> override this because it handles the case where components need
+to be adjusted when inside an <code>MBDialog</code> or <code>MBCard</code>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -478,7 +478,7 @@
     </tbody>
   </table>
   <h5 class="overrides">Overrides</h5>
-  <div><span class="xref">Material.Blazor.Internal.InputComponent&lt;System.DateTime&gt;.OnAfterRenderAsync(System.Boolean)</span></div>
+  <div><a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnAfterRenderAsync_System_Boolean_">ComponentFoundation.OnAfterRenderAsync(Boolean)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_InternalDatePickerPanel_OnInitializedAsync.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.InternalDatePickerPanel.OnInitializedAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
