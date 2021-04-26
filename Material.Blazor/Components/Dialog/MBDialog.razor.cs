@@ -75,7 +75,11 @@ namespace Material.Blazor
         private readonly string titleId = Utilities.GenerateUniqueElementName();
 
         private Dictionary<string, object> MyAttributes { get; set; }
-        private TaskCompletionSource<string> Tcs { get; set; }
+        private TaskCompletionSource<string> CloseReasonTaskCompletionSource { get; set; }
+
+        private TaskCompletionSource OpenedTaskCompletionSource = new();
+        internal Task Opened => OpenedTaskCompletionSource.Task;
+        private bool IsOpen { get; set; }
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -133,45 +137,54 @@ namespace Material.Blazor
         /// <returns>The action string resulting form dialog closure</returns>
         public async Task<string> ShowAsync()
         {
-            Tcs = new TaskCompletionSource<string>();
+            CloseReasonTaskCompletionSource = new();
+            OpenedTaskCompletionSource = new();
+            IsOpen = true;
+            await InvokeAsync(StateHasChanged);
+            await InvokeShowAsync();
+            return await CloseReasonTaskCompletionSource.Task;
+        }
+
+
+        /// <summary>
+        /// Invokes the javacript code to open the dialog.
+        /// </summary>
+        private async Task InvokeShowAsync()
+        {
             try
             {
                 await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDialog.show", DialogElem, ObjectReference, EscapeKeyAction, ScrimClickAction);
             }
             catch
             {
-                Tcs?.SetCanceled();
+                CloseReasonTaskCompletionSource?.TrySetCanceled();
             }
-            var ret = await Tcs.Task;
-            return ret;
         }
-
 
 
         /// <summary>
         /// Hides the dialog first by allowing Material Theme to close it gracefully, then
         /// removing the Blazor markup.
         /// </summary>
-        /// <returns></returns>
-        public Task HideAsync()
+        public async Task HideAsync()
         {
-            return JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDialog.hide", DialogElem);
+            await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDialog.hide", DialogElem);
+            IsOpen = false;
+            await InvokeAsync(StateHasChanged);
         }
 
-        private readonly TaskCompletionSource OpenedSource = new();
-        internal Task Opened => OpenedSource.Task;
 
-
+        /// <summary>
+        /// Do not use. This method is used internally for receiving the "dialog opened" event from javascript.
+        /// </summary>
         [JSInvokable]
-        public void NotifyOpened()
-        {
-            OpenedSource.TrySetResult();
-        }
+        public void NotifyOpened() => OpenedTaskCompletionSource.TrySetResult();
 
+
+        /// <summary>
+        /// Do not use. This method is used internally for receiving the "dialog closed" event from javascript.
+        /// </summary>
         [JSInvokable]
-        public void NotifyClosed(string reason)
-        {
-            Tcs?.SetResult(reason);
-        }
+        public void NotifyClosed(string reason) => CloseReasonTaskCompletionSource?.TrySetResult(reason);
     }
 }
