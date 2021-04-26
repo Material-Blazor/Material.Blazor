@@ -14,6 +14,9 @@ export function setDisabled(elem, value) {
 }
 
 export function setHelperText(elem, helperTextElem, helperText, helperTextPersistent, performsValidation, shakeLabel, validationMessage) {
+    if (!elem || !helperTextElem) {
+        return;
+    }
     if (helperText !== "" || performsValidation === true) {
         if (!elem._helperText) {
             elem._helperText = MDCTextFieldHelperText.attachTo(helperTextElem);
