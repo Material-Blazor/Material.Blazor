@@ -149,7 +149,7 @@ jobs:
 
     - name: Upload Package 🚀
       run: dotnet nuget push ${env:outputMB}\*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
-      if: needs.branch.outputs.identifier == 'main' # this check is important to allow testing this workflow on a non-main branch without deploying to nuget: this critical action is not performed when not on main.
+      if: needs.branch.outputs.identifier != 'experimental-release-workflow' # this check is important to allow testing this workflow on a non-main branch without deploying to nuget: this critical action is not performed when not on main.
 ############################################################################################################
 # deployghpages
 ############################################################################################################
@@ -189,7 +189,7 @@ jobs:
         token: ${{secrets.GH_PAT}}
         branch: gh-pages
         folder: 'deployroot'
-      if: needs.branch.outputs.identifier == 'main' # this check is important to allow testing this workflow on a non-main branch without deploying to nuget: this critical action is not performed when not on main.
+      if: needs.branch.outputs.identifier != 'experimental-release-workflow' # this check is important to allow testing this workflow on a non-main branch without deploying to nuget: this critical action is not performed when not on main.
 ############################################################################################################
 # Create release
 ############################################################################################################
@@ -201,7 +201,7 @@ jobs:
     if: (github.repository == 'Material-Blazor/Material.Blazor')
     steps:
     - name: Create Release
-      if: needs.branch.outputs.identifier == 'main' # this check is important to allow testing this workflow on a non-main branch without deploying to nuget: this critical action is not performed when not on main.
+      if: needs.branch.outputs.identifier != 'experimental-release-workflow' # this check is important to allow testing this workflow on a non-main branch without deploying to nuget: this critical action is not performed when not on main.
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
