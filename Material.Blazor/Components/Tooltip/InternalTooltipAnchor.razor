@@ -1,7 +1,9 @@
 ﻿@namespace Material.Blazor.Internal
 @inherits ComponentFoundation
 
-
+@{ 
+    OnBeforeRender();
+}
 @if (Tooltips.Any())
 {
     <div>

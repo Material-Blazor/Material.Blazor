@@ -14,7 +14,9 @@ namespace Material.Blazor.Internal
     /// </summary>
     public partial class InternalTooltipAnchor : ComponentFoundation
     {
-        private ConcurrentDictionary<long, TooltipInstance> Tooltips { get; } = new();
+        private ConcurrentDictionary<long, TooltipInstance> NewTooltips { get; } = new();
+        private ConcurrentBag<long> OldTooltips { get; } = new();
+        private Dictionary<long, TooltipInstance> Tooltips { get; } = new();
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -35,7 +37,7 @@ namespace Material.Blazor.Internal
         /// <param name="content"></param>
         private void AddTooltipRenderFragment(long id, RenderFragment content)
         {
-            _ = Tooltips.TryAdd(id, new TooltipInstance
+            _ = NewTooltips.TryAdd(id, new TooltipInstance
             {
                 RenderFragmentContent = content,
                 Initiated = false
@@ -52,7 +54,7 @@ namespace Material.Blazor.Internal
         /// <param name="content"></param>
         private void AddTooltipMarkupString(long id, MarkupString content)
         {
-            _ = Tooltips.TryAdd(id, new TooltipInstance
+            _ = NewTooltips.TryAdd(id, new TooltipInstance
             {
                 MarkupStringContent = content,
                 Initiated = false
@@ -69,7 +71,7 @@ namespace Material.Blazor.Internal
         {
             try
             {
-                _ = Tooltips.Remove(id, out var _);
+                OldTooltips.Add(id);
                 _ = InvokeAsync(StateHasChanged);
             }
             catch (ObjectDisposedException ex)
@@ -95,6 +97,22 @@ namespace Material.Blazor.Internal
                 {
                     item.Initiated = true;
                 }
+            }
+        }
+
+
+        /// <summary>
+        /// Before we render any tooltip, let's update the list of tooltips that need to be rendered.
+        /// </summary>
+        private void OnBeforeRender()
+        {
+            foreach (var (key, tooltip) in NewTooltips)
+            {
+                Tooltips.Add(key, tooltip);
+            }
+            foreach (var key in OldTooltips)
+            {
+                Tooltips.Remove(key);
             }
         }
     }
