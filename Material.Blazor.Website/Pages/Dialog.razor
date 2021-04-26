@@ -203,44 +203,41 @@
                   ScrimClickAction=""
                   Title="Logon Dialog">
             <Body>
-                @if (UserLogon != null)
-                {
-                    <EditForm Model="@UserLogon"
-                              OnInvalidSubmit="@Dialog4Invalid"
-                              OnValidSubmit="@Dialog4Submitted">
-                        <DataAnnotationsValidator />
+                <EditForm Model="@UserLogon"
+                          OnInvalidSubmit="@Dialog4Invalid"
+                          OnValidSubmit="@Dialog4Submitted">
+                    <DataAnnotationsValidator />
 
-                        <div class="mdc-layout-grid__inner">
-                            <div class="mdc-layout-grid__cell--span-12">
-                                <MBTextField @bind-Value="@UserLogon.UserID"
-                                             Label="User ID"
-                                             style="width: 100%; margin-top: 6px;"
-                                             TextInputStyle="@MBTextInputStyle.Outlined"
-                                             TrailingIcon="person"
-                                             ValidationMessageFor="@(() => UserLogon.UserID)" />
-                            </div>
-                            <div class="mdc-layout-grid__cell--span-12">
-                                <MBTextField @bind-Value="@UserLogon.Password"
-                                             HelperText="Min 8 Characters"
-                                             HelperTextPersistent="true"
-                                             Label="Password"
-                                             style="width: 100%;"
-                                             TextInputStyle="@MBTextInputStyle.Outlined"
-                                             TrailingIcon="lock_outline"
-                                             type="password"
-                                             ValidationMessageFor="@(() => UserLogon.Password)" />
-                            </div>
-                            <div class="mdc-layout-grid__cell--span-12" style="text-align: right;">
-                                <MBButton Label="Logon"
-                                          style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                                          type="submit" />
-                                <MBButton Label="Cancel"
-                                          @onclick="@Dialog4Canceled"
-                                          style="margin: 0.75em 0.25em 0.25em 0.25em;" />
-                            </div>
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <MBTextField @bind-Value="@UserLogon.UserID"
+                                         Label="User ID"
+                                         style="width: 100%; margin-top: 6px;"
+                                         TextInputStyle="@MBTextInputStyle.Outlined"
+                                         TrailingIcon="person"
+                                         ValidationMessageFor="@(() => UserLogon.UserID)" />
                         </div>
-                    </EditForm>
-                }
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <MBTextField @bind-Value="@UserLogon.Password"
+                                         HelperText="Min 8 Characters"
+                                         HelperTextPersistent="true"
+                                         Label="Password"
+                                         style="width: 100%;"
+                                         TextInputStyle="@MBTextInputStyle.Outlined"
+                                         TrailingIcon="lock_outline"
+                                         type="password"
+                                         ValidationMessageFor="@(() => UserLogon.Password)" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-12" style="text-align: right;">
+                            <MBButton Label="Logon"
+                                      style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                      type="submit" />
+                            <MBButton Label="Cancel"
+                                      @onclick="@Dialog4Canceled"
+                                      style="margin: 0.75em 0.25em 0.25em 0.25em;" />
+                        </div>
+                    </div>
+                </EditForm>
             </Body>
         </MBDialog>
 
@@ -269,52 +266,49 @@
         </MBDialog>
 
         <MBDialog EscapeKeyAction=""
-                            @ref="@Dialog7"
-                            ScrimClickAction=""
-                            Title="Logon Dialog">
+                  @ref="@Dialog7"
+                  ScrimClickAction=""
+                  Title="Logon Dialog">
             <CustomHeader>
                 <h1>This is an h1 header</h1>
                 <h1>This is also an h1 header</h1>
             </CustomHeader>
             <Body>
-                @if (UserLogon != null)
-                {
-                    <EditForm Model="@UserLogon"
-                              OnInvalidSubmit="@Dialog7Invalid"
-                              OnValidSubmit="@Dialog7Submitted">
-                        <DataAnnotationsValidator />
+                <EditForm Model="@UserLogon"
+                          OnInvalidSubmit="@Dialog7Invalid"
+                          OnValidSubmit="@Dialog7Submitted">
+                    <DataAnnotationsValidator />
 
-                        <div class="mdc-layout-grid__inner">
-                            <div class="mdc-layout-grid__cell--span-12">
-                                <MBTextField @bind-Value="@UserLogon.UserID"
-                                             Label="User ID"
-                                             style="width: 100%; margin-top: 6px;"
-                                             TextInputStyle="@MBTextInputStyle.Outlined"
-                                             TrailingIcon="person"
-                                             ValidationMessageFor="@(() => UserLogon.UserID)" />
-                            </div>
-                            <div class="mdc-layout-grid__cell--span-12">
-                                <MBTextField @bind-Value="@UserLogon.Password"
-                                             HelperText="Min 8 Characters"
-                                             HelperTextPersistent="true"
-                                             Label="Password"
-                                             style="width: 100%;"
-                                             TextInputStyle="@MBTextInputStyle.Outlined"
-                                             TrailingIcon="lock_outline"
-                                             type="password"
-                                             ValidationMessageFor="@(() => UserLogon.Password)" />
-                            </div>
-                            <div class="mdc-layout-grid__cell--span-12" style="text-align: right;">
-                                <MBButton Label="Logon"
-                                          style="margin: 0.75em 0.25em 0.25em 0.25em;"
-                                          type="submit" />
-                                <MBButton Label="Cancel"
-                                          @onclick="@Dialog7Canceled"
-                                          style="margin: 0.75em 0.25em 0.25em 0.25em;" />
-                            </div>
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <MBTextField @bind-Value="@UserLogon.UserID"
+                                         Label="User ID"
+                                         style="width: 100%; margin-top: 6px;"
+                                         TextInputStyle="@MBTextInputStyle.Outlined"
+                                         TrailingIcon="person"
+                                         ValidationMessageFor="@(() => UserLogon.UserID)" />
                         </div>
-                    </EditForm>
-                }
+                        <div class="mdc-layout-grid__cell--span-12">
+                            <MBTextField @bind-Value="@UserLogon.Password"
+                                         HelperText="Min 8 Characters"
+                                         HelperTextPersistent="true"
+                                         Label="Password"
+                                         style="width: 100%;"
+                                         TextInputStyle="@MBTextInputStyle.Outlined"
+                                         TrailingIcon="lock_outline"
+                                         type="password"
+                                         ValidationMessageFor="@(() => UserLogon.Password)" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-12" style="text-align: right;">
+                            <MBButton Label="Logon"
+                                      style="margin: 0.75em 0.25em 0.25em 0.25em;"
+                                      type="submit" />
+                            <MBButton Label="Cancel"
+                                      @onclick="@Dialog7Canceled"
+                                      style="margin: 0.75em 0.25em 0.25em 0.25em;" />
+                        </div>
+                    </div>
+                </EditForm>
             </Body>
         </MBDialog>
 
@@ -353,7 +347,7 @@
         new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
         new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
-                            };
+    };
 
     private async Task ShowDialog1Async()
     {
@@ -445,7 +439,6 @@
     }
 
     private class UserLogonDefinition
-
     {
         [Required(ErrorMessage = "UserID is required")]
         public string UserID { get; set; }
