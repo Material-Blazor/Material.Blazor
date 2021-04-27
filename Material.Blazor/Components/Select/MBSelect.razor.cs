@@ -94,6 +94,12 @@ namespace Material.Blazor
 
 
 
+        /// <summary>
+        /// Compares two values and returns true if both values are null, or if both values are not null and <paramref name="value1"/>.Equals(<paramref name="value2"/>)
+        /// </summary>
+        /// <param name="value1"></param>
+        /// <param name="value2"></param>
+        /// <returns></returns>
         private static bool NullAllowingEquals(TItem value1, TItem value2)
         {
             if (value1 == null)
