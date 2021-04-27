@@ -91,17 +91,7 @@ namespace Material.Blazor.Internal
                         return (true, defaultValue);
 
                     case MBItemValidation.Exception:
-                        var itemList = "{ ";
-                        var prepend = "";
-
-                        foreach (var item in items)
-                        {
-                            itemList += $"{prepend} '{item.SelectedValue}'";
-                            prepend = ",";
-                        }
-
-                        itemList += " }";
-
+                        var itemList = "{ " + string.Join(", ", items.Select(item => $"'{item.SelectedValue}'")) + " }";
                         throw new ArgumentException(componentName + $" cannot select item with data value of '{Value?.ToString()}' from {itemList}");
 
                     case MBItemValidation.NoSelection:
