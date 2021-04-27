@@ -80,13 +80,13 @@
 
             @foreach (var item in Items)
             {
-                var listClass = "mdc-list-item" + (item.SelectedValue.Equals(Value) ? " mdc-list-item--selected" : "") + (item.Disabled == true ? " mdc-list-item--disabled" : "");
-                var ariaSelected = item.SelectedValue.Equals(Value);
+                var selected = NullAllowingEquals(item.SelectedValue, Value);
+                var listClass = "mdc-list-item" + (selected ? " mdc-list-item--selected" : "") + (item.Disabled == true ? " mdc-list-item--disabled" : "");
 
                 <li @key="@KeyGenerator(item.SelectedValue)"
                     class="@listClass @AlignClass"
                     data-value="@item.Label"
-                    aria-selected="@ariaSelected"
+                    aria-selected="@selected"
                     aria-disabled="@item.Disabled"
                     role="option">
 
