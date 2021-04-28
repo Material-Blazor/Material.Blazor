@@ -884,6 +884,9 @@ namespace Material.Blazor
                 {
                     foreach (var kvp in GroupedOrderedData)
                     {
+#if Logging
+                        Log("                   key == " + kvp.Key + " with " + kvp.Value.Count().ToString() + " rows");
+#endif
                         foreach (var rowValues in kvp.Value)
                         {
                             var rowKey = KeyExpression(rowValues.Value).ToString();
