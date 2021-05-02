@@ -89,25 +89,6 @@ namespace Material.Blazor
         }
 
 
-        //private bool _disposed = false;
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (_disposed)
-        //    {
-        //        return;
-        //    }
-
-        //    if (disposing)
-        //    {
-        //        ObjectReference?.Dispose();
-        //    }
-
-        //    _disposed = true;
-
-        //    base.Dispose(disposing);
-        //}
-
-
         /// <summary>
         /// Shows the dialog. This first renders the Blazor markup and then allows
         /// Material Theme to open the dialog, subsequently intiating all embedded Blazor components.

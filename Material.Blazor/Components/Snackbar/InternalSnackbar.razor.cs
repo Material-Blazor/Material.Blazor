@@ -29,14 +29,6 @@ namespace Material.Blazor.Internal
         }
 
 
-        //// Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-        //protected override void Dispose(bool disposing)
-        //{
-        //    ObjectReference?.Dispose();
-        //    base.Dispose(disposing);
-        //}
-
-
         /// <summary>
         /// Called by Material Components Web when a snackbar is closed, setting the Closed parameter in settings
         /// and calling any OnClose listeners.

@@ -175,25 +175,6 @@ namespace Material.Blazor
         }
 
 
-        //private bool _disposed = false;
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (_disposed)
-        //    {
-        //        return;
-        //    }
-
-        //    if (disposing && EditContext != null)
-        //    {
-        //        EditContext.OnValidationStateChanged -= OnValidationStateChangedCallback;
-        //    }
-
-        //    _disposed = true;
-
-        //    base.Dispose(disposing);
-        //}
-
-
         /// <summary>
         /// Callback for value the value setter.
         /// </summary>

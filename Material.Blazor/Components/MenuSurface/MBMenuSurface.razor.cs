@@ -39,25 +39,6 @@ namespace Material.Blazor
         }
 
 
-        //private bool _disposed = false;
-        //protected override void Dispose(bool disposing)
-        //{
-        //    if (_disposed)
-        //    {
-        //        return;
-        //    }
-
-        //    if (disposing)
-        //    {
-        //        ObjectReference?.Dispose();
-        //    }
-
-        //    _disposed = true;
-
-        //    base.Dispose(disposing);
-        //}
-
-
         /// <summary>
         /// For Material Theme to notify of menu closure via JS Interop.
         /// </summary>
