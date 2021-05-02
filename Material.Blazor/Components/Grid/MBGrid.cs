@@ -669,6 +669,17 @@ namespace Material.Blazor
                         colIndex++;
                     }
                 }
+#if Logging
+                var total = 0;
+                foreach (var c in stringArrayBody)
+                {
+                    if (c != null)
+                    {
+                        total += c.Length;
+                    }
+                }
+                Log("                   Measuring " + stringArrayBody.Length + " strings with a total size of " + total.ToString() + " bytes");
+#endif
                 ColumnWidthArray = await JsRuntime.InvokeAsync<float[]>(
                         "MaterialBlazor.MBGrid.getTextWidths",
                         "mb-grid-body-td-measure",
