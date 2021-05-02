@@ -89,23 +89,23 @@ namespace Material.Blazor
         }
 
 
-        private bool _disposed = false;
-        protected override void Dispose(bool disposing)
-        {
-            if (_disposed)
-            {
-                return;
-            }
+        //private bool _disposed = false;
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (_disposed)
+        //    {
+        //        return;
+        //    }
 
-            if (disposing)
-            {
-                ObjectReference?.Dispose();
-            }
+        //    if (disposing)
+        //    {
+        //        ObjectReference?.Dispose();
+        //    }
 
-            _disposed = true;
+        //    _disposed = true;
 
-            base.Dispose(disposing);
-        }
+        //    base.Dispose(disposing);
+        //}
 
 
         /// <summary>
@@ -143,7 +143,7 @@ namespace Material.Blazor
         {
             try
             {
-                await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDialog.show", DialogElem, ObjectReference, EscapeKeyAction, ScrimClickAction);
+                await InvokeVoidAsync("MaterialBlazor.MBDialog.show", DialogElem, ObjectReference, EscapeKeyAction, ScrimClickAction);
             }
             catch
             {
@@ -158,7 +158,7 @@ namespace Material.Blazor
         /// </summary>
         public async Task HideAsync()
         {
-            await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDialog.hide", DialogElem);
+            await InvokeVoidAsync("MaterialBlazor.MBDialog.hide", DialogElem);
             IsOpen = false;
             await InvokeAsync(StateHasChanged);
         }
@@ -181,5 +181,10 @@ namespace Material.Blazor
             IsOpen = false;
             await InvokeAsync(StateHasChanged);
         }
+
+
+        /// <inheritdoc/>
+        private protected override void DisposeMcwComponent() => ObjectReference?.Dispose();
+
     }
 }

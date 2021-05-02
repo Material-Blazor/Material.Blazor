@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -179,23 +180,23 @@ namespace Material.Blazor
         }
 
 
-        private bool _disposed = false;
-        protected override void Dispose(bool disposing)
-        {
-            if (_disposed)
-            {
-                return;
-            }
+        //private bool _disposed = false;
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (_disposed)
+        //    {
+        //        return;
+        //    }
 
-            if (disposing)
-            {
-                ObjectReference?.Dispose();
-            }
+        //    if (disposing)
+        //    {
+        //        ObjectReference?.Dispose();
+        //    }
 
-            _disposed = true;
+        //    _disposed = true;
 
-            base.Dispose(disposing);
-        }
+        //    base.Dispose(disposing);
+        //}
 
 
         private void SetParameters()
@@ -342,7 +343,7 @@ namespace Material.Blazor
             if (!IsOpen || forceOpen)
             {
                 IsOpen = true;
-                await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBAutoCompleteTextField.open", MenuReference);
+                await InvokeVoidAsync("MaterialBlazor.MBAutoCompleteTextField.open", MenuReference);
             }
         }
 
@@ -352,12 +353,16 @@ namespace Material.Blazor
             if (IsOpen || forceClose)
             {
                 IsOpen = false;
-                await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBAutoCompleteTextField.close", MenuReference);
+                await InvokeVoidAsync("MaterialBlazor.MBAutoCompleteTextField.close", MenuReference);
             }
         }
 
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBAutoCompleteTextField.init", TextField.ElementReference, MenuReference, ObjectReference);
+        private protected override Task InstantiateMcwComponentAsync() => InvokeVoidAsync("MaterialBlazor.MBAutoCompleteTextField.init", TextField.ElementReference, MenuReference, ObjectReference);
+
+
+        /// <inheritdoc/>
+        private protected override void DisposeMcwComponent() => ObjectReference?.Dispose();
     }
 }
