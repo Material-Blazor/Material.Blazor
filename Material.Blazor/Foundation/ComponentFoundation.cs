@@ -26,7 +26,6 @@ namespace Material.Blazor.Internal
 
 
         [Inject] private IBatchingJSRuntime InjectedBatchingJSRuntime { get; set; }
-        [Inject] private protected IJSRuntime JSRuntime { get; set; }
         private protected IBatchingJSRuntime BatchingJSRuntime { get; set; }
         [CascadingParameter] private MBDialog ParentDialog { get; set; }
         [Inject] private protected IMBTooltipService TooltipService { get; set; }
