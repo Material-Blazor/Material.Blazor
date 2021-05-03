@@ -16,10 +16,13 @@ namespace Material.Blazor.Internal
     /// </summary>
     internal sealed class DotNetObjectReferenceJsonConverterFactory : JsonConverterFactory
     {
-        private readonly Type converter;
+        private static readonly Type converter;
         public DotNetObjectReferenceJsonConverterFactory(IJSRuntime jsRuntime)
         {
             JSRuntime = jsRuntime;
+        }
+        static DotNetObjectReferenceJsonConverterFactory()
+        {
             converter = typeof(DotNetObjectReference<>).Assembly.GetType("Microsoft.JSInterop.Infrastructure.DotNetObjectReferenceJsonConverter`1");
         }
 
