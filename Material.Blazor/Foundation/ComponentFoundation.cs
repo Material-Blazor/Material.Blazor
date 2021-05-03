@@ -13,6 +13,7 @@ namespace Material.Blazor.Internal
     /// </summary>
     public abstract class ComponentFoundation : ComponentBase, IDisposable
     {
+        #region members
         /// <summary>
         /// A list of unmatched attributes that are used by and therefore essential for Material.Blazor. Works with 
         /// <see cref="MBCascadingDefaults.ConstrainSplattableAttributes"/> and <see cref="MBCascadingDefaults.AllowedSplattableAttributes"/>.
@@ -28,70 +29,13 @@ namespace Material.Blazor.Internal
         [CascadingParameter] private MBDialog ParentDialog { get; set; }
         [Inject] private protected IMBTooltipService TooltipService { get; set; }
         [Inject] private protected ILogger<ComponentFoundation> Logger { get; set; }
-
-
-        [CascadingParameter] protected MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults();
-
+        [Inject] private protected IMBLoggingLevelService LoggingLevelService { get; set; }
 
         /// <summary>
-        /// Gets or sets a collection of additional attributes that will be applied to the created element.
+        /// The current logging level. This is set in OnParametersSet
         /// </summary>
-        [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object> UnmatchedAttributes { get; set; }
+        private protected int LoggingLevel { get; set; }
 
-
-        /// <summary>
-        /// Indicates whether the component is disabled.
-        /// </summary>
-        [Parameter]
-        public bool? Disabled
-        {
-            get => disabled;
-            set
-            {
-                if (disabled != value)
-                {
-                    disabled = value;
-
-                    if (HasInstantiated)
-                    {
-                        OnDisabledSet?.Invoke();
-                    }
-                }
-            }
-        }
-
-
-        /// <summary>
-        /// The HTML id attribute is used to specify a unique id for an HTML element.
-        ///
-        /// You cannot have more than one element with the same id in an HTML document.
-        /// </summary>
-#pragma warning disable IDE1006 // Naming Styles
-        [Parameter] public string id { get; set; }
-#pragma warning restore IDE1006 // Naming Styles
-
-
-        /// <summary>
-        /// Additional CSS classes for the component.
-        /// </summary>
-#pragma warning disable IDE1006 // Naming Styles
-        [Parameter] public string @class { get; set; }
-#pragma warning restore IDE1006 // Naming Styles
-        protected string ActiveConditionalClasses => ConditionalCssClasses.ToString();
-
-
-        /// <summary>
-        /// Additional CSS style for the component.
-        /// </summary>
-#pragma warning disable IDE1006 // Naming Styles
-        [Parameter] public string style { get; set; }
-#pragma warning restore IDE1006 // Naming Styles
-
-
-        /// <summary>
-        /// A markup capable tooltip.
-        /// </summary>
-        [Parameter] public string Tooltip { get; set; }
 
 
         /// <summary>
@@ -154,14 +98,90 @@ namespace Material.Blazor.Internal
             _disposed = true;
         }
 
+        #endregion
 
-        public void Dispose()
+        #region parameters
+
+        [CascadingParameter] protected MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults();
+
+
+        /// <summary>
+        /// Gets or sets a collection of additional attributes that will be applied to the created element.
+        /// </summary>
+        [Parameter(CaptureUnmatchedValues = true)] public IReadOnlyDictionary<string, object> UnmatchedAttributes { get; set; }
+
+
+        /// <summary>
+        /// Indicates whether the component is disabled.
+        /// </summary>
+        [Parameter] public bool? Disabled
         {
-            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-            Dispose(disposing: true);
-            GC.SuppressFinalize(this);
+            get => disabled;
+            set
+            {
+                if (disabled != value)
+                {
+                    disabled = value;
+
+                    if (HasInstantiated)
+                    {
+                        OnDisabledSet?.Invoke();
+                    }
+                }
+            }
         }
 
+
+        /// <summary>
+        /// The HTML id attribute is used to specify a unique id for an HTML element.
+        ///
+        /// You cannot have more than one element with the same id in an HTML document.
+        /// </summary>
+#pragma warning disable IDE1006 // Naming Styles
+        [Parameter] public string id { get; set; }
+#pragma warning restore IDE1006 // Naming Styles
+
+
+        /// <summary>
+        /// Additional CSS classes for the component.
+        /// </summary>
+#pragma warning disable IDE1006 // Naming Styles
+        [Parameter] public string @class { get; set; }
+#pragma warning restore IDE1006 // Naming Styles
+        protected string ActiveConditionalClasses => ConditionalCssClasses.ToString();
+
+
+        /// <summary>
+        /// Additional CSS style for the component.
+        /// </summary>
+#pragma warning disable IDE1006 // Naming Styles
+        [Parameter] public string style { get; set; }
+#pragma warning restore IDE1006 // Naming Styles
+
+
+        /// <summary>
+        /// A markup capable tooltip.
+        /// </summary>
+        [Parameter] public string Tooltip { get; set; }
+
+        #endregion
+
+        #region AddTooltip
+
+        /// <summary>
+        /// Adds a tooltip if tooltip text has been provided.
+        /// </summary>
+        private protected void AddTooltip()
+        {
+            if (!string.IsNullOrWhiteSpace(Tooltip))
+            {
+                TooltipService.AddTooltip(TooltipId.Value, (MarkupString)Tooltip);
+            }
+        }
+
+        #endregion
+
+        # region AttributesToSplat
 
         /// <summary>
         /// Attributes ready for splatting in components. Guaranteed not null, unlike UnmatchedAttributes.
@@ -209,42 +229,9 @@ namespace Material.Blazor.Internal
                 .Where(kvp => kvp.Key.StartsWith("on")); // this is only a heuristic, as it's not technically guaranteed that all attributes that are non-event do not start with "on". However, it is impossible to list all event names, as with .net 6, the list of event names is not limited anymore.
         }
 
+        #endregion
 
-        /// <summary>
-        /// Material.Blazor components use <see cref="OnParametersSetAsync()"/> only.
-        /// </summary>
-        protected sealed override void OnParametersSet()
-        {
-            // For consistency, we only ever use OnParametersSetAsync. To prevent ourselves from using OnParametersSet accidentally, we seal this method from here on.
-        }
-
-
-        /// <summary>
-        /// Material.Blazor components use <see cref="OnInitializedAsync()"/> only.
-        /// </summary>
-        protected sealed override void OnInitialized()
-        {
-            JsRuntime = ParentDialog == null ? InjectedJsRuntime : new DialogAwareBatchingJSRuntime(InjectedJsRuntime, ParentDialog);
-            // For consistency, we only ever use OnInitializedAsync. To prevent ourselves from using OnInitialized accidentally, we seal this method from here on.
-
-            // the only thing we do here, is creating an ID for the tooltip, if we have one
-            if (!string.IsNullOrWhiteSpace(Tooltip))
-            {
-                TooltipId = TooltipIdProvider.NextId();
-            }
-        }
-
-
-        /// <summary>
-        /// When overriding this, call <c>await base.OnParametersSetAsync();</c> before any user code unless there is a very good reason not to.
-        /// </summary>
-        protected override async Task OnParametersSetAsync()
-        {
-            await base.OnParametersSetAsync();
-
-            CheckAttributeValidity();
-        }
-
+        #region CheckAttributeValidity
 
         /// <summary>
         /// Material.Blazor allows a user to limit unmatched attributes that will be splatted to a defined list in <see cref="MBCascadingDefaults"/>.
@@ -285,6 +272,96 @@ namespace Material.Blazor.Internal
             }
         }
 
+        #endregion
+
+        #region Dispose
+
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
+            Dispose(disposing: true);
+            GC.SuppressFinalize(this);
+        }
+
+        #endregion
+
+        #region Logxxxx
+
+        /// <summary>
+        /// Logs a Critical message identifying it as having come from Material.Blazor
+        /// </summary>
+        /// <param name="message">Log message</param>
+        protected void LogCritical(string message)
+        {
+            if (LoggingLevel <= (int)MBLoggingLevel.Critical)
+            {
+                Logger.LogCritical("Material.Blazor Critical: " + message);
+            }
+        }
+
+        /// <summary>
+        /// Logs an Error message identifying it as having come from Material.Blazor
+        /// </summary>
+        /// <param name="message">Log message</param>
+        protected void LogError(string message)
+        {
+            if (LoggingLevel <= (int)MBLoggingLevel.Error)
+            {
+                Logger.LogError("Material.Blazor Error: " + message);
+            }
+        }
+
+        /// <summary>
+        /// Logs a Warning message identifying it as having come from Material.Blazor
+        /// </summary>
+        /// <param name="message">Log message</param>
+        protected void LogWarning(string message)
+        {
+            if (LoggingLevel <= (int)MBLoggingLevel.Warning)
+            {
+                Logger.LogWarning("Material.Blazor Warning: " + message);
+            }
+        }
+
+        /// <summary>
+        /// Logs an Information message identifying it as having come from Material.Blazor
+        /// </summary>
+        /// <param name="message">Log message</param>
+        protected void LogInformation(string message)
+        {
+            if (LoggingLevel <= (int)MBLoggingLevel.Information)
+            {
+                Logger.LogInformation("Material.Blazor Information: " + message);
+            }
+        }
+
+        /// <summary>
+        /// Logs a Debug message identifying it as having come from Material.Blazor
+        /// </summary>
+        /// <param name="message">Log message</param>
+        protected void LogDebug(string message)
+        {
+            if (LoggingLevel <= (int)MBLoggingLevel.Debug)
+            {
+                Logger.LogDebug("Material.Blazor Debug: " + message);
+            }
+        }
+
+        /// <summary>
+        /// Logs a Trace message identifying it as having come from Material.Blazor
+        /// </summary>
+        /// <param name="message">Log message</param>
+        protected void LogTrace(string message)
+        {
+            if (LoggingLevel <= (int)MBLoggingLevel.Trace)
+            {
+                Logger.LogTrace("Material.Blazor Trace: " + message);
+            }
+        }
+
+        #endregion
+
+        #region OnAfterRender
 
         /// <summary>
         /// Material.Blazor components descending from <see cref="ComponentFoundation"/> _*must not*_ override <see cref="ComponentBase.OnAfterRender(bool)"/>.
@@ -294,6 +371,9 @@ namespace Material.Blazor.Internal
             // for consistency, we only ever use OnAfterRenderAsync. To prevent ourselves from using OnAfterRender accidentally, we seal this method from here on.
         }
 
+        #endregion
+
+        #region OnAfterRenderAsync
 
         /// <summary>
         /// Material.Blazor components generally *should not* override this because it handles the case where components need
@@ -311,312 +391,59 @@ namespace Material.Blazor.Internal
                 }
                 catch (Exception e)
                 {
-                    LogMBError(e, "Instantiating a component failed.");
+                    LogError("Instantiating a component failed with exception " + e.ToString());
                 }
             }
         }
 
+        #endregion
+
+        #region OnInitialized
 
         /// <summary>
-        /// Adds a tooltip if tooltip text has been provided.
+        /// Material.Blazor components use <see cref="OnInitializedAsync()"/> only.
         /// </summary>
-        private protected void AddTooltip()
+        protected sealed override void OnInitialized()
         {
+            JsRuntime = ParentDialog == null ? InjectedJsRuntime : new DialogAwareBatchingJSRuntime(InjectedJsRuntime, ParentDialog);
+            // For consistency, we only ever use OnInitializedAsync. To prevent ourselves from using OnInitialized accidentally, we seal this method from here on.
+
+            // the only thing we do here, is creating an ID for the tooltip, if we have one
             if (!string.IsNullOrWhiteSpace(Tooltip))
             {
-                TooltipService.AddTooltip(TooltipId.Value, (MarkupString)Tooltip);
+                TooltipId = TooltipIdProvider.NextId();
             }
         }
 
+        #endregion
+
+        #region OnParametersSet
 
         /// <summary>
-        /// Logs a critical message identifying it as having come from Material.Blazor
+        /// Material.Blazor components use <see cref="OnParametersSetAsync()"/> only.
         /// </summary>
-        /// <param name="eventId">The event id associated with the log.</param>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-        protected void LogMBCritical(EventId eventId, string message, params object[] args) => Logger.LogCritical(eventId, $"MATERIAL.BLAZOR CRITICAL - {message}", args);
+        protected sealed override void OnParametersSet()
+        {
+            // For consistency, we only ever use OnParametersSetAsync. To prevent ourselves from using OnParametersSet accidentally, we seal this method from here on.
+        }
 
+        #endregion
+
+        #region OnParametersSetAsync
 
         /// <summary>
-        /// Logs a critical message identifying it as having come from Material.Blazor
+        /// When overriding this, call <c>await base.OnParametersSetAsync();</c> before any user code unless there is a very good reason not to.
         /// </summary>
-        /// <param name="eventId">The event id associated with the log.</param>
-        /// <param name="exception">The exception to log.</param>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-        protected void LogMBCritical(EventId eventId, Exception exception, string message, params object[] args) => Logger.LogCritical(eventId, exception, $"MATERIAL.BLAZOR CRITICAL - {message}", args);
+        protected override async Task OnParametersSetAsync()
+        {
+            await base.OnParametersSetAsync();
 
+            CheckAttributeValidity();
 
-        /// <summary>
-        /// Logs a critical message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-        protected void LogMBCritical(string message, params object[] args) => Logger.LogCritical($"MATERIAL.BLAZOR CRITICAL - {message}", args);
+            LoggingLevel = LoggingLevelService.CurrentLevel();
+        }
 
+        #endregion
 
-        /// <summary>
-        /// Logs a critical message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="exception">The exception to log.</param>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-        protected void LogMBCritical(Exception exception, string message, params object[] args) => Logger.LogCritical(exception, $"MATERIAL.BLAZOR CRITICAL - {message}", args);
-
-
-        /// <summary>
-        /// Logs a debug message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="eventId">The event id associated with the log.</param>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-#if Logging
-        protected void LogMBDebug(EventId eventId, string message, params object[] args) => Logger.LogDebug(eventId, $"MATERIAL.BLAZOR DEBUG - {message}", args);
-#else
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
-        protected void LogMBDebug(EventId eventId, string message, params object[] args) { }
-#endif
-
-
-        /// <summary>
-        /// Logs a debug message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="eventId">The event id associated with the log.</param>
-        /// <param name="exception">The exception to log.</param>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-#if Logging
-        protected void LogMBDebug(EventId eventId, Exception exception, string message, params object[] args) => Logger.LogDebug(eventId, exception, $"MATERIAL.BLAZOR DEBUG - {message}", args);
-#else
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
-        protected void LogMBDebug(EventId eventId, Exception exception, string message, params object[] args) { }
-#endif
-
-
-        /// <summary>
-        /// Logs a debug message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-#if Logging
-        protected void LogMBDebug(string message, params object[] args) => Logger.LogDebug($"MATERIAL.BLAZOR DEBUG - {message}", args);
-#else
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
-        protected void LogMBDebug(string message, params object[] args) { }
-#endif
-
-
-        /// <summary>
-        /// Logs a debug message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="exception">The exception to log.</param>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-#if Logging
-        protected void LogMBDebug(Exception exception, string message, params object[] args) => Logger.LogDebug(exception, $"MATERIAL.BLAZOR DEBUG - {message}", args);
-#else
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
-        protected void LogMBDebug(Exception exception, string message, params object[] args) { }
-#endif
-
-
-        /// <summary>
-        /// Logs a debug message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="eventId">The event id associated with the log.</param>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-#if LoggingVerbose
-        protected void LogMBDebugVerbose(EventId eventId, string message, params object[] args) => Logger.LogDebug(eventId, $"MATERIAL.BLAZOR DEBUG - {message}", args);
-#else
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
-        protected void LogMBDebugVerbose(EventId eventId, string message, params object[] args) { }
-#endif
-
-
-        /// <summary>
-        /// Logs a debug message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="eventId">The event id associated with the log.</param>
-        /// <param name="exception">The exception to log.</param>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-#if LoggingVerbose
-        protected void LogMBDebugVerbose(EventId eventId, Exception exception, string message, params object[] args) => Logger.LogDebug(eventId, exception, $"MATERIAL.BLAZOR DEBUG - {message}", args);
-#else
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
-        protected void LogMBDebugVerbose(EventId eventId, Exception exception, string message, params object[] args) { }
-#endif
-
-
-        /// <summary>
-        /// Logs a debug message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-#if LoggingVerbose
-        protected void LogMBDebugVerbose(string message, params object[] args) => Logger.LogDebug($"MATERIAL.BLAZOR DEBUG - {message}", args);
-#else
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
-        protected void LogMBDebugVerbose(string message, params object[] args) { }
-#endif
-
-
-        /// <summary>
-        /// Logs a debug message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="exception">The exception to log.</param>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-#if LoggingVerbose
-        protected void LogMBDebugVerbose(Exception exception, string message, params object[] args) => Logger.LogDebug(exception, $"MATERIAL.BLAZOR DEBUG - {message}", args);
-#else
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter", Justification = "Null logging function")]
-        protected void LogMBDebugVerbose(Exception exception, string message, params object[] args) { }
-#endif
-
-        /// <summary>
-        /// Logs a error message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="eventId">The event id associated with the log.</param>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-        protected void LogMBError(EventId eventId, string message, params object[] args) => Logger.LogError(eventId, $"MATERIAL.BLAZOR ERROR - {message}", args);
-
-
-        /// <summary>
-        /// Logs a error message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="eventId">The event id associated with the log.</param>
-        /// <param name="exception">The exception to log.</param>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-        protected void LogMBError(EventId eventId, Exception exception, string message, params object[] args) => Logger.LogError(eventId, exception, $"MATERIAL.BLAZOR ERROR - {message}", args);
-
-
-        /// <summary>
-        /// Logs a error message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-        protected void LogMBError(string message, params object[] args) => Logger.LogError($"MATERIAL.BLAZOR ERROR - {message}", args);
-
-
-        /// <summary>
-        /// Logs a error message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="exception">The exception to log.</param>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-        protected void LogMBError(Exception exception, string message, params object[] args) => Logger.LogError(exception, $"MATERIAL.BLAZOR ERROR - {message}", args);
-
-
-        /// <summary>
-        /// Logs a information message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="eventId">The event id associated with the log.</param>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-        protected void LogMBInformation(EventId eventId, string message, params object[] args) => Logger.LogInformation(eventId, $"MATERIAL.BLAZOR INFORMATION - {message}", args);
-
-
-        /// <summary>
-        /// Logs a information message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="eventId">The event id associated with the log.</param>
-        /// <param name="exception">The exception to log.</param>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-        protected void LogMBInformation(EventId eventId, Exception exception, string message, params object[] args) => Logger.LogInformation(eventId, exception, $"MATERIAL.BLAZOR INFORMATION - {message}", args);
-
-
-        /// <summary>
-        /// Logs a information message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-        protected void LogMBInformation(string message, params object[] args) => Logger.LogInformation($"MATERIAL.BLAZOR INFORMATION - {message}", args);
-
-
-        /// <summary>
-        /// Logs a information message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="exception">The exception to log.</param>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-        protected void LogMBInformation(Exception exception, string message, params object[] args) => Logger.LogInformation(exception, $"MATERIAL.BLAZOR INFORMATION - {message}", args);
-
-
-        /// <summary>
-        /// Logs a trace message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="eventId">The event id associated with the log.</param>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-        protected void LogMBTrace(EventId eventId, string message, params object[] args) => Logger.LogCritical(eventId, $"MATERIAL.BLAZOR TRACE - {message}", args);
-
-
-        /// <summary>
-        /// Logs a trace message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="eventId">The event id associated with the log.</param>
-        /// <param name="exception">The exception to log.</param>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-        protected void LogMBTrace(EventId eventId, Exception exception, string message, params object[] args) => Logger.LogTrace(eventId, exception, $"MATERIAL.BLAZOR TRACE - {message}", args);
-
-
-        /// <summary>
-        /// Logs a trace message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-        protected void LogMBTrace(string message, params object[] args) => Logger.LogTrace($"MATERIAL.BLAZOR TRACE - {message}", args);
-
-
-        /// <summary>
-        /// Logs a trace message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="exception">The exception to log.</param>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-        protected void LogMBTrace(Exception exception, string message, params object[] args) => Logger.LogTrace(exception, $"MATERIAL.BLAZOR TRACE - {message}", args);
-
-
-        /// <summary>
-        /// Logs a warning message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="eventId">The event id associated with the log.</param>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-        protected void LogMBWarning(EventId eventId, string message, params object[] args) => Logger.LogWarning(eventId, $"MATERIAL.BLAZOR WARNING - {message}", args);
-
-
-        /// <summary>
-        /// Logs a warning message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="eventId">The event id associated with the log.</param>
-        /// <param name="exception">The exception to log.</param>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-        protected void LogMBWarning(EventId eventId, Exception exception, string message, params object[] args) => Logger.LogWarning(eventId, exception, $"MATERIAL.BLAZOR WARNING - {message}", args);
-
-
-        /// <summary>
-        /// Logs a warning message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-        protected void LogMBWarning(string message, params object[] args) => Logger.LogWarning($"MATERIAL.BLAZOR WARNING - {message}", args);
-
-
-        /// <summary>
-        /// Logs a warning message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="exception">The exception to log.</param>
-        /// <param name="message">Format string of the log message in message template format. Example: "User {User} logged in from {Address}</param>
-        /// <param name="args">An object array that contains zero or more objects to format.</param>
-        protected void LogMBWarning(Exception exception, string message, params object[] args) => Logger.LogWarning(exception, $"MATERIAL.BLAZOR WARNING - {message}", args);
     }
 }

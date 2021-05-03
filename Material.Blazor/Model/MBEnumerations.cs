@@ -444,6 +444,21 @@ namespace Material.Blazor
         Avatar
     }
 
+    /// <summary>
+    /// Type for the level of logging performed by M.B
+    /// They follow the Microsoft.Logging.LogLevel definition
+    /// </summary>
+    public enum MBLoggingLevel
+    {
+        Trace = 0,
+        Debug = 1,
+        Information = 2,
+        Warning = 3,
+        Error = 4,
+        Critical = 5,
+        None = 0,
+    }
+
 
     /// <summary>
     /// Determines the positioning and width of a menu surface.
