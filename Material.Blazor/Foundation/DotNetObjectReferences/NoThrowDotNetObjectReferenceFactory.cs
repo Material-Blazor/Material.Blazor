@@ -3,6 +3,7 @@ using System.Text.Json;
 
 namespace Material.Blazor.Internal
 {
+    /// <inheritdoc/>
     internal class NoThrowDotNetObjectReferenceFactory : INoThrowDotNetObjectReferenceFactory
     {
         private readonly JsonSerializerOptions options;

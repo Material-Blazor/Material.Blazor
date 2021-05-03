@@ -5,6 +5,15 @@ using System.Text.Json.Serialization;
 
 namespace Material.Blazor.Internal
 {
+    /// <summary>
+    /// This is a utility type to facilitate extracting ID information from <see cref="DotNetObjectReference{TValue}"/> instances.
+    /// We need it because <see cref="DotNetObjectReference{TValue}"/> throws on serialization, which messes up batching.
+    /// This code is based on https://github.com/dotnet/aspnetcore/blob/014a198bccaa1d8e2f8db454e704ad19fff5e47e/src/JSInterop/Microsoft.JSInterop/src/Infrastructure/DotNetObjectReferenceJsonConverterFactory.cs
+    /// Copyright (c) .NET Foundation. All rights reserved.
+    /// Licensed under the Apache License, Version 2.0. See https://github.com/dotnet/aspnetcore for details.
+    /// 
+    /// Since  <see cref="Microsoft.JSInterop.Infrastructure.DotNetObjectReferenceJsonConverter{TValue}"/> is internal, we have to get that converter via the assembly.
+    /// </summary>
     internal sealed class DotNetObjectReferenceJsonConverterFactory : JsonConverterFactory
     {
         private readonly Type converter;
