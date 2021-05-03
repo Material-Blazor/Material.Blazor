@@ -25,15 +25,6 @@
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
   </PropertyGroup>
   
-  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
-    <!--<DefineConstants>Logging</DefineConstants>-->
-    <DefineConstants>Logging;LoggingVerbose</DefineConstants>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <DefineConstants>NoLogging</DefineConstants>
-  </PropertyGroup>
-
   <PropertyGroup>
     <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
   </PropertyGroup>
