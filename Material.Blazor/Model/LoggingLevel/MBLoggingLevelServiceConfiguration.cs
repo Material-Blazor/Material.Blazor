@@ -8,7 +8,7 @@ namespace Material.Blazor
     /// </summary>
     public class MBLoggingLevelServiceConfiguration
     {
-        public const MBLoggingLevel DefaultLoggingLevel = MBLoggingLevel.Error;
+        public const MBLoggingLevel DefaultLoggingLevel = MBLoggingLevel.Warning;
 
 
         private MBLoggingLevel loggingLevel = DefaultLoggingLevel;
