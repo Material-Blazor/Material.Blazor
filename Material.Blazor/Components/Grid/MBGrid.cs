@@ -117,8 +117,8 @@ namespace Material.Blazor
         private string GridBodyID { get; set; } = Utilities.GenerateUniqueElementName();
         private string GridHeaderID { get; set; } = Utilities.GenerateUniqueElementName();
         private bool HasCompletedFullRender { get; set; } = false;
-        private bool HasRendered { get; set; } = false;
         private bool IsFirstRender { get; set; } = true;
+        private bool IsMeasurementNeeded { get; set; } = false;
         private float ScrollWidth { get; set; }
         private string SelectedKey { get; set; } = "";
 
@@ -720,8 +720,6 @@ namespace Material.Blazor
             {
                 await base.OnAfterRenderAsync(firstRender);
 
-                HasRendered = true;
-
 #if Logging
                 GridLogDebug("OnAfterRenderAsync entered");
                 GridLogDebug("                   firstRender: " + firstRender.ToString());
@@ -729,9 +727,10 @@ namespace Material.Blazor
                 GridLogDebug("                   HasCompletedFullRender: " + HasCompletedFullRender.ToString());
 #endif
 
-                if (IsFirstRender)
+                IsFirstRender = false;
+                if (IsMeasurementNeeded)
                 {
-                    IsFirstRender = false;
+                    IsMeasurementNeeded = false;
 #if Logging
                     GridLogDebug("                   Calling MeasureWidthsAsync");
 #endif
@@ -785,38 +784,6 @@ namespace Material.Blazor
             else
             {
                 OnMouseClick.InvokeAsync(newRowKey);
-            }
-        }
-        #endregion
-
-        #region OnParametersSetAsync
-        protected override async Task OnParametersSetAsync()
-        {
-            await semaphoreSlim.WaitAsync();
-            try
-            {
-#if Logging
-                GridLogDebug("OnParametersSetAsync entry");
-                GridLogDebug("                     HasRendered: " + HasRendered.ToString());
-                GridLogDebug("                     HasCompletedFullRender: " + HasCompletedFullRender.ToString());
-#endif
-
-                await base.OnParametersSetAsync();
-
-                if (HasRendered)
-                {
-                    GridLogDebug("                     Calling MeasureWidthsAsync");
-                    await MeasureWidthsAsync();
-                    GridLogDebug("                     Returned from MeasureWidthsAsync");
-                    StateHasChanged();
-                }
-            }
-            finally
-            {
-#if Logging
-                GridLogDebug("                     about to release semaphore (OnParametersSetAsync)");
-#endif
-                semaphoreSlim.Release();
             }
         }
         #endregion
@@ -1006,6 +973,7 @@ namespace Material.Blazor
                 else
                 {
                     ShouldRenderValue = true;
+                    IsMeasurementNeeded = true;
                     oldParameterHash = newParameterHash;
 #if Logging
                     GridLogDebug("                   DIFFERING hash");
