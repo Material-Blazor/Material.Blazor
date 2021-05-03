@@ -56,6 +56,9 @@ namespace Material.Blazor.Internal
             var call = new Call(identifier, args);
             queuedCalls.TryAdd(batchingWrapper.CrossReferenceId, new());
             queuedCalls[batchingWrapper.CrossReferenceId].Enqueue(call);
+
+            batchingWrapper.InvokeStateHasChanged();
+
             return call.Task;
         }
 

@@ -1,9 +1,5 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Material.Blazor
@@ -25,6 +21,17 @@ namespace Material.Blazor
         /// The child content containing Material.Blazor components whose JS Interop calls are to be batched.
         /// </summary>
         [Parameter] public RenderFragment ChildContent { get; set; }
+
+
+        /// <summary>
+        /// Invokes SHC.
+        /// </summary>
+        /// <returns></returns>
+        internal void InvokeStateHasChanged()
+        {
+            //return InvokeAsync(StateHasChanged);
+            StateHasChanged();
+        }
 
 
         protected override async Task OnInitializedAsync()
