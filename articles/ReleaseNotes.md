@@ -18,6 +18,18 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 <br />
 
 
+#### [2.0.0-preview.7](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.5)
+NOT YET RELEASED
+
+**Updates**
+
+- Added an internal logging service for M.B. It's logging level can be controlled using the AddMBServices service extension with the new loggingLevelServiceConfiguration parameter.
+
+**New components**
+
+**Breaking Changes**
+
+
 #### [2.0.0-preview.6](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.5)
 2021-04-26
 

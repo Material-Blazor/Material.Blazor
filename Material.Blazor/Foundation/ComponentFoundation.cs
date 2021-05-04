@@ -27,9 +27,9 @@ namespace Material.Blazor.Internal
         [Inject] private IBatchingJSRuntime InjectedJsRuntime { get; set; }
         protected IBatchingJSRuntime JsRuntime { get; set; }
         [CascadingParameter] private MBDialog ParentDialog { get; set; }
-        [Inject] private protected IMBTooltipService TooltipService { get; set; }
         [Inject] private protected ILogger<ComponentFoundation> Logger { get; set; }
-        [Inject] private protected IMBLoggingLevelService LoggingLevelService { get; set; }
+        [Inject] private protected IMBTooltipService TooltipService { get; set; }
+        [Inject] private protected IMBLoggingService LoggingService { get; set; }
 
         /// <summary>
         /// The current logging level. This is set in OnParametersSet
@@ -285,82 +285,6 @@ namespace Material.Blazor.Internal
 
         #endregion
 
-        #region Logxxxx
-
-        /// <summary>
-        /// Logs a Critical message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="message">Log message</param>
-        protected void LogCritical(string message)
-        {
-            if (LoggingLevel <= (int)MBLoggingLevel.Critical)
-            {
-                Logger.LogCritical("Material.Blazor Critical: " + message);
-            }
-        }
-
-        /// <summary>
-        /// Logs an Error message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="message">Log message</param>
-        protected void LogError(string message)
-        {
-            if (LoggingLevel <= (int)MBLoggingLevel.Error)
-            {
-                Logger.LogError("Material.Blazor Error: " + message);
-            }
-        }
-
-        /// <summary>
-        /// Logs a Warning message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="message">Log message</param>
-        protected void LogWarning(string message)
-        {
-            if (LoggingLevel <= (int)MBLoggingLevel.Warning)
-            {
-                Logger.LogWarning("Material.Blazor Warning: " + message);
-            }
-        }
-
-        /// <summary>
-        /// Logs an Information message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="message">Log message</param>
-        protected void LogInformation(string message)
-        {
-            if (LoggingLevel <= (int)MBLoggingLevel.Information)
-            {
-                Logger.LogInformation("Material.Blazor Information: " + message);
-            }
-        }
-
-        /// <summary>
-        /// Logs a Debug message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="message">Log message</param>
-        protected void LogDebug(string message)
-        {
-            if (LoggingLevel <= (int)MBLoggingLevel.Debug)
-            {
-                Logger.LogDebug("Material.Blazor Debug: " + message);
-            }
-        }
-
-        /// <summary>
-        /// Logs a Trace message identifying it as having come from Material.Blazor
-        /// </summary>
-        /// <param name="message">Log message</param>
-        protected void LogTrace(string message)
-        {
-            if (LoggingLevel <= (int)MBLoggingLevel.Trace)
-            {
-                Logger.LogTrace("Material.Blazor Trace: " + message);
-            }
-        }
-
-        #endregion
-
         #region OnAfterRender
 
         /// <summary>
@@ -391,7 +315,7 @@ namespace Material.Blazor.Internal
                 }
                 catch (Exception e)
                 {
-                    LogError("Instantiating a component failed with exception " + e.ToString());
+                    LoggingService.LogError("Instantiating a component failed with exception " + e.ToString());
                 }
             }
         }
@@ -413,6 +337,8 @@ namespace Material.Blazor.Internal
             {
                 TooltipId = TooltipIdProvider.NextId();
             }
+
+            LoggingService.SetLogger(Logger);
         }
 
         #endregion
@@ -440,7 +366,7 @@ namespace Material.Blazor.Internal
 
             CheckAttributeValidity();
 
-            LoggingLevel = LoggingLevelService.CurrentLevel();
+            LoggingLevel = LoggingService.CurrentLevel();
         }
 
         #endregion
