@@ -4,9 +4,9 @@ using System.Collections.Generic;
 namespace Material.Blazor
 {
     /// <summary>
-    /// Configuration for <see cref="IMBLoggingLevelService"/>.
+    /// Configuration for <see cref="IMBLoggingService"/>.
     /// </summary>
-    public class MBLoggingLevelServiceConfiguration
+    public class MBLoggingServiceConfiguration
     {
         public const MBLoggingLevel DefaultLoggingLevel = MBLoggingLevel.Warning;
 
@@ -24,7 +24,7 @@ namespace Material.Blazor
         internal event Action OnValueChanged;
 
 
-        public MBLoggingLevelServiceConfiguration()
+        public MBLoggingServiceConfiguration()
         {
             LoggingLevel = DefaultLoggingLevel;
         }

@@ -1,6 +1,7 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Material.Blazor
 {
@@ -14,19 +15,19 @@ namespace Material.Blazor
         /// <param name="snackbarServiceConfiguration"></param>
         /// <param name="toastServiceConfiguration"></param>
         /// <param name="animatedNavigationManagerServiceConfiguration"></param>
-        /// <param name="loggingLevelServiceConfiguration"></param>
+        /// <param name="loggingServiceConfiguration"></param>
         /// <returns></returns>
         public static IServiceCollection AddMBServices(
-            this IServiceCollection services, 
-            MBSnackbarServiceConfiguration snackbarServiceConfiguration = null, 
-            MBToastServiceConfiguration toastServiceConfiguration = null, 
+            this IServiceCollection services,
             MBAnimatedNavigationManagerServiceConfiguration animatedNavigationManagerServiceConfiguration = null,
-            MBLoggingLevelServiceConfiguration loggingLevelServiceConfiguration = null)
+            MBLoggingServiceConfiguration loggingServiceConfiguration = null,
+            MBSnackbarServiceConfiguration snackbarServiceConfiguration = null, 
+            MBToastServiceConfiguration toastServiceConfiguration = null) 
         {
             return services
                 .AddScoped<IBatchingJSRuntime, BatchingJSRuntime>()
                 .AddMBAnimatedNavigationService(animatedNavigationManagerServiceConfiguration)
-                .AddMBLoggingLevelService(loggingLevelServiceConfiguration)
+                .AddMBLoggingService(loggingServiceConfiguration)
                 .AddMBSnackbarService(snackbarServiceConfiguration)
                 .AddMBToastService(toastServiceConfiguration)
                 .AddMBTooltipService();
@@ -59,7 +60,7 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Adds a Material.Blazor <see cref="IMBLoggingLevelService"/> to the service collection
+        /// Adds a Material.Blazor <see cref="IMBLoggingService"/> to the service collection
         /// <example>
         /// <para>You can optionally add configuration:</para>
         /// <code>
@@ -70,14 +71,14 @@ namespace Material.Blazor
         /// </code>
         /// </example>
         /// </summary>
-        private static IServiceCollection AddMBLoggingLevelService(this IServiceCollection services, MBLoggingLevelServiceConfiguration configuration = null)
+        private static IServiceCollection AddMBLoggingService(this IServiceCollection services, MBLoggingServiceConfiguration configuration = null)
         {
             if (configuration == null)
             {
-                configuration = new MBLoggingLevelServiceConfiguration();
+                configuration = new MBLoggingServiceConfiguration();
             }
 
-            return services.AddScoped<IMBLoggingLevelService, LoggingLevelService>(serviceProvider => new LoggingLevelService(configuration));
+            return services.AddScoped<IMBLoggingService, LoggingService>(serviceProvider => new LoggingService(configuration));
         }
 
 

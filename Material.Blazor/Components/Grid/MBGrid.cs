@@ -117,7 +117,7 @@ namespace Material.Blazor
         private string GridBodyID { get; set; } = Utilities.GenerateUniqueElementName();
         private string GridHeaderID { get; set; } = Utilities.GenerateUniqueElementName();
         private bool HasCompletedFullRender { get; set; } = false;
-        private bool IsFirstRender { get; set; } = true;
+        private bool IsSimpleRender { get; set; } = true;
         private bool IsMeasurementNeeded { get; set; } = false;
         private float ScrollWidth { get; set; }
         private string SelectedKey { get; set; } = "";
@@ -191,13 +191,13 @@ namespace Material.Blazor
         #region BuildRenderTree
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
-            if (IsFirstRender ||
+            if (IsSimpleRender ||
                 (!ShouldRenderValue) ||
                 (ColumnWidthArray == null) ||
                 ((ColumnWidthArray != null) && (ColumnWidthArray.Length != ColumnConfigurations.Count())))
             {
 #if Logging
-                GridLogDebug("BuildRenderTree (Simple) entered (IsFirstRender == " + IsFirstRender.ToString());
+                GridLogDebug("BuildRenderTree (Simple) entered (IsFirstRender == " + IsSimpleRender.ToString());
 #endif
                 // We are going to render a DIV and nothing else
                 // We need to get into OnAfterRenderAsync so that we can use JS interop to measure
@@ -559,11 +559,11 @@ namespace Material.Blazor
         {
             if (string.IsNullOrWhiteSpace(LogIdentification))
             {
-                LogDebug(message);
+                LoggingService.LogDebug(message);
             }
             else
             {
-                LogDebug("[" + LogIdentification + "] " + message);
+                LoggingService.LogDebug("[" + LogIdentification + "] " + message);
             }
         }
 
@@ -571,11 +571,11 @@ namespace Material.Blazor
         {
             if (string.IsNullOrWhiteSpace(LogIdentification))
             {
-                LogTrace(message);
+                LoggingService.LogTrace(message);
             }
             else
             {
-                LogTrace("[" + LogIdentification + "] " + message);
+                LoggingService.LogTrace("[" + LogIdentification + "] " + message);
             }
         }
 
@@ -723,11 +723,11 @@ namespace Material.Blazor
 #if Logging
                 GridLogDebug("OnAfterRenderAsync entered");
                 GridLogDebug("                   firstRender: " + firstRender.ToString());
-                GridLogDebug("                   IsFirstRender: " + IsFirstRender.ToString());
+                GridLogDebug("                   IsFirstRender: " + IsSimpleRender.ToString());
                 GridLogDebug("                   HasCompletedFullRender: " + HasCompletedFullRender.ToString());
 #endif
 
-                IsFirstRender = false;
+                IsSimpleRender = false;
                 if (IsMeasurementNeeded)
                 {
                     IsMeasurementNeeded = false;
@@ -973,6 +973,7 @@ namespace Material.Blazor
                 else
                 {
                     ShouldRenderValue = true;
+                    IsSimpleRender = true;
                     IsMeasurementNeeded = true;
                     oldParameterHash = newParameterHash;
 #if Logging

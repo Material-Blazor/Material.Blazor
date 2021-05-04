@@ -70,7 +70,7 @@ export function getTextWidths(
         ele.innerText = textToMeasure[i];
 
         // Get the width
-        var width: string = "20px"; // window.getComputedStyle(ele).width;
+        var width: string = window.getComputedStyle(ele).width;
         var unadornedWidth: string = width.slice(0, width.indexOf("px"));
         var numericWidth: number = parseFloat(unadornedWidth);
         var indexMod = i % currentWidths.length;
