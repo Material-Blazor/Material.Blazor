@@ -12,7 +12,7 @@
         <RepositoryUrl>https://github.com/Material-Blazor/Material.Blazor</RepositoryUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageLicenseFile></PackageLicenseFile>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <!--<PackageReadmeFile>README.md</PackageReadmeFile>-->
         <PackageReleaseNotes></PackageReleaseNotes>
         <NeutralLanguage>en</NeutralLanguage>
         <Copyright>Dioptra and Optimium Health</Copyright>
@@ -30,9 +30,9 @@
         <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
     </PropertyGroup>
 
-    <ItemGroup>
+    <!--<ItemGroup>
         <None Include="..\README.md" Pack="true" PackagePath="\"/>
-    </ItemGroup>
+    </ItemGroup>-->
 
     <ItemGroup>
         <SupportedPlatform Include="browser" />
