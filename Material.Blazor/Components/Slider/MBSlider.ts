@@ -1,17 +1,16 @@
 ﻿import { MDCSlider } from '@material/slider';
-import * as _ from "lodash";
+import * as _ from '../../Scripts/LodashParts';
 
 export function init(elem, dotNetObject, eventType, delay) {
     elem._slider = MDCSlider.attachTo(elem);
     elem._eventType = eventType;
-
     let debounceNotify = _.debounce(function () {
         dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
-    }, delay); 
+    }, delay, {}); 
 
     let throttleNotify = _.throttle(function () {
         dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
-    }, delay); 
+    }, delay, {}); 
 
     const thumbUpCallback = () => {
         dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
