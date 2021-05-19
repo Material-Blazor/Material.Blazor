@@ -1,14 +1,14 @@
 ﻿import { MDCSlider } from '@material/slider';
-import * as _ from '../../Scripts/LodashParts';
+import { debounce, throttle } from '../../Scripts/LodashParts';
 
 export function init(elem, dotNetObject, eventType, delay) {
     elem._slider = MDCSlider.attachTo(elem);
     elem._eventType = eventType;
-    let debounceNotify = _.debounce(function () {
+    let debounceNotify = debounce(function () {
         dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
     }, delay, {}); 
 
-    let throttleNotify = _.throttle(function () {
+    let throttleNotify = throttle(function () {
         dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
     }, delay, {}); 
 
