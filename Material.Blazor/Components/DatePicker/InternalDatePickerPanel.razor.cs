@@ -111,7 +111,6 @@ namespace Material.Blazor.Internal
         private List<int> Years { get; set; } = new List<int>();
 
         private List<int[]> YearsInGroupsOfFour { get; set; } = new List<int[]>();
-        private DateTime InitialDate { get; set; }
 
         private DateTime CachedComponentValue { get; set; }
 
@@ -166,14 +165,16 @@ namespace Material.Blazor.Internal
 
         internal void SetParameters(bool forceSetup, DateTime? newValue = null)
         {
-            if (forceSetup || ComponentValue != CachedComponentValue || MinDate != CachedMinDate || MaxDate != CachedMaxDate)
+            if (forceSetup || 
+                ComponentValue != CachedComponentValue || 
+                MinDate != CachedMinDate || 
+                MaxDate != CachedMaxDate)
             {
                 if (newValue != null)
                 {
                     Value = (DateTime)newValue;
                 }
 
-                InitialDate = ComponentValue;
                 CachedComponentValue = ComponentValue;
                 CachedMinDate = MinDate;
                 CachedMaxDate = MaxDate;
@@ -184,7 +185,7 @@ namespace Material.Blazor.Internal
                 var today = DateTime.Today;
 
                 if (SupressDefaultDate &&
-                    (ComponentValue == default) &&
+                    (Value == default) &&
                     (today >= MinDate) &&
                     (today <= MaxDate))
                 {

@@ -153,7 +153,8 @@ namespace Material.Blazor
                 if (AdditionalStyle.Length > 0)
                 {
                     AdditionalStyle = "";
-                    StateHasChanged();
+                    AllowNextShouldRender();
+                    InvokeAsync(StateHasChanged);
                 }
             }
             InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, AppliedDateFormat)).ConfigureAwait(false));
