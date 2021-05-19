@@ -57,10 +57,10 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Date set to indicate that 'no date is selected' which will force the initial panel to
-        /// be set to today's date. Typically set to the default(DateTime) if it is used
+        /// Set to indicate that if the value is default(DateTime) then no date is initially shown
+        /// and the panel will start with the current year and month
         /// </summary>
-        [Parameter] public DateTime? NoSelectedDateDate { get; set; }
+        [Parameter] public bool SupressDefaultDate { get; set; }
 
 
         /// <summary>
@@ -82,6 +82,7 @@ namespace Material.Blazor
         [Parameter] public MBMenuSurfacePositioning MenuSurfacePositioning { get; set; } = MBMenuSurfacePositioning.Regular;
 
 
+        private string AdditionalStyle { get; set; } = "";
         private MBDensity AppliedDensity => CascadingDefaults.AppliedSelectDensity(Density);
         private string AppliedDateFormat => CascadingDefaults.AppliedDateFormat(DateFormat);
         private MBSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
@@ -105,6 +106,7 @@ namespace Material.Blazor
         }
 
 
+        private readonly string invisibleText = "color: rgba(0, 0, 0, 0.0); ";
         private readonly string labelId = Utilities.GenerateUniqueElementName();
         private readonly string listboxId = Utilities.GenerateUniqueElementName();
         private readonly string selectedTextId = Utilities.GenerateUniqueElementName();
@@ -125,6 +127,11 @@ namespace Material.Blazor
             SetComponentValue += OnValueSetCallback;
 
             OnDisabledSet += OnDisabledSetCallback;
+
+            if (SupressDefaultDate && (Value == default))
+            {
+                AdditionalStyle = invisibleText;
+            }
         }
 
 
@@ -137,10 +144,19 @@ namespace Material.Blazor
         {
             Panel.SetParameters(true, Value);
 
-            if (!((NoSelectedDateDate != null) && (Value == NoSelectedDateDate)))
+            if (SupressDefaultDate && (Value == default))
             {
-                InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, AppliedDateFormat)).ConfigureAwait(false));
+                AdditionalStyle = invisibleText;
             }
+            else
+            {
+                if (AdditionalStyle.Length > 0)
+                {
+                    AdditionalStyle = "";
+                    StateHasChanged();
+                }
+            }
+            InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, AppliedDateFormat)).ConfigureAwait(false));
         }
 
 

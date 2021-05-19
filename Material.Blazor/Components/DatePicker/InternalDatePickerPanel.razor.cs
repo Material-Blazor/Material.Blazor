@@ -65,10 +65,10 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// Date set to indicate that 'no date is selected' which will force the initial panel to
-        /// be set to today's date. Typically set to the default(DateTime) if it is used
+        /// Set to indicate that if the value is default(DateTime) then no date is initially shown
+        /// and the panel will start with the current year and month
         /// </summary>
-        [Parameter] public DateTime? NoSelectedDateDate { get; set; }
+        [Parameter] public bool SupressDefaultDate { get; set; }
 
 
         /// <summary>
@@ -183,8 +183,8 @@ namespace Material.Blazor.Internal
                 int startDateMonth;
                 var today = DateTime.Today;
 
-                if ((NoSelectedDateDate != null) &&
-                    (ComponentValue == NoSelectedDateDate) &&
+                if (SupressDefaultDate &&
+                    (ComponentValue == default) &&
                     (today >= MinDate) &&
                     (today <= MaxDate))
                 {
