@@ -13,8 +13,29 @@ namespace Material.Blazor
     /// </summary>
     public partial class MBDatePicker : InputComponent<DateTime>
     {
+        #region members
+
         private static readonly DateTime MinAllowableDate = DateTime.MinValue;
         private static readonly DateTime MaxAllowableDate = DateTime.MaxValue;
+
+        private string AdditionalStyle { get; set; } = "";
+        private MBDensity AppliedDensity => CascadingDefaults.AppliedSelectDensity(Density);
+        private string AppliedDateFormat => CascadingDefaults.AppliedDateFormat(DateFormat);
+        private MBSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
+        private ElementReference ElementReference { get; set; }
+        private bool IsOpen { get; set; } = false;
+        private string MenuClass => MBMenu.GetMenuSurfacePositioningClass(MenuSurfacePositioning == MBMenuSurfacePositioning.Fixed ? MBMenuSurfacePositioning.Fixed : MBMenuSurfacePositioning.Regular) + ((Panel?.ShowYearPad ?? true) ? " mb-dp-menu__day-menu" : " mb-dp-menu__year-menu");
+        private InternalDatePickerPanel Panel { get; set; }
+        private bool ShowLabel => !string.IsNullOrWhiteSpace(Label);
+
+        private readonly string invisibleText = "color: rgba(0, 0, 0, 0.0); ";
+        private readonly string labelId = Utilities.GenerateUniqueElementName();
+        private readonly string listboxId = Utilities.GenerateUniqueElementName();
+        private readonly string selectedTextId = Utilities.GenerateUniqueElementName();
+
+        #endregion
+
+        #region parameters
 
         /// <summary>
         /// The select style.
@@ -81,17 +102,9 @@ namespace Material.Blazor
         /// </summary>
         [Parameter] public MBMenuSurfacePositioning MenuSurfacePositioning { get; set; } = MBMenuSurfacePositioning.Regular;
 
+        #endregion
 
-        private string AdditionalStyle { get; set; } = "";
-        private MBDensity AppliedDensity => CascadingDefaults.AppliedSelectDensity(Density);
-        private string AppliedDateFormat => CascadingDefaults.AppliedDateFormat(DateFormat);
-        private MBSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
-        private ElementReference ElementReference { get; set; }
-        private bool IsOpen { get; set; } = false;
-        private string MenuClass => MBMenu.GetMenuSurfacePositioningClass(MenuSurfacePositioning == MBMenuSurfacePositioning.Fixed ? MBMenuSurfacePositioning.Fixed : MBMenuSurfacePositioning.Regular) + ((Panel?.ShowYearPad ?? true) ? " mb-dp-menu__day-menu" : " mb-dp-menu__year-menu");
-        private InternalDatePickerPanel Panel { get; set; }
-        private bool ShowLabel => !string.IsNullOrWhiteSpace(Label);
-
+        #region DensityInfo
 
         private MBCascadingDefaults.DensityInfo DensityInfo
         {
@@ -105,12 +118,27 @@ namespace Material.Blazor
             }
         }
 
+        #endregion
 
-        private readonly string invisibleText = "color: rgba(0, 0, 0, 0.0); ";
-        private readonly string labelId = Utilities.GenerateUniqueElementName();
-        private readonly string listboxId = Utilities.GenerateUniqueElementName();
-        private readonly string selectedTextId = Utilities.GenerateUniqueElementName();
+        #region InstantiateMcwComponent
 
+        /// <inheritdoc/>
+        private protected override Task InstantiateMcwComponent() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.init", ElementReference);
+
+        #endregion
+
+        #region OnDisabledSetCallback
+
+        /// <summary>
+        /// Callback for value the Disabled value setter.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void OnDisabledSetCallback() => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.setDisabled", ElementReference, AppliedDisabled));
+
+        #endregion
+
+        #region OnInitializedAsync
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override async Task OnInitializedAsync()
@@ -132,8 +160,13 @@ namespace Material.Blazor
             {
                 AdditionalStyle = invisibleText;
             }
+
+            ForceShouldRenderToTrue = true;
         }
 
+        #endregion
+
+        #region OnValueSetCallback
 
         /// <summary>
         /// Callback for value the value setter.
@@ -142,7 +175,7 @@ namespace Material.Blazor
         /// <param name="e"></param>
         protected void OnValueSetCallback()
         {
-            Panel.SetParameters(true, Value);
+            Panel.SetParameters(Value);
 
             if (SupressDefaultDate && (Value == default))
             {
@@ -153,23 +186,13 @@ namespace Material.Blazor
                 if (AdditionalStyle.Length > 0)
                 {
                     AdditionalStyle = "";
-                    AllowNextShouldRender();
                     InvokeAsync(StateHasChanged);
                 }
             }
             InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, AppliedDateFormat)).ConfigureAwait(false));
         }
 
+        #endregion
 
-        /// <summary>
-        /// Callback for value the Disabled value setter.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void OnDisabledSetCallback() => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.setDisabled", ElementReference, AppliedDisabled));
-
-
-        /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.init", ElementReference);
     }
 }
