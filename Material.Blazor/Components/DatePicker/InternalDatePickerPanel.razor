@@ -54,17 +54,21 @@
     @if (ShowYearPad)
     {
         <div class="mb-dp-year-pad">
-            @foreach (var year in Years)
-            {
-                <InternalDatePickerYearButton CurrentYear="@StartOfDisplayMonth.Year"
-                                              CurrentYearId="@currentYearId"
-                                              DisplayYear="@year"
-                                              @key="@year"
-                                              MaxDate="@MaxDate"
-                                              MinDate="@MinDate"
-                                              OnItemClickAsync="@OnYearItemClick" 
-                                              type="button"/>
-            }
+            <Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize Items="YearsInGroupsOfFour" OverscanCount="10" ItemSize="36">
+                <ItemContent Context="group">
+                    @foreach (var year in group)
+                    {
+                        <InternalDatePickerYearButton CurrentYear="@StartOfDisplayMonth.Year"
+                                                      CurrentYearId="@currentYearId"
+                                                      DisplayYear="@year"
+                                                      @key="@year"
+                                                      MaxDate="@MaxDate"
+                                                      MinDate="@MinDate"
+                                                      OnItemClickAsync="@OnYearItemClick"
+                                                      type="button" />
+                    }
+                </ItemContent>
+            </Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize>
         </div>
     }
     else

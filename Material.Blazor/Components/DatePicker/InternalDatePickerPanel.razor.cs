@@ -7,6 +7,32 @@ using System.Threading.Tasks;
 
 namespace Material.Blazor.Internal
 {
+    internal static class GroupingExtension
+    {
+        public static IEnumerable<T[]> InGroupsOf<T>(this IEnumerable<T> enumerable, int groupSize)
+        {
+            var group = new T[groupSize];
+            int index = 0;
+            foreach (var element in enumerable)
+            {
+                group[index] = element;
+                ++index;
+                if (index == groupSize)
+                {
+                    yield return group;
+                    index = 0;
+                    group = new T[groupSize];
+                }
+            }
+            if (index > 0)
+            {
+                // the last group has less than groupSize elements, therefore we need to return a trimmed array.
+                yield return group.Take(index).ToArray();
+            }
+        }
+    }
+
+
     /// <summary>
     /// For Material.Blazor internal use only.
     /// </summary>
@@ -73,6 +99,7 @@ namespace Material.Blazor.Internal
 
         private List<int> Years { get; set; } = new List<int>();
 
+        private List<int[]> YearsInGroupsOfFour { get; set; } = new List<int[]>();
         private DateTime InitialDate { get; set; }
 
         private DateTime CachedComponentValue { get; set; }
@@ -153,15 +180,16 @@ namespace Material.Blazor.Internal
                     Dates.Add(date);
                 }
 
-                var startYear = ((MinDate.Year - 1) / 4) * 4 + 1;
-                var endYear = ((MaxDate.Year + 3) / 4) * 4 + 1;
+                var startYear = Math.Max(DateTime.MinValue.Year, ((MinDate.Year - 1) / 4) * 4 + 1);
+                var endYear = Math.Min(DateTime.MaxValue.Year, ((MaxDate.Year + 3) / 4) * 4);
 
                 Years = new List<int>();
 
-                for (var year = startYear; year < endYear; year++)
+                for (var year = startYear; year <= endYear; year++)
                 {
                     Years.Add(year);
                 }
+                YearsInGroupsOfFour = Years.InGroupsOf(4).ToList();
 
                 ShowYearPad = false;
 
