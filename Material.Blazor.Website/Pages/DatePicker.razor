@@ -32,6 +32,7 @@
                     <p>
                         <MBDatePicker @bind-Value="@Filled"
                                       Label="Filled"
+                                      DateFormat="ddd MMM dd, yyyy"
                                       MaxDate="@Max"
                                       MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
                                       MinDate="@Min"
@@ -144,11 +145,12 @@
                 </Primary>
             </MBCard>
         </div>
+
         <div class="mdc-layout-grid__cell--span-4">
             <MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Default value
+                        Default value (default(DateTime))
                     </h2>
 
                     <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
@@ -157,6 +159,7 @@
 
                     <p>
                         <MBDatePicker @bind-Value="@Default"
+                                      DateFormat="ddd MMM dd, yyyy"
                                       Label="Default"
                                       MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
                                       SelectInputStyle="MBSelectInputStyle.Filled" />
@@ -164,6 +167,30 @@
                 </Primary>
             </MBCard>
         </div>
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Default value (default(DateTime)) with NoSelectedDateDate set to default value
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        The DatePicker component supports the entire range from <code>DateTime.MinValue</code> to <code>DateTime.MaxValue</code>. For a good user experience, remember to set minimum/maximum selectable value to meaningful values.
+                    </h3>
+
+                    <p>
+                        <MBDatePicker @bind-Value="@Default"
+                                      DateFormat="ddd MMM dd, yyyy"
+                                      Label="Default"
+                                      MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
+                                      NoSelectedDateDate="@Default"
+                                      SelectInputStyle="MBSelectInputStyle.Filled" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
     </PageContent>
 </DemonstrationPage>
 

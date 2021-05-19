@@ -65,6 +65,13 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
+        /// Date set to indicate that 'no date is selected' which will force the initial panel to
+        /// be set to today's date. Typically set to the default(DateTime) if it is used
+        /// </summary>
+        [Parameter] public DateTime? NoSelectedDateDate { get; set; }
+
+
+        /// <summary>
         /// Reference to the <c>&lt;li&gt;</c> embedded in the panel.
         /// </summary>
         internal ElementReference ListItemReference { get; set; }
@@ -170,10 +177,29 @@ namespace Material.Blazor.Internal
                 CachedComponentValue = ComponentValue;
                 CachedMinDate = MinDate;
                 CachedMaxDate = MaxDate;
+                
                 DateTime startDate;
+                int startDateYear;
+                int startDateMonth;
+                var today = DateTime.Today;
+
+                if ((NoSelectedDateDate != null) &&
+                    (ComponentValue == NoSelectedDateDate) &&
+                    (today >= MinDate) &&
+                    (today <= MaxDate))
+                {
+                    startDateYear = today.Year;
+                    startDateMonth = today.Month;
+                }
+                else
+                {
+                    startDateYear = ComponentValue.Year;
+                    startDateMonth = ComponentValue.Month;
+                }
+
                 try
                 {
-                    startDate = StartOfDisplayMonth = new DateTime(ComponentValue.Year, ComponentValue.Month, 1).AddMonths(MonthsOffset);
+                    startDate = StartOfDisplayMonth = new DateTime(startDateYear, startDateMonth, 1).AddMonths(MonthsOffset);
                 }
                 catch (ArgumentOutOfRangeException)
                 {

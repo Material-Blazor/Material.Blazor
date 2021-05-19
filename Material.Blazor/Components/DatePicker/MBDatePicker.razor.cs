@@ -45,15 +45,22 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Minimum date set by the consumer -- We cannot use the MinDate here as we go back up to a month
+        /// Minimum date set by the consumer
         /// </summary>
         [Parameter] public DateTime MinDate { get; set; } = MinAllowableDate;
 
 
         /// <summary>
-        /// Maximum date set by the consumer -- Again, same reason, can't use max date
+        /// Maximum date set by the consumer
         /// </summary>
         [Parameter] public DateTime MaxDate { get; set; } = MaxAllowableDate;
+
+
+        /// <summary>
+        /// Date set to indicate that 'no date is selected' which will force the initial panel to
+        /// be set to today's date. Typically set to the default(DateTime) if it is used
+        /// </summary>
+        [Parameter] public DateTime? NoSelectedDateDate { get; set; }
 
 
         /// <summary>
@@ -108,16 +115,6 @@ namespace Material.Blazor
         {
             await base.OnInitializedAsync();
 
-            if (MinDate < MinAllowableDate)
-            {
-                throw new ArgumentOutOfRangeException($"MinDate cannot be before {MinAllowableDate.ToShortDateString()}");
-            }
-
-            if (MaxDate > MaxAllowableDate)
-            {
-                throw new ArgumentOutOfRangeException($"MaxDate cannot be after {MaxAllowableDate.ToShortDateString()}");
-            }
-
             ConditionalCssClasses
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-select--filled", () => AppliedInputStyle == MBSelectInputStyle.Filled)
@@ -139,7 +136,11 @@ namespace Material.Blazor
         protected void OnValueSetCallback()
         {
             Panel.SetParameters(true, Value);
-            InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, AppliedDateFormat)).ConfigureAwait(false));
+
+            if (!((NoSelectedDateDate != null) && (Value == NoSelectedDateDate)))
+            {
+                InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, AppliedDateFormat)).ConfigureAwait(false));
+            }
         }
 
 
