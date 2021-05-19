@@ -28,8 +28,6 @@
     "babel-loader": "^8.2.2",
     "dart-sass": "^1.25.0",
     "fork-ts-checker-webpack-plugin": "^6.1.0",
-    "lodash.debounce": "^4.0.8",
-    "lodash.throttle": "^4.1.1",
     "material-components-web": "^9.0.0",
     "regexp": "^1.0.0",
     "terser": "^4.8.0",
