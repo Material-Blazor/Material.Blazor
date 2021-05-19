@@ -80,9 +80,13 @@ namespace Material.Blazor.Internal
 
         private string[] DaysOfWeek { get; set; }
 
-        private bool PreviousMonthDisabled => (StartOfDisplayMonth <= MinDate);
+        private bool PreviousMonthDisabled => false
+            || (StartOfDisplayMonth.Year == DateTime.MinValue.Year && StartOfDisplayMonth.Month == DateTime.MinValue.Month)
+            || (StartOfDisplayMonth <= MinDate);
 
-        private bool NextMonthDisabled => (StartOfDisplayMonth.AddMonths(1) >= MaxDate);
+        private bool NextMonthDisabled => false
+            || (StartOfDisplayMonth.Year == DateTime.MaxValue.Year && StartOfDisplayMonth.Month == DateTime.MaxValue.Month) // special case:
+            || (StartOfDisplayMonth.AddMonths(1) >= MaxDate);
 
         private bool _showYearPad = false;
         internal bool ShowYearPad
@@ -166,12 +170,28 @@ namespace Material.Blazor.Internal
                 CachedComponentValue = ComponentValue;
                 CachedMinDate = MinDate;
                 CachedMaxDate = MaxDate;
-                var startDate = StartOfDisplayMonth = new DateTime(ComponentValue.Year, ComponentValue.Month, 1).AddMonths(MonthsOffset);
+                DateTime startDate;
+                try
+                {
+                    startDate = StartOfDisplayMonth = new DateTime(ComponentValue.Year, ComponentValue.Month, 1).AddMonths(MonthsOffset);
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    startDate = StartOfDisplayMonth = new DateTime(DateTime.MaxValue.Year, DateTime.MaxValue.Month, 1);
+                }
                 while (startDate.DayOfWeek != CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek)
                 {
                     startDate = startDate.AddDays(-1);
                 }
-                var endDate = startDate.AddDays(6 * 7); // 6 lines of 7 days each
+                DateTime endDate;
+                try
+                {
+                    endDate = startDate.AddDays(6 * 7); // 6 lines of 7 days each
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                    endDate = DateTime.MaxValue.Date;
+                }
 
                 Dates = new List<DateTime>();
 

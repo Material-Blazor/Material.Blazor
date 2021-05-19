@@ -13,8 +13,8 @@ namespace Material.Blazor
     /// </summary>
     public partial class MBDatePicker : InputComponent<DateTime>
     {
-        private static readonly DateTime MinAllowableDate = DateTime.MinValue.AddMonths(1);
-        private static readonly DateTime MaxAllowableDate = DateTime.MaxValue.AddMonths(-1);
+        private static readonly DateTime MinAllowableDate = DateTime.MinValue;
+        private static readonly DateTime MaxAllowableDate = DateTime.MaxValue;
 
         /// <summary>
         /// The select style.
