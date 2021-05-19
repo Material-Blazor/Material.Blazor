@@ -179,7 +179,7 @@ namespace Material.Blazor.Internal
                 {
                     startDate = StartOfDisplayMonth = new DateTime(DateTime.MaxValue.Year, DateTime.MaxValue.Month, 1);
                 }
-                while (startDate.DayOfWeek != CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek)
+                while (startDate.Date > DateTime.MinValue.Date && startDate.DayOfWeek != CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek)
                 {
                     startDate = startDate.AddDays(-1);
                 }
