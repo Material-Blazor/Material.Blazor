@@ -37,23 +37,11 @@ namespace Material.Blazor
 
         #region parameters
 
-        /// <summary>
-        /// The select style.
-        /// <para>Overrides <see cref="MBCascadingDefaults.SelectInputStyle"/></para>
-        /// </summary>
-        [Parameter] public MBSelectInputStyle? SelectInputStyle { get; set; }
-
 
         /// <summary>
-        /// The label.
+        /// Specification for date format
         /// </summary>
-        [Parameter] public string Label { get; set; }
-
-
-        /// <summary>
-        /// Date selection criteria
-        /// </summary>
-        [Parameter] public MBDateSelectionCriteria? DateSelectionCriteria { get; set; }
+        [Parameter] public string DateFormat { get; set; }
 
 
 #nullable enable annotations
@@ -66,28 +54,9 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Minimum date set by the consumer
+        /// Date selection criteria
         /// </summary>
-        [Parameter] public DateTime MinDate { get; set; } = MinAllowableDate;
-
-
-        /// <summary>
-        /// Maximum date set by the consumer
-        /// </summary>
-        [Parameter] public DateTime MaxDate { get; set; } = MaxAllowableDate;
-
-
-        /// <summary>
-        /// Set to indicate that if the value is default(DateTime) then no date is initially shown
-        /// and the panel will start with the current year and month
-        /// </summary>
-        [Parameter] public bool SupressDefaultDate { get; set; }
-
-
-        /// <summary>
-        /// Specification for date format
-        /// </summary>
-        [Parameter] public string DateFormat { get; set; }
+        [Parameter] public MBDateSelectionCriteria? DateSelectionCriteria { get; set; }
 
 
         /// <summary>
@@ -97,10 +66,43 @@ namespace Material.Blazor
 
 
         /// <summary>
+        /// The label.
+        /// </summary>
+        [Parameter] public string Label { get; set; }
+
+
+        /// <summary>
+        /// Maximum date set by the consumer
+        /// </summary>
+        [Parameter] public DateTime MaxDate { get; set; } = MaxAllowableDate;
+
+
+        /// <summary>
         /// Regular, fullwidth or fixed positioning/width. Overrides a value of <see cref="MBMenuSurfacePositioning.FullWidth"/>
         /// with <see cref="MBMenuSurfacePositioning.Regular"/>.
         /// </summary>
         [Parameter] public MBMenuSurfacePositioning MenuSurfacePositioning { get; set; } = MBMenuSurfacePositioning.Regular;
+
+
+        /// <summary>
+        /// Minimum date set by the consumer
+        /// </summary>
+        [Parameter] public DateTime MinDate { get; set; } = MinAllowableDate;
+
+
+        /// <summary>
+        /// The select style.
+        /// <para>Overrides <see cref="MBCascadingDefaults.SelectInputStyle"/></para>
+        /// </summary>
+        [Parameter] public MBSelectInputStyle? SelectInputStyle { get; set; }
+
+
+        /// <summary>
+        /// Set to indicate that if the value is default(DateTime) then no date is initially shown
+        /// and the panel will start with the current year and month
+        /// </summary>
+        [Parameter] public bool SupressDefaultDate { get; set; }
+
 
         #endregion
 
