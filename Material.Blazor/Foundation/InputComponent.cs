@@ -89,11 +89,11 @@ namespace Material.Blazor.Internal
             get => _componentValue;
             set
             {
-                LogMBDebugVerbose($"ComponentValue setter entered: _componentValue is '{_cachedValue?.ToString() ?? "null"}' and new value is'{value?.ToString() ?? "null"}'");
+                LoggingService.LogTrace($"ComponentValue setter entered: _componentValue is '{_cachedValue?.ToString() ?? "null"}' and new value is'{value?.ToString() ?? "null"}'");
 
                 if (!EqualityComparer<T>.Default.Equals(value, _componentValue))
                 {
-                    LogMBDebug($"ComponentValue setter changed _componentValue");
+                    LoggingService.LogTrace($"ComponentValue setter changed _componentValue");
 
                     _componentValue = value;
                     _ = ValueChanged.InvokeAsync(value);
@@ -216,7 +216,7 @@ namespace Material.Blazor.Internal
 
             if (EditContext != null && IgnoreFormField)
             {
-                LogMBWarning($"{GetType()} is in a form but has EditContext features disabled because it is considered a valid Material.Blazor form field type");
+                LoggingService.LogWarning($"{GetType()} is in a form but has EditContext features disabled because it is considered a valid Material.Blazor form field type");
             }
         }
 
@@ -244,7 +244,7 @@ namespace Material.Blazor.Internal
                 _nullableUnderlyingType = Nullable.GetUnderlyingType(typeof(T));
                 _hasSetInitialParameters = true;
 
-                LogMBDebug($"SetParametersAsync setting ComponentValue value to '{Value?.ToString() ?? "null"}'");
+                LoggingService.LogTrace($"SetParametersAsync setting ComponentValue value to '{Value?.ToString() ?? "null"}'");
 
                 _cachedValue = Value;
                 _componentValue = Value;
@@ -273,17 +273,17 @@ namespace Material.Blazor.Internal
 
         private void CommonParametersSet()
         {
-            LogMBDebugVerbose($"OnParametersSet setter entered: _cachedValue is '{_cachedValue?.ToString() ?? "null"}' and Value is'{Value?.ToString() ?? "null"}'");
+            LoggingService.LogTrace($"OnParametersSet setter entered: _cachedValue is '{_cachedValue?.ToString() ?? "null"}' and Value is'{Value?.ToString() ?? "null"}'");
 
             if (!EqualityComparer<T>.Default.Equals(_cachedValue, Value))
             {
                 _cachedValue = Value;
 
-                LogMBDebug($"OnParametersSet changed _cachedValue value");
+                LoggingService.LogTrace($"OnParametersSet changed _cachedValue value");
 
                 if (!EqualityComparer<T>.Default.Equals(_componentValue, Value))
                 {
-                    LogMBDebug("OnParametersSet update _componentValue value from '" + _componentValue?.ToString() ?? "null" + "'");
+                    LoggingService.LogTrace("OnParametersSet update _componentValue value from '" + _componentValue?.ToString() ?? "null" + "'");
 
                     _componentValue = Value;
                     if (HasInstantiated)

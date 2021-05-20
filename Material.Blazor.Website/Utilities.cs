@@ -9,6 +9,12 @@
         };
 
 
+        public static MBLoggingServiceConfiguration GetDefaultLoggingServiceConfiguration() => new()
+        {
+            LoggingLevel = MBLoggingLevel.Warning
+        };
+
+
         public static MBToastServiceConfiguration GetDefaultToastServiceConfiguration() => new()
         {
             Position = MBToastPosition.TopRight,

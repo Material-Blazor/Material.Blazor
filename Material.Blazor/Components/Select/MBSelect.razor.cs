@@ -1,7 +1,6 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -94,6 +93,25 @@ namespace Material.Blazor
         }
 
 
+
+        /// <summary>
+        /// Compares two values and returns true if both values are null, or if both values are not null and <paramref name="value1"/>.Equals(<paramref name="value2"/>)
+        /// </summary>
+        /// <param name="value1"></param>
+        /// <param name="value2"></param>
+        /// <returns></returns>
+        private static bool NullAllowingEquals(TItem value1, TItem value2)
+        {
+            if (value1 == null)
+            {
+                return value2 == null;
+            }
+            else
+            {
+                return value1.Equals(value2);
+            }
+        }
+
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override async Task OnInitializedAsync()
         {
@@ -103,7 +121,7 @@ namespace Material.Blazor
 
             (hasValue, ComponentValue) = ValidateItemList(Items, CascadingDefaults.AppliedItemValidation(ItemValidation));
 
-            SelectedText = hasValue ? Items.FirstOrDefault(i => i.SelectedValue.Equals(ComponentValue))?.Label : "";
+            SelectedText = hasValue ? (Items.FirstOrDefault(i => NullAllowingEquals(i.SelectedValue, ComponentValue))?.Label) : "";
             FloatingLabelClass = string.IsNullOrWhiteSpace(SelectedText) ? "" : "mdc-floating-label--float-above";
 
             ConditionalCssClasses

@@ -1,38 +1,27 @@
 ﻿import { MDCSlider } from '@material/slider';
-import * as _ from "lodash";
+import { debounce, throttle } from '../../Scripts/LodashParts';
 
 export function init(elem, dotNetObject, eventType, delay) {
     elem._slider = MDCSlider.attachTo(elem);
     elem._eventType = eventType;
 
-    let debounceNotify = _.debounce(function () {
-        dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
-    }, delay); 
-
-    let throttleNotify = _.throttle(function () {
-        dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
-    }, delay); 
-
-    const thumbUpCallback = () => {
-        dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
-    };
-
-    const debounceCallback = () => {
-        debounceNotify();
-    };
-
-    const throttleCallback = () => {
-        throttleNotify();
-    };
-
     if (eventType == 0) {
+        const thumbUpCallback = () => {
+            dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
+        };
         elem._slider.listen('MDCSlider:change', thumbUpCallback);
     }
     else if (eventType == 1) {
-        elem._slider.listen('MDCSlider:input', debounceCallback);
+        const debounceNotify = debounce(function () {
+            dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
+        }, delay, {});
+        elem._slider.listen('MDCSlider:input', debounceNotify);
     }
     else {
-        elem._slider.listen('MDCSlider:input', throttleCallback);
+        const throttleNotify = throttle(function () {
+            dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
+        }, delay, {});
+        elem._slider.listen('MDCSlider:input', throttleNotify);
     }
 }
 

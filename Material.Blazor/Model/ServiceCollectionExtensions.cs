@@ -1,6 +1,7 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Material.Blazor
 {
@@ -14,16 +15,71 @@ namespace Material.Blazor
         /// <param name="snackbarServiceConfiguration"></param>
         /// <param name="toastServiceConfiguration"></param>
         /// <param name="animatedNavigationManagerServiceConfiguration"></param>
+        /// <param name="loggingServiceConfiguration"></param>
         /// <returns></returns>
-        public static IServiceCollection AddMBServices(this IServiceCollection services, MBSnackbarServiceConfiguration snackbarServiceConfiguration = null, MBToastServiceConfiguration toastServiceConfiguration = null, MBAnimatedNavigationManagerServiceConfiguration animatedNavigationManagerServiceConfiguration = null)
+        public static IServiceCollection AddMBServices(
+            this IServiceCollection services,
+            MBAnimatedNavigationManagerServiceConfiguration animatedNavigationManagerServiceConfiguration = null,
+            MBLoggingServiceConfiguration loggingServiceConfiguration = null,
+            MBSnackbarServiceConfiguration snackbarServiceConfiguration = null, 
+            MBToastServiceConfiguration toastServiceConfiguration = null) 
         {
             return services
                 .AddScoped<IBatchingJSRuntime, BatchingJSRuntime>()
                 .AddScoped<INoThrowDotNetObjectReferenceFactory, NoThrowDotNetObjectReferenceFactory>()
+                .AddMBAnimatedNavigationService(animatedNavigationManagerServiceConfiguration)
+                .AddMBLoggingService(loggingServiceConfiguration)
                 .AddMBSnackbarService(snackbarServiceConfiguration)
                 .AddMBToastService(toastServiceConfiguration)
-                .AddMBAnimatedNavigationService(animatedNavigationManagerServiceConfiguration)
                 .AddMBTooltipService();
+        }
+
+
+        /// <summary>
+        /// Adds a Material.Blazor <see cref="IMBAnimatedNavigationManager"/> to the service collection to apply
+        /// fade out/in animation to Blazor page navigation.
+        /// <example>
+        /// <para>You can optionally add configuration:</para>
+        /// <code>
+        /// services.AddMBAnimatedNavigationService(new MBAnimatedNaviationServiceConfiguration()
+        /// {
+        ///     ApplyAnimation = true,
+        ///     AnimationTime = 300   /* milliseconds */
+        /// });
+        /// </code>
+        /// </example>
+        /// </summary>
+        private static IServiceCollection AddMBAnimatedNavigationService(this IServiceCollection services, MBAnimatedNavigationManagerServiceConfiguration configuration = null)
+        {
+            if (configuration == null)
+            {
+                configuration = new MBAnimatedNavigationManagerServiceConfiguration();
+            }
+
+            return services.AddScoped<IMBAnimatedNavigationManager, AnimatedNavigationManagerService>(serviceProvider => new AnimatedNavigationManagerService(serviceProvider.GetRequiredService<NavigationManager>(), configuration));
+        }
+
+
+        /// <summary>
+        /// Adds a Material.Blazor <see cref="IMBLoggingService"/> to the service collection
+        /// <example>
+        /// <para>You can optionally add configuration:</para>
+        /// <code>
+        /// services.AddMBLoggingService(new MBLoggingServiceConfiguration()
+        /// {
+        ///     Level = Trace
+        /// });
+        /// </code>
+        /// </example>
+        /// </summary>
+        private static IServiceCollection AddMBLoggingService(this IServiceCollection services, MBLoggingServiceConfiguration configuration = null)
+        {
+            if (configuration == null)
+            {
+                configuration = new MBLoggingServiceConfiguration();
+            }
+
+            return services.AddScoped<IMBLoggingService, LoggingService>(serviceProvider => new LoggingService(configuration));
         }
 
 
@@ -83,31 +139,6 @@ namespace Material.Blazor
         private static IServiceCollection AddMBTooltipService(this IServiceCollection services)
         {
             return services.AddScoped<IMBTooltipService, TooltipService>(serviceProvider => new TooltipService());
-        }
-
-
-        /// <summary>
-        /// Adds a Material.Blazor <see cref="IMBAnimatedNavigationManager"/> to the service collection to apply
-        /// fade out/in animation to Blazor page navigation.
-        /// <example>
-        /// <para>You can optionally add configuration:</para>
-        /// <code>
-        /// services.AddMBAnimatedNavigationService(new MBAnimatedNaviationServiceConfiguration()
-        /// {
-        ///     ApplyAnimation = true,
-        ///     AnimationTime = 300   /* milliseconds */
-        /// });
-        /// </code>
-        /// </example>
-        /// </summary>
-        private static IServiceCollection AddMBAnimatedNavigationService(this IServiceCollection services, MBAnimatedNavigationManagerServiceConfiguration configuration = null)
-        {
-            if (configuration == null)
-            {
-                configuration = new MBAnimatedNavigationManagerServiceConfiguration();
-            }
-
-            return services.AddScoped<IMBAnimatedNavigationManager, AnimatedNavigationManagerService>(serviceProvider => new AnimatedNavigationManagerService(serviceProvider.GetRequiredService<NavigationManager>(), configuration));
         }
     }
 }
