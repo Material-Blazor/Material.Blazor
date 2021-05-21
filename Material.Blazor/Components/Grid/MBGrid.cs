@@ -205,6 +205,7 @@ namespace Material.Blazor
                 base.BuildRenderTree(builder);
                 builder.OpenElement(1, "div");
                 builder.CloseElement();
+                HasCompletedFullRender = false;
 #if Logging
                 GridLogDebug("                (Simple) leaving");
 #endif
@@ -738,7 +739,7 @@ namespace Material.Blazor
 #if Logging
                     GridLogDebug("                   Returned from MeasureWidthsAsync");
 #endif
-                    StateHasChanged();
+                    await InvokeAsync(StateHasChanged);
 
                 }
             }
