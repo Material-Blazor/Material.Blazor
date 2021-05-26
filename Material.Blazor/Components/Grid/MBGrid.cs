@@ -220,19 +220,24 @@ namespace Material.Blazor
             //  Using the column cfg and column data, render our list. Here is the layout.
             //  The column headers are optional.
             //
-            //  div mb-grid-header          - Contains the header and the vscroll
-            //      table                   - 
-            //          tr                  - 
-            //              td*             - Header
-            //  div mb-grid-body            - Contains the rows and the vscroll
-            //      table                   - Contains the rows
-            //          tr*                 - Rows
-            //              td*             - Columns of the row
+            //  div class="@class", style="@style"
+            //      div mb-grid-header          - Contains the header and the vscroll
+            //          table                   - 
+            //              tr                  - 
+            //                  td*             - Header
+            //      div mb-grid-body            - Contains the rows and the vscroll
+            //          table                   - Contains the rows
+            //              tr*                 - Rows
+            //                  td*             - Columns of the row
             //
 
             base.BuildRenderTree(builder);
             var rendSeq = 2;
             string styleStr;
+
+            builder.OpenElement(rendSeq++, "div");
+            builder.AddAttribute(rendSeq++, "class", "@(@class)");
+            builder.AddAttribute(rendSeq++, "style", "@style");
 
             // Based on the column config generate the column titles unless asked not to
             if (!SupressHeader)
@@ -496,6 +501,8 @@ namespace Material.Blazor
                 builder.CloseElement(); // table
 
                 builder.CloseElement(); // div mb-grid-body-outer
+
+                builder.CloseElement(); // div class= style=
             }
 
             HasCompletedFullRender = true;
