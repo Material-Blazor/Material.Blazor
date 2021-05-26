@@ -197,7 +197,7 @@ namespace Material.Blazor
                 ((ColumnWidthArray != null) && (ColumnWidthArray.Length != ColumnConfigurations.Count())))
             {
 #if Logging
-                GridLogDebug("BuildRenderTree (Simple) entered (IsFirstRender == " + IsSimpleRender.ToString());
+                GridLogDebug("BuildRenderTree (Simple) entered (IsSimpleRender == " + IsSimpleRender.ToString());
 #endif
                 // We are going to render a DIV and nothing else
                 // We need to get into OnAfterRenderAsync so that we can use JS interop to measure
@@ -235,9 +235,9 @@ namespace Material.Blazor
             var rendSeq = 2;
             string styleStr;
 
-            builder.OpenElement(rendSeq++, "div");
-            builder.AddAttribute(rendSeq++, "class", "@(@class)");
-            builder.AddAttribute(rendSeq++, "style", "@style");
+            //builder.OpenElement(rendSeq++, "div");
+            //builder.AddAttribute(rendSeq++, "class", "@(@class)");
+            //builder.AddAttribute(rendSeq++, "style", "@style");
 
             // Based on the column config generate the column titles unless asked not to
             if (!SupressHeader)
@@ -286,7 +286,7 @@ namespace Material.Blazor
 
                 builder.CloseElement(); //table
 
-                builder.CloseElement(); // div mb-grid-header
+//                builder.CloseElement(); // div mb-grid-header
             }
 
             //
