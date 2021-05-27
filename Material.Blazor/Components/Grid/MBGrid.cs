@@ -239,9 +239,12 @@ namespace Material.Blazor
                 var rendSeq = 2;
                 string styleStr;
 
-                //builder.OpenElement(rendSeq++, "div");
-                //builder.AddAttribute(rendSeq++, "class", @class);
-                //builder.AddAttribute(rendSeq++, "style", style);
+                if (((@class != null) && (@class.Length > 0)) || ((style != null) && (style.Length > 0)))
+                {
+                    builder.OpenElement(rendSeq++, "div");
+                    builder.AddAttribute(rendSeq++, "class", "mb-grid-div-outer " + @class);
+                    builder.AddAttribute(rendSeq++, "style", style);
+                }
 
                 // Based on the column config generate the column titles unless asked not to
                 if (!SupressHeader)
@@ -506,7 +509,10 @@ namespace Material.Blazor
 
                     builder.CloseElement(); // div mb-grid-body-outer
 
-                    //builder.CloseElement(); // div class= style=
+                    if (((@class != null) && (@class.Length > 0)) || ((style != null) && (style.Length > 0)))
+                    {
+                        builder.CloseElement(); // div class= style=
+                    }
                 }
 
                 HasCompletedFullRender = true;
@@ -831,6 +837,9 @@ namespace Material.Blazor
                 {
                     switch (parameter.Name)
                     {
+                        case nameof(@class):
+                            @class = (string)parameter.Value;
+                            break;
                         case nameof(ColumnConfigurations):
                             ColumnConfigurations = (IEnumerable<MBGridColumnConfiguration<TRowData>>)parameter.Value;
                             break;
@@ -858,6 +867,9 @@ namespace Material.Blazor
                         case nameof(OnMouseClick):
                             OnMouseClick = (EventCallback<string>)parameter.Value;
                             break;
+                        case nameof(style):
+                            style = (string)parameter.Value;
+                            break;
                         case nameof(SupressHeader):
                             SupressHeader = (bool)parameter.Value;
                             break;
@@ -878,6 +890,7 @@ namespace Material.Blazor
                 {
                     newParameterHash = HashCode
                         .OfEach(ColumnConfigurations)
+                        .And(@class)
                         .And(Group)
                         .And(HighlightSelectedRow)
                         .And(KeyExpression)
@@ -885,18 +898,21 @@ namespace Material.Blazor
                         .And(ObscurePMI)
                         .And(OnMouseClick)
                         .And(SelectedKey)   // Not a parameter but if we don't include this we won't re-render after selecting a row
+                        .And(style)
                         .And(SupressHeader);
                 }
                 else
                 {
                     newParameterHash = HashCode
                         .OfEach(ColumnConfigurations)
+                        .And(@class)
                         .And(Group)
                         .And(HighlightSelectedRow)
                         .And(KeyExpression)
                         .And(Measurement)
                         .And(ObscurePMI)
                         .And(OnMouseClick)
+                        .And(style)
                         .And(SupressHeader);
                 }
 
