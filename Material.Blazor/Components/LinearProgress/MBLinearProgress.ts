@@ -9,3 +9,7 @@ export function setProgress(elem, progress, buffer) {
     elem._linearProgress.progress = progress;
     elem._linearProgress.buffer = buffer;
 }
+
+export function restartAnimation(elem) {
+    elem._linearProgress.foundation.restartAnimation();
+}
