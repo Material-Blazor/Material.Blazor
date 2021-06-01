@@ -14,6 +14,7 @@ namespace Material.Blazor
         /// Makes the progress bar indeterminant if True.
         /// </summary>
         [Parameter] public MBLinearProgressType LinearProgressType { get; set; } = MBLinearProgressType.Indeterminate;
+        private MBLinearProgressType cachedLinearProgressType = MBLinearProgressType.Indeterminate;
 
 
         /// <summary>
@@ -77,8 +78,18 @@ namespace Material.Blazor
         /// <param name="e"></param>
         protected void OnValueSetCallback() => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBLinearProgress.setProgress", ElementReference, Value, MyBufferValue));
 
-
         /// <inheritdoc/>
         private protected override Task InstantiateMcwComponent() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBLinearProgress.init", ElementReference, Value, MyBufferValue);
+
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            await base.OnAfterRenderAsync(firstRender);
+            if (cachedLinearProgressType != LinearProgressType)
+            {
+                cachedLinearProgressType = LinearProgressType;
+                await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBLinearProgress.restartAnimation", ElementReference);
+            }
+        }
     }
 }
