@@ -194,6 +194,7 @@ namespace Material.Blazor
 #if Logging
             GridLogDebug("BuildRenderTree entered; IsSimpleRender == " + IsSimpleRender.ToString());
             GridLogDebug("                         HasCompletedFullRender == " + HasCompletedFullRender.ToString());
+            GridLogDebug("                         ShouldRenderValue == " + ShouldRenderValue.ToString());
 #endif
             if (IsSimpleRender ||
                 (!ShouldRenderValue) ||
@@ -611,12 +612,6 @@ namespace Material.Blazor
             {
                 return;
             }
-            //
-            // We are going to measure the actual sizes using JS if the Measurement is FitToData
-            // We need to create the ColumnWidthArray regardless of the measurement type as we need to pass
-            // values to CreateTD
-            //
-            ColumnWidthArray = new float[ColumnConfigurations.Count()];
 
             // Measure the width of a vertical scrollbar (Used to set the padding of the header)
             ScrollWidth = await JsRuntime.InvokeAsync<int>(
@@ -748,6 +743,7 @@ namespace Material.Blazor
                 GridLogDebug("OnAfterRenderAsync entered");
                 GridLogDebug("                   firstRender: " + firstRender.ToString());
                 GridLogDebug("                   IsSimpleRender: " + IsSimpleRender.ToString());
+                GridLogDebug("                   IsMeasurementNeeded: " + IsMeasurementNeeded.ToString());
 #endif
 
                 if (IsSimpleRender)
@@ -842,6 +838,12 @@ namespace Material.Blazor
                             break;
                         case nameof(ColumnConfigurations):
                             ColumnConfigurations = (IEnumerable<MBGridColumnConfiguration<TRowData>>)parameter.Value;
+                            //
+                            // We are going to measure the actual sizes using JS if the Measurement is FitToData
+                            // We need to create the ColumnWidthArray regardless of the measurement type as we need to pass
+                            // values to BuildColGroup->CreateMeasurementStyle
+                            //
+                            ColumnWidthArray = new float[ColumnConfigurations.Count()];
                             break;
                         case nameof(Group):
                             Group = (bool)parameter.Value;
