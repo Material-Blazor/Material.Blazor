@@ -196,10 +196,7 @@ namespace Material.Blazor
             GridLogDebug("                         HasCompletedFullRender == " + HasCompletedFullRender.ToString());
             GridLogDebug("                         ShouldRenderValue == " + ShouldRenderValue.ToString());
 #endif
-            if (IsSimpleRender ||
-                (!ShouldRenderValue) ||
-                (ColumnWidthArray == null) ||
-                ((ColumnWidthArray != null) && (ColumnWidthArray.Length != ColumnConfigurations.Count())))
+            if (IsSimpleRender || (!ShouldRenderValue))
             {
 #if Logging
                 GridLogDebug("                (Simple) entered");
