@@ -46,6 +46,7 @@ namespace Material.Blazor
         /// The configuration of each column to be displayed. See the definition of MBGridColumnConfiguration
         /// for details.
         /// </summary>
+        [EditorRequired]
         [Parameter] public IEnumerable<MBGridColumnConfiguration<TRowData>> ColumnConfigurations { get; set; } = null;
 
 
@@ -61,6 +62,7 @@ namespace Material.Blazor
         /// The inner key must be a unique identifier
         /// that is used to indicate a row that has been clicked.
         /// </summary>
+        [EditorRequired]
         [Parameter] public IEnumerable<KeyValuePair<string, IEnumerable<KeyValuePair<string, TRowData>>>> GroupedOrderedData { get; set; }
 
 
