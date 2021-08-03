@@ -1,10 +1,38 @@
 ﻿import { MDCSlider } from '@material/slider';
+<<<<<<< HEAD
 import { debounce, throttle } from '../../Scripts/LodashParts';
+=======
+import * as db from "lodash.debounce";
+import * as th from "lodash.throttle";
+>>>>>>> 8ba16e6ac409e05fd4a5ce4a8f7b06661c5c6af2
 
 export function init(elem, dotNetObject, eventType, delay) {
     elem._slider = MDCSlider.attachTo(elem);
     elem._eventType = eventType;
 
+<<<<<<< HEAD
+=======
+    let debounceNotify = db.debounce(function () {
+        dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
+    }, delay); 
+
+    let throttleNotify = th.throttle(function () {
+        dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
+    }, delay); 
+
+    const thumbUpCallback = () => {
+        dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
+    };
+
+    const debounceCallback = () => {
+        debounceNotify();
+    };
+
+    const throttleCallback = () => {
+        throttleNotify();
+    };
+
+>>>>>>> 8ba16e6ac409e05fd4a5ce4a8f7b06661c5c6af2
     if (eventType == 0) {
         const thumbUpCallback = () => {
             dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());

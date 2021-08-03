@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
   <ItemGroup>
@@ -8,11 +8,15 @@
     <PackageReference Include="bunit.web" Version="1.1.5" />
     <PackageReference Include="Moq" Version="4.16.1" />
     <PackageReference Include="NUnit" Version="3.13.2" />
+<<<<<<< HEAD
     <PackageReference Include="NUnit3TestAdapter" Version="3.17.0">
+=======
+    <PackageReference Include="NUnit3TestAdapter" Version="4.0.0">
+>>>>>>> 8ba16e6ac409e05fd4a5ce4a8f7b06661c5c6af2
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.9.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Material.Blazor\Material.Blazor.csproj" />
