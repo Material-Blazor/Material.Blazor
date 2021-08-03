@@ -3,22 +3,22 @@
   "version": "0.0.0",
   "description": "NPM build steps for Material.Blazor.Website",
   "scripts": {
-    "build-material-default": "dart-sass --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/material-default-theme.scss wwwroot/css/material-default-theme.css",
-    "build-min-material-default": "dart-sass --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/material-default-theme.scss wwwroot/css/material-default-theme.min.css",
-    "build-light-square": "dart-sass --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/light-square-theme.scss wwwroot/css/light-square-theme.css",
-    "build-min-light-square": "dart-sass --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/light-square-theme.scss wwwroot/css/light-square-theme.min.css",
-    "build-dark-square": "dart-sass --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/dark-square-theme.scss wwwroot/css/dark-square-theme.css",
-    "build-min-dark-square": "dart-sass --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/dark-square-theme.scss wwwroot/css/dark-square-theme.min.css",
-    "build-rounded": "dart-sass --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/rounded-theme.scss wwwroot/css/rounded-theme.css",
-    "build-min-rounded": "dart-sass --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/rounded-theme.scss wwwroot/css/rounded-theme.min.css",
-    "build-asymmetric": "dart-sass --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/asymmetric-theme.scss wwwroot/css/asymmetric-theme.css",
-    "build-min-asymmetric": "dart-sass --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/asymmetric-theme.scss wwwroot/css/asymmetric-theme.min.css"
+    "build-material-default": "sass --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/material-default-theme.scss wwwroot/css/material-default-theme.css",
+    "build-min-material-default": "sass --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/material-default-theme.scss wwwroot/css/material-default-theme.min.css",
+    "build-light-square": "sass --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/light-square-theme.scss wwwroot/css/light-square-theme.css",
+    "build-min-light-square": "sass --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/light-square-theme.scss wwwroot/css/light-square-theme.min.css",
+    "build-dark-square": "sass --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/dark-square-theme.scss wwwroot/css/dark-square-theme.css",
+    "build-min-dark-square": "sass --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/dark-square-theme.scss wwwroot/css/dark-square-theme.min.css",
+    "build-rounded": "sass --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/rounded-theme.scss wwwroot/css/rounded-theme.css",
+    "build-min-rounded": "sass --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/rounded-theme.scss wwwroot/css/rounded-theme.min.css",
+    "build-asymmetric": "sass --no-color --unicode --style=expanded --load-path=node_modules --no-source-map Styles/asymmetric-theme.scss wwwroot/css/asymmetric-theme.css",
+    "build-min-asymmetric": "sass --no-color --unicode --style=compressed --load-path=node_modules --no-source-map Styles/asymmetric-theme.scss wwwroot/css/asymmetric-theme.min.css"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
     "material-components-web": "9.0.0",
-    "dart-sass": "^1.25.0"
+    "sass": "1.35.2"
   }
 }

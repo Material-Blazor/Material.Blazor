@@ -366,17 +366,40 @@
                 </Primary>
             </MBCard>
         </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Bug?
+                    </h2>
+
+                    <p>
+                        <MBSelect Value="@TwoWayBinding2"
+                                  ValueChanged="@VC2"
+                                  TItem="string"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Items disabled" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
     </PageContent>
 </DemonstrationPage>
 
-
-@code {
+@code{
     MBSelectElement<string>[] KittenBreeds = new MBSelectElement<string>[]
     {
         new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
         new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
-    };
+        };
 
     MBSelectElement<string>[] KittenBreedsExtended = new MBSelectElement<string>[]
     {
@@ -385,7 +408,7 @@
         new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" },
         new MBSelectElement<string> { SelectedValue = "tabby", Label = "Tabby" },
         new MBSelectElement<string> { SelectedValue = "siam", Label = "Siamese" }
-    };
+        };
 
     MBSelectElement<string>[] KittenBreedsNoFake = new MBSelectElement<string>[]
     {
@@ -394,7 +417,7 @@
         new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" },
         new MBSelectElement<string> { SelectedValue = "disabled1", Label = "Mr. Snuggles", Disabled = true },
         new MBSelectElement<string> { SelectedValue = "disabled2", Label = "Roger Rabbit", Disabled = true }
-    };
+        };
 
 
     private string DefaultStyle;
@@ -408,6 +431,7 @@
     private string RightAligned;
 
     private string TwoWayBinding;
+    private string TwoWayBinding2 = "";
 
     private string FilledDensityDefault;
     private string FilledDensityMinus1;
@@ -426,4 +450,9 @@
 
     private bool ExtendDynamicItems = false;
     private MBSelectElement<string>[] DynamicItems => ExtendDynamicItems ? KittenBreedsExtended : KittenBreeds;
+
+    public void VC2(string newVal)
+    {
+        TwoWayBinding2 = newVal;
+    }
 }

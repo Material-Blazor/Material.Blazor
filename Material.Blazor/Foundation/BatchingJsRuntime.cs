@@ -35,7 +35,7 @@ namespace Material.Blazor.Internal
 
         private readonly IJSRuntime js;
         private readonly ConcurrentQueue<Call> queuedCalls = new();
-        private readonly Timer timer = new(10);
+        private readonly System.Timers.Timer timer = new(10);
 
 
         public BatchingJSRuntime(IJSRuntime js)
