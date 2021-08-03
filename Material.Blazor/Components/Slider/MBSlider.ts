@@ -1,24 +1,18 @@
 ﻿import { MDCSlider } from '@material/slider';
-<<<<<<< HEAD
-import { debounce, throttle } from '../../Scripts/LodashParts';
-=======
 import * as db from "lodash.debounce";
-import * as th from "lodash.throttle";
->>>>>>> 8ba16e6ac409e05fd4a5ce4a8f7b06661c5c6af2
+import * as ld from "lodash";
 
 export function init(elem, dotNetObject, eventType, delay) {
     elem._slider = MDCSlider.attachTo(elem);
     elem._eventType = eventType;
 
-<<<<<<< HEAD
-=======
     let debounceNotify = db.debounce(function () {
         dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
-    }, delay); 
+    }, delay);
 
-    let throttleNotify = th.throttle(function () {
+    let throttleNotify = ld.throttle.throttle(function () {
         dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
-    }, delay); 
+    }, delay);
 
     const thumbUpCallback = () => {
         dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
@@ -32,24 +26,14 @@ export function init(elem, dotNetObject, eventType, delay) {
         throttleNotify();
     };
 
->>>>>>> 8ba16e6ac409e05fd4a5ce4a8f7b06661c5c6af2
     if (eventType == 0) {
-        const thumbUpCallback = () => {
-            dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
-        };
         elem._slider.listen('MDCSlider:change', thumbUpCallback);
     }
     else if (eventType == 1) {
-        const debounceNotify = debounce(function () {
-            dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
-        }, delay, {});
-        elem._slider.listen('MDCSlider:input', debounceNotify);
+        elem._slider.listen('MDCSlider:input', debounceCallback);
     }
     else {
-        const throttleNotify = throttle(function () {
-            dotNetObject.invokeMethodAsync('NotifyChanged', elem._slider.getValue());
-        }, delay, {});
-        elem._slider.listen('MDCSlider:input', throttleNotify);
+        elem._slider.listen('MDCSlider:input', throttleCallback);
     }
 }
 

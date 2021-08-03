@@ -118,9 +118,9 @@ namespace Material.Blazor
         private ElementReference GridHeaderRef { get; set; }
         private string GridBodyID { get; set; } = Utilities.GenerateUniqueElementName();
         private string GridHeaderID { get; set; } = Utilities.GenerateUniqueElementName();
-        private bool HasCompletedFullRender { get; set; }
+        private bool HasCompletedFullRender { get; set; } = false;
         private bool IsSimpleRender { get; set; } = true;
-        private bool IsMeasurementNeeded { get; set; } = true;
+        private bool IsMeasurementNeeded { get; set; } = false;
         private float ScrollWidth { get; set; }
         private string SelectedKey { get; set; } = "";
 
@@ -193,13 +193,6 @@ namespace Material.Blazor
         #region BuildRenderTree
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
-<<<<<<< HEAD
-            if (IsSimpleRender || !ShouldRenderValue)
-            {
-#if Logging
-                GridLogDebug("BuildRenderTree (Simple) entered [IsSimpleRender == " + IsSimpleRender.ToString() + "]");
-                GridLogDebug("BuildRenderTree (Simple) entered [ShouldRenderValue == " + ShouldRenderValue.ToString() + "]");
-=======
 #if Logging
             GridLogDebug("BuildRenderTree entered; IsSimpleRender == " + IsSimpleRender.ToString());
             GridLogDebug("                         HasCompletedFullRender == " + HasCompletedFullRender.ToString());
@@ -209,7 +202,6 @@ namespace Material.Blazor
             {
 #if Logging
                 GridLogDebug("                (Simple) entered");
->>>>>>> 8ba16e6ac409e05fd4a5ce4a8f7b06661c5c6af2
 #endif
                 // We are going to render a DIV and nothing else
                 // We need to get into OnAfterRenderAsync so that we can use JS interop to measure
@@ -225,12 +217,7 @@ namespace Material.Blazor
             else
             {
 #if Logging
-<<<<<<< HEAD
-
-            GridLogDebug("BuildRenderTree (Full) entered");
-=======
                 GridLogDebug("                (Full) entered");
->>>>>>> 8ba16e6ac409e05fd4a5ce4a8f7b06661c5c6af2
 #endif
 
                 //
@@ -533,15 +520,9 @@ namespace Material.Blazor
                 GridLogDebug("                (Full) leaving");
 #endif
             }
-<<<<<<< HEAD
-            HasCompletedFullRender = true;
-#if Logging
-            GridLogDebug("                (Full) leaving");
-=======
 #if Logging
             GridLogDebug("                leaving; IsSimpleRender == " + IsSimpleRender.ToString());
             GridLogDebug("                leaving; HasCompletedFullRender == " + HasCompletedFullRender.ToString());
->>>>>>> 8ba16e6ac409e05fd4a5ce4a8f7b06661c5c6af2
 #endif
         }
         #endregion
@@ -630,15 +611,11 @@ namespace Material.Blazor
             {
                 return;
             }
-<<<<<<< HEAD
-            // We are going to measure the actual sizes using JS if the Measurement is FitToData
-=======
->>>>>>> 8ba16e6ac409e05fd4a5ce4a8f7b06661c5c6af2
 
             // Measure the width of a vertical scrollbar (Used to set the padding of the header)
-            //ScrollWidth = await JsRuntime.InvokeAsync<int>(
-            //    "MaterialBlazor.MBGrid.getScrollBarWidth",
-            //    "mb-grid-div-body");
+            ScrollWidth = await JsRuntime.InvokeAsync<int>(
+                "MaterialBlazor.MBGrid.getScrollBarWidth",
+                "mb-grid-div-body");
             ScrollWidth = 0;
 
             if (Measurement == MB_Grid_Measurement.FitToData)
@@ -765,10 +742,7 @@ namespace Material.Blazor
                 GridLogDebug("OnAfterRenderAsync entered");
                 GridLogDebug("                   firstRender: " + firstRender.ToString());
                 GridLogDebug("                   IsSimpleRender: " + IsSimpleRender.ToString());
-<<<<<<< HEAD
-=======
                 GridLogDebug("                   IsMeasurementNeeded: " + IsMeasurementNeeded.ToString());
->>>>>>> 8ba16e6ac409e05fd4a5ce4a8f7b06661c5c6af2
 #endif
 
                 if (IsSimpleRender)
@@ -864,14 +838,9 @@ namespace Material.Blazor
                         case nameof(ColumnConfigurations):
                             ColumnConfigurations = (IEnumerable<MBGridColumnConfiguration<TRowData>>)parameter.Value;
                             //
-<<<<<<< HEAD
-                            // We need to create the ColumnWidthArray regardless of the measurement type as we need to
-                            // pass values to CreateTD
-=======
                             // We are going to measure the actual sizes using JS if the Measurement is FitToData
                             // We need to create the ColumnWidthArray regardless of the measurement type as we need to pass
                             // values to BuildColGroup->CreateMeasurementStyle
->>>>>>> 8ba16e6ac409e05fd4a5ce4a8f7b06661c5c6af2
                             //
                             ColumnWidthArray = new float[ColumnConfigurations.Count()];
                             break;
@@ -1034,10 +1003,15 @@ namespace Material.Blazor
                 {
                     // This is a call to ParametersSetAsync with what in all likelyhood is the same
                     // parameters. Hashing isn't perfect so there is some tiny possibility that new parameters
-                    // are present and the same hash value was computed. We need to check that we have completed a
-                    // full render and if not, we still force another cycle
-
-                    ShouldRenderValue = !HasCompletedFullRender;
+                    // are present and the same hash value was computed.
+                    if (HasCompletedFullRender)
+                    {
+                        ShouldRenderValue = false;
+                    }
+                    else
+                    {
+                        ShouldRenderValue = true;
+                    }
 #if Logging
                     GridLogDebug("                   EQUAL hash");
 #endif
@@ -1045,12 +1019,8 @@ namespace Material.Blazor
                 else
                 {
                     ShouldRenderValue = true;
-                    if (Measurement == MB_Grid_Measurement.FitToData)
-                    {
-                        HasCompletedFullRender = false;
-                        IsSimpleRender = true;
-                        IsMeasurementNeeded = true;
-                    }
+                    IsSimpleRender = true;
+                    IsMeasurementNeeded = true;
                     oldParameterHash = newParameterHash;
 #if Logging
                     GridLogDebug("                   DIFFERING hash");
