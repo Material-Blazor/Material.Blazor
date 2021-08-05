@@ -3,13 +3,13 @@
 
 <SnapshotTest Setup="Setup">
     <TestInput>
-        <MBIconButtonToggle />
+        <MBIconButtonToggle IconOn="on" IconOff="off" />
     </TestInput>
     <ExpectedOutput>
-        <div class="mdc-touch-target-wrapper">
-            <button class="mdc-button mdc-button--raised">
-                <div class="mdc-button__ripple"></div>
-                <span class="mdc-button__label">Hello button</span>
+        <div>
+            <button class="mdc-icon-button    ">
+                <i class="material-icons  mdc-icon-button__icon mdc-icon-button__icon--on mb-dp-menu__icon-button">on</i>
+                <i class="material-icons  mdc-icon-button__icon mb-dp-menu__icon-button">off</i>
             </button>
         </div>
     </ExpectedOutput>

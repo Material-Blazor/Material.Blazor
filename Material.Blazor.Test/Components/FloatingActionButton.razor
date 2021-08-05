@@ -3,15 +3,13 @@
 
 <SnapshotTest Setup="Setup">
 <TestInput>
-    <MBFloatingActionButton Label="Hello" />
+    <MBFloatingActionButton Label="Hello" Icon="test" />
 </TestInput>
 <ExpectedOutput>
-    <div class="mdc-touch-target-wrapper">
-        <button class="mdc-button mdc-button--raised">
-            <div class="mdc-button__ripple"></div>
-            <span class="mdc-button__label">Hello button</span>
-        </button>
-    </div>
+    <button class="mdc-fab   ">
+        <div class="mdc-fab__ripple"></div>
+        <i class="material-icons  mdc-fab__icon">test</i>
+    </button>
 </ExpectedOutput>
 
 @code {
