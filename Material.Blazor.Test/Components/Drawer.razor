@@ -1,0 +1,21 @@
+﻿@inherits TestComponentBase
+
+
+<SnapshotTest Setup="Setup">
+<TestInput>
+    <MBDrawer />
+</TestInput>
+<ExpectedOutput>
+    <aside class="mdc-drawer mdc-drawer--dismissible  ">
+        <div class="mdc-drawer__content">
+        </div>
+    </aside>
+</ExpectedOutput>
+
+@code {
+    void Setup(SnapshotTest test)
+    {
+        test.Services.AddLogging().AddMBServices();
+    }
+}
+</SnapshotTest>

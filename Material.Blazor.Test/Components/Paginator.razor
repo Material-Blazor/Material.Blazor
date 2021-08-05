@@ -1,0 +1,63 @@
+﻿@inherits TestComponentBase
+
+
+<SnapshotTest Setup="Setup">
+<TestInput>
+    <MBPaginator ItemsPerPageSelection="Array.Empty<int>().Append(0)" />
+</TestInput>
+<ExpectedOutput>
+    <div class="mdc-data-table__pagination no-border ">
+        <div class="mdc-data-table__pagination-trailing">
+            <div class="mdc-data-table__pagination-rows-per-page">
+                <div class="mdc-data-table__pagination-rows-per-page-label">
+                    0 items per page
+                </div>
+                <div class="mdc-data-table__pagination-rows-per-page-select">
+                    <div>
+                        <button class="mdc-icon-button    ">
+                            <i class="material-icons  mdc-icon-button__icon mdc-icon-button__icon--on mb-dp-menu__icon-button">arrow_drop_up</i>
+                            <i class="material-icons  mdc-icon-button__icon mb-dp-menu__icon-button">arrow_drop_down</i>
+                        </button>
+                    </div>
+                    <div class="mdc-menu-surface--anchor">
+                        <div class="mdc-menu mdc-menu-surface mdc-menu-surface--fixed  ">
+                            <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
+                                <li class="mdc-list-item   " role="menuitem">
+                                    <span class="mdc-list-item__text">0</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mdc-data-table__pagination-navigation">
+                <div class="mdc-data-table__pagination-total">
+                    <span class="hidden" aria-hidden="true">1-0 of 0</span>
+                    <span>1-0 of 0</span>
+                </div>
+            </div>
+            <div class="mdc-data-table__pagination-navigation">
+                <button class="mdc-icon-button   mdc-data-table__pagination-button" data-prev-page="true" disabled="">
+                    <i class="material-icons  ">first_page</i>
+                </button>
+                <button class="mdc-icon-button   mdc-data-table__pagination-button" data-prev-page="true" disabled="">
+                    <i class="material-icons  ">chevron_left</i>
+                </button>
+                <button class="mdc-icon-button   mdc-data-table__pagination-button" data-prev-page="true" disabled="">
+                    <i class="material-icons  ">chevron_right</i>
+                </button>
+                <button class="mdc-icon-button   mdc-data-table__pagination-button" data-prev-page="true" disabled="">
+                    <i class="material-icons  ">last_page</i>
+                </button>
+            </div>
+        </div>
+    </div>
+</ExpectedOutput>
+
+@code {
+    void Setup(SnapshotTest test)
+    {
+        test.Services.AddLogging().AddMBServices();
+    }
+}
+</SnapshotTest>

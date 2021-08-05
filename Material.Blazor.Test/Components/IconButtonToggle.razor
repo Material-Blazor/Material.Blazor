@@ -1,0 +1,23 @@
+﻿@inherits TestComponentBase
+
+
+<SnapshotTest Setup="Setup">
+    <TestInput>
+        <MBIconButtonToggle IconOn="on" IconOff="off" />
+    </TestInput>
+    <ExpectedOutput>
+        <div>
+            <button class="mdc-icon-button    ">
+                <i class="material-icons  mdc-icon-button__icon mdc-icon-button__icon--on mb-dp-menu__icon-button">on</i>
+                <i class="material-icons  mdc-icon-button__icon mb-dp-menu__icon-button">off</i>
+            </button>
+        </div>
+    </ExpectedOutput>
+
+    @code {
+        void Setup(SnapshotTest test)
+        {
+            test.Services.AddLogging().AddMBServices();
+        }
+    }
+</SnapshotTest>
