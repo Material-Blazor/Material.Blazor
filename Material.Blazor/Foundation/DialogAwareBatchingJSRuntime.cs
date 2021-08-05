@@ -22,5 +22,7 @@ namespace Material.Blazor.Internal
             await dialog.Opened;
             await underlyingJSRuntime.InvokeVoidAsync(identifier, args);
         }
+
+        public Task FlushBatchAsync() => underlyingJSRuntime.FlushBatchAsync();
     }
 }

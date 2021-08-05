@@ -25,5 +25,6 @@ namespace Material.Blazor.Internal
         /// <param name="args"></param>
         /// <returns></returns>        
         Task<T> InvokeAsync<T>(string identifier, params object[] args);
+        Task FlushBatchAsync();
     }
 }

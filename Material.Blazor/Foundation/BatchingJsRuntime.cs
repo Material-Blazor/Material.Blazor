@@ -47,6 +47,28 @@ namespace Material.Blazor.Internal
 
         private async void Timer_Elapsed(object sender, ElapsedEventArgs e)
         {
+            await FlushBatchAsync();
+        }
+
+
+        /// <inheritdoc/>
+        public Task InvokeVoidAsync(string identifier, params object[] args)
+        {
+            var call = new Call(identifier, args);
+            queuedCalls.Enqueue(call);
+            timer.Start();
+            return call.Task;
+        }
+
+
+        /// <inheritdoc/>
+        public async Task<T> InvokeAsync<T>(string identifier, params object[] args)
+        {
+            return await js.InvokeAsync<T>(identifier, args);
+        }
+
+        public async Task FlushBatchAsync()
+        {
             List<Call> batch = new();
 
             while (queuedCalls.TryDequeue(out var call))
@@ -83,23 +105,6 @@ namespace Material.Blazor.Internal
                     }
                 }
             }
-        }
-
-
-        /// <inheritdoc/>
-        public Task InvokeVoidAsync(string identifier, params object[] args)
-        {
-            var call = new Call(identifier, args);
-            queuedCalls.Enqueue(call);
-            timer.Start();
-            return call.Task;
-        }
-
-
-        /// <inheritdoc/>
-        public async Task<T> InvokeAsync<T>(string identifier, params object[] args)
-        {
-            return await js.InvokeAsync<T>(identifier, args);
         }
     }
 }
