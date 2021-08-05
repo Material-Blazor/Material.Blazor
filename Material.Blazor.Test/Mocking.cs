@@ -16,6 +16,7 @@ namespace Material.Blazor.Test
             ctx = new();
             _ = ctx.Services
                 .AddSingleton(new Mock<IBatchingJSRuntime>().Object)
+                .AddSingleton(new Mock<IMBLoggingService>().Object)
                 .AddSingleton(new Mock<IMBTooltipService>().Object)
                 .AddSingleton(new Mock<IMBToastService>().Object)
                 .AddSingleton(new Mock<IMBSnackbarService>().Object)
@@ -23,7 +24,6 @@ namespace Material.Blazor.Test
                 .AddSingleton(new Mock<IMBAnimatedNavigationManager>()
                     .Chain(m => m.SetupGet(anm => anm.Configuration).Returns(new MBAnimatedNavigationManagerServiceConfiguration()))
                     .Object)
-                .AddSingleton(new Mock<IMBDialog>().Object)
                 .AddSingleton(new Mock<IMBIcon>().Object)
                 .AddSingleton(new Mock<IMBIconFoundry>().Object);
         }
@@ -53,7 +53,11 @@ namespace Material.Blazor.Test
         {
             InjectMockedServices();
             var cut = ctx.RenderComponent<MBDialog>();
-            cut.MarkupMatches("");
+            cut.MarkupMatches(@"
+<div class=""mdc-dialog"" aria-modal=""true"">
+    <div class=""mdc-dialog__container""></div>
+    <div class=""mdc-dialog__scrim""></div>
+</div>");
         }
     }
 }

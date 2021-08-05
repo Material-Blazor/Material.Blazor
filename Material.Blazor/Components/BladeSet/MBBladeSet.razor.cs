@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.Logging;
-using Microsoft.JSInterop;
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -9,19 +6,19 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Material.Blazor.Internal;
+
+using Microsoft.AspNetCore.Components;
+
 namespace Material.Blazor
 {
     /// <summary>
     /// A blade display component. Adds blades to the right hand side of the viewport (or bock where this component is located), with
     /// blades displayed left to right in ascending order of when they were requested (newest blades to the right).
     /// </summary>
-    public partial class MBBladeSet
+    public partial class MBBladeSet : ComponentFoundation
     {
         private const int transitionMs = 200;
-
-        [Inject] private protected ILogger<MBBladeSet> Logger { get; set; }
-        [Inject] private protected IJSRuntime JsRuntime { get; set; }
-
 
         /// <summary>
         /// The three states in a blade's lifecycle.
@@ -186,7 +183,7 @@ namespace Material.Blazor
         /// <summary>
         /// Invoked without arguments at the outset of a blade being added or removed from the bladeset.
         /// </summary>
-        public event EventHandler BladeSetChanged;
+        public event Action BladeSetChanged;
 
 
         private readonly SemaphoreSlim queueSemaphore = new(1, 1);
@@ -213,7 +210,7 @@ namespace Material.Blazor
         /// <param name="additionalCss">CSS styles to be applied to the &lt;mb-blade&gt; block.</param>
         /// <param name="additionalStyles">Style attributes to be applied to the &lt;mb-blade&gt; block.</param>
         /// <param name="onRemoved">Action called back when the blade is removed, receiving the blade reference as the parameter</param>
-        public async Task AddBladeAsync<TComponent, TParameters>(string bladeReference, TParameters parameters = null, string additionalCss = "", string additionalStyles = "", Action<string> onRemoved = null) where TParameters : MBBladeComponentParameters
+        public Task AddBladeAsync<TComponent, TParameters>(string bladeReference, TParameters parameters = null, string additionalCss = "", string additionalStyles = "", Action<string> onRemoved = null) where TParameters : MBBladeComponentParameters
         {
             AddQueueElement queueElement = new()
             {
@@ -224,15 +221,14 @@ namespace Material.Blazor
                 OnRemoved = onRemoved,
                 BladeContent = new RenderFragment(builder =>
                 {
-                    var i = 0;
-                    builder.OpenComponent(i++, typeof(TComponent));
-                    builder.AddAttribute(i++, nameof(MBBladeComponent<MBBladeComponentParameters>.BladeReference), bladeReference);
-                    builder.AddAttribute(i++, nameof(MBBladeComponent<MBBladeComponentParameters>.Parameters), parameters);
+                    builder.OpenComponent(0, typeof(TComponent));
+                    builder.AddAttribute(1, nameof(MBBladeComponent<MBBladeComponentParameters>.BladeReference), bladeReference);
+                    builder.AddAttribute(2, nameof(MBBladeComponent<MBBladeComponentParameters>.Parameters), parameters);
                     builder.CloseComponent();
                 })
             };
 
-            await QueueAction(queueElement).ConfigureAwait(false);
+            return QueueAction(queueElement);
         }
 
 
@@ -241,14 +237,14 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="bladeReference">The reference of the blade to be removed.</param>
         /// <returns></returns>
-        public async Task RemoveBladeAsync(string bladeReference)
+        public Task RemoveBladeAsync(string bladeReference)
         {
             QueueElement queueElement = new RemoveQueueElement()
             {
                 BladeReference = bladeReference
             };
 
-            await QueueAction(queueElement).ConfigureAwait(false);
+            return QueueAction(queueElement);
         }
 
 
@@ -345,7 +341,7 @@ namespace Material.Blazor
 
                 StateHasChanged();
 
-                BladeSetChanged?.Invoke(this, null);
+                BladeSetChanged?.Invoke();
             }
             else if (removedBladesQueue.TryDequeue(out var removedBlade))
             {
@@ -359,7 +355,7 @@ namespace Material.Blazor
 
                 StateHasChanged();
 
-                BladeSetChanged?.Invoke(this, null);
+                BladeSetChanged?.Invoke();
             }
         }
     }

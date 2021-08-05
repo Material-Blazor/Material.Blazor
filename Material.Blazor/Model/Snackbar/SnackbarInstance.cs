@@ -14,12 +14,6 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
-        /// It's timestamp for when it was raised.
-        /// </summary>
-        public DateTime TimeStamp { get; set; }
-
-
-        /// <summary>
         /// The settings containing all data determining the snackbar's style and behaviour.
         /// </summary>
         public MBSnackbarSettings Settings { get; set; }

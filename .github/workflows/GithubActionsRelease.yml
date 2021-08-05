@@ -12,6 +12,8 @@ on:
   push:
     tags:
       - '*' # Push events to matching *, i.e. 1.0, 20.15.10
+    branches:
+      - experimental-release-workflow
 
 env:
   buildPlatform: 'Any CPU'
@@ -24,163 +26,217 @@ env:
   projectWeb: 'Material.Blazor.Website.WebAssembly/Material.Blazor.Website.WebAssembly.csproj'
 
 jobs:
-
 ############################################################################################################
-# BuildMaterialBlazor (1st of 2 jobs), second job publishes to gh-pages
-#   Output: Material.Blazor DocFx pages (uploaded as artifacts)
-#   Output: Material.Blazor NuGet package (published as CI)
-#   Output: Material.Blazor.Website.WebAssembly (uploaded as artifacts)
+# Run the test project. Should this fail, we don't perform any deploy action
 ############################################################################################################
-  buildmaterialblazor:
-
-    runs-on: windows-latest
+  test:
+    name: Run .NET tests
+    runs-on: ubuntu-latest
 
     steps:
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
 
-    - name: DotNet info
-      run: dotnet --info
-
-    - name: Set Version as env variable
-      run: echo "Version=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
-      shell: bash
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
-
-    - name: Echo Version
-      run: echo "Version is $Version"
-      shell: bash
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
-
-
-    - name: Get the branch
-      id: get_branch
-      run: echo ::set-output name=branch::${GITHUB_REF/refs\/heads\//}
-      shell: bash
-
-    - name: Get the pullrequest
-      id: get_pullrequest
-      run: echo ::set-output name=pullrequest::${GITHUB_REF/refs\/pull\//}
-      shell: bash
-
-    - name: Get the tag
-      id: get_tag
-      run: echo ::set-output name=tag::${GITHUB_REF/refs\/tags\//}
-      shell: bash
-
-    - name: Show branch name Ꙫ
-      run: echo GitHub indicates that this is a branch push request of ${{steps.get_branch.outputs.branch}}
-      if: contains(github.ref, 'refs/heads')
-
-    - name: Show PR name Ꙫ
-      run: echo GitHub indicates that this is a pull request called ${{steps.get_pullrequest.outputs.pullrequest}}
-      if: contains(github.ref, 'refs/pull')
-
-    - name: Show Tag name Ꙫ
-      run: echo GitHub indicates that this is a tag creation with ${{steps.get_tag.outputs.tag}}
-      if: contains(github.ref, 'refs/tag')
+    - name: Use prelease dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.x'
+        include-prerelease: true
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
+      with:
+        persist-credentials: false
 
     - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
-      run: dotnet test --configuration ${env:buildConfiguration} ${env:projectTest}
+      run: dotnet test --configuration ${{env.buildConfiguration}} ${{env.projectTest}}
+############################################################################################################
+# Store the version information
+############################################################################################################
+  version:
+    name: Set version identifier
+    runs-on: ubuntu-latest
+
+    steps:
+    - id: get
+      run: |
+        echo "::set-output name=identifier::${GITHUB_REF/refs\/tags\//}"
+    - id: show
+      run: |
+        echo "${{ steps.get.outputs.identifier }}"
+    outputs:
+      identifier: ${{ steps.get.outputs.identifier }}
+############################################################################################################
+# Store the branch information
+############################################################################################################
+  branch:
+    name: Set branch identifier
+    runs-on: ubuntu-latest
+    steps:
+    - id: get
+      run: |
+        echo "::set-output name=identifier::${GITHUB_REF/refs\/heads\//}"
+    - id: show
+      run: |
+        echo "${{ steps.get.outputs.identifier }}"
+    outputs:
+      identifier: ${{ steps.get.outputs.identifier }}
+############################################################################################################
+# Build documentation
+############################################################################################################
+  build-documentation:
+    name: Build documentation
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+
+    - name: Use prelease dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.x'
+        include-prerelease: true
 
     - name: Create documentation 🔧
       run: .\docfx\docfx docfx.json
       env:
-        DOCFX_SOURCE_BRANCH_NAME: main
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
+        DOCFX_SOURCE_BRANCH_NAME: main   
 
     - name: Upload Documentation Artifacts 🔺 # The project is then uploaded as an artifact named 'siteDocFx'.
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: siteDocFx
-        path: siteDocFx
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
+        path: siteDocFx       
+############################################################################################################
+# Build website
+############################################################################################################
+  build-website:
+    needs: [version]
+    name: Build website
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+
+    - name: Use prelease dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.x'
+        include-prerelease: true
 
     - name: Build Website 🔧
-      run: dotnet build --configuration ${env:buildConfiguration} -p:InformationalVersion=${env:Version} ${env:projectWeb}
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
-
+      run: dotnet build --configuration ${env:buildConfiguration} -p:Version=${{needs.version.outputs.identifier}} ${env:projectWeb}      
+      
     - name: Publish Website 🔧
-      run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} -p:InformationalVersion=${env:Version} ${env:projectWeb}
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
+      run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} -p:Version=${{needs.version.outputs.identifier}} ${env:projectWeb} -p:BlazorEnableCompression=false      
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2
       with:
         name: siteWeb
-        path: siteWeb
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
+        path: siteWeb      
+############################################################################################################
+# Build package and deploy
+############################################################################################################
+  build-and-deploy-package:
+    name: Build nuget package & deploy to nuget
+    needs: [test, version, branch]
 
-    - name: Generate the first NuGet package 🔧
-      run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:InformationalVersion=${env:Version} ${env:projectMB}
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
+      uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+
+    - name: Use prelease dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.x'
+        include-prerelease: true
+
+    - name: Build Material.Blazor 🔧
+      run: dotnet build --configuration ${env:buildConfiguration} -p:Version=${{needs.version.outputs.identifier}} ${env:projectMB}
+
+    - name: Generate the NuGet package 🔧
+      run: dotnet pack --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{needs.version.outputs.identifier}} ${env:projectMB}
 
     - name: Display MaterialBlazor package output Ꙫ
       run: dir ${env:outputMB}
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     - name: Upload Package 🚀
       run: dotnet nuget push ${env:outputMB}\*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
-
+      if: needs.branch.outputs.identifier != 'experimental-release-workflow' # this check is important to allow testing this workflow on a non-main branch without deploying to nuget: this critical action is not performed when not on main.
 ############################################################################################################
 # deployghpages
 ############################################################################################################
   deployghpages:
-    needs: [buildmaterialblazor]
+    name: Deploy to material-blazor.com
+    needs: [test, build-documentation, build-website, branch]
 
     runs-on: ubuntu-latest
+    if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     steps:
-    - name: Get the branch
-      id: get_branch
-      run: echo ::set-output name=branch::${GITHUB_REF/refs\/heads\//}
-
-    - name: Get the pullrequest
-      id: get_pullrequest
-      run: echo ::set-output name=pullrequest::${GITHUB_REF/refs\/pull\//}
-
-    - name: Get the tag
-      id: get_tag
-      run: echo ::set-output name=tag::${GITHUB_REF/refs\/tags\//}
-
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
       uses: actions/checkout@v2
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
+      with:
+        persist-credentials: false
+
+    - name: Use prelease dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.x'
+        include-prerelease: true
 
     - name: Download Artifacts 🔻 # The documentation is downloaded into the 'siteDocFx' folder.
-      uses: actions/download-artifact@v1
+      uses: actions/download-artifact@v2
       with:
         name: siteDocFx
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
+        path: siteDocFx
 
     - name: Download Artifacts 🔻 # The built project is downloaded into the 'siteWeb' folder.
-      uses: actions/download-artifact@v1
+      uses: actions/download-artifact@v2
       with:
         name: siteWeb
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
+        path: siteWeb
 
     - name: Configure deployment directory structure Ꙫ
-      run: mv siteWeb/wwwroot deployroot; mv siteDocFx deployroot/docs
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
+      run: |
+        mv siteWeb/wwwroot deployroot
+        mv siteDocFx deployroot/docs
 
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@releases/v3
+      uses: JamesIves/github-pages-deploy-action@4.1.0
       with:
-        ACCESS_TOKEN: ${{secrets.GH_PAT}}
-        BRANCH: gh-pages
-        FOLDER: 'deployroot'
-      if: (github.repository == 'Material-Blazor/Material.Blazor')
+        token: ${{secrets.GH_PAT}}
+        branch: gh-pages
+        folder: 'deployroot'
+      if: needs.branch.outputs.identifier != 'experimental-release-workflow' # this check is important to allow testing this workflow on a non-main branch without deploying to nuget: this critical action is not performed when not on main.
+############################################################################################################
+# Create release
+############################################################################################################
+  create-release:
+    name: Create release
+    needs: [deployghpages, build-and-deploy-package, branch, version]
 
+    runs-on: ubuntu-latest
+    if: (github.repository == 'Material-Blazor/Material.Blazor')
+    steps:
     - name: Create Release
+      if: needs.branch.outputs.identifier != 'experimental-release-workflow' # this check is important to allow testing this workflow on a non-main branch without deploying to nuget: this critical action is not performed when not on main.
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{steps.get_branch.outputs.branch}}
-        release_name: Release ${{steps.get_tag.outputs.tag}}
+        tag_name: ${{needs.version.outputs.identifier}}
+        release_name: Release ${{needs.version.outputs.identifier}}
         draft: false
         prerelease: false
-      if: (github.repository == 'Material-Blazor/Material.Blazor')

@@ -57,6 +57,7 @@ namespace Material.Blazor.Internal
             string message,
             Action action = null,
             string actionText = null,
+            string additionalClass = "",
             MBNotifierCloseMethod? closeMethod = null,
             bool leading = false,
             bool stacked = false,
@@ -74,6 +75,7 @@ namespace Material.Blazor.Internal
             var settings = new MBSnackbarSettings()
             {
                 Action = action,
+                AdditionalClass = additionalClass,
                 Message = message,
                 ActionText = actionText,
                 CloseMethod = closeMethod,

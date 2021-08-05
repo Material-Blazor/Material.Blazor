@@ -108,7 +108,6 @@ namespace Material.Blazor.Internal
                 {
                     InvokeAsync(() =>
                     {
-                        var timeout = toastInstance.Settings.AppliedTimeout;
                         var toastTimer = new System.Timers.Timer(toastInstance.Settings.AppliedTimeout);
                         toastTimer.Elapsed += (sender, args) => CloseToast(toastInstance.Id);
                         toastTimer.AutoReset = false;

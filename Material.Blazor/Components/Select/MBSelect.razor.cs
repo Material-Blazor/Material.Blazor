@@ -1,10 +1,6 @@
 ﻿using Material.Blazor.Internal;
-
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -74,7 +70,6 @@ namespace Material.Blazor
         private MBDensity AppliedDensity => CascadingDefaults.AppliedSelectDensity(Density);
         private MBSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
         private string FloatingLabelClass { get; set; } = "";
-        private Dictionary<TItem, MBSelectElement<TItem>> ItemDict { get; set; }
         private string MenuClass => MBMenu.GetMenuSurfacePositioningClass(MenuSurfacePositioning);
         private DotNetObjectReference<MBSelect<TItem>> ObjectReference { get; set; }
         private ElementReference SelectReference { get; set; }
@@ -98,16 +93,36 @@ namespace Material.Blazor
         }
 
 
+
+        /// <summary>
+        /// Compares two values and returns true if both values are null, or if both values are not null and <paramref name="value1"/>.Equals(<paramref name="value2"/>)
+        /// </summary>
+        /// <param name="value1"></param>
+        /// <param name="value2"></param>
+        /// <returns></returns>
+        private static bool NullAllowingEquals(TItem value1, TItem value2)
+        {
+            if (value1 == null)
+            {
+                return value2 == null;
+            }
+            else
+            {
+                return value1.Equals(value2);
+            }
+        }
+
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
 
-            ItemDict = Items.ToDictionary(i => i.SelectedValue);
-
             bool hasValue;
 
-            (hasValue, ComponentValue) = ValidateItemList(ItemDict.Values, CascadingDefaults.AppliedItemValidation(ItemValidation));
+            (hasValue, ComponentValue) = ValidateItemList(Items, CascadingDefaults.AppliedItemValidation(ItemValidation));
+
+            SelectedText = hasValue ? (Items.FirstOrDefault(i => NullAllowingEquals(i.SelectedValue, ComponentValue))?.Label) : "";
+            FloatingLabelClass = string.IsNullOrWhiteSpace(SelectedText) ? "" : "mdc-floating-label--float-above";
 
             ConditionalCssClasses
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
@@ -116,9 +131,6 @@ namespace Material.Blazor
                 .AddIf("mdc-select--no-label", () => !ShowLabel)
                 .AddIf("mdc-select--with-leading-icon", () => !string.IsNullOrWhiteSpace(LeadingIcon))
                 .AddIf("mdc-select--disabled", () => AppliedDisabled);
-
-            SelectedText = hasValue ? Items.FirstOrDefault(i => object.Equals(i.SelectedValue, ComponentValue))?.Label : "";
-            FloatingLabelClass = string.IsNullOrWhiteSpace(SelectedText) ? "" : "mdc-floating-label--float-above";
 
             SetComponentValue += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
@@ -158,11 +170,10 @@ namespace Material.Blazor
         /// <summary>
         /// For Material Theme to notify of menu item selection via JS Interop.
         /// </summary>
-        [JSInvokable("NotifySelectedAsync")]
-        public async Task NotifySelectedAsync(int index)
+        [JSInvokable]
+        public void NotifySelected(int index)
         {
-            ComponentValue = ItemDict.Values.ElementAt(index).SelectedValue;
-            await Task.CompletedTask;
+            ComponentValue = Items.ElementAt(index).SelectedValue;
         }
 
 
@@ -171,7 +182,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSelect.setIndex", SelectReference, ItemDict.Keys.ToList().IndexOf(Value)));
+        protected void OnValueSetCallback() => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSelect.setIndex", SelectReference, Items.Select(x => x.SelectedValue).ToList().IndexOf(Value)));
 
 
         /// <summary>
@@ -179,10 +190,10 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSelect.setDisabled", SelectReference, AppliedDisabled));
+        protected void OnDisabledSetCallback() => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSelect.setDisabled", SelectReference, AppliedDisabled));
 
 
         /// <inheritdoc/>
-        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSelect.init", SelectReference, ObjectReference);
+        private protected override Task InstantiateMcwComponent() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSelect.init", SelectReference, ObjectReference);
     }
 }

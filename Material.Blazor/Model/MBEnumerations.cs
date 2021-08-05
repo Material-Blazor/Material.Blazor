@@ -444,6 +444,21 @@ namespace Material.Blazor
         Avatar
     }
 
+    /// <summary>
+    /// Type for the level of logging performed by M.B
+    /// They follow the Microsoft.Logging.LogLevel definition
+    /// </summary>
+    public enum MBLoggingLevel
+    {
+        Trace = 0,
+        Debug = 1,
+        Information = 2,
+        Warning = 3,
+        Error = 4,
+        Critical = 5,
+        None = 0,
+    }
+
 
     /// <summary>
     /// Determines the positioning and width of a menu surface.
@@ -710,14 +725,29 @@ namespace Material.Blazor
         TopLeft,
 
         /// <summary>
-        /// Top left right, newest toasts on top.
+        /// Top right, newest toasts on top.
         /// </summary>
         TopRight,
 
         /// <summary>
-        /// Top left center, newest toasts on top.
+        /// Top center, newest toasts on top.
         /// </summary>
         TopCenter,
+
+        /// <summary>
+        /// Center left positioning, newest toasts on top.
+        /// </summary>
+        CenterLeft,
+
+        /// <summary>
+        /// Center right, newest toasts on top.
+        /// </summary>
+        CenterRight,
+
+        /// <summary>
+        /// Center center, newest toasts on top.
+        /// </summary>
+        CenterCenter,
 
         /// <summary>
         /// Bottom left positioning, newest toasts on the bottom.

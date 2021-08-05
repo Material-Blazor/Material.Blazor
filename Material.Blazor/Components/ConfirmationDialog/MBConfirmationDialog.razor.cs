@@ -112,13 +112,13 @@ namespace Material.Blazor
         /// Shows the dialog.
         /// </summary>
         /// <returns></returns>
-        public async Task<string> ShowAsync()
+        public Task<string> ShowAsync()
         {
             EnteredText = "";
             Confirmed = false;
             digitText = RandomDigits();
             StateHasChanged();
-            return await Dialog.ShowAsync();
+            return Dialog.ShowAsync();
         }
 
 
@@ -126,11 +126,11 @@ namespace Material.Blazor
         /// Hides the dialog.
         /// </summary>
         /// <returns></returns>
-        public async Task HideAsync()
+        public Task HideAsync()
         {
             EnteredText = "";
             Confirmed = false;
-            await Dialog.HideAsync();
+            return Dialog.HideAsync();
         }
 
 

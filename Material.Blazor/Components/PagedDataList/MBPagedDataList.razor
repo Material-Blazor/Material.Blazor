@@ -9,12 +9,13 @@
      @attributes="@AttributesToSplat()">
 
     <div class="@ContentClass @ListTemplateClass">
-        @ListTemplate(@:@{
-            foreach (TItem item in CurrentPage)
-            {
-                @ItemTemplate(item)
-            }}
-        )
+        @ListTemplate(
+            @<text>
+                @foreach (TItem item in CurrentPage)
+                {
+                    @ItemTemplate(item)
+                }
+            </text>)
     </div>
 
     <div class="@PaginatorClass">
@@ -35,21 +36,12 @@
 
         if (ItemTemplate == null)
         {
-            ItemTemplate = (item) => @:@{
-                <li @key="@KeyGenerator(item)">@item.ToString()</li>}
-            ;
+            ItemTemplate = (item) => @<li @key="@KeyGenerator(item)">@item.ToString()</li>;
         }
 
         if (ListTemplate == null)
         {
-            ListTemplate = _ => @:@{
-            <ul>
-                @foreach (TItem item in CurrentPage)
-                {
-                    @ItemTemplate(item)
-                }
-            </ul>}
-            ;
+            ListTemplate = (childContent) => @<ul>@childContent</ul>;
         }
     }
 }

@@ -12,20 +12,6 @@ namespace Material.Blazor
     public partial class MBDataTable<TItem> : ComponentFoundation
     {
         /// <summary>
-        /// A cascading to be used by <see cref="MBPaginator"/> to
-        /// identify that it is within a data table.
-        /// </summary>
-        internal const string DataTableCascadingValue = "DataTableCascadingValue";
-
-
-        /// <summary>
-        /// A reference for <see cref="DataTableCascadingValue"/> to be used by <see cref="MBPaginator"/> to
-        /// identify that it is within a data table.
-        /// </summary>
-        internal const string DataTableReference = "276994ab-401c-434b-835d-740e06e5aa82";
-
-
-        /// <summary>
         /// A function delegate to return the parameters for <c>@key</c> attributes. If unused
         /// "fake" keys set to GUIDs will be used.
         /// </summary>
@@ -78,7 +64,7 @@ namespace Material.Blazor
 
                     if (HasProgressBar && HasInstantiated)
                     {
-                        InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDataTable.setProgress", ElementReference, showProgress));
+                        InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDataTable.setProgress", ElementReference, showProgress));
                     }
                 }
             }
@@ -116,6 +102,6 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDataTable.init", ElementReference, HasProgressBar, ShowProgress);
+        private protected override Task InstantiateMcwComponent() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBDataTable.init", ElementReference, HasProgressBar, ShowProgress);
     }
 }

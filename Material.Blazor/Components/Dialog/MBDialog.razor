@@ -1,19 +1,19 @@
 ﻿@namespace Material.Blazor
 @inherits ComponentFoundation
 
+<div @ref="DialogElem"
+     class="mdc-dialog @ActiveConditionalClasses @(@class)"
+     style="@style"
+     id="@id"
+     @attributes="@AttributesToSplat()"
+     aria-labelledby="@(HasTitle ? titleId : (HasCustomHeader ? headerId : null))"
+     aria-describedby="@(HasBody ? bodyId : null)"
+     aria-modal="true">
 
-@if (IsOpen)
-{
-    <div @key="@Key"
-         @ref="DialogElem"
-         class="mdc-dialog @ActiveConditionalClasses @(@class)"
-         style="@style"
-         id="@id"
-         @attributes="@MyAttributes"
-         aria-modal="true">
-
-        <CascadingValue Value="@this" IsFixed="true">
-            <div class="mdc-dialog__container">
+    <CascadingValue Value="@this" IsFixed="true">
+        <div class="mdc-dialog__container">
+            @if (IsOpen)
+            {
                 <div class="mdc-dialog__surface @OverflowClass">
                     @if (HasTitle)
                     {
@@ -41,9 +41,9 @@
                         </footer>
                     }
                 </div>
-            </div>
-        </CascadingValue>
+            }
+        </div>
+    </CascadingValue>
 
-        <div class="mdc-dialog__scrim"></div>
-    </div>
-}
+    <div class="mdc-dialog__scrim"></div>
+</div>

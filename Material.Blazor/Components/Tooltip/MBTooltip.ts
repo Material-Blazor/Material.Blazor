@@ -1,5 +1,11 @@
 ﻿import { MDCTooltip } from '@material/tooltip';
+export  { numbers } from '@material/tooltip';
 
 export function init(arrayOfReferences) {
-    arrayOfReferences.forEach(elem => elem._tooltip = MDCTooltip.attachTo(elem));
+    for (const elem of arrayOfReferences) {
+        try {
+            MDCTooltip.attachTo(elem);
+        } catch (e) {
+        }
+    }
 }

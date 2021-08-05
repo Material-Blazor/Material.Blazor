@@ -10,13 +10,13 @@ A single thumb [Material Slider](https://github.com/material-components/material
 
 ## Details
 
-- Two-way binds a text Value parameter;
-- Applies both continuous and discrete slider variants.
+- Two-way binds a decimal Value parameter;
+- Implements both continuous and discrete slider variants.
 - Emits events on:
   - Thumb-up;
   - Debounced, meaning that events are emitted once the slider stops moving, but before thumb-up; or
   - Throttled, so that events are emitted continuously as the slider is moved.
-- Debounce and throttle happed in JS to avoid excessive/inefficient use of Blazor JSInterop.
+- Debounce and throttle implemented in JS to avoid excessive/inefficient use of Blazor JSInterop.
 
 &nbsp;
 

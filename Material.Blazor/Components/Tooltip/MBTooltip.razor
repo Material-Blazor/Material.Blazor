@@ -3,7 +3,7 @@
 
 @if (TooltipType == MBTooltipType.Span)
 {
-    <span aria-describedby="@id">
+    <span aria-describedby="mb-tooltip-@id">
         @if (Target != null)
         {
             @Target
@@ -12,7 +12,7 @@
 }
 else
 {
-    <div aria-describedby="@id">
+    <div aria-describedby="mb-tooltip-@id">
         @if (Target != null)
         {
             @Target

@@ -1,15 +1,15 @@
 ﻿@namespace Material.Blazor
 @inherits ComponentFoundation
 
-
-<div class="mdc-touch-target-wrapper">
+<MBTouchTargetWrapper ApplyTouchTargetWrapper="AppliedTouchTarget">
     <button @ref="@ElementReference"
             class="mdc-button @ActiveConditionalClasses @(@class)"
             style="@style"
             id="@id"
             @attributes="@AttributesToSplat()"
             data-mdc-dialog-action="@DialogAction">
-        <div class="mdc-button__ripple"></div>
+
+        <div class="mdc-button__ripple" />
 
         @if (!string.IsNullOrWhiteSpace(LeadingIcon))
         {
@@ -29,4 +29,4 @@
                     IconName="@TrailingIcon" />
         }
     </button>
-</div>
+</MBTouchTargetWrapper>

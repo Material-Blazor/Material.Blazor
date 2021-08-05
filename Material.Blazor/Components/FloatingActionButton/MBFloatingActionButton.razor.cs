@@ -15,6 +15,11 @@ namespace Material.Blazor
     {
         [CascadingParameter] private MBCard Card { get; set; }
 
+        /// <summary>
+        /// Inclusion of touch target
+        /// </summary>
+        [Parameter] public bool? TouchTarget { get; set; }
+
 
 #nullable enable annotations
         /// <summary>
@@ -51,6 +56,8 @@ namespace Material.Blazor
         [Parameter] public bool IconTrailsLabel { get; set; }
 
 
+        private bool AppliedTouchTarget => CascadingDefaults.AppliedTouchTarget(TouchTarget);
+
         private bool exited;
         /// <summary>
         /// Leading icon if false, otherwise trailine, and only applied to the extended variant.
@@ -67,7 +74,7 @@ namespace Material.Blazor
 
                     if (HasInstantiated)
                     {
-                        InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBFloatingActionButton.setExited", ElementReference, Exited));
+                        InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBFloatingActionButton.setExited", ElementReference, Exited));
                     }
                 }
             }
@@ -85,11 +92,12 @@ namespace Material.Blazor
 
             ConditionalCssClasses
                 .AddIf("mdc-fab--mini mdc-fab--touch", () => Type == MBFloatingActionButtonType.Mini)
-                .AddIf("mdc-fab--extended", () => Type == MBFloatingActionButtonType.Extended);
+                .AddIf("mdc-fab--extended", () => Type == MBFloatingActionButtonType.Extended)
+                .AddIf("mdc-fab--exited", () => Exited);
         }
 
 
         /// <inheritdoc/>
-        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBFloatingActionButton.init", ElementReference, Exited);
+        private protected override Task InstantiateMcwComponent() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBFloatingActionButton.init", ElementReference, Exited);
     }
 }

@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
 namespace Material.Blazor.Website.Pages
 {
     public partial class Index
     {
-        [Inject] private IJSRuntime JsRuntime { get; set; }
         [Inject] private IMBAnimatedNavigationManager AnimatedNavigationManager { get; set; }
+        [Inject] private IJSRuntime JSRuntime { get; set; }
 
 #if DEBUG
         private string BuildMode { get; set; } = "debug";
@@ -29,10 +30,10 @@ namespace Material.Blazor.Website.Pages
         }
 
 
-        private void NavigateToDocs()
+        private async Task NavigateToDocs()
         {
             var baseURI = AnimatedNavigationManager.NavigationManager.BaseUri;
-            AnimatedNavigationManager.NavigateTo($"{baseURI}docs", true);
+            await JSRuntime.InvokeAsync<object>("open", $"{baseURI}docs", "_blank");
         }
 
 

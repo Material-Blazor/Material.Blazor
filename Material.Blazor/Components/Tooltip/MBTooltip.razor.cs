@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using Material.Blazor.Internal;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Threading.Tasks;
 
@@ -29,8 +30,7 @@ namespace Material.Blazor
         [Parameter] public MBTooltipType TooltipType { get; set; } = MBTooltipType.Span;
 
 
-
-        private readonly Guid id = Guid.NewGuid();
+        private readonly long id = TooltipIdProvider.NextId();
         private bool disposedValue;
 
 
@@ -52,9 +52,6 @@ namespace Material.Blazor
                 {
                     TooltipService.RemoveTooltip(id);
                 }
-
-                // TODO: free unmanaged resources (unmanaged objects) and override finalizer
-                // TODO: set large fields to null
                 disposedValue = true;
             }
         }

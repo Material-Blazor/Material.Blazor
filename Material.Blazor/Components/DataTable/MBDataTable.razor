@@ -55,7 +55,7 @@
 
     @if (Paginator != null)
     {
-        <CascadingValue Name="@DataTableCascadingValue" Value="@DataTableReference" IsFixed="true">
+        <CascadingValue Name="IsWithinDataTable" Value="true" IsFixed="true">
             @Paginator
         </CascadingValue>
     }

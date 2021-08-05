@@ -116,12 +116,10 @@ namespace Material.Blazor
         /// For Material Theme to notify when a tab is clicked via JS Interop.
         /// </summary>
         /// <returns></returns>
-        [JSInvokable("NotifyActivatedAsync")]
-        public async Task NotifyActivatedAsync(int index)
+        [JSInvokable]
+        public void NotifyActivated(int index)
         {
             ComponentValue = index;
-
-            await Task.CompletedTask;
         }
 
 
@@ -130,10 +128,10 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTabBar.activateTab", ElementReference, Value).ConfigureAwait(false));
+        protected void OnValueSetCallback() => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTabBar.activateTab", ElementReference, Value));
 
 
         /// <inheritdoc/>
-        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTabBar.init", ElementReference, ObjectReference).ConfigureAwait(false);
+        private protected override Task InstantiateMcwComponent() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTabBar.init", ElementReference, ObjectReference);
     }
 }

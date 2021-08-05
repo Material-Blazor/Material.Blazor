@@ -1,8 +1,5 @@
 ﻿using Material.Blazor.Internal;
-
 using Microsoft.AspNetCore.Components;
-
-using System;
 using System.Threading.Tasks;
 
 namespace Material.Blazor
@@ -17,6 +14,7 @@ namespace Material.Blazor
         /// Makes the progress bar indeterminant if True.
         /// </summary>
         [Parameter] public MBLinearProgressType LinearProgressType { get; set; } = MBLinearProgressType.Indeterminate;
+        private MBLinearProgressType cachedLinearProgressType = MBLinearProgressType.Indeterminate;
 
 
         /// <summary>
@@ -38,7 +36,10 @@ namespace Material.Blazor
                 if (value != _bufferValue)
                 {
                     _bufferValue = value;
-                    OnValueSetCallback(null, null);
+                    if (HasInstantiated)
+                    {
+                        OnValueSetCallback();
+                    }
                 }
             }
         }
@@ -49,7 +50,7 @@ namespace Material.Blazor
         /// Set aria-valuenow to an immutable value because MB doesn't want us to re-render,
         /// however we need to allow ShouldRender to return true for class changes.
         /// </summary>
-        private double IntialValue { get; set; }
+        private double InitialValue { get; set; }
         private double MyBufferValue => (BufferValue is null) ? 1 : (double)BufferValue;
 
 
@@ -59,7 +60,7 @@ namespace Material.Blazor
             await base.OnInitializedAsync();
 
             ForceShouldRenderToTrue = true;
-            IntialValue = Value;
+            InitialValue = Value;
 
             ConditionalCssClasses
                 .AddIf("mdc-linear-progress--indeterminate", () => LinearProgressType == MBLinearProgressType.Indeterminate)
@@ -75,10 +76,20 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => InvokeAsync(async () => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBLinearProgress.setProgress", ElementReference, Value, MyBufferValue));
-
+        protected void OnValueSetCallback() => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBLinearProgress.setProgress", ElementReference, Value, MyBufferValue));
 
         /// <inheritdoc/>
-        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBLinearProgress.init", ElementReference, Value, MyBufferValue);
+        private protected override Task InstantiateMcwComponent() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBLinearProgress.init", ElementReference, Value, MyBufferValue);
+
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            await base.OnAfterRenderAsync(firstRender);
+            if (cachedLinearProgressType != LinearProgressType)
+            {
+                cachedLinearProgressType = LinearProgressType;
+                await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBLinearProgress.restartAnimation", ElementReference);
+            }
+        }
     }
 }

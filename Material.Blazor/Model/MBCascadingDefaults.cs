@@ -1,4 +1,3 @@
-﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,30 +32,14 @@ namespace Material.Blazor
         /// </summary>
         public bool ConstrainSplattableAttributes { get => _constrainSplattableAttributes; set => SetParameter(ref _constrainSplattableAttributes, value); }
 
-        /// <summary>
-        /// A list of unmatched attributes that are used by and therefore essential for Material.Blazor. Works with 
-        /// <see cref="ConstrainSplattableAttributes"/> and <see cref="AllowedSplattableAttributes"/>.
-        /// </summary>
-        /// <remarks>
-        /// Includes "formnovalidate", "id", "max", "min", "role", "step", "tabindex" and "type"
-        /// </remarks>
-        public readonly IEnumerable<string> EssentialSplattableAttributes = new string[] { "class", "style", "formnovalidate", "id", "max", "min", "role", "step", "tabindex", "type", "data-prev-page" };
 
 
-
-        private IEnumerable<string> _allowedSplattableAttributes = Array.Empty<string>();
+        private IEnumerable<string> _allowedSplattableAttributes = Enumerable.Empty<string>();
         /// <summary>
         /// Further attributes that can be set as allowable when <see cref="Internal.ComponentFoundation"/>
-        /// performs unmatched attribute validation. Works with <see cref="ConstrainSplattableAttributes"/>
-        /// and <see cref="EssentialSplattableAttributes"/>.
+        /// performs unmatched attribute validation. Works with <see cref="ConstrainSplattableAttributes"/>.
         /// </summary>
         public IEnumerable<string> AllowedSplattableAttributes { get => _allowedSplattableAttributes; set => SetParameter(ref _allowedSplattableAttributes, value); }
-
-        /// <summary>
-        /// An enumerable of allowable attributes formed from a distinct union of <see cref="EssentialSplattableAttributes"/>
-        /// and <see cref="AllowedSplattableAttributes"/>
-        /// </summary>
-        internal IEnumerable<string> AppliedAllowedSplattableAttributes => EssentialSplattableAttributes.Union(AllowedSplattableAttributes.Select(x => x.ToLower())).Distinct();
 
 
 
@@ -226,6 +209,21 @@ namespace Material.Blazor
         /// <param name="style">The style parameter passed to the <see cref="MBCard"/></param>
         /// <returns>The <see cref="MBCardStyle"/> to apply.</returns>
         internal MBCardStyle AppliedStyle(MBCardStyle? style = null) => style ?? CardStyle;
+
+
+
+        private string _dateFormat = "D";
+        /// <summary>
+        /// The default date format for an <see cref="MBDatePicker"/>, initialized to "D" (culture specific C# long date pattern) if not explicitly set.
+        /// </summary>
+        public string DateFormat { get => _dateFormat; set => SetParameter(ref _dateFormat, value); }
+
+        /// <summary>
+        /// The date format to apply to an <see cref="MBDatePicker"/>.
+        /// </summary>
+        /// <param name="style">The style parameter passed to the <see cref="MBCard"/></param>
+        /// <returns>The <see cref="MBCardStyle"/> to apply.</returns>
+        internal string AppliedDateFormat(string format = null) => string.IsNullOrWhiteSpace(format) ? DateFormat : format;
 
 
 
@@ -557,7 +555,21 @@ namespace Material.Blazor
         /*************************************************************************************************************
          * 
          * 
-         *      COMPONENT DENSITY
+         *      COMPONENT ACCESSIBILITY
+         * 
+         * 
+         ************************************************************************************************************/
+
+        private bool _TouchTarget = true;
+        public bool TouchTarget { get => _TouchTarget; set => SetParameter(ref _TouchTarget, value); }
+        internal bool AppliedTouchTarget(bool? touchTarget) => touchTarget ?? TouchTarget;
+
+
+
+        /*************************************************************************************************************
+         * 
+         * 
+         *      VERSION
          * 
          * 
          ************************************************************************************************************/
@@ -567,6 +579,17 @@ namespace Material.Blazor
         /// with the <c>@key</c> attribute.
         /// </summary>
         public int Version { get; private set; } = 0;
+
+
+
+        /// <summary>
+        /// Returns a shallow copy of the cascading defaults.
+        /// </summary>
+        /// <returns></returns>
+        public MBCascadingDefaults ShallowCopy()
+        {
+            return (MBCascadingDefaults)MemberwiseClone();
+        }
 
 
 

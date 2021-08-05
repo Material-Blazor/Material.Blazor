@@ -1,6 +1,5 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -59,6 +58,6 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback(object sender, EventArgs e) => SegmentedButtonMulti.SetSingleSelectValue(Value);
+        protected void OnValueSetCallback() => SegmentedButtonMulti.SetSingleSelectValue(Value);
     }
 }

@@ -15,16 +15,6 @@ namespace Material.Blazor
     public class MBIcon : ComponentFoundation
     {
         [CascadingParameter(Name = "IsInsideMBTabBar")] private bool IsInsideMBTabBar { get; set; }
-        protected override void BuildRenderTree(RenderTreeBuilder builder)
-        {
-            if (IconHelper == null)
-            {
-                return;
-            }
-            builder.AddContent(0, IconHelper.Render(@class: string.Join(" ", (IsInsideMBTabBar ? "mdc-tab__icon" : ""), @class), style: style, attributes: AttributesToSplat()));
-        }
-
-
 
 #nullable enable annotations
         /// <summary>
@@ -46,6 +36,16 @@ namespace Material.Blazor
 
         private MBIconHelper IconHelper { get; set; }
 
+
+        /// <inheritdoc/>
+        protected override void BuildRenderTree(RenderTreeBuilder builder)
+        {
+            if (IconHelper == null)
+            {
+                return;
+            }
+            builder.AddContent(0, IconHelper.Render(@class: string.Join(" ", (IsInsideMBTabBar ? "mdc-tab__icon" : ""), @class), style: style, attributes: AttributesToSplat()));
+        }
 
         /// <inheritdoc/>
         protected override async Task OnParametersSetAsync()

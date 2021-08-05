@@ -2,6 +2,8 @@
 
 @inject IMBToastService ToastService
 
+@using Nager.Date
+
 
 
 <DemonstrationPage ComponentName="DatePicker"
@@ -30,6 +32,7 @@
                     <p>
                         <MBDatePicker @bind-Value="@Filled"
                                       Label="Filled"
+                                      DateFormat="ddd MMM dd, yyyy"
                                       MaxDate="@Max"
                                       MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
                                       MinDate="@Min"
@@ -74,14 +77,25 @@
                     </h2>
 
                     <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        Control which dates are selectable.
+                        Control which dates are selectable, first with Mondays, Wednesdays and Fridays and second with business days in England, using the <a href="https://www.nuget.org/packages/Nager.Date/" target="_blank">Nager.Date nuget package</a>.
                     </h3>
 
                     <p>
-                        <MBDatePicker @bind-Value="@Outlined"
-                                      Label="Custom selectable dates"
+                        <MBDatePicker @bind-Value="@MonWedFri"
+                                      Label="Mon, Wed, or Fri"
                                       DateFormat="ddd MMM dd, yyyy"
-                                      DateIsSelectable="(date) => date.DayOfWeek is DayOfWeek.Monday or DayOfWeek.Wednesday or DayOfWeek.Friday or DayOfWeek.Sunday"
+                                      DateIsSelectable="(date) => date.DayOfWeek is DayOfWeek.Monday or DayOfWeek.Wednesday or DayOfWeek.Friday"
+                                      SelectInputStyle="MBSelectInputStyle.Outlined"
+                                      MaxDate="@Max"
+                                      MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
+                                      MinDate="@Min" />
+                    </p>
+
+                    <p>
+                        <MBDatePicker @bind-Value="@EnglandBusinessDay"
+                                      Label="England Business Day"
+                                      DateFormat="ddd MMM dd, yyyy"
+                                      DateIsSelectable="@((date) => !DateSystem.IsPublicHoliday(date, CountryCode.GB, "GB-ENG") && !DateSystem.IsWeekend(date, CountryCode.GB))"
                                       SelectInputStyle="MBSelectInputStyle.Outlined"
                                       MaxDate="@Max"
                                       MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
@@ -118,7 +132,7 @@
                                 visibility: unset !important;
                             }
                         </style>
-                        <MBDatePicker @bind-Value="@Outlined"
+                        <MBDatePicker @bind-Value="@CustomStyle"
                                       Label="Custom style"
                                       class="custom-style"
                                       DateFormat="ddd MMM dd, yyyy"
@@ -131,6 +145,52 @@
                 </Primary>
             </MBCard>
         </div>
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Default value with SupressDefaultValue set to false
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        The DatePicker component supports the entire range from <code>DateTime.MinValue</code> to <code>DateTime.MaxValue</code>. For a good user experience, remember to set minimum/maximum selectable value to meaningful values.
+                    </h3>
+
+                    <p>
+                        <MBDatePicker @bind-Value="@Default"
+                                      DateFormat="ddd MMM dd, yyyy"
+                                      Label="Default"
+                                      MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
+                                      SelectInputStyle="MBSelectInputStyle.Outlined" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Default value with SupressDefaultValue set to true
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        The DatePicker component supports the entire range from <code>DateTime.MinValue</code> to <code>DateTime.MaxValue</code>. For a good user experience, remember to set minimum/maximum selectable value to meaningful values.
+                    </h3>
+
+                    <p>
+                        <MBDatePicker @bind-Value="@Default"
+                                      DateFormat="ddd MMM dd, yyyy"
+                                      Label="Default"
+                                      MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
+                                      SupressDefaultDate="true"
+                                      SelectInputStyle="MBSelectInputStyle.Outlined" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
     </PageContent>
 </DemonstrationPage>
 
@@ -159,6 +219,57 @@
             _outlined = value;
 
             ToastService.ShowToast(heading: "Outlined Date Picker", message: $"Value: {_outlined.ToLongDateString()}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private DateTime _monWedFri = new DateTime(2021, 1, 8);
+    private DateTime MonWedFri
+    {
+        get => _monWedFri;
+        set
+        {
+            _monWedFri = value;
+
+            ToastService.ShowToast(heading: "Mon, Wed, Fri selectable", message: $"Value: {_monWedFri.ToLongDateString()}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private DateTime _englandBusinessDay = new DateTime(2021, 4, 6);
+    private DateTime EnglandBusinessDay
+    {
+        get => _englandBusinessDay;
+        set
+        {
+            _englandBusinessDay = value;
+
+            ToastService.ShowToast(heading: "England Business Day selectable", message: $"Value: {_englandBusinessDay.ToLongDateString()}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private DateTime _customStyle = new DateTime(2021, 1, 8);
+    private DateTime CustomStyle
+    {
+        get => _customStyle;
+        set
+        {
+            _customStyle = value;
+
+            ToastService.ShowToast(heading: "Custom Style", message: $"Value: {_customStyle.ToLongDateString()}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+    private DateTime _default = default;
+    private DateTime Default
+    {
+        get => _default;
+        set
+        {
+            _default = value;
+
+            ToastService.ShowToast(heading: "Default", message: $"Value: {_default.ToLongDateString()}", level: MBToastLevel.Success, showIcon: false);
         }
     }
 

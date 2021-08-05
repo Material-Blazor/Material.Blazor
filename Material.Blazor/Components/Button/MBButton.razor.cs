@@ -45,6 +45,12 @@ namespace Material.Blazor
 
 
         /// <summary>
+        /// Inclusion of touch target
+        /// </summary>
+        [Parameter] public bool? TouchTarget { get; set; }
+
+
+        /// <summary>
         /// The trailing icon's name. No leading icon shown if not set.
         /// </summary>
         [Parameter] public string? TrailingIcon { get; set; }
@@ -66,10 +72,9 @@ namespace Material.Blazor
         [Parameter] public string DialogAction { get; set; }
 #nullable restore annotations
 
-
-        private ElementReference ElementReference { get; set; }
-
+        private bool AppliedTouchTarget => CascadingDefaults.AppliedTouchTarget(TouchTarget);
         private MBCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityCssClass(CascadingDefaults.AppliedButtonDensity(Density));
+        private ElementReference ElementReference { get; set; }
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -87,6 +92,6 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBButton.init", ElementReference);
+        private protected override Task InstantiateMcwComponent() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBButton.init", ElementReference);
     }
 }

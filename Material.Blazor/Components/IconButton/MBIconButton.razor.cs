@@ -1,8 +1,5 @@
 ﻿using Material.Blazor.Internal;
-
 using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
-
 using System.Threading.Tasks;
 
 namespace Material.Blazor
@@ -58,6 +55,6 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override async Task InstantiateMcwComponent() => await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBIconButton.init", ElementReference);
+        private protected override Task InstantiateMcwComponent() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBIconButton.init", ElementReference);
     }
 }

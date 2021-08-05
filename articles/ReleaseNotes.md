@@ -4,19 +4,151 @@ title: ReleaseNotes
 ---
 # Release Notes
 
-#### [2.0.0](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0)
-In Pre-Release Q4 2020 and Q1 2021
+#### [2.0.0](https://github.com/Material-Blazor/Material.Blazor)
+In Pre-Release Q4 2020 to Q2 2021
 
 _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VERSIONS._
 
+
+**Deprecated Components**
+
+- MBToast is now deprecated in favor of the Material styled MBSnackbar. It will remain part of Material.Blazor 2.n, however no maintenance is planned during the Material.Blazor 2.n series of releases. It will be removed from the next major Material.Blazor release. 
+
+
+<br />
+
+
+#### [2.0.0-preview.7](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.5)
+NOT YET RELEASED
+
 **Updates**
 
-- Upgrade to [Material Components Web 9.0.0](https://github.com/material-components/material-components-web/tree/v9.0.0/packages).
-- Full implementation of Material Components Web JS `destroy()` function calls for every component's `Dispose()` process.
+- Added an internal logging service for M.B. It's logging level can be controlled using the AddMBServices service extension with the new loggingLevelServiceConfiguration parameter.
+
+- Support PrimaryActions & SecondaryActions in MBList.
+
+**New components**
+
+**Breaking Changes**
+
+- MBList Actions parameter is renamed to SecondaryActions.
+
+
+#### [2.0.0-preview.6](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.5)
+2021-04-26
+
+**Updates**
+
+- Added build task to deduplicate license comments in js file
+
+- MBDialog initialization restructured in order to fix a race condition.
+
+- MBSlidingContent initialization to account for 'late' creation of the Items list.
+
+- MBTooltip anchor modified to fix a race condition
+
+**New components**
+
+**Breaking Changes**
+
+
+#### [2.0.0-preview.5](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.5)
+2021-04-19
+
+**Updates**
+
+- Fixed a regression in MBDatepicker where the state after user interaction was not displayed correctly.
+
+**New components**
+
+**Breaking Changes**
+
+
+#### [2.0.0-preview.4](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.4)
+2021-04-16
+
+
+**Updates**
+
 - MBDataTable enhanced with pagination and linear progress implementation - no breaking changes.
-- MBPaginator now uses Material Component Web 9.0.0's markup, with some minor modification - no breaking changes.
-- Tooltips use Material Component Web 9.0.0 rather than preview packages - no breaking changes.
+- MBGrid is now Phase 1 feature complete.
+- MBSnackbar now supports a parameter of 'AdditionalClass' which is applied to the snackbar. See the Snackbar demo page for a simple example of styling for Error/Warning/Info/Success messages.
+- MBToast now supports centerleft, centercenter, and centerright positions. It also had the fixed width removed and toasts adjust width dynamically.
 - Material.Blazor beginning to use `ILogger` to log warnings when validating component markup to help you during app development.
+- General bug fixes.
+- Substantial GitHub workflow upgrade orientated towards quality assurance by @StefanLoerwald, including an automated diff of every page on the demo website resulting from a PR.
+
+
+**New components**
+
+- MBMenuSurface - a stripped back menu surface that accepts a render fragment for its contents (thanks @HannahKiekens).
+- MBNumericDecimalField - a decimal variant of the existing numeric input fields.
+
+
+**Breaking Changes**
+
+- MBMenu `ToggleAsync()` is now return type `Task` rather than `Task<string>` in version 1.
+- MBSelect and other single select components now allow for dynamic update of the `Items` parameter.
+- MBSlider value changed to be of type decimal
+- MBRadioButtonGroup `EnableTouchWrapper` obsolete and removed.
+- `MBToastCloseMethod` enum renamed to `MBNotifierCloseMethod`, and enum value names have changed. This is now used by both toasts and snackbars.
+- The names and content of the  css and js resources required for MaterialBlazor have changed. Please see [Installation article](xref:A.Installation) for details.
+- The CSS utility class `mb-card__primary` was renamed to `mb-card__autostyled`. 
+
+<br />
+
+
+#### [2.0.0-preview.3](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.3)
+2021-02-08
+
+
+**Updates**
+
+- General bug fixes.
+- Additional functionality in MBGrid.
+
+
+**New components**
+
+- MBSnackbar - a core Material Theme snackbar component.
+
+**Breaking Changes**
+
+
+<br />
+
+
+#### [2.0.0-preview.2](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.2)
+2021-01-11
+
+
+**Updates**
+
+- General bug fixes.
+- Animation improvements to MBBladeSet.
+- Additional functionality in MBGrid.
+- Upgrade to [Material Components Web 9.0.0](https://github.com/material-components/material-components-web/tree/v9.0.0/packages).
+- Tooltips use Material Component Web 9.0.0 rather than preview packages - no breaking changes.
+- MBPaginator now uses Material Component Web 9.0.0's markup, with some minor modification - no breaking changes.
+
+
+**New components**
+
+**Breaking Changes**
+
+- CDN packages now reference material components web 9.0.0, see [Installation article](xref:A.Installation).
+- If you are building a theme from material components web SASS, you need to reference version 9.0.0.
+
+
+<br />
+
+
+#### [2.0.0-preview.1](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.1)
+2020-12-29
+
+
+**Updates**
+
 - General bug fixes.
 - Material.Blazor 2.0.0 is compatible with .NET 5.0 only. If you need to build against older versions of .NET please continue to use Material.Blazor 1.1.4.
 
@@ -24,24 +156,16 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 **New components**
 
 - MBBladeSet - a blade implementation inspired by Microsoft Azure blades.
-- MBGrid (EXPERIMENTAL) - a capable grid component. This is not yet styled to look like Material Theme and we may or may not keep it in Material.Blazor. We recommend not using MBGrid for anything other than experiment or contributing to its development.
-- MBNumericDecimalField - a decimal variant of the existing numeric input fields.
 - MBChipsSelectMulti - a multi select variant of a chip set.
 - MBChipsSelectSingle - a single select variant of a chip set.
+- MBGrid (EXPERIMENTAL) - a capable grid component. This is not yet styled to look like Material Theme and we may or may not keep it in Material.Blazor. We recommend not using MBGrid for anything other than experiment or contributing to its development.
 - MBSegmentedButtonMulti - a multi select variant of segmented buttons, which have been added to Material Components Web 9.0.0.
 - MBSegmentedButtonSingle - a single select variant of segmented buttons, which have been added to Material Components Web 9.0.0.
 - MBSlider - a continuous and discrete single-thumb slider.
-- MBSnackbar - a core Material Theme snackbar component.
 
 
 **Breaking Changes**
 
-- CDN packages now reference material components web 9.0.0, see [Installation article](xref:A.Installation).
-- If you are building a theme from material components web SASS, you need to reference version 9.0.0.
-- MBMenu `ToggleAsync()` is now return type `Task` rather than `Task<string>` in version 1.
-- MBRadioButtonGroup `EnableTouchWrapper` obsolete and removed.
-- `MBToastCloseMethod` enum renamed to `MBNotifierCloseMethod`, and enum value names have changed. This is now used by both toasts and snackbars.
-- The names and content of the  css and js resources required for MaterialBlazor have changed. Please see [Installation article](xref:A.Installation) for details.
 
 <br />
 

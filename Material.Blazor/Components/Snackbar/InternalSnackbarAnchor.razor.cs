@@ -51,7 +51,6 @@ namespace Material.Blazor.Internal
             var snackbarInstance = new SnackbarInstance
             {
                 Id = Guid.NewGuid(),
-                TimeStamp = DateTime.Now,
                 Settings = settings
             };
 

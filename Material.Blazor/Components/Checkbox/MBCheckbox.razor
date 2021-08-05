@@ -2,11 +2,11 @@
 @inherits InputComponent<bool>
 
 
-<div @ref="@FormReference" class="mdc-form-field">
-    <div class="mdc-touch-target-wrapper">
+<div @ref="@FormReference" class="mdc-form-field @(@class))" style="@style">
+
+    <MBTouchTargetWrapper ApplyTouchTargetWrapper="AppliedTouchTarget">
         <div @ref="@ElementReference"
-             class="mdc-checkbox mdc-checkbox--touch @ActiveConditionalClasses @(@class)"
-             style="@style"
+             class="mdc-checkbox mdc-checkbox--touch @ActiveConditionalClasses"
              id="@id"
              @attributes="@EventAttributesToSplat()">
 
@@ -14,7 +14,7 @@
                    @attributes="OtherAttributesToSplat()"
                    type="checkbox"
                    class="mdc-checkbox__native-control @FieldClass"
-                   id="@CrossReferenceId"/>
+                   id="@CrossReferenceId" />
             <div class="mdc-checkbox__background">
                 <svg class="mdc-checkbox__checkmark"
                      viewBox="0 0 24 24">
@@ -26,6 +26,6 @@
             </div>
             <div class="mdc-checkbox__ripple"></div>
         </div>
-    </div>
+    </MBTouchTargetWrapper>
     <label for="@CrossReferenceId">@Label</label>
 </div>

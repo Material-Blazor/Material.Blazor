@@ -6,10 +6,10 @@ export function init(elem, isSingleSelect, dotNetObject) {
 
     elem._segmentedButton.foundation.adapter.notifySelectedChange = detail => {
         if (elem._isSingleSelect) {
-            dotNetObject.invokeMethodAsync('NotifySingleSelectedAsync', detail.index);
+            dotNetObject.invokeMethodAsync('NotifySingleSelected', detail.index);
         }
         else {
-            dotNetObject.invokeMethodAsync('NotifyMultiSelectedAsync', elem._segmentedButton.segments.map(x => x.isSelected()));
+            dotNetObject.invokeMethodAsync('NotifyMultiSelected', elem._segmentedButton.segments.map(x => x.isSelected()));
         }
     };
 }

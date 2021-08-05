@@ -295,17 +295,121 @@
                 </Primary>
             </MBCard>
         </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Dynamically update Items
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        <code>Items</code> can by dynamically updated with the toggle button. Note that if you remove items from the list,
+                        you must change <code>Value</code> accordingly to avoid exceptions if you have <code>ItemValidation="@MBItemValidation.Exception"</code>.
+                    </h3>
+
+                    <p>
+                        <MBIconButtonToggle @bind-Value="@ExtendDynamicItems"
+                                            IconOn="remove"
+                                            IconOff="add" />
+                    </p>
+                    <p>
+                        <MBSelect @bind-Value="@ExtendedValue"
+                                  Items="@DynamicItems"
+                                  ItemValidation="@MBItemValidation.DefaultToFirst"
+                                  Label="Items disabled" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        No items
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        An MBSelect where the Items collection is empty.
+                    </h3>
+
+                    <p>
+                        <MBSelect @bind-Value="@OutlinedDensityDefault"
+                                  Items="Enumerable.Empty<MBSelectElement<string>>()"
+                                  ItemValidation="MBItemValidation.NoSelection"
+                                  Label="Empty" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Null item
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        An MBSelect where the Items collection contains a null value.
+                    </h3>
+
+                    <p>
+                        <MBSelect @bind-Value="@NullValueAllowed"
+                                  Items="@KittenBreeds.Append(new MBSelectElement<string> { Label = "Null", SelectedValue = null })"
+                                  ItemValidation="MBItemValidation.NoSelection"
+                                  Label="Empty" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Bug?
+                    </h2>
+
+                    <p>
+                        <MBSelect Value="@TwoWayBinding2"
+                                  ValueChanged="@VC2"
+                                  TItem="string"
+                                  Items="KittenBreeds"
+                                  ItemValidation="@MBItemValidation.NoSelection"
+                                  Label="Items disabled" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
     </PageContent>
 </DemonstrationPage>
 
-
-@code {
+@code{
     MBSelectElement<string>[] KittenBreeds = new MBSelectElement<string>[]
     {
         new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
         new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
         new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
-            };
+        };
+
+    MBSelectElement<string>[] KittenBreedsExtended = new MBSelectElement<string>[]
+    {
+        new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" },
+        new MBSelectElement<string> { SelectedValue = "tabby", Label = "Tabby" },
+        new MBSelectElement<string> { SelectedValue = "siam", Label = "Siamese" }
+        };
+
     MBSelectElement<string>[] KittenBreedsNoFake = new MBSelectElement<string>[]
     {
         new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
@@ -313,7 +417,7 @@
         new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" },
         new MBSelectElement<string> { SelectedValue = "disabled1", Label = "Mr. Snuggles", Disabled = true },
         new MBSelectElement<string> { SelectedValue = "disabled2", Label = "Roger Rabbit", Disabled = true }
-            };
+        };
 
 
     private string DefaultStyle;
@@ -327,6 +431,7 @@
     private string RightAligned;
 
     private string TwoWayBinding;
+    private string TwoWayBinding2 = "";
 
     private string FilledDensityDefault;
     private string FilledDensityMinus1;
@@ -334,9 +439,20 @@
     private string FilledDensityMinus3;
     private string FilledDensityMinus4;
 
+    private string NullValueAllowed;
     private string OutlinedDensityDefault;
     private string OutlinedDensityMinus1;
     private string OutlinedDensityMinus2;
     private string OutlinedDensityMinus3;
     private string OutlinedDensityMinus4;
+
+    private string ExtendedValue;
+
+    private bool ExtendDynamicItems = false;
+    private MBSelectElement<string>[] DynamicItems => ExtendDynamicItems ? KittenBreedsExtended : KittenBreeds;
+
+    public void VC2(string newVal)
+    {
+        TwoWayBinding2 = newVal;
+    }
 }

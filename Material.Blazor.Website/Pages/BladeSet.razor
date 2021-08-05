@@ -107,7 +107,7 @@
     public void Dispose() => Blades.BladeSetChanged -= HandleBladeSetChange;
 
 
-    private void HandleBladeSetChange(object sender, EventArgs e) => InvokeAsync(StateHasChanged);
+    private void HandleBladeSetChange() => InvokeAsync(StateHasChanged);
 
 
     private void AddAllBlades()

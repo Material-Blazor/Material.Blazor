@@ -11,9 +11,10 @@
      @attributes="AttributesToSplat()"
      role="@GroupRole">
 
-    @for (int i = 0; i < ItemsArray.Length; i++)
+    @for (int j = 0; j < ItemsArray.Length; j++)
     {
-        <div @key="@KeyGenerator(ItemsArray[i].SelectedValue)" class="mdc-touch-target-wrapper">
+        int i = j;
+        <MBTouchTargetWrapper @key="@KeyGenerator(ItemsArray[i].SelectedValue)" ApplyTouchTargetWrapper="AppliedTouchTarget">
             <button @attributes="@SegmentAttributes[i]">
                 <div class="mdc-segmented-button__ripple"></div>
 
@@ -31,6 +32,6 @@
 
                 <div class="mdc-segmented-button__touch"></div>
             </button>
-        </div>
+        </MBTouchTargetWrapper>
     }
 </div>

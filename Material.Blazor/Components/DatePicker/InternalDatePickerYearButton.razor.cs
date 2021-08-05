@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Material.Blazor.Internal
@@ -57,6 +56,6 @@ namespace Material.Blazor.Internal
         private bool ButtonDisabled => (MaxDate < new DateTime(DisplayYear, 1, 1)) || (MinDate > new DateTime(DisplayYear, 12, 31));
 
 
-        private async Task OnClickAsync() => await OnItemClickAsync.InvokeAsync(DisplayYear);
+        private Task OnClickAsync() => OnItemClickAsync.InvokeAsync(DisplayYear);
     }
 }

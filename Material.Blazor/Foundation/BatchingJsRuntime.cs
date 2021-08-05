@@ -35,7 +35,7 @@ namespace Material.Blazor.Internal
 
         private readonly IJSRuntime js;
         private readonly ConcurrentQueue<Call> queuedCalls = new();
-        private readonly Timer timer = new(10);
+        private readonly System.Timers.Timer timer = new(10);
 
 
         public BatchingJSRuntime(IJSRuntime js)
@@ -87,12 +87,12 @@ namespace Material.Blazor.Internal
 
 
         /// <inheritdoc/>
-        public async Task InvokeVoidAsync(string identifier, params object[] args)
+        public Task InvokeVoidAsync(string identifier, params object[] args)
         {
             var call = new Call(identifier, args);
             queuedCalls.Enqueue(call);
             timer.Start();
-            await call.Task;
+            return call.Task;
         }
 
 

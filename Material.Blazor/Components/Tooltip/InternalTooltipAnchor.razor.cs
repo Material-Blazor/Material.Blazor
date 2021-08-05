@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Components;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace Material.Blazor.Internal
@@ -14,11 +14,9 @@ namespace Material.Blazor.Internal
     /// </summary>
     public partial class InternalTooltipAnchor : ComponentFoundation
     {
-        private Dictionary<Guid, TooltipInstance> Tooltips { get; set; } = new Dictionary<Guid, TooltipInstance>();
-
-
-        private readonly SemaphoreSlim _semProtectTooltips = new SemaphoreSlim(1, 1);
-        private readonly SemaphoreSlim _onAfterRenderSemaphore = new SemaphoreSlim(1, 1);
+        private ConcurrentQueue<KeyValuePair<long, TooltipInstance>> NewTooltips { get; } = new();
+        private ConcurrentQueue<long> OldTooltips { get; } = new();
+        private Dictionary<long, TooltipInstance> Tooltips { get; } = new();
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -37,31 +35,14 @@ namespace Material.Blazor.Internal
         /// </summary>
         /// <param name="id"></param>
         /// <param name="content"></param>
-        private void AddTooltipRenderFragment(Guid id, RenderFragment content)
+        private void AddTooltipRenderFragment(long id, RenderFragment content)
         {
-            InvokeAsync(async () =>
+            NewTooltips.Enqueue(new KeyValuePair<long, TooltipInstance>(id, new TooltipInstance
             {
-                await _semProtectTooltips.WaitAsync();
-
-                try
-                {
-                    var instance = new TooltipInstance
-                    {
-                        Id = id,
-                        TimeStamp = DateTime.Now,
-                        RenderFragmentContent = content,
-                        Initiated = false
-                    };
-
-                    Tooltips.TryAdd(id, instance);
-                }
-                finally
-                {
-                    _semProtectTooltips.Release();
-                }
-
-                StateHasChanged();
-            });
+                RenderFragmentContent = content,
+                Initiated = false
+            }));
+            _ = InvokeAsync(StateHasChanged);
         }
 
 
@@ -71,31 +52,14 @@ namespace Material.Blazor.Internal
         /// </summary>
         /// <param name="id"></param>
         /// <param name="content"></param>
-        private void AddTooltipMarkupString(Guid id, MarkupString content)
+        private void AddTooltipMarkupString(long id, MarkupString content)
         {
-            InvokeAsync(async () =>
+            NewTooltips.Enqueue(new KeyValuePair<long, TooltipInstance>(id, new TooltipInstance
             {
-                await _semProtectTooltips.WaitAsync();
-
-                try
-                {
-                    var instance = new TooltipInstance
-                    {
-                        Id = id,
-                        TimeStamp = DateTime.Now,
-                        MarkupStringContent = content,
-                        Initiated = false
-                    };
-
-                    Tooltips.TryAdd(id, instance);
-                }
-                finally
-                {
-                    _semProtectTooltips.Release();
-                }
-
-                StateHasChanged();
-            });
+                MarkupStringContent = content,
+                Initiated = false
+            }));
+            _ = InvokeAsync(StateHasChanged);
         }
 
 
@@ -103,55 +67,53 @@ namespace Material.Blazor.Internal
         /// Removes a tooltip from the anchor.
         /// </summary>
         /// <param name="id"></param>
-        internal void RemoveTooltip(Guid id)
+        internal void RemoveTooltip(long id)
         {
-            InvokeAsync(async () =>
+            try
             {
-                await _semProtectTooltips.WaitAsync();
-
-                try
-                {
-                    if (Tooltips.TryGetValue(id, out var instance))
-                    {
-                        Tooltips.Remove(id);
-                    }
-                }
-                finally
-                {
-                    _semProtectTooltips.Release();
-                }
-
-                await InvokeAsync(StateHasChanged);
-            });
+                OldTooltips.Enqueue(id);
+                _ = InvokeAsync(StateHasChanged);
+            }
+            catch (ObjectDisposedException)
+            {
+                // Ignore ObjectDisposedException to avoid exceptions being thrown when the user closes browser and tooltips are showing.
+            }
         }
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            await _semProtectTooltips.WaitAsync();
+            var refs = (from tooltip in Tooltips.Values
+                        where !tooltip.Initiated &&
+                              !string.IsNullOrWhiteSpace(tooltip.ElementReference.Id)
+                        select tooltip).ToArray();
 
-            try
+            if (refs.Length > 0)
             {
-                var refs = (from tooltip in Tooltips.Values
-                            where !tooltip.Initiated &&
-                                  !string.IsNullOrWhiteSpace(tooltip.ElementReference.Id)
-                            orderby tooltip.TimeStamp
-                            select tooltip).ToArray();
+                await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTooltip.init", refs.Select(r => r.ElementReference));
 
-                if (refs.Length > 0)
+                foreach (var item in refs)
                 {
-                    await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBTooltip.init", refs.Select(r => r.ElementReference));
-
-                    foreach (var item in refs)
-                    {
-                        item.Initiated = true;
-                    }
+                    item.Initiated = true;
                 }
             }
-            finally
+        }
+
+
+        /// <summary>
+        /// Before we render any tooltip, let's update the list of tooltips that need to be rendered.
+        /// </summary>
+        private void OnBeforeRender()
+        {
+            while (NewTooltips.TryDequeue(out var kvp))
             {
-                _semProtectTooltips.Release();
+                var (key, tooltip) = kvp;
+                Tooltips.Add(key, tooltip);
+            }
+            while (OldTooltips.TryDequeue(out var key))
+            {
+                Tooltips.Remove(key);
             }
         }
     }

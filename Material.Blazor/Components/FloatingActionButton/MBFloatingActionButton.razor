@@ -1,10 +1,9 @@
 ﻿@namespace Material.Blazor
 @inherits ComponentFoundation
 
-
 @if (Type == MBFloatingActionButtonType.Mini)
 {
-    <div class="mdc-touch-target-wrapper">
+    <MBTouchTargetWrapper ApplyTouchTargetWrapper="AppliedTouchTarget">
         <button @ref="@ElementReference"
                 class="mdc-fab @ActiveConditionalClasses @(@class)"
                 style="@style"
@@ -17,7 +16,7 @@
                     IconName="@Icon" />
             <div class="mdc-fab__touch"></div>
         </button>
-    </div>
+    </MBTouchTargetWrapper>
 }
 else
 {

@@ -18,10 +18,34 @@ namespace Material.Blazor.Internal
         [Parameter] public Func<T, object> GetKeysFunc { get; set; }
 
 
+        private IEnumerable<TListElement> _items;
         /// <summary>
         /// The item list to be represented as radio buttons
         /// </summary>
-        [Parameter] public IEnumerable<TListElement> Items { get; set; }
+        [Parameter] public IEnumerable<TListElement> Items
+        {
+            get => _items;
+            set
+            {
+                if ((value == null && _items != null) || (value != null && _items == null) || (value != null && _items != null && !value.SequenceEqual(_items)))
+                {
+                    _items = value;
+
+                    if (HasInstantiated)
+                    {
+                        var (_, validatedValue) = ValidateItemList(_items, CascadingDefaults.AppliedItemValidation(ItemValidation));
+
+                        if (!validatedValue.Equals(Value))
+                        {
+                            Value = validatedValue;
+                        }
+                    }
+
+                    AllowNextShouldRender();
+                    InvokeAsync(StateHasChanged);
+                }
+            }
+        }
 
 
         /// <summary>
@@ -51,11 +75,6 @@ namespace Material.Blazor.Internal
         {
             var componentName = Utilities.GetTypeName(GetType());
 
-            if (!items.Any())
-            {
-                throw new ArgumentException(componentName + " requires a non-empty Items parameter.");
-            }
-
             if (items.GroupBy(i => i.SelectedValue).Any(g => g.Count() > 1))
             {
                 throw new ArgumentException(componentName + " has multiple enties in the List with the same SelectedValue");
@@ -68,26 +87,16 @@ namespace Material.Blazor.Internal
                     case MBItemValidation.DefaultToFirst:
                         var defaultValue = items.FirstOrDefault().SelectedValue;
                         _ = ValueChanged.InvokeAsync(defaultValue);
-                        AllowNextRender = true;
+                        AllowNextShouldRender();
                         return (true, defaultValue);
 
                     case MBItemValidation.Exception:
-                        var itemList = "{ ";
-                        var prepend = "";
-
-                        foreach (var item in items)
-                        {
-                            itemList += $"{prepend} '{item.SelectedValue}'";
-                            prepend = ",";
-                        }
-
-                        itemList += " }";
-
+                        var itemList = "{ " + string.Join(", ", items.Select(item => $"'{item.SelectedValue}'")) + " }";
                         throw new ArgumentException(componentName + $" cannot select item with data value of '{Value?.ToString()}' from {itemList}");
 
                     case MBItemValidation.NoSelection:
                         _ = ValueChanged.InvokeAsync(default);
-                        AllowNextRender = true;
+                        AllowNextShouldRender();
                         return (false, default);
                 }
             }

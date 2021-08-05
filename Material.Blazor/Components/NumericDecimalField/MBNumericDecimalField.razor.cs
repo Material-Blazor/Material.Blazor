@@ -1,7 +1,6 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -144,7 +143,6 @@ namespace Material.Blazor
 
         private decimal AppliedMultiplier => HasFocus ? FocusedMultiplier : UnfocusedMultiplier;
         private decimal FocusedMultiplier { get; set; } = 1;
-        private Dictionary<string, object> MyAttributes { get; set; }
         private int MyDecimalPlaces { get; set; } = 0;
         private Regex Regex { get; set; }
         private MBTextField TextField { get; set; }
@@ -216,17 +214,17 @@ namespace Material.Blazor
         }
 
 
-        private async Task OnFocusInAsync()
+        private Task OnFocusInAsync()
         {
             HasFocus = true;
-            await TextField.SetType(FormattedValue, "number", true);
+            return TextField.SetType(FormattedValue, "number", true);
         }
 
 
-        private async Task OnFocusOutAsync()
+        private Task OnFocusOutAsync()
         {
             HasFocus = false;
-            await TextField.SetType(FormattedValue, "text", false);
+            return TextField.SetType(FormattedValue, "text", false);
         }
 
 
