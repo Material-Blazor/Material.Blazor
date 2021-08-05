@@ -36,7 +36,7 @@ namespace Material.Blazor
 
         protected override void OnInitialized()
         {
-            JsRuntime = ParentDialog == null ? InjectedJsRuntime : new DialogAwareBatchingJSRuntime(InjectedJsRuntime, ParentDialog);
+            JsRuntime = ParentDialog == null ? InjectedJsRuntime : ParentDialog.DialogAwareBatchingJSRuntime;
             base.OnInitialized();
         }
 

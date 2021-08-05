@@ -330,7 +330,7 @@ namespace Material.Blazor.Internal
         /// </summary>
         protected sealed override void OnInitialized()
         {
-            JsRuntime = ParentDialog == null ? InjectedJsRuntime : new DialogAwareBatchingJSRuntime(InjectedJsRuntime, ParentDialog);
+            JsRuntime = ParentDialog == null ? InjectedJsRuntime : ParentDialog.DialogAwareBatchingJSRuntime;
             // For consistency, we only ever use OnInitializedAsync. To prevent ourselves from using OnInitialized accidentally, we seal this method from here on.
 
             // the only thing we do here, is creating an ID for the tooltip, if we have one

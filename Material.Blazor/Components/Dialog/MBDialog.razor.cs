@@ -66,7 +66,8 @@ namespace Material.Blazor
         private bool HasTitle => !string.IsNullOrWhiteSpace(Title);
         private NoThrowDotNetObjectReference<MBDialog> ObjectReference { get; set; }
         private string OverflowClass => OverflowVisible ? "mb-dialog-overflow-visible" : "";
-
+        private IBatchingJSRuntime dialogAwareBatchingJSRuntime;
+        internal IBatchingJSRuntime DialogAwareBatchingJSRuntime => dialogAwareBatchingJSRuntime ??= new DialogAwareBatchingJSRuntime(JsRuntime, this);
 
         private readonly string bodyId = Utilities.GenerateUniqueElementName();
         private readonly string headerId = Utilities.GenerateUniqueElementName();
