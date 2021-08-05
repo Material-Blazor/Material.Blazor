@@ -35,6 +35,10 @@ namespace Material.Blazor
         /// <inheritdoc />
         public IMBIcon.IconFragment Render => (@class, style, attributes) => (RenderTreeBuilder builder) =>
         {
+            if (IconName == null)
+            {
+                return;
+            }
             builder.OpenElement(0, "i");
             builder.AddAttribute(1, "class", string.Join(" ", MaterialIconsTheme, @class));
             if (style != null)

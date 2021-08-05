@@ -105,7 +105,7 @@ namespace Material.Blazor
         private MBIconButtonToggle IconButtonToggle { get; set; }
         private MBSelectElement<int>[] ItemsPerPageItems { get; set; }
         private string ItemsText => $"{ItemsPerPage:G0} items per page";
-        private int MaxPageNumber => Math.Max(0, Convert.ToInt32(Math.Ceiling((double)ItemCount / ItemsPerPage)) - 1);
+        private int MaxPageNumber => ItemsPerPage == 0 ? 0 : Math.Max(0, Convert.ToInt32(Math.Ceiling((double)ItemCount / ItemsPerPage)) - 1);
         private string MaxPositionText => PositionTextString(MaxPageNumber);
         private MBMenu Menu { get; set; }
         private bool NextDisabled => PageNumber >= MaxPageNumber;
