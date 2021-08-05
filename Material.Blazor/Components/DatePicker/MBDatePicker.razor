@@ -73,8 +73,8 @@
                                  DateFormat="@AppliedDateFormat"
                                  DateIsSelectable="@DateIsSelectable"
                                  DateSelectionCriteria="@DateSelectionCriteria"
-                                 MaxDate="@MaxDate"
-                                 MinDate="@MinDate"
+                                 MaxDate="@CascadingDefaults.AppliedDatePickerDefaultMaxDate(MaxDate)"
+                                 MinDate="@CascadingDefaults.AppliedDatePickerDefaultMinDate(MinDate)"
                                  @ref="Panel" />
     </div>
 </div>

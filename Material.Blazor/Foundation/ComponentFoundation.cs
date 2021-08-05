@@ -92,7 +92,7 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// A markup capable tooltip.
         /// </summary>
-        [Parameter] public string Tooltip { get; set; }
+        [Parameter] public string Tooltip { get; set; } = "";
 
 
         /// <summary>
