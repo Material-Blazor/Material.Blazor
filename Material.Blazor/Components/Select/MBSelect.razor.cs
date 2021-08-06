@@ -118,9 +118,14 @@ namespace Material.Blazor
             await base.OnInitializedAsync();
 
             bool hasValue;
+            TItem potentialComponentValue;
 
-            (hasValue, ComponentValue) = ValidateItemList(Items, CascadingDefaults.AppliedItemValidation(ItemValidation));
+            (hasValue, potentialComponentValue) = ValidateItemList(Items, CascadingDefaults.AppliedItemValidation(ItemValidation));
 
+            if (hasValue)
+            {
+                ComponentValue = potentialComponentValue;
+            }
             SelectedText = hasValue ? (Items.FirstOrDefault(i => NullAllowingEquals(i.SelectedValue, ComponentValue))?.Label) : "";
             FloatingLabelClass = string.IsNullOrWhiteSpace(SelectedText) ? "" : "mdc-floating-label--float-above";
 
