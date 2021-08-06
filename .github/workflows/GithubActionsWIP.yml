@@ -102,6 +102,26 @@ jobs:
     outputs:
       suffix: ${{ steps.get.outputs.suffix }}
       
+      
+
+############################################################################################################
+# Experiments
+############################################################################################################
+  experiment:
+    name: Experiment
+    runs-on: ubuntu-latest
+
+    steps:
+    - id: install puppeteer
+      run: |
+        npm i puppeteer
+    - id: test
+      run: |
+        echo "const p = require('puppeteer');" > test.js
+        echo "(async () => { const b = await p.launch(); const t = await browser.newPage(); await t.goto('https://material-blazor.com'); await t.screenshot({ path: 'example.png' }); await browser.close(); })();" >> test.js
+        node test.js
+        ls *.png
+      
 ############################################################################################################
 # Run the test project. Should this fail, the deploy step (job deployghpages) is skipped
 # This is soft-skipped when we only want to perform a comparison (github.event_name != 'workflow_dispatch')
