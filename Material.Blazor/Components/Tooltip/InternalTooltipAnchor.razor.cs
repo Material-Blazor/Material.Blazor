@@ -74,7 +74,7 @@ namespace Material.Blazor.Internal
                 OldTooltips.Enqueue(id);
                 _ = InvokeAsync(StateHasChanged);
             }
-            catch (ObjectDisposedException ex)
+            catch (ObjectDisposedException)
             {
                 // Ignore ObjectDisposedException to avoid exceptions being thrown when the user closes browser and tooltips are showing.
             }

@@ -1,0 +1,21 @@
+﻿@inherits TestComponentBase
+
+
+<SnapshotTest Setup="Setup">
+<TestInput>
+    <MBFloatingActionButton Label="Hello" Icon="test" />
+</TestInput>
+<ExpectedOutput>
+    <button class="mdc-fab   ">
+        <div class="mdc-fab__ripple"></div>
+        <i class="material-icons  mdc-fab__icon">test</i>
+    </button>
+</ExpectedOutput>
+
+@code {
+    void Setup(SnapshotTest test)
+    {
+        test.Services.AddLogging().AddMBServices();
+    }
+}
+</SnapshotTest>

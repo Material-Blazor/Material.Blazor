@@ -1,0 +1,23 @@
+﻿@inherits TestComponentBase
+
+
+<SnapshotTest Setup="Setup">
+<TestInput>
+    <MBNumericDecimalField Label="Hello" />
+</TestInput>
+<ExpectedOutput>
+    <label class="mdc-text-field   mdc-text-field--filled      ">
+        <span class="mdc-text-field__ripple"></span>
+        <span class="mdc-floating-label mdc-floating-label--float-above" for:ignore id:ignore>Hello</span>
+        <input step="0.01" aria-label="Hello" aria-labelledby:ignore id:ignore class="mdc-text-field__input  mb-align-right " value="0">
+        <span class="mdc-line-ripple"></span>
+    </label>
+</ExpectedOutput>
+
+@code {
+    void Setup(SnapshotTest test)
+    {
+        test.Services.AddLogging().AddMBServices();
+    }
+}
+</SnapshotTest>

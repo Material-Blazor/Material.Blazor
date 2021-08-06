@@ -1,0 +1,21 @@
+﻿@inherits TestComponentBase
+
+
+<SnapshotTest Setup="Setup">
+<TestInput>
+    <MBCard />
+</TestInput>
+<ExpectedOutput>
+    <div class="mdc-card  ">
+        <div class="mdc-card__content">
+        </div>
+    </div>
+</ExpectedOutput>
+
+@code {
+    void Setup(SnapshotTest test)
+    {
+        test.Services.AddLogging().AddMBServices();
+    }
+}
+</SnapshotTest>

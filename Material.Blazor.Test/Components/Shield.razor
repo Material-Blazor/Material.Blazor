@@ -1,0 +1,25 @@
+﻿@inherits TestComponentBase
+
+
+<SnapshotTest Setup="Setup">
+<TestInput>
+    <MBShield Label="Hello" />
+</TestInput>
+<ExpectedOutput>
+    <span class="mb-shield  ">
+        <span class="mb-shield--label " style="">
+            <span>Hello</span>
+        </span>
+        <span class="mb-shield--value " style="">
+            <span></span>
+        </span>
+    </span>
+</ExpectedOutput>
+
+@code {
+    void Setup(SnapshotTest test)
+    {
+        test.Services.AddLogging().AddMBServices();
+    }
+}
+</SnapshotTest>

@@ -121,6 +121,13 @@ jobs:
         persist-credentials: false
       if: github.event_name != 'workflow_dispatch'
 
+    - name: Use prelease dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.x'
+        include-prerelease: true
+      if: github.event_name != 'workflow_dispatch'
+
     - name: Run the acceptance tests as the first build action and cancel out the rest if it fails
       run: dotnet test --configuration ${{env.buildConfiguration}} ${{env.projectTest}}
       if: github.event_name != 'workflow_dispatch'
@@ -139,6 +146,13 @@ jobs:
       uses: actions/checkout@v2
       with:
         persist-credentials: false
+      if: github.event_name != 'workflow_dispatch'
+
+    - name: Use prelease dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.x'
+        include-prerelease: true
       if: github.event_name != 'workflow_dispatch'
 
     - name: Create documentation 🔧
@@ -169,6 +183,13 @@ jobs:
       uses: actions/checkout@v2
       with:
         persist-credentials: false
+      if: github.event_name != 'workflow_dispatch'
+
+    - name: Use prelease dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.x'
+        include-prerelease: true
       if: github.event_name != 'workflow_dispatch'
 
     - name: Build Website 🔧
@@ -202,6 +223,13 @@ jobs:
       uses: actions/checkout@v2
       with:
         persist-credentials: false
+
+    - name: Use prelease dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.x'
+        include-prerelease: true
+      if: github.event_name != 'workflow_dispatch'
 
     - name: Build Material.Blazor 🔧
       run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${{needs.version.outputs.suffix}} ${env:projectMB}
