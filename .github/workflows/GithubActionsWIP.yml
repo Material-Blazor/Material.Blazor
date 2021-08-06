@@ -118,7 +118,7 @@ jobs:
     - id: test
       run: |
         echo "const p = require('puppeteer');" > test.js
-        echo "(async () => { const b = await p.launch(); const t = await b.newPage(); await t.goto('https://material-blazor.com'); await t.screenshot({ path: 'example.png' }); await browser.close(); })();" >> test.js
+        echo "(async () => { const b = await p.launch(); const t = await b.newPage(); await t.goto('https://material-blazor.com'); await t.screenshot({ path: 'example.png' }); await b.close(); })();" >> test.js
         node test.js
         ls *.png
       
