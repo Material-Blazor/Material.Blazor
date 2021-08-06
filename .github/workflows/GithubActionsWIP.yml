@@ -112,7 +112,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - id: install puppeteer
+    - id: install-puppeteer
       run: |
         npm i puppeteer
     - id: test
