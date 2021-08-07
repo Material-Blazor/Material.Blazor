@@ -77,7 +77,7 @@ async function capture(page, site, prefix) {
 }
 
 async function captureAll() {
-    const browser = await puppeteer.launch( {headless: false});
+    const browser = await puppeteer.launch();
     const mbPage = await browser.newPage();
     const forkPage = await browser.newPage();
     const mbPromise = capture(mbPage, baseline, 'mb');
