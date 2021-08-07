@@ -151,28 +151,28 @@ jobs:
             suffix=$(echo $file | cut -c5-)
             echo "### Differences on page '${suffix}'" > report${suffix}.md
             echo "\`\`\`diff" >> report${suffix}.md
-            diff -d -w mb${suffix}.html fork${suffix}.html >> report${suffix}.md || true
+            diff -d -w mb${suffix} fork${suffix} >> report${suffix}.md || true
             echo "\`\`\`" >> report${suffix}md
         done
     - name: Aggregate reports
       run: |
         echo "# Comparison report" > all_reports.md
         echo "Number of pages compared:" >> all_reports.md
-        ls -a -1 report/.*md report/*md | wc -l >> all_reports.md
-        cat report/.*md report/*md >> all_reports.md
+        ls -a -1 report.*md  | wc -l >> all_reports.md
+        cat report.*md >> all_reports.md
     - name: Summarise report for auto-generated issue
       run: |
         echo "# Number of pages compared:" > meta_report.md
-        ls -a -1 report/.*md report/*md | wc -l >> meta_report.md
+        ls -a -1 report.*md  | wc -l >> meta_report.md
         echo ""  >> meta_report.md
         echo "# Pages with some difference:" >> meta_report.md
-        wc -l report/.*md report/*md | sed '$d' | grep -v " 3 " | rev | cut -d' ' -f1 | rev | sed 's%report\(.*\).md%\1%' >> meta_report.md
+        wc -l report.*md | sed '$d' | grep -v " 3 " | rev | cut -d' ' -f1 | rev | sed 's%report\(.*\).md%\1%' >> meta_report.md
         echo "" >> meta_report.md
         echo "# Pages without differences:"  >> meta_report.md
-        wc -l report/.*md report/*md | sed '$d' | grep " 3 " | rev | cut -d' ' -f1 | rev | sed 's%report\(.*\).md%\1%' >> meta_report.md
+        wc -l report.*md | sed '$d' | grep " 3 " | rev | cut -d' ' -f1 | rev | sed 's%report\(.*\).md%\1%' >> meta_report.md
         echo "" >> meta_report.md
         echo "# Preview of differences:" >> meta_report.md
-        wc -l report/.*md report/*md | sed '$d' | grep -v " 3 " | rev | cut -d' ' -f1 | rev | xargs cat >> meta_report.md
+        wc -l report.*md | sed '$d' | grep -v " 3 " | rev | cut -d' ' -f1 | rev | xargs cat >> meta_report.md
         # At this point we have the full differences in the meta report. This might be too large! We truncate, if necessary:
         if [ $(wc -c meta_report.md | cut -d ' ' -f 1) -lt 65536 ];
         then
