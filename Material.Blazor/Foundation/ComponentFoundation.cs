@@ -316,7 +316,7 @@ namespace Material.Blazor.Internal
                 }
                 catch (Exception e)
                 {
-                    LoggingService.LogError("Instantiating a component failed with exception " + e.ToString());
+                    LoggingService.LogError($"Instantiating component {GetType().Name} failed with exception {e}");
                 }
             }
         }
