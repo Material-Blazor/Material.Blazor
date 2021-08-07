@@ -51,7 +51,7 @@ async function capture(page, site, prefix) {
         console.log(document.location);
         return Promise.resolve(document.querySelectorAll('app > aside > div > div > li').length);
     });
-    for (let i = 0; i < siteCount; ++i) {
+    for (let i = 0; i < 3; ++i) {
         await page.evaluate((i) => {
             const site = document.querySelectorAll('app > aside > div > div > li')[i];
             site.click();
