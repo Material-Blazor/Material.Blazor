@@ -56,7 +56,7 @@ async function capture(page, site, prefix) {
             const site = document.querySelectorAll('app > aside > div > div > li')[i];
             site.click();
         }, i);
-        await page.waitForSelector('.mb-card__title.mdc-typography--headline4');
+        await new Promise(r => setTimeout(r, 400));
         let path = await page.evaluate(() => {
             return Promise.resolve(document.location.pathname.substr(1));
         });
