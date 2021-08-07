@@ -122,14 +122,6 @@ jobs:
     - id: test
       run: |
         node Material.Blazor.Test/comparison.js https://${{github.repository_owner}}.github.io/Material.Blazor > comparison.log
-    - name: Upload comparison artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: comparison
-        path: |
-            comparison.log
-            *.html
-            *.png
     # A few things need to be ignored to make a sensible comparison:
     # some files have integrity hashes. Those change often, so ignore those
     # many elements have GUIDs as attributes etc. GUIDs are usually generated dynamically, so differ on each page render
@@ -137,9 +129,9 @@ jobs:
     - name: normalize
       run: |
         sed -i 's/integrity="\(.*\)"/integrity="..."/g' *.html
+        sed -i 's/[a-f0-9]\{8\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{12\}/guid/g' *.html
         sed -i 's/mb-tooltip-[0-9]*/mb-tooltip-id/g' *.html
         sed -i 's/b-[0-9a-z]*/b-id/g' *.html
-        sed -i 's/[a-f0-9]\{8\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{12\}/guid/g' *.html
         sed -i 's/<strong>.*-ci..*<\/strong>//' *.html
         sed -i 's/base href.*//' *.html
     # We only want to see the differences, so we run diff with -d
@@ -186,6 +178,14 @@ jobs:
             dd if=meta_report.md of=trimmed_meta_report.md bs=1 count=$remaining_bytes
             cat trimmed_meta_report.md tail.md > meta_report.md
         fi
+    - name: Upload comparison artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: comparison
+        path: |
+            comparison.log
+            *.html
+            *.png
     - name: Upload report artifact
       uses: actions/upload-artifact@v2
       with:
