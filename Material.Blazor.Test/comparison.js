@@ -5,7 +5,7 @@ const fs = require('fs');
 const glob = require('glob');
 const path = require('path');
 
-const baseline = 'https://material-blazor.com';
+const baseline = 'https://material-blazor.github.io/Material.Blazor.Current';
 const fork = process.argv[process.argv.length - 1].startsWith('http') 
                 ? process.argv[process.argv.length - 1]
                 : 'https://stefanloerwald.github.io/Material.Blazor';
@@ -60,7 +60,7 @@ async function capture(page, site, prefix) {
         let path = await page.evaluate(() => {
             return Promise.resolve(document.location.pathname.substr(1));
         });
-        if (path.startsWith('Material.Blazor/')) {
+        if (path.startsWith('Material.Blazor')) {
             path = path.split('/').splice(1).join('/');
         }
         path = path.replace(/\//g,'_');
