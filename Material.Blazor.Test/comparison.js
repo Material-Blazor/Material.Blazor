@@ -64,6 +64,12 @@ async function capture(page, site, prefix) {
             path = path.split('/').splice(1).join('/');
         }
         path = path.replace(/\//g,'_');
+        const html = await page.content();
+        await fs.writeFile(`${prefix}_${path}.html`, html, (error) => {
+            if (error) {
+                console.log(error);
+            }
+        });
         await page.screenshot({ path: `${prefix}_raw_${path}.png`, fullPage: true, omitBackground: true });
         trimImage(`${prefix}_raw_${path}.png`, `${prefix}_${path}.png`, { top: false, right: false, left: false, bottom: true } );
         await checkExistsWithTimeout(`${prefix}_${path}.png`, 100000);
