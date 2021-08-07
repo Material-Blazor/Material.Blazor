@@ -126,7 +126,9 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: comparison
-        path: comparison.log *.png
+        path: |
+            comparison.log
+            *.png
       
 ############################################################################################################
 # Run the test project. Should this fail, the deploy step (job deployghpages) is skipped
