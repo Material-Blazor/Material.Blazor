@@ -121,7 +121,7 @@ jobs:
         npm i puppeteer trim-image looks-same glob
     - id: test
       run: |
-        node ../Material.Blazor.Test/comparison.js
+        node Material.Blazor.Test/comparison.js
       
 ############################################################################################################
 # Run the test project. Should this fail, the deploy step (job deployghpages) is skipped
