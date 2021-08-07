@@ -190,8 +190,8 @@ jobs:
       with:
         name: report
         path: |
-        report*.md
-        all_reports.md
+            report*.md
+            all_reports.md
     - name: Create issue from file
       uses: peter-evans/create-issue-from-file@v2
       with:
