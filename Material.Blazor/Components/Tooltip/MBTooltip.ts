@@ -4,7 +4,9 @@ export  { numbers } from '@material/tooltip';
 export function init(arrayOfReferences) {
     for (const elem of arrayOfReferences) {
         try {
-            MDCTooltip.attachTo(elem);
+            if (elem) {
+                MDCTooltip.attachTo(elem);
+            }
         } catch (e) {
         }
     }

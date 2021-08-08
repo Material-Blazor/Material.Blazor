@@ -1,15 +1,24 @@
 ﻿import { MDCTextField, MDCTextFieldHelperText } from '@material/textfield';
 
 export function init(elem, helperTextElem, helperText, helperTextPersistent, performsValidation) {
+    if (!elem) {
+        return;
+    }
     elem._textField = MDCTextField.attachTo(elem);
     setHelperText(elem, helperTextElem, helperText, helperTextPersistent, performsValidation, false, "");
 }
 
 export function setValue(elem, value) {
+    if (!elem) {
+        return;
+    }
     elem._textField.value = value;
 }
 
 export function setDisabled(elem, value) {
+    if (!elem) {
+        return;
+    }
     elem._textField.disabled = value;
 }
 
@@ -51,16 +60,17 @@ export function setHelperText(elem, helperTextElem, helperText, helperTextPersis
 }
 
 export function setType(elem, value, inputElem, type, formNoValidate) {
-    if (elem && inputElem) {
-        inputElem.setAttribute("type", type);
-        inputElem.setAttribute("formnovalidate", formNoValidate);
+    if (!elem || !inputElem) {
+        return;
+    }
+    inputElem.setAttribute("type", type);
+    inputElem.setAttribute("formnovalidate", formNoValidate);
 
-        elem._textField.value = value;
+    elem._textField.value = value;
 
-        if (formNoValidate) {
-            inputElem.focus();
-            inputElem.select();
-        }
+    if (formNoValidate) {
+        inputElem.focus();
+        inputElem.select();
     }
 }
 /*!

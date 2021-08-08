@@ -6,6 +6,9 @@ function sleep(ms) {
 }
 
 export async function openBlade(bladeElem, bladeContentElem, transitionMs): Promise<void> {
+    if (!bladeElem || !bladeContentElem) {
+        return;
+    }
     let transition = "width " + transitionMs + "ms";
     let bladeContentWidth = bladeContentElem.getBoundingClientRect().width;
     
@@ -22,5 +25,8 @@ export async function openBlade(bladeElem, bladeContentElem, transitionMs): Prom
 }
 
 export function closeBlade(bladeElem): void {
+    if (!bladeElem) {
+        return;
+    }
     bladeElem.style.width = "0px";
 }
