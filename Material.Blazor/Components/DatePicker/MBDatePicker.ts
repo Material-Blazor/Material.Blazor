@@ -1,14 +1,23 @@
 ﻿import { MDCSelect } from '@material/select';
 
 export function init(elem) {
+    if (!elem) {
+        return;
+    }
     elem._select = MDCSelect.attachTo(elem);
 }
 
 export function setDisabled(elem, value) {
+    if (!elem) {
+        return;
+    }
     elem._select.disabled = value;
 }
 
 export function listItemClick(elem, elemText) {
+    if (!elem) {
+        return;
+    }
     elem.innerText = elemText;
     elem.click();
 }

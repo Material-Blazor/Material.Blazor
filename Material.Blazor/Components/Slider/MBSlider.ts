@@ -2,6 +2,9 @@
 import { debounce, throttle } from '../../Scripts/LodashParts';
 
 export function init(elem, dotNetObject, eventType, delay) {
+    if (!elem) {
+        return;
+    }
     elem._slider = MDCSlider.attachTo(elem);
     elem._eventType = eventType;
 
@@ -26,9 +29,15 @@ export function init(elem, dotNetObject, eventType, delay) {
 }
 
 export function setValue(elem, value) {
+    if (!elem) {
+        return;
+    }
     elem._slider.setValue(value);
 }
 
 export function setDisabled(elem, value) {
+    if (!elem) {
+        return;
+    }
     elem._slider.setDisabled(value);
 }
