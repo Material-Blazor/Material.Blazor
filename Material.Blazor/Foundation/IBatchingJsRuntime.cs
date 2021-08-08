@@ -14,7 +14,7 @@ namespace Material.Blazor.Internal
         /// <param name="identifier"></param>
         /// <param name="args"></param>
         /// <returns></returns>
-        Task InvokeVoidAsync(string identifier, params object[] args);
+        Task InvokeVoidAsync(MBBatchingWrapper batchingWrapper, string identifier, params object[] args);
 
 
         /// <summary>

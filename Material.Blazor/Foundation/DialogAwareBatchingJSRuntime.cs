@@ -17,10 +17,10 @@ namespace Material.Blazor.Internal
             return await underlyingJSRuntime.InvokeAsync<T>(identifier, args);
         }
 
-        public async Task InvokeVoidAsync(string identifier, params object[] args)
+        public async Task InvokeVoidAsync(MBBatchingWrapper batchingWrapper, string identifier, params object[] args)
         {
             await dialog.Opened;
-            await underlyingJSRuntime.InvokeVoidAsync(identifier, args);
+            await underlyingJSRuntime.InvokeVoidAsync(batchingWrapper, identifier, args);
         }
 
         public Task FlushBatchAsync() => underlyingJSRuntime.FlushBatchAsync();

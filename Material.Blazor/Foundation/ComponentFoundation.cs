@@ -26,7 +26,7 @@ namespace Material.Blazor.Internal
 
         [Inject] protected INoThrowDotNetObjectReferenceFactory NoThrowDotNetObjectReferenceFactory { get; set; }
         [Inject] private IBatchingJSRuntime InjectedJsRuntime { get; set; }
-        protected IBatchingJSRuntime JsRuntime { get; set; }
+        protected IBatchingJSRuntime BatchingJsRuntime { get; set; }
         [CascadingParameter] private MBDialog ParentDialog { get; set; }
         [Inject] private protected ILogger<ComponentFoundation> Logger { get; set; }
         [Inject] private protected IMBTooltipService TooltipService { get; set; }
@@ -104,7 +104,7 @@ namespace Material.Blazor.Internal
         #region parameters
 
         [CascadingParameter] protected MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults();
-
+        [CascadingParameter] protected MBBatchingWrapper BatchingWrapper { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of additional attributes that will be applied to the created element.
@@ -286,6 +286,20 @@ namespace Material.Blazor.Internal
 
         #endregion
 
+        #region InvokeVoidAsync
+        /// <summary>
+        /// Wraps calls to <see cref="BatchingJSRuntime.InvokeVoidAsync"/> adding reference to the batching wrapper (if found).
+        /// </summary>
+        /// <param name="identifier"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        private protected Task InvokeVoidAsync(string identifier, params object[] args)
+        {
+            return BatchingJsRuntime.InvokeVoidAsync(BatchingWrapper, identifier, args);
+        }
+
+        #endregion
+
         #region OnAfterRender
 
         /// <summary>
@@ -330,7 +344,7 @@ namespace Material.Blazor.Internal
         /// </summary>
         protected sealed override void OnInitialized()
         {
-            JsRuntime = ParentDialog == null ? InjectedJsRuntime : ParentDialog.DialogAwareBatchingJSRuntime;
+            BatchingJsRuntime = ParentDialog == null ? InjectedJsRuntime : new DialogAwareBatchingJSRuntime(InjectedJsRuntime, ParentDialog);
             // For consistency, we only ever use OnInitializedAsync. To prevent ourselves from using OnInitialized accidentally, we seal this method from here on.
 
             // the only thing we do here, is creating an ID for the tooltip, if we have one
