@@ -36,19 +36,11 @@ namespace Material.Blazor.Internal
 
         private readonly IJSRuntime js;
         private readonly ConcurrentQueue<Call> queuedCalls = new();
-        private readonly System.Timers.Timer timer = new(10);
         private readonly Architecture OSArchitecture = RuntimeInformation.OSArchitecture;
 
         public BatchingJSRuntime(IJSRuntime js)
         {
             this.js = js;
-            timer.Elapsed += Timer_Elapsed;
-        }
-
-
-        private async void Timer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            await FlushBatchAsync();
         }
 
 
@@ -62,7 +54,6 @@ namespace Material.Blazor.Internal
 
             var call = new Call(identifier, args);
             queuedCalls.Enqueue(call);
-            //timer.Start();
             return call.Task;
         }
 
@@ -72,6 +63,7 @@ namespace Material.Blazor.Internal
         {
             return await js.InvokeAsync<T>(identifier, args);
         }
+
 
         public async Task FlushBatchAsync()
         {

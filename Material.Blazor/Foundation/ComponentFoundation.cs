@@ -81,24 +81,6 @@ namespace Material.Blazor.Internal
         /// </summary>
         private protected virtual Task InstantiateMcwComponent() => Task.CompletedTask;
 
-
-        private bool _disposed;
-        protected virtual void Dispose(bool disposing)
-        {
-            if (_disposed)
-            {
-                return;
-            }
-
-            if (disposing && TooltipId != null)
-            {
-                TooltipService.RemoveTooltip(TooltipId.Value);
-                TooltipId = null;
-            }
-
-            _disposed = true;
-        }
-
         #endregion
 
         #region parameters
@@ -276,6 +258,23 @@ namespace Material.Blazor.Internal
         #endregion
 
         #region Dispose
+
+        private bool _disposed;
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing && TooltipId != null)
+            {
+                TooltipService.RemoveTooltip(TooltipId.Value);
+                TooltipId = null;
+            }
+
+            _disposed = true;
+        }
 
         public void Dispose()
         {
