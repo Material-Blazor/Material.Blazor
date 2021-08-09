@@ -15,7 +15,7 @@ namespace Material.Blazor.Test
                 .Chain(m => m.Setup(js => js.InvokeAsync<string[]>(It.IsAny<string>(), It.IsAny<object[]>())).ReturnsAsync(new[] { "failed because of XYZ" }))
                 .Object;
             var batching_js_runtime = new BatchingJSRuntime(js_runtime);
-            var exception = await Assert.ThrowsAsync<JSException>(() => batching_js_runtime.InvokeVoidAsync("foo"));
+            var exception = await Assert.ThrowsAsync<JSException>(() => batching_js_runtime.InvokeVoidAsync(null, "foo"));
             Assert.Contains("failed because of XYZ", exception.Message);
         }
         [Fact]
@@ -25,7 +25,7 @@ namespace Material.Blazor.Test
                 .Chain(m => m.Setup(js => js.InvokeAsync<string[]>(It.IsAny<string>(), It.IsAny<object[]>())).ThrowsAsync(new TaskCanceledException()))
                 .Object;
             var batching_js_runtime = new BatchingJSRuntime(js_runtime);
-            Assert.ThrowsAsync<TaskCanceledException>(() => batching_js_runtime.InvokeVoidAsync("foo"));
+            Assert.ThrowsAsync<TaskCanceledException>(() => batching_js_runtime.InvokeVoidAsync(null, "foo"));
         }
     }
 }
