@@ -151,7 +151,7 @@ namespace Material.Blazor
 
 
         private bool IsOpen { get; set; } = false;
-        private NoThrowDotNetObjectReference<MBAutocompleteTextField> ObjectReference { get; set; }
+        private DotNetObjectReference<MBAutocompleteTextField> ObjectReference { get; set; }
         private bool MenuHasFocus { get; set; } = false;
         private ElementReference MenuReference { get; set; }
         private SelectionItem[] MySelectItems { get; set; }
@@ -164,7 +164,7 @@ namespace Material.Blazor
         {
             await base.OnInitializedAsync();
 
-            ObjectReference = NoThrowDotNetObjectReferenceFactory.Create(this);
+            ObjectReference = DotNetObjectReference.Create(this);
 
             ForceShouldRenderToTrue = true;
         }

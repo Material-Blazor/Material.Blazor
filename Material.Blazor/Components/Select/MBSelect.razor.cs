@@ -71,7 +71,7 @@ namespace Material.Blazor
         private MBSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
         private string FloatingLabelClass { get; set; } = "";
         private string MenuClass => MBMenu.GetMenuSurfacePositioningClass(MenuSurfacePositioning);
-        private NoThrowDotNetObjectReference<MBSelect<TItem>> ObjectReference { get; set; }
+        private DotNetObjectReference<MBSelect<TItem>> ObjectReference { get; set; }
         private ElementReference SelectReference { get; set; }
         private string SelectedText { get; set; } = "";
         private bool ShowLabel => !string.IsNullOrWhiteSpace(Label);
@@ -140,7 +140,7 @@ namespace Material.Blazor
             SetComponentValue += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
 
-            ObjectReference = NoThrowDotNetObjectReferenceFactory.Create(this);
+            ObjectReference = DotNetObjectReference.Create(this);
         }
 
 

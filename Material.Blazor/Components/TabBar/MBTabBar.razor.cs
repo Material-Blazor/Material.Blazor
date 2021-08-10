@@ -53,7 +53,7 @@ namespace Material.Blazor
 
 
         private ElementReference ElementReference { get; set; }
-        private NoThrowDotNetObjectReference<MBTabBar<TItem>> ObjectReference { get; set; }
+        private DotNetObjectReference<MBTabBar<TItem>> ObjectReference { get; set; }
         private Func<TItem, object> KeyGenerator { get; set; }
         private string StackClass => StackIcons ? "mdc-tab--stacked" : "";
 
@@ -75,7 +75,7 @@ namespace Material.Blazor
         {
             await base.OnInitializedAsync();
 
-            ObjectReference = NoThrowDotNetObjectReferenceFactory.Create(this);
+            ObjectReference = DotNetObjectReference.Create(this);
 
             ConditionalCssClasses
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass);

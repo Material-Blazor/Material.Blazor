@@ -86,7 +86,6 @@ namespace Material.Blazor.Internal
                 {
                     case MBItemValidation.DefaultToFirst:
                         var defaultValue = items.FirstOrDefault().SelectedValue;
- //                       _ = ValueChanged.InvokeAsync(defaultValue);
                         AllowNextShouldRender();
                         return (true, defaultValue);
 
@@ -95,7 +94,6 @@ namespace Material.Blazor.Internal
                         throw new ArgumentException(componentName + $" cannot select item with data value of '{Value?.ToString()}' from {itemList}");
 
                     case MBItemValidation.NoSelection:
-//                        _ = ValueChanged.InvokeAsync(default);
                         AllowNextShouldRender();
                         return (false, default);
                 }

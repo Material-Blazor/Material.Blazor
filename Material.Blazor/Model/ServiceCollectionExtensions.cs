@@ -1,7 +1,6 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace Material.Blazor
 {
@@ -26,7 +25,6 @@ namespace Material.Blazor
         {
             return services
                 .AddScoped<IBatchingJSRuntime, BatchingJSRuntime>()
-                .AddScoped<INoThrowDotNetObjectReferenceFactory, NoThrowDotNetObjectReferenceFactory>()
                 .AddMBAnimatedNavigationService(animatedNavigationManagerServiceConfiguration)
                 .AddMBLoggingService(loggingServiceConfiguration)
                 .AddMBSnackbarService(snackbarServiceConfiguration)
