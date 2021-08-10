@@ -118,9 +118,14 @@ namespace Material.Blazor
             await base.OnInitializedAsync();
 
             bool hasValue;
+            TItem potentialComponentValue;
 
-            (hasValue, ComponentValue) = ValidateItemList(Items, CascadingDefaults.AppliedItemValidation(ItemValidation));
+            (hasValue, potentialComponentValue) = ValidateItemList(Items, CascadingDefaults.AppliedItemValidation(ItemValidation));
 
+            if (hasValue)
+            {
+                ComponentValue = potentialComponentValue;
+            }
             SelectedText = hasValue ? (Items.FirstOrDefault(i => NullAllowingEquals(i.SelectedValue, ComponentValue))?.Label) : "";
             FloatingLabelClass = string.IsNullOrWhiteSpace(SelectedText) ? "" : "mdc-floating-label--float-above";
 
@@ -182,7 +187,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback() => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSelect.setIndex", SelectReference, Items.Select(x => x.SelectedValue).ToList().IndexOf(Value)));
+        protected void OnValueSetCallback() => InvokeAsync(() => InvokeVoidAsync("MaterialBlazor.MBSelect.setIndex", SelectReference, Items.Select(x => x.SelectedValue).ToList().IndexOf(Value)));
 
 
         /// <summary>
@@ -190,10 +195,10 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback() => InvokeAsync(() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSelect.setDisabled", SelectReference, AppliedDisabled));
+        protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeVoidAsync("MaterialBlazor.MBSelect.setDisabled", SelectReference, AppliedDisabled));
 
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => JsRuntime.InvokeVoidAsync("MaterialBlazor.MBSelect.init", SelectReference, ObjectReference);
+        private protected override Task InstantiateMcwComponent() => InvokeVoidAsync("MaterialBlazor.MBSelect.init", SelectReference, ObjectReference);
     }
 }

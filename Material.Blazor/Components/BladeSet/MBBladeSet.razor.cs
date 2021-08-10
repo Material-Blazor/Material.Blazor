@@ -335,7 +335,7 @@ namespace Material.Blazor
 
             if (addedBladesQueue.TryDequeue(out var addedBlade))
             {
-                await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBBladeSet.openBlade", addedBlade.BladeElementReference, addedBlade.BladeContentElementReference, transitionMs);
+                await InvokeVoidAsync("MaterialBlazor.MBBladeSet.openBlade", addedBlade.BladeElementReference, addedBlade.BladeContentElementReference, transitionMs);
 
                 addedBlade.Status = BladeStatus.Open;
 
@@ -345,7 +345,7 @@ namespace Material.Blazor
             }
             else if (removedBladesQueue.TryDequeue(out var removedBlade))
             {
-                await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBBladeSet.closeBlade", removedBlade.BladeElementReference, transitionMs);
+                await InvokeVoidAsync("MaterialBlazor.MBBladeSet.closeBlade", removedBlade.BladeElementReference, transitionMs);
 
                 await Task.Delay(transitionMs);
 

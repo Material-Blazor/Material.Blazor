@@ -3,6 +3,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Timers;
 
@@ -35,17 +36,36 @@ namespace Material.Blazor.Internal
 
         private readonly IJSRuntime js;
         private readonly ConcurrentQueue<Call> queuedCalls = new();
-        private readonly System.Timers.Timer timer = new(10);
-
+        private readonly Architecture OSArchitecture = RuntimeInformation.OSArchitecture;
 
         public BatchingJSRuntime(IJSRuntime js)
         {
             this.js = js;
-            timer.Elapsed += Timer_Elapsed;
         }
 
 
-        private async void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        /// <inheritdoc/>
+        public Task InvokeVoidAsync(MBBatchingWrapper batchingWrapper, string identifier, params object[] args)
+        {
+            if (OSArchitecture == Architecture.Wasm || batchingWrapper == null)
+            {
+                return js.InvokeVoidAsync(identifier, args).AsTask();
+            }
+
+            var call = new Call(identifier, args);
+            queuedCalls.Enqueue(call);
+            return call.Task;
+        }
+
+
+        /// <inheritdoc/>
+        public async Task<T> InvokeAsync<T>(string identifier, params object[] args)
+        {
+            return await js.InvokeAsync<T>(identifier, args);
+        }
+
+
+        public async Task FlushBatchAsync()
         {
             List<Call> batch = new();
 
@@ -83,23 +103,6 @@ namespace Material.Blazor.Internal
                     }
                 }
             }
-        }
-
-
-        /// <inheritdoc/>
-        public Task InvokeVoidAsync(string identifier, params object[] args)
-        {
-            var call = new Call(identifier, args);
-            queuedCalls.Enqueue(call);
-            timer.Start();
-            return call.Task;
-        }
-
-
-        /// <inheritdoc/>
-        public async Task<T> InvokeAsync<T>(string identifier, params object[] args)
-        {
-            return await js.InvokeAsync<T>(identifier, args);
         }
     }
 }

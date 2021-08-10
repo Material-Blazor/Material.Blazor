@@ -25,7 +25,7 @@ namespace Material.Blazor.Internal
         private bool? disabled = null;
 
         [Inject] private IBatchingJSRuntime InjectedJsRuntime { get; set; }
-        protected IBatchingJSRuntime JsRuntime { get; set; }
+        protected IBatchingJSRuntime BatchingJsRuntime { get; set; }
         [CascadingParameter] private MBDialog ParentDialog { get; set; }
         [Inject] private protected ILogger<ComponentFoundation> Logger { get; set; }
         [Inject] private protected IMBTooltipService TooltipService { get; set; }
@@ -80,30 +80,12 @@ namespace Material.Blazor.Internal
         /// </summary>
         private protected virtual Task InstantiateMcwComponent() => Task.CompletedTask;
 
-
-        private bool _disposed;
-        protected virtual void Dispose(bool disposing)
-        {
-            if (_disposed)
-            {
-                return;
-            }
-
-            if (disposing && TooltipId != null)
-            {
-                TooltipService.RemoveTooltip(TooltipId.Value);
-                TooltipId = null;
-            }
-
-            _disposed = true;
-        }
-
         #endregion
 
         #region parameters
 
         [CascadingParameter] protected MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults();
-
+        [CascadingParameter] protected MBBatchingWrapper BatchingWrapper { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of additional attributes that will be applied to the created element.
@@ -276,11 +258,42 @@ namespace Material.Blazor.Internal
 
         #region Dispose
 
+        private bool _disposed;
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing && TooltipId != null)
+            {
+                TooltipService.RemoveTooltip(TooltipId.Value);
+                TooltipId = null;
+            }
+
+            _disposed = true;
+        }
+
         public void Dispose()
         {
             // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
             Dispose(disposing: true);
             GC.SuppressFinalize(this);
+        }
+
+        #endregion
+
+        #region InvokeVoidAsync
+        /// <summary>
+        /// Wraps calls to <see cref="BatchingJSRuntime.InvokeVoidAsync"/> adding reference to the batching wrapper (if found).
+        /// </summary>
+        /// <param name="identifier"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        private protected Task InvokeVoidAsync(string identifier, params object[] args)
+        {
+            return BatchingJsRuntime.InvokeVoidAsync(BatchingWrapper, identifier, args);
         }
 
         #endregion
@@ -315,7 +328,7 @@ namespace Material.Blazor.Internal
                 }
                 catch (Exception e)
                 {
-                    LoggingService.LogError("Instantiating a component failed with exception " + e.ToString());
+                    LoggingService.LogError($"Instantiating component {GetType().Name} failed with exception {e}");
                 }
             }
         }
@@ -329,7 +342,7 @@ namespace Material.Blazor.Internal
         /// </summary>
         protected sealed override void OnInitialized()
         {
-            JsRuntime = ParentDialog == null ? InjectedJsRuntime : new DialogAwareBatchingJSRuntime(InjectedJsRuntime, ParentDialog);
+            BatchingJsRuntime = ParentDialog == null ? InjectedJsRuntime : new DialogAwareBatchingJSRuntime(InjectedJsRuntime, ParentDialog);
             // For consistency, we only ever use OnInitializedAsync. To prevent ourselves from using OnInitialized accidentally, we seal this method from here on.
 
             // the only thing we do here, is creating an ID for the tooltip, if we have one
