@@ -2,6 +2,9 @@
 import { MDCRadio } from '@material/radio';
 
 export function init(elem, formFieldElem, isChecked) {
+    if (!elem) {
+        return;
+    }
     elem._radio = MDCRadio.attachTo(elem);
     elem._radio.checked = isChecked;
     elem._formField = MDCFormField.attachTo(formFieldElem);
@@ -9,9 +12,15 @@ export function init(elem, formFieldElem, isChecked) {
 }
 
 export function setDisabled(elem, value) {
+    if (!elem) {
+        return;
+    }
     elem._radio.disabled = value;
 }
 
 export function setChecked(elem, isChecked) {
+    if (!elem) {
+        return;
+    }
     elem._radio.checked = isChecked;
 }

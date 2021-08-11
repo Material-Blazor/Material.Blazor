@@ -1,6 +1,9 @@
 ﻿import { MDCDialog } from '@material/dialog';
 
 export function show(elem, dotNetObject, escapeKeyAction, scrimClickAction): any {
+    if (!elem) {
+        return;
+    }
     elem._dialog = elem._dialog || MDCDialog.attachTo(elem);
     elem._dotNetObject = dotNetObject;
 
@@ -25,6 +28,9 @@ export function show(elem, dotNetObject, escapeKeyAction, scrimClickAction): any
 }
 
 export function hide(elem, dialogAction) {
+    if (!elem) {
+        return;
+    }
     if (elem && elem._dialog) {
         elem._dialog.close(dialogAction || 'dismissed');
         elem._dialog.destroy();
