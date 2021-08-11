@@ -202,7 +202,7 @@ jobs:
       if: github.event_name != 'workflow_dispatch'
 
     - name: Display MaterialBlazor website output Ꙫ
-      run: dir ${env:outputWeb} /s
+      run: dir siteWeb/s
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v2
