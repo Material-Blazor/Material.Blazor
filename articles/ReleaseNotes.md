@@ -33,6 +33,12 @@ NOT YET RELEASED
 
 - MBList Actions parameter is renamed to SecondaryActions.
 
+**Known issues**
+
+- MBDatePicker does not render a value if it is started with a Value of default 
+
+- MBBatchingWrapper does not work inside a dialog or with content that includes MBSlidingContent
+
 
 #### [2.0.0-preview.6](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.5)
 2021-04-26
