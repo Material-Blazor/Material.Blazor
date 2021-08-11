@@ -24,7 +24,7 @@ namespace Material.Blazor
         }
 
         [Inject] private IBatchingJSRuntime InjectedJsRuntime { get; set; }
-        protected IBatchingJSRuntime BatchingJsRuntime { get; set; }
+        protected internal IBatchingJSRuntime BatchingJsRuntime { get; set; }
         [CascadingParameter] private MBDialog ParentDialog { get; set; }
 
 
@@ -43,7 +43,8 @@ namespace Material.Blazor
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await base.OnAfterRenderAsync(firstRender);
-            await BatchingJsRuntime.FlushBatchAsync();
+            await TriggerAsync();
         }
+        internal async Task TriggerAsync() => await BatchingJsRuntime.FlushBatchAsync();
     }
 }
