@@ -214,7 +214,7 @@ jobs:
         mv siteDocFx deployroot/docs
 
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.1.0
+      uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
         token: ${{secrets.GH_PAT}}
         branch: gh-pages

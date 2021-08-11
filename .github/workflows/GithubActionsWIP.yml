@@ -201,6 +201,9 @@ jobs:
       run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} --version-suffix ${{needs.version.outputs.suffix}} ${env:projectWeb} -p:BlazorEnableCompression=false
       if: github.event_name != 'workflow_dispatch'
 
+    - name: Display MaterialBlazor website output Ꙫ
+      run: dir ${env:siteWeb} /s
+
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v2
       with:
@@ -209,7 +212,7 @@ jobs:
       if: github.event_name != 'workflow_dispatch'
 
 ############################################################################################################
-# Build package
+# Build nuget package
 # This is hard-skipped when we only want to perform a comparison (github.event_name != 'workflow_dispatch')
 ############################################################################################################
   build-package:
@@ -337,7 +340,7 @@ jobs:
 
     # this step deploys to the current repo's gh-pages branch
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.1.0
+      uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
         token: ${{secrets.GH_PAT}}
         branch: gh-pages
@@ -385,7 +388,7 @@ jobs:
 
     # this step deploys to Material-Blazor/Material.Blazor.Current when we are in the main repo
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.1.0
+      uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
         token: ${{secrets.GH_PAT}}
         branch: gh-pages
