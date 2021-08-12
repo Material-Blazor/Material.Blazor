@@ -56,8 +56,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <InputStaticAssetsStyles Include="styles\*.scss;" />
-    <OutputStaticAssetsStyles Include="wwwroot\css\asymmetric-theme.min.css;wwwroot\css\dark-square-theme.min.css;wwwroot\css\light-square-theme.min.css;wwwroot\css\material-default-theme.min.css;wwwroot\css\rounded-theme.min.css;" />
+      <InputStaticAssetsStyles Include="styles\*.scss;" />
+      <OutputStaticAssetsStyles Include="wwwroot\css\asymmetric-theme.min.css;wwwroot\css\dark-square-theme.min.css;wwwroot\css\light-square-theme.min.css;wwwroot\css\material-default-theme.min.css;wwwroot\css\rounded-theme.min.css;" />
+      <Content Remove="@(OutputStaticAssetsStyles)" />
+      <Content Include="@(OutputStaticAssetsStyles)" />
   </ItemGroup>
 
   <ItemGroup>
