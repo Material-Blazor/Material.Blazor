@@ -78,11 +78,13 @@
     <ItemGroup>
         <InputStaticAssetsScripts Include="components\**\*.ts;scripts\**\*.ts" />
         <OutputStaticAssetsScripts Include="wwwroot\materialblazor.js;wwwroot\materialblazor.min.js" />
+        <Content Include="@(OutputStaticAssetsScripts)" />
     </ItemGroup>
 
     <ItemGroup>
         <InputStaticAssetsStyles Include="components\**\*.scss;styles\**\*.scss;" />
         <OutputStaticAssetsStyles Include="wwwroot\materialblazor.css;wwwroot\materialblazor.min.css;wwwroot\material.css;wwwroot\material.min.css" />
+        <Content Include="@(OutputStaticAssetsStyles)" />
     </ItemGroup>
 
     <ItemGroup>
