@@ -201,9 +201,6 @@ jobs:
       run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} --version-suffix ${{needs.version.outputs.suffix}} ${env:projectWeb} -p:BlazorEnableCompression=false
       if: github.event_name != 'workflow_dispatch'
 
-    - name: Display MaterialBlazor website output Ꙫ
-      run: dir siteWeb/s
-
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v2
       with:
