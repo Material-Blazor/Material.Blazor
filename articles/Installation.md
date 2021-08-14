@@ -14,14 +14,14 @@ implies these are intended for internal use by Material.Blazor, however Blazor h
 You will to add three items to your index.html/_Host.cshtml. Place this in the `<head>` tag:
 
 ```html
-<link href="_content/Material.Blazor/Material.min.css" rel="stylesheet" />
-<link href="_content/Material.Blazor/MaterialBlazor.min.css" rel="stylesheet" />
+<link href="_content/Material.Blazor/material-components-web.min.css" rel="stylesheet" />
+<link href="_content/Material.Blazor/material.blazor.min.css" rel="stylesheet" />
 ```
 
 and at the end of `<body>`:
 
 ```html
-<script src="_content/Material.Blazor/MaterialBlazor.min.js"></script>
+<script src="_content/Material.Blazor/material.blazor.min.js"></script>
 ```
 
  Replace the Material.min.css with your own
@@ -53,25 +53,17 @@ because regular component tooltips will fail if you don't, although they are opt
 
 ```csharp
 services.AddMBServices(
-    toastServiceConfiguration: new MBToastServiceConfiguration()
-    {
-        InfoDefaultHeading = "Info",
-        SuccessDefaultHeading = "Success",
-        WarningDefaultHeading = "Warning",
-        ErrorDefaultHeading = "Error",
-        Timeout = 5000,
-        MaxToastsShowing = 5
-    },
-
-    animatedNavigationManagerServiceConfiguration: new MBAnimatedNavigationManagerServiceConfiguration()
-    {
-        ApplyAnimation = true,
-        AnimationTime = 300
-    }
-);
+    animatedNavigationManagerServiceConfiguration: Utilities.GetDefaultAnimatedNavigationServiceConfiguration(),
+    loggingServiceConfiguration: Utilities.GetDefaultLoggingServiceConfiguration(),
+    toastServiceConfiguration: Utilities.GetDefaultToastServiceConfiguration(),
+    snackbarServiceConfiguration: Utilities.GetDefaultSnackbarServiceConfiguration()
 ```
 
-The three configurations are optional - see [MBSnackbarServiceConfiguration](xref:Material.Blazor.MBSnackbarServiceConfiguration), [MBToastServiceConfiguration](xref:Material.Blazor.MBToastServiceConfiguration) and [MBAnimatedNavigationManagerServiceConfiguration](xref:Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration).
+The four configurations are either the default (as above) or custom - 
+see [MBSnackbarServiceConfiguration](xref:Material.Blazor.MBSnackbarServiceConfiguration),
+[MBToastServiceConfiguration](xref:Material.Blazor.MBToastServiceConfiguration),
+[MBLoggingServiceConfiguration](xref:Material.Blazor.MBLoggingServiceConfiguration)
+and [MBAnimatedNavigationManagerServiceConfiguration](xref:Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration).
 
 When you use the services you must also place an anchor component at the top of `App.razor` - this must not be inside any other components or divs:
 

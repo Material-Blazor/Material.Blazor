@@ -33,6 +33,8 @@ NOT YET RELEASED
 
 - MBList Actions parameter is renamed to SecondaryActions.
 
+- The names of the JavaScript & CSS resources have changed in this preview. See the installation article for details.
+
 **Known issues**
 
 - MBDatePicker does not render a value if it is started with a Value of default 
