@@ -1,0 +1,26 @@
+﻿@inherits TestComponentBase
+
+
+<SnapshotTest Setup="Setup">
+<TestInput>
+    <MBSwitch Label="Hello" />
+</TestInput>
+<ExpectedOutput>
+    <div class="mdc-switch    ">
+        <div class="mdc-switch__track"></div>
+        <div class="mdc-switch__thumb-underlay">
+            <div class="mdc-switch__thumb">
+                <input class="mdc-switch__native-control" role="switch" type="checkbox" id:ignore>
+            </div>
+        </div>
+    </div>
+    <label for:ignore style="margin-left: 1rem;">Hello</label>
+</ExpectedOutput>
+
+@code {
+    void Setup(SnapshotTest test)
+    {
+        test.Services.AddLogging().AddMBServices();
+    }
+}
+</SnapshotTest>

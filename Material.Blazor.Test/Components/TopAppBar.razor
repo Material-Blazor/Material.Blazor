@@ -1,0 +1,26 @@
+﻿@inherits TestComponentBase
+
+
+<SnapshotTest Setup="Setup">
+<TestInput>
+    <MBTopAppBar />
+</TestInput>
+<ExpectedOutput>
+    <header class="mdc-top-app-bar      ">
+        <div class="mdc-top-app-bar__row">
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                <span class="mdc-top-app-bar__title"></span>
+            </section>
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" style="padding-right: 20px;">
+            </section>
+        </div>
+    </header>
+</ExpectedOutput>
+
+@code {
+    void Setup(SnapshotTest test)
+    {
+        test.Services.AddLogging().AddMBServices();
+    }
+}
+</SnapshotTest>

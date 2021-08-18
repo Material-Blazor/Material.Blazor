@@ -550,7 +550,7 @@ namespace Material.Blazor
 #if Logging
             Log("GridSyncScroll()");
 #endif
-            await InvokeJSVoidAsync("MaterialBlazor.MBGrid.syncScrollByID", GridHeaderID, GridBodyID);
+            await InvokeVoidAsync("MaterialBlazor.MBGrid.syncScrollByID", GridHeaderID, GridBodyID);
             //await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBGrid.syncScrollByRef", GridHeaderRef, GridBodyRef);
         }
         #endregion

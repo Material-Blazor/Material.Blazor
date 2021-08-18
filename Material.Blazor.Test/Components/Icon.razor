@@ -1,0 +1,18 @@
+﻿@inherits TestComponentBase
+
+
+<SnapshotTest Setup="Setup">
+<TestInput>
+    <MBIcon IconName="test" />
+</TestInput>
+<ExpectedOutput>
+    <i class="material-icons  ">test</i>
+</ExpectedOutput>
+
+@code {
+    void Setup(SnapshotTest test)
+    {
+        test.Services.AddLogging().AddMBServices();
+    }
+}
+</SnapshotTest>

@@ -170,7 +170,7 @@ namespace Material.Blazor.Internal
         /// <param name="identifier"></param>
         /// <param name="args"></param>
         /// <returns></returns>
-        private protected Task InvokeJSVoidAsync(string identifier, params object[] args)
+        private protected Task InvokeVoidAsync(string identifier, params object[] args)
         {
             return BatchingJsRuntime.InvokeVoidAsync(BatchingWrapper, identifier, args);
         }

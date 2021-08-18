@@ -74,7 +74,7 @@ namespace Material.Blazor
 
                     if (HasInstantiated)
                     {
-                        InvokeAsync(() => InvokeJSVoidAsync("MaterialBlazor.MBFloatingActionButton.setExited", ElementReference, Exited));
+                        InvokeAsync(() => InvokeVoidAsync("MaterialBlazor.MBFloatingActionButton.setExited", ElementReference, Exited));
                     }
                 }
             }
@@ -98,6 +98,6 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => InvokeJSVoidAsync("MaterialBlazor.MBFloatingActionButton.init", ElementReference, Exited);
+        private protected override Task InstantiateMcwComponent() => InvokeVoidAsync("MaterialBlazor.MBFloatingActionButton.init", ElementReference, Exited);
     }
 }
