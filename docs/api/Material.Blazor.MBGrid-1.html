@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class MBGrid&lt;TRowData&gt;
    ">
-    <meta name="generator" content="docfx 2.56.7.0">
+    <meta name="generator" content="docfx 2.58.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -101,10 +101,13 @@
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_JsRuntime">ComponentFoundation.JsRuntime</a>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_BatchingJsRuntime">ComponentFoundation.BatchingJsRuntime</a>
     </div>
     <div>
       <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_CascadingDefaults">ComponentFoundation.CascadingDefaults</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_BatchingWrapper">ComponentFoundation.BatchingWrapper</a>
     </div>
     <div>
       <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_UnmatchedAttributes">ComponentFoundation.UnmatchedAttributes</a>
@@ -134,97 +137,16 @@
       <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_Dispose">ComponentFoundation.Dispose()</a>
     </div>
     <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnParametersSet">ComponentFoundation.OnParametersSet()</a>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnAfterRender_System_Boolean_">ComponentFoundation.OnAfterRender(Boolean)</a>
     </div>
     <div>
       <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnInitialized">ComponentFoundation.OnInitialized()</a>
     </div>
     <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnAfterRender_System_Boolean_">ComponentFoundation.OnAfterRender(Boolean)</a>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnParametersSet">ComponentFoundation.OnParametersSet()</a>
     </div>
     <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBCritical_EventId_System_String_System_Object___">ComponentFoundation.LogMBCritical(EventId, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBCritical_EventId_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBCritical(EventId, Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBCritical_System_String_System_Object___">ComponentFoundation.LogMBCritical(String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBCritical_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBCritical(Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebug_EventId_System_String_System_Object___">ComponentFoundation.LogMBDebug(EventId, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebug_EventId_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBDebug(EventId, Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebug_System_String_System_Object___">ComponentFoundation.LogMBDebug(String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebug_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBDebug(Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_EventId_System_String_System_Object___">ComponentFoundation.LogMBDebugVerbose(EventId, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_EventId_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBDebugVerbose(EventId, Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_System_String_System_Object___">ComponentFoundation.LogMBDebugVerbose(String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBDebugVerbose(Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBError_EventId_System_String_System_Object___">ComponentFoundation.LogMBError(EventId, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBError_EventId_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBError(EventId, Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBError_System_String_System_Object___">ComponentFoundation.LogMBError(String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBError_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBError(Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBInformation_EventId_System_String_System_Object___">ComponentFoundation.LogMBInformation(EventId, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBInformation_EventId_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBInformation(EventId, Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBInformation_System_String_System_Object___">ComponentFoundation.LogMBInformation(String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBInformation_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBInformation(Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBTrace_EventId_System_String_System_Object___">ComponentFoundation.LogMBTrace(EventId, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBTrace_EventId_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBTrace(EventId, Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBTrace_System_String_System_Object___">ComponentFoundation.LogMBTrace(String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBTrace_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBTrace(Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBWarning_EventId_System_String_System_Object___">ComponentFoundation.LogMBWarning(EventId, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBWarning_EventId_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBWarning(EventId, Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBWarning_System_String_System_Object___">ComponentFoundation.LogMBWarning(String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBWarning_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBWarning(Exception, String, Object[])</a>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnParametersSetAsync">ComponentFoundation.OnParametersSetAsync()</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Material.Blazor.html">Material.Blazor</a></h6>
@@ -255,7 +177,7 @@
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_ColumnConfigurations.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.ColumnConfigurations%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L51">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L49">View Source</a>
   </span>
   <a id="Material_Blazor_MBGrid_1_ColumnConfigurations_" data-uid="Material.Blazor.MBGrid`1.ColumnConfigurations*"></a>
   <h4 id="Material_Blazor_MBGrid_1_ColumnConfigurations" data-uid="Material.Blazor.MBGrid`1.ColumnConfigurations">ColumnConfigurations</h4>
@@ -287,7 +209,7 @@ for details.</p>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_Group.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.Group%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L57">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L56">View Source</a>
   </span>
   <a id="Material_Blazor_MBGrid_1_Group_" data-uid="Material.Blazor.MBGrid`1.Group*"></a>
   <h4 id="Material_Blazor_MBGrid_1_Group" data-uid="Material.Blazor.MBGrid`1.Group">Group</h4>
@@ -318,7 +240,7 @@ for details.</p>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_GroupedOrderedData.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.GroupedOrderedData%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L66">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L65">View Source</a>
   </span>
   <a id="Material_Blazor_MBGrid_1_GroupedOrderedData_" data-uid="Material.Blazor.MBGrid`1.GroupedOrderedData*"></a>
   <h4 id="Material_Blazor_MBGrid_1_GroupedOrderedData" data-uid="Material.Blazor.MBGrid`1.GroupedOrderedData">GroupedOrderedData</h4>
@@ -605,7 +527,7 @@ data widths (FitToData)</p>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_GridSyncScroll.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.GridSyncScroll%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L548">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L569">View Source</a>
   </span>
   <a id="Material_Blazor_MBGrid_1_GridSyncScroll_" data-uid="Material.Blazor.MBGrid`1.GridSyncScroll*"></a>
   <h4 id="Material_Blazor_MBGrid_1_GridSyncScroll" data-uid="Material.Blazor.MBGrid`1.GridSyncScroll">GridSyncScroll()</h4>
@@ -613,7 +535,7 @@ data widths (FitToData)</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Task GridSyncScroll()</code></pre>
+    <pre><code class="lang-csharp hljs">protected async Task GridSyncScroll()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -635,7 +557,7 @@ data widths (FitToData)</p>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_OnAfterRenderAsync_System_Boolean_.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.OnAfterRenderAsync(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L693">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L733">View Source</a>
   </span>
   <a id="Material_Blazor_MBGrid_1_OnAfterRenderAsync_" data-uid="Material.Blazor.MBGrid`1.OnAfterRenderAsync*"></a>
   <h4 id="Material_Blazor_MBGrid_1_OnAfterRenderAsync_System_Boolean_" data-uid="Material.Blazor.MBGrid`1.OnAfterRenderAsync(System.Boolean)">OnAfterRenderAsync(Boolean)</h4>
@@ -643,7 +565,7 @@ data widths (FitToData)</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override Task OnAfterRenderAsync(bool firstRender)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override async Task OnAfterRenderAsync(bool firstRender)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -684,7 +606,7 @@ data widths (FitToData)</p>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_OnInitializedAsync.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.OnInitializedAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L729">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L786">View Source</a>
   </span>
   <a id="Material_Blazor_MBGrid_1_OnInitializedAsync_" data-uid="Material.Blazor.MBGrid`1.OnInitializedAsync*"></a>
   <h4 id="Material_Blazor_MBGrid_1_OnInitializedAsync" data-uid="Material.Blazor.MBGrid`1.OnInitializedAsync">OnInitializedAsync()</h4>
@@ -692,7 +614,7 @@ data widths (FitToData)</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override Task OnInitializedAsync()</code></pre>
+    <pre><code class="lang-csharp hljs">protected override async Task OnInitializedAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -709,44 +631,12 @@ data widths (FitToData)</p>
       </tr>
     </tbody>
   </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_OnParametersSetAsync.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.OnParametersSetAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L765">View Source</a>
-  </span>
-  <a id="Material_Blazor_MBGrid_1_OnParametersSetAsync_" data-uid="Material.Blazor.MBGrid`1.OnParametersSetAsync*"></a>
-  <h4 id="Material_Blazor_MBGrid_1_OnParametersSetAsync" data-uid="Material.Blazor.MBGrid`1.OnParametersSetAsync">OnParametersSetAsync()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override Task OnParametersSetAsync()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnParametersSetAsync">ComponentFoundation.OnParametersSetAsync()</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_SetParametersAsync_ParameterView_.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.SetParametersAsync(ParameterView)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L798">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L823">View Source</a>
   </span>
   <a id="Material_Blazor_MBGrid_1_SetParametersAsync_" data-uid="Material.Blazor.MBGrid`1.SetParametersAsync*"></a>
   <h4 id="Material_Blazor_MBGrid_1_SetParametersAsync_ParameterView_" data-uid="Material.Blazor.MBGrid`1.SetParametersAsync(ParameterView)">SetParametersAsync(ParameterView)</h4>
@@ -793,7 +683,7 @@ data widths (FitToData)</p>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1_ShouldRender.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601.ShouldRender%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L997">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L1043">View Source</a>
   </span>
   <a id="Material_Blazor_MBGrid_1_ShouldRender_" data-uid="Material.Blazor.MBGrid`1.ShouldRender*"></a>
   <h4 id="Material_Blazor_MBGrid_1_ShouldRender" data-uid="Material.Blazor.MBGrid`1.ShouldRender">ShouldRender()</h4>
@@ -833,7 +723,7 @@ data widths (FitToData)</p>
                     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGrid_1.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGrid%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L43" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGrid.cs/#L41" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

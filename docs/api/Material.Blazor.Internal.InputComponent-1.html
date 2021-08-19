@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class InputComponent&lt;T&gt;
    ">
-    <meta name="generator" content="docfx 2.56.7.0">
+    <meta name="generator" content="docfx 2.58.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -121,10 +121,13 @@
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_JsRuntime">ComponentFoundation.JsRuntime</a>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_BatchingJsRuntime">ComponentFoundation.BatchingJsRuntime</a>
     </div>
     <div>
       <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_CascadingDefaults">ComponentFoundation.CascadingDefaults</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_BatchingWrapper">ComponentFoundation.BatchingWrapper</a>
     </div>
     <div>
       <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_UnmatchedAttributes">ComponentFoundation.UnmatchedAttributes</a>
@@ -154,100 +157,16 @@
       <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_Dispose">ComponentFoundation.Dispose()</a>
     </div>
     <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnParametersSet">ComponentFoundation.OnParametersSet()</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnInitialized">ComponentFoundation.OnInitialized()</a>
-    </div>
-    <div>
       <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnAfterRender_System_Boolean_">ComponentFoundation.OnAfterRender(Boolean)</a>
     </div>
     <div>
       <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnAfterRenderAsync_System_Boolean_">ComponentFoundation.OnAfterRenderAsync(Boolean)</a>
     </div>
     <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBCritical_EventId_System_String_System_Object___">ComponentFoundation.LogMBCritical(EventId, String, Object[])</a>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnInitialized">ComponentFoundation.OnInitialized()</a>
     </div>
     <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBCritical_EventId_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBCritical(EventId, Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBCritical_System_String_System_Object___">ComponentFoundation.LogMBCritical(String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBCritical_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBCritical(Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebug_EventId_System_String_System_Object___">ComponentFoundation.LogMBDebug(EventId, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebug_EventId_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBDebug(EventId, Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebug_System_String_System_Object___">ComponentFoundation.LogMBDebug(String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebug_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBDebug(Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_EventId_System_String_System_Object___">ComponentFoundation.LogMBDebugVerbose(EventId, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_EventId_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBDebugVerbose(EventId, Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_System_String_System_Object___">ComponentFoundation.LogMBDebugVerbose(String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBDebugVerbose(Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBError_EventId_System_String_System_Object___">ComponentFoundation.LogMBError(EventId, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBError_EventId_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBError(EventId, Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBError_System_String_System_Object___">ComponentFoundation.LogMBError(String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBError_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBError(Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBInformation_EventId_System_String_System_Object___">ComponentFoundation.LogMBInformation(EventId, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBInformation_EventId_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBInformation(EventId, Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBInformation_System_String_System_Object___">ComponentFoundation.LogMBInformation(String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBInformation_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBInformation(Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBTrace_EventId_System_String_System_Object___">ComponentFoundation.LogMBTrace(EventId, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBTrace_EventId_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBTrace(EventId, Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBTrace_System_String_System_Object___">ComponentFoundation.LogMBTrace(String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBTrace_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBTrace(Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBWarning_EventId_System_String_System_Object___">ComponentFoundation.LogMBWarning(EventId, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBWarning_EventId_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBWarning(EventId, Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBWarning_System_String_System_Object___">ComponentFoundation.LogMBWarning(String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBWarning_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBWarning(Exception, String, Object[])</a>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnParametersSet">ComponentFoundation.OnParametersSet()</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Material.Blazor.Internal.html">Material.Blazor.Internal</a></h6>
@@ -278,7 +197,7 @@
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_InputComponent_1_ComponentValueAsString.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.InputComponent%601.ComponentValueAsString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L120">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L154">View Source</a>
   </span>
   <a id="Material_Blazor_Internal_InputComponent_1_ComponentValueAsString_" data-uid="Material.Blazor.Internal.InputComponent`1.ComponentValueAsString*"></a>
   <h4 id="Material_Blazor_Internal_InputComponent_1_ComponentValueAsString" data-uid="Material.Blazor.Internal.InputComponent`1.ComponentValueAsString">ComponentValueAsString</h4>
@@ -309,7 +228,7 @@
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_InputComponent_1_EditContext.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.InputComponent%601.EditContext%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L64">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L31">View Source</a>
   </span>
   <a id="Material_Blazor_Internal_InputComponent_1_EditContext_" data-uid="Material.Blazor.Internal.InputComponent`1.EditContext*"></a>
   <h4 id="Material_Blazor_Internal_InputComponent_1_EditContext" data-uid="Material.Blazor.Internal.InputComponent`1.EditContext">EditContext</h4>
@@ -340,7 +259,7 @@
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_InputComponent_1_FieldClass.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.InputComponent%601.FieldClass%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L207">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L62">View Source</a>
   </span>
   <a id="Material_Blazor_Internal_InputComponent_1_FieldClass_" data-uid="Material.Blazor.Internal.InputComponent`1.FieldClass*"></a>
   <h4 id="Material_Blazor_Internal_InputComponent_1_FieldClass" data-uid="Material.Blazor.Internal.InputComponent`1.FieldClass">FieldClass</h4>
@@ -372,7 +291,7 @@ some combination of &quot;modified&quot;, &quot;valid&quot;, or &quot;invalid&qu
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_InputComponent_1_FieldIdentifier.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.InputComponent%601.FieldIdentifier%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L70">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L37">View Source</a>
   </span>
   <a id="Material_Blazor_Internal_InputComponent_1_FieldIdentifier_" data-uid="Material.Blazor.Internal.InputComponent`1.FieldIdentifier*"></a>
   <h4 id="Material_Blazor_Internal_InputComponent_1_FieldIdentifier" data-uid="Material.Blazor.Internal.InputComponent`1.FieldIdentifier">FieldIdentifier</h4>
@@ -403,7 +322,7 @@ some combination of &quot;modified&quot;, &quot;valid&quot;, or &quot;invalid&qu
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_InputComponent_1_Value.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.InputComponent%601.Value%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L35">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L77">View Source</a>
   </span>
   <a id="Material_Blazor_Internal_InputComponent_1_Value_" data-uid="Material.Blazor.Internal.InputComponent`1.Value*"></a>
   <h4 id="Material_Blazor_Internal_InputComponent_1_Value" data-uid="Material.Blazor.Internal.InputComponent`1.Value">Value</h4>
@@ -437,7 +356,7 @@ some combination of &quot;modified&quot;, &quot;valid&quot;, or &quot;invalid&qu
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_InputComponent_1_ValueChanged.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.InputComponent%601.ValueChanged%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L52">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L94">View Source</a>
   </span>
   <a id="Material_Blazor_Internal_InputComponent_1_ValueChanged_" data-uid="Material.Blazor.Internal.InputComponent`1.ValueChanged*"></a>
   <h4 id="Material_Blazor_Internal_InputComponent_1_ValueChanged" data-uid="Material.Blazor.Internal.InputComponent`1.ValueChanged">ValueChanged</h4>
@@ -468,7 +387,7 @@ some combination of &quot;modified&quot;, &quot;valid&quot;, or &quot;invalid&qu
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_InputComponent_1_ValueExpression.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.InputComponent%601.ValueExpression%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L58">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L100">View Source</a>
   </span>
   <a id="Material_Blazor_Internal_InputComponent_1_ValueExpression_" data-uid="Material.Blazor.Internal.InputComponent`1.ValueExpression*"></a>
   <h4 id="Material_Blazor_Internal_InputComponent_1_ValueExpression" data-uid="Material.Blazor.Internal.InputComponent`1.ValueExpression">ValueExpression</h4>
@@ -501,7 +420,7 @@ some combination of &quot;modified&quot;, &quot;valid&quot;, or &quot;invalid&qu
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_InputComponent_1_FormatValueToString__0_.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.InputComponent%601.FormatValueToString(%600)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L187">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L212">View Source</a>
   </span>
   <a id="Material_Blazor_Internal_InputComponent_1_FormatValueToString_" data-uid="Material.Blazor.Internal.InputComponent`1.FormatValueToString*"></a>
   <h4 id="Material_Blazor_Internal_InputComponent_1_FormatValueToString__0_" data-uid="Material.Blazor.Internal.InputComponent`1.FormatValueToString(`0)">FormatValueToString(T)</h4>
@@ -551,7 +470,7 @@ some combination of &quot;modified&quot;, &quot;valid&quot;, or &quot;invalid&qu
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_InputComponent_1_OnInitializedAsync.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.InputComponent%601.OnInitializedAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L213">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L276">View Source</a>
   </span>
   <a id="Material_Blazor_Internal_InputComponent_1_OnInitializedAsync_" data-uid="Material.Blazor.Internal.InputComponent`1.OnInitializedAsync*"></a>
   <h4 id="Material_Blazor_Internal_InputComponent_1_OnInitializedAsync" data-uid="Material.Blazor.Internal.InputComponent`1.OnInitializedAsync">OnInitializedAsync()</h4>
@@ -559,7 +478,7 @@ some combination of &quot;modified&quot;, &quot;valid&quot;, or &quot;invalid&qu
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override Task OnInitializedAsync()</code></pre>
+    <pre><code class="lang-csharp hljs">protected override async Task OnInitializedAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -581,7 +500,7 @@ some combination of &quot;modified&quot;, &quot;valid&quot;, or &quot;invalid&qu
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_InputComponent_1_OnParametersSetAsync.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.InputComponent%601.OnParametersSetAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L267">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L291">View Source</a>
   </span>
   <a id="Material_Blazor_Internal_InputComponent_1_OnParametersSetAsync_" data-uid="Material.Blazor.Internal.InputComponent`1.OnParametersSetAsync*"></a>
   <h4 id="Material_Blazor_Internal_InputComponent_1_OnParametersSetAsync" data-uid="Material.Blazor.Internal.InputComponent`1.OnParametersSetAsync">OnParametersSetAsync()</h4>
@@ -590,7 +509,7 @@ some combination of &quot;modified&quot;, &quot;valid&quot;, or &quot;invalid&qu
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override Task OnParametersSetAsync()</code></pre>
+    <pre><code class="lang-csharp hljs">protected override async Task OnParametersSetAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -614,7 +533,7 @@ some combination of &quot;modified&quot;, &quot;valid&quot;, or &quot;invalid&qu
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_InputComponent_1_SetParametersAsync_ParameterView_.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.InputComponent%601.SetParametersAsync(ParameterView)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L229">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L325">View Source</a>
   </span>
   <a id="Material_Blazor_Internal_InputComponent_1_SetParametersAsync_" data-uid="Material.Blazor.Internal.InputComponent`1.SetParametersAsync*"></a>
   <h4 id="Material_Blazor_Internal_InputComponent_1_SetParametersAsync_ParameterView_" data-uid="Material.Blazor.Internal.InputComponent`1.SetParametersAsync(ParameterView)">SetParametersAsync(ParameterView)</h4>
@@ -622,7 +541,7 @@ some combination of &quot;modified&quot;, &quot;valid&quot;, or &quot;invalid&qu
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override Task SetParametersAsync(ParameterView parameters)</code></pre>
+    <pre><code class="lang-csharp hljs">public override async Task SetParametersAsync(ParameterView parameters)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -661,7 +580,7 @@ some combination of &quot;modified&quot;, &quot;valid&quot;, or &quot;invalid&qu
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_InputComponent_1_ShouldRender.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.InputComponent%601.ShouldRender%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L307">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L369">View Source</a>
   </span>
   <a id="Material_Blazor_Internal_InputComponent_1_ShouldRender_" data-uid="Material.Blazor.Internal.InputComponent`1.ShouldRender*"></a>
   <h4 id="Material_Blazor_Internal_InputComponent_1_ShouldRender" data-uid="Material.Blazor.Internal.InputComponent`1.ShouldRender">ShouldRender()</h4>
@@ -670,7 +589,7 @@ some combination of &quot;modified&quot;, &quot;valid&quot;, or &quot;invalid&qu
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override sealed bool ShouldRender()</code></pre>
+    <pre><code class="lang-csharp hljs">protected sealed override bool ShouldRender()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -692,7 +611,7 @@ some combination of &quot;modified&quot;, &quot;valid&quot;, or &quot;invalid&qu
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_InputComponent_1_TryParseValueFromString_System_String__0__System_String__.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.InputComponent%601.TryParseValueFromString(System.String%2C%600%40%2CSystem.String%40)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L199">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L392">View Source</a>
   </span>
   <a id="Material_Blazor_Internal_InputComponent_1_TryParseValueFromString_" data-uid="Material.Blazor.Internal.InputComponent`1.TryParseValueFromString*"></a>
   <h4 id="Material_Blazor_Internal_InputComponent_1_TryParseValueFromString_System_String__0__System_String__" data-uid="Material.Blazor.Internal.InputComponent`1.TryParseValueFromString(System.String,`0@,System.String@)">TryParseValueFromString(String, out T, out String)</h4>
@@ -757,7 +676,7 @@ some combination of &quot;modified&quot;, &quot;valid&quot;, or &quot;invalid&qu
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_Internal_InputComponent_1_SetComponentValue.md&amp;value=---%0Auid%3A%20Material.Blazor.Internal.InputComponent%601.SetComponentValue%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L46">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Foundation/InputComponent.cs/#L88">View Source</a>
   </span>
   <h4 id="Material_Blazor_Internal_InputComponent_1_SetComponentValue" data-uid="Material.Blazor.Internal.InputComponent`1.SetComponentValue">SetComponentValue</h4>
   <div class="markdown level1 summary"><p>Derived components can use this to get a callback from SetParameters(Async) when the consumer changes

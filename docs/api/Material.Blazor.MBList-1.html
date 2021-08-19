@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class MBList&lt;TItem&gt;
    ">
-    <meta name="generator" content="docfx 2.56.7.0">
+    <meta name="generator" content="docfx 2.58.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -102,10 +102,13 @@ list item.</p>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_JsRuntime">ComponentFoundation.JsRuntime</a>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_BatchingJsRuntime">ComponentFoundation.BatchingJsRuntime</a>
     </div>
     <div>
       <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_CascadingDefaults">ComponentFoundation.CascadingDefaults</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_BatchingWrapper">ComponentFoundation.BatchingWrapper</a>
     </div>
     <div>
       <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_UnmatchedAttributes">ComponentFoundation.UnmatchedAttributes</a>
@@ -135,100 +138,16 @@ list item.</p>
       <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_Dispose">ComponentFoundation.Dispose()</a>
     </div>
     <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnParametersSet">ComponentFoundation.OnParametersSet()</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnInitialized">ComponentFoundation.OnInitialized()</a>
-    </div>
-    <div>
       <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnAfterRender_System_Boolean_">ComponentFoundation.OnAfterRender(Boolean)</a>
     </div>
     <div>
       <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnAfterRenderAsync_System_Boolean_">ComponentFoundation.OnAfterRenderAsync(Boolean)</a>
     </div>
     <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBCritical_EventId_System_String_System_Object___">ComponentFoundation.LogMBCritical(EventId, String, Object[])</a>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnInitialized">ComponentFoundation.OnInitialized()</a>
     </div>
     <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBCritical_EventId_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBCritical(EventId, Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBCritical_System_String_System_Object___">ComponentFoundation.LogMBCritical(String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBCritical_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBCritical(Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebug_EventId_System_String_System_Object___">ComponentFoundation.LogMBDebug(EventId, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebug_EventId_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBDebug(EventId, Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebug_System_String_System_Object___">ComponentFoundation.LogMBDebug(String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebug_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBDebug(Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_EventId_System_String_System_Object___">ComponentFoundation.LogMBDebugVerbose(EventId, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_EventId_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBDebugVerbose(EventId, Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_System_String_System_Object___">ComponentFoundation.LogMBDebugVerbose(String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBDebugVerbose_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBDebugVerbose(Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBError_EventId_System_String_System_Object___">ComponentFoundation.LogMBError(EventId, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBError_EventId_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBError(EventId, Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBError_System_String_System_Object___">ComponentFoundation.LogMBError(String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBError_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBError(Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBInformation_EventId_System_String_System_Object___">ComponentFoundation.LogMBInformation(EventId, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBInformation_EventId_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBInformation(EventId, Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBInformation_System_String_System_Object___">ComponentFoundation.LogMBInformation(String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBInformation_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBInformation(Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBTrace_EventId_System_String_System_Object___">ComponentFoundation.LogMBTrace(EventId, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBTrace_EventId_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBTrace(EventId, Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBTrace_System_String_System_Object___">ComponentFoundation.LogMBTrace(String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBTrace_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBTrace(Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBWarning_EventId_System_String_System_Object___">ComponentFoundation.LogMBWarning(EventId, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBWarning_EventId_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBWarning(EventId, Exception, String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBWarning_System_String_System_Object___">ComponentFoundation.LogMBWarning(String, Object[])</a>
-    </div>
-    <div>
-      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_LogMBWarning_System_Exception_System_String_System_Object___">ComponentFoundation.LogMBWarning(Exception, String, Object[])</a>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnParametersSet">ComponentFoundation.OnParametersSet()</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Material.Blazor.html">Material.Blazor</a></h6>
@@ -254,37 +173,6 @@ list item.</p>
   </table>
   <h3 id="properties">Properties
   </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBList_1_Actions.md&amp;value=---%0Auid%3A%20Material.Blazor.MBList%601.Actions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L72">View Source</a>
-  </span>
-  <a id="Material_Blazor_MBList_1_Actions_" data-uid="Material.Blazor.MBList`1.Actions*"></a>
-  <h4 id="Material_Blazor_MBList_1_Actions" data-uid="Material.Blazor.MBList`1.Actions">Actions</h4>
-  <div class="markdown level1 summary"><p>The actions render fragment.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RenderFragment&lt;TItem&gt; Actions { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">RenderFragment</span>&lt;TItem&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBList_1_GetKeysFunc.md&amp;value=---%0Auid%3A%20Material.Blazor.MBList%601.GetKeysFunc%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
@@ -322,7 +210,7 @@ list item.</p>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBList_1_HideLineThree.md&amp;value=---%0Auid%3A%20Material.Blazor.MBList%601.HideLineThree%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L144">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L150">View Source</a>
   </span>
   <a id="Material_Blazor_MBList_1_HideLineThree_" data-uid="Material.Blazor.MBList`1.HideLineThree*"></a>
   <h4 id="Material_Blazor_MBList_1_HideLineThree" data-uid="Material.Blazor.MBList`1.HideLineThree">HideLineThree</h4>
@@ -353,7 +241,7 @@ list item.</p>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBList_1_HideLineTwo.md&amp;value=---%0Auid%3A%20Material.Blazor.MBList%601.HideLineTwo%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L138">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L144">View Source</a>
   </span>
   <a id="Material_Blazor_MBList_1_HideLineTwo_" data-uid="Material.Blazor.MBList`1.HideLineTwo*"></a>
   <h4 id="Material_Blazor_MBList_1_HideLineTwo" data-uid="Material.Blazor.MBList`1.HideLineTwo">HideLineTwo</h4>
@@ -447,7 +335,7 @@ Note that you will be expected to render your own icon, and can use <a class="xr
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBList_1_KeyboardInteractions.md&amp;value=---%0Auid%3A%20Material.Blazor.MBList%601.KeyboardInteractions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L108">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L114">View Source</a>
   </span>
   <a id="Material_Blazor_MBList_1_KeyboardInteractions_" data-uid="Material.Blazor.MBList`1.KeyboardInteractions*"></a>
   <h4 id="Material_Blazor_MBList_1_KeyboardInteractions" data-uid="Material.Blazor.MBList`1.KeyboardInteractions">KeyboardInteractions</h4>
@@ -604,7 +492,7 @@ Note that you will be expected to render your own icon, and can use <a class="xr
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBList_1_NonInteractive.md&amp;value=---%0Auid%3A%20Material.Blazor.MBList%601.NonInteractive%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L120">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L126">View Source</a>
   </span>
   <a id="Material_Blazor_MBList_1_NonInteractive_" data-uid="Material.Blazor.MBList`1.NonInteractive*"></a>
   <h4 id="Material_Blazor_MBList_1_NonInteractive" data-uid="Material.Blazor.MBList`1.NonInteractive">NonInteractive</h4>
@@ -635,7 +523,7 @@ Note that you will be expected to render your own icon, and can use <a class="xr
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBList_1_OnClick.md&amp;value=---%0Auid%3A%20Material.Blazor.MBList%601.OnClick%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L78">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L84">View Source</a>
   </span>
   <a id="Material_Blazor_MBList_1_OnClick_" data-uid="Material.Blazor.MBList`1.OnClick*"></a>
   <h4 id="Material_Blazor_MBList_1_OnClick" data-uid="Material.Blazor.MBList`1.OnClick">OnClick</h4>
@@ -666,7 +554,7 @@ Note that you will be expected to render your own icon, and can use <a class="xr
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBList_1_OnKeyDown.md&amp;value=---%0Auid%3A%20Material.Blazor.MBList%601.OnKeyDown%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L90">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L96">View Source</a>
   </span>
   <a id="Material_Blazor_MBList_1_OnKeyDown_" data-uid="Material.Blazor.MBList`1.OnKeyDown*"></a>
   <h4 id="Material_Blazor_MBList_1_OnKeyDown" data-uid="Material.Blazor.MBList`1.OnKeyDown">OnKeyDown</h4>
@@ -697,7 +585,7 @@ Note that you will be expected to render your own icon, and can use <a class="xr
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBList_1_OnMouseDown.md&amp;value=---%0Auid%3A%20Material.Blazor.MBList%601.OnMouseDown%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L84">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L90">View Source</a>
   </span>
   <a id="Material_Blazor_MBList_1_OnMouseDown_" data-uid="Material.Blazor.MBList`1.OnMouseDown*"></a>
   <h4 id="Material_Blazor_MBList_1_OnMouseDown" data-uid="Material.Blazor.MBList`1.OnMouseDown">OnMouseDown</h4>
@@ -728,7 +616,7 @@ Note that you will be expected to render your own icon, and can use <a class="xr
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBList_1_OnTouchStart.md&amp;value=---%0Auid%3A%20Material.Blazor.MBList%601.OnTouchStart%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L96">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L102">View Source</a>
   </span>
   <a id="Material_Blazor_MBList_1_OnTouchStart_" data-uid="Material.Blazor.MBList`1.OnTouchStart*"></a>
   <h4 id="Material_Blazor_MBList_1_OnTouchStart" data-uid="Material.Blazor.MBList`1.OnTouchStart">OnTouchStart</h4>
@@ -756,10 +644,41 @@ Note that you will be expected to render your own icon, and can use <a class="xr
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBList_1_PrimaryActions.md&amp;value=---%0Auid%3A%20Material.Blazor.MBList%601.PrimaryActions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L72">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBList_1_PrimaryActions_" data-uid="Material.Blazor.MBList`1.PrimaryActions*"></a>
+  <h4 id="Material_Blazor_MBList_1_PrimaryActions" data-uid="Material.Blazor.MBList`1.PrimaryActions">PrimaryActions</h4>
+  <div class="markdown level1 summary"><p>The primary actions render fragment.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RenderFragment&lt;TItem&gt; PrimaryActions { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">RenderFragment</span>&lt;TItem&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBList_1_Ripple.md&amp;value=---%0Auid%3A%20Material.Blazor.MBList%601.Ripple%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L114">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L120">View Source</a>
   </span>
   <a id="Material_Blazor_MBList_1_Ripple_" data-uid="Material.Blazor.MBList`1.Ripple*"></a>
   <h4 id="Material_Blazor_MBList_1_Ripple" data-uid="Material.Blazor.MBList`1.Ripple">Ripple</h4>
@@ -787,10 +706,41 @@ Note that you will be expected to render your own icon, and can use <a class="xr
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBList_1_SecondaryActions.md&amp;value=---%0Auid%3A%20Material.Blazor.MBList%601.SecondaryActions%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L78">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBList_1_SecondaryActions_" data-uid="Material.Blazor.MBList`1.SecondaryActions*"></a>
+  <h4 id="Material_Blazor_MBList_1_SecondaryActions" data-uid="Material.Blazor.MBList`1.SecondaryActions">SecondaryActions</h4>
+  <div class="markdown level1 summary"><p>The secondary actions render fragment.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public RenderFragment&lt;TItem&gt; SecondaryActions { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">RenderFragment</span>&lt;TItem&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBList_1_ShowSeparators.md&amp;value=---%0Auid%3A%20Material.Blazor.MBList%601.ShowSeparators%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L102">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L108">View Source</a>
   </span>
   <a id="Material_Blazor_MBList_1_ShowSeparators_" data-uid="Material.Blazor.MBList`1.ShowSeparators*"></a>
   <h4 id="Material_Blazor_MBList_1_ShowSeparators" data-uid="Material.Blazor.MBList`1.ShowSeparators">ShowSeparators</h4>
@@ -821,7 +771,7 @@ Note that you will be expected to render your own icon, and can use <a class="xr
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBList_1_SingleLineDensity.md&amp;value=---%0Auid%3A%20Material.Blazor.MBList%601.SingleLineDensity%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L132">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L138">View Source</a>
   </span>
   <a id="Material_Blazor_MBList_1_SingleLineDensity_" data-uid="Material.Blazor.MBList`1.SingleLineDensity*"></a>
   <h4 id="Material_Blazor_MBList_1_SingleLineDensity" data-uid="Material.Blazor.MBList`1.SingleLineDensity">SingleLineDensity</h4>
@@ -852,7 +802,7 @@ Note that you will be expected to render your own icon, and can use <a class="xr
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBList_1_SuppressIcons.md&amp;value=---%0Auid%3A%20Material.Blazor.MBList%601.SuppressIcons%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L126">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L132">View Source</a>
   </span>
   <a id="Material_Blazor_MBList_1_SuppressIcons_" data-uid="Material.Blazor.MBList`1.SuppressIcons*"></a>
   <h4 id="Material_Blazor_MBList_1_SuppressIcons" data-uid="Material.Blazor.MBList`1.SuppressIcons">SuppressIcons</h4>
@@ -916,7 +866,7 @@ Note that you will be expected to render your own icon, and can use <a class="xr
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBList_1_OnDisabledSetCallback.md&amp;value=---%0Auid%3A%20Material.Blazor.MBList%601.OnDisabledSetCallback%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L243">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L249">View Source</a>
   </span>
   <a id="Material_Blazor_MBList_1_OnDisabledSetCallback_" data-uid="Material.Blazor.MBList`1.OnDisabledSetCallback*"></a>
   <h4 id="Material_Blazor_MBList_1_OnDisabledSetCallback" data-uid="Material.Blazor.MBList`1.OnDisabledSetCallback">OnDisabledSetCallback()</h4>
@@ -932,7 +882,7 @@ Note that you will be expected to render your own icon, and can use <a class="xr
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBList_1_OnInitializedAsync.md&amp;value=---%0Auid%3A%20Material.Blazor.MBList%601.OnInitializedAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L163">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L169">View Source</a>
   </span>
   <a id="Material_Blazor_MBList_1_OnInitializedAsync_" data-uid="Material.Blazor.MBList`1.OnInitializedAsync*"></a>
   <h4 id="Material_Blazor_MBList_1_OnInitializedAsync" data-uid="Material.Blazor.MBList`1.OnInitializedAsync">OnInitializedAsync()</h4>
@@ -940,7 +890,7 @@ Note that you will be expected to render your own icon, and can use <a class="xr
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override Task OnInitializedAsync()</code></pre>
+    <pre><code class="lang-csharp hljs">protected override async Task OnInitializedAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -962,7 +912,7 @@ Note that you will be expected to render your own icon, and can use <a class="xr
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBList_1_OnParametersSetAsync.md&amp;value=---%0Auid%3A%20Material.Blazor.MBList%601.OnParametersSetAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L179">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/List/MBList.razor.cs/#L185">View Source</a>
   </span>
   <a id="Material_Blazor_MBList_1_OnParametersSetAsync_" data-uid="Material.Blazor.MBList`1.OnParametersSetAsync*"></a>
   <h4 id="Material_Blazor_MBList_1_OnParametersSetAsync" data-uid="Material.Blazor.MBList`1.OnParametersSetAsync">OnParametersSetAsync()</h4>
@@ -970,7 +920,7 @@ Note that you will be expected to render your own icon, and can use <a class="xr
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override Task OnParametersSetAsync()</code></pre>
+    <pre><code class="lang-csharp hljs">protected override async Task OnParametersSetAsync()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">

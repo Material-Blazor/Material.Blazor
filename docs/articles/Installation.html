@@ -8,7 +8,7 @@
     <title>Installation </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Installation ">
-    <meta name="generator" content="docfx 2.56.7.0">
+    <meta name="generator" content="docfx 2.58.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -85,11 +85,11 @@
 implies these are intended for internal use by Material.Blazor, however Blazor has no mechanism for internally restricted Blazor components to mirror the <code>internal</code> directive for a C# class.</p>
 <h2 id="obtaining-the-requisite-css-and-js">Obtaining the requisite CSS and JS</h2>
 <p>You will to add three items to your index.html/_Host.cshtml. Place this in the <code>&lt;head&gt;</code> tag:</p>
-<pre><code class="lang-html">&lt;link href=&quot;_content/Material.Blazor/Material.min.css&quot; rel=&quot;stylesheet&quot; /&gt;
-&lt;link href=&quot;_content/Material.Blazor/MaterialBlazor.min.css&quot; rel=&quot;stylesheet&quot; /&gt;
+<pre><code class="lang-html">&lt;link href=&quot;_content/Material.Blazor/material-components-web.min.css&quot; rel=&quot;stylesheet&quot; /&gt;
+&lt;link href=&quot;_content/Material.Blazor/material.blazor.min.css&quot; rel=&quot;stylesheet&quot; /&gt;
 </code></pre>
 <p>and at the end of <code>&lt;body&gt;</code>:</p>
-<pre><code class="lang-html">&lt;script src=&quot;_content/Material.Blazor/MaterialBlazor.min.js&quot;&gt;&lt;/script&gt;
+<pre><code class="lang-html">&lt;script src=&quot;_content/Material.Blazor/material.blazor.min.js&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>Replace the Material.min.css with your own
 if you have built a theme - you can see how we have done this in the <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website.WebAssembly/wwwroot/index.html#L14">Material.Blazor website's index.html</a>.</p>
@@ -112,24 +112,16 @@ if you have built a theme - you can see how we have done this in the <a href="ht
 <p>Material.Blazor has four services for animated navigation, snackbars, toasts, and tooltips. We strongly advise you to use these in your project
 because regular component tooltips will fail if you don't, although they are optional. To register the services:</p>
 <pre><code class="lang-csharp">services.AddMBServices(
-    toastServiceConfiguration: new MBToastServiceConfiguration()
-    {
-        InfoDefaultHeading = &quot;Info&quot;,
-        SuccessDefaultHeading = &quot;Success&quot;,
-        WarningDefaultHeading = &quot;Warning&quot;,
-        ErrorDefaultHeading = &quot;Error&quot;,
-        Timeout = 5000,
-        MaxToastsShowing = 5
-    },
-
-    animatedNavigationManagerServiceConfiguration: new MBAnimatedNavigationManagerServiceConfiguration()
-    {
-        ApplyAnimation = true,
-        AnimationTime = 300
-    }
-);
+    animatedNavigationManagerServiceConfiguration: Utilities.GetDefaultAnimatedNavigationServiceConfiguration(),
+    loggingServiceConfiguration: Utilities.GetDefaultLoggingServiceConfiguration(),
+    toastServiceConfiguration: Utilities.GetDefaultToastServiceConfiguration(),
+    snackbarServiceConfiguration: Utilities.GetDefaultSnackbarServiceConfiguration()
 </code></pre>
-<p>The three configurations are optional - see <a class="xref" href="../api/Material.Blazor.MBSnackbarServiceConfiguration.html">MBSnackbarServiceConfiguration</a>, <a class="xref" href="../api/Material.Blazor.MBToastServiceConfiguration.html">MBToastServiceConfiguration</a> and <a class="xref" href="../api/Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.html">MBAnimatedNavigationManagerServiceConfiguration</a>.</p>
+<p>The four configurations are either the default (as above) or custom -
+see <a class="xref" href="../api/Material.Blazor.MBSnackbarServiceConfiguration.html">MBSnackbarServiceConfiguration</a>,
+<a class="xref" href="../api/Material.Blazor.MBToastServiceConfiguration.html">MBToastServiceConfiguration</a>,
+<a class="xref" href="../api/Material.Blazor.MBLoggingServiceConfiguration.html">MBLoggingServiceConfiguration</a>
+and <a class="xref" href="../api/Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.html">MBAnimatedNavigationManagerServiceConfiguration</a>.</p>
 <p>When you use the services you must also place an anchor component at the top of <code>App.razor</code> - this must not be inside any other components or divs:</p>
 <pre><code class="lang-html">&lt;MBAnchor /&gt;
 </code></pre>

@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class ServiceCollectionExtensions
    ">
-    <meta name="generator" content="docfx 2.56.7.0">
+    <meta name="generator" content="docfx 2.58.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -125,20 +125,20 @@
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_ServiceCollectionExtensions_AddMBServices_IServiceCollection_Material_Blazor_MBSnackbarServiceConfiguration_Material_Blazor_MBToastServiceConfiguration_Material_Blazor_MBAnimatedNavigationManagerServiceConfiguration_.md&amp;value=---%0Auid%3A%20Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection%2CMaterial.Blazor.MBSnackbarServiceConfiguration%2CMaterial.Blazor.MBToastServiceConfiguration%2CMaterial.Blazor.MBAnimatedNavigationManagerServiceConfiguration)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_ServiceCollectionExtensions_AddMBServices_IServiceCollection_Material_Blazor_MBAnimatedNavigationManagerServiceConfiguration_Material_Blazor_MBLoggingServiceConfiguration_Material_Blazor_MBSnackbarServiceConfiguration_Material_Blazor_MBToastServiceConfiguration_.md&amp;value=---%0Auid%3A%20Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection%2CMaterial.Blazor.MBAnimatedNavigationManagerServiceConfiguration%2CMaterial.Blazor.MBLoggingServiceConfiguration%2CMaterial.Blazor.MBSnackbarServiceConfiguration%2CMaterial.Blazor.MBToastServiceConfiguration)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Model/ServiceCollectionExtensions.cs/#L18">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Model/ServiceCollectionExtensions.cs/#L19">View Source</a>
   </span>
   <a id="Material_Blazor_ServiceCollectionExtensions_AddMBServices_" data-uid="Material.Blazor.ServiceCollectionExtensions.AddMBServices*"></a>
-  <h4 id="Material_Blazor_ServiceCollectionExtensions_AddMBServices_IServiceCollection_Material_Blazor_MBSnackbarServiceConfiguration_Material_Blazor_MBToastServiceConfiguration_Material_Blazor_MBAnimatedNavigationManagerServiceConfiguration_" data-uid="Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection,Material.Blazor.MBSnackbarServiceConfiguration,Material.Blazor.MBToastServiceConfiguration,Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration)">AddMBServices(IServiceCollection, MBSnackbarServiceConfiguration, MBToastServiceConfiguration, MBAnimatedNavigationManagerServiceConfiguration)</h4>
+  <h4 id="Material_Blazor_ServiceCollectionExtensions_AddMBServices_IServiceCollection_Material_Blazor_MBAnimatedNavigationManagerServiceConfiguration_Material_Blazor_MBLoggingServiceConfiguration_Material_Blazor_MBSnackbarServiceConfiguration_Material_Blazor_MBToastServiceConfiguration_" data-uid="Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection,Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration,Material.Blazor.MBLoggingServiceConfiguration,Material.Blazor.MBSnackbarServiceConfiguration,Material.Blazor.MBToastServiceConfiguration)">AddMBServices(IServiceCollection, MBAnimatedNavigationManagerServiceConfiguration, MBLoggingServiceConfiguration, MBSnackbarServiceConfiguration, MBToastServiceConfiguration)</h4>
   <div class="markdown level1 summary"><p>Adds Snackbar, Toast, Tooltip and Animated Navigation services for Material.Blazor. This is required for any app that uses one or more
 of these components. The two configurations are optional.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IServiceCollection AddMBServices(this IServiceCollection services, MBSnackbarServiceConfiguration snackbarServiceConfiguration = null, MBToastServiceConfiguration toastServiceConfiguration = null, MBAnimatedNavigationManagerServiceConfiguration animatedNavigationManagerServiceConfiguration = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public static IServiceCollection AddMBServices(this IServiceCollection services, MBAnimatedNavigationManagerServiceConfiguration animatedNavigationManagerServiceConfiguration = null, MBLoggingServiceConfiguration loggingServiceConfiguration = null, MBSnackbarServiceConfiguration snackbarServiceConfiguration = null, MBToastServiceConfiguration toastServiceConfiguration = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -156,6 +156,16 @@ of these components. The two configurations are optional.</p>
         <td></td>
       </tr>
       <tr>
+        <td><a class="xref" href="Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.html">MBAnimatedNavigationManagerServiceConfiguration</a></td>
+        <td><span class="parametername">animatedNavigationManagerServiceConfiguration</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Material.Blazor.MBLoggingServiceConfiguration.html">MBLoggingServiceConfiguration</a></td>
+        <td><span class="parametername">loggingServiceConfiguration</span></td>
+        <td></td>
+      </tr>
+      <tr>
         <td><a class="xref" href="Material.Blazor.MBSnackbarServiceConfiguration.html">MBSnackbarServiceConfiguration</a></td>
         <td><span class="parametername">snackbarServiceConfiguration</span></td>
         <td></td>
@@ -163,11 +173,6 @@ of these components. The two configurations are optional.</p>
       <tr>
         <td><a class="xref" href="Material.Blazor.MBToastServiceConfiguration.html">MBToastServiceConfiguration</a></td>
         <td><span class="parametername">toastServiceConfiguration</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.html">MBAnimatedNavigationManagerServiceConfiguration</a></td>
-        <td><span class="parametername">animatedNavigationManagerServiceConfiguration</span></td>
         <td></td>
       </tr>
     </tbody>

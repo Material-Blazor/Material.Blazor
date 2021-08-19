@@ -1411,6 +1411,11 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   display: inline;
 }
 
+.mb-dp-blank-filler {
+  width: 284px;
+  height: 318px;
+}
+
 .mb-dialog-overflow-visible.mdc-dialog__surface, .mb-dialog-overflow-visible.mdc-dialog__surface .mdc-dialog__content {
   overflow: visible !important;
 }
@@ -1451,6 +1456,17 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   width: 48px;
   height: 48px;
   padding: 12px;
+}
+
+.mb-grid-div-outer {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 .mb-grid-div-header {

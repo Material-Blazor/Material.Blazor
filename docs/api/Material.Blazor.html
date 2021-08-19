@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Namespace Material.Blazor
    ">
-    <meta name="generator" content="docfx 2.56.7.0">
+    <meta name="generator" content="docfx 2.58.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -104,12 +104,18 @@ your user navigates from one page to another.</p>
       <section><p>An autocomplete built using an <a class="xref" href="Material.Blazor.MBTextField.html">MBTextField</a> with the anchor and drop
 down list implementation from a Material Theme select.</p>
 </section>
+      <h4><a class="xref" href="Material.Blazor.MBBatchingWrapper.html">MBBatchingWrapper</a></h4>
+      <section><p>This is a utility component that controls when batched JS interop calls are executed.
+Normally, batched JS interop calls are executed using a timer in regular intervals.
+In some cases, it can be an advantage to flush the batch earlier, which can be controlled with this component.</p>
+<p>Whenever this component re-renders, the batch is flushed, hence all JS interop calls which were queued up in any child component will be executed at this point.</p>
+</section>
       <h4><a class="xref" href="Material.Blazor.MBBladeComponent-1.html">MBBladeComponent&lt;TParam&gt;</a></h4>
-      <section><p>A component added to a blade via <a class="xref" href="Material.Blazor.MBBladeSet.html#Material_Blazor_MBBladeSet_AddBladeAsync__2_System_String___1_System_String_System_String_System_Action_System_String__">AddBladeAsync&lt;TComponent, TParameters&gt;(String, TParameters, String, String, Action&lt;String&gt;)</a>
+      <section><p>A component added to a blade via <see cref="!:MBBladeSet.AddBladeAsync&lt;TComponent, TParameters>(string, TParameters, string, string, System.Action&lt;string>)"></see>
 must implement this interface.</p>
 </section>
       <h4><a class="xref" href="Material.Blazor.MBBladeComponentParameters.html">MBBladeComponentParameters</a></h4>
-      <section><p>Parameters passed to a new blade via <a class="xref" href="Material.Blazor.MBBladeSet.html#Material_Blazor_MBBladeSet_AddBladeAsync__2_System_String___1_System_String_System_String_System_Action_System_String__">AddBladeAsync&lt;TComponent, TParameters&gt;(String, TParameters, String, String, Action&lt;String&gt;)</a> must take
+      <section><p>Parameters passed to a new blade via <see cref="!:MBBladeSet.AddBladeAsync&lt;TComponent, TParameters>(string, TParameters, string, string, System.Action&lt;string>)"></see> must take
 one parameter of a class implementing this interface. That class then holds all the parameters required for the component.</p>
 </section>
       <h4><a class="xref" href="Material.Blazor.MBBladeSet.html">MBBladeSet</a></h4>
@@ -193,6 +199,9 @@ foundries. Material Icons are essential for Material.Blazor and are included by 
 library's CSS, while you can elect whether to include Font Awesome and Open Iconic
 in your app.</p>
 </section>
+      <h4><a class="xref" href="Material.Blazor.MBIconBearingSelectElement-1.html">MBIconBearingSelectElement&lt;T&gt;</a></h4>
+      <section><p>A list item used by <a class="xref" href="Material.Blazor.MBSegmentedButtonMulti-1.html">MBSegmentedButtonMulti&lt;TItem&gt;</a></p>
+</section>
       <h4><a class="xref" href="Material.Blazor.MBIconButton.html">MBIconButton</a></h4>
       <section><p>This is a general purpose Material Theme icon button, with provision for standard MB styling, leading
 and trailing icons and all standard Blazor events. Adds the &quot;mdc-card__action--icon&quot; class when
@@ -220,6 +229,9 @@ list item.</p>
 </section>
       <h4><a class="xref" href="Material.Blazor.MBListItem.html">MBListItem</a></h4>
       <section><p>This is a general purpose Material Theme list item.</p>
+</section>
+      <h4><a class="xref" href="Material.Blazor.MBLoggingServiceConfiguration.html">MBLoggingServiceConfiguration</a></h4>
+      <section><p>Configuration for <a class="xref" href="Material.Blazor.IMBLoggingService.html">IMBLoggingService</a>.</p>
 </section>
       <h4><a class="xref" href="Material.Blazor.MBMenu.html">MBMenu</a></h4>
       <section><p>This is a general purpose Material Theme menu.</p>
@@ -260,6 +272,9 @@ and displays as checked if <a class="xref" href="Material.Blazor.Internal.InputC
 </section>
       <h4><a class="xref" href="Material.Blazor.MBSelect-1.html">MBSelect&lt;TItem&gt;</a></h4>
       <section><p>A Material Theme select.</p>
+</section>
+      <h4><a class="xref" href="Material.Blazor.MBSelectElement-1.html">MBSelectElement&lt;T&gt;</a></h4>
+      <section><p>A list item used by <a class="xref" href="Material.Blazor.MBSelect-1.html">MBSelect&lt;TItem&gt;</a>, <a class="xref" href="Material.Blazor.MBRadioButtonGroup-1.html">MBRadioButtonGroup&lt;TItem&gt;</a> and <a class="xref" href="Material.Blazor.MBPagedDataList-1.html">MBPagedDataList&lt;TItem&gt;</a></p>
 </section>
       <h4><a class="xref" href="Material.Blazor.MBShield.html">MBShield</a></h4>
       <section><p>A shield similar to those from shield.io and used in GitHub. Implemented
@@ -353,6 +368,8 @@ is called without a <a class="xref" href="Material.Blazor.MBAnimatedNavigation.h
       <h4><a class="xref" href="Material.Blazor.IMBIconFoundry.html">IMBIconFoundry</a></h4>
       <section><p>An interface for supplying icon foundry information to components.</p>
 </section>
+      <h4><a class="xref" href="Material.Blazor.IMBLoggingService.html">IMBLoggingService</a></h4>
+      <section></section>
       <h4><a class="xref" href="Material.Blazor.IMBSnackbarService.html">IMBSnackbarService</a></h4>
       <section><p>Interface for the Material.Blazor snackbar service, developed from the code base of Blazored Snackbar by Chris Sainty.
 Works in conjunction with a <a class="xref" href="Material.Blazor.MBAnchor.html">MBAnchor</a> that must be placed in either App.razor or
@@ -471,6 +488,10 @@ is called without an <a class="xref" href="Material.Blazor.MBAnchor.html">MBAnch
       <h4><a class="xref" href="Material.Blazor.MBListType.html">MBListType</a></h4>
       <section><p>Type for an <a class="xref" href="Material.Blazor.MBList-1.html">MBList&lt;TItem&gt;</a>.</p>
 <p><a class="xref" href="Material.Blazor.MBCascadingDefaults.html">MBCascadingDefaults</a> has a default of <a class="xref" href="Material.Blazor.MBListType.html#Material_Blazor_MBListType_Regular">Regular</a></p>
+</section>
+      <h4><a class="xref" href="Material.Blazor.MBLoggingLevel.html">MBLoggingLevel</a></h4>
+      <section><p>Type for the level of logging performed by M.B
+They follow the Microsoft.Logging.LogLevel definition</p>
 </section>
       <h4><a class="xref" href="Material.Blazor.MBMenuSurfacePositioning.html">MBMenuSurfacePositioning</a></h4>
       <section><p>Determines the positioning and width of a menu surface.</p>

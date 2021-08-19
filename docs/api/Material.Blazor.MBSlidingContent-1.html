@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class MBSlidingContent&lt;TItem&gt;
    ">
-    <meta name="generator" content="docfx 2.56.7.0">
+    <meta name="generator" content="docfx 2.58.0.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -91,37 +91,66 @@ with slight sideways motion and fade, or &quot;sliding&quot;. Only renders the c
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-    <div class="level1"><span class="xref">MBSlidingContent&lt;TItem&gt;</span></div>
+    <div class="level1"><a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html">ComponentFoundation</a></div>
+    <div class="level2"><span class="xref">MBSlidingContent&lt;TItem&gt;</span></div>
+  </div>
+  <div classs="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
   </div>
   <div class="inheritedMembers">
     <h5>Inherited Members</h5>
     <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_">Object.Equals(Object)</a>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_BatchingJsRuntime">ComponentFoundation.BatchingJsRuntime</a>
     </div>
     <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.equals#System_Object_Equals_System_Object_System_Object_">Object.Equals(Object, Object)</a>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_CascadingDefaults">ComponentFoundation.CascadingDefaults</a>
     </div>
     <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gethashcode#System_Object_GetHashCode">Object.GetHashCode()</a>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_BatchingWrapper">ComponentFoundation.BatchingWrapper</a>
     </div>
     <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.gettype#System_Object_GetType">Object.GetType()</a>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_UnmatchedAttributes">ComponentFoundation.UnmatchedAttributes</a>
     </div>
     <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.memberwiseclone#System_Object_MemberwiseClone">Object.MemberwiseClone()</a>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_Disabled">ComponentFoundation.Disabled</a>
     </div>
     <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.referenceequals#System_Object_ReferenceEquals_System_Object_System_Object_">Object.ReferenceEquals(Object, Object)</a>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_id">ComponentFoundation.id</a>
     </div>
     <div>
-      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object.tostring#System_Object_ToString">Object.ToString()</a>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_class">ComponentFoundation.class</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_ActiveConditionalClasses">ComponentFoundation.ActiveConditionalClasses</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_style">ComponentFoundation.style</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_Tooltip">ComponentFoundation.Tooltip</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_Dispose_System_Boolean_">ComponentFoundation.Dispose(Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_Dispose">ComponentFoundation.Dispose()</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnAfterRender_System_Boolean_">ComponentFoundation.OnAfterRender(Boolean)</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnInitialized">ComponentFoundation.OnInitialized()</a>
+    </div>
+    <div>
+      <a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnParametersSet">ComponentFoundation.OnParametersSet()</a>
     </div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Material.Blazor.html">Material.Blazor</a></h6>
   <h6><strong>Assembly</strong>: Material.Blazor.dll</h6>
   <h5 id="Material_Blazor_MBSlidingContent_1_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class MBSlidingContent&lt;TItem&gt;</code></pre>
+    <pre><code class="lang-csharp hljs">public class MBSlidingContent&lt;TItem&gt; : ComponentFoundation, IDisposable</code></pre>
   </div>
   <h5 class="typeParameters">Type Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -146,7 +175,7 @@ with slight sideways motion and fade, or &quot;sliding&quot;. Only renders the c
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBSlidingContent_1_Content.md&amp;value=---%0Auid%3A%20Material.Blazor.MBSlidingContent%601.Content%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/SlidingContent/MBSlidingContent.razor.cs/#L58">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/SlidingContent/MBSlidingContent.razor.cs/#L61">View Source</a>
   </span>
   <a id="Material_Blazor_MBSlidingContent_1_Content_" data-uid="Material.Blazor.MBSlidingContent`1.Content*"></a>
   <h4 id="Material_Blazor_MBSlidingContent_1_Content" data-uid="Material.Blazor.MBSlidingContent`1.Content">Content</h4>
@@ -177,7 +206,7 @@ with slight sideways motion and fade, or &quot;sliding&quot;. Only renders the c
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBSlidingContent_1_ItemIndex.md&amp;value=---%0Auid%3A%20Material.Blazor.MBSlidingContent%601.ItemIndex%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/SlidingContent/MBSlidingContent.razor.cs/#L19">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/SlidingContent/MBSlidingContent.razor.cs/#L22">View Source</a>
   </span>
   <a id="Material_Blazor_MBSlidingContent_1_ItemIndex_" data-uid="Material.Blazor.MBSlidingContent`1.ItemIndex*"></a>
   <h4 id="Material_Blazor_MBSlidingContent_1_ItemIndex" data-uid="Material.Blazor.MBSlidingContent`1.ItemIndex">ItemIndex</h4>
@@ -208,7 +237,7 @@ with slight sideways motion and fade, or &quot;sliding&quot;. Only renders the c
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBSlidingContent_1_ItemIndexChanged.md&amp;value=---%0Auid%3A%20Material.Blazor.MBSlidingContent%601.ItemIndexChanged%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/SlidingContent/MBSlidingContent.razor.cs/#L46">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/SlidingContent/MBSlidingContent.razor.cs/#L49">View Source</a>
   </span>
   <a id="Material_Blazor_MBSlidingContent_1_ItemIndexChanged_" data-uid="Material.Blazor.MBSlidingContent`1.ItemIndexChanged*"></a>
   <h4 id="Material_Blazor_MBSlidingContent_1_ItemIndexChanged" data-uid="Material.Blazor.MBSlidingContent`1.ItemIndexChanged">ItemIndexChanged</h4>
@@ -239,7 +268,7 @@ with slight sideways motion and fade, or &quot;sliding&quot;. Only renders the c
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBSlidingContent_1_Items.md&amp;value=---%0Auid%3A%20Material.Blazor.MBSlidingContent%601.Items%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/SlidingContent/MBSlidingContent.razor.cs/#L52">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/SlidingContent/MBSlidingContent.razor.cs/#L55">View Source</a>
   </span>
   <a id="Material_Blazor_MBSlidingContent_1_Items_" data-uid="Material.Blazor.MBSlidingContent`1.Items*"></a>
   <h4 id="Material_Blazor_MBSlidingContent_1_Items" data-uid="Material.Blazor.MBSlidingContent`1.Items">Items</h4>
@@ -272,7 +301,7 @@ with slight sideways motion and fade, or &quot;sliding&quot;. Only renders the c
     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBSlidingContent_1_OnAfterRenderAsync_System_Boolean_.md&amp;value=---%0Auid%3A%20Material.Blazor.MBSlidingContent%601.OnAfterRenderAsync(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/SlidingContent/MBSlidingContent.razor.cs/#L120">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/SlidingContent/MBSlidingContent.razor.cs/#L123">View Source</a>
   </span>
   <a id="Material_Blazor_MBSlidingContent_1_OnAfterRenderAsync_" data-uid="Material.Blazor.MBSlidingContent`1.OnAfterRenderAsync*"></a>
   <h4 id="Material_Blazor_MBSlidingContent_1_OnAfterRenderAsync_System_Boolean_" data-uid="Material.Blazor.MBSlidingContent`1.OnAfterRenderAsync(System.Boolean)">OnAfterRenderAsync(Boolean)</h4>
@@ -280,7 +309,7 @@ with slight sideways motion and fade, or &quot;sliding&quot;. Only renders the c
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override Task OnAfterRenderAsync(bool firstRender)</code></pre>
+    <pre><code class="lang-csharp hljs">protected override async Task OnAfterRenderAsync(bool firstRender)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -314,20 +343,43 @@ with slight sideways motion and fade, or &quot;sliding&quot;. Only renders the c
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnAfterRenderAsync_System_Boolean_">ComponentFoundation.OnAfterRenderAsync(Boolean)</a></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBSlidingContent_1_OnParametersSet.md&amp;value=---%0Auid%3A%20Material.Blazor.MBSlidingContent%601.OnParametersSet%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBSlidingContent_1_OnParametersSetAsync.md&amp;value=---%0Auid%3A%20Material.Blazor.MBSlidingContent%601.OnParametersSetAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/SlidingContent/MBSlidingContent.razor.cs/#L79">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/SlidingContent/MBSlidingContent.razor.cs/#L82">View Source</a>
   </span>
-  <a id="Material_Blazor_MBSlidingContent_1_OnParametersSet_" data-uid="Material.Blazor.MBSlidingContent`1.OnParametersSet*"></a>
-  <h4 id="Material_Blazor_MBSlidingContent_1_OnParametersSet" data-uid="Material.Blazor.MBSlidingContent`1.OnParametersSet">OnParametersSet()</h4>
+  <a id="Material_Blazor_MBSlidingContent_1_OnParametersSetAsync_" data-uid="Material.Blazor.MBSlidingContent`1.OnParametersSetAsync*"></a>
+  <h4 id="Material_Blazor_MBSlidingContent_1_OnParametersSetAsync" data-uid="Material.Blazor.MBSlidingContent`1.OnParametersSetAsync">OnParametersSetAsync()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnParametersSet()</code></pre>
+    <pre><code class="lang-csharp hljs">protected override async Task OnParametersSetAsync()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_OnParametersSetAsync">ComponentFoundation.OnParametersSetAsync()</a></div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
   </div>
 </article>
           </div>
@@ -340,7 +392,7 @@ with slight sideways motion and fade, or &quot;sliding&quot;. Only renders the c
                     <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBSlidingContent_1.md&amp;value=---%0Auid%3A%20Material.Blazor.MBSlidingContent%601%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/SlidingContent/MBSlidingContent.razor.cs/#L13" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/SlidingContent/MBSlidingContent.razor.cs/#L16" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
