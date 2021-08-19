@@ -421,6 +421,7 @@ jobs:
         sed -i 's/[a-f0-9]\{8\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{12\}/guid/g' *.html
         sed -i 's/mb-tooltip-[0-9]*/mb-tooltip-id/g' *.html
         sed -i 's/b-[0-9a-z]*/b-id/g' *.html
+        sed -i 's/_bl_[0-9*/_bl_id/g' *.html
         sed -i 's/<strong>.*-ci..*<\/strong>//' *.html
         sed -i 's/base href.*//' *.html
     # We only want to see the differences, so we run diff with -d
