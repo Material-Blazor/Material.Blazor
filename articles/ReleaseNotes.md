@@ -21,6 +21,18 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 #### [2.0.0-preview.8](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.5)
 NOT YET RELEASED
 
+**Updates**
+
+- Migrated to [Material Components Web 12.0.0](https://github.com/material-components/material-components-web/tree/v12.0.0/packages/mdc-switch).
+
+**New components**
+
+**Breaking Changes**
+
+- `MBSwitch` no longer supports density, having been removed in Material Theme.
+
+**Known issues**
+
 #### [2.0.0-preview.7](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.5)
 2021-08-19
 

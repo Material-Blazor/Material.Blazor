@@ -3,26 +3,26 @@
 .mdc-list {
     &.dense--5,
     &.dense--4 {
-        @include list.single-line-density(-4);
+        @include list.deprecated-single-line-density(-4);
     }
 
     &.dense--3,
     &.dense-compact {
-        @include list.single-line-density(-3);
+        @include list.deprecated-single-line-density(-3);
     }
 
     &.dense--2,
     &.dense-comfortable {
-        @include list.single-line-density(-2);
+        @include list.deprecated-single-line-density(-2);
     }
 
     &.dense--1 {
-        @include list.single-line-density(-1);
+        @include list.deprecated-single-line-density(-1);
     }
 
     &.dense--0,
     &.dense-default {
-        @include list.single-line-density(0);
+        @include list.deprecated-single-line-density(0);
     }
 }
 

@@ -46,7 +46,6 @@ a specified density of minus 5 will actually display with a density of minus 3.
 | [MBRadioButton](xref:C.MBRadioButton) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
 | [MBRadioButtonGroup](xref:C.MBRadioButtonGroup) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
 | [MBSelect](xref:C.MBSelect) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :x: |
-| [MBSwitch](xref:C.MBSwitch) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | [MBTabBar](xref:C.MBTabBar) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
 | [MBTextArea](xref:C.MBTextArea) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :x: |
 | [MBTextField](xref:C.MBTextField) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :x: |
