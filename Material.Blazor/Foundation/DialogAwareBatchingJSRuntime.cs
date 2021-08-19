@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace Material.Blazor.Internal
+﻿namespace Material.Blazor.Internal
 {
     internal class DialogAwareBatchingJSRuntime : IBatchingJSRuntime
     {
@@ -22,12 +20,16 @@ namespace Material.Blazor.Internal
             return await underlyingJSRuntime.InvokeAsync<T>(identifier, args);
         }
 
+
+        /// <inheritdoc/>
         public async Task InvokeVoidAsync(MBBatchingWrapper batchingWrapper, string identifier, params object[] args)
         {
             await dialog.Opened;
             await underlyingJSRuntime.InvokeVoidAsync(batchingWrapper, identifier, args);
         }
 
+
+        /// <inheritdoc/>
         public Task FlushBatchAsync() => underlyingJSRuntime.FlushBatchAsync();
     }
 }

@@ -73,7 +73,8 @@
     </div>
 
     <div id="@listboxId"
-         class="mdc-select__menu mdc-menu mdc-menu-surface mb-dp-menu__surface-adjust @MenuClass">
+         class="mdc-select__menu mdc-menu mdc-menu-surface mb-dp-menu__surface-adjust @MenuClass"
+         @ref="@MenuSurfaceElementReference">
         <InternalDatePickerPanel @bind-Value="@ComponentValue"
                                  DateFormat="@AppliedDateFormat"
                                  DateIsSelectable="@DateIsSelectable"

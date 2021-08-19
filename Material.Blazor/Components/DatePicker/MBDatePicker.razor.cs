@@ -1,9 +1,6 @@
 ﻿using Material.Blazor.Internal;
-
 using Microsoft.AspNetCore.Components;
-
-using System;
-using System.Threading.Tasks;
+using Microsoft.JSInterop;
 
 namespace Material.Blazor
 {
@@ -22,7 +19,8 @@ namespace Material.Blazor
         private string AppliedDateFormat => CascadingDefaults.AppliedDateFormat(DateFormat);
         private MBSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
         private ElementReference ElementReference { get; set; }
-        private bool IsOpen { get; set; } = false;
+        private ElementReference MenuSurfaceElementReference { get; set; }
+        private DotNetObjectReference<MBDatePicker> ObjectReference { get; set; }
         private string MenuClass => MBMenu.GetMenuSurfacePositioningClass(MenuSurfacePositioning == MBMenuSurfacePositioning.Fixed ? MBMenuSurfacePositioning.Fixed : MBMenuSurfacePositioning.Regular) + ((Panel?.ShowYearPad ?? true) ? " mb-dp-menu__day-menu" : " mb-dp-menu__year-menu");
         private InternalDatePickerPanel Panel { get; set; }
         private bool ShowLabel => !string.IsNullOrWhiteSpace(Label);
@@ -124,7 +122,7 @@ namespace Material.Blazor
         #region InstantiateMcwComponent
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => InvokeVoidAsync("MaterialBlazor.MBDatePicker.init", ElementReference);
+        private protected override Task InstantiateMcwComponent() => InvokeVoidAsync("MaterialBlazor.MBDatePicker.init", ElementReference, MenuSurfaceElementReference, ObjectReference);
 
         #endregion
 
@@ -137,6 +135,17 @@ namespace Material.Blazor
         /// <param name="e"></param>
         protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeVoidAsync("MaterialBlazor.MBDatePicker.setDisabled", ElementReference, AppliedDisabled));
 
+        #endregion
+
+        #region NotifyOpened
+        /// <summary>
+        /// Do not use. This method is used internally for receiving the "dialog closed" event from javascript.
+        /// </summary>
+        [JSInvokable]
+        public async Task NotifyOpened()
+        {
+            await Panel.NotifyOpened();
+        }
         #endregion
 
         #region OnInitializedAsync
@@ -163,8 +172,30 @@ namespace Material.Blazor
             }
 
             ForceShouldRenderToTrue = true;
+            
+            ObjectReference = DotNetObjectReference.Create(this);
         }
 
+        #endregion
+
+        #region Dispose
+        private bool _disposed = false;
+        protected override void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                ObjectReference?.Dispose();
+            }
+
+            _disposed = true;
+
+            base.Dispose(disposing);
+        }
         #endregion
 
         #region OnValueSetCallback

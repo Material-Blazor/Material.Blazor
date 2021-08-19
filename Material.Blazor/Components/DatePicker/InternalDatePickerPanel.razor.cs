@@ -118,6 +118,8 @@ namespace Material.Blazor.Internal
 
         private DateTime StartOfDisplayMonth { get; set; }
 
+        private bool HasBeenOpened { get; set; } = false;
+
         private string MonthText => StartOfDisplayMonth.ToString("MMMM yyyy");
 
         private readonly string currentYearId = Utilities.GenerateUniqueElementName();
@@ -219,6 +221,17 @@ namespace Material.Blazor.Internal
             ShowYearPad = false;
 
             StateHasChanged();
+        }
+
+
+        /// <summary>
+        /// Causes the panel to display buttons on the first opening
+        /// </summary>
+        /// <returns></returns>
+        public async Task NotifyOpened()
+        {
+            HasBeenOpened = true;
+            await InvokeAsync(StateHasChanged);
         }
 
 
