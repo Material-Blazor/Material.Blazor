@@ -96,7 +96,8 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Indicates whether the component is disabled.
         /// </summary>
-        [Parameter] public bool? Disabled
+        [Parameter]
+        public bool? Disabled
         {
             get => disabled;
             set
@@ -144,7 +145,7 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// A markup capable tooltip.
         /// </summary>
-        [Parameter] public string Tooltip { get; set; } = "";
+        [Parameter] public string Tooltip { get; set; }
 
         #endregion
 
@@ -164,18 +165,6 @@ namespace Material.Blazor.Internal
         #endregion
 
         # region AttributesToSplat
-
-        /// <summary>
-        /// Wraps calls to <see cref="BatchingJSRuntime.InvokeVoidAsync"/> adding reference to the batching wrapper (if found).
-        /// </summary>
-        /// <param name="identifier"></param>
-        /// <param name="args"></param>
-        /// <returns></returns>
-        private protected Task InvokeVoidAsync(string identifier, params object[] args)
-        {
-            return BatchingJsRuntime.InvokeVoidAsync(BatchingWrapper, identifier, args);
-        }
-
 
         /// <summary>
         /// Attributes ready for splatting in components. Guaranteed not null, unlike UnmatchedAttributes.

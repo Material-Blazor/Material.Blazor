@@ -1,11 +1,6 @@
 ﻿using Microsoft.JSInterop;
-using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Threading.Tasks;
-using System.Timers;
 
 namespace Material.Blazor.Internal
 {
@@ -34,7 +29,6 @@ namespace Material.Blazor.Internal
         }
 
 
-        private static readonly Architecture Architecture = RuntimeInformation.OSArchitecture;
         private readonly IJSRuntime js;
         private readonly ConcurrentQueue<Call> queuedCalls = new();
         private readonly Architecture OSArchitecture = RuntimeInformation.OSArchitecture;
@@ -70,32 +64,10 @@ namespace Material.Blazor.Internal
         {
             List<Call> batch = new();
 
-            var call = new Call(identifier, args);
-            queuedCalls.TryAdd(batchingWrapper.CrossReferenceId, new());
-            queuedCalls[batchingWrapper.CrossReferenceId].Enqueue(call);
-
-            batchingWrapper.InvokeStateHasChanged();
-
-            return call.Task;
-        }
-
-
-        /// <inheritdoc/>
-        public async Task<T> InvokeAsync<T>(string identifier, params object[] args)
-        {
-            return await js.InvokeAsync<T>(identifier, args);
-        }
-
-
-        /// <inheritdoc/>
-        public async Task FlushBatch(MBBatchingWrapper batchingWrapper)
-        {
-            if (!queuedCalls.TryRemove(batchingWrapper.CrossReferenceId, out var queue))
+            while (queuedCalls.TryDequeue(out var call))
             {
-                return;
+                batch.Add(call);
             }
-
-            var batch = queue.ToList();
 
             if (!batch.Any())
             {
