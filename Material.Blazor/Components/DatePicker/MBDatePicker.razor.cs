@@ -209,17 +209,10 @@ namespace Material.Blazor
         {
             Panel.SetParameters(Value);
 
-            if (SupressDefaultDate && (Value == default))
+            if (AdditionalStyle.Length > 0)
             {
-                AdditionalStyle = invisibleText;
-            }
-            else
-            {
-                if (AdditionalStyle.Length > 0)
-                {
-                    AdditionalStyle = "";
-                    InvokeAsync(StateHasChanged);
-                }
+                AdditionalStyle = "";
+                InvokeAsync(StateHasChanged);
             }
 
             InvokeAsync(() => InvokeVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, AppliedDateFormat)).ConfigureAwait(false));
@@ -231,8 +224,11 @@ namespace Material.Blazor
         /// </summary>
         internal void NotifyValueChanged()
         {
-            AdditionalStyle = "";
-            InvokeAsync(StateHasChanged);
+            if (AdditionalStyle.Length > 0)
+            {
+                AdditionalStyle = "";
+                InvokeAsync(StateHasChanged);
+            }
         }
         #endregion
     }
