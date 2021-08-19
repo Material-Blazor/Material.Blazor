@@ -198,7 +198,7 @@ namespace Material.Blazor
         }
         #endregion
 
-        #region OnValueSetCallback
+        #region OnValueSetCallback & NotifyValueChanged
 
         /// <summary>
         /// Callback for value the value setter.
@@ -221,7 +221,18 @@ namespace Material.Blazor
                     InvokeAsync(StateHasChanged);
                 }
             }
+
             InvokeAsync(() => InvokeVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, AppliedDateFormat)).ConfigureAwait(false));
+        }
+
+
+        /// <summary>
+        /// Blanks additional style when the value is changed.
+        /// </summary>
+        internal void NotifyValueChanged()
+        {
+            AdditionalStyle = "";
+            InvokeAsync(StateHasChanged);
         }
         #endregion
     }

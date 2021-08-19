@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Material.Blazor.Internal
 {
@@ -69,6 +65,12 @@ namespace Material.Blazor.Internal
         /// and the panel will start with the current year and month
         /// </summary>
         [Parameter] public bool SupressDefaultDate { get; set; }
+
+
+        /// <summary>
+        /// The parent date picker
+        /// </summary>
+        [Parameter] public MBDatePicker Parent { get; set; }
 
 
         /// <summary>
@@ -241,6 +243,7 @@ namespace Material.Blazor.Internal
             await InvokeVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", ListItemReference, Utilities.DateToString(dateTime, DateFormat));
             ComponentValue = dateTime;
             MonthsOffset = 0;
+            Parent.NotifyValueChanged();
             SetParameters();
         }
 
