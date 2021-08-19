@@ -33,6 +33,7 @@ $dp-year-pad-clear-space-right: 20px;
 $dp-day-button-width: $dp-button-size;
 $dp-year-button-width: ($dp-panel-width - $dp-year-pad-padding-left - $dp-year-pad-clear-space-right) / 4 - 2 * $dp-button-margin;
 
+$dp-blank-filler-height: 7 * $dp-day-button-width;
 
 /*
     Container
@@ -42,11 +43,6 @@ $dp-year-button-width: ($dp-panel-width - $dp-year-pad-padding-left - $dp-year-p
     flex-flow: column nowrap;
     width: $dp-panel-width;
     overflow: hidden;
-}
-
-.mb-dp-blank-filler {
-    width: 252px;
-    height: 282px;
 }
 
 
@@ -68,6 +64,7 @@ $dp-year-button-width: ($dp-panel-width - $dp-year-pad-padding-left - $dp-year-p
 $dp-menu-height: 52px;
 $dp-menu-padding: 16px 8px 12px 24px;
 $dp-menu-icon-button-margin: 4px;
+$dp-panel-height: 6 * ($dp-button-size + 2 * $dp-button-margin) + ($dp-button-size + $dp-button-margin) + (2 * $dp-day-pad-bottom-margin) + $dp-menu-height;
 
 
 .mb-dp-menu {
@@ -235,4 +232,11 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
 .mb-dp-menu__year-menu {
     /*min-height: $dp-menu-year-menu-height;*/
     display: inline;
+}
+
+
+
+.mb-dp-blank-filler {
+    width: $dp-panel-width;
+    height: $dp-panel-height;
 }

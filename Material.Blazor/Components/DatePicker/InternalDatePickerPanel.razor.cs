@@ -232,8 +232,11 @@ namespace Material.Blazor.Internal
         /// <returns></returns>
         public async Task NotifyOpened()
         {
-            HasBeenOpened = true;
-            await InvokeAsync(StateHasChanged);
+            if (!HasBeenOpened)
+            {
+                HasBeenOpened = true;
+                await InvokeAsync(StateHasChanged);
+            }
         }
 
 

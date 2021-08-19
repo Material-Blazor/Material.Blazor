@@ -96,8 +96,7 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Indicates whether the component is disabled.
         /// </summary>
-        [Parameter]
-        public bool? Disabled
+        [Parameter] public bool? Disabled
         {
             get => disabled;
             set
