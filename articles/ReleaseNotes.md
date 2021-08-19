@@ -18,6 +18,30 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 <br />
 
 
+#### [2.0.0-preview.7](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.5)
+NOT YET RELEASED
+
+**Updates**
+
+- Added an internal logging service for M.B. It's logging level can be controlled using the AddMBServices service extension with the new loggingLevelServiceConfiguration parameter.
+
+- Support PrimaryActions & SecondaryActions in MBList.
+
+**New components**
+
+**Breaking Changes**
+
+- MBList Actions parameter is renamed to SecondaryActions.
+
+- The names of the JavaScript & CSS resources have changed in this preview. See the installation article for details.
+
+**Known issues**
+
+- MBDatePicker does not render a value if it is started with a Value of default 
+
+- MBBatchingWrapper does not work inside a dialog or with content that includes MBSlidingContent
+
+
 #### [2.0.0-preview.6](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.5)
 2021-04-26
 

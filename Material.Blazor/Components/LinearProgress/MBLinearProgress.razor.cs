@@ -14,6 +14,7 @@ namespace Material.Blazor
         /// Makes the progress bar indeterminant if True.
         /// </summary>
         [Parameter] public MBLinearProgressType LinearProgressType { get; set; } = MBLinearProgressType.Indeterminate;
+        private MBLinearProgressType cachedLinearProgressType = MBLinearProgressType.Indeterminate;
 
 
         /// <summary>
@@ -49,7 +50,7 @@ namespace Material.Blazor
         /// Set aria-valuenow to an immutable value because MB doesn't want us to re-render,
         /// however we need to allow ShouldRender to return true for class changes.
         /// </summary>
-        private double IntialValue { get; set; }
+        private double InitialValue { get; set; }
         private double MyBufferValue => (BufferValue is null) ? 1 : (double)BufferValue;
 
 
@@ -59,7 +60,7 @@ namespace Material.Blazor
             await base.OnInitializedAsync();
 
             ForceShouldRenderToTrue = true;
-            IntialValue = Value;
+            InitialValue = Value;
 
             ConditionalCssClasses
                 .AddIf("mdc-linear-progress--indeterminate", () => LinearProgressType == MBLinearProgressType.Indeterminate)
@@ -77,8 +78,18 @@ namespace Material.Blazor
         /// <param name="e"></param>
         protected void OnValueSetCallback() => InvokeAsync(() => InvokeVoidAsync("MaterialBlazor.MBLinearProgress.setProgress", ElementReference, Value, MyBufferValue));
 
-
         /// <inheritdoc/>
         private protected override Task InstantiateMcwComponent() => InvokeVoidAsync("MaterialBlazor.MBLinearProgress.init", ElementReference, Value, MyBufferValue);
+
+
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            await base.OnAfterRenderAsync(firstRender);
+            if (cachedLinearProgressType != LinearProgressType)
+            {
+                cachedLinearProgressType = LinearProgressType;
+                await InvokeVoidAsync("MaterialBlazor.MBLinearProgress.restartAnimation", ElementReference);
+            }
+        }
     }
 }

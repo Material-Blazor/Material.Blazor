@@ -1,6 +1,9 @@
 import { MDCMenuSurface } from '@material/menu-surface';
 
 export function init(elem, dotNetObject) {
+    if (!elem) {
+        return;
+    }
     elem._menu = MDCMenuSurface.attachTo(elem);
 
     const closedCallback = () => {
@@ -11,12 +14,18 @@ export function init(elem, dotNetObject) {
 }
 
 export function show(elem) {
+    if (!elem) {
+        return;
+    }
     if (elem._menu) {
         elem._menu.open();
     }
 }
 
 export function hide(elem) {
+    if (!elem) {
+        return;
+    }
     if (elem._menu) {
         elem._menu.close();
     }

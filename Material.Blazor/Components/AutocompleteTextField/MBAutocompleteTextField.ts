@@ -2,6 +2,9 @@
 import { MDCMenu } from '@material/menu';
 
 export function init(textElem, menuElem, dotNetObject): any {
+    if (!textElem || !menuElem) {
+        return;
+    }
     textElem._textField = MDCTextField.attachTo(textElem);
     menuElem._menu = MDCMenu.attachTo(menuElem);
     //menuElem._menuSurface = mdc.menuSurface.MDCMenuSurface.attachTo(menuElem);

@@ -31,8 +31,6 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Flushes the batch associated with the supplied batching wrapper.
         /// </summary>
-        /// <param name="batchingWrapper"></param>
-        /// <returns></returns>
-        Task FlushBatch(MBBatchingWrapper batchingWrapper);
+        Task FlushBatchAsync();
     }
 }

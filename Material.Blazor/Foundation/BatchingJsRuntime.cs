@@ -36,8 +36,8 @@ namespace Material.Blazor.Internal
 
         private static readonly Architecture Architecture = RuntimeInformation.OSArchitecture;
         private readonly IJSRuntime js;
-        private readonly ConcurrentDictionary<string, ConcurrentQueue<Call>> queuedCalls = new();
-
+        private readonly ConcurrentQueue<Call> queuedCalls = new();
+        private readonly Architecture OSArchitecture = RuntimeInformation.OSArchitecture;
 
         public BatchingJSRuntime(IJSRuntime js)
         {
@@ -48,10 +48,27 @@ namespace Material.Blazor.Internal
         /// <inheritdoc/>
         public Task InvokeVoidAsync(MBBatchingWrapper batchingWrapper, string identifier, params object[] args)
         {
-            if (Architecture == Architecture.Wasm || batchingWrapper == null)
+            if (OSArchitecture == Architecture.Wasm || batchingWrapper == null)
             {
                 return js.InvokeVoidAsync(identifier, args).AsTask();
             }
+
+            var call = new Call(identifier, args);
+            queuedCalls.Enqueue(call);
+            return call.Task;
+        }
+
+
+        /// <inheritdoc/>
+        public async Task<T> InvokeAsync<T>(string identifier, params object[] args)
+        {
+            return await js.InvokeAsync<T>(identifier, args);
+        }
+
+
+        public async Task FlushBatchAsync()
+        {
+            List<Call> batch = new();
 
             var call = new Call(identifier, args);
             queuedCalls.TryAdd(batchingWrapper.CrossReferenceId, new());

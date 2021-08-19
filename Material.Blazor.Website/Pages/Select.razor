@@ -360,40 +360,66 @@
                     <p>
                         <MBSelect @bind-Value="@NullValueAllowed"
                                   Items="@KittenBreeds.Append(new MBSelectElement<string> { Label = "Null", SelectedValue = null })"
-                                  ItemValidation="MBItemValidation.NoSelection"
-                                  Label="Empty" />
+                                  ItemValidation="MBItemValidation.DefaultToFirst"
+                                  Label="Value" />
                     </p>
                 </Primary>
             </MBCard>
         </div>
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Empty string item
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        An MBSelect where the initial value of an empty string is not touched until the user chooses from the dropdown. This is accomplished through the use of MBItemValidation.NoSelection.
+                    </h3>
+
+                    <p>
+                        <MBSelect @bind-Value="@DontTouchMyValue"
+                                  Items="@KittenBreeds"
+                                  ItemValidation="MBItemValidation.NoSelection"
+                                  Label="Value" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+        <br />
+        <MBButton ButtonStyle="MBButtonStyle.ContainedRaised"
+                  Label="Invoke OnClick()"
+                  @onclick="OnClick" />
     </PageContent>
 </DemonstrationPage>
 
 
 @code {
     MBSelectElement<string>[] KittenBreeds = new MBSelectElement<string>[]
-    {
-        new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
-        new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
-        new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
-    };
+            {
+    new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+    new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+    new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+            };
 
     MBSelectElement<string>[] KittenBreedsExtended = new MBSelectElement<string>[]
     {
-        new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
-        new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
-        new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" },
-        new MBSelectElement<string> { SelectedValue = "tabby", Label = "Tabby" },
-        new MBSelectElement<string> { SelectedValue = "siam", Label = "Siamese" }
+    new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+    new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+    new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" },
+    new MBSelectElement<string> { SelectedValue = "tabby", Label = "Tabby" },
+    new MBSelectElement<string> { SelectedValue = "siam", Label = "Siamese" }
     };
 
     MBSelectElement<string>[] KittenBreedsNoFake = new MBSelectElement<string>[]
     {
-        new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
-        new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
-        new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" },
-        new MBSelectElement<string> { SelectedValue = "disabled1", Label = "Mr. Snuggles", Disabled = true },
-        new MBSelectElement<string> { SelectedValue = "disabled2", Label = "Roger Rabbit", Disabled = true }
+    new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+    new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+    new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" },
+    new MBSelectElement<string> { SelectedValue = "disabled1", Label = "Mr. Snuggles", Disabled = true },
+    new MBSelectElement<string> { SelectedValue = "disabled2", Label = "Roger Rabbit", Disabled = true }
     };
 
 
@@ -416,6 +442,13 @@
     private string FilledDensityMinus4;
 
     private string NullValueAllowed;
+
+    private string DontTouchMyValue = "";
+
+    private void OnClick()
+    {
+
+    }
     private string OutlinedDensityDefault;
     private string OutlinedDensityMinus1;
     private string OutlinedDensityMinus2;

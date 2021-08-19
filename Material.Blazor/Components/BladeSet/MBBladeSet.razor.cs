@@ -9,13 +9,17 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
+using Material.Blazor.Internal;
+
+using Microsoft.AspNetCore.Components;
+
 namespace Material.Blazor
 {
     /// <summary>
     /// A blade display component. Adds blades to the right hand side of the viewport (or bock where this component is located), with
     /// blades displayed left to right in ascending order of when they were requested (newest blades to the right).
     /// </summary>
-    public partial class MBBladeSet
+    public partial class MBBladeSet : ComponentFoundation
     {
         private const int transitionMs = 200;
 
@@ -338,7 +342,7 @@ namespace Material.Blazor
 
             if (addedBladesQueue.TryDequeue(out var addedBlade))
             {
-                await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBBladeSet.openBlade", addedBlade.BladeElementReference, addedBlade.BladeContentElementReference, transitionMs);
+                await InvokeVoidAsync("MaterialBlazor.MBBladeSet.openBlade", addedBlade.BladeElementReference, addedBlade.BladeContentElementReference, transitionMs);
 
                 addedBlade.Status = BladeStatus.Open;
 
@@ -348,7 +352,7 @@ namespace Material.Blazor
             }
             else if (removedBladesQueue.TryDequeue(out var removedBlade))
             {
-                await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBBladeSet.closeBlade", removedBlade.BladeElementReference, transitionMs);
+                await InvokeVoidAsync("MaterialBlazor.MBBladeSet.closeBlade", removedBlade.BladeElementReference, transitionMs);
 
                 await Task.Delay(transitionMs);
 

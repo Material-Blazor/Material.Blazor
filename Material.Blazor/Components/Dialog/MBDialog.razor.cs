@@ -67,7 +67,6 @@ namespace Material.Blazor
         private DotNetObjectReference<MBDialog> ObjectReference { get; set; }
         private string OverflowClass => OverflowVisible ? "mb-dialog-overflow-visible" : "";
 
-
         private readonly string bodyId = Utilities.GenerateUniqueElementName();
         private readonly string headerId = Utilities.GenerateUniqueElementName();
         private readonly string titleId = Utilities.GenerateUniqueElementName();

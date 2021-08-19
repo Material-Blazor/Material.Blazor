@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace Material.Blazor
 {
+
     /// <summary>
     /// This is a general purpose Material Theme menu.
     /// </summary>

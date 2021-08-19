@@ -1,5 +1,4 @@
 #define Logging
-#define xLoggingVerbose
 
 // ToDo:
 //
@@ -11,12 +10,6 @@
 //      Resolve issue with ElementReferences
 //
 
-
-using Material.Blazor.Internal;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Rendering;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +17,11 @@ using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+
+using Material.Blazor.Internal;
+using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
+using Microsoft.AspNetCore.Components.Web;
 //
 //  Implements a scrollable, multi-column grid. When created we get a list of column
 //  config objects and a list of data objects with the column content for each
@@ -48,6 +46,7 @@ namespace Material.Blazor
         /// The configuration of each column to be displayed. See the definition of MBGridColumnConfiguration
         /// for details.
         /// </summary>
+        [EditorRequired]
         [Parameter] public IEnumerable<MBGridColumnConfiguration<TRowData>> ColumnConfigurations { get; set; } = null;
 
 
@@ -63,6 +62,7 @@ namespace Material.Blazor
         /// The inner key must be a unique identifier
         /// that is used to indicate a row that has been clicked.
         /// </summary>
+        [EditorRequired]
         [Parameter] public IEnumerable<KeyValuePair<string, IEnumerable<KeyValuePair<string, TRowData>>>> GroupedOrderedData { get; set; }
 
 
@@ -119,8 +119,8 @@ namespace Material.Blazor
         private string GridBodyID { get; set; } = Utilities.GenerateUniqueElementName();
         private string GridHeaderID { get; set; } = Utilities.GenerateUniqueElementName();
         private bool HasCompletedFullRender { get; set; } = false;
-        private bool HasRendered { get; set; } = false;
-        private bool IsFirstRender { get; set; } = true;
+        private bool IsSimpleRender { get; set; } = true;
+        private bool IsMeasurementNeeded { get; set; } = false;
         private float ScrollWidth { get; set; }
         private string SelectedKey { get; set; } = "";
 
@@ -193,13 +193,15 @@ namespace Material.Blazor
         #region BuildRenderTree
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
-            if (IsFirstRender ||
-                (!ShouldRenderValue) ||
-                (ColumnWidthArray == null) ||
-                ((ColumnWidthArray != null) && (ColumnWidthArray.Length != ColumnConfigurations.Count())))
+#if Logging
+            GridLogDebug("BuildRenderTree entered; IsSimpleRender == " + IsSimpleRender.ToString());
+            GridLogDebug("                         HasCompletedFullRender == " + HasCompletedFullRender.ToString());
+            GridLogDebug("                         ShouldRenderValue == " + ShouldRenderValue.ToString());
+#endif
+            if (IsSimpleRender || (!ShouldRenderValue))
             {
 #if Logging
-                Log("BuildRenderTree (Simple) entered (IsFirstRender == " + IsFirstRender.ToString());
+                GridLogDebug("                (Simple) entered");
 #endif
                 // We are going to render a DIV and nothing else
                 // We need to get into OnAfterRenderAsync so that we can use JS interop to measure
@@ -207,301 +209,320 @@ namespace Material.Blazor
                 base.BuildRenderTree(builder);
                 builder.OpenElement(1, "div");
                 builder.CloseElement();
+                HasCompletedFullRender = false;
 #if Logging
-                Log("                (Simple) leaving");
+                GridLogDebug("                (Simple) leaving");
 #endif
-                return;
             }
-
+            else
+            {
 #if Logging
-            Log("BuildRenderTree entered (IsFirstRender == false)");
+                GridLogDebug("                (Full) entered");
 #endif
 
-            //
-            //  Using the column cfg and column data, render our list. Here is the layout.
-            //  The column headers are optional.
-            //
-            //  div mb-grid-header          - Contains the header and the vscroll
-            //      table                   - 
-            //          tr                  - 
-            //              td*             - Header
-            //  div mb-grid-body            - Contains the rows and the vscroll
-            //      table                   - Contains the rows
-            //          tr*                 - Rows
-            //              td*             - Columns of the row
-            //
+                //
+                //  Using the column cfg and column data, render our list. Here is the layout.
+                //  The column headers are optional.
+                //
+                //  div class="@class", style="@style"
+                //      div mb-grid-header          - Contains the header and the vscroll
+                //          table                   - 
+                //              tr                  - 
+                //                  td*             - Header
+                //      div mb-grid-body            - Contains the rows and the vscroll
+                //          table                   - Contains the rows
+                //              tr*                 - Rows
+                //                  td*             - Columns of the row
+                //
 
-            base.BuildRenderTree(builder);
-            var rendSeq = 2;
-            string styleStr;
+                base.BuildRenderTree(builder);
+                var rendSeq = 2;
+                string styleStr;
 
-            // Based on the column config generate the column titles unless asked not to
-            if (!SupressHeader)
-            {
-                builder.OpenElement(rendSeq++, "div");
-                builder.AddAttribute(rendSeq++, "class", "mb-grid-div-header mb-grid-backgroundcolor-header-background");
-                //builder.AddAttribute(rendSeq++, "style", "padding-right: " + ScrollWidth.ToString() + "px; ");
-                builder.AddAttribute(rendSeq++, "id", GridHeaderID);
-                builder.AddElementReferenceCapture(rendSeq++, (__value) => { GridHeaderRef = __value; });
-                builder.OpenElement(rendSeq++, "table");
-                builder.AddAttribute(rendSeq++, "class", "mb-grid-table");
-                BuildColGroup(builder, ref rendSeq);
-                builder.OpenElement(rendSeq++, "thead");
-                builder.AddAttribute(rendSeq++, "class", "mb-grid-thead");
-                builder.OpenElement(rendSeq++, "tr");
-                builder.AddAttribute(rendSeq++, "class", "mb-grid-tr");
-
-                // For each column output a TD
-                var isHeaderRow = true;
-                var colCount = 0;
-                foreach (var col in ColumnConfigurations)
+                if (((@class != null) && (@class.Length > 0)) || ((style != null) && (style.Length > 0)))
                 {
-                    styleStr = BuildNewGridTD(
-                        builder,
-                        ref rendSeq,
-                        colCount == 0,
-                        isHeaderRow,
-                        "mb-grid-backgroundcolor-header-background");
-
-                    // Set the header colors
-                    styleStr += " color: " + col.ForegroundColorHeader.Name + ";";
-                    styleStr += " background-color : " + col.BackgroundColorHeader.Name + ";";
-
-                    builder.AddAttribute(rendSeq++, "style", styleStr);
-                    builder.AddContent(rendSeq++, col.Title);
-
-                    // Close this column TD
-                    builder.CloseElement();
-
-                    colCount++;
+                    builder.OpenElement(rendSeq++, "div");
+                    builder.AddAttribute(rendSeq++, "class", "mb-grid-div-outer " + @class);
+                    builder.AddAttribute(rendSeq++, "style", style);
                 }
 
-                builder.CloseElement(); // tr
-
-                builder.CloseElement(); // thead
-
-                builder.CloseElement(); //table
-
-                builder.CloseElement(); // div mb-grid-header
-            }
-
-            //
-            // We now need to build a "display centric" data representation with rows added for breaks, etc.
-            // For the first pass we are going to skip this step and just display the raw content
-            //
-
-            if (GroupedOrderedData != null)
-            {
-                var isFirstGrouper = true;
-
-                // This div holds the scrolled content
-                builder.OpenElement(rendSeq++, "div");
-                builder.AddAttribute(rendSeq++, "class", "mb-grid-div-body");
-                builder.AddAttribute(rendSeq++, "onscroll",
-                    EventCallback.Factory.Create<System.EventArgs>(this, GridSyncScroll));
-                builder.AddAttribute(rendSeq++, "id", GridBodyID);
-                builder.AddElementReferenceCapture(rendSeq++, (__value) => { GridBodyRef = __value; });
-                builder.OpenElement(rendSeq++, "table");
-                builder.AddAttribute(rendSeq++, "class", "mb-grid-table");
-                BuildColGroup(builder, ref rendSeq);
-                builder.OpenElement(rendSeq++, "tbody");
-                builder.AddAttribute(rendSeq++, "class", "mb-grid-tbody");
-
-                foreach (var kvp in GroupedOrderedData)
+                // Based on the column config generate the column titles unless asked not to
+                if (!SupressHeader)
                 {
-                    if (Group)
+                    builder.OpenElement(rendSeq++, "div");
+                    builder.AddAttribute(rendSeq++, "class", "mb-grid-div-header mb-grid-backgroundcolor-header-background");
+                    //builder.AddAttribute(rendSeq++, "style", "padding-right: " + ScrollWidth.ToString() + "px; ");
+                    builder.AddAttribute(rendSeq++, "id", GridHeaderID);
+                    builder.AddElementReferenceCapture(rendSeq++, (__value) => { GridHeaderRef = __value; });
+                    builder.OpenElement(rendSeq++, "table");
+                    builder.AddAttribute(rendSeq++, "class", "mb-grid-table");
+                    BuildColGroup(builder, ref rendSeq);
+                    builder.OpenElement(rendSeq++, "thead");
+                    builder.AddAttribute(rendSeq++, "class", "mb-grid-thead");
+                    builder.OpenElement(rendSeq++, "tr");
+                    builder.AddAttribute(rendSeq++, "class", "mb-grid-tr");
+
+                    // For each column output a TD
+                    var isHeaderRow = true;
+                    var colCount = 0;
+                    foreach (var col in ColumnConfigurations)
                     {
-                        // We output a row with the group name
-                        // Do a div for this row
-                        builder.OpenElement(rendSeq++, "tr");
-                        builder.AddAttribute(rendSeq++, "class", "mb-grid-tr");
-                        builder.OpenElement(rendSeq++, "td");
-                        builder.AddAttribute(rendSeq++, "colspan", ColumnConfigurations.Count().ToString());
-                        builder.AddAttribute(rendSeq++, "class", "mb-grid-td-group mb-grid-backgroundcolor-row-group");
-                        if (isFirstGrouper)
-                        {
-                            isFirstGrouper = false;
-                            builder.AddAttribute(rendSeq++, "style", "border-top: 1px solid black; ");
-                        }
-                        builder.AddAttribute(rendSeq++, "mbgrid-td-wide", "0");
-                        builder.AddContent(rendSeq++, "  " + kvp.Key);
-                        builder.CloseElement(); // td
-                        builder.CloseElement(); // tr
+                        styleStr = BuildNewGridTD(
+                            builder,
+                            ref rendSeq,
+                            colCount == 0,
+                            isHeaderRow,
+                            "mb-grid-backgroundcolor-header-background");
+
+                        // Set the header colors
+                        styleStr += " color: " + col.ForegroundColorHeader.Name + ";";
+                        styleStr += " background-color : " + col.BackgroundColorHeader.Name + ";";
+
+                        builder.AddAttribute(rendSeq++, "style", styleStr);
+                        builder.AddContent(rendSeq++, col.Title);
+
+                        // Close this column TD
+                        builder.CloseElement();
+
+                        colCount++;
                     }
 
-                    var rowCount = 0;
-                    foreach (var rowValues in kvp.Value)
-                    {
-                        var rowKey = KeyExpression(rowValues.Value).ToString();
+                    builder.CloseElement(); // tr
 
-                        string rowBackgroundColorClass;
-                        if ((rowKey == SelectedKey) && HighlightSelectedRow)
+                    builder.CloseElement(); // thead
+
+                    builder.CloseElement(); //table
+
+                    builder.CloseElement(); // div mb-grid-header
+                }
+
+                //
+                // We now need to build a "display centric" data representation with rows added for breaks, etc.
+                // For the first pass we are going to skip this step and just display the raw content
+                //
+
+                if (GroupedOrderedData != null)
+                {
+                    var isFirstGrouper = true;
+
+                    // This div holds the scrolled content
+                    builder.OpenElement(rendSeq++, "div");
+                    builder.AddAttribute(rendSeq++, "class", "mb-grid-div-body");
+                    builder.AddAttribute(rendSeq++, "onscroll",
+                        EventCallback.Factory.Create<System.EventArgs>(this, GridSyncScroll));
+                    builder.AddAttribute(rendSeq++, "id", GridBodyID);
+                    builder.AddElementReferenceCapture(rendSeq++, (__value) => { GridBodyRef = __value; });
+                    builder.OpenElement(rendSeq++, "table");
+                    builder.AddAttribute(rendSeq++, "class", "mb-grid-table");
+                    BuildColGroup(builder, ref rendSeq);
+                    builder.OpenElement(rendSeq++, "tbody");
+                    builder.AddAttribute(rendSeq++, "class", "mb-grid-tbody");
+
+                    foreach (var kvp in GroupedOrderedData)
+                    {
+                        if (Group)
                         {
-                            // It's the selected row so set the selection color as the background
-                            rowBackgroundColorClass = "mb-grid-backgroundcolor-row-selected";
-                        }
-                        else
-                        {
-                            // Not selected or not highlighted so we alternate
-                            if ((rowCount / 2) * 2 == rowCount)
+                            // We output a row with the group name
+                            // Do a div for this row
+                            builder.OpenElement(rendSeq++, "tr");
+                            builder.AddAttribute(rendSeq++, "class", "mb-grid-tr");
+                            builder.OpenElement(rendSeq++, "td");
+                            builder.AddAttribute(rendSeq++, "colspan", ColumnConfigurations.Count().ToString());
+                            builder.AddAttribute(rendSeq++, "class", "mb-grid-td-group mb-grid-backgroundcolor-row-group");
+                            if (isFirstGrouper)
                             {
-                                // Even
-                                rowBackgroundColorClass = "mb-grid-backgroundcolor-row-even";
+                                isFirstGrouper = false;
+                                builder.AddAttribute(rendSeq++, "style", "border-top: 1px solid black; ");
+                            }
+                            builder.AddAttribute(rendSeq++, "mbgrid-td-wide", "0");
+                            builder.AddContent(rendSeq++, "  " + kvp.Key);
+                            builder.CloseElement(); // td
+                            builder.CloseElement(); // tr
+                        }
+
+                        var rowCount = 0;
+                        foreach (var rowValues in kvp.Value)
+                        {
+                            var rowKey = KeyExpression(rowValues.Value).ToString();
+
+                            string rowBackgroundColorClass;
+                            if ((rowKey == SelectedKey) && HighlightSelectedRow)
+                            {
+                                // It's the selected row so set the selection color as the background
+                                rowBackgroundColorClass = "mb-grid-backgroundcolor-row-selected";
                             }
                             else
                             {
-                                // Odd
-                                rowBackgroundColorClass = "mb-grid-backgroundcolor-row-odd";
+                                // Not selected or not highlighted so we alternate
+                                if ((rowCount / 2) * 2 == rowCount)
+                                {
+                                    // Even
+                                    rowBackgroundColorClass = "mb-grid-backgroundcolor-row-even";
+                                }
+                                else
+                                {
+                                    // Odd
+                                    rowBackgroundColorClass = "mb-grid-backgroundcolor-row-odd";
+                                }
                             }
-                        }
 
-                        // Do a tr
-                        builder.OpenElement(rendSeq++, "tr");
-                        builder.AddAttribute(rendSeq++, "class", "mb-grid-tr " + rowBackgroundColorClass);
+                            // Do a tr
+                            builder.OpenElement(rendSeq++, "tr");
+                            builder.AddAttribute(rendSeq++, "class", "mb-grid-tr " + rowBackgroundColorClass);
 
-                        builder.AddAttribute
-                        (
-                            rendSeq++,
-                            "onclick",
-                            EventCallback.Factory.Create<MouseEventArgs>(this, e => OnMouseClickInternal(rowKey))
-                        );
+                            builder.AddAttribute
+                            (
+                                rendSeq++,
+                                "onclick",
+                                EventCallback.Factory.Create<MouseEventArgs>(this, e => OnMouseClickInternal(rowKey))
+                            );
 
-                        // For each column output a td
-                        var colCount = 0;
-                        var isHeaderRow = false;
-                        foreach (var columnDefinition in ColumnConfigurations)
-                        {
-                            styleStr = BuildNewGridTD(
-                                builder,
-                                ref rendSeq,
-                                colCount == 0,
-                                isHeaderRow,
-                                rowBackgroundColorClass);
-
-                            switch (columnDefinition.ColumnType)
+                            // For each column output a td
+                            var colCount = 0;
+                            var isHeaderRow = false;
+                            foreach (var columnDefinition in ColumnConfigurations)
                             {
-                                case MB_Grid_ColumnType.Icon:
-                                    if (columnDefinition.DataExpression != null)
-                                    {
-                                        try
+                                styleStr = BuildNewGridTD(
+                                    builder,
+                                    ref rendSeq,
+                                    colCount == 0,
+                                    isHeaderRow,
+                                    rowBackgroundColorClass);
+
+                                switch (columnDefinition.ColumnType)
+                                {
+                                    case MB_Grid_ColumnType.Icon:
+                                        if (columnDefinition.DataExpression != null)
                                         {
-                                            var value = (MBGridIconSpecification)columnDefinition.DataExpression(rowValues.Value);
-
-                                            // We need to add the color alignment to the base styles
-                                            styleStr +=
-                                                " color: " + ColorToCSSColor(value.IconColor) + ";"
-                                                + " text-align: center;";
-
-                                            builder.AddAttribute(rendSeq++, "style", styleStr);
-                                            builder.OpenComponent(rendSeq++, typeof(MBIcon));
-                                            builder.AddAttribute(rendSeq++, "IconFoundry", value.IconFoundry);
-                                            builder.AddAttribute(rendSeq++, "IconName", value.IconName);
-                                            builder.CloseComponent();
-                                        }
-                                        catch
-                                        {
-                                            throw new Exception("Backing value incorrect for MBGrid.Icon column.");
-                                        }
-                                    }
-                                    break;
-
-                                case MB_Grid_ColumnType.Text:
-                                    // It's a text type column so add the text related styles
-                                    // We may be overriding the alternating row color added by class
-
-                                    if (columnDefinition.ForegroundColorExpression != null)
-                                    {
-                                        var value = columnDefinition.ForegroundColorExpression(rowValues.Value);
-                                        styleStr +=
-                                            " color: " + ColorToCSSColor((Color)value) + "; ";
-                                    }
-
-                                    if (columnDefinition.BackgroundColorExpression != null)
-                                    {
-                                        var value = columnDefinition.BackgroundColorExpression(rowValues.Value);
-                                        styleStr +=
-                                            " background-color: " + ColorToCSSColor((Color)value) + "; ";
-                                    }
-
-                                    if (columnDefinition.IsPMI && ObscurePMI)
-                                    {
-                                        styleStr +=
-                                            " filter: blur(0.25em); ";
-                                    }
-
-                                    builder.AddAttribute(rendSeq++, "style", styleStr);
-
-                                    // Bind the object as our content.
-                                    if (columnDefinition.DataExpression != null)
-                                    {
-                                        var value = columnDefinition.DataExpression(rowValues.Value);
-                                        var formattedValue = string.IsNullOrEmpty(columnDefinition.FormatString) ? value?.ToString() : string.Format("{0:" + columnDefinition.FormatString + "}", value);
-                                        builder.AddContent(1, formattedValue);
-                                    }
-                                    break;
-
-                                case MB_Grid_ColumnType.TextColor:
-                                    if (columnDefinition.DataExpression != null)
-                                    {
-                                        try
-                                        {
-                                            var value = (MBGridTextColorSpecification)columnDefinition.DataExpression(rowValues.Value);
-
-                                            if (value.Supress)
+                                            try
                                             {
-                                                builder.AddAttribute(rendSeq++, "style", styleStr);
-                                            }
-                                            else
-                                            {
-                                                // We need to add the colors
+                                                var value = (MBGridIconSpecification)columnDefinition.DataExpression(rowValues.Value);
+
+                                                // We need to add the color alignment to the base styles
                                                 styleStr +=
-                                                    " color: " + ColorToCSSColor(value.ForegroundColor)
-                                                    + "; background-color: " + ColorToCSSColor(value.BackgroundColor) + ";";
-
-                                                if (columnDefinition.IsPMI && ObscurePMI)
-                                                {
-                                                    styleStr +=
-                                                        " filter: blur(0.25em); ";
-                                                }
+                                                    " color: " + ColorToCSSColor(value.IconColor) + ";"
+                                                    + " text-align: center;";
 
                                                 builder.AddAttribute(rendSeq++, "style", styleStr);
-                                                builder.AddContent(rendSeq++, value.Text);
+                                                builder.OpenComponent(rendSeq++, typeof(MBIcon));
+                                                builder.AddAttribute(rendSeq++, "IconFoundry", value.IconFoundry);
+                                                builder.AddAttribute(rendSeq++, "IconName", value.IconName);
+                                                builder.CloseComponent();
+                                            }
+                                            catch
+                                            {
+                                                throw new Exception("Backing value incorrect for MBGrid.Icon column.");
                                             }
                                         }
-                                        catch
-                                        {
-                                            throw new Exception("Backing value incorrect for MBGrid.TextColor column.");
-                                        }
-                                    }
-                                    break;
+                                        break;
 
-                                default:
-                                    throw new Exception("MBGrid -- Unknown column type");
+                                    case MB_Grid_ColumnType.Text:
+                                        // It's a text type column so add the text related styles
+                                        // We may be overriding the alternating row color added by class
+
+                                        if (columnDefinition.ForegroundColorExpression != null)
+                                        {
+                                            var value = columnDefinition.ForegroundColorExpression(rowValues.Value);
+                                            styleStr +=
+                                                " color: " + ColorToCSSColor((Color)value) + "; ";
+                                        }
+
+                                        if (columnDefinition.BackgroundColorExpression != null)
+                                        {
+                                            var value = columnDefinition.BackgroundColorExpression(rowValues.Value);
+                                            styleStr +=
+                                                " background-color: " + ColorToCSSColor((Color)value) + "; ";
+                                        }
+
+                                        if (columnDefinition.IsPMI && ObscurePMI)
+                                        {
+                                            styleStr +=
+                                                " filter: blur(0.25em); ";
+                                        }
+
+                                        builder.AddAttribute(rendSeq++, "style", styleStr);
+
+                                        // Bind the object as our content.
+                                        if (columnDefinition.DataExpression != null)
+                                        {
+                                            var value = columnDefinition.DataExpression(rowValues.Value);
+                                            var formattedValue = string.IsNullOrEmpty(columnDefinition.FormatString) ? value?.ToString() : string.Format("{0:" + columnDefinition.FormatString + "}", value);
+                                            builder.AddContent(1, formattedValue);
+                                        }
+                                        break;
+
+                                    case MB_Grid_ColumnType.TextColor:
+                                        if (columnDefinition.DataExpression != null)
+                                        {
+                                            try
+                                            {
+                                                var value = (MBGridTextColorSpecification)columnDefinition.DataExpression(rowValues.Value);
+
+                                                if (value.Supress)
+                                                {
+                                                    builder.AddAttribute(rendSeq++, "style", styleStr);
+                                                }
+                                                else
+                                                {
+                                                    // We need to add the colors
+                                                    styleStr +=
+                                                        " color: " + ColorToCSSColor(value.ForegroundColor)
+                                                        + "; background-color: " + ColorToCSSColor(value.BackgroundColor) + ";";
+
+                                                    if (columnDefinition.IsPMI && ObscurePMI)
+                                                    {
+                                                        styleStr +=
+                                                            " filter: blur(0.25em); ";
+                                                    }
+
+                                                    builder.AddAttribute(rendSeq++, "style", styleStr);
+                                                    builder.AddContent(rendSeq++, value.Text);
+                                                }
+                                            }
+                                            catch
+                                            {
+                                                throw new Exception("Backing value incorrect for MBGrid.TextColor column.");
+                                            }
+                                        }
+                                        break;
+
+                                    default:
+                                        throw new Exception("MBGrid -- Unknown column type");
+                                }
+
+                                // Close this column span
+                                builder.CloseElement();
+
+                                colCount++;
                             }
 
-                            // Close this column span
+                            // Close this row's div
                             builder.CloseElement();
 
-                            colCount++;
+                            rowCount++;
                         }
+                    }
 
-                        // Close this row's div
-                        builder.CloseElement();
+                    builder.CloseElement(); // tbody
 
-                        rowCount++;
+                    builder.CloseElement(); // table
+
+                    builder.CloseElement(); // div mb-grid-body-outer
+
+                    if (((@class != null) && (@class.Length > 0)) || ((style != null) && (style.Length > 0)))
+                    {
+                        builder.CloseElement(); // div class= style=
                     }
                 }
 
-                builder.CloseElement(); // tbody
-
-                builder.CloseElement(); // table
-
-                builder.CloseElement(); // div mb-grid-body-outer
-            }
-
-            HasCompletedFullRender = true;
+                HasCompletedFullRender = true;
 #if Logging
-            Log("                leaving (IsFirstRender == false)");
+                GridLogDebug("                (Full) leaving");
+#endif
+            }
+#if Logging
+            GridLogDebug("                leaving; IsSimpleRender == " + IsSimpleRender.ToString());
+            GridLogDebug("                leaving; HasCompletedFullRender == " + HasCompletedFullRender.ToString());
 #endif
         }
         #endregion
@@ -548,24 +569,36 @@ namespace Material.Blazor
         protected async Task GridSyncScroll()
         {
 #if Logging
-            Log("GridSyncScroll()");
+            GridLogDebug("GridSyncScroll()");
 #endif
             await InvokeVoidAsync("MaterialBlazor.MBGrid.syncScrollByID", GridHeaderID, GridBodyID);
-            //await JsRuntime.InvokeVoidAsync("MaterialBlazor.MBGrid.syncScrollByRef", GridHeaderRef, GridBodyRef);
+            //await InvokeVoidAsync("MaterialBlazor.MBGrid.syncScrollByRef", GridHeaderRef, GridBodyRef);
         }
         #endregion
 
         #region Logging
 
-        private void Log(string message)
+        private void GridLogDebug(string message)
         {
             if (string.IsNullOrWhiteSpace(LogIdentification))
             {
-                Logger.LogDebug(message);
+                LoggingService.LogDebug(message);
             }
             else
             {
-                Logger.LogDebug("[" + LogIdentification + "] " + message);
+                LoggingService.LogDebug("[" + LogIdentification + "] " + message);
+            }
+        }
+
+        private void GridLogTrace(string message)
+        {
+            if (string.IsNullOrWhiteSpace(LogIdentification))
+            {
+                LoggingService.LogTrace(message);
+            }
+            else
+            {
+                LoggingService.LogTrace("[" + LogIdentification + "] " + message);
             }
         }
 
@@ -578,12 +611,6 @@ namespace Material.Blazor
             {
                 return;
             }
-            //
-            // We are going to measure the actual sizes using JS if the Measurement is FitToData
-            // We need to create the ColumnWidthArray regardless of the measurement type as we need to pass
-            // values to CreateTD
-            //
-            ColumnWidthArray = new float[ColumnConfigurations.Count()];
 
             // Measure the width of a vertical scrollbar (Used to set the padding of the header)
             ScrollWidth = await BatchingJsRuntime.InvokeAsync<int>(
@@ -669,6 +696,19 @@ namespace Material.Blazor
                         colIndex++;
                     }
                 }
+
+                if (LoggingLevel <= (int)MBLoggingLevel.Debug)
+                {
+                    var total = 0;
+                    foreach (var c in stringArrayBody)
+                    {
+                        if (c != null)
+                        {
+                            total += c.Length;
+                        }
+                    }
+                    GridLogDebug("                   Measuring " + stringArrayBody.Length + " strings with a total size of " + total.ToString() + " bytes");
+                }
                 ColumnWidthArray = await BatchingJsRuntime.InvokeAsync<float[]>(
                         "MaterialBlazor.MBGrid.getTextWidths",
                         "mb-grid-body-td-measure",
@@ -692,33 +732,50 @@ namespace Material.Blazor
         #region OnAfterRenderAsync
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
+            var needsSHC = false;
             await semaphoreSlim.WaitAsync();
             try
             {
                 await base.OnAfterRenderAsync(firstRender);
 
-                HasRendered = true;
-
 #if Logging
-                Log("OnAfterRenderAsync entered");
-                Log("                   firstRender: " + firstRender.ToString());
-                Log("                   IsFirstRender: " + IsFirstRender.ToString());
-                Log("                   HasCompletedFullRender: " + HasCompletedFullRender.ToString());
+                GridLogDebug("OnAfterRenderAsync entered");
+                GridLogDebug("                   firstRender: " + firstRender.ToString());
+                GridLogDebug("                   IsSimpleRender: " + IsSimpleRender.ToString());
+                GridLogDebug("                   IsMeasurementNeeded: " + IsMeasurementNeeded.ToString());
 #endif
 
-                if (IsFirstRender)
+                if (IsSimpleRender)
                 {
-                    IsFirstRender = false;
-                    Log("                   Calling MeasureWidthsAsync");
-                    await MeasureWidthsAsync();
-                    Log("                   Returned from MeasureWidthsAsync");
-                    StateHasChanged();
+                    IsSimpleRender = false;
+                    needsSHC = true;
+                }
+
+                if (IsMeasurementNeeded)
+                {
+                    IsMeasurementNeeded = false;
+
+                    if (Measurement == MB_Grid_Measurement.FitToData)
+                    {
+#if Logging
+                        GridLogDebug("                   Calling MeasureWidthsAsync");
+#endif
+                        await MeasureWidthsAsync();
+#if Logging
+                        GridLogDebug("                   Returned from MeasureWidthsAsync");
+#endif
+                        needsSHC = true;
+                    }
                 }
             }
             finally
             {
+                if (needsSHC)
+                {
+                    await InvokeAsync(StateHasChanged);
+                }
 #if Logging
-                Log("                   about to release semaphore (OnAfterRenderAsync)");
+                GridLogDebug("                   about to release semaphore (OnAfterRenderAsync)");
 #endif
                 semaphoreSlim.Release();
             }
@@ -729,7 +786,7 @@ namespace Material.Blazor
         protected override async Task OnInitializedAsync()
         {
 #if Logging
-            Log("MBGrid.OnInitialized entered");
+            GridLogDebug("MBGrid.OnInitialized entered");
 #endif
             await base.OnInitializedAsync();
 
@@ -738,7 +795,7 @@ namespace Material.Blazor
                 throw new System.Exception("MBGrid requires column configuration definitions.");
             }
 #if Logging
-            Log("MBGrid.OnInitialized completed");
+            GridLogDebug("MBGrid.OnInitialized completed");
 #endif
         }
         #endregion
@@ -747,7 +804,7 @@ namespace Material.Blazor
         private void OnMouseClickInternal(string newRowKey)
         {
 #if Logging
-            Log("OnMouseClickInternal with HighlightSelectedRow:" + HighlightSelectedRow.ToString());
+            GridLogDebug("OnMouseClickInternal with HighlightSelectedRow:" + HighlightSelectedRow.ToString());
 #endif
             if (newRowKey != SelectedKey)
             {
@@ -761,44 +818,12 @@ namespace Material.Blazor
         }
         #endregion
 
-        #region OnParametersSetAsync
-        protected override async Task OnParametersSetAsync()
-        {
-            await semaphoreSlim.WaitAsync();
-            try
-            {
-#if Logging
-                Log("OnParametersSetAsync entry");
-                Log("                     HasRendered: " + HasRendered.ToString());
-                Log("                     HasCompletedFullRender: " + HasCompletedFullRender.ToString());
-#endif
-
-                await base.OnParametersSetAsync();
-
-                if (HasRendered)
-                {
-                    Log("                     Calling MeasureWidthsAsync");
-                    await MeasureWidthsAsync();
-                    Log("                     Returned from MeasureWidthsAsync");
-                    StateHasChanged();
-                }
-            }
-            finally
-            {
-#if Logging
-                Log("                     about to release semaphore (OnParametersSetAsync)");
-#endif
-                semaphoreSlim.Release();
-            }
-        }
-        #endregion
-
         #region SetParametersAsync
         private int oldParameterHash { get; set; } = -1;
         public override Task SetParametersAsync(ParameterView parameters)
         {
 #if Logging
-            Log("SetParametersAsync entry");
+            GridLogDebug("SetParametersAsync entry");
 #endif
             semaphoreSlim.WaitAsync();
             try
@@ -807,8 +832,17 @@ namespace Material.Blazor
                 {
                     switch (parameter.Name)
                     {
+                        case nameof(@class):
+                            @class = (string)parameter.Value;
+                            break;
                         case nameof(ColumnConfigurations):
                             ColumnConfigurations = (IEnumerable<MBGridColumnConfiguration<TRowData>>)parameter.Value;
+                            //
+                            // We are going to measure the actual sizes using JS if the Measurement is FitToData
+                            // We need to create the ColumnWidthArray regardless of the measurement type as we need to pass
+                            // values to BuildColGroup->CreateMeasurementStyle
+                            //
+                            ColumnWidthArray = new float[ColumnConfigurations.Count()];
                             break;
                         case nameof(Group):
                             Group = (bool)parameter.Value;
@@ -834,19 +868,22 @@ namespace Material.Blazor
                         case nameof(OnMouseClick):
                             OnMouseClick = (EventCallback<string>)parameter.Value;
                             break;
+                        case nameof(style):
+                            style = (string)parameter.Value;
+                            break;
                         case nameof(SupressHeader):
                             SupressHeader = (bool)parameter.Value;
                             break;
                         default:
-#if LoggingVerbose
-                            Log("MBGrid encountered an unknown parameter:" + parameter.Name);
+#if Logging
+                            GridLogTrace("MBGrid encountered an unknown parameter:" + parameter.Name);
 #endif
                             break;
                     }
                 }
 
 #if Logging
-                Log("                   about to compute parameter hash");
+                GridLogDebug("                   about to compute parameter hash");
 #endif
                 HashCode newParameterHash;
 
@@ -854,6 +891,7 @@ namespace Material.Blazor
                 {
                     newParameterHash = HashCode
                         .OfEach(ColumnConfigurations)
+                        .And(@class)
                         .And(Group)
                         .And(HighlightSelectedRow)
                         .And(KeyExpression)
@@ -861,18 +899,21 @@ namespace Material.Blazor
                         .And(ObscurePMI)
                         .And(OnMouseClick)
                         .And(SelectedKey)   // Not a parameter but if we don't include this we won't re-render after selecting a row
+                        .And(style)
                         .And(SupressHeader);
                 }
                 else
                 {
                     newParameterHash = HashCode
                         .OfEach(ColumnConfigurations)
+                        .And(@class)
                         .And(Group)
                         .And(HighlightSelectedRow)
                         .And(KeyExpression)
                         .And(Measurement)
                         .And(ObscurePMI)
                         .And(OnMouseClick)
+                        .And(style)
                         .And(SupressHeader);
                 }
 
@@ -884,6 +925,9 @@ namespace Material.Blazor
                 {
                     foreach (var kvp in GroupedOrderedData)
                     {
+#if Logging
+                        GridLogDebug("                   key == " + kvp.Key + " with " + kvp.Value.Count().ToString() + " rows");
+#endif
                         foreach (var rowValues in kvp.Value)
                         {
                             var rowKey = KeyExpression(rowValues.Value).ToString();
@@ -953,7 +997,7 @@ namespace Material.Blazor
                 }
 
 #if Logging
-                Log("                   hash == " + ((int)newParameterHash).ToString());
+                GridLogDebug("                   hash == " + ((int)newParameterHash).ToString());
 #endif
                 if (newParameterHash == oldParameterHash)
                 {
@@ -969,22 +1013,24 @@ namespace Material.Blazor
                         ShouldRenderValue = true;
                     }
 #if Logging
-                    Log("                   EQUAL hash");
+                    GridLogDebug("                   EQUAL hash");
 #endif
                 }
                 else
                 {
                     ShouldRenderValue = true;
+                    IsSimpleRender = true;
+                    IsMeasurementNeeded = true;
                     oldParameterHash = newParameterHash;
 #if Logging
-                    Log("                   DIFFERING hash");
+                    GridLogDebug("                   DIFFERING hash");
 #endif
                 }
             }
             finally
             {
 #if Logging
-                Log("                   about to release semaphore (SetParametersAsync)");
+                GridLogDebug("                   about to release semaphore (SetParametersAsync)");
 #endif
                 semaphoreSlim.Release();
             }

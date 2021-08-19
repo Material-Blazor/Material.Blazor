@@ -1,6 +1,9 @@
 ﻿import { MDCSegmentedButton } from '@material/segmented-button';
 
 export function init(elem, isSingleSelect, dotNetObject) {
+    if (!elem) {
+        return;
+    }
     elem._segmentedButton = MDCSegmentedButton.attachTo(elem);
     elem._isSingleSelect = isSingleSelect;
 
@@ -15,10 +18,16 @@ export function init(elem, isSingleSelect, dotNetObject) {
 }
 
 export function setDisabled(elem, value) {
+    if (!elem) {
+        return;
+    }
     elem._segmentedButton.disabled = value;
 }
 
 export function setSelected(elem, selectedFlags) {
+    if (!elem) {
+        return;
+    }
     for (let i = 0; i < selectedFlags.length; i++) {
         if (selectedFlags[i] == true) {
             elem._segmentedButton.segments[i].setSelected();

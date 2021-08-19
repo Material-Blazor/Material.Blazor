@@ -1,4 +1,4 @@
-/**
+﻿/**
  * @license
  * 
  * This file is based on https://github.com/lodash/lodash and thus licensed as follows.
@@ -381,3 +381,4 @@ function throttle(func, wait, options) {
 //END https://github.com/lodash/lodash/blob/master/throttle.js
 
 export { throttle, debounce }
+
