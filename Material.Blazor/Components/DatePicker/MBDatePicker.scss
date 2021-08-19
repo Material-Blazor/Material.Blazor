@@ -1,4 +1,6 @@
-﻿/************************************************
+﻿@use "sass:math";
+
+/************************************************
     Applied to InternalDatePickerPanel.razor
 ************************************************/
 
@@ -17,7 +19,7 @@ $dp-menu-icon-button-size: 24px;
 /*
     General purpose definitions
 */
-$dp-button-border-radius: $dp-button-size / 2;
+$dp-button-border-radius: math.div($dp-button-size, 2);
 $dp-button-margin: 2px;
 $dp-day-pad-horizontal-margin: 16px;
 $dp-day-pad-bottom-margin: 8px;
@@ -31,7 +33,7 @@ $dp-year-pad-padding-left: 12px;
 $dp-year-pad-clear-space-right: 20px;
 
 $dp-day-button-width: $dp-button-size;
-$dp-year-button-width: ($dp-panel-width - $dp-year-pad-padding-left - $dp-year-pad-clear-space-right) / 4 - 2 * $dp-button-margin;
+$dp-year-button-width: math.div(($dp-panel-width - $dp-year-pad-padding-left - $dp-year-pad-clear-space-right), 4) - 2 * $dp-button-margin;
 
 $dp-blank-filler-height: 7 * $dp-day-button-width;
 

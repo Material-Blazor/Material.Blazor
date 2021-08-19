@@ -15,15 +15,7 @@ namespace Material.Blazor
         [Parameter] public string Label { get; set; } = "On/off";
 
 
-        /// <summary>
-        /// The switch's density.
-        /// </summary>
-        [Parameter] public MBDensity? Density { get; set; }
-
-
         private ElementReference ElementReference { get; set; }
-
-        private MBCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityCssClass(CascadingDefaults.AppliedSwitchDensity(Density));
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -32,7 +24,6 @@ namespace Material.Blazor
             await base.OnInitializedAsync();
 
             ConditionalCssClasses
-                .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-switch--disabled", () => AppliedDisabled)
                 .AddIf("mdc-switch--checked", () => ComponentValue);
 
