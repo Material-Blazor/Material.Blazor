@@ -40,7 +40,7 @@ jobs:
     - name: Use prelease dotnet
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: '6.0.100-preview.6.21355.2'
+        dotnet-version: '6.0.x'
         include-prerelease: true
 
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️
