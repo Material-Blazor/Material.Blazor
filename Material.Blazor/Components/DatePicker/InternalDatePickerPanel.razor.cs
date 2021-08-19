@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Material.Blazor.Internal
 {
@@ -72,6 +68,12 @@ namespace Material.Blazor.Internal
 
 
         /// <summary>
+        /// The parent date picker
+        /// </summary>
+        [Parameter] public MBDatePicker Parent { get; set; }
+
+
+        /// <summary>
         /// Reference to the <c>&lt;li&gt;</c> embedded in the panel.
         /// </summary>
         internal ElementReference ListItemReference { get; set; }
@@ -117,6 +119,8 @@ namespace Material.Blazor.Internal
         private int MonthsOffset { get; set; } = 0;
 
         private DateTime StartOfDisplayMonth { get; set; }
+
+        private bool HasBeenOpened { get; set; } = false;
 
         private string MonthText => StartOfDisplayMonth.ToString("MMMM yyyy");
 
@@ -222,12 +226,27 @@ namespace Material.Blazor.Internal
         }
 
 
+        /// <summary>
+        /// Causes the panel to display buttons on the first opening
+        /// </summary>
+        /// <returns></returns>
+        public async Task NotifyOpened()
+        {
+            if (!HasBeenOpened)
+            {
+                HasBeenOpened = true;
+                await InvokeAsync(StateHasChanged);
+            }
+        }
+
+
         private async Task OnDayItemClickAsync(DateTime dateTime)
         {
             // Invoke JS first. if ComponentValue is set first we are at risk of this element being re-rendered before this line is run, making ListItemReference stale and causing a JS exception.
             await InvokeVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", ListItemReference, Utilities.DateToString(dateTime, DateFormat));
             ComponentValue = dateTime;
             MonthsOffset = 0;
+            Parent.NotifyValueChanged();
             SetParameters();
         }
 

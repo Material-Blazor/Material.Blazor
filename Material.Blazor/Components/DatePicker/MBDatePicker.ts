@@ -1,10 +1,19 @@
 ﻿import { MDCSelect } from '@material/select';
+import { MDCMenuSurface } from '@material/menu-surface';
 
-export function init(elem) {
-    if (!elem) {
+export function init(elem, menuSurfaceElem, dotNetObject) {
+    if (!elem || !menuSurfaceElem) {
         return;
     }
     elem._select = MDCSelect.attachTo(elem);
+    elem._menuSurface = MDCMenuSurface.attachTo(menuSurfaceElem);
+
+    const openCallback = () => {
+        elem._menuSurface.unlisten('MDCMenuSurface:opened', openCallback);
+        dotNetObject.invokeMethodAsync('NotifyOpened');
+    };
+
+    elem._menuSurface.listen('MDCMenuSurface:opened', openCallback);
 }
 
 export function setDisabled(elem, value) {

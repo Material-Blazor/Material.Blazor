@@ -53,6 +53,7 @@ namespace Material.Blazor.Internal
         /// </summary>
         private string CurrentYearIdHelper => (DisplayYear == CurrentYear) ? CurrentYearId : null;
 
+
         private bool ButtonDisabled => (MaxDate < new DateTime(DisplayYear, 1, 1)) || (MinDate > new DateTime(DisplayYear, 12, 31));
 
 
