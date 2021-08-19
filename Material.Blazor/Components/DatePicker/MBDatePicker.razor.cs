@@ -11,8 +11,8 @@ namespace Material.Blazor
     public partial class MBDatePicker : InputComponent<DateTime>
     {
         #region members
-        internal static readonly DateTime MinAllowableDate = DateTime.MinValue.AddMonths(1);
-        internal static readonly DateTime MaxAllowableDate = DateTime.MaxValue.AddMonths(-1);
+        private static readonly DateTime MinAllowableDate = DateTime.MinValue;
+        private static readonly DateTime MaxAllowableDate = DateTime.MaxValue;
 
         private string AdditionalStyle { get; set; } = "";
         private MBDensity AppliedDensity => CascadingDefaults.AppliedSelectDensity(Density);
