@@ -5,6 +5,7 @@ export function init(elem, menuSurfaceElem, dotNetObject) {
     if (!elem || !menuSurfaceElem) {
         return;
     }
+
     elem._select = MDCSelect.attachTo(elem);
     elem._menuSurface = MDCMenuSurface.attachTo(menuSurfaceElem);
 
