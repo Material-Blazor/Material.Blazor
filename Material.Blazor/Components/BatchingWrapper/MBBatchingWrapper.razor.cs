@@ -40,8 +40,8 @@ namespace Material.Blazor
         {
             builder.OpenComponent<CascadingValue<MBBatchingWrapper>>(0);
             builder.AddAttribute(1, nameof(CascadingValue<MBBatchingWrapper>.IsFixed), true);
-            builder.AddAttribute(1, nameof(CascadingValue<MBBatchingWrapper>.Value), this);
-            builder.AddAttribute(1, nameof(CascadingValue<MBBatchingWrapper>.ChildContent), ChildContent);
+            builder.AddAttribute(2, nameof(CascadingValue<MBBatchingWrapper>.Value), this);
+            builder.AddAttribute(3, nameof(CascadingValue<MBBatchingWrapper>.ChildContent), ChildContent);
             builder.CloseComponent();
         }
 
