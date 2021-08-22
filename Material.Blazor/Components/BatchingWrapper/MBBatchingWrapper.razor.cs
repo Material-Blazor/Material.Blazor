@@ -15,13 +15,18 @@ namespace Material.Blazor
     {
         [Inject] private IBatchingJSRuntime InjectedJsRuntime { get; set; }
         [CascadingParameter] private MBDialog ParentDialog { get; set; }
-        private IBatchingJSRuntime BatchingJsRuntime { get; set; }
-
+        
 
         /// <summary>
         /// The child content containing Material.Blazor components whose JS Interop calls are to be batched.
         /// </summary>
         [Parameter] public RenderFragment ChildContent { get; set; }
+
+
+        /// <summary>
+        /// The JS runtime selected for use by the wrapper
+        /// </summary>
+        protected internal IBatchingJSRuntime BatchingJsRuntime { get; set; }
 
 
         protected override void OnInitialized()
@@ -44,6 +49,16 @@ namespace Material.Blazor
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await base.OnAfterRenderAsync(firstRender);
+            await TriggerAsync();
+        }
+
+
+        /// <summary>
+        /// Triggers flushing the batch.
+        /// </summary>
+        /// <returns></returns>
+        internal async Task TriggerAsync()
+        {
             await BatchingJsRuntime.FlushBatchAsync();
         }
     }
