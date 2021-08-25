@@ -28,16 +28,9 @@ namespace Material.Blazor
             {
                 if (value != _itemIndex)
                 {
-                    ItemIndexChanged.InvokeAsync(value);
+                    var direction = (value > _itemIndex) ? SlideDirection.Forwards : SlideDirection.Backwards;
 
-                    SlideDirection direction = (value > _itemIndex) ? SlideDirection.Forwards : SlideDirection.Backwards;
-
-                    if (HasRendered)
-                    {
-                        InvokeAsync(() => SlideToItem(value, direction));
-                    }
-
-                    _itemIndex = value;
+                    _ = InvokeAsync(() => SlideToItem(value, direction));
                 }
             }
         }
@@ -94,27 +87,38 @@ namespace Material.Blazor
         {
             if (index != _itemIndex)
             {
-                string nextClass = "";
-
-                if (direction == SlideDirection.Backwards)
+                if (HasRendered)
                 {
-                    nextClass = InFromLeft;
-                    ContentClass = OutToRight;
+                    string nextClass;
+
+                    if (direction == SlideDirection.Backwards)
+                    {
+                        nextClass = InFromLeft;
+                        ContentClass = OutToRight;
+                    }
+                    else
+                    {
+                        nextClass = InFromRight;
+                        ContentClass = OutToLeft;
+                    }
+
+                    await Task.Delay(100);
+
+                    await ItemIndexChanged.InvokeAsync(index);
+                    _itemIndex = index;
+
+                    HideContent = true;
+                    ContentClass = nextClass;
+                    CurrentItem = Items.ElementAt(index);
+                    HideContent = false;
+
+                    StateHasChanged();
                 }
                 else
                 {
-                    nextClass = InFromRight;
-                    ContentClass = OutToLeft;
+                    await ItemIndexChanged.InvokeAsync(index);
+                    _itemIndex = index;
                 }
-
-                await Task.Delay(100);
-
-                HideContent = true;
-                ContentClass = nextClass;
-                CurrentItem = Items.ElementAt(index);
-                HideContent = false;
-
-                StateHasChanged();
             }
         }
 

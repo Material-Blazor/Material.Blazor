@@ -13,24 +13,20 @@ namespace Material.Blazor
     /// </summary>
     public class MBBatchingWrapper : ComponentBase
     {
-        protected override void BuildRenderTree(RenderTreeBuilder builder)
-        {
-            builder.OpenComponent<CascadingValue<MBBatchingWrapper>>(0);
-            builder.AddAttribute(1, nameof(CascadingValue<MBBatchingWrapper>.IsFixed), true);
-            builder.AddAttribute(1, nameof(CascadingValue<MBBatchingWrapper>.Value), this);
-            builder.AddAttribute(1, nameof(CascadingValue<MBBatchingWrapper>.ChildContent), ChildContent);
-            builder.CloseComponent();
-        }
-
         [Inject] private IBatchingJSRuntime InjectedJsRuntime { get; set; }
-        protected internal IBatchingJSRuntime BatchingJsRuntime { get; set; }
         [CascadingParameter] private MBDialog ParentDialog { get; set; }
-
+        
 
         /// <summary>
         /// The child content containing Material.Blazor components whose JS Interop calls are to be batched.
         /// </summary>
         [Parameter] public RenderFragment ChildContent { get; set; }
+
+
+        /// <summary>
+        /// The JS runtime selected for use by the wrapper
+        /// </summary>
+        protected internal IBatchingJSRuntime BatchingJsRuntime { get; set; }
 
 
         protected override void OnInitialized()
@@ -39,11 +35,31 @@ namespace Material.Blazor
             base.OnInitialized();
         }
 
+
+        protected override void BuildRenderTree(RenderTreeBuilder builder)
+        {
+            builder.OpenComponent<CascadingValue<MBBatchingWrapper>>(0);
+            builder.AddAttribute(1, nameof(CascadingValue<MBBatchingWrapper>.IsFixed), true);
+            builder.AddAttribute(2, nameof(CascadingValue<MBBatchingWrapper>.Value), this);
+            builder.AddAttribute(3, nameof(CascadingValue<MBBatchingWrapper>.ChildContent), ChildContent);
+            builder.CloseComponent();
+        }
+
+
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await base.OnAfterRenderAsync(firstRender);
             await TriggerAsync();
         }
-        internal async Task TriggerAsync() => await BatchingJsRuntime.FlushBatchAsync();
+
+
+        /// <summary>
+        /// Triggers flushing the batch.
+        /// </summary>
+        /// <returns></returns>
+        internal async Task TriggerAsync()
+        {
+            await BatchingJsRuntime.FlushBatchAsync();
+        }
     }
 }
