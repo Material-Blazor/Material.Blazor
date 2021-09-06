@@ -87,6 +87,8 @@ namespace Material.Blazor
                 .AddIf("mdc-button--raised", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MBButtonStyle.ContainedRaised)
                 .AddIf("mdc-button--unelevated", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MBButtonStyle.ContainedUnelevated)
                 .AddIf("mdc-button--outlined", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MBButtonStyle.Outlined)
+                .AddIf("mdc-button--icon-leading", () => !string.IsNullOrWhiteSpace(LeadingIcon))
+                .AddIf("mdc-button--icon-trailing", () => !string.IsNullOrWhiteSpace(TrailingIcon))
                 .AddIf("mdc-card__action mdc-card__action--button", () => (Card != null));
         }
 
