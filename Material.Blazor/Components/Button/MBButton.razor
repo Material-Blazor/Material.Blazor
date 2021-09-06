@@ -3,13 +3,14 @@
 
 <MBTouchTargetWrapper ApplyTouchTargetWrapper="AppliedTouchTarget">
     <button @ref="@ElementReference"
-            class="mdc-button @ActiveConditionalClasses @(@class)"
+            class="mdc-button mdc-button--touch @ActiveConditionalClasses @(@class)"
             style="@style"
             id="@id"
             @attributes="@AttributesToSplat()"
             data-mdc-dialog-action="@DialogAction">
 
-        <div class="mdc-button__ripple" />
+        <span class="mdc-button__ripple" />
+        <span class="mdc-button__touch" />
 
         @if (!string.IsNullOrWhiteSpace(LeadingIcon))
         {

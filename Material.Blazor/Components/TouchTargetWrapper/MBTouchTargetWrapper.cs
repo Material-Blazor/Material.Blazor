@@ -21,7 +21,17 @@ namespace Material.Blazor
                 builder.CloseElement();
             }
         }
+
+
+        /// <summary>
+        /// Determines whether to apply the wrapper.
+        /// </summary>
         [Parameter] public bool ApplyTouchTargetWrapper { get; set; }
+
+
+        /// <summary>
+        /// Child content render fragment.
+        /// </summary>
         [Parameter] public RenderFragment ChildContent { get; set; }
     }
 }
