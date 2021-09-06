@@ -14,6 +14,12 @@ namespace Material.Blazor
         [CascadingParameter] private MBCard Card { get; set; }
 
 
+        /// <summary>
+        /// Inclusion of touch target
+        /// </summary>
+        [Parameter] public bool? TouchTarget { get; set; }
+
+
 #nullable enable annotations
         /// <summary>
         /// The on-state icon's name.
@@ -44,6 +50,7 @@ namespace Material.Blazor
         [Parameter] public MBDensity? Density { get; set; }
 
 
+        private bool AppliedTouchTarget => CascadingDefaults.AppliedTouchTarget(TouchTarget);
         private ElementReference ElementReference { get; set; }
 
         private MBCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityCssClass(CascadingDefaults.AppliedIconButtonDensity(Density));
@@ -57,7 +64,8 @@ namespace Material.Blazor
             ConditionalCssClasses
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
                 .AddIf("mdc-card__action mdc-card__action--icon", () => (Card != null))
-                .AddIf("mdc-icon-button--on", () => Value);
+                .AddIf("mdc-icon-button--on", () => Value)
+                .AddIf("mdc-button--touch", () => AppliedTouchTarget);
 
             SetComponentValue += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
