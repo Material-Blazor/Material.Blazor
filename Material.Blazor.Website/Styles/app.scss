@@ -1,8 +1,15 @@
-﻿@use "@material/theme";
+﻿@use "@material/drawer";
+@use "@material/list";
+@use "@material/theme";
 @use "@material/top-app-bar";
 
-
 @use 'sass:color';
+
+// Unclear whether lines 9 to 12 are required (SZ 6 September 2021 during MT12 migration)
+@include drawer.core-styles;
+@include drawer.dismissible-core-styles;
+@include drawer.modal-core-styles;
+@include list.deprecated-core-styles;
 
 @mixin app-classes() {
     /*
@@ -160,7 +167,7 @@
     /*
         Dynamic link underlining
     */
-    a {
+    a:not(.mdc-list-item) {
         position: relative;
         box-shadow: inset 0 -2px 0 theme.$secondary;
         display: inline-flex;
@@ -170,13 +177,13 @@
         transition: 0.15s ease;
     }
 
-    a:hover {
+    a:not(.mdc-list-item):hover {
         box-shadow: none;
         color: theme.$on-secondary;
         text-decoration: none;
     }
 
-    a::after {
+    a:not(.mdc-list-item)::after {
         content: "";
         background: theme.$secondary;
         position: absolute;
@@ -188,7 +195,7 @@
         transition: 0.15s ease;
     }
 
-    a:hover:after {
+    a:not(.mdc-list-item):hover:after {
         height: 100%;
     }
 

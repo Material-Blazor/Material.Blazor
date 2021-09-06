@@ -1,7 +1,5 @@
 ﻿using Material.Blazor.Internal;
-
 using Microsoft.AspNetCore.Components;
-using System.Threading.Tasks;
 
 namespace Material.Blazor
 {
@@ -10,6 +8,10 @@ namespace Material.Blazor
     /// </summary>
     public partial class MBListItem : ComponentFoundation
     {
+        [CascadingParameter] private MBDrawer Drawer { get; set; }
+        [CascadingParameter] private MBMenu Menu { get; set; }
+
+
 #nullable enable annotations
         /// <summary>
         /// The list item's label
@@ -45,6 +47,15 @@ namespace Material.Blazor
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
+
+            if (Drawer == null && Menu == null)
+            {
+                throw new ArgumentException($"MBListItem must be a child of either an MBDrawer or an MBMenu");
+            }
+            else if (Drawer != null && Menu != null)
+            {
+                throw new ArgumentException($"MBListItem can be a child of only an MBDrawer or an MBMenu but not both");
+            }
 
             ConditionalCssClasses
                 .AddIf("mdc-menu-item--selected", () => IsSelectedMenuItem)
