@@ -2,12 +2,15 @@
 @inherits ComponentFoundation
 
 
-<button @ref="@ElementReference"
-        class="mdc-icon-button @ActiveConditionalClasses @(@class)"
-        style="@style"
-        id="@id"
-        @attributes="@AttributesToSplat()">
+<MBTouchTargetWrapper ApplyTouchTargetWrapper="AppliedTouchTarget">
+    <button @ref="@ElementReference"
+            class="mdc-icon-button @ActiveConditionalClasses @(@class)"
+            style="@style"
+            id="@id"
+            @attributes="@AttributesToSplat()">
 
-    <MBIcon IconFoundry="@IconFoundry"
-            IconName="@Icon" />
-</button>
+        <div class="mdc-icon-button__ripple"></div>
+        <MBIcon IconFoundry="@IconFoundry"
+                IconName="@Icon" />
+    </button>
+</MBTouchTargetWrapper>
