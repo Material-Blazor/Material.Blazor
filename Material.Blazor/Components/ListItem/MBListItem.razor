@@ -2,19 +2,42 @@
 @inherits ComponentFoundation
 
 
-<li class="mdc-list-item @ActiveConditionalClasses @(@class)"
-    style="@style"
-    id="@id"
-    @attributes="@AttributesToSplat()"
-    role="menuitem">
+@if (Drawer != null)
+{
+    <a class="mdc-list-item @ActiveConditionalClasses @(@class)"
+        style="@style"
+        id="@id"
+        @attributes="@AttributesToSplat()">
 
-    @if (LeadingIcon != null)
-    {
-        <span class="mdc-list-item__graphic mdc-menu__selection-group-icon">
-            <MBIcon IconFoundry="@IconFoundry"
+        <span class="mdc-list-item__ripple"></span>
+
+        @if (LeadingIcon != null)
+        {
+            <MBIcon class="mdc-list-item__graphic"
+                    IconFoundry="@IconFoundry"
                     IconName="@LeadingIcon" />
-        </span>
-    }
+        }
 
-    <span class="mdc-list-item__text">@Label</span>
-</li>
+        <span class="mdc-list-item__text">@Label</span>
+    </a>
+}
+else if (Menu != null)
+{
+    <li class="mdc-list-item @ActiveConditionalClasses @(@class)"
+        style="@style"
+        id="@id"
+        @attributes="@AttributesToSplat()"
+        role="menuitem">
+
+        <span class="mdc-list-item__ripple"></span>
+
+        @if (LeadingIcon != null)
+        {
+            <MBIcon class="mdc-list-item__graphic"
+                    IconFoundry="@IconFoundry"
+                    IconName="@LeadingIcon" />
+        }
+
+        <span class="mdc-list-item__text">@Label</span>
+    </li>
+}
