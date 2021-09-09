@@ -74,6 +74,7 @@ namespace Material.Blazor
             ForceShouldRenderToTrue = true;
             IntialValue = Value;
 
+            // Changing the CircularProgressSize after instantiaion is not supported.
             SizeStyle = CircularProgressSize switch
             {
                 MBCircularProgressSize.Small => "height: 24px; width: 24px;",

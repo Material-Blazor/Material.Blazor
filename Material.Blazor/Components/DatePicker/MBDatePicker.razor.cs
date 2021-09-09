@@ -166,6 +166,10 @@ namespace Material.Blazor
 
             OnDisabledSet += OnDisabledSetCallback;
 
+            // SupressDefaultDate is only used here and not in SetParametersAsync
+            // therefore a change will not be detected (and makes little sense
+            // for the component).
+
             if (SupressDefaultDate && (Value == default))
             {
                 AdditionalStyle = invisibleText;
