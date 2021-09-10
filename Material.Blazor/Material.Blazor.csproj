@@ -86,6 +86,12 @@
         <InputStaticAssetsStyles Include="components\**\*.scss;styles\**\*.scss;" />
         <OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css;wwwroot\material-components-web.css;wwwroot\material-components-web.min.css" />
         <Content Remove="@(OutputStaticAssetsStyles)" />
+        <Content Remove="wwwroot\material.blazor.js" />
+        <Content Remove="wwwroot\material.blazor.min.css" />
+        <Content Remove="wwwroot\material.blazor.css" />
+        <Content Remove="wwwroot\material.blazor.min.js" />
+        <Content Remove="wwwroot\material-components-web.min.css" />
+        <Content Remove="wwwroot\material-components-web.css" />
         <Content Include="@(OutputStaticAssetsStyles)" />
     </ItemGroup>
 

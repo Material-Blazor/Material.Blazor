@@ -11,13 +11,13 @@ namespace Material.Blazor
     public partial class MBDivider : ComponentFoundation
     {
         /// <summary>
-        /// Material Theme "mdc-list-divider--inset" if True.
+        /// Material Theme "mdc-deprecated-list-divider--inset" if True.
         /// </summary>
         [Parameter] public bool Inset { get; set; }
 
 
         /// <summary>
-        /// Material Theme "mdc-list-divider--padded" if True.
+        /// Material Theme "mdc-deprecated-list-divider--padded" if True.
         /// </summary>
         [Parameter] public bool Padded { get; set; }
 
@@ -28,8 +28,8 @@ namespace Material.Blazor
             await base.OnInitializedAsync();
 
             ConditionalCssClasses
-                .AddIf("mdc-list-divider--inset", () => Inset)
-                .AddIf("mdc-list-divider--padded", () => Padded);
+                .AddIf("mdc-deprecated-list-divider--inset", () => Inset)
+                .AddIf("mdc-deprecated-list-divider--padded", () => Padded);
         }
 
     }

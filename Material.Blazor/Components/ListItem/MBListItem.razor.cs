@@ -59,7 +59,7 @@ namespace Material.Blazor
 
             ConditionalCssClasses
                 .AddIf("mdc-menu-item--selected", () => IsSelectedMenuItem)
-                .AddIf("mdc-list-item--disabled mb-list-item--disabled", () => AppliedDisabled);
+                .AddIf("mdc-deprecated-list-item--disabled mb-list-item--disabled", () => AppliedDisabled);
         }
     }
 }

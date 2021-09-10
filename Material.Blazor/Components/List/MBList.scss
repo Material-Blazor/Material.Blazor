@@ -1,6 +1,6 @@
 ﻿@use "@material/list";
 
-.mdc-list {
+.mdc-deprecated-list {
     &.dense--5,
     &.dense--4 {
         @include list.deprecated-single-line-density(-4);
@@ -27,19 +27,19 @@
 }
 
 
-.mb-list--three-line .mdc-list-item__text {
+.mb-list--three-line .mdc-deprecated-list-item__text {
     align-self: flex-start
 }
 
-.mb-list--three-line .mdc-list-item {
+.mb-list--three-line .mdc-deprecated-list-item {
     height: 88px
 }
 
-.mb-list--three-line.mdc-list--dense .mdc-list-item, .mdc-list--avatar-list.mdc-list--dense .mdc-list-item {
+.mb-list--three-line.mdc-deprecated-list--dense .mdc-deprecated-list-item, .mdc-deprecated-list--avatar-list.mdc-deprecated-list--dense .mdc-deprecated-list-item {
     height: 72px
 }
 
-.mdc-list-item__secondary-text.line-three {
+.mdc-deprecated-list-item__secondary-text.line-three {
     margin-top: -4px;
 }
 

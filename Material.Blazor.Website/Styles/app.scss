@@ -167,7 +167,7 @@
     /*
         Dynamic link underlining
     */
-    a:not(.mdc-list-item) {
+    a:not(.mdc-deprecated-list-item) {
         position: relative;
         box-shadow: inset 0 -2px 0 theme.$secondary;
         display: inline-flex;
@@ -177,13 +177,13 @@
         transition: 0.15s ease;
     }
 
-    a:not(.mdc-list-item):hover {
+    a:not(.mdc-deprecated-list-item):hover {
         box-shadow: none;
         color: theme.$on-secondary;
         text-decoration: none;
     }
 
-    a:not(.mdc-list-item)::after {
+    a:not(.mdc-deprecated-list-item)::after {
         content: "";
         background: theme.$secondary;
         position: absolute;
@@ -195,7 +195,7 @@
         transition: 0.15s ease;
     }
 
-    a:not(.mdc-list-item):hover:after {
+    a:not(.mdc-deprecated-list-item):hover:after {
         height: 100%;
     }
 

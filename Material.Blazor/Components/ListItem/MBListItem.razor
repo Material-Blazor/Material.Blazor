@@ -4,40 +4,40 @@
 
 @if (Drawer != null)
 {
-    <a class="mdc-list-item @ActiveConditionalClasses @(@class)"
+    <a class="mdc-deprecated-list-item @ActiveConditionalClasses @(@class)"
         style="@style"
         id="@id"
         @attributes="@AttributesToSplat()">
 
-        <span class="mdc-list-item__ripple"></span>
+        <span class="mdc-deprecated-list-item__ripple"></span>
 
         @if (LeadingIcon != null)
         {
-            <MBIcon class="mdc-list-item__graphic"
+            <MBIcon class="mdc-deprecated-list-item__graphic"
                     IconFoundry="@IconFoundry"
                     IconName="@LeadingIcon" />
         }
 
-        <span class="mdc-list-item__text">@Label</span>
+        <span class="mdc-deprecated-list-item__text">@Label</span>
     </a>
 }
 else if (Menu != null)
 {
-    <li class="mdc-list-item @ActiveConditionalClasses @(@class)"
+    <li class="mdc-deprecated-list-item @ActiveConditionalClasses @(@class)"
         style="@style"
         id="@id"
         @attributes="@AttributesToSplat()"
         role="menuitem">
 
-        <span class="mdc-list-item__ripple"></span>
+        <span class="mdc-deprecated-list-item__ripple"></span>
 
         @if (LeadingIcon != null)
         {
-            <MBIcon class="mdc-list-item__graphic"
+            <MBIcon class="mdc-deprecated-list-item__graphic"
                     IconFoundry="@IconFoundry"
                     IconName="@LeadingIcon" />
         }
 
-        <span class="mdc-list-item__text">@Label</span>
+        <span class="mdc-deprecated-list-item__text">@Label</span>
     </li>
 }

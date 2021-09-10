@@ -434,12 +434,12 @@ namespace Material.Blazor
         Regular,
 
         /// <summary>
-        /// Applies the mdc-list--dense CSS class.
+        /// Applies the mdc-deprecated-list--dense CSS class.
         /// </summary>
         Dense,
 
         /// <summary>
-        /// Applies the mdc-list--avatar CSS class.
+        /// Applies the mdc-deprecated-list--avatar CSS class.
         /// </summary>
         Avatar
     }
