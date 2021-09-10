@@ -49,11 +49,11 @@ async function capture(page, site, prefix) {
     const siteCount = await page.evaluate(() => {
         document.body.style.backgroundColor = 'transparent';
         console.log(document.location);
-        return Promise.resolve(document.querySelectorAll('app > aside > * > * > li').length);
+        return Promise.resolve(document.querySelectorAll('app > aside > * > * > *').length);
     });
     for (let i = 0; i < siteCount; ++i) {
         await page.evaluate((i) => {
-            const site = document.querySelectorAll('app > aside > * > * > li')[i];
+            const site = document.querySelectorAll('app > aside > * > * > *')[i];
             site.click();
         }, i);
         await new Promise(r => setTimeout(r, 400));
