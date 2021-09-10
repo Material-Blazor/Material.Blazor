@@ -298,7 +298,7 @@ jobs:
     name: Deploy to GitHub pages
     needs: [test, build-documentation, build-website, permissions, is-on-fork]
 
-    if: (needs.permissions.outputs.has-permission)
+#    if: (needs.permissions.outputs.has-permission)
 
     runs-on: ubuntu-latest
 
