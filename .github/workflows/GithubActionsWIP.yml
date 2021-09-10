@@ -261,29 +261,6 @@ jobs:
 
 
 ############################################################################################################
-# permission check
-# On forks, we want to limit deploy-on-PR to users with write permission on the fork.
-# This step will set the output variable has-permission to true/false accordingly.
-# In any job that requires the permission, simply
-# - add `needs: [permissions]`
-# - add `if: needs.permissions.outputs.has-permission`
-############################################################################################################
-  permissions:
-    name: Check permissions
-    runs-on: ubuntu-latest
-    steps:
-      # Check for write permission
-      - name: Check user permission
-        id: check
-        uses: scherermichael-oss/action-has-permission@master
-        with:
-          required-permission: write
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    outputs:
-      has-permission: ${{ steps.check.outputs.has-permission }}
-
-############################################################################################################
 # deployghpages
 # We deploy to GH pages in the following conditions
 # - on any fork on push
@@ -296,9 +273,7 @@ jobs:
 ############################################################################################################
   deployghpages:
     name: Deploy to GitHub pages
-    needs: [test, build-documentation, build-website, permissions, is-on-fork]
-
-#    if: (needs.permissions.outputs.has-permission)
+    needs: [test, build-documentation, build-website, is-on-fork]
 
     runs-on: ubuntu-latest
 
@@ -350,7 +325,7 @@ jobs:
 ############################################################################################################
   deployghpages-mbcurrent:
     name: Deploy to GitHub pages (Material-Blazor/Material.Blazor.Current)
-    needs: [test, build-documentation, build-website, permissions, is-on-material-blazor]
+    needs: [test, build-documentation, build-website, is-on-material-blazor]
     if: (github.event_name == 'push')
 
     runs-on: ubuntu-latest
