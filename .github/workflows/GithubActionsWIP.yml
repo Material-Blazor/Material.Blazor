@@ -443,19 +443,14 @@ jobs:
             dd if=meta_report.md of=trimmed_meta_report.md bs=1 count=$remaining_bytes
             cat trimmed_meta_report.md tail.md > meta_report.md
         fi
-    - name: Upload comparison artifact
+    - name: Upload comparison & report artifact
       uses: actions/upload-artifact@v2
       with:
-        name: comparison
+        name: comparison_report
         path: |
             comparison.log
             *.html
             *.png
-    - name: Upload report artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: report
-        path: |
             report*.md
             all_reports.md
     - name: Create issue from file
