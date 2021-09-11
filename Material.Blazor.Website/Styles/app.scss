@@ -5,12 +5,6 @@
 
 @use 'sass:color';
 
-// Unclear whether lines 9 to 12 are required (SZ 6 September 2021 during MT12 migration)
-@include drawer.core-styles;
-@include drawer.dismissible-core-styles;
-@include drawer.modal-core-styles;
-@include list.deprecated-core-styles;
-
 @mixin app-classes() {
     /*
      * App layout styling

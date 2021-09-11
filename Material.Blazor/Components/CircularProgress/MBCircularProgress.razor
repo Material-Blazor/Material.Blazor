@@ -1,10 +1,7 @@
 ﻿@namespace Material.Blazor
 
 @inherits InputComponent<double>
-@*
-    DO NOT UNDER ANY CIRCUMSTANCES CHANGE THE DIV SPACING!
-    MATERIAL THEME INDICATE THAT THIS GIVES UNPREDICTABLE RESULTS
-*@
+
 <div @ref="@ElementReference"
      class="mdc-circular-progress @ActiveConditionalClasses @(@class)"
      style="@SizeStyle @style"
@@ -22,9 +19,11 @@
         <div class="mdc-circular-progress__spinner-layer">
             <div class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-left">
                 @SVGIndeterminate
-            </div><div class="mdc-circular-progress__gap-patch">
+            </div>
+            <div class="mdc-circular-progress__gap-patch">
                 @SVGIndeterminate
-            </div><div class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-right">
+            </div>
+            <div class="mdc-circular-progress__circle-clipper mdc-circular-progress__circle-right">
                 @SVGIndeterminate
             </div>
         </div>
