@@ -1,63 +1,57 @@
-//
-// Copyright 2017 Google Inc.
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
-//
-
 @use '@material/banner/styles' as banner-styles;
-@use '@material/button/mdc-button';
-@use '@material/card/mdc-card';
-@use '@material/checkbox/mdc-checkbox';
+@use '@material/button/styles' as button-styles;
+@use '@material/card';
+@use '@material/checkbox';
 @use '@material/chips/deprecated/mdc-chips';
 @use '@material/circular-progress/mdc-circular-progress';
 // Select's styles must be emitted before datatable's due to equal specificity.
-@use '@material/select/mdc-select';
-@use '@material/data-table/mdc-data-table';
-@use '@material/dialog/mdc-dialog';
-@use '@material/drawer/mdc-drawer';
+@use '@material/select/styles' as select-styles;
+@use '@material/data-table/data-table';
+@use '@material/dialog';
+@use '@material/drawer';
 @use '@material/elevation/mdc-elevation';
-@use '@material/fab/mdc-fab';
+@use '@material/fab';
 @use '@material/floating-label/mdc-floating-label';
-@use '@material/form-field/mdc-form-field';
-@use '@material/icon-button/mdc-icon-button';
+@use '@material/form-field';
+@use '@material/icon-button';
 @use '@material/image-list/mdc-image-list';
 @use '@material/layout-grid/mdc-layout-grid';
 @use '@material/line-ripple/mdc-line-ripple';
-@use '@material/linear-progress/mdc-linear-progress';
-@use '@material/list/mdc-list';
+@use '@material/linear-progress';
+@use '@material/list';
 @use '@material/menu/mdc-menu';
 @use '@material/menu-surface/mdc-menu-surface';
 @use '@material/notched-outline/mdc-notched-outline';
-@use '@material/radio/mdc-radio';
-@use '@material/ripple/mdc-ripple';
+@use '@material/radio/styles' as radio-styles;
+@use '@material/ripple';
+@use '@material/ripple/common';
 @use '@material/segmented-button/styles' as segmented-button-styles;
 @use '@material/slider/styles' as slider-styles;
-@use '@material/snackbar/mdc-snackbar';
+@use '@material/snackbar';
 // Use new switch
 // @use '@material/switch/deprecated/mdc-switch';
-@use '@material/switch/styles';
+@use '@material/switch/styles' as switch-styles;
 @use '@material/tab/mdc-tab';
 @use '@material/tab-bar/mdc-tab-bar';
 @use '@material/tab-indicator/mdc-tab-indicator';
 @use '@material/tab-scroller/mdc-tab-scroller';
-@use '@material/textfield/mdc-text-field';
+@use '@material/textfield';
 @use '@material/theme/mdc-theme';
 @use '@material/tooltip/styles' as tooltip-styles;
 @use '@material/top-app-bar/mdc-top-app-bar';
 @use '@material/typography/mdc-typography';
+
+@include card.core-styles;
+@include checkbox.core-styles;
+@include data-table.core-styles;
+@include data-table.theme-baseline;
+@include dialog.core-styles;
+@include drawer.core-styles;
+@include drawer.dismissible-core-styles;
+@include drawer.modal-core-styles;
+@include fab.core-styles;
+@include form-field.core-styles;
+@include icon-button.core-styles;
+@include linear-progress.core-styles;
+@include list.deprecated-core-styles;
+@include textfield.core-styles;
