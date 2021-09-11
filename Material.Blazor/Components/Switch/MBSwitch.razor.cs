@@ -1,6 +1,5 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
-using System.Threading.Tasks;
 
 namespace Material.Blazor
 {
@@ -24,11 +23,20 @@ namespace Material.Blazor
             await base.OnInitializedAsync();
 
             ConditionalCssClasses
-                .AddIf("mdc-switch--disabled", () => AppliedDisabled)
-                .AddIf("mdc-switch--checked", () => ComponentValue);
+                .AddIf("mdc-switch--unselected", () => !ComponentValue)
+                .AddIf("mdc-switch--selected", () => ComponentValue);
 
             SetComponentValue += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
+        }
+
+
+        /// <summary>
+        /// Toggles Value when the button is clicked.
+        /// </summary>
+        private void ToggleOnClick()
+        {
+            ComponentValue = !ComponentValue;
         }
 
 

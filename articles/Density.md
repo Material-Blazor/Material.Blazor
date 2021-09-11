@@ -46,6 +46,7 @@ a specified density of minus 5 will actually display with a density of minus 3.
 | [MBRadioButton](xref:C.MBRadioButton) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
 | [MBRadioButtonGroup](xref:C.MBRadioButtonGroup) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | :x: |
 | [MBSelect](xref:C.MBSelect) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :x: |
+| [MBSwitch](xref:C.MBSwitch)[<sup>2</sup>](#fn2) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |
 | [MBTabBar](xref:C.MBTabBar) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
 | [MBTextArea](xref:C.MBTextArea) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :x: |
 | [MBTextField](xref:C.MBTextField) | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :heavy_check_mark:[<sup>1</sup>](#fn1) | :x: |
@@ -53,3 +54,4 @@ a specified density of minus 5 will actually display with a density of minus 3.
 <br />
 
 **1<a name="fn1"></a>**: Filled text fields, text areas and selects with density of -2 or below hide lables with `display: none;` due to a lack of space. Labels remain in the DOM for aria reference.
+**2<a name="fn2"></a>**: As of Material Components Web v12.0.0 and therefore Material.Blazor 2.0.0 switch density seems to be deprecated.

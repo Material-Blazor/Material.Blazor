@@ -59,6 +59,7 @@
       <Content Remove="wwwroot\css\light-square-theme.min.css" />
       <Content Remove="wwwroot\css\material-default-theme.min.css" />
       <Content Remove="wwwroot\css\rounded-theme.min.css" />
+      <InputStaticAssetsStyles Remove="Styles\material-components-web.scss" />
       <Content Include="@(OutputStaticAssetsStyles)" />
   </ItemGroup>
 
