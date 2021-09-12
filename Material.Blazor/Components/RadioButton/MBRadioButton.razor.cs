@@ -46,6 +46,7 @@ namespace Material.Blazor
 
         private ElementReference FormReference { get; set; }
         private bool InputDisabled { get; set; }
+        private bool IsChecked { get; set; }
         private ElementReference RadioButtonReference { get; set; }
         private string DisabledClass { get; set; } = "";
 
@@ -62,6 +63,7 @@ namespace Material.Blazor
                 .AddIf("mdc-checkbox--disabled", () => AppliedDisabled);
 
             InputDisabled = AppliedDisabled;
+            IsChecked = ComponentValue != null && ComponentValue.Equals(TargetCheckedValue);
 
             ForceShouldRenderToTrue = true;
 

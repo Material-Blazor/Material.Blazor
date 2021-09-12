@@ -4,26 +4,29 @@
 @typeparam TItem
 
 
-<div @ref="@FormReference" class="mdc-form-field">
+<div class="mdc-touch-target-wrapper">
+    <div @ref="@FormReference" class="mdc-form-field">
 
-    <div @ref="@RadioButtonReference" 
-         class="mdc-radio mdc-radio--touch @ActiveConditionalClasses @(@class)"
-         style="@style"
-         id="@id"
-         @attributes="@AttributesToSplat()">
+        <div @ref="@RadioButtonReference" 
+             class="mdc-radio mdc-radio--touch @ActiveConditionalClasses @(@class)"
+             style="@style"
+             id="@id"
+             @attributes="@AttributesToSplat()">
 
-        <input class="mdc-radio__native-control"
-               type="radio"
-               id="@radioId"
-               name="@RadioGroupName"
-               disabled="@InputDisabled"
-               @onclick="@OnInternalItemClick">
+            <input class="mdc-radio__native-control"
+                   checked="@IsChecked"
+                   disabled="@InputDisabled"
+                   id="@radioId"
+                   name="@RadioGroupName"
+                   type="radio"
+                   @onclick="@OnInternalItemClick">
 
-        <div class="mdc-radio__background">
-            <div class="mdc-radio__outer-circle"></div>
-            <div class="mdc-radio__inner-circle"></div>
+            <div class="mdc-radio__background">
+                <div class="mdc-radio__outer-circle"></div>
+                <div class="mdc-radio__inner-circle"></div>
+            </div>
+            <div class="mdc-radio__ripple"></div>
         </div>
-        <div class="mdc-radio__ripple"></div>
+        <label for="@radioId">@Label</label>
     </div>
-    <label for="@radioId">@Label</label>
 </div>
