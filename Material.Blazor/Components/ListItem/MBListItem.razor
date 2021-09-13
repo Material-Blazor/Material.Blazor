@@ -32,7 +32,7 @@ else if (Menu != null)
 
         <span class="mdc-deprecated-list-item__ripple"></span>
 
-        @if (LeadingIcon != null)
+        @if (LeadingIcon != null && IsSelectedMenuItem)
         {
             <span class="mdc-deprecated-list-item__graphic mdc-menu__selection-group-icon">
                 <MBIcon IconFoundry="@IconFoundry"
@@ -40,6 +40,6 @@ else if (Menu != null)
             </span>
         }
 
-        <span class="mdc-deprecated-list-item__text">@Label</span>
+        <span class="mdc-deprecated-list-item__text">@Label @IsSelectedMenuItem</span>
     </li>
 }

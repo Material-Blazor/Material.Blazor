@@ -28,7 +28,7 @@ namespace Material.Blazor
         /// <summary>
         /// Determined whether the list item is in an menu and is in the selected state
         /// </summary>
-        [Parameter] public bool IsSelectedMenuItem { get; set; }
+        [Parameter] public bool IsSelectedMenuItem { get; set; } = true;
 
 
         /// <summary>
