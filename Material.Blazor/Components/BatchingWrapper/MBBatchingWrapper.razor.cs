@@ -61,5 +61,16 @@ namespace Material.Blazor
         {
             await BatchingJsRuntime.FlushBatchAsync();
         }
+
+
+        /// <summary>
+        /// Calls <code>StateHasChanged()</code>. Used by <code>BatchingJsRuntime</code> during calls
+        /// to <code>InvokeVoidAsync</code> to ensure that the batch is flushed after all items have
+        /// been added to the batch.
+        /// </summary>
+        internal void InvokeStateHasChanged()
+        {
+            _ = InvokeAsync(StateHasChanged);
+        }
     }
 }
