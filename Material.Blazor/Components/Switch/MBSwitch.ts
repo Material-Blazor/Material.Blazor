@@ -1,18 +1,18 @@
 ﻿import { MDCSwitch } from '@material/switch';
 
-export function init(elem, checked) {
+export function init(elem, selected) {
     if (!elem) {
         return;
     }
     elem._switch = MDCSwitch.attachTo(elem);
-    elem._switch.checked = checked;
+    elem._switch.selected = selected;
 }
 
-export function setChecked(elem, checked) {
+export function setSelected(elem, selected) {
     if (!elem) {
         return;
     }
-    elem._switch.checked = checked;
+    elem._switch.selected = selected;
 }
 
 export function setDisabled(elem, disabled) {
