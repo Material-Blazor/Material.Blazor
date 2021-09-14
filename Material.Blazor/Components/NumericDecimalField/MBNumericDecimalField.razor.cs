@@ -191,6 +191,12 @@ namespace Material.Blazor
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override async Task OnInitializedAsync()
         {
+            //  Note the use of multiple parameters that presume invariance during the
+            //  life of this component.
+            //      DecimalPlaces
+            //      FocusedMagnitude
+            //      Min
+            //      UnfocusedMagnitude
             await base.OnInitializedAsync();
 
             var allowSign = !(Min != null && Min >= 0);
