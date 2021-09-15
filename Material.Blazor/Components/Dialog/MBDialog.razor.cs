@@ -142,7 +142,7 @@ namespace Material.Blazor
         {
             try
             {
-                await InvokeVoidAsync("MaterialBlazor.MBDialog.show", DialogElem, ObjectReference, EscapeKeyAction, ScrimClickAction);
+                await InvokeBatchingJsVoidAsync("MaterialBlazor.MBDialog.show", DialogElem, ObjectReference, EscapeKeyAction, ScrimClickAction);
             }
             catch
             {
@@ -157,7 +157,7 @@ namespace Material.Blazor
         /// </summary>
         public async Task HideAsync()
         {
-            await InvokeVoidAsync("MaterialBlazor.MBDialog.hide", DialogElem);
+            await InvokeBatchingJsVoidAsync("MaterialBlazor.MBDialog.hide", DialogElem);
             IsOpen = false;
             await InvokeAsync(StateHasChanged);
         }

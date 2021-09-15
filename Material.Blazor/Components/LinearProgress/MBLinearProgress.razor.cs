@@ -76,10 +76,10 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback() => InvokeAsync(() => InvokeVoidAsync("MaterialBlazor.MBLinearProgress.setProgress", ElementReference, Value, MyBufferValue));
+        protected void OnValueSetCallback() => InvokeAsync(() => InvokeBatchingJsVoidAsync("MaterialBlazor.MBLinearProgress.setProgress", ElementReference, Value, MyBufferValue));
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => InvokeVoidAsync("MaterialBlazor.MBLinearProgress.init", ElementReference, Value, MyBufferValue);
+        private protected override Task InstantiateMcwComponent() => InvokeBatchingJsVoidAsync("MaterialBlazor.MBLinearProgress.init", ElementReference, Value, MyBufferValue);
 
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -88,7 +88,7 @@ namespace Material.Blazor
             if (cachedLinearProgressType != LinearProgressType)
             {
                 cachedLinearProgressType = LinearProgressType;
-                await InvokeVoidAsync("MaterialBlazor.MBLinearProgress.restartAnimation", ElementReference);
+                await InvokeBatchingJsVoidAsync("MaterialBlazor.MBLinearProgress.restartAnimation", ElementReference);
             }
         }
     }

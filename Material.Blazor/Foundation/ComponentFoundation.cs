@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
+using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
@@ -25,6 +26,7 @@ namespace Material.Blazor.Internal
         private bool? disabled = null;
 
         [Inject] private IBatchingJSRuntime InjectedJsRuntime { get; set; }
+        [Inject] private IJSRuntime VanillaJsRuntime { get; set; }
         protected IBatchingJSRuntime BatchingJsRuntime { get; set; }
         [CascadingParameter] private MBDialog ParentDialog { get; set; }
         [Inject] private protected ILogger<ComponentFoundation> Logger { get; set; }
@@ -291,11 +293,22 @@ namespace Material.Blazor.Internal
         /// <param name="identifier"></param>
         /// <param name="args"></param>
         /// <returns></returns>
-        private protected Task InvokeVoidAsync(string identifier, params object[] args)
+        private protected async Task InvokeBatchingJsVoidAsync(string identifier, params object[] args)
         {
-            return BatchingJsRuntime.InvokeVoidAsync(BatchingWrapper, identifier, args);
+            await BatchingJsRuntime.InvokeVoidAsync(BatchingWrapper, identifier, args).ConfigureAwait(false);
         }
 
+
+        /// <summary>
+        /// Wraps calls to <see cref="InjectedJsRuntime.InvokeVoidAsync"/>.
+        /// </summary>
+        /// <param name="identifier"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        private protected async Task InvokeVanillaJsVoidAsync(string identifier, params object[] args)
+        {
+            await VanillaJsRuntime.InvokeVoidAsync(identifier, args).ConfigureAwait(false);
+        }
         #endregion
 
         #region OnAfterRender
