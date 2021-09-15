@@ -1,4 +1,6 @@
-﻿namespace Material.Blazor.Internal
+﻿using System.Threading.Tasks;
+
+namespace Material.Blazor.Internal
 {
     internal class DialogAwareBatchingJSRuntime : IBatchingJSRuntime
     {
