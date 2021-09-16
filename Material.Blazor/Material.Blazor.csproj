@@ -44,9 +44,9 @@
 
     <!-- Conditionally obtain references for the .NET Framework 6.0 target -->
     <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
-        <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.0-preview.7.21378.6" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0-preview.7.21378.6" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0-preview.7.21377.19" />
+        <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.0-rc.1.21452.15" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0-rc.1.21452.15" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0-rc.1.21451.13" />
     </ItemGroup>
 
     <!-- Conditionally obtain references for the .NET Framework 5.0 target -->
@@ -63,19 +63,23 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Update="Scripts\MaterialBlazor.ts">
+        <None Update="Scripts\material.blazor.ts">
             <SubType>Code</SubType>
         </None>
     </ItemGroup>
 
     <ItemGroup>
         <InputStaticAssetsScripts Include="components\**\*.ts;scripts\**\*.ts" />
-        <OutputStaticAssetsScripts Include="wwwroot\materialblazor.js;wwwroot\materialblazor.min.js" />
+        <OutputStaticAssetsScripts Include="wwwroot\material.blazor.js;wwwroot\material.blazor.min.js" />
+        <Content Remove="@(OutputStaticAssetsScripts)" />
+        <Content Include="@(OutputStaticAssetsScripts)" />
     </ItemGroup>
 
     <ItemGroup>
         <InputStaticAssetsStyles Include="components\**\*.scss;styles\**\*.scss;" />
-        <OutputStaticAssetsStyles Include="wwwroot\materialblazor.css;wwwroot\materialblazor.min.css;wwwroot\material.css;wwwroot\material.min.css" />
+        <OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css;wwwroot\material-components-web.css;wwwroot\material-components-web.min.css" />
+        <Content Remove="@(OutputStaticAssetsStyles)" />
+        <Content Include="@(OutputStaticAssetsStyles)" />
     </ItemGroup>
 
     <ItemGroup>
@@ -186,7 +190,7 @@
         <Delete Files="wwwroot\intermediate.js" />
 
 
-        <DeduplicateLicenseHeaders SourceFile="wwwroot\MaterialBlazor.min.js" />
+        <DeduplicateLicenseHeaders SourceFile="wwwroot\material.blazor.min.js" />
 
     </Target>
 

@@ -209,7 +209,7 @@ jobs:
       if: github.event_name != 'workflow_dispatch'
 
 ############################################################################################################
-# Build package
+# Build nuget package
 # This is hard-skipped when we only want to perform a comparison (github.event_name != 'workflow_dispatch')
 ############################################################################################################
   build-package:
@@ -337,7 +337,7 @@ jobs:
 
     # this step deploys to the current repo's gh-pages branch
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.1.0
+      uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
         token: ${{secrets.GH_PAT}}
         branch: gh-pages
@@ -385,7 +385,7 @@ jobs:
 
     # this step deploys to Material-Blazor/Material.Blazor.Current when we are in the main repo
     - name: Deploy 🚀
-      uses: JamesIves/github-pages-deploy-action@4.1.0
+      uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
         token: ${{secrets.GH_PAT}}
         branch: gh-pages
@@ -421,6 +421,7 @@ jobs:
         sed -i 's/[a-f0-9]\{8\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{4\}-[a-f0-9]\{12\}/guid/g' *.html
         sed -i 's/mb-tooltip-[0-9]*/mb-tooltip-id/g' *.html
         sed -i 's/b-[0-9a-z]*/b-id/g' *.html
+        sed -i 's/_bl_[0-9]*/_bl_id/g' *.html
         sed -i 's/<strong>.*-ci..*<\/strong>//' *.html
         sed -i 's/base href.*//' *.html
     # We only want to see the differences, so we run diff with -d

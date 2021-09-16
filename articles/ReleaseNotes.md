@@ -18,8 +18,11 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 <br />
 
 
-#### [2.0.0-preview.7](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.5)
+#### [2.0.0-preview.8](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.5)
 NOT YET RELEASED
+
+#### [2.0.0-preview.7](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.5)
+2021-08-19
 
 **Updates**
 
@@ -33,11 +36,14 @@ NOT YET RELEASED
 
 - MBList Actions parameter is renamed to SecondaryActions.
 
+- The names of the JavaScript & CSS resources have changed in this preview. See the installation article for details.
+
 **Known issues**
 
 - MBDatePicker does not render a value if it is started with a Value of default 
 
-- MBBatchingWrapper does not work inside a dialog or with content that includes MBSlidingContent
+- MBBatchingWrapper does not work inside a dialog or with content that includes MBSlidingContent.
+ This is an experimental component and we do not recommend its use.
 
 
 #### [2.0.0-preview.6](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.5)

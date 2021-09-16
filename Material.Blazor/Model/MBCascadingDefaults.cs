@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -331,6 +332,36 @@ namespace Material.Blazor
         /// <param name="criteria">The criteria style parameter passed to the <see cref="MBDatePicker"/></param>
         /// <returns>The <see cref="MBDateSelectionCriteria"/> to apply.</returns>
         internal MBDateSelectionCriteria AppliedDateSelectionCriteria(MBDateSelectionCriteria? criteria = null) => criteria ?? DateSelectionCriteria;
+
+
+
+        private DateTime datePickerDefaultMinDate = MBDatePicker.MinAllowableDate;
+        /// <summary>
+        /// The default minimum date <see cref="MBDatePicker"/>.
+        /// </summary>
+        public DateTime DatePickerDefaultMinDate { get => datePickerDefaultMinDate; set => SetParameter(ref datePickerDefaultMinDate, value); }
+
+        /// <summary>
+        /// The minimum date to apply to a <see cref="MBDatePicker"/>.
+        /// </summary>
+        /// <param name="criteria">The criteria style parameter passed to the <see cref="MBDatePicker"/></param>
+        /// <returns>The <see cref="MBDateSelectionCriteria"/> to apply.</returns>
+        internal DateTime AppliedDatePickerDefaultMinDate(DateTime minDate) => minDate == default || minDate <= MBDatePicker.MinAllowableDate ? DatePickerDefaultMinDate : minDate;
+
+
+
+        private DateTime datePickerDefaultMaxDate = MBDatePicker.MaxAllowableDate;
+        /// <summary>
+        /// The default maximum date <see cref="MBDatePicker"/>.
+        /// </summary>
+        public DateTime DatePickerDefaultMaxDate { get => datePickerDefaultMaxDate; set => SetParameter(ref datePickerDefaultMaxDate, value); }
+
+        /// <summary>
+        /// The maximum date to apply to a <see cref="MBDatePicker"/>.
+        /// </summary>
+        /// <param name="criteria">The criteria style parameter passed to the <see cref="MBDatePicker"/></param>
+        /// <returns>The <see cref="MBDateSelectionCriteria"/> to apply.</returns>
+        internal DateTime AppliedDatePickerDefaultMaxDate(DateTime maxDate) => maxDate == default || maxDate >= MBDatePicker.MaxAllowableDate ? DatePickerDefaultMaxDate : maxDate;
 
 
 

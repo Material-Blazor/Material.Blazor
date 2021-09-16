@@ -30,18 +30,20 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="package-lock.json" />
     <Content Remove="package.json" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="package-lock.json" />
     <None Include="package.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.0-preview.7.21378.6" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0-preview.7.21378.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.0-rc.1.21452.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0-rc.1.21452.15" />
     <PackageReference Include="Nager.Date" Version="1.29.2" />
-    <PackageReference Include="System.Net.Http.Json" Version="6.0.0-preview.7.21377.19" />
+    <PackageReference Include="System.Net.Http.Json" Version="6.0.0-rc.1.21451.13" />
   </ItemGroup>
 
   <ItemGroup>
@@ -54,8 +56,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <InputStaticAssetsStyles Include="styles\*.scss;" />
-    <OutputStaticAssetsStyles Include="wwwroot\css\asymmetric-theme.min.css;wwwroot\css\dark-square-theme.min.css;wwwroot\css\light-square-theme.min.css;wwwroot\css\material-default-theme.min.css;wwwroot\css\rounded-theme.min.css;" />
+      <InputStaticAssetsStyles Include="styles\*.scss;" />
+      <OutputStaticAssetsStyles Include="wwwroot\css\asymmetric-theme.min.css;wwwroot\css\dark-square-theme.min.css;wwwroot\css\light-square-theme.min.css;wwwroot\css\material-default-theme.min.css;wwwroot\css\rounded-theme.min.css;" />
+      <Content Remove="@(OutputStaticAssetsStyles)" />
+      <Content Include="@(OutputStaticAssetsStyles)" />
   </ItemGroup>
 
   <ItemGroup>

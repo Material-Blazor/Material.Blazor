@@ -434,8 +434,11 @@ namespace Material.Blazor
                                         if (columnDefinition.BackgroundColorExpression != null)
                                         {
                                             var value = columnDefinition.BackgroundColorExpression(rowValues.Value);
-                                            styleStr +=
-                                                " background-color: " + ColorToCSSColor((Color)value) + "; ";
+                                            if ((Color)value != Color.Transparent)
+                                            {
+                                                styleStr +=
+                                                    " background-color: " + ColorToCSSColor((Color)value) + "; ";
+                                            }
                                         }
 
                                         if (columnDefinition.IsPMI && ObscurePMI)

@@ -1,7 +1,6 @@
 ﻿using Material.Blazor.Internal;
-
 using Microsoft.AspNetCore.Components;
-
+using Microsoft.JSInterop;
 using System;
 using System.Threading.Tasks;
 
@@ -14,16 +13,16 @@ namespace Material.Blazor
     public partial class MBDatePicker : InputComponent<DateTime>
     {
         #region members
-
-        private static readonly DateTime MinAllowableDate = DateTime.MinValue;
-        private static readonly DateTime MaxAllowableDate = DateTime.MaxValue;
+        internal static readonly DateTime MinAllowableDate = DateTime.MinValue;
+        internal static readonly DateTime MaxAllowableDate = DateTime.MaxValue;
 
         private string AdditionalStyle { get; set; } = "";
         private MBDensity AppliedDensity => CascadingDefaults.AppliedSelectDensity(Density);
         private string AppliedDateFormat => CascadingDefaults.AppliedDateFormat(DateFormat);
         private MBSelectInputStyle AppliedInputStyle => CascadingDefaults.AppliedStyle(SelectInputStyle);
         private ElementReference ElementReference { get; set; }
-        private bool IsOpen { get; set; } = false;
+        private ElementReference MenuSurfaceElementReference { get; set; }
+        private DotNetObjectReference<MBDatePicker> ObjectReference { get; set; }
         private string MenuClass => MBMenu.GetMenuSurfacePositioningClass(MenuSurfacePositioning == MBMenuSurfacePositioning.Fixed ? MBMenuSurfacePositioning.Fixed : MBMenuSurfacePositioning.Regular) + ((Panel?.ShowYearPad ?? true) ? " mb-dp-menu__day-menu" : " mb-dp-menu__year-menu");
         private InternalDatePickerPanel Panel { get; set; }
         private bool ShowLabel => !string.IsNullOrWhiteSpace(Label);
@@ -125,7 +124,7 @@ namespace Material.Blazor
         #region InstantiateMcwComponent
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => InvokeVoidAsync("MaterialBlazor.MBDatePicker.init", ElementReference);
+        private protected override Task InstantiateMcwComponent() => InvokeVoidAsync("MaterialBlazor.MBDatePicker.init", ElementReference, MenuSurfaceElementReference, ObjectReference);
 
         #endregion
 
@@ -138,6 +137,17 @@ namespace Material.Blazor
         /// <param name="e"></param>
         protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeVoidAsync("MaterialBlazor.MBDatePicker.setDisabled", ElementReference, AppliedDisabled));
 
+        #endregion
+
+        #region NotifyOpened
+        /// <summary>
+        /// Do not use. This method is used internally for receiving the "dialog closed" event from javascript.
+        /// </summary>
+        [JSInvokable]
+        public async Task NotifyOpened()
+        {
+            await Panel.NotifyOpened();
+        }
         #endregion
 
         #region OnInitializedAsync
@@ -164,11 +174,33 @@ namespace Material.Blazor
             }
 
             ForceShouldRenderToTrue = true;
+            
+            ObjectReference = DotNetObjectReference.Create(this);
         }
 
         #endregion
 
-        #region OnValueSetCallback
+        #region Dispose
+        private bool _disposed = false;
+        protected override void Dispose(bool disposing)
+        {
+            if (_disposed)
+            {
+                return;
+            }
+
+            if (disposing)
+            {
+                ObjectReference?.Dispose();
+            }
+
+            _disposed = true;
+
+            base.Dispose(disposing);
+        }
+        #endregion
+
+        #region OnValueSetCallback & NotifyValueChanged
 
         /// <summary>
         /// Callback for value the value setter.
@@ -179,22 +211,27 @@ namespace Material.Blazor
         {
             Panel.SetParameters(Value);
 
-            if (SupressDefaultDate && (Value == default))
+            if (AdditionalStyle.Length > 0)
             {
-                AdditionalStyle = invisibleText;
+                AdditionalStyle = "";
+                InvokeAsync(StateHasChanged);
             }
-            else
-            {
-                if (AdditionalStyle.Length > 0)
-                {
-                    AdditionalStyle = "";
-                    InvokeAsync(StateHasChanged);
-                }
-            }
+
             InvokeAsync(() => InvokeVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, AppliedDateFormat)).ConfigureAwait(false));
         }
 
-        #endregion
 
+        /// <summary>
+        /// Blanks additional style when the value is changed.
+        /// </summary>
+        internal void NotifyValueChanged()
+        {
+            if (AdditionalStyle.Length > 0)
+            {
+                AdditionalStyle = "";
+                InvokeAsync(StateHasChanged);
+            }
+        }
+        #endregion
     }
 }

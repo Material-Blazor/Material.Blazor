@@ -1,5 +1,5 @@
 ﻿import { MDCSlider } from '@material/slider';
-import { debounce, throttle } from '../../Scripts/LodashParts';
+import { debounce, throttle } from '../../Scripts/lodashparts';
 
 export function init(elem, dotNetObject, eventType, delay) {
     if (!elem) {
