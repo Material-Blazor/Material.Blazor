@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Solution Items", ".Solutio
 		.gitignore = .gitignore
 		CODE_OF_CONDUCT.md = CODE_OF_CONDUCT.md
 		ctag.cmd = ctag.cmd
+		.github\dependabot.yml = .github\dependabot.yml
 		docfx.json = docfx.json
 		filterConfig.yml = filterConfig.yml
 		.github\workflows\GithubActionsRelease.yml = .github\workflows\GithubActionsRelease.yml

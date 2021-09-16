@@ -6,6 +6,6 @@
 version: 2
 updates:
   - package-ecosystem: "npm"
-    directory: "/material-blazor"
+    directory: "/material.blazor"
     schedule:
       interval: "daily"
