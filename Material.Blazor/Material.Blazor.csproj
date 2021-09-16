@@ -48,13 +48,6 @@
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0-rc.1.21451.13" />
     </ItemGroup>
 
-    <!-- Workaround for this bug (https://github.com/dotnet/sdk/issues/18148) (replace the analyzer name with the one you need to exclude (filename only, no extension) -->
-    <Target Name="RemoveLoggingAnalyzer" AfterTargets="ResolveLockFileAnalyzers">
-        <ItemGroup>
-            <Analyzer Remove="@(Analyzer)" Condition="%(FileName) == 'Microsoft.Extensions.Logging.Generators'" />
-        </ItemGroup>
-    </Target>
-
     <ItemGroup>
         <None Include="package-lock.json" />
         <None Include="package.json" />
