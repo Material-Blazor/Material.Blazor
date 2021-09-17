@@ -40,10 +40,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.0-preview.7.21378.6" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0-preview.7.21378.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.0-rc.1.21452.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0-rc.1.21452.15" />
     <PackageReference Include="Nager.Date" Version="1.29.2" />
-    <PackageReference Include="System.Net.Http.Json" Version="6.0.0-preview.6.21352.12" />
+    <PackageReference Include="System.Net.Http.Json" Version="6.0.0-rc.1.21451.13" />
   </ItemGroup>
 
   <PropertyGroup>

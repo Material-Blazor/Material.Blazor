@@ -19,7 +19,7 @@ export function apply(calls) {
             }
             return null;
         } catch (e) {
-            return e.message;
+            return (e as Error).message;
         }
     });
 }

@@ -246,10 +246,10 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeVoidAsync("MaterialBlazor.MBList.init", ElementReference, KeyboardInteractions && !AppliedDisabled, Ripple));
+        protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeImmediateJsVoidAsync("MaterialBlazor.MBList.init", ElementReference, KeyboardInteractions && !AppliedDisabled, Ripple));
 
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => InvokeVoidAsync("MaterialBlazor.MBList.init", ElementReference, KeyboardInteractions && !AppliedDisabled, Ripple);
+        private protected override Task InstantiateMcwComponent() => InvokeInitBatchingJsVoidAsync("MaterialBlazor.MBList.init", ElementReference, KeyboardInteractions && !AppliedDisabled, Ripple);
     }
 }

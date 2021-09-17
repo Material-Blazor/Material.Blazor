@@ -1,6 +1,7 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System.Threading.Tasks;
 
 namespace Material.Blazor
 {
@@ -141,7 +142,7 @@ namespace Material.Blazor
         {
             try
             {
-                await InvokeVoidAsync("MaterialBlazor.MBDialog.show", DialogElem, ObjectReference, EscapeKeyAction, ScrimClickAction);
+                await InvokeImmediateJsVoidAsync("MaterialBlazor.MBDialog.show", DialogElem, ObjectReference, EscapeKeyAction, ScrimClickAction);
             }
             catch
             {
@@ -156,7 +157,7 @@ namespace Material.Blazor
         /// </summary>
         public async Task HideAsync()
         {
-            await InvokeVoidAsync("MaterialBlazor.MBDialog.hide", DialogElem);
+            await InvokeImmediateJsVoidAsync("MaterialBlazor.MBDialog.hide", DialogElem);
             IsOpen = false;
             await InvokeAsync(StateHasChanged);
         }
