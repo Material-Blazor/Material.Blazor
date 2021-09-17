@@ -42,26 +42,11 @@
         <Content Remove="tsconfig.json" />
     </ItemGroup>
 
-    <!-- Conditionally obtain references for the .NET Framework 6.0 target -->
-    <ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
+    <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.0-rc.1.21452.15" />
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0-rc.1.21452.15" />
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0-rc.1.21451.13" />
     </ItemGroup>
-
-    <!-- Conditionally obtain references for the .NET Framework 5.0 target -->
-    <ItemGroup Condition=" '$(TargetFramework)' == 'net5.0' ">
-        <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.7" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.7" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
-    </ItemGroup>
-
-    <!-- Workaround for this bug (https://github.com/dotnet/sdk/issues/18148) (replace the analyzer name with the one you need to exclude (filename only, no extension) -->
-    <Target Name="RemoveLoggingAnalyzer" AfterTargets="ResolveLockFileAnalyzers">
-        <ItemGroup>
-            <Analyzer Remove="@(Analyzer)" Condition="%(FileName) == 'Microsoft.Extensions.Logging.Generators'" />
-        </ItemGroup>
-    </Target>
 
     <ItemGroup>
         <None Include="package-lock.json" />
