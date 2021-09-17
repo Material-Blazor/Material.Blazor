@@ -55,6 +55,6 @@ namespace Material.Blazor.Internal
 
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => InvokeVoidAsync("MaterialBlazor.MBSnackbar.init", SnackbarReference, ObjectReference, Snackbar.Settings.AppliedTimeout);
+        private protected override Task InstantiateMcwComponent() => InvokeInitBatchingJsVoidAsync("MaterialBlazor.MBSnackbar.init", SnackbarReference, ObjectReference, Snackbar.Settings.AppliedTimeout);
     }
 }

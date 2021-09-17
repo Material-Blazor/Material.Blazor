@@ -199,7 +199,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback() => InvokeAsync(() => InvokeVoidAsync("MaterialBlazor.MBTextField.setValue", ElementReference, Value));
+        protected void OnValueSetCallback() => InvokeAsync(() => InvokeImmediateJsVoidAsync("MaterialBlazor.MBTextField.setValue", ElementReference, Value));
 
 
         /// <summary>
@@ -207,18 +207,18 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeVoidAsync("MaterialBlazor.MBTextField.setDisabled", ElementReference, AppliedDisabled));
+        protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeImmediateJsVoidAsync("MaterialBlazor.MBTextField.setDisabled", ElementReference, AppliedDisabled));
 
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => InvokeVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
+        private protected override Task InstantiateMcwComponent() => InvokeInitBatchingJsVoidAsync("MaterialBlazor.MBTextField.init", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation);
 
 
         /// <summary>
         /// Selects the text field - used by <see cref="MBNumericDoubleField"/>.
         /// </summary>
         /// <returns></returns>
-        internal Task SetType(string value, string type, bool formNoValidate) => InvokeVoidAsync("MaterialBlazor.MBTextField.setType", ElementReference, value, InputReference, type, formNoValidate);
+        internal Task SetType(string value, string type, bool formNoValidate) => InvokeImmediateJsVoidAsync("MaterialBlazor.MBTextField.setType", ElementReference, value, InputReference, type, formNoValidate);
 
 
         private void OnValidationStateChangedCallback(object sender, EventArgs e)
@@ -228,7 +228,7 @@ namespace Material.Blazor
                 var fieldIdentifier = FieldIdentifier.Create(ValidationMessageFor);
                 var validationMessage = string.Join("<br />", EditContext.GetValidationMessages(fieldIdentifier));
 
-                InvokeAsync(() => InvokeVoidAsync("MaterialBlazor.MBTextField.setHelperText", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
+                InvokeAsync(() => InvokeImmediateJsVoidAsync("MaterialBlazor.MBTextField.setHelperText", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, PerformsValidation, !string.IsNullOrEmpty(Value), validationMessage));
             }
         }
     }

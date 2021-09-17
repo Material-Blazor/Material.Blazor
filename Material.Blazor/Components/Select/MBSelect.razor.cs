@@ -187,7 +187,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback() => InvokeAsync(() => InvokeVoidAsync("MaterialBlazor.MBSelect.setIndex", SelectReference, Items.Select(x => x.SelectedValue).ToList().IndexOf(Value)));
+        protected void OnValueSetCallback() => InvokeAsync(() => InvokeImmediateJsVoidAsync("MaterialBlazor.MBSelect.setIndex", SelectReference, Items.Select(x => x.SelectedValue).ToList().IndexOf(Value)));
 
 
         /// <summary>
@@ -195,10 +195,10 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeVoidAsync("MaterialBlazor.MBSelect.setDisabled", SelectReference, AppliedDisabled));
+        protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeImmediateJsVoidAsync("MaterialBlazor.MBSelect.setDisabled", SelectReference, AppliedDisabled));
 
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => InvokeVoidAsync("MaterialBlazor.MBSelect.init", SelectReference, ObjectReference);
+        private protected override Task InstantiateMcwComponent() => InvokeInitBatchingJsVoidAsync("MaterialBlazor.MBSelect.init", SelectReference, ObjectReference);
     }
 }

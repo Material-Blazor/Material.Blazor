@@ -124,7 +124,7 @@ namespace Material.Blazor
         #region InstantiateMcwComponent
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => InvokeVoidAsync("MaterialBlazor.MBDatePicker.init", ElementReference, MenuSurfaceElementReference, ObjectReference);
+        private protected override Task InstantiateMcwComponent() => InvokeInitBatchingJsVoidAsync("MaterialBlazor.MBDatePicker.init", ElementReference, MenuSurfaceElementReference, ObjectReference);
 
         #endregion
 
@@ -135,7 +135,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeVoidAsync("MaterialBlazor.MBDatePicker.setDisabled", ElementReference, AppliedDisabled));
+        protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeImmediateJsVoidAsync("MaterialBlazor.MBDatePicker.setDisabled", ElementReference, AppliedDisabled));
 
         #endregion
 
@@ -217,7 +217,7 @@ namespace Material.Blazor
                 InvokeAsync(StateHasChanged);
             }
 
-            InvokeAsync(() => InvokeVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, AppliedDateFormat)).ConfigureAwait(false));
+            InvokeAsync(() => InvokeImmediateJsVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", Panel.ListItemReference, Utilities.DateToString(Value, AppliedDateFormat)).ConfigureAwait(false));
         }
 
 
