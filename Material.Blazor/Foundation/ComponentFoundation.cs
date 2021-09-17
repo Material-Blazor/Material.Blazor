@@ -288,24 +288,26 @@ namespace Material.Blazor.Internal
 
         #region InvokeVoidAsync
         /// <summary>
-        /// Wraps calls to <see cref="BatchingJSRuntime.InvokeVoidAsync"/> adding reference to the batching wrapper (if found).
+        /// Wraps calls to <see cref="BatchingJSRuntime.InvokeVoidAsync"/> adding reference to the batching wrapper (if found). Only
+        /// use for component initiation.
         /// </summary>
         /// <param name="identifier"></param>
         /// <param name="args"></param>
         /// <returns></returns>
-        private protected async Task InvokeBatchingJsVoidAsync(string identifier, params object[] args)
+        private protected async Task InvokeInitBatchingJsVoidAsync(string identifier, params object[] args)
         {
             await BatchingJsRuntime.InvokeVoidAsync(BatchingWrapper, identifier, args).ConfigureAwait(false);
         }
 
 
         /// <summary>
-        /// Wraps calls to <see cref="InjectedJsRuntime.InvokeVoidAsync"/>.
+        /// Wraps calls to <see cref="InjectedJsRuntime.InvokeVoidAsync"/> and is therefore not batched. Use for everything
+        /// other than component initiation.
         /// </summary>
         /// <param name="identifier"></param>
         /// <param name="args"></param>
         /// <returns></returns>
-        private protected async Task InvokeVanillaJsVoidAsync(string identifier, params object[] args)
+        private protected async Task InvokeImmediateJsVoidAsync(string identifier, params object[] args)
         {
             await VanillaJsRuntime.InvokeVoidAsync(identifier, args).ConfigureAwait(false);
         }

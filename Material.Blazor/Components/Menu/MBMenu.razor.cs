@@ -77,19 +77,19 @@ namespace Material.Blazor
         {
             if (IsOpen)
             {
-                await InvokeBatchingJsVoidAsync("MaterialBlazor.MBMenu.hide", ElementReference);
+                await InvokeImmediateJsVoidAsync("MaterialBlazor.MBMenu.hide", ElementReference);
                 IsOpen = false;
             }
             else
             {
-                await InvokeBatchingJsVoidAsync("MaterialBlazor.MBMenu.show", ElementReference);
+                await InvokeImmediateJsVoidAsync("MaterialBlazor.MBMenu.show", ElementReference);
                 IsOpen = true;
             }
         }
 
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => InvokeBatchingJsVoidAsync("MaterialBlazor.MBMenu.init", ElementReference, ObjectReference);
+        private protected override Task InstantiateMcwComponent() => InvokeInitBatchingJsVoidAsync("MaterialBlazor.MBMenu.init", ElementReference, ObjectReference);
 
 
         /// <summary>

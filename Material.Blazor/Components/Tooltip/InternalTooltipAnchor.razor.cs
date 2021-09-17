@@ -91,7 +91,7 @@ namespace Material.Blazor.Internal
 
             if (refs.Length > 0)
             {
-                await InvokeBatchingJsVoidAsync("MaterialBlazor.MBTooltip.init", refs.Select(r => r.ElementReference));
+                await InvokeInitBatchingJsVoidAsync("MaterialBlazor.MBTooltip.init", refs.Select(r => r.ElementReference));
 
                 foreach (var item in refs)
                 {
