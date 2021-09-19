@@ -11,7 +11,11 @@
      aria-modal="true">
 
     <CascadingValue Value="@this" IsFixed="true">
-        <div class="mdc-dialog__container">
+        <div class="mdc-dialog__container"
+             role="alertdialog"
+             aria-modal="true"
+             aria-labelledby="my-dialog-title"
+             aria-describedby="my-dialog-content">
             @if (IsOpen)
             {
                 <div class="mdc-dialog__surface @OverflowClass">
@@ -36,9 +40,9 @@
 
                     @if (HasButtons)
                     {
-                        <footer class="mdc-dialog__actions">
+                        <div class="mdc-dialog__actions">
                             @Buttons
-                        </footer>
+                        </div>
                     }
                 </div>
             }
