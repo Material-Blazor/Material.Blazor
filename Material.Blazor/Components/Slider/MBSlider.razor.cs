@@ -59,6 +59,9 @@ namespace Material.Blazor
         [Parameter] public string AriaLabel { get; set; } = "Slider";
 
 
+        private decimal LocalValue { get; set; }
+        private decimal LocalValueMin { get; set; }
+        private decimal LocalValueMax { get; set; }
         private ElementReference ElementReference { get; set; }
         private string Format { get; set; }
         private MarkupString InputMarkup { get; set; }
@@ -67,19 +70,14 @@ namespace Material.Blazor
         private int TabIndex { get; set; }
         private decimal ThumbEndPercent => 100 * RangePercentDecimal;
         private decimal ValueStepIncrement { get; set; }
+        // Delete once https://github.com/material-components/material-components-web/issues/7404 is fixed
+        private decimal Mult { get; set; }
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
-
-            Value = Math.Round(Value, (int)DecimalPlaces);
-            ValueMin = Math.Round(ValueMin, (int)DecimalPlaces);
-            ValueMax = Math.Round(ValueMax, (int)DecimalPlaces);
-            Format = $"N{DecimalPlaces}";
-            TabIndex = AppliedDisabled ? -1 : 0;
-            RangePercentDecimal = (Value - ValueMin) / (ValueMax - ValueMin);
 
             if (ValueMax <= ValueMin)
             {
@@ -91,21 +89,48 @@ namespace Material.Blazor
                 throw new ArgumentException($"{GetType()} must have Value ({Value}) between ValueMin ({ValueMin}) and ValueMax ({ValueMax})");
             }
 
+            // Reinstate these 4 lines once https://github.com/material-components/material-components-web/issues/7404 is fixed
+            //Value = Math.Round(Value, (int)DecimalPlaces);
+            //ValueMin = Math.Round(ValueMin, (int)DecimalPlaces);
+            //ValueMax = Math.Round(ValueMax, (int)DecimalPlaces);
+            //Format = $"F{DecimalPlaces}";
+
+            // Delete once https://github.com/material-components/material-components-web/issues/7404 is fixed
             if (SliderType == MBSliderType.Continuous)
             {
-                ValueStepIncrement = Convert.ToDecimal(Math.Pow(10, -DecimalPlaces));
+                Mult = Convert.ToDecimal(Math.Pow(10, DecimalPlaces));
             }
             else
             {
-                ValueStepIncrement = (ValueMax - ValueMin) / NumSteps;
+                Mult = NumSteps / (ValueMax - ValueMin);
             }
+
+            LocalValue = Math.Round(Value * Mult, (int)DecimalPlaces);
+            LocalValueMin = Math.Round(ValueMin * Mult, (int)DecimalPlaces);
+            LocalValueMax = Math.Round(ValueMax * Mult, (int)DecimalPlaces);
+            Format = $"F0";
+            ValueStepIncrement = 1;
+            // End delete
+
+            TabIndex = AppliedDisabled ? -1 : 0;
+            RangePercentDecimal = (Value - ValueMin) / (ValueMax - ValueMin);
+
+            // Reinstate once https://github.com/material-components/material-components-web/issues/7404 is fixed
+            //if (SliderType == MBSliderType.Continuous)
+            //{
+            //    ValueStepIncrement = Convert.ToDecimal(Math.Pow(10, -DecimalPlaces));
+            //}
+            //else
+            //{
+            //    ValueStepIncrement = (ValueMax - ValueMin) / NumSteps;
+            //}
 
             ConditionalCssClasses
                 .AddIf("mdc-slider--discrete", () => SliderType != MBSliderType.Continuous)
                 .AddIf("mdc-slider--tick-marks", () => SliderType == MBSliderType.DiscreteWithTickmarks)
                 .AddIf("mdc-slider--disabled", () => AppliedDisabled);
 
-            InputMarkup = new($"<input class=\"mdc-slider__input\" type=\"range\" value=\"{Value.ToString(Format)}\" step=\"{ValueStepIncrement}\" min=\"{ValueMin.ToString(Format)}\" max=\"{ValueMax.ToString(Format)}\" name=\"volume\" aria-label=\"{AriaLabel}\">");
+            InputMarkup = new($"<input class=\"mdc-slider__input\" type=\"range\" value=\"{LocalValue.ToString(Format)}\" step=\"{ValueStepIncrement}\" min=\"{LocalValueMin.ToString(Format)}\" max=\"{LocalValueMax.ToString(Format)}\" name=\"volume\" aria-label=\"{AriaLabel}\">");
 
             SetComponentValue += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
@@ -139,7 +164,11 @@ namespace Material.Blazor
         [JSInvokable]
         public void NotifyChanged(decimal value)
         {
-            ComponentValue = value;
+            // Reinstate once https://github.com/material-components/material-components-web/issues/7404 is fixed
+            //ComponentValue = value;
+
+            // Delete once https://github.com/material-components/material-components-web/issues/7404 is fixed
+            ComponentValue = value / Mult;
         }
 
 
@@ -148,7 +177,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback() => InvokeAsync(() => InvokeImmediateJsVoidAsync("MaterialBlazor.MBSlider.setValue", ElementReference, Value));
+        protected void OnValueSetCallback() => InvokeAsync(() => InvokeImmediateJsVoidAsync("MaterialBlazor.MBSlider.setValue", ElementReference, Math.Round(Value * Mult, 0)));
 
 
         /// <summary>
