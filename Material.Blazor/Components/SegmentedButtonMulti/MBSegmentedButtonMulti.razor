@@ -25,12 +25,12 @@
                             IconName="@ItemsArray[i].Icon" />
                 }
 
+                <div class="mdc-segmented-button__touch"></div>
+
                 @if (!string.IsNullOrWhiteSpace(ItemsArray[i].Label))
                 {
                     <div class="mdc-segmented-button__label">@ItemsArray[i].Label</div>
                 }
-
-                <div class="mdc-segmented-button__touch"></div>
             </button>
         </MBTouchTargetWrapper>
     }
