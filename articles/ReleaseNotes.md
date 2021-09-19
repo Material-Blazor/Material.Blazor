@@ -30,6 +30,7 @@ NOT YET RELEASED
 **Breaking Changes**
 
 - `MBSwitch` no longer supports density, having been removed in Material Theme.
+- `MBFloatingActionButton` re-implemented extended variant.
 
 **Known issues**
 

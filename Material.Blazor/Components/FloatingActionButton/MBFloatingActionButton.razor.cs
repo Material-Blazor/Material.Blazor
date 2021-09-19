@@ -50,12 +50,6 @@ namespace Material.Blazor
         [Parameter] public string Label { get; set; }
 
 
-        /// <summary>
-        /// Leading icon if false, otherwise trailine, and only applied to the extended variant.
-        /// </summary>
-        [Parameter] public bool IconTrailsLabel { get; set; }
-
-
         private bool AppliedTouchTarget => CascadingDefaults.AppliedTouchTarget(TouchTarget);
 
         private bool exited;
@@ -92,7 +86,7 @@ namespace Material.Blazor
 
             ConditionalCssClasses
                 .AddIf("mdc-fab--mini mdc-fab--touch", () => Type == MBFloatingActionButtonType.Mini)
-                .AddIf("mdc-fab--extended", () => Type == MBFloatingActionButtonType.Extended)
+                .AddIf("mdc-fab--extended", () => Type == MBFloatingActionButtonType.ExtendedNoIcon || Type == MBFloatingActionButtonType.ExtendedLeadingIcon || Type == MBFloatingActionButtonType.ExtendedTrailingIcon)
                 .AddIf("mdc-fab--exited", () => Exited);
         }
 

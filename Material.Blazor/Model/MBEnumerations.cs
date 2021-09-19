@@ -179,9 +179,19 @@ namespace Material.Blazor
         Mini,
 
         /// <summary>
-        /// FAB extended variant.
+        /// FAB extended variant without icon.
         /// </summary>
-        Extended
+        ExtendedNoIcon,
+
+        /// <summary>
+        /// FAB extended variant with leading icon.
+        /// </summary>
+        ExtendedLeadingIcon,
+
+        /// <summary>
+        /// FAB extended variant with trailing icon.
+        /// </summary>
+        ExtendedTrailingIcon,
     }
 
 

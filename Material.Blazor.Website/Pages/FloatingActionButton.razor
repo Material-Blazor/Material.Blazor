@@ -63,22 +63,27 @@
 
                     <p>
                         <MBFloatingActionButton Exited="@Exited"
+                                                Label="No Icon"
+                                                @onclick="@(() => ButtonClick("Extended FAB - no icon"))"
+                                                Type="@MBFloatingActionButtonType.ExtendedNoIcon" />
+                    </p>
+
+                    <p>
+                        <MBFloatingActionButton Exited="@Exited"
                                                 Icon="fa-hand-point-left"
                                                 IconFoundry="MBIconHelper.FAFoundry()"
-                                                IconTrailsLabel="false"
                                                 Label="Leading Icon"
                                                 @onclick="@(() => ButtonClick("Extended FAB - leading icon"))"
-                                                Type="@MBFloatingActionButtonType.Extended" />
+                                                Type="@MBFloatingActionButtonType.ExtendedLeadingIcon" />
                     </p>
 
                     <p>
                         <MBFloatingActionButton Exited="@Exited"
                                                 Icon="fa-hand-point-right"
                                                 IconFoundry="MBIconHelper.FAFoundry()"
-                                                IconTrailsLabel="true"
                                                 Label="Trailing Icon"
                                                 @onclick="@(() => ButtonClick("Extended FAB - trailing icon"))"
-                                                Type="@MBFloatingActionButtonType.Extended" />
+                                                Type="@MBFloatingActionButtonType.ExtendedTrailingIcon" />
                     </p>
                 </Primary>
             </MBCard>
