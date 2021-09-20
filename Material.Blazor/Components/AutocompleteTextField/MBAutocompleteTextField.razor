@@ -30,13 +30,13 @@
              @onfocusout="OnMenuFocusOut"
              tabindex="-1">
 
-            <ul class="mdc-list"
+            <ul class="mdc-deprecated-list"
                 tabindex="-1">
 
                 @if (SelectInfo.FirstValueIsCustomValue)
                 {
                     var item = SelectInfo.SelectList.First();
-                    var listClass = "mdc-list-item mb-autocomplete-custom-value";
+                    var listClass = "mdc-deprecated-list-item mb-autocomplete-custom-value";
                     var ariaSelected = SelectInfo.SelectList.Length == 1;
                     <li @key="@item"
                         class="@listClass"
@@ -44,13 +44,13 @@
                         aria-selected="@ariaSelected"
                         role="option"
                         tabindex="0">
-                        <span class="mdc-list-item__ripple"></span>
-                        <span class="mdc-list-item__text mb-full-width">@item</span>
+                        <span class="mdc-deprecated-list-item__ripple"></span>
+                        <span class="mdc-deprecated-list-item__text mb-full-width">@item</span>
                     </li>
                 }
                 @foreach (var item in SelectInfo.SelectList.Skip(SelectInfo.FirstValueIsCustomValue ? 1 : 0))
                 {
-                    var listClass = "mdc-list-item" + (item.Equals(Value) ? " mdc-list-item--selected" : "");
+                    var listClass = "mdc-deprecated-list-item" + (item.Equals(Value) ? " mdc-deprecated-list-item--selected" : "");
                     var ariaSelected = item.Equals(Value);
 
                     <li @key="@item"
@@ -59,8 +59,8 @@
                         aria-selected="@ariaSelected"
                         role="option"
                         tabindex="0">
-                        <span class="mdc-list-item__ripple"></span>
-                        <span class="mdc-list-item__text mb-full-width">@item</span>
+                        <span class="mdc-deprecated-list-item__ripple"></span>
+                        <span class="mdc-deprecated-list-item__text mb-full-width">@item</span>
                     </li>
                 }
             </ul>

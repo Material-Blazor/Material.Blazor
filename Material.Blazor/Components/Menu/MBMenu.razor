@@ -8,11 +8,13 @@
      id="@id"
      @attributes="@AttributesToSplat()">
 
-    <ul class="mdc-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
-        @if (ChildContent != null)
-        {
-            @ChildContent
-        }
+    <ul class="mdc-deprecated-list" role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
+        <CascadingValue Value="@this" IsFixed="true">
+            @if (ChildContent != null)
+            {
+                @ChildContent
+            }
+        </CascadingValue>
     </ul>
 
 </div>

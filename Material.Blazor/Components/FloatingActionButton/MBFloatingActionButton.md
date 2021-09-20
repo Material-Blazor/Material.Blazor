@@ -12,6 +12,8 @@ A [Material FAB](https://github.com/material-components/material-components-web/
 - has regular, mini and extended variants; and
 - can toggle the "mdc-fab--exited" class.
 
+- Type is set in OnInitialized and not in SetParameters
+
 &nbsp;
 
 &nbsp;

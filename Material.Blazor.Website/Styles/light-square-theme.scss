@@ -21,7 +21,7 @@
     $styles-button: ( font-size: 14px, font-weight: 500, letter-spacing: 0.05em, ), 
 );
 
-@use "material-components-web";
+@use "./material-components-web";
 @use "./app";
 
 @include app.app-classes();

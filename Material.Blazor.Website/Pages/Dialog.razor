@@ -152,10 +152,12 @@
             </Body>
             <Buttons>
                 <MBButton DialogAction="orange button clicked"
-                          Label="Orange" />
+                          Label="Orange"
+                          data-mdc-dialog-action="orange" />
                 <MBButton ButtonStyle="@MBButtonStyle.Text"
                           DialogAction="apple button clicked"
-                          Label="Apple" />
+                          Label="Apple"
+                          data-mdc-dialog-action="apple" />
             </Buttons>
         </MBDialog>
 
@@ -172,8 +174,13 @@
                 </p>
             </Body>
             <Buttons>
-                <MBButton Label="Orange" @onclick="@(() => OnButtonClick("orange notified by @onclick"))"></MBButton>
-                <MBButton Label="Apple" @onclick="@(() => OnButtonClick("orange notified by @onclick"))" ButtonStyle="@MBButtonStyle.Text"></MBButton>
+                <MBButton Label="Orange"
+                          data-mdc-dialog-action="orange"
+                          @onclick="@(() => OnButtonClick("orange notified by @onclick"))" />
+                <MBButton Label="Apple" 
+                          data-mdc-dialog-action="apple"
+                          @onclick="@(() => OnButtonClick("apple notified by @onclick"))"
+                          ButtonStyle="@MBButtonStyle.Text" />
             </Buttons>
         </MBDialog>
 

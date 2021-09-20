@@ -4,13 +4,13 @@
 
 <div class="mdc-typography--body2 mb-dp-container">
 
-    <ul class="mdc-list mb-dp-list">
-        <li class="mdc-list-item mdc-list-item--selected mb-dp-list-item"
+    <ul class="mdc-deprecated-list mb-dp-list">
+        <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected mb-dp-list-item"
             data-value="@ValueText"
             aria-selected="true"
             role="option">
-            <span class="mdc-list-item__ripple"></span>
-            <span @ref="@ListItemReference" class="mdc-list-item__text mb-dp-list-item__text">@ValueText</span>
+            <span class="mdc-deprecated-list-item__ripple"></span>
+            <span @ref="@ListItemReference" class="mdc-deprecated-list-item__text mb-dp-list-item__text">@ValueText</span>
         </li>
     </ul>
 
@@ -81,7 +81,7 @@
                         <span class="mdc-theme--text-disabled-on-background mb-dp-day-pad__weekday">@d</span>
                     }
                 </div>
-                <div class="mdc-list mb-dp-day-pad__days-block">
+                <div class="mdc-deprecated-list mb-dp-day-pad__days-block">
                     @foreach (var date in Dates)
                     {
                         <InternalDatePickerDayButton CurrentDate="@Value"

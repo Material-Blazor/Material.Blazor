@@ -18,10 +18,23 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 <br />
 
 
-#### [2.0.0-preview.8](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.5)
+#### [2.0.0-preview.8](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.8)
 NOT YET RELEASED
 
-#### [2.0.0-preview.7](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.5)
+**Updates**
+
+- Migrated to [Material Components Web 12.0.0](https://github.com/material-components/material-components-web/tree/v12.0.0/packages/mdc-switch).
+
+**New components**
+
+**Breaking Changes**
+
+- `MBSwitch` no longer supports density, having been removed in Material Theme.
+- `MBFloatingActionButton` re-implemented extended variant.
+
+**Known issues**
+
+#### [2.0.0-preview.7](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.7)
 2021-08-19
 
 **Updates**
@@ -46,7 +59,7 @@ NOT YET RELEASED
  This is an experimental component and we do not recommend its use.
 
 
-#### [2.0.0-preview.6](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.5)
+#### [2.0.0-preview.6](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.6)
 2021-04-26
 
 **Updates**

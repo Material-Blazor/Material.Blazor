@@ -592,6 +592,9 @@ namespace Material.Blazor
          ************************************************************************************************************/
 
         private bool _TouchTarget = true;
+        /// <summary>
+        /// Determines whether to apply touch targets for accessibility. Defaults to true.
+        /// </summary>
         public bool TouchTarget { get => _TouchTarget; set => SetParameter(ref _TouchTarget, value); }
         internal bool AppliedTouchTarget(bool? touchTarget) => touchTarget ?? TouchTarget;
 

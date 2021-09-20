@@ -6,7 +6,7 @@
 <MBDrawer @ref="@Drawer"
           IsDismissible="true">
 
-    <div class="mdc-list">
+    <nav class="mdc-list">
         <MBListItem LeadingIcon="home" Label="Home" @onclick="@(() => ListItemClickHandler(""))" />
         <MBListItem LeadingIcon="anchor" Label="Anchor" @onclick="@(() => ListItemClickHandler("anchor"))" />
         <MBListItem LeadingIcon="short_text" Label="Autocomplete Text Field" @onclick="@(() => ListItemClickHandler("autocompletetextfield"))" />
@@ -59,7 +59,7 @@
         <MBListItem LeadingIcon="live_help" Label="Tooltip" @onclick="@(() => ListItemClickHandler("tooltip"))" />
         <MBListItem LeadingIcon="border_top" Label="Top App Bar" @onclick="@(() => ListItemClickHandler("topappbar"))" />
         <MBListItem LeadingIcon="http" Label="Typography" @onclick="@(() => ListItemClickHandler("typography"))" />
-    </div>
+    </nav>
 </MBDrawer>
 
 <div class="mdc-drawer-app-content">

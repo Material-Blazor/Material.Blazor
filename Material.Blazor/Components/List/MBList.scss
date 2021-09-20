@@ -1,45 +1,45 @@
 ﻿@use "@material/list";
 
-.mdc-list {
+.mdc-deprecated-list {
     &.dense--5,
     &.dense--4 {
-        @include list.single-line-density(-4);
+        @include list.deprecated-single-line-density(-4);
     }
 
     &.dense--3,
     &.dense-compact {
-        @include list.single-line-density(-3);
+        @include list.deprecated-single-line-density(-3);
     }
 
     &.dense--2,
     &.dense-comfortable {
-        @include list.single-line-density(-2);
+        @include list.deprecated-single-line-density(-2);
     }
 
     &.dense--1 {
-        @include list.single-line-density(-1);
+        @include list.deprecated-single-line-density(-1);
     }
 
     &.dense--0,
     &.dense-default {
-        @include list.single-line-density(0);
+        @include list.deprecated-single-line-density(0);
     }
 }
 
 
-.mb-list--three-line .mdc-list-item__text {
+.mb-list--three-line .mdc-deprecated-list-item__text {
     align-self: flex-start
 }
 
-.mb-list--three-line .mdc-list-item {
+.mb-list--three-line .mdc-deprecated-list-item {
     height: 88px
 }
 
-.mb-list--three-line.mdc-list--dense .mdc-list-item, .mdc-list--avatar-list.mdc-list--dense .mdc-list-item {
+.mb-list--three-line.mdc-deprecated-list--dense .mdc-deprecated-list-item, .mdc-deprecated-list--avatar-list.mdc-deprecated-list--dense .mdc-deprecated-list-item {
     height: 72px
 }
 
-.mdc-list-item__secondary-text.line-three {
+.mdc-deprecated-list-item__secondary-text.line-three {
     margin-top: -4px;
 }
 

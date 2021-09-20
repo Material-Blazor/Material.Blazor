@@ -28,14 +28,17 @@ else
 
         <div class="mdc-fab__ripple"></div>
 
-        @if (Type == MBFloatingActionButtonType.Extended && IconTrailsLabel)
+        @if (Type == MBFloatingActionButtonType.ExtendedNoIcon || Type == MBFloatingActionButtonType.ExtendedTrailingIcon)
         {
             <span class="mdc-fab__label">@Label</span>
         }
 
-        <MBIcon class="mdc-fab__icon" IconName="@Icon" IconFoundry="@IconFoundry" />
+        @if (Type != MBFloatingActionButtonType.ExtendedNoIcon)
+        {
+            <MBIcon class="mdc-fab__icon" IconName="@Icon" IconFoundry="@IconFoundry" />
+        }
 
-        @if (Type == MBFloatingActionButtonType.Extended && !IconTrailsLabel)
+        @if (Type == MBFloatingActionButtonType.ExtendedLeadingIcon)
         {
             <span class="mdc-fab__label">@Label</span>
         }

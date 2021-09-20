@@ -2,19 +2,44 @@
 @inherits ComponentFoundation
 
 
-<li class="mdc-list-item @ActiveConditionalClasses @(@class)"
-    style="@style"
-    id="@id"
-    @attributes="@AttributesToSplat()"
-    role="menuitem">
+@if (Drawer != null)
+{
+    <a class="mdc-deprecated-list-item @ActiveConditionalClasses @(@class)"
+        style="@style"
+        id="@id"
+        @attributes="@AttributesToSplat()">
 
-    @if (LeadingIcon != null)
-    {
-        <span class="mdc-list-item__graphic mdc-menu__selection-group-icon">
-            <MBIcon IconFoundry="@IconFoundry"
-                    IconName="@LeadingIcon" />
-        </span>
-    }
+        <span class="mdc-deprecated-list-item__ripple"></span>
 
-    <span class="mdc-list-item__text">@Label</span>
-</li>
+        @if (LeadingIcon != null)
+        {
+            <span class="mdc-deprecated-list-item__graphic mdc-menu__selection-group-icon">
+                <MBIcon IconFoundry="@IconFoundry"
+                        IconName="@LeadingIcon" />
+            </span>
+        }
+
+        <span class="mdc-deprecated-list-item__text">@Label</span>
+    </a>
+}
+else if (Menu != null)
+{
+    <li class="mdc-deprecated-list-item @ActiveConditionalClasses @(@class)"
+        style="@style"
+        id="@id"
+        @attributes="@AttributesToSplat()"
+        role="menuitem">
+
+        <span class="mdc-deprecated-list-item__ripple"></span>
+
+        @if (LeadingIcon != null && IsSelectedMenuItem)
+        {
+            <span class="mdc-deprecated-list-item__graphic mdc-menu__selection-group-icon">
+                <MBIcon IconFoundry="@IconFoundry"
+                        IconName="@LeadingIcon" />
+            </span>
+        }
+
+        <span class="mdc-deprecated-list-item__text">@Label</span>
+    </li>
+}

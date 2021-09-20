@@ -4,43 +4,61 @@
 @typeparam TItem
 
 
-<div @ref="@ChipsReference"
-     class="mdc-chip-set @ActiveConditionalClasses @(@class)"
-     style="@style"
-     id="@id"
-     @attributes="AttributesToSplat()"
-     role="grid">
+<span @ref="@ChipsReference"
+      id="@id"
+      class="mdc-evolution-chip-set @ActiveConditionalClasses @(@class)"
+      style="@style"
+      role="listbox"
+      aria-multiselectable="@IsMultiSelect"
+      aria-orientation="horizontal"       
+      @attributes="AttributesToSplat()" >
 
-    @for (int j = 0; j < ItemsArray.Length; j++)
-    {
-        int i = j;
-        <MBTouchTargetWrapper @key="@KeyGenerator(ItemsArray[i].SelectedValue)" ApplyTouchTargetWrapper="AppliedTouchTarget">
-            <div @attributes="@ChipAttributes[i]">
-                <div class="mdc-chip__ripple"></div>
+    <span class="mdc-evolution-chip-set__chips" role="presentation">
+        @for (int j = 0; j < ItemsArray.Length; j++)
+        {
+            int i = j;
+            string id = $"{_chipSetName}__chip-{i}";
+            int tabIndex = (i == 0) ? 0 : -1;
+            var selected = Value.Contains(ItemsArray[i].SelectedValue);
+            @*var chipClass = "mdc-evolution-chip mdc-evolution-chip--selectable mdc-evolution-chip--filter " + (selected ? "mdc-evolution-chip--selected" : "mdc-evolution-chip--deselected") + (AppliedDisabled ? " mdc-evolution-chip--disabled" : "");*@
+            var chipClass = "mdc-evolution-chip mdc-evolution-chip--selectable mdc-evolution-chip--filter" + (AppliedDisabled ? " mdc-evolution-chip--disabled" : "");
 
-                @if (!string.IsNullOrWhiteSpace(ItemsArray[i].Icon))
-                {
-                    <MBIcon @attributes="@ChipIconAttributes[i]"
-                            IconFoundry="@IconFoundry"
-                            IconName="@ItemsArray[i].Icon" />
-                }
+            <span id="@id"
+                  class="@chipClass"
+                  role="presentation"
+                  @key="@KeyGenerator(ItemsArray[i].SelectedValue)">
+                
+                <span class="mdc-evolution-chip__action mdc-evolution-chip__action--primary"
+                      role="option"
+                      aria-selected="@selected"
+                      tabindex="@tabIndex">
 
-                @if (!IsSingleSelect)
-                {
-                    <span class="mdc-chip__checkmark">
-                        <svg class="mdc-chip__checkmark-svg" viewBox="-2 -3 30 30">
-                            <path class="mdc-chip__checkmark-path" fill="none" stroke="black"
-                                  d="M1.73,12.91 8.1,19.28 22.79,4.59" />
-                        </svg>
+                    <span class="mdc-evolution-chip__ripple mdc-evolution-chip__ripple--primary"></span>
+
+                    <span class="mdc-evolution-chip__graphic">
+                        @*@if (!string.IsNullOrWhiteSpace(ItemsArray[i].Icon))
+                        {
+                            var iconClass = "mdc-evolution-chip__icon mdc-evolution-chip__icon--primary" + (selected ? " mdc-evolution-chip__icon--leading-hidden" : "");
+
+                            <MBIcon class="mdc-evolution-chip__icon mdc-evolution-chip__icon--primary"
+                                    IconFoundry="@IconFoundry"
+                                    IconName="@ItemsArray[i].Icon" />
+                        }*@
+
+                        @if (true || !IsMultiSelect)
+                        {
+                            <span class="mdc-evolution-chip__checkmark">
+                                <svg class="mdc-evolution-chip__checkmark-svg" viewBox="-2 -3 30 30">
+                                    <path class="mdc-evolution-chip__checkmark-path" fill="none" stroke="black"
+                                            d="M1.73,12.91 8.1,19.28 22.79,4.59" />
+                                </svg>
+                            </span>
+                        }
                     </span>
-                }
 
-                <span role="gridcell">
-                    <span @attributes="@ChipSpanAttributes[i]">
-                        <span class="mdc-chip__text">@ItemsArray[i].Label</span>
-                    </span>
+                    <span class="mdc-evolution-chip__text-label">@ItemsArray[i].Label</span>
                 </span>
-            </div>
-        </MBTouchTargetWrapper>
-    }
-</div>
+            </span>
+        }
+    </span>
+</span>

@@ -1,29 +1,41 @@
 ﻿import { MDCChipSet } from '@material/chips';
+import { ActionType } from '@material/chips/action/constants';
 
-export function init(elem, isSingleSelect, dotNetObject) {
+export function init(elem, isMultiSelect, dotNetObject) {
     if (!elem) {
         return;
     }
     elem._chipSet = MDCChipSet.attachTo(elem);
-    elem._isSingleSelect = isSingleSelect;
+    elem._isMultiSelect = isMultiSelect;
 
     const clickedCallback = () => {
-        if (elem._isSingleSelect) {
-            var selectedChips = elem._chipSet.chips.filter(x => x.foundation.isSelected());
-
-            if (selectedChips.length == 0) {
-                dotNetObject.invokeMethodAsync('NotifySingleSelected', -1);
-            }
-            else {
-                dotNetObject.invokeMethodAsync('NotifySingleSelected', elem._chipSet.chips.findIndex(x => x.id === selectedChips[0].id));
-            }
+        if (elem._isMultiSelect) {
+            dotNetObject.invokeMethodAsync('NotifyMultiSelected', Array.from(elem._chipSet.getSelectedChipIndexes()));
+            //dotNetObject.invokeMethodAsync('NotifyMultiSelected', elem._chipSet.chips.map(x => x.isActionSelected(0)));
         }
         else {
-            dotNetObject.invokeMethodAsync('NotifyMultiSelected', elem._chipSet.chips.map(x => x.foundation.isSelected()));
+            let result = -1;
+
+            for (let i = 0; i < elem._chipSet.chips.length; i++) {
+                if (elem._chipSet.chips[i].foundation.isActionSelected(ActionType.PRIMARY)) {
+                    result = i;
+                }
+            }
+
+            dotNetObject.invokeMethodAsync('NotifySingleSelected', result);
+
+            //var selectedChips = elem._chipSet.chips.filter(x => x.isActionSelected(0));
+
+            //if (selectedChips.length == 0) {
+            //    dotNetObject.invokeMethodAsync('NotifySingleSelected', -1);
+            //}
+            //else {
+            //    dotNetObject.invokeMethodAsync('NotifySingleSelected', elem._chipSet.chips.findIndex(x => x.id === selectedChips[0].id));
+            //}
         }
     };
 
-    elem._chipSet.listen('MDCChip:selection', clickedCallback);
+    elem._chipSet.listen('MDCChipSet:selection', clickedCallback);
 }
 
 export function setDisabled(elem, value) {

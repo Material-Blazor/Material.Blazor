@@ -1,6 +1,7 @@
-﻿@use "@material/theme";
+﻿@use "@material/drawer";
+@use "@material/list";
+@use "@material/theme";
 @use "@material/top-app-bar";
-
 
 @use 'sass:color';
 
@@ -160,7 +161,7 @@
     /*
         Dynamic link underlining
     */
-    a {
+    a:not(.mdc-deprecated-list-item) {
         position: relative;
         box-shadow: inset 0 -2px 0 theme.$secondary;
         display: inline-flex;
@@ -170,13 +171,13 @@
         transition: 0.15s ease;
     }
 
-    a:hover {
+    a:not(.mdc-deprecated-list-item):hover {
         box-shadow: none;
         color: theme.$on-secondary;
         text-decoration: none;
     }
 
-    a::after {
+    a:not(.mdc-deprecated-list-item)::after {
         content: "";
         background: theme.$secondary;
         position: absolute;
@@ -188,7 +189,7 @@
         transition: 0.15s ease;
     }
 
-    a:hover:after {
+    a:not(.mdc-deprecated-list-item):hover:after {
         height: 100%;
     }
 

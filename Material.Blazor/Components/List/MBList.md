@@ -6,7 +6,7 @@ title: MBList
 
 ## Summary
 
-A partial implementation of a [Material List](https://github.com/material-components/material-components-web/tree/v9.0.0/packages/mdc-list#lists). Uses render fragments to implement Material Theme Web Components one and two line lists, plus a Material.Blazor interpretation of a three line list. It features:
+A partial implementation of a [Material List](https://github.com/material-components/material-components-web/tree/v9.0.0/packages/mdc-deprecated-list#lists). Uses render fragments to implement Material Theme Web Components one and two line lists, plus a Material.Blazor interpretation of a three line list. It features:
 
 ## Details
 
@@ -18,6 +18,8 @@ A partial implementation of a [Material List](https://github.com/material-compon
 - Indicators for dense layout, dividers between items, whether keyboard interactions and ripple are activated, and whether lines two or three of each item are hidden;
 - Click, KeyDown, MouseDown and TouchStart event handlers that return the index of the item receiving user interaction;
 - Applies [density subsystem](xref:A.Density).
+
+- NumberOfLine and NonIteractive are set in OnInitialized and not in SetParameters
 
 ## Assisting Blazor Rendering with `@key`
 

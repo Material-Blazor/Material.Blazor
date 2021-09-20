@@ -53,6 +53,7 @@ namespace Material.Blazor.Internal
 
             var call = new Call(identifier, args);
             queuedCalls.Enqueue(call);
+            batchingWrapper.InvokeStateHasChanged();
             return call.Task;
         }
 

@@ -162,7 +162,7 @@ namespace Material.Blazor
         private string TitleClass { get; set; }
         private string LineTwoClass { get; set; }
         private string LineThreeClass { get; set; }
-        private string ListItemClass => "mdc-list-item__text mb-full-width" + (AppliedDisabled ? " mdc-list-item--disabled" : "");
+        private string ListItemClass => "mdc-deprecated-list-item__text mb-full-width" + (AppliedDisabled ? " mdc-deprecated-list-item--disabled" : "");
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -173,11 +173,11 @@ namespace Material.Blazor
             ConditionalCssClasses
                 .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass && NumberOfLines == 1 && AppliedListType != MBListType.Dense)
                 .AddIf("mdc-card--outlined", () => (CascadingDefaults.AppliedStyle(AppliedListStyle) == MBListStyle.Outlined))
-                .AddIf("mdc-list--two-line", () => (NumberOfLines == 2))
+                .AddIf("mdc-deprecated-list--two-line", () => (NumberOfLines == 2))
                 .AddIf("mb-list--three-line", () => (NumberOfLines == 3))
-                .AddIf("mdc-list--non-interactive", () => NonInteractive)
-                .AddIf("mdc-list--dense", () => AppliedListType == MBListType.Dense)
-                .AddIf("mdc-list--avatar-list", () => AppliedListType == MBListType.Avatar);
+                .AddIf("mdc-deprecated-list--non-interactive", () => NonInteractive)
+                .AddIf("mdc-deprecated-list--dense", () => AppliedListType == MBListType.Dense)
+                .AddIf("mdc-deprecated-list--avatar-list", () => AppliedListType == MBListType.Avatar);
         }
 
 
@@ -200,9 +200,9 @@ namespace Material.Blazor
                 NumberOfLines++;
             }
 
-            TitleClass = (NumberOfLines == 1) ? "" : "mdc-list-item__primary-text";
-            LineTwoClass = "mdc-list-item__secondary-text mb-full-width";
-            LineThreeClass = "mdc-list-item__secondary-text" + ((NumberOfLines == 3) ? " line-three" : "") + " mb-full-width";
+            TitleClass = (NumberOfLines == 1) ? "" : "mdc-deprecated-list-item__primary-text";
+            LineTwoClass = "mdc-deprecated-list-item__secondary-text mb-full-width";
+            LineThreeClass = "mdc-deprecated-list-item__secondary-text" + ((NumberOfLines == 3) ? " line-three" : "") + " mb-full-width";
 
             KeyGenerator = GetKeysFunc ?? delegate (TItem item) { return item; };
         }

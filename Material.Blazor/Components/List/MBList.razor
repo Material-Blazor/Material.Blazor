@@ -3,7 +3,7 @@
 @typeparam TItem
 
 
-<ul class="mdc-list @ActiveConditionalClasses @(@class)"
+<ul class="mdc-deprecated-list @ActiveConditionalClasses @(@class)"
     style="@style"
     id="@id"
     @attributes="@AttributesToSplat()"
@@ -23,11 +23,11 @@
         }
         else if (ShowSeparators)
         {
-            <li role="separator" class="mdc-list-divider"></li>
+            <li role="separator" class="mdc-deprecated-list-divider"></li>
         }
 
         <li @key="@KeyGenerator(item)"
-            class="mdc-list-item"
+            class="mdc-deprecated-list-item"
             tabindex="@tabIndex"
             @onclick="@(() => OnItemClickAsync(clickIndex))"
             @onmousedown="@(() => OnItemMouseDownAsync(clickIndex))"
@@ -36,20 +36,20 @@
 
             @if (PrimaryActions != null)
             {
-                <span class="mdc-list-item__graphic" aria-hidden="true">@PrimaryActions(item)</span>
+                <span class="mdc-deprecated-list-item__graphic" aria-hidden="true">@PrimaryActions(item)</span>
             }
 
             @if (!SuppressIcons && Icon != null)
             {
-                <span class="mdc-list-item__graphic" aria-hidden="true">@Icon(item)</span>
+                <span class="mdc-deprecated-list-item__graphic" aria-hidden="true">@Icon(item)</span>
             }
 
             @if (!AppliedDisabled && KeyboardInteractions && Ripple)
             {
-                <span class="mdc-list-item__ripple"></span>
+                <span class="mdc-deprecated-list-item__ripple"></span>
             }
 
-            <span class="mdc-list-item__text mb-full-width @ListItemClass " disabled="@AppliedDisabled">
+            <span class="mdc-deprecated-list-item__text mb-full-width @ListItemClass " disabled="@AppliedDisabled">
                 @if (Title != null)
                 {
                     <span class="@TitleClass">@Title(item)</span>
@@ -68,7 +68,7 @@
 
             @if (SecondaryActions != null)
             {
-                <span class="mdc-list-item__meta" aria-hidden="true">@SecondaryActions(item)</span>
+                <span class="mdc-deprecated-list-item__meta" aria-hidden="true">@SecondaryActions(item)</span>
             }
         </li>
     }

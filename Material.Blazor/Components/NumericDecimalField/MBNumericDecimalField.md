@@ -19,6 +19,15 @@ Has the capacity to scale order of magnitude for percentage or [basis points](ht
 - Applies [density subsystem](xref:A.Density) - note that filled text fields with denisty of -2 or less ignore labels by design within Material Theme.
 - Renders Blazor validation messages in Material Theme's style. see the [Form Validation Article](xref:A.FormValidation).
 
+## Caveats
+
+Note the use of multiple parameters that presume invariance during the
+life of this component.
+- DecimalPlaces
+- FocusedMagnitude
+- Min
+- UnfocusedMagnitude
+
 &nbsp;
 
 &nbsp;

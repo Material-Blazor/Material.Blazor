@@ -45,15 +45,15 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Inclusion of touch target
-        /// </summary>
-        [Parameter] public bool? TouchTarget { get; set; }
-
-
-        /// <summary>
         /// The trailing icon's name. No leading icon shown if not set.
         /// </summary>
         [Parameter] public string? TrailingIcon { get; set; }
+
+
+        /// <summary>
+        /// Inclusion of touch target
+        /// </summary>
+        [Parameter] public bool? TouchTarget { get; set; }
 
 
         /// <summary>
@@ -87,7 +87,10 @@ namespace Material.Blazor
                 .AddIf("mdc-button--raised", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MBButtonStyle.ContainedRaised)
                 .AddIf("mdc-button--unelevated", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MBButtonStyle.ContainedUnelevated)
                 .AddIf("mdc-button--outlined", () => CascadingDefaults.AppliedStyle(ButtonStyle, Card, Dialog) == MBButtonStyle.Outlined)
-                .AddIf("mdc-card__action mdc-card__action--button", () => (Card != null));
+                .AddIf("mdc-button--icon-leading", () => !string.IsNullOrWhiteSpace(LeadingIcon))
+                .AddIf("mdc-button--icon-trailing", () => !string.IsNullOrWhiteSpace(TrailingIcon))
+                .AddIf("mdc-button--touch", () => AppliedTouchTarget)
+                .AddIf("mdc-card__action mdc-card__action--button", () => Card != null);
         }
 
 

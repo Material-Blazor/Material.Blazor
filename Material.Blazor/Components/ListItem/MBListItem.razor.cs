@@ -1,6 +1,6 @@
 ﻿using Material.Blazor.Internal;
-
 using Microsoft.AspNetCore.Components;
+using System;
 using System.Threading.Tasks;
 
 namespace Material.Blazor
@@ -10,6 +10,10 @@ namespace Material.Blazor
     /// </summary>
     public partial class MBListItem : ComponentFoundation
     {
+        [CascadingParameter] private MBDrawer Drawer { get; set; }
+        [CascadingParameter] private MBMenu Menu { get; set; }
+
+
 #nullable enable annotations
         /// <summary>
         /// The list item's label
@@ -26,7 +30,7 @@ namespace Material.Blazor
         /// <summary>
         /// Determined whether the list item is in an menu and is in the selected state
         /// </summary>
-        [Parameter] public bool IsSelectedMenuItem { get; set; }
+        [Parameter] public bool IsSelectedMenuItem { get; set; } = true;
 
 
         /// <summary>
@@ -46,9 +50,18 @@ namespace Material.Blazor
         {
             await base.OnInitializedAsync();
 
+            if (Drawer == null && Menu == null)
+            {
+                throw new ArgumentException($"MBListItem must be a child of either an MBDrawer or an MBMenu");
+            }
+            else if (Drawer != null && Menu != null)
+            {
+                throw new ArgumentException($"MBListItem can be a child of only an MBDrawer or an MBMenu but not both");
+            }
+
             ConditionalCssClasses
-                .AddIf("mdc-menu-item--selected", () => IsSelectedMenuItem)
-                .AddIf("mdc-list-item--disabled mb-list-item--disabled", () => AppliedDisabled);
+                .AddIf("mdc-menu-item--selected", () => Menu != null && IsSelectedMenuItem)
+                .AddIf("mdc-deprecated-list-item--disabled mb-list-item--disabled", () => AppliedDisabled);
         }
     }
 }

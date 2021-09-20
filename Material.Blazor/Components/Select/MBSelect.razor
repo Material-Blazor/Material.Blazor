@@ -76,12 +76,12 @@
     <div id="@listboxId" 
          class="mdc-select__menu mdc-menu mdc-menu-surface @MenuClass">
 
-        <ul class="mdc-list">
+        <ul class="mdc-deprecated-list">
 
             @foreach (var item in Items)
             {
                 var selected = NullAllowingEquals(item.SelectedValue, Value);
-                var listClass = "mdc-list-item" + (selected ? " mdc-list-item--selected" : "") + (item.Disabled == true ? " mdc-list-item--disabled" : "");
+                var listClass = "mdc-deprecated-list-item" + (selected ? " mdc-deprecated-list-item--selected" : "") + (item.Disabled == true ? " mdc-deprecated-list-item--disabled" : "");
 
                 <li @key="@KeyGenerator(item.SelectedValue)"
                     class="@listClass @AlignClass"
@@ -90,8 +90,8 @@
                     aria-disabled="@item.Disabled"
                     role="option">
 
-                    <span class="mdc-list-item__ripple"></span>
-                    <span class="mdc-list-item__text mb-full-width">@item.Label</span>
+                    <span class="mdc-deprecated-list-item__ripple"></span>
+                    <span class="mdc-deprecated-list-item__text mb-full-width">@item.Label</span>
                 </li>
             }
         </ul>

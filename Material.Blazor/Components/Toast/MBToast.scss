@@ -8,7 +8,7 @@ $toast-margin-large: 12px;
 $body-padding-right: 6px;
 $heading-margin-top: 6px;
 $message-margin-top: 6px;
-$center-margin-left: -$toast-width / 2;
+$center-margin-left: -$toast-width * 0.5;
 $transition-height: $toast-height + $toast-spacing;
 $close-button-size: 28px;
 $close-button-margin-right: -$body-padding-right;
@@ -122,7 +122,7 @@ $icon-horizontal-padding: 12px;
 .mb-toast {
     display: flex;
     flex-flow: row nowrap;
-    margin: $toast-spacing/2 0;
+    margin: $toast-spacing*0.5 0;
     padding: 0 $body-padding-right 0 0;
     box-sizing: border-box;
     height: $toast-height;
@@ -157,7 +157,7 @@ $icon-horizontal-padding: 12px;
     40% {
         opacity: 0;
         max-height: $toast-height;
-        margin: $toast-spacing/2 0;
+        margin: $toast-spacing*0.5 0;
         animation-timing-function: ease-in-out;
     }
 
@@ -178,7 +178,7 @@ $icon-horizontal-padding: 12px;
     40% {
         opacity: 0;
         max-height: $toast-height;
-        margin: $toast-spacing/2 0;
+        margin: $toast-spacing*0.5 0;
         animation-timing-function: ease-in-out;
     }
 
@@ -193,14 +193,14 @@ $icon-horizontal-padding: 12px;
     0% {
         opacity: 1;
         max-height: $toast-height;
-        margin: $toast-spacing/2 0;
+        margin: $toast-spacing*0.5 0;
         animation-timing-function: ease-in-out;
     }
 
     6% {
         opacity: 0;
         max-height: $toast-height;
-        margin: $toast-spacing/2 0;
+        margin: $toast-spacing*0.5 0;
         animation-timing-function: ease-in-out;
     }
 
@@ -222,14 +222,14 @@ $icon-horizontal-padding: 12px;
     0% {
         opacity: 1;
         max-height: $toast-height;
-        margin: $toast-spacing/2 0;
+        margin: $toast-spacing*0.5 0;
         animation-timing-function: ease-in-out;
     }
 
     6% {
         opacity: 0;
         max-height: $toast-height;
-        margin: $toast-spacing/2 0;
+        margin: $toast-spacing*0.5 0;
         animation-timing-function: ease-in-out;
     }
 
