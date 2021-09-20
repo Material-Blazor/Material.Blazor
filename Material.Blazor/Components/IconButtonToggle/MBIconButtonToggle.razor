@@ -3,12 +3,11 @@
 @inherits InputComponent<bool>
 
 
-<div @attributes="@EventAttributesToSplat()"
-     class="@(@class)"
-     style="@style">
+<MBTouchTargetWrapper ApplyTouchTargetWrapper="AppliedTouchTarget">
     <button @ref="@ElementReference"
-            class="mdc-icon-button @ActiveConditionalClasses"
+            class="mdc-icon-button @ActiveConditionalClasses @(@class)"
             id="@id"
+            style="@style"
             @attributes="@OtherAttributesToSplat()"
             @onclick="@ToggleOnClick">
 
@@ -20,4 +19,4 @@
                 IconFoundry="@IconFoundry"
                 IconName="@IconOff" />
     </button>
-</div>
+</MBTouchTargetWrapper>

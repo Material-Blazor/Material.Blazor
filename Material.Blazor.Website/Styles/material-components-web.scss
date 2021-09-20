@@ -2,7 +2,7 @@
 @use '@material/button/styles' as button-styles;
 @use '@material/card';
 @use '@material/checkbox';
-@use '@material/chips/deprecated/mdc-chips';
+@use '@material/chips/styles';
 @use '@material/circular-progress/mdc-circular-progress';
 // Select's styles must be emitted before datatable's due to equal specificity.
 @use '@material/select/styles' as select-styles;

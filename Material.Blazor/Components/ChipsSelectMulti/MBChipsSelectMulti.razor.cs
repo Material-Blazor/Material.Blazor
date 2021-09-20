@@ -24,13 +24,15 @@ namespace Material.Blazor
         [Parameter] public bool? TouchTarget { get; set; }
 
 
+        private readonly string _chipSetName = Utilities.GenerateUniqueElementName();
+
         private bool AppliedTouchTarget => CascadingDefaults.AppliedTouchTarget(TouchTarget);
-        private Dictionary<string, object>[] ChipAttributes { get; set; }
-        private Dictionary<string, object>[] ChipIconAttributes { get; set; }
-        private Dictionary<string, object>[] ChipSpanAttributes { get; set; }
+        //private Dictionary<string, object>[] ChipAttributes { get; set; }
+        //private Dictionary<string, object>[] ChipIconAttributes { get; set; }
+        //private Dictionary<string, object>[] ChipSpanAttributes { get; set; }
         private ElementReference ChipsReference { get; set; }
         private MBIconBearingSelectElement<TItem>[] ItemsArray { get; set; }
-        private bool IsSingleSelect { get; set; }
+        private bool IsMultiSelect { get; set; }
         private DotNetObjectReference<MBChipsSelectMulti<TItem>> ObjectReference { get; set; }
 
 
@@ -39,44 +41,9 @@ namespace Material.Blazor
         {
             await base.OnInitializedAsync();
 
-            IsSingleSelect = ChipsSelectSingle != null;
-
-            ConditionalCssClasses
-                .AddIf("mdc-chip-set--filter", () => !IsSingleSelect)
-                .AddIf("mdc-chip-set--choice", () => IsSingleSelect);
+            IsMultiSelect = ChipsSelectSingle == null;
 
             ItemsArray = Items.ToArray();
-
-            ChipAttributes = new Dictionary<string, object>[ItemsArray.Length];
-            ChipIconAttributes = new Dictionary<string, object>[ItemsArray.Length];
-            ChipSpanAttributes = new Dictionary<string, object>[ItemsArray.Length];
-
-            for (int i = 0; i < ItemsArray.Length; i++)
-            {
-                ChipAttributes[i] = new();
-                ChipIconAttributes[i] = new();
-                ChipSpanAttributes[i] = new();
-
-                var selected = Value.Contains(ItemsArray[i].SelectedValue);
-
-                ChipAttributes[i].Add("class", "mdc-chip mdc-chip--touch" + (selected ? " mdc-chip--selected" : ""));
-                ChipAttributes[i].Add("role", "row");
-
-                ChipIconAttributes[i].Add("class", "mdc-chip__icon mdc-chip__icon--leading" + (selected ? " mdc-chip__icon--leading-hidden" : ""));
-
-                ChipSpanAttributes[i].Add("class", "mdc-chip__primary-action");
-                ChipSpanAttributes[i].Add("tabindex", "0");
-                ChipSpanAttributes[i].Add("aria-checked", selected.ToString().ToLower());
-
-                if (IsSingleSelect)
-                {
-                    ChipSpanAttributes[i].Add("role", "button");
-                }
-                else
-                {
-                    ChipSpanAttributes[i].Add("role", "checkbox");
-                }
-            }
 
             SetComponentValue += OnValueSetCallback;
             OnDisabledSet += OnDisabledSetCallback;
@@ -108,9 +75,9 @@ namespace Material.Blazor
         /// For Material Theme to notify of menu item selection via JS Interop.
         /// </summary>
         [JSInvokable]
-        public void NotifyMultiSelected(bool[] selected)
+        public void NotifyMultiSelected(int[] selectedIndexes)
         {
-            var selectedIndexes = Enumerable.Range(0, selected.Length).Where(i => selected[i]);
+            //var selectedIndexes = Enumerable.Range(0, selected.Length).Where(i => selected[i]);
             ComponentValue = ItemsArray.Where((item, index) => selectedIndexes.Contains(index)).Select(x => x.SelectedValue).ToArray();
         }
 
@@ -142,7 +109,7 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => InvokeInitBatchingJsVoidAsync("MaterialBlazor.MBChipsSelectMulti.init", ChipsReference, IsSingleSelect, ObjectReference);
+        private protected override Task InstantiateMcwComponent() => InvokeInitBatchingJsVoidAsync("MaterialBlazor.MBChipsSelectMulti.init", ChipsReference, IsMultiSelect, ObjectReference);
 
 
         /// <summary>
