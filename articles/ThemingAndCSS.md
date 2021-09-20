@@ -21,6 +21,10 @@ There are two ways to do theming that you can read about at [material.io](https:
 - Look at these files to understand the build process:
 	- [Material.Blazor.Website.csproj](https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website/Material.Blazor.Website.csproj)
 	- [package.json](https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website/package.json)
+	- Review the `.scss` files
+		- in particular note that as of Material Components Web v12.0.0 we constructed our own `material-components-web.scss` file
+		- this differs from what node downloads due to evolving components (e.g. lists and chips)
+		- you should consider copying this file to your project to ensure correct markup
 
 ## CSS Color Helpers
 
