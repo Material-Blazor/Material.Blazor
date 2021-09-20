@@ -133,6 +133,38 @@
                 </Primary>
             </MBCard>
         </div>
+
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Data Table with sticky header
+                    </h2>
+
+                    <div class="overflow-auto">
+                        <p>
+                            <MBDataTable class="my-data-table"
+                                         Context="item"
+                                         Items="@People"
+                                         StickyHeader="true"
+                                         style="max-height: 400px;">
+                                <TableHeader>
+                                    <th class="mdc-data-table__header-cell header-bold" role="columnheader" scope="col">Salutation</th>
+                                    <th class="mdc-data-table__header-cell header-bold" role="columnheader" scope="col">Given Name</th>
+                                    <th class="mdc-data-table__header-cell header-bold" role="columnheader" scope="col">Family Name</th>
+                                </TableHeader>
+                                <TableRow>
+                                    <td class="mdc-data-table__cell">@item.Salutation</td>
+                                    <td class="mdc-data-table__cell">@item.GivenName</td>
+                                    <td class="mdc-data-table__cell">@item.FamilyName</td>
+                                </TableRow>
+                            </MBDataTable>
+                        </p>
+                    </div>
+                </Primary>
+            </MBCard>
+        </div>
     </PageContent>
 </DemonstrationPage>
 
