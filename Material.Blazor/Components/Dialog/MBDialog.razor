@@ -5,20 +5,18 @@
      class="mdc-dialog @ActiveConditionalClasses @(@class)"
      style="@style"
      id="@id"
-     @attributes="@AttributesToSplat()"
-     aria-labelledby="@(HasTitle ? titleId : (HasCustomHeader ? headerId : null))"
-     aria-describedby="@(HasBody ? bodyId : null)"
-     aria-modal="true">
+     @attributes="@AttributesToSplat()">
 
     <CascadingValue Value="@this" IsFixed="true">
-        <div class="mdc-dialog__container"
-             role="alertdialog"
-             aria-modal="true"
-             aria-labelledby="my-dialog-title"
-             aria-describedby="my-dialog-content">
+        <div class="mdc-dialog__container">
             @if (IsOpen)
             {
-                <div class="mdc-dialog__surface @OverflowClass">
+                <div class="mdc-dialog__surface @OverflowClass"
+                     role="alertdialog"
+                     aria-modal="true"
+                     aria-labelledby="@(HasTitle ? titleId : (HasCustomHeader ? headerId : null))"
+                     aria-describedby="@(HasBody ? bodyId : null)">
+
                     @if (HasTitle)
                     {
                         <h2 id="@titleId" class="mdc-dialog__title">@Title</h2>

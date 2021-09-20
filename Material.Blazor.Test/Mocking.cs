@@ -54,7 +54,7 @@ namespace Material.Blazor.Test
             InjectMockedServices();
             var cut = ctx.RenderComponent<MBDialog>();
             cut.MarkupMatches(@"
-<div class=""mdc-dialog"" aria-modal=""true"">
+<div class=""mdc-dialog"">
     <div class=""mdc-dialog__container""></div>
     <div class=""mdc-dialog__scrim""></div>
 </div>");
