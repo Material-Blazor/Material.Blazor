@@ -90,15 +90,20 @@
 </ul>
 <h2 id="assisting-blazor-rendering-with-key">Assisting Blazor Rendering with <code>@key</code></h2>
 <ul>
-<li>MBSegmentedButtonMulti renders similar buttons with a <code>foreach</code> loop;</li>
-<li>In general each item rendered in a loop in Blazor should be supplied with a unique object via the <code>@key</code> attribute - see <a href="https://blazor-university.com/components/render-trees/optimising-using-key/">Blazor University</a>;</li>
-<li>MBSegmentedButtonMulti by default uses the <code>SelectedValue</code> property of each item in the <code>Items</code> parameter as the key, however you can override this. Material.Blazor does this because we have had instances where Blazor crashes with the default key giving an exception message such as &quot;The given key 'MyObject' was not present&quot;;</li>
-<li>You can provide a function delegate to the <code>GetKeysFunc</code> parameter - we have used two variants of this:
+<li><p>MBSegmentedButtonMulti renders similar buttons with a <code>foreach</code> loop;</p>
+</li>
+<li><p>In general each item rendered in a loop in Blazor should be supplied with a unique object via the <code>@key</code> attribute - see <a href="https://blazor-university.com/components/render-trees/optimising-using-key/">Blazor University</a>;</p>
+</li>
+<li><p>MBSegmentedButtonMulti by default uses the <code>SelectedValue</code> property of each item in the <code>Items</code> parameter as the key, however you can override this. Material.Blazor does this because we have had instances where Blazor crashes with the default key giving an exception message such as &quot;The given key 'MyObject' was not present&quot;;</p>
+</li>
+<li><p>You can provide a function delegate to the <code>GetKeysFunc</code> parameter - we have used two variants of this:</p>
 <ul>
 <li>First to get a unique <code>Id</code> property that happens to be in our item's class: <code>GetKeysFunc=&quot;@((item) =&gt; item.Id)&quot;</code>; and</li>
 <li>Second using a &quot;fake key&quot; where we create a GUID to act as the key: <code>GetKeysFunc=&quot;@((item) =&gt; Guid.NewGuid())&quot;</code>.</li>
 <li>You can see an example of this in the <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website/Pages/List.razor#L155">MBList demonstration website page's code</a>.</li>
 </ul>
+</li>
+<li><p>ChipsSelectSingle &amp; Items are set in OnInitialized and not in SetParameters</p>
 </li>
 </ul>
 <p> </p>

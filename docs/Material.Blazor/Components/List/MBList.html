@@ -81,17 +81,27 @@
 <h1 id="mblisttitem">MBList&lt;TItem&gt;</h1>
 
 <h2 id="summary">Summary</h2>
-<p>A partial implementation of a <a href="https://github.com/material-components/material-components-web/tree/v9.0.0/packages/mdc-list#lists">Material List</a>. Uses render fragments to implement Material Theme Web Components one and two line lists, plus a Material.Blazor interpretation of a three line list. It features:</p>
+<p>A partial implementation of a <a href="https://github.com/material-components/material-components-web/tree/v9.0.0/packages/mdc-deprecated-list#lists">Material List</a>. Uses render fragments to implement Material Theme Web Components one and two line lists, plus a Material.Blazor interpretation of a three line list. It features:</p>
 <h2 id="details">Details</h2>
 <ul>
-<li>A title line render fragment;</li>
-<li>IEnumerable render fragments for the first, second and third lines of each list item;</li>
-<li>Icon IEnumerable render fragments that can be ignorred and suppressed with a boolean switch;</li>
-<li>IEnumerable avatar list render fragment;</li>
-<li>IEnumerable actions render fragment;</li>
-<li>Indicators for dense layout, dividers between items, whether keyboard interactions and ripple are activated, and whether lines two or three of each item are hidden;</li>
-<li>Click, KeyDown, MouseDown and TouchStart event handlers that return the index of the item receiving user interaction;</li>
-<li>Applies <a class="xref" href="../../../articles/Density.html">density subsystem</a>.</li>
+<li><p>A title line render fragment;</p>
+</li>
+<li><p>IEnumerable render fragments for the first, second and third lines of each list item;</p>
+</li>
+<li><p>Icon IEnumerable render fragments that can be ignorred and suppressed with a boolean switch;</p>
+</li>
+<li><p>IEnumerable avatar list render fragment;</p>
+</li>
+<li><p>IEnumerable actions render fragment;</p>
+</li>
+<li><p>Indicators for dense layout, dividers between items, whether keyboard interactions and ripple are activated, and whether lines two or three of each item are hidden;</p>
+</li>
+<li><p>Click, KeyDown, MouseDown and TouchStart event handlers that return the index of the item receiving user interaction;</p>
+</li>
+<li><p>Applies <a class="xref" href="../../../articles/Density.html">density subsystem</a>.</p>
+</li>
+<li><p>NumberOfLine and NonIteractive are set in OnInitialized and not in SetParameters</p>
+</li>
 </ul>
 <h2 id="assisting-blazor-rendering-with-key">Assisting Blazor Rendering with <code>@key</code></h2>
 <ul>

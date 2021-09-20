@@ -84,16 +84,21 @@
 <p>A single thumb <a href="https://github.com/material-components/material-components-web/tree/v9.0.0/packages/mdc-slider#slider">Material Slider</a>.</p>
 <h2 id="details">Details</h2>
 <ul>
-<li>Two-way binds a decimal Value parameter;</li>
-<li>Implements both continuous and discrete slider variants.</li>
-<li>Emits events on:
+<li><p>Two-way binds a decimal Value parameter;</p>
+</li>
+<li><p>Implements both continuous and discrete slider variants.</p>
+</li>
+<li><p>Emits events on:</p>
 <ul>
 <li>Thumb-up;</li>
 <li>Debounced, meaning that events are emitted once the slider stops moving, but before thumb-up; or</li>
 <li>Throttled, so that events are emitted continuously as the slider is moved.</li>
 </ul>
 </li>
-<li>Debounce and throttle implemented in JS to avoid excessive/inefficient use of Blazor JSInterop.</li>
+<li><p>Debounce and throttle implemented in JS to avoid excessive/inefficient use of Blazor JSInterop.</p>
+</li>
+<li><p>ValueMin and ValueMax are set in OnInitialized and not in SetParameters</p>
+</li>
 </ul>
 <p> </p>
 <p> </p>

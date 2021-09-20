@@ -79,6 +79,9 @@ references:
 - uid: C.MBAutocompleteTextField
   name: MBAutocompleteTextField
   href: Material.Blazor/Components/AutocompleteTextField/MBAutoCompleteTextField.html
+- uid: C.MBBatchingWrapper
+  name: MBBatchingWrapper
+  href: Material.Blazor/Components/BatchingWrapper/MBBatchingWrapper.html
 - uid: C.MBBladeSet
   name: MBBladeSet
   href: Material.Blazor/Components/BladeSet/MBBladeSet.html
@@ -2684,13 +2687,13 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBBladeSet.AddBladeAsync
   nameWithType: MBBladeSet.AddBladeAsync
-- uid: Material.Blazor.MBBladeSet.AddBladeAsync``2(System.String,``1,System.String,System.String,Action{System.String})
+- uid: Material.Blazor.MBBladeSet.AddBladeAsync``2(System.String,``1,System.String,System.String,System.Action{System.String})
   name: AddBladeAsync<TComponent, TParameters>(String, TParameters, String, String, Action<String>)
-  href: api/Material.Blazor.MBBladeSet.html#Material_Blazor_MBBladeSet_AddBladeAsync__2_System_String___1_System_String_System_String_Action_System_String__
-  commentId: M:Material.Blazor.MBBladeSet.AddBladeAsync``2(System.String,``1,System.String,System.String,Action{System.String})
+  href: api/Material.Blazor.MBBladeSet.html#Material_Blazor_MBBladeSet_AddBladeAsync__2_System_String___1_System_String_System_String_System_Action_System_String__
+  commentId: M:Material.Blazor.MBBladeSet.AddBladeAsync``2(System.String,``1,System.String,System.String,System.Action{System.String})
   name.vb: AddBladeAsync(Of TComponent, TParameters)(String, TParameters, String, String, Action(Of String))
-  fullName: Material.Blazor.MBBladeSet.AddBladeAsync<TComponent, TParameters>(System.String, TParameters, System.String, System.String, Action<System.String>)
-  fullName.vb: Material.Blazor.MBBladeSet.AddBladeAsync(Of TComponent, TParameters)(System.String, TParameters, System.String, System.String, Action(Of System.String))
+  fullName: Material.Blazor.MBBladeSet.AddBladeAsync<TComponent, TParameters>(System.String, TParameters, System.String, System.String, System.Action<System.String>)
+  fullName.vb: Material.Blazor.MBBladeSet.AddBladeAsync(Of TComponent, TParameters)(System.String, TParameters, System.String, System.String, System.Action(Of System.String))
   nameWithType: MBBladeSet.AddBladeAsync<TComponent, TParameters>(String, TParameters, String, String, Action<String>)
   nameWithType.vb: MBBladeSet.AddBladeAsync(Of TComponent, TParameters)(String, TParameters, String, String, Action(Of String))
 - uid: Material.Blazor.MBBladeSet.BladeReferences
@@ -3759,15 +3762,15 @@ references:
   fullName.vb: Material.Blazor.MBChipsSelectMulti(Of TItem).Dispose
   nameWithType: MBChipsSelectMulti<TItem>.Dispose
   nameWithType.vb: MBChipsSelectMulti(Of TItem).Dispose
-- uid: Material.Blazor.MBChipsSelectMulti`1.NotifyMultiSelected(System.Boolean[])
-  name: NotifyMultiSelected(Boolean[])
-  href: api/Material.Blazor.MBChipsSelectMulti-1.html#Material_Blazor_MBChipsSelectMulti_1_NotifyMultiSelected_System_Boolean___
-  commentId: M:Material.Blazor.MBChipsSelectMulti`1.NotifyMultiSelected(System.Boolean[])
-  name.vb: NotifyMultiSelected(Boolean())
-  fullName: Material.Blazor.MBChipsSelectMulti<TItem>.NotifyMultiSelected(System.Boolean[])
-  fullName.vb: Material.Blazor.MBChipsSelectMulti(Of TItem).NotifyMultiSelected(System.Boolean())
-  nameWithType: MBChipsSelectMulti<TItem>.NotifyMultiSelected(Boolean[])
-  nameWithType.vb: MBChipsSelectMulti(Of TItem).NotifyMultiSelected(Boolean())
+- uid: Material.Blazor.MBChipsSelectMulti`1.NotifyMultiSelected(System.Int32[])
+  name: NotifyMultiSelected(Int32[])
+  href: api/Material.Blazor.MBChipsSelectMulti-1.html#Material_Blazor_MBChipsSelectMulti_1_NotifyMultiSelected_System_Int32___
+  commentId: M:Material.Blazor.MBChipsSelectMulti`1.NotifyMultiSelected(System.Int32[])
+  name.vb: NotifyMultiSelected(Int32())
+  fullName: Material.Blazor.MBChipsSelectMulti<TItem>.NotifyMultiSelected(System.Int32[])
+  fullName.vb: Material.Blazor.MBChipsSelectMulti(Of TItem).NotifyMultiSelected(System.Int32())
+  nameWithType: MBChipsSelectMulti<TItem>.NotifyMultiSelected(Int32[])
+  nameWithType.vb: MBChipsSelectMulti(Of TItem).NotifyMultiSelected(Int32())
 - uid: Material.Blazor.MBChipsSelectMulti`1.NotifyMultiSelected*
   name: NotifyMultiSelected
   href: api/Material.Blazor.MBChipsSelectMulti-1.html#Material_Blazor_MBChipsSelectMulti_1_NotifyMultiSelected_
@@ -5229,19 +5232,6 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBFloatingActionButton.IconFoundry
   nameWithType: MBFloatingActionButton.IconFoundry
-- uid: Material.Blazor.MBFloatingActionButton.IconTrailsLabel
-  name: IconTrailsLabel
-  href: api/Material.Blazor.MBFloatingActionButton.html#Material_Blazor_MBFloatingActionButton_IconTrailsLabel
-  commentId: P:Material.Blazor.MBFloatingActionButton.IconTrailsLabel
-  fullName: Material.Blazor.MBFloatingActionButton.IconTrailsLabel
-  nameWithType: MBFloatingActionButton.IconTrailsLabel
-- uid: Material.Blazor.MBFloatingActionButton.IconTrailsLabel*
-  name: IconTrailsLabel
-  href: api/Material.Blazor.MBFloatingActionButton.html#Material_Blazor_MBFloatingActionButton_IconTrailsLabel_
-  commentId: Overload:Material.Blazor.MBFloatingActionButton.IconTrailsLabel
-  isSpec: "True"
-  fullName: Material.Blazor.MBFloatingActionButton.IconTrailsLabel
-  nameWithType: MBFloatingActionButton.IconTrailsLabel
 - uid: Material.Blazor.MBFloatingActionButton.Label
   name: Label
   href: api/Material.Blazor.MBFloatingActionButton.html#Material_Blazor_MBFloatingActionButton_Label
@@ -5300,12 +5290,24 @@ references:
   commentId: T:Material.Blazor.MBFloatingActionButtonType
   fullName: Material.Blazor.MBFloatingActionButtonType
   nameWithType: MBFloatingActionButtonType
-- uid: Material.Blazor.MBFloatingActionButtonType.Extended
-  name: Extended
-  href: api/Material.Blazor.MBFloatingActionButtonType.html#Material_Blazor_MBFloatingActionButtonType_Extended
-  commentId: F:Material.Blazor.MBFloatingActionButtonType.Extended
-  fullName: Material.Blazor.MBFloatingActionButtonType.Extended
-  nameWithType: MBFloatingActionButtonType.Extended
+- uid: Material.Blazor.MBFloatingActionButtonType.ExtendedLeadingIcon
+  name: ExtendedLeadingIcon
+  href: api/Material.Blazor.MBFloatingActionButtonType.html#Material_Blazor_MBFloatingActionButtonType_ExtendedLeadingIcon
+  commentId: F:Material.Blazor.MBFloatingActionButtonType.ExtendedLeadingIcon
+  fullName: Material.Blazor.MBFloatingActionButtonType.ExtendedLeadingIcon
+  nameWithType: MBFloatingActionButtonType.ExtendedLeadingIcon
+- uid: Material.Blazor.MBFloatingActionButtonType.ExtendedNoIcon
+  name: ExtendedNoIcon
+  href: api/Material.Blazor.MBFloatingActionButtonType.html#Material_Blazor_MBFloatingActionButtonType_ExtendedNoIcon
+  commentId: F:Material.Blazor.MBFloatingActionButtonType.ExtendedNoIcon
+  fullName: Material.Blazor.MBFloatingActionButtonType.ExtendedNoIcon
+  nameWithType: MBFloatingActionButtonType.ExtendedNoIcon
+- uid: Material.Blazor.MBFloatingActionButtonType.ExtendedTrailingIcon
+  name: ExtendedTrailingIcon
+  href: api/Material.Blazor.MBFloatingActionButtonType.html#Material_Blazor_MBFloatingActionButtonType_ExtendedTrailingIcon
+  commentId: F:Material.Blazor.MBFloatingActionButtonType.ExtendedTrailingIcon
+  fullName: Material.Blazor.MBFloatingActionButtonType.ExtendedTrailingIcon
+  nameWithType: MBFloatingActionButtonType.ExtendedTrailingIcon
 - uid: Material.Blazor.MBFloatingActionButtonType.Mini
   name: Mini
   href: api/Material.Blazor.MBFloatingActionButtonType.html#Material_Blazor_MBFloatingActionButtonType_Mini
@@ -6085,6 +6087,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBIconButton.OnInitializedAsync
   nameWithType: MBIconButton.OnInitializedAsync
+- uid: Material.Blazor.MBIconButton.TouchTarget
+  name: TouchTarget
+  href: api/Material.Blazor.MBIconButton.html#Material_Blazor_MBIconButton_TouchTarget
+  commentId: P:Material.Blazor.MBIconButton.TouchTarget
+  fullName: Material.Blazor.MBIconButton.TouchTarget
+  nameWithType: MBIconButton.TouchTarget
+- uid: Material.Blazor.MBIconButton.TouchTarget*
+  name: TouchTarget
+  href: api/Material.Blazor.MBIconButton.html#Material_Blazor_MBIconButton_TouchTarget_
+  commentId: Overload:Material.Blazor.MBIconButton.TouchTarget
+  isSpec: "True"
+  fullName: Material.Blazor.MBIconButton.TouchTarget
+  nameWithType: MBIconButton.TouchTarget
 - uid: Material.Blazor.MBIconButtonToggle
   name: MBIconButtonToggle
   href: api/Material.Blazor.MBIconButtonToggle.html
@@ -6182,6 +6197,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBIconButtonToggle.OnValueSetCallback
   nameWithType: MBIconButtonToggle.OnValueSetCallback
+- uid: Material.Blazor.MBIconButtonToggle.TouchTarget
+  name: TouchTarget
+  href: api/Material.Blazor.MBIconButtonToggle.html#Material_Blazor_MBIconButtonToggle_TouchTarget
+  commentId: P:Material.Blazor.MBIconButtonToggle.TouchTarget
+  fullName: Material.Blazor.MBIconButtonToggle.TouchTarget
+  nameWithType: MBIconButtonToggle.TouchTarget
+- uid: Material.Blazor.MBIconButtonToggle.TouchTarget*
+  name: TouchTarget
+  href: api/Material.Blazor.MBIconButtonToggle.html#Material_Blazor_MBIconButtonToggle_TouchTarget_
+  commentId: Overload:Material.Blazor.MBIconButtonToggle.TouchTarget
+  isSpec: "True"
+  fullName: Material.Blazor.MBIconButtonToggle.TouchTarget
+  nameWithType: MBIconButtonToggle.TouchTarget
 - uid: Material.Blazor.MBIconFARelativeSize
   name: MBIconFARelativeSize
   href: api/Material.Blazor.MBIconFARelativeSize.html
@@ -10116,19 +10144,6 @@ references:
   commentId: T:Material.Blazor.MBSwitch
   fullName: Material.Blazor.MBSwitch
   nameWithType: MBSwitch
-- uid: Material.Blazor.MBSwitch.Density
-  name: Density
-  href: api/Material.Blazor.MBSwitch.html#Material_Blazor_MBSwitch_Density
-  commentId: P:Material.Blazor.MBSwitch.Density
-  fullName: Material.Blazor.MBSwitch.Density
-  nameWithType: MBSwitch.Density
-- uid: Material.Blazor.MBSwitch.Density*
-  name: Density
-  href: api/Material.Blazor.MBSwitch.html#Material_Blazor_MBSwitch_Density_
-  commentId: Overload:Material.Blazor.MBSwitch.Density
-  isSpec: "True"
-  fullName: Material.Blazor.MBSwitch.Density
-  nameWithType: MBSwitch.Density
 - uid: Material.Blazor.MBSwitch.Label
   name: Label
   href: api/Material.Blazor.MBSwitch.html#Material_Blazor_MBSwitch_Label
