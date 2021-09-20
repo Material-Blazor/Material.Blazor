@@ -24,6 +24,8 @@ A [Material Chip Set](https://github.com/material-components/material-components
   - Second using a "fake key" where we create a GUID to act as the key: `GetKeysFunc="@((item) => Guid.NewGuid())"`.
   - You can see an example of this in the [MBList demonstration website page's code](https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website/Pages/List.razor#L155).
 
+- Value, ChipsSelectSingle, & Items are set in OnInitialized and not in SetParameters
+
 &nbsp;
 
 &nbsp;
