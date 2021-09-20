@@ -18,6 +18,8 @@ A single thumb [Material Slider](https://github.com/material-components/material
   - Throttled, so that events are emitted continuously as the slider is moved.
 - Debounce and throttle implemented in JS to avoid excessive/inefficient use of Blazor JSInterop.
 
+- ValueMin and ValueMax are set in OnInitialized and not in SetParameters
+
 &nbsp;
 
 &nbsp;

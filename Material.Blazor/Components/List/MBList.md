@@ -19,6 +19,8 @@ A partial implementation of a [Material List](https://github.com/material-compon
 - Click, KeyDown, MouseDown and TouchStart event handlers that return the index of the item receiving user interaction;
 - Applies [density subsystem](xref:A.Density).
 
+- NumberOfLine and NonIteractive are set in OnInitialized and not in SetParameters
+
 ## Assisting Blazor Rendering with `@key`
 
 - MBList renders similar table rows with a `foreach` loop;

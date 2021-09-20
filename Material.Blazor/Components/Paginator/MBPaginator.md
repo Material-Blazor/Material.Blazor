@@ -13,6 +13,8 @@ An implementation of the [Material paginator specification](https://material.io/
 - Accepts the total number of items to be paged and a list of allowable numbers of items per page; and
 - Two way binds the selected page number and the selected number of items per page;
 
+- ItemsPerPage & ItemsPerPageSelection are set in OnInitialized and not in SetParameters
+
 &nbsp;
 
 &nbsp;
