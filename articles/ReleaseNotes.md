@@ -18,8 +18,19 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 <br />
 
 
+#### [2.0.0-preview.9](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.9)
+Not yet released
+
+**Updates**
+
+**New components**
+
+**Breaking Changes**
+
+**Known issues**
+
 #### [2.0.0-preview.8](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.8)
-NOT YET RELEASED
+2021-09-20
 
 **Updates**
 
