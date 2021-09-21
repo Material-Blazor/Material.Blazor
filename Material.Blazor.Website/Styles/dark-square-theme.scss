@@ -26,6 +26,15 @@
 @use "./material-components-web";
 @use "./app";
 
+:root {
+    --mb-grid-border-color: var(--mb-color-blue-grey-500) !important;
+    --mb-grid-header-color: var(--mb-color-blue-grey-900) !important;
+    --mb-grid-group-row-color: var(--mb-color-blue-900) !important;
+    --mb-grid-odd-row-color: var(--mb-color-yellow-900) !important;
+    --mb-grid-even-row-color: var(--mb-color-orange-900) !important;
+    --mb-grid-selected-row-color: var(--mb-color-teal-900) !important;
+}
+
 .mdc-top-app-bar {
     @include top-app-bar.fill-color(#37474f);
     @include top-app-bar.ink-color(white);

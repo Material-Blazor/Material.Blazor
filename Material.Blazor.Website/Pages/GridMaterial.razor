@@ -25,7 +25,8 @@
                         Grid showing the raw data
                     </h2>
 
-                    <MBMaterialGrid ColumnConfigurations="@ColumnConfigurations2"
+                    <MBMaterialGrid style="width: 100%;"
+                            ColumnConfigurations="@ColumnConfigurations2"
                             GroupedOrderedData=@PeopleAsRawData
                             Group="false"
                             HighlightSelectedRow="@true"
@@ -44,7 +45,10 @@
                         Grid showing the data sorted by family name then given name
                     </h2>
 
-                    <MBMaterialGrid ColumnConfigurations="@ColumnConfigurations2"
+                    <MBMaterialGrid style="width: 100%;"
+                            ApplyColors="true"
+                            ApplyVerticalDividers="true"
+                            ColumnConfigurations="@ColumnConfigurations2"
                             GroupedOrderedData=@PeopleAsOrderedData
                             Group="false"
                             HighlightSelectedRow="@true"
@@ -63,7 +67,10 @@
                         Sorted, Grouped grid hiding the grouping column without group list
                     </h2>
 
-                    <MBMaterialGrid ColumnConfigurations="@ColumnConfigurations"
+                    <MBMaterialGrid style="width: 100%;"
+                            ApplyColors="true"
+                            ApplyVerticalDividers="true"
+                            ColumnConfigurations="@ColumnConfigurations"
                             GroupedOrderedData=@PeopleAsGroupedData
                             Group="true"
                             HighlightSelectedRow="@true"
@@ -82,8 +89,10 @@
                         Sorted, Grouped grid hiding the grouping column with group list
                     </h2>
 
-                    <MBMaterialGrid ColumnConfigurations="@ColumnConfigurations"
-                            style="max-height: 600px; max-width: 200px;"
+                    <MBMaterialGrid style="max-height: 600px; width: 100%;"
+                            ApplyColors="true"
+                            ApplyVerticalDividers="true"
+                            ColumnConfigurations="@ColumnConfigurations"
                             GroupedOrderedData=@PeopleAsGroupedDataWithGroupList
                             Group="true"
                             HighlightSelectedRow="@true"

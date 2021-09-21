@@ -166,4 +166,67 @@
 }
 
 
+:root {
+    --mb-grid-border-color: var(--mb-color-blue-grey-500);
+    --mb-grid-header-color: var(--mb-color-blue-grey-100);
+    --mb-grid-group-row-color: var(--mb-color-blue-100);
+    --mb-grid-odd-row-color: var(--mb-color-yellow-100);
+    --mb-grid-even-row-color: var(--mb-color-orange-100);
+    --mb-grid-selected-row-color: var(--mb-color-teal-100);
+}
 
+.mb-mgrid {
+    border-radius: 0px;
+
+    .mdc-data-table__header-cell:first-child {
+        border-top-left-radius: 0px;
+    }
+
+    .mdc-data-table__header-cell:last-child {
+        border-top-right-radius: 0px;
+    }
+}
+
+.mb-mgrid__colored {
+    border-color: var(--mb-grid-border-color);
+
+    .mdc-data-table__header-cell {
+        background-color: var(--mb-grid-header-color);
+        border-left-color: var(--mb-grid-border-color);
+        border-bottom-color: var(--mb-grid-border-color);
+    }
+
+    tbody td {
+        border-left-color: var(--mb-grid-border-color);
+        border-bottom-color: var(--mb-grid-border-color);
+    }
+    /*.mb-mgrid__group-row td, .mb-mgrid__row td {
+        border-left-color: var(--mb-grid-border-color);
+    }*/
+
+    .mb-mgrid__group-row td {
+        /*border-left-color: var(--mb-grid-border-color);*/
+        background-color: var(--mb-grid-group-row-color);
+    }
+
+    .mb-mgrid__row:nth-child(odd) td {
+        background-color: var(--mb-grid-odd-row-color);
+    }
+
+    .mb-mgrid__row:nth-child(even) td {
+        background-color: var(--mb-grid-even-row-color);
+    }
+
+    .mb-mgrid__row-selected td {
+        background-color: var(--mb-grid-selected-row-color);
+    }
+}
+
+
+.mb-mgrid__vertical-dividers {
+    .mdc-data-table__header-cell:not(:first-child), .mb-mgrid__group-row td:not(:first-child), .mb-mgrid__row td:not(:first-child) {
+        padding-left: 15px;
+        border-left-width: 1px;
+        border-left-style: solid;
+    }
+}

@@ -13,7 +13,7 @@ is within a couple of pixels of unstyled overflow content on the month selection
 with longer month names. We are therefore likely to relax the component's density, which should improve usability. We have deviated from the specification by
 adding an "undo" button to return to the current selected date. There is no "today" button, which is not in the Material Theme specification.
 
-The SupressDefaultDate parameter is checked in OnInitialized Async and not in 
+The SuppressDefaultDate parameter is checked in OnInitialized Async and not in 
 SetParametersAsync. Therefore a change will not be detected (and makes little sense
 for the component).
 

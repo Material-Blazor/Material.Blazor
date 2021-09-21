@@ -27,6 +27,9 @@ Not yet released
 
 **Breaking Changes**
 
+- Animated Navigation is deprecated.
+- All parameters with the word "Supress" are renamed "Suppress" - good spelling helps.
+
 **Known issues**
 
 #### [2.0.0-preview.8](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.8)

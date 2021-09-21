@@ -108,8 +108,19 @@ namespace Material.Blazor
         /// <summary>
         /// Headers are optional
         /// </summary>
-#warning "Suppress" with a double "P"
-        [Parameter] public bool SupressHeader { get; set; } = false;
+        [Parameter] public bool SuppressHeader { get; set; } = false;
+
+
+        /// <summary>
+        /// Set to true to apply grid colors.
+        /// </summary>
+        [Parameter] public bool ApplyColors { get; set; }
+
+
+        /// <summary>
+        /// Set to true to apply vertical dividers to data rows and headers but not group headers.
+        /// </summary>
+        [Parameter] public bool ApplyVerticalDividers { get; set; }
 
 
         /// <summary>
@@ -244,50 +255,46 @@ namespace Material.Blazor
                 base.BuildRenderTree(builder);
                 var rendSeq = 2;
                 string styleStr;
-                string classStr = $"mdc-data-table{(DensityInfo.ApplyCssClass ? $" {DensityInfo.CssClassName}" : "")} mdc-data-table--sticky-header {@class}";
+                string classStr = $"mdc-data-table{(DensityInfo.ApplyCssClass ? $" {DensityInfo.CssClassName}" : "")} mdc-data-table--sticky-header mb-mgrid{(ApplyColors ? " mb-mgrid__colored" : "")}{(ApplyVerticalDividers ? " mb-mgrid__vertical-dividers" : "")} {@class}";
                 var columnCount = ColumnConfigurations.Count().ToString();
 
                 builder.OpenElement(rendSeq++, "div");
                 builder.AddAttribute(rendSeq++, "class", classStr);
                 builder.AddAttribute(rendSeq++, "style", style);
 
-                if (!SupressHeader || GroupedOrderedData != null)
+                if (!SuppressHeader || GroupedOrderedData != null)
                 {
-                    //builder.OpenElement(rendSeq++, "div");
-                    //builder.AddAttribute(rendSeq++, "class", "mb-grid-div-header mb-grid-backgroundcolor-header-background");
-                    ////builder.AddAttribute(rendSeq++, "style", "padding-right: " + ScrollWidth.ToString() + "px; ");
-                    //builder.AddAttribute(rendSeq++, "id", GridHeaderID);
-                    //builder.AddElementReferenceCapture(rendSeq++, (__value) => { GridHeaderRef = __value; });
                     builder.OpenElement(rendSeq++, "div");
                     builder.AddAttribute(rendSeq++, "class", "mdc-data-table__table-container");
                     builder.OpenElement(rendSeq++, "table");
-                    builder.AddAttribute(rendSeq++, "class", "mdc-data-table__table mb-grid-material-tablex");
+                    builder.AddAttribute(rendSeq++, "class", "mdc-data-table__table");
+                    BuildColGroup(builder, ref rendSeq);
 
                     // Based on the column config generate the column titles unless asked not to
-                    if (!SupressHeader)
+                    if (!SuppressHeader)
                     {
                         //BuildColGroup(builder, ref rendSeq);
                         builder.OpenElement(rendSeq++, "thead");
-                        builder.AddAttribute(rendSeq++, "class", "mb-grid-material-theadx");
                         builder.OpenElement(rendSeq++, "tr");
-                        builder.AddAttribute(rendSeq++, "class", "mdc-data-table__header-row mb-grid-material-trx");
+                        //builder.AddAttribute(rendSeq++, "class", "mdc-data-table__header-row mb-grid-material-trx");
+                        builder.AddAttribute(rendSeq++, "class", "mdc-data-table__header-row");
 
                         // For each column output a TD
                         var isHeaderRow = true;
                         var colCount = 0;
                         foreach (var col in ColumnConfigurations)
                         {
-                            styleStr = BuildNewGridTD(
-                                builder,
-                                ref rendSeq,
-                                colCount == 0,
-                                isHeaderRow,
-                                "mb-grid-backgroundcolor-header-background");
+                            //styleStr = BuildNewGridTD(
+                            //    builder,
+                            //    ref rendSeq,
+                            //    colCount == 0,
+                            //    isHeaderRow,
+                            //    "mb-grid-backgroundcolor-header-background");
 
-                            // Set the header colors
-                            styleStr += " color: " + col.ForegroundColorHeader.Name + ";";
-                            styleStr += " background-color : " + col.BackgroundColorHeader.Name + ";";
-
+                            //// Set the header colors
+                            //styleStr += " color: " + col.ForegroundColorHeader.Name + ";";
+                            //styleStr += " background-color : " + col.BackgroundColorHeader.Name + ";";
+                            builder.OpenElement(rendSeq++, "td");
                             builder.AddAttribute(rendSeq++, "class", "mdc-data-table__header-cell");
                             //builder.AddAttribute(rendSeq++, "style", styleStr);
                             builder.AddContent(rendSeq++, col.Title);
@@ -310,11 +317,11 @@ namespace Material.Blazor
 
                     if (GroupedOrderedData != null)
                     {
-                        var isFirstGrouper = true;
+                        //var isFirstGrouper = true;
 
-                        BuildColGroup(builder, ref rendSeq);
+                        //BuildColGroup(builder, ref rendSeq);
                         builder.OpenElement(rendSeq++, "tbody");
-                        builder.AddAttribute(rendSeq++, "class", "mdc-data-table__content mb-grid-tbodyx");
+                        builder.AddAttribute(rendSeq++, "class", "mdc-data-table__content");
 
                         foreach (var kvp in GroupedOrderedData)
                         {
@@ -323,10 +330,10 @@ namespace Material.Blazor
                                 // We output a row with the group name
                                 // Do a div for this row
                                 builder.OpenElement(rendSeq++, "tr");
-                                builder.AddAttribute(rendSeq++, "class", "mdc-data-table__row mb-grid-trx");
+                                builder.AddAttribute(rendSeq++, "class", "mdc-data-table__row mb-mgrid__group-row");
                                 builder.OpenElement(rendSeq++, "td");
                                 builder.AddAttribute(rendSeq++, "colspan", columnCount);
-                                builder.AddAttribute(rendSeq++, "class", "mdc-data-table__cell mb-grid-td-groupx mb-grid-backgroundcolor-row-groupx");
+                                builder.AddAttribute(rendSeq++, "class", "mdc-data-table__cell");
                                 //if (isFirstGrouper)
                                 //{
                                 //    isFirstGrouper = false;
@@ -343,31 +350,33 @@ namespace Material.Blazor
                             {
                                 var rowKey = KeyExpression(rowValues.Value).ToString();
 
-                                string rowBackgroundColorClass;
-                                if ((rowKey == SelectedKey) && HighlightSelectedRow)
-                                {
-                                    // It's the selected row so set the selection color as the background
-                                    rowBackgroundColorClass = "mb-grid-backgroundcolor-row-selected";
-                                }
-                                else
-                                {
-                                    // Not selected or not highlighted so we alternate
-                                    if ((rowCount / 2) * 2 == rowCount)
-                                    {
-                                        // Even
-                                        rowBackgroundColorClass = "mb-grid-backgroundcolor-row-even";
-                                    }
-                                    else
-                                    {
-                                        // Odd
-                                        rowBackgroundColorClass = "mb-grid-backgroundcolor-row-odd";
-                                    }
-                                }
+                                //string rowBackgroundColorClass = "";
 
+                                //if ((rowKey == SelectedKey) && HighlightSelectedRow)
+                                //{
+                                //    // It's the selected row so set the selection color as the background
+                                //    rowBackgroundColorClass = "mb-mgrid__row-selected";
+                                //}
+                                //else
+                                //{
+                                //    // Not selected or not highlighted so we alternate
+                                //    if ((rowCount / 2) * 2 == rowCount)
+                                //    {
+                                //        // Even
+                                //        rowBackgroundColorClass = "mb-grid-backgroundcolor-row-even";
+                                //    }
+                                //    else
+                                //    {
+                                //        // Odd
+                                //        rowBackgroundColorClass = "mb-grid-backgroundcolor-row-odd";
+                                //    }
+                                //}
+
+                                var selected = (rowKey == SelectedKey) && HighlightSelectedRow;
                                 // Do a tr
                                 builder.OpenElement(rendSeq++, "tr");
                                 //builder.AddAttribute(rendSeq++, "class", "mb-grid-tr " + rowBackgroundColorClass);
-                                builder.AddAttribute(rendSeq++, "class", "mdc-data-table__row");
+                                builder.AddAttribute(rendSeq++, "class", $"mdc-data-table__row mb-mgrid__row{(selected ? "mb-mgrid__row-selected" : "")}");
 
                                 builder.AddAttribute
                                 (
@@ -381,12 +390,14 @@ namespace Material.Blazor
                                 var isHeaderRow = false;
                                 foreach (var columnDefinition in ColumnConfigurations)
                                 {
-                                    styleStr = BuildNewGridTD(
-                                        builder,
-                                        ref rendSeq,
-                                        colCount == 0,
-                                        isHeaderRow,
-                                        rowBackgroundColorClass);
+                                    //styleStr = BuildNewGridTD(
+                                    //    builder,
+                                    //    ref rendSeq,
+                                    //    colCount == 0,
+                                    //    isHeaderRow,
+                                    //    rowBackgroundColorClass);
+                                    builder.OpenElement(rendSeq++, "td");
+                                    builder.AddAttribute(rendSeq++, "class", "mdc-data-table__cell");
 
                                     switch (columnDefinition.ColumnType)
                                     {
@@ -398,11 +409,11 @@ namespace Material.Blazor
                                                     var value = (MBGridIconSpecification)columnDefinition.DataExpression(rowValues.Value);
 
                                                     // We need to add the color alignment to the base styles
-                                                    styleStr +=
-                                                        " color: " + ColorToCSSColor(value.IconColor) + ";"
-                                                        + " text-align: center;";
+                                                    //styleStr +=
+                                                    //    " color: " + ColorToCSSColor(value.IconColor) + ";"
+                                                    //    + " text-align: center;";
 
-                                                    builder.AddAttribute(rendSeq++, "style", styleStr);
+                                                    //builder.AddAttribute(rendSeq++, "style", styleStr);
                                                     builder.OpenComponent(rendSeq++, typeof(MBIcon));
                                                     builder.AddAttribute(rendSeq++, "IconFoundry", value.IconFoundry);
                                                     builder.AddAttribute(rendSeq++, "IconName", value.IconName);
@@ -419,30 +430,30 @@ namespace Material.Blazor
                                             // It's a text type column so add the text related styles
                                             // We may be overriding the alternating row color added by class
 
-                                            if (columnDefinition.ForegroundColorExpression != null)
-                                            {
-                                                var value = columnDefinition.ForegroundColorExpression(rowValues.Value);
-                                                styleStr +=
-                                                    " color: " + ColorToCSSColor((Color)value) + "; ";
-                                            }
+                                            //if (columnDefinition.ForegroundColorExpression != null)
+                                            //{
+                                            //    var value = columnDefinition.ForegroundColorExpression(rowValues.Value);
+                                            //    styleStr +=
+                                            //        " color: " + ColorToCSSColor((Color)value) + "; ";
+                                            //}
 
-                                            if (columnDefinition.BackgroundColorExpression != null)
-                                            {
-                                                var value = columnDefinition.BackgroundColorExpression(rowValues.Value);
-                                                if ((Color)value != Color.Transparent)
-                                                {
-                                                    styleStr +=
-                                                        " background-color: " + ColorToCSSColor((Color)value) + "; ";
-                                                }
-                                            }
+                                            //if (columnDefinition.BackgroundColorExpression != null)
+                                            //{
+                                            //    var value = columnDefinition.BackgroundColorExpression(rowValues.Value);
+                                            //    if ((Color)value != Color.Transparent)
+                                            //    {
+                                            //        styleStr +=
+                                            //            " background-color: " + ColorToCSSColor((Color)value) + "; ";
+                                            //    }
+                                            //}
 
-                                            if (columnDefinition.IsPMI && ObscurePMI)
-                                            {
-                                                styleStr +=
-                                                    " filter: blur(0.25em); ";
-                                            }
+                                            //if (columnDefinition.IsPMI && ObscurePMI)
+                                            //{
+                                            //    styleStr +=
+                                            //        " filter: blur(0.25em); ";
+                                            //}
 
-                                            builder.AddAttribute(rendSeq++, "style", styleStr);
+                                            //builder.AddAttribute(rendSeq++, "style", styleStr);
 
                                             // Bind the object as our content.
                                             if (columnDefinition.DataExpression != null)
@@ -460,24 +471,24 @@ namespace Material.Blazor
                                                 {
                                                     var value = (MBGridTextColorSpecification)columnDefinition.DataExpression(rowValues.Value);
 
-                                                    if (value.Supress)
+                                                    if (value.Suppress)
                                                     {
-                                                        builder.AddAttribute(rendSeq++, "style", styleStr);
+                                                        //builder.AddAttribute(rendSeq++, "style", styleStr);
                                                     }
                                                     else
                                                     {
                                                         // We need to add the colors
-                                                        styleStr +=
-                                                            " color: " + ColorToCSSColor(value.ForegroundColor)
-                                                            + "; background-color: " + ColorToCSSColor(value.BackgroundColor) + ";";
+                                                        //styleStr +=
+                                                        //    " color: " + ColorToCSSColor(value.ForegroundColor)
+                                                        //    + "; background-color: " + ColorToCSSColor(value.BackgroundColor) + ";";
 
-                                                        if (columnDefinition.IsPMI && ObscurePMI)
-                                                        {
-                                                            styleStr +=
-                                                                " filter: blur(0.25em); ";
-                                                        }
+                                                        //if (columnDefinition.IsPMI && ObscurePMI)
+                                                        //{
+                                                        //    styleStr +=
+                                                        //        " filter: blur(0.25em); ";
+                                                        //}
 
-                                                        builder.AddAttribute(rendSeq++, "style", styleStr);
+                                                        //builder.AddAttribute(rendSeq++, "style", styleStr);
                                                         builder.AddContent(rendSeq++, value.Text);
                                                     }
                                                 }
@@ -721,8 +732,8 @@ namespace Material.Blazor
                         case nameof(style):
                             style = (string)parameter.Value;
                             break;
-                        case nameof(SupressHeader):
-                            SupressHeader = (bool)parameter.Value;
+                        case nameof(SuppressHeader):
+                            SuppressHeader = (bool)parameter.Value;
                             break;
                         default:
 #if Logging
@@ -750,7 +761,7 @@ namespace Material.Blazor
                         .And(OnMouseClick)
                         .And(SelectedKey)   // Not a parameter but if we don't include this we won't re-render after selecting a row
                         .And(style)
-                        .And(SupressHeader);
+                        .And(SuppressHeader);
                 }
                 else
                 {
@@ -764,7 +775,7 @@ namespace Material.Blazor
                         .And(ObscurePMI)
                         .And(OnMouseClick)
                         .And(style)
-                        .And(SupressHeader);
+                        .And(SuppressHeader);
                 }
 
                 //
