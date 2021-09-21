@@ -1,6 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
-@inject IMBAnimatedNavigationManager AnimatedNavigationService
+@inject NavigationManager NavigationService
 @inject IJSRuntime JsRuntime
 
 <MBDrawer @ref="@Drawer"
@@ -92,17 +92,13 @@
             <main class="main-content" id="main-content">
                 <div class="max-width-content">
                     <CascadingValue Name="MaterialDocRef" Value="@materialDocRef" IsFixed="true">
-
-                        <MBAnimatedNavigation>
-                            <div class="mdc-top-app-bar--dense-fixed-adjust">
-                                <div class="mdc-layout-grid">
-                                    <div class="mdc-layout-grid__inner">
-                                        @Body
-                                    </div>
+                        <div class="mdc-top-app-bar--dense-fixed-adjust">
+                            <div class="mdc-layout-grid">
+                                <div class="mdc-layout-grid__inner">
+                                    @Body
                                 </div>
                             </div>
-                        </MBAnimatedNavigation>
-
+                        </div>
                     </CascadingValue>
                 </div>
             </main>
@@ -136,7 +132,7 @@
     private void ListItemClickHandler(string NavigationReference)
     {
         Drawer.NotifyNavigation();
-        AnimatedNavigationService.NavigateTo(NavigationReference);
+        NavigationService.NavigateTo(NavigationReference);
     }
 
     private void SideBarToggle()

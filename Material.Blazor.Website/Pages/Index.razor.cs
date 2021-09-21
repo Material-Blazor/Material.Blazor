@@ -7,7 +7,7 @@ namespace Material.Blazor.Website.Pages
 {
     public partial class Index
     {
-        [Inject] private IMBAnimatedNavigationManager AnimatedNavigationManager { get; set; }
+        [Inject] private NavigationManager NavigationManager { get; set; }
         [Inject] private IJSRuntime JSRuntime { get; set; }
 
 #if DEBUG
@@ -32,7 +32,7 @@ namespace Material.Blazor.Website.Pages
 
         private async Task NavigateToDocs()
         {
-            var baseURI = AnimatedNavigationManager.NavigationManager.BaseUri;
+            var baseURI = NavigationManager.BaseUri;
             await JSRuntime.InvokeAsync<object>("open", $"{baseURI}docs", "_blank");
         }
 
@@ -40,7 +40,7 @@ namespace Material.Blazor.Website.Pages
 
         private void NavigateToButton()
         {
-            AnimatedNavigationManager.NavigateTo("button");
+            NavigationManager.NavigateTo("button");
         }
     }
 }

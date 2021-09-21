@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace Material.Blazor
 {
     /// <summary>
-    /// This component works with <see cref="IMBAnimatedNavigationManager"/> to navigate your page navigation.
+    /// DEPRECATED. This component works with <see cref="IMBAnimatedNavigationManager"/> to navigate your page navigation.
     /// Place this component around your app's entire @Body render fragment (potentially in MainLayout.razor),
     /// but not surrounding your app bars and navigation menus - you don't want those to fade in and out when
     /// your user navigates from one page to another.
