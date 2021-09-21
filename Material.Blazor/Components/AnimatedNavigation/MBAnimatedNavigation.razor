@@ -17,7 +17,8 @@
     </style>
 
 
-    <div class="@PageClass">
+    <div class="@PageClass @(@class)"
+         style="@style">
         @if (ChildContent != null)
         {
             @ChildContent
