@@ -48,6 +48,12 @@ namespace Material.Blazor
         [Parameter] public bool HasProgressBar { get; set; }
 
 
+        /// <summary>
+        /// If true, makes the header sticky.
+        /// </summary>
+        [Parameter] public bool StickyHeader { get; set; }
+
+
         private bool showProgress;
         /// <summary>
         /// Determines whether the data table has a progress bar.
@@ -88,7 +94,8 @@ namespace Material.Blazor
             await base.OnInitializedAsync();
 
             ConditionalCssClasses
-                .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass);
+                .AddIf(DensityInfo.CssClassName, () => DensityInfo.ApplyCssClass)
+                .AddIf("mdc-data-table--sticky-header", () => StickyHeader);
         }
 
 
