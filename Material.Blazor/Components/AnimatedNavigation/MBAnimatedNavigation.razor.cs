@@ -65,12 +65,14 @@ namespace Material.Blazor
 
         internal void NavigateTo(string uri, bool forceLoad = false)
         {
-            InvokeAsync(async () =>
+            _ = InvokeAsync(async () =>
             {
                 PageClass = FadeOut;
+                await InvokeAsync(StateHasChanged).ConfigureAwait(false);
                 await Task.Delay(AnimatedNavigationService.FadeOutTime);
                 AnimatedNavigationService.NavigationManager.NavigateTo(uri, forceLoad);
                 PageClass = FadeIn;
+                await InvokeAsync(StateHasChanged).ConfigureAwait(false);
             });
         }
 
