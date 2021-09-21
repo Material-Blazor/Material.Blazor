@@ -5,6 +5,7 @@
 <DemonstrationPage ComponentName="Grid"
                    DemoComponent="@this"
                    DetailedArticle="Grid"
+                   MinDensity="MBDensity.Minus4"
                    Title="Grid Demonstration (EXPERIMENTAL)">
     <Description>
         <p>
@@ -82,6 +83,7 @@
                     </h2>
 
                     <MBMaterialGrid ColumnConfigurations="@ColumnConfigurations"
+                            style="max-height: 600px; max-width: 200px;"
                             GroupedOrderedData=@PeopleAsGroupedDataWithGroupList
                             Group="true"
                             HighlightSelectedRow="@true"
