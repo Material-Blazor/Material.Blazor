@@ -1,4 +1,4 @@
-﻿@page "/gridmaterial"
+﻿@page "/gridmt"
 
 @inject IMBToastService ToastService
 
@@ -6,7 +6,7 @@
                    DemoComponent="@this"
                    DetailedArticle="Grid"
                    MinDensity="MBDensity.Minus4"
-                   Title="Grid Demonstration (EXPERIMENTAL)">
+                   Title="Grid MT Demonstration (EXPERIMENTAL)">
     <Description>
         <p>
             Shows a grid using many of the grid features.
@@ -25,15 +25,16 @@
                         Grid showing the raw data
                     </h2>
 
-                    <MBMaterialGrid style="width: 100%;"
-                            ColumnConfigurations="@ColumnConfigurations2"
-                            GroupedOrderedData=@PeopleAsRawData
-                            Group="false"
-                            HighlightSelectedRow="@true"
-                            KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
-                            Measurement="@MB_Grid_Measurement.Percent"
-                            OnMouseClick="@MBGridRowClicked"
-                            TRowData="@Person" />
+                    <MBGridMT style="width: 100%;"
+                              ApplyColors="false"
+                              ColumnConfigurations="@ColumnConfigurations2"
+                              GroupedOrderedData=@PeopleAsRawData
+                              Group="false"
+                              HighlightSelectedRow="@true"
+                              KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
+                              Measurement="@MB_Grid_Measurement.Percent"
+                              OnMouseClick="@MBGridRowClicked"
+                              TRowData="@Person" />
                 </Primary>
             </MBCard>
         </div>
@@ -45,17 +46,17 @@
                         Grid showing the data sorted by family name then given name
                     </h2>
 
-                    <MBMaterialGrid style="width: 100%;"
-                            ApplyColors="true"
-                            ApplyVerticalDividers="true"
-                            ColumnConfigurations="@ColumnConfigurations2"
-                            GroupedOrderedData=@PeopleAsOrderedData
-                            Group="false"
-                            HighlightSelectedRow="@true"
-                            KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
-                            Measurement="@MB_Grid_Measurement.Percent"
-                            OnMouseClick="@MBGridRowClicked"
-                            TRowData="@Person" />
+                    <MBGridMT style="width: 100%;"
+                              ApplyColors="true"
+                              ApplyVerticalDividers="true"
+                              ColumnConfigurations="@ColumnConfigurations2"
+                              GroupedOrderedData=@PeopleAsOrderedData
+                              Group="false"
+                              HighlightSelectedRow="@true"
+                              KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
+                              Measurement="@MB_Grid_Measurement.Percent"
+                              OnMouseClick="@MBGridRowClicked"
+                              TRowData="@Person" />
                 </Primary>
             </MBCard>
         </div>
@@ -67,17 +68,17 @@
                         Sorted, Grouped grid hiding the grouping column without group list
                     </h2>
 
-                    <MBMaterialGrid style="width: 100%;"
-                            ApplyColors="true"
-                            ApplyVerticalDividers="true"
-                            ColumnConfigurations="@ColumnConfigurations"
-                            GroupedOrderedData=@PeopleAsGroupedData
-                            Group="true"
-                            HighlightSelectedRow="@true"
-                            KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
-                            Measurement="@MB_Grid_Measurement.Percent"
-                            OnMouseClick="@MBGridRowClicked"
-                            TRowData="@Person" />
+                    <MBGridMT style="width: 100%;"
+                              ApplyColors="true"
+                              ApplyVerticalDividers="true"
+                              ColumnConfigurations="@ColumnConfigurations"
+                              GroupedOrderedData=@PeopleAsGroupedData
+                              Group="true"
+                              HighlightSelectedRow="@true"
+                              KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
+                              Measurement="@MB_Grid_Measurement.Percent"
+                              OnMouseClick="@MBGridRowClicked"
+                              TRowData="@Person" />
                 </Primary>
             </MBCard>
         </div>
@@ -89,17 +90,17 @@
                         Sorted, Grouped grid hiding the grouping column with group list
                     </h2>
 
-                    <MBMaterialGrid style="max-height: 600px; width: 100%;"
-                            ApplyColors="true"
-                            ApplyVerticalDividers="true"
-                            ColumnConfigurations="@ColumnConfigurations"
-                            GroupedOrderedData=@PeopleAsGroupedDataWithGroupList
-                            Group="true"
-                            HighlightSelectedRow="@true"
-                            KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
-                            Measurement="@MB_Grid_Measurement.Percent"
-                            OnMouseClick="@MBGridRowClicked"
-                            TRowData="@Person" />
+                    <MBGridMT style="max-height: 600px; width: 100%;"
+                              ApplyColors="true"
+                              ApplyVerticalDividers="true"
+                              ColumnConfigurations="@ColumnConfigurations"
+                              GroupedOrderedData=@PeopleAsGroupedDataWithGroupList
+                              Group="true"
+                              HighlightSelectedRow="@true"
+                              KeyExpression="@(PeopleAsDictionary => PeopleAsDictionary.UniqueIdentifier.ToString())"
+                              Measurement="@MB_Grid_Measurement.Percent"
+                              OnMouseClick="@MBGridRowClicked"
+                              TRowData="@Person" />
                 </Primary>
             </MBCard>
         </div>
@@ -122,7 +123,7 @@
     }
 
     private Person[] People =
-{
+                        {
         new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Prof", GivenName = "Marie", FamilyName = "Curie" },
         new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Prof", GivenName = "Albert", FamilyName = "Einstein" },
         new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Prof", GivenName = "Andrew", FamilyName = "Huxley" },

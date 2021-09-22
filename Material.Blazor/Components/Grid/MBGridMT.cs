@@ -37,7 +37,7 @@ namespace Material.Blazor
     /// 
     /// N.B.: At this time the grid is in preview. Expect the API to change.
     /// </summary>
-    public class MBMaterialGrid<TRowData> : ComponentFoundation
+    public class MBGridMT<TRowData> : ComponentFoundation
     {
         #region Parameters
 
@@ -112,9 +112,9 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Set to true to apply grid colors.
+        /// Set to true to apply grid colors, false to suppress.
         /// </summary>
-        [Parameter] public bool ApplyColors { get; set; }
+        [Parameter] public bool ApplyColors { get; set; } = true;
 
 
         /// <summary>
