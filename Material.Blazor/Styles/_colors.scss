@@ -9,6 +9,10 @@
     @return red($color), green($color), blue($color);
 }
 
+@function hexToRGBA($color, $alpha) {
+    @return red($color), green($color), blue($color), $alpha;
+}
+
 @function buildOnColor($color) {
     @return 'var(--mb-text-color-' + theme.contrast-tone($color) + ')';
 }

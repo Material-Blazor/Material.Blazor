@@ -376,7 +376,7 @@ namespace Material.Blazor
                                 // Do a tr
                                 builder.OpenElement(rendSeq++, "tr");
                                 //builder.AddAttribute(rendSeq++, "class", "mb-grid-tr " + rowBackgroundColorClass);
-                                builder.AddAttribute(rendSeq++, "class", $"mdc-data-table__row mb-mgrid__row{(selected ? "mb-mgrid__row-selected" : "")}");
+                                builder.AddAttribute(rendSeq++, "class", $"mdc-data-table__row mb-mgrid__row{(selected ? " mb-mgrid__row-selected" : "")}");
 
                                 builder.AddAttribute
                                 (

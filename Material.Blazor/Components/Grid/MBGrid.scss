@@ -1,4 +1,115 @@
-﻿.mb-grid-div-outer {
+﻿@charset "UTF-8";
+
+@use '@material/theme';
+@use '@material/theme/custom-properties';
+@use '@material/theme/color-palette';
+@use 'sass:string';
+
+$border-color: color-palette.$blue-grey-500;
+$header-color: color-palette.$blue-grey-100;
+
+$group-row-color: color-palette.$blue-100;
+$group-row-color-hover: darken($group-row-color, 4%);
+
+$odd-row-color: color-palette.$yellow-100;
+$odd-row-color-hover: darken($odd-row-color, 4%);
+
+$even-row-color: color-palette.$yellow-200;
+$even-row-color-hover: darken($even-row-color, 4%);
+
+$selected-row-color: color-palette.$green-100;
+$selected-row-color-hover: darken($selected-row-color, 4%);
+
+:root {
+    --mb-grid-border-color: #{$border-color};
+    --mb-grid-header-color: #{$header-color};
+    --mb-grid-group-row-color: #{$group-row-color};
+    --mb-grid-group-row-color-hover: #{$group-row-color-hover};
+    --mb-grid-odd-row-color: #{$odd-row-color};
+    --mb-grid-odd-row-color-hover: #{$odd-row-color-hover};
+    --mb-grid-even-row-color: #{$even-row-color};
+    --mb-grid-even-row-color-hover: #{$even-row-color-hover};
+    --mb-grid-selected-row-color: #{$selected-row-color};
+    --mb-grid-selected-row-color-hover: #{$selected-row-color-hover};
+}
+
+.mb-mgrid {
+    border-radius: 0px;
+
+    .mdc-data-table__header-cell:first-child {
+        border-top-left-radius: 0px;
+    }
+
+    .mdc-data-table__header-cell:last-child {
+        border-top-right-radius: 0px;
+    }
+}
+
+.mb-mgrid__colored {
+    border-color: var(--mb-grid-border-color);
+
+    .mdc-data-table__header-cell {
+        background-color: var(--mb-grid-header-color);
+        border-left-color: var(--mb-grid-border-color);
+        border-bottom-color: var(--mb-grid-border-color);
+    }
+
+    tbody td {
+        border-left-color: var(--mb-grid-border-color);
+        border-bottom-color: var(--mb-grid-border-color);
+    }
+
+    .mb-mgrid__group-row {
+        background-color: var(--mb-grid-group-row-color);
+
+        &:hover {
+            background-color: var(--mb-grid-group-row-color-hover);
+        }
+    }
+
+    .mb-mgrid__row:nth-child(odd):not(.mb-mgrid__row-selected) {
+        background-color: var(--mb-grid-odd-row-color);
+
+        &:hover {
+            background-color: var(--mb-grid-odd-row-color-hover);
+        }
+    }
+
+    .mb-mgrid__row:nth-child(even):not(.mb-mgrid__row-selected) {
+        background-color: var(--mb-grid-even-row-color);
+
+        &:hover {
+            background-color: var(--mb-grid-even-row-color-hover);
+        }
+    }
+
+    .mb-mgrid__row-selected {
+        background-color: var(--mb-grid-selected-row-color);
+
+        &:hover {
+            background-color: var(--mb-grid-selected-row-color-hover);
+        }
+    }
+}
+
+
+.mb-mgrid__vertical-dividers {
+    .mdc-data-table__header-cell:not(:first-child), .mb-mgrid__group-row td:not(:first-child), .mb-mgrid__row td:not(:first-child) {
+        padding-left: 15px;
+        border-left-width: 1px;
+        border-left-style: solid;
+    }
+}
+
+
+
+
+
+
+
+/* Original grid */
+
+.mb-grid-div-outer {
     width: 100% !important;
     height: 100% !important;
     max-width: 100% !important;
@@ -165,68 +276,3 @@
     cursor: default;
 }
 
-
-:root {
-    --mb-grid-border-color: var(--mb-color-blue-grey-500);
-    --mb-grid-header-color: var(--mb-color-blue-grey-100);
-    --mb-grid-group-row-color: var(--mb-color-blue-100);
-    --mb-grid-odd-row-color: var(--mb-color-yellow-100);
-    --mb-grid-even-row-color: var(--mb-color-orange-100);
-    --mb-grid-selected-row-color: var(--mb-color-teal-100);
-}
-
-.mb-mgrid {
-    border-radius: 0px;
-
-    .mdc-data-table__header-cell:first-child {
-        border-top-left-radius: 0px;
-    }
-
-    .mdc-data-table__header-cell:last-child {
-        border-top-right-radius: 0px;
-    }
-}
-
-.mb-mgrid__colored {
-    border-color: var(--mb-grid-border-color);
-
-    .mdc-data-table__header-cell {
-        background-color: var(--mb-grid-header-color);
-        border-left-color: var(--mb-grid-border-color);
-        border-bottom-color: var(--mb-grid-border-color);
-    }
-
-    tbody td {
-        border-left-color: var(--mb-grid-border-color);
-        border-bottom-color: var(--mb-grid-border-color);
-    }
-    /*.mb-mgrid__group-row td, .mb-mgrid__row td {
-        border-left-color: var(--mb-grid-border-color);
-    }*/
-
-    .mb-mgrid__group-row td {
-        /*border-left-color: var(--mb-grid-border-color);*/
-        background-color: var(--mb-grid-group-row-color);
-    }
-
-    .mb-mgrid__row:nth-child(odd) td {
-        background-color: var(--mb-grid-odd-row-color);
-    }
-
-    .mb-mgrid__row:nth-child(even) td {
-        background-color: var(--mb-grid-even-row-color);
-    }
-
-    .mb-mgrid__row-selected td {
-        background-color: var(--mb-grid-selected-row-color);
-    }
-}
-
-
-.mb-mgrid__vertical-dividers {
-    .mdc-data-table__header-cell:not(:first-child), .mb-mgrid__group-row td:not(:first-child), .mb-mgrid__row td:not(:first-child) {
-        padding-left: 15px;
-        border-left-width: 1px;
-        border-left-style: solid;
-    }
-}
