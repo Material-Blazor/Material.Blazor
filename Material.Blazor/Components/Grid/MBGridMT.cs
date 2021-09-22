@@ -114,13 +114,12 @@ namespace Material.Blazor
         /// <summary>
         /// Set to true to apply grid colors, false to suppress.
         /// </summary>
-        [Parameter] public bool ApplyColors { get; set; } = true;
-
+        [Parameter] public bool ApplyColors { get; set; } = false;
 
         /// <summary>
         /// Set to true to apply vertical dividers to data rows and headers but not group headers.
         /// </summary>
-        [Parameter] public bool ApplyVerticalDividers { get; set; }
+        [Parameter] public bool ApplyVerticalDividers { get; set; } = false;
 
 
         /// <summary>

@@ -26,7 +26,6 @@
                     </h2>
 
                     <MBGridMT style="width: 100%;"
-                              ApplyColors="false"
                               ColumnConfigurations="@ColumnConfigurations2"
                               GroupedOrderedData=@PeopleAsRawData
                               Group="false"
@@ -123,7 +122,7 @@
     }
 
     private Person[] People =
-                        {
+                                {
         new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Prof", GivenName = "Marie", FamilyName = "Curie" },
         new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Prof", GivenName = "Albert", FamilyName = "Einstein" },
         new Person() { UniqueIdentifier=Guid.NewGuid(), Salutation = "Prof", GivenName = "Andrew", FamilyName = "Huxley" },
