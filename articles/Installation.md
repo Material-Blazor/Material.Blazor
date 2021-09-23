@@ -24,10 +24,10 @@ and at the end of `<body>`:
 <script src="_content/Material.Blazor/material.blazor.min.js"></script>
 ```
 
- Replace the Material.min.css with your own
+ Replace the material-components-web.min.css with your own
 if you have built a theme - you can see how we have done this in the [Material.Blazor website's index.html](https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website.WebAssembly/wwwroot/index.html#L14).
 
-Material.Blazor.min.css includes the Material icons for convenience. If you wish to use either (or both) Font Awesome or Open Iconic icon sets see the next section for the additional css required.
+material.blazor.min.css includes the Material icons for convenience. If you wish to use either (or both) Font Awesome or Open Iconic icon sets see the next section for the additional css required.
 
 The non-minified versions of each of the css and js packages are also available if needed for debugging.
 
