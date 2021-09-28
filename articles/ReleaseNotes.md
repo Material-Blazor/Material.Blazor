@@ -5,21 +5,36 @@ title: ReleaseNotes
 # Release Notes
 
 #### [2.0.0](https://github.com/Material-Blazor/Material.Blazor)
-In Pre-Release Q4 2020 to Q2 2021
+In Pre-Release Q4 2020 to Q4 2021
 
 _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VERSIONS._
 
 
 **Deprecated Components**
 
+- MBAnimatedNavigation is now deprecated.
 - MBToast is now deprecated in favor of the Material styled MBSnackbar. It will remain part of Material.Blazor 2.n, however no maintenance is planned during the Material.Blazor 2.n series of releases. It will be removed from the next major Material.Blazor release. 
 
 
 <br />
 
 
+#### [2.0.0-preview.9](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.9)
+Not yet released
+
+**Updates**
+
+**New components**
+
+**Breaking Changes**
+
+- Animated Navigation is deprecated. It does not function in the MCW 12.0 environment
+- All parameters with the word "Supress" are renamed "Suppress" - good spelling helps.
+
+**Known issues**
+
 #### [2.0.0-preview.8](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.8)
-NOT YET RELEASED
+2021-09-20
 
 **Updates**
 

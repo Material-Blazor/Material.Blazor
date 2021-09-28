@@ -100,7 +100,7 @@ namespace Material.Blazor
         /// Set to indicate that if the value is default(DateTime) then no date is initially shown
         /// and the panel will start with the current year and month
         /// </summary>
-        [Parameter] public bool SupressDefaultDate { get; set; }
+        [Parameter] public bool SuppressDefaultDate { get; set; }
 
 
         #endregion
@@ -168,11 +168,11 @@ namespace Material.Blazor
 
             OnDisabledSet += OnDisabledSetCallback;
 
-            // SupressDefaultDate is only used here and not in SetParametersAsync
+            // SuppressDefaultDate is only used here and not in SetParametersAsync
             // therefore a change will not be detected (and makes little sense
             // for the component).
 
-            if (SupressDefaultDate && (Value == default))
+            if (SuppressDefaultDate && (Value == default))
             {
                 AdditionalStyle = invisibleText;
             }

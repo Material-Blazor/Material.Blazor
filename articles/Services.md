@@ -4,13 +4,12 @@ title: Services
 ---
 # Services
 
-Material.Blazor has services for snackbar & zoast notifications and an animated page navigation manager. These services and their functionality are optional.
+Material.Blazor has services for snackbar, toast notifications, and tooltips. These services and their functionality are optional.
 
 ## Services List
 
 | Service | Notes |
 | :------ | :---- |
-| [IMBAnimatedNavigationManager](xref:S.IMBAnimatedNavigationManager) | Manages fade out/in page navigation, wrapping Blazor's `NavigationManager.NavigateTo()` function. Requires an [MBAnimatedNavigation](xref:C.MBAnimatedNavigation) component. This is purely optional and you can continue to use Blazor's navigation if you don't want animation. |
 | [IMBSnackbarService](xref:S.IMBSnackbarService) | Manages snackbar notification. Requires an [MBAnchor](xref:C.MBAnchor) component and will throw an exception when you attempt to show a snackbar notification if this isn't found. |
 | [IMBToastService](xref:S.IMBToastService) | Manages toast notification. Requires an [MBAnchor](xref:C.MBAnchor) component and will throw an exception when you attempt to show a toast notification if this isn't found. |
 | [IMBTooltipService](xref:S.IMBTooltipService) | Manages tooltips. Requires an [MBAnchor](xref:C.MBAnchor) component and will throw an exception when you attempt to show a tooltip notification if this isn't found. |

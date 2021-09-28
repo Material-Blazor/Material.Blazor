@@ -108,7 +108,7 @@ namespace Material.Blazor
         /// <summary>
         /// Headers are optional
         /// </summary>
-        [Parameter] public bool SupressHeader { get; set; } = false;
+        [Parameter] public bool SuppressHeader { get; set; } = false;
 
         #endregion
 
@@ -247,7 +247,7 @@ namespace Material.Blazor
                 }
 
                 // Based on the column config generate the column titles unless asked not to
-                if (!SupressHeader)
+                if (!SuppressHeader)
                 {
                     builder.OpenElement(rendSeq++, "div");
                     builder.AddAttribute(rendSeq++, "class", "mb-grid-div-header mb-grid-backgroundcolor-header-background");
@@ -461,7 +461,7 @@ namespace Material.Blazor
                                             {
                                                 var value = (MBGridTextColorSpecification)columnDefinition.DataExpression(rowValues.Value);
 
-                                                if (value.Supress)
+                                                if (value.Suppress)
                                                 {
                                                     builder.AddAttribute(rendSeq++, "style", styleStr);
                                                 }
@@ -676,7 +676,7 @@ namespace Material.Blazor
                                     try
                                     {
                                         var value = (MBGridTextColorSpecification)columnDefinition.DataExpression(enumerableData);
-                                        if (!value.Supress)
+                                        if (!value.Suppress)
                                         {
                                             stringArrayBody[colIndex] = value.Text;
                                         }
@@ -874,8 +874,8 @@ namespace Material.Blazor
                         case nameof(style):
                             style = (string)parameter.Value;
                             break;
-                        case nameof(SupressHeader):
-                            SupressHeader = (bool)parameter.Value;
+                        case nameof(SuppressHeader):
+                            SuppressHeader = (bool)parameter.Value;
                             break;
                         default:
 #if Logging
@@ -903,7 +903,7 @@ namespace Material.Blazor
                         .And(OnMouseClick)
                         .And(SelectedKey)   // Not a parameter but if we don't include this we won't re-render after selecting a row
                         .And(style)
-                        .And(SupressHeader);
+                        .And(SuppressHeader);
                 }
                 else
                 {
@@ -917,7 +917,7 @@ namespace Material.Blazor
                         .And(ObscurePMI)
                         .And(OnMouseClick)
                         .And(style)
-                        .And(SupressHeader);
+                        .And(SuppressHeader);
                 }
 
                 //

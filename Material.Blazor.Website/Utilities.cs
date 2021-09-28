@@ -2,13 +2,6 @@
 {
     public static class Utilities
     {
-        public static MBAnimatedNavigationManagerServiceConfiguration GetDefaultAnimatedNavigationServiceConfiguration() => new()
-        {
-            ApplyAnimation = true,
-            AnimationTime = 300
-        };
-
-
         public static MBLoggingServiceConfiguration GetDefaultLoggingServiceConfiguration() => new()
         {
             LoggingLevel = MBLoggingLevel.Warning

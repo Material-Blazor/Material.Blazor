@@ -68,7 +68,7 @@ namespace Material.Blazor.Internal
         /// Set to indicate that if the value is default(DateTime) then no date is initially shown
         /// and the panel will start with the current year and month
         /// </summary>
-        [Parameter] public bool SupressDefaultDate { get; set; }
+        [Parameter] public bool SuppressDefaultDate { get; set; }
 
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace Material.Blazor.Internal
             int startDateMonth;
             var today = DateTime.Today;
 
-            if (SupressDefaultDate &&
+            if (SuppressDefaultDate &&
                 (Value == default) &&
                 (today >= MinDate) &&
                 (today <= MaxDate))

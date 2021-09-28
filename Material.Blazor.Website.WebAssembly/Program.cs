@@ -18,7 +18,6 @@ namespace Material.BlazorWebsite.WebAssembly
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             builder.Services.AddMBServices(
-                animatedNavigationManagerServiceConfiguration: Utilities.GetDefaultAnimatedNavigationServiceConfiguration(),
                 loggingServiceConfiguration: Utilities.GetDefaultLoggingServiceConfiguration(),
                 toastServiceConfiguration: Utilities.GetDefaultToastServiceConfiguration(),
                 snackbarServiceConfiguration: Utilities.GetDefaultSnackbarServiceConfiguration()

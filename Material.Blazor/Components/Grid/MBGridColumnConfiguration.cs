@@ -14,7 +14,7 @@ namespace Material.Blazor
         public Color ForegroundColorHeader { get; set; }
         public string FormatString { get; set; }
         public bool IsPMI { get; set; }
-        public Func<TRowData, object> SupressDisplayExpression { get; set; }
+        public Func<TRowData, object> SuppressDisplayExpression { get; set; }
         public string Title { get; set; }
         public int Width { get; set; }
 
@@ -28,7 +28,7 @@ namespace Material.Blazor
             Color? foregroundColorHeader = null,
             string formatString = null,
             bool isPMI = false,
-            Expression<Func<TRowData, object>> supressDisplayExpression = null,
+            Expression<Func<TRowData, object>> suppressDisplayExpression = null,
             string title = "",
             int width = 10)
         {
@@ -40,7 +40,7 @@ namespace Material.Blazor
             ForegroundColorHeader = foregroundColorHeader ?? Color.Black;
             FormatString = formatString;
             IsPMI = isPMI;
-            SupressDisplayExpression = supressDisplayExpression?.Compile();
+            SuppressDisplayExpression = suppressDisplayExpression?.Compile();
             Title = title;
             Width = width;
         }

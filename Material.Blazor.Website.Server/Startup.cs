@@ -26,7 +26,6 @@ namespace Material.BlazorWebsite.Server
             services.AddServerSideBlazor();
 
             services.AddMBServices(
-                animatedNavigationManagerServiceConfiguration: Utilities.GetDefaultAnimatedNavigationServiceConfiguration(),
                 loggingServiceConfiguration: Utilities.GetDefaultLoggingServiceConfiguration(),
                 toastServiceConfiguration: Utilities.GetDefaultToastServiceConfiguration(),
                 snackbarServiceConfiguration: Utilities.GetDefaultSnackbarServiceConfiguration()

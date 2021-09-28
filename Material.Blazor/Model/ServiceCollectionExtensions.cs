@@ -13,48 +13,20 @@ namespace Material.Blazor
         /// <param name="services"></param>
         /// <param name="snackbarServiceConfiguration"></param>
         /// <param name="toastServiceConfiguration"></param>
-        /// <param name="animatedNavigationManagerServiceConfiguration"></param>
         /// <param name="loggingServiceConfiguration"></param>
         /// <returns></returns>
         public static IServiceCollection AddMBServices(
             this IServiceCollection services,
-            MBAnimatedNavigationManagerServiceConfiguration animatedNavigationManagerServiceConfiguration = null,
             MBLoggingServiceConfiguration loggingServiceConfiguration = null,
             MBSnackbarServiceConfiguration snackbarServiceConfiguration = null, 
             MBToastServiceConfiguration toastServiceConfiguration = null) 
         {
             return services
                 .AddScoped<IBatchingJSRuntime, BatchingJSRuntime>()
-                .AddMBAnimatedNavigationService(animatedNavigationManagerServiceConfiguration)
                 .AddMBLoggingService(loggingServiceConfiguration)
                 .AddMBSnackbarService(snackbarServiceConfiguration)
                 .AddMBToastService(toastServiceConfiguration)
                 .AddMBTooltipService();
-        }
-
-
-        /// <summary>
-        /// Adds a Material.Blazor <see cref="IMBAnimatedNavigationManager"/> to the service collection to apply
-        /// fade out/in animation to Blazor page navigation.
-        /// <example>
-        /// <para>You can optionally add configuration:</para>
-        /// <code>
-        /// services.AddMBAnimatedNavigationService(new MBAnimatedNaviationServiceConfiguration()
-        /// {
-        ///     ApplyAnimation = true,
-        ///     AnimationTime = 300   /* milliseconds */
-        /// });
-        /// </code>
-        /// </example>
-        /// </summary>
-        private static IServiceCollection AddMBAnimatedNavigationService(this IServiceCollection services, MBAnimatedNavigationManagerServiceConfiguration configuration = null)
-        {
-            if (configuration == null)
-            {
-                configuration = new MBAnimatedNavigationManagerServiceConfiguration();
-            }
-
-            return services.AddScoped<IMBAnimatedNavigationManager, AnimatedNavigationManagerService>(serviceProvider => new AnimatedNavigationManagerService(serviceProvider.GetRequiredService<NavigationManager>(), configuration));
         }
 
 

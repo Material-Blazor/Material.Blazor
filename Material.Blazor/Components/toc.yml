@@ -7,9 +7,6 @@
 - name: Material.Blazor.Internal namespace
   topicUid: Material.Blazor.Internal
 
-- name: IMBAnimatedNavigationManager
-  topicUid: S.IMBAnimatedNavigationManager
-
 - name: IMBSnackbarService
   topicUid: S.IMBSnackbarService
 
@@ -18,9 +15,6 @@
 
 - name: MBAnchor
   topicUid: C.MBAnchor
-
-- name: MBAnimatedNavigation
-  topicUid: C.MBAnimatedNavigation
 
 - name: MBAutocompleteTextField
   topicUid: C.MBAutocompleteTextField
