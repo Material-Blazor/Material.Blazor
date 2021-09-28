@@ -43,11 +43,14 @@
 - name: Services
   topicUid: A.Services
   
+- name: Snackbar
+  topicUid: A.Snackbar
+
 - name: Theming and CSS
   topicUid: A.ThemingAndCSS
   
-- name: Toast and Snackbar
-  topicUid: A.ToastAndSnackbar
+- name: Toast
+  topicUid: A.Toast
 
 - name: Tooltip
   topicUid: A.Tooltip
