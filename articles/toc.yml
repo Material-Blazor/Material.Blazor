@@ -1,9 +1,6 @@
 - name: Introduction
   topicUid: A.Introduction
 
-- name: AnimatedNavigation
-  topicUid: A.AnimatedNavigation
-
 - name: Code of Conduct
   topicUid: A.CodeOfConduct
 

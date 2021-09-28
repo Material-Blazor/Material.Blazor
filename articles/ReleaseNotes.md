@@ -12,6 +12,7 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 
 **Deprecated Components**
 
+- MBAnimatedNavigation is now deprecated.
 - MBToast is now deprecated in favor of the Material styled MBSnackbar. It will remain part of Material.Blazor 2.n, however no maintenance is planned during the Material.Blazor 2.n series of releases. It will be removed from the next major Material.Blazor release. 
 
 
@@ -27,7 +28,7 @@ Not yet released
 
 **Breaking Changes**
 
-- Animated Navigation is deprecated.
+- Animated Navigation is deprecated. It does not function in the MCW 12.0 environment
 - All parameters with the word "Supress" are renamed "Suppress" - good spelling helps.
 
 **Known issues**

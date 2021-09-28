@@ -21,18 +21,8 @@ namespace Material.Blazor.Test
                 .AddSingleton(new Mock<IMBToastService>().Object)
                 .AddSingleton(new Mock<IMBSnackbarService>().Object)
                 .AddSingleton(new Mock<ILogger<ComponentFoundation>>().Object)
-                .AddSingleton(new Mock<IMBAnimatedNavigationManager>()
-                    .Chain(m => m.SetupGet(anm => anm.Configuration).Returns(new MBAnimatedNavigationManagerServiceConfiguration()))
-                    .Object)
                 .AddSingleton(new Mock<IMBIcon>().Object)
                 .AddSingleton(new Mock<IMBIconFoundry>().Object);
-        }
-        [Fact]
-        public void TryRenderMBAnimatedNavigation()
-        {
-            InjectMockedServices();
-            var cut = ctx.RenderComponent<MBAnimatedNavigation>();
-            cut.MarkupMatches("");
         }
         [Fact]
         public void TryRenderMBAnchor()
