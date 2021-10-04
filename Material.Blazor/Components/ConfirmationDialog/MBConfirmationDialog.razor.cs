@@ -17,7 +17,7 @@ namespace Material.Blazor
     /// these are identical save that one or more of the repeated buttons in <see cref="UnconfirmedButtons"/> is disabled, but not in <see cref="ConfirmedButtons"/>.
     /// This components throws an <see cref="ArgumentException"/> if one of these render fragments is set while the other is not.</para>
     /// </summary>
-    public partial class MBConfirmationDialog
+    public partial class MBConfirmationDialog : ComponentFoundation
     {
         public const string ConfirmActionResult = "confirm";
         public const string CancelActionResult = "cancel";
