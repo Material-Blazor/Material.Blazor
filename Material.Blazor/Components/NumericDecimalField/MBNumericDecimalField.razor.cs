@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Components;
 using System;
 using System.Linq.Expressions;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Material.Blazor
@@ -220,17 +221,17 @@ namespace Material.Blazor
         }
 
 
-        private Task OnFocusInAsync()
+        private async Task OnFocusInAsync()
         {
             HasFocus = true;
-            return TextField.SetType(FormattedValue, "number", true);
+            await TextField.SetType(FormattedValue, "number", true).ConfigureAwait(false);
         }
 
 
-        private Task OnFocusOutAsync()
+        private async Task OnFocusOutAsync()
         {
             HasFocus = false;
-            return TextField.SetType(FormattedValue, "text", false);
+            await TextField.SetType(FormattedValue, "text", false).ConfigureAwait(false);
         }
 
 

@@ -218,7 +218,10 @@ namespace Material.Blazor
         /// Selects the text field - used by <see cref="MBNumericDoubleField"/>.
         /// </summary>
         /// <returns></returns>
-        internal Task SetType(string value, string type, bool formNoValidate) => InvokeImmediateJsVoidAsync("MaterialBlazor.MBTextField.setType", ElementReference, value, InputReference, type, formNoValidate);
+        internal async Task SetType(string value, string type, bool formNoValidate)
+        {
+            await InvokeImmediateJsVoidAsync("MaterialBlazor.MBTextField.setType", ElementReference, value, InputReference, type, formNoValidate).ConfigureAwait(false);
+        }
 
 
         private void OnValidationStateChangedCallback(object sender, EventArgs e)
