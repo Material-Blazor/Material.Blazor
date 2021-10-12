@@ -21,9 +21,9 @@
 
 
   <ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0-rc.1.21452.15" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0-rc.1.21452.15" PrivateAssets="all" />
-		<PackageReference Include="System.Net.Http.Json" Version="6.0.0-rc.1.21451.13" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0-rc.2.21480.10" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0-rc.2.21480.10" PrivateAssets="all" />
+		<PackageReference Include="System.Net.Http.Json" Version="6.0.0-rc.2.21480.5" />
 	</ItemGroup>
 
 	
