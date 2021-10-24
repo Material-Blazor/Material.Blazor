@@ -224,7 +224,7 @@
     </ProjectExtensions>
 
     <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-      <Exec Command="copy $(SolutionDir)READMe.md $(ProjectDir)ReadMe.md" />
+      <Exec Command="copy ..\READMe.md $(ProjectDir)ReadMe.md" />
     </Target>
 
 </Project>
