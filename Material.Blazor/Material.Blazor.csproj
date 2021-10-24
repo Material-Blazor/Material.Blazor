@@ -72,7 +72,9 @@
         <InputStaticAssetsStyles Include="components\**\*.scss;styles\**\*.scss;" />
         <OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css;wwwroot\material-components-web.css;wwwroot\material-components-web.min.css" />
         <Content Remove="@(OutputStaticAssetsStyles)" />
+        <None Remove="ReadMe.md" />
         <Content Include="@(OutputStaticAssetsStyles)" />
+        <Content Include="ReadMe.md" />
     </ItemGroup>
 
     <ItemGroup>
@@ -220,5 +222,9 @@
             <UserProperties />
         </VisualStudio>
     </ProjectExtensions>
+
+    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+      <Exec Command="copy $(SolutionDir)READMe.md $(ProjectDir)ReadMe.md" />
+    </Target>
 
 </Project>
