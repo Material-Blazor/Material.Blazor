@@ -86,7 +86,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback() => InvokeAsync(() => InvokeImmediateJsVoidAsync("MaterialBlazor.MBIconButtonToggle.setOn", ElementReference, Value));
+        protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBIconButtonToggle.setOn", ElementReference, Value));
 
 
         /// <summary>
@@ -98,6 +98,6 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => InvokeInitBatchingJsVoidAsync("MaterialBlazor.MBIconButtonToggle.init", ElementReference);
+        private protected override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBIconButtonToggle.init", ElementReference);
     }
 }

@@ -11,6 +11,7 @@
         <Description>A lightweight Material Theme component library for Blazor. Intended to adhere rigorously to Material Theme guidelines in https://material.io. API and other documentation can be found at https://material-blazor.com/docs.</Description>
         <RepositoryUrl>https://github.com/Material-Blazor/Material.Blazor</RepositoryUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
         <PackageReleaseNotes></PackageReleaseNotes>
         <NeutralLanguage>en</NeutralLanguage>
         <Copyright>Dioptra and Optimium Health</Copyright>

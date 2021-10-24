@@ -25,9 +25,7 @@ namespace Material.Blazor.Internal
         private static readonly ImmutableArray<string> EssentialSplattableAttributes = ImmutableArray.Create("formnovalidate", "max", "min", "role", "step", "tabindex", "type", "data-prev-page");
         private bool? disabled = null;
 
-        [Inject] private IBatchingJSRuntime InjectedJsRuntime { get; set; }
-        [Inject] private IJSRuntime VanillaJsRuntime { get; set; }
-        protected IBatchingJSRuntime BatchingJsRuntime { get; set; }
+        [Inject] private IJSRuntime JsRuntime { get; set; }
         [CascadingParameter] private MBDialog ParentDialog { get; set; }
         [Inject] private protected ILogger<ComponentFoundation> Logger { get; set; }
         [Inject] private protected IMBTooltipService TooltipService { get; set; }
@@ -87,7 +85,6 @@ namespace Material.Blazor.Internal
         #region parameters
 
         [CascadingParameter] protected MBCascadingDefaults CascadingDefaults { get; set; } = new MBCascadingDefaults();
-        [CascadingParameter] protected MBBatchingWrapper BatchingWrapper { get; set; }
 
         /// <summary>
         /// Gets or sets a collection of additional attributes that will be applied to the created element.
@@ -286,30 +283,17 @@ namespace Material.Blazor.Internal
 
         #endregion
 
-        #region InvokeVoidAsync
+        #region InvokeJsVoidAsync
         /// <summary>
         /// Wraps calls to <see cref="BatchingJSRuntime.InvokeVoidAsync"/> adding reference to the batching wrapper (if found). Only
-        /// use for component initiation.
+        /// use for components.
         /// </summary>
         /// <param name="identifier"></param>
         /// <param name="args"></param>
         /// <returns></returns>
-        private protected async Task InvokeInitBatchingJsVoidAsync(string identifier, params object[] args)
+        private protected async Task InvokeJsVoidAsync(string identifier, params object[] args)
         {
-            await BatchingJsRuntime.InvokeVoidAsync(BatchingWrapper, identifier, args).ConfigureAwait(false);
-        }
-
-
-        /// <summary>
-        /// Wraps calls to <see cref="InjectedJsRuntime.InvokeVoidAsync"/> and is therefore not batched. Use for everything
-        /// other than component initiation.
-        /// </summary>
-        /// <param name="identifier"></param>
-        /// <param name="args"></param>
-        /// <returns></returns>
-        private protected async Task InvokeImmediateJsVoidAsync(string identifier, params object[] args)
-        {
-            await VanillaJsRuntime.InvokeVoidAsync(identifier, args).ConfigureAwait(false);
+            await JsRuntime.InvokeVoidAsync(identifier, args).ConfigureAwait(false);
         }
         #endregion
 
@@ -357,7 +341,6 @@ namespace Material.Blazor.Internal
         /// </summary>
         protected sealed override void OnInitialized()
         {
-            BatchingJsRuntime = ParentDialog == null ? InjectedJsRuntime : new DialogAwareBatchingJSRuntime(InjectedJsRuntime, ParentDialog);
             // For consistency, we only ever use OnInitializedAsync. To prevent ourselves from using OnInitialized accidentally, we seal this method from here on.
 
             // the only thing we do here, is creating an ID for the tooltip, if we have one

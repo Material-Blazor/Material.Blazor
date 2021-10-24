@@ -68,7 +68,7 @@ namespace Material.Blazor
         public void Toggle(bool open)
         {
             isOpen = open;
-            InvokeAsync(() => InvokeImmediateJsVoidAsync("MaterialBlazor.MBDrawer.toggle", DrawerElem, isOpen));
+            InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBDrawer.toggle", DrawerElem, isOpen));
         }
 
 
@@ -86,6 +86,6 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => InvokeInitBatchingJsVoidAsync("MaterialBlazor.MBDrawer.init", DrawerElem, isOpen);
+        private protected override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBDrawer.init", DrawerElem, isOpen);
     }
 }

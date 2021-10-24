@@ -247,7 +247,7 @@ namespace Material.Blazor.Internal
         private async Task OnDayItemClickAsync(DateTime dateTime)
         {
             // Invoke JS first. if ComponentValue is set first we are at risk of this element being re-rendered before this line is run, making ListItemReference stale and causing a JS exception.
-            await InvokeImmediateJsVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", ListItemReference, Utilities.DateToString(dateTime, DateFormat));
+            await InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.listItemClick", ListItemReference, Utilities.DateToString(dateTime, DateFormat));
             ComponentValue = dateTime;
             MonthsOffset = 0;
             Parent.NotifyValueChanged();
@@ -292,7 +292,7 @@ namespace Material.Blazor.Internal
             {
                 ScrollToYear = false;
 
-                await InvokeImmediateJsVoidAsync("MaterialBlazor.MBDatePicker.scrollToYear", currentYearId);
+                await InvokeJsVoidAsync("MaterialBlazor.MBDatePicker.scrollToYear", currentYearId);
             }
         }
     }
