@@ -155,10 +155,8 @@
     private List<MBGridColumnConfiguration<Person>> ColumnConfigurations { get; set; } = null;
     private List<MBGridColumnConfiguration<Person>> ColumnConfigurations2 { get; set; } = null;
 
-    protected override void OnInitialized()
+    public GridMT()
     {
-        base.OnInitialized();
-
         GroupOrderedList.Add("Dr");
         GroupOrderedList.Add("Mr");
         GroupOrderedList.Add("Ms");
@@ -227,7 +225,6 @@
             width: 15));
         ColumnConfigurations2.Add(new MBGridColumnConfiguration<Person>(
             width: 65));
-
     }
 
     protected async Task MBGridRowClicked(string guid)
