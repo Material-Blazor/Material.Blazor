@@ -96,10 +96,10 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback() => InvokeAsync(() => InvokeImmediateJsVoidAsync("MaterialBlazor.MBCircularProgress.setProgress", ElementReference, Value));
+        protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBCircularProgress.setProgress", ElementReference, Value));
 
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => InvokeInitBatchingJsVoidAsync("MaterialBlazor.MBCircularProgress.init", ElementReference, Value);
+        private protected override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBCircularProgress.init", ElementReference, Value);
     }
 }

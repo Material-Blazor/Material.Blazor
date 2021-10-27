@@ -1,4 +1,4 @@
-#define Logging
+#define xLogging
 
 // ToDo:
 //
@@ -22,6 +22,7 @@ using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.JSInterop;
 //
 //  Implements a scrollable, multi-column grid. When created we get a list of column
 //  config objects and a list of data objects with the column content for each
@@ -40,7 +41,7 @@ namespace Material.Blazor
     /// </summary>
     public class MBGrid<TRowData> : ComponentFoundation
     {
-        #region Parameters
+        #region Members
 
         /// <summary>
         /// The configuration of each column to be displayed. See the definition of MBGridColumnConfiguration
@@ -110,9 +111,8 @@ namespace Material.Blazor
         /// </summary>
         [Parameter] public bool SuppressHeader { get; set; } = false;
 
-        #endregion
+        [Inject] IJSRuntime JsRuntime { get; set; }
 
-        #region Members
         private float[] ColumnWidthArray;
         private ElementReference GridBodyRef { get; set; }
         private ElementReference GridHeaderRef { get; set; }
@@ -574,7 +574,7 @@ namespace Material.Blazor
 #if Logging
             GridLogDebug("GridSyncScroll()");
 #endif
-            await InvokeInitBatchingJsVoidAsync("MaterialBlazor.MBGrid.syncScrollByID", GridHeaderID, GridBodyID);
+            await InvokeJsVoidAsync("MaterialBlazor.MBGrid.syncScrollByID", GridHeaderID, GridBodyID);
             //await InvokeVoidAsync("MaterialBlazor.MBGrid.syncScrollByRef", GridHeaderRef, GridBodyRef);
         }
         #endregion
@@ -616,7 +616,7 @@ namespace Material.Blazor
             }
 
             // Measure the width of a vertical scrollbar (Used to set the padding of the header)
-            ScrollWidth = await BatchingJsRuntime.InvokeAsync<int>(
+            ScrollWidth = await JsRuntime.InvokeAsync<int>(
                 "MaterialBlazor.MBGrid.getScrollBarWidth",
                 "mb-grid-div-body");
             ScrollWidth = 0;
@@ -641,7 +641,7 @@ namespace Material.Blazor
                     colIndex++;
                 }
 
-                ColumnWidthArray = await BatchingJsRuntime.InvokeAsync<float[]>(
+                ColumnWidthArray = await JsRuntime.InvokeAsync<float[]>(
                         "MaterialBlazor.MBGrid.getTextWidths",
                         "mb-grid-header-td-measure",
                         ColumnWidthArray,
@@ -700,6 +700,7 @@ namespace Material.Blazor
                     }
                 }
 
+#if Logging
                 if (LoggingLevel <= (int)MBLoggingLevel.Debug)
                 {
                     var total = 0;
@@ -712,7 +713,8 @@ namespace Material.Blazor
                     }
                     GridLogDebug("                   Measuring " + stringArrayBody.Length + " strings with a total size of " + total.ToString() + " bytes");
                 }
-                ColumnWidthArray = await BatchingJsRuntime.InvokeAsync<float[]>(
+#endif
+                ColumnWidthArray = await JsRuntime.InvokeAsync<float[]>(
                         "MaterialBlazor.MBGrid.getTextWidths",
                         "mb-grid-body-td-measure",
                         ColumnWidthArray,
@@ -730,9 +732,9 @@ namespace Material.Blazor
                 }
             }
         }
-        #endregion
+#endregion
 
-        #region OnAfterRenderAsync
+#region OnAfterRenderAsync
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             var needsSHC = false;
@@ -783,9 +785,9 @@ namespace Material.Blazor
                 semaphoreSlim.Release();
             }
         }
-        #endregion
+#endregion
 
-        #region OnInitialized
+#region OnInitialized
         protected override async Task OnInitializedAsync()
         {
 #if Logging
@@ -801,9 +803,9 @@ namespace Material.Blazor
             GridLogDebug("MBGrid.OnInitialized completed");
 #endif
         }
-        #endregion
+#endregion
 
-        #region OnMouseClickInternal
+#region OnMouseClickInternal
         private void OnMouseClickInternal(string newRowKey)
         {
 #if Logging
@@ -819,9 +821,9 @@ namespace Material.Blazor
                 OnMouseClick.InvokeAsync(newRowKey);
             }
         }
-        #endregion
+#endregion
 
-        #region SetParametersAsync
+#region SetParametersAsync
         private int oldParameterHash { get; set; } = -1;
         public override Task SetParametersAsync(ParameterView parameters)
         {
@@ -1040,18 +1042,18 @@ namespace Material.Blazor
 
             return base.SetParametersAsync(ParameterView.Empty);
         }
-        #endregion
+#endregion
 
-        #region ShouldRender
+#region ShouldRender
         protected override bool ShouldRender()
         {
             return ShouldRenderValue;
         }
-        #endregion
+#endregion
 
     }
 
-    #region HashCode 
+#region HashCode 
 
     /// <summary>
     /// A hash code used to help with implementing <see cref="object.GetHashCode()"/>.
@@ -1192,6 +1194,6 @@ namespace Material.Blazor
         }
     }
 
-    #endregion
+#endregion
 
 }

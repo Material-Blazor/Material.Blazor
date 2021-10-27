@@ -177,7 +177,7 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback() => InvokeAsync(() => InvokeImmediateJsVoidAsync("MaterialBlazor.MBSlider.setValue", ElementReference, Math.Round(Value * Mult, 0)));
+        protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBSlider.setValue", ElementReference, Math.Round(Value * Mult, 0)));
 
 
         /// <summary>
@@ -185,10 +185,10 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeImmediateJsVoidAsync("MaterialBlazor.MBSlider.setDisabled", ElementReference, AppliedDisabled));
+        protected void OnDisabledSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBSlider.setDisabled", ElementReference, AppliedDisabled));
 
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => InvokeInitBatchingJsVoidAsync("MaterialBlazor.MBSlider.init", ElementReference, ObjectReference, EventType, ContinuousInputDelay);
+        private protected override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBSlider.init", ElementReference, ObjectReference, EventType, ContinuousInputDelay);
     }
 }

@@ -128,10 +128,10 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void OnValueSetCallback() => InvokeAsync(() => InvokeImmediateJsVoidAsync("MaterialBlazor.MBTabBar.activateTab", ElementReference, Value));
+        protected void OnValueSetCallback() => InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTabBar.activateTab", ElementReference, Value));
 
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => InvokeInitBatchingJsVoidAsync("MaterialBlazor.MBTabBar.init", ElementReference, ObjectReference);
+        private protected override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBTabBar.init", ElementReference, ObjectReference);
     }
 }

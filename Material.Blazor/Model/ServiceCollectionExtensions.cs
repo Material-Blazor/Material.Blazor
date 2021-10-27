@@ -22,7 +22,6 @@ namespace Material.Blazor
             MBToastServiceConfiguration toastServiceConfiguration = null) 
         {
             return services
-                .AddScoped<IBatchingJSRuntime, BatchingJSRuntime>()
                 .AddMBLoggingService(loggingServiceConfiguration)
                 .AddMBSnackbarService(snackbarServiceConfiguration)
                 .AddMBToastService(toastServiceConfiguration)
