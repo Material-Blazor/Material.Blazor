@@ -32,7 +32,7 @@ implements further Blazor/Material Theme hybrid components that we term "Plus Co
 
 | Component | Notes |
 | :-------- | :---- |
-| [MBToast](xref:C.MBToast) | An `MBToast` component used to show toast notifications` |
+| MBToast   | An `MBToast` component used to show toast notifications` |
 
 ## Experimental Component List
 
