@@ -8,7 +8,7 @@
     <title>Installation </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Installation ">
-    <meta name="generator" content="docfx 2.58.0.0">
+    <meta name="generator" content="docfx 2.58.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -91,9 +91,9 @@ implies these are intended for internal use by Material.Blazor, however Blazor h
 <p>and at the end of <code>&lt;body&gt;</code>:</p>
 <pre><code class="lang-html">&lt;script src=&quot;_content/Material.Blazor/material.blazor.min.js&quot;&gt;&lt;/script&gt;
 </code></pre>
-<p>Replace the Material.min.css with your own
+<p>Replace the material-components-web.min.css with your own
 if you have built a theme - you can see how we have done this in the <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website.WebAssembly/wwwroot/index.html#L14">Material.Blazor website's index.html</a>.</p>
-<p>Material.Blazor.min.css includes the Material icons for convenience. If you wish to use either (or both) Font Awesome or Open Iconic icon sets see the next section for the additional css required.</p>
+<p>material.blazor.min.css includes the Material icons for convenience. If you wish to use either (or both) Font Awesome or Open Iconic icon sets see the next section for the additional css required.</p>
 <p>The non-minified versions of each of the css and js packages are also available if needed for debugging.</p>
 <h2 id="package-versions">Package versions</h2>
 <p>Material.Blazor works with the following package versions:</p>
@@ -109,19 +109,17 @@ if you have built a theme - you can see how we have done this in the <a href="ht
 </li>
 </ul>
 <h2 id="services-and-anchor">Services and Anchor</h2>
-<p>Material.Blazor has four services for animated navigation, snackbars, toasts, and tooltips. We strongly advise you to use these in your project
+<p>Material.Blazor has three services for animated navigation, snackbars, toasts, and tooltips. We strongly advise you to use these in your project
 because regular component tooltips will fail if you don't, although they are optional. To register the services:</p>
 <pre><code class="lang-csharp">services.AddMBServices(
-    animatedNavigationManagerServiceConfiguration: Utilities.GetDefaultAnimatedNavigationServiceConfiguration(),
     loggingServiceConfiguration: Utilities.GetDefaultLoggingServiceConfiguration(),
     toastServiceConfiguration: Utilities.GetDefaultToastServiceConfiguration(),
     snackbarServiceConfiguration: Utilities.GetDefaultSnackbarServiceConfiguration()
 </code></pre>
-<p>The four configurations are either the default (as above) or custom -
+<p>The three configurations are either the default (as above) or custom -
 see <a class="xref" href="../api/Material.Blazor.MBSnackbarServiceConfiguration.html">MBSnackbarServiceConfiguration</a>,
 <a class="xref" href="../api/Material.Blazor.MBToastServiceConfiguration.html">MBToastServiceConfiguration</a>,
-<a class="xref" href="../api/Material.Blazor.MBLoggingServiceConfiguration.html">MBLoggingServiceConfiguration</a>
-and <a class="xref" href="../api/Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.html">MBAnimatedNavigationManagerServiceConfiguration</a>.</p>
+and <a class="xref" href="../api/Material.Blazor.MBLoggingServiceConfiguration.html">MBLoggingServiceConfiguration</a>.</p>
 <p>When you use the services you must also place an anchor component at the top of <code>App.razor</code> - this must not be inside any other components or divs:</p>
 <pre><code class="lang-html">&lt;MBAnchor /&gt;
 </code></pre>

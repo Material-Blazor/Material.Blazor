@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class MBGridColumnConfiguration&lt;TRowData&gt;
    ">
-    <meta name="generator" content="docfx 2.58.0.0">
+    <meta name="generator" content="docfx 2.58.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -151,7 +151,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MBGridColumnConfiguration(Expression&lt;Func&lt;TRowData, object&gt;&gt; backgroundColorExpression = null, Color? backgroundColorHeader = default(Color? ), MB_Grid_ColumnType columnType = MB_Grid_ColumnType.Text, Expression&lt;Func&lt;TRowData, object&gt;&gt; dataExpression = null, Expression&lt;Func&lt;TRowData, object&gt;&gt; foregroundColorExpression = null, Color? foregroundColorHeader = default(Color? ), string formatString = null, bool isPMI = false, Expression&lt;Func&lt;TRowData, object&gt;&gt; supressDisplayExpression = null, string title = &quot;&quot;, int width = 10)</code></pre>
+    <pre><code class="lang-csharp hljs">public MBGridColumnConfiguration(Expression&lt;Func&lt;TRowData, object&gt;&gt; backgroundColorExpression = null, Color? backgroundColorHeader = null, MB_Grid_ColumnType columnType = MB_Grid_ColumnType.Text, Expression&lt;Func&lt;TRowData, object&gt;&gt; dataExpression = null, Expression&lt;Func&lt;TRowData, object&gt;&gt; foregroundColorExpression = null, Color? foregroundColorHeader = null, string formatString = null, bool isPMI = false, Expression&lt;Func&lt;TRowData, object&gt;&gt; suppressDisplayExpression = null, string title = &quot;&quot;, int width = 10)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -205,7 +205,7 @@
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.linq.expressions.expression-1">Expression</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;TRowData, <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a>&gt;&gt;</td>
-        <td><span class="parametername">supressDisplayExpression</span></td>
+        <td><span class="parametername">suppressDisplayExpression</span></td>
         <td></td>
       </tr>
       <tr>
@@ -464,18 +464,18 @@
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGridColumnConfiguration_1_SupressDisplayExpression.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGridColumnConfiguration%601.SupressDisplayExpression%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBGridColumnConfiguration_1_SuppressDisplayExpression.md&amp;value=---%0Auid%3A%20Material.Blazor.MBGridColumnConfiguration%601.SuppressDisplayExpression%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
     <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/Grid/MBGridColumnConfiguration.cs/#L17">View Source</a>
   </span>
-  <a id="Material_Blazor_MBGridColumnConfiguration_1_SupressDisplayExpression_" data-uid="Material.Blazor.MBGridColumnConfiguration`1.SupressDisplayExpression*"></a>
-  <h4 id="Material_Blazor_MBGridColumnConfiguration_1_SupressDisplayExpression" data-uid="Material.Blazor.MBGridColumnConfiguration`1.SupressDisplayExpression">SupressDisplayExpression</h4>
+  <a id="Material_Blazor_MBGridColumnConfiguration_1_SuppressDisplayExpression_" data-uid="Material.Blazor.MBGridColumnConfiguration`1.SuppressDisplayExpression*"></a>
+  <h4 id="Material_Blazor_MBGridColumnConfiguration_1_SuppressDisplayExpression" data-uid="Material.Blazor.MBGridColumnConfiguration`1.SuppressDisplayExpression">SuppressDisplayExpression</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Func&lt;TRowData, object&gt; SupressDisplayExpression { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Func&lt;TRowData, object&gt; SuppressDisplayExpression { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">

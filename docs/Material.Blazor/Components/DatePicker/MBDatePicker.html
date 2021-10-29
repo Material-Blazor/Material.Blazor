@@ -8,7 +8,7 @@
     <title>MBDatePicker </title>
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="MBDatePicker ">
-    <meta name="generator" content="docfx 2.58.0.0">
+    <meta name="generator" content="docfx 2.58.4.0">
     
     <link rel="shortcut icon" href="../../../favicon.ico">
     <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
@@ -87,7 +87,7 @@ Date pickers are only implemented in Material Theme for Android, so Material.Bla
 is within a couple of pixels of unstyled overflow content on the month selection menu for long month names in English; this is likely to overflow for languages
 with longer month names. We are therefore likely to relax the component's density, which should improve usability. We have deviated from the specification by
 adding an &quot;undo&quot; button to return to the current selected date. There is no &quot;today&quot; button, which is not in the Material Theme specification.</p>
-<p>The SupressDefaultDate parameter is checked in OnInitialized Async and not in
+<p>The SuppressDefaultDate parameter is checked in OnInitialized Async and not in
 SetParametersAsync. Therefore a change will not be detected (and makes little sense
 for the component).</p>
 <p> </p>

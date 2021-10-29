@@ -1080,57 +1080,6 @@ mb-blade-content {
   height: var(--mdc-checkbox-touch-target-size, 40px);
 }
 
-.mb-navigation-fade-in, .mb-navigation-fade-out {
-  width: inherit;
-  height: inherit;
-  overflow-x: inherit;
-  overflow-y: inherit;
-}
-
-@-webkit-keyframes mbNavFadeIn {
-  0% {
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@keyframes mbNavFadeIn {
-  0% {
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-@-webkit-keyframes mbNavFadeOut {
-  0% {
-    opacity: 1;
-  }
-  10% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-@keyframes mbNavFadeOut {
-  0% {
-    opacity: 1;
-  }
-  10% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-  }
-}
 .mb-card {
   width: 350px;
   margin: 48px 0;
@@ -1492,6 +1441,73 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   height: 48px;
   padding: 12px;
 }
+:root {
+  --mb-grid-border-color: #607d8b;
+  --mb-grid-header-color: #cfd8dc;
+  --mb-grid-group-row-color: #bbdefb;
+  --mb-grid-group-row-color-hover: #a8d5fa;
+  --mb-grid-odd-row-color: #fff9c4;
+  --mb-grid-odd-row-color-hover: #fff7b0;
+  --mb-grid-even-row-color: #fff59d;
+  --mb-grid-even-row-color-hover: #fff389;
+  --mb-grid-selected-row-color: #c8e6c9;
+  --mb-grid-selected-row-color-hover: #bae0bb;
+}
+
+.mb-mgrid {
+  border-radius: 0px;
+}
+.mb-mgrid .mdc-data-table__header-cell:first-child {
+  border-top-left-radius: 0px;
+}
+.mb-mgrid .mdc-data-table__header-cell:last-child {
+  border-top-right-radius: 0px;
+}
+
+.mb-mgrid__colored {
+  border-color: var(--mb-grid-border-color);
+}
+.mb-mgrid__colored .mdc-data-table__header-cell {
+  background-color: var(--mb-grid-header-color);
+  border-left-color: var(--mb-grid-border-color);
+  border-bottom-color: var(--mb-grid-border-color);
+}
+.mb-mgrid__colored tbody td {
+  border-left-color: var(--mb-grid-border-color);
+  border-bottom-color: var(--mb-grid-border-color);
+}
+.mb-mgrid__colored .mb-mgrid__group-row {
+  background-color: var(--mb-grid-group-row-color);
+}
+.mb-mgrid__colored .mb-mgrid__group-row:hover {
+  background-color: var(--mb-grid-group-row-color-hover);
+}
+.mb-mgrid__colored .mb-mgrid__row:nth-child(odd):not(.mb-mgrid__row-selected) {
+  background-color: var(--mb-grid-odd-row-color);
+}
+.mb-mgrid__colored .mb-mgrid__row:nth-child(odd):not(.mb-mgrid__row-selected):hover {
+  background-color: var(--mb-grid-odd-row-color-hover);
+}
+.mb-mgrid__colored .mb-mgrid__row:nth-child(even):not(.mb-mgrid__row-selected) {
+  background-color: var(--mb-grid-even-row-color);
+}
+.mb-mgrid__colored .mb-mgrid__row:nth-child(even):not(.mb-mgrid__row-selected):hover {
+  background-color: var(--mb-grid-even-row-color-hover);
+}
+.mb-mgrid__colored .mb-mgrid__row-selected {
+  background-color: var(--mb-grid-selected-row-color);
+}
+.mb-mgrid__colored .mb-mgrid__row-selected:hover {
+  background-color: var(--mb-grid-selected-row-color-hover);
+}
+
+.mb-mgrid__vertical-dividers .mdc-data-table__header-cell:not(:first-child), .mb-mgrid__vertical-dividers .mb-mgrid__group-row td:not(:first-child), .mb-mgrid__vertical-dividers .mb-mgrid__row td:not(:first-child) {
+  padding-left: 15px;
+  border-left-width: 1px;
+  border-left-style: solid;
+}
+
+/* Original grid */
 .mb-grid-div-outer {
   width: 100% !important;
   height: 100% !important;

@@ -1,9 +1,6 @@
 ### YamlMime:XRefMap
 sorted: true
 references:
-- uid: A.AnimatedNavigation
-  name: AnimatedNavigation
-  href: articles/AnimatedNavigation.html
 - uid: A.CascadingDefaults
   name: CascadingDefaults
   href: articles/CascadingDefaults.html
@@ -52,12 +49,15 @@ references:
 - uid: A.Services
   name: Services
   href: articles/Services.html
+- uid: A.Snackbar
+  name: Snackbar
+  href: articles/Snackbar.html
 - uid: A.ThemingAndCSS
   name: ThemingAndCSS
   href: articles/ThemingAndCSS.html
-- uid: A.ToastAndSnackbar
-  name: ToastAndSnackbar
-  href: articles/ToastAndSnackbar.html
+- uid: A.Toast
+  name: Toast
+  href: articles/Toast.html
 - uid: A.Tooltip
   name: Tooltip
   href: articles/Tooltip.html
@@ -73,15 +73,9 @@ references:
 - uid: C.MBAnchor
   name: MBAnchor
   href: Material.Blazor/Components/Anchor/MBAnchor.html
-- uid: C.MBAnimatedNavigation
-  name: MBAnimatedNavigation
-  href: Material.Blazor/Components/AnimatedNavigation/MBAnimatedNavigation.html
 - uid: C.MBAutocompleteTextField
   name: MBAutocompleteTextField
   href: Material.Blazor/Components/AutocompleteTextField/MBAutoCompleteTextField.html
-- uid: C.MBBatchingWrapper
-  name: MBBatchingWrapper
-  href: Material.Blazor/Components/BatchingWrapper/MBBatchingWrapper.html
 - uid: C.MBBladeSet
   name: MBBladeSet
   href: Material.Blazor/Components/BladeSet/MBBladeSet.html
@@ -410,103 +404,6 @@ references:
   commentId: F:Material.Blazor.HashCode.value
   fullName: Material.Blazor.HashCode.value
   nameWithType: HashCode.value
-- uid: Material.Blazor.IMBAnimatedNavigationManager
-  name: IMBAnimatedNavigationManager
-  href: api/Material.Blazor.IMBAnimatedNavigationManager.html
-  commentId: T:Material.Blazor.IMBAnimatedNavigationManager
-  fullName: Material.Blazor.IMBAnimatedNavigationManager
-  nameWithType: IMBAnimatedNavigationManager
-- uid: Material.Blazor.IMBAnimatedNavigationManager.Configuration
-  name: Configuration
-  href: api/Material.Blazor.IMBAnimatedNavigationManager.html#Material_Blazor_IMBAnimatedNavigationManager_Configuration
-  commentId: P:Material.Blazor.IMBAnimatedNavigationManager.Configuration
-  fullName: Material.Blazor.IMBAnimatedNavigationManager.Configuration
-  nameWithType: IMBAnimatedNavigationManager.Configuration
-- uid: Material.Blazor.IMBAnimatedNavigationManager.Configuration*
-  name: Configuration
-  href: api/Material.Blazor.IMBAnimatedNavigationManager.html#Material_Blazor_IMBAnimatedNavigationManager_Configuration_
-  commentId: Overload:Material.Blazor.IMBAnimatedNavigationManager.Configuration
-  isSpec: "True"
-  fullName: Material.Blazor.IMBAnimatedNavigationManager.Configuration
-  nameWithType: IMBAnimatedNavigationManager.Configuration
-- uid: Material.Blazor.IMBAnimatedNavigationManager.DeregisterNavigationComponent(Material.Blazor.MBAnimatedNavigation)
-  name: DeregisterNavigationComponent(MBAnimatedNavigation)
-  href: api/Material.Blazor.IMBAnimatedNavigationManager.html#Material_Blazor_IMBAnimatedNavigationManager_DeregisterNavigationComponent_Material_Blazor_MBAnimatedNavigation_
-  commentId: M:Material.Blazor.IMBAnimatedNavigationManager.DeregisterNavigationComponent(Material.Blazor.MBAnimatedNavigation)
-  fullName: Material.Blazor.IMBAnimatedNavigationManager.DeregisterNavigationComponent(Material.Blazor.MBAnimatedNavigation)
-  nameWithType: IMBAnimatedNavigationManager.DeregisterNavigationComponent(MBAnimatedNavigation)
-- uid: Material.Blazor.IMBAnimatedNavigationManager.DeregisterNavigationComponent*
-  name: DeregisterNavigationComponent
-  href: api/Material.Blazor.IMBAnimatedNavigationManager.html#Material_Blazor_IMBAnimatedNavigationManager_DeregisterNavigationComponent_
-  commentId: Overload:Material.Blazor.IMBAnimatedNavigationManager.DeregisterNavigationComponent
-  isSpec: "True"
-  fullName: Material.Blazor.IMBAnimatedNavigationManager.DeregisterNavigationComponent
-  nameWithType: IMBAnimatedNavigationManager.DeregisterNavigationComponent
-- uid: Material.Blazor.IMBAnimatedNavigationManager.FadeInTime
-  name: FadeInTime
-  href: api/Material.Blazor.IMBAnimatedNavigationManager.html#Material_Blazor_IMBAnimatedNavigationManager_FadeInTime
-  commentId: P:Material.Blazor.IMBAnimatedNavigationManager.FadeInTime
-  fullName: Material.Blazor.IMBAnimatedNavigationManager.FadeInTime
-  nameWithType: IMBAnimatedNavigationManager.FadeInTime
-- uid: Material.Blazor.IMBAnimatedNavigationManager.FadeInTime*
-  name: FadeInTime
-  href: api/Material.Blazor.IMBAnimatedNavigationManager.html#Material_Blazor_IMBAnimatedNavigationManager_FadeInTime_
-  commentId: Overload:Material.Blazor.IMBAnimatedNavigationManager.FadeInTime
-  isSpec: "True"
-  fullName: Material.Blazor.IMBAnimatedNavigationManager.FadeInTime
-  nameWithType: IMBAnimatedNavigationManager.FadeInTime
-- uid: Material.Blazor.IMBAnimatedNavigationManager.FadeOutTime
-  name: FadeOutTime
-  href: api/Material.Blazor.IMBAnimatedNavigationManager.html#Material_Blazor_IMBAnimatedNavigationManager_FadeOutTime
-  commentId: P:Material.Blazor.IMBAnimatedNavigationManager.FadeOutTime
-  fullName: Material.Blazor.IMBAnimatedNavigationManager.FadeOutTime
-  nameWithType: IMBAnimatedNavigationManager.FadeOutTime
-- uid: Material.Blazor.IMBAnimatedNavigationManager.FadeOutTime*
-  name: FadeOutTime
-  href: api/Material.Blazor.IMBAnimatedNavigationManager.html#Material_Blazor_IMBAnimatedNavigationManager_FadeOutTime_
-  commentId: Overload:Material.Blazor.IMBAnimatedNavigationManager.FadeOutTime
-  isSpec: "True"
-  fullName: Material.Blazor.IMBAnimatedNavigationManager.FadeOutTime
-  nameWithType: IMBAnimatedNavigationManager.FadeOutTime
-- uid: Material.Blazor.IMBAnimatedNavigationManager.NavigateTo(System.String,System.Boolean)
-  name: NavigateTo(String, Boolean)
-  href: api/Material.Blazor.IMBAnimatedNavigationManager.html#Material_Blazor_IMBAnimatedNavigationManager_NavigateTo_System_String_System_Boolean_
-  commentId: M:Material.Blazor.IMBAnimatedNavigationManager.NavigateTo(System.String,System.Boolean)
-  fullName: Material.Blazor.IMBAnimatedNavigationManager.NavigateTo(System.String, System.Boolean)
-  nameWithType: IMBAnimatedNavigationManager.NavigateTo(String, Boolean)
-- uid: Material.Blazor.IMBAnimatedNavigationManager.NavigateTo*
-  name: NavigateTo
-  href: api/Material.Blazor.IMBAnimatedNavigationManager.html#Material_Blazor_IMBAnimatedNavigationManager_NavigateTo_
-  commentId: Overload:Material.Blazor.IMBAnimatedNavigationManager.NavigateTo
-  isSpec: "True"
-  fullName: Material.Blazor.IMBAnimatedNavigationManager.NavigateTo
-  nameWithType: IMBAnimatedNavigationManager.NavigateTo
-- uid: Material.Blazor.IMBAnimatedNavigationManager.NavigationManager
-  name: NavigationManager
-  href: api/Material.Blazor.IMBAnimatedNavigationManager.html#Material_Blazor_IMBAnimatedNavigationManager_NavigationManager
-  commentId: P:Material.Blazor.IMBAnimatedNavigationManager.NavigationManager
-  fullName: Material.Blazor.IMBAnimatedNavigationManager.NavigationManager
-  nameWithType: IMBAnimatedNavigationManager.NavigationManager
-- uid: Material.Blazor.IMBAnimatedNavigationManager.NavigationManager*
-  name: NavigationManager
-  href: api/Material.Blazor.IMBAnimatedNavigationManager.html#Material_Blazor_IMBAnimatedNavigationManager_NavigationManager_
-  commentId: Overload:Material.Blazor.IMBAnimatedNavigationManager.NavigationManager
-  isSpec: "True"
-  fullName: Material.Blazor.IMBAnimatedNavigationManager.NavigationManager
-  nameWithType: IMBAnimatedNavigationManager.NavigationManager
-- uid: Material.Blazor.IMBAnimatedNavigationManager.RegisterNavigationComponent(Material.Blazor.MBAnimatedNavigation)
-  name: RegisterNavigationComponent(MBAnimatedNavigation)
-  href: api/Material.Blazor.IMBAnimatedNavigationManager.html#Material_Blazor_IMBAnimatedNavigationManager_RegisterNavigationComponent_Material_Blazor_MBAnimatedNavigation_
-  commentId: M:Material.Blazor.IMBAnimatedNavigationManager.RegisterNavigationComponent(Material.Blazor.MBAnimatedNavigation)
-  fullName: Material.Blazor.IMBAnimatedNavigationManager.RegisterNavigationComponent(Material.Blazor.MBAnimatedNavigation)
-  nameWithType: IMBAnimatedNavigationManager.RegisterNavigationComponent(MBAnimatedNavigation)
-- uid: Material.Blazor.IMBAnimatedNavigationManager.RegisterNavigationComponent*
-  name: RegisterNavigationComponent
-  href: api/Material.Blazor.IMBAnimatedNavigationManager.html#Material_Blazor_IMBAnimatedNavigationManager_RegisterNavigationComponent_
-  commentId: Overload:Material.Blazor.IMBAnimatedNavigationManager.RegisterNavigationComponent
-  isSpec: "True"
-  fullName: Material.Blazor.IMBAnimatedNavigationManager.RegisterNavigationComponent
-  nameWithType: IMBAnimatedNavigationManager.RegisterNavigationComponent
 - uid: Material.Blazor.IMBIcon
   name: IMBIcon
   href: api/Material.Blazor.IMBIcon.html
@@ -865,32 +762,6 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.Internal.ComponentFoundation.ActiveConditionalClasses
   nameWithType: ComponentFoundation.ActiveConditionalClasses
-- uid: Material.Blazor.Internal.ComponentFoundation.BatchingJsRuntime
-  name: BatchingJsRuntime
-  href: api/Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_BatchingJsRuntime
-  commentId: P:Material.Blazor.Internal.ComponentFoundation.BatchingJsRuntime
-  fullName: Material.Blazor.Internal.ComponentFoundation.BatchingJsRuntime
-  nameWithType: ComponentFoundation.BatchingJsRuntime
-- uid: Material.Blazor.Internal.ComponentFoundation.BatchingJsRuntime*
-  name: BatchingJsRuntime
-  href: api/Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_BatchingJsRuntime_
-  commentId: Overload:Material.Blazor.Internal.ComponentFoundation.BatchingJsRuntime
-  isSpec: "True"
-  fullName: Material.Blazor.Internal.ComponentFoundation.BatchingJsRuntime
-  nameWithType: ComponentFoundation.BatchingJsRuntime
-- uid: Material.Blazor.Internal.ComponentFoundation.BatchingWrapper
-  name: BatchingWrapper
-  href: api/Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_BatchingWrapper
-  commentId: P:Material.Blazor.Internal.ComponentFoundation.BatchingWrapper
-  fullName: Material.Blazor.Internal.ComponentFoundation.BatchingWrapper
-  nameWithType: ComponentFoundation.BatchingWrapper
-- uid: Material.Blazor.Internal.ComponentFoundation.BatchingWrapper*
-  name: BatchingWrapper
-  href: api/Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_BatchingWrapper_
-  commentId: Overload:Material.Blazor.Internal.ComponentFoundation.BatchingWrapper
-  isSpec: "True"
-  fullName: Material.Blazor.Internal.ComponentFoundation.BatchingWrapper
-  nameWithType: ComponentFoundation.BatchingWrapper
 - uid: Material.Blazor.Internal.ComponentFoundation.CascadingDefaults
   name: CascadingDefaults
   href: api/Material.Blazor.Internal.ComponentFoundation.html#Material_Blazor_Internal_ComponentFoundation_CascadingDefaults
@@ -1101,57 +972,6 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.Internal.ConditionalCssClasses.ToString
   nameWithType: ConditionalCssClasses.ToString
-- uid: Material.Blazor.Internal.IBatchingJSRuntime
-  name: IBatchingJSRuntime
-  href: api/Material.Blazor.Internal.IBatchingJSRuntime.html
-  commentId: T:Material.Blazor.Internal.IBatchingJSRuntime
-  fullName: Material.Blazor.Internal.IBatchingJSRuntime
-  nameWithType: IBatchingJSRuntime
-- uid: Material.Blazor.Internal.IBatchingJSRuntime.FlushBatchAsync
-  name: FlushBatchAsync()
-  href: api/Material.Blazor.Internal.IBatchingJSRuntime.html#Material_Blazor_Internal_IBatchingJSRuntime_FlushBatchAsync
-  commentId: M:Material.Blazor.Internal.IBatchingJSRuntime.FlushBatchAsync
-  fullName: Material.Blazor.Internal.IBatchingJSRuntime.FlushBatchAsync()
-  nameWithType: IBatchingJSRuntime.FlushBatchAsync()
-- uid: Material.Blazor.Internal.IBatchingJSRuntime.FlushBatchAsync*
-  name: FlushBatchAsync
-  href: api/Material.Blazor.Internal.IBatchingJSRuntime.html#Material_Blazor_Internal_IBatchingJSRuntime_FlushBatchAsync_
-  commentId: Overload:Material.Blazor.Internal.IBatchingJSRuntime.FlushBatchAsync
-  isSpec: "True"
-  fullName: Material.Blazor.Internal.IBatchingJSRuntime.FlushBatchAsync
-  nameWithType: IBatchingJSRuntime.FlushBatchAsync
-- uid: Material.Blazor.Internal.IBatchingJSRuntime.InvokeAsync*
-  name: InvokeAsync
-  href: api/Material.Blazor.Internal.IBatchingJSRuntime.html#Material_Blazor_Internal_IBatchingJSRuntime_InvokeAsync_
-  commentId: Overload:Material.Blazor.Internal.IBatchingJSRuntime.InvokeAsync
-  isSpec: "True"
-  fullName: Material.Blazor.Internal.IBatchingJSRuntime.InvokeAsync
-  nameWithType: IBatchingJSRuntime.InvokeAsync
-- uid: Material.Blazor.Internal.IBatchingJSRuntime.InvokeAsync``1(System.String,System.Object[])
-  name: InvokeAsync<T>(String, Object[])
-  href: api/Material.Blazor.Internal.IBatchingJSRuntime.html#Material_Blazor_Internal_IBatchingJSRuntime_InvokeAsync__1_System_String_System_Object___
-  commentId: M:Material.Blazor.Internal.IBatchingJSRuntime.InvokeAsync``1(System.String,System.Object[])
-  name.vb: InvokeAsync(Of T)(String, Object())
-  fullName: Material.Blazor.Internal.IBatchingJSRuntime.InvokeAsync<T>(System.String, System.Object[])
-  fullName.vb: Material.Blazor.Internal.IBatchingJSRuntime.InvokeAsync(Of T)(System.String, System.Object())
-  nameWithType: IBatchingJSRuntime.InvokeAsync<T>(String, Object[])
-  nameWithType.vb: IBatchingJSRuntime.InvokeAsync(Of T)(String, Object())
-- uid: Material.Blazor.Internal.IBatchingJSRuntime.InvokeVoidAsync(Material.Blazor.MBBatchingWrapper,System.String,System.Object[])
-  name: InvokeVoidAsync(MBBatchingWrapper, String, Object[])
-  href: api/Material.Blazor.Internal.IBatchingJSRuntime.html#Material_Blazor_Internal_IBatchingJSRuntime_InvokeVoidAsync_Material_Blazor_MBBatchingWrapper_System_String_System_Object___
-  commentId: M:Material.Blazor.Internal.IBatchingJSRuntime.InvokeVoidAsync(Material.Blazor.MBBatchingWrapper,System.String,System.Object[])
-  name.vb: InvokeVoidAsync(MBBatchingWrapper, String, Object())
-  fullName: Material.Blazor.Internal.IBatchingJSRuntime.InvokeVoidAsync(Material.Blazor.MBBatchingWrapper, System.String, System.Object[])
-  fullName.vb: Material.Blazor.Internal.IBatchingJSRuntime.InvokeVoidAsync(Material.Blazor.MBBatchingWrapper, System.String, System.Object())
-  nameWithType: IBatchingJSRuntime.InvokeVoidAsync(MBBatchingWrapper, String, Object[])
-  nameWithType.vb: IBatchingJSRuntime.InvokeVoidAsync(MBBatchingWrapper, String, Object())
-- uid: Material.Blazor.Internal.IBatchingJSRuntime.InvokeVoidAsync*
-  name: InvokeVoidAsync
-  href: api/Material.Blazor.Internal.IBatchingJSRuntime.html#Material_Blazor_Internal_IBatchingJSRuntime_InvokeVoidAsync_
-  commentId: Overload:Material.Blazor.Internal.IBatchingJSRuntime.InvokeVoidAsync
-  isSpec: "True"
-  fullName: Material.Blazor.Internal.IBatchingJSRuntime.InvokeVoidAsync
-  nameWithType: IBatchingJSRuntime.InvokeVoidAsync
 - uid: Material.Blazor.Internal.InputComponent`1
   name: InputComponent<T>
   href: api/Material.Blazor.Internal.InputComponent-1.html
@@ -1637,19 +1457,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.Internal.InternalDatePickerPanel.Parent
   nameWithType: InternalDatePickerPanel.Parent
-- uid: Material.Blazor.Internal.InternalDatePickerPanel.SupressDefaultDate
-  name: SupressDefaultDate
-  href: api/Material.Blazor.Internal.InternalDatePickerPanel.html#Material_Blazor_Internal_InternalDatePickerPanel_SupressDefaultDate
-  commentId: P:Material.Blazor.Internal.InternalDatePickerPanel.SupressDefaultDate
-  fullName: Material.Blazor.Internal.InternalDatePickerPanel.SupressDefaultDate
-  nameWithType: InternalDatePickerPanel.SupressDefaultDate
-- uid: Material.Blazor.Internal.InternalDatePickerPanel.SupressDefaultDate*
-  name: SupressDefaultDate
-  href: api/Material.Blazor.Internal.InternalDatePickerPanel.html#Material_Blazor_Internal_InternalDatePickerPanel_SupressDefaultDate_
-  commentId: Overload:Material.Blazor.Internal.InternalDatePickerPanel.SupressDefaultDate
+- uid: Material.Blazor.Internal.InternalDatePickerPanel.SuppressDefaultDate
+  name: SuppressDefaultDate
+  href: api/Material.Blazor.Internal.InternalDatePickerPanel.html#Material_Blazor_Internal_InternalDatePickerPanel_SuppressDefaultDate
+  commentId: P:Material.Blazor.Internal.InternalDatePickerPanel.SuppressDefaultDate
+  fullName: Material.Blazor.Internal.InternalDatePickerPanel.SuppressDefaultDate
+  nameWithType: InternalDatePickerPanel.SuppressDefaultDate
+- uid: Material.Blazor.Internal.InternalDatePickerPanel.SuppressDefaultDate*
+  name: SuppressDefaultDate
+  href: api/Material.Blazor.Internal.InternalDatePickerPanel.html#Material_Blazor_Internal_InternalDatePickerPanel_SuppressDefaultDate_
+  commentId: Overload:Material.Blazor.Internal.InternalDatePickerPanel.SuppressDefaultDate
   isSpec: "True"
-  fullName: Material.Blazor.Internal.InternalDatePickerPanel.SupressDefaultDate
-  nameWithType: InternalDatePickerPanel.SupressDefaultDate
+  fullName: Material.Blazor.Internal.InternalDatePickerPanel.SuppressDefaultDate
+  nameWithType: InternalDatePickerPanel.SuppressDefaultDate
 - uid: Material.Blazor.Internal.InternalDatePickerYearButton
   name: InternalDatePickerYearButton
   href: api/Material.Blazor.Internal.InternalDatePickerYearButton.html
@@ -2148,95 +1968,6 @@ references:
   commentId: T:Material.Blazor.MBAnchor
   fullName: Material.Blazor.MBAnchor
   nameWithType: MBAnchor
-- uid: Material.Blazor.MBAnimatedNavigation
-  name: MBAnimatedNavigation
-  href: api/Material.Blazor.MBAnimatedNavigation.html
-  commentId: T:Material.Blazor.MBAnimatedNavigation
-  fullName: Material.Blazor.MBAnimatedNavigation
-  nameWithType: MBAnimatedNavigation
-- uid: Material.Blazor.MBAnimatedNavigation.ChildContent
-  name: ChildContent
-  href: api/Material.Blazor.MBAnimatedNavigation.html#Material_Blazor_MBAnimatedNavigation_ChildContent
-  commentId: P:Material.Blazor.MBAnimatedNavigation.ChildContent
-  fullName: Material.Blazor.MBAnimatedNavigation.ChildContent
-  nameWithType: MBAnimatedNavigation.ChildContent
-- uid: Material.Blazor.MBAnimatedNavigation.ChildContent*
-  name: ChildContent
-  href: api/Material.Blazor.MBAnimatedNavigation.html#Material_Blazor_MBAnimatedNavigation_ChildContent_
-  commentId: Overload:Material.Blazor.MBAnimatedNavigation.ChildContent
-  isSpec: "True"
-  fullName: Material.Blazor.MBAnimatedNavigation.ChildContent
-  nameWithType: MBAnimatedNavigation.ChildContent
-- uid: Material.Blazor.MBAnimatedNavigation.Dispose(System.Boolean)
-  name: Dispose(Boolean)
-  href: api/Material.Blazor.MBAnimatedNavigation.html#Material_Blazor_MBAnimatedNavigation_Dispose_System_Boolean_
-  commentId: M:Material.Blazor.MBAnimatedNavigation.Dispose(System.Boolean)
-  fullName: Material.Blazor.MBAnimatedNavigation.Dispose(System.Boolean)
-  nameWithType: MBAnimatedNavigation.Dispose(Boolean)
-- uid: Material.Blazor.MBAnimatedNavigation.Dispose*
-  name: Dispose
-  href: api/Material.Blazor.MBAnimatedNavigation.html#Material_Blazor_MBAnimatedNavigation_Dispose_
-  commentId: Overload:Material.Blazor.MBAnimatedNavigation.Dispose
-  isSpec: "True"
-  fullName: Material.Blazor.MBAnimatedNavigation.Dispose
-  nameWithType: MBAnimatedNavigation.Dispose
-- uid: Material.Blazor.MBAnimatedNavigation.OnInitializedAsync
-  name: OnInitializedAsync()
-  href: api/Material.Blazor.MBAnimatedNavigation.html#Material_Blazor_MBAnimatedNavigation_OnInitializedAsync
-  commentId: M:Material.Blazor.MBAnimatedNavigation.OnInitializedAsync
-  fullName: Material.Blazor.MBAnimatedNavigation.OnInitializedAsync()
-  nameWithType: MBAnimatedNavigation.OnInitializedAsync()
-- uid: Material.Blazor.MBAnimatedNavigation.OnInitializedAsync*
-  name: OnInitializedAsync
-  href: api/Material.Blazor.MBAnimatedNavigation.html#Material_Blazor_MBAnimatedNavigation_OnInitializedAsync_
-  commentId: Overload:Material.Blazor.MBAnimatedNavigation.OnInitializedAsync
-  isSpec: "True"
-  fullName: Material.Blazor.MBAnimatedNavigation.OnInitializedAsync
-  nameWithType: MBAnimatedNavigation.OnInitializedAsync
-- uid: Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration
-  name: MBAnimatedNavigationManagerServiceConfiguration
-  href: api/Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.html
-  commentId: T:Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration
-  fullName: Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration
-  nameWithType: MBAnimatedNavigationManagerServiceConfiguration
-- uid: Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.AnimationTime
-  name: AnimationTime
-  href: api/Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.html#Material_Blazor_MBAnimatedNavigationManagerServiceConfiguration_AnimationTime
-  commentId: P:Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.AnimationTime
-  fullName: Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.AnimationTime
-  nameWithType: MBAnimatedNavigationManagerServiceConfiguration.AnimationTime
-- uid: Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.AnimationTime*
-  name: AnimationTime
-  href: api/Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.html#Material_Blazor_MBAnimatedNavigationManagerServiceConfiguration_AnimationTime_
-  commentId: Overload:Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.AnimationTime
-  isSpec: "True"
-  fullName: Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.AnimationTime
-  nameWithType: MBAnimatedNavigationManagerServiceConfiguration.AnimationTime
-- uid: Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.ApplyAnimation
-  name: ApplyAnimation
-  href: api/Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.html#Material_Blazor_MBAnimatedNavigationManagerServiceConfiguration_ApplyAnimation
-  commentId: P:Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.ApplyAnimation
-  fullName: Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.ApplyAnimation
-  nameWithType: MBAnimatedNavigationManagerServiceConfiguration.ApplyAnimation
-- uid: Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.ApplyAnimation*
-  name: ApplyAnimation
-  href: api/Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.html#Material_Blazor_MBAnimatedNavigationManagerServiceConfiguration_ApplyAnimation_
-  commentId: Overload:Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.ApplyAnimation
-  isSpec: "True"
-  fullName: Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.ApplyAnimation
-  nameWithType: MBAnimatedNavigationManagerServiceConfiguration.ApplyAnimation
-- uid: Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.DefaultAnimationTime
-  name: DefaultAnimationTime
-  href: api/Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.html#Material_Blazor_MBAnimatedNavigationManagerServiceConfiguration_DefaultAnimationTime
-  commentId: F:Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.DefaultAnimationTime
-  fullName: Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.DefaultAnimationTime
-  nameWithType: MBAnimatedNavigationManagerServiceConfiguration.DefaultAnimationTime
-- uid: Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.DefaultApplyAnimation
-  name: DefaultApplyAnimation
-  href: api/Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.html#Material_Blazor_MBAnimatedNavigationManagerServiceConfiguration_DefaultApplyAnimation
-  commentId: F:Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.DefaultApplyAnimation
-  fullName: Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.DefaultApplyAnimation
-  nameWithType: MBAnimatedNavigationManagerServiceConfiguration.DefaultApplyAnimation
 - uid: Material.Blazor.MBAutocompleteTextField
   name: MBAutocompleteTextField
   href: api/Material.Blazor.MBAutocompleteTextField.html
@@ -2503,77 +2234,6 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBAutocompleteTextField.ValidationMessageFor
   nameWithType: MBAutocompleteTextField.ValidationMessageFor
-- uid: Material.Blazor.MBBatchingWrapper
-  name: MBBatchingWrapper
-  href: api/Material.Blazor.MBBatchingWrapper.html
-  commentId: T:Material.Blazor.MBBatchingWrapper
-  fullName: Material.Blazor.MBBatchingWrapper
-  nameWithType: MBBatchingWrapper
-- uid: Material.Blazor.MBBatchingWrapper.BatchingJsRuntime
-  name: BatchingJsRuntime
-  href: api/Material.Blazor.MBBatchingWrapper.html#Material_Blazor_MBBatchingWrapper_BatchingJsRuntime
-  commentId: P:Material.Blazor.MBBatchingWrapper.BatchingJsRuntime
-  fullName: Material.Blazor.MBBatchingWrapper.BatchingJsRuntime
-  nameWithType: MBBatchingWrapper.BatchingJsRuntime
-- uid: Material.Blazor.MBBatchingWrapper.BatchingJsRuntime*
-  name: BatchingJsRuntime
-  href: api/Material.Blazor.MBBatchingWrapper.html#Material_Blazor_MBBatchingWrapper_BatchingJsRuntime_
-  commentId: Overload:Material.Blazor.MBBatchingWrapper.BatchingJsRuntime
-  isSpec: "True"
-  fullName: Material.Blazor.MBBatchingWrapper.BatchingJsRuntime
-  nameWithType: MBBatchingWrapper.BatchingJsRuntime
-- uid: Material.Blazor.MBBatchingWrapper.BuildRenderTree(RenderTreeBuilder)
-  name: BuildRenderTree(RenderTreeBuilder)
-  href: api/Material.Blazor.MBBatchingWrapper.html#Material_Blazor_MBBatchingWrapper_BuildRenderTree_RenderTreeBuilder_
-  commentId: M:Material.Blazor.MBBatchingWrapper.BuildRenderTree(RenderTreeBuilder)
-  fullName: Material.Blazor.MBBatchingWrapper.BuildRenderTree(RenderTreeBuilder)
-  nameWithType: MBBatchingWrapper.BuildRenderTree(RenderTreeBuilder)
-- uid: Material.Blazor.MBBatchingWrapper.BuildRenderTree*
-  name: BuildRenderTree
-  href: api/Material.Blazor.MBBatchingWrapper.html#Material_Blazor_MBBatchingWrapper_BuildRenderTree_
-  commentId: Overload:Material.Blazor.MBBatchingWrapper.BuildRenderTree
-  isSpec: "True"
-  fullName: Material.Blazor.MBBatchingWrapper.BuildRenderTree
-  nameWithType: MBBatchingWrapper.BuildRenderTree
-- uid: Material.Blazor.MBBatchingWrapper.ChildContent
-  name: ChildContent
-  href: api/Material.Blazor.MBBatchingWrapper.html#Material_Blazor_MBBatchingWrapper_ChildContent
-  commentId: P:Material.Blazor.MBBatchingWrapper.ChildContent
-  fullName: Material.Blazor.MBBatchingWrapper.ChildContent
-  nameWithType: MBBatchingWrapper.ChildContent
-- uid: Material.Blazor.MBBatchingWrapper.ChildContent*
-  name: ChildContent
-  href: api/Material.Blazor.MBBatchingWrapper.html#Material_Blazor_MBBatchingWrapper_ChildContent_
-  commentId: Overload:Material.Blazor.MBBatchingWrapper.ChildContent
-  isSpec: "True"
-  fullName: Material.Blazor.MBBatchingWrapper.ChildContent
-  nameWithType: MBBatchingWrapper.ChildContent
-- uid: Material.Blazor.MBBatchingWrapper.OnAfterRenderAsync(System.Boolean)
-  name: OnAfterRenderAsync(Boolean)
-  href: api/Material.Blazor.MBBatchingWrapper.html#Material_Blazor_MBBatchingWrapper_OnAfterRenderAsync_System_Boolean_
-  commentId: M:Material.Blazor.MBBatchingWrapper.OnAfterRenderAsync(System.Boolean)
-  fullName: Material.Blazor.MBBatchingWrapper.OnAfterRenderAsync(System.Boolean)
-  nameWithType: MBBatchingWrapper.OnAfterRenderAsync(Boolean)
-- uid: Material.Blazor.MBBatchingWrapper.OnAfterRenderAsync*
-  name: OnAfterRenderAsync
-  href: api/Material.Blazor.MBBatchingWrapper.html#Material_Blazor_MBBatchingWrapper_OnAfterRenderAsync_
-  commentId: Overload:Material.Blazor.MBBatchingWrapper.OnAfterRenderAsync
-  isSpec: "True"
-  fullName: Material.Blazor.MBBatchingWrapper.OnAfterRenderAsync
-  nameWithType: MBBatchingWrapper.OnAfterRenderAsync
-- uid: Material.Blazor.MBBatchingWrapper.OnInitialized
-  name: OnInitialized()
-  href: api/Material.Blazor.MBBatchingWrapper.html#Material_Blazor_MBBatchingWrapper_OnInitialized
-  commentId: M:Material.Blazor.MBBatchingWrapper.OnInitialized
-  fullName: Material.Blazor.MBBatchingWrapper.OnInitialized()
-  nameWithType: MBBatchingWrapper.OnInitialized()
-- uid: Material.Blazor.MBBatchingWrapper.OnInitialized*
-  name: OnInitialized
-  href: api/Material.Blazor.MBBatchingWrapper.html#Material_Blazor_MBBatchingWrapper_OnInitialized_
-  commentId: Overload:Material.Blazor.MBBatchingWrapper.OnInitialized
-  isSpec: "True"
-  fullName: Material.Blazor.MBBatchingWrapper.OnInitialized
-  nameWithType: MBBatchingWrapper.OnInitialized
 - uid: Material.Blazor.MBBladeComponent`1
   name: MBBladeComponent<TParam>
   href: api/Material.Blazor.MBBladeComponent-1.html
@@ -4350,6 +4010,23 @@ references:
   fullName.vb: Material.Blazor.MBDataTable(Of TItem).ShowProgress
   nameWithType: MBDataTable<TItem>.ShowProgress
   nameWithType.vb: MBDataTable(Of TItem).ShowProgress
+- uid: Material.Blazor.MBDataTable`1.StickyHeader
+  name: StickyHeader
+  href: api/Material.Blazor.MBDataTable-1.html#Material_Blazor_MBDataTable_1_StickyHeader
+  commentId: P:Material.Blazor.MBDataTable`1.StickyHeader
+  fullName: Material.Blazor.MBDataTable<TItem>.StickyHeader
+  fullName.vb: Material.Blazor.MBDataTable(Of TItem).StickyHeader
+  nameWithType: MBDataTable<TItem>.StickyHeader
+  nameWithType.vb: MBDataTable(Of TItem).StickyHeader
+- uid: Material.Blazor.MBDataTable`1.StickyHeader*
+  name: StickyHeader
+  href: api/Material.Blazor.MBDataTable-1.html#Material_Blazor_MBDataTable_1_StickyHeader_
+  commentId: Overload:Material.Blazor.MBDataTable`1.StickyHeader
+  isSpec: "True"
+  fullName: Material.Blazor.MBDataTable<TItem>.StickyHeader
+  fullName.vb: Material.Blazor.MBDataTable(Of TItem).StickyHeader
+  nameWithType: MBDataTable<TItem>.StickyHeader
+  nameWithType.vb: MBDataTable(Of TItem).StickyHeader
 - uid: Material.Blazor.MBDataTable`1.TableHeader
   name: TableHeader
   href: api/Material.Blazor.MBDataTable-1.html#Material_Blazor_MBDataTable_1_TableHeader
@@ -4572,19 +4249,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBDatePicker.SelectInputStyle
   nameWithType: MBDatePicker.SelectInputStyle
-- uid: Material.Blazor.MBDatePicker.SupressDefaultDate
-  name: SupressDefaultDate
-  href: api/Material.Blazor.MBDatePicker.html#Material_Blazor_MBDatePicker_SupressDefaultDate
-  commentId: P:Material.Blazor.MBDatePicker.SupressDefaultDate
-  fullName: Material.Blazor.MBDatePicker.SupressDefaultDate
-  nameWithType: MBDatePicker.SupressDefaultDate
-- uid: Material.Blazor.MBDatePicker.SupressDefaultDate*
-  name: SupressDefaultDate
-  href: api/Material.Blazor.MBDatePicker.html#Material_Blazor_MBDatePicker_SupressDefaultDate_
-  commentId: Overload:Material.Blazor.MBDatePicker.SupressDefaultDate
+- uid: Material.Blazor.MBDatePicker.SuppressDefaultDate
+  name: SuppressDefaultDate
+  href: api/Material.Blazor.MBDatePicker.html#Material_Blazor_MBDatePicker_SuppressDefaultDate
+  commentId: P:Material.Blazor.MBDatePicker.SuppressDefaultDate
+  fullName: Material.Blazor.MBDatePicker.SuppressDefaultDate
+  nameWithType: MBDatePicker.SuppressDefaultDate
+- uid: Material.Blazor.MBDatePicker.SuppressDefaultDate*
+  name: SuppressDefaultDate
+  href: api/Material.Blazor.MBDatePicker.html#Material_Blazor_MBDatePicker_SuppressDefaultDate_
+  commentId: Overload:Material.Blazor.MBDatePicker.SuppressDefaultDate
   isSpec: "True"
-  fullName: Material.Blazor.MBDatePicker.SupressDefaultDate
-  nameWithType: MBDatePicker.SupressDefaultDate
+  fullName: Material.Blazor.MBDatePicker.SuppressDefaultDate
+  nameWithType: MBDatePicker.SuppressDefaultDate
 - uid: Material.Blazor.MBDateSelectionCriteria
   name: MBDateSelectionCriteria
   href: api/Material.Blazor.MBDateSelectionCriteria.html
@@ -5611,23 +5288,23 @@ references:
   fullName.vb: Material.Blazor.MBGrid(Of TRowData).ShouldRender
   nameWithType: MBGrid<TRowData>.ShouldRender
   nameWithType.vb: MBGrid(Of TRowData).ShouldRender
-- uid: Material.Blazor.MBGrid`1.SupressHeader
-  name: SupressHeader
-  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_SupressHeader
-  commentId: P:Material.Blazor.MBGrid`1.SupressHeader
-  fullName: Material.Blazor.MBGrid<TRowData>.SupressHeader
-  fullName.vb: Material.Blazor.MBGrid(Of TRowData).SupressHeader
-  nameWithType: MBGrid<TRowData>.SupressHeader
-  nameWithType.vb: MBGrid(Of TRowData).SupressHeader
-- uid: Material.Blazor.MBGrid`1.SupressHeader*
-  name: SupressHeader
-  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_SupressHeader_
-  commentId: Overload:Material.Blazor.MBGrid`1.SupressHeader
+- uid: Material.Blazor.MBGrid`1.SuppressHeader
+  name: SuppressHeader
+  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_SuppressHeader
+  commentId: P:Material.Blazor.MBGrid`1.SuppressHeader
+  fullName: Material.Blazor.MBGrid<TRowData>.SuppressHeader
+  fullName.vb: Material.Blazor.MBGrid(Of TRowData).SuppressHeader
+  nameWithType: MBGrid<TRowData>.SuppressHeader
+  nameWithType.vb: MBGrid(Of TRowData).SuppressHeader
+- uid: Material.Blazor.MBGrid`1.SuppressHeader*
+  name: SuppressHeader
+  href: api/Material.Blazor.MBGrid-1.html#Material_Blazor_MBGrid_1_SuppressHeader_
+  commentId: Overload:Material.Blazor.MBGrid`1.SuppressHeader
   isSpec: "True"
-  fullName: Material.Blazor.MBGrid<TRowData>.SupressHeader
-  fullName.vb: Material.Blazor.MBGrid(Of TRowData).SupressHeader
-  nameWithType: MBGrid<TRowData>.SupressHeader
-  nameWithType.vb: MBGrid(Of TRowData).SupressHeader
+  fullName: Material.Blazor.MBGrid<TRowData>.SuppressHeader
+  fullName.vb: Material.Blazor.MBGrid(Of TRowData).SuppressHeader
+  nameWithType: MBGrid<TRowData>.SuppressHeader
+  nameWithType.vb: MBGrid(Of TRowData).SuppressHeader
 - uid: Material.Blazor.MBGridColumnConfiguration`1
   name: MBGridColumnConfiguration<TRowData>
   href: api/Material.Blazor.MBGridColumnConfiguration-1.html
@@ -5791,23 +5468,23 @@ references:
   fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).IsPMI
   nameWithType: MBGridColumnConfiguration<TRowData>.IsPMI
   nameWithType.vb: MBGridColumnConfiguration(Of TRowData).IsPMI
-- uid: Material.Blazor.MBGridColumnConfiguration`1.SupressDisplayExpression
-  name: SupressDisplayExpression
-  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_SupressDisplayExpression
-  commentId: P:Material.Blazor.MBGridColumnConfiguration`1.SupressDisplayExpression
-  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.SupressDisplayExpression
-  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).SupressDisplayExpression
-  nameWithType: MBGridColumnConfiguration<TRowData>.SupressDisplayExpression
-  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).SupressDisplayExpression
-- uid: Material.Blazor.MBGridColumnConfiguration`1.SupressDisplayExpression*
-  name: SupressDisplayExpression
-  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_SupressDisplayExpression_
-  commentId: Overload:Material.Blazor.MBGridColumnConfiguration`1.SupressDisplayExpression
+- uid: Material.Blazor.MBGridColumnConfiguration`1.SuppressDisplayExpression
+  name: SuppressDisplayExpression
+  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_SuppressDisplayExpression
+  commentId: P:Material.Blazor.MBGridColumnConfiguration`1.SuppressDisplayExpression
+  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.SuppressDisplayExpression
+  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).SuppressDisplayExpression
+  nameWithType: MBGridColumnConfiguration<TRowData>.SuppressDisplayExpression
+  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).SuppressDisplayExpression
+- uid: Material.Blazor.MBGridColumnConfiguration`1.SuppressDisplayExpression*
+  name: SuppressDisplayExpression
+  href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_SuppressDisplayExpression_
+  commentId: Overload:Material.Blazor.MBGridColumnConfiguration`1.SuppressDisplayExpression
   isSpec: "True"
-  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.SupressDisplayExpression
-  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).SupressDisplayExpression
-  nameWithType: MBGridColumnConfiguration<TRowData>.SupressDisplayExpression
-  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).SupressDisplayExpression
+  fullName: Material.Blazor.MBGridColumnConfiguration<TRowData>.SuppressDisplayExpression
+  fullName.vb: Material.Blazor.MBGridColumnConfiguration(Of TRowData).SuppressDisplayExpression
+  nameWithType: MBGridColumnConfiguration<TRowData>.SuppressDisplayExpression
+  nameWithType.vb: MBGridColumnConfiguration(Of TRowData).SuppressDisplayExpression
 - uid: Material.Blazor.MBGridColumnConfiguration`1.Title
   name: Title
   href: api/Material.Blazor.MBGridColumnConfiguration-1.html#Material_Blazor_MBGridColumnConfiguration_1_Title
@@ -5887,6 +5564,321 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBGridIconSpecification.IconName
   nameWithType: MBGridIconSpecification.IconName
+- uid: Material.Blazor.MBGridMT`1
+  name: MBGridMT<TRowData>
+  href: api/Material.Blazor.MBGridMT-1.html
+  commentId: T:Material.Blazor.MBGridMT`1
+  name.vb: MBGridMT(Of TRowData)
+  fullName: Material.Blazor.MBGridMT<TRowData>
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData)
+  nameWithType: MBGridMT<TRowData>
+  nameWithType.vb: MBGridMT(Of TRowData)
+- uid: Material.Blazor.MBGridMT`1.ApplyColors
+  name: ApplyColors
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_ApplyColors
+  commentId: P:Material.Blazor.MBGridMT`1.ApplyColors
+  fullName: Material.Blazor.MBGridMT<TRowData>.ApplyColors
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).ApplyColors
+  nameWithType: MBGridMT<TRowData>.ApplyColors
+  nameWithType.vb: MBGridMT(Of TRowData).ApplyColors
+- uid: Material.Blazor.MBGridMT`1.ApplyColors*
+  name: ApplyColors
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_ApplyColors_
+  commentId: Overload:Material.Blazor.MBGridMT`1.ApplyColors
+  isSpec: "True"
+  fullName: Material.Blazor.MBGridMT<TRowData>.ApplyColors
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).ApplyColors
+  nameWithType: MBGridMT<TRowData>.ApplyColors
+  nameWithType.vb: MBGridMT(Of TRowData).ApplyColors
+- uid: Material.Blazor.MBGridMT`1.ApplyVerticalDividers
+  name: ApplyVerticalDividers
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_ApplyVerticalDividers
+  commentId: P:Material.Blazor.MBGridMT`1.ApplyVerticalDividers
+  fullName: Material.Blazor.MBGridMT<TRowData>.ApplyVerticalDividers
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).ApplyVerticalDividers
+  nameWithType: MBGridMT<TRowData>.ApplyVerticalDividers
+  nameWithType.vb: MBGridMT(Of TRowData).ApplyVerticalDividers
+- uid: Material.Blazor.MBGridMT`1.ApplyVerticalDividers*
+  name: ApplyVerticalDividers
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_ApplyVerticalDividers_
+  commentId: Overload:Material.Blazor.MBGridMT`1.ApplyVerticalDividers
+  isSpec: "True"
+  fullName: Material.Blazor.MBGridMT<TRowData>.ApplyVerticalDividers
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).ApplyVerticalDividers
+  nameWithType: MBGridMT<TRowData>.ApplyVerticalDividers
+  nameWithType.vb: MBGridMT(Of TRowData).ApplyVerticalDividers
+- uid: Material.Blazor.MBGridMT`1.BuildRenderTree(RenderTreeBuilder)
+  name: BuildRenderTree(RenderTreeBuilder)
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_BuildRenderTree_RenderTreeBuilder_
+  commentId: M:Material.Blazor.MBGridMT`1.BuildRenderTree(RenderTreeBuilder)
+  fullName: Material.Blazor.MBGridMT<TRowData>.BuildRenderTree(RenderTreeBuilder)
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).BuildRenderTree(RenderTreeBuilder)
+  nameWithType: MBGridMT<TRowData>.BuildRenderTree(RenderTreeBuilder)
+  nameWithType.vb: MBGridMT(Of TRowData).BuildRenderTree(RenderTreeBuilder)
+- uid: Material.Blazor.MBGridMT`1.BuildRenderTree*
+  name: BuildRenderTree
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_BuildRenderTree_
+  commentId: Overload:Material.Blazor.MBGridMT`1.BuildRenderTree
+  isSpec: "True"
+  fullName: Material.Blazor.MBGridMT<TRowData>.BuildRenderTree
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).BuildRenderTree
+  nameWithType: MBGridMT<TRowData>.BuildRenderTree
+  nameWithType.vb: MBGridMT(Of TRowData).BuildRenderTree
+- uid: Material.Blazor.MBGridMT`1.ColumnConfigurations
+  name: ColumnConfigurations
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_ColumnConfigurations
+  commentId: P:Material.Blazor.MBGridMT`1.ColumnConfigurations
+  fullName: Material.Blazor.MBGridMT<TRowData>.ColumnConfigurations
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).ColumnConfigurations
+  nameWithType: MBGridMT<TRowData>.ColumnConfigurations
+  nameWithType.vb: MBGridMT(Of TRowData).ColumnConfigurations
+- uid: Material.Blazor.MBGridMT`1.ColumnConfigurations*
+  name: ColumnConfigurations
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_ColumnConfigurations_
+  commentId: Overload:Material.Blazor.MBGridMT`1.ColumnConfigurations
+  isSpec: "True"
+  fullName: Material.Blazor.MBGridMT<TRowData>.ColumnConfigurations
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).ColumnConfigurations
+  nameWithType: MBGridMT<TRowData>.ColumnConfigurations
+  nameWithType.vb: MBGridMT(Of TRowData).ColumnConfigurations
+- uid: Material.Blazor.MBGridMT`1.Density
+  name: Density
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_Density
+  commentId: P:Material.Blazor.MBGridMT`1.Density
+  fullName: Material.Blazor.MBGridMT<TRowData>.Density
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).Density
+  nameWithType: MBGridMT<TRowData>.Density
+  nameWithType.vb: MBGridMT(Of TRowData).Density
+- uid: Material.Blazor.MBGridMT`1.Density*
+  name: Density
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_Density_
+  commentId: Overload:Material.Blazor.MBGridMT`1.Density
+  isSpec: "True"
+  fullName: Material.Blazor.MBGridMT<TRowData>.Density
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).Density
+  nameWithType: MBGridMT<TRowData>.Density
+  nameWithType.vb: MBGridMT(Of TRowData).Density
+- uid: Material.Blazor.MBGridMT`1.Group
+  name: Group
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_Group
+  commentId: P:Material.Blazor.MBGridMT`1.Group
+  fullName: Material.Blazor.MBGridMT<TRowData>.Group
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).Group
+  nameWithType: MBGridMT<TRowData>.Group
+  nameWithType.vb: MBGridMT(Of TRowData).Group
+- uid: Material.Blazor.MBGridMT`1.Group*
+  name: Group
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_Group_
+  commentId: Overload:Material.Blazor.MBGridMT`1.Group
+  isSpec: "True"
+  fullName: Material.Blazor.MBGridMT<TRowData>.Group
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).Group
+  nameWithType: MBGridMT<TRowData>.Group
+  nameWithType.vb: MBGridMT(Of TRowData).Group
+- uid: Material.Blazor.MBGridMT`1.GroupedOrderedData
+  name: GroupedOrderedData
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_GroupedOrderedData
+  commentId: P:Material.Blazor.MBGridMT`1.GroupedOrderedData
+  fullName: Material.Blazor.MBGridMT<TRowData>.GroupedOrderedData
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).GroupedOrderedData
+  nameWithType: MBGridMT<TRowData>.GroupedOrderedData
+  nameWithType.vb: MBGridMT(Of TRowData).GroupedOrderedData
+- uid: Material.Blazor.MBGridMT`1.GroupedOrderedData*
+  name: GroupedOrderedData
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_GroupedOrderedData_
+  commentId: Overload:Material.Blazor.MBGridMT`1.GroupedOrderedData
+  isSpec: "True"
+  fullName: Material.Blazor.MBGridMT<TRowData>.GroupedOrderedData
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).GroupedOrderedData
+  nameWithType: MBGridMT<TRowData>.GroupedOrderedData
+  nameWithType.vb: MBGridMT(Of TRowData).GroupedOrderedData
+- uid: Material.Blazor.MBGridMT`1.HighlightSelectedRow
+  name: HighlightSelectedRow
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_HighlightSelectedRow
+  commentId: P:Material.Blazor.MBGridMT`1.HighlightSelectedRow
+  fullName: Material.Blazor.MBGridMT<TRowData>.HighlightSelectedRow
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).HighlightSelectedRow
+  nameWithType: MBGridMT<TRowData>.HighlightSelectedRow
+  nameWithType.vb: MBGridMT(Of TRowData).HighlightSelectedRow
+- uid: Material.Blazor.MBGridMT`1.HighlightSelectedRow*
+  name: HighlightSelectedRow
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_HighlightSelectedRow_
+  commentId: Overload:Material.Blazor.MBGridMT`1.HighlightSelectedRow
+  isSpec: "True"
+  fullName: Material.Blazor.MBGridMT<TRowData>.HighlightSelectedRow
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).HighlightSelectedRow
+  nameWithType: MBGridMT<TRowData>.HighlightSelectedRow
+  nameWithType.vb: MBGridMT(Of TRowData).HighlightSelectedRow
+- uid: Material.Blazor.MBGridMT`1.KeyExpression
+  name: KeyExpression
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_KeyExpression
+  commentId: P:Material.Blazor.MBGridMT`1.KeyExpression
+  fullName: Material.Blazor.MBGridMT<TRowData>.KeyExpression
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).KeyExpression
+  nameWithType: MBGridMT<TRowData>.KeyExpression
+  nameWithType.vb: MBGridMT(Of TRowData).KeyExpression
+- uid: Material.Blazor.MBGridMT`1.KeyExpression*
+  name: KeyExpression
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_KeyExpression_
+  commentId: Overload:Material.Blazor.MBGridMT`1.KeyExpression
+  isSpec: "True"
+  fullName: Material.Blazor.MBGridMT<TRowData>.KeyExpression
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).KeyExpression
+  nameWithType: MBGridMT<TRowData>.KeyExpression
+  nameWithType.vb: MBGridMT(Of TRowData).KeyExpression
+- uid: Material.Blazor.MBGridMT`1.LogIdentification
+  name: LogIdentification
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_LogIdentification
+  commentId: P:Material.Blazor.MBGridMT`1.LogIdentification
+  fullName: Material.Blazor.MBGridMT<TRowData>.LogIdentification
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).LogIdentification
+  nameWithType: MBGridMT<TRowData>.LogIdentification
+  nameWithType.vb: MBGridMT(Of TRowData).LogIdentification
+- uid: Material.Blazor.MBGridMT`1.LogIdentification*
+  name: LogIdentification
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_LogIdentification_
+  commentId: Overload:Material.Blazor.MBGridMT`1.LogIdentification
+  isSpec: "True"
+  fullName: Material.Blazor.MBGridMT<TRowData>.LogIdentification
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).LogIdentification
+  nameWithType: MBGridMT<TRowData>.LogIdentification
+  nameWithType.vb: MBGridMT(Of TRowData).LogIdentification
+- uid: Material.Blazor.MBGridMT`1.Measurement
+  name: Measurement
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_Measurement
+  commentId: P:Material.Blazor.MBGridMT`1.Measurement
+  fullName: Material.Blazor.MBGridMT<TRowData>.Measurement
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).Measurement
+  nameWithType: MBGridMT<TRowData>.Measurement
+  nameWithType.vb: MBGridMT(Of TRowData).Measurement
+- uid: Material.Blazor.MBGridMT`1.Measurement*
+  name: Measurement
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_Measurement_
+  commentId: Overload:Material.Blazor.MBGridMT`1.Measurement
+  isSpec: "True"
+  fullName: Material.Blazor.MBGridMT<TRowData>.Measurement
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).Measurement
+  nameWithType: MBGridMT<TRowData>.Measurement
+  nameWithType.vb: MBGridMT(Of TRowData).Measurement
+- uid: Material.Blazor.MBGridMT`1.ObscurePMI
+  name: ObscurePMI
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_ObscurePMI
+  commentId: P:Material.Blazor.MBGridMT`1.ObscurePMI
+  fullName: Material.Blazor.MBGridMT<TRowData>.ObscurePMI
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).ObscurePMI
+  nameWithType: MBGridMT<TRowData>.ObscurePMI
+  nameWithType.vb: MBGridMT(Of TRowData).ObscurePMI
+- uid: Material.Blazor.MBGridMT`1.ObscurePMI*
+  name: ObscurePMI
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_ObscurePMI_
+  commentId: Overload:Material.Blazor.MBGridMT`1.ObscurePMI
+  isSpec: "True"
+  fullName: Material.Blazor.MBGridMT<TRowData>.ObscurePMI
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).ObscurePMI
+  nameWithType: MBGridMT<TRowData>.ObscurePMI
+  nameWithType.vb: MBGridMT(Of TRowData).ObscurePMI
+- uid: Material.Blazor.MBGridMT`1.OnAfterRenderAsync(System.Boolean)
+  name: OnAfterRenderAsync(Boolean)
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_OnAfterRenderAsync_System_Boolean_
+  commentId: M:Material.Blazor.MBGridMT`1.OnAfterRenderAsync(System.Boolean)
+  fullName: Material.Blazor.MBGridMT<TRowData>.OnAfterRenderAsync(System.Boolean)
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).OnAfterRenderAsync(System.Boolean)
+  nameWithType: MBGridMT<TRowData>.OnAfterRenderAsync(Boolean)
+  nameWithType.vb: MBGridMT(Of TRowData).OnAfterRenderAsync(Boolean)
+- uid: Material.Blazor.MBGridMT`1.OnAfterRenderAsync*
+  name: OnAfterRenderAsync
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_OnAfterRenderAsync_
+  commentId: Overload:Material.Blazor.MBGridMT`1.OnAfterRenderAsync
+  isSpec: "True"
+  fullName: Material.Blazor.MBGridMT<TRowData>.OnAfterRenderAsync
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).OnAfterRenderAsync
+  nameWithType: MBGridMT<TRowData>.OnAfterRenderAsync
+  nameWithType.vb: MBGridMT(Of TRowData).OnAfterRenderAsync
+- uid: Material.Blazor.MBGridMT`1.OnInitializedAsync
+  name: OnInitializedAsync()
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_OnInitializedAsync
+  commentId: M:Material.Blazor.MBGridMT`1.OnInitializedAsync
+  fullName: Material.Blazor.MBGridMT<TRowData>.OnInitializedAsync()
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).OnInitializedAsync()
+  nameWithType: MBGridMT<TRowData>.OnInitializedAsync()
+  nameWithType.vb: MBGridMT(Of TRowData).OnInitializedAsync()
+- uid: Material.Blazor.MBGridMT`1.OnInitializedAsync*
+  name: OnInitializedAsync
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_OnInitializedAsync_
+  commentId: Overload:Material.Blazor.MBGridMT`1.OnInitializedAsync
+  isSpec: "True"
+  fullName: Material.Blazor.MBGridMT<TRowData>.OnInitializedAsync
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).OnInitializedAsync
+  nameWithType: MBGridMT<TRowData>.OnInitializedAsync
+  nameWithType.vb: MBGridMT(Of TRowData).OnInitializedAsync
+- uid: Material.Blazor.MBGridMT`1.OnMouseClick
+  name: OnMouseClick
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_OnMouseClick
+  commentId: P:Material.Blazor.MBGridMT`1.OnMouseClick
+  fullName: Material.Blazor.MBGridMT<TRowData>.OnMouseClick
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).OnMouseClick
+  nameWithType: MBGridMT<TRowData>.OnMouseClick
+  nameWithType.vb: MBGridMT(Of TRowData).OnMouseClick
+- uid: Material.Blazor.MBGridMT`1.OnMouseClick*
+  name: OnMouseClick
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_OnMouseClick_
+  commentId: Overload:Material.Blazor.MBGridMT`1.OnMouseClick
+  isSpec: "True"
+  fullName: Material.Blazor.MBGridMT<TRowData>.OnMouseClick
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).OnMouseClick
+  nameWithType: MBGridMT<TRowData>.OnMouseClick
+  nameWithType.vb: MBGridMT(Of TRowData).OnMouseClick
+- uid: Material.Blazor.MBGridMT`1.SetParametersAsync(ParameterView)
+  name: SetParametersAsync(ParameterView)
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_SetParametersAsync_ParameterView_
+  commentId: M:Material.Blazor.MBGridMT`1.SetParametersAsync(ParameterView)
+  fullName: Material.Blazor.MBGridMT<TRowData>.SetParametersAsync(ParameterView)
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).SetParametersAsync(ParameterView)
+  nameWithType: MBGridMT<TRowData>.SetParametersAsync(ParameterView)
+  nameWithType.vb: MBGridMT(Of TRowData).SetParametersAsync(ParameterView)
+- uid: Material.Blazor.MBGridMT`1.SetParametersAsync*
+  name: SetParametersAsync
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_SetParametersAsync_
+  commentId: Overload:Material.Blazor.MBGridMT`1.SetParametersAsync
+  isSpec: "True"
+  fullName: Material.Blazor.MBGridMT<TRowData>.SetParametersAsync
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).SetParametersAsync
+  nameWithType: MBGridMT<TRowData>.SetParametersAsync
+  nameWithType.vb: MBGridMT(Of TRowData).SetParametersAsync
+- uid: Material.Blazor.MBGridMT`1.ShouldRender
+  name: ShouldRender()
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_ShouldRender
+  commentId: M:Material.Blazor.MBGridMT`1.ShouldRender
+  fullName: Material.Blazor.MBGridMT<TRowData>.ShouldRender()
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).ShouldRender()
+  nameWithType: MBGridMT<TRowData>.ShouldRender()
+  nameWithType.vb: MBGridMT(Of TRowData).ShouldRender()
+- uid: Material.Blazor.MBGridMT`1.ShouldRender*
+  name: ShouldRender
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_ShouldRender_
+  commentId: Overload:Material.Blazor.MBGridMT`1.ShouldRender
+  isSpec: "True"
+  fullName: Material.Blazor.MBGridMT<TRowData>.ShouldRender
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).ShouldRender
+  nameWithType: MBGridMT<TRowData>.ShouldRender
+  nameWithType.vb: MBGridMT(Of TRowData).ShouldRender
+- uid: Material.Blazor.MBGridMT`1.SuppressHeader
+  name: SuppressHeader
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_SuppressHeader
+  commentId: P:Material.Blazor.MBGridMT`1.SuppressHeader
+  fullName: Material.Blazor.MBGridMT<TRowData>.SuppressHeader
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).SuppressHeader
+  nameWithType: MBGridMT<TRowData>.SuppressHeader
+  nameWithType.vb: MBGridMT(Of TRowData).SuppressHeader
+- uid: Material.Blazor.MBGridMT`1.SuppressHeader*
+  name: SuppressHeader
+  href: api/Material.Blazor.MBGridMT-1.html#Material_Blazor_MBGridMT_1_SuppressHeader_
+  commentId: Overload:Material.Blazor.MBGridMT`1.SuppressHeader
+  isSpec: "True"
+  fullName: Material.Blazor.MBGridMT<TRowData>.SuppressHeader
+  fullName.vb: Material.Blazor.MBGridMT(Of TRowData).SuppressHeader
+  nameWithType: MBGridMT<TRowData>.SuppressHeader
+  nameWithType.vb: MBGridMT(Of TRowData).SuppressHeader
 - uid: Material.Blazor.MBGridTextColorSpecification
   name: MBGridTextColorSpecification
   href: api/Material.Blazor.MBGridTextColorSpecification.html
@@ -5919,19 +5911,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBGridTextColorSpecification.ForegroundColor
   nameWithType: MBGridTextColorSpecification.ForegroundColor
-- uid: Material.Blazor.MBGridTextColorSpecification.Supress
-  name: Supress
-  href: api/Material.Blazor.MBGridTextColorSpecification.html#Material_Blazor_MBGridTextColorSpecification_Supress
-  commentId: P:Material.Blazor.MBGridTextColorSpecification.Supress
-  fullName: Material.Blazor.MBGridTextColorSpecification.Supress
-  nameWithType: MBGridTextColorSpecification.Supress
-- uid: Material.Blazor.MBGridTextColorSpecification.Supress*
-  name: Supress
-  href: api/Material.Blazor.MBGridTextColorSpecification.html#Material_Blazor_MBGridTextColorSpecification_Supress_
-  commentId: Overload:Material.Blazor.MBGridTextColorSpecification.Supress
+- uid: Material.Blazor.MBGridTextColorSpecification.Suppress
+  name: Suppress
+  href: api/Material.Blazor.MBGridTextColorSpecification.html#Material_Blazor_MBGridTextColorSpecification_Suppress
+  commentId: P:Material.Blazor.MBGridTextColorSpecification.Suppress
+  fullName: Material.Blazor.MBGridTextColorSpecification.Suppress
+  nameWithType: MBGridTextColorSpecification.Suppress
+- uid: Material.Blazor.MBGridTextColorSpecification.Suppress*
+  name: Suppress
+  href: api/Material.Blazor.MBGridTextColorSpecification.html#Material_Blazor_MBGridTextColorSpecification_Suppress_
+  commentId: Overload:Material.Blazor.MBGridTextColorSpecification.Suppress
   isSpec: "True"
-  fullName: Material.Blazor.MBGridTextColorSpecification.Supress
-  nameWithType: MBGridTextColorSpecification.Supress
+  fullName: Material.Blazor.MBGridTextColorSpecification.Suppress
+  nameWithType: MBGridTextColorSpecification.Suppress
 - uid: Material.Blazor.MBGridTextColorSpecification.Text
   name: Text
   href: api/Material.Blazor.MBGridTextColorSpecification.html#Material_Blazor_MBGridTextColorSpecification_Text
@@ -11588,12 +11580,12 @@ references:
   commentId: T:Material.Blazor.ServiceCollectionExtensions
   fullName: Material.Blazor.ServiceCollectionExtensions
   nameWithType: ServiceCollectionExtensions
-- uid: Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection,Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration,Material.Blazor.MBLoggingServiceConfiguration,Material.Blazor.MBSnackbarServiceConfiguration,Material.Blazor.MBToastServiceConfiguration)
-  name: AddMBServices(IServiceCollection, MBAnimatedNavigationManagerServiceConfiguration, MBLoggingServiceConfiguration, MBSnackbarServiceConfiguration, MBToastServiceConfiguration)
-  href: api/Material.Blazor.ServiceCollectionExtensions.html#Material_Blazor_ServiceCollectionExtensions_AddMBServices_IServiceCollection_Material_Blazor_MBAnimatedNavigationManagerServiceConfiguration_Material_Blazor_MBLoggingServiceConfiguration_Material_Blazor_MBSnackbarServiceConfiguration_Material_Blazor_MBToastServiceConfiguration_
-  commentId: M:Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection,Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration,Material.Blazor.MBLoggingServiceConfiguration,Material.Blazor.MBSnackbarServiceConfiguration,Material.Blazor.MBToastServiceConfiguration)
-  fullName: Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection, Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration, Material.Blazor.MBLoggingServiceConfiguration, Material.Blazor.MBSnackbarServiceConfiguration, Material.Blazor.MBToastServiceConfiguration)
-  nameWithType: ServiceCollectionExtensions.AddMBServices(IServiceCollection, MBAnimatedNavigationManagerServiceConfiguration, MBLoggingServiceConfiguration, MBSnackbarServiceConfiguration, MBToastServiceConfiguration)
+- uid: Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection,Material.Blazor.MBLoggingServiceConfiguration,Material.Blazor.MBSnackbarServiceConfiguration,Material.Blazor.MBToastServiceConfiguration)
+  name: AddMBServices(IServiceCollection, MBLoggingServiceConfiguration, MBSnackbarServiceConfiguration, MBToastServiceConfiguration)
+  href: api/Material.Blazor.ServiceCollectionExtensions.html#Material_Blazor_ServiceCollectionExtensions_AddMBServices_IServiceCollection_Material_Blazor_MBLoggingServiceConfiguration_Material_Blazor_MBSnackbarServiceConfiguration_Material_Blazor_MBToastServiceConfiguration_
+  commentId: M:Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection,Material.Blazor.MBLoggingServiceConfiguration,Material.Blazor.MBSnackbarServiceConfiguration,Material.Blazor.MBToastServiceConfiguration)
+  fullName: Material.Blazor.ServiceCollectionExtensions.AddMBServices(IServiceCollection, Material.Blazor.MBLoggingServiceConfiguration, Material.Blazor.MBSnackbarServiceConfiguration, Material.Blazor.MBToastServiceConfiguration)
+  nameWithType: ServiceCollectionExtensions.AddMBServices(IServiceCollection, MBLoggingServiceConfiguration, MBSnackbarServiceConfiguration, MBToastServiceConfiguration)
 - uid: Material.Blazor.ServiceCollectionExtensions.AddMBServices*
   name: AddMBServices
   href: api/Material.Blazor.ServiceCollectionExtensions.html#Material_Blazor_ServiceCollectionExtensions_AddMBServices_
@@ -11601,9 +11593,6 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.ServiceCollectionExtensions.AddMBServices
   nameWithType: ServiceCollectionExtensions.AddMBServices
-- uid: S.IMBAnimatedNavigationManager
-  name: IMBAnimatedNavigationManager
-  href: Material.Blazor/Model/AnimatedNavigation/IMBAnimatedNavigationManager.html
 - uid: S.IMBSnackbarService
   name: IMBSnackbarService
   href: Material.Blazor/Model/Snackbar/IMBSnackbarService.html

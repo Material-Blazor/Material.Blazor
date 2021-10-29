@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Namespace Material.Blazor
    ">
-    <meta name="generator" content="docfx 2.58.0.0">
+    <meta name="generator" content="docfx 2.58.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -91,24 +91,9 @@
       <h4><a class="xref" href="Material.Blazor.MBAnchor.html">MBAnchor</a></h4>
       <section><p>An anchor component for snackbars, toasts and tooltips to be placed in App.razor, MainLayout.razor or Index.razor.</p>
 </section>
-      <h4><a class="xref" href="Material.Blazor.MBAnimatedNavigation.html">MBAnimatedNavigation</a></h4>
-      <section><p>This component works with <a class="xref" href="Material.Blazor.IMBAnimatedNavigationManager.html">IMBAnimatedNavigationManager</a> to navigate your page navigation.
-Place this component around your app's entire @Body render fragment (potentially in MainLayout.razor),
-but not surrounding your app bars and navigation menus - you don't want those to fade in and out when
-your user navigates from one page to another.</p>
-</section>
-      <h4><a class="xref" href="Material.Blazor.MBAnimatedNavigationManagerServiceConfiguration.html">MBAnimatedNavigationManagerServiceConfiguration</a></h4>
-      <section><p>Configuration for <a class="xref" href="Material.Blazor.IMBAnimatedNavigationManager.html">IMBAnimatedNavigationManager</a>.</p>
-</section>
       <h4><a class="xref" href="Material.Blazor.MBAutocompleteTextField.html">MBAutocompleteTextField</a></h4>
       <section><p>An autocomplete built using an <a class="xref" href="Material.Blazor.MBTextField.html">MBTextField</a> with the anchor and drop
 down list implementation from a Material Theme select.</p>
-</section>
-      <h4><a class="xref" href="Material.Blazor.MBBatchingWrapper.html">MBBatchingWrapper</a></h4>
-      <section><p>This is a utility component that controls when batched JS interop calls are executed.
-Normally, batched JS interop calls are executed using a timer in regular intervals.
-In some cases, it can be an advantage to flush the batch earlier, which can be controlled with this component.</p>
-<p>Whenever this component re-renders, the batch is flushed, hence all JS interop calls which were queued up in any child component will be executed at this point.</p>
 </section>
       <h4><a class="xref" href="Material.Blazor.MBBladeComponent-1.html">MBBladeComponent&lt;TParam&gt;</a></h4>
       <section><p>A component added to a blade via <a class="xref" href="Material.Blazor.MBBladeSet.html#Material_Blazor_MBBladeSet_AddBladeAsync__2_System_String___1_System_String_System_String_System_Action_System_String__">AddBladeAsync&lt;TComponent, TParameters&gt;(String, TParameters, String, String, Action&lt;String&gt;)</a>
@@ -191,6 +176,10 @@ the extended variant.</p>
       <section></section>
       <h4><a class="xref" href="Material.Blazor.MBGridIconSpecification.html">MBGridIconSpecification</a></h4>
       <section></section>
+      <h4><a class="xref" href="Material.Blazor.MBGridMT-1.html">MBGridMT&lt;TRowData&gt;</a></h4>
+      <section><p>A Material Theme grid capable of displaying icons, colored text, and text.</p>
+<p>N.B.: At this time the grid is in preview. Expect the API to change.</p>
+</section>
       <h4><a class="xref" href="Material.Blazor.MBGridTextColorSpecification.html">MBGridTextColorSpecification</a></h4>
       <section></section>
       <h4><a class="xref" href="Material.Blazor.MBIcon.html">MBIcon</a></h4>
@@ -339,29 +328,6 @@ the <a class="xref" href="Material.Blazor.MBToastServiceConfiguration.html">MBTo
 </section>
     <h3 id="interfaces">Interfaces
   </h3>
-      <h4><a class="xref" href="Material.Blazor.IMBAnimatedNavigationManager.html">IMBAnimatedNavigationManager</a></h4>
-      <section><p>Interface for the animated navigation service. Animated navigations augment
-Blazor's NavigationManager with minor animation.</p>
-<p>
-First the current page fades out for 40% of the animation period, followed by a call to
-NavigationManager.NavigateTo(string, bool)
-before the new page fades in for the remaining 60% of the animation period. The default
-animation period is 500ms (but seems faster due to the end of the fade in being imperceptible),
-and animation is disapplied by default.
-</p>
-<p>
-Throws a <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a> if <a class="xref" href="Material.Blazor.IMBAnimatedNavigationManager.html#Material_Blazor_IMBAnimatedNavigationManager_NavigateTo_System_String_System_Boolean_">NavigateTo(String, Boolean)</a>
-is called without a <a class="xref" href="Material.Blazor.MBAnimatedNavigation.html">MBAnimatedNavigation</a> component used in the app.
-</p>
-<example>
-<p>You can optionally add configuration when you add this to the service collection:</p>
-<pre><code>services.AddMBAnimatedNavigationService(new MBAnimatedNaviationManagerConfiguration()
-{
-    ApplyAnimation = true,
-    AnimationTime = 300
-});</code></pre>
-</example>
-</section>
       <h4><a class="xref" href="Material.Blazor.IMBIcon.html">IMBIcon</a></h4>
       <section><p>Interface providing markup elements for an icon in a given foundry.</p>
 </section>
@@ -369,7 +335,8 @@ is called without a <a class="xref" href="Material.Blazor.MBAnimatedNavigation.h
       <section><p>An interface for supplying icon foundry information to components.</p>
 </section>
       <h4><a class="xref" href="Material.Blazor.IMBLoggingService.html">IMBLoggingService</a></h4>
-      <section></section>
+      <section><p>Interface for the Material.Blazor logging level service</p>
+</section>
       <h4><a class="xref" href="Material.Blazor.IMBSnackbarService.html">IMBSnackbarService</a></h4>
       <section><p>Interface for the Material.Blazor snackbar service, developed from the code base of Blazored Snackbar by Chris Sainty.
 Works in conjunction with a <a class="xref" href="Material.Blazor.MBAnchor.html">MBAnchor</a> that must be placed in either App.razor or

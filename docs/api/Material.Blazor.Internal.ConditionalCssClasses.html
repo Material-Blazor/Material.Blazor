@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class ConditionalCssClasses
    ">
-    <meta name="generator" content="docfx 2.58.0.0">
+    <meta name="generator" content="docfx 2.58.4.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -85,8 +85,8 @@
   <h1 id="Material_Blazor_Internal_ConditionalCssClasses" data-uid="Material.Blazor.Internal.ConditionalCssClasses" class="text-break">Class ConditionalCssClasses
   </h1>
   <div class="markdown level0 summary"><p>This is a helper class to conditionally apply CSS classes to an HTML element.
-Classes are added with the <a class="xref" href="Material.Blazor.Internal.ConditionalCssClasses.html#Material_Blazor_Internal_ConditionalCssClasses_AddIf_System_String_System_Func_System_Boolean__">AddIf(String, Func&lt;Boolean&gt;)</a> method.
-On <a class="xref" href="Material.Blazor.Internal.ConditionalCssClasses.html#Material_Blazor_Internal_ConditionalCssClasses_ToString">ToString()</a>, just the classes satisfying the condition are returned, joined into one string.</p>
+Classes are added with the &quot;AddIf(string, Func(bool))&quot; method.
+From &quot;ToString()&quot; just the classes satisfying the condition are returned, joined into one string.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -132,7 +132,8 @@ On <a class="xref" href="Material.Blazor.Internal.ConditionalCssClasses.html#Mat
   </span>
   <a id="Material_Blazor_Internal_ConditionalCssClasses_AddIf_" data-uid="Material.Blazor.Internal.ConditionalCssClasses.AddIf*"></a>
   <h4 id="Material_Blazor_Internal_ConditionalCssClasses_AddIf_System_String_System_Func_System_Boolean__" data-uid="Material.Blazor.Internal.ConditionalCssClasses.AddIf(System.String,System.Func{System.Boolean})">AddIf(String, Func&lt;Boolean&gt;)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Adds a CSS class, whenever the &quot;func&quot; method returns true.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
@@ -151,12 +152,14 @@ On <a class="xref" href="Material.Blazor.Internal.ConditionalCssClasses.html#Mat
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">name</span></td>
-        <td></td>
+        <td><p>The string to be conditionally returned</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.func-1">Func</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
         <td><span class="parametername">func</span></td>
-        <td></td>
+        <td><p>The function to be executed to determine if the string is included</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -171,7 +174,8 @@ On <a class="xref" href="Material.Blazor.Internal.ConditionalCssClasses.html#Mat
     <tbody>
       <tr>
         <td><a class="xref" href="Material.Blazor.Internal.ConditionalCssClasses.html">ConditionalCssClasses</a></td>
-        <td></td>
+        <td><p>The instance of the class</p>
+</td>
       </tr>
     </tbody>
   </table>
