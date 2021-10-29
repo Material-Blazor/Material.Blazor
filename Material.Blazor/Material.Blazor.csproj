@@ -226,4 +226,8 @@
 		</VisualStudio>
 	</ProjectExtensions>
 
+	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+	  <Exec Command="copy ..\READMe.md $(projectdir)ReadMe.md" />
+	</Target>
+
 </Project>
