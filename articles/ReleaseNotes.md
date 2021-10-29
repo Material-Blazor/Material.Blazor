@@ -21,7 +21,7 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 
 
 #### [2.0.0-rc.1](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.9)
-Not yet released
+2021-10-29
 
 **Updates**
 
@@ -34,7 +34,7 @@ Not yet released
 **Known issues**
 
 #### [2.0.0-preview.9](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.9)
-Not yet released
+2021-10-20
 
 **Updates**
 
