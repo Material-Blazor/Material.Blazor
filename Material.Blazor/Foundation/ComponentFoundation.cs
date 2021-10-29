@@ -300,7 +300,7 @@ namespace Material.Blazor.Internal
         #region OnAfterRender
 
         /// <summary>
-        /// Material.Blazor components descending from <see cref="ComponentFoundation"/> _*must not*_ override <see cref="ComponentBase.OnAfterRender(bool)"/>.
+        /// Material.Blazor components descending from <see cref="ComponentFoundation"/> _*must not*_ override "ComponentBase.OnAfterRender(bool)".
         /// </summary>
         protected sealed override void OnAfterRender(bool firstRender)
         {
@@ -337,7 +337,7 @@ namespace Material.Blazor.Internal
         #region OnInitialized
 
         /// <summary>
-        /// Material.Blazor components use <see cref="OnInitializedAsync()"/> only.
+        /// Material.Blazor components use "OnInitializedAsync()" only.
         /// </summary>
         protected sealed override void OnInitialized()
         {
