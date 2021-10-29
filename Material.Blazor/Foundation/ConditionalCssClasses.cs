@@ -11,8 +11,8 @@ namespace Material.Blazor.Internal
 {
     /// <summary>
     /// This is a helper class to conditionally apply CSS classes to an HTML element.
-    /// Classes are added with the <see cref="AddIf(string, Func{bool})"/> method.
-    /// On <see cref="ToString()"/>, just the classes satisfying the condition are returned, joined into one string.
+    /// Classes are added with the "AddIf(string, Func(bool))" method.
+    /// From "ToString()" just the classes satisfying the condition are returned, joined into one string.
     /// </summary>
     public class ConditionalCssClasses
     {
@@ -25,7 +25,7 @@ namespace Material.Blazor.Internal
         public override string ToString() => string.Join(" ", Items.Select(i => i()));
 
         /// <summary>
-        /// Adds a CSS class, whenever the <param name="func"> method returns true.
+        /// Adds a CSS class, whenever the "func" method returns true.
         /// </summary>
         /// <param name="name">The string to be conditionally returned</param>
         /// <param name="func">The function to be executed to determine if the string is included</param>

@@ -34,7 +34,6 @@ the markup specification. We term these "Core Components. Material.Blazor also h
 | [MBTabBar](xref:C.MBTabBar) | A [Material Tab Bar](https://github.com/material-components/material-components-web/tree/v12.0.0/packages/mdc-tab-bar#tab-bar). |
 | [MBTextArea](xref:C.MBTextArea) | A [Material Text Field](https://github.com/material-components/material-components-web/tree/v12.0.0/packages/mdc-textfield#text-field) expressed as a text area. |
 | [MBTextField](xref:C.MBTextField) | A [Material Text Field](https://github.com/material-components/material-components-web/tree/v12.0.0/packages/mdc-textfield#text-field). |
-| [MBToast](xref:C.MBMBToast) | A [Material Toast](https://github.com/material-components/material-components-web/tree/v12.0.0/packages/mdc-toast#toast). |
 | [MBTooltip](xref:C.MBTooltip) | A [Material Tooltip](https://github.com/material-components/material-components-web/tree/master/packages/mdc-tooltip#tooltip). |
 | [MBTopAppBar](xref:C.MBTopAppBar) | A [Material Top App Bar](https://github.com/material-components/material-components-web/tree/v12.0.0/packages/mdc-top-app-bar#top-app-bar). |
 

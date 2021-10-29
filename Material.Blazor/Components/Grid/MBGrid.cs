@@ -1136,10 +1136,8 @@ namespace Material.Blazor
             return new HashCode(GetHashCode(items, this.value));
         }
 
-        /// <inheritdoc />
         public bool Equals(HashCode other) => this.value.Equals(other.value);
 
-        /// <inheritdoc />
         public override bool Equals(object obj)
         {
             if (obj is HashCode)

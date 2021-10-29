@@ -6,7 +6,7 @@ namespace Material.Blazor
 {
     /// <summary>
     /// Interface for the Material.Blazor logging level service
-    /// 
+    /// </summary>
     public interface IMBLoggingService
     {
         /// <summary>
