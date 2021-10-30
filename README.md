@@ -10,8 +10,8 @@ Material.Blazor is a lightweight [Material Theme](https://material.io/) [web dev
 - Material.Blazor is available at https://www.nuget.org/packages/Material.Blazor.
 - If you intend to submit pull requests please note that we use a gitub repository with a `main` branch upon which pull requests can be made. You can read [detailed development environment instructions](https://material-blazor.com/docs/articles/DevelopmentEnvironment.html) on our docs site.
 
-<br />
-<br />
+
+---
 
 
 [![NuGet version](https://img.shields.io/nuget/v/Material.Blazor?logo=nuget&label=nuget%20version&style=flat-square)](https://www.nuget.org/packages/Material.Blazor/)
@@ -20,11 +20,9 @@ Material.Blazor is a lightweight [Material Theme](https://material.io/) [web dev
 
 [![Gitter](https://img.shields.io/gitter/room/Material.Blazor/community?logo=gitter&style=flat-square)](https://gitter.im/Material.Blazor/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-<br />
 
 ---
 
-<br />
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?logo=github&style=flat-square)](/LICENSE.md)
 [![GitHub issues](https://img.shields.io/github/issues/Material-Blazor/Material.Blazor?logo=github&style=flat-square)](https://github.com/Material-Blazor/Material.Blazor/issues)
