@@ -6,11 +6,11 @@ title: MBAnchor
 
 ## Summary
 
-An anchor component for snackbars, toasts (based on a port of [Blazored/Toast](https://github.com/Blazored/Toast)) and tooltips.
+An anchor component for snackbars  and tooltips.
 
 ## Details
 
--  Place once instance of this in your Blazor app in `App.razor` or in your layout component page that is used for all application components that use snackbars, toasts and tooltips.
+-  Place once instance of this in your Blazor app in `App.razor` or in your layout component page that is used for all application components that use snackbarsand tooltips.
 - Register services by calling [services.AddMBServices()](xref:Material.Blazor.ServiceCollectionExtensions#methods)).
 - The anchor will throw an exception on startup if the services registered by AddMBServices are not found.
 

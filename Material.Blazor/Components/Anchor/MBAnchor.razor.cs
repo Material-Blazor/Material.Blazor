@@ -1,7 +1,7 @@
 ﻿namespace Material.Blazor
 {
     /// <summary>
-    /// An anchor component for snackbars, toasts and tooltips to be placed in App.razor, MainLayout.razor or Index.razor.
+    /// An anchor component for snackbars and tooltips to be placed in App.razor, MainLayout.razor or Index.razor.
     /// </summary>
     public partial class MBAnchor
     {

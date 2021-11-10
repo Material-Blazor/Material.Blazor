@@ -6,8 +6,8 @@ namespace Material.Blazor
     public static class ServiceCollectionExtensions
     {
         /// <summary>
-        /// Adds Snackbar, Toast, Tooltip and Animated Navigation services for Material.Blazor. This is required for any app that uses one or more
-        /// of these components. The two configurations are optional.
+        /// Adds Snackbar, Logging, and Tooltip services for Material.Blazor. This is required for any app that uses one or more
+        /// of these components. The configurations are optional.
         /// </summary>
         /// <param name="services"></param>
         /// <param name="snackbarServiceConfiguration"></param>

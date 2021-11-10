@@ -674,7 +674,7 @@ namespace Material.Blazor
 
 
     /// <summary>
-    /// Determines whether a snackbar or a toast notfication times out and whether it has a dismiss button.
+    /// Determines whether a snackbar notification times out and whether it has a dismiss button.
     /// <para>Defaults to <see cref="TimeoutAndDismissButton"/></para>
     /// </summary>
     public enum MBNotifierCloseMethod
@@ -693,86 +693,6 @@ namespace Material.Blazor
         /// Show the dismiss button only.
         /// </summary>
         DismissButton
-    }
-
-
-    /// <summary>
-    /// Determines the type of a toast notfication. This is a required toast parameter without defaults.
-    /// </summary>
-    public enum MBToastLevel
-    {
-        /// <summary>
-        /// Informational toast.
-        /// </summary>
-        Info,
-
-        /// <summary>
-        /// Success toast.
-        /// </summary>
-        Success,
-
-        /// <summary>
-        /// Warning toast.
-        /// </summary>
-        Warning,
-
-        /// <summary>
-        /// Error toast.
-        /// </summary>
-        Error
-    }
-
-
-    /// <summary>
-    /// Determines where toasts are positioned.
-    /// <para>Defaults to <see cref="BottomRight"/></para>
-    /// </summary>
-    public enum MBToastPosition
-    {
-        /// <summary>
-        /// Top left positioning, newest toasts on top.
-        /// </summary>
-        TopLeft,
-
-        /// <summary>
-        /// Top right, newest toasts on top.
-        /// </summary>
-        TopRight,
-
-        /// <summary>
-        /// Top center, newest toasts on top.
-        /// </summary>
-        TopCenter,
-
-        /// <summary>
-        /// Center left positioning, newest toasts on top.
-        /// </summary>
-        CenterLeft,
-
-        /// <summary>
-        /// Center right, newest toasts on top.
-        /// </summary>
-        CenterRight,
-
-        /// <summary>
-        /// Center center, newest toasts on top.
-        /// </summary>
-        CenterCenter,
-
-        /// <summary>
-        /// Bottom left positioning, newest toasts on the bottom.
-        /// </summary>
-        BottomLeft,
-
-        /// <summary>
-        /// Bottom right positioning, newest toasts on the bottom.
-        /// </summary>
-        BottomRight,
-
-        /// <summary>
-        /// Bottom center positioning, newest toasts on the bottom.
-        /// </summary>
-        BottomCenter
     }
 
 

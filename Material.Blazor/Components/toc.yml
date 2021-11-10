@@ -10,9 +10,6 @@
 - name: IMBSnackbarService
   topicUid: S.IMBSnackbarService
 
-- name: IMBToastService
-  topicUid: S.IMBToastService
-
 - name: MBAnchor
   topicUid: C.MBAnchor
 

@@ -23,11 +23,5 @@ namespace Material.Blazor
         /// The delegate that combines all the information of the icon into markup.
         /// </summary>
         IconFragment Render { get; }
-
-
-        /// <summary>
-        /// Determines whether color should be set via a filter in the case of Material Icons two-tone theme. Presently partly implemented in toasts only.
-        /// </summary>
-        bool RequiresColorFilter { get; }
     }
 }
