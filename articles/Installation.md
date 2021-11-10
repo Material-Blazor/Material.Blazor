@@ -36,7 +36,7 @@ The non-minified versions of each of the css and js packages are also available 
 
 Material.Blazor works with the following package versions:
 
-- [Material Components v9.0.0](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#800-2020-11-02)
+- [Material Components v12.0.0](https://github.com/material-components/material-components-web/blob/master/CHANGELOG.md#1200-2021-07-27)
 - [Font Awesome Icons version 5.15](https://fontawesome.com/changelog/latest) are optional and can be included in your HTML `<head>` with the CDN link:
     ```html
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />

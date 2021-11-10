@@ -6,7 +6,8 @@ title: ReleaseNotes
 
 #### [2.0.0](https://github.com/Material-Blazor/Material.Blazor)
 In Pre-Release Q4 2020 to Q4 2021
-2021-11-????????????????????
+
+Released 2021-11-10
 
 **Updates**
 
