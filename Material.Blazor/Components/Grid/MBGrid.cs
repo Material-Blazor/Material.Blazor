@@ -124,8 +124,8 @@ namespace Material.Blazor
         private float ScrollWidth { get; set; }
         private string SelectedKey { get; set; } = "";
 
-        //Instantiate a Singleton of the Semaphore with a value of 1. This means that only 1 thread can be granted access at a time.
-        private static readonly SemaphoreSlim semaphoreSlim = new(1, 1);
+        //Instantiate a Semaphore with a value of 1. This means that only 1 thread can be granted access at a time.
+        private readonly SemaphoreSlim semaphoreSlim = new(1, 1);
 
         private bool ShouldRenderValue { get; set; } = true;
 

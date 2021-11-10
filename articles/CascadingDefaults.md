@@ -69,7 +69,6 @@ in an exception being thrown. Material.Blazor also has several ways of handling 
 | Property | Usage |
 | :------- | :---- |
 | [ConstrainSplattableAttributes](xref:Material.Blazor.MBCascadingDefaults.ConstrainSplattableAttributes) | If set to `true`, which is the default, components throw an exception when unassigned attributes are used in razor markup. Defaults to `false`. |
-| [EssentialSplattableAttributes](xref:Material.Blazor.MBCascadingDefaults.EssentialSplattableAttributes) | A readonly list of HTML attributes that Material.Blazor requires for operation. Includes: `formnovalidate`, `id`, `max`, `min`, `role`, `step`, `tabindex` and `type`. Note that all aria attributes (e.g. `aria-disabled`) and event attibutes (e.g. `onclick`) are all allowed in addition to this list. |
 | [AllowedSplattableAttributes](xref:Material.Blazor.MBCascadingDefaults.AllowedSplattableAttributes) | A list of HTML attributes that you can assign for Material.Blazor to allow without throwing an exception . |
 | [ItemValidation](xref:Material.Blazor.MBCascadingDefaults.ItemValidation) | Validation method applied to [MBSelect](xref:C.MBSelect) and [MBRadioButtonGroup](xref:C.MBRadioButtonGroup). |
 

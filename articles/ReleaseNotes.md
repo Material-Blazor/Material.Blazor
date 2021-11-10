@@ -7,8 +7,15 @@ title: ReleaseNotes
 #### [2.0.0](https://github.com/Material-Blazor/Material.Blazor)
 In Pre-Release Q4 2020 to Q4 2021
 
-_NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VERSIONS._
+Released 2021-11-10
 
+**Updates**
+
+Material.Blazor is now built against .Net 6.0.0 GA
+
+**New components**
+
+**Breaking Changes**
 
 **Deprecated Components**
 
@@ -16,9 +23,9 @@ _NOTE THAT DURING PRE-RELEASE BREAKING CHANGES MAY OCCUR BETWEEN PRE-RELEASE VER
 - MBBatchingWrapper is now deprecated.
 - MBToast is now deprecated in favor of the Material styled MBSnackbar. It will remain part of Material.Blazor 2.n, however no maintenance is planned during the Material.Blazor 2.n series of releases. It will be removed from the next major Material.Blazor release. 
 
+**Known issues**
 
 <br />
-
 
 #### [2.0.0-rc.1](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.9)
 2021-10-29
