@@ -28,7 +28,7 @@ namespace Material.Blazor
         private bool _constrainSplattableAttributes = false;
         /// <summary>
         /// Determines whether <see cref="Internal.ComponentFoundation"/> should throw an exception for invalid 
-        /// unmatched HTML attributes passed to a component. Works with <see cref="ComponentFoundation.EssentialSplattableAttributes"/>
+        /// unmatched HTML attributes passed to a component.
         /// and <see cref="AllowedSplattableAttributes"/>
         /// </summary>
         public bool ConstrainSplattableAttributes { get => _constrainSplattableAttributes; set => SetParameter(ref _constrainSplattableAttributes, value); }
