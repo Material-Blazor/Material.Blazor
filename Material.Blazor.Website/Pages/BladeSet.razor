@@ -2,7 +2,7 @@
 
 @implements IDisposable
 
-@inject IMBToastService ToastService
+@inject IMBSnackbarService SnackbarService
 
 
 
@@ -31,7 +31,7 @@
                                       Disabled="@Blades.BladeReferences.Contains(blade.Reference)"
                                       @key="@blade.Reference"
                                       Label="@GetAddLabel(blade.Reference)"
-                                      @onclick="@(() => blade.AddBlade(Blades, ToastService))" />
+                                      @onclick="@(() => blade.AddBlade(Blades, SnackbarService))" />
                         </p>
                     }
 
@@ -78,7 +78,7 @@
     class BladeInfo
     {
         public string Reference { get; set; }
-        public Action<MBBladeSet, IMBToastService> AddBlade { get; set; }
+        public Action<MBBladeSet, IMBSnackbarService> AddBlade { get; set; }
         public Action<MBBladeSet> RemoveBlade { get; set; }
     }
 
@@ -114,32 +114,32 @@
     {
         foreach (var blade in BladeDefinitions.OrderBy(x => x.Reference))
         {
-            blade.AddBlade(Blades, ToastService);
+            blade.AddBlade(Blades, SnackbarService);
         }
     }
 
 
-    private static void AddBladeTypeA(MBBladeSet blades, IMBToastService toastService)
+    private static void AddBladeTypeA(MBBladeSet blades, IMBSnackbarService snackbarService)
     {
-        _ = blades.AddBladeAsync<BladeTypeAContent, MBBladeComponentParameters>("Type A", additionalCss: "demo-blade", onRemoved: (string reference) => RemovedToast(toastService, reference)).ConfigureAwait(false);
+        _ = blades.AddBladeAsync<BladeTypeAContent, MBBladeComponentParameters>("Type A", additionalCss: "demo-blade", onRemoved: (string reference) => RemovedSnackbar(snackbarService, reference)).ConfigureAwait(false);
 
-        AddedToast(toastService, "Type A");
+        AddedSnackbar(snackbarService, "Type A");
     }
 
 
-    private static void AddBladeTypeB(MBBladeSet blades, IMBToastService toastService)
+    private static void AddBladeTypeB(MBBladeSet blades, IMBSnackbarService snackbarService)
     {
-        _ = blades.AddBladeAsync<BladeTypeBContent, MBBladeComponentParameters>("Type B", additionalCss: "demo-blade", onRemoved: (string reference) => RemovedToast(toastService, reference)).ConfigureAwait(false);
+        _ = blades.AddBladeAsync<BladeTypeBContent, MBBladeComponentParameters>("Type B", additionalCss: "demo-blade", onRemoved: (string reference) => RemovedSnackbar(snackbarService, reference)).ConfigureAwait(false);
 
-        AddedToast(toastService, "Type B");
+        AddedSnackbar(snackbarService, "Type B");
     }
 
 
-    private static void AddBladeTypeC(MBBladeSet blades, IMBToastService toastService)
+    private static void AddBladeTypeC(MBBladeSet blades, IMBSnackbarService snackbarService)
     {
-        _ = blades.AddBladeAsync<BladeTypeCContent, BladeTypeCContent.BladeParameters>("Type C", new() { TextFieldContent = "From parameter", TextAreaContent = "From parameter" }, additionalCss: "demo-blade", onRemoved: (string reference) => RemovedToast(toastService, reference)).ConfigureAwait(false);
+        _ = blades.AddBladeAsync<BladeTypeCContent, BladeTypeCContent.BladeParameters>("Type C", new() { TextFieldContent = "From parameter", TextAreaContent = "From parameter" }, additionalCss: "demo-blade", onRemoved: (string reference) => RemovedSnackbar(snackbarService, reference)).ConfigureAwait(false);
 
-        AddedToast(toastService, "Type C");
+        AddedSnackbar(snackbarService, "Type C");
     }
 
 
@@ -170,7 +170,7 @@
     }
 
 
-    private static void AddedToast(IMBToastService toastService, string bladeReference) => toastService.ShowToast(heading: "Blade action", message: $"Added blade: {bladeReference}", level: MBToastLevel.Success, showIcon: false);
+    private static void AddedSnackbar(IMBSnackbarService snackbarService, string bladeReference) => snackbarService.ShowSnackbar(message: $"Added blade: {bladeReference}");
 
-    private static void RemovedToast(IMBToastService toastService, string bladeReference) => toastService.ShowToast(heading: "Blade action", message: $"Removed blade: {bladeReference}", level: MBToastLevel.Success, showIcon: false);
+    private static void RemovedSnackbar(IMBSnackbarService snackbarService, string bladeReference) => snackbarService.ShowSnackbar(message: $"Removed blade: {bladeReference}");
 }

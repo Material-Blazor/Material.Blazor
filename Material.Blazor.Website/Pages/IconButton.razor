@@ -1,6 +1,6 @@
 ﻿@page "/iconbutton"
 
-@inject IMBToastService ToastService
+@inject IMBSnackbarService SnackbarService
 
 
 
@@ -95,6 +95,6 @@
 @code {
     private void ButtonClick(string notification)
     {
-        ToastService.ShowToast(heading: "Button Clicked", message: notification, level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Button Clicked " + notification);
     }
 }

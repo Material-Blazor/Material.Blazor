@@ -1,6 +1,6 @@
 ﻿@page "/card"
 
-@inject IMBToastService ToastService
+@inject IMBSnackbarService SnackbarService
 
 
 
@@ -174,20 +174,20 @@
 @code {
     private void CardClick(string notification)
     {
-        ToastService.ShowToast(heading: "Card Clicked", message: notification, level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: notification);
     }
 
 
 
     private void ButtonClick()
     {
-        ToastService.ShowToast(heading: "Button Clicked", message: "", level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Button clicked");
     }
 
 
 
     private void IconButtonClick()
     {
-        ToastService.ShowToast(heading: "Icon Button Clicked", message: "", level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Icon Button Clicked");
     }
 }

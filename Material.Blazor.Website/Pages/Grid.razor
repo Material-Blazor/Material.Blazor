@@ -1,6 +1,6 @@
 ﻿@page "/grid"
 
-@inject IMBToastService ToastService
+@inject IMBSnackbarService SnackbarService
 
 <DemonstrationPage ComponentName="Grid"
                    DemoComponent="@this"
@@ -220,11 +220,7 @@
     {
         await Task.CompletedTask;
 
-        ToastService.ShowToast(
-            heading: "Row clicked",
-            message: $"You clicked on '{guid}'",
-            level: MBToastLevel.Success,
-            showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Row clicked " + $"You clicked on '{guid}'");
     }
 
 }

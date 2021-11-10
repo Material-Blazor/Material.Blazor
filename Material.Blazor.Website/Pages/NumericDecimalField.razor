@@ -1,6 +1,6 @@
 ﻿@page "/numericdecimalField"
 
-@inject IMBToastService ToastService
+@inject IMBSnackbarService SnackbarService
 
 @using System.Runtime.InteropServices
 
@@ -149,7 +149,7 @@
         {
             _decimalValue = value;
 
-            ToastService.ShowToast(heading: "Decimal numeric", message: $"Value: '{_decimalValue.ToString("N2")}'", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Decimal numeric " + $"Value: '{_decimalValue.ToString("N2")}'");
         }
     }
 
@@ -163,7 +163,7 @@
         {
             _moneyByFormat = value;
 
-            ToastService.ShowToast(heading: "Money by format numeric", message: $"Value: '{_moneyByFormat.ToString("C2")}'", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Money by format numeric " +  $"Value: '{_moneyByFormat.ToString("C2")}'");
         }
     }
 
@@ -177,7 +177,7 @@
         {
             _moneyByPrefix = value;
 
-            ToastService.ShowToast(heading: "Money by Prefix numeric", message: $"Value: '{_moneyByPrefix.ToString("N2")}'", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Money by Prefix numeric " + $"Value: '{_moneyByPrefix.ToString("N2")}'");
         }
     }
 
@@ -191,7 +191,7 @@
         {
             _percentByFormat = value;
 
-            ToastService.ShowToast(heading: "Percent by format", message: $"Value: '{_percentByFormat.ToString("N4")}'", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Percent by format " + $"Value: '{_percentByFormat.ToString("N4")}'");
         }
     }
 
@@ -204,7 +204,7 @@
         {
             _percentBySuffix = value;
 
-            ToastService.ShowToast(heading: "Percent by suffix", message: $"Value: '{_percentBySuffix.ToString("N4")}'", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Percent by suffix " + $"Value: '{_percentBySuffix.ToString("N4")}'");
         }
     }
 
@@ -217,7 +217,7 @@
         {
             _basisPointsBySuffix = value;
 
-            ToastService.ShowToast(heading: "Basis Points by suffix", message: $"Value: '{_basisPointsBySuffix.ToString("N4")}'", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Basis Points by suffix " + $"Value: '{_basisPointsBySuffix.ToString("N4")}'");
         }
     }
 
@@ -230,7 +230,7 @@
         {
             _popupHelperText = value;
 
-            ToastService.ShowToast(heading: "Popup Helper Text", message: $"Value: '{_popupHelperText}'", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Popup Helper Text " + $"Value: '{_popupHelperText}'");
         }
     }
 
@@ -243,7 +243,7 @@
         {
             _persistentHelperText = value;
 
-            ToastService.ShowToast(heading: "Persistent Helper Text", message: $"Value: '{_persistentHelperText}'", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Persistent Helper Text " + $"Value: '{_persistentHelperText}'");
         }
     }
 }

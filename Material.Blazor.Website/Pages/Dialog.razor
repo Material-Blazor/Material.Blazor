@@ -1,7 +1,7 @@
 ﻿@page "/dialog"
 
 
-@inject IMBToastService ToastService
+@inject IMBSnackbarService SnackbarService
 
 
 @using System.ComponentModel.DataAnnotations;
@@ -347,7 +347,7 @@
         {
             _radioButtonResult1 = value;
 
-            ToastService.ShowToast(heading: "Dialog 1 Radio Click", message: $"Value: '{_radioButtonResult1}'", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Dialog 1 Radio Click " + $"Value: '{_radioButtonResult1}'");
         }
     }
 
@@ -361,19 +361,19 @@
     private async Task ShowDialog1Async()
     {
         var result = await Dialog1.ShowAsync();
-        ToastService.ShowToast(heading: "General Dialog", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "General Dialog " + $"Value: '{result}'");
     }
 
     private async Task ShowDialog2Async()
     {
         var result = await Dialog2.ShowAsync();
-        ToastService.ShowToast(heading: "General Dialog w/o Scrim/Esc", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "General Dialog w/o Scrim/Esc " + $"Value: '{result}'");
     }
 
     private async Task OnButtonClick(string button)
     {
         await Dialog2.HideAsync();
-        ToastService.ShowToast(heading: "General Dialog w/o Scrim/Esc by @onclick", message: $"Value: '{button}'", level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "General Dialog w/o Scrim/Esc by @onclick " + $"Value: '{button}'");
     }
 
     private DateTime MinDate { get; set; } = new DateTime(2015, 1, 1);
@@ -383,7 +383,7 @@
     private async Task ShowDialog3Async()
     {
         var result = await Dialog3.ShowAsync();
-        ToastService.ShowToast(heading: "Datepicker Dialog", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Datepicker Dialog " + $"Value: '{result}'");
     }
 
     private UserLogonDefinition UserLogon { get; set; }
@@ -397,30 +397,30 @@
     private async Task Dialog4Submitted()
     {
         await Dialog4.HideAsync();
-        ToastService.ShowToast(heading: "Logon Dialog Submit", message: $"User / Password: '{UserLogon.UserID}' / '{UserLogon.Password}'", level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Logon Dialog Submit " + $"User / Password: '{UserLogon.UserID}' / '{UserLogon.Password}'");
     }
 
     private void Dialog4Invalid()
     {
-        ToastService.ShowToast(heading: "Logon Dialog Invalid", message: $"Edit form was invalid", level: MBToastLevel.Warning, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-warning", message: "Logon Dialog Invalid " + $"Edit form was invalid");
     }
 
     private async Task Dialog4Canceled()
     {
         await Dialog4.HideAsync();
-        ToastService.ShowToast(heading: "Logon Dialog Canceled", message: "The cancel button was selected", level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Logon Dialog Canceled " + "The cancel button was selected");
     }
 
     private async Task ShowDialog5Async()
     {
         var result = await Dialog5.ShowAsync();
-        ToastService.ShowToast(heading: "No Body Dialog", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "No Body Dialog " + $"Value: '{result}'");
     }
 
     private async Task ShowDialog6Async()
     {
         var result = await Dialog6.ShowAsync();
-        ToastService.ShowToast(heading: "No Title Dialog", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "No Title Dialog " + $"Value: '{result}'");
     }
 
     private async Task ShowDialog7Async()
@@ -433,18 +433,18 @@
     private async Task Dialog7Submitted()
     {
         await Dialog7.HideAsync();
-        ToastService.ShowToast(heading: "Logon Dialog #2 Submit", message: $"User / Password: '{UserLogon.UserID}' / '{UserLogon.Password}'", level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Logon Dialog #7 Submit " + $"User / Password: '{UserLogon.UserID}' / '{UserLogon.Password}'");
     }
 
     private void Dialog7Invalid()
     {
-        ToastService.ShowToast(heading: "Logon Dialog #2 Invalid", message: $"Edit form was invalid", level: MBToastLevel.Warning, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-warning", message: "Logon Dialog #7 Invalid " + $"Edit form was invalid");
     }
 
     private async Task Dialog7Canceled()
     {
         await Dialog7.HideAsync();
-        ToastService.ShowToast(heading: "Logon Dialog #2 Canceled", message: "The cancel button was selected", level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Logon Dialog #7 Canceled " + "The cancel button was selected");
     }
 
     private class UserLogonDefinition

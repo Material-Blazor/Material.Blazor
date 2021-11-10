@@ -1,6 +1,6 @@
 ﻿@page "/radiobutton"
 
-@inject IMBToastService ToastService
+@inject IMBSnackbarService SnackbarService
 
 
 <DemonstrationPage ComponentName="RadioButton"
@@ -73,7 +73,7 @@
         {
             _animal = value;
 
-            ToastService.ShowToast(heading: "Individual radio buttons", message: $"Value: '{_animal.ToString()}'", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Individual radio buttons " + $"Value: '{_animal.ToString()}'");
         }
     }
 }

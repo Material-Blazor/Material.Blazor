@@ -1,6 +1,6 @@
 ﻿@page "/tabbar"
 
-@inject IMBToastService ToastService
+@inject IMBSnackbarService SnackbarService
 
 
 <DemonstrationPage ComponentName="TabBar"
@@ -76,7 +76,7 @@
             {
                 _tabIndex = value;
 
-                ToastService.ShowToast(heading: "Tab Clicked", message: $"Item {_tabIndex} / {TabLabels[_tabIndex]}", level: MBToastLevel.Success, showIcon: false);
+                SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Tab Clicked " + $"Item {_tabIndex} / {TabLabels[_tabIndex]}");
             }
         }
     }

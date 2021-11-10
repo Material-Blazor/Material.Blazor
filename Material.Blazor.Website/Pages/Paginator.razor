@@ -1,6 +1,6 @@
 ﻿@page "/paginator"
 
-@inject IMBToastService ToastService
+@inject IMBSnackbarService SnackbarService
 
 
 <style>
@@ -68,7 +68,7 @@
         set
         {
             p = value;
-            ToastService.ShowToast(heading: "Page Change", message: $"Page: {p}", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Page Change " + $"Page: {p}");
         }
     }
 
