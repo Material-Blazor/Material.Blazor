@@ -17,7 +17,6 @@ namespace Material.Blazor.Test
             _ = ctx.Services
                 .AddSingleton(new Mock<IMBLoggingService>().Object)
                 .AddSingleton(new Mock<IMBTooltipService>().Object)
-                .AddSingleton(new Mock<IMBToastService>().Object)
                 .AddSingleton(new Mock<IMBSnackbarService>().Object)
                 .AddSingleton(new Mock<ILogger<ComponentFoundation>>().Object)
                 .AddSingleton(new Mock<IMBIcon>().Object)
