@@ -9,10 +9,6 @@ namespace Material.Blazor
     public class MBIconHelper : IMBIcon
     {
         /// <inheritdoc/>
-        public bool RequiresColorFilter => UnderlyingIcon.RequiresColorFilter;
-
-
-        /// <inheritdoc/>
         public IMBIcon.IconFragment Render => UnderlyingIcon.Render;
 
         private readonly IMBIcon UnderlyingIcon;
