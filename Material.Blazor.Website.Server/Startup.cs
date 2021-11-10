@@ -27,7 +27,6 @@ namespace Material.BlazorWebsite.Server
 
             services.AddMBServices(
                 loggingServiceConfiguration: Utilities.GetDefaultLoggingServiceConfiguration(),
-                toastServiceConfiguration: Utilities.GetDefaultToastServiceConfiguration(),
                 snackbarServiceConfiguration: Utilities.GetDefaultSnackbarServiceConfiguration()
             );
         }

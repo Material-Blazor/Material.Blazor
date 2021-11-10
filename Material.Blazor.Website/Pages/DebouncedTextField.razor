@@ -1,6 +1,6 @@
 ﻿@page "/debouncedtextfield"
 
-@inject IMBToastService ToastService
+@inject IMBSnackbarService SnackbarService
 
 @using System.Runtime.InteropServices
 
@@ -154,7 +154,7 @@
         {
             _debounced = value;
 
-            ToastService.ShowToast(heading: "Debounced text field", message: $"Value: '{_debounced}'", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Debounced text field " + $"Value: '{_debounced}'");
         }
     }
 
@@ -167,7 +167,7 @@
         {
             _prefilled = value;
 
-            ToastService.ShowToast(heading: "Prefilled", message: $"Value: '{_prefilled}'", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Prefilled " + $"Value: '{_prefilled}'");
         }
     }
 
@@ -180,7 +180,7 @@
         {
             _popupHelperText = value;
 
-            ToastService.ShowToast(heading: "Popup Helper Text", message: $"Value: '{_popupHelperText}'", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Popup Helper Text " + $"Value: '{_popupHelperText}'");
         }
     }
 
@@ -193,7 +193,7 @@
         {
             _persistentHelperText = value;
 
-            ToastService.ShowToast(heading: "Persistent Helper Text", message: $"Value: '{_persistentHelperText}'", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Persistent Helper Text " + $"Value: '{_persistentHelperText}'");
         }
     }
 
@@ -206,7 +206,7 @@
         {
             _twoWayBinding = value;
 
-            ToastService.ShowToast(heading: "Two Way Binding", message: $"Value: '{_twoWayBinding}'", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Two Way Binding " + $"Value: '{_twoWayBinding}'");
         }
     }
 

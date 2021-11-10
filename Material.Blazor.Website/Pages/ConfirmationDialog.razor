@@ -1,7 +1,7 @@
 ﻿@page "/confirmationdialog"
 
 
-@inject IMBToastService ToastService
+@inject IMBSnackbarService SnackbarService
 
 
 
@@ -137,13 +137,13 @@
     private async Task ShowDialog2Async()
     {
         var result = await Dialog2.ShowAsync();
-        ToastService.ShowToast(heading: "Dialog 2 Result", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Dialog 2 Result " +  $"Value: '{result}'");
     }
 
     private async Task ShowDialog3Async()
     {
         var result = await Dialog3.ShowAsync();
-        ToastService.ShowToast(heading: "Dialog 3 Result", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Dialog 3 Result " + $"Value: '{result}'");
     }
 
     private DateTime MinDate { get; set; } = new DateTime(2015, 1, 1);
@@ -154,6 +154,6 @@
     private async Task ShowDialog6Async()
     {
         var result = await Dialog6.ShowAsync();
-        ToastService.ShowToast(heading: "Dialog 6 Result", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Dialog 6 Result" + $"Value: '{result}'");
     }
 }

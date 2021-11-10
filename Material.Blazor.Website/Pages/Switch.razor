@@ -1,6 +1,6 @@
 ﻿@page "/switch"
 
-@inject IMBToastService ToastService
+@inject IMBSnackbarService SnackbarService
 
 
 
@@ -136,7 +136,7 @@
         {
             _checkboxState = value;
 
-            ToastService.ShowToast(heading: "Checkbox Clicked", message: $"Value: {_checkboxState}", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Checkbox Clicked " + $"Value: {_checkboxState}");
         }
     }
 
@@ -150,7 +150,7 @@
         {
             _switchState1 = value;
 
-            ToastService.ShowToast(heading: "Switch 1 Clicked", message: $"Value: {_switchState1}", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Switch 1 Clicked " + $"Value: {_switchState1}");
         }
     }
 
@@ -164,7 +164,7 @@
         {
             _switchState2 = value;
 
-            ToastService.ShowToast(heading: "Switch 2 Clicked", message: $"Value: {_switchState2}", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Switch 2 Clicked" + $"Value: {_switchState2}");
         }
     }
 
@@ -178,7 +178,7 @@
         {
             _switchState3 = value;
 
-            ToastService.ShowToast(heading: "Switch 3 Clicked", message: $"Value: {_switchState3}", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Switch 3 Clicked " + $"Value: {_switchState3}");
         }
     }
 
@@ -192,7 +192,7 @@
         {
             _toggleTwoWayBindingState = value;
 
-            ToastService.ShowToast(heading: "Toggle Icon Button Clicked", message: $"Two way binding Value: {_toggleTwoWayBindingState}", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Toggle Icon Button Clicked" + $"Two way binding Value: {_toggleTwoWayBindingState}");
         }
     }
 
@@ -200,6 +200,6 @@
 
     private void ButtonClick(string notification)
     {
-        ToastService.ShowToast(heading: "Button Clicked", message: notification, level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Button Clicked" + notification);
     }
 }

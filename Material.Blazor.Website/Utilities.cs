@@ -8,19 +8,12 @@
         };
 
 
-        public static MBToastServiceConfiguration GetDefaultToastServiceConfiguration() => new()
-        {
-            Position = MBToastPosition.TopRight,
-            CloseMethod = MBNotifierCloseMethod.Timeout,
-        };
-
-
         public static MBSnackbarServiceConfiguration GetDefaultSnackbarServiceConfiguration() => new()
         {
             CloseMethod = MBNotifierCloseMethod.TimeoutAndDismissButton,
-            Leading = false,
+            Leading = true,
             Stacked = false,
-            Timeout = 5000
+            Timeout = 2000
         };
     }
 }

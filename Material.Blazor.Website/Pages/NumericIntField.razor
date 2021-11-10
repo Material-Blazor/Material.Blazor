@@ -1,6 +1,6 @@
 ﻿@page "/numericintfield"
 
-@inject IMBToastService ToastService
+@inject IMBSnackbarService SnackbarService
 
 @using System.Runtime.InteropServices
 
@@ -83,7 +83,7 @@
         {
             _integer = value;
 
-            ToastService.ShowToast(heading: "Integer numeric", message: $"Value: '{_integer.ToString("N0")}'", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Integer numeric " + $"Value: '{_integer.ToString("N0")}'");
         }
     }
 
@@ -96,7 +96,7 @@
         {
             _popupHelperText = value;
 
-            ToastService.ShowToast(heading: "Popup Helper Text", message: $"Value: '{_popupHelperText}'", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Popup Helper Text " + $"Value: '{_popupHelperText}'");
         }
     }
 
@@ -109,7 +109,7 @@
         {
             _persistentHelperText = value;
 
-            ToastService.ShowToast(heading: "Persistent Helper Text", message: $"Value: '{_persistentHelperText}'", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Persistent Helper Text " + $"Value: '{_persistentHelperText}'");
         }
     }
 }

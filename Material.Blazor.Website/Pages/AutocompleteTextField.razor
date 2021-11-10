@@ -1,6 +1,6 @@
 ﻿@page "/autocompletetextfield"
 
-@inject IMBToastService ToastService
+@inject IMBSnackbarService SnackbarService
 
 @using System.Runtime.InteropServices
 
@@ -130,11 +130,7 @@
         {
             _autocomplete1 = value;
 
-            ToastService.ShowToast(
-                heading: "Autocomplete blanks disallowed",
-                level: MBToastLevel.Success,
-                message: $"Value: '{_autocomplete1}'",
-                showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: $"Value: '{_autocomplete1}'");
         }
     }
 
@@ -148,11 +144,7 @@
         {
             _autocomplete2 = value;
 
-            ToastService.ShowToast(
-                heading: "Autocomplete blanks allowed",
-                level: MBToastLevel.Success,
-                message: $"Value: '{_autocomplete2}'",
-                showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: $"Value: '{_autocomplete2}'");
         }
     }
 
@@ -166,11 +158,7 @@
         {
             _autocomplete3 = value;
 
-            ToastService.ShowToast(
-                heading: "Autocomplete whitespace ignored",
-                level: MBToastLevel.Success,
-                message: $"Value: '{_autocomplete3}'",
-                showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: $"Value: '{_autocomplete3}'");
         }
     }
 
@@ -183,11 +171,7 @@
         {
             _popupHelperText = value;
 
-            ToastService.ShowToast(
-                heading: "Popup Helper Text",
-                level: MBToastLevel.Success,
-                message: $"Value: '{_popupHelperText}'",
-                showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: $"Value: '{_popupHelperText}'");
         }
     }
 
@@ -200,11 +184,7 @@
         {
             _customValue = value;
 
-            ToastService.ShowToast(
-                heading: "Custom Value",
-                level: MBToastLevel.Success,
-                message: $"Value: '{_customValue}'",
-                showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: $"Value: '{_customValue}'");
         }
     }
 
@@ -217,11 +197,7 @@
         {
             _persistentHelperText = value;
 
-            ToastService.ShowToast(
-                heading: "Persistent Helper Text",
-                level: MBToastLevel.Success,
-                message: $"Value: '{_persistentHelperText}'",
-                showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: $"Value: '{_persistentHelperText}'");
         }
     }
 }

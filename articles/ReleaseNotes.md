@@ -4,6 +4,23 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [3.0.0-preview.1](https://github.com/Material-Blazor/Material.Blazor)
+Released 2021-??-??
+
+**Updates**
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+- MBToast is now deprecated. 
+
+**Known issues**
+
+<br />
+
 #### [2.0.0](https://github.com/Material-Blazor/Material.Blazor)
 In Pre-Release Q4 2020 to Q4 2021
 
@@ -308,7 +325,7 @@ Material.Blazor is now built against .Net 6.0.0 GA
 - Build process uses npm directly rather than via docker (docker dependency removed).
 - Typescript in localized files replaces single Javascript file.
 - Themes upgraded.
-- `ToastService.ShowToast` adds debug parameter, showing toast only in debug mode when true.
+- `SnackbarService.ShowSnackbar` adds debug parameter, showing toast only in debug mode when true.
 - Bug fixes.
 
 <br />

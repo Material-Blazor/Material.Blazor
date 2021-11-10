@@ -1,6 +1,6 @@
 ﻿@page "/radiobuttongroup"
 
-@inject IMBToastService ToastService
+@inject IMBSnackbarService SnackbarService
 
 
 <DemonstrationPage ComponentName="RadioButtonGroup"
@@ -121,7 +121,7 @@
         {
             _horizontalGroup = value;
 
-            ToastService.ShowToast(heading: "Horizontal radio group", message: $"Value: '{_horizontalGroup}'", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Horizontal radio group " + $"Value: '{_horizontalGroup}'");
         }
     }
 
@@ -143,7 +143,7 @@
         {
             _color = value;
 
-            ToastService.ShowToast(heading: "Vertical radio group", message: $"Value: '{_color.ToString()}'", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Vertical radio group " + $"Value: '{_color.ToString()}'");
         }
     }
 

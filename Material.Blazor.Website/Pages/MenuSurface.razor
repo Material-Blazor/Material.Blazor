@@ -1,6 +1,6 @@
 ﻿@page "/menusurface"
 
-@inject IMBToastService ToastService
+@inject IMBSnackbarService SnackbarService
 
 <DemonstrationPage ComponentName="MenuSurface"
                     DemoComponent="@this"
@@ -58,6 +58,6 @@
 
     private void OnClick(string notification)
     {
-        ToastService.ShowToast(heading: "Button Clicked", message: notification, level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Button Clicked " + notification);
     }
 }

@@ -1,6 +1,6 @@
 ﻿@page "/menu"
 
-@inject IMBToastService ToastService
+@inject IMBSnackbarService SnackbarService
 
 
 <DemonstrationPage ComponentName="Menu"
@@ -86,7 +86,7 @@
     protected void OnClickHandler(string NavigationReference)
     {
         var result = NavigationReference;
-        ToastService.ShowToast(heading: "Menu result", message: $"Value: '{result}'", level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Menu result " + $"Value: '{result}'");
 
         SevenSelected = (result == "Seven") ? !SevenSelected : SevenSelected;
         EightSelected = (result == "Eight") ? !EightSelected : EightSelected;

@@ -1,6 +1,6 @@
 ﻿@page "/checkbox"
 
-@inject IMBToastService ToastService
+@inject IMBSnackbarService SnackbarService
 
 
 
@@ -168,7 +168,7 @@
         {
             _checkboxState = value;
 
-            ToastService.ShowToast(heading: "Checkbox Clicked", message: $"Value: {_checkboxState}", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: $"Value: {_checkboxState}");
         }
     }
 
@@ -182,7 +182,7 @@
         {
             _toggleTwoWayBindingState = value;
 
-            ToastService.ShowToast(heading: "Toggle Icon Button Clicked", message: $"Two way binding Value: {_toggleTwoWayBindingState}", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Toggle Icon Button Clicked " + $"Two way binding Value: {_toggleTwoWayBindingState}");
         }
     }
 
@@ -190,7 +190,7 @@
 
     private void ButtonClick(string notification)
     {
-        ToastService.ShowToast(heading: "Button Clicked", message: notification, level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Button Clicked " + notification);
     }
 
 
@@ -206,7 +206,7 @@
         {
             WinterWear[0] = value;
 
-            ToastService.ShowToast(heading: "Gloves clicked", message: value.ToString(), level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Gloves clicked " + value.ToString());
         }
     }
     private bool Hat
@@ -216,7 +216,7 @@
         {
             WinterWear[1] = value;
 
-            ToastService.ShowToast(heading: "Hat clicked", message: value.ToString(), level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Hat clicked " + value.ToString());
         }
     }
     private bool Coat
@@ -226,7 +226,7 @@
         {
             WinterWear[2] = value;
 
-            ToastService.ShowToast(heading: "Coat clicked", message: value.ToString(), level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Coat clicked " + value.ToString());
         }
     }
     private bool Boots
@@ -236,7 +236,7 @@
         {
             WinterWear[3] = value;
 
-            ToastService.ShowToast(heading: "Boots clicked", message: value.ToString(), level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Boots clicked " + value.ToString());
         }
     }
 
@@ -250,7 +250,7 @@
                 WinterWear[i] = value;
             }
 
-            ToastService.ShowToast(heading: "All winter wear clicked", message: value.ToString(), level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "All winter wear clicked " + value.ToString());
 
             StateHasChanged();
         }

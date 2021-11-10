@@ -1,5 +1,4 @@
 ﻿using Material.Blazor.Internal;
-using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Material.Blazor
@@ -12,19 +11,16 @@ namespace Material.Blazor
         /// </summary>
         /// <param name="services"></param>
         /// <param name="snackbarServiceConfiguration"></param>
-        /// <param name="toastServiceConfiguration"></param>
         /// <param name="loggingServiceConfiguration"></param>
         /// <returns></returns>
         public static IServiceCollection AddMBServices(
             this IServiceCollection services,
             MBLoggingServiceConfiguration loggingServiceConfiguration = null,
-            MBSnackbarServiceConfiguration snackbarServiceConfiguration = null, 
-            MBToastServiceConfiguration toastServiceConfiguration = null) 
+            MBSnackbarServiceConfiguration snackbarServiceConfiguration = null) 
         {
             return services
                 .AddMBLoggingService(loggingServiceConfiguration)
                 .AddMBSnackbarService(snackbarServiceConfiguration)
-                .AddMBToastService(toastServiceConfiguration)
                 .AddMBTooltipService();
         }
 
@@ -74,31 +70,6 @@ namespace Material.Blazor
             }
 
             return services.AddScoped<IMBSnackbarService, SnackbarService>(serviceProvider => new SnackbarService(configuration));
-        }
-
-
-        /// <summary>
-        /// Adds a Material.Blazor <see cref="IMBToastService"/> to the service collection to manage toast messages.
-        /// <example>
-        /// <para>You can optionally add configuration:</para>
-        /// <code>
-        /// services.AddMBToastService(new MBToastServiceConfiguration()
-        /// {
-        ///     Postion = MBToastPosition.TopRight,
-        ///     CloseMethod = MBToastCloseMethod.Timeout,
-        ///     ... etc
-        /// });
-        /// </code>
-        /// </example>
-        /// </summary>
-        private static IServiceCollection AddMBToastService(this IServiceCollection services, MBToastServiceConfiguration configuration = null)
-        {
-            if (configuration == null)
-            {
-                configuration = new MBToastServiceConfiguration();
-            }
-
-            return services.AddScoped<IMBToastService, ToastService>(serviceProvider => new ToastService(configuration));
         }
 
 

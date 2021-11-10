@@ -1,6 +1,6 @@
 ﻿@page "/drawer"
 
-@inject IMBToastService ToastService
+@inject IMBSnackbarService SnackbarService
 
 
 
@@ -45,7 +45,7 @@
         {
             _toggleState = value;
 
-            ToastService.ShowToast(heading: "Toggle Icon Button Clicked", message: $"Value: {_toggleState} / {(_toggleState ? "Dog" : "Cat")}", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Toggle Icon Button Clicked " + $"Value: {_toggleState} / {(_toggleState ? "Dog" : "Cat")}");
         }
     }
 
@@ -59,7 +59,7 @@
         {
             _toggleTwoWayBindingState = value;
 
-            ToastService.ShowToast(heading: "Toggle Icon Button Clicked", message: $"Two way binding Value: {_toggleTwoWayBindingState}", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Toggle Icon Button Clicked " + $"Two way binding Value: {_toggleTwoWayBindingState}");
         }
     }
 
@@ -67,6 +67,6 @@
 
     private void ButtonClick(string notification)
     {
-        ToastService.ShowToast(heading: "Button Clicked", message: notification, level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Button Clicked" + notification);
     }
 }

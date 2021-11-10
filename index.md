@@ -1,9 +1,9 @@
 ﻿# Material.Blazor
 
 [![NuGet version](https://img.shields.io/nuget/v/Material.Blazor?logo=nuget&label=nuget%20release&style=flat-square)](https://www.nuget.org/packages/Material.Blazor/)
+[![NuGet version](https://img.shields.io/nuget/vpre/Material.Blazor?logo=nuget&label=nuget%20pre-release&style=flat-square)](https://www.nuget.org/packages/Material.Blazor/)
 [![NuGet downloads](https://img.shields.io/nuget/dt/Material.Blazor?logo=nuget&label=nuget%20downloads&style=flat-square)](https://www.nuget.org/packages/Material.Blazor/)
 [![Gitter](https://img.shields.io/gitter/room/Material.Blazor/community?logo=gitter&style=flat-square)](https://gitter.im/Material-Blazor/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-<!--[![NuGet version](https://img.shields.io/nuget/vpre/Material.Blazor?logo=nuget&label=nuget%20pre-release&style=flat-square)](https://www.nuget.org/packages/Material.Blazor/)-->
 
 <br />
 
@@ -21,7 +21,9 @@ This docs site along with [our demonstration website](https://material-blazor.co
 
 Material Theme has very specific and detailed guidance showing web designers how to build web apps with HTML, CSS and JavaScript. Since neither Blazor for WebAssembly are directly supported, Blazor developers either need to roll their own components or use a component library such as Material.Blazor. This is available at https://www.nuget.org/packages/Material.Blazor.
 
-Material.Blazor isn't the only Blazor component library for Material Theme and we encourage developers to look at others including open source projects such as [MatBlazor](https://www.matblazor.com/), [Blazorize](https://materialdemo.blazorise.com/) and [Skclusive.Material.Component](https://github.com/skclusive/Skclusive.Material.Component), or commercial products such as those from [Telerik](https://www.telerik.com/blazor-ui), and [Syncfusion](https://blazor.syncfusion.com/); this is not an exhaustive list and there may be others. So why did we create Material.Blazor as yet another option? Because we had some overriding objectives and to our taste this required a new library focussing on the following:
+Material.Blazor isn't the only Blazor component library for Material Theme and we encourage developers to look at others including open source projects such as [Blazorize](https://materialdemo.blazorise.com/), [MatBlazor](https://www.matblazor.com/),
+  [MudBlazor](https://www.mudblazor.com),
+  and [Skclusive.Material.Component](https://github.com/skclusive/Skclusive.Material.Component), or commercial products such as those from [Telerik](https://www.telerik.com/blazor-ui) and [Syncfusion](https://blazor.syncfusion.com/); this is not an exhaustive list and there may be others. So why did we create Material.Blazor as yet another option? Because we had some overriding objectives and to our taste this required a new library focussing on the following:
 
 - Lightweight components that require the minimal possible setup or boilerplate Blazor coding and without intensive startup processing;
 - An entirely native Blazor experience for Material.Blazor's consumer, using JavaScript Interop within Material.Blazor only where absolutely necessary, such as when initializing individual components to apply things like ripple and drop down menu functionality from the Material JavaScript libraries in the same manner as required for any other Material Theme web application;

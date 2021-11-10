@@ -1,6 +1,6 @@
 ﻿@page "/datepicker"
 
-@inject IMBToastService ToastService
+@inject IMBSnackbarService SnackbarService
 
 @using Nager.Date
 
@@ -205,7 +205,7 @@
         {
             _filled = value;
 
-            ToastService.ShowToast(heading: "Filled Date Picker", message: $"Value: {_filled.ToLongDateString()}", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Filled Date Picker " + $"Value: {_filled.ToLongDateString()}");
         }
     }
 
@@ -218,7 +218,7 @@
         {
             _outlined = value;
 
-            ToastService.ShowToast(heading: "Outlined Date Picker", message: $"Value: {_outlined.ToLongDateString()}", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Outlined Date Picker " + $"Value: {_outlined.ToLongDateString()}");
         }
     }
 
@@ -231,7 +231,7 @@
         {
             _monWedFri = value;
 
-            ToastService.ShowToast(heading: "Mon, Wed, Fri selectable", message: $"Value: {_monWedFri.ToLongDateString()}", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Mon, Wed, Fri selectable " + $"Value: {_monWedFri.ToLongDateString()}");
         }
     }
 
@@ -244,7 +244,7 @@
         {
             _englandBusinessDay = value;
 
-            ToastService.ShowToast(heading: "England Business Day selectable", message: $"Value: {_englandBusinessDay.ToLongDateString()}", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "England Business Day selectable " + $"Value: {_englandBusinessDay.ToLongDateString()}");
         }
     }
 
@@ -257,7 +257,7 @@
         {
             _customStyle = value;
 
-            ToastService.ShowToast(heading: "Custom Style", message: $"Value: {_customStyle.ToLongDateString()}", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Custom Style " + $"Value: {_customStyle.ToLongDateString()}");
         }
     }
 
@@ -269,7 +269,7 @@
         {
             _default = value;
 
-            ToastService.ShowToast(heading: "Default", message: $"Value: {_default.ToLongDateString()}", level: MBToastLevel.Success, showIcon: false);
+            SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Default " + $"Value: {_default.ToLongDateString()}");
         }
     }
 

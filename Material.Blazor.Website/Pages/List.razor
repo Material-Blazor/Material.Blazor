@@ -1,6 +1,6 @@
 ﻿@page "/list"
 
-@inject IMBToastService ToastService
+@inject IMBSnackbarService SnackbarService
 
 
 <style>
@@ -280,24 +280,24 @@
 
     private void OnSingleLineClick(int index)
     {
-        ToastService.ShowToast(heading: "Single Line Click", message: $"Line {index} clicked", level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Single Line Click " + $"Line {index} clicked");
     }
 
 
     private void OnSingleLinePrimaryClick(int index)
     {
-        ToastService.ShowToast(heading: "Single Line with Primary Action Click", message: $"Line {index} clicked", level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Single Line with Primary Action Click " + $"Line {index} clicked");
     }
 
 
     private void OnTwoLineClick(int index)
     {
-        ToastService.ShowToast(heading: "Two Line Click", message: $"Line {index} clicked", level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Two Line Click " + $"Line {index} clicked");
     }
 
 
     private void OnThreeLineClick(int index)
     {
-        ToastService.ShowToast(heading: "Three Line Click", message: $"Line {index} clicked", level: MBToastLevel.Success, showIcon: false);
+        SnackbarService.ShowSnackbar(additionalClass: "snackbar-success", message: "Three Line Click " + $"Line {index} clicked");
     }
 }
