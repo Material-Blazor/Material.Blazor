@@ -48,7 +48,7 @@ Material.Blazor works with the following package versions:
 
 ## Services and Anchor
 
-Material.Blazor has three services for animated navigation, snackbars, toasts, and tooltips. We strongly advise you to use these in your project
+Material.Blazor has three services for logging, snackbars, and toasts. We strongly advise you to use these in your project
 because regular component tooltips will fail if you don't, although they are optional. To register the services:
 
 ```csharp

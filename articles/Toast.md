@@ -6,7 +6,7 @@ title: Toast
 
 ## Summary
 
-The toast service is an added extra, styled to fit in with Material.Blazor, but outside the Material Theme specification. Our implementation is a reworked port of
+The toast service is an added extra, styled to fit in with Material.Blazor, but outside the Material Theme specification. Our implementation is a revised port of
 [Chris Sainty's Blazored/Toast](https://github.com/Blazored/Toast).
 
 ## Service Setup and Anchor
