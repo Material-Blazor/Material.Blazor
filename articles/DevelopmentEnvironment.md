@@ -26,6 +26,8 @@ We have developed Material.Blazor using Visual Studio 2019 on Windows, and have 
   <img src="images/vs-config.png" alt="Visual Studio Workloads"></img>
 - Material.Blazor uses SASS for styling and uses Material Components Web SASS mixins, and additionally TypeScript with the Material Components Web's TypeScript. This is the reason you need to select "Node.js development" in the previous step.
 - Unless you have a separate installation of NodeJs on your computer, you may need to add the directory path to npm.cmd to the OS environment variable PATH. Typically this would be "C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\MSBuild\Microsoft\VisualStudio\NodeJs", but depends on the Visual Studio edition and version you're actually using. Make sure to restart Visual Studio after modifying the PATH variable.
+- If you have a separate NodeJs installation be certain that you have npm 8.1.2 or higher and node 17.1.0 or higher.
+ 
 - There are some Visual Studio extensions that you need or may want:
   - We like Markdown Editor, which will help you improve this page.
     <img src="images/vs-extensions.png" alt="Visual Studio Extensions"></img>

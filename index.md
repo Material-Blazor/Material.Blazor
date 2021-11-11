@@ -1,9 +1,9 @@
 ﻿# Material.Blazor
 
 [![NuGet version](https://img.shields.io/nuget/v/Material.Blazor?logo=nuget&label=nuget%20release&style=flat-square)](https://www.nuget.org/packages/Material.Blazor/)
+[![NuGet version](https://img.shields.io/nuget/vpre/Material.Blazor?logo=nuget&label=nuget%20pre-release&style=flat-square)](https://www.nuget.org/packages/Material.Blazor/)
 [![NuGet downloads](https://img.shields.io/nuget/dt/Material.Blazor?logo=nuget&label=nuget%20downloads&style=flat-square)](https://www.nuget.org/packages/Material.Blazor/)
 [![Gitter](https://img.shields.io/gitter/room/Material.Blazor/community?logo=gitter&style=flat-square)](https://gitter.im/Material-Blazor/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-<!--[![NuGet version](https://img.shields.io/nuget/vpre/Material.Blazor?logo=nuget&label=nuget%20pre-release&style=flat-square)](https://www.nuget.org/packages/Material.Blazor/)-->
 
 <br />
 
@@ -42,7 +42,7 @@ Material.Blazor is forked from [Steve Sanderson's](https://blog.stevensanderson.
 
 We also want to acknowledge the work of 
 * [Vladimir Samoilenko (@SamProf on Github)](https://github.com/SamProf) for his work on [MatBlazor](https://www.matblazor.com/). MatBlazor code was referenced and some small parts of the code were copied to be part of Material.Blazor (ClassMapper and StyleMapper).
-* [Chris Sainty (@chrissainty on Github)](https://github.com/chrissainty) for his work on [Blazored/Toast](https://github.com/Blazored/Toast) which is the basis for MBToast.
+* [Chris Sainty (@chrissainty on Github)](https://github.com/chrissainty) for his work on [Blazored/Toast](https://github.com/Blazored/Toast) which is the basis for MBToast and MBSnackbar.
 * [ℳisterℳagoo (@mistermag00 on Twitter)](https://github.com/SQL-MisterMagoo/) for the `@:@{` construct (formerly used in MBPagedDataList) and [Peter Morris (@mrpmorris on Github)](https://github.com/mrpmorris) for demonstrating this with code that we forked in [Blazor University](https://blazor-university.com/), christening it the "wig pig" - head to Blazor University to see why.
 
 ## Installation

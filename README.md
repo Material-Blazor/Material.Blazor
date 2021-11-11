@@ -2,7 +2,7 @@
 
 ## Lightweight Material Theme razor components for Blazor
 
-Material.Blazor is a lightweight [Material Theme](https://material.io/) [web development platform](https://material.io/develop/web/) (version 9.0.0) component library for [ASP.NET Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor) that is rigorously faithful to the Material Theme's design philosophy, markup and code usage. Material Theme has very specific and detailed guidance showing web designers how to build web apps with HTML, CSS and JavaScript. Since neither Blazor or WebAssembly are directly supported, Blazor developers either need to roll their own components or use a component library such as Material.Blazor.
+Material.Blazor is a lightweight [Material Theme](https://material.io/) [web development platform](https://material.io/develop/web/) (version 12.0.0) component library for [ASP.NET Blazor](https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor) that is rigorously faithful to the Material Theme's design philosophy, markup and code usage. Material Theme has very specific and detailed guidance showing web designers how to build web apps with HTML, CSS and JavaScript. Since neither Blazor or WebAssembly are directly supported, Blazor developers either need to roll their own components or use a component library such as Material.Blazor.
 
 - Visit our website at https://material-blazor.com;
 - See release notes at https://material-blazor.com/docs/ReleaseNotes.html;
@@ -15,8 +15,8 @@ Material.Blazor is a lightweight [Material Theme](https://material.io/) [web dev
 
 
 [![NuGet version](https://img.shields.io/nuget/v/Material.Blazor?logo=nuget&label=nuget%20version&style=flat-square)](https://www.nuget.org/packages/Material.Blazor/)
+[![NuGet version](https://img.shields.io/nuget/vpre/Material.Blazor?logo=nuget&label=nuget%20pre-release&style=flat-square)](https://www.nuget.org/packages/Material.Blazor/)
 [![NuGet downloads](https://img.shields.io/nuget/dt/Material.Blazor?logo=nuget&label=nuget%20downloads&style=flat-square)](https://www.nuget.org/packages/Material.Blazor/)
-<!--[![NuGet version](https://img.shields.io/nuget/vpre/Material.Blazor?logo=nuget&label=nuget%20pre-release&style=flat-square)](https://www.nuget.org/packages/Material.Blazor/)-->
 
 [![Gitter](https://img.shields.io/gitter/room/Material.Blazor/community?logo=gitter&style=flat-square)](https://gitter.im/Material.Blazor/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 

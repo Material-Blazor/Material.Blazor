@@ -4,6 +4,24 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [3.0.0-preview.1](https://github.com/Material-Blazor/Material.Blazor)
+
+Released 2021-??-??
+
+**Updates**
+
+- The planned deprecation of MBToast is now deprecated. 
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [2.0.0](https://github.com/Material-Blazor/Material.Blazor)
 In Pre-Release Q4 2020 to Q4 2021
 
