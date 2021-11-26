@@ -25,10 +25,6 @@
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 	</PropertyGroup>
 
-	<PropertyGroup>
-		<DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
-	</PropertyGroup>
-	
 	<ItemGroup>
 		<None Include="..\README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
@@ -45,6 +41,7 @@
 		<Content Remove="package-lock.json" />
 		<Content Remove="package.json" />
 		<Content Remove="tsconfig.json" />
+		<Content Remove="wwwroot\intermediate.js" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -164,6 +161,14 @@
 			</Code>
 		</Task>
 	</UsingTask>
+
+	<ItemGroup>
+		<UpToDateCheckInput Include="@(InputStaticAssetsScripts)" Set="Scripts" />
+		<UpToDateCheckOutput Include="@(OutputStaticAssetsScripts)" Set="Scripts" />
+		<UpToDateCheckInput Include="@(InputStaticAssetsStyles)" Set="Styles" />
+		<UpToDateCheckOutput Include="@(OutputStaticAssetsStyles)" Set="Styles" />
+	</ItemGroup>
+
 	<Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
 		<Message Importance="high" Text="***** MakeDir wwwroot (M.B Scripts)" />
 		<MakeDir Directories="wwwroot" />
