@@ -1,6 +1,7 @@
 using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System;
 using System.Threading.Tasks;
 
 namespace Material.Blazor
@@ -21,6 +22,12 @@ namespace Material.Blazor
         /// Regular, fullwidth or fixed positioning/width.
         /// </summary>
         [Parameter] public MBMenuSurfacePositioning MenuSurfacePositioning { get; set; } = MBMenuSurfacePositioning.Regular;
+
+
+        /// <summary>
+        /// Called when the menu is closed.
+        /// </summary>
+        [Parameter] public Action OnMenuClosed { get; set; }
 
 
         private DotNetObjectReference<MBMenuSurface> ObjectReference { get; set; }
@@ -66,6 +73,11 @@ namespace Material.Blazor
         public void NotifyClosed()
         {
             IsOpen = false;
+
+            if (OnMenuClosed != null)
+            {
+                _ = InvokeAsync(OnMenuClosed);
+            }
         }
 
 

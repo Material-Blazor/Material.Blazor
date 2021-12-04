@@ -22,10 +22,10 @@
                 <MBIconButtonToggle @bind-Value="@ToggleOn"
                                     IconOff="arrow_drop_down"
                                     IconOn="arrow_drop_up"
-                                    @onclick="@OnMenuToggleAsync"
                                     @ref="@IconButtonToggle" />
                 <div class="mdc-menu-surface--anchor">
-                    <MBMenu @ref="Menu">
+                    <MBMenu OnMenuClosed="@OnMenuClosed"
+                            @ref="Menu">
                         @foreach (var itemsPerPage in ItemsPerPageSelection)
                         {
                             <MBListItem @key="@itemsPerPage"
