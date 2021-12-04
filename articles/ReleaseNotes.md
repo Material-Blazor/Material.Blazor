@@ -51,7 +51,7 @@ Released 2021-11-10
 
 <br />
 
-#### [2.0.0-rc.1](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-preview.9)
+#### [2.0.0-rc.1](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0-rc.1)
 2021-10-29
 
 **Updates**
