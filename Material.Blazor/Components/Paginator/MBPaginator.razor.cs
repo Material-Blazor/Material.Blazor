@@ -118,7 +118,25 @@ namespace Material.Blazor
         private string PositionText => PositionTextString(PageNumber);
         private bool PreviousDisabled => PageNumber <= 0;
         private string PositionTextString(int pageNumber) => $"{pageNumber * ItemsPerPage + 1:G0}-{Math.Min(ItemCount, (pageNumber + 1) * ItemsPerPage):G0} of {ItemCount:G0}";
-        private bool ToggleOn { get; set; }
+        
+        
+        private bool toggleOn;
+        private bool ToggleOn 
+        {
+            get => toggleOn;
+            set
+            {
+                if (value != toggleOn)
+                {
+                    toggleOn = value;
+
+                    if (toggleOn)
+                    {
+                        _ = InvokeAsync(async () => await Menu.ToggleAsync());
+                    }
+                }
+            }
+        }
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -126,7 +144,7 @@ namespace Material.Blazor
         {
             await base.OnInitializedAsync();
 
-            ConditionalCssClasses
+            _ = ConditionalCssClasses
                 .AddIf("no-border", () => !RequiresBorder);
 
             if (ItemsPerPage == 0)
@@ -157,21 +175,18 @@ namespace Material.Blazor
         }
 
 
-        private async Task OnMenuToggleAsync()
+        private void OnMenuItemClick(int itemsPerPage)
         {
-            if (ToggleOn)
-            {
-                await Menu.ToggleAsync();
-                ToggleOn = false;
-            }
+            double ratio = (double)ItemsPerPage / itemsPerPage;
+            BackingItemsPerPage = itemsPerPage;
+            BackingPageNumber = Convert.ToInt32(PageNumber * ratio);
         }
 
 
-        private void OnMenuItemClick(int itemsPerPage)
+        private void OnMenuClosed()
         {
-            double ratio = (double)ItemsPerPage / (double)itemsPerPage;
-            BackingItemsPerPage = itemsPerPage;
-            BackingPageNumber = Convert.ToInt32(PageNumber * ratio);
+            toggleOn = false;
+            _ = InvokeAsync(StateHasChanged);
         }
 
 
