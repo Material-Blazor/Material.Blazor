@@ -27,7 +27,7 @@ namespace Material.Blazor
         /// <summary>
         /// Called when the menu is closed.
         /// </summary>
-        [Parameter] public Action OnClosed { get; set; }
+        [Parameter] public Action OnMenuClosed { get; set; }
 
 
         private DotNetObjectReference<MBMenu> ObjectReference { get; set; }
@@ -74,9 +74,9 @@ namespace Material.Blazor
         {
             IsOpen = false;
 
-            if (OnClosed != null)
+            if (OnMenuClosed != null)
             {
-                _ = InvokeAsync(OnClosed);
+                _ = InvokeAsync(OnMenuClosed);
             }
         }
 

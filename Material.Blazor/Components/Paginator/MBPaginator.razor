@@ -24,7 +24,7 @@
                                     IconOn="arrow_drop_up"
                                     @ref="@IconButtonToggle" />
                 <div class="mdc-menu-surface--anchor">
-                    <MBMenu OnClosed="@OnMenuClosed"
+                    <MBMenu OnMenuClosed="@OnMenuClosed"
                             @ref="Menu">
                         @foreach (var itemsPerPage in ItemsPerPageSelection)
                         {
