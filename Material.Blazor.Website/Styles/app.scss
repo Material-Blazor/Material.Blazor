@@ -161,7 +161,7 @@
     /*
         Dynamic link underlining
     */
-    a:not(.mdc-deprecated-list-item) {
+    a:not(.mdc-deprecated-list-item):not(.mb-tooltip-anchor) {
         position: relative;
         box-shadow: inset 0 -2px 0 theme.$secondary;
         display: inline-flex;
@@ -171,13 +171,13 @@
         transition: 0.15s ease;
     }
 
-    a:not(.mdc-deprecated-list-item):hover {
+    a:not(.mdc-deprecated-list-item):not(.mb-tooltip-anchor):hover {
         box-shadow: none;
         color: theme.$on-secondary;
         text-decoration: none;
     }
 
-    a:not(.mdc-deprecated-list-item)::after {
+    a:not(.mdc-deprecated-list-item):not(.mb-tooltip-anchor)::after {
         content: "";
         background: theme.$secondary;
         position: absolute;
@@ -189,7 +189,7 @@
         transition: 0.15s ease;
     }
 
-    a:not(.mdc-deprecated-list-item):hover:after {
+    a:not(.mdc-deprecated-list-item):not(.mb-tooltip-anchor):hover:after {
         height: 100%;
     }
 

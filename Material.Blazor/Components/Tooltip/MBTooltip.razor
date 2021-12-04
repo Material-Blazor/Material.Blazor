@@ -3,21 +3,9 @@
 @inherits ComponentBase
 
 
-@if (TooltipType == MBTooltipType.Span)
-{
-    <span aria-describedby="mb-tooltip-@id">
-        @if (Target != null)
-        {
-            @Target
-        }
-    </span>
-}
-else
-{
-    <div aria-describedby="mb-tooltip-@id">
-        @if (Target != null)
-        {
-            @Target
-        }
-    </div>
-}
+<a class="mb-tooltip-anchor" aria-describedby="mb-tooltip-@id">
+    @if (Target != null)
+    {
+        @Target
+    }
+</a>
