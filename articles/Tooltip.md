@@ -21,7 +21,7 @@ The [MBTooltip](xref:C.MBTooltip) component gives you flexible tooltips that tak
 in your page and Content for the tooltip's content, e.g.:
 
 ```html
-<MBTooltip TooltipType="@MBTooltipType.Span">
+<MBTooltip>
     <Target>
         <span style="background-color: var(--mb-color-red-100);">This is the target span to be displayed in your razor page.</span>
     </Target>
@@ -30,6 +30,3 @@ in your page and Content for the tooltip's content, e.g.:
     </Content>
 </MBTooltip>
 ```
-
-This tooltip surrounds your `<Target>` with either a span or div depending on whether the `TooltipType` is `MBTooltipType.Span` or
-`MBTooltipType.Div` respectively.
