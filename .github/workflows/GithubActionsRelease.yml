@@ -26,6 +26,7 @@ env:
   projectWeb: 'Material.Blazor.Website.WebAssembly/Material.Blazor.Website.WebAssembly.csproj'
 
 jobs:
+
 ############################################################################################################
 # Run the test project. Should this fail, we don't perform any deploy action
 ############################################################################################################
@@ -149,6 +150,7 @@ jobs:
     needs: [test, version, branch]
 
     runs-on: windows-latest
+    if: (github.repository == 'Material-Blazor/Material.Blazor')
 
     steps:
     - name: Checkout repository under $GITHUB_WORKSPACE so the job can access it 🛎️

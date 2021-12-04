@@ -18,6 +18,9 @@ env:
   projectWeb: 'Material.Blazor.Website.WebAssembly/Material.Blazor.Website.WebAssembly.csproj'
 
 jobs:
+############################################################################################################
+# These jobs are used to gate actions
+############################################################################################################
   is-on-fork:
     name: Running on a fork?
     runs-on: ubuntu-latest
@@ -25,6 +28,7 @@ jobs:
     steps:
     - name: Nothing to see here
       run: echo ""
+
   is-on-material-blazor:
     name: Running on Material-Blazor/Material.Blazor?
     runs-on: ubuntu-latest
@@ -32,6 +36,7 @@ jobs:
     steps:
     - name: Nothing to see here
       run: echo ""
+
 ############################################################################################################
 # This job is only to display some CI information
 ############################################################################################################
