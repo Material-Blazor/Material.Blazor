@@ -25,7 +25,8 @@ Released 2021-??-??
 #### [2.0.1](https://github.com/Material-Blazor/Material.Blazor)
 Released 2021-12-04
 
-- Fixes bug in MBPaginator where menu for number of items per pages doesn't open
+- Fixes bug in MBPaginator where menu for number of items per pages doesn't open.
+- Updates tooltip markup to be Material Components Web 12, fixing a bug where tooltips failed to close when the anchor loses hover state.
 
 <br />
 
