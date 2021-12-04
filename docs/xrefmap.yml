@@ -7307,6 +7307,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBMenu.OnInitializedAsync
   nameWithType: MBMenu.OnInitializedAsync
+- uid: Material.Blazor.MBMenu.OnMenuClosed
+  name: OnMenuClosed
+  href: api/Material.Blazor.MBMenu.html#Material_Blazor_MBMenu_OnMenuClosed
+  commentId: P:Material.Blazor.MBMenu.OnMenuClosed
+  fullName: Material.Blazor.MBMenu.OnMenuClosed
+  nameWithType: MBMenu.OnMenuClosed
+- uid: Material.Blazor.MBMenu.OnMenuClosed*
+  name: OnMenuClosed
+  href: api/Material.Blazor.MBMenu.html#Material_Blazor_MBMenu_OnMenuClosed_
+  commentId: Overload:Material.Blazor.MBMenu.OnMenuClosed
+  isSpec: "True"
+  fullName: Material.Blazor.MBMenu.OnMenuClosed
+  nameWithType: MBMenu.OnMenuClosed
 - uid: Material.Blazor.MBMenu.ToggleAsync
   name: ToggleAsync()
   href: api/Material.Blazor.MBMenu.html#Material_Blazor_MBMenu_ToggleAsync
@@ -7410,6 +7423,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBMenuSurface.OnInitializedAsync
   nameWithType: MBMenuSurface.OnInitializedAsync
+- uid: Material.Blazor.MBMenuSurface.OnMenuClosed
+  name: OnMenuClosed
+  href: api/Material.Blazor.MBMenuSurface.html#Material_Blazor_MBMenuSurface_OnMenuClosed
+  commentId: P:Material.Blazor.MBMenuSurface.OnMenuClosed
+  fullName: Material.Blazor.MBMenuSurface.OnMenuClosed
+  nameWithType: MBMenuSurface.OnMenuClosed
+- uid: Material.Blazor.MBMenuSurface.OnMenuClosed*
+  name: OnMenuClosed
+  href: api/Material.Blazor.MBMenuSurface.html#Material_Blazor_MBMenuSurface_OnMenuClosed_
+  commentId: Overload:Material.Blazor.MBMenuSurface.OnMenuClosed
+  isSpec: "True"
+  fullName: Material.Blazor.MBMenuSurface.OnMenuClosed
+  nameWithType: MBMenuSurface.OnMenuClosed
 - uid: Material.Blazor.MBMenuSurface.ToggleAsync
   name: ToggleAsync()
   href: api/Material.Blazor.MBMenuSurface.html#Material_Blazor_MBMenuSurface_ToggleAsync

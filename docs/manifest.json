@@ -770,7 +770,7 @@
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "hSStGiWkC2G70We/vWuMJQEdriT4uyVHXglWCw9cbHs="
+          "hash": "1vsQMtm+xW9+aNpuEv2/LbU+tDtqBJHDG7en4mz4PFc="
         }
       },
       "is_incremental": false,
@@ -1694,7 +1694,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBMenu.html",
-          "hash": "zNkP5Jg9wonxjC9/gmOz+TJje1tCf3abDVwvAc39jAo="
+          "hash": "cKZQvnYcXft9zVap/QCw6SKXR9yA5A8a4zuhREzjDQM="
         }
       },
       "is_incremental": false,
@@ -1718,7 +1718,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBMenuSurface.html",
-          "hash": "wvNETbYTCxe8G0JyRJtaUaDwuZfaVR7gtpd8DMhcF9Q="
+          "hash": "nYDqSWiX6xNGSB07BJKBJ4fkl+asaPwYtIsE9s0z4fk="
         }
       },
       "is_incremental": false,
@@ -1814,7 +1814,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBPaginator.html",
-          "hash": "3NqO/3iCybG7SeqzAy4wWKU12Coq3N3R+odQsXAZbm8="
+          "hash": "aRrUoedP9zCptzbDpFkG+GpQfPeqqiZRCr6jCwZDyBY="
         }
       },
       "is_incremental": false,
@@ -2126,7 +2126,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBTooltip.html",
-          "hash": "n2+YsZRL775YweFXHeCk5soZqMEZESwj6sXHeQLrhWQ="
+          "hash": "G6Sm7/XXho4eIN6xjeIWD2QwVqM4fSGtM6Ry8Hp2eCI="
         }
       },
       "is_incremental": false,
@@ -2138,7 +2138,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBTooltipType.html",
-          "hash": "XFTsvx+QUWjUwLFDdjDKOZLNU2FjPS5jxM1ScplGYSE="
+          "hash": "2hpgrX9sbt3iokJhvC07tT+fykMj7fcgm0SmGjiM2rc="
         }
       },
       "is_incremental": false,
@@ -2222,7 +2222,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.ServiceCollectionExtensions.html",
-          "hash": "mJdq0XXykIWo0hOVMnS+TMnvD+aT6Q277XGUCBgJjno="
+          "hash": "zU1RDUF9InhCj74tJ2yRGx2fnk/H64xy/PAZNkxBxl8="
         }
       },
       "is_incremental": false,
@@ -2234,7 +2234,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.html",
-          "hash": "Zl5Ht7FZ3tzivAn9MalEVKrDVtu8CuxmiPV3ht/jk8A="
+          "hash": "9fn4N5sfjeSAfppF0HGVFpkIrn/jAe2TW0R86h01Tog="
         }
       },
       "is_incremental": false,
@@ -2306,7 +2306,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/DevelopmentEnvironment.html",
-          "hash": "B3eDol2DTOeI4Ra9HTa0bTMm6AFUxjCh2989/xLDC5Y="
+          "hash": "hW6Eh2OK83DUcvmhUEGgVRL00VD/uxc/lSM7c613m3Y="
         }
       },
       "is_incremental": false,
@@ -2342,7 +2342,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/Installation.html",
-          "hash": "zZXuTWnVUt8E1flfNiqJELJjdmmyppMD27Np4oW/Lmo="
+          "hash": "aJHo2DQZABl/jtJhYIP9udwHIfq2XyNaRagU6noiatU="
         }
       },
       "is_incremental": false,
@@ -2402,7 +2402,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/ReleaseNotes.html",
-          "hash": "fKU+2THVhoge3EqhdiCpKlQcKY0HTZugK4n3y3Lj6p4="
+          "hash": "HO+kOYHD49s5W1HwBHcRBraMhg2xvmVkG2S2rQpNnOM="
         }
       },
       "is_incremental": false,
@@ -2450,7 +2450,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/Toast.html",
-          "hash": "CCg3VkJRdybPFEx9qwm32tC9OG2cn7b5fwJbtedhPqo="
+          "hash": "vtKwZE1sW33LEFfiAxCfi764IrBDxaspH/QhARPN2L4="
         }
       },
       "is_incremental": false,
@@ -2462,7 +2462,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/Tooltip.html",
-          "hash": "TE/3nKQTnem0usRwhfkNLLHT57XtbeAy44k56aW/pks="
+          "hash": "Qx2EJsj9esLl0VLCK5RXSXN0KV8r9tGE+8LOZ0AC/TY="
         }
       },
       "is_incremental": false,
@@ -2676,7 +2676,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "NmWgJ2aOejLHzGROI3TegVV0kKZ7nvr0rJ4VfgSIg9M="
+          "hash": "JFpaE1zJDzVBcLRZxm+fH89Hia49CLKNlYhuNLSISFk="
         }
       },
       "is_incremental": false,

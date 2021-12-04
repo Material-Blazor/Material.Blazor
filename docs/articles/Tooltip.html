@@ -90,7 +90,7 @@ or <code>Tooltip=&quot;&lt;span style='color: lightblue;'&gt;a colored tooltip&l
 <h2 id="standalone-tooltips">Standalone Tooltips</h2>
 <p>The <a class="xref" href="../Material.Blazor/Components/Tooltip/MBTooltip.html">MBTooltip</a> component gives you flexible tooltips that take two renderfragments: Target to render
 in your page and Content for the tooltip's content, e.g.:</p>
-<pre><code class="lang-html">&lt;MBTooltip TooltipType=&quot;@MBTooltipType.Span&quot;&gt;
+<pre><code class="lang-html">&lt;MBTooltip&gt;
     &lt;Target&gt;
         &lt;span style=&quot;background-color: var(--mb-color-red-100);&quot;&gt;This is the target span to be displayed in your razor page.&lt;/span&gt;
     &lt;/Target&gt;
@@ -99,8 +99,6 @@ in your page and Content for the tooltip's content, e.g.:</p>
     &lt;/Content&gt;
 &lt;/MBTooltip&gt;
 </code></pre>
-<p>This tooltip surrounds your <code>&lt;Target&gt;</code> with either a span or div depending on whether the <code>TooltipType</code> is <code>MBTooltipType.Span</code> or
-<code>MBTooltipType.Div</code> respectively.</p>
 </article>
           </div>
           
