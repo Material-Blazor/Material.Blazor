@@ -22,7 +22,7 @@ Released 2021-??-??
 
 <br />
 
-#### [2.0.1](https://github.com/Material-Blazor/Material.Blazor)
+#### [2.0.1](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.1)
 Released 2021-12-04
 
 - Fixes bug in MBPaginator where menu for number of items per pages doesn't open.
@@ -30,7 +30,7 @@ Released 2021-12-04
 
 <br />
 
-#### [2.0.0](https://github.com/Material-Blazor/Material.Blazor)
+#### [2.0.0](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.0)
 Released 2021-11-10
 
 **Updates**
