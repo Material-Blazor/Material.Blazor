@@ -1,0 +1,129 @@
+﻿@page "/datepicker2"
+
+@inject IMBToastService ToastService
+
+@using Nager.Date
+
+
+
+<DemonstrationPage ComponentName="DatePicker"
+                   DemoComponent="@this"
+                   MinDensity="MBDensity.Minus4"
+                   Title="Date Picker Demonstration"
+                   RequiresDisableSelection="true">
+    <Description>
+        <p>
+            The Date Picker is a Plus components, using Material.Blazor's implementation of the <a href="https://material.io/components/pickers" target="_blank">Material Date Picker</a>.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Default value with SuppressDefaultValue set to false
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        The DatePicker component supports the entire range from <code>DateTime.MinValue</code> to <code>DateTime.MaxValue</code>. For a good user experience, remember to set minimum/maximum selectable value to meaningful values.
+                    </h3>
+
+                    <p>
+                        <MBDatePicker @bind-Value="@Default"
+                                      DateFormat="ddd MMM dd, yyyy"
+                                      Label="Default"
+                                      MaxDate="@Max"
+                                      MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
+                                      MinDate="@Min"
+                                      SelectInputStyle="MBSelectInputStyle.Outlined" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private DateTime _filled = DateTime.Today.AddMonths(1);
+    private DateTime Filled
+    {
+        get => _filled;
+        set
+        {
+            _filled = value;
+
+            ToastService.ShowToast(heading: "Filled Date Picker", message: $"Value: {_filled.ToLongDateString()}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private DateTime _outlined = DateTime.Today.AddMonths(1);
+    private DateTime Outlined
+    {
+        get => _outlined;
+        set
+        {
+            _outlined = value;
+
+            ToastService.ShowToast(heading: "Outlined Date Picker", message: $"Value: {_outlined.ToLongDateString()}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private DateTime _monWedFri = new DateTime(2021, 1, 8);
+    private DateTime MonWedFri
+    {
+        get => _monWedFri;
+        set
+        {
+            _monWedFri = value;
+
+            ToastService.ShowToast(heading: "Mon, Wed, Fri selectable", message: $"Value: {_monWedFri.ToLongDateString()}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private DateTime _englandBusinessDay = new DateTime(2021, 4, 6);
+    private DateTime EnglandBusinessDay
+    {
+        get => _englandBusinessDay;
+        set
+        {
+            _englandBusinessDay = value;
+
+            ToastService.ShowToast(heading: "England Business Day selectable", message: $"Value: {_englandBusinessDay.ToLongDateString()}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private DateTime _customStyle = new DateTime(2021, 1, 8);
+    private DateTime CustomStyle
+    {
+        get => _customStyle;
+        set
+        {
+            _customStyle = value;
+
+            ToastService.ShowToast(heading: "Custom Style", message: $"Value: {_customStyle.ToLongDateString()}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+    private DateTime _default = DateTime.Today;
+    private DateTime Default
+    {
+        get => _default;
+        set
+        {
+            _default = value;
+
+            ToastService.ShowToast(heading: "Default", message: $"Value: {_default.ToLongDateString()}", level: MBToastLevel.Success, showIcon: false);
+        }
+    }
+
+
+    private DateTime Min { get; set; } = new DateTime(1900, 1, 1);
+    private DateTime Max { get; set; } = new DateTime(2100, 12, 31);
+}
