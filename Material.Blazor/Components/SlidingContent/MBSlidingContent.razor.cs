@@ -78,7 +78,7 @@ namespace Material.Blazor
 
             if (Items != null)
             {
-                CurrentItem = Items.ElementAt(_itemIndex);
+                CurrentItem = Items.ElementAtOrDefault(_itemIndex);
             }
         }
 
