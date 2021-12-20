@@ -22,6 +22,13 @@ Released 2021-??-??
 
 <br />
 
+#### [2.0.2](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.2)
+Released TBD
+
+- Fixes bug in MBSlidingContent whereby setting the item index parameter out of range selects the first item of content rather than throwing an exception.
+
+<br />
+
 #### [2.0.1](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.1)
 Released 2021-12-04
 
