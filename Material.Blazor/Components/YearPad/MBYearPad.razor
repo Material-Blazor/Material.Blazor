@@ -1,0 +1,88 @@
+﻿@namespace Material.Blazor
+
+@inherits InputComponent<DateTime>
+
+
+<div @ref="ElementReference"
+     class="mdc-select @ActiveConditionalClasses @(@class)"
+     style="@style"
+     id="@id"
+     @attributes="@AttributesToSplat()">
+
+    <div class="mdc-select__anchor"
+         role="button"
+         aria-haspopup="@listboxId"
+         aria-expanded="false"
+         aria-disabled="@AppliedDisabled"
+         aria-labelledby="@labelId @selectedTextId">
+
+        @if (AppliedInputStyle == MBSelectInputStyle.Outlined)
+        {
+            <span class="mdc-notched-outline">
+                <span class="mdc-notched-outline__leading"></span>
+
+                @if (ShowLabel)
+                {
+                    <span class="mdc-notched-outline__notch">
+                        <span id="@labelId" class="mdc-floating-label mdc-floating-label--float-above">
+                            @Label
+                        </span>
+                    </span>
+                }
+
+                <span class="mdc-notched-outline__trailing"></span>
+            </span>
+        }
+        else
+        {
+            <span class="mdc-select__ripple"></span>
+
+            if (ShowLabel)
+            {
+                <span id="@labelId" class="mdc-floating-label mdc-floating-label--float-above">@Label</span>
+            }
+        }
+
+        <span class="mdc-select__selected-text-container">
+            <span id="@selectedTextId"
+                  class="mdc-select__selected-text"
+                  aria-disabled="@AppliedDisabled"
+                  style="@AdditionalStyle" />
+        </span>
+
+        <span class="mdc-select__dropdown-icon">
+            <svg class="mdc-select__dropdown-icon-graphic"
+                 viewBox="7 10 10 5" focusable="false">
+                <polygon class="mdc-select__dropdown-icon-inactive"
+                         stroke="none"
+                         fill-rule="evenodd"
+                         points="7 10 12 15 17 10">
+                </polygon>
+                <polygon class="mdc-select__dropdown-icon-active"
+                         stroke="none"
+                         fill-rule="evenodd"
+                         points="7 15 12 10 17 15">
+                </polygon>
+            </svg>
+        </span>
+
+        @if (AppliedInputStyle == MBSelectInputStyle.Filled)
+        {
+            <span class="mdc-line-ripple"></span>
+        }
+    </div>
+
+    <div id="@listboxId"
+         class="mdc-select__menu mdc-menu mdc-menu-surface mb-dp-menu__surface-adjust @MenuClass"
+         @ref="@MenuSurfaceElementReference">
+        <InternalYearPadPanel @bind-Value="@ComponentValue"
+                              DateFormat="@AppliedDateFormat"
+                              DateIsSelectable="@DateIsSelectable"
+                              DateSelectionCriteria="@DateSelectionCriteria"
+                              MaxDate="@CascadingDefaults.AppliedDatePickerDefaultMaxDate(MaxDate)"
+                              MinDate="@CascadingDefaults.AppliedDatePickerDefaultMinDate(MinDate)"
+                              Parent="@this"
+                              SuppressDefaultDate="@SuppressDefaultDate"
+                              @ref="Panel" />
+    </div>
+</div>

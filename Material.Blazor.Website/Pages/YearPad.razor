@@ -1,4 +1,4 @@
-﻿@page "/datepicker2"
+﻿@page "/yearpad"
 
 @inject IMBToastService ToastService
 
@@ -6,14 +6,14 @@
 
 
 
-<DemonstrationPage ComponentName="DatePicker"
+<DemonstrationPage ComponentName="YearPicker"
                    DemoComponent="@this"
                    MinDensity="MBDensity.Minus4"
-                   Title="Date Picker Demonstration"
+                   Title="Date Picker Broken YearPad Demonstration"
                    RequiresDisableSelection="true">
     <Description>
         <p>
-            The Date Picker is a Plus components, using Material.Blazor's implementation of the <a href="https://material.io/components/pickers" target="_blank">Material Date Picker</a>.
+            The Date Picker is a Plus component.
         </p>
     </Description>
 
@@ -22,15 +22,11 @@
             <MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Default value with SuppressDefaultValue set to false
+                        Pick the down arrow below and then scroll down in the year picker panel 3 or 4 times.
                     </h2>
 
-                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        The DatePicker component supports the entire range from <code>DateTime.MinValue</code> to <code>DateTime.MaxValue</code>. For a good user experience, remember to set minimum/maximum selectable value to meaningful values.
-                    </h3>
-
                     <p>
-                        <MBDatePicker @bind-Value="@Default"
+                        <MBYearPad @bind-Value="@Default"
                                       DateFormat="ddd MMM dd, yyyy"
                                       Label="Default"
                                       MaxDate="@Max"
