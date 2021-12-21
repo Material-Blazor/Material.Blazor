@@ -68,14 +68,32 @@ namespace Material.Blazor
         [Parameter] public string BadgeValue { get; set; }
 
 
+        private bool badgeExited;
         /// <summary>
         /// When true collapses the badge.
         /// </summary>
-        [Parameter] public bool BadgeExited { get; set; }
+        [Parameter]
+        public bool BadgeExited
+        {
+            get => badgeExited;
+            set
+            {
+                if (value != badgeExited)
+                {
+                    badgeExited = value;
+
+                    if (Badge != null)
+                    {
+                        Badge.SetExited(badgeExited);
+                    }
+                }
+            }
+        }
 
 
         private bool AppliedTouchTarget => CascadingDefaults.AppliedTouchTarget(TouchTarget);
         private ElementReference ElementReference { get; set; }
+        private MBBadge Badge { get; set; }
 
         private MBCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityCssClass(CascadingDefaults.AppliedIconButtonDensity(Density));
 

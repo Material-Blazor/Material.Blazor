@@ -36,5 +36,15 @@ namespace Material.Blazor
                 .AddIf("mb-badge--dot", () => BadgeStyle == MBBadgeStyle.Dot)
                 .AddIf("mb-badge--exited", () => Exited);
         }
+
+
+        /// <summary>
+        /// Sets the exited value and calls SHC.
+        /// </summary>
+        internal void SetExited(bool exited)
+        {
+            Exited = exited;
+            _ = InvokeAsync(StateHasChanged);
+        }
     }
 }
