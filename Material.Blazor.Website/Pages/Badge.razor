@@ -1,0 +1,91 @@
+﻿@page "/badge"
+
+@inject IMBToastService ToastService
+
+
+
+<DemonstrationPage ComponentName="Badge"
+                   DemoComponent="@this"
+                   Title="Badge Demonstration">
+    <Description>
+        <p>
+            Shows badges set in html elements and embedded in buttons, icon buttons and icon toggle buttons.
+        </p>
+    </Description>
+
+    <Controls>
+        <p><MBSwitch @bind-Value="@Exited" Label="Applies the 'mb-badge--exited' class" /></p>
+    </Controls>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Badges in HTML elements
+                    </h2>
+
+                    <p class="mdc-typography--body1">
+                        A badge must be the first element inside its parent div. The parent div must have both border and padding set to zero width.
+                    </p>
+
+                    <div style="height: 60px; width: 200px; background: var(--mb-color-blue-200); margin-top: 12px;">
+                        <MBBadge BadgeStyle="MBBadgeStyle.ValueBearing" Value="99+" Exited="@Exited" />
+                        <p class="mdc-typography--body1" style="margin-left: 12px; line-height: 60px;">Value Bearing badge</p>
+                    </div>
+
+                    <div style="height: 60px; width: 200px; background: var(--mb-color-blue-200); margin-top: 12px;">
+                        <MBBadge BadgeStyle="MBBadgeStyle.BlankFullSized" Exited="@Exited" />
+                        <p class="mdc-typography--body1" style="margin-left: 12px; line-height: 60px;">Blank Full Size badge</p>
+                    </div>
+
+                    <div style="height: 60px; width: 200px; background: var(--mb-color-blue-200); margin-top: 12px;">
+                         <MBBadge BadgeStyle="MBBadgeStyle.Dot" Exited="@Exited" />
+                         <p class="mdc-typography--body1" style="margin-left: 12px; line-height: 60px;">Dot badge</p>
+                    </div>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Button badges
+                    </h2>
+
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.Outlined"
+                                  Label="Outlined Button"
+                                  HasBadge="true"
+                                  BadgeValue="!"
+                                  BadgeExited="@Exited" />
+                    </p>
+
+                    <p>
+                        <MBIconButton Icon="fa-dog"
+                                      IconFoundry="@MBIconHelper.FAFoundry()"
+                                      HasBadge="true"
+                                      BadgeValue="!"
+                                      BadgeExited="@Exited" />
+                    </p>
+
+                    <p>
+                        <MBIconButtonToggle IconOff="mood"
+                                            IconOn="sentiment_dissatisfied"
+                                            HasBadge="true"
+                                            BadgeValue="!"
+                                            BadgeExited="@Exited" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private bool Exited { get; set; } = false;  
+}
