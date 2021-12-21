@@ -76,6 +76,9 @@ references:
 - uid: C.MBAutocompleteTextField
   name: MBAutocompleteTextField
   href: Material.Blazor/Components/AutocompleteTextField/MBAutoCompleteTextField.html
+- uid: C.MBBadge
+  name: MBBadge
+  href: Material.Blazor/Components/Badge/MBBadge.html
 - uid: C.MBBladeSet
   name: MBBladeSet
   href: Material.Blazor/Components/BladeSet/MBBladeSet.html
@@ -2234,6 +2237,88 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBAutocompleteTextField.ValidationMessageFor
   nameWithType: MBAutocompleteTextField.ValidationMessageFor
+- uid: Material.Blazor.MBBadge
+  name: MBBadge
+  href: api/Material.Blazor.MBBadge.html
+  commentId: T:Material.Blazor.MBBadge
+  fullName: Material.Blazor.MBBadge
+  nameWithType: MBBadge
+- uid: Material.Blazor.MBBadge.BadgeStyle
+  name: BadgeStyle
+  href: api/Material.Blazor.MBBadge.html#Material_Blazor_MBBadge_BadgeStyle
+  commentId: P:Material.Blazor.MBBadge.BadgeStyle
+  fullName: Material.Blazor.MBBadge.BadgeStyle
+  nameWithType: MBBadge.BadgeStyle
+- uid: Material.Blazor.MBBadge.BadgeStyle*
+  name: BadgeStyle
+  href: api/Material.Blazor.MBBadge.html#Material_Blazor_MBBadge_BadgeStyle_
+  commentId: Overload:Material.Blazor.MBBadge.BadgeStyle
+  isSpec: "True"
+  fullName: Material.Blazor.MBBadge.BadgeStyle
+  nameWithType: MBBadge.BadgeStyle
+- uid: Material.Blazor.MBBadge.Exited
+  name: Exited
+  href: api/Material.Blazor.MBBadge.html#Material_Blazor_MBBadge_Exited
+  commentId: P:Material.Blazor.MBBadge.Exited
+  fullName: Material.Blazor.MBBadge.Exited
+  nameWithType: MBBadge.Exited
+- uid: Material.Blazor.MBBadge.Exited*
+  name: Exited
+  href: api/Material.Blazor.MBBadge.html#Material_Blazor_MBBadge_Exited_
+  commentId: Overload:Material.Blazor.MBBadge.Exited
+  isSpec: "True"
+  fullName: Material.Blazor.MBBadge.Exited
+  nameWithType: MBBadge.Exited
+- uid: Material.Blazor.MBBadge.OnParametersSetAsync
+  name: OnParametersSetAsync()
+  href: api/Material.Blazor.MBBadge.html#Material_Blazor_MBBadge_OnParametersSetAsync
+  commentId: M:Material.Blazor.MBBadge.OnParametersSetAsync
+  fullName: Material.Blazor.MBBadge.OnParametersSetAsync()
+  nameWithType: MBBadge.OnParametersSetAsync()
+- uid: Material.Blazor.MBBadge.OnParametersSetAsync*
+  name: OnParametersSetAsync
+  href: api/Material.Blazor.MBBadge.html#Material_Blazor_MBBadge_OnParametersSetAsync_
+  commentId: Overload:Material.Blazor.MBBadge.OnParametersSetAsync
+  isSpec: "True"
+  fullName: Material.Blazor.MBBadge.OnParametersSetAsync
+  nameWithType: MBBadge.OnParametersSetAsync
+- uid: Material.Blazor.MBBadge.Value
+  name: Value
+  href: api/Material.Blazor.MBBadge.html#Material_Blazor_MBBadge_Value
+  commentId: P:Material.Blazor.MBBadge.Value
+  fullName: Material.Blazor.MBBadge.Value
+  nameWithType: MBBadge.Value
+- uid: Material.Blazor.MBBadge.Value*
+  name: Value
+  href: api/Material.Blazor.MBBadge.html#Material_Blazor_MBBadge_Value_
+  commentId: Overload:Material.Blazor.MBBadge.Value
+  isSpec: "True"
+  fullName: Material.Blazor.MBBadge.Value
+  nameWithType: MBBadge.Value
+- uid: Material.Blazor.MBBadgeStyle
+  name: MBBadgeStyle
+  href: api/Material.Blazor.MBBadgeStyle.html
+  commentId: T:Material.Blazor.MBBadgeStyle
+  fullName: Material.Blazor.MBBadgeStyle
+  nameWithType: MBBadgeStyle
+- uid: Material.Blazor.MBBadgeStyle.BlankFullSized
+  name: BlankFullSized
+  href: api/Material.Blazor.MBBadgeStyle.html#Material_Blazor_MBBadgeStyle_BlankFullSized
+  commentId: F:Material.Blazor.MBBadgeStyle.BlankFullSized
+  fullName: Material.Blazor.MBBadgeStyle.BlankFullSized
+  nameWithType: MBBadgeStyle.BlankFullSized
+- uid: Material.Blazor.MBBadgeStyle.Dot
+  name: Dot
+  href: api/Material.Blazor.MBBadgeStyle.html#Material_Blazor_MBBadgeStyle_Dot
+  commentId: F:Material.Blazor.MBBadgeStyle.Dot
+  fullName: Material.Blazor.MBBadgeStyle.Dot
+  nameWithType: MBBadgeStyle.Dot
+- uid: Material.Blazor.MBBadgeStyle.ValueBearing
+  name: ValueBearing
+  href: api/Material.Blazor.MBBadgeStyle.html#Material_Blazor_MBBadgeStyle_ValueBearing
+  commentId: F:Material.Blazor.MBBadgeStyle.ValueBearing
+  fullName: Material.Blazor.MBBadgeStyle.ValueBearing
+  nameWithType: MBBadgeStyle.ValueBearing
 - uid: Material.Blazor.MBBladeComponent`1
   name: MBBladeComponent<TParam>
   href: api/Material.Blazor.MBBladeComponent-1.html
@@ -2485,6 +2570,45 @@ references:
   commentId: T:Material.Blazor.MBButton
   fullName: Material.Blazor.MBButton
   nameWithType: MBButton
+- uid: Material.Blazor.MBButton.BadgeExited
+  name: BadgeExited
+  href: api/Material.Blazor.MBButton.html#Material_Blazor_MBButton_BadgeExited
+  commentId: P:Material.Blazor.MBButton.BadgeExited
+  fullName: Material.Blazor.MBButton.BadgeExited
+  nameWithType: MBButton.BadgeExited
+- uid: Material.Blazor.MBButton.BadgeExited*
+  name: BadgeExited
+  href: api/Material.Blazor.MBButton.html#Material_Blazor_MBButton_BadgeExited_
+  commentId: Overload:Material.Blazor.MBButton.BadgeExited
+  isSpec: "True"
+  fullName: Material.Blazor.MBButton.BadgeExited
+  nameWithType: MBButton.BadgeExited
+- uid: Material.Blazor.MBButton.BadgeStyle
+  name: BadgeStyle
+  href: api/Material.Blazor.MBButton.html#Material_Blazor_MBButton_BadgeStyle
+  commentId: P:Material.Blazor.MBButton.BadgeStyle
+  fullName: Material.Blazor.MBButton.BadgeStyle
+  nameWithType: MBButton.BadgeStyle
+- uid: Material.Blazor.MBButton.BadgeStyle*
+  name: BadgeStyle
+  href: api/Material.Blazor.MBButton.html#Material_Blazor_MBButton_BadgeStyle_
+  commentId: Overload:Material.Blazor.MBButton.BadgeStyle
+  isSpec: "True"
+  fullName: Material.Blazor.MBButton.BadgeStyle
+  nameWithType: MBButton.BadgeStyle
+- uid: Material.Blazor.MBButton.BadgeValue
+  name: BadgeValue
+  href: api/Material.Blazor.MBButton.html#Material_Blazor_MBButton_BadgeValue
+  commentId: P:Material.Blazor.MBButton.BadgeValue
+  fullName: Material.Blazor.MBButton.BadgeValue
+  nameWithType: MBButton.BadgeValue
+- uid: Material.Blazor.MBButton.BadgeValue*
+  name: BadgeValue
+  href: api/Material.Blazor.MBButton.html#Material_Blazor_MBButton_BadgeValue_
+  commentId: Overload:Material.Blazor.MBButton.BadgeValue
+  isSpec: "True"
+  fullName: Material.Blazor.MBButton.BadgeValue
+  nameWithType: MBButton.BadgeValue
 - uid: Material.Blazor.MBButton.ButtonStyle
   name: ButtonStyle
   href: api/Material.Blazor.MBButton.html#Material_Blazor_MBButton_ButtonStyle
@@ -2524,6 +2648,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBButton.DialogAction
   nameWithType: MBButton.DialogAction
+- uid: Material.Blazor.MBButton.HasBadge
+  name: HasBadge
+  href: api/Material.Blazor.MBButton.html#Material_Blazor_MBButton_HasBadge
+  commentId: P:Material.Blazor.MBButton.HasBadge
+  fullName: Material.Blazor.MBButton.HasBadge
+  nameWithType: MBButton.HasBadge
+- uid: Material.Blazor.MBButton.HasBadge*
+  name: HasBadge
+  href: api/Material.Blazor.MBButton.html#Material_Blazor_MBButton_HasBadge_
+  commentId: Overload:Material.Blazor.MBButton.HasBadge
+  isSpec: "True"
+  fullName: Material.Blazor.MBButton.HasBadge
+  nameWithType: MBButton.HasBadge
 - uid: Material.Blazor.MBButton.IconFoundry
   name: IconFoundry
   href: api/Material.Blazor.MBButton.html#Material_Blazor_MBButton_IconFoundry
@@ -6027,6 +6164,45 @@ references:
   commentId: T:Material.Blazor.MBIconButton
   fullName: Material.Blazor.MBIconButton
   nameWithType: MBIconButton
+- uid: Material.Blazor.MBIconButton.BadgeExited
+  name: BadgeExited
+  href: api/Material.Blazor.MBIconButton.html#Material_Blazor_MBIconButton_BadgeExited
+  commentId: P:Material.Blazor.MBIconButton.BadgeExited
+  fullName: Material.Blazor.MBIconButton.BadgeExited
+  nameWithType: MBIconButton.BadgeExited
+- uid: Material.Blazor.MBIconButton.BadgeExited*
+  name: BadgeExited
+  href: api/Material.Blazor.MBIconButton.html#Material_Blazor_MBIconButton_BadgeExited_
+  commentId: Overload:Material.Blazor.MBIconButton.BadgeExited
+  isSpec: "True"
+  fullName: Material.Blazor.MBIconButton.BadgeExited
+  nameWithType: MBIconButton.BadgeExited
+- uid: Material.Blazor.MBIconButton.BadgeStyle
+  name: BadgeStyle
+  href: api/Material.Blazor.MBIconButton.html#Material_Blazor_MBIconButton_BadgeStyle
+  commentId: P:Material.Blazor.MBIconButton.BadgeStyle
+  fullName: Material.Blazor.MBIconButton.BadgeStyle
+  nameWithType: MBIconButton.BadgeStyle
+- uid: Material.Blazor.MBIconButton.BadgeStyle*
+  name: BadgeStyle
+  href: api/Material.Blazor.MBIconButton.html#Material_Blazor_MBIconButton_BadgeStyle_
+  commentId: Overload:Material.Blazor.MBIconButton.BadgeStyle
+  isSpec: "True"
+  fullName: Material.Blazor.MBIconButton.BadgeStyle
+  nameWithType: MBIconButton.BadgeStyle
+- uid: Material.Blazor.MBIconButton.BadgeValue
+  name: BadgeValue
+  href: api/Material.Blazor.MBIconButton.html#Material_Blazor_MBIconButton_BadgeValue
+  commentId: P:Material.Blazor.MBIconButton.BadgeValue
+  fullName: Material.Blazor.MBIconButton.BadgeValue
+  nameWithType: MBIconButton.BadgeValue
+- uid: Material.Blazor.MBIconButton.BadgeValue*
+  name: BadgeValue
+  href: api/Material.Blazor.MBIconButton.html#Material_Blazor_MBIconButton_BadgeValue_
+  commentId: Overload:Material.Blazor.MBIconButton.BadgeValue
+  isSpec: "True"
+  fullName: Material.Blazor.MBIconButton.BadgeValue
+  nameWithType: MBIconButton.BadgeValue
 - uid: Material.Blazor.MBIconButton.Density
   name: Density
   href: api/Material.Blazor.MBIconButton.html#Material_Blazor_MBIconButton_Density
@@ -6040,6 +6216,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBIconButton.Density
   nameWithType: MBIconButton.Density
+- uid: Material.Blazor.MBIconButton.HasBadge
+  name: HasBadge
+  href: api/Material.Blazor.MBIconButton.html#Material_Blazor_MBIconButton_HasBadge
+  commentId: P:Material.Blazor.MBIconButton.HasBadge
+  fullName: Material.Blazor.MBIconButton.HasBadge
+  nameWithType: MBIconButton.HasBadge
+- uid: Material.Blazor.MBIconButton.HasBadge*
+  name: HasBadge
+  href: api/Material.Blazor.MBIconButton.html#Material_Blazor_MBIconButton_HasBadge_
+  commentId: Overload:Material.Blazor.MBIconButton.HasBadge
+  isSpec: "True"
+  fullName: Material.Blazor.MBIconButton.HasBadge
+  nameWithType: MBIconButton.HasBadge
 - uid: Material.Blazor.MBIconButton.Icon
   name: Icon
   href: api/Material.Blazor.MBIconButton.html#Material_Blazor_MBIconButton_Icon
@@ -6098,6 +6287,45 @@ references:
   commentId: T:Material.Blazor.MBIconButtonToggle
   fullName: Material.Blazor.MBIconButtonToggle
   nameWithType: MBIconButtonToggle
+- uid: Material.Blazor.MBIconButtonToggle.BadgeExited
+  name: BadgeExited
+  href: api/Material.Blazor.MBIconButtonToggle.html#Material_Blazor_MBIconButtonToggle_BadgeExited
+  commentId: P:Material.Blazor.MBIconButtonToggle.BadgeExited
+  fullName: Material.Blazor.MBIconButtonToggle.BadgeExited
+  nameWithType: MBIconButtonToggle.BadgeExited
+- uid: Material.Blazor.MBIconButtonToggle.BadgeExited*
+  name: BadgeExited
+  href: api/Material.Blazor.MBIconButtonToggle.html#Material_Blazor_MBIconButtonToggle_BadgeExited_
+  commentId: Overload:Material.Blazor.MBIconButtonToggle.BadgeExited
+  isSpec: "True"
+  fullName: Material.Blazor.MBIconButtonToggle.BadgeExited
+  nameWithType: MBIconButtonToggle.BadgeExited
+- uid: Material.Blazor.MBIconButtonToggle.BadgeStyle
+  name: BadgeStyle
+  href: api/Material.Blazor.MBIconButtonToggle.html#Material_Blazor_MBIconButtonToggle_BadgeStyle
+  commentId: P:Material.Blazor.MBIconButtonToggle.BadgeStyle
+  fullName: Material.Blazor.MBIconButtonToggle.BadgeStyle
+  nameWithType: MBIconButtonToggle.BadgeStyle
+- uid: Material.Blazor.MBIconButtonToggle.BadgeStyle*
+  name: BadgeStyle
+  href: api/Material.Blazor.MBIconButtonToggle.html#Material_Blazor_MBIconButtonToggle_BadgeStyle_
+  commentId: Overload:Material.Blazor.MBIconButtonToggle.BadgeStyle
+  isSpec: "True"
+  fullName: Material.Blazor.MBIconButtonToggle.BadgeStyle
+  nameWithType: MBIconButtonToggle.BadgeStyle
+- uid: Material.Blazor.MBIconButtonToggle.BadgeValue
+  name: BadgeValue
+  href: api/Material.Blazor.MBIconButtonToggle.html#Material_Blazor_MBIconButtonToggle_BadgeValue
+  commentId: P:Material.Blazor.MBIconButtonToggle.BadgeValue
+  fullName: Material.Blazor.MBIconButtonToggle.BadgeValue
+  nameWithType: MBIconButtonToggle.BadgeValue
+- uid: Material.Blazor.MBIconButtonToggle.BadgeValue*
+  name: BadgeValue
+  href: api/Material.Blazor.MBIconButtonToggle.html#Material_Blazor_MBIconButtonToggle_BadgeValue_
+  commentId: Overload:Material.Blazor.MBIconButtonToggle.BadgeValue
+  isSpec: "True"
+  fullName: Material.Blazor.MBIconButtonToggle.BadgeValue
+  nameWithType: MBIconButtonToggle.BadgeValue
 - uid: Material.Blazor.MBIconButtonToggle.Density
   name: Density
   href: api/Material.Blazor.MBIconButtonToggle.html#Material_Blazor_MBIconButtonToggle_Density
@@ -6111,6 +6339,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBIconButtonToggle.Density
   nameWithType: MBIconButtonToggle.Density
+- uid: Material.Blazor.MBIconButtonToggle.HasBadge
+  name: HasBadge
+  href: api/Material.Blazor.MBIconButtonToggle.html#Material_Blazor_MBIconButtonToggle_HasBadge
+  commentId: P:Material.Blazor.MBIconButtonToggle.HasBadge
+  fullName: Material.Blazor.MBIconButtonToggle.HasBadge
+  nameWithType: MBIconButtonToggle.HasBadge
+- uid: Material.Blazor.MBIconButtonToggle.HasBadge*
+  name: HasBadge
+  href: api/Material.Blazor.MBIconButtonToggle.html#Material_Blazor_MBIconButtonToggle_HasBadge_
+  commentId: Overload:Material.Blazor.MBIconButtonToggle.HasBadge
+  isSpec: "True"
+  fullName: Material.Blazor.MBIconButtonToggle.HasBadge
+  nameWithType: MBIconButtonToggle.HasBadge
 - uid: Material.Blazor.MBIconButtonToggle.IconFoundry
   name: IconFoundry
   href: api/Material.Blazor.MBIconButtonToggle.html#Material_Blazor_MBIconButtonToggle_IconFoundry

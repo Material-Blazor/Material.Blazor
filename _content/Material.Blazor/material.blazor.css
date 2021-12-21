@@ -885,6 +885,58 @@
   min-height: 1rem;
 }
 
+:root {
+  --mb-badge-background-color: var(--mb-color-red-700);
+  --mb-badge-color: var(--mb-color-on-red-700);
+}
+
+.mb-badge-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mdc-icon-button .mb-badge-container {
+  top: 4px;
+  left: -4px;
+}
+
+.mb-badge {
+  display: inline-flex;
+  position: relative;
+  float: right;
+  align-items: center;
+  justify-content: center;
+  top: -10px;
+  right: -10px;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: var(--mb-badge-background-color);
+  color: var(--mb-badge-color);
+  transition: 135ms 0ms cubic-bezier(0.4, 0, 1, 1);
+  z-index: 2;
+}
+.mb-badge.mb-badge--dot {
+  top: -5px;
+  right: -5px;
+  min-width: 10px;
+  height: 10px;
+  border-radius: 5px;
+}
+.mb-badge.mb-badge--exited {
+  -webkit-transform: scale(0);
+  transform: scale(0);
+  opacity: 0;
+}
+
+.mb-badge-value {
+  padding: 0px 6px;
+}
+
 mb-bladeset {
   display: grid;
   grid-template-columns: auto min-content;
