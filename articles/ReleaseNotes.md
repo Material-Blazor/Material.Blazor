@@ -22,7 +22,7 @@ Released 2021-??-??
 
 <br />
 
-#### [2.1](https://github.com/Material-Blazor/Material.Blazor/tree/2.1)
+#### [2.1.0](https://github.com/Material-Blazor/Material.Blazor/tree/2.1.0)
 Released 2021-12-21
 
 **Updates**
