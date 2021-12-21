@@ -15,19 +15,21 @@
     </ul>
 
     <div class="mb-dp-year-pad">
-        <Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize Items="YearsInGroupsOfFourYP" OverscanCount="10" ItemSize="36">
+        <Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize Items="YearsInGroupsOfFourYP" OverscanCount="10" ItemSize="50">
             <ItemContent Context="group">
-                @foreach (var year in group)
-                {
-                    <InternalYearPadYearButton CurrentYear="@StartOfDisplayMonth.Year"
-                                              CurrentYearId="@currentYearId"
-                                              DisplayYear="@year"
-                                              @key="@year"
-                                              MaxDate="@MaxDate"
-                                              MinDate="@MinDate"
-                                              OnItemClickAsync="@OnYearItemClick"
-                                              type="button" />
-                }
+                <div style="height: 50px !important; max-height: 50px !important; min-height: 50px !important;">
+                    @foreach (var year in group)
+                    {
+                        <InternalYearPadYearButton CurrentYear="@StartOfDisplayMonth.Year"
+                                               CurrentYearId="@currentYearId"
+                                               DisplayYear="@year"
+                                               @key="@year"
+                                               MaxDate="@MaxDate"
+                                               MinDate="@MinDate"
+                                               OnItemClickAsync="@OnYearItemClick"
+                                               type="button" />
+                    }
+                </div>
             </ItemContent>
         </Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize>
     </div>
