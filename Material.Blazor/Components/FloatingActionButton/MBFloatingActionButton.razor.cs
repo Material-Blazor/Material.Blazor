@@ -54,7 +54,7 @@ namespace Material.Blazor
 
         private bool exited;
         /// <summary>
-        /// Leading icon if false, otherwise trailine, and only applied to the extended variant.
+        /// When true collapses the FAB.
         /// </summary>
         [Parameter]
         public bool Exited

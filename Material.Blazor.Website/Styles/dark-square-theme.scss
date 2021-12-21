@@ -49,6 +49,8 @@ $selected-row-color-hover: darken($selected-row-color, 4%);
 $alpha: 0.4;
 
 :root {
+    --mb-badge-background-color: var(--mb-color-red-200);
+    --mb-badge-color: var(--mb-color-on-red-200);
     --mb-grid-border-color: #{$border-color} !important;
     --mb-grid-header-color: #{$header-color} !important;
     --mb-grid-group-row-color: rgba(#{red($group-row-color)}, #{green($group-row-color)}, #{blue($group-row-color)}, #{$alpha}) !important;

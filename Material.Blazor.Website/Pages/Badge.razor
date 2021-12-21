@@ -1,0 +1,90 @@
+﻿@page "/badge"
+
+@inject IMBToastService ToastService
+
+
+
+<DemonstrationPage ComponentName="Badge"
+                   DemoComponent="@this"
+                   Title="Badge Demonstration">
+    <Description>
+        <p>
+            Shows badges set in html elements and embedded in buttons, icon buttons and icon toggle buttons.
+        </p>
+    </Description>
+
+    <Controls>
+        <p><MBSwitch @bind-Value="@Exited" Label="Applies the 'mb-badge--exited' class" /></p>
+    </Controls>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Badges in html elements
+                    </h2>
+
+                    <p>
+                        <div style="height: 60px; width: 200px; background: var(--mb-color-blue-200);">
+                            <MBBadge BadgeStyle="MBBadgeStyle.ValueBearing" Value="99+" Exited="@Exited" />
+                        </div>
+                    </p>
+
+                    <p>
+                        <div style="height: 60px; width: 200px; background: var(--mb-color-blue-200);">
+                            <MBBadge BadgeStyle="MBBadgeStyle.BlankFullSized" Exited="@Exited" />
+                        </div>
+                    </p>
+
+                    <p>
+                        <div style="height: 60px; width: 200px; background: var(--mb-color-blue-200);">
+                            <MBBadge BadgeStyle="MBBadgeStyle.Dot" Exited="@Exited" />
+                        </div>
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Button badges
+                    </h2>
+
+                    <p>
+                        <MBButton ButtonStyle="@MBButtonStyle.Outlined"
+                                  Label="Outlined Button"
+                                  HasBadge="true"
+                                  BadgeValue="!"
+                                  BadgeExited="@Exited" />
+                    </p>
+
+                    <p>
+                        <MBIconButton Icon="fa-dog"
+                                      IconFoundry="@MBIconHelper.FAFoundry()"
+                                      HasBadge="true"
+                                      BadgeValue="!"
+                                      BadgeExited="@Exited" />
+                    </p>
+
+                    <p>
+                        <MBIconButtonToggle IconOff="mood"
+                                            IconOn="sentiment_dissatisfied"
+                                            HasBadge="true"
+                                            BadgeValue="!"
+                                            BadgeExited="@Exited" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private bool Exited { get; set; } = true;  
+}
