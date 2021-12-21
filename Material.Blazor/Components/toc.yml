@@ -19,6 +19,9 @@
 - name: MBAutocompleteTextField
   topicUid: C.MBAutocompleteTextField
 
+- name: MBBadge
+  topicUid: C.MBBadge
+
 - name: MBBladeSet
   topicUid: C.MBBladeSet
 

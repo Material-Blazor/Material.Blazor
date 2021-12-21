@@ -49,8 +49,8 @@ $selected-row-color-hover: darken($selected-row-color, 4%);
 $alpha: 0.4;
 
 :root {
-    --mb-badge-background-color: var(--mb-color-red-200);
-    --mb-badge-color: var(--mb-color-on-red-200);
+    --mb-badge-background-color: var(--mb-color-red-200) !important;
+    --mb-badge-color: var(--mb-color-on-red-200) !important;
     --mb-grid-border-color: #{$border-color} !important;
     --mb-grid-header-color: #{$header-color} !important;
     --mb-grid-group-row-color: rgba(#{red($group-row-color)}, #{green($group-row-color)}, #{blue($group-row-color)}, #{$alpha}) !important;
@@ -62,15 +62,6 @@ $alpha: 0.4;
     --mb-grid-selected-row-color: rgba(#{red($selected-row-color)}, #{green($selected-row-color)}, #{blue($selected-row-color)}, #{$alpha}) !important;
     --mb-grid-selected-row-color-hover: rgba(#{red($selected-row-color-hover)}, #{green($selected-row-color-hover)}, #{blue($selected-row-color-hover)}, #{$alpha}) !important;
 }
-
-/*:root {
-    --mb-grid-border-color: var(--mb-color-blue-grey-500) !important;
-    --mb-grid-header-color: var(--mb-color-blue-grey-900) !important;
-    --mb-grid-group-row-color: var(--mb-color-blue-900) !important;
-    --mb-grid-odd-row-color: var(--mb-color-yellow-900) !important;
-    --mb-grid-even-row-color: var(--mb-color-orange-900) !important;
-    --mb-grid-selected-row-color: var(--mb-color-teal-900) !important;
-}*/
 
 .mdc-top-app-bar {
     @include top-app-bar.fill-color(#37474f);

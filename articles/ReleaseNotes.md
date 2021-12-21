@@ -22,10 +22,16 @@ Released 2021-??-??
 
 <br />
 
-#### [2.0.2](https://github.com/Material-Blazor/Material.Blazor/tree/2.0.2)
-Released 2021-12-20
+#### [2.1](https://github.com/Material-Blazor/Material.Blazor/tree/2.1)
+Released 2021-12-21
 
-- Fixes bug in MBSlidingContent whereby setting the item index parameter out of range selects the first item of content rather than throwing an exception.
+**Updates**
+
+- Fixes bug in `MBSlidingContent` whereby setting the item index parameter out of range selects the first item of content rather than throwing an exception.
+
+**New components**
+
+- `MBBadge` bring badges to HTML `<div>` elements and via parameters to `MBButton`, `MBIconButton` and `MBIconButtonToggle`.
 
 <br />
 
