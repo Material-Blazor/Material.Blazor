@@ -15,9 +15,9 @@
     </ul>
 
     <div class="mb-dp-year-pad">
-        <Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize Items="YearsInGroupsOfFourYP" OverscanCount="10" ItemSize="50">
+        <Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize Items="YearsInGroupsOfFourYP" OverscanCount="10" ItemSize="48">
             <ItemContent Context="group">
-                <div style="height: 50px !important; max-height: 50px !important; min-height: 50px !important;">
+                <div style="height: 48px !important; max-height: 48px !important; min-height: 48px !important; overflow: hidden;">
                     @foreach (var year in group)
                     {
                         <InternalYearPadYearButton CurrentYear="@StartOfDisplayMonth.Year"
