@@ -26,7 +26,7 @@
                     </h2>
 
                     <p>
-                        <MBYearPad @bind-Value="@Default"
+                        <MBYearPadPanel @bind-Value="@Default"
                                       DateFormat="ddd MMM dd, yyyy"
                                       Label="Default"
                                       MaxDate="@Max"
@@ -47,15 +47,13 @@
                     </h2>
 
                     <p>
-                        <InternalYearPadPanel   @bind-Value="@Default"
-                                                DateFormat="@AppliedDateFormat"
-                                                DateIsSelectable="@DateIsSelectable"
-                                                DateSelectionCriteria="@DateSelectionCriteria"
-                                                MaxDate="@CascadingDefaults.AppliedDatePickerDefaultMaxDate(MaxDate)"
-                                                MinDate="@CascadingDefaults.AppliedDatePickerDefaultMinDate(MinDate)"
-                                                Parent="@this"
-                                                SuppressDefaultDate="@SuppressDefaultDate"
-                                                @ref="Panel" / />
+                        <MBYearPad @bind-Value="@Default"
+                                      DateFormat="ddd MMM dd, yyyy"
+                                      Label="Default"
+                                      MaxDate="@Max"
+                                      MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
+                                      MinDate="@Min"
+                                      SelectInputStyle="MBSelectInputStyle.Outlined" />
                     </p>
                 </Primary>
             </MBCard>

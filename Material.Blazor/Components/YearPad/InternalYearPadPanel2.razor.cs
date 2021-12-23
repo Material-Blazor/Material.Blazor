@@ -7,37 +7,11 @@ using System.Threading.Tasks;
 
 namespace Material.Blazor.Internal
 {
-    internal static class GroupingExtensionYP
-    {
-        public static IEnumerable<T[]> InGroupsOfYP<T>(this IEnumerable<T> enumerable, int groupSize)
-        {
-            var group = new T[groupSize];
-            int index = 0;
-            foreach (var element in enumerable)
-            {
-                group[index] = element;
-                ++index;
-                if (index == groupSize)
-                {
-                    yield return group;
-                    index = 0;
-                    group = new T[groupSize];
-                }
-            }
-            if (index > 0)
-            {
-                // the last group has less than groupSize elements, therefore we need to return a trimmed array.
-                yield return group.Take(index).ToArray();
-            }
-        }
-    }
-
-
 
     /// <summary>
     /// For Material.Blazor internal use only.
     /// </summary>
-    public partial class InternalYearPadPanel : InputComponent<DateTime>
+    public partial class InternalYearPadPanel2 : InputComponent<DateTime>
     {
         /// <summary>
         /// Date selection criteria
@@ -75,7 +49,7 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// The parent date picker
         /// </summary>
-        [Parameter] public MBYearPad Parent { get; set; }
+        [Parameter] public MBYearPadPanel Parent { get; set; }
 
 
         /// <summary>
