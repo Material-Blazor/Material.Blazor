@@ -37,6 +37,29 @@
                 </Primary>
             </MBCard>
         </div>
+
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Pick the down arrow below and then scroll down in the year picker panel by clicking below the thumb. Try to scroll all the way to 2100.
+                    </h2>
+
+                    <p>
+                        <InternalYearPadPanel   @bind-Value="@Default"
+                                                DateFormat="@AppliedDateFormat"
+                                                DateIsSelectable="@DateIsSelectable"
+                                                DateSelectionCriteria="@DateSelectionCriteria"
+                                                MaxDate="@CascadingDefaults.AppliedDatePickerDefaultMaxDate(MaxDate)"
+                                                MinDate="@CascadingDefaults.AppliedDatePickerDefaultMinDate(MinDate)"
+                                                Parent="@this"
+                                                SuppressDefaultDate="@SuppressDefaultDate"
+                                                @ref="Panel" / />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
     </PageContent>
 </DemonstrationPage>
 
