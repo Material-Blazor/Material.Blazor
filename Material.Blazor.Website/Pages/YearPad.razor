@@ -22,38 +22,16 @@
             <MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Pick the down arrow below and then scroll down in the year picker panel by clicking below the thumb. Try to scroll all the way to 2100.
+                        Scroll down in the year picker panel by clicking below the thumb. Try to scroll all the way to 2100.
                     </h2>
 
                     <p>
-                        <MBYearPadPanel @bind-Value="@Default"
-                                      DateFormat="ddd MMM dd, yyyy"
-                                      Label="Default"
-                                      MaxDate="@Max"
-                                      MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
-                                      MinDate="@Min"
-                                      SelectInputStyle="MBSelectInputStyle.Outlined" />
-                    </p>
-                </Primary>
-            </MBCard>
-        </div>
-
-
-        <div class="mdc-layout-grid__cell--span-12">
-            <MBCard AutoStyled="true">
-                <Primary>
-                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Pick the down arrow below and then scroll down in the year picker panel by clicking below the thumb. Try to scroll all the way to 2100.
-                    </h2>
-
-                    <p>
-                        <MBYearPad @bind-Value="@Default"
-                                      DateFormat="ddd MMM dd, yyyy"
-                                      Label="Default"
-                                      MaxDate="@Max"
-                                      MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
-                                      MinDate="@Min"
-                                      SelectInputStyle="MBSelectInputStyle.Outlined" />
+                        <MBYearPad DateFormat="ddd MMM dd, yyyy"
+                                   Label="Default"
+                                   MaxDate="@Max"
+                                   MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
+                                   MinDate="@Min"
+                                   SelectInputStyle="MBSelectInputStyle.Outlined" />
                     </p>
                 </Primary>
             </MBCard>
