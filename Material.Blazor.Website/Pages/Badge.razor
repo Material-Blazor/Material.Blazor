@@ -136,6 +136,42 @@
                                         BadgeExited="@Exited"
                                         Label="Checkbox" />
                         </div>
+
+                        <div class="mdc-layout-grid__cell--span-6">
+                            <MBTextField @bind-Value="@TextFieldValue"
+                                         HasBadge="true"
+                                         BadgeValue="@ButtonValue"
+                                         BadgeExited="@Exited"
+                                         Label="Text Field" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-6">
+                            <MBTextField @bind-Value="@TextFieldValue"
+                                         HasBadge="true"
+                                         BadgeStyle="@MBBadgeStyle.Dot"
+                                         BadgeExited="@Exited"
+                                         Label="Text Field" />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-6">
+                            <MBSelect @bind-Value="@SelectValue"
+                                      Items="@KittenBreeds"
+                                      ItemValidation="@MBItemValidation.NoSelection"
+                                      HasBadge="true"
+                                      BadgeValue="@ButtonValue"
+                                      BadgeExited="@Exited"
+                                      Label="Select"
+                                      SelectInputStyle="MBSelectInputStyle.Outlined" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-6">
+                            <MBSelect @bind-Value="@SelectValue"
+                                      Items="@KittenBreeds"
+                                      ItemValidation="@MBItemValidation.NoSelection"
+                                      HasBadge="true"
+                                      BadgeStyle="@MBBadgeStyle.Dot"
+                                      BadgeExited="@Exited"
+                                      Label="Select"
+                                      SelectInputStyle="MBSelectInputStyle.Outlined" />
+                        </div>
                     </div>
                 </Primary>
             </MBCard>
@@ -150,4 +186,14 @@
     private string GeneralValue { get; set; } = "99+";  
     private string ButtonValue { get; set; } = "!";
     private bool ToggleValue { get; set; } = false;
+    private string TextFieldValue { get; set; } = "Text field value";
+
+    private string SelectValue { get; set; } = KittenBreeds[0].SelectedValue;
+
+    private static MBSelectElement<string>[] KittenBreeds = new MBSelectElement<string>[]
+    {
+        new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+    };
 }
