@@ -62,10 +62,26 @@ namespace Material.Blazor
         [Parameter] public MBBadgeStyle BadgeStyle { get; set; } = MBBadgeStyle.ValueBearing;
 
 
+        private string badgeValue;
         /// <summary>
         /// The button's density.
         /// </summary>
-        [Parameter] public string BadgeValue { get; set; }
+        [Parameter] public string BadgeValue
+        {
+            get => badgeValue;
+            set
+            {
+                if (value != badgeValue)
+                {
+                    badgeValue = value;
+
+                    if (Badge != null)
+                    {
+                        Badge.SetValueAndExited(badgeValue, badgeExited);
+                    }
+                }
+            }
+        }
 
 
         private bool badgeExited;
@@ -84,7 +100,7 @@ namespace Material.Blazor
 
                     if (Badge != null)
                     {
-                        Badge.SetExited(badgeExited);
+                        Badge.SetValueAndExited(badgeValue, badgeExited);
                     }
                 }
             }
