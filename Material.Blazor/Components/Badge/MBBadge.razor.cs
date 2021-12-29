@@ -28,9 +28,9 @@ namespace Material.Blazor
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-        protected override async Task OnParametersSetAsync()
+        protected override async Task OnInitializedAsync()
         {
-            await base.OnParametersSetAsync();
+            await base.OnInitializedAsync();
 
             ConditionalCssClasses
                 .AddIf("mb-badge--dot", () => BadgeStyle == MBBadgeStyle.Dot)
@@ -41,8 +41,9 @@ namespace Material.Blazor
         /// <summary>
         /// Sets the exited value and calls SHC.
         /// </summary>
-        internal void SetExited(bool exited)
+        internal void SetValueAndExited(string value, bool exited)
         {
+            Value = value;
             Exited = exited;
             _ = InvokeAsync(StateHasChanged);
         }

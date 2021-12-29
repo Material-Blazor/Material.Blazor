@@ -1,6 +1,12 @@
 ﻿@use "@material/textfield";
 
 
+.mb-field__wrapper {
+    .mdc-text-field {
+        position: static !important;
+    }
+}
+
 .mdc-text-field {
     &.dense--5--tf--filled,
     &.dense--4--tf--filled {
