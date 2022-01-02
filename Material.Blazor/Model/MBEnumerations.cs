@@ -425,8 +425,9 @@ namespace Material.Blazor
         Determinate,
 
         /// <summary>
-        /// A reversed determinate linear progress with a value from 0 to 1.
+        /// Reversed linear progress is obsolete in Material Components Web 13, replaced with an RTL detection. Remove this for MB v3.0.0.
         /// </summary>
+        [Obsolete]
         ReversedDeterminate,
 
         /// <summary>
