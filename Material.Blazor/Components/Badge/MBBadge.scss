@@ -1,0 +1,80 @@
+﻿@use "sass:math";
+@use '@material/theme/color-palette';
+
+$background-color: color-palette.$red-500;
+$color: color-palette.$blue-grey-100;
+
+$regular-size: 20px;
+$regular-border-radius: math.div($regular-size, 2);
+$regular-offset: math.div($regular-size, 2);
+
+$dot-size: 10px;
+$dot-border-radius: math.div($dot-size, 2);
+$dot-offset: math.div($dot-size, 2);
+
+$icon-button-offset: 4px;
+
+:root {
+    --mb-badge-background-color: var(--mb-color-red-700);
+    --mb-badge-color: var(--mb-color-on-red-700);
+}
+
+.mb-badge-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.mdc-icon-button {
+    .mb-badge-container {
+        top: $icon-button-offset;
+        left: -$icon-button-offset;
+    }
+}
+
+.mb-badge {
+    display: inline-flex;
+    position: relative;
+    float: right;
+    align-items: center;
+    justify-content: center;
+    top: -$regular-offset;
+    right: -$regular-offset;
+    min-width: $regular-size;
+    height: $regular-size;
+    border-radius: $regular-border-radius;
+    border: none;
+    background-color: var(--mb-badge-background-color);
+    color: var(--mb-badge-color);
+    transition: 50ms 0ms cubic-bezier(0.4, 0, 1, 1);
+    text-transform: none;
+    user-select: none;
+    z-index: 2;
+
+    &.mb-badge--dot {
+        top: -$dot-offset;
+        right: -$dot-offset;
+        min-width: $dot-size;
+        height: $dot-size;
+        border-radius: $dot-border-radius;
+    }
+
+    &.mb-badge--exited {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.mb-badge-value {
+    padding: 0px 6px;
+}
+
+.mb-badge-wrapper {
+    position: relative;
+    width: 100%;
+    height: 0px;
+}

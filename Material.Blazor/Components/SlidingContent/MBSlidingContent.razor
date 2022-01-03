@@ -7,7 +7,7 @@
 <div class="@VisibilityClass @(@class)"
      style="@style" >
     <div class="@ContentClass">
-        @if (Content != null)
+        @if (Content != null && CurrentItem != null)
         {
             @Content(CurrentItem)
         }

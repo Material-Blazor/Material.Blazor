@@ -1,0 +1,199 @@
+﻿@page "/badge"
+
+@inject IMBToastService ToastService
+
+
+
+<DemonstrationPage ComponentName="Badge"
+                   DemoComponent="@this"
+                   Title="Badge Demonstration">
+    <Description>
+        <p>
+            Shows badges set in html elements and embedded in buttons, icon buttons and icon toggle buttons.
+        </p>
+    </Description>
+
+    <Controls>
+        <div class="mdc-layout-grid__inner">
+            <div class="mdc-layout-grid__cell--span-4">
+                <MBSwitch @bind-Value="@Exited"
+                          Label="Applies the 'mb-badge--exited' class" />
+            </div>
+
+            <div class="mdc-layout-grid__cell--span-4">
+                <MBTextField @bind-Value="@GeneralValue"
+                             Label="Value on General Badges" />
+            </div>
+
+            <div class="mdc-layout-grid__cell--span-4">
+                <MBTextField @bind-Value="@ButtonValue"
+                             Label="Value on Buttons/Checkboxes" />
+            </div>
+        </div>
+    </Controls>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Badges in HTML elements
+                    </h2>
+
+                    <p class="mdc-typography--body1">
+                        A badge must be the first element inside its parent div. The parent div must have both border and padding set to zero width.
+                    </p>
+
+                    <div style="height: 60px; width: 200px; background: var(--mb-color-blue-200); margin-top: 12px;">
+                        <MBBadge BadgeStyle="MBBadgeStyle.ValueBearing" Value="@GeneralValue" Exited="@Exited" />
+                        <p class="mdc-typography--body1" style="margin-left: 12px; line-height: 60px;">Value Bearing badge</p>
+                    </div>
+
+                    <div style="height: 60px; width: 200px; background: var(--mb-color-blue-200); margin-top: 12px;">
+                        <MBBadge BadgeStyle="MBBadgeStyle.BlankFullSized" Exited="@Exited" />
+                        <p class="mdc-typography--body1" style="margin-left: 12px; line-height: 60px;">Blank Full Size badge</p>
+                    </div>
+
+                    <div style="height: 60px; width: 200px; background: var(--mb-color-blue-200); margin-top: 12px;">
+                         <MBBadge BadgeStyle="MBBadgeStyle.Dot" Exited="@Exited" />
+                         <p class="mdc-typography--body1" style="margin-left: 12px; line-height: 60px;">Dot badge</p>
+                    </div>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-8">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Embedded in buttons & checkbox components
+                    </h2>
+
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell--span-6">
+                            <MBButton ButtonStyle="@MBButtonStyle.Outlined"
+                                      Label="Outlined Button"
+                                      HasBadge="true"
+                                      BadgeValue="@ButtonValue"
+                                      BadgeExited="@Exited" />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-6">
+                            <MBButton ButtonStyle="@MBButtonStyle.Outlined"
+                                      Label="Outlined Button"
+                                      HasBadge="true"
+                                      BadgeStyle="@MBBadgeStyle.Dot"
+                                      BadgeExited="@Exited" />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-6">
+                            <MBIconButton Icon="fa-dog"
+                                          IconFoundry="@MBIconHelper.FAFoundry()"
+                                          HasBadge="true"
+                                          BadgeValue="@ButtonValue"
+                                          BadgeExited="@Exited" />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-6">
+                            <MBIconButton Icon="fa-dog"
+                                          IconFoundry="@MBIconHelper.FAFoundry()"
+                                          HasBadge="true"
+                                          BadgeStyle="@MBBadgeStyle.Dot"
+                                          BadgeExited="@Exited" />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-6">
+                            <MBIconButtonToggle @bind-Value="@ToggleValue"
+                                                IconOff="mood"
+                                                IconOn="sentiment_dissatisfied"
+                                                HasBadge="true"
+                                                BadgeValue="@ButtonValue"
+                                                BadgeExited="@Exited" />
+                        </div>
+
+
+                        <div class="mdc-layout-grid__cell--span-6">
+                            <MBIconButtonToggle @bind-Value="@ToggleValue"
+                                                IconOff="mood"
+                                                IconOn="sentiment_dissatisfied"
+                                                HasBadge="true"
+                                                BadgeStyle="@MBBadgeStyle.Dot"
+                                                BadgeExited="@Exited" />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-6">
+                            <MBCheckbox @bind-Value="@ToggleValue"
+                                        HasBadge="true"
+                                        BadgeValue="@ButtonValue"
+                                        BadgeExited="@Exited"
+                                        Label="Checkbox" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-6">
+                            <MBCheckbox @bind-Value="@ToggleValue"
+                                        HasBadge="true"
+                                        BadgeStyle="@MBBadgeStyle.Dot"
+                                        BadgeExited="@Exited"
+                                        Label="Checkbox" />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-6">
+                            <MBTextField @bind-Value="@TextFieldValue"
+                                         HasBadge="true"
+                                         BadgeValue="@ButtonValue"
+                                         BadgeExited="@Exited"
+                                         Label="Text Field" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-6">
+                            <MBTextField @bind-Value="@TextFieldValue"
+                                         HasBadge="true"
+                                         BadgeStyle="@MBBadgeStyle.Dot"
+                                         BadgeExited="@Exited"
+                                         Label="Text Field" />
+                        </div>
+
+                        <div class="mdc-layout-grid__cell--span-6">
+                            <MBSelect @bind-Value="@SelectValue"
+                                      Items="@KittenBreeds"
+                                      ItemValidation="@MBItemValidation.NoSelection"
+                                      HasBadge="true"
+                                      BadgeValue="@ButtonValue"
+                                      BadgeExited="@Exited"
+                                      Label="Select"
+                                      SelectInputStyle="MBSelectInputStyle.Outlined" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-6">
+                            <MBSelect @bind-Value="@SelectValue"
+                                      Items="@KittenBreeds"
+                                      ItemValidation="@MBItemValidation.NoSelection"
+                                      HasBadge="true"
+                                      BadgeStyle="@MBBadgeStyle.Dot"
+                                      BadgeExited="@Exited"
+                                      Label="Select"
+                                      SelectInputStyle="MBSelectInputStyle.Outlined" />
+                        </div>
+                    </div>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private bool Exited { get; set; } = false;  
+    private string GeneralValue { get; set; } = "99+";  
+    private string ButtonValue { get; set; } = "!";
+    private bool ToggleValue { get; set; } = false;
+    private string TextFieldValue { get; set; } = "Text field value";
+
+    private string SelectValue { get; set; } = KittenBreeds[0].SelectedValue;
+
+    private static MBSelectElement<string>[] KittenBreeds = new MBSelectElement<string>[]
+    {
+        new MBSelectElement<string> { SelectedValue = "brit-short", Label = "British Shorthair" },
+        new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
+        new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
+    };
+}

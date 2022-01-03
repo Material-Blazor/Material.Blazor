@@ -56,24 +56,38 @@
         @if (ShowYearPad)
         {
             <div class="mb-dp-year-pad">
-                <Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize Items="YearsInGroupsOfFour" OverscanCount="10" ItemSize="48">
+                @* We would like to use virtualization, however Material interaction causes the year pad scroll to misbehave when presented with many years *@
+                @*<Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize Items="YearsInGroupsOfFour" OverscanCount="10" ItemSize="36">
                     <ItemContent Context="group">
-                        <div style="height: 48px !important; max-height: 48px !important; min-height: 48px !important; overflow: hidden;">
-                            @foreach (var year in group)
-                            {
-                                <InternalDatePickerYearButton CurrentYear="@StartOfDisplayMonth.Year"
-                                                            CurrentYearId="@currentYearId"
-                                                            DisplayYear="@year"
-                                                            @key="@year"
-                                                            MaxDate="@MaxDate"
-                                                            MinDate="@MinDate"
-                                                            OnItemClickAsync="@OnYearItemClick"
-                                                            type="button" />
-                            }
-                </div>
-            </ItemContent>
-        </Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize>
-    </div>
+                        @foreach (var year in group)
+                        {
+                            <InternalDatePickerYearButton CurrentYear="@StartOfDisplayMonth.Year"
+                                                          CurrentYearId="@currentYearId"
+                                                          DisplayYear="@year"
+                                                          @key="@year"
+                                                          MaxDate="@MaxDate"
+                                                          MinDate="@MinDate"
+                                                          OnItemClickAsync="@OnYearItemClick"
+                                                          type="button" />
+                        }
+                    </ItemContent>
+                </Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize>*@
+
+                @foreach (var group in YearsInGroupsOfFour)
+                {
+                    foreach (var year in group)
+                    {
+                        <InternalDatePickerYearButton CurrentYear="@StartOfDisplayMonth.Year"
+                                                      CurrentYearId="@currentYearId"
+                                                      DisplayYear="@year"
+                                                      @key="@year"
+                                                      MaxDate="@MaxDate"
+                                                      MinDate="@MinDate"
+                                                      OnItemClickAsync="@OnYearItemClick"
+                                                      type="button" />
+                    }
+                }
+            </div> 
         }
         else
         {

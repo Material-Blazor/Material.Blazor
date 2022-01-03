@@ -13,7 +13,8 @@ A [Material Button](https://github.com/material-components/material-components-w
 - Text, Outlined, Filled or Raised styles;
 - Leading and trailing icons;
 - Icon foundry specification;
-- A string code to return as a dialog action; and
+- A string code to return as a dialog action;
+- Parameters for adding and controlling badges; and
 - Applies [density subsystem](xref:A.Density).
 
 &nbsp;

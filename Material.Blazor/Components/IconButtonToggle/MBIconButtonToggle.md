@@ -7,7 +7,7 @@ title: MBIconButtonToggle
 ## Summary
 
 A toggle variant of the [Material Icon Button](https://github.com/material-components/material-components-web/tree/v9.0.0/packages/mdc-icon-button#icon-buttons) that accepts on and off icons, an optional icon foundry and two way binds to a boolean.
- Applies [density subsystem](xref:A.Density).
+ Applies [density subsystem](xref:A.Density). Has parameters for adding and controlling badges.
 
 &nbsp;
 

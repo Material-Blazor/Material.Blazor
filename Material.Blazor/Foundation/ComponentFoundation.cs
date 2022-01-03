@@ -26,7 +26,7 @@ namespace Material.Blazor.Internal
         private bool? disabled = null;
 
         [Inject] private IJSRuntime JsRuntime { get; set; }
-        [CascadingParameter] private MBDialog ParentDialog { get; set; }
+        [CascadingParameter] private IMBDialog ParentDialog { get; set; }
         [Inject] private protected ILogger<ComponentFoundation> Logger { get; set; }
         [Inject] private protected IMBTooltipService TooltipService { get; set; }
         [Inject] private protected IMBLoggingService LoggingService { get; set; }
@@ -78,7 +78,10 @@ namespace Material.Blazor.Internal
         /// <summary>
         /// Components should override this with a function to be called when Material.Blazor wants to run Material Components Web instantiation via JS Interop - always gets called from <see cref="OnAfterRenderAsync(bool)"/>, which should not be overridden.
         /// </summary>
-        private protected virtual Task InstantiateMcwComponent() => Task.CompletedTask;
+        internal virtual Task InstantiateMcwComponent()
+        {
+            return Task.CompletedTask;
+        }
 
         #endregion
 
@@ -321,7 +324,15 @@ namespace Material.Blazor.Internal
             {
                 try
                 {
-                    await InstantiateMcwComponent().ConfigureAwait(false);
+                    if (ParentDialog != null && !ParentDialog.HasInstantiated)
+                    {
+                        ParentDialog.RegisterLayoutAction(this);
+                    }
+                    else
+                    {
+                        await InstantiateMcwComponent().ConfigureAwait(false);
+                    }
+                    
                     HasInstantiated = true;
                     AddTooltip();
                 }

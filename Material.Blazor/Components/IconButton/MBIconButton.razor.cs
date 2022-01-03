@@ -44,6 +44,30 @@ namespace Material.Blazor
         [Parameter] public MBDensity? Density { get; set; }
 
 
+        /// <summary>
+        /// Determines whether the button has a badge - defaults to false.
+        /// </summary>
+        [Parameter] public bool HasBadge { get; set; }
+
+
+        /// <summary>
+        /// The badge's style - see <see cref="MBBadgeStyle"/>, defaults to <see cref="MBBadgeStyle.ValueBearing"/>.
+        /// </summary>
+        [Parameter] public MBBadgeStyle BadgeStyle { get; set; } = MBBadgeStyle.ValueBearing;
+
+
+        /// <summary>
+        /// The button's density.
+        /// </summary>
+        [Parameter] public string BadgeValue { get; set; }
+
+
+        /// <summary>
+        /// When true collapses the badge.
+        /// </summary>
+        [Parameter] public bool BadgeExited { get; set; }
+
+
         private bool AppliedTouchTarget => CascadingDefaults.AppliedTouchTarget(TouchTarget);
         private ElementReference ElementReference { get; set; }
 
@@ -63,6 +87,6 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBIconButton.init", ElementReference);
+        internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBIconButton.init", ElementReference);
     }
 }

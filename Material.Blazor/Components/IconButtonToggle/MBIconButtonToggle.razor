@@ -18,5 +18,15 @@
         <MBIcon class="mdc-icon-button__icon mb-dp-menu__icon-button"
                 IconFoundry="@IconFoundry"
                 IconName="@IconOff" />
+
+        @if (HasBadge)
+        {
+            <span class="mb-badge-container">
+                <MBBadge @ref="@Badge"
+                         BadgeStyle="@BadgeStyle"#
+                         Value="@BadgeValue"
+                         Exited="@BadgeExited" />
+            </span>
+        }
     </button>
 </MBTouchTargetWrapper>

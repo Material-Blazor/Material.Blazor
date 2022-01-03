@@ -62,6 +62,64 @@ namespace Material.Blazor
         [Parameter] public EventCallback<bool> IsIndeterminateChanged { get; set; }
 
 
+        /// <summary>
+        /// Determines whether the button has a badge - defaults to false.
+        /// </summary>
+        [Parameter] public bool HasBadge { get; set; }
+
+
+        /// <summary>
+        /// The badge's style - see <see cref="MBBadgeStyle"/>, defaults to <see cref="MBBadgeStyle.ValueBearing"/>.
+        /// </summary>
+        [Parameter] public MBBadgeStyle BadgeStyle { get; set; } = MBBadgeStyle.ValueBearing;
+
+
+        private string badgeValue;
+        /// <summary>
+        /// The button's density.
+        /// </summary>
+        [Parameter]
+        public string BadgeValue
+        {
+            get => badgeValue;
+            set
+            {
+                if (value != badgeValue)
+                {
+                    badgeValue = value;
+
+                    if (Badge != null)
+                    {
+                        Badge.SetValueAndExited(badgeValue, badgeExited);
+                    }
+                }
+            }
+        }
+
+
+        private bool badgeExited;
+        /// <summary>
+        /// When true collapses the badge.
+        /// </summary>
+        [Parameter]
+        public bool BadgeExited
+        {
+            get => badgeExited;
+            set
+            {
+                if (value != badgeExited)
+                {
+                    badgeExited = value;
+
+                    if (Badge != null)
+                    {
+                        Badge.SetValueAndExited(badgeValue, badgeExited);
+                    }
+                }
+            }
+        }
+
+
         private bool CheckedValue
         {
             get => ComponentValue;
@@ -75,6 +133,7 @@ namespace Material.Blazor
 
         private ElementReference ElementReference { get; set; }
         private ElementReference FormReference { get; set; }
+        private MBBadge Badge { get; set; }
 
         private MBCascadingDefaults.DensityInfo DensityInfo => CascadingDefaults.GetDensityCssClass(CascadingDefaults.AppliedCheckboxDensity(Density));
 
@@ -111,6 +170,6 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBCheckbox.init", ElementReference, FormReference, ComponentValue, IsIndeterminate);
+        internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBCheckbox.init", ElementReference, FormReference, ComponentValue, IsIndeterminate);
     }
 }

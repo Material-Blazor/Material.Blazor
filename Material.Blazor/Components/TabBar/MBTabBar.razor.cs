@@ -132,6 +132,6 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBTabBar.init", ElementReference, ObjectReference);
+        internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBTabBar.init", ElementReference, ObjectReference);
     }
 }

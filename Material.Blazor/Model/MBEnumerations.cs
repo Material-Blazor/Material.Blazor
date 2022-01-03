@@ -3,6 +3,28 @@
 namespace Material.Blazor
 {
     /// <summary>
+    /// Style for an <see cref="MBBadge"/>.
+    /// </summary>
+    public enum MBBadgeStyle
+    {
+        /// <summary>
+        /// Bears a numeric value.
+        /// </summary> 
+        ValueBearing,
+
+        /// <summary>
+        /// Blank, full sized badge.
+        /// </summary> 
+        BlankFullSized,
+
+        /// <summary>
+        /// Small dot badge.
+        /// </summary> 
+        Dot
+    }
+
+
+    /// <summary>
     /// Style for an <see cref="MBButton"/> per Material Theme styling.
     /// <para><see cref="MBCascadingDefaults"/> has a default of <see cref="Text"/></para>
     /// </summary>
@@ -403,8 +425,9 @@ namespace Material.Blazor
         Determinate,
 
         /// <summary>
-        /// A reversed determinate linear progress with a value from 0 to 1.
+        /// Reversed linear progress is obsolete in Material Components Web 13, replaced with an RTL detection. Remove this for MB v3.0.0.
         /// </summary>
+        [Obsolete]
         ReversedDeterminate,
 
         /// <summary>
