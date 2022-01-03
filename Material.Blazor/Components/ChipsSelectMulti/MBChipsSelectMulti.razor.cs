@@ -109,7 +109,7 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBChipsSelectMulti.init", ChipsReference, IsMultiSelect, ObjectReference);
+        internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBChipsSelectMulti.init", ChipsReference, IsMultiSelect, ObjectReference);
 
 
         /// <summary>

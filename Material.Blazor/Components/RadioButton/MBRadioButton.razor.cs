@@ -111,6 +111,6 @@ namespace Material.Blazor
         }
 
 
-        private protected override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBRadioButton.init", RadioButtonReference, FormReference, Value?.Equals(TargetCheckedValue) ?? false);
+        internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBRadioButton.init", RadioButtonReference, FormReference, Value?.Equals(TargetCheckedValue) ?? false);
     }
 }

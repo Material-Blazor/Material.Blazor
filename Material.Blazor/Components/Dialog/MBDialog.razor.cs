@@ -1,6 +1,8 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Material.Blazor
@@ -8,7 +10,7 @@ namespace Material.Blazor
     /// <summary>
     /// This is a general purpose Material Theme dialog.
     /// </summary>
-    public partial class MBDialog : ComponentFoundation
+    public partial class MBDialog : ComponentFoundation, IMBDialog
     {
         /// <summary>
         /// The dialog title.
@@ -64,6 +66,7 @@ namespace Material.Blazor
         private bool HasButtons => Buttons != null;
         private bool HasCustomHeader => CustomHeader != null;
         private bool HasTitle => !string.IsNullOrWhiteSpace(Title);
+        private List<ComponentFoundation> LayoutChildren { get; set; } = new List<ComponentFoundation>();
         private DotNetObjectReference<MBDialog> ObjectReference { get; set; }
         private string OverflowClass => OverflowVisible ? "mb-dialog-overflow-visible" : "";
 
@@ -71,12 +74,19 @@ namespace Material.Blazor
         private readonly string headerId = Utilities.GenerateUniqueElementName();
         private readonly string titleId = Utilities.GenerateUniqueElementName();
 
+
         private TaskCompletionSource<string> CloseReasonTaskCompletionSource { get; set; }
 
         private TaskCompletionSource OpenedTaskCompletionSource = new();
+
         internal Task Opened => OpenedTaskCompletionSource.Task;
+        private bool AfterDialogInitialization { get; set; } = false;
         private bool IsOpen { get; set; }
         private bool IsOpening { get; set; }
+
+
+        private bool _hasInstantiated = false;
+        bool IMBDialog.HasInstantiated => _hasInstantiated;
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -107,6 +117,13 @@ namespace Material.Blazor
         }
 
 
+        /// <inheritdoc/>
+        void IMBDialog.RegisterLayoutAction(ComponentFoundation child)
+        {
+            LayoutChildren.Add(child);
+        }
+
+
         /// <summary>
         /// Shows the dialog. This first renders the Blazor markup and then allows
         /// Material Theme to open the dialog, subsequently intiating all embedded Blazor components.
@@ -114,24 +131,44 @@ namespace Material.Blazor
         /// <returns>The action string resulting form dialog closure</returns>
         public async Task<string> ShowAsync()
         {
-            CloseReasonTaskCompletionSource = new();
-            OpenedTaskCompletionSource = new();
-            IsOpen = true;
-            IsOpening = true;
-            await InvokeAsync(StateHasChanged);
-            return await CloseReasonTaskCompletionSource.Task;
+            if (IsOpen)
+            {
+                throw new InvalidOperationException("Cannot show MBDialog that is already open");
+            }
+            else
+            {
+                LayoutChildren.Clear();
+                HasInstantiated = false;
+                CloseReasonTaskCompletionSource = new();
+                OpenedTaskCompletionSource = new();
+                IsOpen = true;
+                IsOpening = true;
+                await InvokeAsync(StateHasChanged);
+                return await CloseReasonTaskCompletionSource.Task;
+            }
         }
 
 
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
+            await base.OnAfterRenderAsync(firstRender);
+            
             if (IsOpening)
             {
                 IsOpening = false;
                 await InvokeShowAsync();
             }
-            await base.OnAfterRenderAsync(firstRender);
+            else if (AfterDialogInitialization)
+            {
+                _hasInstantiated = true;
+                AfterDialogInitialization = false;
+
+                foreach (var child in LayoutChildren)
+                {
+                    await child.InstantiateMcwComponent().ConfigureAwait(false);
+                }
+            }
         }
 
 
@@ -146,7 +183,7 @@ namespace Material.Blazor
             }
             catch
             {
-                CloseReasonTaskCompletionSource?.TrySetCanceled();
+                _ = CloseReasonTaskCompletionSource?.TrySetCanceled();
             }
         }
 
@@ -157,9 +194,16 @@ namespace Material.Blazor
         /// </summary>
         public async Task HideAsync()
         {
-            await InvokeJsVoidAsync("MaterialBlazor.MBDialog.hide", DialogElem);
-            IsOpen = false;
-            await InvokeAsync(StateHasChanged);
+            if (IsOpen)
+            {
+                await InvokeJsVoidAsync("MaterialBlazor.MBDialog.hide", DialogElem);
+                IsOpen = false;
+                await InvokeAsync(StateHasChanged);
+            }
+            else
+            {
+                throw new InvalidOperationException("Cannot hide MBDialog that is not already open");
+            }
         }
 
 
@@ -167,7 +211,12 @@ namespace Material.Blazor
         /// Do not use. This method is used internally for receiving the "dialog opened" event from javascript.
         /// </summary>
         [JSInvokable]
-        public void NotifyOpened() => OpenedTaskCompletionSource.TrySetResult();
+        public void NotifyOpened()
+        {
+            AfterDialogInitialization = true;
+            _ = OpenedTaskCompletionSource.TrySetResult();
+            _ = InvokeAsync(StateHasChanged);
+        }
 
 
         /// <summary>
@@ -176,7 +225,7 @@ namespace Material.Blazor
         [JSInvokable]
         public async Task NotifyClosed(string reason)
         {
-            CloseReasonTaskCompletionSource?.TrySetResult(reason);
+            _ = (CloseReasonTaskCompletionSource?.TrySetResult(reason));
             IsOpen = false;
             await InvokeAsync(StateHasChanged);
         }

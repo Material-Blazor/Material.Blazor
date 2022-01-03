@@ -87,6 +87,6 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBIconButton.init", ElementReference);
+        internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBIconButton.init", ElementReference);
     }
 }

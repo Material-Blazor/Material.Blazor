@@ -86,6 +86,6 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        private protected override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBDrawer.init", DrawerElem, isOpen);
+        internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBDrawer.init", DrawerElem, isOpen);
     }
 }

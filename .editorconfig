@@ -80,7 +80,7 @@ csharp_style_expression_bodied_constructors = false:suggestion
 csharp_style_expression_bodied_indexers = true:suggestion
 csharp_style_expression_bodied_lambdas = true:suggestion
 csharp_style_expression_bodied_local_functions = true:suggestion
-csharp_style_expression_bodied_methods = when_on_single_line:suggestion
+csharp_style_expression_bodied_methods =false:suggestion
 csharp_style_expression_bodied_operators = false:suggestion
 csharp_style_expression_bodied_properties = true:suggestion
 
