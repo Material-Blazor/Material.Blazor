@@ -55,7 +55,7 @@
         @if (ShowYearPad)
         {
             <div class="mb-dp-year-pad">
-                @* We would like to use virtualization, however it causes the year pad to jump and misbehave when presented with many years *@
+                @* We would like to use virtualization, however Material interaction causes the year pad scroll to misbehave when presented with many years *@
                 @*<Microsoft.AspNetCore.Components.Web.Virtualization.Virtualize Items="YearsInGroupsOfFour" OverscanCount="10" ItemSize="36">
                     <ItemContent Context="group">
                         @foreach (var year in group)
