@@ -105,7 +105,7 @@ namespace Material.Blazor
         {
             if (!_disposed)
             {
-                await InvokeJsVoidAsync("MaterialBlazor.MBMenuSurface.init", ElementReference, ObjectReference);
+                await InvokeJsVoidAsync("MaterialBlazor.MBMenuSurface.init", ElementReference, ObjectReference).ConfigureAwait(false);
             }
         }
 
