@@ -138,7 +138,7 @@ namespace Material.Blazor
             else
             {
                 LayoutChildren.Clear();
-                HasInstantiated = false;
+                _hasInstantiated = false;
                 CloseReasonTaskCompletionSource = new();
                 OpenedTaskCompletionSource = new();
                 IsOpen = true;
@@ -227,6 +227,7 @@ namespace Material.Blazor
         {
             _ = (CloseReasonTaskCompletionSource?.TrySetResult(reason));
             IsOpen = false;
+            _hasInstantiated = false;
             await InvokeAsync(StateHasChanged);
         }
     }
