@@ -39,5 +39,9 @@
             <div class="mdc-checkbox__ripple"></div>
         </div>
     </MBTouchTargetWrapper>
-    <label for="@CrossReferenceId">@Label</label>
+
+    @if (!string.IsNullOrWhiteSpace(Label))
+    {
+        <label for="@CrossReferenceId">@Label</label>
+    }
 </div>

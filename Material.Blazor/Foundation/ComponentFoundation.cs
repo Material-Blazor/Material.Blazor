@@ -228,7 +228,7 @@ namespace Material.Blazor.Internal
                 return;
             }
 
-            if (UnmatchedAttributes.Keys.Contains("disabled"))
+            if (UnmatchedAttributes.ContainsKey("disabled"))
             {
                 throw new ArgumentException(
                     $"Material.Blazor: You cannot use 'disabled' attribute in {Utilities.GetTypeName(GetType())}. Material.Blazor reserves the disabled attribute for internal use; use the 'Disabled' parameter instead");
