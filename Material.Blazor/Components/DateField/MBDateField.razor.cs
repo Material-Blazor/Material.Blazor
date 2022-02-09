@@ -129,7 +129,11 @@ namespace Material.Blazor
 
             set
             {
-                ComponentValue = Convert.ToDateTime(value);
+                try
+                {
+                    ComponentValue = Convert.ToDateTime(value);
+                }
+                catch { }
             }
         }
 
@@ -147,18 +151,14 @@ namespace Material.Blazor
         }
 
         private bool FirstTime { get; set; } = true;
-        protected override async Task OnAfterRenderAsync(bool firstRender)
+        private async Task OnFocusInAsync()
         {
-            await base.OnAfterRenderAsync(firstRender);
-
-            if (FirstTime && (TextField != null))
+            if (FirstTime)
             {
                 FirstTime = false;
-
                 await TextField.SetType(FormattedValue, "date", true).ConfigureAwait(false);
             }
         }
-
 
     }
 }

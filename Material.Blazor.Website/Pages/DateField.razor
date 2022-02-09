@@ -27,16 +27,21 @@
                     </h2>
 
                     <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        A range of Date fields using formats for non focused input.
+                        A pair of Date fields with range checking.
+                        The ranges are 1/1/1900 to 12/31/2199
                     </h3>
 
                     <p>
                         <MBDateField @bind-Value="@DateValue"
+                                     MinDate=@min
+                                     MaxDate=@max
                                      TextInputStyle="MBTextInputStyle.Outlined" />
                     </p>
 
                     <p>
                         <MBDateField @bind-Value="@DateValue2"
+                                     MinDate=@min
+                                     MaxDate=@max
                                      TextInputStyle="MBTextInputStyle.Filled" />
                     </p>
                 </Primary>
@@ -76,6 +81,9 @@
 
 
 @code {
+    private DateTime min = new DateTime(1900, 1, 1);
+    private DateTime max = new DateTime(2199, 12, 31);
+
     private DateTime _dateValue;
     private DateTime DateValue
     {
@@ -85,9 +93,9 @@
             _dateValue = value;
 
             ToastService.ShowToast(
-                heading: "Date", 
-                message: $"Value: '{_dateValue.ToShortDateString()}'", 
-                level: MBToastLevel.Success, 
+                heading: "Date",
+                message: $"Value: '{_dateValue.ToShortDateString()}'",
+                level: MBToastLevel.Success,
                 showIcon: false);
         }
     }
@@ -101,9 +109,9 @@
             _dateValue2 = value;
 
             ToastService.ShowToast(
-                heading: "Date", 
-                message: $"Value: '{_dateValue2.ToShortDateString()}'", 
-                level: MBToastLevel.Success, 
+                heading: "Date",
+                message: $"Value: '{_dateValue2.ToShortDateString()}'",
+                level: MBToastLevel.Success,
                 showIcon: false);
         }
     }
@@ -117,9 +125,9 @@
             _popupHelperText = value;
 
             ToastService.ShowToast(
-                heading: "Popup Helper Text", 
-                message: $"Value: '{_popupHelperText.ToShortDateString()}'", 
-                level: MBToastLevel.Success, 
+                heading: "Popup Helper Text",
+                message: $"Value: '{_popupHelperText.ToShortDateString()}'",
+                level: MBToastLevel.Success,
                 showIcon: false);
         }
     }
@@ -134,9 +142,9 @@
             _persistentHelperText = value;
 
             ToastService.ShowToast(
-                heading: "Persistent Helper Text", 
-                message: $"Value: '{_persistentHelperText.ToShortDateString()}'", 
-                level: MBToastLevel.Success, 
+                heading: "Persistent Helper Text",
+                message: $"Value: '{_persistentHelperText.ToShortDateString()}'",
+                level: MBToastLevel.Success,
                 showIcon: false);
         }
     }
