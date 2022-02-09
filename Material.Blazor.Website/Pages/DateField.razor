@@ -1,0 +1,143 @@
+﻿@page "/dateField"
+
+@inject IMBToastService ToastService
+
+@using System.Runtime.InteropServices
+
+
+<DemonstrationPage ComponentName="DateField"
+                   DemoComponent="@this"
+                   MinDensity="MBDensity.Minus4"
+                   RequiresDisableSelection="true"
+                   Title="Date Field Demonstration">
+    <Description>
+        <p>
+            Shows date fields, which are Plus components.
+            Each of these can display as Filled or Outlined and with
+            the full variety of icon foundries. These are used across the page but it we don't attempt to show each variant everywhere - see the Text Field demo for this.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Standard Formatted Date
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        A range of Date fields using formats for non focused input.
+                    </h3>
+
+                    <p>
+                        <MBDateField @bind-Value="@DateValue"
+                                     TextInputStyle="MBTextInputStyle.Outlined" />
+                    </p>
+
+                    <p>
+                        <MBDateField @bind-Value="@DateValue2"
+                                     TextInputStyle="MBTextInputStyle.Filled" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Helper Text
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows persistent and non-persistent helper text.
+                    </h3>
+
+                    <p>
+                        <MBDateField @bind-Value="@PopupHelperText"
+                                     HelperText="Some helper text that pops up"
+                                     Label="Popup Helper Text" />
+                    </p>
+
+                    <p>
+                        <MBDateField @bind-Value="@PersistentHelperText"
+                                     HelperText="Some persistent helper text"
+                                     HelperTextPersistent="true"
+                                     Label="Persistent Helper Text" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+@code {
+    private DateTime _dateValue;
+    private DateTime DateValue
+    {
+        get => _dateValue;
+        set
+        {
+            _dateValue = value;
+
+            ToastService.ShowToast(
+                heading: "Date", 
+                message: $"Value: '{_dateValue.ToShortDateString()}'", 
+                level: MBToastLevel.Success, 
+                showIcon: false);
+        }
+    }
+
+    private DateTime _dateValue2;
+    private DateTime DateValue2
+    {
+        get => _dateValue2;
+        set
+        {
+            _dateValue2 = value;
+
+            ToastService.ShowToast(
+                heading: "Date", 
+                message: $"Value: '{_dateValue2.ToShortDateString()}'", 
+                level: MBToastLevel.Success, 
+                showIcon: false);
+        }
+    }
+
+    private DateTime _popupHelperText;
+    private DateTime PopupHelperText
+    {
+        get => _popupHelperText;
+        set
+        {
+            _popupHelperText = value;
+
+            ToastService.ShowToast(
+                heading: "Popup Helper Text", 
+                message: $"Value: '{_popupHelperText.ToShortDateString()}'", 
+                level: MBToastLevel.Success, 
+                showIcon: false);
+        }
+    }
+
+
+    private DateTime _persistentHelperText;
+    private DateTime PersistentHelperText
+    {
+        get => _persistentHelperText;
+        set
+        {
+            _persistentHelperText = value;
+
+            ToastService.ShowToast(
+                heading: "Persistent Helper Text", 
+                message: $"Value: '{_persistentHelperText.ToShortDateString()}'", 
+                level: MBToastLevel.Success, 
+                showIcon: false);
+        }
+    }
+}
