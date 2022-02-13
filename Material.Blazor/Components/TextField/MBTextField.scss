@@ -168,10 +168,24 @@
     }
 }
 
-.mb-text-field__helper-text{
-
+.mb-text-field__helper-text {
+    transform: scale(1);
+    visibility: visible;
 }
 
-mb-text-field__helper-invalid-text{
+mb-text-field__helper-invalid-text {
+    transform: scale(0);
+    visibility: hidden;
+}
 
+.mdc-text-field--invalid {
+    & ~ .mdc-text-field-helper-line > .mb-text-field__helper-text {
+        transform: scale(0) !important;
+        visibility: hidden !important;
+    }
+
+    & ~ .mdc-text-field-helper-line > .mb-text-field__helper-invalid-text {
+        transform: scale(1) !important;
+        visibility: visible !important;
+    }
 }
