@@ -274,12 +274,24 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Selects the text field - used by <see cref="MBNumericDoubleField"/>.
+        /// Sets the type of the text field - used by <see cref="MBDateField"/>
+        /// and <see cref="MBNumericDecimalField"/>.
         /// </summary>
         /// <returns></returns>
         internal async Task SetType(string value, string type, bool formNoValidate)
         {
             await InvokeJsVoidAsync("MaterialBlazor.MBTextField.setType", ElementReference, value, InputReference, type, formNoValidate).ConfigureAwait(false);
+        }
+
+
+        /// <summary>
+        /// Sets or clears the validation message. Used by <see cref="MBDateField"
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        internal void SetValidationMessage(string validationMessage)
+        {
+            InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setHelperText", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, true, !string.IsNullOrEmpty(Value), validationMessage));
         }
 
 
