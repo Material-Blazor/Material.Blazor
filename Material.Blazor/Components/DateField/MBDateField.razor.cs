@@ -113,33 +113,7 @@ namespace Material.Blazor
         private string MaxDateString { get { return MaxDate.ToString("yyyy-MM-dd"); } }
         private string MinDateString { get { return MinDate.ToString("yyyy-MM-dd"); } }
 
-        private string FormattedValue
-        {
-            get
-            {
-                if ((ComponentValue == default) & SuppressDefaultDate)
-                {
-                    return "";
-                }
-                else
-                {
-                    return ComponentValue.ToString("yyyy-MM-dd");
-                }
-            }
-
-            set
-            {
-                try
-                {
-                    var potentialComponentValue = Convert.ToDateTime(value);
-                    if (potentialComponentValue >= MinDate && potentialComponentValue <= MaxDate)
-                    {
-                        ComponentValue = potentialComponentValue;
-                    }
-                }
-                catch { }
-            }
-        }
+        private string FormattedValue { get; set; }
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -154,6 +128,24 @@ namespace Material.Blazor
             await base.OnInitializedAsync();
         }
 
+        protected override async Task OnParametersSetAsync()
+        {
+            await base.OnParametersSetAsync();
+
+            try
+            {
+                if ((ComponentValue == default) & SuppressDefaultDate)
+                {
+                    FormattedValue = "";
+                }
+                else
+                {
+                    FormattedValue = ComponentValue.ToString("yyyy-MM-dd");
+                }
+            }
+            catch { }
+        }
+
         private bool FirstTime { get; set; } = true;
         private async Task OnFocusInAsync()
         {
@@ -163,6 +155,20 @@ namespace Material.Blazor
                 TextField.SetValidationMessage("Invalid date, hover for more information");
                 await TextField.SetType(FormattedValue, "date", true).ConfigureAwait(false);
             }
+        }
+
+        private async Task OnFocusOutAsync()
+        {
+            try
+            {
+                await Task.CompletedTask;
+                var potentialComponentValue = Convert.ToDateTime(FormattedValue);
+                if (potentialComponentValue >= MinDate && potentialComponentValue <= MaxDate)
+                {
+                    ComponentValue = potentialComponentValue;
+                }
+            }
+            catch { }
         }
 
     }
