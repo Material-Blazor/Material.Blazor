@@ -14,15 +14,21 @@ namespace Material.Blazor
     {
 #nullable enable annotations
         /// <summary>
+        /// Helper text that is displayed in error conditions />.
+        /// </summary>
+        [Parameter] public string ErrorText { get; set; } = "";
+
+
+        /// <summary>
         /// Helper text that is displayed either with focus or persistently with <see cref="HelperTextPersistent"/>.
         /// </summary>
-        [Parameter] public string HelperText { get; set; } = "";
+        [Parameter] public string HelperText { get; set; } = "Some persistent helper test";
 
 
         /// <summary>
         /// Makes the <see cref="HelperText"/> persistent if true.
         /// </summary>
-        [Parameter] public bool HelperTextPersistent { get; set; } = false;
+        [Parameter] public bool HelperTextPersistent { get; set; } = true;
 
 
         /// <summary>
@@ -172,8 +178,10 @@ namespace Material.Blazor
         private string DisplayLabel => Label + LabelSuffix;
         private string FloatingLabelClass { get; set; }
         private ElementReference InputReference { get; set; }
+        private MarkupString ErrorTextMarkup => new MarkupString(ErrorText);
         private MarkupString HelperTextMarkup => new MarkupString(HelperText);
         private ElementReference HelperTextReference { get; set; }
+        private bool HasErrorText => !string.IsNullOrWhiteSpace(ErrorText);
         private bool HasHelperText => !string.IsNullOrWhiteSpace(HelperText) || PerformsValidation;
         private string LabelSuffix { get; set; } = "";
         private bool PerformsValidation => EditContext != null && ValidationMessageFor != null;
@@ -291,7 +299,7 @@ namespace Material.Blazor
         /// <param name="e"></param>
         internal void SetValidationMessage(string validationMessage)
         {
-            InvokeAsync(() => InvokeJsVoidAsync("MaterialBlazor.MBTextField.setHelperText", ElementReference, HelperTextReference, HelperText.Trim(), HelperTextPersistent, true, !string.IsNullOrEmpty(Value), validationMessage));
+            ErrorText = validationMessage;
         }
 
 

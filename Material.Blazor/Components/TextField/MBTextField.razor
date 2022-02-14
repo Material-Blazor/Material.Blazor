@@ -81,7 +81,7 @@
     }
 </label>
 
-@if (HasHelperText || true)
+@if (HasHelperText || HasErrorText)
 {
     <div class="mdc-text-field-helper-line">
         <div @ref="@HelperTextReference"
@@ -89,10 +89,10 @@
          id="@helperTextId"
          aria-hidden="true">
             <span class="mb-text-field__helper-text">
-                @*@HelperTextMarkup*@Some helper text
+                @HelperTextMarkup
             </span>
             <span class="mb-text-field__helper-invalid-text">
-                Invalid date
+                @ErrorTextMarkup
             </span>
         </div>
     </div>

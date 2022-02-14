@@ -176,6 +176,7 @@
 .mb-text-field__helper-invalid-text {
     transform: scale(0);
     visibility: hidden;
+    color: var(--mb-color-red-300);
 }
 
 .mdc-text-field--invalid {

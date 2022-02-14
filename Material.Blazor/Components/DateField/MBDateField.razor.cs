@@ -156,6 +156,7 @@ namespace Material.Blazor
             if (FirstTime)
             {
                 FirstTime = false;
+                TextField.SetValidationMessage("Invalid date, hover for more information");
                 await TextField.SetType(FormattedValue, "date", true).ConfigureAwait(false);
             }
         }
