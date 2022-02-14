@@ -16,13 +16,13 @@ namespace Material.Blazor
         /// <summary>
         /// Helper text that is displayed either with focus or persistently with <see cref="HelperTextPersistent"/>.
         /// </summary>
-        [Parameter] public string HelperText { get; set; } = "";
+        [Parameter] public string HelperText { get; set; } = "Some persistent helper text set in MBDateField";
 
 
         /// <summary>
         /// Makes the <see cref="HelperText"/> persistent if true.
         /// </summary>
-        [Parameter] public bool HelperTextPersistent { get; set; } = false;
+        [Parameter] public bool HelperTextPersistent { get; set; } = true;
 
 
         /// <summary>
