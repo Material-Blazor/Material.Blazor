@@ -131,7 +131,11 @@ namespace Material.Blazor
             {
                 try
                 {
-                    ComponentValue = Convert.ToDateTime(value);
+                    var potentialComponentValue = Convert.ToDateTime(value);
+                    if (potentialComponentValue >= MinDate && potentialComponentValue <= MaxDate)
+                    {
+                        ComponentValue = potentialComponentValue;
+                    }
                 }
                 catch { }
             }
