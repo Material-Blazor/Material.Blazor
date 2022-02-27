@@ -81,19 +81,27 @@
     }
 </label>
 
-@if (HasHelperText || HasErrorText)
+@if (HasHelperText)
 {
-    <div class="mdc-text-field-helper-line">
+    var additionalClass = HasErrorText ? "mb-text-field__helper-text" : "";
+
+    <div class="mdc-text-field-helper-line @additionalClass">
         <div @ref="@HelperTextReference"
-         class="mdc-text-field-helper-text"
-         id="@helperTextId"
-         aria-hidden="true">
-            <span class="mb-text-field__helper-text">
-                @HelperTextMarkup
-            </span>
-            <span class="mb-text-field__helper-invalid-text">
-                @ErrorTextMarkup
-            </span>
+             class="mdc-text-field-helper-text"
+             id="@helperTextId"
+             aria-hidden="true">
+            @HelperTextMarkup
+        </div>
+    </div>
+}
+
+@if (HasErrorText)
+{
+    <div class="mdc-text-field-helper-line  mb-text-field__helper-invalid-text">
+        <div @ref="@ErrorTextReference"
+             class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent"
+             aria-hidden="true">
+            @DateFieldErrorMessage
         </div>
     </div>
 }

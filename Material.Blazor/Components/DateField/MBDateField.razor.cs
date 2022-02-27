@@ -108,6 +108,7 @@ namespace Material.Blazor
 
         internal static readonly DateTime MinAllowableDate = DateTime.MinValue;
         internal static readonly DateTime MaxAllowableDate = DateTime.MaxValue;
+        internal static readonly string ErrorText = "Invalid date, hover for more information";
 
         private MBTextField TextField { get; set; }
         private string MaxDateString { get { return MaxDate.ToString("yyyy-MM-dd"); } }
@@ -152,7 +153,6 @@ namespace Material.Blazor
             if (FirstTime)
             {
                 FirstTime = false;
-                TextField.SetValidationMessage("Invalid date, hover for more information");
                 await TextField.SetType(FormattedValue, "date", true).ConfigureAwait(false);
             }
         }
