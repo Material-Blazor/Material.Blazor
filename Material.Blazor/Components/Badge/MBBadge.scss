@@ -46,6 +46,7 @@ $icon-button-offset: 4px;
     min-width: $regular-size;
     height: $regular-size;
     border-radius: $regular-border-radius;
+    margin-bottom: -$regular-size;
     border: none;
     background-color: var(--mb-badge-background-color);
     color: var(--mb-badge-color);
@@ -60,6 +61,7 @@ $icon-button-offset: 4px;
         min-width: $dot-size;
         height: $dot-size;
         border-radius: $dot-border-radius;
+        margin-bottom: -$dot-size;
     }
 
     &.mb-badge--exited {

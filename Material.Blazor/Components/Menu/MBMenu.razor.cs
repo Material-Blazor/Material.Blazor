@@ -101,7 +101,13 @@ namespace Material.Blazor
 
 
         /// <inheritdoc/>
-        internal override Task InstantiateMcwComponent() => InvokeJsVoidAsync("MaterialBlazor.MBMenu.init", ElementReference, ObjectReference);
+        internal override async Task InstantiateMcwComponent()
+        {
+            if (!_disposed)
+            {
+                await InvokeJsVoidAsync("MaterialBlazor.MBMenu.init", ElementReference, ObjectReference).ConfigureAwait(false);
+            }
+        }
 
 
         /// <summary>

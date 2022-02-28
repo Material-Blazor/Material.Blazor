@@ -138,7 +138,7 @@ namespace Material.Blazor
             else
             {
                 LayoutChildren.Clear();
-                HasInstantiated = false;
+                _hasInstantiated = false;
                 CloseReasonTaskCompletionSource = new();
                 OpenedTaskCompletionSource = new();
                 IsOpen = true;
@@ -197,8 +197,6 @@ namespace Material.Blazor
             if (IsOpen)
             {
                 await InvokeJsVoidAsync("MaterialBlazor.MBDialog.hide", DialogElem);
-                IsOpen = false;
-                await InvokeAsync(StateHasChanged);
             }
             else
             {
@@ -226,6 +224,8 @@ namespace Material.Blazor
         public async Task NotifyClosed(string reason)
         {
             _ = (CloseReasonTaskCompletionSource?.TrySetResult(reason));
+            // Allow enough time for the dialog closing animation before re-rendering
+            await Task.Delay(150);
             IsOpen = false;
             await InvokeAsync(StateHasChanged);
         }

@@ -20,36 +20,37 @@
             <div class="mb-dp-menu__left">
                 <span>@MonthText</span>
                 <MBIconButtonToggle @bind-Value="@ShowYearPad"
-                                    class="mb-dp-menu__icon-button"
-                                    IconOn="arrow_drop_up"
-                                    IconOff="arrow_drop_down"
-                                    IconFoundry="@foundry"
-                                    type="button"/>
+                                class="mb-dp-menu__icon-button"
+                                IconOn="arrow_drop_up"
+                                IconOff="arrow_drop_down"
+                                IconFoundry="@foundry"
+                                type="button" />
             </div>
 
             @if (!ShowYearPad)
             {
                 <div class="mb-dp-menu__right">
                     <MBIconButton class="mb-dp-menu__icon-button"
-                                  Disabled="@PreviousMonthDisabled"
-                                  Icon="chevron_left"
-                                  IconFoundry="@foundry"
-                                  @onclick="@OnPreviousMonthClick"
-                                  type="button"/>
+                          Disabled="@PreviousMonthDisabled"
+                          Icon="chevron_left"
+                          IconFoundry="@foundry"
+                          @onclick="@OnPreviousMonthClick"
+                          type="button" />
 
                     <MBIconButton class="mb-dp-menu__icon-button spaced"
-                                  Icon="undo"
-                                  IconFoundry="@foundry"
-                                  @onclick="@OnShowCurrentDateClick" 
-                                  type="button"/>
+                          Icon="undo"
+                          IconFoundry="@foundry"
+                          @onclick="@OnShowCurrentDateClick"
+                          type="button" />
 
                     <MBIconButton class="mb-dp-menu__icon-button spaced"
-                                  Disabled="@NextMonthDisabled"
-                                  Icon="chevron_right"
-                                  IconFoundry="@foundry"
-                                  @onclick="@OnNextMonthClick" 
-                                  type="button"/>
-                </div> }
+                          Disabled="@NextMonthDisabled"
+                          Icon="chevron_right"
+                          IconFoundry="@foundry"
+                          @onclick="@OnNextMonthClick"
+                          type="button" />
+                </div>
+            }
         </div>
 
         @if (ShowYearPad)
@@ -101,15 +102,15 @@
                     @foreach (var date in Dates)
                     {
                         <InternalDatePickerDayButton CurrentDate="@Value"
-                                                     DateIsSelectable="@DateIsSelectable"
-                                                     DateSelectionCriteria="@DateSelectionCriteria"
-                                                     DisplayDate="@date"
-                                                     @key="@date"
-                                                     MaxDate="@MaxDate"
-                                                     MinDate="@MinDate"
-                                                     OnItemClickAsync="@OnDayItemClickAsync"
-                                                     StartOfDisplayMonth="@StartOfDisplayMonth" 
-                                                     type="button"/>
+                                         DateIsSelectable="@DateIsSelectable"
+                                         DateSelectionCriteria="@DateSelectionCriteria"
+                                         DisplayDate="@date"
+                                         @key="@date"
+                                         MaxDate="@MaxDate"
+                                         MinDate="@MinDate"
+                                         OnItemClickAsync="@OnDayItemClickAsync"
+                                         StartOfDisplayMonth="@StartOfDisplayMonth"
+                                         type="button" />
                     }
                 </div>
             </div>

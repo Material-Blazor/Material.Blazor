@@ -40,17 +40,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0" />
-    <PackageReference Include="Nager.Date" Version="1.30.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.2" />
+    <PackageReference Include="Nager.Date" Version="1.32.0" />
     <PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
   </ItemGroup>
 
-  <PropertyGroup>
-    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
-  </PropertyGroup>
+	<ItemGroup>
+		<UpToDateCheckInput Include="@(InputStaticAssetsStyles)" Set="Styles" />
+		<UpToDateCheckOutput Include="@(OutputStaticAssetsStyles)" Set="Styles" />
+	</ItemGroup>
 
-  <ItemGroup>
+	<ItemGroup>
       <InputStaticAssetsStyles Include="styles\*.scss;" />
       <OutputStaticAssetsStyles Include="wwwroot\css\asymmetric-theme.min.css;wwwroot\css\dark-square-theme.min.css;wwwroot\css\light-square-theme.min.css;wwwroot\css\material-default-theme.min.css;wwwroot\css\rounded-theme.min.css;" />
       <Content Remove="@(OutputStaticAssetsStyles)" />

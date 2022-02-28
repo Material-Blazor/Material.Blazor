@@ -12,6 +12,9 @@ namespace Material.Blazor
     /// </summary>
     public partial class MBTextField : InputComponent<string>
     {
+        [CascadingParameter] private MBDateField DateField { get; set; }
+
+
 #nullable enable annotations
         /// <summary>
         /// Helper text that is displayed either with focus or persistently with <see cref="HelperTextPersistent"/>.
@@ -75,6 +78,7 @@ namespace Material.Blazor
         /// The trailing icon's name. No leading icon shown if not set.
         /// </summary>
         [Parameter] public string? TrailingIcon { get; set; }
+
 
 
         /// <summary>
@@ -174,10 +178,15 @@ namespace Material.Blazor
         private ElementReference InputReference { get; set; }
         private MarkupString HelperTextMarkup => new MarkupString(HelperText);
         private ElementReference HelperTextReference { get; set; }
+        private ElementReference ErrorTextReference { get; set; }
+        private string DateFieldErrorMessage => DateField == null ? "" : MBDateField.ErrorText;
+        private bool HasErrorText => !string.IsNullOrWhiteSpace(DateFieldErrorMessage);
         private bool HasHelperText => !string.IsNullOrWhiteSpace(HelperText) || PerformsValidation;
         private string LabelSuffix { get; set; } = "";
         private bool PerformsValidation => EditContext != null && ValidationMessageFor != null;
         private MBBadge Badge { get; set; }
+
+
 
 
         private readonly string labelId = Utilities.GenerateUniqueElementName();
@@ -274,7 +283,8 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Selects the text field - used by <see cref="MBNumericDoubleField"/>.
+        /// Sets the type of the text field - used by <see cref="MBDateField"/>
+        /// and <see cref="MBNumericDecimalField"/>.
         /// </summary>
         /// <returns></returns>
         internal async Task SetType(string value, string type, bool formNoValidate)

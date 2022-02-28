@@ -4,9 +4,9 @@
 
 
 <label @ref="@ElementReference"
-        class="mdc-text-field @ActiveConditionalClasses @(@class)"
-        style="@style"
-        id="@id">
+       class="mdc-text-field @ActiveConditionalClasses @(@class)"
+       style="@style"
+       id="@id">
 
     @if (AppliedInputStyle == MBTextInputStyle.Outlined)
     {
@@ -44,14 +44,14 @@
     }
 
     <input @ref="@InputReference"
-            @attributes="@AttributesToSplat()"
-            aria-label="@Label"
-            aria-labelledby="@(Label == null ? null : labelId)"
-            aria-controls="@(HasHelperText ? helperTextId : null)"
-            aria-describedby="@(HasHelperText ? helperTextId : null)"
-            id="@CrossReferenceId"
-            class="mdc-text-field__input @AppliedTextInputStyleClass @FieldClass"
-            @bind="@ComponentValue">
+           @attributes="@AttributesToSplat()"
+           aria-label="@Label"
+           aria-labelledby="@(Label == null ? null : labelId)"
+           aria-controls="@(HasHelperText ? helperTextId : null)"
+           aria-describedby="@(HasHelperText ? helperTextId : null)"
+           id="@CrossReferenceId"
+           class="mdc-text-field__input @AppliedTextInputStyleClass @FieldClass"
+           @bind="@ComponentValue">
 
     @if (!string.IsNullOrWhiteSpace(Suffix))
     {
@@ -71,24 +71,37 @@
     @if (HasBadge)
     {
         @*<span class="mb-badge-wrapper">*@
-            <span class="mb-badge-container">
-                <MBBadge @ref="@Badge"
-                            BadgeStyle="@BadgeStyle"#
-                            Value="@BadgeValue"
-                            Exited="@BadgeExited" />
-            </span>
+        <span class="mb-badge-container">
+            <MBBadge @ref="@Badge"
+                 BadgeStyle="@BadgeStyle" #
+                 Value="@BadgeValue"
+                 Exited="@BadgeExited" />
+        </span>
         @*</span>*@
     }
 </label>
 
 @if (HasHelperText)
 {
-    <div class="mdc-text-field-helper-line">
+    var additionalClass = HasErrorText ? "mb-text-field__helper-text" : "";
+
+    <div class="mdc-text-field-helper-line @additionalClass">
         <div @ref="@HelperTextReference"
-                class="mdc-text-field-helper-text"
-                id="@helperTextId"
-                aria-hidden="true">
+             class="mdc-text-field-helper-text"
+             id="@helperTextId"
+             aria-hidden="true">
             @HelperTextMarkup
+        </div>
+    </div>
+}
+
+@if (HasErrorText)
+{
+    <div class="mdc-text-field-helper-line  mb-text-field__helper-invalid-text">
+        <div @ref="@ErrorTextReference"
+             class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent"
+             aria-hidden="true">
+            @DateFieldErrorMessage
         </div>
     </div>
 }

@@ -1,0 +1,29 @@
+﻿@namespace Material.Blazor
+
+@inherits InputComponent<DateTime>
+
+<CascadingValue Value="@this">
+    <MBTextField class="@(@class)"
+                 style="@style"
+                 id="@id"
+                 @attributes="@AttributesToSplat()"
+                 @bind-Value="@FormattedValue"
+                 Density="@Density"
+                 Disabled="@AppliedDisabled"
+                 HelperText="@HelperText"
+                 HelperTextPersistent="@HelperTextPersistent"
+                 IconFoundry="@IconFoundry"
+                 Label="@Label"
+                 LeadingIcon="@LeadingIcon"
+                 min="@MinDateString"
+                 max="@MaxDateString"
+                 @onfocusin="@OnFocusInAsync"
+                 @onfocusout="@OnFocusOutAsync"
+                 Prefix="@Prefix"
+                 @ref="@TextField"
+                 Suffix="@Suffix"
+                 TextAlignStyle="@MBTextAlignStyle.Right"
+                 TextInputStyle="@TextInputStyle"
+                 TrailingIcon="@TrailingIcon"
+                 ValidationMessageFor="@ValidationMessageFor" />
+</CascadingValue>

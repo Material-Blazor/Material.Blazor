@@ -167,3 +167,23 @@
         @include textfield.outlined-textarea-density(0);
     }
 }
+
+.mb-text-field__helper-invalid-text {
+    padding-right: 16px;
+    padding-left: 16px;
+    max-height: 0px;
+    visibility: hidden;
+    color: var(--mdc-theme-error);
+}
+
+.mdc-text-field--invalid {
+    & ~ .mb-text-field__helper-text {
+        max-height: 0px !important;
+        visibility: hidden !important;
+    }
+    
+    & ~ .mb-text-field__helper-invalid-text {
+        max-height: max-content !important;
+        visibility: visible !important;
+    }
+}
