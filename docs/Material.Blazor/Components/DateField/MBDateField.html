@@ -5,20 +5,18 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Enum MBSelectInputStyle
-   </title>
+    <title>MBDateField </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Enum MBSelectInputStyle
-   ">
+    <meta name="title" content="MBDateField ">
     <meta name="generator" content="docfx 2.58.4.0">
     
-    <link rel="shortcut icon" href="../favicon.ico">
-    <link rel="stylesheet" href="../styles/docfx.vendor.css">
-    <link rel="stylesheet" href="../styles/docfx.css">
-    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="shortcut icon" href="../../../favicon.ico">
+    <link rel="stylesheet" href="../../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../../styles/docfx.css">
+    <link rel="stylesheet" href="../../../styles/main.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
-    <meta property="docfx:navrel" content="../toc.html">
-    <meta property="docfx:tocrel" content="toc.html">
+    <meta property="docfx:navrel" content="../../../toc.html">
+    <meta property="docfx:tocrel" content="../toc.html">
     
     
     
@@ -47,8 +45,8 @@
                 <span class="icon-bar"></span>
               </button>
               
-              <a class="navbar-brand" href="../index.html">
-                <img id="logo" class="svg" src="../logo.svg" alt="">
+              <a class="navbar-brand" href="../../../index.html">
+                <img id="logo" class="svg" src="../../../logo.svg" alt="">
               </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar">
@@ -79,44 +77,32 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Material.Blazor.MBSelectInputStyle">
-  
-  
-  <h1 id="Material_Blazor_MBSelectInputStyle" data-uid="Material.Blazor.MBSelectInputStyle" class="text-break">Enum MBSelectInputStyle
-  </h1>
-  <div class="markdown level0 summary"><p>Material Theme select input style applied to <a class="xref" href="Material.Blazor.MBSelect-1.html">MBSelect&lt;TItem&gt;</a>.</p>
-<p>Applied also to <a class="xref" href="Material.Blazor.MBDatePicker.html">MBDatePicker</a></p>
-<p><a class="xref" href="Material.Blazor.MBCascadingDefaults.html">MBCascadingDefaults</a> has a default of <a class="xref" href="Material.Blazor.MBSelectInputStyle.html#Material_Blazor_MBSelectInputStyle_Filled">Filled</a></p>
-</div>
-  <div class="markdown level0 conceptual"></div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Material.Blazor.html">Material.Blazor</a></h6>
-  <h6><strong>Assembly</strong>: Material.Blazor.dll</h6>
-  <h5 id="Material_Blazor_MBSelectInputStyle_syntax">Syntax</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public enum MBSelectInputStyle</code></pre>
-  </div>
-  <h3 id="fields">Fields
-  </h3>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    <thead>
-    <tbody>
-      <tr>
-        <td id="Material_Blazor_MBSelectInputStyle_Filled">Filled</td>
-        <td><p>The filled style. This is the <a class="xref" href="Material.Blazor.MBCascadingDefaults.html">MBCascadingDefaults</a> default.</p>
-</td>
-      </tr>
-      <tr>
-        <td id="Material_Blazor_MBSelectInputStyle_Outlined">Outlined</td>
-        <td><p>The outlined style.</p>
-</td>
-      </tr>
-    </tbody>
-  </thead></thead></table>
+            <article class="content wrap" id="_content" data-uid="C.MBDateField">
+<h1 id="mbdatefield">MBDateField</h1>
+
+<h2 id="summary">Summary</h2>
+<p>An <a class="xref" href="../TextField/MBTextField.html">MBTextField</a> designed for a <code>date</code> value input.
+Has the following properties</p>
+<h2 id="detail">Detail</h2>
+<ul>
+<li>Includes <a class="xref" href="../TextField/MBTextField.html">MBTextField</a> properties; plus</li>
+<li>Minimum and maximum dates;</li>
+<li>Can supress the default date</li>
+<li>Applies <a class="xref" href="../../../articles/Density.html">density subsystem</a> - note that filled text fields with denisty of -2 or less ignore labels by design within Material Theme.</li>
+<li>Renders Blazor validation messages in Material Theme's style. see the <a class="xref" href="../../../articles/FormValidation.html">Form Validation Article</a>.</li>
+</ul>
+<h2 id="caveats">Caveats</h2>
+<p>Note the use of multiple parameters that presume invariance during the
+life of this component.</p>
+<ul>
+<li>MaxDate</li>
+<li>MinDate</li>
+<li>SuppressDefaultDate</li>
+</ul>
+<p> </p>
+<p> </p>
+<p><a class="xref" href="../../../articles/PlusComponents.html"><img src="https://img.shields.io/static/v1?label=Components&amp;message=Plus&amp;color=red" alt="Components"></a>
+<a class="xref" href="../../../api/Material.Blazor.MBNumericDecimalField.html"><img src="https://img.shields.io/static/v1?label=API%20Documentation&amp;message=MBNumericDecimalField&amp;color=brightgreen" alt="Docs"></a></p>
 </article>
           </div>
           
@@ -125,10 +111,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBSelectInputStyle.md&amp;value=---%0Auid%3A%20Material.Blazor.MBSelectInputStyle%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
-                  </li>
-                  <li>
-                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Model/MBEnumerations.cs/#L552" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateField/MBDateField.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>
@@ -155,8 +138,8 @@
       </footer>
     </div>
     
-    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
-    <script type="text/javascript" src="../styles/docfx.js"></script>
-    <script type="text/javascript" src="../styles/main.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../../styles/main.js"></script>
   </body>
 </html>

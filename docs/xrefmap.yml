@@ -106,6 +106,9 @@ references:
 - uid: C.MBDataTable
   name: MBDataTable
   href: Material.Blazor/Components/DataTable/MBDataTable.html
+- uid: C.MBDateField
+  name: MBDateField
+  href: Material.Blazor/Components/DateField/MBDateField.html
 - uid: C.MBDatePicker
   name: MBDatePicker
   href: Material.Blazor/Components/DatePicker/MBDatePicker.html
@@ -2269,19 +2272,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBBadge.Exited
   nameWithType: MBBadge.Exited
-- uid: Material.Blazor.MBBadge.OnParametersSetAsync
-  name: OnParametersSetAsync()
-  href: api/Material.Blazor.MBBadge.html#Material_Blazor_MBBadge_OnParametersSetAsync
-  commentId: M:Material.Blazor.MBBadge.OnParametersSetAsync
-  fullName: Material.Blazor.MBBadge.OnParametersSetAsync()
-  nameWithType: MBBadge.OnParametersSetAsync()
-- uid: Material.Blazor.MBBadge.OnParametersSetAsync*
-  name: OnParametersSetAsync
-  href: api/Material.Blazor.MBBadge.html#Material_Blazor_MBBadge_OnParametersSetAsync_
-  commentId: Overload:Material.Blazor.MBBadge.OnParametersSetAsync
+- uid: Material.Blazor.MBBadge.OnInitializedAsync
+  name: OnInitializedAsync()
+  href: api/Material.Blazor.MBBadge.html#Material_Blazor_MBBadge_OnInitializedAsync
+  commentId: M:Material.Blazor.MBBadge.OnInitializedAsync
+  fullName: Material.Blazor.MBBadge.OnInitializedAsync()
+  nameWithType: MBBadge.OnInitializedAsync()
+- uid: Material.Blazor.MBBadge.OnInitializedAsync*
+  name: OnInitializedAsync
+  href: api/Material.Blazor.MBBadge.html#Material_Blazor_MBBadge_OnInitializedAsync_
+  commentId: Overload:Material.Blazor.MBBadge.OnInitializedAsync
   isSpec: "True"
-  fullName: Material.Blazor.MBBadge.OnParametersSetAsync
-  nameWithType: MBBadge.OnParametersSetAsync
+  fullName: Material.Blazor.MBBadge.OnInitializedAsync
+  nameWithType: MBBadge.OnInitializedAsync
 - uid: Material.Blazor.MBBadge.Value
   name: Value
   href: api/Material.Blazor.MBBadge.html#Material_Blazor_MBBadge_Value
@@ -3429,6 +3432,45 @@ references:
   commentId: T:Material.Blazor.MBCheckbox
   fullName: Material.Blazor.MBCheckbox
   nameWithType: MBCheckbox
+- uid: Material.Blazor.MBCheckbox.BadgeExited
+  name: BadgeExited
+  href: api/Material.Blazor.MBCheckbox.html#Material_Blazor_MBCheckbox_BadgeExited
+  commentId: P:Material.Blazor.MBCheckbox.BadgeExited
+  fullName: Material.Blazor.MBCheckbox.BadgeExited
+  nameWithType: MBCheckbox.BadgeExited
+- uid: Material.Blazor.MBCheckbox.BadgeExited*
+  name: BadgeExited
+  href: api/Material.Blazor.MBCheckbox.html#Material_Blazor_MBCheckbox_BadgeExited_
+  commentId: Overload:Material.Blazor.MBCheckbox.BadgeExited
+  isSpec: "True"
+  fullName: Material.Blazor.MBCheckbox.BadgeExited
+  nameWithType: MBCheckbox.BadgeExited
+- uid: Material.Blazor.MBCheckbox.BadgeStyle
+  name: BadgeStyle
+  href: api/Material.Blazor.MBCheckbox.html#Material_Blazor_MBCheckbox_BadgeStyle
+  commentId: P:Material.Blazor.MBCheckbox.BadgeStyle
+  fullName: Material.Blazor.MBCheckbox.BadgeStyle
+  nameWithType: MBCheckbox.BadgeStyle
+- uid: Material.Blazor.MBCheckbox.BadgeStyle*
+  name: BadgeStyle
+  href: api/Material.Blazor.MBCheckbox.html#Material_Blazor_MBCheckbox_BadgeStyle_
+  commentId: Overload:Material.Blazor.MBCheckbox.BadgeStyle
+  isSpec: "True"
+  fullName: Material.Blazor.MBCheckbox.BadgeStyle
+  nameWithType: MBCheckbox.BadgeStyle
+- uid: Material.Blazor.MBCheckbox.BadgeValue
+  name: BadgeValue
+  href: api/Material.Blazor.MBCheckbox.html#Material_Blazor_MBCheckbox_BadgeValue
+  commentId: P:Material.Blazor.MBCheckbox.BadgeValue
+  fullName: Material.Blazor.MBCheckbox.BadgeValue
+  nameWithType: MBCheckbox.BadgeValue
+- uid: Material.Blazor.MBCheckbox.BadgeValue*
+  name: BadgeValue
+  href: api/Material.Blazor.MBCheckbox.html#Material_Blazor_MBCheckbox_BadgeValue_
+  commentId: Overload:Material.Blazor.MBCheckbox.BadgeValue
+  isSpec: "True"
+  fullName: Material.Blazor.MBCheckbox.BadgeValue
+  nameWithType: MBCheckbox.BadgeValue
 - uid: Material.Blazor.MBCheckbox.Density
   name: Density
   href: api/Material.Blazor.MBCheckbox.html#Material_Blazor_MBCheckbox_Density
@@ -3442,6 +3484,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBCheckbox.Density
   nameWithType: MBCheckbox.Density
+- uid: Material.Blazor.MBCheckbox.HasBadge
+  name: HasBadge
+  href: api/Material.Blazor.MBCheckbox.html#Material_Blazor_MBCheckbox_HasBadge
+  commentId: P:Material.Blazor.MBCheckbox.HasBadge
+  fullName: Material.Blazor.MBCheckbox.HasBadge
+  nameWithType: MBCheckbox.HasBadge
+- uid: Material.Blazor.MBCheckbox.HasBadge*
+  name: HasBadge
+  href: api/Material.Blazor.MBCheckbox.html#Material_Blazor_MBCheckbox_HasBadge_
+  commentId: Overload:Material.Blazor.MBCheckbox.HasBadge
+  isSpec: "True"
+  fullName: Material.Blazor.MBCheckbox.HasBadge
+  nameWithType: MBCheckbox.HasBadge
 - uid: Material.Blazor.MBCheckbox.IsIndeterminate
   name: IsIndeterminate
   href: api/Material.Blazor.MBCheckbox.html#Material_Blazor_MBCheckbox_IsIndeterminate
@@ -4198,6 +4253,220 @@ references:
   fullName.vb: Material.Blazor.MBDataTable(Of TItem).TableRow
   nameWithType: MBDataTable<TItem>.TableRow
   nameWithType.vb: MBDataTable(Of TItem).TableRow
+- uid: Material.Blazor.MBDateField
+  name: MBDateField
+  href: api/Material.Blazor.MBDateField.html
+  commentId: T:Material.Blazor.MBDateField
+  fullName: Material.Blazor.MBDateField
+  nameWithType: MBDateField
+- uid: Material.Blazor.MBDateField.Density
+  name: Density
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_Density
+  commentId: P:Material.Blazor.MBDateField.Density
+  fullName: Material.Blazor.MBDateField.Density
+  nameWithType: MBDateField.Density
+- uid: Material.Blazor.MBDateField.Density*
+  name: Density
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_Density_
+  commentId: Overload:Material.Blazor.MBDateField.Density
+  isSpec: "True"
+  fullName: Material.Blazor.MBDateField.Density
+  nameWithType: MBDateField.Density
+- uid: Material.Blazor.MBDateField.HelperText
+  name: HelperText
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_HelperText
+  commentId: P:Material.Blazor.MBDateField.HelperText
+  fullName: Material.Blazor.MBDateField.HelperText
+  nameWithType: MBDateField.HelperText
+- uid: Material.Blazor.MBDateField.HelperText*
+  name: HelperText
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_HelperText_
+  commentId: Overload:Material.Blazor.MBDateField.HelperText
+  isSpec: "True"
+  fullName: Material.Blazor.MBDateField.HelperText
+  nameWithType: MBDateField.HelperText
+- uid: Material.Blazor.MBDateField.HelperTextPersistent
+  name: HelperTextPersistent
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_HelperTextPersistent
+  commentId: P:Material.Blazor.MBDateField.HelperTextPersistent
+  fullName: Material.Blazor.MBDateField.HelperTextPersistent
+  nameWithType: MBDateField.HelperTextPersistent
+- uid: Material.Blazor.MBDateField.HelperTextPersistent*
+  name: HelperTextPersistent
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_HelperTextPersistent_
+  commentId: Overload:Material.Blazor.MBDateField.HelperTextPersistent
+  isSpec: "True"
+  fullName: Material.Blazor.MBDateField.HelperTextPersistent
+  nameWithType: MBDateField.HelperTextPersistent
+- uid: Material.Blazor.MBDateField.IconFoundry
+  name: IconFoundry
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_IconFoundry
+  commentId: P:Material.Blazor.MBDateField.IconFoundry
+  fullName: Material.Blazor.MBDateField.IconFoundry
+  nameWithType: MBDateField.IconFoundry
+- uid: Material.Blazor.MBDateField.IconFoundry*
+  name: IconFoundry
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_IconFoundry_
+  commentId: Overload:Material.Blazor.MBDateField.IconFoundry
+  isSpec: "True"
+  fullName: Material.Blazor.MBDateField.IconFoundry
+  nameWithType: MBDateField.IconFoundry
+- uid: Material.Blazor.MBDateField.Label
+  name: Label
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_Label
+  commentId: P:Material.Blazor.MBDateField.Label
+  fullName: Material.Blazor.MBDateField.Label
+  nameWithType: MBDateField.Label
+- uid: Material.Blazor.MBDateField.Label*
+  name: Label
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_Label_
+  commentId: Overload:Material.Blazor.MBDateField.Label
+  isSpec: "True"
+  fullName: Material.Blazor.MBDateField.Label
+  nameWithType: MBDateField.Label
+- uid: Material.Blazor.MBDateField.LeadingIcon
+  name: LeadingIcon
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_LeadingIcon
+  commentId: P:Material.Blazor.MBDateField.LeadingIcon
+  fullName: Material.Blazor.MBDateField.LeadingIcon
+  nameWithType: MBDateField.LeadingIcon
+- uid: Material.Blazor.MBDateField.LeadingIcon*
+  name: LeadingIcon
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_LeadingIcon_
+  commentId: Overload:Material.Blazor.MBDateField.LeadingIcon
+  isSpec: "True"
+  fullName: Material.Blazor.MBDateField.LeadingIcon
+  nameWithType: MBDateField.LeadingIcon
+- uid: Material.Blazor.MBDateField.MaxDate
+  name: MaxDate
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_MaxDate
+  commentId: P:Material.Blazor.MBDateField.MaxDate
+  fullName: Material.Blazor.MBDateField.MaxDate
+  nameWithType: MBDateField.MaxDate
+- uid: Material.Blazor.MBDateField.MaxDate*
+  name: MaxDate
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_MaxDate_
+  commentId: Overload:Material.Blazor.MBDateField.MaxDate
+  isSpec: "True"
+  fullName: Material.Blazor.MBDateField.MaxDate
+  nameWithType: MBDateField.MaxDate
+- uid: Material.Blazor.MBDateField.MinDate
+  name: MinDate
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_MinDate
+  commentId: P:Material.Blazor.MBDateField.MinDate
+  fullName: Material.Blazor.MBDateField.MinDate
+  nameWithType: MBDateField.MinDate
+- uid: Material.Blazor.MBDateField.MinDate*
+  name: MinDate
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_MinDate_
+  commentId: Overload:Material.Blazor.MBDateField.MinDate
+  isSpec: "True"
+  fullName: Material.Blazor.MBDateField.MinDate
+  nameWithType: MBDateField.MinDate
+- uid: Material.Blazor.MBDateField.OnInitializedAsync
+  name: OnInitializedAsync()
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_OnInitializedAsync
+  commentId: M:Material.Blazor.MBDateField.OnInitializedAsync
+  fullName: Material.Blazor.MBDateField.OnInitializedAsync()
+  nameWithType: MBDateField.OnInitializedAsync()
+- uid: Material.Blazor.MBDateField.OnInitializedAsync*
+  name: OnInitializedAsync
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_OnInitializedAsync_
+  commentId: Overload:Material.Blazor.MBDateField.OnInitializedAsync
+  isSpec: "True"
+  fullName: Material.Blazor.MBDateField.OnInitializedAsync
+  nameWithType: MBDateField.OnInitializedAsync
+- uid: Material.Blazor.MBDateField.OnParametersSetAsync
+  name: OnParametersSetAsync()
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_OnParametersSetAsync
+  commentId: M:Material.Blazor.MBDateField.OnParametersSetAsync
+  fullName: Material.Blazor.MBDateField.OnParametersSetAsync()
+  nameWithType: MBDateField.OnParametersSetAsync()
+- uid: Material.Blazor.MBDateField.OnParametersSetAsync*
+  name: OnParametersSetAsync
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_OnParametersSetAsync_
+  commentId: Overload:Material.Blazor.MBDateField.OnParametersSetAsync
+  isSpec: "True"
+  fullName: Material.Blazor.MBDateField.OnParametersSetAsync
+  nameWithType: MBDateField.OnParametersSetAsync
+- uid: Material.Blazor.MBDateField.Prefix
+  name: Prefix
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_Prefix
+  commentId: P:Material.Blazor.MBDateField.Prefix
+  fullName: Material.Blazor.MBDateField.Prefix
+  nameWithType: MBDateField.Prefix
+- uid: Material.Blazor.MBDateField.Prefix*
+  name: Prefix
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_Prefix_
+  commentId: Overload:Material.Blazor.MBDateField.Prefix
+  isSpec: "True"
+  fullName: Material.Blazor.MBDateField.Prefix
+  nameWithType: MBDateField.Prefix
+- uid: Material.Blazor.MBDateField.Suffix
+  name: Suffix
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_Suffix
+  commentId: P:Material.Blazor.MBDateField.Suffix
+  fullName: Material.Blazor.MBDateField.Suffix
+  nameWithType: MBDateField.Suffix
+- uid: Material.Blazor.MBDateField.Suffix*
+  name: Suffix
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_Suffix_
+  commentId: Overload:Material.Blazor.MBDateField.Suffix
+  isSpec: "True"
+  fullName: Material.Blazor.MBDateField.Suffix
+  nameWithType: MBDateField.Suffix
+- uid: Material.Blazor.MBDateField.SuppressDefaultDate
+  name: SuppressDefaultDate
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_SuppressDefaultDate
+  commentId: P:Material.Blazor.MBDateField.SuppressDefaultDate
+  fullName: Material.Blazor.MBDateField.SuppressDefaultDate
+  nameWithType: MBDateField.SuppressDefaultDate
+- uid: Material.Blazor.MBDateField.SuppressDefaultDate*
+  name: SuppressDefaultDate
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_SuppressDefaultDate_
+  commentId: Overload:Material.Blazor.MBDateField.SuppressDefaultDate
+  isSpec: "True"
+  fullName: Material.Blazor.MBDateField.SuppressDefaultDate
+  nameWithType: MBDateField.SuppressDefaultDate
+- uid: Material.Blazor.MBDateField.TextInputStyle
+  name: TextInputStyle
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_TextInputStyle
+  commentId: P:Material.Blazor.MBDateField.TextInputStyle
+  fullName: Material.Blazor.MBDateField.TextInputStyle
+  nameWithType: MBDateField.TextInputStyle
+- uid: Material.Blazor.MBDateField.TextInputStyle*
+  name: TextInputStyle
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_TextInputStyle_
+  commentId: Overload:Material.Blazor.MBDateField.TextInputStyle
+  isSpec: "True"
+  fullName: Material.Blazor.MBDateField.TextInputStyle
+  nameWithType: MBDateField.TextInputStyle
+- uid: Material.Blazor.MBDateField.TrailingIcon
+  name: TrailingIcon
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_TrailingIcon
+  commentId: P:Material.Blazor.MBDateField.TrailingIcon
+  fullName: Material.Blazor.MBDateField.TrailingIcon
+  nameWithType: MBDateField.TrailingIcon
+- uid: Material.Blazor.MBDateField.TrailingIcon*
+  name: TrailingIcon
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_TrailingIcon_
+  commentId: Overload:Material.Blazor.MBDateField.TrailingIcon
+  isSpec: "True"
+  fullName: Material.Blazor.MBDateField.TrailingIcon
+  nameWithType: MBDateField.TrailingIcon
+- uid: Material.Blazor.MBDateField.ValidationMessageFor
+  name: ValidationMessageFor
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_ValidationMessageFor
+  commentId: P:Material.Blazor.MBDateField.ValidationMessageFor
+  fullName: Material.Blazor.MBDateField.ValidationMessageFor
+  nameWithType: MBDateField.ValidationMessageFor
+- uid: Material.Blazor.MBDateField.ValidationMessageFor*
+  name: ValidationMessageFor
+  href: api/Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_ValidationMessageFor_
+  commentId: Overload:Material.Blazor.MBDateField.ValidationMessageFor
+  isSpec: "True"
+  fullName: Material.Blazor.MBDateField.ValidationMessageFor
+  nameWithType: MBDateField.ValidationMessageFor
 - uid: Material.Blazor.MBDatePicker
   name: MBDatePicker
   href: api/Material.Blazor.MBDatePicker.html
@@ -9285,6 +9554,57 @@ references:
   fullName.vb: Material.Blazor.MBSelect(Of TItem)
   nameWithType: MBSelect<TItem>
   nameWithType.vb: MBSelect(Of TItem)
+- uid: Material.Blazor.MBSelect`1.BadgeExited
+  name: BadgeExited
+  href: api/Material.Blazor.MBSelect-1.html#Material_Blazor_MBSelect_1_BadgeExited
+  commentId: P:Material.Blazor.MBSelect`1.BadgeExited
+  fullName: Material.Blazor.MBSelect<TItem>.BadgeExited
+  fullName.vb: Material.Blazor.MBSelect(Of TItem).BadgeExited
+  nameWithType: MBSelect<TItem>.BadgeExited
+  nameWithType.vb: MBSelect(Of TItem).BadgeExited
+- uid: Material.Blazor.MBSelect`1.BadgeExited*
+  name: BadgeExited
+  href: api/Material.Blazor.MBSelect-1.html#Material_Blazor_MBSelect_1_BadgeExited_
+  commentId: Overload:Material.Blazor.MBSelect`1.BadgeExited
+  isSpec: "True"
+  fullName: Material.Blazor.MBSelect<TItem>.BadgeExited
+  fullName.vb: Material.Blazor.MBSelect(Of TItem).BadgeExited
+  nameWithType: MBSelect<TItem>.BadgeExited
+  nameWithType.vb: MBSelect(Of TItem).BadgeExited
+- uid: Material.Blazor.MBSelect`1.BadgeStyle
+  name: BadgeStyle
+  href: api/Material.Blazor.MBSelect-1.html#Material_Blazor_MBSelect_1_BadgeStyle
+  commentId: P:Material.Blazor.MBSelect`1.BadgeStyle
+  fullName: Material.Blazor.MBSelect<TItem>.BadgeStyle
+  fullName.vb: Material.Blazor.MBSelect(Of TItem).BadgeStyle
+  nameWithType: MBSelect<TItem>.BadgeStyle
+  nameWithType.vb: MBSelect(Of TItem).BadgeStyle
+- uid: Material.Blazor.MBSelect`1.BadgeStyle*
+  name: BadgeStyle
+  href: api/Material.Blazor.MBSelect-1.html#Material_Blazor_MBSelect_1_BadgeStyle_
+  commentId: Overload:Material.Blazor.MBSelect`1.BadgeStyle
+  isSpec: "True"
+  fullName: Material.Blazor.MBSelect<TItem>.BadgeStyle
+  fullName.vb: Material.Blazor.MBSelect(Of TItem).BadgeStyle
+  nameWithType: MBSelect<TItem>.BadgeStyle
+  nameWithType.vb: MBSelect(Of TItem).BadgeStyle
+- uid: Material.Blazor.MBSelect`1.BadgeValue
+  name: BadgeValue
+  href: api/Material.Blazor.MBSelect-1.html#Material_Blazor_MBSelect_1_BadgeValue
+  commentId: P:Material.Blazor.MBSelect`1.BadgeValue
+  fullName: Material.Blazor.MBSelect<TItem>.BadgeValue
+  fullName.vb: Material.Blazor.MBSelect(Of TItem).BadgeValue
+  nameWithType: MBSelect<TItem>.BadgeValue
+  nameWithType.vb: MBSelect(Of TItem).BadgeValue
+- uid: Material.Blazor.MBSelect`1.BadgeValue*
+  name: BadgeValue
+  href: api/Material.Blazor.MBSelect-1.html#Material_Blazor_MBSelect_1_BadgeValue_
+  commentId: Overload:Material.Blazor.MBSelect`1.BadgeValue
+  isSpec: "True"
+  fullName: Material.Blazor.MBSelect<TItem>.BadgeValue
+  fullName.vb: Material.Blazor.MBSelect(Of TItem).BadgeValue
+  nameWithType: MBSelect<TItem>.BadgeValue
+  nameWithType.vb: MBSelect(Of TItem).BadgeValue
 - uid: Material.Blazor.MBSelect`1.Density
   name: Density
   href: api/Material.Blazor.MBSelect-1.html#Material_Blazor_MBSelect_1_Density
@@ -9319,6 +9639,23 @@ references:
   fullName.vb: Material.Blazor.MBSelect(Of TItem).Dispose
   nameWithType: MBSelect<TItem>.Dispose
   nameWithType.vb: MBSelect(Of TItem).Dispose
+- uid: Material.Blazor.MBSelect`1.HasBadge
+  name: HasBadge
+  href: api/Material.Blazor.MBSelect-1.html#Material_Blazor_MBSelect_1_HasBadge
+  commentId: P:Material.Blazor.MBSelect`1.HasBadge
+  fullName: Material.Blazor.MBSelect<TItem>.HasBadge
+  fullName.vb: Material.Blazor.MBSelect(Of TItem).HasBadge
+  nameWithType: MBSelect<TItem>.HasBadge
+  nameWithType.vb: MBSelect(Of TItem).HasBadge
+- uid: Material.Blazor.MBSelect`1.HasBadge*
+  name: HasBadge
+  href: api/Material.Blazor.MBSelect-1.html#Material_Blazor_MBSelect_1_HasBadge_
+  commentId: Overload:Material.Blazor.MBSelect`1.HasBadge
+  isSpec: "True"
+  fullName: Material.Blazor.MBSelect<TItem>.HasBadge
+  fullName.vb: Material.Blazor.MBSelect(Of TItem).HasBadge
+  nameWithType: MBSelect<TItem>.HasBadge
+  nameWithType.vb: MBSelect(Of TItem).HasBadge
 - uid: Material.Blazor.MBSelect`1.IconFoundry
   name: IconFoundry
   href: api/Material.Blazor.MBSelect-1.html#Material_Blazor_MBSelect_1_IconFoundry
@@ -10849,6 +11186,45 @@ references:
   commentId: T:Material.Blazor.MBTextField
   fullName: Material.Blazor.MBTextField
   nameWithType: MBTextField
+- uid: Material.Blazor.MBTextField.BadgeExited
+  name: BadgeExited
+  href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_BadgeExited
+  commentId: P:Material.Blazor.MBTextField.BadgeExited
+  fullName: Material.Blazor.MBTextField.BadgeExited
+  nameWithType: MBTextField.BadgeExited
+- uid: Material.Blazor.MBTextField.BadgeExited*
+  name: BadgeExited
+  href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_BadgeExited_
+  commentId: Overload:Material.Blazor.MBTextField.BadgeExited
+  isSpec: "True"
+  fullName: Material.Blazor.MBTextField.BadgeExited
+  nameWithType: MBTextField.BadgeExited
+- uid: Material.Blazor.MBTextField.BadgeStyle
+  name: BadgeStyle
+  href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_BadgeStyle
+  commentId: P:Material.Blazor.MBTextField.BadgeStyle
+  fullName: Material.Blazor.MBTextField.BadgeStyle
+  nameWithType: MBTextField.BadgeStyle
+- uid: Material.Blazor.MBTextField.BadgeStyle*
+  name: BadgeStyle
+  href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_BadgeStyle_
+  commentId: Overload:Material.Blazor.MBTextField.BadgeStyle
+  isSpec: "True"
+  fullName: Material.Blazor.MBTextField.BadgeStyle
+  nameWithType: MBTextField.BadgeStyle
+- uid: Material.Blazor.MBTextField.BadgeValue
+  name: BadgeValue
+  href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_BadgeValue
+  commentId: P:Material.Blazor.MBTextField.BadgeValue
+  fullName: Material.Blazor.MBTextField.BadgeValue
+  nameWithType: MBTextField.BadgeValue
+- uid: Material.Blazor.MBTextField.BadgeValue*
+  name: BadgeValue
+  href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_BadgeValue_
+  commentId: Overload:Material.Blazor.MBTextField.BadgeValue
+  isSpec: "True"
+  fullName: Material.Blazor.MBTextField.BadgeValue
+  nameWithType: MBTextField.BadgeValue
 - uid: Material.Blazor.MBTextField.Density
   name: Density
   href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_Density
@@ -10875,6 +11251,19 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBTextField.Dispose
   nameWithType: MBTextField.Dispose
+- uid: Material.Blazor.MBTextField.HasBadge
+  name: HasBadge
+  href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_HasBadge
+  commentId: P:Material.Blazor.MBTextField.HasBadge
+  fullName: Material.Blazor.MBTextField.HasBadge
+  nameWithType: MBTextField.HasBadge
+- uid: Material.Blazor.MBTextField.HasBadge*
+  name: HasBadge
+  href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_HasBadge_
+  commentId: Overload:Material.Blazor.MBTextField.HasBadge
+  isSpec: "True"
+  fullName: Material.Blazor.MBTextField.HasBadge
+  nameWithType: MBTextField.HasBadge
 - uid: Material.Blazor.MBTextField.HelperText
   name: HelperText
   href: api/Material.Blazor.MBTextField.html#Material_Blazor_MBTextField_HelperText
