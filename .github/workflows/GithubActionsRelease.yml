@@ -151,10 +151,10 @@ jobs:
         include-prerelease: true
 
     - name: Build Website 🔧
-      run: dotnet build ${{env:projectWeb}} --configuration ${{env:buildConfiguration}} -p:Version=${{needs.version.outputs.identifier}}
+      run: dotnet build ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} -p:Version=${{needs.version.outputs.identifier}}
       
     - name: Publish Website 🔧
-      run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} -p:Version=${{needs.version.outputs.identifier}} ${env:projectWeb} -p:BlazorEnableCompression=false      
+      run: dotnet publish ${{env.projectWeb}} --no-build --configuration ${{env.buildConfiguration}} --output ${env:outputWeb} -p:Version=${{needs.version.outputs.identifier}} -p:BlazorEnableCompression=false      
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v2
@@ -183,16 +183,16 @@ jobs:
         include-prerelease: true
 
     - name: Build Material.Blazor 🔧
-      run: dotnet build ${{env:projectMB}} --configuration ${{env:buildConfiguration}} -p:Version=${{needs.version.outputs.identifier}}
+      run: dotnet build ${{env.projectMB}} --configuration ${{env.buildConfiguration}} -p:Version=${{needs.version.outputs.identifier}}
 
     - name: Generate the NuGet package 🔧
-      run: dotnet pack ${{env:projectMB}} --no-build --configuration ${{env:buildConfiguration}} --output ${{env:outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{needs.version.outputs.identifier}}
+      run: dotnet pack ${{env.projectMB}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env:outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg -p:Version=${{needs.version.outputs.identifier}}
 
     - name: Display MaterialBlazor package output Ꙫ
-      run: dir ${{env:outputMB}}
+      run: dir ${{env.outputMB}}
 
     - name: Upload Package 🚀
-      run: dotnet nuget push ${{env:outputMB}}\*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push ${{env.outputMB}}\*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
       if: needs.branch.outputs.identifier != 'experimental-release-workflow' # this check is important to allow testing this workflow on a non-main branch without deploying to nuget: this critical action is not performed when not on main.
 ############################################################################################################
 # deployghpages
