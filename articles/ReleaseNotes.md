@@ -6,7 +6,7 @@ title: ReleaseNotes
 
 #### [2.2.0](https://github.com/Material-Blazor/Material.Blazor)
 
-Released 2022-??-??
+Released 2022-02-28
 
 **Updates**
 
