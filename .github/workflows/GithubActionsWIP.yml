@@ -200,11 +200,11 @@ jobs:
       if: github.event_name != 'workflow_dispatch'
 
     - name: Build Website 🔧
-      run: dotnet build --configuration ${env:buildConfiguration} --version-suffix ${{needs.version.outputs.suffix}} ${env:projectWeb}
+      run: dotnet build ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --version-suffix ${{needs.version.outputs.suffix}}
       if: github.event_name != 'workflow_dispatch'
       
     - name: Publish Website 🔧
-      run: dotnet publish --no-build --configuration ${env:buildConfiguration} --output ${env:outputWeb} --version-suffix ${{needs.version.outputs.suffix}} ${env:projectWeb} -p:BlazorEnableCompression=false
+      run: dotnet publish ${{env.projectWeb}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} --version-suffix ${{needs.version.outputs.suffix}} -p:BlazorEnableCompression=false
       if: github.event_name != 'workflow_dispatch'
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
@@ -239,18 +239,18 @@ jobs:
       if: github.event_name != 'workflow_dispatch'
 
     - name: Build Material.Blazor 🔧
-      run: dotnet build ${{env:projectMB}} --configuration ${{env:buildConfiguration}} --version-suffix ${{needs.version.outputs.suffix}}
+      run: dotnet build ${{env.projectMB}} --configuration ${{env.buildConfiguration}} --version-suffix ${{needs.version.outputs.suffix}}
 
     - name: Generate the NuGet package 🔧
-      run: dotnet pack ${{env:projectMB}} --no-build --configuration ${env:buildConfiguration} --output ${env:outputMB} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${{needs.version.outputs.suffix}}
+      run: dotnet pack ${{env.projectMB}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputMB}} -p:IncludeSymbols=true -p:SymbolPackageFormat=snupkg --version-suffix ${{needs.version.outputs.suffix}}
 
     - name: Display MaterialBlazor package output Ꙫ
-      run: dir ${{env:outputMB}}
+      run: dir ${{env.outputMB}}
 
 # We'd like to push to a the main repository but now getting errors of authorization
 
     - name: Upload Package (Main repository) 🔺
-      run: nuget push ${{env:outputMB}}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      run: nuget push ${{env.outputMB}}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       if: (github.repository == 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false
@@ -259,7 +259,7 @@ jobs:
 # Pending a service response we only do the push of the CI build in the Material-Blazor/Material.Blazor repository
 
     - name: Upload Package (Forked repository) 🔺
-      run: nuget push ${{env:outputMB}}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
+      run: nuget push ${{env.outputMB}}\*.nupkg -Source https://nuget.pkg.github.com/${{github.repository_owner}}/index.json
       env:
         NUGET_AUTH_TOKEN: ${{secrets.GH_PAT}}
       if: (github.repository != 'Material-Blazor/Material.Blazor') && (github.event_name == 'push') && false
