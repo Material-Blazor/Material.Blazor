@@ -10,13 +10,3 @@
 @use "./app";
 
 @include app.app-classes();
-
-.mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above, .mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above {
-    font-weight: 600 !important;
-    color: darkgreen !important;
-}
-
-.xyzzy-mdc-floating-label--float-above {
-    font-weight: 600 !important;
-    color: rgba(0, 0, 255, 1.0) !important;
-}
