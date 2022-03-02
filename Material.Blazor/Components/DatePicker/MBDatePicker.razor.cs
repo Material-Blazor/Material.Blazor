@@ -26,6 +26,7 @@ namespace Material.Blazor
         private string MenuClass => MBMenu.GetMenuSurfacePositioningClass(MenuSurfacePositioning == MBMenuSurfacePositioning.Fixed ? MBMenuSurfacePositioning.Fixed : MBMenuSurfacePositioning.Regular) + ((Panel?.ShowYearPad ?? true) ? " mb-dp-menu__day-menu" : " mb-dp-menu__year-menu");
         private InternalDatePickerPanel Panel { get; set; }
         private bool ShowLabel => !string.IsNullOrWhiteSpace(Label);
+        private MBBadge Badge { get; set; }
 
         private readonly string invisibleText = "color: rgba(0, 0, 0, 0.0); ";
         private readonly string labelId = Utilities.GenerateUniqueElementName();
@@ -103,6 +104,62 @@ namespace Material.Blazor
         [Parameter] public bool SuppressDefaultDate { get; set; }
 
 
+        /// <summary>
+        /// Determines whether the button has a badge - defaults to false.
+        /// </summary>
+        [Parameter] public bool HasBadge { get; set; }
+
+
+        /// <summary>
+        /// The badge's style - see <see cref="MBBadgeStyle"/>, defaults to <see cref="MBBadgeStyle.ValueBearing"/>.
+        /// </summary>
+        [Parameter] public MBBadgeStyle BadgeStyle { get; set; } = MBBadgeStyle.ValueBearing;
+
+
+        private string badgeValue;
+        /// <summary>
+        /// The button's density.
+        /// </summary>
+        [Parameter]
+        public string BadgeValue
+        {
+            get => badgeValue;
+            set
+            {
+                if (value != badgeValue)
+                {
+                    badgeValue = value;
+
+                    if (Badge != null)
+                    {
+                        Badge.SetValueAndExited(badgeValue, badgeExited);
+                    }
+                }
+            }
+        }
+
+
+        private bool badgeExited;
+        /// <summary>
+        /// When true collapses the badge.
+        /// </summary>
+        [Parameter]
+        public bool BadgeExited
+        {
+            get => badgeExited;
+            set
+            {
+                if (value != badgeExited)
+                {
+                    badgeExited = value;
+
+                    if (Badge != null)
+                    {
+                        Badge.SetValueAndExited(badgeValue, badgeExited);
+                    }
+                }
+            }
+        }
         #endregion
 
         #region DensityInfo

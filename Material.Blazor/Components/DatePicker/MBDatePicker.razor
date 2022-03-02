@@ -9,6 +9,16 @@
      id="@id"
      @attributes="@AttributesToSplat()">
 
+    @if (HasBadge)
+    {
+        <span class="mb-badge-container">
+            <MBBadge @ref="@Badge"
+                     BadgeStyle="@BadgeStyle"#
+                     Value="@BadgeValue"
+                     Exited="@BadgeExited" />
+        </span>
+    }
+
     <div class="mdc-select__anchor"
          role="button"
          aria-haspopup="@listboxId"
