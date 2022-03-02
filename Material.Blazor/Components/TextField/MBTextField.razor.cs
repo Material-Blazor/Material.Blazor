@@ -102,6 +102,11 @@ namespace Material.Blazor
         /// </summary>
         [Parameter] public bool HasBadge { get; set; }
 
+        /// <summary>
+        /// The initial item type of the input filed
+        /// </summary>
+        [Parameter] public string ItemType { get; set; } = "text";
+
 
         /// <summary>
         /// The badge's style - see <see cref="MBBadgeStyle"/>, defaults to <see cref="MBBadgeStyle.ValueBearing"/>.
@@ -283,8 +288,7 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Sets the type of the text field - used by <see cref="MBDateField"/>
-        /// and <see cref="MBNumericDecimalField"/>.
+        /// Sets the type of the text field - used by <see cref="MBNumericDecimalField"/>.
         /// </summary>
         /// <returns></returns>
         internal async Task SetType(string value, string type, bool formNoValidate)

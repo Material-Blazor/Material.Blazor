@@ -86,7 +86,7 @@
     private DateTime min = new DateTime(1900, 1, 1);
     private DateTime max = new DateTime(2199, 12, 31);
 
-    private DateTime _dateValue;
+    private DateTime _dateValue = new DateTime(2022, 3, 31);
     private DateTime DateValue
     {
         get => _dateValue;
@@ -101,6 +101,7 @@
                 showIcon: false);
         }
     }
+    
 
     private DateTime _dateValue2;
     private DateTime DateValue2
@@ -150,4 +151,6 @@
                 showIcon: false);
         }
     }
+
+
 }

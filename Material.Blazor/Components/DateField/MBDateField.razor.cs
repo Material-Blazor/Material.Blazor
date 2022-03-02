@@ -16,13 +16,13 @@ namespace Material.Blazor
         /// <summary>
         /// Helper text that is displayed either with focus or persistently with <see cref="HelperTextPersistent"/>.
         /// </summary>
-        [Parameter] public string HelperText { get; set; } = "Some persistent helper text set in MBDateField";
+        [Parameter] public string HelperText { get; set; } = "";
 
 
         /// <summary>
         /// Makes the <see cref="HelperText"/> persistent if true.
         /// </summary>
-        [Parameter] public bool HelperTextPersistent { get; set; } = true;
+        [Parameter] public bool HelperTextPersistent { get; set; }
 
 
         /// <summary>
@@ -141,20 +141,11 @@ namespace Material.Blazor
                 }
                 else
                 {
+                    // This is the require format for the string
                     FormattedValue = ComponentValue.ToString("yyyy-MM-dd");
                 }
             }
             catch { }
-        }
-
-        private bool FirstTime { get; set; } = true;
-        private async Task OnFocusInAsync()
-        {
-            if (FirstTime)
-            {
-                FirstTime = false;
-                await TextField.SetType(FormattedValue, "date", true).ConfigureAwait(false);
-            }
         }
 
         private async Task OnFocusOutAsync()

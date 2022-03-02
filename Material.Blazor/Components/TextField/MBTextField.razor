@@ -51,6 +51,7 @@
            aria-describedby="@(HasHelperText ? helperTextId : null)"
            id="@CrossReferenceId"
            class="mdc-text-field__input @AppliedTextInputStyleClass @FieldClass"
+           type="@ItemType"
            @bind="@ComponentValue">
 
     @if (!string.IsNullOrWhiteSpace(Suffix))
