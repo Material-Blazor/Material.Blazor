@@ -3,7 +3,8 @@
 @use "sass:color";
 
 @use "@material/theme" with ( 
-    $background: #eee, 
+    $background: #eee,
+    $error: #ff0000
 );
 
 @use "./material-components-web";
