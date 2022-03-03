@@ -51,8 +51,7 @@
            aria-describedby="@(HasHelperText ? helperTextId : null)"
            id="@CrossReferenceId"
            class="mdc-text-field__input @AppliedTextInputStyleClass @FieldClass"
-           type="@ItemType"
-           @bind="@ComponentValue">
+           @bind="@ComponentValue" />
 
     @if (!string.IsNullOrWhiteSpace(Suffix))
     {
@@ -88,9 +87,9 @@
 
     <div class="mdc-text-field-helper-line @additionalClass">
         <div @ref="@HelperTextReference"
-             class="mdc-text-field-helper-text"
-             id="@helperTextId"
-             aria-hidden="true">
+         class="mdc-text-field-helper-text"
+         id="@helperTextId"
+         aria-hidden="true">
             @HelperTextMarkup
         </div>
     </div>
@@ -100,8 +99,7 @@
 {
     <div class="mdc-text-field-helper-line  mb-text-field__helper-invalid-text">
         <div @ref="@ErrorTextReference"
-             class="mdc-text-field-helper-text mdc-text-field-helper-text--persistent"
-             aria-hidden="true">
+         aria-hidden="true">
             @DateFieldErrorMessage
         </div>
     </div>

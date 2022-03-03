@@ -51,7 +51,7 @@ namespace Material.Blazor.Test
     <span class=""mdc-text-field__ripple""></span>
     <span class=""mdc-floating-label"" for:ignore id:ignore>Hello button</span>
     <i class=""material-icons  mdc-text-field__icon mdc-text-field__icon--leading"" tabindex=""-1"" role=""button"">alarm</i>
-    <input aria-label=""Hello button"" aria-labelledby:ignore id:ignore class=""mdc-text-field__input""  type=""text"" >
+    <input aria-label=""Hello button"" aria-labelledby:ignore id:ignore class=""mdc-text-field__input""  >
     <span class=""mdc-line-ripple""></span>
   </label>
   <div class=""mdc-menu-surface--anchor"">
@@ -319,7 +319,7 @@ namespace Material.Blazor.Test
             cut.MarkupMatches(@"
 <label class=""mdc-text-field   mdc-text-field--filled  mdc-text-field--no-label    "" >
   <span class=""mdc-text-field__ripple""></span>
-  <input id:ignore class=""mdc-text-field__input  "" type=""text"" >
+  <input id:ignore class=""mdc-text-field__input  "" >
   <span class=""mdc-line-ripple""></span>
 </label>
             ");
@@ -433,7 +433,7 @@ namespace Material.Blazor.Test
             cut.MarkupMatches(@"
 <label class=""mdc-text-field  mdc-text-field--filled mdc-text-field--no-label"" >
   <span class=""mdc-text-field__ripple""></span>
-  <input step = ""0.01"" id:ignore class=""mdc-text-field__input  mb-align-right "" type=""text"" value=""0""  >
+  <input step = ""0.01"" id:ignore class=""mdc-text-field__input  mb-align-right "" value=""0""  >
   <span class=""mdc-line-ripple""></span>
 </label>
             ");

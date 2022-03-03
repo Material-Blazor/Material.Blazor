@@ -10,7 +10,7 @@ namespace Material.Blazor
     /// A Material Theme date input field. This wraps <see cref="MBTextField"/> and normally
     /// displays the numeric value as formatted text, but switches to a pure number on being selected.
     /// </summary>
-    public partial class MBDateField : InputComponent<DateTime>
+    public partial class MBDateTimeField : InputComponent<DateTime>
     {
 #nullable enable annotations
 
@@ -108,11 +108,11 @@ namespace Material.Blazor
 
         internal static readonly DateTime MinAllowableDate = DateTime.MinValue;
         internal static readonly DateTime MaxAllowableDate = DateTime.MaxValue;
-        internal static readonly string ErrorText = "Invalid date, hover for more information";
+        internal static readonly string ErrorText = "Invalid datetime, hover for more information";
 
         private MBTextField TextField { get; set; }
-        private string MaxDateString { get { return MaxDate.ToString("yyyy-MM-dd"); } }
-        private string MinDateString { get { return MinDate.ToString("yyyy-MM-dd"); } }
+        private string MaxDateString { get { return MaxDate.ToString("yyyy-MM-ddTHH:mm"); } }
+        private string MinDateString { get { return MinDate.ToString("yyyy-MM-ddTHH:mm"); } }
 
         private string FormattedValue { get; set; }
 
@@ -141,8 +141,8 @@ namespace Material.Blazor
                 }
                 else
                 {
-                    // This is the require format for the string
-                    FormattedValue = ComponentValue.ToString("yyyy-MM-dd");
+                    // This is the required format for the string
+                    FormattedValue = ComponentValue.ToString("yyyy-MM-ddTHH:mm");
                 }
             }
             catch { }
