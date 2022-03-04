@@ -26,6 +26,7 @@ life of this component.
 - MinDate
 - SuppressDefaultDate
 
+This component is labeled 'experimental' as it is subject to change.
 &nbsp;
 
 &nbsp;
