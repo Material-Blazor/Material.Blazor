@@ -16,9 +16,8 @@ implements further Blazor/Material Theme hybrid components that we term "Plus Co
 | [MBBadge](xref:C.MBBadge) | Badges that can be applied wither within HTML `div'`s or invoked via the parameters on `MBButton`, `MBIconButton` and 'MBIconButtonToggle''. |
 | [MBBladeSet](xref:C.MBBladeSet) | Blades inspired by Microsoft Azure |
 | [MBConfirmationDialog](xref:C.MBConfirmationDialog) | A special purpose wrapper around [MBDialog](xref:C.MBDialog) that makes the user type some text correctly in order to enable a button for a specific purpose. Modelled after the GitHub confirmation forms. |
-| [MBDateField](xref:C.MBDateField) | An implementation in the spirit of the MBNumeric fields using an input type of 'date'. |
 | [MBDatePicker](xref:C.MBDatePicker) | An implementation of the [Material date picker specification](https://material.io/components/pickers/#specs) for the desktop. |
-| [MBDateTimeField](xref:C.MBDateTimeField) | An implementation in the spirit of the MBNumeric fields using an input type of 'datetime-local'. |
+| [MBDateTimeField](xref:C.MBDateTimeField) | An implementation in the spirit of the MBNumeric fields using an input type of either 'date' or 'datetime-local'. |
 | [MBDebouncedTextField](xref:C.MBDebouncedTextField) | A debounced version of [MBTextField](xref:C.MBTextField) |
 | [MBDivider](xref:C.MBDivider) | Implements a list divider by wrapping `hr` and gives the option of inset and padded. This uses the mdc-list-divider styles. |
 | [MBIcon](xref:C.MBIcon) | Displays an icon from the specified icon foundry or the default foundry from [MBCascadingDefaults](xref:U.MBCascadingDefaults). See also [MBIconHelper](xref:U.MBIconHelper). |

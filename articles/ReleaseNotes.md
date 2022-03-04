@@ -11,9 +11,10 @@ Released 2022-03-?????????????????????
 **Updates**
 
 **New components**
-- MBDateTimeField brings simple text entry for datetimes using an input component type of 'datetime-local'
+- MBDateTimeField brings simple text entry for dates & datetimes using an input component type of either 'date' or 'datetime-local'. This is a rename of MBDateField with an additional parameter of DateOnly. This field retains the 'Experimental' status.
 
 **Breaking Changes**
+- MBDateField renamed to MBDateTimeField
 
 **Deprecated Components**
 
@@ -30,7 +31,7 @@ Released 2022-02-28
 - The planned deprecation of MBToast is now deprecated. 
 
 **New components**
-- MBDateField brings simple text entry for dates using an input component type of 'date'
+- MBDateField brings simple text entry for dates using an input component type of 'date'.  This field is marked with the 'Experimental' status.
 
 **Breaking Changes**
 

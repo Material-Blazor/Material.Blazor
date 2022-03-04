@@ -12,7 +12,6 @@ namespace Material.Blazor
     /// </summary>
     public partial class MBTextField : InputComponent<string>
     {
-        [CascadingParameter] private MBDateField DateField { get; set; }
         [CascadingParameter] private MBDateTimeField DateTimeField { get; set; }
 
 
@@ -250,10 +249,6 @@ namespace Material.Blazor
         protected void SetDateErrorMessage()
         {
             DateFieldErrorMessage = "";
-            if (DateField != null)
-            {
-                DateFieldErrorMessage = MBDateField.ErrorText;
-            }
             if (DateTimeField != null)
             {
                 DateFieldErrorMessage = MBDateTimeField.ErrorText;

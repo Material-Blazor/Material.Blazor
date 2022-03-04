@@ -15,6 +15,13 @@ namespace Material.Blazor
 #nullable enable annotations
 
         /// <summary>
+        /// The datetime can optionally supress the time portion and just
+        /// return dates (at midnight)
+        /// </summary>
+        [Parameter] public bool DateOnly { get; set; } = false;
+
+
+        /// <summary>
         /// The numeric field's density.
         /// </summary>
         [Parameter] public MBDensity? Density { get; set; }
@@ -108,11 +115,12 @@ namespace Material.Blazor
 
         internal static readonly DateTime MinAllowableDate = DateTime.MinValue;
         internal static readonly DateTime MaxAllowableDate = DateTime.MaxValue;
-        internal static readonly string ErrorText = "Invalid datetime, hover for more information";
+        internal static string ErrorText { get; set; }
+        internal string ItemType { get; set; }
 
         private MBTextField TextField { get; set; }
-        private string MaxDateString { get { return MaxDate.ToString("yyyy-MM-ddTHH:mm"); } }
-        private string MinDateString { get { return MinDate.ToString("yyyy-MM-ddTHH:mm"); } }
+        private string MaxDateString { get; set; }
+        private string MinDateString { get; set; }
 
         private string FormattedValue { get; set; }
 
@@ -122,11 +130,27 @@ namespace Material.Blazor
         {
             //  Note the use of multiple parameters that presume invariance during the
             //  life of this component.
+            //      DateOnly
             //      MaxDate
             //      MinDate
             //      SupressDefaultDate
 
             await base.OnInitializedAsync();
+
+            if (DateOnly)
+            {
+                ErrorText = "Invalid date, hover for more information";
+                ItemType = "date";
+                MaxDateString = MaxDate.ToString("yyyy-MM-dd");
+                MinDateString = MinDate.ToString("yyyy-MM-dd");
+            }
+            else
+            {
+                ErrorText = "Invalid datetime, hover for more information";
+                ItemType = "datetime-local";
+                MaxDateString = MaxDate.ToString("yyyy-MM-ddTHH:mm");
+                MinDateString = MinDate.ToString("yyyy-MM-ddTHH:mm");
+            }
         }
 
         protected override async Task OnParametersSetAsync()
@@ -142,7 +166,15 @@ namespace Material.Blazor
                 else
                 {
                     // This is the required format for the string
-                    FormattedValue = ComponentValue.ToString("yyyy-MM-ddTHH:mm");
+
+                    if (DateOnly)
+                    {
+                        FormattedValue = ComponentValue.ToString("yyyy-MM-dd");
+                    }
+                    else
+                    {
+                        FormattedValue = ComponentValue.ToString("yyyy-MM-ddTHH:mm");
+                    }
                 }
             }
             catch { }
