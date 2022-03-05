@@ -4,17 +4,16 @@ title: ReleaseNotes
 ---
 # Release Notes
 
-#### [2.3.0](https://github.com/Material-Blazor/Material.Blazor)
+#### [2.2.1](https://github.com/Material-Blazor/Material.Blazor)
 
 Released 2022-03-?????????????????????
 
 **Updates**
 
 **New components**
-- MBDateTimeField brings simple text entry for dates & datetimes using an input component type of either 'date' or 'datetime-local'. This is a rename of MBDateField with an additional parameter of DateOnly. This field retains the 'Experimental' status.
 
 **Breaking Changes**
-- MBDateField renamed to MBDateTimeField
+- MBDateTimeField brings simple text entry for dates & datetimes using an input component type of either 'date' or 'datetime-local'. This is a rename of MBDateField with an additional parameter of DateOnly. This field retains the 'Experimental' status.
 
 **Deprecated Components**
 
