@@ -106,7 +106,8 @@
                                           @onclick="@(() => ToastService.ShowToast(
                                                               level: MBToastLevel.Error,
                                                               heading: "I'm an ERROR",
-                                                              message: "Go fix it."))"
+                                                              timeout: 10 * 60 * 1000,
+                                                              message: "Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it.Go fix it."))"
                                           style="background-color: var(--mb-toast-background-color-error); color: var(--mb-toast-color-error); margin-bottom: 1rem;" />
                             </p>
                         </div>
@@ -205,35 +206,35 @@
 
     private readonly IEnumerable<MBSelectElement<MBToastPosition>> positionItems = from pos in (MBToastPosition[])Enum.GetValues(typeof(MBToastPosition))
                                                                                    select new MBSelectElement<MBToastPosition>
-                                                                                   {
-                                                                                       SelectedValue = pos,
-                                                                                       Label = pos.ToString()
-                                                                                   };
+                                                                                       {
+                                                                                           SelectedValue = pos,
+                                                                                           Label = pos.ToString()
+                                                                                       };
 
 
     private string CssClass { get; set; }
     private readonly MBSelectElement<string>[] CssClassItems = new MBSelectElement<string>[]
-    {
+        {
         new MBSelectElement<string> { SelectedValue = "", Label = "Toast Svc Default" },
         new MBSelectElement<string> { SelectedValue = "italic-class", Label = "Italic" },
-                                            };
+                                                };
 
 
     private MBNotifierCloseMethod CloseMethod { get; set; }
     private readonly IEnumerable<MBSelectElement<MBNotifierCloseMethod>> closeMethodItems = from c in (MBNotifierCloseMethod[])Enum.GetValues(typeof(MBNotifierCloseMethod))
-                                                                                         select new MBSelectElement<MBNotifierCloseMethod>
-                                                                                         {
-                                                                                             SelectedValue = c,
-                                                                                             Label = c.ToString()
-                                                                                         };
+                                                                                            select new MBSelectElement<MBNotifierCloseMethod>
+                                                                                                {
+                                                                                                    SelectedValue = c,
+                                                                                                    Label = c.ToString()
+                                                                                                };
 
     private string Heading { get; set; }
     private readonly MBSelectElement<string>[] headingItems = new MBSelectElement<string>[]
-    {
+        {
         new MBSelectElement<string> { SelectedValue = "", Label = "Toast Svc Default" },
         new MBSelectElement<string> { SelectedValue = "Run of the mill heading", Label = "Run of the mill heading" },
         new MBSelectElement<string> { SelectedValue = "Heading truncated and truncated and truncated and truncated", Label = "Heading that will be truncated" }
-                                            };
+                                                };
 
 
 #nullable enable annotations
@@ -246,7 +247,7 @@
 
     private MyIcon Icon { get; set; }
     private readonly MBSelectElement<MyIcon>[] iconItems = new MBSelectElement<MyIcon>[]
-    {
+        {
         new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "directions_run" }, Label = "directions_run" },
         new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MBIconHelper.MIFoundry(theme: MBIconMITheme.Filled) }, Label = "thumb_up (filled / default)" },
         new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MBIconHelper.MIFoundry(theme: MBIconMITheme.Outlined) }, Label = "thumb_up (outlined)" },
@@ -255,44 +256,44 @@
         new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "thumb_up", Foundry = MBIconHelper.MIFoundry(theme: MBIconMITheme.Sharp) }, Label = "thumb_up (sharp)" },
         new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = MBIconHelper.FAFoundry() }, Label = "fa-ambulance" },
         new MBSelectElement<MyIcon> { SelectedValue = new MyIcon() { Name = "fa-ambulance", Foundry = MBIconHelper.FAFoundry(relativeSize: MBIconFARelativeSize.ExtraSmall) }, Label = "fa-ambulance (x-small)" },
-                                            };
+                                                };
 
 
     private MBToastLevel Level { get; set; }
     private readonly IEnumerable<MBSelectElement<MBToastLevel>> levelItems = from c in (MBToastLevel[])Enum.GetValues(typeof(MBToastLevel))
                                                                              select new MBSelectElement<MBToastLevel>
-                                                                             {
-                                                                                 SelectedValue = c,
-                                                                                 Label = c.ToString()
-                                                                             };
+                                                                                 {
+                                                                                     SelectedValue = c,
+                                                                                     Label = c.ToString()
+                                                                                 };
 
 
     private string Message { get; set; }
     private readonly MBSelectElement<string>[] messageItems = new MBSelectElement<string>[]
-    {
+        {
         new MBSelectElement<string> { SelectedValue = "Run of the mill message", Label = "Run of the mill message" },
         new MBSelectElement<string> { SelectedValue = "Text <strong>bold</strong> and <u>underlined</u>", Label = "Message with markup" },
         new MBSelectElement<string> { SelectedValue = "Message truncated and truncated and truncated and truncated", Label = "Message that will be truncated" }
-                                            };
+                                                };
 
 
     private string ShowIcon { get; set; }
     private readonly MBSelectElement<string>[] showIconItems = new MBSelectElement<string>[]
-    {
+        {
         new MBSelectElement<string> { SelectedValue = "", Label = "Toast Svc Default" },
         new MBSelectElement<string> { SelectedValue = "true", Label = "true" },
         new MBSelectElement<string> { SelectedValue = "false", Label = "false" }
-                                            };
+                                                };
 
 
     private string Timeout { get; set; }
     private readonly MBSelectElement<string>[] timeoutItems = new MBSelectElement<string>[]
-    {
+        {
         new MBSelectElement<string> { SelectedValue = "", Label = "Toast Svc Default" },
         new MBSelectElement<string> { SelectedValue = "1000", Label = "1 second" },
         new MBSelectElement<string> { SelectedValue = "10000", Label = "10 seconds" },
         new MBSelectElement<string> { SelectedValue = "60000", Label = "60 seconds" }
-                                            };
+                                                };
 
 
     private void CustomiseClick()
