@@ -5,10 +5,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Class MBDateField
+    <title>Class MBDateTimeField
    </title>
     <meta name="viewport" content="width=device-width">
-    <meta name="title" content="Class MBDateField
+    <meta name="title" content="Class MBDateTimeField
    ">
     <meta name="generator" content="docfx 2.58.4.0">
     
@@ -79,10 +79,10 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="Material.Blazor.MBDateField">
+            <article class="content wrap" id="_content" data-uid="Material.Blazor.MBDateTimeField">
   
   
-  <h1 id="Material_Blazor_MBDateField" data-uid="Material.Blazor.MBDateField" class="text-break">Class MBDateField
+  <h1 id="Material_Blazor_MBDateTimeField" data-uid="Material.Blazor.MBDateTimeField" class="text-break">Class MBDateTimeField
   </h1>
   <div class="markdown level0 summary"><p>A Material Theme date input field. This wraps <a class="xref" href="Material.Blazor.MBTextField.html">MBTextField</a> and normally
 displays the numeric value as formatted text, but switches to a pure number on being selected.</p>
@@ -93,7 +93,7 @@ displays the numeric value as formatted text, but switches to a pure number on b
     <div class="level0"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
     <div class="level1"><a class="xref" href="Material.Blazor.Internal.ComponentFoundation.html">ComponentFoundation</a></div>
     <div class="level2"><a class="xref" href="Material.Blazor.Internal.InputComponent-1.html">InputComponent</a>&lt;<a class="xref" href="https://docs.microsoft.com/dotnet/api/system.datetime">DateTime</a>&gt;</div>
-    <div class="level3"><span class="xref">MBDateField</span></div>
+    <div class="level3"><span class="xref">MBDateTimeField</span></div>
   </div>
   <div classs="implements">
     <h5>Implements</h5>
@@ -182,21 +182,53 @@ displays the numeric value as formatted text, but switches to a pure number on b
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Material.Blazor.html">Material.Blazor</a></h6>
   <h6><strong>Assembly</strong>: Material.Blazor.dll</h6>
-  <h5 id="Material_Blazor_MBDateField_syntax">Syntax</h5>
+  <h5 id="Material_Blazor_MBDateTimeField_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class MBDateField : InputComponent&lt;DateTime&gt;, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class MBDateTimeField : InputComponent&lt;DateTime&gt;, IDisposable</code></pre>
   </div>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateField_Density.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateField.Density%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateTimeField_DateOnly.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateTimeField.DateOnly%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateField/MBDateField.razor.cs/#L86">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateTimeField/MBDateTimeField.razor.cs/#L21">View Source</a>
   </span>
-  <a id="Material_Blazor_MBDateField_Density_" data-uid="Material.Blazor.MBDateField.Density*"></a>
-  <h4 id="Material_Blazor_MBDateField_Density" data-uid="Material.Blazor.MBDateField.Density">Density</h4>
+  <a id="Material_Blazor_MBDateTimeField_DateOnly_" data-uid="Material.Blazor.MBDateTimeField.DateOnly*"></a>
+  <h4 id="Material_Blazor_MBDateTimeField_DateOnly" data-uid="Material.Blazor.MBDateTimeField.DateOnly">DateOnly</h4>
+  <div class="markdown level1 summary"><p>The datetime can optionally supress the time portion and just
+return dates (at midnight)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool DateOnly { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateTimeField_Density.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateTimeField.Density%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateTimeField/MBDateTimeField.razor.cs/#L27">View Source</a>
+  </span>
+  <a id="Material_Blazor_MBDateTimeField_Density_" data-uid="Material.Blazor.MBDateTimeField.Density*"></a>
+  <h4 id="Material_Blazor_MBDateTimeField_Density" data-uid="Material.Blazor.MBDateTimeField.Density">Density</h4>
   <div class="markdown level1 summary"><p>The numeric field's density.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -221,14 +253,14 @@ displays the numeric value as formatted text, but switches to a pure number on b
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateField_HelperText.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateField.HelperText%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateTimeField_HelperText.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateTimeField.HelperText%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateField/MBDateField.razor.cs/#L19">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateTimeField/MBDateTimeField.razor.cs/#L33">View Source</a>
   </span>
-  <a id="Material_Blazor_MBDateField_HelperText_" data-uid="Material.Blazor.MBDateField.HelperText*"></a>
-  <h4 id="Material_Blazor_MBDateField_HelperText" data-uid="Material.Blazor.MBDateField.HelperText">HelperText</h4>
-  <div class="markdown level1 summary"><p>Helper text that is displayed either with focus or persistently with <a class="xref" href="Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_HelperTextPersistent">HelperTextPersistent</a>.</p>
+  <a id="Material_Blazor_MBDateTimeField_HelperText_" data-uid="Material.Blazor.MBDateTimeField.HelperText*"></a>
+  <h4 id="Material_Blazor_MBDateTimeField_HelperText" data-uid="Material.Blazor.MBDateTimeField.HelperText">HelperText</h4>
+  <div class="markdown level1 summary"><p>Helper text that is displayed either with focus or persistently with <a class="xref" href="Material.Blazor.MBDateTimeField.html#Material_Blazor_MBDateTimeField_HelperTextPersistent">HelperTextPersistent</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -252,14 +284,14 @@ displays the numeric value as formatted text, but switches to a pure number on b
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateField_HelperTextPersistent.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateField.HelperTextPersistent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateTimeField_HelperTextPersistent.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateTimeField.HelperTextPersistent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateField/MBDateField.razor.cs/#L25">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateTimeField/MBDateTimeField.razor.cs/#L39">View Source</a>
   </span>
-  <a id="Material_Blazor_MBDateField_HelperTextPersistent_" data-uid="Material.Blazor.MBDateField.HelperTextPersistent*"></a>
-  <h4 id="Material_Blazor_MBDateField_HelperTextPersistent" data-uid="Material.Blazor.MBDateField.HelperTextPersistent">HelperTextPersistent</h4>
-  <div class="markdown level1 summary"><p>Makes the <a class="xref" href="Material.Blazor.MBDateField.html#Material_Blazor_MBDateField_HelperText">HelperText</a> persistent if true.</p>
+  <a id="Material_Blazor_MBDateTimeField_HelperTextPersistent_" data-uid="Material.Blazor.MBDateTimeField.HelperTextPersistent*"></a>
+  <h4 id="Material_Blazor_MBDateTimeField_HelperTextPersistent" data-uid="Material.Blazor.MBDateTimeField.HelperTextPersistent">HelperTextPersistent</h4>
+  <div class="markdown level1 summary"><p>Makes the <a class="xref" href="Material.Blazor.MBDateTimeField.html#Material_Blazor_MBDateTimeField_HelperText">HelperText</a> persistent if true.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -283,13 +315,13 @@ displays the numeric value as formatted text, but switches to a pure number on b
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateField_IconFoundry.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateField.IconFoundry%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateTimeField_IconFoundry.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateTimeField.IconFoundry%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateField/MBDateField.razor.cs/#L80">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateTimeField/MBDateTimeField.razor.cs/#L49">View Source</a>
   </span>
-  <a id="Material_Blazor_MBDateField_IconFoundry_" data-uid="Material.Blazor.MBDateField.IconFoundry*"></a>
-  <h4 id="Material_Blazor_MBDateField_IconFoundry" data-uid="Material.Blazor.MBDateField.IconFoundry">IconFoundry</h4>
+  <a id="Material_Blazor_MBDateTimeField_IconFoundry_" data-uid="Material.Blazor.MBDateTimeField.IconFoundry*"></a>
+  <h4 id="Material_Blazor_MBDateTimeField_IconFoundry" data-uid="Material.Blazor.MBDateTimeField.IconFoundry">IconFoundry</h4>
   <div class="markdown level1 summary"><p>The foundry to use for both leading and trailing icons.</p>
 <p><code>IconFoundry=&quot;IconHelper.MIIcon()&quot;</code></p>
 <p><code>IconFoundry=&quot;IconHelper.FAIcon()&quot;</code></p>
@@ -318,13 +350,13 @@ displays the numeric value as formatted text, but switches to a pure number on b
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateField_Label.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateField.Label%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateTimeField_Label.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateTimeField.Label%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateField/MBDateField.razor.cs/#L46">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateTimeField/MBDateTimeField.razor.cs/#L55">View Source</a>
   </span>
-  <a id="Material_Blazor_MBDateField_Label_" data-uid="Material.Blazor.MBDateField.Label*"></a>
-  <h4 id="Material_Blazor_MBDateField_Label" data-uid="Material.Blazor.MBDateField.Label">Label</h4>
+  <a id="Material_Blazor_MBDateTimeField_Label_" data-uid="Material.Blazor.MBDateTimeField.Label*"></a>
+  <h4 id="Material_Blazor_MBDateTimeField_Label" data-uid="Material.Blazor.MBDateTimeField.Label">Label</h4>
   <div class="markdown level1 summary"><p>Field label.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -349,13 +381,13 @@ displays the numeric value as formatted text, but switches to a pure number on b
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateField_LeadingIcon.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateField.LeadingIcon%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateTimeField_LeadingIcon.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateTimeField.LeadingIcon%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateField/MBDateField.razor.cs/#L64">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateTimeField/MBDateTimeField.razor.cs/#L61">View Source</a>
   </span>
-  <a id="Material_Blazor_MBDateField_LeadingIcon_" data-uid="Material.Blazor.MBDateField.LeadingIcon*"></a>
-  <h4 id="Material_Blazor_MBDateField_LeadingIcon" data-uid="Material.Blazor.MBDateField.LeadingIcon">LeadingIcon</h4>
+  <a id="Material_Blazor_MBDateTimeField_LeadingIcon_" data-uid="Material.Blazor.MBDateTimeField.LeadingIcon*"></a>
+  <h4 id="Material_Blazor_MBDateTimeField_LeadingIcon" data-uid="Material.Blazor.MBDateTimeField.LeadingIcon">LeadingIcon</h4>
   <div class="markdown level1 summary"><p>The leading icon's name. No leading icon shown if not set.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -380,13 +412,13 @@ displays the numeric value as formatted text, but switches to a pure number on b
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateField_MaxDate.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateField.MaxDate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateTimeField_MaxDate.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateTimeField.MaxDate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateField/MBDateField.razor.cs/#L98">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateTimeField/MBDateTimeField.razor.cs/#L67">View Source</a>
   </span>
-  <a id="Material_Blazor_MBDateField_MaxDate_" data-uid="Material.Blazor.MBDateField.MaxDate*"></a>
-  <h4 id="Material_Blazor_MBDateField_MaxDate" data-uid="Material.Blazor.MBDateField.MaxDate">MaxDate</h4>
+  <a id="Material_Blazor_MBDateTimeField_MaxDate_" data-uid="Material.Blazor.MBDateTimeField.MaxDate*"></a>
+  <h4 id="Material_Blazor_MBDateTimeField_MaxDate" data-uid="Material.Blazor.MBDateTimeField.MaxDate">MaxDate</h4>
   <div class="markdown level1 summary"><p>The maximum allowable value.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -411,13 +443,13 @@ displays the numeric value as formatted text, but switches to a pure number on b
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateField_MinDate.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateField.MinDate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateTimeField_MinDate.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateTimeField.MinDate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateField/MBDateField.razor.cs/#L92">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateTimeField/MBDateTimeField.razor.cs/#L73">View Source</a>
   </span>
-  <a id="Material_Blazor_MBDateField_MinDate_" data-uid="Material.Blazor.MBDateField.MinDate*"></a>
-  <h4 id="Material_Blazor_MBDateField_MinDate" data-uid="Material.Blazor.MBDateField.MinDate">MinDate</h4>
+  <a id="Material_Blazor_MBDateTimeField_MinDate_" data-uid="Material.Blazor.MBDateTimeField.MinDate*"></a>
+  <h4 id="Material_Blazor_MBDateTimeField_MinDate" data-uid="Material.Blazor.MBDateTimeField.MinDate">MinDate</h4>
   <div class="markdown level1 summary"><p>The minimum allowable value.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -442,13 +474,13 @@ displays the numeric value as formatted text, but switches to a pure number on b
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateField_Prefix.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateField.Prefix%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateTimeField_Prefix.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateTimeField.Prefix%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateField/MBDateField.razor.cs/#L52">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateTimeField/MBDateTimeField.razor.cs/#L79">View Source</a>
   </span>
-  <a id="Material_Blazor_MBDateField_Prefix_" data-uid="Material.Blazor.MBDateField.Prefix*"></a>
-  <h4 id="Material_Blazor_MBDateField_Prefix" data-uid="Material.Blazor.MBDateField.Prefix">Prefix</h4>
+  <a id="Material_Blazor_MBDateTimeField_Prefix_" data-uid="Material.Blazor.MBDateTimeField.Prefix*"></a>
+  <h4 id="Material_Blazor_MBDateTimeField_Prefix" data-uid="Material.Blazor.MBDateTimeField.Prefix">Prefix</h4>
   <div class="markdown level1 summary"><p>Prefix text.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -473,13 +505,13 @@ displays the numeric value as formatted text, but switches to a pure number on b
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateField_Suffix.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateField.Suffix%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateTimeField_Suffix.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateTimeField.Suffix%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateField/MBDateField.razor.cs/#L58">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateTimeField/MBDateTimeField.razor.cs/#L85">View Source</a>
   </span>
-  <a id="Material_Blazor_MBDateField_Suffix_" data-uid="Material.Blazor.MBDateField.Suffix*"></a>
-  <h4 id="Material_Blazor_MBDateField_Suffix" data-uid="Material.Blazor.MBDateField.Suffix">Suffix</h4>
+  <a id="Material_Blazor_MBDateTimeField_Suffix_" data-uid="Material.Blazor.MBDateTimeField.Suffix*"></a>
+  <h4 id="Material_Blazor_MBDateTimeField_Suffix" data-uid="Material.Blazor.MBDateTimeField.Suffix">Suffix</h4>
   <div class="markdown level1 summary"><p>Suffix text.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -504,13 +536,13 @@ displays the numeric value as formatted text, but switches to a pure number on b
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateField_SuppressDefaultDate.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateField.SuppressDefaultDate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateTimeField_SuppressDefaultDate.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateTimeField.SuppressDefaultDate%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateField/MBDateField.razor.cs/#L104">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateTimeField/MBDateTimeField.razor.cs/#L91">View Source</a>
   </span>
-  <a id="Material_Blazor_MBDateField_SuppressDefaultDate_" data-uid="Material.Blazor.MBDateField.SuppressDefaultDate*"></a>
-  <h4 id="Material_Blazor_MBDateField_SuppressDefaultDate" data-uid="Material.Blazor.MBDateField.SuppressDefaultDate">SuppressDefaultDate</h4>
+  <a id="Material_Blazor_MBDateTimeField_SuppressDefaultDate_" data-uid="Material.Blazor.MBDateTimeField.SuppressDefaultDate*"></a>
+  <h4 id="Material_Blazor_MBDateTimeField_SuppressDefaultDate" data-uid="Material.Blazor.MBDateTimeField.SuppressDefaultDate">SuppressDefaultDate</h4>
   <div class="markdown level1 summary"><p>Set to indicate that if the value is default(DateTime) then no date is initially shown</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -535,13 +567,13 @@ displays the numeric value as formatted text, but switches to a pure number on b
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateField_TextInputStyle.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateField.TextInputStyle%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateTimeField_TextInputStyle.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateTimeField.TextInputStyle%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateField/MBDateField.razor.cs/#L40">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateTimeField/MBDateTimeField.razor.cs/#L98">View Source</a>
   </span>
-  <a id="Material_Blazor_MBDateField_TextInputStyle_" data-uid="Material.Blazor.MBDateField.TextInputStyle*"></a>
-  <h4 id="Material_Blazor_MBDateField_TextInputStyle" data-uid="Material.Blazor.MBDateField.TextInputStyle">TextInputStyle</h4>
+  <a id="Material_Blazor_MBDateTimeField_TextInputStyle_" data-uid="Material.Blazor.MBDateTimeField.TextInputStyle*"></a>
+  <h4 id="Material_Blazor_MBDateTimeField_TextInputStyle" data-uid="Material.Blazor.MBDateTimeField.TextInputStyle">TextInputStyle</h4>
   <div class="markdown level1 summary"><p>The text input style.</p>
 <p>Overrides <a class="xref" href="Material.Blazor.MBCascadingDefaults.html#Material_Blazor_MBCascadingDefaults_TextInputStyle">TextInputStyle</a></p>
 </div>
@@ -567,13 +599,13 @@ displays the numeric value as formatted text, but switches to a pure number on b
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateField_TrailingIcon.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateField.TrailingIcon%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateTimeField_TrailingIcon.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateTimeField.TrailingIcon%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateField/MBDateField.razor.cs/#L70">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateTimeField/MBDateTimeField.razor.cs/#L104">View Source</a>
   </span>
-  <a id="Material_Blazor_MBDateField_TrailingIcon_" data-uid="Material.Blazor.MBDateField.TrailingIcon*"></a>
-  <h4 id="Material_Blazor_MBDateField_TrailingIcon" data-uid="Material.Blazor.MBDateField.TrailingIcon">TrailingIcon</h4>
+  <a id="Material_Blazor_MBDateTimeField_TrailingIcon_" data-uid="Material.Blazor.MBDateTimeField.TrailingIcon*"></a>
+  <h4 id="Material_Blazor_MBDateTimeField_TrailingIcon" data-uid="Material.Blazor.MBDateTimeField.TrailingIcon">TrailingIcon</h4>
   <div class="markdown level1 summary"><p>The trailing icon's name. No leading icon shown if not set.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -598,13 +630,13 @@ displays the numeric value as formatted text, but switches to a pure number on b
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateField_ValidationMessageFor.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateField.ValidationMessageFor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateTimeField_ValidationMessageFor.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateTimeField.ValidationMessageFor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateField/MBDateField.razor.cs/#L33">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateTimeField/MBDateTimeField.razor.cs/#L112">View Source</a>
   </span>
-  <a id="Material_Blazor_MBDateField_ValidationMessageFor_" data-uid="Material.Blazor.MBDateField.ValidationMessageFor*"></a>
-  <h4 id="Material_Blazor_MBDateField_ValidationMessageFor" data-uid="Material.Blazor.MBDateField.ValidationMessageFor">ValidationMessageFor</h4>
+  <a id="Material_Blazor_MBDateTimeField_ValidationMessageFor_" data-uid="Material.Blazor.MBDateTimeField.ValidationMessageFor*"></a>
+  <h4 id="Material_Blazor_MBDateTimeField_ValidationMessageFor" data-uid="Material.Blazor.MBDateTimeField.ValidationMessageFor">ValidationMessageFor</h4>
   <div class="markdown level1 summary"><p>Delivers Material Theme validation methods from native Blazor validation. Either use this or
 the Blazor <pre><code>ValidationMessage</code></pre> component, but not both. This parameter takes the same input as</p>
 <pre><code>ValidationMessage</code></pre>&apos;s <pre><code>For</code></pre> parameter.
@@ -633,13 +665,13 @@ the Blazor <pre><code>ValidationMessage</code></pre> component, but not both. Th
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateField_OnInitializedAsync.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateField.OnInitializedAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateTimeField_OnInitializedAsync.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateTimeField.OnInitializedAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateField/MBDateField.razor.cs/#L121">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateTimeField/MBDateTimeField.razor.cs/#L129">View Source</a>
   </span>
-  <a id="Material_Blazor_MBDateField_OnInitializedAsync_" data-uid="Material.Blazor.MBDateField.OnInitializedAsync*"></a>
-  <h4 id="Material_Blazor_MBDateField_OnInitializedAsync" data-uid="Material.Blazor.MBDateField.OnInitializedAsync">OnInitializedAsync()</h4>
+  <a id="Material_Blazor_MBDateTimeField_OnInitializedAsync_" data-uid="Material.Blazor.MBDateTimeField.OnInitializedAsync*"></a>
+  <h4 id="Material_Blazor_MBDateTimeField_OnInitializedAsync" data-uid="Material.Blazor.MBDateTimeField.OnInitializedAsync">OnInitializedAsync()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -665,13 +697,13 @@ the Blazor <pre><code>ValidationMessage</code></pre> component, but not both. Th
   <div><span class="xref">Material.Blazor.Internal.InputComponent&lt;System.DateTime&gt;.OnInitializedAsync()</span></div>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateField_OnParametersSetAsync.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateField.OnParametersSetAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateTimeField_OnParametersSetAsync.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateTimeField.OnParametersSetAsync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateField/MBDateField.razor.cs/#L132">View Source</a>
+    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateTimeField/MBDateTimeField.razor.cs/#L156">View Source</a>
   </span>
-  <a id="Material_Blazor_MBDateField_OnParametersSetAsync_" data-uid="Material.Blazor.MBDateField.OnParametersSetAsync*"></a>
-  <h4 id="Material_Blazor_MBDateField_OnParametersSetAsync" data-uid="Material.Blazor.MBDateField.OnParametersSetAsync">OnParametersSetAsync()</h4>
+  <a id="Material_Blazor_MBDateTimeField_OnParametersSetAsync_" data-uid="Material.Blazor.MBDateTimeField.OnParametersSetAsync*"></a>
+  <h4 id="Material_Blazor_MBDateTimeField_OnParametersSetAsync" data-uid="Material.Blazor.MBDateTimeField.OnParametersSetAsync">OnParametersSetAsync()</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -707,10 +739,10 @@ the Blazor <pre><code>ValidationMessage</code></pre> component, but not both. Th
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateField.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateField%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/new/main/apiSpec/new?filename=Material_Blazor_MBDateTimeField.md&amp;value=---%0Auid%3A%20Material.Blazor.MBDateTimeField%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateField/MBDateField.razor.cs/#L13" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor/Components/DateTimeField/MBDateTimeField.razor.cs/#L13" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

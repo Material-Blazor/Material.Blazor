@@ -84,7 +84,7 @@
 <p>Add the <code>Material.Blazor</code> namespace to your project by appending <code>@using Material.Blazor</code> to the end of your project's _Imports.razor file. Do not use components from the <code>Material.Blazor.Internal</code> namespace: as the name
 implies these are intended for internal use by Material.Blazor, however Blazor has no mechanism for internally restricted Blazor components to mirror the <code>internal</code> directive for a C# class.</p>
 <h2 id="obtaining-the-requisite-css-and-js">Obtaining the requisite CSS and JS</h2>
-<p>You will to add three items to your index.html/_Host.cshtml. Place this in the <code>&lt;head&gt;</code> tag:</p>
+<p>You will to add three items to your index.html/_Layout.cshtml. Place this in the <code>&lt;head&gt;</code> tag:</p>
 <pre><code class="lang-html">&lt;link href=&quot;_content/Material.Blazor/material-components-web.min.css&quot; rel=&quot;stylesheet&quot; /&gt;
 &lt;link href=&quot;_content/Material.Blazor/material.blazor.min.css&quot; rel=&quot;stylesheet&quot; /&gt;
 </code></pre>
@@ -95,6 +95,7 @@ implies these are intended for internal use by Material.Blazor, however Blazor h
 if you have built a theme - you can see how we have done this in the <a href="https://github.com/Material-Blazor/Material.Blazor/blob/main/Material.Blazor.Website.WebAssembly/wwwroot/index.html#L14">Material.Blazor website's index.html</a>.</p>
 <p>material.blazor.min.css includes the Material icons for convenience. If you wish to use either (or both) Font Awesome or Open Iconic icon sets see the next section for the additional css required.</p>
 <p>The non-minified versions of each of the css and js packages are also available if needed for debugging.</p>
+<p>All styling really should be done with Material but the application created with the templates uses Bootstrap. Once you have your apllication fully in Material remove the reference to bootstrap.min.css.</p>
 <h2 id="package-versions">Package versions</h2>
 <p>Material.Blazor works with the following package versions:</p>
 <ul>
@@ -111,10 +112,7 @@ if you have built a theme - you can see how we have done this in the <a href="ht
 <h2 id="services-and-anchor">Services and Anchor</h2>
 <p>Material.Blazor has three services for logging, snackbars, and toasts. We strongly advise you to use these in your project
 because regular component tooltips will fail if you don't, although they are optional. To register the services:</p>
-<pre><code class="lang-csharp">services.AddMBServices(
-    loggingServiceConfiguration: Utilities.GetDefaultLoggingServiceConfiguration(),
-    toastServiceConfiguration: Utilities.GetDefaultToastServiceConfiguration(),
-    snackbarServiceConfiguration: Utilities.GetDefaultSnackbarServiceConfiguration()
+<pre><code class="lang-csharp">services.AddMBServices();
 </code></pre>
 <p>The three configurations are either the default (as above) or custom -
 see <a class="xref" href="../api/Material.Blazor.MBSnackbarServiceConfiguration.html">MBSnackbarServiceConfiguration</a>,

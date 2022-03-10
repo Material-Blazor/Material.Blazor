@@ -250,11 +250,11 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "Material.Blazor/Components/DateField/MBDateField.md",
+      "source_relative_path": "Material.Blazor/Components/DatePicker/MBDatePicker.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/DateField/MBDateField.html",
-          "hash": "DQODYgf8bXGP2xkQ4MNLF4Xk+GCJPo5x/HSMwdrh7XI="
+          "relative_path": "Material.Blazor/Components/DatePicker/MBDatePicker.html",
+          "hash": "wj4Evb62AUkBoX+PZNG25Jm/H1kXXwVshAmMNAy3Z9I="
         }
       },
       "is_incremental": false,
@@ -262,11 +262,11 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "Material.Blazor/Components/DatePicker/MBDatePicker.md",
+      "source_relative_path": "Material.Blazor/Components/DateTimeField/MBDateTimeField.md",
       "output": {
         ".html": {
-          "relative_path": "Material.Blazor/Components/DatePicker/MBDatePicker.html",
-          "hash": "wj4Evb62AUkBoX+PZNG25Jm/H1kXXwVshAmMNAy3Z9I="
+          "relative_path": "Material.Blazor/Components/DateTimeField/MBDateTimeField.html",
+          "hash": "axo2UOEkVn7qsC0F8Rh556avyoAcdh84lk8gAR8Ru14="
         }
       },
       "is_incremental": false,
@@ -938,7 +938,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.Internal.InputComponent-1.html",
-          "hash": "HUwxCq6KdyddsfXwz52vxmgpR22uMiJ9GvwXvLBZhfY="
+          "hash": "vNsgpcSlVFKTbhwDKaEvKlngSYtiBfuMEGjBqf1t8cU="
         }
       },
       "is_incremental": false,
@@ -1318,18 +1318,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/Material.Blazor.MBDateField.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Material.Blazor.MBDateField.html",
-          "hash": "6c7T+DHzcWhoX2wk3AMPZ8Wg3SKoCHY5b+RJm7lETOU="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/Material.Blazor.MBDatePicker.yml",
       "output": {
         ".html": {
@@ -1347,6 +1335,18 @@
         ".html": {
           "relative_path": "api/Material.Blazor.MBDateSelectionCriteria.html",
           "hash": "7vfc6cuZBN8quFfmdc4QXgnkk61UCHN+rfcbn94KmO4="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBDateTimeField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBDateTimeField.html",
+          "hash": "c9JRXCra4sA2jiw95k0WPUX+laxIlPVFQLanHfEH2kk="
         }
       },
       "is_incremental": false,
@@ -2114,7 +2114,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBTextField.html",
-          "hash": "tDp+2o5Qx0rovR+7wtCUWQ9f5CIcGreSTDctn804Ndw="
+          "hash": "a9MXlwTexjzO89iVvjghbtTdlTWt2K62sOXUMfkI5sw="
         }
       },
       "is_incremental": false,
@@ -2294,7 +2294,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.html",
-          "hash": "JjG/hIHZOgenLS7+7p/nVgcR5Jh7mWs3n8CnfsE7qDo="
+          "hash": "IAJ4fxppIA4GrrS2xQgj2e9sEeOc/YfSTm5zFiv3PLo="
         }
       },
       "is_incremental": false,
@@ -2306,7 +2306,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "pIvCU3YIrChvAFA4wuzVWe0s7v5KJdbr8Fl9Q88e7Dk="
+          "hash": "ZhJMMX7px2vbTof34swPSJh/6nEY2mL/BPoORnAORec="
         }
       },
       "is_incremental": false,
@@ -2402,7 +2402,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/Installation.html",
-          "hash": "aJHo2DQZABl/jtJhYIP9udwHIfq2XyNaRagU6noiatU="
+          "hash": "0c5TzwgfvD6vjAKpajkfO1UMa6XWTsN/h2p08Xox1cE="
         }
       },
       "is_incremental": false,
@@ -2433,12 +2433,15 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "UidNotFound"
+      ],
       "type": "Conceptual",
       "source_relative_path": "articles/PlusComponents.md",
       "output": {
         ".html": {
           "relative_path": "articles/PlusComponents.html",
-          "hash": "l+9FSsH5AzF+CegjyiTyR7jwYTrg7tMPRqFViPk6J84="
+          "hash": "SXv99rBgI9meuCGMkVMjgNRz3HVzF1YjGxXRtjzCG88="
         }
       },
       "is_incremental": false,
@@ -2462,7 +2465,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/ReleaseNotes.html",
-          "hash": "ZYWywu4F5oj+T+AdHJMu3Wg7FWbFq5HzZ3a6bayyEaU="
+          "hash": "hw4OQ4gDGgjjHJ31i3soFyPUGWyApEkomF2isT/H2DE="
         }
       },
       "is_incremental": false,
