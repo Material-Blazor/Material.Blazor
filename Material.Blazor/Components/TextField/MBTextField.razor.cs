@@ -226,8 +226,9 @@ namespace Material.Blazor
                 .AddIf("mdc-text-field--outlined", () => AppliedInputStyle == MBTextInputStyle.Outlined)
                 .AddIf("mdc-text-field--no-label", () => !ShowLabel)
                 .AddIf("mdc-text-field--disabled", () => AppliedDisabled)
-                .AddIf("mdc-text-field--with-leading-icon", () => !(LeadingIcon is null))
-                .AddIf("mdc-text-field--with-trailing-icon", () => !(TrailingIcon is null));
+                .AddIf("mdc-text-field--with-leading-icon", () => LeadingIcon is not null)
+                .AddIf("mdc-text-field--with-trailing-icon", () => TrailingIcon is not null)
+                .AddIf("mb-date-field", () => DateTimeField is not null);
 
             FloatingLabelClass = string.IsNullOrEmpty(ComponentValue) ? "" : "mdc-floating-label--float-above";
 

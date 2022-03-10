@@ -189,3 +189,7 @@
         visibility: visible !important;
     }
 }
+
+.mb-date-field .mdc-text-field__input::-webkit-calendar-picker-indicator {
+    display: block;
+}
