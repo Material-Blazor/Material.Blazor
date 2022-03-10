@@ -150,11 +150,8 @@ jobs:
         dotnet-version: '6.0.x'
         include-prerelease: true
 
-    - name: Build Website 🔧
-      run: dotnet build ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} -p:Version=${{needs.version.outputs.identifier}}
-      
-    - name: Publish Website 🔧
-      run: dotnet publish ${{env.projectWeb}} --no-build --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} -p:Version=${{needs.version.outputs.identifier}} -p:BlazorEnableCompression=false      
+    - name: Build and Publish Website 🔧
+      run: dotnet publish ${{env.projectWeb}} --configuration ${{env.buildConfiguration}} --output ${{env.outputWeb}} -p:Version=${{needs.version.outputs.identifier}} -p:BlazorEnableCompression=false      
 
     - name: Upload Website Artifacts 🔺 # The website is then uploaded as an artifact named 'siteWeb'.
       uses: actions/upload-artifact@v2
