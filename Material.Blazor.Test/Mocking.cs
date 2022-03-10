@@ -319,7 +319,7 @@ namespace Material.Blazor.Test
             cut.MarkupMatches(@"
 <label class=""mdc-text-field   mdc-text-field--filled  mdc-text-field--no-label    "" >
   <span class=""mdc-text-field__ripple""></span>
-  <input id:ignore class=""mdc-text-field__input  ""  >
+  <input id:ignore class=""mdc-text-field__input  "" >
   <span class=""mdc-line-ripple""></span>
 </label>
             ");
