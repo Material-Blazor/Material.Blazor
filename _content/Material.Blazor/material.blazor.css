@@ -4647,7 +4647,7 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   visibility: visible !important;
 }
 
-.mb-date-field .mdc-text-field__input::-webkit-calendar-picker-indicator {
+.mb-date-field2 .mdc-text-field__input::-webkit-calendar-picker-indicator {
   display: block;
 }
 
