@@ -938,7 +938,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.Internal.InputComponent-1.html",
-          "hash": "vNsgpcSlVFKTbhwDKaEvKlngSYtiBfuMEGjBqf1t8cU="
+          "hash": "nVRKiRqAtwHRX1IzjHLzdXd4LUm+7NhHvhV6oLNdE3U="
         }
       },
       "is_incremental": false,
@@ -1318,11 +1318,23 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Material.Blazor.MBDateField.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Material.Blazor.MBDateField.html",
+          "hash": "6c7T+DHzcWhoX2wk3AMPZ8Wg3SKoCHY5b+RJm7lETOU="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Material.Blazor.MBDatePicker.yml",
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBDatePicker.html",
-          "hash": "S8nCULpQKC4PorrdhBHfmOEC+e0zM9Ejq5ICpwUwxm0="
+          "hash": "cs+SBSLGrkz7DlJySWowEFkbo8bXqXg8ikdDIJpJYqk="
         }
       },
       "is_incremental": false,
@@ -2018,7 +2030,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBSlidingContent-1.html",
-          "hash": "t6VbSUmJ8hgTa4nmcr/6/0BJM/ZcqqbKsSVrJ+4nXjg="
+          "hash": "6mSvEj6ZBTb5D8lUKXQyJ8nUpCgAipJMH05fgPdUEwU="
         }
       },
       "is_incremental": false,
@@ -2294,7 +2306,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.html",
-          "hash": "IAJ4fxppIA4GrrS2xQgj2e9sEeOc/YfSTm5zFiv3PLo="
+          "hash": "DFeh3qHNBKJChYKM9ODW15y2vKLKc2NnF5CF8iFKJ6s="
         }
       },
       "is_incremental": false,
@@ -2306,7 +2318,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "ZhJMMX7px2vbTof34swPSJh/6nEY2mL/BPoORnAORec="
+          "hash": "uwycQFEM5EaQUh2JwrrkRsRzkd49/hdLklRaoho0/f0="
         }
       },
       "is_incremental": false,
@@ -2465,7 +2477,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/ReleaseNotes.html",
-          "hash": "zeBl5PLJvEnChG/HzjIKYJ+0mWmSDNazgyyZYKXa0RQ="
+          "hash": "rA3uCEXNRnI7QrKSGpDeEauxN8dOt+Yu+YBxte+g+qs="
         }
       },
       "is_incremental": false,
@@ -2778,7 +2790,7 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 125,
+          "total_file_count": 126,
           "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {

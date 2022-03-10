@@ -3237,15 +3237,15 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   }
 }
 .mb-slide-out-to-left {
-  animation: slideOutToLeft ease-out 1000ms;
-  -webkit-animation: slideOutToLeft ease-out 1000ms;
+  animation: slideOutToLeft ease-out 10000ms;
+  -webkit-animation: slideOutToLeft ease-out 10000ms;
 }
 
 @-webkit-keyframes slideOutToLeft {
   0% {
     opacity: 1;
   }
-  10% {
+  1% {
     margin-left: -12px;
     margin-right: 12px;
     opacity: 0;
@@ -3260,7 +3260,7 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   0% {
     opacity: 1;
   }
-  10% {
+  1% {
     margin-left: -12px;
     margin-right: 12px;
     opacity: 0;
@@ -3272,15 +3272,15 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   }
 }
 .mb-slide-out-to-right {
-  animation: slideOutToRight ease-out 1000ms;
-  -webkit-animation: slideOutToRight ease-out 1000ms;
+  animation: slideOutToRight ease-out 10000ms;
+  -webkit-animation: slideOutToRight ease-out 10000ms;
 }
 
 @-webkit-keyframes slideOutToRight {
   0% {
     opacity: 1;
   }
-  10% {
+  1% {
     margin-left: 12px;
     margin-right: -12px;
     opacity: 0;
@@ -3295,7 +3295,7 @@ $dp-menu-year-menu-height: $dp-menu-height + $dp-year-pad-rows * ($dp-button-siz
   0% {
     opacity: 1;
   }
-  10% {
+  1% {
     margin-left: 12px;
     margin-right: -12px;
     opacity: 0;
