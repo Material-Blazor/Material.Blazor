@@ -4,11 +4,12 @@ title: ReleaseNotes
 ---
 # Release Notes
 
-#### [2.2.1](https://github.com/Material-Blazor/Material.Blazor)
+#### [2.3.0](https://github.com/Material-Blazor/Material.Blazor)
 
 Released 2022-03-10
 
 **Updates**
+- SlidingContent improvements
 
 **New components**
 
@@ -25,6 +26,8 @@ Released 2022-03-10
 
 Released 2022-03-10
 
+Deprecated 2022-03-10
+
 **Updates**
 
 **New components**
@@ -37,6 +40,25 @@ Released 2022-03-10
 **Known issues**
 
 2.2.1 added support for the html dropdowns in the date & time fields. What wasn't noted is that the addition of these dropdowns broke the reporting of text changes. Pending further investigation there is no graphic entry support.
+
+<br />
+
+#### [2.2.1](https://github.com/Material-Blazor/Material.Blazor)
+
+Released 2022-03-10
+
+Deprecated 2022-03-10
+
+**Updates**
+
+**New components**
+
+**Breaking Changes**
+- MBDateTimeField brings simple text entry for dates & datetimes using an input component type of either 'date' or 'datetime-local'. This is a rename of MBDateField with an additional parameter of DateOnly. This field retains the 'Experimental' status.
+
+**Deprecated Components**
+
+**Known issues**
 
 <br />
 
