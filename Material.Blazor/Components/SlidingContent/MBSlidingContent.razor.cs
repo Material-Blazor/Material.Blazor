@@ -102,17 +102,21 @@ namespace Material.Blazor
                         ContentClass = OutToLeft;
                     }
 
+                    await InvokeAsync(StateHasChanged);
                     await Task.Delay(100);
+
+
+                    HideContent = true;
+
+                    ContentClass = nextClass;
+                    CurrentItem = Items.ElementAt(index);
 
                     await ItemIndexChanged.InvokeAsync(index);
                     _itemIndex = index;
-
-                    HideContent = true;
-                    ContentClass = nextClass;
-                    CurrentItem = Items.ElementAt(index);
+                    
                     HideContent = false;
 
-                    StateHasChanged();
+                    await InvokeAsync(StateHasChanged);
                 }
                 else
                 {

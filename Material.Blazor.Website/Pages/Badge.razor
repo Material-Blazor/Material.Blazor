@@ -172,6 +172,30 @@
                                       Label="Select"
                                       SelectInputStyle="MBSelectInputStyle.Outlined" />
                         </div>
+                        <div class="mdc-layout-grid__cell--span-6">
+                            <MBDatePicker @bind-Value="@Date"
+                                          Label="Filled"
+                                          DateFormat="ddd MMM dd, yyyy"
+                                          MaxDate="@Max"
+                                          MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
+                                          MinDate="@Min"
+                                          HasBadge="true"
+                                          BadgeValue="@ButtonValue"
+                                          BadgeExited="@Exited"
+                                          SelectInputStyle="MBSelectInputStyle.Filled" />
+                        </div>
+                        <div class="mdc-layout-grid__cell--span-6">
+                            <MBDatePicker @bind-Value="@Date"
+                                          Label="Filled"
+                                          DateFormat="ddd MMM dd, yyyy"
+                                          MaxDate="@Max"
+                                          MenuSurfacePositioning="@MBMenuSurfacePositioning.Fixed"
+                                          MinDate="@Min"
+                                          HasBadge="true"
+                                          BadgeStyle="@MBBadgeStyle.Dot"
+                                          BadgeExited="@Exited"
+                                          SelectInputStyle="MBSelectInputStyle.Filled" />
+                        </div>
                     </div>
                 </Primary>
             </MBCard>
@@ -196,4 +220,8 @@
         new MBSelectElement<string> { SelectedValue = "russ-blue", Label = "Russian Blue" },
         new MBSelectElement<string> { SelectedValue = "ice-invis", Label = "Icelandic Invisible" }
     };
+
+    private DateTime Min { get; set; } = new DateTime(2019, 12, 14);
+    private DateTime Max { get; set; } = new DateTime(2097, 6, 14);
+    private DateTime Date { get; set; } = DateTime.Today;
 }

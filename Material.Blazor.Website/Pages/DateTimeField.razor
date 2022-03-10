@@ -1,0 +1,290 @@
+﻿@page "/dateTimeField"
+
+@inject IMBToastService ToastService
+
+@using System.Runtime.InteropServices
+
+
+<DemonstrationPage ComponentName="DateTimeField"
+                   DemoComponent="@this"
+                   MinDensity="MBDensity.Minus4"
+                   RequiresDisableSelection="true"
+                   Title="DateTime Field Demonstration">
+    <Description>
+        <p>
+            Shows datetime fields, which are Plus components.
+            Each of these can display as Filled or Outlined and with
+            the full variety of icon foundries. These are used across the page
+            but it we don't attempt to show each variant everywhere - see the Text Field demo for this.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-6">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Standard Formatted DateTime
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        A pair of Date fields with range checking.
+                        The ranges are 1/1/1900 00:00 to 12/31/2199 23:59
+                    </h3>
+
+                    <p>
+                        <MBDateTimeField @bind-Value="@DateValue1"
+                                         Label="Outlined datetime field"
+                                         MinDate=@min
+                                         MaxDate=@max
+                                         TextInputStyle="MBTextInputStyle.Outlined" />
+                    </p>
+
+                    <p>
+                        <MBDateTimeField @bind-Value="@DateValue2"
+                                         Label="Filled datetime field"
+                                         MinDate=@min
+                                         MaxDate=@max
+                                         TextInputStyle="MBTextInputStyle.Filled" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-6">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Helper Text
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows persistent and non-persistent helper text.
+                    </h3>
+
+                    <p>
+                        <MBDateTimeField @bind-Value="@DateValue3"
+                                         HelperText="Some helper text that pops up"
+                                         Label="Popup Helper Text" />
+                    </p>
+
+                    <p>
+                        <MBDateTimeField @bind-Value="@DateValue4"
+                                         HelperText="Some persistent helper text"
+                                         HelperTextPersistent="true"
+                                         Label="Persistent Helper Text" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+        <div class="mdc-layout-grid__cell--span-6">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Standard Formatted DateTime with DateOnly true
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        A pair of DateTime fields with range checking.
+                        The ranges are 1/1/1900 to 12/31/2199
+                    </h3>
+
+                    <p>
+                        <MBDateTimeField @bind-Value="@DateValue5"
+                                         DateOnly=true
+                                         Label="Outlined datetime field"
+                                         MinDate=@min
+                                         MaxDate=@max
+                                         TextInputStyle="MBTextInputStyle.Outlined" />
+                    </p>
+
+                    <p>
+                        <MBDateTimeField @bind-Value="@DateValue6"
+                                         DateOnly=true
+                                         Label="Filled datetime field"
+                                         MinDate=@min
+                                         MaxDate=@max
+                                         TextInputStyle="MBTextInputStyle.Filled" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+
+
+
+        <div class="mdc-layout-grid__cell--span-6">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Helper Text with DateOnly true
+                    </h2>
+
+                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
+                        Shows persistent and non-persistent helper text
+                    </h3>
+
+                    <p>
+                        <MBDateTimeField @bind-Value="@DateValue7"
+                                         DateOnly=true
+                                         HelperText="Some helper text that pops up"
+                                         Label="Popup Helper Text" />
+                    </p>
+
+                    <p>
+                        <MBDateTimeField @bind-Value="@DateValue8"
+                                         DateOnly=true
+                                         HelperText="Some persistent helper text"
+                                         HelperTextPersistent="true"
+                                         Label="Persistent Helper Text" />
+                    </p>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+@code {
+    private DateTime min = new DateTime(1900, 1, 1, 0, 0, 0);
+    private DateTime max = new DateTime(2199, 12, 31, 23, 59, 0);
+
+    private DateTime _dateValue1 = new DateTime(2022, 3, 31, 10, 0, 0);
+    private DateTime DateValue1
+    {
+        get => _dateValue1;
+        set
+        {
+            _dateValue1 = value;
+
+            ToastService.ShowToast(
+                heading: "Date",
+                message: $"Value: '{value.ToString("MM/dd/yyyy HHmm")}'",
+                level: MBToastLevel.Success,
+                showIcon: false);
+        }
+    }
+
+
+    private DateTime _dateValue2;
+    private DateTime DateValue2
+    {
+        get => _dateValue2;
+        set
+        {
+            _dateValue2 = value;
+
+            ToastService.ShowToast(
+                heading: "Date",
+                message: $"Value: '{value.ToString("MM/dd/yyyy HHmm")}'",
+                level: MBToastLevel.Success,
+                showIcon: false);
+        }
+    }
+
+    private DateTime _dateValue3;
+    private DateTime DateValue3
+    {
+        get => _dateValue3;
+        set
+        {
+            _dateValue3 = value;
+
+            ToastService.ShowToast(
+                heading: "Popup Helper Text",
+                message: $"Value: '{value.ToString("MM/dd/yyyy HHmm")}'",
+                level: MBToastLevel.Success,
+                showIcon: false);
+        }
+    }
+
+
+    private DateTime _dateValue4;
+    private DateTime DateValue4
+    {
+        get => _dateValue4;
+        set
+        {
+            _dateValue4 = value;
+
+            ToastService.ShowToast(
+                heading: "Popup Helper Text",
+                message: $"Value: '{value.ToString("MM/dd/yyyy HHmm")}'",
+                level: MBToastLevel.Success,
+                showIcon: false);
+        }
+    }
+
+
+    private DateTime _dateValue5;
+    private DateTime DateValue5
+    {
+        get => _dateValue5;
+        set
+        {
+            _dateValue5 = value;
+
+            ToastService.ShowToast(
+                heading: "Popup Helper Text",
+                message: $"Value: '{value.ToString("MM/dd/yyyy")}'",
+                level: MBToastLevel.Success,
+                showIcon: false);
+        }
+    }
+
+
+    private DateTime _dateValue6;
+    private DateTime DateValue6
+    {
+        get => _dateValue6;
+        set
+        {
+            _dateValue6 = value;
+
+            ToastService.ShowToast(
+                heading: "Popup Helper Text",
+                message: $"Value: '{value.ToString("MM/dd/yyyy")}'",
+                level: MBToastLevel.Success,
+                showIcon: false);
+        }
+    }
+
+
+    private DateTime _dateValue7;
+    private DateTime DateValue7
+    {
+        get => _dateValue7;
+        set
+        {
+            _dateValue7 = value;
+
+            ToastService.ShowToast(
+                heading: "Popup Helper Text",
+                message: $"Value: '{value.ToString("MM/dd/yyyy")}'",
+                level: MBToastLevel.Success,
+                showIcon: false);
+        }
+    }
+
+
+    private DateTime _dateValue8;
+    private DateTime DateValue8
+    {
+        get => _dateValue8;
+        set
+        {
+            _dateValue8 = value;
+
+            ToastService.ShowToast(
+                heading: "Popup Helper Text",
+                message: $"Value: '{value.ToString("MM/dd/yyyy")}'",
+                level: MBToastLevel.Success,
+                showIcon: false);
+        }
+    }
+
+
+}

@@ -11,7 +11,7 @@ implies these are intended for internal use by Material.Blazor, however Blazor h
 
 ## Obtaining the requisite CSS and JS
 
-You will to add three items to your index.html/_Host.cshtml. Place this in the `<head>` tag:
+You will to add three items to your index.html/_Layout.cshtml. Place this in the `<head>` tag:
 
 ```html
 <link href="_content/Material.Blazor/material-components-web.min.css" rel="stylesheet" />
@@ -30,6 +30,8 @@ if you have built a theme - you can see how we have done this in the [Material.B
 material.blazor.min.css includes the Material icons for convenience. If you wish to use either (or both) Font Awesome or Open Iconic icon sets see the next section for the additional css required.
 
 The non-minified versions of each of the css and js packages are also available if needed for debugging.
+
+All styling really should be done with Material but the application created with the templates uses Bootstrap. Once you have your apllication fully in Material remove the reference to bootstrap.min.css.
 
 
 ## Package versions
@@ -52,10 +54,7 @@ Material.Blazor has three services for logging, snackbars, and toasts. We strong
 because regular component tooltips will fail if you don't, although they are optional. To register the services:
 
 ```csharp
-services.AddMBServices(
-    loggingServiceConfiguration: Utilities.GetDefaultLoggingServiceConfiguration(),
-    toastServiceConfiguration: Utilities.GetDefaultToastServiceConfiguration(),
-    snackbarServiceConfiguration: Utilities.GetDefaultSnackbarServiceConfiguration()
+services.AddMBServices();
 ```
 
 The three configurations are either the default (as above) or custom - 
