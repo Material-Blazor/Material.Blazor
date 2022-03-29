@@ -22,6 +22,23 @@ Released 2022-03-10
 
 <br />
 
+#### [2.3.1](https://github.com/Material-Blazor/Material.Blazor)
+
+Released 2023-03-29
+
+**Updates**
+- Updated Font Awesome & Sass versions
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+<br />
+
 #### [2.2.2](https://github.com/Material-Blazor/Material.Blazor)
 
 Released 2022-03-10
