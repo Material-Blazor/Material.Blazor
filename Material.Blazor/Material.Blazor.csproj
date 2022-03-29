@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
+		<!--<TargetFrameworks>net6.0;net7.0</TargetFrameworks>-->
 		<TargetFrameworks>net6.0</TargetFrameworks>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
 		<VersionPrefix>3.0.0</VersionPrefix>
@@ -25,10 +26,14 @@
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+	</PropertyGroup>
+	
 	<ItemGroup>
 		<None Include="..\README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
 	</ItemGroup>
@@ -44,11 +49,18 @@
 		<Content Remove="wwwroot\intermediate.js" />
 	</ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.2" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.2" />
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.3" />
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
+	</ItemGroup>
+	
+	<ItemGroup Condition=" '$(TargetFramework)' == 'net7.0' ">
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.0-preview.2.*" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.0-preview.2.*" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0-preview.2.*" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0-preview.2.*" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -80,7 +92,7 @@
 	<ItemGroup>
 		<Folder Include="wwwroot\" />
 	</ItemGroup>
-	
+
 	<Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
 		<Exec Command="npm --version" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
 			<Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
