@@ -1,0 +1,36 @@
+﻿@page "/scheduler"
+
+@inject IMBToastService ToastService
+
+<DemonstrationPage ComponentName="Scheduler"
+                   DemoComponent="@this"
+                   DetailedArticle="Scheduler"
+                   Title="Scheduler Demonstration (EXPERIMENTAL)">
+    <Description>
+        <p>
+            Shows a Scheduler using many of the Scheduler features.
+        </p>
+        <p>
+            This is an EXPERIMENTAL component. It's API is subject to change. It's styling is not yet
+            Material. It will not be released as part of Blazor 2.0.0 except in EXPERIMENTAL form.
+        </p>
+    </Description>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Scheduler using parameter defaults
+                    </h2>
+
+                    <MBScheduler />
+                </Primary>
+            </MBCard>
+        </div>
+
+    </PageContent>
+</DemonstrationPage>
+
+@code {
+}

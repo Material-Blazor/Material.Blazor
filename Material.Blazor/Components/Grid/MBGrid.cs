@@ -732,9 +732,9 @@ namespace Material.Blazor
                 }
             }
         }
-#endregion
+        #endregion
 
-#region OnAfterRenderAsync
+        #region OnAfterRenderAsync
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             var needsSHC = false;
@@ -785,9 +785,9 @@ namespace Material.Blazor
                 semaphoreSlim.Release();
             }
         }
-#endregion
+        #endregion
 
-#region OnInitialized
+        #region OnInitialized
         protected override async Task OnInitializedAsync()
         {
 #if Logging
@@ -803,9 +803,9 @@ namespace Material.Blazor
             GridLogDebug("MBGrid.OnInitialized completed");
 #endif
         }
-#endregion
+        #endregion
 
-#region OnMouseClickInternal
+        #region OnMouseClickInternal
         private void OnMouseClickInternal(string newRowKey)
         {
 #if Logging
@@ -821,9 +821,9 @@ namespace Material.Blazor
                 OnMouseClick.InvokeAsync(newRowKey);
             }
         }
-#endregion
+        #endregion
 
-#region SetParametersAsync
+        #region SetParametersAsync
         private int oldParameterHash { get; set; } = -1;
         public override Task SetParametersAsync(ParameterView parameters)
         {
@@ -1042,18 +1042,18 @@ namespace Material.Blazor
 
             return base.SetParametersAsync(ParameterView.Empty);
         }
-#endregion
+        #endregion
 
-#region ShouldRender
+        #region ShouldRender
         protected override bool ShouldRender()
         {
             return ShouldRenderValue;
         }
-#endregion
+        #endregion
 
     }
 
-#region HashCode 
+    #region HashCode 
 
     /// <summary>
     /// A hash code used to help with implementing <see cref="object.GetHashCode()"/>.
@@ -1192,6 +1192,6 @@ namespace Material.Blazor
         }
     }
 
-#endregion
+    #endregion
 
 }

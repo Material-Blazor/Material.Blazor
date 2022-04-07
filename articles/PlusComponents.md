@@ -42,3 +42,5 @@ implements further Blazor/Material Theme hybrid components that we term "Plus Co
 | :-------- | :---- |
 | [MBGrid](xref:C.MBGrid) | Displays a grid composed from the elements specified as parameters. |
 | [MBGridMT](xref:C.MBGrid) | Displays a grid themed as MWC composed from the elements specified as parameters. |
+| [MBScheduler](xref:C.MBScheduler) | Displays a schedule composed from the elements specified as parameters. |
+

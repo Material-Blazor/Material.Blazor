@@ -86,6 +86,8 @@
 		<InputStaticAssetsStyles Include="components\**\*.scss;styles\**\*.scss;" />
 		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css;wwwroot\material-components-web.css;wwwroot\material-components-web.min.css" />
 		<Content Remove="@(OutputStaticAssetsStyles)" />
+		<InputStaticAssetsScripts Remove="Components\Scheduler\MBScheduler.ts" />
+		<InputStaticAssetsStyles Remove="Components\Scheduler\MBScheduler.scss" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
 	</ItemGroup>
 
