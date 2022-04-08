@@ -8,101 +8,20 @@
 $border-color: color-palette.$blue-grey-500;
 $header-color: color-palette.$blue-grey-100;
 
-$group-row-color: color-palette.$blue-100;
-$group-row-color-hover: darken($group-row-color, 4%);
-
 $odd-row-color: color-palette.$yellow-100;
 $odd-row-color-hover: darken($odd-row-color, 4%);
 
 $even-row-color: color-palette.$yellow-200;
 $even-row-color-hover: darken($even-row-color, 4%);
 
-$selected-row-color: color-palette.$green-100;
-$selected-row-color-hover: darken($selected-row-color, 4%);
-
 :root {
     --mb-scheduler-border-color: #{$border-color};
     --mb-scheduler-header-color: #{$header-color};
-    --mb-scheduler-group-row-color: #{$group-row-color};
-    --mb-scheduler-group-row-color-hover: #{$group-row-color-hover};
     --mb-scheduler-odd-row-color: #{$odd-row-color};
     --mb-scheduler-odd-row-color-hover: #{$odd-row-color-hover};
     --mb-scheduler-even-row-color: #{$even-row-color};
     --mb-scheduler-even-row-color-hover: #{$even-row-color-hover};
-    --mb-scheduler-selected-row-color: #{$selected-row-color};
-    --mb-scheduler-selected-row-color-hover: #{$selected-row-color-hover};
 }
-
-.mb-mscheduler {
-    border-radius: 0px;
-
-    .mdc-data-table__header-cell:first-child {
-        border-top-left-radius: 0px;
-    }
-
-    .mdc-data-table__header-cell:last-child {
-        border-top-right-radius: 0px;
-    }
-}
-
-.mb-mscheduler__colored {
-    border-color: var(--mb-scheduler-border-color);
-
-    .mdc-data-table__header-cell {
-        background-color: var(--mb-scheduler-header-color);
-        border-left-color: var(--mb-scheduler-border-color);
-        border-bottom-color: var(--mb-scheduler-border-color);
-    }
-
-    tbody td {
-        border-left-color: var(--mb-scheduler-border-color);
-        border-bottom-color: var(--mb-scheduler-border-color);
-    }
-
-    .mb-mscheduler__group-row {
-        background-color: var(--mb-scheduler-group-row-color);
-
-        &:hover {
-            background-color: var(--mb-scheduler-group-row-color-hover);
-        }
-    }
-
-    .mb-mscheduler__row:nth-child(odd):not(.mb-mscheduler__row-selected) {
-        background-color: var(--mb-scheduler-odd-row-color);
-
-        &:hover {
-            background-color: var(--mb-scheduler-odd-row-color-hover);
-        }
-    }
-
-    .mb-mscheduler__row:nth-child(even):not(.mb-mscheduler__row-selected) {
-        background-color: var(--mb-scheduler-even-row-color);
-
-        &:hover {
-            background-color: var(--mb-scheduler-even-row-color-hover);
-        }
-    }
-
-    .mb-mscheduler__row-selected {
-        background-color: var(--mb-scheduler-selected-row-color);
-
-        &:hover {
-            background-color: var(--mb-scheduler-selected-row-color-hover);
-        }
-    }
-}
-
-
-.mb-mscheduler__vertical-dividers {
-    .mdc-data-table__header-cell:not(:first-child), .mb-mscheduler__group-row td:not(:first-child), .mb-mscheduler__row td:not(:first-child) {
-        padding-left: 15px;
-        border-left-width: 1px;
-        border-left-style: solid;
-    }
-}
-
-
-/* Original scheduler */
 
 .mb-scheduler-div-outer {
     width: 100% !important;
@@ -178,7 +97,7 @@ $selected-row-color-hover: darken($selected-row-color, 4%);
     display: table-cell;
     flex: 0 0 auto;
     padding: 4px;
-    font-size: smaller;
+    font-size: 12px;
     text-overflow: ellipsis;
     overflow: hidden;
     box-sizing: border-box;
@@ -198,25 +117,28 @@ $selected-row-color-hover: darken($selected-row-color, 4%);
     flex: 0 0 auto;
 }
 
-.mb-scheduler-backgroundcolor-header-background {
+.mb-scheduler-header {
     background: lightgray;
     background-color: lightgray;
+    color : black;
 }
 
-.mb-scheduler-backgroundcolor-row-even {
+.mb-scheduler-color-row-even-normal {
     background-color: khaki;
+    color: black;
+}
+.mb-scheduler-color-row-even-hidden {
+    background-color: khaki;
+    color: khaki;
 }
 
-.mb-scheduler-backgroundcolor-row-odd {
+.mb-scheduler-color-row-odd-normal {
     background-color: lemonchiffon;
+    color: black;
 }
-
-.mb-scheduler-backgroundcolor-row-group {
-    background-color: lightblue;
-}
-
-.mb-scheduler-backgroundcolor-row-selected {
-    background-color: lightgreen;
+.mb-scheduler-color-row-odd-hidden {
+    background-color: lemonchiffon;
+    color: lemonchiffon;
 }
 
 .mb-scheduler-header-td-measure {

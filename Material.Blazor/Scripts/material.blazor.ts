@@ -52,6 +52,7 @@ import * as Batching from './batching';
     MBMenu,
     MBMenuSurface,
     MBRadioButton,
+    MBScheduler,
     MBSegmentedButtonMulti,
     MBSelect,
     MBSlider,
