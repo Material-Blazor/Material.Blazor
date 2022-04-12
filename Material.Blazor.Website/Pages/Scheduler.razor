@@ -1,4 +1,5 @@
 ﻿@page "/scheduler"
+@using System.Drawing
 
 @inject IMBToastService ToastService
 
@@ -24,7 +25,8 @@
                         Scheduler using parameter defaults
                     </h2>
 
-                    <MBScheduler />
+                    <MBScheduler Appointments="@appointments" />
+
                 </Primary>
             </MBCard>
         </div>
@@ -33,4 +35,78 @@
 </DemonstrationPage>
 
 @code {
+    List<MBSchedulerAppointment> appointments = new List<MBSchedulerAppointment>()
+    {
+
+        new MBSchedulerAppointment
+        {
+            BackgroundColor = Color.Blue,
+            Column = 1,
+            EndTime = new DateTime(2022, 4, 4, 17, 0, 0),
+            ForegroundColor = Color.White,
+            StartTime = new DateTime(2022, 4, 4, 7, 0, 0),
+            Title = "XYZ practice block time",
+            Uid = Guid.NewGuid()
+        },
+
+        new MBSchedulerAppointment
+        {
+            BackgroundColor = Color.Blue,
+            Column = 1,
+            EndTime = new DateTime(2022, 4, 5, 12, 0, 0),
+            ForegroundColor = Color.White,
+            StartTime = new DateTime(2022, 4, 5, 7, 0, 0),
+            Title = "XYZ practice block time",
+            Uid = Guid.NewGuid()
+        },
+
+        new MBSchedulerAppointment
+        {
+            BackgroundColor = Color.Purple,
+            Column = 2,
+            EndTime = new DateTime(2022, 4, 4, 10, 30, 0),
+            ForegroundColor = Color.White,
+            StartTime = new DateTime(2022, 4, 4, 7, 0, 0),
+            Title = "Smith",
+            Uid = Guid.NewGuid()
+        },
+
+        new MBSchedulerAppointment
+        {
+            BackgroundColor = Color.LightGreen,
+            Column = 2,
+            EndTime = new DateTime(2022, 4, 4, 12, 30, 0),
+            ForegroundColor = Color.White,
+            StartTime = new DateTime(2022, 4, 4, 10, 30, 0),
+            Title = "Jenkins",
+            Uid = Guid.NewGuid()
+        },
+
+        new MBSchedulerAppointment
+        {
+            BackgroundColor = Color.LightGreen,
+            Column = 2,
+            EndTime = new DateTime(2022, 4, 5, 10, 30, 0),
+            ForegroundColor = Color.White,
+            StartTime = new DateTime(2022, 4, 5, 7, 0, 0),
+            Title = "Jenkins",
+            Uid = Guid.NewGuid()
+        },
+
+        new MBSchedulerAppointment
+        {
+            BackgroundColor = Color.LightCoral,
+            Column = 2,
+            EndTime = new DateTime(2022, 4, 5, 14, 30, 0),
+            ForegroundColor = Color.White,
+            StartTime = new DateTime(2022, 4, 5, 12, 30, 0),
+            Title = "Adams",
+            Uid = Guid.NewGuid()
+        }
+    };
+
+    public Scheduler()
+    {
+    }
+
 }

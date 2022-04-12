@@ -57,6 +57,7 @@ $even-row-color-hover: darken($even-row-color, 4%);
     padding: 0;
     overflow-x: scroll;
     overflow-y: scroll;
+    position: relative;
     text-align: left;
     box-sizing: border-box;
 }

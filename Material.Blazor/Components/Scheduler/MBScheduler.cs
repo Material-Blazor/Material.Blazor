@@ -1,15 +1,5 @@
 #define Logging
 
-// ToDo:
-//
-//  Cleanup:
-//      Move enumerations to MBEnumerations
-//  
-//  Bugs:
-//      Padding resolution for GridHeader
-//      Resolve issue with ElementReferences
-//
-
 using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
@@ -35,6 +25,7 @@ namespace Material.Blazor
     {
         #region Members
 
+        [Parameter] public IEnumerable<MBSchedulerAppointment> Appointments { get; set; }
         [Parameter] public int NumberOfColumns { get; set; } = 2;
         [Parameter] public int NumberOfDays { get; set; } = 5;
         [Parameter] public DateTime StartDate { get; set; } = new DateTime(2022, 04, 04);
@@ -43,10 +34,14 @@ namespace Material.Blazor
 
         [Inject] IJSRuntime JsRuntime { get; set; }
 
+        private int AppointmentColumnWidth { get; set; }
         private List<ColumnConfiguration> ColumnConfigurations { get; set; }
+        private float DayColumnWidth { get; set; }
+        private float FifteenMinuteHeight { get; set; }
         private bool HasCompletedFullRender { get; set; } = false;
         private bool IsMeasurementNeeded { get; set; } = true;
         private bool IsSimpleRender { get; set; } = true;
+        private int LeftEdgeOfColumn1 { get; set; }
         private string ScheduleID1 { get; set; } = Utilities.GenerateUniqueElementName();
         private string ScheduleID2 { get; set; } = Utilities.GenerateUniqueElementName();
 
@@ -272,6 +267,28 @@ namespace Material.Blazor
 
                 builder.CloseElement(); // table
 
+                if (HasCompletedFullRender)
+                {
+                    foreach (var appt in Appointments)
+                    {
+                        double x;
+                        double y;
+                        double h;
+                        double w;
+                        ComputePosition(appt, out x, out y, out h, out w);
+
+                        builder.OpenComponent<Material.Blazor.Internal.MBAppointment>(rendSeq++);
+                        builder.AddAttribute(rendSeq++, "BackgroundColor", appt.BackgroundColor);
+                        builder.AddAttribute(rendSeq++, "ForegroundColor", appt.ForegroundColor);
+                        builder.AddAttribute(rendSeq++, "Height", h);
+                        builder.AddAttribute(rendSeq++, "Title", appt.Title);
+                        builder.AddAttribute(rendSeq++, "Width", w);
+                        builder.AddAttribute(rendSeq++, "X", x);
+                        builder.AddAttribute(rendSeq++, "Y", y);
+                        builder.CloseComponent();
+                    }
+                }
+
                 builder.CloseElement(); // div mb-scheduler-body-outer
 
                 if (((@class != null) && (@class.Length > 0)) || ((style != null) && (style.Length > 0)))
@@ -331,6 +348,36 @@ namespace Material.Blazor
         }
         #endregion
 
+        #region ComputePosition
+
+        internal void ComputePosition(MBSchedulerAppointment appt, out double x, out double y, out double h, out double w)
+        {
+            var dayOffsetTimespan = appt.StartTime.Date - StartDate;
+            x = LeftEdgeOfColumn1 + dayOffsetTimespan.Days * DayColumnWidth;
+            if (appt.Column == 2)
+            {
+                x += AppointmentColumnWidth + 2;
+            }
+
+            var timeOffsetTimespan = appt.StartTime - 
+                new DateTime(appt.StartTime.Year,
+                    appt.StartTime.Month,
+                    appt.StartTime.Day,
+                    WorkDayStart.Hour,
+                    WorkDayStart.Minute,
+                    0);
+            y = timeOffsetTimespan.Hours * 4 * FifteenMinuteHeight +
+                (timeOffsetTimespan.Minutes / 15) * FifteenMinuteHeight;
+
+            var timeHeightTimespan = appt.EndTime - appt.StartTime;
+            h = timeHeightTimespan.Hours * 4 * FifteenMinuteHeight +
+                (timeHeightTimespan.Minutes / 15) * FifteenMinuteHeight;
+            w = AppointmentColumnWidth;
+        }
+
+        #endregion
+
+
         #region CreateMeasurementStyle
         internal string CreateMeasurementStyle(ColumnConfiguration col)
         {
@@ -366,13 +413,23 @@ namespace Material.Blazor
                         "MaterialBlazor.MBScheduler.getElementDimensions",
                         ScheduleID1,
                         element1Array);
+            LeftEdgeOfColumn1 = Convert.ToInt32(element1Array[1]) + 1;
 
             var element2Array = new float[2];
             element2Array = await JsRuntime.InvokeAsync<float[]>(
                         "MaterialBlazor.MBScheduler.getElementDimensions",
                         ScheduleID2,
                         element2Array);
-
+            DayColumnWidth = element2Array[1];
+            FifteenMinuteHeight = element2Array[0];
+            if (NumberOfColumns == 1)
+            {
+                AppointmentColumnWidth = Convert.ToInt32(element2Array[1]) - 10;
+            }
+            else
+            {
+                AppointmentColumnWidth = Convert.ToInt32(element2Array[1] / 2.0) - 5;
+            }
         }
         #endregion
 
@@ -428,13 +485,15 @@ namespace Material.Blazor
         }
         #endregion
 
-        #region OnInitialized
+        #region OnInitializedAsync
         protected override async Task OnInitializedAsync()
         {
 #if Logging
             ScheduleLogDebug("MBSchedule.OnInitialized entered");
 #endif
             await base.OnInitializedAsync();
+
+            ValidateParameters();
 
             int timeWidth = 6;
             int columnWidth = (100 - timeWidth) / NumberOfDays;
@@ -453,6 +512,22 @@ namespace Material.Blazor
             ScheduleLogDebug("MBSchedule.OnInitialized completed");
 #endif
         }
+        #endregion
+
+        #region ValidateParameters
+        internal void ValidateParameters()
+        {
+            if ((NumberOfColumns < 1) || (NumberOfColumns > 2))
+            {
+                throw new Exception("MBScheduler -- Illegal ColumnCount of " + NumberOfColumns.ToString());
+            }
+
+            if (Appointments == null)
+            {
+                throw new Exception("MBScheduler -- Appointments is null");
+            }
+        }
+
         #endregion
 
         #region Class ColumnConfiguration
