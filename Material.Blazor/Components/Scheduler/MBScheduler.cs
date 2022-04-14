@@ -1,4 +1,5 @@
 #define Logging
+#define V2
 
 using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
@@ -7,7 +8,6 @@ using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 //
@@ -29,8 +29,8 @@ namespace Material.Blazor
         [Parameter] public int NumberOfColumns { get; set; } = 2;
         [Parameter] public int NumberOfDays { get; set; } = 5;
         [Parameter] public DateTime StartDate { get; set; } = new DateTime(2022, 04, 04);
-        [Parameter] public TimeOnly WorkDayStart { get; set; } = new TimeOnly( 7, 0, 0);
-        [Parameter] public TimeOnly WorkDayEnd { get; set; } = new TimeOnly( 17, 0, 0);
+        [Parameter] public TimeOnly WorkDayStart { get; set; } = new TimeOnly(7, 0, 0);
+        [Parameter] public TimeOnly WorkDayEnd { get; set; } = new TimeOnly(17, 0, 0);
 
         [Inject] IJSRuntime JsRuntime { get; set; }
 
@@ -39,7 +39,7 @@ namespace Material.Blazor
         private float DayColumnWidth { get; set; }
         private float FifteenMinuteHeight { get; set; }
         private bool HasCompletedFullRender { get; set; } = false;
-        private bool IsMeasurementNeeded { get; set; } = true;
+        private bool IsMeasurementCompleted { get; set; } = false;
         private bool IsSimpleRender { get; set; } = true;
         private int LeftEdgeOfColumn1 { get; set; }
         private string ScheduleID1 { get; set; } = Utilities.GenerateUniqueElementName();
@@ -51,6 +51,7 @@ namespace Material.Blazor
 
         #endregion
 
+#if V1
         #region BuildColGroup
         private void BuildColGroup(RenderTreeBuilder builder, ref int rendSeq)
         {
@@ -69,10 +70,12 @@ namespace Material.Blazor
             builder.CloseElement(); // colgroup
         }
         #endregion
+#endif
 
         #region BuildRenderTree
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
+#if V1
 #if Logging
             ScheduleLogDebug("BuildRenderTree entered; IsSimpleRender == " + IsSimpleRender.ToString());
             ScheduleLogDebug("                         HasCompletedFullRender == " + HasCompletedFullRender.ToString());
@@ -267,7 +270,7 @@ namespace Material.Blazor
 
                 builder.CloseElement(); // table
 
-                if (HasCompletedFullRender)
+                if (IsMeasurementCompleted)
                 {
                     foreach (var appt in Appointments)
                     {
@@ -275,7 +278,7 @@ namespace Material.Blazor
                         double y;
                         double h;
                         double w;
-                        ComputePosition(appt, out x, out y, out h, out w);
+                        ComputeAppointmentPosition(appt, out x, out y, out h, out w);
 
                         builder.OpenComponent<Material.Blazor.Internal.MBAppointment>(rendSeq++);
                         builder.AddAttribute(rendSeq++, "BackgroundColor", appt.BackgroundColor);
@@ -305,16 +308,79 @@ namespace Material.Blazor
             ScheduleLogDebug("                leaving; IsSimpleRender == " + IsSimpleRender.ToString());
             ScheduleLogDebug("                leaving; HasCompletedFullRender == " + HasCompletedFullRender.ToString());
 #endif
+#else
+            // V2
+#if Logging
+            ScheduleLogDebug("BuildRenderTree entered; IsMeasurementCompleted == " + IsMeasurementCompleted.ToString());
+            ScheduleLogDebug("                         ShouldRenderValue == " + ShouldRenderValue.ToString());
+#endif
+            // For each column output a td
+            var colCount = 0;
+            foreach (var columnDefinition in ColumnConfigurations)
+            {
+                string formattedValue;
+                if (colCount == 0)
+                {
+                        formattedValue = dateTime.ToString("HHmm");
+                }
+                else
+                {
+                    formattedValue = " ";
+                }
+                if ((rowCount == 0) && (colCount == 1))
+                {
+                    builder.AddAttribute(rendSeq++, "id", ScheduleID2);
+                }
+                builder.AddContent(1, formattedValue);
+
+                colCount++;
+            }
+
+            if (IsMeasurementCompleted)
+            {
+                foreach (var appt in Appointments)
+                {
+                    double x;
+                    double y;
+                    double h;
+                    double w;
+                    ComputeAppointmentPosition(appt, out x, out y, out h, out w);
+
+                    builder.OpenComponent<Material.Blazor.Internal.MBAppointment>(rendSeq++);
+                    builder.AddAttribute(rendSeq++, "BackgroundColor", appt.BackgroundColor);
+                    builder.AddAttribute(rendSeq++, "ForegroundColor", appt.ForegroundColor);
+                    builder.AddAttribute(rendSeq++, "Height", h);
+                    builder.AddAttribute(rendSeq++, "Title", appt.Title);
+                    builder.AddAttribute(rendSeq++, "Width", w);
+                    builder.AddAttribute(rendSeq++, "X", x);
+                    builder.AddAttribute(rendSeq++, "Y", y);
+                    builder.CloseComponent();
+                }
+            }
+
+            builder.CloseElement(); // div mb-scheduler-body-outer
+
+            if (((@class != null) && (@class.Length > 0)) || ((style != null) && (style.Length > 0)))
+            {
+                builder.CloseElement(); // div class= style=
+            }
+
+            HasCompletedFullRender = true;
+#if Logging
+            ScheduleLogDebug("                (Full) leaving");
+#endif
+
+#endif
         }
         #endregion
 
         #region BuildScheduleTD
         internal static string BuildScheduleTD(
-                RenderTreeBuilder builder,
-                ref int rendSeq,
-                bool isFirstColumn,
-                bool isHeaderRow,
-                string rowBackgroundColorClass)
+            RenderTreeBuilder builder,
+            ref int rendSeq,
+            bool isFirstColumn,
+            bool isHeaderRow,
+            string rowBackgroundColorClass)
         {
             builder.OpenElement(rendSeq++, "td");
             builder.AddAttribute(rendSeq++, "class", "mb-scheduler-td " + rowBackgroundColorClass);
@@ -348,9 +414,9 @@ namespace Material.Blazor
         }
         #endregion
 
-        #region ComputePosition
+        #region ComputeAppointmentPosition
 
-        internal void ComputePosition(MBSchedulerAppointment appt, out double x, out double y, out double h, out double w)
+        internal void ComputeAppointmentPosition(MBSchedulerAppointment appt, out double x, out double y, out double h, out double w)
         {
             var dayOffsetTimespan = appt.StartTime.Date - StartDate;
             x = LeftEdgeOfColumn1 + dayOffsetTimespan.Days * DayColumnWidth;
@@ -359,7 +425,7 @@ namespace Material.Blazor
                 x += AppointmentColumnWidth + 2;
             }
 
-            var timeOffsetTimespan = appt.StartTime - 
+            var timeOffsetTimespan = appt.StartTime -
                 new DateTime(appt.StartTime.Year,
                     appt.StartTime.Month,
                     appt.StartTime.Day,
@@ -377,7 +443,7 @@ namespace Material.Blazor
 
         #endregion
 
-
+#if V1
         #region CreateMeasurementStyle
         internal string CreateMeasurementStyle(ColumnConfiguration col)
         {
@@ -387,6 +453,7 @@ namespace Material.Blazor
                 "min-width: " + col.Width.ToString() + "% !important; ";
         }
         #endregion
+#endif
 
         #region Logging
 
@@ -436,6 +503,7 @@ namespace Material.Blazor
         #region OnAfterRenderAsync
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
+#if !V1
             var needsSHC = false;
             await SemaphoreSlim.WaitAsync();
             try
@@ -449,6 +517,45 @@ namespace Material.Blazor
                 ScheduleLogDebug("                   IsMeasurementNeeded: " + IsMeasurementNeeded.ToString());
 #endif
 
+                if (!IsMeasurementCompleted)
+                {
+                    IsMeasurementCompleted = true;
+                    needsSHC = true;
+#if Logging
+                    ScheduleLogDebug("                   Calling MeasureKeyElementsAsync");
+#endif
+                    await MeasureKeyElementsAsync();
+#if Logging
+                    ScheduleLogDebug("                   Returned from MeasureKeyElementsAsync");
+#endif
+                    needsSHC = true;
+                }
+            }
+            finally
+            {
+                if (needsSHC)
+                {
+                    await InvokeAsync(StateHasChanged);
+                }
+#if Logging
+                ScheduleLogDebug("                   about to release semaphore (OnAfterRenderAsync)");
+#endif
+                SemaphoreSlim.Release();
+            }
+#else
+            var needsSHC = false;
+            await SemaphoreSlim.WaitAsync();
+            try
+            {
+                await base.OnAfterRenderAsync(firstRender);
+
+#if Logging
+                ScheduleLogDebug("OnAfterRenderAsync entered");
+                ScheduleLogDebug("                   firstRender: " + firstRender.ToString());
+                ScheduleLogDebug("                   IsSimpleRender: " + IsSimpleRender.ToString());
+                ScheduleLogDebug("                   IsMeasurementNeeded: " + IsMeasurementCompleted.ToString());
+#endif
+
                 if (IsSimpleRender)
                 {
                     IsSimpleRender = false;
@@ -456,9 +563,9 @@ namespace Material.Blazor
                 }
                 else
                 {
-                    if (IsMeasurementNeeded)
+                    if (!IsMeasurementCompleted)
                     {
-                        IsMeasurementNeeded = false;
+                        IsMeasurementCompleted = true;
 
 #if Logging
                         ScheduleLogDebug("                   Calling MeasureKeyElementsAsync");
@@ -482,6 +589,7 @@ namespace Material.Blazor
 #endif
                 SemaphoreSlim.Release();
             }
+#endif
         }
         #endregion
 
