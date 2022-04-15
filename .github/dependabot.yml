@@ -12,7 +12,7 @@ updates:
       interval: daily  
 
   - package-ecosystem: "npm"
-    directory: "/material.blazor"
+    directory: "/material.blazor/material.blazor"
     schedule:
       interval: "daily"
 
