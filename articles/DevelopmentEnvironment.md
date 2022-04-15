@@ -1,4 +1,4 @@
----
+﻿---
 uid: A.DevelopmentEnvironment
 title: DevelopmentEnvironment
 ---
@@ -20,9 +20,9 @@ We have developed Material.Blazor using Visual Studio 2019 on Windows, and have 
   <img src="images/gh-account-settings-5.png" alt="GitHub Account Settings"></img>
   - The docs should now publish next time you push to your `develop` branch on GitHub.
 
-## Configuring the development environment
+## Configuring the development environment - Windows
 
-- To build the Blazor project you need to be using the latest preview version of Visual Studio 2019. This can be found at [https://visualstudio.microsoft.com/vs/preview/](https://visualstudio.microsoft.com/vs/preview/). The Community Edition is sufficient. During the installation you must include the "ASP.NET and web development" Workload using Visual Studio Installer.:
+- To build the Blazor project you need to be using the latest version of Visual Studio 2022. This can be found at [https://visualstudio.microsoft.com/vs/preview/](https://visualstudio.microsoft.com/vs/preview/). The Community Edition is sufficient. During the installation you must include the "ASP.NET and web development" Workload using Visual Studio Installer.:
   <img src="images/vs-config.png" alt="Visual Studio Workloads"></img>
 - Material.Blazor uses SASS for styling and uses Material Components Web SASS mixins, and additionally TypeScript with the Material Components Web's TypeScript. This is the reason you need to select "Node.js development" in the previous step.
 - Unless you have a separate installation of NodeJs on your computer, you may need to add the directory path to npm.cmd to the OS environment variable PATH. Typically this would be "C:\Program Files (x86)\Microsoft Visual Studio\2019\Preview\MSBuild\Microsoft\VisualStudio\NodeJs", but depends on the Visual Studio edition and version you're actually using. Make sure to restart Visual Studio after modifying the PATH variable.
@@ -32,3 +32,9 @@ We have developed Material.Blazor using Visual Studio 2019 on Windows, and have 
   - We like Markdown Editor, which will help you improve this page.
     <img src="images/vs-extensions.png" alt="Visual Studio Extensions"></img>
 
+## Configuring the development environment - MacOS
+
+- Material.Blazor requires the latest preview version of Visual Studio 2022, which can be found at [https://visualstudio.microsoft.com/vs/mac/preview/](https://visualstudio.microsoft.com/vs/mac/preview/)
+- Material.Blazor uses SASS and Typescript, so you will need to install Node, using the Homebrew package manager.
+  - [https://brew.sh/](Install Homebrew following these instructions).
+  - [https://nodejs.org/tr/download/package-manager/#macos](Follow instructions to install node) using the "Alternatives" section for Homebrew.
