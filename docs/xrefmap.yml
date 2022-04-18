@@ -88,6 +88,9 @@ references:
 - uid: C.MBCard
   name: MBCard
   href: Material.Blazor/Components/Card/MBCard.html
+- uid: C.MBCarousel
+  name: MBCarousel
+  href: Material.Blazor/Components/Carousel/MBCarousel.html
 - uid: C.MBCheckbox
   name: MBCheckbox
   href: Material.Blazor/Components/Checkbox/MBCheckbox.html
@@ -1217,6 +1220,100 @@ references:
   fullName.vb: Material.Blazor.Internal.InputComponent(Of T).ValueExpression
   nameWithType: InputComponent<T>.ValueExpression
   nameWithType.vb: InputComponent(Of T).ValueExpression
+- uid: Material.Blazor.Internal.InternalCarouselPanel`1
+  name: InternalCarouselPanel<TItem>
+  href: api/Material.Blazor.Internal.InternalCarouselPanel-1.html
+  commentId: T:Material.Blazor.Internal.InternalCarouselPanel`1
+  name.vb: InternalCarouselPanel(Of TItem)
+  fullName: Material.Blazor.Internal.InternalCarouselPanel<TItem>
+  fullName.vb: Material.Blazor.Internal.InternalCarouselPanel(Of TItem)
+  nameWithType: InternalCarouselPanel<TItem>
+  nameWithType.vb: InternalCarouselPanel(Of TItem)
+- uid: Material.Blazor.Internal.InternalCarouselPanel`1.Content
+  name: Content
+  href: api/Material.Blazor.Internal.InternalCarouselPanel-1.html#Material_Blazor_Internal_InternalCarouselPanel_1_Content
+  commentId: P:Material.Blazor.Internal.InternalCarouselPanel`1.Content
+  fullName: Material.Blazor.Internal.InternalCarouselPanel<TItem>.Content
+  fullName.vb: Material.Blazor.Internal.InternalCarouselPanel(Of TItem).Content
+  nameWithType: InternalCarouselPanel<TItem>.Content
+  nameWithType.vb: InternalCarouselPanel(Of TItem).Content
+- uid: Material.Blazor.Internal.InternalCarouselPanel`1.Content*
+  name: Content
+  href: api/Material.Blazor.Internal.InternalCarouselPanel-1.html#Material_Blazor_Internal_InternalCarouselPanel_1_Content_
+  commentId: Overload:Material.Blazor.Internal.InternalCarouselPanel`1.Content
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.InternalCarouselPanel<TItem>.Content
+  fullName.vb: Material.Blazor.Internal.InternalCarouselPanel(Of TItem).Content
+  nameWithType: InternalCarouselPanel<TItem>.Content
+  nameWithType.vb: InternalCarouselPanel(Of TItem).Content
+- uid: Material.Blazor.Internal.InternalCarouselPanel`1.ItemIndex
+  name: ItemIndex
+  href: api/Material.Blazor.Internal.InternalCarouselPanel-1.html#Material_Blazor_Internal_InternalCarouselPanel_1_ItemIndex
+  commentId: P:Material.Blazor.Internal.InternalCarouselPanel`1.ItemIndex
+  fullName: Material.Blazor.Internal.InternalCarouselPanel<TItem>.ItemIndex
+  fullName.vb: Material.Blazor.Internal.InternalCarouselPanel(Of TItem).ItemIndex
+  nameWithType: InternalCarouselPanel<TItem>.ItemIndex
+  nameWithType.vb: InternalCarouselPanel(Of TItem).ItemIndex
+- uid: Material.Blazor.Internal.InternalCarouselPanel`1.ItemIndex*
+  name: ItemIndex
+  href: api/Material.Blazor.Internal.InternalCarouselPanel-1.html#Material_Blazor_Internal_InternalCarouselPanel_1_ItemIndex_
+  commentId: Overload:Material.Blazor.Internal.InternalCarouselPanel`1.ItemIndex
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.InternalCarouselPanel<TItem>.ItemIndex
+  fullName.vb: Material.Blazor.Internal.InternalCarouselPanel(Of TItem).ItemIndex
+  nameWithType: InternalCarouselPanel<TItem>.ItemIndex
+  nameWithType.vb: InternalCarouselPanel(Of TItem).ItemIndex
+- uid: Material.Blazor.Internal.InternalCarouselPanel`1.Items
+  name: Items
+  href: api/Material.Blazor.Internal.InternalCarouselPanel-1.html#Material_Blazor_Internal_InternalCarouselPanel_1_Items
+  commentId: P:Material.Blazor.Internal.InternalCarouselPanel`1.Items
+  fullName: Material.Blazor.Internal.InternalCarouselPanel<TItem>.Items
+  fullName.vb: Material.Blazor.Internal.InternalCarouselPanel(Of TItem).Items
+  nameWithType: InternalCarouselPanel<TItem>.Items
+  nameWithType.vb: InternalCarouselPanel(Of TItem).Items
+- uid: Material.Blazor.Internal.InternalCarouselPanel`1.Items*
+  name: Items
+  href: api/Material.Blazor.Internal.InternalCarouselPanel-1.html#Material_Blazor_Internal_InternalCarouselPanel_1_Items_
+  commentId: Overload:Material.Blazor.Internal.InternalCarouselPanel`1.Items
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.InternalCarouselPanel<TItem>.Items
+  fullName.vb: Material.Blazor.Internal.InternalCarouselPanel(Of TItem).Items
+  nameWithType: InternalCarouselPanel<TItem>.Items
+  nameWithType.vb: InternalCarouselPanel(Of TItem).Items
+- uid: Material.Blazor.Internal.InternalCarouselPanel`1.OnInitializedAsync
+  name: OnInitializedAsync()
+  href: api/Material.Blazor.Internal.InternalCarouselPanel-1.html#Material_Blazor_Internal_InternalCarouselPanel_1_OnInitializedAsync
+  commentId: M:Material.Blazor.Internal.InternalCarouselPanel`1.OnInitializedAsync
+  fullName: Material.Blazor.Internal.InternalCarouselPanel<TItem>.OnInitializedAsync()
+  fullName.vb: Material.Blazor.Internal.InternalCarouselPanel(Of TItem).OnInitializedAsync()
+  nameWithType: InternalCarouselPanel<TItem>.OnInitializedAsync()
+  nameWithType.vb: InternalCarouselPanel(Of TItem).OnInitializedAsync()
+- uid: Material.Blazor.Internal.InternalCarouselPanel`1.OnInitializedAsync*
+  name: OnInitializedAsync
+  href: api/Material.Blazor.Internal.InternalCarouselPanel-1.html#Material_Blazor_Internal_InternalCarouselPanel_1_OnInitializedAsync_
+  commentId: Overload:Material.Blazor.Internal.InternalCarouselPanel`1.OnInitializedAsync
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.InternalCarouselPanel<TItem>.OnInitializedAsync
+  fullName.vb: Material.Blazor.Internal.InternalCarouselPanel(Of TItem).OnInitializedAsync
+  nameWithType: InternalCarouselPanel<TItem>.OnInitializedAsync
+  nameWithType.vb: InternalCarouselPanel(Of TItem).OnInitializedAsync
+- uid: Material.Blazor.Internal.InternalCarouselPanel`1.SlidingContent
+  name: SlidingContent
+  href: api/Material.Blazor.Internal.InternalCarouselPanel-1.html#Material_Blazor_Internal_InternalCarouselPanel_1_SlidingContent
+  commentId: P:Material.Blazor.Internal.InternalCarouselPanel`1.SlidingContent
+  fullName: Material.Blazor.Internal.InternalCarouselPanel<TItem>.SlidingContent
+  fullName.vb: Material.Blazor.Internal.InternalCarouselPanel(Of TItem).SlidingContent
+  nameWithType: InternalCarouselPanel<TItem>.SlidingContent
+  nameWithType.vb: InternalCarouselPanel(Of TItem).SlidingContent
+- uid: Material.Blazor.Internal.InternalCarouselPanel`1.SlidingContent*
+  name: SlidingContent
+  href: api/Material.Blazor.Internal.InternalCarouselPanel-1.html#Material_Blazor_Internal_InternalCarouselPanel_1_SlidingContent_
+  commentId: Overload:Material.Blazor.Internal.InternalCarouselPanel`1.SlidingContent
+  isSpec: "True"
+  fullName: Material.Blazor.Internal.InternalCarouselPanel<TItem>.SlidingContent
+  fullName.vb: Material.Blazor.Internal.InternalCarouselPanel(Of TItem).SlidingContent
+  nameWithType: InternalCarouselPanel<TItem>.SlidingContent
+  nameWithType.vb: InternalCarouselPanel(Of TItem).SlidingContent
 - uid: Material.Blazor.Internal.InternalDatePickerDayButton
   name: InternalDatePickerDayButton
   href: api/Material.Blazor.Internal.InternalDatePickerDayButton.html
@@ -2952,6 +3049,117 @@ references:
   commentId: F:Material.Blazor.MBCardStyle.Outlined
   fullName: Material.Blazor.MBCardStyle.Outlined
   nameWithType: MBCardStyle.Outlined
+- uid: Material.Blazor.MBCarousel`1
+  name: MBCarousel<TItem>
+  href: api/Material.Blazor.MBCarousel-1.html
+  commentId: T:Material.Blazor.MBCarousel`1
+  name.vb: MBCarousel(Of TItem)
+  fullName: Material.Blazor.MBCarousel<TItem>
+  fullName.vb: Material.Blazor.MBCarousel(Of TItem)
+  nameWithType: MBCarousel<TItem>
+  nameWithType.vb: MBCarousel(Of TItem)
+- uid: Material.Blazor.MBCarousel`1.Content
+  name: Content
+  href: api/Material.Blazor.MBCarousel-1.html#Material_Blazor_MBCarousel_1_Content
+  commentId: P:Material.Blazor.MBCarousel`1.Content
+  fullName: Material.Blazor.MBCarousel<TItem>.Content
+  fullName.vb: Material.Blazor.MBCarousel(Of TItem).Content
+  nameWithType: MBCarousel<TItem>.Content
+  nameWithType.vb: MBCarousel(Of TItem).Content
+- uid: Material.Blazor.MBCarousel`1.Content*
+  name: Content
+  href: api/Material.Blazor.MBCarousel-1.html#Material_Blazor_MBCarousel_1_Content_
+  commentId: Overload:Material.Blazor.MBCarousel`1.Content
+  isSpec: "True"
+  fullName: Material.Blazor.MBCarousel<TItem>.Content
+  fullName.vb: Material.Blazor.MBCarousel(Of TItem).Content
+  nameWithType: MBCarousel<TItem>.Content
+  nameWithType.vb: MBCarousel(Of TItem).Content
+- uid: Material.Blazor.MBCarousel`1.Items
+  name: Items
+  href: api/Material.Blazor.MBCarousel-1.html#Material_Blazor_MBCarousel_1_Items
+  commentId: P:Material.Blazor.MBCarousel`1.Items
+  fullName: Material.Blazor.MBCarousel<TItem>.Items
+  fullName.vb: Material.Blazor.MBCarousel(Of TItem).Items
+  nameWithType: MBCarousel<TItem>.Items
+  nameWithType.vb: MBCarousel(Of TItem).Items
+- uid: Material.Blazor.MBCarousel`1.Items*
+  name: Items
+  href: api/Material.Blazor.MBCarousel-1.html#Material_Blazor_MBCarousel_1_Items_
+  commentId: Overload:Material.Blazor.MBCarousel`1.Items
+  isSpec: "True"
+  fullName: Material.Blazor.MBCarousel<TItem>.Items
+  fullName.vb: Material.Blazor.MBCarousel(Of TItem).Items
+  nameWithType: MBCarousel<TItem>.Items
+  nameWithType.vb: MBCarousel(Of TItem).Items
+- uid: Material.Blazor.MBCarousel`1.OnAfterRenderAsync(System.Boolean)
+  name: OnAfterRenderAsync(Boolean)
+  href: api/Material.Blazor.MBCarousel-1.html#Material_Blazor_MBCarousel_1_OnAfterRenderAsync_System_Boolean_
+  commentId: M:Material.Blazor.MBCarousel`1.OnAfterRenderAsync(System.Boolean)
+  fullName: Material.Blazor.MBCarousel<TItem>.OnAfterRenderAsync(System.Boolean)
+  fullName.vb: Material.Blazor.MBCarousel(Of TItem).OnAfterRenderAsync(System.Boolean)
+  nameWithType: MBCarousel<TItem>.OnAfterRenderAsync(Boolean)
+  nameWithType.vb: MBCarousel(Of TItem).OnAfterRenderAsync(Boolean)
+- uid: Material.Blazor.MBCarousel`1.OnAfterRenderAsync*
+  name: OnAfterRenderAsync
+  href: api/Material.Blazor.MBCarousel-1.html#Material_Blazor_MBCarousel_1_OnAfterRenderAsync_
+  commentId: Overload:Material.Blazor.MBCarousel`1.OnAfterRenderAsync
+  isSpec: "True"
+  fullName: Material.Blazor.MBCarousel<TItem>.OnAfterRenderAsync
+  fullName.vb: Material.Blazor.MBCarousel(Of TItem).OnAfterRenderAsync
+  nameWithType: MBCarousel<TItem>.OnAfterRenderAsync
+  nameWithType.vb: MBCarousel(Of TItem).OnAfterRenderAsync
+- uid: Material.Blazor.MBCarousel`1.OnInitializedAsync
+  name: OnInitializedAsync()
+  href: api/Material.Blazor.MBCarousel-1.html#Material_Blazor_MBCarousel_1_OnInitializedAsync
+  commentId: M:Material.Blazor.MBCarousel`1.OnInitializedAsync
+  fullName: Material.Blazor.MBCarousel<TItem>.OnInitializedAsync()
+  fullName.vb: Material.Blazor.MBCarousel(Of TItem).OnInitializedAsync()
+  nameWithType: MBCarousel<TItem>.OnInitializedAsync()
+  nameWithType.vb: MBCarousel(Of TItem).OnInitializedAsync()
+- uid: Material.Blazor.MBCarousel`1.OnInitializedAsync*
+  name: OnInitializedAsync
+  href: api/Material.Blazor.MBCarousel-1.html#Material_Blazor_MBCarousel_1_OnInitializedAsync_
+  commentId: Overload:Material.Blazor.MBCarousel`1.OnInitializedAsync
+  isSpec: "True"
+  fullName: Material.Blazor.MBCarousel<TItem>.OnInitializedAsync
+  fullName.vb: Material.Blazor.MBCarousel(Of TItem).OnInitializedAsync
+  nameWithType: MBCarousel<TItem>.OnInitializedAsync
+  nameWithType.vb: MBCarousel(Of TItem).OnInitializedAsync
+- uid: Material.Blazor.MBCarousel`1.OnParametersSetAsync
+  name: OnParametersSetAsync()
+  href: api/Material.Blazor.MBCarousel-1.html#Material_Blazor_MBCarousel_1_OnParametersSetAsync
+  commentId: M:Material.Blazor.MBCarousel`1.OnParametersSetAsync
+  fullName: Material.Blazor.MBCarousel<TItem>.OnParametersSetAsync()
+  fullName.vb: Material.Blazor.MBCarousel(Of TItem).OnParametersSetAsync()
+  nameWithType: MBCarousel<TItem>.OnParametersSetAsync()
+  nameWithType.vb: MBCarousel(Of TItem).OnParametersSetAsync()
+- uid: Material.Blazor.MBCarousel`1.OnParametersSetAsync*
+  name: OnParametersSetAsync
+  href: api/Material.Blazor.MBCarousel-1.html#Material_Blazor_MBCarousel_1_OnParametersSetAsync_
+  commentId: Overload:Material.Blazor.MBCarousel`1.OnParametersSetAsync
+  isSpec: "True"
+  fullName: Material.Blazor.MBCarousel<TItem>.OnParametersSetAsync
+  fullName.vb: Material.Blazor.MBCarousel(Of TItem).OnParametersSetAsync
+  nameWithType: MBCarousel<TItem>.OnParametersSetAsync
+  nameWithType.vb: MBCarousel(Of TItem).OnParametersSetAsync
+- uid: Material.Blazor.MBCarousel`1.RolloverInterval
+  name: RolloverInterval
+  href: api/Material.Blazor.MBCarousel-1.html#Material_Blazor_MBCarousel_1_RolloverInterval
+  commentId: P:Material.Blazor.MBCarousel`1.RolloverInterval
+  fullName: Material.Blazor.MBCarousel<TItem>.RolloverInterval
+  fullName.vb: Material.Blazor.MBCarousel(Of TItem).RolloverInterval
+  nameWithType: MBCarousel<TItem>.RolloverInterval
+  nameWithType.vb: MBCarousel(Of TItem).RolloverInterval
+- uid: Material.Blazor.MBCarousel`1.RolloverInterval*
+  name: RolloverInterval
+  href: api/Material.Blazor.MBCarousel-1.html#Material_Blazor_MBCarousel_1_RolloverInterval_
+  commentId: Overload:Material.Blazor.MBCarousel`1.RolloverInterval
+  isSpec: "True"
+  fullName: Material.Blazor.MBCarousel<TItem>.RolloverInterval
+  fullName.vb: Material.Blazor.MBCarousel(Of TItem).RolloverInterval
+  nameWithType: MBCarousel<TItem>.RolloverInterval
+  nameWithType.vb: MBCarousel(Of TItem).RolloverInterval
 - uid: Material.Blazor.MBCascadingDefaults
   name: MBCascadingDefaults
   href: api/Material.Blazor.MBCascadingDefaults.html
@@ -10670,6 +10878,40 @@ references:
   fullName.vb: Material.Blazor.MBSlidingContent(Of TItem).OnParametersSetAsync
   nameWithType: MBSlidingContent<TItem>.OnParametersSetAsync
   nameWithType.vb: MBSlidingContent(Of TItem).OnParametersSetAsync
+- uid: Material.Blazor.MBSlidingContent`1.SlideNext(System.Boolean)
+  name: SlideNext(Boolean)
+  href: api/Material.Blazor.MBSlidingContent-1.html#Material_Blazor_MBSlidingContent_1_SlideNext_System_Boolean_
+  commentId: M:Material.Blazor.MBSlidingContent`1.SlideNext(System.Boolean)
+  fullName: Material.Blazor.MBSlidingContent<TItem>.SlideNext(System.Boolean)
+  fullName.vb: Material.Blazor.MBSlidingContent(Of TItem).SlideNext(System.Boolean)
+  nameWithType: MBSlidingContent<TItem>.SlideNext(Boolean)
+  nameWithType.vb: MBSlidingContent(Of TItem).SlideNext(Boolean)
+- uid: Material.Blazor.MBSlidingContent`1.SlideNext*
+  name: SlideNext
+  href: api/Material.Blazor.MBSlidingContent-1.html#Material_Blazor_MBSlidingContent_1_SlideNext_
+  commentId: Overload:Material.Blazor.MBSlidingContent`1.SlideNext
+  isSpec: "True"
+  fullName: Material.Blazor.MBSlidingContent<TItem>.SlideNext
+  fullName.vb: Material.Blazor.MBSlidingContent(Of TItem).SlideNext
+  nameWithType: MBSlidingContent<TItem>.SlideNext
+  nameWithType.vb: MBSlidingContent(Of TItem).SlideNext
+- uid: Material.Blazor.MBSlidingContent`1.SlidePrevious(System.Boolean)
+  name: SlidePrevious(Boolean)
+  href: api/Material.Blazor.MBSlidingContent-1.html#Material_Blazor_MBSlidingContent_1_SlidePrevious_System_Boolean_
+  commentId: M:Material.Blazor.MBSlidingContent`1.SlidePrevious(System.Boolean)
+  fullName: Material.Blazor.MBSlidingContent<TItem>.SlidePrevious(System.Boolean)
+  fullName.vb: Material.Blazor.MBSlidingContent(Of TItem).SlidePrevious(System.Boolean)
+  nameWithType: MBSlidingContent<TItem>.SlidePrevious(Boolean)
+  nameWithType.vb: MBSlidingContent(Of TItem).SlidePrevious(Boolean)
+- uid: Material.Blazor.MBSlidingContent`1.SlidePrevious*
+  name: SlidePrevious
+  href: api/Material.Blazor.MBSlidingContent-1.html#Material_Blazor_MBSlidingContent_1_SlidePrevious_
+  commentId: Overload:Material.Blazor.MBSlidingContent`1.SlidePrevious
+  isSpec: "True"
+  fullName: Material.Blazor.MBSlidingContent<TItem>.SlidePrevious
+  fullName.vb: Material.Blazor.MBSlidingContent(Of TItem).SlidePrevious
+  nameWithType: MBSlidingContent<TItem>.SlidePrevious
+  nameWithType.vb: MBSlidingContent(Of TItem).SlidePrevious
 - uid: Material.Blazor.MBSlidingTabBar`1
   name: MBSlidingTabBar<TItem>
   href: api/Material.Blazor.MBSlidingTabBar-1.html
