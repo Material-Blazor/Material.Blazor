@@ -8,9 +8,8 @@
 
     <div class="mb-carousel__upper">
         <div class="mb-carousel-nav-panel" style="order: 2;">
-            <MBSlidingContent @bind-Value="@CurrentIndex"
+            <MBSlidingContent @bind-ItemIndex="@ItemIndex"
                               Context="item"
-                              ItemIndex="@Value"
                               Items="@Items"
                               @ref="@SlidingContent">
 
@@ -29,12 +28,11 @@
                                 @onclick="NavigateNext" />
     </div>
 
-    <MBFloatingActionButton @key="@Play.ToString()"
-                            Icon="@PlayIcon"
+    <MBFloatingActionButton Icon="@PlayIcon"
                             @onclick="@(() => PlayStop())" />
 
     <div class="mb-carousel__lower">
-
+        <MBRadioButtonGroup @bind-Value="@RadioItemIndex" Items="@RadioElements" Vertical="false" />
     </div>
 
 </div>

@@ -3,6 +3,7 @@
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -44,7 +45,18 @@ namespace Material.Blazor
         private string PlayIcon => Play ? "stop" : "play_arrow";
         private CancellationTokenSource tokenSource { get; set; } = new();
         private MBSlidingContent<TItem> SlidingContent { get; set; }
-        private int CurrentIndex { get; set; } = 0;
+        private int ItemIndex { get; set; } = 0;
+        private List<MBSelectElement<int>> RadioElements { get; set; }
+
+        private int RadioItemIndex
+        {
+            get => ItemIndex;
+            set
+            {
+                ItemIndex = value;
+                PlayStop(false);
+            }
+        }
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -55,6 +67,19 @@ namespace Material.Blazor
             ForceShouldRenderToTrue = true;
 
             PlayStop(true);
+        }
+
+
+        protected override async Task OnParametersSetAsync()
+        {
+            await base.OnParametersSetAsync();
+
+            RadioElements = new();
+
+            for (int i = 0; i < Items.Count(); i++)
+            {
+                RadioElements.Add(new() { SelectedValue = i, Label = "" });
+            }
         }
 
 
@@ -110,6 +135,7 @@ namespace Material.Blazor
                     else
                     {
                         SlidingContent.SlideNext(true);
+                        _ = InvokeAsync(StateHasChanged);
                     }
                 }
             }, tokenSource.Token);

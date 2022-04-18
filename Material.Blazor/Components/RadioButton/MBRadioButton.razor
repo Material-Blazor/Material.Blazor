@@ -27,6 +27,10 @@
             </div>
             <div class="mdc-radio__ripple"></div>
         </div>
-        <label for="@radioId">@Label</label>
+
+        @if (!string.IsNullOrWhiteSpace(Label))
+        {
+            <label for="@radioId">@Label</label>
+        }
     </div>
 </div>

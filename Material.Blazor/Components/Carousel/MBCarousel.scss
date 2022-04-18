@@ -20,12 +20,8 @@
         display: flex;
         flex-flow: row nowrap;
         justify-content: center;
-        align-items: center;
         width: 100%;
-
-        // delete next 2 lines after testing
-        background-color: lightsalmon;
-        height: 100px;
+        padding-top: 40px;
     }
 
     & .mdc-fab {
