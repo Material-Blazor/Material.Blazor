@@ -40,22 +40,42 @@
                     </MBSlidingContent>
 
                     <p @key="@Index">
+                        <MBSwitch @bind-Value="@Rollover"
+                                  Label="Rollover" />
+
                         <MBButton ButtonStyle="MBButtonStyle.ContainedRaised"
                                   Disabled="@DisablePrevious"
                                   Label="Previous"
                                   LeadingIcon="chevron_left"
-                                  @onclick="@(() => Index--)" />
+                                  @onclick="@(() => Content.SlidePrevious(Rollover))" />
+
                         <MBButton ButtonStyle="MBButtonStyle.ContainedRaised"
                                   Disabled="@DisableNext"
                                   Label="Next"
-                                  @onclick="@(() => Index++)"
+                                  @onclick="@(() => Content.SlideNext(Rollover))"
                                   TrailingIcon="chevron_right" />
                     </p>
 
                     <p>
                         <MBButton ButtonStyle="MBButtonStyle.ContainedRaised"
+                                  Label="Move to Paragraph 1"
+                                  @onclick="@(() => Index = 0)" />
+
+                        <MBButton ButtonStyle="MBButtonStyle.ContainedRaised"
+                                  Label="Move to Paragraph 2"
+                                  @onclick="@(() => Index = 1)" />
+
+                        <MBButton ButtonStyle="MBButtonStyle.ContainedRaised"
+                                  Label="Move to Paragraph 3"
+                                  @onclick="@(() => Index = 2)" />
+
+                        <MBButton ButtonStyle="MBButtonStyle.ContainedRaised"
                                   Label="Move to Paragraph 4"
                                   @onclick="@(() => Index = 3)" />
+
+                        <MBButton ButtonStyle="MBButtonStyle.ContainedRaised"
+                                  Label="Move to Paragraph 5"
+                                  @onclick="@(() => Index = 4)" />
                     </p>
                 </Primary>
             </MBCard>
@@ -67,8 +87,9 @@
 
 @code {
     private MBSlidingContent<Item> Content;
-    private bool DisablePrevious => Index == 0;
-    private bool DisableNext => Index == items.Length - 1;
+    private bool DisablePrevious => Index == 0 && !Rollover;
+    private bool DisableNext => Index == items.Length - 1 && !Rollover;
+    private bool Rollover;
 
     private int _index = 2;
     private int Index

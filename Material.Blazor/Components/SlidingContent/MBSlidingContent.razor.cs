@@ -105,14 +105,13 @@ namespace Material.Blazor
                     await InvokeAsync(StateHasChanged);
                     await Task.Delay(100);
 
-
                     HideContent = true;
 
                     ContentClass = nextClass;
                     CurrentItem = Items.ElementAt(index);
 
-                    await ItemIndexChanged.InvokeAsync(index);
                     _itemIndex = index;
+                    await ItemIndexChanged.InvokeAsync(index);
                     
                     HideContent = false;
 
@@ -136,6 +135,50 @@ namespace Material.Blazor
             {
                 HasRendered = true;
             }
+        }
+
+
+        /// <summary>
+        /// Moves to the next slide, always scrolling forwards. 
+        /// </summary>
+        /// <param name="rollover">Rolls from last to first if true, scrolling forwards.</param>
+        public async Task SlideNext(bool rollover)
+        {
+            int nextIndex = _itemIndex + 1;
+
+            if (nextIndex == Items.Count())
+            {
+                if (!rollover)
+                {
+                    return;
+                }
+
+                nextIndex = 0;
+            }
+
+            await SlideToItem(nextIndex, SlideDirection.Forwards).ConfigureAwait(false);
+        }
+
+
+        /// <summary>
+        /// Moves to the previous slide, always scrolling backwards. 
+        /// </summary>
+        /// <param name="rollover">Rolls from first to last if true, scrolling backwards.</param>
+        public async Task SlidePrevious(bool rollover)
+        {
+            int previousIndex = _itemIndex - 1;
+
+            if (previousIndex == -1)
+            {
+                if (!rollover)
+                {
+                    return;
+                }
+
+                previousIndex = Items.Count() - 1;
+            }
+
+            await SlideToItem(previousIndex, SlideDirection.Backwards).ConfigureAwait(false);
         }
     }
 }
