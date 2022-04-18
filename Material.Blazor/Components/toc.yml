@@ -1,4 +1,4 @@
-- name: Introduction to Material.Blazor Components
+﻿- name: Introduction to Material.Blazor Components
   href: intro.md
 
 - name: Material.Blazor namespace
@@ -30,6 +30,9 @@
 
 - name: MBCard
   topicUid: C.MBCard
+
+- name: MBCarousel
+  topicUid: C.MBCarousel
 
 - name: MBCascadingDefaults
   topicUid: U.MBCascadingDefaults

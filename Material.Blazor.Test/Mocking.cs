@@ -455,7 +455,6 @@ namespace Material.Blazor.Test
       </div>
       <div class=""mdc-radio__ripple""></div>
     </div>
-    <label for:ignore></label>
   </div>
 </div>
             ");
