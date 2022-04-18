@@ -142,7 +142,7 @@ namespace Material.Blazor
         /// Moves to the next slide, always scrolling forwards. 
         /// </summary>
         /// <param name="rollover">Rolls from last to first if true, scrolling forwards.</param>
-        public async Task SlideNext(bool rollover)
+        public void SlideNext(bool rollover)
         {
             int nextIndex = _itemIndex + 1;
 
@@ -156,7 +156,7 @@ namespace Material.Blazor
                 nextIndex = 0;
             }
 
-            await SlideToItem(nextIndex, SlideDirection.Forwards).ConfigureAwait(false);
+            _ = SlideToItem(nextIndex, SlideDirection.Forwards);
         }
 
 
@@ -164,7 +164,7 @@ namespace Material.Blazor
         /// Moves to the previous slide, always scrolling backwards. 
         /// </summary>
         /// <param name="rollover">Rolls from first to last if true, scrolling backwards.</param>
-        public async Task SlidePrevious(bool rollover)
+        public void SlidePrevious(bool rollover)
         {
             int previousIndex = _itemIndex - 1;
 
@@ -178,7 +178,7 @@ namespace Material.Blazor
                 previousIndex = Items.Count() - 1;
             }
 
-            await SlideToItem(previousIndex, SlideDirection.Backwards).ConfigureAwait(false);
+            _ = SlideToItem(previousIndex, SlideDirection.Backwards);
         }
     }
 }
