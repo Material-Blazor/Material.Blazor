@@ -47,6 +47,7 @@ namespace Material.Blazor
             set
             {
                 ItemIndex = value;
+                ICP.SlidingContent.SetItemIndex(ItemIndex);
                 PlayStop(false);
             }
         }
@@ -100,21 +101,23 @@ namespace Material.Blazor
                 tokenSource = new();
             }
 
-            InvokeAsync(StateHasChanged);
+            _ = InvokeAsync(StateHasChanged);
         }
 
 
-        private void NavigatePrevious()
+        private async Task NavigatePrevious()
         {
             PlayStop(false);
-            ICP.SlidingContent.SlidePrevious(true);
+            await ICP.SlidingContent.SlidePrevious(true).ConfigureAwait(false);
+            ItemIndex = ICP.SlidingContent.ItemIndex;
         }
 
 
-        private void NavigateNext()
+        private async Task NavigateNext()
         {
             PlayStop(false);
-            ICP.SlidingContent.SlideNext(true);
+            await ICP.SlidingContent.SlideNext(true).ConfigureAwait(false);
+            ItemIndex = ICP.SlidingContent.ItemIndex;
         }
 
 
@@ -136,8 +139,9 @@ namespace Material.Blazor
                     }
                     else
                     {
-                        ICP.SlidingContent.SlideNext(true);
-                        _ = InvokeAsync(StateHasChanged);
+                        await ICP.SlidingContent.SlideNext(true).ConfigureAwait(false);
+                        ItemIndex = ICP.SlidingContent.ItemIndex;
+                        await InvokeAsync(StateHasChanged);
                     }
                 }
             }, tokenSource.Token);

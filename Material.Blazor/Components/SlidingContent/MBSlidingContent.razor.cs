@@ -142,9 +142,9 @@ namespace Material.Blazor
         /// Moves to the next slide, always scrolling forwards. 
         /// </summary>
         /// <param name="rollover">Rolls from last to first if true, scrolling forwards.</param>
-        public void SlideNext(bool rollover)
+        public async Task SlideNext(bool rollover)
         {
-            int nextIndex = _itemIndex + 1;
+            var nextIndex = _itemIndex + 1;
 
             if (nextIndex == Items.Count())
             {
@@ -156,7 +156,7 @@ namespace Material.Blazor
                 nextIndex = 0;
             }
 
-            _ = SlideToItem(nextIndex, SlideDirection.Forwards);
+            await SlideToItem(nextIndex, SlideDirection.Forwards).ConfigureAwait(false);
         }
 
 
@@ -164,9 +164,9 @@ namespace Material.Blazor
         /// Moves to the previous slide, always scrolling backwards. 
         /// </summary>
         /// <param name="rollover">Rolls from first to last if true, scrolling backwards.</param>
-        public void SlidePrevious(bool rollover)
+        public async Task SlidePrevious(bool rollover)
         {
-            int previousIndex = _itemIndex - 1;
+            var previousIndex = _itemIndex - 1;
 
             if (previousIndex == -1)
             {
@@ -178,7 +178,19 @@ namespace Material.Blazor
                 previousIndex = Items.Count() - 1;
             }
 
-            _ = SlideToItem(previousIndex, SlideDirection.Backwards);
+            await SlideToItem(previousIndex, SlideDirection.Backwards).ConfigureAwait(false);
+        }
+
+
+        /// <summary>
+        /// A back door to set the item index for use by the carousel. Required because the internal carousel sliding panel
+        /// returns ShouldRender() => false;
+        /// </summary>
+        /// <param name="index"></param>
+        internal void SetItemIndex(int index)
+        {
+            ItemIndex = index;
+            _ = InvokeAsync(StateHasChanged);
         }
     }
 }

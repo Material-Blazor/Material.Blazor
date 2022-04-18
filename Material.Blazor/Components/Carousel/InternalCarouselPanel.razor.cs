@@ -28,10 +28,10 @@ namespace Material.Blazor.Internal
         public int ItemIndex { get; set; }
 
 
-        /// <summary>
-        /// The change event callback for <see cref="ItemIndex"/>.
-        /// </summary>
-        [Parameter] public EventCallback<int> ItemIndexChanged { get; set; }
+        ///// <summary>
+        ///// The change event callback for <see cref="ItemIndex"/>.
+        ///// </summary>
+        //[Parameter] public EventCallback<int> ItemIndexChanged { get; set; }
 
 
         /// <summary>

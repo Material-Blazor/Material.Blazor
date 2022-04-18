@@ -8,7 +8,7 @@
 
     <div class="mb-carousel__upper">
         <div class="mb-carousel-nav-panel" style="order: 2;">
-            <InternalCarouselPanel @bind-ItemIndex="@ItemIndex"
+            <InternalCarouselPanel ItemIndex="@ItemIndex"
                                    Context="item"
                                    Items="@Items"
                                    @ref="@ICP">
@@ -32,7 +32,6 @@
                             @onclick="@(() => PlayStop())" />
 
     <div class="mb-carousel__lower">
-        @ItemIndex @RadioItemIndex
         <MBRadioButtonGroup @bind-Value="@RadioItemIndex"
                             Items="@RadioElements"
                             Vertical="false" />
