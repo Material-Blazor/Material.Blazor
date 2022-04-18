@@ -8,15 +8,15 @@
 
     <div class="mb-carousel__upper">
         <div class="mb-carousel-nav-panel" style="order: 2;">
-            <MBSlidingContent @bind-ItemIndex="@ItemIndex"
-                              Context="item"
-                              Items="@Items"
-                              @ref="@SlidingContent">
+            <InternalCarouselPanel @bind-ItemIndex="@ItemIndex"
+                                   Context="item"
+                                   Items="@Items"
+                                   @ref="@ICP">
 
                 <Content>
                     @Content(item)
                 </Content>
-            </MBSlidingContent>
+            </InternalCarouselPanel>
         </div>
 
         <MBFloatingActionButton Icon="navigate_before"
@@ -32,7 +32,10 @@
                             @onclick="@(() => PlayStop())" />
 
     <div class="mb-carousel__lower">
-        <MBRadioButtonGroup @bind-Value="@RadioItemIndex" Items="@RadioElements" Vertical="false" />
+        @ItemIndex @RadioItemIndex
+        <MBRadioButtonGroup @bind-Value="@RadioItemIndex"
+                            Items="@RadioElements"
+                            Vertical="false" />
     </div>
 
 </div>

@@ -1,0 +1,14 @@
+﻿@namespace Material.Blazor.Internal
+
+@inherits InputComponent<int>
+@typeparam TItem
+
+<MBSlidingContent @bind-ItemIndex="@ItemIndex"
+                  Context="item"
+                  Items="@Items"
+                  @ref="@SlidingContent">
+
+    <Content>
+        @Content(item)
+    </Content>
+</MBSlidingContent>

@@ -16,13 +16,6 @@ namespace Material.Blazor
     public partial class MBCarousel<TItem> : InputComponent<int>
     {
         /// <summary>
-        /// A function delegate to return the parameters for <c>@key</c> attributes. If unused
-        /// "fake" keys set to GUIDs will be used.
-        /// </summary>
-        [Parameter] public Func<TItem, object> GetKeysFunc { get; set; }
-
-
-        /// <summary>
         /// The tab details plus items to be displayed under the tab bar depending upon tab index.
         /// </summary>
         [Parameter] public IEnumerable<TItem> Items { get; set; }
@@ -44,7 +37,7 @@ namespace Material.Blazor
         private bool Play { get; set; }
         private string PlayIcon => Play ? "stop" : "play_arrow";
         private CancellationTokenSource tokenSource { get; set; } = new();
-        private MBSlidingContent<TItem> SlidingContent { get; set; }
+        private InternalCarouselPanel<TItem> ICP { get; set; }
         private int ItemIndex { get; set; } = 0;
         private List<MBSelectElement<int>> RadioElements { get; set; }
 
@@ -65,8 +58,6 @@ namespace Material.Blazor
             await base.OnInitializedAsync();
 
             ForceShouldRenderToTrue = true;
-
-            PlayStop(true);
         }
 
 
@@ -76,10 +67,21 @@ namespace Material.Blazor
 
             RadioElements = new();
 
-            for (int i = 0; i < Items.Count(); i++)
+            for (var i = 0; i < Items.Count(); i++)
             {
                 RadioElements.Add(new() { SelectedValue = i, Label = "" });
             }
+        }
+
+
+        protected override Task OnAfterRenderAsync(bool firstRender)
+        {
+            if (firstRender)
+            {
+                PlayStop(true);
+            }
+
+            return base.OnAfterRenderAsync(firstRender);
         }
 
 
@@ -105,14 +107,14 @@ namespace Material.Blazor
         private void NavigatePrevious()
         {
             PlayStop(false);
-            SlidingContent.SlidePrevious(true);
+            ICP.SlidingContent.SlidePrevious(true);
         }
 
 
         private void NavigateNext()
         {
             PlayStop(false);
-            SlidingContent.SlideNext(true);
+            ICP.SlidingContent.SlideNext(true);
         }
 
 
@@ -134,7 +136,7 @@ namespace Material.Blazor
                     }
                     else
                     {
-                        SlidingContent.SlideNext(true);
+                        ICP.SlidingContent.SlideNext(true);
                         _ = InvokeAsync(StateHasChanged);
                     }
                 }
