@@ -3,70 +3,38 @@
 @inherits InputComponent<int>
 @typeparam TItem
 
-<div class="@(@class)"
+<div class="mb-carousel @(@class)"
      style="@style">
 
-    @if (Icon is null && Label is null)
-    {
-        <MBTabBar @bind-Value="@ComponentValue"
-              Context="item"
-              Density="@Density"
-              Disabled="@AppliedDisabled"
-              GetKeysFunc="@GetKeysFunc"
-              Items="@Items"
-              StackIcons="@StackIcons">
+    <div class="mb-carousel__upper">
+        <div class="mb-carousel-nav-panel" style="order: 2;">
+            <MBSlidingContent @bind-Value="@CurrentIndex"
+                              Context="item"
+                              ItemIndex="@Value"
+                              Items="@Items"
+                              @ref="@SlidingContent">
 
-        </MBTabBar>
-    }
-    else if (Label is null)
-    {
-        <MBTabBar @bind-Value="@ComponentValue"
-              Context="item"
-              Density="@Density"
-              Disabled="@AppliedDisabled"
-              GetKeysFunc="@GetKeysFunc"
-              Items="@Items"
-              StackIcons="@StackIcons">
+                <Content>
+                    @Content(item)
+                </Content>
+            </MBSlidingContent>
+        </div>
 
-            <Icon>@Icon(item)</Icon>
-        </MBTabBar>
-    }
-    else if (Icon is null)
-    {
-        <MBTabBar @bind-Value="@ComponentValue"
-              Context="item"
-              Density="@Density"
-              Disabled="@AppliedDisabled"
-              GetKeysFunc="@GetKeysFunc"
-              Items="@Items"
-              StackIcons="@StackIcons">
+        <MBFloatingActionButton Icon="navigate_before"
+                                style="order: 1;"
+                                @onclick="NavigatePrevious" />
 
-            <Label>@Label(item)</Label>
-        </MBTabBar>
-    }
-    else
-    {
-        <MBTabBar @bind-Value="@ComponentValue"
-              Context="item"
-              Density="@Density"
-              Disabled="@AppliedDisabled"
-              GetKeysFunc="@GetKeysFunc"
-              Items="@Items"
-              StackIcons="@StackIcons">
+        <MBFloatingActionButton Icon="navigate_next"
+                                style="order: 3;"
+                                @onclick="NavigateNext" />
+    </div>
 
-            <Label>@Label(item)</Label>
-            <Icon>@Icon(item)</Icon>
-        </MBTabBar>
-    }
+    <MBFloatingActionButton @key="@Play.ToString()"
+                            Icon="@PlayIcon"
+                            @onclick="@(() => PlayStop())" />
 
+    <div class="mb-carousel__lower">
 
-    <MBSlidingContent Context="item"
-                      ItemIndex="@Value"
-                      Items="@Items">
-
-        <Content>
-            @Content(item)
-        </Content>
-    </MBSlidingContent>
+    </div>
 
 </div>

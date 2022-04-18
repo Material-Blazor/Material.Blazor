@@ -3,6 +3,7 @@
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Material.Blazor
@@ -13,12 +14,6 @@ namespace Material.Blazor
     /// <typeparam name="TItem"></typeparam>
     public partial class MBCarousel<TItem> : InputComponent<int>
     {
-        /// <summary>
-        /// Stack icons vertically if True, otherwise icons are leading.
-        /// </summary>
-        [Parameter] public bool StackIcons { get; set; }
-
-
         /// <summary>
         /// A function delegate to return the parameters for <c>@key</c> attributes. If unused
         /// "fake" keys set to GUIDs will be used.
@@ -33,27 +28,23 @@ namespace Material.Blazor
 
 
         /// <summary>
-        /// Label render fragments.
-        /// </summary>
-        [Parameter] public RenderFragment<TItem> Label { get; set; }
-
-
-        /// <summary>
-        /// Icon render fragments.
-        /// </summary>
-        [Parameter] public RenderFragment<TItem> Icon { get; set; }
-
-
-        /// <summary>
         /// Content render fragments under the tab bar.
         /// </summary>
         [Parameter] public RenderFragment<TItem> Content { get; set; }
 
 
+        private int _rolloverInterval = 3000;
         /// <summary>
-        /// The tab bar's density.
+        /// The interval in milliseconds to roll over from one panel of content to the next. Clamped between 1,000 and 60,000. Defaults toi 3,000.
         /// </summary>
-        [Parameter] public MBDensity? Density { get; set; }
+        [Parameter] public int RolloverInterval { get => _rolloverInterval; set => _rolloverInterval = Math.Clamp(value, 1000, 60000); }
+
+
+        private bool Play { get; set; }
+        private string PlayIcon => Play ? "stop" : "play_arrow";
+        private CancellationTokenSource tokenSource { get; set; } = new();
+        private MBSlidingContent<TItem> SlidingContent { get; set; }
+        private int CurrentIndex { get; set; } = 0;
 
 
         // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
@@ -62,6 +53,66 @@ namespace Material.Blazor
             await base.OnInitializedAsync();
 
             ForceShouldRenderToTrue = true;
+
+            PlayStop(true);
+        }
+
+
+        private void PlayStop(bool? play = null)
+        {
+            Play = play?? !Play;
+
+            if (Play)
+            {
+                RunPanels();
+            }
+            else
+            {
+                tokenSource.Cancel();
+                tokenSource.Dispose();
+                tokenSource = new();
+            }
+
+            InvokeAsync(StateHasChanged);
+        }
+
+
+        private void NavigatePrevious()
+        {
+            PlayStop(false);
+            SlidingContent.SlidePrevious(true);
+        }
+
+
+        private void NavigateNext()
+        {
+            PlayStop(false);
+            SlidingContent.SlideNext(true);
+        }
+
+
+        private void RunPanels()
+        {
+            var ct = tokenSource.Token;
+
+            _ = Task.Run(async () =>
+            {
+                bool continuePanelTransition = true;
+
+                while (continuePanelTransition)
+                {
+                    await Task.Delay(RolloverInterval).ConfigureAwait(false);
+
+                    if (ct.IsCancellationRequested)
+                    {
+                        continuePanelTransition = false;
+                    }
+                    else
+                    {
+                        SlidingContent.SlideNext(true);
+                    }
+                }
+            }, tokenSource.Token);
         }
     }
 }
