@@ -1,4 +1,4 @@
-﻿using Bunit;
+using Bunit;
 using Material.Blazor;
 using Material.Blazor.Internal;
 using Microsoft.Extensions.DependencyInjection;
@@ -453,8 +453,9 @@ namespace Material.Blazor.Test
         <div class=""mdc-radio__outer-circle""></div>
         <div class=""mdc-radio__inner-circle""></div>
       </div>
-    <div class=""mdc-radio__ripple""></div>
-    <label for:ignore></label>  </div>
+      <div class=""mdc-radio__ripple""></div>
+    </div>
+    <label for:ignore></label>
   </div>
 </div>
             ");
