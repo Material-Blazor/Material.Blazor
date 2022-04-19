@@ -9,8 +9,9 @@
         flex-flow: row nowrap;
         justify-content: space-between;
         align-items: center;
+        width: 100%;
 
-        & .mb-carousel-nav-panel {
+        s & .mb-carousel-nav-panel {
             width: 100%;
             flex-grow: 1;
         }
@@ -22,11 +23,20 @@
         justify-content: center;
         width: 100%;
         padding-top: 40px;
+
+        & label {
+            max-width: 0px;
+            margin: 0px;
+            padding: 0px;
+            overflow: hidden;
+        }
     }
 
     & .mdc-fab {
-        width: 40px;
-        height: 40px;
+        min-width: 40px;
+        max-width: 40px;
+        min-height: 40px;
+        max-height: 40px;
         margin: -20px;
         flex-grow: 0;
         opacity: 0;
