@@ -70,7 +70,7 @@ namespace Material.Blazor
 
             for (var i = 0; i < Items.Count(); i++)
             {
-                RadioElements.Add(new() { SelectedValue = i, Label = "" });
+                RadioElements.Add(new() { SelectedValue = i, Label = $"Image {i}" });
             }
         }
 
