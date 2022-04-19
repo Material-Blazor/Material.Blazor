@@ -7,9 +7,8 @@ namespace Material.Blazor.Internal
 {
     public partial class MBAppointment : ComponentFoundation
     {
-        [Parameter] public Color BackgroundColor { get; set; }
-        [Parameter] public Color ForegroundColor { get; set; }
-        [Parameter] public string Title { get; set; }
+        [Parameter] public MBScheduler SchedulerRef { get; set; }
+        [Parameter] public MBSchedulerAppointment SchedulerAppointment { get; set; }
         [Parameter] public double Height { get; set; }
         [Parameter] public double Width { get; set; }
         [Parameter] public double X { get; set; }
@@ -17,16 +16,24 @@ namespace Material.Blazor.Internal
 
         private string styleString { get; set; }
 
+        #region HandleDragStart
+        private void HandleDragStart(MBSchedulerAppointment selectedAppointment)
+        {
+            SchedulerRef.CurrentDragSource = selectedAppointment;
+        }
+
+        #endregion
+
         #region OnInitializedAsync
         protected override async Task OnInitializedAsync()
         {
             await base.OnInitializedAsync();
             styleString =
-                "background: " + BackgroundColor.Name + ";" +
+                "background: " + SchedulerAppointment.BackgroundColor.Name + ";" +
                 "border-width: 0; " +
                 "border-radius: 4px; " +
                 "border-style: solid; " +
-                "color: " + ForegroundColor.Name + ";" +
+                "color: " + SchedulerAppointment.ForegroundColor.Name + ";" +
                 "top: " + Y.ToString() + "px; " +
                 "left: " + X.ToString() + "px; " +
                 "position: absolute; " +

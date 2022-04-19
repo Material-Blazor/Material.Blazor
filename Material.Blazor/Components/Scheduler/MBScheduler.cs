@@ -34,11 +34,11 @@ namespace Material.Blazor
 
         [Inject] IJSRuntime JsRuntime { get; set; }
 
-        private int AppointmentColumnWidth { get; set; }
+        private double AppointmentColumnWidth { get; set; }
         private List<ColumnConfiguration> ColumnConfigurations { get; set; }
+        public MBSchedulerAppointment CurrentDragSource { get; set; }
         private double DayColumnWidth { get; set; }
         private double FifteenMinuteHeight { get; set; }
-        private double HeaderHeight { get; set; }
         private bool IsMeasurementCompleted { get; set; } = false;
         private double LeftEdgeOfColumn1 { get; set; }
         private string ScheduleID1 { get; set; } = Utilities.GenerateUniqueElementName();
@@ -50,6 +50,28 @@ namespace Material.Blazor
 
         #endregion
 
+        #region BuildColGroup
+        private void BuildColGroup(RenderTreeBuilder builder, ref int rendSeq)
+        {
+            // Create the sizing colgroup collection
+            builder.OpenElement(rendSeq++, "colgroup");
+            builder.AddAttribute(rendSeq++, "class", "mb-scheduler-colgroup");
+            var colIndex = 0;
+            foreach (var col in ColumnConfigurations)
+            {
+                var styleStr =
+                    "width: " + col.Width.ToString() + "% !important; " +
+                    "max-width: " + col.Width.ToString() + "% !important; " +
+                    "min-width: " + col.Width.ToString() + "% !important; ";
+                builder.OpenElement(rendSeq++, "col");
+                builder.AddAttribute(rendSeq++, "style", styleStr);
+                builder.CloseElement(); // col
+                colIndex++;
+            }
+            builder.CloseElement(); // colgroup
+        }
+        #endregion
+
         #region BuildRenderTree
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
@@ -57,6 +79,23 @@ namespace Material.Blazor
             ScheduleLogDebug("BuildRenderTree entered; IsMeasurementCompleted == " + IsMeasurementCompleted.ToString());
             ScheduleLogDebug("                         ShouldRenderValue == " + ShouldRenderValue.ToString());
 #endif
+
+            //
+            //  Using the column cfg and column data, render our list. Here is the layout.
+            //  The column headers are optional.
+            //
+            //  div class="@class", style="@style"
+            //      div mb-scheduler-header          - Contains the header and the vscroll
+            //          table                   - 
+            //              tr                  - 
+            //                  td*             - Header
+            //      div mb-scheduler-body            - Contains the rows and the vscroll
+            //          table                   - Contains the rows
+            //              tr*                 - Rows
+            //                  td*             - Columns of the row
+            //
+
+            base.BuildRenderTree(builder);
             var rendSeq = 1;
             string styleStr;
 
@@ -67,26 +106,149 @@ namespace Material.Blazor
                 builder.AddAttribute(rendSeq++, "style", style);
             }
 
-            // This div holds the content
+            // Based on the column config generate the column titles unless asked not to
             builder.OpenElement(rendSeq++, "div");
-            builder.AddAttribute(rendSeq++, "class", "mb-scheduler-div-body");
+            builder.AddAttribute(rendSeq++, "class", "mb-scheduler-div-header mb-scheduler-backgroundcolor-header-background");
+            //builder.AddAttribute(rendSeq++, "style", "padding-right: " + ScrollWidth.ToString() + "px; ");
+            builder.OpenElement(rendSeq++, "table");
+            builder.AddAttribute(rendSeq++, "class", "mb-scheduler-table");
+            BuildColGroup(builder, ref rendSeq);
+            builder.OpenElement(rendSeq++, "thead");
+            builder.AddAttribute(rendSeq++, "class", "mb-scheduler-thead");
+            builder.OpenElement(rendSeq++, "tr");
+            builder.AddAttribute(rendSeq++, "class", "mb-scheduler-tr");
 
-            // For each column output a ScheduleColumn
+            // For each column output a TD
+            var isHeaderRow = true;
             var colCount = 0;
-            foreach (var columnDefinition in ColumnConfigurations)
+            foreach (var col in ColumnConfigurations)
             {
-                builder.OpenComponent<Material.Blazor.Internal.MBScheduleColumn>(rendSeq++);
-                builder.AddAttribute(rendSeq++, "ColumnTitle", columnDefinition.Title);
-                builder.AddAttribute(rendSeq++, "ColumnWidth", columnDefinition.Width);
-                builder.AddAttribute(rendSeq++, "IsFirstDataColumn", colCount == 1);
-                builder.AddAttribute(rendSeq++, "IsTimeColumn", colCount == 0);
-                builder.AddAttribute(rendSeq++, "ScheduleID1", ScheduleID1);
-                builder.AddAttribute(rendSeq++, "ScheduleID2", ScheduleID2);
-                builder.AddAttribute(rendSeq++, "WorkdayEnd", WorkDayEnd);
-                builder.AddAttribute(rendSeq++, "WorkdayStart", WorkDayStart);
-                builder.CloseComponent();
+                styleStr = BuildScheduleTD(
+                    builder,
+                    ref rendSeq,
+                    colCount == 0,
+                    isHeaderRow,
+                    false,
+                    "mb-scheduler-header");
+
+                // Set the header colors
+                styleStr += " color: Black;";
+                styleStr += " background-color : LightGray;";
+
+                builder.AddAttribute(rendSeq++, "style", styleStr);
+                if (colCount == 0)
+                {
+                    builder.AddAttribute(rendSeq++, "id", ScheduleID1);
+                }
+                builder.AddContent(rendSeq++, col.Title);
+
+                // Close this column TD
+                builder.CloseElement();
+
                 colCount++;
             }
+
+            builder.CloseElement(); // tr
+
+            builder.CloseElement(); // thead
+
+            builder.CloseElement(); //table
+
+            builder.CloseElement(); // div mb-scheduler-header
+
+            //
+            // We now need to build the background grid showing the time (on the
+            // hour) and the quarter hour lines
+            //
+
+            // This div holds the scrolled content
+            builder.OpenElement(rendSeq++, "div");
+            builder.AddAttribute(rendSeq++, "class", "mb-scheduler-div-body");
+            builder.OpenElement(rendSeq++, "table");
+            builder.AddAttribute(rendSeq++, "class", "mb-scheduler-table");
+            BuildColGroup(builder, ref rendSeq);
+            builder.OpenElement(rendSeq++, "tbody");
+            builder.AddAttribute(rendSeq++, "class", "mb-scheduler-tbody");
+
+            var dateTime = new DateTime(2022, 1, 1, WorkDayStart.Hour, WorkDayStart.Minute, 0);
+            var endTime = new DateTime(2022, 1, 1, WorkDayEnd.Hour, WorkDayEnd.Minute, 0);
+            var rowCount = 0;
+            var lastRow = Convert.ToInt32(((endTime - dateTime).TotalMinutes / 15) - 1);
+            while (dateTime < endTime)
+            {
+                // We alternate colors
+                string rowColorClassNormal;
+                string rowColorClassHidden;
+                if ((rowCount / 2) * 2 == rowCount)
+                {
+                    // Even
+                    rowColorClassNormal = "mb-scheduler-color-row-even-normal";
+                    rowColorClassHidden = "mb-scheduler-color-row-even-hidden";
+                }
+                else
+                {
+                    // Odd
+                    rowColorClassNormal = "mb-scheduler-color-row-odd-normal";
+                    rowColorClassHidden = "mb-scheduler-color-row-odd-hidden";
+                }
+
+                // Do a tr
+                builder.OpenElement(rendSeq++, "tr");
+                builder.AddAttribute(rendSeq++, "class", "mb-scheduler-tr " + rowColorClassNormal);
+
+                // For each column output a td
+                colCount = 0;
+                string rowColorClass = rowColorClassNormal;
+                foreach (var columnDefinition in ColumnConfigurations)
+                {
+                    string formattedValue;
+                    if (colCount == 0)
+                    {
+                        if (dateTime.Minute == 0)
+                        {
+                            formattedValue = dateTime.ToString("HHmm");
+                        }
+                        else
+                        {
+                            formattedValue = ".";
+                            rowColorClass = rowColorClassHidden;
+                        }
+                    }
+                    else
+                    {
+                        formattedValue = " ";
+                    }
+                    styleStr = BuildScheduleTD(
+                        builder,
+                        ref rendSeq,
+                        colCount == 0,
+                        false,
+                        rowCount == lastRow,
+                        rowColorClass);
+
+                    builder.AddAttribute(rendSeq++, "style", styleStr);
+                    if ((rowCount == 0) && (colCount == 1))
+                    {
+                        builder.AddAttribute(rendSeq++, "id", ScheduleID2);
+                    }
+                    builder.AddContent(1, formattedValue);
+
+                    // Close this column span
+                    builder.CloseElement();
+
+                    colCount++;
+                }
+
+                // Close this row's div
+                builder.CloseElement();
+
+                rowCount++;
+                dateTime += new TimeSpan(0, 15, 0);
+            }
+
+            builder.CloseElement(); // tbody
+
+            builder.CloseElement(); // table
 
             if (IsMeasurementCompleted)
             {
@@ -100,10 +262,13 @@ namespace Material.Blazor
                         out var w);
 
                     builder.OpenComponent<Material.Blazor.Internal.MBAppointment>(rendSeq++);
-                    builder.AddAttribute(rendSeq++, "BackgroundColor", appt.BackgroundColor);
-                    builder.AddAttribute(rendSeq++, "ForegroundColor", appt.ForegroundColor);
                     builder.AddAttribute(rendSeq++, "Height", h);
-                    builder.AddAttribute(rendSeq++, "Title", appt.Title);
+                    builder.AddAttribute(
+                        rendSeq++,
+                        "SchedulerRef",
+                        global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Material.Blazor.MBScheduler>(
+                        this));
+                    builder.AddAttribute(rendSeq++, "SchedulerAppointment", appt);
                     builder.AddAttribute(rendSeq++, "Width", w);
                     builder.AddAttribute(rendSeq++, "X", x);
                     builder.AddAttribute(rendSeq++, "Y", y);
@@ -111,7 +276,7 @@ namespace Material.Blazor
                 }
             }
 
-            builder.CloseElement(); // div mb-scheduler-div-body
+            builder.CloseElement(); // div mb-scheduler-body-outer
 
             if (((@class != null) && (@class.Length > 0)) || ((style != null) && (style.Length > 0)))
             {
@@ -125,11 +290,12 @@ namespace Material.Blazor
 
         #region BuildScheduleTD
         internal static string BuildScheduleTD(
-            RenderTreeBuilder builder,
-            ref int rendSeq,
-            bool isFirstColumn,
-            bool isHeaderRow,
-            string rowBackgroundColorClass)
+                RenderTreeBuilder builder,
+                ref int rendSeq,
+                bool isFirstColumn,
+                bool isHeaderRow,
+                bool isLastRow,
+                string rowBackgroundColorClass)
         {
             builder.OpenElement(rendSeq++, "td");
             builder.AddAttribute(rendSeq++, "class", "mb-scheduler-td " + rowBackgroundColorClass);
@@ -149,15 +315,31 @@ namespace Material.Blazor
             }
             else
             {
-                if (isFirstColumn)
+                if (isLastRow)
                 {
-                    // R L
-                    return " border-width: 0px 1px 0px 1px; border-style: solid; border-color: black; ";
+                    if (isFirstColumn)
+                    {
+                        // R B L
+                        return " border-width: 0px 1px 1px 1px; border-style: solid; border-color: black; ";
+                    }
+                    else
+                    {
+                        // R B
+                        return " border-width: 0px 1px 1px 0px; border-style: solid; border-color: black; ";
+                    }
                 }
                 else
                 {
-                    // R
-                    return " border-width: 0px 1px 0px 0px; border-style: solid; border-color: black; ";
+                    if (isFirstColumn)
+                    {
+                        // R L
+                        return " border-width: 0px 1px 0px 1px; border-style: solid; border-color: black; ";
+                    }
+                    else
+                    {
+                        // R
+                        return " border-width: 0px 1px 0px 0px; border-style: solid; border-color: black; ";
+                    }
                 }
             }
         }
@@ -168,7 +350,7 @@ namespace Material.Blazor
         internal void ComputeAppointmentPosition(MBSchedulerAppointment appt, out double x, out double y, out double h, out double w)
         {
             var dayOffsetTimespan = appt.StartTime.Date - StartDate;
-            x = LeftEdgeOfColumn1 + dayOffsetTimespan.Days * DayColumnWidth;
+            x = LeftEdgeOfColumn1 + Convert.ToDouble(dayOffsetTimespan.Days) * DayColumnWidth;
             if (appt.Column == 2)
             {
                 x += AppointmentColumnWidth + 2.0;
@@ -181,8 +363,7 @@ namespace Material.Blazor
                     WorkDayStart.Hour,
                     WorkDayStart.Minute,
                     0);
-            y = HeaderHeight +
-                timeOffsetTimespan.Hours * 4 * FifteenMinuteHeight +
+            y = timeOffsetTimespan.Hours * 4 * FifteenMinuteHeight +
                 (timeOffsetTimespan.Minutes / 15) * FifteenMinuteHeight;
 
             var timeHeightTimespan = appt.EndTime - appt.StartTime;
@@ -218,7 +399,6 @@ namespace Material.Blazor
                         "MaterialBlazor.MBScheduler.getElementDimensions",
                         ScheduleID1,
                         element1Array);
-            HeaderHeight = element1Array[0];
             LeftEdgeOfColumn1 = element1Array[1];
 
             var element2Array = new float[2];
@@ -230,11 +410,11 @@ namespace Material.Blazor
             FifteenMinuteHeight = element2Array[0];
             if (NumberOfColumns == 1)
             {
-                AppointmentColumnWidth = Convert.ToInt32(element2Array[1]) - 5;
+                AppointmentColumnWidth = element2Array[1] - 5.0;
             }
             else
             {
-                AppointmentColumnWidth = Convert.ToInt32(element2Array[1] / 2.0) - 5;
+                AppointmentColumnWidth = (element2Array[1] / 2.0) - 5;
             }
         }
         #endregion
@@ -242,8 +422,8 @@ namespace Material.Blazor
         #region OnAfterRenderAsync
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            var needsSHC = false;
             await SemaphoreSlim.WaitAsync();
+            var needsSHC = false;
             try
             {
                 await base.OnAfterRenderAsync(firstRender);

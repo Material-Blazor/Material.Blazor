@@ -2,11 +2,12 @@
 @inherits ComponentFoundation
 
 <div class="mb-scheduler-div-appointment"
-     style="@styleString"
-     draggable="true">
+     draggable="true"
+     @ondragstart="@(() => HandleDragStart(SchedulerAppointment))"
+     style="@styleString">
 
     <div style="padding: 4px; ">
-        @Title
+        @SchedulerAppointment.Title
     </div>
 
 </div>

@@ -16,8 +16,14 @@
     font-weight: bolder;
     padding: 0;
     overflow: hidden;
-    text-align: center;
+    text-align: left;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    flex-grow: 0;
+    flex-basis: auto;
+    align-items: stretch;
 }
 
 .mb-scheduler-div-body {
@@ -27,21 +33,7 @@
     padding: 0;
     overflow: hidden;
     position: relative;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    flex-shrink: 0;
-    flex-grow: 0;
-    flex-basis: auto;
-}
-
-.mb-scheduler-div-column {
-    font-family: Arial;
-    background: lightblue;
-    font-weight: normal;
-    padding: 0;
-    overflow: hidden;
-    text-align: center;
+    text-align: left;
     box-sizing: border-box;
 }
 
