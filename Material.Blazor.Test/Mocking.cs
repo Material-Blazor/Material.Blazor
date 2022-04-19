@@ -453,8 +453,8 @@ namespace Material.Blazor.Test
         <div class=""mdc-radio__outer-circle""></div>
         <div class=""mdc-radio__inner-circle""></div>
       </div>
-      <div class=""mdc-radio__ripple""></div>
-    </div>
+    <div class=""mdc-radio__ripple""></div>
+    <label for:ignore></label>  </div>
   </div>
 </div>
             ");
