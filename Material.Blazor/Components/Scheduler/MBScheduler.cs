@@ -3,6 +3,7 @@
 using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
@@ -235,6 +236,28 @@ namespace Material.Blazor
                 builder.AddAttribute(rendSeq++, "class", "mb-scheduler-div-body");
                 builder.OpenElement(rendSeq++, "table");
                 builder.AddAttribute(rendSeq++, "class", "mb-scheduler-table");
+
+                builder.AddAttribute(rendSeq++, "ondragover", global::Microsoft.AspNetCore.Components.EventCallback.Factory.Create<global::Microsoft.AspNetCore.Components.Web.DragEventArgs>(this, HandleDragOver));
+                builder.AddEventPreventDefaultAttribute(rendSeq++, "ondragover", true);
+                builder.AddEventStopPropagationAttribute(rendSeq++, "ondragover", true);
+
+                builder.AddAttribute(rendSeq++, "ondragstart", global::Microsoft.AspNetCore.Components.EventCallback.Factory.Create<global::Microsoft.AspNetCore.Components.Web.DragEventArgs>(this, HandleDragStart));
+                //builder.AddAttribute(rendSeq++, "ondragstart", "event.dataTransfer.setData('', event.target.id);");
+                builder.AddEventPreventDefaultAttribute(rendSeq++, "ondragstart", true);
+                builder.AddEventStopPropagationAttribute(rendSeq++, "ondragstart", true);
+                
+                builder.AddAttribute(rendSeq++, "ondragenter", global::Microsoft.AspNetCore.Components.EventCallback.Factory.Create<global::Microsoft.AspNetCore.Components.Web.DragEventArgs>(this, HandleDragEnter));
+                builder.AddEventPreventDefaultAttribute(rendSeq++, "ondragenter", true);
+                builder.AddEventStopPropagationAttribute(rendSeq++, "ondragenter", true);
+
+                builder.AddAttribute(rendSeq++, "ondragleave", global::Microsoft.AspNetCore.Components.EventCallback.Factory.Create<global::Microsoft.AspNetCore.Components.Web.DragEventArgs>(this, HandleDragLeave));
+                builder.AddEventPreventDefaultAttribute(rendSeq++, "ondragleave", true);
+                builder.AddEventStopPropagationAttribute(rendSeq++, "ondragleave", true);
+
+                builder.AddAttribute(rendSeq++, "ondrop", global::Microsoft.AspNetCore.Components.EventCallback.Factory.Create<global::Microsoft.AspNetCore.Components.Web.DragEventArgs>(this, HandleDragDrop));
+                builder.AddEventPreventDefaultAttribute(rendSeq++, "ondrop", true);
+                builder.AddEventStopPropagationAttribute(rendSeq++, "ondrop", true);
+
                 BuildColGroup(builder, ref rendSeq);
                 builder.OpenElement(rendSeq++, "tbody");
                 builder.AddAttribute(rendSeq++, "class", "mb-scheduler-tbody");
@@ -433,6 +456,71 @@ namespace Material.Blazor
             h = timeHeightTimespan.Hours * 4 * FifteenMinuteHeight +
                 (timeHeightTimespan.Minutes / 15) * FifteenMinuteHeight;
             w = AppointmentColumnWidth;
+        }
+
+        #endregion
+
+        #region HandleDragDrop
+
+        private async Task HandleDragDrop(DragEventArgs dea)
+        {
+            //dropClass = "";
+
+            //if (AllowedStatuses != null && !AllowedStatuses.Contains(Container.Payload.Status)) return;
+
+            //await Container.UpdateJobAsync(ListStatus);
+        }
+
+        #endregion
+
+        #region HandleDragEnter
+
+        private async Task HandleDragEnter(DragEventArgs dea)
+        {
+            //dropClass = "";
+
+            //if (AllowedStatuses != null && !AllowedStatuses.Contains(Container.Payload.Status)) return;
+
+            //await Container.UpdateJobAsync(ListStatus);
+        }
+
+        #endregion
+
+        #region HandleDragLeave
+
+        private async Task HandleDragLeave(DragEventArgs dea)
+        {
+            //dropClass = "";
+
+            //if (AllowedStatuses != null && !AllowedStatuses.Contains(Container.Payload.Status)) return;
+
+            //await Container.UpdateJobAsync(ListStatus);
+        }
+
+        #endregion
+
+        #region HandleDragOver
+
+        private async Task HandleDragOver(DragEventArgs dea)
+        {
+            //dropClass = "";
+
+            //if (AllowedStatuses != null && !AllowedStatuses.Contains(Container.Payload.Status)) return;
+
+            //await Container.UpdateJobAsync(ListStatus);
+        }
+
+        #endregion
+
+        #region HandleDragStart
+
+        private async Task HandleDragStart(DragEventArgs dea)
+        {
+            //dropClass = "";
+
+            //if (AllowedStatuses != null && !AllowedStatuses.Contains(Container.Payload.Status)) return;
+
+            //await Container.UpdateJobAsync(ListStatus);
         }
 
         #endregion
