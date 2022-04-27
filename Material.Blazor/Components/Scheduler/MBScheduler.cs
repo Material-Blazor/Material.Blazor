@@ -65,19 +65,22 @@ namespace Material.Blazor
 
         private double AppointmentColumnWidth { get; set; }
         private List<ColumnConfiguration> ColumnConfigurations { get; set; }
-        public MBSchedulerAppointment CurrentDragSource { get; set; }
+        public MBAppointment CurrentDragSource { get; set; }
         private double DayColumnWidth { get; set; }
+        private string DropClass { get; set; } = "";
         private double FifteenMinuteHeight { get; set; }
         private bool IsFirstMeasurementCompleted { get; set; } = false;
         private bool IsSecondMeasurementCompleted { get; set; } = false;
         private double LeftEdgeOfColumn1 { get; set; }
-        private string MeasureID { get; set; } = Utilities.GenerateUniqueElementName();
-        private string ScheduleID1 { get; set; } = Utilities.GenerateUniqueElementName();
-        private string ScheduleID2 { get; set; } = Utilities.GenerateUniqueElementName();
+        private string MeasureBodyRow0Column1ID { get; set; } = Utilities.GenerateUniqueElementName();
+        private string MeasureHeaderColumn0ID { get; set; } = Utilities.GenerateUniqueElementName();
+        private string MeasureTableID { get; set; } = Utilities.GenerateUniqueElementName();
+        private string MeasureWidthID { get; set; } = Utilities.GenerateUniqueElementName();
 
         //Instantiate a Semaphore with a value of 1. This means that only 1 thread can be granted access at a time.
         private SemaphoreSlim SemaphoreSlim { get; set; } = new(1, 1);
         private bool ShouldRenderValue { get; set; } = true;
+        private ClientBoundingRect TableBoundingRectangle { get; set; }
 
         #endregion
 
@@ -144,7 +147,7 @@ namespace Material.Blazor
                 builder.AddAttribute(rendSeq++, "class", "mb-scheduler-td ");
                 var styleh = " border-width: 1px; border-style: solid; border-color: black; ";
                 builder.AddAttribute(rendSeq++, "style", styleh);
-                builder.AddAttribute(rendSeq++, "id", MeasureID);
+                builder.AddAttribute(rendSeq++, "id", MeasureWidthID);
                 builder.AddContent(rendSeq++, "Meaningless title");
                 builder.CloseElement(); //td
                 builder.CloseElement(); // tr
@@ -201,14 +204,10 @@ namespace Material.Blazor
                         false,
                         "mb-scheduler-header");
 
-                    //// Set the header colors
-                    //styleStr += " color: Black;";
-                    //styleStr += " background-color : LightGray;";
-
                     builder.AddAttribute(rendSeq++, "style", styleStr);
                     if (colCount == 0)
                     {
-                        builder.AddAttribute(rendSeq++, "id", ScheduleID1);
+                        builder.AddAttribute(rendSeq++, "id", MeasureHeaderColumn0ID);
                     }
                     builder.AddContent(rendSeq++, col.Title);
 
@@ -235,28 +234,24 @@ namespace Material.Blazor
                 builder.OpenElement(rendSeq++, "div");
                 builder.AddAttribute(rendSeq++, "class", "mb-scheduler-div-body");
                 builder.OpenElement(rendSeq++, "table");
-                builder.AddAttribute(rendSeq++, "class", "mb-scheduler-table");
+                builder.AddAttribute(rendSeq++, "class", "mb-scheduler-table @DropClass");
+                builder.AddAttribute(rendSeq++, "id", MeasureTableID);
+
+                builder.AddAttribute(rendSeq++, "ondragenter", global::Microsoft.AspNetCore.Components.EventCallback.Factory.Create<global::Microsoft.AspNetCore.Components.Web.DragEventArgs>(this, HandleDragEnter));
+                //builder.AddEventPreventDefaultAttribute(rendSeq++, "ondragenter", true);
+                //builder.AddEventStopPropagationAttribute(rendSeq++, "ondragenter", true);
+
+                builder.AddAttribute(rendSeq++, "ondragleave", global::Microsoft.AspNetCore.Components.EventCallback.Factory.Create<global::Microsoft.AspNetCore.Components.Web.DragEventArgs>(this, HandleDragLeave));
+                //builder.AddEventPreventDefaultAttribute(rendSeq++, "ondragleave", true);
+                //builder.AddEventStopPropagationAttribute(rendSeq++, "ondragleave", true);
 
                 builder.AddAttribute(rendSeq++, "ondragover", global::Microsoft.AspNetCore.Components.EventCallback.Factory.Create<global::Microsoft.AspNetCore.Components.Web.DragEventArgs>(this, HandleDragOver));
                 builder.AddEventPreventDefaultAttribute(rendSeq++, "ondragover", true);
-                builder.AddEventStopPropagationAttribute(rendSeq++, "ondragover", true);
-
-                builder.AddAttribute(rendSeq++, "ondragstart", global::Microsoft.AspNetCore.Components.EventCallback.Factory.Create<global::Microsoft.AspNetCore.Components.Web.DragEventArgs>(this, HandleDragStart));
-                //builder.AddAttribute(rendSeq++, "ondragstart", "event.dataTransfer.setData('', event.target.id);");
-                builder.AddEventPreventDefaultAttribute(rendSeq++, "ondragstart", true);
-                builder.AddEventStopPropagationAttribute(rendSeq++, "ondragstart", true);
-                
-                builder.AddAttribute(rendSeq++, "ondragenter", global::Microsoft.AspNetCore.Components.EventCallback.Factory.Create<global::Microsoft.AspNetCore.Components.Web.DragEventArgs>(this, HandleDragEnter));
-                builder.AddEventPreventDefaultAttribute(rendSeq++, "ondragenter", true);
-                builder.AddEventStopPropagationAttribute(rendSeq++, "ondragenter", true);
-
-                builder.AddAttribute(rendSeq++, "ondragleave", global::Microsoft.AspNetCore.Components.EventCallback.Factory.Create<global::Microsoft.AspNetCore.Components.Web.DragEventArgs>(this, HandleDragLeave));
-                builder.AddEventPreventDefaultAttribute(rendSeq++, "ondragleave", true);
-                builder.AddEventStopPropagationAttribute(rendSeq++, "ondragleave", true);
+                //builder.AddEventStopPropagationAttribute(rendSeq++, "ondragover", true);
 
                 builder.AddAttribute(rendSeq++, "ondrop", global::Microsoft.AspNetCore.Components.EventCallback.Factory.Create<global::Microsoft.AspNetCore.Components.Web.DragEventArgs>(this, HandleDragDrop));
-                builder.AddEventPreventDefaultAttribute(rendSeq++, "ondrop", true);
-                builder.AddEventStopPropagationAttribute(rendSeq++, "ondrop", true);
+                //builder.AddEventPreventDefaultAttribute(rendSeq++, "ondrop", true);
+                //builder.AddEventStopPropagationAttribute(rendSeq++, "ondrop", true);
 
                 BuildColGroup(builder, ref rendSeq);
                 builder.OpenElement(rendSeq++, "tbody");
@@ -314,7 +309,7 @@ namespace Material.Blazor
                         builder.AddAttribute(rendSeq++, "style", styleStr);
                         if ((rowCount == 0) && (colCount == 1))
                         {
-                            builder.AddAttribute(rendSeq++, "id", ScheduleID2);
+                            builder.AddAttribute(rendSeq++, "id", MeasureBodyRow0Column1ID);
                         }
                         builder.AddContent(1, formattedValue);
 
@@ -348,12 +343,12 @@ namespace Material.Blazor
 
                         builder.OpenComponent<Material.Blazor.Internal.MBAppointment>(rendSeq++);
                         builder.AddAttribute(rendSeq++, "Height", h);
+                        builder.AddAttribute(rendSeq++, "SchedulerAppointment", appt);
                         builder.AddAttribute(
                             rendSeq++,
                             "SchedulerRef",
                             global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Material.Blazor.MBScheduler>(
                             this));
-                        builder.AddAttribute(rendSeq++, "SchedulerAppointment", appt);
                         builder.AddAttribute(rendSeq++, "Width", w);
                         builder.AddAttribute(rendSeq++, "X", x);
                         builder.AddAttribute(rendSeq++, "Y", y);
@@ -464,11 +459,27 @@ namespace Material.Blazor
 
         private async Task HandleDragDrop(DragEventArgs dea)
         {
-            //dropClass = "";
-
-            //if (AllowedStatuses != null && !AllowedStatuses.Contains(Container.Payload.Status)) return;
-
-            //await Container.UpdateJobAsync(ListStatus);
+            DropClass = "";
+            // Compute the day offset
+            var dayOffset =
+                (dea.ClientX -
+                dea.OffsetX -
+                TableBoundingRectangle.left -
+                LeftEdgeOfColumn1) /
+                DayColumnWidth;
+            if (dayOffset < 0.0)
+            {
+                return;
+            }
+            var timeOffset =
+                (dea.ClientY -
+                dea.OffsetY -
+                TableBoundingRectangle.top) /
+                FifteenMinuteHeight;
+            if (timeOffset < 0.0)
+            {
+                return;
+            }
         }
 
         #endregion
@@ -477,11 +488,8 @@ namespace Material.Blazor
 
         private async Task HandleDragEnter(DragEventArgs dea)
         {
-            //dropClass = "";
-
-            //if (AllowedStatuses != null && !AllowedStatuses.Contains(Container.Payload.Status)) return;
-
-            //await Container.UpdateJobAsync(ListStatus);
+            await Task.CompletedTask;
+            DropClass = "mb-scheduler-table-can-drop";
         }
 
         #endregion
@@ -490,11 +498,8 @@ namespace Material.Blazor
 
         private async Task HandleDragLeave(DragEventArgs dea)
         {
-            //dropClass = "";
-
-            //if (AllowedStatuses != null && !AllowedStatuses.Contains(Container.Payload.Status)) return;
-
-            //await Container.UpdateJobAsync(ListStatus);
+            await Task.CompletedTask;
+            DropClass = "";
         }
 
         #endregion
@@ -514,13 +519,12 @@ namespace Material.Blazor
 
         #region HandleDragStart
 
-        private async Task HandleDragStart(DragEventArgs dea)
+        // this method is invoked from MBAppointment.razor.cs
+        public async Task HandleDragStart(DragEventArgs dea)
         {
-            //dropClass = "";
-
-            //if (AllowedStatuses != null && !AllowedStatuses.Contains(Container.Payload.Status)) return;
-
-            //await Container.UpdateJobAsync(ListStatus);
+            TableBoundingRectangle = await JsRuntime.InvokeAsync<ClientBoundingRect>(
+                "MaterialBlazor.MBScheduler.getElementBoundingClientRect",
+                MeasureTableID);
         }
 
         #endregion
@@ -549,11 +553,9 @@ namespace Material.Blazor
             {
                 // We are now going to adjust the column widths to integral pixel
                 // values for use in the 2nd rendering
-                var elementArray = new float[2];
-                elementArray = await JsRuntime.InvokeAsync<float[]>(
+                var elementArray = await JsRuntime.InvokeAsync<double[]>(
                             "MaterialBlazor.MBScheduler.getElementDimensions",
-                            MeasureID,
-                            elementArray);
+                            MeasureWidthID);
                 var width = Convert.ToInt32(elementArray[1]);
                 var timeWidth = (6 * width) / 100;
                 var availableWidth = width - timeWidth;
@@ -566,18 +568,14 @@ namespace Material.Blazor
             }
             else
             {
-                var element1Array = new float[2];
-                element1Array = await JsRuntime.InvokeAsync<float[]>(
+                var element1Array = await JsRuntime.InvokeAsync<double[]>(
                             "MaterialBlazor.MBScheduler.getElementDimensions",
-                            ScheduleID1,
-                            element1Array);
+                            MeasureHeaderColumn0ID);
                 LeftEdgeOfColumn1 = element1Array[1] + 1.0;
 
-                var element2Array = new float[2];
-                element2Array = await JsRuntime.InvokeAsync<float[]>(
+                var element2Array = await JsRuntime.InvokeAsync<double[]>(
                             "MaterialBlazor.MBScheduler.getElementDimensions",
-                            ScheduleID2,
-                            element2Array);
+                            MeasureBodyRow0Column1ID);
                 DayColumnWidth = element2Array[1];
                 FifteenMinuteHeight = element2Array[0];
                 if (NumberOfSubColumns == 1)
@@ -858,6 +856,23 @@ namespace Material.Blazor
 
                 return temp;
             }
+        }
+
+        #endregion
+
+        #region Struct ClientBoundingRect
+
+        public struct ClientBoundingRect
+        {
+            public double bottom { get; set; }
+            public double height { get; set; }
+            public double left { get; set; }
+            public double right { get; set; }
+            public double top { get; set; }
+            public double width { get; set; }
+            public double x { get; set; }
+            public double y { get; set; }
+
         }
 
         #endregion

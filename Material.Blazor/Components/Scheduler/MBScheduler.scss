@@ -43,6 +43,10 @@
     vertical-align: middle;
 }
 
+.mb-scheduler-table-can-drop {
+    border-bottom: 4px dashed green;
+}
+
 .mb-scheduler-table-measurement {
     width: 100%;
 }
@@ -88,13 +92,14 @@
 .mb-scheduler-header {
     background: lightgray;
     background-color: lightgray;
-    color : black;
+    color: black;
 }
 
 .mb-scheduler-color-row-even-normal {
     background-color: khaki;
     color: black;
 }
+
 .mb-scheduler-color-row-even-hidden {
     background-color: khaki;
     color: khaki;
@@ -104,6 +109,7 @@
     background-color: lemonchiffon;
     color: black;
 }
+
 .mb-scheduler-color-row-odd-hidden {
     background-color: lemonchiffon;
     color: lemonchiffon;
@@ -116,4 +122,3 @@
 .mb-scheduler-div-appointment:active {
     cursor: grabbing;
 }
-

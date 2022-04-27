@@ -18,7 +18,7 @@
     </Description>
 
     <PageContent>
-        <div class="mdc-layout-grid__cell--span-12">
+@*        <div class="mdc-layout-grid__cell--span-12">
             <MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
@@ -26,6 +26,21 @@
                     </h2>
 
                     <MBScheduler Appointments="@appointments" />
+
+                </Primary>
+            </MBCard>
+        </div>
+*@
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Scheduler using a single column and just one appointment
+                    </h2>
+
+                    <MBScheduler
+                        Appointments="@appointments2"
+                        NumberOfSubColumns="1" />
 
                 </Primary>
             </MBCard>
@@ -112,6 +127,21 @@
             ForegroundColor = Color.White,
             StartTime = new DateTime(2022, 4, 5, 12, 30, 0),
             Title = "Adams",
+            Uid = Guid.NewGuid()
+        }
+    };
+
+    List<MBSchedulerAppointment> appointments2 = new List<MBSchedulerAppointment>()
+    {
+
+        new MBSchedulerAppointment
+        {
+            BackgroundColor = Color.Purple,
+            Column = 1,
+            EndTime = new DateTime(2022, 4, 4, 10, 30, 0),
+            ForegroundColor = Color.White,
+            StartTime = new DateTime(2022, 4, 4, 7, 0, 0),
+            Title = "Smith",
             Uid = Guid.NewGuid()
         }
     };

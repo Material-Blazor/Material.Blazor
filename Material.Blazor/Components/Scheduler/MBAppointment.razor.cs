@@ -1,5 +1,6 @@
 ﻿using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using System.Drawing;
 using System.Threading.Tasks;
 
@@ -17,9 +18,10 @@ namespace Material.Blazor.Internal
         private string styleString { get; set; }
 
         #region HandleDragStart
-        private void HandleDragStart(MBSchedulerAppointment selectedAppointment)
+        private async Task HandleDragStart(DragEventArgs dea)
         {
-            SchedulerRef.CurrentDragSource = selectedAppointment;
+            SchedulerRef.CurrentDragSource = this;
+            await SchedulerRef.HandleDragStart(dea);
         }
 
         #endregion
