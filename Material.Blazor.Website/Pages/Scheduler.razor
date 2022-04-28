@@ -18,19 +18,20 @@
     </Description>
 
     <PageContent>
-@*        <div class="mdc-layout-grid__cell--span-12">
+        <div class="mdc-layout-grid__cell--span-12">
             <MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
                         Scheduler using parameter defaults
                     </h2>
 
-                    <MBScheduler Appointments="@appointments" />
+                    <MBScheduler Appointments="@appointmentList1"
+                        OnDragEnd="@OnDragEnd1" />
 
                 </Primary>
             </MBCard>
         </div>
-*@
+
         <div class="mdc-layout-grid__cell--span-12">
             <MBCard AutoStyled="true">
                 <Primary>
@@ -39,8 +40,9 @@
                     </h2>
 
                     <MBScheduler
-                        Appointments="@appointments2"
-                        NumberOfSubColumns="1" />
+                        Appointments="@appointmentList2"
+                        NumberOfSubColumns="1"
+                        OnDragEnd="@OnDragEnd2" />
 
                 </Primary>
             </MBCard>
@@ -50,7 +52,7 @@
 </DemonstrationPage>
 
 @code {
-    List<MBSchedulerAppointment> appointments = new List<MBSchedulerAppointment>()
+    List<MBSchedulerAppointment> appointmentList1 = new List<MBSchedulerAppointment>()
     {
 
         new MBSchedulerAppointment
@@ -131,7 +133,7 @@
         }
     };
 
-    List<MBSchedulerAppointment> appointments2 = new List<MBSchedulerAppointment>()
+    List<MBSchedulerAppointment> appointmentList2 = new List<MBSchedulerAppointment>()
     {
 
         new MBSchedulerAppointment
@@ -150,4 +152,43 @@
     {
     }
 
+    public async Task OnDragEnd1(MBScheduler.DragEndInfo dei)
+    {
+        await Task.CompletedTask;
+        List<MBSchedulerAppointment> newAppointmentList = new List<MBSchedulerAppointment>();
+
+        foreach (var appt in appointmentList1)
+        {
+            if (appt.Uid == dei.appointment.Uid)
+            {
+                // There is no validation in this demo but this is where it should
+                // be performed
+                appt.StartTime = dei.newStartTime;
+                appt.EndTime = dei.newEndTime;
+            }
+            newAppointmentList.Add(appt);
+        }
+        appointmentList1 = newAppointmentList;
+        StateHasChanged();
+    }
+
+    public async Task OnDragEnd2(MBScheduler.DragEndInfo dei)
+    {
+        await Task.CompletedTask;
+        List<MBSchedulerAppointment> newAppointmentList = new List<MBSchedulerAppointment>();
+
+        foreach (var appt in appointmentList2)
+        {
+            if (appt.Uid == dei.appointment.Uid)
+            {
+                // There is no validation in this demo but this is where it should
+                // be performed
+                appt.StartTime = dei.newStartTime;
+                appt.EndTime = dei.newEndTime;
+            }
+            newAppointmentList.Add(appt);
+        }
+        appointmentList2 = newAppointmentList;
+        StateHasChanged();
+    }
 }

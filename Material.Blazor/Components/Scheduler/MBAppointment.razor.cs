@@ -20,8 +20,7 @@ namespace Material.Blazor.Internal
         #region HandleDragStart
         private async Task HandleDragStart(DragEventArgs dea)
         {
-            SchedulerRef.CurrentDragSource = this;
-            await SchedulerRef.HandleDragStart(dea);
+            await SchedulerRef.HandleDragStart(dea, SchedulerAppointment);
         }
 
         #endregion

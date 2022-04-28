@@ -44,7 +44,7 @@ namespace Material.Blazor
         /// <summary>
         /// Callback for a completed drag event
         /// </summary>
-        [Parameter] public EventCallback<DragEndInfo> OnDragEnd { get; set; }
+        [Parameter, EditorRequired] public EventCallback<DragEndInfo> OnDragEnd { get; set; }
 
         /// <summary>
         /// The initial date
@@ -65,7 +65,9 @@ namespace Material.Blazor
 
         private double AppointmentColumnWidth { get; set; }
         private List<ColumnConfiguration> ColumnConfigurations { get; set; }
-        public MBAppointment CurrentDragSource { get; set; }
+        private MBSchedulerAppointment CurrentDragAppointment { get; set; }
+        private int CurrentDragOffsetX { get; set; }
+        private int CurrentDragOffsetY { get; set; }
         private double DayColumnWidth { get; set; }
         private string DropClass { get; set; } = "";
         private double FifteenMinuteHeight { get; set; }
@@ -462,24 +464,51 @@ namespace Material.Blazor
             DropClass = "";
             // Compute the day offset
             var dayOffset =
-                (dea.ClientX -
-                dea.OffsetX -
-                TableBoundingRectangle.left -
-                LeftEdgeOfColumn1) /
-                DayColumnWidth;
-            if (dayOffset < 0.0)
+                (Convert.ToInt32(dea.ClientX) -
+                CurrentDragOffsetX -
+                Convert.ToInt32(TableBoundingRectangle.left) -
+                Convert.ToInt32(LeftEdgeOfColumn1)) /
+                Convert.ToInt32(DayColumnWidth);
+            if (dayOffset < 0)
             {
                 return;
             }
+            var offset =
+                (Convert.ToInt32(dea.ClientY) -
+                CurrentDragOffsetY -
+                Convert.ToInt32(TableBoundingRectangle.top));
             var timeOffset =
-                (dea.ClientY -
-                dea.OffsetY -
-                TableBoundingRectangle.top) /
-                FifteenMinuteHeight;
-            if (timeOffset < 0.0)
+                offset /
+                Convert.ToInt32(FifteenMinuteHeight);
+            //timeOffset =
+            //    (dea.ClientY -
+            //    dea.OffsetY -
+            //    TableBoundingRectangle.top) /
+            //    FifteenMinuteHeight;
+            if (timeOffset < 0)
             {
                 return;
             }
+
+            var delta = CurrentDragAppointment.EndTime - CurrentDragAppointment.StartTime;
+            var newAppointmentStartTime = StartDate + 
+                new TimeSpan(
+                    dayOffset,
+                    WorkDayStart.Hour,
+                    WorkDayStart.Minute + timeOffset * 15,
+                    0);
+
+            var dragInfo = new DragEndInfo
+            {
+                altKey = dea.AltKey,
+                ctrlKey = dea.CtrlKey,
+                metaKey = dea.MetaKey,
+                appointment = CurrentDragAppointment,
+                newEndTime=newAppointmentStartTime + delta,
+                newStartTime = newAppointmentStartTime
+            };
+
+            await OnDragEnd.InvokeAsync(dragInfo);
         }
 
         #endregion
@@ -520,8 +549,13 @@ namespace Material.Blazor
         #region HandleDragStart
 
         // this method is invoked from MBAppointment.razor.cs
-        public async Task HandleDragStart(DragEventArgs dea)
+        public async Task HandleDragStart(
+            DragEventArgs dea,
+            MBSchedulerAppointment sa)
         {
+            CurrentDragAppointment = sa;
+            CurrentDragOffsetX = Convert.ToInt32(dea.OffsetX);
+            CurrentDragOffsetY = Convert.ToInt32(dea.OffsetY);
             TableBoundingRectangle = await JsRuntime.InvokeAsync<ClientBoundingRect>(
                 "MaterialBlazor.MBScheduler.getElementBoundingClientRect",
                 MeasureTableID);
@@ -705,16 +739,14 @@ namespace Material.Blazor
         #endregion
 
         #region Struct DragEndInformation
-        public enum DragResult
-        {
-            BadDrag,
-            GoodDrag
-        }
         public struct DragEndInfo
         {
+            public bool altKey { get; set; }
             public MBSchedulerAppointment appointment { get; set; }
-            public DragResult dragResult { get; set; }
-            public DateTime newDateTime { get; set; }
+            public bool ctrlKey { get; set; }
+            public bool metaKey { get; set; }
+            public DateTime newEndTime { get; set; }
+            public DateTime newStartTime { get; set; }
         }
 
         #endregion
