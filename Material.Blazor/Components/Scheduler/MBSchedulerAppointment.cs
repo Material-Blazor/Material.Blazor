@@ -10,27 +10,13 @@ namespace Material.Blazor
         public int Column { get; set; }
         public DateTime EndTime { get; set; }
         public Color ForegroundColor { get; set; }
+        public int Height { get; set; }
+        public int RelativeX { get; set; }
+        public int RelativeY { get; set; }
         public DateTime StartTime { get; set; }
         public string Title { get; set; }
         public Guid Uid { get; set; }
+        public int Width { get; set; }
 
-        //public MBSchedulerAppointment() { }
-        //public MBSchedulerAppointment(
-        //    Color? backgroundColor = null,
-        //    int column = 1,
-        //    DateTime? endTime = null,
-        //    Color? foregroundColor = null,
-        //    DateTime? startTime = null,
-        //    string title = "",
-        //    Guid? uid = null)
-        //{
-        //    BackgroundColor = backgroundColor != null ? (Color)backgroundColor : Color.Aquamarine;
-        //    Column = column;
-        //    EndTime = endTime != null ? (DateTime)endTime : DateTime.MinValue;
-        //    ForegroundColor = foregroundColor != null ? (Color)foregroundColor : Color.Black;
-        //    StartTime = startTime != null ? (DateTime)startTime : DateTime.MinValue;
-        //    Title = title;
-        //    Uid = uid != null ? (Guid)uid : Guid.Empty;
-        //}
     }
 }
