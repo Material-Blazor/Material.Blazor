@@ -31,11 +31,6 @@ namespace Material.Blazor.Internal
         [Inject] private protected IMBTooltipService TooltipService { get; set; }
         [Inject] private protected IMBLoggingService LoggingService { get; set; }
 
-        /// <summary>
-        /// The current logging level. This is set in OnParametersSet
-        /// </summary>
-        private protected int LoggingLevel { get; set; }
-
 
 
         /// <summary>
@@ -387,8 +382,6 @@ namespace Material.Blazor.Internal
             await base.OnParametersSetAsync();
 
             CheckAttributeValidity();
-
-            LoggingLevel = LoggingService.CurrentLevel();
         }
 
         #endregion

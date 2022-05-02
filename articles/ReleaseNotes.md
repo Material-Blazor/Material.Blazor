@@ -4,9 +4,26 @@ title: ReleaseNotes
 ---
 # Release Notes
 
-#### [2.5.0](https://github.com/Material-Blazor/Material.Blazor)
+#### [3.0.0-preview.1](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.1)
 
-Released 2023-5-??
+Released 2023-05-02
+
+**Updates**
+- Migration to [Material Components Web 14.0.0](https://github.com/material-components/material-components-web/tree/v14.0.0)
+- `sass` npm package number remains at 1.39. - would prefer to update but compilation fails
+- Other npm packages updated
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+#### [2.5.0](https://github.com/Material-Blazor/Material.Blazor/tree/2.5.0)
+
+Released 2023-05-02
 
 **Updates**
 
@@ -19,9 +36,9 @@ Released 2023-5-??
 
 **Known issues**
 
-#### [2.4.1](https://github.com/Material-Blazor/Material.Blazor)
+#### [2.4.1](https://github.com/Material-Blazor/Material.Blazor/tree/2.4.1)
 
-Released 2023-4-19
+Released 2023-04-19
 
 **Updates**
 - CSS and accessibility improvements to MBCarousel.
@@ -34,9 +51,9 @@ Released 2023-4-19
 
 **Known issues**
 
-#### [2.4.0](https://github.com/Material-Blazor/Material.Blazor)
+#### [2.4.0](https://github.com/Material-Blazor/Material.Blazor/tree/2.4.0)
 
-Released 2023-4-18
+Released 2023-04-18
 
 **Updates**
 - node package update to remove audit risks.
@@ -50,7 +67,7 @@ Released 2023-4-18
 
 **Known issues**
 
-#### [2.3.1](https://github.com/Material-Blazor/Material.Blazor)
+#### [2.3.1](https://github.com/Material-Blazor/Material.Blazor/tree/2.3.10)
 
 Released 2023-03-29
 
@@ -68,7 +85,7 @@ Released 2023-03-29
 
 <br />
 
-#### [2.3.0](https://github.com/Material-Blazor/Material.Blazor)
+#### [2.3.0](https://github.com/Material-Blazor/Material.Blazor/tree/2.3.0)
 
 Released 2022-03-10
 
@@ -86,7 +103,7 @@ Released 2022-03-10
 
 <br />
 
-#### [2.2.2](https://github.com/Material-Blazor/Material.Blazor)
+#### [2.2.2](https://github.com/Material-Blazor/Material.Blazor/tree/2.2.2)
 
 Released 2022-03-10
 
@@ -107,7 +124,7 @@ Deprecated 2022-03-10
 
 <br />
 
-#### [2.2.1](https://github.com/Material-Blazor/Material.Blazor)
+#### [2.2.1](https://github.com/Material-Blazor/Material.Blazor/tree/2.2.1)
 
 Released 2022-03-10
 
@@ -126,7 +143,7 @@ Deprecated 2022-03-10
 
 <br />
 
-#### [2.2.0](https://github.com/Material-Blazor/Material.Blazor)
+#### [2.2.0](https://github.com/Material-Blazor/Material.Blazor/tree/2.2.0)
 
 Released 2022-02-28
 
