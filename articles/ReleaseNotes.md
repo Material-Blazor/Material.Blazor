@@ -6,11 +6,11 @@ title: ReleaseNotes
 
 #### [3.0.0-preview.1](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.1)
 
-Released 2023-05-??
+Released 2023-05-02
 
 **Updates**
 - Migration to [Material Components Web 14.0.0](https://github.com/material-components/material-components-web/tree/v14.0.0)
-- `sass` npm package number remains at 1.39.0 - would prefer to update but compilation fails
+- `sass` npm package number remains at 1.39. - would prefer to update but compilation fails
 - Other npm packages updated
 
 **New components**
