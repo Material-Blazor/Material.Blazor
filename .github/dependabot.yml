@@ -5,7 +5,18 @@
 
 version: 2
 updates:
+
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: daily  
+
   - package-ecosystem: "npm"
-    directory: "/material.blazor"
+    directory: "/material.blazor/material.blazor"
     schedule:
       interval: "daily"
+
+  - package-ecosystem: "nuget"
+    directory: "/"
+    schedule:
+      interval: daily

@@ -4,6 +4,21 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [2.5.0](https://github.com/Material-Blazor/Material.Blazor)
+
+Released 2023-5-??
+
+**Updates**
+
+**New components**
+- Scheduler.
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
 #### [2.4.1](https://github.com/Material-Blazor/Material.Blazor)
 
 Released 2023-4-19

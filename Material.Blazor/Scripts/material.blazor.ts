@@ -18,6 +18,7 @@ import * as MBList from '../Components/List/MBList';
 import * as MBMenu from '../Components/Menu/MBMenu';
 import * as MBMenuSurface from '../Components/MenuSurface/MBMenuSurface';
 import * as MBRadioButton from '../Components/RadioButton/MBRadioButton';
+import * as MBScheduler from '../Components/Scheduler/MBScheduler';
 import * as MBSegmentedButtonMulti from '../Components/SegmentedButtonMulti/MBSegmentedButtonMulti';
 import * as MBSelect from '../Components/Select/MBSelect';
 import * as MBSlider from '../Components/Slider/MBSlider';
@@ -51,6 +52,7 @@ import * as Batching from './batching';
     MBMenu,
     MBMenuSurface,
     MBRadioButton,
+    MBScheduler,
     MBSegmentedButtonMulti,
     MBSelect,
     MBSlider,

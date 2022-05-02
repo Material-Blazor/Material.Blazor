@@ -27,15 +27,10 @@ implements further Blazor/Material Theme hybrid components that we term "Plus Co
 | [MBNumericIntField](xref:C.MBNumericIntField) | A wrapper for `MBNumericDecimalField` for `int` variables. |
 | [MBPagedDataList](xref:C.MBPagedDataList) | A templated component for paging generic data lists using [MBPaginator](xref:C.MBPaginator) and applying transitions with [MBSlidingContent](xref:C.MBSlidingContent). |
 | [MBRadioButtonGroup](xref:C.MBRadioButtonGroup) | A group of [MBRadioButtons](xref:C.MBRadioButton). |
-| [MBShield](xref:C.MBShield) | A simple component producing an HTML shield styled after svgs from shield.io (square, flat variety) |
+[MBShield](xref:C.MBShield) | A simple component producing an HTML shield styled after svgs from shield.io (square, flat variety) |
 | [MBSlidingContent](xref:C.MBSlidingContent) | A templated component to provide previous/next navigation through a series of pages with light left/right and fade in/out animation. |
 | [MBSlidingTabBar](xref:C.MBSlidingTabBar) | An `MBTabBar` augmented with content displayed in a `MBSlidingContent` |
-
-## Deprecated Component List
-
-| Component | Notes |
-| :-------- | :---- |
-| MBToast   | An `MBToast` component used to show toast notifications` |
+ MBToast   | An `MBToast` component used to show toast notifications` |
 
 ## Experimental Component List
 
@@ -43,3 +38,5 @@ implements further Blazor/Material Theme hybrid components that we term "Plus Co
 | :-------- | :---- |
 | [MBGrid](xref:C.MBGrid) | Displays a grid composed from the elements specified as parameters. |
 | [MBGridMT](xref:C.MBGrid) | Displays a grid themed as MWC composed from the elements specified as parameters. |
+| [MBScheduler](xref:C.MBScheduler) | Displays a schedule composed from the elements specified as parameters. |
+

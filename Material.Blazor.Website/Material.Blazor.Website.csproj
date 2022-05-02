@@ -1,50 +1,54 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
 
-    <Configurations>Debug;Release</Configurations>
-  </PropertyGroup>
+		<Configurations>Debug;Release</Configurations>
+	</PropertyGroup>
 
-  <PropertyGroup>
-    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-  </PropertyGroup>
+	<PropertyGroup>
+		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)'=='Debug'">
-    <DefineConstants>Logging</DefineConstants>
-  </PropertyGroup>
+	<PropertyGroup>
+		<EmitCompilerGeneratedFiles>false</EmitCompilerGeneratedFiles>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)'=='Release'">
-    <DefineConstants>NoLogging</DefineConstants>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Debug'">
+		<DefineConstants>Logging</DefineConstants>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <SupportedPlatform Include="browser" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Compile Remove="Properties\**" />
-    <Content Remove="Properties\**" />
-    <EmbeddedResource Remove="Properties\**" />
-    <None Remove="Properties\**" />
-  </ItemGroup>
+	<PropertyGroup Condition="'$(Configuration)'=='Release'">
+		<DefineConstants>NoLogging</DefineConstants>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Content Remove="package-lock.json" />
-    <Content Remove="package.json" />
-  </ItemGroup>
+	<ItemGroup>
+		<SupportedPlatform Include="browser" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <None Include="package-lock.json" />
-    <None Include="package.json" />
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Remove="Properties\**" />
+		<Content Remove="Properties\**" />
+		<EmbeddedResource Remove="Properties\**" />
+		<None Remove="Properties\**" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.4" />
-    <PackageReference Include="Nager.Date" Version="1.33.1" />
-    <PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<Content Remove="package-lock.json" />
+		<Content Remove="package.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="package-lock.json" />
+		<None Include="package.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.4" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.4" />
+		<PackageReference Include="Nager.Date" Version="1.33.1" />
+		<PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<UpToDateCheckInput Include="@(InputStaticAssetsStyles)" Set="Styles" />
@@ -52,43 +56,43 @@
 	</ItemGroup>
 
 	<ItemGroup>
-      <InputStaticAssetsStyles Include="styles\*.scss;" />
-      <OutputStaticAssetsStyles Include="wwwroot\css\asymmetric-theme.min.css;wwwroot\css\dark-square-theme.min.css;wwwroot\css\light-square-theme.min.css;wwwroot\css\material-default-theme.min.css;wwwroot\css\rounded-theme.min.css;" />
-      <Content Remove="@(OutputStaticAssetsStyles)" />
-      <Content Include="@(OutputStaticAssetsStyles)" />
-  </ItemGroup>
+		<InputStaticAssetsStyles Include="styles\*.scss;" />
+		<OutputStaticAssetsStyles Include="wwwroot\css\asymmetric-theme.min.css;wwwroot\css\dark-square-theme.min.css;wwwroot\css\light-square-theme.min.css;wwwroot\css\material-default-theme.min.css;wwwroot\css\rounded-theme.min.css;" />
+		<Content Remove="@(OutputStaticAssetsStyles)" />
+		<Content Include="@(OutputStaticAssetsStyles)" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Material.Blazor\Material.Blazor.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Material.Blazor\Material.Blazor.csproj" />
+	</ItemGroup>
 
-  <Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent">
-    <Message Importance="high" Text="***** npm install" />
-    <Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
-      <Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
-    </Exec>
-  </Target>
+	<Target Name="CheckIfNpmExists" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent">
+		<Message Importance="high" Text="***** npm install" />
+		<Exec Command="npm install" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
+			<Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
+		</Exec>
+	</Target>
 
-  <Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
-    <Message Importance="high" Text="***** mkdir wwwroot and wwwroot\css (M.B.W Styles)" />
-    <Exec Command="mkdir wwwroot\css" IgnoreExitCode="true" />
+	<Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
+		<Message Importance="high" Text="***** mkdir wwwroot and wwwroot\css (M.B.W Styles)" />
+		<Exec Command="mkdir wwwroot\css" IgnoreExitCode="true" />
 
-    <!-- Don't build unminified themes -->
-    <Message Importance="high" Text="***** build material default theme" />
-    <Exec Command="npm run build-min-material-default" />
+		<!-- Don't build unminified themes -->
+		<Message Importance="high" Text="***** build material default theme" />
+		<Exec Command="npm run build-min-material-default" />
 
-    <Message Importance="high" Text="***** build light square theme" />
-    <Exec Command="npm run build-min-light-square" />
+		<Message Importance="high" Text="***** build light square theme" />
+		<Exec Command="npm run build-min-light-square" />
 
-    <Message Importance="high" Text="***** build dark square theme" />
-    <Exec Command="npm run build-min-dark-square" />
+		<Message Importance="high" Text="***** build dark square theme" />
+		<Exec Command="npm run build-min-dark-square" />
 
-    <Message Importance="high" Text="***** build rounded theme" />
-    <Exec Command="npm run build-min-rounded" />
+		<Message Importance="high" Text="***** build rounded theme" />
+		<Exec Command="npm run build-min-rounded" />
 
-    <Message Importance="high" Text="***** build asymmetric theme" />
-    <Exec Command="npm run build-min-asymmetric" />
+		<Message Importance="high" Text="***** build asymmetric theme" />
+		<Exec Command="npm run build-min-asymmetric" />
 
-  </Target>
+	</Target>
 
 </Project>
