@@ -4,7 +4,7 @@
 
 @if (DisplayedToasts.Any())
 {
-    <div class="mb-toast-container @PositionClass">
+    <div class="mb-toast-container @PositionClass" style="max-width: 90vw;">
         @foreach (var toast in DisplayedToasts.OrderBy(x => x.TimeStamp))
         {
             <div @key="@toast.Id" class="mdc-elevation--z5 mb-toast @toast.Settings.ContainerLevelClass @toast.Settings.StatusClass @toast.Settings.AppliedCssClass">

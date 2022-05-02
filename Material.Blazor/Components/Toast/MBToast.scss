@@ -21,12 +21,10 @@ $icon-horizontal-padding: 12px;
     --mb-toast-color-success: white;
     --mb-toast-color-warning: white;
     --mb-toast-color-error: white;
-
     --mb-toast-filter-info: contrast(4) invert(1);
     --mb-toast-filter-success: contrast(4) invert(1);
     --mb-toast-filter-warning: contrast(4) invert(1);
     --mb-toast-filter-error: contrast(4) invert(1);
-
     --mb-toast-background-color-info: var(--mb-color-light-blue-700);
     --mb-toast-background-color-success: var(--mb-color-green-700);
     --mb-toast-background-color-warning: var(--mb-color-amber-800);
@@ -126,24 +124,23 @@ $icon-horizontal-padding: 12px;
     padding: 0 $body-padding-right 0 0;
     box-sizing: border-box;
     height: $toast-height;
-    max-height: $toast-height;
+    max-height: 30vh;
     min-width: $toast-width;
-
     border-radius: var(--mb-toast-border-radius);
 }
 
-    .mb-toast.fade-in {
-        animation: mbToastFadeIn 300ms;
-    }
+.mb-toast.fade-in {
+    animation: mbToastFadeIn 300ms;
+}
 
-    .mb-toast.fade-out {
-        animation: mbToastFadeOut 3000ms;
-    }
+.mb-toast.fade-out {
+    animation: mbToastFadeOut 3000ms;
+}
 
-    .mb-toast.hide {
-        max-height: 0;
-        visibility: hidden;
-    }
+.mb-toast.hide {
+    max-height: 0;
+    visibility: hidden;
+}
 
 
 @keyframes mbToastFadeIn {
@@ -284,21 +281,21 @@ $icon-horizontal-padding: 12px;
     font-size: $icon-font;
 }
 
-    .mb-toast-icon.info-filter {
-        filter: var(--mb-toast-filter-info);
-    }
+.mb-toast-icon.info-filter {
+    filter: var(--mb-toast-filter-info);
+}
 
-    .mb-toast-icon.success-filter {
-        filter: var(--mb-toast-filter-success);
-    }
+.mb-toast-icon.success-filter {
+    filter: var(--mb-toast-filter-success);
+}
 
-    .mb-toast-icon.warning-filter {
-        filter: var(--mb-toast-filter-warning);
-    }
+.mb-toast-icon.warning-filter {
+    filter: var(--mb-toast-filter-warning);
+}
 
-    .mb-toast-icon.error-filter {
-        filter: var(--mb-toast-filter-error);
-    }
+.mb-toast-icon.error-filter {
+    filter: var(--mb-toast-filter-error);
+}
 
 
 .mb-toast-body {
