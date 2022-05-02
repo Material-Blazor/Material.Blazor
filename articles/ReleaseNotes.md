@@ -23,7 +23,7 @@ Released 2023-05-??
 
 #### [2.5.0](https://github.com/Material-Blazor/Material.Blazor/tree/2.5.0)
 
-Released 2023-05-??
+Released 2023-05-02
 
 **Updates**
 
