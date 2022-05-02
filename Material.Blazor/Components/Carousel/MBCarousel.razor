@@ -1,0 +1,40 @@
+﻿@namespace Material.Blazor
+
+@inherits InputComponent<int>
+@typeparam TItem
+
+<div class="mb-carousel @(@class)"
+     style="@style">
+
+    <div class="mb-carousel__upper">
+        <div class="mb-carousel-nav-panel" style="order: 2;">
+            <InternalCarouselPanel ItemIndex="@ItemIndex"
+                                   Context="item"
+                                   Items="@Items"
+                                   @ref="@ICP">
+
+                <Content>
+                    @Content(item)
+                </Content>
+            </InternalCarouselPanel>
+        </div>
+
+        <MBFloatingActionButton Icon="navigate_before"
+                                style="order: 1;"
+                                @onclick="NavigatePrevious" />
+
+        <MBFloatingActionButton Icon="navigate_next"
+                                style="order: 3;"
+                                @onclick="NavigateNext" />
+    </div>
+
+    <MBFloatingActionButton Icon="@PlayIcon"
+                            @onclick="@(() => PlayStop())" />
+
+    <div class="mb-carousel__lower">
+        <MBRadioButtonGroup @bind-Value="@RadioItemIndex"
+                            Items="@RadioElements"
+                            Vertical="false" />
+    </div>
+
+</div>

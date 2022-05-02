@@ -1,0 +1,56 @@
+﻿.mb-carousel {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    & > .mb-carousel__upper {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+        s & .mb-carousel-nav-panel {
+            width: 100%;
+            flex-grow: 1;
+        }
+    }
+
+    & > .mb-carousel__lower {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        width: 100%;
+        padding-top: 40px;
+
+        & label {
+            max-width: 0px;
+            margin: 0px;
+            padding: 0px;
+            overflow: hidden;
+        }
+    }
+
+    & .mdc-fab {
+        min-width: 40px;
+        max-width: 40px;
+        min-height: 40px;
+        max-height: 40px;
+        margin: -20px;
+        flex-grow: 0;
+        opacity: 0;
+        background-color: var(--mdc-theme-surface);
+        transition: opacity 150ms ease-in-out;
+
+        & .mdc-fab__icon {
+            color: var(--mdc-theme-on-surface) !important;
+        }
+    }
+
+    &:hover {
+        & .mdc-fab {
+            opacity: 1;
+        }
+    }
+}

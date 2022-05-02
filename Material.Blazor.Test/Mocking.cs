@@ -1,4 +1,4 @@
-﻿using Bunit;
+using Bunit;
 using Material.Blazor;
 using Material.Blazor.Internal;
 using Microsoft.Extensions.DependencyInjection;

@@ -1,18 +1,14 @@
-﻿@page "/slidingcontent"
-
-@inject IMBToastService ToastService
+﻿@page "/carousel"
 
 
-
-<DemonstrationPage ComponentName="SlidingContent"
+<DemonstrationPage ComponentName="Carousel"
                    DemoComponent="@this"
                    IsGeneric="true"
-                   Title="Sliding Content Demonstration">
+                   Title="Carousel Demonstration">
     <Description>
         <p>
-            Demonstrates Sliding Content, which is a <a href="https://material-blazor.com/docs/articles/PlusComponents.html" target="_blank">Material.Blazor Plus Component</a>. Sliding content is
-            designed to give a user subtle animated feedback when paging through content. This component is used by the <a href="/carousel">Carousel</a>, <a href="/pageddatalist">Paged Data List</a> and
-            <a href="/tabbar">Sliding Tab Bar</a> plus components.
+            Demonstrates the carousel, which is a <a href="https://material-blazor.com/docs/articles/PlusComponents.html" target="_blank">Material.Blazor Plus Component</a>. The carousel uses
+            <a href="/slidingcontent">Sliding Content</a> plus component to manage transitions.
         </p>
     </Description>
 
@@ -21,62 +17,27 @@
             <MBCard AutoStyled="true">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Sliding Content
+                        Carousel
                     </h2>
 
-                    <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        "Previous" and "Next" buttons navigate panels, with "Rollover" determining whether to roll from the start to end and vice versa.
-                        The "Move to Paragraph X" buttons are self explanatory.
-                    </h3>
-
-                    <MBSlidingContent @bind-ItemIndex="@Index"
-                                      Context="item"
-                                      Items="@items"
-                                      @ref="@Content">
+                    <MBCarousel Context="item"
+                                Items="@items"
+                                RolloverInterval="rolloverInterval">
 
                         <Content>
-                            <h3 class="mdc-typography--headline6">@item.Title</h3>
-                            <p>@item.Text</p>
+                            <div style="height: 300px; background-color: #eee; padding: 12px; overflow: hidden;">
+                                <h3 class="mdc-typography--headline6">@item.Title</h3>
+                                <p>@item.Text</p>
+                            </div>
                         </Content>
-                    </MBSlidingContent>
+                    </MBCarousel>
 
                     <p>
-                        <MBSwitch @bind-Value="@Rollover"
-                                  Label="Rollover" />
-
-                        <MBButton ButtonStyle="MBButtonStyle.ContainedRaised"
-                                  Disabled="@DisablePrevious"
-                                  Label="Previous"
-                                  LeadingIcon="chevron_left"
-                                  @onclick="@(() => Content.SlidePrevious(Rollover))" />
-
-                        <MBButton ButtonStyle="MBButtonStyle.ContainedRaised"
-                                  Disabled="@DisableNext"
-                                  Label="Next"
-                                  @onclick="@(() => Content.SlideNext(Rollover))"
-                                  TrailingIcon="chevron_right" />
-                    </p>
-
-                    <p>
-                        <MBButton ButtonStyle="MBButtonStyle.ContainedRaised"
-                                  Label="Move to Paragraph 1"
-                                  @onclick="@(() => Index = 0)" />
-
-                        <MBButton ButtonStyle="MBButtonStyle.ContainedRaised"
-                                  Label="Move to Paragraph 2"
-                                  @onclick="@(() => Index = 1)" />
-
-                        <MBButton ButtonStyle="MBButtonStyle.ContainedRaised"
-                                  Label="Move to Paragraph 3"
-                                  @onclick="@(() => Index = 2)" />
-
-                        <MBButton ButtonStyle="MBButtonStyle.ContainedRaised"
-                                  Label="Move to Paragraph 4"
-                                  @onclick="@(() => Index = 3)" />
-
-                        <MBButton ButtonStyle="MBButtonStyle.ContainedRaised"
-                                  Label="Move to Paragraph 5"
-                                  @onclick="@(() => Index = 4)" />
+                        <MBNumericIntField @bind-Value="@rolloverInterval"
+                                           Label="Rollover Interval (ms)"
+                                           NumericFormat="N0"
+                                           TextInputStyle="@MBTextInputStyle.Outlined"
+                                           HelperText="@helperText" />
                     </p>
                 </Primary>
             </MBCard>
@@ -87,22 +48,8 @@
 
 
 @code {
-    private MBSlidingContent<Item> Content;
-    private bool DisablePrevious => Index == 0 && !Rollover;
-    private bool DisableNext => Index == items.Length - 1 && !Rollover;
-    private bool Rollover;
-
-    private int _index = 2;
-    private int Index
-    {
-        get => _index;
-        set
-        {
-            _index = value;
-            StateHasChanged();
-        }
-    }
-
+    private string helperText = $"Clamped between {1000:N0} and {60000:N0} ms";
+    private int rolloverInterval = 1000;
 
     private Item[] items =
     {
