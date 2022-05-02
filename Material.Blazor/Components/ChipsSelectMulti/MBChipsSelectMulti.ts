@@ -1,5 +1,5 @@
 ﻿import { MDCChipSet } from '@material/chips';
-import { ActionType } from '@material/chips/action/constants';
+import { MDCChipActionType } from '@material/chips/action/constants';
 
 export function init(elem, isMultiSelect, dotNetObject) {
     if (!elem) {
@@ -17,7 +17,7 @@ export function init(elem, isMultiSelect, dotNetObject) {
             let result = -1;
 
             for (let i = 0; i < elem._chipSet.chips.length; i++) {
-                if (elem._chipSet.chips[i].foundation.isActionSelected(ActionType.PRIMARY)) {
+                if (elem._chipSet.chips[i].foundation.isActionSelected(MDCChipActionType.PRIMARY)) {
                     result = i;
                 }
             }

@@ -43,6 +43,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<!--Keep these four Removes-->
 		<Content Remove="package-lock.json" />
 		<Content Remove="package.json" />
 		<Content Remove="tsconfig.json" />
@@ -78,6 +79,7 @@
 	<ItemGroup>
 		<InputStaticAssetsScripts Include="components\**\*.ts;scripts\**\*.ts" />
 		<OutputStaticAssetsScripts Include="wwwroot\material.blazor.js;wwwroot\material.blazor.min.js" />
+		<!--Keep this Removes-->
 		<Content Remove="@(OutputStaticAssetsScripts)" />
 		<Content Include="@(OutputStaticAssetsScripts)" />
 	</ItemGroup>
@@ -85,6 +87,7 @@
 	<ItemGroup>
 		<InputStaticAssetsStyles Include="components\**\*.scss;styles\**\*.scss;" />
 		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css;wwwroot\material-components-web.css;wwwroot\material-components-web.min.css" />
+		<!--Keep this Removes-->
 		<Content Remove="@(OutputStaticAssetsStyles)" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
 	</ItemGroup>
