@@ -13,7 +13,7 @@
 @use '@material/fab';
 @use '@material/floating-label/mdc-floating-label';
 @use '@material/form-field';
-@use '@material/icon-button';
+@use '@material/icon-button/styles' as icon-button-styles;
 @use '@material/image-list/mdc-image-list';
 @use '@material/layout-grid/mdc-layout-grid';
 @use '@material/line-ripple/mdc-line-ripple';
@@ -51,7 +51,6 @@
 @include drawer.modal-core-styles;
 @include fab.core-styles;
 @include form-field.core-styles;
-@include icon-button.core-styles;
 @include linear-progress.core-styles;
 @include list.deprecated-core-styles;
 @include textfield.core-styles;
