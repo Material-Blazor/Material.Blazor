@@ -4,6 +4,22 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [3.0.0-preview.2](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.2)
+
+Released 2023-05-??
+
+**Updates**
+
+**New components**
+
+**Breaking Changes**
+- Removed obsolete MBLinearProgressType.ReversedDeterminate
+- Removed obsolte MBTooltipType
+
+**Deprecated Components**
+
+**Known issues**
+
 #### [3.0.0-preview.1](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.1)
 
 Released 2023-05-02

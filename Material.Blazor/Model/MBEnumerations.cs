@@ -797,23 +797,4 @@ namespace Material.Blazor
         /// </summary>
         BottomCenter
     }
-
-
-    /// <summary>
-    /// OBSOLETE - TO BE REMOVED IN VERSION 3.0.0. Determines the density of a component.
-    /// <para>Defaults to <see cref="Span"/></para>
-    /// </summary>
-    [Obsolete]
-    public enum MBTooltipType
-    {
-        /// <summary>
-        /// Uses a &lt;span&gt; element for a tooltip - the default.
-        /// </summary>
-        Span,
-
-        /// <summary>
-        /// Uses a &lt;div&gt; element for a tooltip.
-        /// </summary>
-        Div
-    }
 }
