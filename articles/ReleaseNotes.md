@@ -6,7 +6,7 @@ title: ReleaseNotes
 
 #### [3.0.0-preview.2](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.2)
 
-Released 2023-05-??
+Released 2022-05-????????
 
 **Updates**
 
@@ -14,7 +14,7 @@ Released 2023-05-??
 
 **Breaking Changes**
 - Removed obsolete MBLinearProgressType.ReversedDeterminate
-- Removed obsolte MBTooltipType
+- Removed obsolete MBTooltipType
 
 **Deprecated Components**
 
@@ -22,7 +22,7 @@ Released 2023-05-??
 
 #### [3.0.0-preview.1](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.1)
 
-Released 2023-05-02
+Released 2022-05-02
 
 **Updates**
 - Migration to [Material Components Web 14.0.0](https://github.com/material-components/material-components-web/tree/v14.0.0)
@@ -39,7 +39,7 @@ Released 2023-05-02
 
 #### [2.5.0](https://github.com/Material-Blazor/Material.Blazor/tree/2.5.0)
 
-Released 2023-05-02
+Released 2022-05-02
 
 **Updates**
 
@@ -54,7 +54,7 @@ Released 2023-05-02
 
 #### [2.4.1](https://github.com/Material-Blazor/Material.Blazor/tree/2.4.1)
 
-Released 2023-04-19
+Released 2022-04-19
 
 **Updates**
 - CSS and accessibility improvements to MBCarousel.
@@ -69,7 +69,7 @@ Released 2023-04-19
 
 #### [2.4.0](https://github.com/Material-Blazor/Material.Blazor/tree/2.4.0)
 
-Released 2023-04-18
+Released 2022-04-18
 
 **Updates**
 - node package update to remove audit risks.
@@ -85,7 +85,7 @@ Released 2023-04-18
 
 #### [2.3.1](https://github.com/Material-Blazor/Material.Blazor/tree/2.3.10)
 
-Released 2023-03-29
+Released 2022-03-29
 
 **Updates**
 - Updated Font Awesome & Sass versions
