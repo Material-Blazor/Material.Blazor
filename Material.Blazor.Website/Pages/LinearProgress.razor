@@ -32,7 +32,7 @@
                     </h2>
 
                     <h3 class="mb-card__subtitle mdc-typography mdc-typography--subtitle2">
-                        Indeterminate, determinate without buffer, determinate with buffer and reversed determinate without and with buffer.
+                        Indeterminate, determinate without buffer, and determinate with buffer.
                     </h3>
 
                     <p>
@@ -45,15 +45,6 @@
                     <p>
                         <MBLinearProgress BufferValue="@BufferLevel"
                                           LinearProgressType="@LinearDeterminate"
-                                          Value="@ProgressLevel" />
-                    </p>
-                    <p>
-                        <MBLinearProgress LinearProgressType="@LinearReversed"
-                                          Value="@ProgressLevel" />
-                    </p>
-                    <p>
-                        <MBLinearProgress BufferValue="@BufferLevel"
-                                          LinearProgressType="@LinearReversed"
                                           Value="@ProgressLevel" />
                     </p>
                 </Primary>
@@ -78,5 +69,4 @@
 
     MBLinearProgressType LinearIndeterminate => ShowProgress ? MBLinearProgressType.Indeterminate : MBLinearProgressType.Closed;
     MBLinearProgressType LinearDeterminate => ShowProgress ? MBLinearProgressType.Determinate : MBLinearProgressType.Closed;
-    MBLinearProgressType LinearReversed => ShowProgress ? MBLinearProgressType.ReversedDeterminate : MBLinearProgressType.Closed;
 }
