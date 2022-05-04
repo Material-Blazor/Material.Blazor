@@ -21,6 +21,7 @@ implements further Blazor/Material Theme hybrid components that we term "Plus Co
 | [MBDateTimeField](xref:C.MBDateTimeField) | An implementation in the spirit of the MBNumeric fields using an input type of either 'date' or 'datetime-local'. |
 | [MBDebouncedTextField](xref:C.MBDebouncedTextField) | A debounced version of [MBTextField](xref:C.MBTextField) |
 | [MBDivider](xref:C.MBDivider) | Implements a list divider by wrapping `hr` and gives the option of inset and padded. This uses the mdc-list-divider styles. |
+| [MBGrid](xref:C.MBGrid) | Displays a grid composed from the elements specified as parameters. |
 | [MBIcon](xref:C.MBIcon) | Displays an icon from the specified icon foundry or the default foundry from [MBCascadingDefaults](xref:U.MBCascadingDefaults). See also [MBIconHelper](xref:U.MBIconHelper). |
 | [MBNumericDecimalField](xref:C.MBNumericDecimalField) | Wraps [MBTextField](xref:C.MBTextField) to format numeric entry of a `decimal`. |
 | [MBNumericDoubleField](xref:C.MBNumericDoubleField) | A wrapper for `MBNumericDecimalField` for `double` variables. |
@@ -36,7 +37,6 @@ implements further Blazor/Material Theme hybrid components that we term "Plus Co
 
 | Component | Notes |
 | :-------- | :---- |
-| [MBGrid](xref:C.MBGrid) | Displays a grid composed from the elements specified as parameters. |
 | [MBGridMT](xref:C.MBGrid) | Displays a grid themed as MWC composed from the elements specified as parameters. |
 | [MBScheduler](xref:C.MBScheduler) | Displays a schedule composed from the elements specified as parameters. |
 

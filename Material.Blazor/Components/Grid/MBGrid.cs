@@ -1,4 +1,4 @@
-#define xGridLogging
+#define GridLogging
 
 // ToDo:
 //
@@ -787,7 +787,7 @@ namespace Material.Blazor
         {
 #if GridLogging
             LoggingService.Configuration.LoggingLevel = MBLoggingLevel.Debug;
-            GridLogDebug("MBGrid.OnInitialized entered");
+            GridLogDebug("MBGrid.OnInitializedAsync entered");
 #endif
             await base.OnInitializedAsync();
 
@@ -796,7 +796,7 @@ namespace Material.Blazor
                 throw new System.Exception("MBGrid requires column configuration definitions.");
             }
 #if GridLogging
-            GridLogDebug("MBGrid.OnInitialized completed");
+            GridLogDebug("MBGrid.OnInitializedAsync completed");
 #endif
         }
         #endregion

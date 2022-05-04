@@ -24,13 +24,6 @@ namespace Material.Blazor
 
 
 
-        /// <summary>
-        /// OBSOLETE TO BE REMOVED IN VERSION 3.0.0. The tooltip type.
-        /// </summary>
-        [Obsolete]
-        [Parameter] public MBTooltipType TooltipType { get; set; } = MBTooltipType.Span;
-
-
         private readonly long id = TooltipIdProvider.NextId();
         private bool disposedValue;
 

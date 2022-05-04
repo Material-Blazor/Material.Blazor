@@ -425,12 +425,6 @@ namespace Material.Blazor
         Determinate,
 
         /// <summary>
-        /// Reversed linear progress is obsolete in Material Components Web 13, replaced with an RTL detection. Remove this for MB v3.0.0.
-        /// </summary>
-        [Obsolete]
-        ReversedDeterminate,
-
-        /// <summary>
         /// A closed linear progress.
         /// </summary>
         Closed
@@ -796,24 +790,5 @@ namespace Material.Blazor
         /// Bottom center positioning, newest toasts on the bottom.
         /// </summary>
         BottomCenter
-    }
-
-
-    /// <summary>
-    /// OBSOLETE - TO BE REMOVED IN VERSION 3.0.0. Determines the density of a component.
-    /// <para>Defaults to <see cref="Span"/></para>
-    /// </summary>
-    [Obsolete]
-    public enum MBTooltipType
-    {
-        /// <summary>
-        /// Uses a &lt;span&gt; element for a tooltip - the default.
-        /// </summary>
-        Span,
-
-        /// <summary>
-        /// Uses a &lt;div&gt; element for a tooltip.
-        /// </summary>
-        Div
     }
 }
