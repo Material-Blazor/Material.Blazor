@@ -255,9 +255,13 @@
 			  DestinationFiles="$(ProjectDir)README.md" />
 	</Target>
 	-->
+	<!--
+	This doesn't work in the IDE
+	
 	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
 		<Copy SourceFiles="README.md"
 			  DestinationFiles="$(ProjectDir)README.md" />
 	</Target>
-
+	-->
+	
 </Project>
