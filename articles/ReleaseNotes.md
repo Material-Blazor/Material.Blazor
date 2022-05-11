@@ -26,7 +26,7 @@ Released 2022-05-02
 
 **Updates**
 - Migration to [Material Components Web 14.0.0](https://github.com/material-components/material-components-web/tree/v14.0.0)
-- `sass` npm package number remains at 1.39. - would prefer to update but compilation fails
+- `sass` npm package version remains at 1.39.2 - would prefer to update but compilation fails
 - Other npm packages updated
 
 **New components**
