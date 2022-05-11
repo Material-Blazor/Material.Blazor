@@ -255,5 +255,9 @@
 			  DestinationFiles="$(ProjectDir)README.md" />
 	</Target>
 	-->
+	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+		<Copy SourceFiles="README.md"
+			  DestinationFiles="$(ProjectDir)README.md" />
+	</Target>
 
 </Project>
