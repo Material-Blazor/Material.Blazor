@@ -134,7 +134,7 @@ jobs:
 # Build website
 ############################################################################################################
   build-website:
-    needs: [version]
+    needs: [test, version]
     name: Build website
     runs-on: windows-latest
 
