@@ -9,14 +9,14 @@ updates:
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: daily  
+      interval: monthly  
 
   - package-ecosystem: "npm"
     directory: "/material.blazor/material.blazor"
     schedule:
-      interval: "daily"
+      interval: "monthly"
 
   - package-ecosystem: "nuget"
     directory: "/"
     schedule:
-      interval: daily
+      interval: monthly

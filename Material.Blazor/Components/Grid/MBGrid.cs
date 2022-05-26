@@ -1,9 +1,10 @@
 #define GridLogging
 
 // ToDo:
+//      If we ever have functionality to 'move' rows we need to revisit the
+//      Steve Sanderson 'best practices' for sequence numbers
 //
 //  Bugs:
-//      Padding resolution for GridHeader
 //      Resolve issue with ElementReferences
 //
 
@@ -802,7 +803,7 @@ namespace Material.Blazor
         #endregion
 
         #region OnMouseClickInternal
-        private void OnMouseClickInternal(string newRowKey)
+        private Task OnMouseClickInternal(string newRowKey)
         {
 #if GridLogging
             GridLogDebug("OnMouseClickInternal with HighlightSelectedRow:" + HighlightSelectedRow.ToString());
@@ -810,12 +811,8 @@ namespace Material.Blazor
             if (newRowKey != SelectedKey)
             {
                 SelectedKey = newRowKey;
-                OnMouseClick.InvokeAsync(newRowKey);
             }
-            else
-            {
-                OnMouseClick.InvokeAsync(newRowKey);
-            }
+            return OnMouseClick.InvokeAsync(newRowKey);
         }
         #endregion
 
