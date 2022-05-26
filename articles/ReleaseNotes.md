@@ -4,11 +4,27 @@ title: ReleaseNotes
 ---
 # Release Notes
 
-#### [3.0.0-preview.2](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.2)
+#### [3.0.0-preview.2](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.3)
 
-Released 2022-05-????????
+Released 2022-??-????????????
 
 **Updates**
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+#### [3.0.0-preview.2](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.2)
+
+Released 2022-05-26
+
+**Updates**
+- Repaired MBGrid's OnMouseClickIntertnal (Thanks go out to Steve Sanderson for finding this error)
+- Throttled dependabot to a monthly check
 
 **New components**
 
