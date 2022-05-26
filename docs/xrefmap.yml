@@ -7374,12 +7374,6 @@ references:
   commentId: F:Material.Blazor.MBLinearProgressType.Indeterminate
   fullName: Material.Blazor.MBLinearProgressType.Indeterminate
   nameWithType: MBLinearProgressType.Indeterminate
-- uid: Material.Blazor.MBLinearProgressType.ReversedDeterminate
-  name: ReversedDeterminate
-  href: api/Material.Blazor.MBLinearProgressType.html#Material_Blazor_MBLinearProgressType_ReversedDeterminate
-  commentId: F:Material.Blazor.MBLinearProgressType.ReversedDeterminate
-  fullName: Material.Blazor.MBLinearProgressType.ReversedDeterminate
-  nameWithType: MBLinearProgressType.ReversedDeterminate
 - uid: Material.Blazor.MBList`1
   name: MBList<TItem>
   href: api/Material.Blazor.MBList-1.html
@@ -13000,37 +12994,6 @@ references:
   isSpec: "True"
   fullName: Material.Blazor.MBTooltip.Target
   nameWithType: MBTooltip.Target
-- uid: Material.Blazor.MBTooltip.TooltipType
-  name: TooltipType
-  href: api/Material.Blazor.MBTooltip.html#Material_Blazor_MBTooltip_TooltipType
-  commentId: P:Material.Blazor.MBTooltip.TooltipType
-  fullName: Material.Blazor.MBTooltip.TooltipType
-  nameWithType: MBTooltip.TooltipType
-- uid: Material.Blazor.MBTooltip.TooltipType*
-  name: TooltipType
-  href: api/Material.Blazor.MBTooltip.html#Material_Blazor_MBTooltip_TooltipType_
-  commentId: Overload:Material.Blazor.MBTooltip.TooltipType
-  isSpec: "True"
-  fullName: Material.Blazor.MBTooltip.TooltipType
-  nameWithType: MBTooltip.TooltipType
-- uid: Material.Blazor.MBTooltipType
-  name: MBTooltipType
-  href: api/Material.Blazor.MBTooltipType.html
-  commentId: T:Material.Blazor.MBTooltipType
-  fullName: Material.Blazor.MBTooltipType
-  nameWithType: MBTooltipType
-- uid: Material.Blazor.MBTooltipType.Div
-  name: Div
-  href: api/Material.Blazor.MBTooltipType.html#Material_Blazor_MBTooltipType_Div
-  commentId: F:Material.Blazor.MBTooltipType.Div
-  fullName: Material.Blazor.MBTooltipType.Div
-  nameWithType: MBTooltipType.Div
-- uid: Material.Blazor.MBTooltipType.Span
-  name: Span
-  href: api/Material.Blazor.MBTooltipType.html#Material_Blazor_MBTooltipType_Span
-  commentId: F:Material.Blazor.MBTooltipType.Span
-  fullName: Material.Blazor.MBTooltipType.Span
-  nameWithType: MBTooltipType.Span
 - uid: Material.Blazor.MBTopAppBar
   name: MBTopAppBar
   href: api/Material.Blazor.MBTopAppBar.html

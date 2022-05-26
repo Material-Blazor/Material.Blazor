@@ -278,7 +278,7 @@
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/DateTimeField/MBDateTimeField.html",
-          "hash": "axo2UOEkVn7qsC0F8Rh556avyoAcdh84lk8gAR8Ru14="
+          "hash": "y5LKSiY9oLEsRhWtE9cbo5k2FBNN/M9kDS6jwNH03KU="
         }
       },
       "is_incremental": false,
@@ -713,7 +713,7 @@
       "output": {
         ".html": {
           "relative_path": "Material.Blazor/Components/Tooltip/MBTooltip.html",
-          "hash": "GaC1ScO7vaf9E5Gn9lTiDiqiAQvpnJztWzRccbkvZ/I="
+          "hash": "ZoKKg0MG9Ku2/vXatd0rf6JffXPeBUAo5SZEhvjfbpI="
         }
       },
       "is_incremental": false,
@@ -817,11 +817,23 @@
     },
     {
       "type": "Conceptual",
+      "source_relative_path": "Material.Blazor/README.md",
+      "output": {
+        ".html": {
+          "relative_path": "Material.Blazor/README.html",
+          "hash": "Eegf00U9iOh6uIvN6UrPg/yjMHLW0m3d9mqBjzgMt9k="
+        }
+      },
+      "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
       "source_relative_path": "README.md",
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "1vsQMtm+xW9+aNpuEv2/LbU+tDtqBJHDG7en4mz4PFc="
+          "hash": "xSR4Jnfbedn0lwpA4EPD/8b0iawyB1Dgf83mH9lSW1c="
         }
       },
       "is_incremental": false,
@@ -845,7 +857,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.HashCode.html",
-          "hash": "4jo08PffpHP717A6LXFGkZp4uBgGxWPIBrsLOxzhGtM="
+          "hash": "mTkCutKvcgv4V/wKHqPMqi82mCgd1jzNRub9icBVmoM="
         }
       },
       "is_incremental": false,
@@ -1493,7 +1505,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBGrid-1.html",
-          "hash": "9pKrA72o+Y/mOe2Lxz321G4/XPY3hKo47D+mVBGN47g="
+          "hash": "BB1OE8g5QlYrsETfWupZFudWzD3KduTXr+6A00CLW9E="
         }
       },
       "is_incremental": false,
@@ -1697,7 +1709,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBLinearProgress.html",
-          "hash": "Klm7k08RViTEPg1yHaHvHXn4jNU79bh5gnGbCuOn8Jc="
+          "hash": "6R7K5+vqb7NqEyLT0I3vAJURx1U1McyGDWzdDYVhYtU="
         }
       },
       "is_incremental": false,
@@ -1709,7 +1721,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBLinearProgressType.html",
-          "hash": "EKlbEJq8y5jbMTJ/XmMCAIJnkdKwHxuhyABAZ7JGN+M="
+          "hash": "Jfb9+/05fgKDCFUbgjJ6D5qKKGOGhpt8yODCCnzpxMk="
         }
       },
       "is_incremental": false,
@@ -1757,7 +1769,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBListStyle.html",
-          "hash": "nIkYHH+Wgp7Tl2z4o9lyhrKg/7iUUbKtNyz7pTWc8pg="
+          "hash": "MMMxvJBHes6bt3SQWj0jMF4loarm3VP8cL3RSsZj0GU="
         }
       },
       "is_incremental": false,
@@ -1769,7 +1781,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBListType.html",
-          "hash": "lKDG2DOO1kqjtvzMr+isQWLqqQvINWTI3Pqe03AQ150="
+          "hash": "iuuPoG0ks8FWvnVQIXos48trPzhYafWFMmj/74HdBig="
         }
       },
       "is_incremental": false,
@@ -1781,7 +1793,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBLoggingLevel.html",
-          "hash": "ePZUzVtpcMFGjTNTtXgqPbrYZwEwPhfganCbbaqG6xc="
+          "hash": "D5rc5k7VB5/ze5nB2NdWjbhpCZ3egFcwSU0yfXODMPY="
         }
       },
       "is_incremental": false,
@@ -1841,7 +1853,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBMenuSurfacePositioning.html",
-          "hash": "FcJlCnMFS1UTkisTuqwR8Br2yh/AisbTZUl/vzoOEx8="
+          "hash": "r0S7oZVb0dbTZmS60HMlsOiEOwk+8NggbvpstsZ48/s="
         }
       },
       "is_incremental": false,
@@ -1853,7 +1865,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBNotifierCloseMethod.html",
-          "hash": "j178RaFYobimXjehZsYAsEesQ96Qmpr0tVy7lbjzLks="
+          "hash": "K+qUNUJsgdknJWSZE7QvU34UyvNq6OpAUO/SyBu4W44="
         }
       },
       "is_incremental": false,
@@ -1889,7 +1901,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBNumericInputMagnitude.html",
-          "hash": "RDxNf36/V0i9lDRAT5m2qw5lNd+sqxTZen7F9a3fQdU="
+          "hash": "KHQdJShsappKsts7ddSLFSrIpCPq6kAy6mssnrBZpJM="
         }
       },
       "is_incremental": false,
@@ -2069,7 +2081,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBSelectInputStyle.html",
-          "hash": "1mX9inCx5R9vN8jf8AWSS5yKxCmi/QgEPiBpdTczkUI="
+          "hash": "CnOzfw+smp6pcjpLA4pBs2JFDs8rMiqfAdIqaZ9hTK8="
         }
       },
       "is_incremental": false,
@@ -2093,7 +2105,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBShieldType.html",
-          "hash": "slXfvj1NLs3vsrCaDnnwMJr4Ov1QYIvh+bB2mXiJSdM="
+          "hash": "6NutnWgpZB1HmAYuDoGveDlVDeW5xZoSJHLJsCQ7XIM="
         }
       },
       "is_incremental": false,
@@ -2117,7 +2129,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBSliderType.html",
-          "hash": "O0q7xFwZWWjOuB6Bzsr/MhszxoELqjfjrTWjJ17IsjI="
+          "hash": "ssX/OFdJunWk0S91iZdVJ2PJbS18KvM1kBLAkbHzKBk="
         }
       },
       "is_incremental": false,
@@ -2201,7 +2213,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBTextAlignStyle.html",
-          "hash": "GNeAt6lXIUOsjrvZ0jKqLGlbwCN+RPy/DcGGRGAPKw8="
+          "hash": "C32HSj8tQfqU2RdClj7Lt3G0rH8LXYxiBQ/YUJdO+gE="
         }
       },
       "is_incremental": false,
@@ -2237,7 +2249,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBTextInputStyle.html",
-          "hash": "EMh2JMdfXduNQbuAVOuGwDbakleJupLmgEsjLft0O/o="
+          "hash": "1PjOOkJREjqoQJn5C2EG2Fp4MjxWQ6cwxb4fW2zupYk="
         }
       },
       "is_incremental": false,
@@ -2249,7 +2261,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBToastLevel.html",
-          "hash": "MYF1O+XhWAnctKYgZQqSA392dMIUciHVNnlLpw4jl3Y="
+          "hash": "oIDxehll83qZSJwn70Cj4tYenKbbeHV8gwaaLvtwBBM="
         }
       },
       "is_incremental": false,
@@ -2261,7 +2273,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBToastPosition.html",
-          "hash": "R1YPMyMbVTeZMHSx8GOOI3P580DsMjHqsQ97hdOQeZ0="
+          "hash": "F8ZsC26mHZamH+zz3StEZ/uU6TBsOQjAmL4CtSgOKTY="
         }
       },
       "is_incremental": false,
@@ -2297,19 +2309,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBTooltip.html",
-          "hash": "G6Sm7/XXho4eIN6xjeIWD2QwVqM4fSGtM6Ry8Hp2eCI="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Material.Blazor.MBTooltipType.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Material.Blazor.MBTooltipType.html",
-          "hash": "7oclVDvgq2znypRYvN3xf+PsuWUePWUZBwwCJvUKff4="
+          "hash": "mRsUVXTtwLmmh2cIZruhPuGt9Mov6W7tBVG21Wlfx1Q="
         }
       },
       "is_incremental": false,
@@ -2333,7 +2333,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBTopAppBarType.html",
-          "hash": "7yXD6d7XeaMy/LzEfPVv1IAyswCPJlnmuY493I1eELQ="
+          "hash": "0fHEdTCQXPuGTzj/jLCNjFLyPW2/84UhVsGbys4Kl5A="
         }
       },
       "is_incremental": false,
@@ -2405,7 +2405,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.html",
-          "hash": "BTiP91/AB4E6lOzysT13YRpjFkGmfUCttLE3gtuEYi8="
+          "hash": "HBnyTckA1odYYZJXl29SCcYNPvzvYYI61dxpA/Crq8E="
         }
       },
       "is_incremental": false,
@@ -2417,7 +2417,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "+hQ3b5nlieml+FQ14J6hK7/LWgJ2yfK3jZhlorBQy4c="
+          "hash": "n+ODzr1ZTmBNSba7towJTAO80+LVumN6aGFr9I8kbis="
         }
       },
       "is_incremental": false,
@@ -2552,7 +2552,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/PlusComponents.html",
-          "hash": "KvB5jbE0DDcOf2UIamaMF6LYnnFV0+/HdFCkstOstMc="
+          "hash": "Csa7VUTlDlOCJgVKYTVD26GBGduzJdvTZnx6zcEROdU="
         }
       },
       "is_incremental": false,
@@ -2576,7 +2576,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/ReleaseNotes.html",
-          "hash": "EUlBOWXr0n2vQ+5l/n8GvZ9eOJb8KXGmyP1I4m6RmvQ="
+          "hash": "4doEXbzTQtnGjHLHCRCSNuYKBNZypAyGa3vkmzw5ntE="
         }
       },
       "is_incremental": false,
@@ -2883,13 +2883,13 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 83,
+          "total_file_count": 84,
           "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 132,
+          "total_file_count": 131,
           "skipped_file_count": 0
         },
         "ResourceDocumentProcessor": {
