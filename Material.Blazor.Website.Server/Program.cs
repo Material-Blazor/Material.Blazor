@@ -1,10 +1,11 @@
-using System;
+using GoogleAnalytics.Blazor;
 using Material.Blazor;
 using Material.Blazor.Website;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 #if Logging
 using Serilog;
@@ -48,6 +49,8 @@ namespace Material.BlazorWebsite.Server
                     toastServiceConfiguration: Utilities.GetDefaultToastServiceConfiguration(),
                     snackbarServiceConfiguration: Utilities.GetDefaultSnackbarServiceConfiguration()
                 );
+
+                builder.Services.AddGBService("G-TRLQX48ZSY");
 
                 var app = builder.Build();
 
