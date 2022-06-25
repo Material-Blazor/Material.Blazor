@@ -1,4 +1,5 @@
-﻿using Material.Blazor;
+﻿using GoogleAnalytics.Blazor;
+using Material.Blazor;
 using Material.Blazor.Website;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +31,8 @@ namespace Material.BlazorWebsite.Server
                 toastServiceConfiguration: Utilities.GetDefaultToastServiceConfiguration(),
                 snackbarServiceConfiguration: Utilities.GetDefaultSnackbarServiceConfiguration()
             );
+
+            services.AddGBService("G-TRLQX48ZSY");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
