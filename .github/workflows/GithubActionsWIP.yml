@@ -182,7 +182,7 @@ jobs:
 ############################################################################################################
   build-website:
     name: Build website
-    needs: [version]
+    needs: [test, version]
     runs-on: windows-latest
 
     steps:

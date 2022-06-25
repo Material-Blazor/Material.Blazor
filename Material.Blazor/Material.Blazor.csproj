@@ -29,7 +29,7 @@
 	<PropertyGroup>
 		<EmitCompilerGeneratedFiles>false</EmitCompilerGeneratedFiles>
 	</PropertyGroup>
-	
+
 	<ItemGroup>
 		<None Include="..\README.md" Pack="true" PackagePath="\" />
 	</ItemGroup>
@@ -56,7 +56,7 @@
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
 	</ItemGroup>
-	
+
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net7.0' ">
 		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.0-preview.3.*" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.0-preview.3.*" />
@@ -247,8 +247,26 @@
 		</VisualStudio>
 	</ProjectExtensions>
 
-	<!--<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-	  <Exec Command="copy ..\READMe.md $(projectdir)ReadMe.md" />
-	</Target>-->
+	<!--
+	SolutionDir is only available to builds in the IDE
+	
+	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+		<Copy SourceFiles="$(SolutionDir)README.md"
+			  DestinationFiles="$(ProjectDir)README.md" />
+	</Target>
+	-->
+	
+	<!--
+	These two don't work in the IDE
 
+	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+	  <Exec Command="copy ..\README.md $(projectdir)README.md" />
+	</Target>
+
+	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+		<Copy SourceFiles="README.md"
+			  DestinationFiles="$(ProjectDir)README.md" />
+	</Target>
+	-->
+	
 </Project>

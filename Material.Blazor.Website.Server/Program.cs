@@ -1,5 +1,9 @@
 using System;
+using Material.Blazor;
+using Material.Blazor.Website;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 #if Logging
@@ -14,7 +18,7 @@ namespace Material.BlazorWebsite.Server
 #if Logging
         private const string _customTemplate = "{Timestamp:HH:mm:ss.fff}\t[{Level:u3}]\t{Message}{NewLine}{Exception}";
 #endif
-        public static int Main(string[] args)
+        public static void Main(string[] args)
         {
 #if Logging
             Log.Logger = new LoggerConfiguration()
@@ -30,15 +34,55 @@ namespace Material.BlazorWebsite.Server
 #if Logging
                 Log.Information("Starting Material.Blazor.Website.Server");
 #endif
-                CreateHostBuilder(args).Build().Run();
-                return 0;
+                var builder = WebApplication.CreateBuilder(args);
+
+#if Logging
+                builder.Host.UseSerilog();
+#endif
+
+                // Add services to the container.
+                builder.Services.AddRazorPages();
+                builder.Services.AddServerSideBlazor();
+                builder.Services.AddMBServices(
+                    loggingServiceConfiguration: Utilities.GetDefaultLoggingServiceConfiguration(),
+                    toastServiceConfiguration: Utilities.GetDefaultToastServiceConfiguration(),
+                    snackbarServiceConfiguration: Utilities.GetDefaultSnackbarServiceConfiguration()
+                );
+
+                var app = builder.Build();
+
+                if (app.Environment.IsDevelopment())
+                {
+                    app.UseDeveloperExceptionPage();
+                }
+                else
+                {
+                    app.UseExceptionHandler("/Error");
+                    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                    app.UseHsts();
+                }
+
+#if Logging
+                app.UseSerilogRequestLogging();
+#endif
+                app.UseHttpsRedirection();
+                app.UseStaticFiles();
+
+                app.UseRouting();
+
+                app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapBlazorHub();
+                    endpoints.MapFallbackToPage("/_Host");
+                });
+
+                app.Run();
             }
             catch (Exception ex)
             {
 #if Logging
                 Log.Fatal(ex, "Material.Blazor.Website.Server terminated unexpectedly");
 #endif
-                return 1;
             }
 #if Logging
             finally
@@ -47,23 +91,6 @@ namespace Material.BlazorWebsite.Server
             }
 #endif
         }
-
-#if Logging
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .UseSerilog()
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-#else
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-#endif
 
     }
 }

@@ -1,9 +1,10 @@
-#define xGridLogging
+#define GridLogging
 
 // ToDo:
+//      If we ever have functionality to 'move' rows we need to revisit the
+//      Steve Sanderson 'best practices' for sequence numbers
 //
 //  Bugs:
-//      Padding resolution for GridHeader
 //      Resolve issue with ElementReferences
 //
 
@@ -787,7 +788,7 @@ namespace Material.Blazor
         {
 #if GridLogging
             LoggingService.Configuration.LoggingLevel = MBLoggingLevel.Debug;
-            GridLogDebug("MBGrid.OnInitialized entered");
+            GridLogDebug("MBGrid.OnInitializedAsync entered");
 #endif
             await base.OnInitializedAsync();
 
@@ -796,13 +797,13 @@ namespace Material.Blazor
                 throw new System.Exception("MBGrid requires column configuration definitions.");
             }
 #if GridLogging
-            GridLogDebug("MBGrid.OnInitialized completed");
+            GridLogDebug("MBGrid.OnInitializedAsync completed");
 #endif
         }
         #endregion
 
         #region OnMouseClickInternal
-        private void OnMouseClickInternal(string newRowKey)
+        private Task OnMouseClickInternal(string newRowKey)
         {
 #if GridLogging
             GridLogDebug("OnMouseClickInternal with HighlightSelectedRow:" + HighlightSelectedRow.ToString());
@@ -810,12 +811,8 @@ namespace Material.Blazor
             if (newRowKey != SelectedKey)
             {
                 SelectedKey = newRowKey;
-                OnMouseClick.InvokeAsync(newRowKey);
             }
-            else
-            {
-                OnMouseClick.InvokeAsync(newRowKey);
-            }
+            return OnMouseClick.InvokeAsync(newRowKey);
         }
         #endregion
 
