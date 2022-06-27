@@ -4,11 +4,29 @@ title: ReleaseNotes
 ---
 # Release Notes
 
-#### [3.0.0-preview.2](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.3)
+#### [3.0.0-preview.4](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.4)
 
-Released 2022-??-????????????
+Released 2022-06-25
 
 **Updates**
+- Applied the `<PageTitle>` component to the website to show the page name on browser tabs.
+- Material.Blazor released only as a mechanism to release the website: there are no changes to the Material.Blazor package since preview 2.
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+#### [3.0.0-preview.3](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.3)
+
+Released 2022-06-25
+
+**Updates**
+- Applied [GoogleAnalytics.Blazor](https://github.com/Material-Blazor/GoogleAnalytics.Blazor) to the website to track page hits.
+- Material.Blazor released only as a mechanism to release the website: there are no changes to the Material.Blazor package since preview 2.
 
 **New components**
 
