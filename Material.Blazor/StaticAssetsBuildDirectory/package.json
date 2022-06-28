@@ -4,7 +4,7 @@
   "description": "NPM build steps for Material.Blazor",
   "repository": "https://github.com/Material-Blazor/Material.Blazor",
   "scripts": {
-    "buildStaticWebAssetsCSS": "npm run build-css2&&npm run build-min-css2&npm run build-material-css2&&npm run build-material-min-css2",
+    "buildStaticWebAssetsCSS": "npm run build-css2&&npm run build-min-css2&&npm run build-material-css2&&npm run build-material-min-css2&&npm --version",
     "build-css2": "sass --no-color --unicode --style=expanded --load-path=node_modules --no-source-map ../Styles/material.blazor.scss ../StaticAssets/material.blazor.css",
     "build-min-css2": "sass --no-color --unicode --style=compressed --load-path=node_modules --no-source-map ../Styles/material.blazor.scss ../StaticAssets/material.blazor.min.css",
     "build-material-css2": "sass --no-color --unicode --style=expanded --load-path=node_modules --no-source-map ../Styles/material-components-web.scss ../StaticAssets/material-components-web.css",

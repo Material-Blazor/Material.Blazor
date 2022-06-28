@@ -285,7 +285,7 @@
 		<ClientAssetsInputs Include="components\**\*.scss;styles\**\*.scss;" Exclude="$(DefaultItemExcludes)" />
 	</ItemGroup>
 
-	<Target Name="ClientAssetsBuild" Condition="'$(ShouldRunClientAssetsBuild)' == 'true'" DependsOnTargets="ClientAssetsRestore" BeforeTargets="AssignTargetPaths" Inputs="@(ClientAssetsInputs)" Outputs="$(ClientAsstesDirectory)clientassetsbuild.complete.txt">
+	<Target Name="ClientAssetsBuild" Condition="'$(ShouldRunClientAssetsBuild)' == 'true'" DependsOnTargets="ClientAssetsRestore" BeforeTargets="AssignTargetPaths" Inputs="@(ClientAssetsInputs)" Outputs="$(ClientAssetsDirectory)clientassetsbuild.complete.txt">
 		<Exec Command="$(ClientAssetsBuildCommand)" WorkingDirectory="$(ClientAssetsDirectory)" />
 
 		<ItemGroup>
