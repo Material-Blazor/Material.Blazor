@@ -259,7 +259,7 @@
 
 		<ClientAssetsRestoreInputs Condition="'$(ClientAssetsRestoreInputs)' == ''">$(ClientAssetsDirectory)package-lock.json;$(ClientAssetsDirectory)package.json</ClientAssetsRestoreInputs>
 
-		<ClientAssetsRestoreOutputs Condition="'$(ClientAssetsRestoreOutputs)' == ''">$(ClientAssetsDirectory)node_modules/.package-lock.json</ClientAssetsRestoreOutputs>
+		<ClientAssetsRestoreOutputs Condition="'$(ClientAssetsRestoreOutputs)' == ''">$(ClientAssetsDirectory)node_modules\.package-lock.json</ClientAssetsRestoreOutputs>
 
 		<ClientAssetsRestoreCommand Condition="'$(ClientAssetsRestoreCommand)' == ''">npm install</ClientAssetsRestoreCommand>
 
@@ -268,9 +268,15 @@
 		<ClientAssetsBuildOutputParameter Condition="'$(ClientAssetsBuildOutputParameter)' == ''">-o</ClientAssetsBuildOutputParameter>
 
 		<ClientAssetsRestoreInputs>$(MSBuildProjectFile);$(ClientAssetsRestoreInputs)</ClientAssetsRestoreInputs>
+
+		<!-- Run restore only once for multi targeting builds -->
+		<ClientAssetsRestoreBeforeTargets Condition="'$(TargetFramework)' == ''">DispatchToInnerBuilds</ClientAssetsRestoreBeforeTargets>
+		<!-- Allow multitargeting projects to choose the target framework in which they run by setting this value to true only for a given target framework -->
+		<ShouldRunClientAssetsBuild Condition="'$(ShouldRunClientAssetsBuild)' == ''">true</ShouldRunClientAssetsBuild>
+
 	</PropertyGroup>
 
-	<Target Name="NpmInstall" Inputs="$(ClientAssetsRestoreInputs)" Outputs="$(ClientAssetsRestoreOutputs)">
+	<Target Name="ClientAssetsRestore" BeforeTargets="$(ClientAssetsRestoreBeforeTargets)" Inputs="$(ClientAssetsRestoreInputs)" Outputs="$(ClientAssetsRestoreOutputs)">
 		<Message Importance="high" Text="Running $(ClientAssetsRestoreCommand)..." />
 		<Exec Command="$(ClientAssetsRestoreCommand)" WorkingDirectory="$(ClientAssetsDirectory)" />
 	</Target>
@@ -279,7 +285,7 @@
 		<ClientAssetsInputs Include="components\**\*.scss;styles\**\*.scss;" Exclude="$(DefaultItemExcludes)" />
 	</ItemGroup>
 
-	<Target Name="NpmRunBuild" DependsOnTargets="NpmInstall" BeforeTargets="AssignTargetPaths" Inputs="@(ClientAssetsInputs)" Outputs="$(ClientAssetsDirectory)\clientassetsbuild.complete.txt">
+	<Target Name="ClientAssetsBuild" Condition="'$(ShouldRunClientAssetsBuild)' == 'true'" DependsOnTargets="ClientAssetsRestore" BeforeTargets="AssignTargetPaths" Inputs="@(ClientAssetsInputs)" Outputs="$(ClientAsstesDirectory)clientassetsbuild.complete.txt">
 		<Exec Command="$(ClientAssetsBuildCommand)" WorkingDirectory="$(ClientAssetsDirectory)" />
 
 		<ItemGroup>
