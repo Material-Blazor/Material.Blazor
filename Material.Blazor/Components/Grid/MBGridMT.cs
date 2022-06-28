@@ -251,7 +251,6 @@ namespace Material.Blazor
 
                 base.BuildRenderTree(builder);
                 var rendSeq = 2;
-                string styleStr;
                 string classStr = $"mdc-data-table{(DensityInfo.ApplyCssClass ? $" {DensityInfo.CssClassName}" : "")} mdc-data-table--sticky-header mb-mgrid{(ApplyColors ? " mb-mgrid__colored" : "")}{(ApplyVerticalDividers ? " mb-mgrid__vertical-dividers" : "")} {@class}";
                 var columnCount = ColumnConfigurations.Count().ToString();
 
@@ -277,7 +276,6 @@ namespace Material.Blazor
                         builder.AddAttribute(rendSeq++, "class", "mdc-data-table__header-row");
 
                         // For each column output a TD
-                        var isHeaderRow = true;
                         var colCount = 0;
                         foreach (var col in ColumnConfigurations)
                         {
@@ -384,7 +382,6 @@ namespace Material.Blazor
 
                                 // For each column output a td
                                 var colCount = 0;
-                                var isHeaderRow = false;
                                 foreach (var columnDefinition in ColumnConfigurations)
                                 {
                                     //styleStr = BuildNewGridTD(

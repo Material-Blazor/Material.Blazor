@@ -3,9 +3,13 @@
 	<PropertyGroup>
 		<!--<TargetFrameworks>net6.0;net7.0</TargetFrameworks>-->
 		<TargetFrameworks>net6.0</TargetFrameworks>
+
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+
 		<VersionPrefix>3.0.0</VersionPrefix>
 		<VersionSuffix>aaa1</VersionSuffix>
+
+		<IsPackable>true</IsPackable>
 		<PackageLicenseFile></PackageLicenseFile>
 		<Authors>Simon Ziegler of Dioptra and Mark Stega of Optimium Health</Authors>
 		<Company>Material.Blazor</Company>
@@ -29,10 +33,6 @@
 	<PropertyGroup>
 		<EmitCompilerGeneratedFiles>false</EmitCompilerGeneratedFiles>
 	</PropertyGroup>
-
-	<ItemGroup>
-		<None Include="..\README.md" Pack="true" PackagePath="\" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<SupportedPlatform Include="browser" />
@@ -65,8 +65,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="package-lock.json" />
-		<None Include="package.json" />
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="StaticAssetsBuildDirectory\package-lock.json" />
+		<None Include="StaticAssetsBuildDirectory\package.json" />
 		<None Include="tsconfig.json" />
 	</ItemGroup>
 
@@ -76,38 +80,41 @@
 		</None>
 	</ItemGroup>
 
-	<ItemGroup>
+	<!--<ItemGroup>
 		<InputStaticAssetsScripts Include="components\**\*.ts;scripts\**\*.ts" />
-		<OutputStaticAssetsScripts Include="wwwroot\material.blazor.js;wwwroot\material.blazor.min.js" />
-		<!--Keep this Removes-->
-		<Content Remove="@(OutputStaticAssetsScripts)" />
+		<OutputStaticAssetsScripts Include="wwwroot\material.blazor.js;wwwroot\material.blazor.min.js" />-->
+	<!--Keep this Removes-->
+	<!--<Content Remove="@(OutputStaticAssetsScripts)" />
 		<Content Include="@(OutputStaticAssetsScripts)" />
-	</ItemGroup>
+	</ItemGroup>-->
 
-	<ItemGroup>
+	<!--<ItemGroup>
 		<InputStaticAssetsStyles Include="components\**\*.scss;styles\**\*.scss;" />
-		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css;wwwroot\material-components-web.css;wwwroot\material-components-web.min.css" />
-		<!--Keep this Removes-->
-		<Content Remove="@(OutputStaticAssetsStyles)" />
+		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css;wwwroot\material-components-web.css;wwwroot\material-components-web.min.css" />-->
+	<!--Keep this Removes-->
+	<!--<Content Remove="@(OutputStaticAssetsStyles)" />
 		<Content Include="@(OutputStaticAssetsStyles)" />
+	</ItemGroup>-->
+
+	<ItemGroup>
+		<Folder Include="StaticAssets\" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="wwwroot\" />
-		<Folder Include="Components\Carousel\" />
+		<PackageReference Include="Microsoft.AspNetCore.ClientAssets" Version="0.1.0-alpha.21528.2" />
 	</ItemGroup>
 
-	<Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
-		<Exec Command="npm --version" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
+	<!--<Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
+		<Exec Command="npm - -version" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
 			<Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
 		</Exec>
-	</Target>
+	</Target>-->
 
-	<Target Name="ErrorOutput" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' != '0' ">
+	<!--<Target Name="ErrorOutput" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' != '0' ">
 		<Message Importance="high" Text="**********************************************************************************" />
 		<Message Importance="high" Text="**********************************************************************************" />
 		<Message Importance="high" Text="**********************************************************************************" />
-		<Message Importance="high" Text="***** 'npm --version' return code was $(NpmReturnCode)" />
+		<Message Importance="high" Text="***** 'npm - -version' return code was $(NpmReturnCode)" />
 		<Message Importance="high" Text="CSS and JS not built due to the lack of a proper development environment" />
 		<Message Importance="high" Text="See https://material-blazor.com/docs/articles/DevelopmentEnvironment.html" />
 		<Message Importance="high" Text="If the return code is 1, check package.json and package-lock.json" />
@@ -116,9 +123,9 @@
 		<Message Importance="high" Text="**********************************************************************************" />
 		<Message Importance="high" Text="**********************************************************************************" />
 		<Message Importance="high" Text="**********************************************************************************" />
-	</Target>
+	</Target>-->
 
-	<UsingTask TaskName="DeduplicateLicenseHeaders" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+	<!--<UsingTask TaskName="DeduplicateLicenseHeaders" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
 		<ParameterGroup>
 			<SourceFile ParameterType="System.String" Required="true" />
 		</ParameterGroup>
@@ -176,16 +183,16 @@
                 ]]>
 			</Code>
 		</Task>
-	</UsingTask>
+	</UsingTask>-->
 
-	<ItemGroup>
+	<!--<ItemGroup>
 		<UpToDateCheckInput Include="@(InputStaticAssetsScripts)" Set="Scripts" />
 		<UpToDateCheckOutput Include="@(OutputStaticAssetsScripts)" Set="Scripts" />
 		<UpToDateCheckInput Include="@(InputStaticAssetsStyles)" Set="Styles" />
 		<UpToDateCheckOutput Include="@(OutputStaticAssetsStyles)" Set="Styles" />
-	</ItemGroup>
+	</ItemGroup>-->
 
-	<Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
+	<!--<Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
 		<Message Importance="high" Text="***** MakeDir wwwroot (M.B Scripts)" />
 		<MakeDir Directories="wwwroot" />
 
@@ -211,35 +218,35 @@
 
 		<DeduplicateLicenseHeaders SourceFile="wwwroot\material.blazor.min.js" />
 
-	</Target>
+	</Target>-->
 
-	<Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
+	<!--<Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
 		<Message Importance="high" Text="***** mkdir wwwroot (M.B Styles)" />
 		<MakeDir Directories="wwwroot" />
 
 		<Message Importance="high" Text="***** npm install" />
-		<Exec Command="npm install" />
+		<Exec Command="npm install" />-->
 
-		<!--<Message Importance="high" Text="***** downloadfiles" />
+	<!--<Message Importance="high" Text="***** downloadfiles" />
     <DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" DestinationFolder="$(MSBuildProjectDirectory)\wwwroot" DestinationFilename="material-components-icons.css">
     </DownloadFile>-->
 
-		<Message Importance="high" Text="***** npm run build-css" />
+	<!--<Message Importance="high" Text="***** npm run build-css" />
 		<Exec Command="npm run build-css" />
 
 		<Message Importance="high" Text="***** npm run build-min-css" />
-		<Exec Command="npm run build-min-css" />
+		<Exec Command="npm run build-min-css" />-->
 
-		<!--<Message Importance="high" Text="***** delete material-components-icons.css" />
+	<!--<Message Importance="high" Text="***** delete material-components-icons.css" />
     <Delete Files="wwwroot\material-components-icons.css" />-->
 
-		<Message Importance="high" Text="***** npm run build-material-css" />
+	<!--<Message Importance="high" Text="***** npm run build-material-css" />
 		<Exec Command="npm run build-material-css" />
 
 		<Message Importance="high" Text="***** npm run build-material-min-css" />
 		<Exec Command="npm run build-material-min-css" />
 
-	</Target>
+	</Target>-->
 
 	<ProjectExtensions>
 		<VisualStudio>
@@ -247,26 +254,42 @@
 		</VisualStudio>
 	</ProjectExtensions>
 
-	<!--
-	SolutionDir is only available to builds in the IDE
-	
-	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-		<Copy SourceFiles="$(SolutionDir)README.md"
-			  DestinationFiles="$(ProjectDir)README.md" />
-	</Target>
-	-->
-	
-	<!--
-	These two don't work in the IDE
+	<PropertyGroup>
+		<ClientAssetsDirectory Condition="'$(ClientAssetsDirectory)' == ''">StaticAssetsBuildDirectory</ClientAssetsDirectory>
 
-	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-	  <Exec Command="copy ..\README.md $(projectdir)README.md" />
+		<ClientAssetsRestoreInputs Condition="'$(ClientAssetsRestoreInputs)' == ''">$(ClientAssetsDirectory)package-lock.json;$(ClientAssetsDirectory)package.json</ClientAssetsRestoreInputs>
+
+		<ClientAssetsRestoreOutputs Condition="'$(ClientAssetsRestoreOutputs)' == ''">$(ClientAssetsDirectory)node_modules.package-lock.json</ClientAssetsRestoreOutputs>
+
+		<ClientAssetsRestoreCommand Condition="'$(ClientAssetsRestoreCommand)' == ''">npm install</ClientAssetsRestoreCommand>
+
+		<ClientAssetsBuildCommand Condition="'$(ClientAssetsBuildCommand)' == ''">npm run buildStaticWebAssetsCSS</ClientAssetsBuildCommand>
+
+		<ClientAssetsBuildOutputParameter Condition="'$(ClientAssetsBuildOutputParameter)' == ''">-o</ClientAssetsBuildOutputParameter>
+
+		<ClientAssetsRestoreInputs>$(MSBuildProjectFile);$(ClientAssetsRestoreInputs)</ClientAssetsRestoreInputs>
+	</PropertyGroup>
+
+	<Target Name="NpmInstall" Inputs="$(ClientAssetsRestoreInputs)" Outputs="$(ClientAssetsRestoreOutputs)">
+		<Message Importance="high" Text="Running $(ClientAssetsRestoreCommand)..." />
+		<Exec Command="$(ClientAssetsRestoreCommand)" WorkingDirectory="$(ClientAssetsDirectory)" />
 	</Target>
 
-	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-		<Copy SourceFiles="README.md"
-			  DestinationFiles="$(ProjectDir)README.md" />
+	<ItemGroup>
+		<ClientAssetsInputs Include="components\**\*.scss;styles\**\*.scss;" Exclude="$(DefaultItemExcludes)" />
+	</ItemGroup>
+
+	<Target Name="NpmRunBuild" DependsOnTargets="NpmInstall" BeforeTargets="AssignTargetPaths" Inputs="@(ClientAssetsInputs)" Outputs="$(ClientAssetsDirectory)\clientassetsbuild.complete.txt">
+		<Exec Command="$(ClientAssetsBuildCommand)" WorkingDirectory="$(ClientAssetsDirectory)" />
+
+		<ItemGroup>
+			<_ClientAssetsBuildOutput Include="staticassets\material.blazor.css;staticassets\material.blazor.min.css;staticassets\material-components-web.css;staticassets\material-components-web.min.css"></_ClientAssetsBuildOutput>
+			<Content Include="@(_ClientAssetsBuildOutput)" Link="wwwroot%(_ClientAssetsBuildOutput.RecursiveDir)%(_ClientAssetsBuildOutput.FileName)%(_ClientAssetsBuildOutput.Extension)" />
+			<FileWrites Include="@(_ClientAssetsBuildOutput)" />
+			<FileWrites Include="$(IntermediateOutputPath)clientassetsbuild.complete.txt" />
+		</ItemGroup>
+
+		<WriteLinesToFile File="$(ClientAssetsDirectory)clientassetsbuild.complete.txt" Lines="@(_ClientAssetsBuildOutput)" />
 	</Target>
-	-->
-	
+
 </Project>

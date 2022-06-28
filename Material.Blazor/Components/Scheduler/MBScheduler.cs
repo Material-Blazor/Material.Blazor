@@ -591,6 +591,7 @@ namespace Material.Blazor
 
         private async Task HandleDragOver(DragEventArgs dea)
         {
+            await Task.CompletedTask;
             //dropClass = "";
 
             //if (AllowedStatuses != null && !AllowedStatuses.Contains(Container.Payload.Status)) return;

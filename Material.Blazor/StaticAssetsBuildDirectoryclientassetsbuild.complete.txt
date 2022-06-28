@@ -1,0 +1,12 @@
+staticassets\material.blazor.css
+staticassets\material.blazor.min.css
+staticassets\material-components-web.css
+staticassets\material-components-web.min.css
+staticassets\material.blazor.css
+staticassets\material.blazor.min.css
+staticassets\material-components-web.css
+staticassets\material-components-web.min.css
+staticassets\material.blazor.css
+staticassets\material.blazor.min.css
+staticassets\material-components-web.css
+staticassets\material-components-web.min.css
