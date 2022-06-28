@@ -292,7 +292,7 @@
 			<_ClientAssetsBuildOutput Include="staticassets\material.blazor.css;staticassets\material.blazor.min.css;staticassets\material-components-web.css;staticassets\material-components-web.min.css"></_ClientAssetsBuildOutput>
 			<Content Include="@(_ClientAssetsBuildOutput)" Link="wwwroot%(_ClientAssetsBuildOutput.RecursiveDir)%(_ClientAssetsBuildOutput.FileName)%(_ClientAssetsBuildOutput.Extension)" />
 			<FileWrites Include="@(_ClientAssetsBuildOutput)" />
-			<FileWrites Include="$(IntermediateOutputPath)clientassetsbuild.complete.txt" />
+			<FileWrites Include="$(ClientAssetsDirectory)clientassetsbuild.complete.txt" />
 		</ItemGroup>
 
 		<WriteLinesToFile File="$(ClientAssetsDirectory)clientassetsbuild.complete.txt" Lines="@(_ClientAssetsBuildOutput)" />
