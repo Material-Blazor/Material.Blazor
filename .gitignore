@@ -343,6 +343,7 @@ healthchecksdb
 **/Material.Blazor/wwwroot/*.*
 **/Material.Blazor.Website/wwwroot/css/*.*
 **/Material.Blazor/StaticAssets/*.*
+**/Material.Blazor/StaticAssetsBuildDirectory/*.js
 **/Material.Blazor.Website/StaticAssets/css/*.*
 
 # DocFx tool

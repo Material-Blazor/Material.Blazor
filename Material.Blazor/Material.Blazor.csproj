@@ -46,7 +46,6 @@
 		<!--Keep these four Removes-->
 		<Content Remove="package-lock.json" />
 		<Content Remove="package.json" />
-		<Content Remove="tsconfig.json" />
 		<Content Remove="wwwroot\intermediate.js" />
 	</ItemGroup>
 
@@ -97,7 +96,7 @@
 	</ItemGroup>
 
 	<PropertyGroup>
-		<ClientAssetsDirectory Condition="'$(ClientAssetsDirectory)' == ''">StaticAssetsBuildDirectory</ClientAssetsDirectory>
+		<ClientAssetsDirectory Condition="'$(ClientAssetsDirectory)' == ''">.</ClientAssetsDirectory>
 
 		<ClientAssetsRestoreInputs Condition="'$(ClientAssetsRestoreInputs)' == ''">$(ClientAssetsDirectory)package-lock.json;$(ClientAssetsDirectory)package.json</ClientAssetsRestoreInputs>
 
@@ -105,7 +104,7 @@
 
 		<ClientAssetsRestoreCommand Condition="'$(ClientAssetsRestoreCommand)' == ''">npm install</ClientAssetsRestoreCommand>
 
-		<ClientAssetsBuildCommand Condition="'$(ClientAssetsBuildCommand)' == ''">npm run buildStaticWebAssetsCSS</ClientAssetsBuildCommand>
+		<ClientAssetsBuildCommand Condition="'$(ClientAssetsBuildCommand)' == ''">npm run buildStaticWebAssets</ClientAssetsBuildCommand>
 
 		<ClientAssetsBuildOutputParameter Condition="'$(ClientAssetsBuildOutputParameter)' == ''">-o</ClientAssetsBuildOutputParameter>
 
@@ -124,41 +123,37 @@
 	</Target>
 
 	<ItemGroup>
-		<ClientAssetsInputs Include="components\**\*.scss;styles\**\*.scss;" Exclude="$(DefaultItemExcludes)" />
+		<ClientAssetsInputs Include="components\**\*.scss;styles\**\*.scss;components\**\*.ts;Scripts\**\*.ts" Exclude="$(DefaultItemExcludes)" />
 	</ItemGroup>
 
-	<Target Name="ClientAssetsBuild"
-			Condition="'$(ShouldRunClientAssetsBuild)' == 'true'"
-			DependsOnTargets="ClientAssetsRestore"
-			BeforeTargets="AssignTargetPaths" 
-			Inputs="@(ClientAssetsInputs)"
-			Outputs="$(IntermediateOutputPath)clientassetsbuild.complete.txt">
+	<ItemGroup>
+	  <Compile Remove="StaticAssetsBuildDirectory\**" />
+	  <Content Remove="StaticAssetsBuildDirectory\**" />
+	  <EmbeddedResource Remove="StaticAssetsBuildDirectory\**" />
+	  <None Remove="StaticAssetsBuildDirectory\**" />
+	</ItemGroup>
+
+	<Target Name="ClientAssetsBuild" Condition="'$(ShouldRunClientAssetsBuild)' == 'true'" DependsOnTargets="ClientAssetsRestore" BeforeTargets="AssignTargetPaths" Inputs="@(ClientAssetsInputs)" Outputs="$(IntermediateOutputPath)clientassetsbuild.complete.txt">
 
 		<PropertyGroup>
 			<_ClientAssetsOutputFullPath>$([System.IO.Path]::GetFullPath('$(ClientAssetsDirectory)'))/</_ClientAssetsOutputFullPath>
 		</PropertyGroup>
 
-		<Exec Command="$(ClientAssetsBuildCommand)"
-			  WorkingDirectory="$(ClientAssetsDirectory)" />
+		<Exec Command="$(ClientAssetsBuildCommand)" WorkingDirectory="$(ClientAssetsDirectory)" />
 
 		<ItemGroup>
 			<_ClientAssetsBuildOutput Include="$(ClientAssetsDirectory)**"></_ClientAssetsBuildOutput>
 		</ItemGroup>
 
-		<WriteLinesToFile File="$(IntermediateOutputPath)clientassetsbuild.complete.txt" Lines="@(_ClientAssetsBuildOutput)"  />
+		<WriteLinesToFile File="$(IntermediateOutputPath)clientassetsbuild.complete.txt" Lines="@(_ClientAssetsBuildOutput)" />
 	</Target>
 
-	<Target Name="DefineClientAssets"
-			AfterTargets="ClientAssetsBuild"
-			DependsOnTargets="ResolveStaticWebAssetsConfiguration">
+	<Target Name="DefineClientAssets" AfterTargets="ClientAssetsBuild" DependsOnTargets="ResolveStaticWebAssetsConfiguration">
 		<ItemGroup>
 			<FileWrites Include="@(_ClientAssetsBuildOutput)" />
 			<FileWrites Include="$(IntermediateOutputPath)clientassetsbuild.complete.txt" />
 
-			<Content
-			  Condition="'$(TargetFramework)' != 'net6.0'"
-			  Include="@(_ClientAssetsBuildOutput)"
-			  Link="wwwroot\%(_ClientAssetsBuildOutput.RecursiveDir)\%(_ClientAssetsBuildOutput.FileName)%(_ClientAssetsBuildOutput.Extension)" />
+			<Content Condition="'$(TargetFramework)' != 'net6.0'" Include="@(_ClientAssetsBuildOutput)" Link="wwwroot\%(_ClientAssetsBuildOutput.RecursiveDir)\%(_ClientAssetsBuildOutput.FileName)%(_ClientAssetsBuildOutput.Extension)" />
 
 		</ItemGroup>
 
@@ -167,15 +162,14 @@
       the ability to consume them from project references. As a workaround, we are using the Task directly on this package, to make sure this scenario works. In a future
       release we will address this by aligning DiscoverStaticWebAssets behavior with DefineStaticWebAssets to follow the same heuristics for determining the content root.
     -->
-		<DefineStaticWebAssets Condition="'$(TargetFramework)' == 'net6.0'"
-		  CandidateAssets="@(_ClientAssetsBuildOutput)"
-		  SourceId="$(PackageId)"
-		  SourceType="Computed"
-		  ContentRoot="$(_ClientAssetsOutputFullPath)"
-		  BasePath="$(StaticWebAssetBasePath)">
+		<DefineStaticWebAssets Condition="'$(TargetFramework)' == 'net6.0'" CandidateAssets="@(_ClientAssetsBuildOutput)" SourceId="$(PackageId)" SourceType="Computed" ContentRoot="$(_ClientAssetsOutputFullPath)" BasePath="$(StaticWebAssetBasePath)">
 			<Output TaskParameter="Assets" ItemName="StaticWebAsset" />
 		</DefineStaticWebAssets>
 
 	</Target>
+
+	<ItemGroup>
+	  <ClientAssetsInputs Remove="StaticAssetsBuildDirectory\**" />
+	</ItemGroup>
 
 </Project>
