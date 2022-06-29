@@ -126,13 +126,6 @@
 		<ClientAssetsInputs Include="components\**\*.scss;styles\**\*.scss;components\**\*.ts;Scripts\**\*.ts" Exclude="$(DefaultItemExcludes)" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Compile Remove="StaticAssetsBuildDirectory\**" />
-	  <Content Remove="StaticAssetsBuildDirectory\**" />
-	  <EmbeddedResource Remove="StaticAssetsBuildDirectory\**" />
-	  <None Remove="StaticAssetsBuildDirectory\**" />
-	</ItemGroup>
-
 	<Target Name="ClientAssetsBuild" Condition="'$(ShouldRunClientAssetsBuild)' == 'true'" DependsOnTargets="ClientAssetsRestore" BeforeTargets="AssignTargetPaths" Inputs="@(ClientAssetsInputs)" Outputs="$(IntermediateOutputPath)clientassetsbuild.complete.txt">
 
 		<PropertyGroup>

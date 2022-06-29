@@ -16,7 +16,7 @@ module.exports = {
 
     output: {
         filename: "intermediate.js",
-        path: path.resolve(__dirname, 'StaticAssetsBuildDirectory'),
+        path: path.resolve(__dirname, 'StaticAssets'),
     },
 
     resolve: {
