@@ -68,8 +68,8 @@
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
 		</None>
-		<None Include="StaticAssetsBuildDirectory\package-lock.json" />
-		<None Include="StaticAssetsBuildDirectory\package.json" />
+		<None Include=".\package-lock.json" />
+		<None Include=".\package.json" />
 		<None Include="tsconfig.json" />
 	</ItemGroup>
 
@@ -160,9 +160,5 @@
 		</DefineStaticWebAssets>
 
 	</Target>
-
-	<ItemGroup>
-	  <ClientAssetsInputs Remove="StaticAssetsBuildDirectory\**" />
-	</ItemGroup>
 
 </Project>
