@@ -9,7 +9,7 @@ title: ReleaseNotes
 Released 2022-07-04
 
 **Updates**
-- Remove CSPROJ deletion of extraneous npm files from `@material/segmented-button` and `@material/tooltip`.
+- Remove CSPROJ deletion of extraneous `node_modules` files from `@material/segmented-button` and `@material/tooltip`.
 
 **New components**
 
