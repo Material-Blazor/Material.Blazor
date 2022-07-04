@@ -4,6 +4,21 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [3.0.0-preview.5](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.5)
+
+Released 2022-07-05
+
+**Updates**
+- Update Material Icons CSS references to latest standard.
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
 #### [3.0.0-preview.4](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.4)
 
 Released 2022-06-25
