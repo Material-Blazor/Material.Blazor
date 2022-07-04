@@ -4,9 +4,24 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [3.0.0-preview.6](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.6)
+
+Released 2022-07-04
+
+**Updates**
+- Remove CSPROJ deletion of extraneous npm files from `@material/segmented-button` and `@material/tooltip`.
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
 #### [3.0.0-preview.5](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.5)
 
-Released 2022-07-05
+Released 2022-07-04
 
 **Updates**
 - Update Material Icons CSS references to latest standard.
