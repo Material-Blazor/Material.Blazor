@@ -345,6 +345,9 @@
       "version": ""
     },
     {
+      "log_codes": [
+        "DuplicateUids"
+      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Grid/MBGrid.md",
       "output": {
@@ -561,9 +564,6 @@
       "version": ""
     },
     {
-      "log_codes": [
-        "DuplicateUids"
-      ],
       "type": "Conceptual",
       "source_relative_path": "Material.Blazor/Components/Scheduler/MBScheduler.md",
       "output": {
@@ -2576,7 +2576,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/ReleaseNotes.html",
-          "hash": "4doEXbzTQtnGjHLHCRCSNuYKBNZypAyGa3vkmzw5ntE="
+          "hash": "+JeslCtMSxvqQdCQ3HY8V2HPdqDhRMsGolvJbxfi05s="
         }
       },
       "is_incremental": false,
