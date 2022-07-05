@@ -43,7 +43,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<!--Keep these four Removes-->
+		<!--Keep these three Removes-->
 		<Content Remove="package-lock.json" />
 		<Content Remove="package.json" />
 		<Content Remove="wwwroot\intermediate.js" />
@@ -81,6 +81,7 @@
 
 	<ItemGroup>
 		<Folder Include="StaticAssets\" />
+		<Folder Include="wwwroot\" />
 	</ItemGroup>
 
 
