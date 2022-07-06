@@ -43,10 +43,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<!--Keep these three Removes-->
+		<!--Keep these two Removes-->
 		<Content Remove="package-lock.json" />
 		<Content Remove="package.json" />
-		<Content Remove="wwwroot\intermediate.js" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
