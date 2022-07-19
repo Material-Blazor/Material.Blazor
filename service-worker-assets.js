@@ -49,7 +49,7 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-bsHsC519yPX+KrBqlECZ6WxDtUuA10ab2y\/2uHukTvI=",
+      "hash": "sha256-C4C\/UhvPly++u\/KIv0rHSgjB6PahXI+w31dEUlLEs5c=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -57,15 +57,15 @@
       "url": "_framework\/GoogleAnalytics.Blazor.dll"
     },
     {
-      "hash": "sha256-pvo2nuH1dAbZrOU36m+SlxzWZ9fX\/tnK7Vb7Qpudl48=",
+      "hash": "sha256-oeiUm\/73dwndi3s81C9AzpSjBg642Yy8mgukuSdxy8Y=",
       "url": "_framework\/Material.Blazor.dll"
     },
     {
-      "hash": "sha256-PC07Ia7FbP7c76P+wxzuYfyYBuh0j5Sk728OW5\/hbKY=",
+      "hash": "sha256-A5OS9sHsBKc4n9k2XEnMYGq22OoaCYHXnIwmg09k0ug=",
       "url": "_framework\/Material.Blazor.Website.dll"
     },
     {
-      "hash": "sha256-WA6niQZoQeX8Cwp2rbCShgR4h36+PshrtEsR1diny8w=",
+      "hash": "sha256-xtv5G8g8vo217Czms14iR2iq8IrYC4x18vzHfObKWs4=",
       "url": "_framework\/Material.Blazor.Website.WebAssembly.dll"
     },
     {
@@ -495,31 +495,7 @@
     {
       "hash": "sha256-VxoaUEKFgOd7P1b6B1HSQFldeFO+FiEFDiee299J2q4=",
       "url": "_content\/Material.Blazor.Website\/videos\/coverr-someone-is-checking-emails-there_s-an-old-globe-on-the-table-0186.mp4"
-    },
-    {
-      "hash": "sha256-v9mIOUNMVNK7oH2yumZpu22NaM7a4vbK8NS5DJ3gYX8=",
-      "url": "_content\/Material.Blazor\/material-components-web.css"
-    },
-    {
-      "hash": "sha256-mbdPayT\/G+neUg45yU2eW3WibsBzPDGGKnn8U9MAHbc=",
-      "url": "_content\/Material.Blazor\/material-components-web.min.css"
-    },
-    {
-      "hash": "sha256-cP2NpWU5RMtGnGqq5rm9\/5Oj1wLX59zKepxMyc5P6m8=",
-      "url": "_content\/Material.Blazor\/material.blazor.css"
-    },
-    {
-      "hash": "sha256-EjMdqrZIJlQ\/qVDLLMn4aevTHGqlYrqIA\/fBlJbAQdY=",
-      "url": "_content\/Material.Blazor\/material.blazor.js"
-    },
-    {
-      "hash": "sha256-wOVC\/zkbq5wx+o8fsnWCKP+SLGXo4HUy2b1HrLjYpAo=",
-      "url": "_content\/Material.Blazor\/material.blazor.min.css"
-    },
-    {
-      "hash": "sha256-c9ywa20MOZBw93d16xoRAy2nNhlxt0aUvBW\/sDI+rfg=",
-      "url": "_content\/Material.Blazor\/material.blazor.min.js"
     }
   ],
-  "version": "xY1rsLiQ"
+  "version": "yKhzhmi1"
 };

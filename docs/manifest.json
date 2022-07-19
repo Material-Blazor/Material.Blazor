@@ -817,23 +817,11 @@
     },
     {
       "type": "Conceptual",
-      "source_relative_path": "Material.Blazor/README.md",
-      "output": {
-        ".html": {
-          "relative_path": "Material.Blazor/README.html",
-          "hash": "Eegf00U9iOh6uIvN6UrPg/yjMHLW0m3d9mqBjzgMt9k="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
       "source_relative_path": "README.md",
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "xSR4Jnfbedn0lwpA4EPD/8b0iawyB1Dgf83mH9lSW1c="
+          "hash": "FRejP4iLzMVSaIzrg4dch/zU5r0uQlEIbOkcQTaEV1U="
         }
       },
       "is_incremental": false,
@@ -857,7 +845,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.HashCode.html",
-          "hash": "nmtAk21xWN4Kbprt330bVHNBD9N6tizOsitnMpi5qbI="
+          "hash": "MhxpvTHdv4D8xMewc93R3uDiT3Shnx35W7gHPJmXgRk="
         }
       },
       "is_incremental": false,
@@ -1505,7 +1493,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBGrid-1.html",
-          "hash": "A0v5dEsXt18i1tPkxI8XkYeNOeFrPeccI0gHvCEFplw="
+          "hash": "zS+Mzk5nlC4taCTmsqtodWAn/xkCkycB1b/7KNCy1xw="
         }
       },
       "is_incremental": false,
@@ -1541,7 +1529,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBGridMT-1.html",
-          "hash": "pwqVvmHgp8xS1ao3eG6MiZiYk24B5WfEzX/otRIp6FY="
+          "hash": "nyiG837as0be1GMCIT6QB8dgxd67EpxhZf5JadL3+GU="
         }
       },
       "is_incremental": false,
@@ -1973,7 +1961,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBScheduler.ClientBoundingRect.html",
-          "hash": "I4M9rjOYO4l5/3N7JgE8UWl8Eu4W4AGkCjA3ySIWG1w="
+          "hash": "l64lDd5BG0Gctrlf0iAJSYNQ6nP1dFKbOyCeRUP0BW4="
         }
       },
       "is_incremental": false,
@@ -1985,7 +1973,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBScheduler.DragEndInfo.html",
-          "hash": "jNcP4EdxD9ltycX3bpGPw4xVQiynpHCYkoSgY+NzcXQ="
+          "hash": "u4O287R0tsI+uvimEiEhUVod4PSW87tEn+dks+LlEwo="
         }
       },
       "is_incremental": false,
@@ -1997,7 +1985,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBScheduler.HashCode2.html",
-          "hash": "i4nNwnQ2/LFu2go2/2OatPUz6wIhuhg/c6kVnrJZdSA="
+          "hash": "yVr3dio9soF3alubJUCtP5SYeXDhhlAtECNgdI1Ssng="
         }
       },
       "is_incremental": false,
@@ -2009,7 +1997,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Material.Blazor.MBScheduler.html",
-          "hash": "CdCXTJbjDQVlFRSycGtAKhW07DGQFh/l6pi1nZAnx/A="
+          "hash": "HVZK7hg9QT7u5a2AVB+dSs8XHg0sLRVmfP16zTWmA30="
         }
       },
       "is_incremental": false,
@@ -2576,7 +2564,7 @@
       "output": {
         ".html": {
           "relative_path": "articles/ReleaseNotes.html",
-          "hash": "sA3fBnRNikXen+jVg2EEyRpIzdBAL0nTSAxWvRbf6U4="
+          "hash": "HdisvSBVTFZ+jX9S+5wsMvW4pLnZM/008yi4tvvV7SY="
         }
       },
       "is_incremental": false,
@@ -2883,7 +2871,7 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": false,
           "incrementalPhase": "build",
-          "total_file_count": 84,
+          "total_file_count": 83,
           "skipped_file_count": 0
         },
         "ManagedReferenceDocumentProcessor": {
