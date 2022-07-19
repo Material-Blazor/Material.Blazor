@@ -1,5 +1,4 @@
-#define GridLogging
-
+//
 // ToDo:
 //      If we ever have functionality to 'move' rows we need to revisit the
 //      Steve Sanderson 'best practices' for sequence numbers
@@ -81,7 +80,7 @@ namespace Material.Blazor
         /// LogIdentification is added to logging message to allow differentiation between multiple grids
         /// on a single page or component
         /// </summary>
-        [Parameter] public string LogIdentification { get; set; } = null;
+        [Parameter] public string LogIdentification { get; set; } = "";
 
 
         /// <summary>
@@ -189,16 +188,12 @@ namespace Material.Blazor
         #region BuildRenderTree
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
-#if GridLogging
-            GridLogDebug("BuildRenderTree entered; IsSimpleRender == " + IsSimpleRender.ToString());
-            GridLogDebug("                         HasCompletedFullRender == " + HasCompletedFullRender.ToString());
-            GridLogDebug("                         ShouldRenderValue == " + ShouldRenderValue.ToString());
-#endif
+            LoggingService.LogDebug("[" + LogIdentification + "]  BuildRenderTree entered; IsSimpleRender == " + IsSimpleRender.ToString());
+            LoggingService.LogDebug("[" + LogIdentification + "]                           HasCompletedFullRender == " + HasCompletedFullRender.ToString());
+            LoggingService.LogDebug("[" + LogIdentification + "]                           ShouldRenderValue == " + ShouldRenderValue.ToString());
             if (IsSimpleRender || (!ShouldRenderValue))
             {
-#if GridLogging
-                GridLogDebug("                (Simple) entered");
-#endif
+                LoggingService.LogDebug("[" + LogIdentification + "]                  (Simple) entered");
                 // We are going to render a DIV and nothing else
                 // We need to get into OnAfterRenderAsync so that we can use JS interop to measure
                 // the text
@@ -206,15 +201,11 @@ namespace Material.Blazor
                 builder.OpenElement(1, "div");
                 builder.CloseElement();
                 HasCompletedFullRender = false;
-#if GridLogging
-                GridLogDebug("                (Simple) leaving");
-#endif
+                LoggingService.LogDebug("[" + LogIdentification + "]                  (Simple) leaving");
             }
             else
             {
-#if GridLogging
-                GridLogDebug("                (Full) entered");
-#endif
+                LoggingService.LogDebug("[" + LogIdentification + "]                  (Full) entered");
 
                 //
                 //  Using the column cfg and column data, render our list. Here is the layout.
@@ -515,14 +506,10 @@ namespace Material.Blazor
                 }
 
                 HasCompletedFullRender = true;
-#if GridLogging
-                GridLogDebug("                (Full) leaving");
-#endif
+                LoggingService.LogDebug("[" + LogIdentification + "]                  (Full) leaving");
             }
-#if GridLogging
-            GridLogDebug("                leaving; IsSimpleRender == " + IsSimpleRender.ToString());
-            GridLogDebug("                leaving; HasCompletedFullRender == " + HasCompletedFullRender.ToString());
-#endif
+            LoggingService.LogDebug("[" + LogIdentification + "]                  leaving; IsSimpleRender == " + IsSimpleRender.ToString());
+            LoggingService.LogDebug("[" + LogIdentification + "]                  leaving; HasCompletedFullRender == " + HasCompletedFullRender.ToString());
         }
         #endregion
 
@@ -564,40 +551,10 @@ namespace Material.Blazor
         }
         #endregion
 
-        #region GridLogging
-
-        private void GridLogDebug(string message)
-        {
-            if (string.IsNullOrWhiteSpace(LogIdentification))
-            {
-                LoggingService.LogDebug(message);
-            }
-            else
-            {
-                LoggingService.LogDebug("[" + LogIdentification + "] " + message);
-            }
-        }
-
-        private void GridLogTrace(string message)
-        {
-            if (string.IsNullOrWhiteSpace(LogIdentification))
-            {
-                LoggingService.LogTrace(message);
-            }
-            else
-            {
-                LoggingService.LogTrace("[" + LogIdentification + "] " + message);
-            }
-        }
-
-        #endregion
-
         #region GridSyncScroll
         protected async Task GridSyncScroll()
         {
-#if GridLogging
-            GridLogDebug("GridSyncScroll()");
-#endif
+            LoggingService.LogDebug("[" + LogIdentification + "]  GridSyncScroll()");
             await InvokeJsVoidAsync("MaterialBlazor.MBGrid.syncScrollByID", GridHeaderID, GridBodyID);
             //await InvokeVoidAsync("MaterialBlazor.MBGrid.syncScrollByRef", GridHeaderRef, GridBodyRef);
         }
@@ -696,7 +653,6 @@ namespace Material.Blazor
                     }
                 }
 
-#if GridLogging
                 if (LoggingService.CurrentLevel() <= (int)MBLoggingLevel.Debug)
                 {
                     var total = 0;
@@ -707,9 +663,9 @@ namespace Material.Blazor
                             total += c.Length;
                         }
                     }
-                    GridLogDebug("                   Measuring " + stringArrayBody.Length + " strings with a total size of " + total.ToString() + " bytes");
+                    LoggingService.LogDebug("[" + LogIdentification + "]                     Measuring " + stringArrayBody.Length + " strings with a total size of " + total.ToString() + " bytes");
                 }
-#endif
+
                 ColumnWidthArray = await JsRuntime.InvokeAsync<float[]>(
                         "MaterialBlazor.MBGrid.getTextWidths",
                         "mb-grid-body-td-measure",
@@ -739,12 +695,10 @@ namespace Material.Blazor
             {
                 await base.OnAfterRenderAsync(firstRender);
 
-#if GridLogging
-                GridLogDebug("OnAfterRenderAsync entered");
-                GridLogDebug("                   firstRender: " + firstRender.ToString());
-                GridLogDebug("                   IsSimpleRender: " + IsSimpleRender.ToString());
-                GridLogDebug("                   IsMeasurementNeeded: " + IsMeasurementNeeded.ToString());
-#endif
+                LoggingService.LogDebug("[" + LogIdentification + "]   entered");
+                LoggingService.LogDebug("[" + LogIdentification + "]                     firstRender: " + firstRender.ToString());
+                LoggingService.LogDebug("[" + LogIdentification + "]                     IsSimpleRender: " + IsSimpleRender.ToString());
+                LoggingService.LogDebug("[" + LogIdentification + "]                     IsMeasurementNeeded: " + IsMeasurementNeeded.ToString());
 
                 if (IsSimpleRender)
                 {
@@ -758,13 +712,10 @@ namespace Material.Blazor
 
                     if (Measurement == MB_Grid_Measurement.FitToData)
                     {
-#if GridLogging
-                        GridLogDebug("                   Calling MeasureWidthsAsync");
-#endif
+                        LoggingService.LogDebug("[" + LogIdentification + "]                     Calling MeasureWidthsAsync");
                         await MeasureWidthsAsync();
-#if GridLogging
-                        GridLogDebug("                   Returned from MeasureWidthsAsync");
-#endif
+                        LoggingService.LogDebug("[" + LogIdentification + "]                     Returned from MeasureWidthsAsync");
+
                         needsSHC = true;
                     }
                 }
@@ -775,9 +726,9 @@ namespace Material.Blazor
                 {
                     await InvokeAsync(StateHasChanged);
                 }
-#if GridLogging
-                GridLogDebug("                   about to release semaphore (OnAfterRenderAsync)");
-#endif
+
+                LoggingService.LogDebug("[" + LogIdentification + "]                     about to release semaphore (OnAfterRenderAsync)");
+
                 semaphoreSlim.Release();
             }
         }
@@ -786,28 +737,25 @@ namespace Material.Blazor
         #region OnInitializedAsync
         protected override async Task OnInitializedAsync()
         {
-#if GridLogging
             LoggingService.Configuration.LoggingLevel = MBLoggingLevel.Debug;
-            GridLogDebug("MBGrid.OnInitializedAsync entered");
-#endif
+            LoggingService.LogDebug("[" + LogIdentification + "]  MBGrid.OnInitializedAsync entered");
+
             await base.OnInitializedAsync();
 
             if (ColumnConfigurations == null)
             {
                 throw new System.Exception("MBGrid requires column configuration definitions.");
             }
-#if GridLogging
-            GridLogDebug("MBGrid.OnInitializedAsync completed");
-#endif
+
+            LoggingService.LogDebug("[" + LogIdentification + "]  MBGrid.OnInitializedAsync completed");
         }
         #endregion
 
         #region OnMouseClickInternal
         private Task OnMouseClickInternal(string newRowKey)
         {
-#if GridLogging
-            GridLogDebug("OnMouseClickInternal with HighlightSelectedRow:" + HighlightSelectedRow.ToString());
-#endif
+            LoggingService.LogDebug("[" + LogIdentification + "]  OnMouseClickInternal with HighlightSelectedRow:" + HighlightSelectedRow.ToString());
+
             if (newRowKey != SelectedKey)
             {
                 SelectedKey = newRowKey;
@@ -820,9 +768,8 @@ namespace Material.Blazor
         private int oldParameterHash { get; set; } = -1;
         public override Task SetParametersAsync(ParameterView parameters)
         {
-#if GridLogging
-            GridLogDebug("SetParametersAsync entry");
-#endif
+            LoggingService.LogDebug("[" + LogIdentification + "]  SetParametersAsync entry");
+
             semaphoreSlim.WaitAsync();
             try
             {
@@ -873,16 +820,13 @@ namespace Material.Blazor
                             SuppressHeader = (bool)parameter.Value;
                             break;
                         default:
-#if GridLogging
-                            GridLogTrace("MBGrid encountered an unknown parameter:" + parameter.Name);
-#endif
+                            LoggingService.LogTrace("[" + LogIdentification + "]  MBGrid encountered an unknown parameter:" + parameter.Name);
                             break;
                     }
                 }
 
-#if GridLogging
-                GridLogDebug("                   about to compute parameter hash");
-#endif
+                LoggingService.LogDebug("[" + LogIdentification + "]                     about to compute parameter hash");
+
                 HashCode newParameterHash;
 
                 if (HighlightSelectedRow)
@@ -923,9 +867,8 @@ namespace Material.Blazor
                 {
                     foreach (var kvp in GroupedOrderedData)
                     {
-#if GridLogging
-                        GridLogDebug("                   key == " + kvp.Key + " with " + kvp.Value.Count().ToString() + " rows");
-#endif
+                        LoggingService.LogDebug("[" + LogIdentification + "]                     key == " + kvp.Key + " with " + kvp.Value.Count().ToString() + " rows");
+
                         foreach (var rowValues in kvp.Value)
                         {
                             var rowKey = KeyExpression(rowValues.Value).ToString();
@@ -994,9 +937,7 @@ namespace Material.Blazor
                     }
                 }
 
-#if GridLogging
-                GridLogDebug("                   hash == " + ((int)newParameterHash).ToString());
-#endif
+                LoggingService.LogDebug("[" + LogIdentification + "]                     hash == " + ((int)newParameterHash).ToString());
                 if (newParameterHash == oldParameterHash)
                 {
                     // This is a call to ParametersSetAsync with what in all likelyhood is the same
@@ -1010,9 +951,8 @@ namespace Material.Blazor
                     {
                         ShouldRenderValue = true;
                     }
-#if GridLogging
-                    GridLogDebug("                   EQUAL hash");
-#endif
+
+                    LoggingService.LogDebug("[" + LogIdentification + "]                     EQUAL hash");
                 }
                 else
                 {
@@ -1020,16 +960,13 @@ namespace Material.Blazor
                     IsSimpleRender = true;
                     IsMeasurementNeeded = true;
                     oldParameterHash = newParameterHash;
-#if GridLogging
-                    GridLogDebug("                   DIFFERING hash");
-#endif
+                    LoggingService.LogDebug("[" + LogIdentification + "]                     DIFFERING hash");
                 }
             }
             finally
             {
-#if GridLogging
-                GridLogDebug("                   about to release semaphore (SetParametersAsync)");
-#endif
+                LoggingService.LogDebug("[" + LogIdentification + "]                     about to release semaphore (SetParametersAsync)");
+
                 semaphoreSlim.Release();
             }
 
