@@ -4,6 +4,21 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [3.0.0-preview.7](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.7)
+
+Released 2022-07-19
+
+**Updates**
+- Removed setting of 'LoggingLevel' in MBGrid & MBScheduler.
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
 #### [3.0.0-preview.6](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.6)
 
 Released 2022-07-04

@@ -1,5 +1,3 @@
-#define SchedulerLogging
-
 using Material.Blazor.Internal;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
@@ -111,10 +109,8 @@ namespace Material.Blazor
         #region BuildRenderTree
         protected override void BuildRenderTree(RenderTreeBuilder builder)
         {
-#if SchedulerLogging
-            SchedulerLogDebug("BuildRenderTree entered; IsMeasurementCompleted == " + IsFirstMeasurementCompleted.ToString());
-            SchedulerLogDebug("                         ShouldRenderValue == " + ShouldRenderValue.ToString());
-#endif
+            LoggingService.LogDebug("BuildRenderTree entered; IsMeasurementCompleted == " + IsFirstMeasurementCompleted.ToString());
+            LoggingService.LogDebug("                         ShouldRenderValue == " + ShouldRenderValue.ToString());
 
             base.BuildRenderTree(builder);
             var rendSeq = 1;
@@ -342,7 +338,7 @@ namespace Material.Blazor
                             out var y,
                             out var h,
                             out var w);
-#if SchedulerLogging
+
                         var l =
                             "                         Appt: " +
                             appt.Title + " " +
@@ -352,8 +348,8 @@ namespace Material.Blazor
                             y.ToString() + "/" +
                             h.ToString() + "/" +
                             w.ToString() + "/";
-                        SchedulerLogDebug(l);
-#endif
+                        LoggingService.LogDebug(l);
+
                         appt.Height = h;
                         appt.RelativeX = x;
                         appt.RelativeY = y;
@@ -413,9 +409,7 @@ namespace Material.Blazor
                 {
                     builder.CloseElement(); // div class= style=
                 }
-#if SchedulerLogging
-                SchedulerLogDebug("                         BuildRenderTree completed");
-#endif
+                LoggingService.LogDebug("                         BuildRenderTree completed");
             }
         }
         #endregion
@@ -592,6 +586,7 @@ namespace Material.Blazor
         private async Task HandleDragOver(DragEventArgs dea)
         {
             await Task.CompletedTask;
+
             //dropClass = "";
 
             //if (AllowedStatuses != null && !AllowedStatuses.Contains(Container.Payload.Status)) return;
@@ -658,10 +653,8 @@ namespace Material.Blazor
                     col.Width = standardColumnWidth;
                 }
                 ColumnConfigurations[0].Width = timeWidth;
-#if SchedulerLogging
-                SchedulerLogDebug("Measured timeWidth: " + timeWidth.ToString());
-                SchedulerLogDebug("Measured standardColumnWidth: " + standardColumnWidth.ToString());
-#endif
+                LoggingService.LogDebug("Measured timeWidth: " + timeWidth.ToString());
+                LoggingService.LogDebug("Measured standardColumnWidth: " + standardColumnWidth.ToString());
             }
             else
             {
@@ -683,12 +676,10 @@ namespace Material.Blazor
                 {
                     AppointmentColumnWidth = (Convert.ToInt32(element2Array[1]) / 2) - 5;
                 }
-#if SchedulerLogging
-                SchedulerLogDebug("Measured LeftEdgeOfColumn1: " + LeftEdgeOfColumn1.ToString());
-                SchedulerLogDebug("Measured DayColumnWidth: " + DayColumnWidth.ToString());
-                SchedulerLogDebug("Measured FifteenMinuteHeight: " + FifteenMinuteHeight.ToString());
-                SchedulerLogDebug("Measured AppointmentColumnWidth: " + AppointmentColumnWidth.ToString());
-#endif
+                LoggingService.LogDebug("Measured LeftEdgeOfColumn1: " + LeftEdgeOfColumn1.ToString());
+                LoggingService.LogDebug("Measured DayColumnWidth: " + DayColumnWidth.ToString());
+                LoggingService.LogDebug("Measured FifteenMinuteHeight: " + FifteenMinuteHeight.ToString());
+                LoggingService.LogDebug("Measured AppointmentColumnWidth: " + AppointmentColumnWidth.ToString());
             }
         }
         #endregion
@@ -702,18 +693,15 @@ namespace Material.Blazor
             {
                 await base.OnAfterRenderAsync(firstRender);
 
-#if SchedulerLogging
-                SchedulerLogDebug("OnAfterRenderAsync entered");
-                SchedulerLogDebug("                   firstRender: " + firstRender.ToString());
-                SchedulerLogDebug("                   IsFirstMeasurementCompleted: " + IsFirstMeasurementCompleted.ToString());
-                SchedulerLogDebug("                   IsSecondMeasurementCompleted: " + IsSecondMeasurementCompleted.ToString());
-#endif
+                LoggingService.LogDebug("OnAfterRenderAsync entered");
+                LoggingService.LogDebug("                   firstRender: " + firstRender.ToString());
+                LoggingService.LogDebug("                   IsFirstMeasurementCompleted: " + IsFirstMeasurementCompleted.ToString());
+                LoggingService.LogDebug("                   IsSecondMeasurementCompleted: " + IsSecondMeasurementCompleted.ToString());
 
                 if (!IsFirstMeasurementCompleted)
                 {
-#if SchedulerLogging
-                    SchedulerLogDebug("                   Calling First MeasureKeyElementsAsync");
-#endif
+                    LoggingService.LogDebug("                   Calling First MeasureKeyElementsAsync");
+
                     await MeasureKeyElementsAsync(true);
 
                     needsSHC = true;
@@ -723,9 +711,8 @@ namespace Material.Blazor
                 {
                     if (!IsSecondMeasurementCompleted)
                     {
-#if SchedulerLogging
-                        SchedulerLogDebug("                   Calling Second MeasureKeyElementsAsync");
-#endif
+                        LoggingService.LogDebug("                   Calling Second MeasureKeyElementsAsync");
+
                         await MeasureKeyElementsAsync(false);
 
                         needsSHC = true;
@@ -739,9 +726,8 @@ namespace Material.Blazor
                 {
                     await InvokeAsync(StateHasChanged);
                 }
-#if SchedulerLogging
-                SchedulerLogDebug("                   about to release semaphore (OnAfterRenderAsync)");
-#endif
+
+                LoggingService.LogDebug("                   about to release semaphore (OnAfterRenderAsync)");
                 SemaphoreSlim.Release();
             }
         }
@@ -750,10 +736,9 @@ namespace Material.Blazor
         #region OnInitializedAsync
         protected override async Task OnInitializedAsync()
         {
-#if SchedulerLogging
             LoggingService.Configuration.LoggingLevel = MBLoggingLevel.Debug;
-            SchedulerLogDebug("MBSchedule.OnInitialized entered");
-#endif
+            LoggingService.LogDebug("MBSchedule.OnInitialized entered");
+
             await base.OnInitializedAsync();
 
             ValidateParameters();
@@ -767,36 +752,16 @@ namespace Material.Blazor
                 date += new TimeSpan(24, 0, 0);
             }
 
-#if SchedulerLogging
-            SchedulerLogDebug("MBSchedule.OnInitialized completed");
-#endif
+            LoggingService.LogDebug("MBSchedule.OnInitialized completed");
         }
-        #endregion
-
-        #region SchedulerLogging
-
-#if SchedulerLogging
-        private void SchedulerLogDebug(string message)
-        {
-            LoggingService.LogDebug(message);
-        }
-
-        private void SchedulerLogTrace(string message)
-        {
-            LoggingService.LogTrace(message);
-        }
-
-#endif
-
         #endregion
 
         #region SetParametersAsync
         private int oldParameterHash { get; set; } = -1;
         public override Task SetParametersAsync(ParameterView parameters)
         {
-#if SchedulerLogging
-            SchedulerLogDebug("SetParametersAsync entry");
-#endif
+            LoggingService.LogDebug("SetParametersAsync entry");
+
             SemaphoreSlim.WaitAsync();
             try
             {
@@ -1001,9 +966,8 @@ namespace Material.Blazor
             }
             finally
             {
-#if SchedulerLogging
-                SchedulerLogDebug("                   about to release semaphore (SetParametersAsync)");
-#endif
+                LoggingService.LogDebug("                   about to release semaphore (SetParametersAsync)");
+
                 SemaphoreSlim.Release();
             }
 
