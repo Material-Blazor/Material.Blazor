@@ -736,7 +736,6 @@ namespace Material.Blazor
         #region OnInitializedAsync
         protected override async Task OnInitializedAsync()
         {
-            LoggingService.Configuration.LoggingLevel = MBLoggingLevel.Debug;
             LoggingService.LogDebug("MBSchedule.OnInitialized entered");
 
             await base.OnInitializedAsync();

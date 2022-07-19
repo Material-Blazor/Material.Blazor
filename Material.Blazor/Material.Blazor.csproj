@@ -3,9 +3,13 @@
 	<PropertyGroup>
 		<!--<TargetFrameworks>net6.0;net7.0</TargetFrameworks>-->
 		<TargetFrameworks>net6.0</TargetFrameworks>
+
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+
 		<VersionPrefix>3.0.0</VersionPrefix>
 		<VersionSuffix>aaa1</VersionSuffix>
+
+		<IsPackable>true</IsPackable>
 		<PackageLicenseFile></PackageLicenseFile>
 		<Authors>Simon Ziegler of Dioptra and Mark Stega of Optimium Health</Authors>
 		<Company>Material.Blazor</Company>
@@ -31,10 +35,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="..\README.md" Pack="true" PackagePath="\" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<SupportedPlatform Include="browser" />
 	</ItemGroup>
 
@@ -43,11 +43,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<!--Keep these four Removes-->
+		<!--Keep these two Removes-->
 		<Content Remove="package-lock.json" />
 		<Content Remove="package.json" />
-		<Content Remove="tsconfig.json" />
-		<Content Remove="wwwroot\intermediate.js" />
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
@@ -58,15 +56,19 @@
 	</ItemGroup>
 
 	<ItemGroup Condition=" '$(TargetFramework)' == 'net7.0' ">
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.0-preview.3.*" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.0-preview.3.*" />
-		<PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0-preview.3.*" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0-preview.3.*" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.0-preview.6.*" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.0-preview.6.*" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0-preview.6.*" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0-preview.6.*" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="package-lock.json" />
-		<None Include="package.json" />
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include=".\package-lock.json" />
+		<None Include=".\package.json" />
 		<None Include="tsconfig.json" />
 	</ItemGroup>
 
@@ -77,170 +79,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<InputStaticAssetsScripts Include="components\**\*.ts;scripts\**\*.ts" />
-		<OutputStaticAssetsScripts Include="wwwroot\material.blazor.js;wwwroot\material.blazor.min.js" />
-		<!--Keep this Removes-->
-		<Content Remove="@(OutputStaticAssetsScripts)" />
-		<Content Include="@(OutputStaticAssetsScripts)" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<InputStaticAssetsStyles Include="components\**\*.scss;styles\**\*.scss;" />
-		<OutputStaticAssetsStyles Include="wwwroot\material.blazor.css;wwwroot\material.blazor.min.css;wwwroot\material-components-web.css;wwwroot\material-components-web.min.css" />
-		<!--Keep this Removes-->
-		<Content Remove="@(OutputStaticAssetsStyles)" />
-		<Content Include="@(OutputStaticAssetsStyles)" />
-	</ItemGroup>
-
-	<ItemGroup>
+		<Folder Include="StaticAssets\" />
 		<Folder Include="wwwroot\" />
-		<Folder Include="Components\Carousel\" />
 	</ItemGroup>
 
-	<Target Name="CheckIfNpmExists" BeforeTargets="PreBuildEvent">
-		<Exec Command="npm --version" ContinueOnError="true" StandardOutputImportance="low" StandardErrorImportance="low" LogStandardErrorAsError="false" IgnoreExitCode="true">
-			<Output TaskParameter="ExitCode" PropertyName="NpmReturnCode" />
-		</Exec>
-	</Target>
 
-	<Target Name="ErrorOutput" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' != '0' ">
-		<Message Importance="high" Text="**********************************************************************************" />
-		<Message Importance="high" Text="**********************************************************************************" />
-		<Message Importance="high" Text="**********************************************************************************" />
-		<Message Importance="high" Text="***** 'npm --version' return code was $(NpmReturnCode)" />
-		<Message Importance="high" Text="CSS and JS not built due to the lack of a proper development environment" />
-		<Message Importance="high" Text="See https://material-blazor.com/docs/articles/DevelopmentEnvironment.html" />
-		<Message Importance="high" Text="If the return code is 1, check package.json and package-lock.json" />
-		<Message Importance="high" Text="If the return code is 9009, npm is not present" />
-		<Message Importance="high" Text="For other non-zero return codes, check npm documentation" />
-		<Message Importance="high" Text="**********************************************************************************" />
-		<Message Importance="high" Text="**********************************************************************************" />
-		<Message Importance="high" Text="**********************************************************************************" />
-	</Target>
-
-	<UsingTask TaskName="DeduplicateLicenseHeaders" TaskFactory="RoslynCodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
-		<ParameterGroup>
-			<SourceFile ParameterType="System.String" Required="true" />
-		</ParameterGroup>
-		<Task>
-			<Using Namespace="System" />
-			<Using Namespace="System.Collections.Generic" />
-			<Using Namespace="System.IO" />
-			<Using Namespace="System.Linq" />
-			<Using Namespace="System.Text" />
-			<Using Namespace="System.Text.RegularExpressions" />
-			<Code Type="Fragment" Language="cs">
-				<![CDATA[
-          var input = File.ReadAllText(SourceFile);
-          HashSet<string> knownLicenseHeaders = new();
-          int startIndex = 0;
-          while (true)
-          {
-            // search for opening multi-line comment token
-            var nextIndex = input.IndexOf("/*", startIndex);
-            if (nextIndex < 0)
-            {
-              break;
-            }
-            if (nextIndex == 0 || input[nextIndex - 1] != '\\')
-            {
-              // search matching closing comment token
-              var closingIndex = input.IndexOf("*/", nextIndex);
-              if (closingIndex < 0)
-              {
-                 throw new Exception("A multi-line comment wasn't closed");
-              }
-              closingIndex += 2; // the closing token is two characters long
-              var license = input.Substring(nextIndex, closingIndex - nextIndex);
-              if (knownLicenseHeaders.Add(license))
-              {
-                // this is a new one! let's not replace, we just advance the cursor
-                startIndex = closingIndex;
-              }
-              else
-              {
-                // we've seen this one before, so we rip it out here.
-                input = input.Substring(0, nextIndex) + input.Substring(closingIndex);
-                // we don't advance the cursor, because we just ripped out some text.
-              }
-            }
-            else
-            {
-              // this is not an actual comment token, because the slash is escaped
-              startIndex = nextIndex + 1;
-            }
-					}
-          // remove empty lines
-          input = input.Replace("\n\n", "\n").Replace("\n\n", "\n").Replace("\n\n", "\n");
-          File.WriteAllText(SourceFile, input);
-                ]]>
-			</Code>
-		</Task>
-	</UsingTask>
-
-	<ItemGroup>
-		<UpToDateCheckInput Include="@(InputStaticAssetsScripts)" Set="Scripts" />
-		<UpToDateCheckOutput Include="@(OutputStaticAssetsScripts)" Set="Scripts" />
-		<UpToDateCheckInput Include="@(InputStaticAssetsStyles)" Set="Styles" />
-		<UpToDateCheckOutput Include="@(OutputStaticAssetsStyles)" Set="Styles" />
-	</ItemGroup>
-
-	<Target Name="BuildScripts" Inputs="@(InputStaticAssetsScripts)" Outputs="@(OutputStaticAssetsScripts)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
-		<Message Importance="high" Text="***** MakeDir wwwroot (M.B Scripts)" />
-		<MakeDir Directories="wwwroot" />
-
-		<Message Importance="high" Text="***** npm install" />
-		<Exec Command="npm install" />
-
-		<!-- The files that were deleted were incorrectly shipped with an earlier version of material-components-web (12.0.0?). Deletion no longer required -->
-		<!--<Delete Files="node_modules\@material\segmented-button\segment\adapter.ts;node_modules\@material\segmented-button\segment\component.ts;node_modules\@material\segmented-button\segment\constants.ts;node_modules\@material\segmented-button\segment\foundation.ts;node_modules\@material\segmented-button\segment\index.ts" />
-		<Delete Files="node_modules\@material\segmented-button\segmented-button\adapter.ts;node_modules\@material\segmented-button\segmented-button\component.ts;node_modules\@material\segmented-button\segmented-button\constants.ts;node_modules\@material\segmented-button\segmented-button\foundation.ts;node_modules\@material\segmented-button\segmented-button\index.ts" />
-		<Delete Files="node_modules\@material\tooltip\component.ts;node_modules\@material\tooltip\constants.ts;node_modules\@material\tooltip\foundation.ts" />-->
-
-		<Message Importance="high" Text="***** npm run build-scripts" />
-		<Exec Command="npm run build-scripts" />
-
-		<Message Importance="high" Text="***** npm run build-js" />
-		<Exec Command="npm run build-js" />
-
-		<Message Importance="high" Text="***** npm run build-min-js" />
-		<Exec Command="npm run build-min-js" />
-
-		<Message Importance="high" Text="***** delete intermediate.js" />
-		<Delete Files="wwwroot\intermediate.js" />
-
-
-		<DeduplicateLicenseHeaders SourceFile="wwwroot\material.blazor.min.js" />
-
-	</Target>
-
-	<Target Name="BuildStyles" Inputs="@(InputStaticAssetsStyles)" Outputs="@(OutputStaticAssetsStyles)" BeforeTargets="PreBuildEvent" AfterTargets="CheckIfNpmExists" Condition=" '$(NpmReturnCode)' == '0' ">
-		<Message Importance="high" Text="***** mkdir wwwroot (M.B Styles)" />
-		<MakeDir Directories="wwwroot" />
-
-		<Message Importance="high" Text="***** npm install" />
-		<Exec Command="npm install" />
-
-		<!--<Message Importance="high" Text="***** downloadfiles" />
-    <DownloadFile SourceUrl="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" DestinationFolder="$(MSBuildProjectDirectory)\wwwroot" DestinationFilename="material-components-icons.css">
-    </DownloadFile>-->
-
-		<Message Importance="high" Text="***** npm run build-css" />
-		<Exec Command="npm run build-css" />
-
-		<Message Importance="high" Text="***** npm run build-min-css" />
-		<Exec Command="npm run build-min-css" />
-
-		<!--<Message Importance="high" Text="***** delete material-components-icons.css" />
-    <Delete Files="wwwroot\material-components-icons.css" />-->
-
-		<Message Importance="high" Text="***** npm run build-material-css" />
-		<Exec Command="npm run build-material-css" />
-
-		<Message Importance="high" Text="***** npm run build-material-min-css" />
-		<Exec Command="npm run build-material-min-css" />
-
-	</Target>
 
 	<ProjectExtensions>
 		<VisualStudio>
@@ -248,26 +91,74 @@
 		</VisualStudio>
 	</ProjectExtensions>
 
-	<!--
-	SolutionDir is only available to builds in the IDE
-	
-	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-		<Copy SourceFiles="$(SolutionDir)README.md"
-			  DestinationFiles="$(ProjectDir)README.md" />
-	</Target>
-	-->
-	
-	<!--
-	These two don't work in the IDE
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.ClientAssets" Version="0.1.0-alpha.21528.2" />
+	</ItemGroup>
 
-	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-	  <Exec Command="copy ..\README.md $(projectdir)README.md" />
+	<PropertyGroup>
+		<ClientAssetsDirectory Condition="'$(ClientAssetsDirectory)' == ''">.</ClientAssetsDirectory>
+
+		<ClientAssetsRestoreInputs Condition="'$(ClientAssetsRestoreInputs)' == ''">$(ClientAssetsDirectory)package-lock.json;$(ClientAssetsDirectory)package.json</ClientAssetsRestoreInputs>
+
+		<ClientAssetsRestoreOutputs Condition="'$(ClientAssetsRestoreOutputs)' == ''">$(ClientAssetsDirectory)node_modules\.package-lock.json</ClientAssetsRestoreOutputs>
+
+		<ClientAssetsRestoreCommand Condition="'$(ClientAssetsRestoreCommand)' == ''">npm install</ClientAssetsRestoreCommand>
+
+		<ClientAssetsBuildCommand Condition="'$(ClientAssetsBuildCommand)' == ''">npm run buildStaticWebAssets</ClientAssetsBuildCommand>
+
+		<ClientAssetsBuildOutputParameter Condition="'$(ClientAssetsBuildOutputParameter)' == ''">-o</ClientAssetsBuildOutputParameter>
+
+		<ClientAssetsRestoreInputs>$(MSBuildProjectFile);$(ClientAssetsRestoreInputs)</ClientAssetsRestoreInputs>
+
+		<!-- Run restore only once for multi targeting builds -->
+		<ClientAssetsRestoreBeforeTargets Condition="'$(TargetFramework)' == ''">DispatchToInnerBuilds</ClientAssetsRestoreBeforeTargets>
+		<!-- Allow multitargeting projects to choose the target framework in which they run by setting this value to true only for a given target framework -->
+		<ShouldRunClientAssetsBuild Condition="'$(ShouldRunClientAssetsBuild)' == ''">true</ShouldRunClientAssetsBuild>
+
+	</PropertyGroup>
+
+	<Target Name="ClientAssetsRestore" BeforeTargets="$(ClientAssetsRestoreBeforeTargets)" Inputs="$(ClientAssetsRestoreInputs)" Outputs="$(ClientAssetsRestoreOutputs)">
+		<Message Importance="high" Text="Running $(ClientAssetsRestoreCommand)..." />
+		<Exec Command="$(ClientAssetsRestoreCommand)" WorkingDirectory="$(ClientAssetsDirectory)" />
 	</Target>
 
-	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-		<Copy SourceFiles="README.md"
-			  DestinationFiles="$(ProjectDir)README.md" />
+	<ItemGroup>
+		<ClientAssetsInputs Include="components\**\*.scss;styles\**\*.scss;components\**\*.ts;Scripts\**\*.ts" Exclude="$(DefaultItemExcludes)" />
+	</ItemGroup>
+
+	<Target Name="ClientAssetsBuild" Condition="'$(ShouldRunClientAssetsBuild)' == 'true'" DependsOnTargets="ClientAssetsRestore" BeforeTargets="AssignTargetPaths" Inputs="@(ClientAssetsInputs)" Outputs="$(IntermediateOutputPath)clientassetsbuild.complete.txt">
+
+		<PropertyGroup>
+			<_ClientAssetsOutputFullPath>$([System.IO.Path]::GetFullPath('$(ClientAssetsDirectory)'))/</_ClientAssetsOutputFullPath>
+		</PropertyGroup>
+
+		<Exec Command="$(ClientAssetsBuildCommand)" WorkingDirectory="$(ClientAssetsDirectory)" />
+
+		<ItemGroup>
+			<_ClientAssetsBuildOutput Include="$(ClientAssetsDirectory)**"></_ClientAssetsBuildOutput>
+		</ItemGroup>
+
+		<WriteLinesToFile File="$(IntermediateOutputPath)clientassetsbuild.complete.txt" Lines="@(_ClientAssetsBuildOutput)" />
 	</Target>
-	-->
-	
+
+	<Target Name="DefineClientAssets" AfterTargets="ClientAssetsBuild" DependsOnTargets="ResolveStaticWebAssetsConfiguration">
+		<ItemGroup>
+			<FileWrites Include="@(_ClientAssetsBuildOutput)" />
+			<FileWrites Include="$(IntermediateOutputPath)clientassetsbuild.complete.txt" />
+
+			<Content Condition="'$(TargetFramework)' != 'net6.0'" Include="@(_ClientAssetsBuildOutput)" Link="wwwroot\%(_ClientAssetsBuildOutput.RecursiveDir)\%(_ClientAssetsBuildOutput.FileName)%(_ClientAssetsBuildOutput.Extension)" />
+
+		</ItemGroup>
+
+		<!-- Note: We separate this target into two because content assets from outside the wwwroot folder won't get the right content root due to a bug/limitation
+      within DiscoverStaticWebAssets. That doesn't matter for when the assets are being packaged, as the content root doesn't matter in that case, but will impact
+      the ability to consume them from project references. As a workaround, we are using the Task directly on this package, to make sure this scenario works. In a future
+      release we will address this by aligning DiscoverStaticWebAssets behavior with DefineStaticWebAssets to follow the same heuristics for determining the content root.
+    -->
+		<DefineStaticWebAssets Condition="'$(TargetFramework)' == 'net6.0'" CandidateAssets="@(_ClientAssetsBuildOutput)" SourceId="$(PackageId)" SourceType="Computed" ContentRoot="$(_ClientAssetsOutputFullPath)" BasePath="$(StaticWebAssetBasePath)">
+			<Output TaskParameter="Assets" ItemName="StaticWebAsset" />
+		</DefineStaticWebAssets>
+
+	</Target>
+
 </Project>
