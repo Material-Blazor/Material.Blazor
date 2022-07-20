@@ -49,7 +49,7 @@
       "url": "_framework\/icudt.dat"
     },
     {
-      "hash": "sha256-C4C\/UhvPly++u\/KIv0rHSgjB6PahXI+w31dEUlLEs5c=",
+      "hash": "sha256-CeCcWLsWqVqh9bfRqtI4UX1t2YLHIPc+gntYKQ+TDwE=",
       "url": "_framework\/blazor.boot.json"
     },
     {
@@ -57,15 +57,15 @@
       "url": "_framework\/GoogleAnalytics.Blazor.dll"
     },
     {
-      "hash": "sha256-oeiUm\/73dwndi3s81C9AzpSjBg642Yy8mgukuSdxy8Y=",
+      "hash": "sha256-8AOy7Gu7YgqI\/Th3WvGHtxzdcvaXt14Ezy8TSkyKqKM=",
       "url": "_framework\/Material.Blazor.dll"
     },
     {
-      "hash": "sha256-A5OS9sHsBKc4n9k2XEnMYGq22OoaCYHXnIwmg09k0ug=",
+      "hash": "sha256-AFsMy+eaM3SsTebyggsFCWfoIpMLNLTcF8P9Zw7K+TU=",
       "url": "_framework\/Material.Blazor.Website.dll"
     },
     {
-      "hash": "sha256-xtv5G8g8vo217Czms14iR2iq8IrYC4x18vzHfObKWs4=",
+      "hash": "sha256-KyvSR7csmmm7KP7g+51iXNxMp9MLJ3uf2Y6\/ASSnU+o=",
       "url": "_framework\/Material.Blazor.Website.WebAssembly.dll"
     },
     {
@@ -495,7 +495,31 @@
     {
       "hash": "sha256-VxoaUEKFgOd7P1b6B1HSQFldeFO+FiEFDiee299J2q4=",
       "url": "_content\/Material.Blazor.Website\/videos\/coverr-someone-is-checking-emails-there_s-an-old-globe-on-the-table-0186.mp4"
+    },
+    {
+      "hash": "sha256-v9mIOUNMVNK7oH2yumZpu22NaM7a4vbK8NS5DJ3gYX8=",
+      "url": "_content\/Material.Blazor\/material-components-web.css"
+    },
+    {
+      "hash": "sha256-mbdPayT\/G+neUg45yU2eW3WibsBzPDGGKnn8U9MAHbc=",
+      "url": "_content\/Material.Blazor\/material-components-web.min.css"
+    },
+    {
+      "hash": "sha256-cP2NpWU5RMtGnGqq5rm9\/5Oj1wLX59zKepxMyc5P6m8=",
+      "url": "_content\/Material.Blazor\/material.blazor.css"
+    },
+    {
+      "hash": "sha256-yf\/O9DdGYKqjnTP8pIKBSF7W3SAhcvy7GycXnvvDtlY=",
+      "url": "_content\/Material.Blazor\/material.blazor.js"
+    },
+    {
+      "hash": "sha256-wOVC\/zkbq5wx+o8fsnWCKP+SLGXo4HUy2b1HrLjYpAo=",
+      "url": "_content\/Material.Blazor\/material.blazor.min.css"
+    },
+    {
+      "hash": "sha256-YvNdJyttHMz\/dBpBvyA5d92Dbl4LjWB\/koCfDa6UsfE=",
+      "url": "_content\/Material.Blazor\/material.blazor.min.js"
     }
   ],
-  "version": "yKhzhmi1"
+  "version": "gd46UpHk"
 };
