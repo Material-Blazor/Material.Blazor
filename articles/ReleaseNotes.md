@@ -4,6 +4,55 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [3.0.0-preview.8](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.8)
+
+Released 2022-07-19
+
+Deprecated 2022-07-19
+
+**Updates**
+- Removed redundant setting of 'LoggingLevel' in MBGrid & MBScheduler.
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+#### [3.0.0-preview.9](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.9)
+
+Released 2022-07-19
+
+**Updates**
+- Restored proper MB csproj.
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
+#### [3.0.0-preview.8](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.8)
+
+Released 2022-07-19
+
+Delisted 2022-07-19
+
+**Updates**
+- Removed redundant setting of 'LoggingLevel' in MBGrid & MBScheduler.
+
+**New components**
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
 #### [3.0.0-preview.7](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.7)
 
 Released 2022-07-19
