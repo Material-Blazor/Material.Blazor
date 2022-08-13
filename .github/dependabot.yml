@@ -20,6 +20,14 @@ updates:
       - dependency-name: "sass"
 
 
+  - package-ecosystem: "npm"
+    directory: "/Material.Blazor.Website"
+    schedule:
+      interval: "daily"
+    ignore:
+      - dependency-name: "sass"
+
+
   - package-ecosystem: "nuget"
     directory: "/"
     schedule:
