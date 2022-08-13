@@ -9,14 +9,21 @@ updates:
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: monthly  
+      interval: "daily"  
 
-  - package-ecosystem: "npm"
-    directory: "/material.blazor/material.blazor"
-    schedule:
-      interval: "monthly"
+
+  #- package-ecosystem: "npm"
+  #  directory: "/Material.Blazor"
+  #  schedule:
+  #    interval: "daily"
+  #  ignore:
+  #    - dependency-name: "sass"
+
 
   - package-ecosystem: "nuget"
     directory: "/"
     schedule:
-      interval: monthly
+      interval: "daily"
+    ignore:
+      - dependency-name: "Microsoft.*"
+        versions: ["7.x"]
