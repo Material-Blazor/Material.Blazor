@@ -45,7 +45,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="GoogleAnalytics.Blazor" Version="1.0.0-preview.3" />
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.7" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.8" />
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.7" />
 		<PackageReference Include="Nager.Date" Version="1.35.0" />
 		<PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
