@@ -50,9 +50,16 @@
 		<Content Remove="wwwroot\intermediate.js" />
 	</ItemGroup>
 
-	<ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.7" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.7" />
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.8" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.8" />
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
+	</ItemGroup>
+
+	<!--<ItemGroup Condition=" '$(TargetFramework)' == 'net6.0' ">
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.8" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.8" />
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
 	</ItemGroup>
@@ -62,7 +69,7 @@
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.0-preview.3.*" />
 		<PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0-preview.3.*" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0-preview.3.*" />
-	</ItemGroup>
+	</ItemGroup>-->
 
 	<ItemGroup>
 		<None Include="package-lock.json" />
