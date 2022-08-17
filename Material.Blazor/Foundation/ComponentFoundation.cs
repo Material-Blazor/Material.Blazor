@@ -152,7 +152,7 @@ namespace Material.Blazor.Internal
         /// </summary>
         private protected void AddTooltip()
         {
-            if (!string.IsNullOrWhiteSpace(Tooltip))
+            if (!string.IsNullOrWhiteSpace(Tooltip) && TooltipId != null)
             {
                 TooltipService.AddTooltip(TooltipId.Value, (MarkupString)Tooltip);
             }
