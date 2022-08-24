@@ -101,7 +101,7 @@ jobs:
     steps:
     - id: get
       run: |
-        echo "::set-output name=suffix::ci.$(date +'%Y-%m-%d--%H%M')"
+        echo "::set-output name=suffix::ci.$(date +'%Y-%m-%d--%H-%M-%S')"
     - id: show
       run: |
         echo "${{ steps.get.outputs.suffix }}"
