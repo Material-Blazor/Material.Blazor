@@ -52,7 +52,7 @@ jobs:
       if: github.event_name != 'workflow_dispatch'
 
     - name: Set ciSuffix as env variable
-      run: echo "ciSuffix=ci.$(date +'%Y-%m-%d--%H%M')" >> $GITHUB_ENV
+      run: echo "ciSuffix=ci.$(date +'%Y-%m-%d--%H-%M-%S')" >> $GITHUB_ENV
       shell: bash
       if: github.event_name != 'workflow_dispatch'
 
