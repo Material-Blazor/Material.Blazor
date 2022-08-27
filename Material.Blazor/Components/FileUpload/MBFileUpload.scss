@@ -17,7 +17,6 @@
     height: 96px;
     border-width: 4px;
     border-color: var(--mdc-theme-primary);
-    border-style: dashed;
     color: var(--mdc-theme-primary);
 
     & > div {
@@ -50,10 +49,10 @@
     }
 
     .mb-file-upload__leading-icon {
-        margin-right: 18px;
+        margin-right: 8px;
     }
 
     .mb-file-upload__trailing-icon {
-        margin-left: 18px;
+        margin-left: 8px;
     }
 }

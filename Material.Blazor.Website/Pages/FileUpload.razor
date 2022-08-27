@@ -25,8 +25,9 @@
     </Controls>
 
     <PageContent>
-        <div class="mdc-layout-grid__cell--span-6">
-            <MBCard AutoStyled="true">
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true"
+                    style="min-height: 200px;">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
                         Button Style
@@ -45,8 +46,9 @@
             </MBCard>
         </div>
 
-        <div class="mdc-layout-grid__cell--span-6">
-            <MBCard AutoStyled="true">
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true"
+                    style="min-height: 200px;">
                 <Primary>
                     <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
                         Drag and Drop Style
@@ -59,6 +61,24 @@
                                           Multiple="@Multiple"
                                           Label="@Label"
                                           OnLoadFiles="@OnLoadFiles" />
+                        </p>
+                    </div>
+                </Primary>
+            </MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-4">
+            <MBCard AutoStyled="true"
+                    style="min-height: 200px;">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Vanilla <code>InputFile</code> component
+                    </h2>
+
+                    <div>
+                        <p class="mdc-typography--body2">You can also drag and drop files on to the button</p>
+                        <p>
+                            <InputFile OnChange="@OnLoadFiles" multiple="@Multiple" />
                         </p>
                     </div>
                 </Primary>
