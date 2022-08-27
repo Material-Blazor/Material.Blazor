@@ -1,11 +1,10 @@
-﻿namespace Material.Blazor.Internal
+﻿namespace Material.Blazor.Internal;
+
+/// <summary>
+/// Open Iconic foundry details.
+/// </summary>
+internal class IconFoundryOI : IMBIconFoundry
 {
-    /// <summary>
-    /// Open Iconic foundry details.
-    /// </summary>
-    internal class IconFoundryOI : IMBIconFoundry
-    {
-        /// <inheritdoc/>
-        MBIconFoundryName IMBIconFoundry.FoundryName => MBIconFoundryName.OpenIconic;
-    }
+    /// <inheritdoc/>
+    MBIconFoundryName IMBIconFoundry.FoundryName => MBIconFoundryName.OpenIconic;
 }

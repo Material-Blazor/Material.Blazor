@@ -1,45 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Material.Blazor
+namespace Material.Blazor;
+
+/// <summary>
+/// Configuration for <see cref="IMBLoggingService"/>.
+/// </summary>
+public class MBLoggingServiceConfiguration
 {
+    public const MBLoggingLevel DefaultLoggingLevel = MBLoggingLevel.Warning;
+
+
+    private MBLoggingLevel loggingLevel = DefaultLoggingLevel;
     /// <summary>
-    /// Configuration for <see cref="IMBLoggingService"/>.
+    /// Sets the logging level.
     /// </summary>
-    public class MBLoggingServiceConfiguration
+    public MBLoggingLevel LoggingLevel { get => loggingLevel; set => Setter(ref loggingLevel, value); }
+
+
+    /// <summary>
+    /// Used to notify the logging level service that a value has changed.
+    /// </summary>
+    internal event Action OnValueChanged;
+
+
+    public MBLoggingServiceConfiguration()
     {
-        public const MBLoggingLevel DefaultLoggingLevel = MBLoggingLevel.Warning;
+        LoggingLevel = DefaultLoggingLevel;
+    }
 
 
-        private MBLoggingLevel loggingLevel = DefaultLoggingLevel;
-        /// <summary>
-        /// Sets the logging level.
-        /// </summary>
-        public MBLoggingLevel LoggingLevel { get => loggingLevel; set => Setter(ref loggingLevel, value); }
-
-
-        /// <summary>
-        /// Used to notify the logging level service that a value has changed.
-        /// </summary>
-        internal event Action OnValueChanged;
-
-
-        public MBLoggingServiceConfiguration()
+    private bool Setter<T>(ref T property, T value)
+    {
+        if (!EqualityComparer<T>.Default.Equals(property, value))
         {
-            LoggingLevel = DefaultLoggingLevel;
+            property = value;
+            OnValueChanged?.Invoke();
+            return true;
         }
 
-
-        private bool Setter<T>(ref T property, T value)
-        {
-            if (!EqualityComparer<T>.Default.Equals(property, value))
-            {
-                property = value;
-                OnValueChanged?.Invoke();
-                return true;
-            }
-
-            return false;
-        }
+        return false;
     }
 }

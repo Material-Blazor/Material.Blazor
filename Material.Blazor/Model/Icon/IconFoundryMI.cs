@@ -1,23 +1,22 @@
-﻿namespace Material.Blazor
+﻿namespace Material.Blazor;
+
+/// <summary>
+/// Material Icons foundry details.
+/// </summary>
+internal class IconFoundryMI : IMBIconFoundry
 {
+    /// <inheritdoc/>
+    MBIconFoundryName IMBIconFoundry.FoundryName => MBIconFoundryName.MaterialIcons;
+
+
     /// <summary>
-    /// Material Icons foundry details.
+    /// The Material Icons theme.
     /// </summary>
-    internal class IconFoundryMI : IMBIconFoundry
+    public MBIconMITheme? Theme { get; }
+
+
+    public IconFoundryMI(MBIconMITheme? theme = null)
     {
-        /// <inheritdoc/>
-        MBIconFoundryName IMBIconFoundry.FoundryName => MBIconFoundryName.MaterialIcons;
-
-
-        /// <summary>
-        /// The Material Icons theme.
-        /// </summary>
-        public MBIconMITheme? Theme { get; }
-
-
-        public IconFoundryMI(MBIconMITheme? theme = null)
-        {
-            Theme = theme;
-        }
+        Theme = theme;
     }
 }
