@@ -71,9 +71,15 @@ public partial class MBFileUpload : ComponentFoundation
 
 
     /// <summary>
-    /// Sets the component to load multiple files.
+    /// Enabled the component to load multiple files.
     /// </summary>
     [Parameter] public bool Multiple { get; set; } = false;
+
+
+    /// <summary>
+    /// Renders the component as a drag and drop area.
+    /// </summary>
+    [Parameter] public bool DragAndDropArea { get; set; } = false;
 
 
     /// <summary>
@@ -86,7 +92,7 @@ public partial class MBFileUpload : ComponentFoundation
     private ElementReference ElementReference { get; set; }
 
 
-    private async Task ButtonClick()
+    private async Task OnClick()
     {
         await InvokeJsVoidAsync("MaterialBlazor.MBFileUpload.click", ElementReference).ConfigureAwait(false);
     }

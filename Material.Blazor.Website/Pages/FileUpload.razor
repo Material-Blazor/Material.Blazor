@@ -34,9 +34,10 @@
 
                     <div>
                         <p>
-                            <MBFileUpload ButtonStyle="@MBButtonStyle.ContainedRaised"
+                            <MBFileUpload ButtonStyle="@MBButtonStyle.Outlined"
                                           LeadingIcon="file_upload"
-                                          Multiple="@Multiple" 
+                                          Multiple="@Multiple"
+                                          Label="@Label"
                                           OnLoadFiles="@OnLoadFiles" />
                         </p>
                     </div>
@@ -53,7 +54,11 @@
 
                     <div>
                         <p>
-
+                            <MBFileUpload LeadingIcon="file_upload"
+                                          DragAndDropArea="true"
+                                          Multiple="@Multiple"
+                                          Label="@Label"
+                                          OnLoadFiles="@OnLoadFiles" />
                         </p>
                     </div>
                 </Primary>
@@ -68,14 +73,14 @@
                     </h2>
 
                     <div>
-                        @if (!string.IsNullOrWhiteSpace(loadingMessage))
+                        @if (!string.IsNullOrWhiteSpace(LoadingMessage))
                         {
-                            <p>@loadingMessage</p>
+                            <p>@LoadingMessage</p>
                         }
                         else
                         {
                             <ul>
-                                @foreach (var file in loadedFiles)
+                                @foreach (var file in LoadedFiles)
                                 {
                                     <li style="margin-bottom: 12px;">
                                         <ul>
@@ -100,20 +105,21 @@
 @code {
     private bool Multiple { get; set; }
 
-    private List<IBrowserFile> loadedFiles = new();
-    private string loadingMessage;
+    private List<IBrowserFile> LoadedFiles { get; set; } = new();
+    private string LoadingMessage { get; set; }
+    private string Label => Multiple ? "Choose multiple files" : "Choose one file";
 
 
     private Task OnLoadFiles(InputFileChangeEventArgs e)
     {
-        loadingMessage = "Uploading...";
-        loadedFiles.Clear();
+        LoadingMessage = "Uploading...";
+        LoadedFiles.Clear();
 
         var files = e.GetMultipleFiles();
 
         foreach (var file in files)
         {
-            loadedFiles.Add(file);
+            LoadedFiles.Add(file);
 
             var trustedFileNameForFileStorage = Path.GetRandomFileName();
             
@@ -122,7 +128,7 @@
                     trustedFileNameForFileStorage);
         }
 
-        loadingMessage = "";
+        LoadingMessage = "";
 
         return Task.CompletedTask;
     }

@@ -3,19 +3,46 @@
 @using Microsoft.AspNetCore.Components.Forms
 
 
-<div @ref="@ElementReference" class="mb-file-upload--button">
-    <MBButton ButtonStyle="@ButtonStyle"
-              Density="@Density"
-              Label="@Label"
-              LeadingIcon="@LeadingIcon"
-              TrailingIcon="@TrailingIcon"
-              TouchTarget="@TouchTarget"
-              IconFoundry="@IconFoundry"
-              @onclick="@ButtonClick">
+@if (DragAndDropArea)
+{
+    <MBCard AutoStyled="false"
+            class="mb-file-upload--drag-and-drop"
+            CardStyle="@MBCardStyle.Outlined">
+        <PrimaryAction>
+            <div class="mb-file-upload__card-content">
+                <div class="mb-card__title mdc-typography--subtitle1">
+                    @if (!string.IsNullOrWhiteSpace(LeadingIcon))
+                    {
+                        <MBIcon class="mb-file-upload__leading-icon" IconFoundry="@IconFoundry" IconName="@LeadingIcon" />
+                    }
 
-    </MBButton>
+                    @Label
 
-    <InputFile OnChange="@OnLoadFiles" multiple="@Multiple" />
-</div>
+                    @if (!string.IsNullOrWhiteSpace(TrailingIcon))
+                    {
+                        <MBIcon class="mb-file-upload__trailing-icon" IconFoundry="@IconFoundry" IconName="@TrailingIcon" />
+                    }
+                </div>
 
+                <InputFile OnChange="@OnLoadFiles" multiple="@Multiple" />
+            </div>
+        </PrimaryAction>
+    </MBCard>
+}
+else
+{
+    <div @ref="@ElementReference" class="mb-file-upload--button">
+        <MBButton ButtonStyle="@ButtonStyle"
+                  Density="@Density"
+                  Label="@Label"
+                  LeadingIcon="@LeadingIcon"
+                  TrailingIcon="@TrailingIcon"
+                  TouchTarget="@TouchTarget"
+                  IconFoundry="@IconFoundry"
+                  @onclick="@OnClick">
 
+        </MBButton>
+
+        <InputFile OnChange="@OnLoadFiles" multiple="@Multiple" />
+    </div>
+}
