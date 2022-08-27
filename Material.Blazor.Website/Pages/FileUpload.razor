@@ -104,7 +104,7 @@
 
     private Task OnLoadFiles(InputFileChangeEventArgs e)
     {
-        var LoadedFiles = e.GetMultipleFiles();
+        LoadedFiles = e.GetMultipleFiles().ToList();
 
         return Task.CompletedTask;
     }
