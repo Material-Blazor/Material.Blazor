@@ -133,10 +133,12 @@ public partial class MBNumericDoubleField : InputComponent<double>
 #nullable restore annotations
 
 
+    private int Rounding => (int)DecimalPlaces + Convert.ToInt32(Math.Log(Convert.ToDouble(Math.Pow(10, (int)FocusedMagnitude))));
+
     private decimal DecimalValue
     {
         get => (decimal)ComponentValue;
-        set => ComponentValue = Convert.ToDouble(Math.Round(value, (int)DecimalPlaces));
+        set => ComponentValue = Convert.ToDouble(Math.Round(value, Rounding));
     }
 
 
