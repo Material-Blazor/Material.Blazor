@@ -1,0 +1,20 @@
+﻿@namespace Material.Blazor
+@inherits ComponentFoundation
+@using Microsoft.AspNetCore.Components.Forms
+
+
+<div @ref="@ElementReference" class="mb-file-upload--button">
+    <MBButton ButtonStyle="@ButtonStyle"
+                Density="@Density"
+                Disabled="@Disabled"
+                Label="@Label"
+                LeadingIcon="@LeadingIcon"
+                TrailingIcon="@TrailingIcon"
+                TouchTarget="@TouchTarget"
+                IconFoundry="@IconFoundry"
+                @onclick="@OnClick">
+
+    </MBButton>
+
+    <InputFile OnChange="@OnLoadFiles" multiple="@Multiple" />
+</div>

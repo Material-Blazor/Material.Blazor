@@ -1,13 +1,12 @@
 ﻿using System.Drawing;
 
-namespace Material.Blazor
+namespace Material.Blazor;
+
+public class MBGridIconSpecification
 {
-    public class MBGridIconSpecification
-    {
-        public Color IconColor { get; set; }
+    public Color IconColor { get; set; }
 #nullable enable annotations
-        public IMBIconFoundry? IconFoundry { get; set; } = null;
+    public IMBIconFoundry? IconFoundry { get; set; } = null;
 #nullable restore annotations
-        public string IconName { get; set; }
-    }
+    public string IconName { get; set; }
 }

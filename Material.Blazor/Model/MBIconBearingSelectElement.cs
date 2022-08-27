@@ -1,14 +1,13 @@
-﻿namespace Material.Blazor
+﻿namespace Material.Blazor;
+
+/// <summary>
+/// A list item used by <see cref="MBSegmentedButtonMulti{IList{TItem}}"/>
+/// </summary>
+/// <typeparam name="T"></typeparam>
+public record MBIconBearingSelectElement<T> : MBSelectElement<T>
 {
     /// <summary>
-    /// A list item used by <see cref="MBSegmentedButtonMulti{IList{TItem}}"/>
+    /// The leading icon.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    public record MBIconBearingSelectElement<T> : MBSelectElement<T>
-    {
-        /// <summary>
-        /// The leading icon.
-        /// </summary>
-        public string Icon { get; set; }
-    }
+    public string Icon { get; set; }
 }

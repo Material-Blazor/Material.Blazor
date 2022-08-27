@@ -1,26 +1,25 @@
-﻿namespace Material.Blazor.Website
+﻿namespace Material.Blazor.Website;
+
+public static class Utilities
 {
-    public static class Utilities
+    public static MBLoggingServiceConfiguration GetDefaultLoggingServiceConfiguration() => new()
     {
-        public static MBLoggingServiceConfiguration GetDefaultLoggingServiceConfiguration() => new()
-        {
-            LoggingLevel = MBLoggingLevel.Warning
-        };
+        LoggingLevel = MBLoggingLevel.Warning
+    };
 
 
-        public static MBToastServiceConfiguration GetDefaultToastServiceConfiguration() => new()
-        {
-            Position = MBToastPosition.TopRight,
-            CloseMethod = MBNotifierCloseMethod.Timeout,
-        };
+    public static MBToastServiceConfiguration GetDefaultToastServiceConfiguration() => new()
+    {
+        Position = MBToastPosition.TopRight,
+        CloseMethod = MBNotifierCloseMethod.Timeout,
+    };
 
 
-        public static MBSnackbarServiceConfiguration GetDefaultSnackbarServiceConfiguration() => new()
-        {
-            CloseMethod = MBNotifierCloseMethod.TimeoutAndDismissButton,
-            Leading = false,
-            Stacked = false,
-            Timeout = 5000
-        };
-    }
+    public static MBSnackbarServiceConfiguration GetDefaultSnackbarServiceConfiguration() => new()
+    {
+        CloseMethod = MBNotifierCloseMethod.TimeoutAndDismissButton,
+        Leading = false,
+        Stacked = false,
+        Timeout = 5000
+    };
 }

@@ -7,33 +7,32 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Material.Blazor.Internal
+namespace Material.Blazor.Internal;
+
+/// <summary>
+/// This is a helper class to conditionally apply CSS classes to an HTML element.
+/// Classes are added with the "AddIf(string, Func(bool))" method.
+/// From "ToString()" just the classes satisfying the condition are returned, joined into one string.
+/// </summary>
+public class ConditionalCssClasses
 {
+    private readonly List<Func<string>> Items = new();
+
     /// <summary>
-    /// This is a helper class to conditionally apply CSS classes to an HTML element.
-    /// Classes are added with the "AddIf(string, Func(bool))" method.
-    /// From "ToString()" just the classes satisfying the condition are returned, joined into one string.
+    /// Executes the defined functions, returning a concatenation of the results separated by a space
     /// </summary>
-    public class ConditionalCssClasses
+    /// <returns>string</returns>
+    public override string ToString() => string.Join(" ", Items.Select(i => i()));
+
+    /// <summary>
+    /// Adds a CSS class, whenever the "func" method returns true.
+    /// </summary>
+    /// <param name="name">The string to be conditionally returned</param>
+    /// <param name="func">The function to be executed to determine if the string is included</param>
+    /// <returns>The instance of the class</returns>
+    public ConditionalCssClasses AddIf(string name, Func<bool> func)
     {
-        private readonly List<Func<string>> Items = new();
-
-        /// <summary>
-        /// Executes the defined functions, returning a concatenation of the results separated by a space
-        /// </summary>
-        /// <returns>string</returns>
-        public override string ToString() => string.Join(" ", Items.Select(i => i()));
-
-        /// <summary>
-        /// Adds a CSS class, whenever the "func" method returns true.
-        /// </summary>
-        /// <param name="name">The string to be conditionally returned</param>
-        /// <param name="func">The function to be executed to determine if the string is included</param>
-        /// <returns>The instance of the class</returns>
-        public ConditionalCssClasses AddIf(string name, Func<bool> func)
-        {
-            Items.Add(() => func() ? name : null);
-            return this;
-        }
+        Items.Add(() => func() ? name : null);
+        return this;
     }
 }

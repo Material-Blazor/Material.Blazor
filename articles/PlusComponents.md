@@ -21,6 +21,8 @@ implements further Blazor/Material Theme hybrid components that we term "Plus Co
 | [MBDateTimeField](xref:C.MBDateTimeField) | An implementation in the spirit of the MBNumeric fields using an input type of either 'date' or 'datetime-local'. |
 | [MBDebouncedTextField](xref:C.MBDebouncedTextField) | A debounced version of [MBTextField](xref:C.MBTextField) |
 | [MBDivider](xref:C.MBDivider) | Implements a list divider by wrapping `hr` and gives the option of inset and padded. This uses the mdc-list-divider styles. |
+| [MBFileUploadButton](xref:C.MBFileUploadButton) | A material button styled wrapper for the `InputFile` component. |
+| [MBFileUploadDragAndDrop](xref:C.MBFileUploadDragAndDrop) | A material card styled wrapper for the `InputFile` component that can load files either by drag and drop or clicking the card area. |
 | [MBGrid](xref:C.MBGrid) | Displays a grid composed from the elements specified as parameters. |
 | [MBIcon](xref:C.MBIcon) | Displays an icon from the specified icon foundry or the default foundry from [MBCascadingDefaults](xref:U.MBCascadingDefaults). See also [MBIconHelper](xref:U.MBIconHelper). |
 | [MBNumericDecimalField](xref:C.MBNumericDecimalField) | Wraps [MBTextField](xref:C.MBTextField) to format numeric entry of a `decimal`. |
@@ -28,7 +30,7 @@ implements further Blazor/Material Theme hybrid components that we term "Plus Co
 | [MBNumericIntField](xref:C.MBNumericIntField) | A wrapper for `MBNumericDecimalField` for `int` variables. |
 | [MBPagedDataList](xref:C.MBPagedDataList) | A templated component for paging generic data lists using [MBPaginator](xref:C.MBPaginator) and applying transitions with [MBSlidingContent](xref:C.MBSlidingContent). |
 | [MBRadioButtonGroup](xref:C.MBRadioButtonGroup) | A group of [MBRadioButtons](xref:C.MBRadioButton). |
-[MBShield](xref:C.MBShield) | A simple component producing an HTML shield styled after svgs from shield.io (square, flat variety) |
+| [MBShield](xref:C.MBShield) | A simple component producing an HTML shield styled after svgs from shield.io (square, flat variety) |
 | [MBSlidingContent](xref:C.MBSlidingContent) | A templated component to provide previous/next navigation through a series of pages with light left/right and fade in/out animation. |
 | [MBSlidingTabBar](xref:C.MBSlidingTabBar) | An `MBTabBar` augmented with content displayed in a `MBSlidingContent` |
  MBToast   | An `MBToast` component used to show toast notifications` |

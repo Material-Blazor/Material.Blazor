@@ -12,41 +12,32 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace Material.BlazorWebsite.WebAssembly
-{
-    public class Program
-    {
-        public static async Task Main(string[] args)
-        {
-            var builder = WebAssemblyHostBuilder.CreateDefault(args);
-            builder.RootComponents.Add<App>("app");
-            builder.RootComponents.Add<HeadOutlet>("head::after");
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+builder.RootComponents.Add<App>("app");
+builder.RootComponents.Add<HeadOutlet>("head::after");
 
-            builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
-            builder.Services.AddMBServices(
-                loggingServiceConfiguration: Utilities.GetDefaultLoggingServiceConfiguration(),
-                toastServiceConfiguration: Utilities.GetDefaultToastServiceConfiguration(),
-                snackbarServiceConfiguration: Utilities.GetDefaultSnackbarServiceConfiguration()
-            );
+builder.Services.AddMBServices(
+    loggingServiceConfiguration: Utilities.GetDefaultLoggingServiceConfiguration(),
+    toastServiceConfiguration: Utilities.GetDefaultToastServiceConfiguration(),
+    snackbarServiceConfiguration: Utilities.GetDefaultSnackbarServiceConfiguration()
+);
 
-            Log.Logger = new LoggerConfiguration()
+Log.Logger = new LoggerConfiguration()
 #if DEBUG
-            .MinimumLevel.Debug()
+    .MinimumLevel.Debug()
 #else
-            .MinimumLevel.Information()
+    .MinimumLevel.Information()
 #endif
-            .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-            .MinimumLevel.Override("GoogleAnalytics.Blazor", LogEventLevel.Debug)
-            .Enrich.FromLogContext()
-            .WriteTo.Async(a => a.BrowserConsole(outputTemplate: "{Timestamp:HH:mm:ss.fff}\t[{Level:u3}]\t{Message}{NewLine}{Exception}"))
-            .CreateLogger();
+    .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+    .MinimumLevel.Override("GoogleAnalytics.Blazor", LogEventLevel.Debug)
+    .Enrich.FromLogContext()
+    .WriteTo.Async(a => a.BrowserConsole(outputTemplate: "{Timestamp:HH:mm:ss.fff}\t[{Level:u3}]\t{Message}{NewLine}{Exception}"))
+    .CreateLogger();
 
-            builder.Logging.AddProvider(new SerilogLoggerProvider());
+builder.Logging.AddProvider(new SerilogLoggerProvider());
 
-            builder.Services.AddGBService("G-TRLQX48ZSY");
+builder.Services.AddGBService("G-TRLQX48ZSY");
 
-            await builder.Build().RunAsync();
-        }
-    }
-}
+await builder.Build().RunAsync();

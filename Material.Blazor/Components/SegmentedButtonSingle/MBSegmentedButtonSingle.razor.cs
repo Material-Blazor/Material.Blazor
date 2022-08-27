@@ -4,60 +4,59 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Material.Blazor
+namespace Material.Blazor;
+
+/// <summary>
+/// A Material Theme segmented button orientated as a single-select.
+/// </summary>
+public partial class MBSegmentedButtonSingle<TItem> : SingleSelectComponent<TItem, MBIconBearingSelectElement<TItem>>
 {
-    /// <summary>
-    /// A Material Theme segmented button orientated as a single-select.
-    /// </summary>
-    public partial class MBSegmentedButtonSingle<TItem> : SingleSelectComponent<TItem, MBIconBearingSelectElement<TItem>>
-    {
 #nullable enable annotations
-        /// <summary>
-        /// The foundry to use for both leading and trailing icons.
-        /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
-        /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
-        /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
-        /// <para>Overrides <see cref="MBCascadingDefaults.IconFoundryName"/></para>
-        /// </summary>
-        [Parameter] public IMBIconFoundry? IconFoundry { get; set; }
+    /// <summary>
+    /// The foundry to use for both leading and trailing icons.
+    /// <para><c>IconFoundry="IconHelper.MIIcon()"</c></para>
+    /// <para><c>IconFoundry="IconHelper.FAIcon()"</c></para>
+    /// <para><c>IconFoundry="IconHelper.OIIcon()"</c></para>
+    /// <para>Overrides <see cref="MBCascadingDefaults.IconFoundryName"/></para>
+    /// </summary>
+    [Parameter] public IMBIconFoundry? IconFoundry { get; set; }
 #nullable restore annotations
 
 
-        private MBSegmentedButtonMulti<TItem> SegmentedButtonMulti { get; set; }
+    private MBSegmentedButtonMulti<TItem> SegmentedButtonMulti { get; set; }
 
-        private IList<TItem> multiValues;
-        private IList<TItem> MultiValues
+    private IList<TItem> multiValues;
+    private IList<TItem> MultiValues
+    {
+        get => multiValues;
+        set
         {
-            get => multiValues;
-            set
-            {
-                multiValues = value;
-                ComponentValue = multiValues.FirstOrDefault();
-            }
+            multiValues = value;
+            ComponentValue = multiValues.FirstOrDefault();
         }
-
-
-        // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
-        protected override async Task OnInitializedAsync()
-        {
-            await base.OnInitializedAsync();
-
-            MBItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidation(ItemValidation);
-
-            bool hasValue;
-            (hasValue, ComponentValue) = ValidateItemList(Items, appliedItemValidation);
-
-            multiValues = new TItem[] { Value };
-
-            SetComponentValue += OnValueSetCallback;
-        }
-
-
-        /// <summary>
-        /// Callback for value the value setter.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void OnValueSetCallback() => SegmentedButtonMulti.SetSingleSelectValue(Value);
     }
+
+
+    // Would like to use <inheritdoc/> however DocFX cannot resolve to references outside Material.Blazor
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        MBItemValidation appliedItemValidation = CascadingDefaults.AppliedItemValidation(ItemValidation);
+
+        bool hasValue;
+        (hasValue, ComponentValue) = ValidateItemList(Items, appliedItemValidation);
+
+        multiValues = new TItem[] { Value };
+
+        SetComponentValue += OnValueSetCallback;
+    }
+
+
+    /// <summary>
+    /// Callback for value the value setter.
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    protected void OnValueSetCallback() => SegmentedButtonMulti.SetSingleSelectValue(Value);
 }

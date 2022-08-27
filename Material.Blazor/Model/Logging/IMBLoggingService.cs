@@ -2,27 +2,26 @@
 
 using Microsoft.Extensions.Logging;
 
-namespace Material.Blazor
+namespace Material.Blazor;
+
+/// <summary>
+/// Interface for the Material.Blazor logging level service
+/// </summary>
+public interface IMBLoggingService
 {
     /// <summary>
-    /// Interface for the Material.Blazor logging level service
+    /// Logging service configuration
     /// </summary>
-    public interface IMBLoggingService
-    {
-        /// <summary>
-        /// Logging service configuration
-        /// </summary>
-        MBLoggingServiceConfiguration Configuration { get; set; }
+    MBLoggingServiceConfiguration Configuration { get; set; }
 
-        public int CurrentLevel();
+    public int CurrentLevel();
 
-        public void LogCritical(string message);
-        public void LogError(string message);
-        public void LogWarning(string message);
-        public void LogInformation(string message);
-        public void LogDebug(string message);
-        public void LogTrace(string message);
+    public void LogCritical(string message);
+    public void LogError(string message);
+    public void LogWarning(string message);
+    public void LogInformation(string message);
+    public void LogDebug(string message);
+    public void LogTrace(string message);
 
-        public void SetLogger(ILogger<ComponentFoundation> Logger);
-    }
+    public void SetLogger(ILogger<ComponentFoundation> Logger);
 }

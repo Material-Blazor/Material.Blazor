@@ -1,71 +1,70 @@
 ﻿using Microsoft.AspNetCore.Components.Rendering;
 
-namespace Material.Blazor
+namespace Material.Blazor;
+
+/// <summary>
+/// Material Icons icon.
+/// </summary>
+internal class IconMI : IMBIcon
 {
-    /// <summary>
-    /// Material Icons icon.
-    /// </summary>
-    internal class IconMI : IMBIcon
+    private string MaterialIconsTheme
     {
-        private string MaterialIconsTheme
+        get
         {
-            get
+            return "material-icons" + Theme switch
             {
-                return "material-icons" + Theme switch
-                {
-                    MBIconMITheme.Filled => "",
-                    MBIconMITheme.Outlined => "-outlined",
-                    MBIconMITheme.Round => "-round",
-                    MBIconMITheme.TwoTone => "-two-tone",
-                    MBIconMITheme.Sharp => "-sharp",
-                    _ => throw new System.NotImplementedException(),
-                };
-            }
+                MBIconMITheme.Filled => "",
+                MBIconMITheme.Outlined => "-outlined",
+                MBIconMITheme.Round => "-round",
+                MBIconMITheme.TwoTone => "-two-tone",
+                MBIconMITheme.Sharp => "-sharp",
+                _ => throw new System.NotImplementedException(),
+            };
         }
+    }
 
 
-        private string IconName { get; }
+    private string IconName { get; }
 
 
-        /// <inheritdoc />
-        public bool RequiresColorFilter => Theme == MBIconMITheme.TwoTone;
+    /// <inheritdoc />
+    public bool RequiresColorFilter => Theme == MBIconMITheme.TwoTone;
 
 
-        /// <inheritdoc />
-        public IMBIcon.IconFragment Render => (@class, style, attributes) => (RenderTreeBuilder builder) =>
+    /// <inheritdoc />
+    public IMBIcon.IconFragment Render => (@class, style, attributes) => (RenderTreeBuilder builder) =>
+    {
+        if (IconName == null)
         {
-            if (IconName == null)
-            {
-                return;
-            }
-            builder.OpenElement(0, "i");
-            builder.AddAttribute(1, "class", string.Join(" ", MaterialIconsTheme, @class));
-            if (style != null)
-            {
-                builder.AddAttribute(2, "style", style);
-            }
-            if (attributes != null)
-            {
-                builder.AddMultipleAttributes(3, attributes);
-            }
-            builder.AddContent(4, IconName.ToLower());
-            builder.CloseElement();
-        };
+            return;
+        }
+        builder.OpenElement(0, "i");
+        builder.AddAttribute(1, "class", string.Join(" ", MaterialIconsTheme, @class));
+        if (style != null)
+        {
+            builder.AddAttribute(2, "style", style);
+        }
+        if (attributes != null)
+        {
+            builder.AddMultipleAttributes(3, attributes);
+        }
+        builder.AddContent(4, IconName.ToLower());
+        builder.CloseElement();
+    };
 
 
-        /// <summary>
-        /// The Material Icons theme.
-        /// <para>Overrides <see cref="MBCascadingDefaults.IconMITheme"/></para>
-        /// </summary>
-        public MBIconMITheme Theme { get; }
+    /// <summary>
+    /// The Material Icons theme.
+    /// <para>Overrides <see cref="MBCascadingDefaults.IconMITheme"/></para>
+    /// </summary>
+    public MBIconMITheme Theme { get; }
 
 
 #nullable enable annotations
-        public IconMI(MBCascadingDefaults cascadingDefaults, string iconName, IconFoundryMI? foundry = null)
-        {
-            IconName = iconName;
-            Theme = cascadingDefaults.AppliedIconMITheme(foundry?.Theme);
-        }
-#nullable restore annotations
+    public IconMI(MBCascadingDefaults cascadingDefaults, string iconName, IconFoundryMI? foundry = null)
+    {
+        IconName = iconName;
+        Theme = cascadingDefaults.AppliedIconMITheme(foundry?.Theme);
     }
+#nullable restore annotations
 }
