@@ -4,6 +4,21 @@ title: ReleaseNotes
 ---
 # Release Notes
 
+#### [3.0.0-preview.11](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.11)
+
+Released 2022-08-??
+
+**Updates**
+
+**New components**
+- File upload plus component.
+
+**Breaking Changes**
+
+**Deprecated Components**
+
+**Known issues**
+
 #### [3.0.0-preview.10](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.10)
 
 Released 2022-08-17

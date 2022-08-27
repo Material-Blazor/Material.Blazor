@@ -1,0 +1,14 @@
+﻿.mb-file-upload--button {
+    position: relative;
+    width: fit-content;
+    overflow: hidden;
+
+    & > input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 0px;
+        width: 0px;
+        visibility: hidden;
+    }
+}

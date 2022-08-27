@@ -61,6 +61,9 @@
 - name: MBDivider
   topicUid: C.MBDivider
 
+- name: MBFileUpload
+  topicUid: C.MBFileUpload
+
 - name: MBFloatingActionButton
   topicUid: C.MBFloatingActionButton
 

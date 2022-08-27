@@ -1,0 +1,129 @@
+﻿@page "/fileupload"
+
+@using Microsoft.AspNetCore.Hosting
+@using Microsoft.Extensions.Logging
+@using System.IO
+
+@inject ILogger<FileUpload> Logger
+@inject IWebHostEnvironment Environment
+
+
+<DemonstrationPage ComponentName="FileUpload"
+                   DemoComponent="@this"
+                   RequiresDisableSelection="true"
+                   Title="File Upload Demontration">
+    <Description>
+        <p>
+            Demonstrates a Material.Blazor file upload that wraps the <code>InputFile</code> component but styled per material.
+        </p>
+    </Description>
+
+    <Controls>
+        <p>
+            <MBCheckbox @bind-Value="@Multiple" Label="Load Multiple Files" />
+        </p>
+    </Controls>
+
+    <PageContent>
+        <div class="mdc-layout-grid__cell--span-6">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Button Style
+                    </h2>
+
+                    <div>
+                        <p>
+                            <MBFileUpload ButtonStyle="@MBButtonStyle.ContainedRaised"
+                                          LeadingIcon="file_upload"
+                                          Multiple="@Multiple" 
+                                          OnLoadFiles="@OnLoadFiles" />
+                        </p>
+                    </div>
+                </Primary>
+            </MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-6">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Drag and Drop Style
+                    </h2>
+
+                    <div>
+                        <p>
+
+                        </p>
+                    </div>
+                </Primary>
+            </MBCard>
+        </div>
+
+        <div class="mdc-layout-grid__cell--span-12">
+            <MBCard AutoStyled="true">
+                <Primary>
+                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
+                        Uploaded Files
+                    </h2>
+
+                    <div>
+                        @if (!string.IsNullOrWhiteSpace(loadingMessage))
+                        {
+                            <p>@loadingMessage</p>
+                        }
+                        else
+                        {
+                            <ul>
+                                @foreach (var file in loadedFiles)
+                                {
+                                    <li style="margin-bottom: 12px;">
+                                        <ul>
+                                            <li>Name: @file.Name</li>
+                                            <li>Last modified: @file.LastModified.ToString()</li>
+                                            <li>Size (bytes): @file.Size.ToString("N0")</li>
+                                            <li>Content type: @file.ContentType</li>
+                                        </ul>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </div>
+                </Primary>
+            </MBCard>
+        </div>
+    </PageContent>
+</DemonstrationPage>
+
+
+
+@code {
+    private bool Multiple { get; set; }
+
+    private List<IBrowserFile> loadedFiles = new();
+    private string loadingMessage;
+
+
+    private Task OnLoadFiles(InputFileChangeEventArgs e)
+    {
+        loadingMessage = "Uploading...";
+        loadedFiles.Clear();
+
+        var files = e.GetMultipleFiles();
+
+        foreach (var file in files)
+        {
+            loadedFiles.Add(file);
+
+            var trustedFileNameForFileStorage = Path.GetRandomFileName();
+            
+            var path = Path.Combine(Environment.ContentRootPath,
+                    Environment.EnvironmentName, "unsafe_uploads",
+                    trustedFileNameForFileStorage);
+        }
+
+        loadingMessage = "";
+
+        return Task.CompletedTask;
+    }
+}
