@@ -21,7 +21,8 @@ implements further Blazor/Material Theme hybrid components that we term "Plus Co
 | [MBDateTimeField](xref:C.MBDateTimeField) | An implementation in the spirit of the MBNumeric fields using an input type of either 'date' or 'datetime-local'. |
 | [MBDebouncedTextField](xref:C.MBDebouncedTextField) | A debounced version of [MBTextField](xref:C.MBTextField) |
 | [MBDivider](xref:C.MBDivider) | Implements a list divider by wrapping `hr` and gives the option of inset and padded. This uses the mdc-list-divider styles. |
-| [MBFileUpload](xref:C.MBFileUpload) | A material styled wrapper for the `InputFile` component. |
+| [MBFileUploadButton](xref:C.MBFileUploadButton) | A material button styled wrapper for the `InputFile` component. |
+| [MBFileUploadDragAndDrop](xref:C.MBFileUploadDragAndDrop) | A material card styled wrapper for the `InputFile` component that can load files either by drag and drop or clicking the card area. |
 | [MBGrid](xref:C.MBGrid) | Displays a grid composed from the elements specified as parameters. |
 | [MBIcon](xref:C.MBIcon) | Displays an icon from the specified icon foundry or the default foundry from [MBCascadingDefaults](xref:U.MBCascadingDefaults). See also [MBIconHelper](xref:U.MBIconHelper). |
 | [MBNumericDecimalField](xref:C.MBNumericDecimalField) | Wraps [MBTextField](xref:C.MBTextField) to format numeric entry of a `decimal`. |

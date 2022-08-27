@@ -18,9 +18,9 @@ using System.Threading.Tasks;
 namespace Material.Blazor;
 
 /// <summary>
-/// A material styled wrapper for the <see cref="InputFile"/> component.
+/// A material button styled wrapper for the `InputFile` component.
 /// </summary>
-public partial class MBFileUpload : ComponentFoundation
+public partial class MBFileUploadButton : ComponentFoundation
 {
 #nullable enable annotations
     /// <summary>
@@ -74,12 +74,6 @@ public partial class MBFileUpload : ComponentFoundation
     /// Enabled the component to load multiple files.
     /// </summary>
     [Parameter] public bool Multiple { get; set; } = false;
-
-
-    /// <summary>
-    /// Renders the component as a drag and drop area.
-    /// </summary>
-    [Parameter] public bool DragAndDropArea { get; set; } = false;
 
 
     /// <summary>

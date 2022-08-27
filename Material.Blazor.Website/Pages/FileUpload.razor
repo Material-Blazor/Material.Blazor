@@ -35,11 +35,11 @@
 
                     <div>
                         <p>
-                            <MBFileUpload ButtonStyle="@MBButtonStyle.Outlined"
-                                          LeadingIcon="file_upload"
-                                          Multiple="@Multiple"
-                                          Label="@Label"
-                                          OnLoadFiles="@OnLoadFiles" />
+                            <MBFileUploadButton ButtonStyle="@MBButtonStyle.Outlined"
+                                                LeadingIcon="file_upload"
+                                                Multiple="@Multiple"
+                                                Label="@Label"
+                                                OnLoadFiles="@OnLoadFiles" />
                         </p>
                     </div>
                 </Primary>
@@ -56,11 +56,10 @@
 
                     <div>
                         <p>
-                            <MBFileUpload LeadingIcon="file_upload"
-                                          DragAndDropArea="true"
-                                          Multiple="@Multiple"
-                                          Label="@Label"
-                                          OnLoadFiles="@OnLoadFiles" />
+                            <MBFileUploadDragAndDrop LeadingIcon="file_upload"
+                                                     Multiple="@Multiple"
+                                                     Label="@Label"
+                                                     OnLoadFiles="@OnLoadFiles" />
                         </p>
                     </div>
                 </Primary>
@@ -122,10 +121,10 @@
     private string Label => Multiple ? "Choose multiple files" : "Choose one file";
 
 
-    private Task OnLoadFiles(InputFileChangeEventArgs e)
+    private async Task OnLoadFiles(InputFileChangeEventArgs e)
     {
         LoadedFiles = e.GetMultipleFiles().ToList();
 
-        return Task.CompletedTask;
+        await InvokeAsync(StateHasChanged).ConfigureAwait(false);
     }
 }

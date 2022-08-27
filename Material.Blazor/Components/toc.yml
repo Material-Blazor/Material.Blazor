@@ -61,11 +61,14 @@
 - name: MBDivider
   topicUid: C.MBDivider
 
-- name: MBFileUpload
-  topicUid: C.MBFileUpload
+- name: MBFileUploadButton
+  topicUid: C.MBFileUploadButton
 
-- name: MBFloatingActionButton
-  topicUid: C.MBFloatingActionButton
+- name: MBFileUploadButton
+  topicUid: C.MBFileUploadButton
+
+- name: MBFloatingActionDragAndDrop
+  topicUid: C.MBFloatingActionDragAndDrop
 
 - name: MBGrid
   topicUid: C.MBGrid

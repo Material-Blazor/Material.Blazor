@@ -23,6 +23,11 @@
         height: 100%;
     }
 
+    &.mb-file-upload--hover {
+        border-color: var(--mdc-theme-error);
+        color: var(--mdc-theme-error);
+    }
+
     & .mb-file-upload__card-content {
         display: flex;
         align-items: center;
@@ -39,6 +44,12 @@
             height: 100%;
             width: 100%;
             opacity: 0;
+        }
+
+        & .mb-file-upload__filename {
+            position: absolute;
+            bottom: 0;
+            right: 6px;
         }
     }
 

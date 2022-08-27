@@ -1,0 +1,35 @@
+﻿@namespace Material.Blazor
+@inherits ComponentBase
+@using Microsoft.AspNetCore.Components.Forms
+
+
+<MBCard AutoStyled="false"
+        class="@CardClass"
+        CardStyle="@MBCardStyle.Outlined"
+        @ondragenter="OnDragEnter" 
+        @ondragleave="OnDragLeave" 
+        @ondragover="OnDragEnter">
+    <PrimaryAction>
+        <div class="mb-file-upload__card-content">
+            <div class="mb-card__title mdc-typography--subtitle1">
+                @if (!string.IsNullOrWhiteSpace(LeadingIcon))
+                {
+                    <MBIcon class="mb-file-upload__leading-icon" IconFoundry="@IconFoundry" IconName="@LeadingIcon" />
+                }
+
+                @Label
+
+                @if (!string.IsNullOrWhiteSpace(TrailingIcon))
+                {
+                    <MBIcon class="mb-file-upload__trailing-icon" IconFoundry="@IconFoundry" IconName="@TrailingIcon" />
+                }
+            </div>
+
+            <InputFile OnChange="@LocalOnLoadFiles" multiple="@Multiple" />
+
+            <div class="mb-file-upload__filename mdc-typography--caption">
+                @Filename
+            </div>
+        </div>
+    </PrimaryAction>
+</MBCard>
