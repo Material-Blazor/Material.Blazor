@@ -127,6 +127,12 @@ references:
 - uid: C.MBDrawer
   name: MBDrawer
   href: Material.Blazor/Components/Drawer/MBDrawer.html
+- uid: C.MBFileUploadButton
+  name: MBFileUploadButton
+  href: Material.Blazor/Components/FileUpload/MBFileUploadButton.html
+- uid: C.MBFileUploadDragAndDrop
+  name: MBFileUploadDragAndDrop
+  href: Material.Blazor/Components/FileUpload/MBFileUploadDragAndDrop.html
 - uid: C.MBFloatingActionButton
   name: MBFloatingActionButton
   href: Material.Blazor/Components/FloatingActionButton/MBFloatingActionButton.html
