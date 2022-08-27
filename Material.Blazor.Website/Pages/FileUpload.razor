@@ -5,8 +5,8 @@
 @using System.IO
 
 @inject ILogger<FileUpload> Logger
-@inject IWebHostEnvironment Environment
-
+@*@inject IWebHostEnvironment Environment
+*@
 
 <DemonstrationPage ComponentName="FileUpload"
                    DemoComponent="@this"
@@ -73,26 +73,19 @@
                     </h2>
 
                     <div>
-                        @if (!string.IsNullOrWhiteSpace(LoadingMessage))
-                        {
-                            <p>@LoadingMessage</p>
-                        }
-                        else
-                        {
-                            <ul>
-                                @foreach (var file in LoadedFiles)
-                                {
-                                    <li style="margin-bottom: 12px;">
-                                        <ul>
-                                            <li>Name: @file.Name</li>
-                                            <li>Last modified: @file.LastModified.ToString()</li>
-                                            <li>Size (bytes): @file.Size.ToString("N0")</li>
-                                            <li>Content type: @file.ContentType</li>
-                                        </ul>
-                                    </li>
-                                }
-                            </ul>
-                        }
+                        <ul>
+                            @foreach (var file in LoadedFiles)
+                            {
+                                <li style="margin-bottom: 12px;">
+                                    <ul>
+                                        <li>Name: @file.Name</li>
+                                        <li>Last modified: @file.LastModified.ToString()</li>
+                                        <li>Size (bytes): @file.Size.ToString("N0")</li>
+                                        <li>Content type: @file.ContentType</li>
+                                    </ul>
+                                </li>
+                            }
+                        </ul>
                     </div>
                 </Primary>
             </MBCard>
@@ -106,29 +99,12 @@
     private bool Multiple { get; set; }
 
     private List<IBrowserFile> LoadedFiles { get; set; } = new();
-    private string LoadingMessage { get; set; }
     private string Label => Multiple ? "Choose multiple files" : "Choose one file";
 
 
     private Task OnLoadFiles(InputFileChangeEventArgs e)
     {
-        LoadingMessage = "Uploading...";
-        LoadedFiles.Clear();
-
-        var files = e.GetMultipleFiles();
-
-        foreach (var file in files)
-        {
-            LoadedFiles.Add(file);
-
-            var trustedFileNameForFileStorage = Path.GetRandomFileName();
-            
-            var path = Path.Combine(Environment.ContentRootPath,
-                    Environment.EnvironmentName, "unsafe_uploads",
-                    trustedFileNameForFileStorage);
-        }
-
-        LoadingMessage = "";
+        var LoadedFiles = e.GetMultipleFiles();
 
         return Task.CompletedTask;
     }
