@@ -6,12 +6,14 @@ title: ReleaseNotes
 
 #### [3.0.0-preview.11](https://github.com/Material-Blazor/Material.Blazor/tree/3.0.0-preview.11)
 
-Released 2022-08-??
+Released 2022-08-27
 
 **Updates**
 
 **New components**
-- File upload plus component.
+- File upload plus components added.
+- `MBFileUploadButton` presents a standard `MBButton` that launches a file upload dialog.
+- `MBFileUploadDragAndDrop` presents a styled `MBCard` that can have files dragged and dropped on to it, or can be clicked to launch a file upload dialog.
 
 **Breaking Changes**
 
