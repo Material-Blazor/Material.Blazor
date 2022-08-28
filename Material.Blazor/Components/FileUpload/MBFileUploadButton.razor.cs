@@ -77,6 +77,12 @@ public partial class MBFileUploadButton : ComponentFoundation
 
 
     /// <summary>
+    /// Comma separated list of accepted file types.
+    /// </summary>
+    [Parameter] public string Accept { get; set; } = string.Empty;
+
+
+    /// <summary>
     /// REQUIRED function called when files are loaded.
     /// </summary>
     [Parameter] public Func<InputFileChangeEventArgs, Task> OnLoadFiles { get; set; }

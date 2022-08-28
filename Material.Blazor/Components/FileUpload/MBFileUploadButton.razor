@@ -5,16 +5,18 @@
 
 <div @ref="@ElementReference" class="mb-file-upload--button">
     <MBButton ButtonStyle="@ButtonStyle"
-                Density="@Density"
-                Disabled="@Disabled"
-                Label="@Label"
-                LeadingIcon="@LeadingIcon"
-                TrailingIcon="@TrailingIcon"
-                TouchTarget="@TouchTarget"
-                IconFoundry="@IconFoundry"
-                @onclick="@OnClick">
+              Density="@Density"
+              Disabled="@Disabled"
+              Label="@Label"
+              LeadingIcon="@LeadingIcon"
+              TrailingIcon="@TrailingIcon"
+              TouchTarget="@TouchTarget"
+              IconFoundry="@IconFoundry"
+              @onclick="@OnClick">
 
     </MBButton>
 
-    <InputFile OnChange="@OnLoadFiles" multiple="@Multiple" />
+    <InputFile OnChange="@OnLoadFiles"
+               multiple="@Multiple"
+               accept="@Accept" />
 </div>

@@ -26,7 +26,9 @@
                 }
             </div>
 
-            <InputFile OnChange="@LocalOnLoadFiles" multiple="@Multiple" />
+            <InputFile OnChange="@OnLoadFiles"
+                       multiple="@Multiple"
+                       accept="@Accept" />
 
             <div class="mb-file-upload__filename mdc-typography--caption">
                 @Filename
