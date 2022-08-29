@@ -752,14 +752,14 @@ public enum MBToastPosition
     TopLeft,
 
     /// <summary>
-    /// Top right, newest toasts on top.
-    /// </summary>
-    TopRight,
-
-    /// <summary>
     /// Top center, newest toasts on top.
     /// </summary>
     TopCenter,
+
+    /// <summary>
+    /// Top right, newest toasts on top.
+    /// </summary>
+    TopRight,
 
     /// <summary>
     /// Center left positioning, newest toasts on top.
@@ -767,14 +767,14 @@ public enum MBToastPosition
     CenterLeft,
 
     /// <summary>
-    /// Center right, newest toasts on top.
-    /// </summary>
-    CenterRight,
-
-    /// <summary>
     /// Center center, newest toasts on top.
     /// </summary>
     CenterCenter,
+
+    /// <summary>
+    /// Center right, newest toasts on top.
+    /// </summary>
+    CenterRight,
 
     /// <summary>
     /// Bottom left positioning, newest toasts on the bottom.
@@ -782,12 +782,12 @@ public enum MBToastPosition
     BottomLeft,
 
     /// <summary>
+    /// Bottom center positioning, newest toasts on the bottom.
+    /// </summary>
+    BottomCenter,
+
+    /// <summary>
     /// Bottom right positioning, newest toasts on the bottom.
     /// </summary>
     BottomRight,
-
-    /// <summary>
-    /// Bottom center positioning, newest toasts on the bottom.
-    /// </summary>
-    BottomCenter
 }

@@ -1,17 +1,6 @@
-﻿$toast-width: 280px;
-$toast-height: 66px;
+﻿$toast-height: 66px;
 $toast-spacing: 8px;
-$toast-margin: 8px;
-$toast-margin-center-horizontal: 50vw;
-$toast-margin-center-vertical: 50vh;
-$toast-margin-large: 12px;
-$body-padding-right: 6px;
-$heading-margin-top: 6px;
-$message-margin-top: 6px;
-$center-margin-left: -$toast-width * 0.5;
-$transition-height: $toast-height + $toast-spacing;
-$close-button-size: 28px;
-$close-button-margin-right: -$body-padding-right;
+$heading-margin-bottom: 6px;
 $icon-font: 24px;
 $icon-horizontal-padding: 12px;
 
@@ -35,109 +24,71 @@ $icon-horizontal-padding: 12px;
 
 
 .mb-toast-container {
-    display: flex;
     flex-direction: column;
-    position: fixed;
-    z-index: 101;
+
+    h5 {
+        margin: 0 0 $heading-margin-bottom 0;
+    }
 }
 
-.mb-toast__topleft,
-.mb-toast__topright,
-.mb-toast__topcenter {
-    top: $toast-margin;
-    left: 50%;
-    margin-left: $center-margin-left;
+.mb-toast__top-left,
+.mb-toast__top-right,
+.mb-toast__top-center {
+    top: 0;
+    bottom: inherit;
+
+    .mdc-snackbar__surface {
+        margin-bottom: $toast-spacing;
+    }
 }
 
-.mb-toast__bottomleft,
-.mb-toast__bottomright,
-.mb-toast__bottomcenter {
-    bottom: $toast-margin;
-    left: 50%;
-    margin-left: $center-margin-left;
+.mb-toast__center-left,
+.mb-toast__center-right,
+.mb-toast__center-center {
+    top: 0;
+
+    .mdc-snackbar__surface {
+        margin: $toast-spacing*0.5 0;
+    }
 }
 
-
+.mb-toast__bottom-left,
+.mb-toast__bottom-right,
+.mb-toast__bottom-center {
+    .mdc-snackbar__surface {
+        margin-top: $toast-spacing;
+    }
+}
 
 
 @media (min-width: 576px) {
-
-    .mb-toast__topleft {
-        top: $toast-margin-large;
-        left: $toast-margin-large;
-        margin-left: 0;
+    .mb-toast__top-left,
+    .mb-toast__center-left,
+    .mb-toast__bottom-left {
+        align-items: flex-start;
     }
 
-    .mb-toast__topright {
-        top: $toast-margin-large;
-        right: $toast-margin-large;
-        left: initial;
-        margin-left: 0;
-    }
-
-    .mb-toast__topcenter {
-        top: $toast-margin-large;
-    }
-
-
-    .mb-toast__centerleft {
-        top: $toast-margin-center-vertical;
-        left: $toast-margin-large;
-        margin-left: 0;
-    }
-
-    .mb-toast__centerright {
-        top: $toast-margin-center-vertical;
-        right: $toast-margin-large;
-        left: initial;
-        margin-left: 0;
-    }
-
-    .mb-toast__centercenter {
-        top: $toast-margin-center-vertical;
-        left: $toast-margin-center-horizontal;
-    }
-
-
-    .mb-toast__bottomleft {
-        bottom: $toast-margin-large;
-        left: $toast-margin-large;
-        margin-left: 0;
-    }
-
-    .mb-toast__bottomright {
-        bottom: $toast-margin-large;
-        right: $toast-margin-large;
-        left: initial;
-        margin-left: 0;
-    }
-
-    .mb-toast__bottomcenter {
-        bottom: $toast-margin-large;
+    .mb-toast__top-right,
+    .mb-toast__center-right,
+    .mb-toast__bottom-right {
+        align-items: flex-end;
     }
 }
 
-.mb-toast {
+.mb-toast__text {
     display: flex;
     flex-flow: row nowrap;
-    margin: $toast-spacing*0.5 0;
-    padding: 0 $body-padding-right 0 0;
-    box-sizing: border-box;
-    height: $toast-height;
-    max-height: 30vh;
-    min-width: $toast-width;
-    border-radius: var(--mb-toast-border-radius);
 }
 
-.mb-toast.fade-in {
+.mb-toast--fade-in {
     animation: mbToastFadeIn 300ms;
 }
 
-.mb-toast.fade-out {
+.mb-toast--fade-out {
     animation: mbToastFadeOut 3000ms;
 }
 
-.mb-toast.hide {
+.mb-toast--hide {
     max-height: 0;
     visibility: hidden;
 }
@@ -271,7 +222,7 @@ $icon-horizontal-padding: 12px;
     --mdc-theme-primary: var(--mb-toast-color-error);
 }
 
-.mb-toast-icon {
+/*.mb-toast-icon {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -356,4 +307,4 @@ $icon-horizontal-padding: 12px;
     .mdc-button__icon {
         margin: 0 !important;
     }
-}
+}*/
