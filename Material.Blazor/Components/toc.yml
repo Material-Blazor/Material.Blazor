@@ -64,11 +64,11 @@
 - name: MBFileUploadButton
   topicUid: C.MBFileUploadButton
 
-- name: MBFileUploadButton
-  topicUid: C.MBFileUploadButton
+- name: MBFileUploadDragAndDrop
+  topicUid: C.MBFileUploadDragAndDrop
 
-- name: MBFloatingActionDragAndDrop
-  topicUid: C.MBFloatingActionDragAndDrop
+- name: MBFloatingActionButton
+  topicUid: C.MBFloatingActionButton
 
 - name: MBGrid
   topicUid: C.MBGrid

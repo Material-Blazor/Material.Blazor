@@ -21,7 +21,7 @@ namespace Material.Blazor;
 /// <summary>
 /// A material card styled wrapper for the <code>InputFile</code> component that can load files either by drag and drop or clicking the card area
 /// </summary>
-public partial class MBFileUploadDragAndDrop : ComponentBase
+public partial class MBFileUploadDragAndDrop : ComponentFoundation
 {
 #nullable enable annotations
     /// <summary>
@@ -53,12 +53,6 @@ public partial class MBFileUploadDragAndDrop : ComponentBase
 
 
     /// <summary>
-    /// Enabled the component to load multiple files.
-    /// </summary>
-    [Parameter] public bool Multiple { get; set; } = false;
-
-
-    /// <summary>
     /// REQUIRED function called when files are loaded.
     /// </summary>
     [Parameter] public Func<InputFileChangeEventArgs, Task> OnLoadFiles { get; set; }
@@ -67,13 +61,14 @@ public partial class MBFileUploadDragAndDrop : ComponentBase
 
     private ElementReference ElementReference { get; set; }
     private string HoverClass { get; set; } = string.Empty;
-    private string CardClass => "mb-file-upload--drag-and-drop" + HoverClass;
+    private string CardClass => $"mb-file-upload--drag-and-drop {ActiveConditionalClasses} {@class}" + HoverClass;
     private string Filename { get; set; } = string.Empty;
+    private readonly string labelId = Utilities.GenerateUniqueElementName();
 
 
     private void OnDragEnter(DragEventArgs _)
     {
-        HoverClass = " mb-file-upload--hover";
+        HoverClass = " mb-file-upload--hover mdc-elevation--z7";
     }
 
 

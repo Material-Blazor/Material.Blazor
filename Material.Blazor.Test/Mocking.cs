@@ -1,11 +1,9 @@
 using Bunit;
-using Material.Blazor;
 using Material.Blazor.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Moq;
-using System.Collections.Generic;
-using System.Linq;
+using System.Globalization;
 using Xunit;
 
 namespace Material.Blazor.Test;
@@ -15,6 +13,11 @@ public class Mocking
     private TestContext ctx;
     private void InjectMockedServices()
     {
+        var cultureInfo = new CultureInfo("en-US");
+
+        CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+        CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
         ctx = new();
         _ = ctx.Services
             .AddSingleton(new Mock<IMBLoggingService>().Object)
@@ -108,7 +111,7 @@ public class Mocking
              (nameof(MBButton.ButtonStyle), MBButtonStyle.ContainedRaised));
         cut.MarkupMatches(@"
 <div class=""mdc-touch-target-wrapper"">
-    <button class=""mdc-button mdc-button--raised  mdc-button--touch"">
+    <button class=""mdc-button mdc-button--raised  mdc-button--touch"" type=""button"">
         <span class=""mdc-button__ripple""></span>
         <span class=""mdc-button__touch""></span>
         <span class=""mdc-button__label"">Hello button</span>
@@ -379,7 +382,7 @@ public class Mocking
         var cut = ctx.RenderComponent<MBIconButton>((nameof(MBIcon.IconName), "alarm"));
         cut.MarkupMatches(@"
 <div class=""mdc-touch-target-wrapper"">
-  <button class=""mdc-icon-button  mdc-button--touch  "" iconname=""alarm"" >
+  <button class=""mdc-icon-button  mdc-button--touch  "" iconname=""alarm"" type=""button"">
     <div class=""mdc-icon-button__ripple""></div>
   </button>
 </div>
@@ -395,7 +398,7 @@ public class Mocking
             (nameof(MBIconButtonToggle.IconOff), "touch_app"));
         cut.MarkupMatches(@"
 <div class=""mdc-touch-target-wrapper"">
-  <button class=""mdc-icon-button    mdc-button--touch ""  >
+  <button class=""mdc-icon-button    mdc-button--touch "" type=""button"">
     <div class=""mdc-icon-button__ripple""></div>
     <i class=""material-icons  mdc-icon-button__icon mdc-icon-button__icon--on mb-dp-menu__icon-button"">alarm</i>
     <i class=""material-icons  mdc-icon-button__icon mb-dp-menu__icon-button"">touch_app</i>

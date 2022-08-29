@@ -24,4 +24,10 @@
 @use "./material-components-web";
 @use "./app";
 
+@use "@material/snackbar";
+
+.mdc-snackbar {
+    @include snackbar.shape-radius(0px);
+}
+
 @include app.app-classes();

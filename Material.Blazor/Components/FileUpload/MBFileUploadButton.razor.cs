@@ -71,12 +71,6 @@ public partial class MBFileUploadButton : ComponentFoundation
 
 
     /// <summary>
-    /// Enabled the component to load multiple files.
-    /// </summary>
-    [Parameter] public bool Multiple { get; set; } = false;
-
-
-    /// <summary>
     /// REQUIRED function called when files are loaded.
     /// </summary>
     [Parameter] public Func<InputFileChangeEventArgs, Task> OnLoadFiles { get; set; }

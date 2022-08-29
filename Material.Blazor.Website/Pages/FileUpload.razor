@@ -25,7 +25,7 @@
     </Controls>
 
     <PageContent>
-        <div class="mdc-layout-grid__cell--span-4">
+        <div class="mdc-layout-grid__cell--span-6">
             <MBCard AutoStyled="true"
                     style="min-height: 200px;">
                 <Primary>
@@ -36,9 +36,9 @@
                     <div>
                         <p>
                             <MBFileUploadButton ButtonStyle="@MBButtonStyle.Outlined"
-                                                LeadingIcon="file_upload"
-                                                Multiple="@Multiple"
                                                 Label="@Label"
+                                                LeadingIcon="file_upload"
+                                                multiple="@Multiple"
                                                 OnLoadFiles="@OnLoadFiles" />
                         </p>
                     </div>
@@ -46,7 +46,7 @@
             </MBCard>
         </div>
 
-        <div class="mdc-layout-grid__cell--span-4">
+        <div class="mdc-layout-grid__cell--span-6">
             <MBCard AutoStyled="true"
                     style="min-height: 200px;">
                 <Primary>
@@ -56,28 +56,10 @@
 
                     <div>
                         <p>
-                            <MBFileUploadDragAndDrop LeadingIcon="file_upload"
-                                                     Multiple="@Multiple"
-                                                     Label="@Label"
+                            <MBFileUploadDragAndDrop Label="@Label"
+                                                     LeadingIcon="file_upload"
+                                                     multiple="@Multiple"
                                                      OnLoadFiles="@OnLoadFiles" />
-                        </p>
-                    </div>
-                </Primary>
-            </MBCard>
-        </div>
-
-        <div class="mdc-layout-grid__cell--span-4">
-            <MBCard AutoStyled="true"
-                    style="min-height: 200px;">
-                <Primary>
-                    <h2 class="mb-card__title mdc-typography mdc-typography--headline6">
-                        Vanilla <code>InputFile</code> component
-                    </h2>
-
-                    <div>
-                        <p class="mdc-typography--body2">You can also drag and drop files on to the button</p>
-                        <p>
-                            <InputFile OnChange="@OnLoadFiles" multiple="@Multiple" />
                         </p>
                     </div>
                 </Primary>

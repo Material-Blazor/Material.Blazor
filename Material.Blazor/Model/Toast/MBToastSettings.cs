@@ -129,9 +129,9 @@ public class MBToastSettings
     /// </summary>
     internal string StatusClass => Status switch
     {
-        ToastStatus.Show => "fade-in",
-        ToastStatus.FadeOut => "fade-out",
-        ToastStatus.Hide => "hide",
+        ToastStatus.Show => "mb-toast--fade-in",
+        ToastStatus.FadeOut => "mb-toast--fade-out",
+        ToastStatus.Hide => "mb-toast--hide",
         _ => throw new InvalidOperationException(),
     };
 
