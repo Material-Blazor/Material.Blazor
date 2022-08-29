@@ -7,7 +7,8 @@
     <aside class="mb-toast-container mdc-snackbar mdc-snackbar--open @PositionClass">
         @foreach (var toast in DisplayedToasts.OrderBy(x => x.TimeStamp))
         {
-            <div aria-relevant="additions"
+            <div @key="@toast"
+                 aria-relevant="additions"
                  class="mdc-snackbar__surface @toast.Settings.ContainerLevelClass @toast.Settings.StatusClass @toast.Settings.AppliedCssClass"
                  role="status">
 
