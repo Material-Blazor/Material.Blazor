@@ -1,15 +1,18 @@
 ﻿@namespace Material.Blazor
-@inherits ComponentBase
+@inherits ComponentFoundation
 @using Microsoft.AspNetCore.Components.Forms
 
 
 <MBCard AutoStyled="false"
-        class="@CardClass"
         CardStyle="@MBCardStyle.Outlined"
+        class="@CardClass"
+        id="@id"
+        style="@style"
         @ondragenter="@OnDragEnter" 
         @ondragleave="@OnDragLeave" 
         @ondragover="@OnDragEnter"
         @ondrop="@OnDragLeave">
+
     <PrimaryAction>
         <div class="mb-file-upload__card-content">
             <div class="mb-card__title mdc-typography--subtitle1">
@@ -28,8 +31,7 @@
 
             <InputFile OnChange="@LocalOnLoadFiles"
                        id="@labelId"
-                       multiple="@Multiple"
-                       accept="@Accept" />
+                       @attributes="@AttributesToSplat()" />
 
             <div class="mb-file-upload__filename mdc-typography--caption">
                 @Filename

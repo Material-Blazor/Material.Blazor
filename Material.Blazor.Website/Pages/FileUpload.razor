@@ -40,9 +40,9 @@
                     <div>
                         <p>
                             <MBFileUploadButton ButtonStyle="@MBButtonStyle.Outlined"
-                                                LeadingIcon="file_upload"
-                                                Multiple="@Multiple"
                                                 Label="@Label"
+                                                LeadingIcon="file_upload"
+                                                multiple="@Multiple"
                                                 OnLoadFiles="@OnLoadFiles" />
                         </p>
                     </div>
@@ -64,10 +64,10 @@
 
                     <div>
                         <p>
-                            <MBFileUploadDragAndDrop LeadingIcon="file_upload"
-                                                     Multiple="@Multiple"
-                                                     Accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                            <MBFileUploadDragAndDrop accept=".doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
                                                      Label="@Label"
+                                                     LeadingIcon="file_upload"
+                                                     multiple="@Multiple"
                                                      OnLoadFiles="@OnLoadFiles" />
                         </p>
                     </div>
